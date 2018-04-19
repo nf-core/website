@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5 {
 strong {
   font-weight: 700;
 }
+.bg-dark a, .homepage-usedby a {
+  color: rgba(255,255,255,.5);
+  text-decoration: underline;
+}
 
 .site-nav {
   padding: .2rem 1rem;
@@ -195,4 +199,32 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .homepage-feature-boxes p {
   font-size: 0.9rem;
+}
+
+.homepage-usedby {
+  position: relative;
+  display: block;
+  color: #ffffff;
+}
+.homepage-usedby::before {
+  content: "";
+  background: #000000;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: -2;
+}
+.homepage-usedby::after {
+  content: "";
+  background: url('../img/flowcell.jpg') no-repeat;
+  opacity: 0.5;
+  background-size: cover;
+  background-position: right top;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: -1;
+}
+.homepage-usedby img {
+  height: 80px;
+  max-width: 100%;
+  margin: 1rem 2rem 1rem 0;
 }
