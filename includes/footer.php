@@ -1,10 +1,15 @@
+<?php if($title): ?>
+      </div>
+    </div>
+ <?php endif; ?>
+
 
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-6 col-md">
-            <img height="30px" src="assets/img/logo/nf-core-logo.svg" />
-            <small class="d-block mb-3 text-muted">&copy; 2018</small>
+          <div class="col-6 col-md-4">
+            <a class="text-muted" href="/"><img height="30px" src="assets/img/logo/nf-core-logo.svg" /></a>
+            <small class="d-block mb-3 text-muted">Making awesome workflows since &copy; 2018</small>
             <small class="d-block mb-3 text-muted">Feature icons made by <a href="http://www.freepik.com/" class="text-muted">Freepik</a> from <a href="http://www.flaticon.com/" class="text-muted">www.flaticon.com</a></small>
           </div>
           <div class="col-6 col-md">
@@ -12,23 +17,23 @@
             <ul class="list-unstyled">
               <li><a class="text-muted" href="#">Workflow features</a></li>
               <li><a class="text-muted" href="#">Using nextflow</a></li>
-              <li><a class="text-muted" href="#">Available pipelines</a></li>
+              <li><a class="text-muted" href="/pipelines">Available pipelines</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>For Authors</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="#">Documentation</a></li>
-              <li><a class="text-muted" href="#">Error codes</a></li>
-              <li><a class="text-muted" href="#">Helper tools</a></li>
+              <li><a class="text-muted" href="/docs">Documentation</a></li>
+              <li><a class="text-muted" href="/errors">Error codes</a></li>
+              <li><a class="text-muted" href="/tools">Helper tools</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="#">The history of the project</a></li>
-              <li><a class="text-muted" href="#">List of contributors</a></li>
-              <li><a class="text-muted" href="#">Where to get help</a></li>
+              <li><a class="text-muted" href="/about">The history of the project</a></li>
+              <li><a class="text-muted" href="/about#contributors">List of contributors</a></li>
+              <li><a class="text-muted" href="/about#contact">Where to get help</a></li>
             </ul>
           </div>
         </div>
