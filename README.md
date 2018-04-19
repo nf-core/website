@@ -1,6 +1,6 @@
 # nf-co.re
 
-This repository contains code for the nf-core website: **http://nf-co.re**
+This repository contains code for the nf-core website: **http://nf-co.re/**
 
 <img src="public_html/assets/img/logo/nf-core-logo.png" width="500">
 
