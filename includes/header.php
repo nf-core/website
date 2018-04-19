@@ -14,7 +14,7 @@
   <body>
 
     <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
-      <a class="navbar-brand d-md-none" href="#"><img height="25px" src="assets/img/logo/nf-core-logo.svg" /></a>
+      <a class="navbar-brand d-md-none" href="/"><img height="25px" src="assets/img/logo/nf-core-logo.svg" /></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -73,8 +73,8 @@
 // Convert Markdown to HTML if a filename is given
 if($markdown_fn){
   // Markdown parsing libraries
-  require_once('../parsedown/Parsedown.php');
-  require_once('../parsedown-extra/ParsedownExtra.php');
+  require_once('../libraries/parsedown/Parsedown.php');
+  require_once('../libraries/parsedown-extra/ParsedownExtra.php');
 
   // Load the docs markdown and convert to html
   $md = file_get_contents($markdown_fn);
