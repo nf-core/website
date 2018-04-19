@@ -67,4 +67,20 @@
 
       <div class="container main-content">
 
-<?php endif; ?>
+<?php endif;
+
+// Convert Markdown to HTML if a filename is given
+if($markdown_fn){
+  // Markdown parsing libraries
+  require_once('../parsedown/Parsedown.php');
+  require_once('../parsedown-extra/ParsedownExtra.php');
+
+  // Load the docs markdown and convert to html
+  $md = file_get_contents($markdown_fn);
+  $pd = new ParsedownExtra();
+  $content = $pd->text($md);
+
+  // Print the parsed HTML
+  echo $content;
+}
+?>
