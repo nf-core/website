@@ -15,8 +15,8 @@
 
   <body>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light site-nav">
-      <a class="navbar-brand d-lg-none" href="#"><img height="25px" src="assets/img/logo/nf-core-logo.svg" /></a>
+    <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
+      <a class="navbar-brand d-md-none" href="#"><img height="25px" src="assets/img/logo/nf-core-logo.svg" /></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,7 +38,16 @@
             <a class="nav-link" href="#">About</a>
           </li>
         </ul>
-        <div style="position:absolute; right: 1rem;">
+        <hr class="d-md-none">
+        <ul class="navbar-nav d-md-none">
+          <li class="nav-item p-1">
+            <a class="nav-link" target="_blank" href="https://gitter.im/nf-core/Lobby">Chat on Gitter</a>
+          </li>
+          <li class="nav-item p-1 mb-3">
+            <a class="nav-link" target="_blank" href="https://github.com/nf-core">See nf-core on GitHub</a>
+          </li>
+        </ul>
+        <div class="d-none d-md-block" style="position:absolute; right: 1rem;">
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://gitter.im/nf-core/Lobby" data-toggle="tooltip" title="Chat on Gitter"><img height="25px" src="assets/img/gitter.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://github.com/nf-core" data-toggle="tooltip" title="See nf-core on GitHub"><img height="25px" src="assets/img/github.svg" /></a>
         </div>
@@ -60,23 +69,17 @@
     <div class="homepage-intro">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 py-3 py-md-5 px-md-4 text-center text-white">
-            <div>
-              <h2 class="display-5">For facilities</h2>
-              <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
-            </div>
+          <div class="col-md-4 py-3 py-md-5 px-md-4">
+            <h3 class="display-5">For facilities</h3>
+            <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
           </div>
-          <div class="col-md-4 py-3 py-md-5 px-md-4 text-center text-white">
-            <div>
-              <h2 class="display-5">For users</h2>
-              <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
-            </div>
+          <div class="col-md-4 py-3 py-md-5 px-md-4">
+            <h3 class="display-5">For users</h3>
+            <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
           </div>
-          <div class="col-md-4 py-3 py-md-5 px-md-4 text-center text-white">
-            <div>
-              <h2 class="display-5">For developers</h2>
-              <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
-            </div>
+          <div class="col-md-4 py-3 py-md-5 px-md-4">
+            <h3 class="display-5">For developers</h3>
+            <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
           </div>
         </div>
       </div>
@@ -193,17 +196,17 @@ nf-core list
     <div class="container my-5 text-center">
       <p class="lead"></p>
       <div class="row">
-        <div class="col-sm-4 px-md-5">
+        <div class="col-sm-4 px-md-5 mb-5 mb-sm-0">
           <h3>See what's available</h3>
           <p>Check out the available pipelines to see if we have what you need. Each comes with release details, keywords and a description.</p>
           <a class="btn btn-lg btn-success arrow-hover"><span>Available pipelines</span></a>
         </div>
-        <div class="col-sm-4 px-md-5">
+        <div class="col-sm-4 px-md-5 mb-5 mb-sm-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
           <a class="btn btn-lg btn-success arrow-hover"><span>Quickstart Tutorial</span></a>
         </div>
-        <div class="col-sm-4 px-md-5">
+        <div class="col-sm-4 px-md-5 mb-5 mb-sm-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
           <a class="btn btn-lg btn-success arrow-hover"><span>Developer docs</span></a>
