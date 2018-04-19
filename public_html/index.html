@@ -29,6 +29,9 @@
             <a class="nav-link" href="#">Pipelines</a>
           </li>
           <li class="nav-item p-1">
+            <a class="nav-link" href="#">Tools</a>
+          </li>
+          <li class="nav-item p-1">
             <a class="nav-link" href="#">Docs</a>
           </li>
           <li class="nav-item p-1">
@@ -36,18 +39,20 @@
           </li>
         </ul>
         <div style="position:absolute; right: 1rem;">
-          <a class="nav-link d-inline-block px-2" href="#" title="Chat on Gitter"><img height="25px" src="assets/img/gitter.svg" /></a>
-          <a class="nav-link d-inline-block px-2" href="#" title="See nf-core on GitHub"><img height="25px" src="assets/img/github.svg" /></a>
+          <a class="nav-link d-inline-block px-2" target="_blank" href="https://gitter.im/nf-core/Lobby" data-toggle="tooltip" title="Chat on Gitter"><img height="25px" src="assets/img/gitter.svg" /></a>
+          <a class="nav-link d-inline-block px-2" target="_blank" href="https://github.com/nf-core" data-toggle="tooltip" title="See nf-core on GitHub"><img height="25px" src="assets/img/github.svg" /></a>
         </div>
       </div>
     </nav>
 
 
     <div class="homepage-header">
-      <div class="col-md-5">
+      <div class="homepage-header-contents col-md-5">
         <h1><img src="assets/img/logo/nf-core-logo.svg" /></h1>
         <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
-        <a class="btn btn-outline-success btn-lg" href="#">View Pipelines</a>
+        <div class="hompage-cta-flex">
+          <a class="hompage-cta" href="#">View Pipelines</a>
+        </div>
       </div>
     </div>
 
@@ -55,22 +60,22 @@
     <div class="homepage-intro">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 py-3 py-md-5 text-center text-white">
+          <div class="col-md-4 py-3 py-md-5 px-md-4 text-center text-white">
             <div>
-              <h2 class="display-5">For authors</h2>
-              <p class="lead">Use the <a href="#" class="text-light">nf-core/cookiecutter</a> template to get you up and running.</p>
+              <h2 class="display-5">For facilities</h2>
+              <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
             </div>
           </div>
-          <div class="col-md-4 py-3 py-md-5 text-center text-white">
+          <div class="col-md-4 py-3 py-md-5 px-md-4 text-center text-white">
             <div>
               <h2 class="display-5">For users</h2>
-              <p class="lead">Portable, documented and standardised.<br>Pipelines that you can trust.</p>
+              <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
             </div>
           </div>
-          <div class="col-md-4 py-3 py-md-5 text-center text-white">
+          <div class="col-md-4 py-3 py-md-5 px-md-4 text-center text-white">
             <div>
               <h2 class="display-5">For developers</h2>
-              <p class="lead">Companion tools help to validate your code and simplify common tasks.</p>
+              <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
             </div>
           </div>
         </div>
@@ -148,15 +153,15 @@
       </div>
     </div>
 
-    <div class="bg-dark py-5 w-100">
+    <div class="bg-dark py-5">
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
             <h2 class="text-white">Get started in minutes</h2>
             <p class="text-white-50">Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
             <p class="text-white-50">nf-core pipelines come with built-in support for
-              <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" class="text-white-50">AWS iGenomes</a>
-              for many common species.</p>
+              <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" class="text-white-50"><u>AWS iGenomes</u></a>
+              with common species.</p>
             <p class="text-white-50">The nf-core companion tool makes it easy to list all available nf-core pipelines
               and shows which are available locally. Local versions are checked against the latest available release.</p>
           </div>
@@ -185,13 +190,23 @@ nf-core list
       </div>
     </div>
 
-    <div class="container my-5">
-      <div class="row text-center">
-        <div class="col-sm-6">
-          <a class="btn btn-lg btn-outline-success">View available pipelines</a>
+    <div class="container my-5 text-center">
+      <p class="lead"></p>
+      <div class="row">
+        <div class="col-sm-4 px-md-5">
+          <h3>See what's available</h3>
+          <p>Check out the available pipelines to see if we have what you need. Each comes with release details, keywords and a description.</p>
+          <a class="btn btn-lg btn-success arrow-hover"><span>Available pipelines</span></a>
         </div>
-        <div class="col-sm-6">
-          <a class="btn btn-lg btn-outline-success">Read the documentation</a>
+        <div class="col-sm-4 px-md-5">
+          <h3>Run a pipeline</h3>
+          <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
+          <a class="btn btn-lg btn-success arrow-hover"><span>Quickstart Tutorial</span></a>
+        </div>
+        <div class="col-sm-4 px-md-5">
+          <h3>Get into the code</h3>
+          <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
+          <a class="btn btn-lg btn-success arrow-hover"><span>Developer docs</span></a>
         </div>
       </div>
     </div>
@@ -200,32 +215,32 @@ nf-core list
       <div class="container">
         <div class="row">
           <div class="col-6 col-md">
-            <img height="25px" src="assets/img/logo/nf-core-logo.svg" />
+            <img height="30px" src="assets/img/logo/nf-core-logo.svg" />
             <small class="d-block mb-3 text-muted">&copy; 2018</small>
-            <small class="d-block mb-3 text-muted">Docs and Tick icons made by <a href="http://www.freepik.com/" class="text-muted">Freepik</a> from <a href="http://www.flaticon.com/" class="text-muted">www.flaticon.com</a></small>
+            <small class="d-block mb-3 text-muted">Feature icons made by <a href="http://www.freepik.com/" class="text-muted">Freepik</a> from <a href="http://www.flaticon.com/" class="text-muted">www.flaticon.com</a></small>
           </div>
           <div class="col-6 col-md">
             <h5>Getting Started</h5>
-            <ul class="list-unstyled text-small">
+            <ul class="list-unstyled">
               <li><a class="text-muted" href="#">Workflow features</a></li>
               <li><a class="text-muted" href="#">Using nextflow</a></li>
-              <li><a class="text-muted" href="#">nf-core pipelines</a></li>
+              <li><a class="text-muted" href="#">Available pipelines</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>For Authors</h5>
-            <ul class="list-unstyled text-small">
+            <ul class="list-unstyled">
               <li><a class="text-muted" href="#">Documentation</a></li>
               <li><a class="text-muted" href="#">Error codes</a></li>
-              <li><a class="text-muted" href="#">Where to get help</a></li>
+              <li><a class="text-muted" href="#">Helper tools</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
-            <h5>About</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">About nf-core</a></li>
-              <li><a class="text-muted" href="#">Contributors</a></li>
-              <li><a class="text-muted" href="#">Get in touch</a></li>
+            <h5>About nf-core</h5>
+            <ul class="list-unstyled">
+              <li><a class="text-muted" href="#">The history of the project</a></li>
+              <li><a class="text-muted" href="#">List of contributors</a></li>
+              <li><a class="text-muted" href="#">Where to get help</a></li>
             </ul>
           </div>
         </div>
@@ -237,5 +252,6 @@ nf-core list
     <script>window.jQuery || document.write('assets/js/jquery-slim.min.js"><\/script>')</script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/nf-core.js"></script>
   </body>
 </html>
