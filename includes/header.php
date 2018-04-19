@@ -8,6 +8,7 @@
     <meta name="author" content="Phil Ewels">
     <link rel="shortcut icon" href="assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="assets/css/nf-core.css" rel="stylesheet">
   </head>
   <body>

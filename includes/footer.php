@@ -45,6 +45,7 @@
     <script>window.jQuery || document.write('assets/js/jquery-slim.min.js"><\/script>')</script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/highlight.pack.js"></script>
     <script src="assets/js/nf-core.js"></script>
   </body>
 </html>
