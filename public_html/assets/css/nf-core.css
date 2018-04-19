@@ -4,10 +4,15 @@
  */
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro:700|Open+Sans:400,700');
 body {
-  font-family: 'Open Sans', sans-serif;
+  color: #444444;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 h1, h2, h3, h4, h5 {
   font-family: 'Maven Pro', sans-serif;
+  color: #159957;
+}
+a {
+  color: #1e6bb8;
 }
 strong {
   font-weight: 700;
@@ -98,14 +103,66 @@ strong {
   right: -3px;
 }
 
+code {
+  background-color: rgba(220,220,220,0.3);
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: inherit;
+}
+.main-content pre {
+  background-color: rgba(220,220,220,0.3);
+  border-radius: 3px;
+  border: 1px solid rgba(220,220,220,0.6);
+  padding: 15px;
+}
+.main-content pre code {
+  background-color: transparent;
+}
 
 footer {
   padding: 4rem 0 5rem;
   background-color: rgba(240,240,240,.95);
 }
-footer .container {
-  max-width: 960px;
+footer h5 {
+  color: #444444;
 }
+
+/*
+ * Main pages
+ */
+
+.mainpage {
+  margin-top: 3.4rem;
+}
+.mainpage-heading {
+  background-color: #22ae63;
+  color: #ffffff;
+  padding: 3rem 0;
+}
+.mainpage-heading h1 {
+  color: #ffffff;
+}
+.mainpage-heading code {
+  color: #ffffff;
+}
+.main-content {
+  min-height: 300px;
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.main-content h1, .main-content h2, .main-content h3,
+.main-content h4, .main-content h5, .main-content h6 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-top: 60px;
+  margin-top: -50px;
+}
+.main-content h1 {
+  border-bottom: 1px solid #22ae63;
+  margin-top: -30px;
+}
+
 
 
 /*

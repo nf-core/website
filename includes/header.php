@@ -20,19 +20,19 @@
       <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
         <ul class="navbar-nav">
           <li class="nav-item p-1">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="#">Pipelines</a>
+            <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="#">Tools</a>
+            <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="#">Docs</a>
+            <a class="nav-link" href="/docs">Docs</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="/about">About</a>
           </li>
         </ul>
         <hr class="d-md-none">
@@ -50,3 +50,21 @@
         </div>
       </div>
     </nav>
+
+<?php if($title): ?>
+
+    <div class="mainpage">
+      <div class="mainpage-heading">
+        <div class="container">
+          <h1 class="display-3"><?php echo $title; ?></h1>
+          <?php if($subtitle): ?>
+          <p class="lead"><?php echo $subtitle; ?></p>
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="triangle triangle-down"></div>
+
+      <div class="container main-content">
+
+<?php endif; ?>

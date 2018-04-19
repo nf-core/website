@@ -6,7 +6,7 @@
         <h1><img src="assets/img/logo/nf-core-logo.svg" /></h1>
         <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
         <div class="hompage-cta-flex">
-          <a class="hompage-cta" href="#">View Pipelines</a>
+          <a class="hompage-cta" href="/pipelines">View Pipelines</a>
         </div>
       </div>
     </div>
@@ -16,15 +16,15 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 py-3 py-md-5 px-md-4">
-            <h3 class="display-5">For facilities</h3>
+            <h3 class="display-5 text-white">For facilities</h3>
             <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
           </div>
           <div class="col-md-4 py-3 py-md-5 px-md-4">
-            <h3 class="display-5">For users</h3>
+            <h3 class="display-5 text-white">For users</h3>
             <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
           </div>
           <div class="col-md-4 py-3 py-md-5 px-md-4">
-            <h3 class="display-5">For developers</h3>
+            <h3 class="display-5 text-white">For developers</h3>
             <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
           </div>
         </div>
@@ -145,17 +145,17 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>See what's available</h3>
           <p>Check out the available pipelines to see if we have what you need. Each comes with release details, keywords and a description.</p>
-          <a class="btn btn-lg btn-success arrow-hover"><span>Available pipelines</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span>Available pipelines</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-          <a class="btn btn-lg btn-success arrow-hover"><span>Quickstart Tutorial</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/docs"><span>Quickstart Tutorial</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-          <a class="btn btn-lg btn-success arrow-hover"><span>Developer docs</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/docs"><span>Developer docs</span></a>
         </div>
       </div>
     </div>
@@ -164,14 +164,14 @@ nf-core list
       <div class="container py-5">
         <div class="row">
           <div class="col-12 col-lg-6">
-            <h2>Used by groups all over the world</h2>
+            <h2 class="text-white">Used by groups all over the world</h2>
             <p class="text-white-50">The nf-core community is spread all over the globe and includes a large
               number of contributing users. <a href="#">See all &raquo;</a></p>
-            <img src="assets/img/institute_images/NGI.svg">
-            <img src="assets/img/institute_images/QBiC.svg">
-            <img src="assets/img/institute_images/SciLifeLab.svg">
-            <img src="assets/img/institute_images/GIS.svg">
-            <img src="assets/img/institute_images/IARC.svg">
+            <img src="assets/img/institute_images/NGI.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab NGI">
+            <img src="assets/img/institute_images/QBiC.svg" data-placement="bottom" data-toggle="tooltip" title="Quantitative Biology Center, Tübingen, Germany">
+            <img src="assets/img/institute_images/SciLifeLab.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab, Sweden">
+            <img src="assets/img/institute_images/GIS.svg" data-placement="bottom" data-toggle="tooltip" title="GIS, Singapore">
+            <img src="assets/img/institute_images/IARC.svg" data-placement="bottom" data-toggle="tooltip" title="IARC, World Health Organisation, France">
           </div>
         </div>
       </div>
