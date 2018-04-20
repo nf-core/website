@@ -221,12 +221,14 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   z-index: -1;
   transition: 0.3s all ease;
 }
-.hompage-cta:hover {
+.hompage-cta:hover,
+.hompage-cta:focus {
   color: #22ae63;
   text-decoration: none;
   letter-spacing: 1.5px;
 }
-.hompage-cta:hover:after {
+.hompage-cta:hover:after,
+.hompage-cta:focus:after {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
