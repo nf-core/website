@@ -164,8 +164,8 @@ nf-core list
       <div class="container py-5">
         <div class="row">
           <div class="col-12 col-lg-6">
-            <h2 class="text-white">Used by groups all over the world</h2>
-            <p class="text-white-50">The nf-core community is spread all over the globe and includes a large
+            <h2>Used by groups all over the world</h2>
+            <p>The nf-core community is spread all over the globe and includes a large
               number of contributing users. <a href="#">See all &raquo;</a></p>
             <img src="assets/img/institute_images/NGI.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab NGI">
             <img src="assets/img/institute_images/QBiC.svg" data-placement="bottom" data-toggle="tooltip" title="Quantitative Biology Center, Tübingen, Germany">
