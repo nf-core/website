@@ -17,9 +17,23 @@ Here's how the website is built:
 * SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
 
 ## Development
-To run, the website needs a standard AMP stack: Apache, MySQL and PHP (MySQL not needed at time of writing).
+To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
-For running locally, I recommend using [MAMP](https://www.mamp.info/en/) (OSX) / [WAMP](http://www.wampserver.com/en/) (Windows).
+**IMPORTANT:** The repo has git submodules, so remember to use the `--recursive` flag:
+
+```
+git clone --recursive git@github.com:[USERNAME]/nf-co.re.git
+```
+
+If you forget the recursive flag (I always do), the markdown conversion won't work. You can pull the submodules when you realise this with the following command:
+
+```
+git submodule update --init --recursive
+```
+
+To run the website locally, you need a standard AMP stack: Apache, MySQL and PHP (MySQL not needed at time of writing). For this, I recommend using the free version of [MAMP](https://www.mamp.info/en/).
+
+Set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
 
 I've built the site so that most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
 
