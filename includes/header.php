@@ -73,8 +73,8 @@
 // Convert Markdown to HTML if a filename is given
 if($markdown_fn){
   // Markdown parsing libraries
-  require_once('../libraries/parsedown/Parsedown.php');
-  require_once('../libraries/parsedown-extra/ParsedownExtra.php');
+  require_once('../includes/libraries/parsedown/Parsedown.php');
+  require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
 
   // Load the docs markdown and convert to html
   $md = file_get_contents($markdown_fn);
