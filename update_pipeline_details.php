@@ -6,8 +6,14 @@
 // and write as JSON to a file.
 // This script is called by deploy.php when the GitHub web hooks
 // trigger due to an update.
+//
+// Note that the resulting file (public_html/pipelines.json) is
+// ignored in the .gitignore file and will not be tracked in git history.
+//
+// Manual usage: on command line, simply execute this script:
+//   $ php update_pipeline_details.php
 
-// CONFIG
+
 // Allow PHP fopen to work with remote links
 ini_set("allow_url_fopen", 1);
 // HTTP header to use on API GET requests
@@ -17,8 +23,14 @@ function sort_datestamp($a,$b) {
     return strtotime($a['published_at']) - strtotime($b['published_at']);
 }
 
-// Initialise the results array with the current time
-$results = array( 'updated' => time() );
+// Initialise the results array with the current time and placeholders
+$results = array(
+    'updated' => time(),
+    'pipeline_count' => 0,
+    'published_count' => 0,
+    'devel_count' => 0,
+    'archived_count' => 0
+);
 
 // Fetch all repositories at nf-core
 $gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
@@ -71,6 +83,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
         $results['remote_workflows'][$idx]['releases'][] = array(
             'name' => $rel->name,
             'published_at' => $rel->published_at,
+            'html_url' => $rel->html_url,
             'tag_name' => $rel->tag_name,
             'tag_sha' => None,
             'draft' => $rel->draft,
@@ -95,6 +108,18 @@ foreach($results['remote_workflows'] as $idx => $repo){
                 }
             }
         }
+    }
+}
+
+// Count workflows
+foreach($results['remote_workflows'] as $repo){
+    $results['pipeline_count']++;
+    if($repo['archived']){
+        $results['archived_count']++;
+    } else if(count($repo['releases']) > 0){
+        $results['published_count']++;
+    } else {
+        $results['devel_count']++;
     }
 }
 
