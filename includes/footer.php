@@ -10,7 +10,14 @@
           <div class="col-6 col-md-4">
             <a class="text-muted" href="/"><img height="30px" src="assets/img/logo/nf-core-logo.svg" /></a>
             <small class="d-block mb-3 text-muted">Making awesome workflows since &copy; 2018</small>
-            <small class="d-block mb-3 text-muted">Feature icons made by <a href="http://www.freepik.com/" class="text-muted">Freepik</a> from <a href="http://www.flaticon.com/" class="text-muted">www.flaticon.com</a></small>
+            <small class="d-block mb-3 text-muted">
+              Website by <a href="http://phil.ewels.co.uk/" class="text-muted">Phil Ewels</a>.
+              Icons from <a href="http://www.flaticon.com/" class="text-muted">flaticon.com</a>
+              and <a href="https://fontawesome.com/" class="text-muted">fontawesome.com</a>.
+              <a href="http://getbootstrap.com/" class="text-muted">Bootstrap</a> CSS framework,
+              <a href="http://jquery.com/" class="text-muted">jQuery</a> JS and syntax colouring
+              with <a href="https://highlightjs.org/" class="text-muted">highlight.js</a>.
+            </small>
           </div>
           <div class="col-6 col-md">
             <h5>Getting Started</h5>
@@ -31,7 +38,7 @@
           <div class="col-6 col-md">
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/about">The history of the project</a></li>
+              <li><a class="text-muted" href="/about">Project history</a></li>
               <li><a class="text-muted" href="/about#contributors">List of contributors</a></li>
               <li><a class="text-muted" href="/about#contact">Where to get help</a></li>
             </ul>

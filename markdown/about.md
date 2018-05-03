@@ -17,7 +17,7 @@ A number of groups are involved in running, maintaining and developing pipelines
 
 Is your group missing? Please [submit a pull request](https://github.com/nf-core/nf-core.github.io/blob/master/about.md) to add yourself!
 
-## Contributors
+## Contributors {#contributors}
 nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many dedicated contributors. They include:
 
 * Phil Ewels ([@ewels](https://github.com/ewels/)) - Project lead
