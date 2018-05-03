@@ -16,7 +16,8 @@ if ( $_POST['payload'] ) {
   // Pull the new version of the tools repo
   shell_exec("cd /home/nfcore/nf-co.re/includes/nf-core/tools && git fetch && git reset --hard origin/master");
   // Update the JSON file describing all the pipeline versions
-  shell_exec("php /home/nfcore/nf-co.re/update_pipeline_details.php > /dev/null");
+  shell_exec("php /home/nfcore/nf-co.re/update_pipeline_details.php");
   die("done " . mktime());
+
 }
 ?>
