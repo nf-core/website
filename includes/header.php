@@ -1,4 +1,10 @@
-<!doctype html>
+<?php
+if(isset($debug) and $debug){
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+}
+?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -9,6 +15,7 @@
     <link rel="shortcut icon" href="assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/code_highlighting/github.css" rel="stylesheet" >
+    <link href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" rel="stylesheet" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
     <link href="assets/css/nf-core.css" rel="stylesheet">
   </head>
   <body>
@@ -71,7 +78,7 @@
 <?php endif;
 
 // Convert Markdown to HTML if a filename is given
-if($markdown_fn){
+if( isset($markdown_fn) and $markdown_fn){
   // Markdown parsing libraries
   require_once('../includes/libraries/parsedown/Parsedown.php');
   require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
