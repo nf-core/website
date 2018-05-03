@@ -8,7 +8,8 @@ function time_ago($date) {
     $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
     $lengths = array("60", "60", "24", "7", "4.35", "12", "10");
     $now = time();
-    $unix_date = strtotime($date);
+    if(is_numeric($date)) $unix_date = $date;
+    else $unix_date = strtotime($date);
     // check validity of date
     if (empty($unix_date)) {
         return $date;
@@ -134,7 +135,8 @@ if($pipelines_json->archived_count > 0): ?>
 <?php endif; endforeach; ?>
 </div>
 
+<?php endif; ?>
 
-<?php endif;
+<p class="mt-5"><small class="text-muted">Page last synced with GitHub <?php echo time_ago($pipelines_json->updated); ?>.</small></p>
 
-include('../includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>
