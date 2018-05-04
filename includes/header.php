@@ -1,9 +1,16 @@
 <?php
+// Turn on error reporting if we set $debug = true
 if(isset($debug) and $debug){
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 }
+// Find the latest commit hash to prevent caching assets
+$git_sha = trim(shell_exec("cd ".dirname(__FILE__)." && git rev-parse --short=7 HEAD"));
+if(strlen($git_sha) != 7){
+  $git_sha = '';
+}
+
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -16,7 +23,7 @@ if(isset($debug) and $debug){
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" rel="stylesheet" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
-    <link href="assets/css/nf-core.css" rel="stylesheet">
+    <link href="assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
   </head>
   <body>
 

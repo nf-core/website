@@ -53,6 +53,6 @@
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/highlight.pack.js"></script>
-    <script src="assets/js/nf-core.js"></script>
+    <script src="assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
   </body>
 </html>
