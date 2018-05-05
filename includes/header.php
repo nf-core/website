@@ -1,10 +1,4 @@
 <?php
-// Turn on error reporting if we set $debug = true
-if(isset($debug) and $debug){
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
-}
 // Find the latest commit hash to prevent caching assets
 $git_sha = trim(shell_exec("cd ".dirname(__FILE__)." && git rev-parse --short=7 HEAD"));
 if(strlen($git_sha) != 7){

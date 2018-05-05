@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
@@ -38,104 +41,76 @@ include('../includes/header.php');
 ?>
 
 <h1>Available Pipelines</h1>
-<p>Can you think of another pipeline that would fit in well?
+<p class="mb-3">Can you think of another pipeline that would fit in well?
 <a href="https://github.com/nf-core/nf-core.github.io/issues/new">Let us know!</a></p>
 
-<?php if($pipelines_json->published_count > 0): ?>
+<div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
+  <div class="btn-group btn-group-sm" role="group">
+    <button type="button" class="btn btn-link text-body">Filter:</button>
+  </div>
+  <div class="pipeline-filters input-group input-group-sm mr-2">
+    <input type="text" class="form-control" placeholder="Text">
+    <div class="input-group-append">
+      <?php if($pipelines_json->published_count > 0): ?>
+        <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">Released</button>
+      <?php endif;
+      if($pipelines_json->devel_count > 0): ?>
+        <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">Development</button>
+      <?php endif;
+      if($pipelines_json->archived_count > 0): ?>
+        <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">Archived</button>
+      <?php endif; ?>
+    </div>
+  </div>
+  <div class="btn-group btn-group-sm" role="group">
+    <button type="button" class="btn btn-link text-body">Sort:</button>
+  </div>
+  <div class="pipeline-sorts btn-group btn-group-sm mr-2" role="group">
+    <button type="button" class="btn btn-outline-success active">Alphabetical</button>
+    <button type="button" class="btn btn-outline-success">Status</button>
+    <button type="button" class="btn btn-outline-success">Last Release</button>
+  </div>
+</div>
 
-<h2>Production Pipelines</h2>
+<p class="no-pipelines text-muted mt-5" style="display: none;">No pipelines found..</p>
 
-<div class="row">
-<?php foreach($pipelines as $wf): if(count($wf->releases) > 0 and !$wf->archived): ?>
-    <div class="col-sm-6 mb-3">
-        <div class="card pipeline">
+<div class="row pipelines-container">
+<?php foreach($pipelines as $wf): ?>
+    <div class="col-sm-6 mb-3 pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
+        <div class="card">
             <div class="card-body">
                 <h3 class="card-title">
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank" class="stargazers mt-2">
+                    <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
                         <i class="far fa-star"></i>
                         <?php echo $wf->stargazers_count; ?>
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank">
+                    </a>
+                    <a href="<?php echo $wf->html_url; ?>" target="_blank" class="pipeline-name">
                         <?php echo $wf->full_name; ?>
                     </a>
+                    <?php if($wf->archived): ?>
+                    <small class="status-icon text-warning ml-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-toggle="tooltip"></small>
+                    <?php elseif(count($wf->releases) == 0): ?>
+                        <small class="status-icon text-danger ml-2 fas fa-exclamation-triangle" title="Theis pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
+                    <?php else: ?>
+                        <small class="status-icon text-success ml-2 fas fa-check" title="This pipeline is released, tested and good to go." data-toggle="tooltip"></small>
+                    <?php endif; ?>
                 </h3>
                 <p class="card-text"><?php echo $wf->description; ?></p>
                 <p class="mb-0">
+                <?php if(count($wf->releases) > 0): ?>
                     <a href="<?php echo $wf->releases[0]->html_url; ?>" target="_blank"  class="btn btn-sm btn-outline-success">
                         Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>
                     </a> &nbsp;
-                    <small class="text-black-50">Published <?php echo time_ago($wf->releases[0]->published_at); ?></small>
-                </p>
-            </div>
-        </div>
-    </div>
-<?php endif; endforeach; ?>
-</div>
-
-<?php endif;
-
-if($pipelines_json->devel_count > 0): ?>
-
-<h2>Pipelines in development</h2>
-<p>These pipelines aren't yet ready for the prime-time, but are under active development.
-Once they've had a release on GitHub, they will be classed as production-ready pipelines.</p>
-
-<div class="row">
-<?php foreach($pipelines as $wf): if(count($wf->releases) == 0): ?>
-    <div class="col-sm-6 mb-3">
-        <div class="card pipeline">
-            <div class="card-body">
-                <h3 class="card-title">
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank" class="stargazers mt-2">
-                        <i class="far fa-star"></i>
-                        <?php echo $wf->stargazers_count; ?>
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank">
-                        <?php echo $wf->full_name; ?>
-                    </a>
-                </h3>
-                <p class="card-text"><?php echo $wf->description; ?></p>
-                <p class="mb-0">
+                    <small class="text-black-50 publish-date" data-pubdate="<?php echo strtotime($wf->releases[0]->published_at); ?>">Published <?php echo time_ago($wf->releases[0]->published_at); ?></small>
+                <?php else: ?>
                     <small class="text-danger">No releases yet</small>
+                <?php endif; ?>
                 </p>
             </div>
         </div>
     </div>
-<?php endif; endforeach; ?>
+<?php endforeach; ?>
 </div>
-
-<?php endif;
-
-if($pipelines_json->archived_count > 0): ?>
-
-<h2>Archived Pipelines</h2>
-<p>These pipelines have been archived and are no longer under active development.</p>
-
-<div class="row">
-<?php foreach($pipelines as $wf): if($wf->archived): ?>
-    <div class="col-sm-6 mb-3">
-        <div class="card pipeline">
-            <div class="card-body">
-                <h3 class="card-title">
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank" class="stargazers mt-2">
-                        <i class="far fa-star"></i>
-                        <?php echo $wf->stargazers_count; ?>
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank">
-                        <?php echo $wf->full_name; ?>
-                    </a>
-                </h3>
-                <p class="card-text"><?php echo $wf->description; ?></p>
-                <p class="mb-0">
-                    <a href="<?php echo $wf->releases[0]->html_url; ?>" target="_blank"  class="btn btn-sm btn-outline-success">
-                        Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>
-                    </a> &nbsp;
-                    <small class="text-black-50">Published <?php echo time_ago($wf->releases[0]->published_at); ?></small>
-                </p>
-            </div>
-        </div>
-    </div>
-<?php endif; endforeach; ?>
-</div>
-
-<?php endif; ?>
 
 <p class="mt-5"><small class="text-muted">Page last synced with GitHub <?php echo time_ago($pipelines_json->updated); ?>.</small></p>
 
