@@ -18,6 +18,10 @@
 ini_set("allow_url_fopen", 1);
 // HTTP header to use on API GET requests
 $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
+// Function to sort assoc array by key value (name)
+function sort_name($a,$b) {
+    return strcmp($a["full_name"], $b["full_name"]);
+}
 // Function to sort assoc array by key value (datestamp)
 function sort_datestamp($a,$b) {
     return strtotime($a['published_at']) - strtotime($b['published_at']);
@@ -66,6 +70,8 @@ foreach($gh_repos as $repo){
         );
     }
 }
+// Sort workflows by name
+usort($results['remote_workflows'], 'sort_name');
 
 // Get additional release data for each repo
 foreach($results['remote_workflows'] as $idx => $repo){
