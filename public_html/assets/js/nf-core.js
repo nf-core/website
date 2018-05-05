@@ -12,6 +12,13 @@ $(function () {
     // Don't try to guess markdown language to highlight (gets it wrong most of the time)
     hljs.configure({languages: []});
 
+    // Override the .contains() filter to be case insenstive
+    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
+        return function( elem ) {
+            return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+        };
+    });
+
     // Filter pipelines with text
     $('.pipelines-toolbar .pipeline-filters input').keyup(function(){
         var ftext = $('.pipelines-toolbar .pipeline-filters input').val();
@@ -48,12 +55,17 @@ $(function () {
         }
         if($(this).text() == 'Status'){
             $pipelines.sort(function(a,b){
-            	var an = $(a).attr("class").match(/pipeline-[\w]*\b/)[0];
-            	var bn = $(b).attr("class").match(/pipeline-[\w]*\b/)[0];
-                if(an == bn) { return 0; }
-                if(an == 'pipeline-released' && bn != 'pipeline-released'){ return 1; }
-                if(an == 'pipeline-dev' && bn != 'pipeline-archived'){ return 1; }
-            	return -1;
+                var at = $(a).attr("class").match(/pipeline-[\w]*\b/)[0];
+                var bt = $(b).attr("class").match(/pipeline-[\w]*\b/)[0];
+                if(at == 'pipeline-released'){ an = 3; }
+                if(at == 'pipeline-archived'){ an = 2; }
+                if(at == 'pipeline-dev'){ an = 1; }
+                if(bt == 'pipeline-released'){ bn = 3; }
+                if(bt == 'pipeline-archived'){ bn = 2; }
+                if(bt == 'pipeline-dev'){ bn = 1; }
+                if(an > bn) { return -1; }
+                if(an < bn) { return 1; }
+                return 0;
             });
         }
         if($(this).text() == 'Last Release'){
