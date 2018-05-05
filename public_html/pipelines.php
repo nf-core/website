@@ -79,7 +79,7 @@ include('../includes/header.php');
     <div class="col-sm-6 mb-3 pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title">
+                <h3 class="card-title mb-0">
                     <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
                         <i class="far fa-star"></i>
                         <?php echo $wf->stargazers_count; ?>
@@ -95,8 +95,15 @@ include('../includes/header.php');
                         <small class="status-icon text-success ml-2 fas fa-check" title="This pipeline is released, tested and good to go." data-toggle="tooltip"></small>
                     <?php endif; ?>
                 </h3>
-                <p class="card-text"><?php echo $wf->description; ?></p>
-                <p class="mb-0">
+                <?php if(count($wf->topics) > 0): ?>
+                  <p class="topics mb-0">
+                  <?php foreach($wf->topics as $topic): ?>
+                    <span class="badge pipeline-topic"><?php echo $topic; ?></span>
+                  <?php endforeach; ?>
+                  </p>
+                <?php endif; ?>
+                <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
+                <p class="mb-0 mt-2">
                 <?php if(count($wf->releases) > 0): ?>
                     <a href="<?php echo $wf->releases[0]->html_url; ?>" target="_blank"  class="btn btn-sm btn-outline-success">
                         Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>

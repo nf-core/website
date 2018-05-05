@@ -17,7 +17,15 @@
 // Allow PHP fopen to work with remote links
 ini_set("allow_url_fopen", 1);
 // HTTP header to use on API GET requests
-$api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
+$api_opts = stream_context_create([
+    'http' => [
+        'method' => 'GET',
+        'header' => [
+            'User-Agent: PHP',
+            'Accept:application/vnd.github.mercy-preview+json' // Needed to get topics (keywords) for now
+        ]
+    ]
+]);
 // Function to sort assoc array by key value (name)
 function sort_name($a,$b) {
     return strcmp($a["full_name"], $b["full_name"]);
@@ -46,8 +54,17 @@ if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
 
 // Save data from non-ignored repositories
 $ignored_repos = parse_ini_file("ignored_repos.ini")['repos'];
+$ignored_topics = parse_ini_file("ignored_repos.ini")['topics'];
 foreach($gh_repos as $repo){
     if(!in_array($repo->name, $ignored_repos)){
+        $topics = array();
+        if(!is_null($repo->topics)){
+            foreach($repo->topics as $topic){
+                if(!in_array($topic, $ignored_topics)){
+                    $topics[] = $topic;
+                }
+            }
+        }
         $results['remote_workflows'][] = array(
             'id' => $repo->id,
             'name' => $repo->name,
@@ -55,6 +72,7 @@ foreach($gh_repos as $repo){
             'private' => $repo->private,
             'html_url' => $repo->html_url,
             'description' => $repo->description,
+            'topics' => $topics,
             'created_at' => $repo->created_at,
             'updated_at' => $repo->updated_at,
             'pushed_at' => $repo->pushed_at,
