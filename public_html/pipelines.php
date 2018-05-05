@@ -45,11 +45,11 @@ include('../includes/header.php');
 <a href="https://github.com/nf-core/nf-core.github.io/issues/new">Let us know!</a></p>
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
-  <div class="btn-group btn-group-sm" role="group">
+  <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>
   </div>
-  <div class="pipeline-filters input-group input-group-sm mr-2">
-    <input type="text" class="form-control" placeholder="Text">
+  <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
+    <input type="text" class="form-control" placeholder="Filter Text">
     <div class="input-group-append">
       <?php if($pipelines_json->published_count > 0): ?>
         <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">Released</button>
@@ -62,10 +62,10 @@ include('../includes/header.php');
       <?php endif; ?>
     </div>
   </div>
-  <div class="btn-group btn-group-sm" role="group">
+  <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
     <button type="button" class="btn btn-link text-body">Sort:</button>
   </div>
-  <div class="pipeline-sorts btn-group btn-group-sm mr-2" role="group">
+  <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
     <button type="button" class="btn btn-outline-success active">Alphabetical</button>
     <button type="button" class="btn btn-outline-success">Status</button>
     <button type="button" class="btn btn-outline-success">Last Release</button>
