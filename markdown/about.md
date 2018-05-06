@@ -22,7 +22,7 @@ nf-core is by design a collaborative effort, and would not exist if it were not 
 
 * Phil Ewels ([@ewels](https://github.com/ewels/)) - Project lead
 * CRG Barcelona
-    * Paolo Di Tommaso ([@pditommaso](https://github.com/pditommaso)) - Developer of Nextflow and source of never-ending support
+    * Paolo Di Tommaso ([@pditommaso](https://github.com/pditommaso)) - Author of Nextflow and source of never-ending support
     * Evan Floden ([@skptic](https://github.com/skptic))
 * NGI Sweden
     * Rickard Hammarén ([@Hammarn](https://github.com/hammarn))
