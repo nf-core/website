@@ -63,7 +63,7 @@ Pipelines must:
 
 # How to add a new pipeline
 
-1. Join the [nf-core GitHub organisation](https://github.com/nf-core/nf-core.github.io/issues/1)
+1. Join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3)
 2. Create a pipeline repository in the organisation
     * _If starting from scratch_
         * Ask an admin to create a new pipeline repository for you and add you as a collaborator.
