@@ -18,6 +18,9 @@ if(strlen($git_sha) != 7){
     <link href="assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" rel="stylesheet" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
     <link href="assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
   <body>
 
