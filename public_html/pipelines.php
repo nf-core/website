@@ -68,6 +68,7 @@ include('../includes/header.php');
   <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
     <button type="button" class="btn btn-outline-success active">Alphabetical</button>
     <button type="button" class="btn btn-outline-success">Status</button>
+    <button type="button" class="btn btn-outline-success">Stars</button>
     <button type="button" class="btn btn-outline-success">Last Release</button>
   </div>
 </div>
