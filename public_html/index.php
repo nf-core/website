@@ -166,12 +166,12 @@ nf-core list
           <div class="col-12 col-lg-6">
             <h2>Used by groups all over the world</h2>
             <p>The nf-core community is spread all over the globe and includes a large
-              number of contributing users. <a href="#">See all &raquo;</a></p>
-            <img src="assets/img/institute_images/NGI.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab NGI">
-            <img src="assets/img/institute_images/QBiC.svg" data-placement="bottom" data-toggle="tooltip" title="Quantitative Biology Center, Tübingen, Germany">
-            <img src="assets/img/institute_images/SciLifeLab.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab, Sweden">
-            <img src="assets/img/institute_images/GIS.svg" data-placement="bottom" data-toggle="tooltip" title="GIS, Singapore">
-            <img src="assets/img/institute_images/IARC.svg" data-placement="bottom" data-toggle="tooltip" title="IARC, World Health Organisation, France">
+              number of contributing users. <a href="/about#contributors">See all &raquo;</a></p>
+            <img src="assets/img/contributors-white/NGI.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab NGI">
+            <img src="assets/img/contributors-white/QBiC.svg" data-placement="bottom" data-toggle="tooltip" title="Quantitative Biology Center, Tübingen, Germany">
+            <img src="assets/img/contributors-white/SciLifeLab.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab, Sweden">
+            <img src="assets/img/contributors-white/GIS.svg" data-placement="bottom" data-toggle="tooltip" title="GIS, Singapore">
+            <img src="assets/img/contributors-white/IARC.svg" data-placement="bottom" data-toggle="tooltip" title="IARC, World Health Organisation, France">
           </div>
         </div>
       </div>

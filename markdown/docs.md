@@ -2,7 +2,7 @@
 # Introduction
 These pages are still very much under construction and are likely to change a lot in the near future. If you have thoughts please join the discussion!
 
-## Getting Help
+## Getting Help {#getting-help}
 The quickest place to get help is on the nf-core Gitter channel: [https://gitter.im/nf-core/](https://gitter.im/nf-core/Lobby) - a free chat interface that integrates nicely with GitHub.
 
 # Guidelines for New Pipelines
