@@ -68,52 +68,51 @@ include('../includes/header.php');
   <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
     <button type="button" class="btn btn-outline-success active">Alphabetical</button>
     <button type="button" class="btn btn-outline-success">Status</button>
+    <button type="button" class="btn btn-outline-success">Stars</button>
     <button type="button" class="btn btn-outline-success">Last Release</button>
   </div>
 </div>
 
 <p class="no-pipelines text-muted mt-5" style="display: none;">No pipelines found..</p>
 
-<div class="row pipelines-container">
+<div class="card-deck pipelines-container">
 <?php foreach($pipelines as $wf): ?>
-    <div class="col-sm-6 mb-3 pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title mb-0">
-                    <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
-                        <i class="far fa-star"></i>
-                        <?php echo $wf->stargazers_count; ?>
-                    </a>
-                    <a href="<?php echo $wf->html_url; ?>" target="_blank" class="pipeline-name">
-                        <?php echo $wf->full_name; ?>
-                    </a>
-                    <?php if($wf->archived): ?>
-                    <small class="status-icon text-warning ml-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-toggle="tooltip"></small>
-                    <?php elseif(count($wf->releases) == 0): ?>
-                        <small class="status-icon text-danger ml-2 fas fa-exclamation-triangle" title="This pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
-                    <?php else: ?>
-                        <small class="status-icon text-success ml-2 fas fa-check" title="This pipeline is released, tested and good to go." data-toggle="tooltip"></small>
-                    <?php endif; ?>
-                </h3>
-                <?php if(count($wf->topics) > 0): ?>
-                  <p class="topics mb-0">
-                  <?php foreach($wf->topics as $topic): ?>
-                    <span class="badge pipeline-topic"><?php echo $topic; ?></span>
-                  <?php endforeach; ?>
-                  </p>
-                <?php endif; ?>
-                <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
-                <p class="mb-0 mt-2">
-                <?php if(count($wf->releases) > 0): ?>
-                    <a href="<?php echo $wf->releases[0]->html_url; ?>" target="_blank"  class="btn btn-sm btn-outline-success">
-                        Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>
-                    </a> &nbsp;
-                    <small class="text-black-50 publish-date" data-pubdate="<?php echo strtotime($wf->releases[0]->published_at); ?>">Published <?php echo time_ago($wf->releases[0]->published_at); ?></small>
+    <div class="card card_deck_card pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
+        <div class="card-body">
+            <h3 class="card-title mb-0">
+                <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
+                    <i class="far fa-star"></i>
+                    <?php echo $wf->stargazers_count; ?>
+                </a>
+                <a href="<?php echo $wf->html_url; ?>" target="_blank" class="pipeline-name">
+                    <?php echo $wf->full_name; ?>
+                </a>
+                <?php if($wf->archived): ?>
+                <small class="status-icon text-warning ml-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-toggle="tooltip"></small>
+                <?php elseif(count($wf->releases) == 0): ?>
+                    <small class="status-icon text-danger ml-2 fas fa-exclamation-triangle" title="This pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
                 <?php else: ?>
-                    <small class="text-danger">No releases yet</small>
+                    <small class="status-icon text-success ml-2 fas fa-check" title="This pipeline is released, tested and good to go." data-toggle="tooltip"></small>
                 <?php endif; ?>
-                </p>
-            </div>
+            </h3>
+            <?php if(count($wf->topics) > 0): ?>
+              <p class="topics mb-0">
+              <?php foreach($wf->topics as $topic): ?>
+                <span class="badge pipeline-topic"><?php echo $topic; ?></span>
+              <?php endforeach; ?>
+              </p>
+            <?php endif; ?>
+            <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
+            <p class="mb-0 mt-2">
+            <?php if(count($wf->releases) > 0): ?>
+                <a href="<?php echo $wf->releases[0]->html_url; ?>" target="_blank"  class="btn btn-sm btn-outline-success">
+                    Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>
+                </a> &nbsp;
+                <small class="text-black-50 publish-date" data-pubdate="<?php echo strtotime($wf->releases[0]->published_at); ?>">Published <?php echo time_ago($wf->releases[0]->published_at); ?></small>
+            <?php else: ?>
+                <small class="text-danger">No releases yet</small>
+            <?php endif; ?>
+            </p>
         </div>
     </div>
 <?php endforeach; ?>

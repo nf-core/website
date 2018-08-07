@@ -41,16 +41,27 @@ $(function () {
     });
     // Sort pipelines
     $('.pipelines-toolbar .pipeline-sorts button').click(function(){
+        // Clicking sort a second time reverses the order
+        var reverse = 1;
+        if($(this).hasClass('active') && $(this).hasClass('reverse')){
+            var reverse = -1;
+            $(this).removeClass('reverse');
+        } else {
+            $('.pipelines-toolbar .pipeline-sorts button').removeClass('reverse');
+            $(this).addClass('reverse');
+        }
+        // Apply the active class to this button
         $('.pipelines-toolbar .pipeline-sorts button').removeClass('active');
         $(this).blur().addClass('active');
+        // Sort the pipeline cards
         $pipelines = $('.pipelines-container .pipeline');
         if($(this).text() == 'Alphabetical'){
             $pipelines.sort(function(a,b){
-            	var an = $(a).find('.card-title .pipeline-name').text();
-            	var bn = $(b).find('.card-title .pipeline-name').text();
-            	if(an > bn) { return 1; }
-            	if(an < bn) { return -1; }
-            	return 0;
+                var an = $(a).find('.card-title .pipeline-name').text();
+                var bn = $(b).find('.card-title .pipeline-name').text();
+                if(an > bn) { return 1 * reverse; }
+                if(an < bn) { return -1 * reverse; }
+                return 0;
             });
         }
         if($(this).text() == 'Status'){
@@ -63,19 +74,30 @@ $(function () {
                 if(bt == 'pipeline-released'){ bn = 3; }
                 if(bt == 'pipeline-archived'){ bn = 2; }
                 if(bt == 'pipeline-dev'){ bn = 1; }
-                if(an > bn) { return -1; }
-                if(an < bn) { return 1; }
+                if(an > bn) { return -1 * reverse; }
+                if(an < bn) { return 1 * reverse; }
+                return 0;
+            });
+        }
+        if($(this).text() == 'Stars'){
+            $pipelines.sort(function(a,b){
+                var an = Number($(a).find('.stargazers').text().trim());
+                var bn = Number($(b).find('.stargazers').text().trim());
+                if(typeof an === "undefined" || isNaN(an)){ an = 0; }
+                if(typeof bn === "undefined" || isNaN(bn)){ bn = 0; }
+                if(an > bn) { return -1 * reverse; }
+                if(an < bn) { return 1 * reverse; }
                 return 0;
             });
         }
         if($(this).text() == 'Last Release'){
             $pipelines.sort(function(a,b){
                 var an = $(a).find('.publish-date').data('pubdate');
-            	var bn = $(b).find('.publish-date').data('pubdate');
+                var bn = $(b).find('.publish-date').data('pubdate');
                 if(typeof an === "undefined"){ an = 0; }
                 if(typeof bn === "undefined"){ bn = 0; }
-                if(an > bn) { return -1; }
-                if(an < bn) { return 1; }
+                if(an > bn) { return -1 * reverse; }
+                if(an < bn) { return 1 * reverse; }
                 return 0;
             });
         }

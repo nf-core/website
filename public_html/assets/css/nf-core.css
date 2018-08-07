@@ -18,9 +18,23 @@ a {
 strong {
   font-weight: 700;
 }
+blockquote {
+  margin: 1rem 1rem 2rem;
+  border-left: 5px solid #cccccc;
+  padding-left: 0.5rem;
+  color: #999999;
+}
+blockquote a {
+  color: #999999;
+  text-decoration: underline;
+}
 .bg-dark a, .homepage-usedby a {
   color: rgba(255,255,255,.5);
   text-decoration: underline;
+}
+.card_deck_card.card {
+  margin-bottom: 1rem;
+  min-width: 30rem;
 }
 
 .site-nav {
@@ -359,4 +373,22 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   background-color: #f8f9fa;
   color: #159957;
   font-weight: 400;
+}
+
+/*
+  About Page
+*/
+.contributor h5, .contributor h6 {
+  margin: 0 0 0.5rem;
+  padding: 0;
+}
+.contributor h5 a {
+  color: #159957;
+}
+.contributor_logo {
+  height: 60px;
+  float:right;
+}
+.contributor .badge {
+    font-weight: normal;
 }

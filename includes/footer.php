@@ -1,4 +1,4 @@
-<?php if($title): ?>
+<?php if(isset($title) and $title): ?>
       </div>
     </div>
  <?php endif; ?>
@@ -38,9 +38,9 @@
           <div class="col-6 col-md">
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/about">Project history</a></li>
+              <li><a class="text-muted" href="/about#history">Project history</a></li>
               <li><a class="text-muted" href="/about#contributors">List of contributors</a></li>
-              <li><a class="text-muted" href="/about#contact">Where to get help</a></li>
+              <li><a class="text-muted" href="/docs#getting-help">Where to get help</a></li>
             </ul>
           </div>
         </div>
