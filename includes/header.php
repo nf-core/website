@@ -63,7 +63,7 @@ if(strlen($git_sha) != 7){
       </div>
     </nav>
 
-<?php if($title): ?>
+<?php if(isset($title) and $title): ?>
 
     <div class="mainpage">
       <div class="mainpage-heading">
@@ -93,6 +93,8 @@ if( isset($markdown_fn) and $markdown_fn){
   $content = $pd->text($md);
 
   // Print the parsed HTML
-  echo $content;
+  if( !isset($no_print_content) or !$no_print_content ){
+    echo $content;
+  }
 }
 ?>
