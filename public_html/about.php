@@ -15,7 +15,7 @@ $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_html = '<div class="card-deck">';
 foreach($contributors['contributors'] as $c){
     // Start card div
-    $contributors_html .= '<div class="card contributor"><div class="card-body">';
+    $contributors_html .= '<div class="card contributor card_deck_card"><div class="card-body">';
     // Header, title
     if(array_key_exists('image_fn', $c)){
         $img_path = 'assets/img/contributors-colour/'.$c['image_fn'];
