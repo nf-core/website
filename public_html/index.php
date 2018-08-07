@@ -120,6 +120,7 @@
                 <pre class="text-white mb-0"><span class="text-white-50"># Install nextflow</span>
 curl -s https://get.nextflow.io | bash
 
+<span class="text-white-50"># move nextflow file to your 'PATH'</span>
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
 nextflow run nf-core/RNAseq \
     -with-docker \
