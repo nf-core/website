@@ -117,7 +117,13 @@
           <div class="col-sm-6">
             <div class="card text-white bg-dark border-light">
               <div class="card-body">
-                <pre class="text-white mb-0"><span class="text-white-50"># Install nextflow</span>
+                <pre class="text-white mb-0">
+
+<span class="text-white-50"># Prerequisites</span>
+<span class="text-white-50">* Java 7 or 8 </span>
+<span class="text-white-50">* Docker engine 1.10.x (or higher)</span>
+
+<span class="text-white-50"># Install nextflow</span>
 curl -s https://get.nextflow.io | bash
 
 <span class="text-white-50"># move nextflow file to your 'PATH'</span>
