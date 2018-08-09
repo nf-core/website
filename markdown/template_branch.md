@@ -1,12 +1,12 @@
 
 # Advanced users - Adherence to the nf-core template
-When a new pipeline is created using the command `nf-core init`, quite a few things happen behind the scene.
+When a new pipeline is created using the command `nf-core create`, quite a few things happen behind the scene.
 One of those things is to setup a git branch called TEMPLATE for your pipeline.
-This is branch is used to track the changes made to the central nf-core template used by `nf-core init`.
+This is branch is used to track the changes made to the central nf-core template used by `nf-core create`.
 The reason to keep a git branch for this on each pipeline is to enable updates to the central template to be merged into individual pipelines.
 
 ## Set up automatic adherence to the nf-core template
-This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core init` command, you should be all set up and should skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
+This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core create` command, you should be all set up and should skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
 
 Create TEMPLATE branch:
 ```bash
