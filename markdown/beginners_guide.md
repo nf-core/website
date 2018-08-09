@@ -1,32 +1,40 @@
 # What is nf-core?
-A community effort to collect a curated set of analysis pipelines built using Nextflow.
+A community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 nf-core has three target audiences: facilities, single users and developers.
-For facilites it provides highly automated and optimized pipelines that guaranty reproducibility of results for their users.
-Single users profit from portable, documented and easy to use workflows. But you can also become a developer and create your own pipeline using already available templates.
+For facilities it provides highly automated and optimized pipelines that guaranty reproducibility of results for their users.
+Single users profit from portable, documented and easy to use workflows.
+But you can also become a developer and create your own pipeline using already available templates.
 
-# What is Nextflow?
+# What is [Nextflow](https://www.nextflow.io/docs/latest/index.html)?
 Nextflow is a *workflow manager*.
 It has been developed specifically to ease the creation and execution of bioinformatics pipelines.
-The benefits of having you pipeline in Nextflow include:
+The benefits of having your pipeline in [Nextflow](https://www.nextflow.io/docs/latest/index.html) include:
 
-* Built in GitHub support.
-* Automated cluster execution.
+* Built-in GitHub support.
+* Compatibility with most cluster executors.
 * Docker support to eliminate the need for dependencies.
 * Portability so you can run your pipeline anywhere laptop, cluster or cloud.
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
-# What is Docker?
-Docker is a tool to package and run applications in isolated environments called containers.
+# What is [Docker](https://www.docker.com/)?
+[Docker](https://www.docker.com/) is a tool to package and run applications locally in your machine within isolated environments called containers.
 Importantly, a Docker container can be shared and, as such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
-In the scientific context, Docker and container technology in general enable us to:
+Docker and container technology in general enable us to:
 
 * Simplify the setup of complicated software, libraries and modules.
 * Make our results, analysis and graphs 100% reproducible.
 * Share our work with the world.
 
+## When not to use Docker?
+Docker is good when you are running your pipe locally. When you are working in a server it is recommended to work using [**Singularity**](https://www.nextflow.io/docs/latest/singularity.html) containers.
+Singularity is a container engine alternative to Docker. The main advantages of Singularity is that it can be used with unprivileged permissions.
+
+## What is Conda?
+[**Conda**](https://www.nextflow.io/docs/latest/conda.html) helps to find and install packages. More importantly, Conda easily creates, saves, loads and switches between environments. Nextflow has built-in support for Conda that allows run dependencies using Conda recipes and environment files. Also with this you can access and use the bioinformatic tools available in [Bioconda](https://bioconda.github.io/).
+
 # How to run a pipeline?
-In order to run a nextflow pipeline from nf-core on your local computer you need to install nextflow and docker on your computer.
+In order to run a Nextflow pipeline from nf-core on your local computer you need to install Nextflow and Docker on your computer.
 
 **System requirements:**
 * Java 7 or 8
@@ -34,7 +42,7 @@ In order to run a nextflow pipeline from nf-core on your local computer you need
 * recommended: 8GB of RAM
 
 
-1. Install nextflow
+1. Install [nextflow](https://www.nextflow.io/docs/latest/index.html)
 
     `curl -s https://get.nextflow.io | bash`
 
