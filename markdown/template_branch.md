@@ -82,7 +82,8 @@ git push upstream TEMPLATE
 ```
 
 ### Merge TEMPLATE into master
-The only remaining step is unfortunately a rather tedious one. You have to merge the TEMPLATE branch into your master (or development) branch and manually resolve all merge conflicts.
+The only remaining step is unfortunately a rather tedious one.
+You have to merge the TEMPLATE branch into your master (or development) branch and manually resolve all merge conflicts.
 ```
 git checkout master
 git merge TEMPLATE --allow-unrelated-histories
