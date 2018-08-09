@@ -5,10 +5,10 @@ For facilities it provides highly automated and optimized pipelines that guarant
 Single users profit from portable, documented and easy to use workflows.
 But you can also become a developer and create your own pipeline using already available templates.
 
-# What is [Nextflow](https://www.nextflow.io/docs/latest/index.html)?
+# What is Nextflow?
 Nextflow is a *workflow manager*.
 It has been developed specifically to ease the creation and execution of bioinformatics pipelines.
-The benefits of having your pipeline in [Nextflow](https://www.nextflow.io/docs/latest/index.html) include:
+The benefits of having your pipeline in Nextflow include:
 
 * Built-in GitHub support.
 * Compatibility with most cluster executors.
@@ -17,21 +17,21 @@ The benefits of having your pipeline in [Nextflow](https://www.nextflow.io/docs/
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
-# What is [Docker](https://www.docker.com/)?
+# What is Docker?
 [Docker](https://www.docker.com/) is a tool to package and run applications locally in your machine within isolated environments called containers.
 Importantly, a Docker container can be shared and, as such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
-Docker and container technology in general enable us to:
+The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.html) and container technology enables us to:
 
 * Simplify the setup of complicated software, libraries and modules.
 * Make our results, analysis and graphs 100% reproducible.
 * Share our work with the world.
 
 ## When not to use Docker?
-Docker is good when you are running your pipe locally. When you are working in a server it is recommended to work using [**Singularity**](https://www.nextflow.io/docs/latest/singularity.html) containers.
-Singularity is a container engine alternative to Docker. The main advantages of Singularity is that it can be used with unprivileged permissions.
+Docker is good when you are running your pipe locally. When you are working in a server it is recommended to work using [**Singularity**](https://www.sylabs.io/guides/2.5.1/user-guide/) containers.
+Singularity is a container engine alternative to Docker. The main advantages of Singularity is that it can be used with unprivileged permissions, in this way you can run [Nextflow using Singularity](https://www.nextflow.io/docs/latest/singularity.html) in a server were you don't have root privileges.
 
 ## What is Conda?
-[**Conda**](https://www.nextflow.io/docs/latest/conda.html) helps to find and install packages. More importantly, Conda easily creates, saves, loads and switches between environments. Nextflow has built-in support for Conda that allows run dependencies using Conda recipes and environment files. Also with this you can access and use the bioinformatic tools available in [Bioconda](https://bioconda.github.io/).
+[**Conda**](https://conda.io/) helps to find and install packages. More importantly, Conda easily creates, saves, loads and switches between environments. [Nextflow has built-in support for Conda](https://www.nextflow.io/docs/latest/conda.html) that allows run dependencies using Conda recipes and environment files. Also with this you can access and use the bioinformatic tools available in [Bioconda](https://bioconda.github.io/).
 
 # How to run a pipeline?
 In order to run a Nextflow pipeline from nf-core on your local computer you need to install Nextflow and Docker on your computer.
@@ -42,7 +42,7 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 * recommended: 8GB of RAM
 
 
-1. Install [nextflow](https://www.nextflow.io/docs/latest/index.html)
+1. Install Nextflow
 
     `curl -s https://get.nextflow.io | bash`
 
@@ -62,7 +62,7 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 
     `nextflow run nf-core/<pipeline_name> --with-docker <parameters>`
 
-For example, if you want to run methylseq pipeline, just type
+For example, if you want to run `methylseq` pipeline, just type
 
 `nextflow run nf-core/methylseq --reads 'path/*.fastq.gz' --outdir path/results --with-docker --genome < genome>`
 
