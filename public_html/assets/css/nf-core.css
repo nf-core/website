@@ -34,7 +34,13 @@ blockquote a {
 }
 .card_deck_card.card {
   margin-bottom: 1rem;
-  min-width: 30rem;
+  min-width: 40%;
+  max-width: 100%;
+}
+@media only screen and (max-width: 1000px) {
+  .card_deck_card.card {
+    min-width: 100%;
+  }
 }
 
 .site-nav {
