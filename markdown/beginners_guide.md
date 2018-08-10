@@ -58,9 +58,10 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 
     `nextflow run nf-core/methylseq -profile test,docker -r dev`
 
-5. Launch the pipeline of choice
+5. Launch the pipeline of choice. `parameters` are optional, when they are not specified they are taken from the `nextflow.config` file.
 
-    `nextflow run nf-core/<pipeline_name> --with-docker <parameters>`
+        `nextflow run nf-core/<pipeline_name> --with-docker [parameters]`
+
 
 For example, if you want to run `methylseq` pipeline, just type
 
