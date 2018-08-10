@@ -34,6 +34,11 @@ function time_ago($date) {
     }
     return "$difference $periods[$j] {$tense}";
 }
+function rsort_releases($a, $b){
+    $t1 = strtotime($a->published_at);
+    $t2 = strtotime($b->published_at);
+    return $t2 - $t1;
+}
 
 $title = 'Pipelines';
 $subtitle = 'Browse the '.$pipelines_json->pipeline_count.' pipelines that are currently available as part of nf-core.';
@@ -104,7 +109,9 @@ include('../includes/header.php');
             <?php endif; ?>
             <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
             <p class="mb-0 mt-2">
-            <?php if(count($wf->releases) > 0): ?>
+            <?php if(count($wf->releases) > 0):
+                usort($wf->releases, 'rsort_releases');
+                ?>
                 <a href="<?php echo $wf->releases[0]->html_url; ?>" target="_blank"  class="btn btn-sm btn-outline-success">
                     Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>
                 </a> &nbsp;
