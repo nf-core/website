@@ -3,7 +3,7 @@ A community effort to collect a curated set of analysis pipelines built using [N
 nf-core has three target audiences: facilities, single users and developers.
 For facilities it provides highly automated and optimized pipelines that guaranty reproducibility of results for their users.
 Single users profit from portable, documented and easy to use workflows.
-But you can also become a developer and create your own pipeline using already available templates.
+But you can also become a developer and write your own pipeline in Nextflow using already available templates and helper tools.
 
 # What is Nextflow?
 Nextflow is a *workflow manager*.
@@ -11,15 +11,16 @@ It has been developed specifically to ease the creation and execution of bioinfo
 The benefits of having your pipeline in Nextflow include:
 
 * Built-in GitHub support.
-* Compatibility with most cluster executors.
-* Docker support to eliminate the need for dependencies.
+* Compatibility with virtually all computational infrastructures, including all major HPC job schedulers.
+* Integrated software dependency management (Docker, Singularity, Conda).
 * Portability so you can run your pipeline anywhere laptop, cluster or cloud.
+* Reproducibility of analyses independent of time and computing platform.
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
 # What is Docker?
 [Docker](https://www.docker.com/) is a tool to package and run applications locally in your machine within isolated environments called containers.
-Importantly, a Docker container can be shared and, as such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
+Importantly, a Docker container images can be shared and, as such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
 The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.html) and container technology enables us to:
 
 * Simplify the setup of complicated software, libraries and modules.
@@ -38,8 +39,9 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 
 **System requirements:**
 * Java 7 or 8
-* Docker engine 1.10.x (or higher)
-* recommended: 8GB of RAM
+* _recommended:_ at least 8GB of RAM
+* _recommended:_ Docker engine 1.10.x (or higher)
+
 
 
 1. Install Nextflow
