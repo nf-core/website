@@ -16,6 +16,45 @@ Alternatively, you can install the development version directly from GitHub:
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git
 ```
 
+## <a name="create"></a>Create a pipeline from scratch 
+To create a pipeline from scrath, use the command `nf-core create`.
+
+You should see an output like this:
+
+```
+$ nf-core create
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+    
+Usage: nf-core create [OPTIONS]
+
+  Create a new pipeline using the nf-core template
+
+Options:
+  -n, --name TEXT         The name of your new pipeline  [required]
+  -d, --description TEXT  A short description of your pipeline  [required]
+  --new-version TEXT      The initial version number to use
+  --no-git                Do not initialise pipeline as new git repository
+  -f, --force             Overwrite output directory if it already exists
+  -o, --outdir TEXT       Output directory for new pipeline (default: pipeline
+                          name)
+  --help                  Show this message and exit.
+```
+
+If you have already initialized a Git repository, you can pass the option flag `--no-git`. Otherwise,
+nf-core tools will create a Git repository via `git init`. You still have to add remote tracking by yourself though.
+
+One very important setup is the creation of a branch `TEMPLATE`, right after the initialisation
+from the nf-core template. We will use this branch to keep pipelines in sync with future changes
+in the template. 
+
+Please follow the [template branch](template_branch.md) description.
+
+
 ## Listing pipelines
 To see available pipelines, use the command `nf-core list`
 
@@ -103,3 +142,6 @@ INFO: Updating version in Dockerfile
  - ENV PATH /opt/conda/envs/nfcore-example-0.1.0/bin:$PATH
  + ENV PATH /opt/conda/envs/nfcore-example-1.4/bin:$PATH
 ```
+
+
+
