@@ -9,7 +9,7 @@ The quickest place to get help is on the nf-core Gitter channel: [https://gitter
 For now, the guidelines are pretty simple. The below gives an outline of what is required.
 For more detail, please see the [**list of lint test error codes**](errors).
 
-However, we recommend using **nf-core tool's** [`create`](tools.md#create) subcommand, that builds a pipeline from scratch. It generates a skeleton pipeline with all of the features
+However, we recommend using the **nf-core tool** [`create`](tools.md#create) subcommand, that builds a pipeline from scratch. This generates a skeleton pipeline with all of the features
 required to pass the below tests.
 
 ## Features
