@@ -9,8 +9,7 @@ The quickest place to get help is on the nf-core Gitter channel: [https://gitter
 For now, the guidelines are pretty simple. The below gives an outline of what is required.
 For more detail, please see the [**list of lint test error codes**](errors).
 
-If in doubt, we recommend using the [nf-core/cookiecutter](https://github.com/nf-core/cookiecutter)
-pipeline template to get started. This generates a skeleton pipeline with all of the features
+However, we recommend using the **nf-core tool** [`create`](tools.md#create) command, that builds a pipeline from scratch. This generates a skeleton pipeline with all of the features
 required to pass the below tests.
 
 ## Features
