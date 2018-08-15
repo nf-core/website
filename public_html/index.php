@@ -117,9 +117,16 @@
           <div class="col-sm-6">
             <div class="card text-white bg-dark border-light">
               <div class="card-body">
-                <pre class="text-white mb-0"><span class="text-white-50"># Install nextflow</span>
+                <pre class="text-white mb-0">
+
+<span class="text-white-50"># Prerequisites</span>
+<span class="text-white-50">* Java 7 or 8 </span>
+<span class="text-white-50">* Docker engine 1.10.x (or higher)</span>
+
+<span class="text-white-50"># Install nextflow</span>
 curl -s https://get.nextflow.io | bash
 
+<span class="text-white-50"># move nextflow file to your 'PATH'</span>
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
 nextflow run nf-core/RNAseq \
     -with-docker \
@@ -150,7 +157,7 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/docs"><span>Quickstart Tutorial</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/beginners"><span>Quickstart Tutorial</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
