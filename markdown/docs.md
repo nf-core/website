@@ -76,10 +76,4 @@ Pipelines must:
 5. Once the pipeline has been approved, you can remove the development warning on the homepage and the pipeline will be added to the website.
 
 # Plans for the future
-## Base change automation
-
-
-## Helper scripts
-It's also possible that we could write a python package with helper scripts to make it easier to create custom config files, list available pipelines, check for updates, pull singularity images and so on. This could then be packaged using bioconda and the python package index as its own stand-alone tool.
-
-Helper scripts could also be very useful when developing and testing pipelines. For example, linting required features and code style.
+Plenty, we will update this section *shortly*.
