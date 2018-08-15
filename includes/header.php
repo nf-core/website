@@ -38,7 +38,7 @@ if(strlen($git_sha) != 7){
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/developer_docs">Usage</a>
+            <a class="nav-link" href="/usage_docs">Usage</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/developer_docs">Developers</a>

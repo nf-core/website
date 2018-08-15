@@ -32,7 +32,7 @@
     </div>
     <div class="triangle triangle-down"></div>
 
-    <div class="container py-5 text-center lead">
+    <div class="container py-5 text-center lead" id="features">
       <p>Nextflow is an incredibly powerful and flexible workflow language.</p>
       <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
     </div>
@@ -43,7 +43,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Documentation</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/developer_docs.svg" />
+              <img class="float-right ml-2" height="100px" src="assets/img/docs.svg" />
               <p class="card-text">Extensive documentation covering installation, usage and description of output files
               ensures that you won't be left in the dark.</p>
             </div>
@@ -153,7 +153,7 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/beginners"><span>Quickstart Tutorial</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/usage_docs"><span>Quickstart Tutorial</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
