@@ -38,10 +38,13 @@ if(strlen($git_sha) != 7){
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/tools">Tools</a>
+            <a class="nav-link" href="/developer_docs">Usage</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/docs">Docs</a>
+            <a class="nav-link" href="/developer_docs">Developers</a>
+          </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/about">About</a>

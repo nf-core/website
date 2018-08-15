@@ -30,7 +30,7 @@
           <div class="col-6 col-md">
             <h5>For Authors</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/docs">Documentation</a></li>
+              <li><a class="text-muted" href="/developer_docs">Documentation</a></li>
               <li><a class="text-muted" href="/errors">Error codes</a></li>
               <li><a class="text-muted" href="/tools">Helper tools</a></li>
             </ul>
@@ -40,7 +40,7 @@
             <ul class="list-unstyled">
               <li><a class="text-muted" href="/about#history">Project history</a></li>
               <li><a class="text-muted" href="/about#contributors">List of contributors</a></li>
-              <li><a class="text-muted" href="/docs#getting-help">Where to get help</a></li>
+              <li><a class="text-muted" href="/developer_docs#getting-help">Where to get help</a></li>
             </ul>
           </div>
         </div>

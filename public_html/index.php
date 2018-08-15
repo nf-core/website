@@ -43,7 +43,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Documentation</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/docs.svg" />
+              <img class="float-right ml-2" height="100px" src="assets/img/developer_docs.svg" />
               <p class="card-text">Extensive documentation covering installation, usage and description of output files
               ensures that you won't be left in the dark.</p>
             </div>
@@ -162,7 +162,7 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/docs"><span>Developer docs</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/developer_docs"><span>Developer docs</span></a>
         </div>
       </div>
     </div>
