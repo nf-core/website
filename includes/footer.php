@@ -22,9 +22,9 @@
           <div class="col-6 col-md">
             <h5>Getting Started</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="#">Workflow features</a></li>
-              <li><a class="text-muted" href="#">Using nextflow</a></li>
+              <li><a class="text-muted" href="/usage_docs">Using nf-core</a></li>
               <li><a class="text-muted" href="/pipelines">Available pipelines</a></li>
+              <li><a class="text-muted" href="/nextflow_tutorial">Nextflow tutorial</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
@@ -38,8 +38,8 @@
           <div class="col-6 col-md">
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/about#history">Project history</a></li>
               <li><a class="text-muted" href="/about#contributors">List of contributors</a></li>
+              <li><a class="text-muted" href="/about#history">Project history</a></li>
               <li><a class="text-muted" href="/developer_docs#getting-help">Where to get help</a></li>
             </ul>
           </div>

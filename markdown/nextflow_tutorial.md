@@ -1,7 +1,7 @@
 # How does Nextflow work?
 The general outline of a Nextflow script is as follows, and it will be described in detail in the following sections:
 
-```
+```bash
 #!/usr/bin nextflow
 
 params.first = < first.input.parameter >
@@ -17,7 +17,7 @@ process < name > {
   output:
    < process outputs >
 
-  [script|shell|exec]:
+  script:
   < user script to be executed >
 
 }
@@ -39,50 +39,45 @@ A process will be initiated once all the elements of the channels defined in the
 ## Scripts
 Each nextflow process ***must end*** with a **script** block, which defines the code to be executed by the process.
 It can call on the variables from the input section and will release the output to the output section.
-A script is initiated either by:
+A script is initiated as follows:
 
 ```
 script:
-<user script>
-```
-
-or by triple quotations:
-
-```
 """
 <user script>
 """
 ```
 
-The triple quotations are required if one wants to use several lines of code without commenting out the line breaks, if only one line is to be executed it is possible to use single quotes.
-Importantly, strings delimited by a `"` character support variable substitutions, while strings delimited by `'` do not.
-Also, by using this method of initiating the script, it is possible to use all kinds of programming languages for execution.
-When the script is initiated using `script:` it will be assumed to be written in [**groovy**](http://groovy-lang.org), the underlying language of nextflow.
-The `script:` block can be used in addition to `"""<user script>"""`, which is mainly used if the format of the input needs to be changed before a script is run.
-In the `"""<user script>"""` block, one can define the scripting language by a leading shebang statement (i.e. !#/usr/bin/perl).
-If no shebang is specified, the command is performed as bash.
+The `script:` header can be omitted if using triple quote blocks, however we recommend always using it for clarity.
+
+Note that a script block delimited by a `"` character support variable substitutions, while blocks delimited by `'` do not.
+
+It is possible to use any type of programming language for execution, simply by adding a leading shebang statement to the top of the `script` block (eg. `!#/usr/bin/env perl`).
+If no shebang is specified, the command is performed using bash.
 
 
 # Executors
 In the Nextflow framework architecture, the [**executor**](https://www.nextflow.io/docs/latest/executor.html) is the component that determines the system where a pipeline process is run and supervises its execution.
 The executor provides an abstraction between the pipeline processes and the underlying execution system.
 This allows you to write the pipeline functional logic independently from the actual processing platform.
+
 In other words you can write your pipeline script once and have it running on your computer, a cluster resource manager or the cloud by simply changing the executor definition in the Nextflow configuration file.
 
 
 # Nextflow tutorial
 The following steps will guide you through the setup of a typical Nextflow RNAseq pipeline with practical examples to follow.
 
-[This](https://github.com/nextflow-io/crg-course-nov16) repository contains the tutorial material for the *Parallel distributed computational workflows
+The [`nextflow-io/crg-course-nov16` GitHub repository](https://github.com/nextflow-io/crg-course-nov16) contains the tutorial material for the *Parallel distributed computational workflows
 with Nextflow and Docker containers* course.
 
 Clone this repository with the following command in your terminal:
 
-```
-git clone https://github.com/nextflow-io/crg-course-nov16.git && cd crg-course-nov16
+```bash
+git clone https://github.com/nextflow-io/crg-course-nov16.git
+cd crg-course-nov16
 ```
 Make sure Nextflow and Docker is installed on your computer.
-If you need to install Nextflow follow the instructions given [here](beginners).
+You can find instructions about this in the [usage documentation](/usage_docs).
 
 ## Nextflow hands-on
 
@@ -95,26 +90,29 @@ During this tutorial you will implement a proof of concept of a RNA-Seq pipeline
 ### Step 1 - Command line parameters
 
 The script `rna-ex1.nf` defines the pipeline input parameters that can be defined on the command line but does not contain any processes yet.
-Such parameters follow the convention `params.<name>` in the `run rna-ex1.nf` script file (see line 5-7 for examples).  
+Such parameters follow the convention `params.<name>` in the `run rna-ex1.nf` script file (see line 5-7 for examples).
 
 This is how the parameter definition looks in the script:
-> params.genome = "$baseDir/data/ggal/genome.fa"
+```groovy
+params.genome = "$baseDir/data/ggal/genome.fa"
+```
 
-Because [Nextflow is based on Groovy](https://www.nextflow.io/docs/latest/script.html#language-basics), you will find groovy functions like `println()` in the scripts (see lines 12 to 16).
+Because [Nextflow is based on Groovy](https://www.nextflow.io/docs/latest/script.html#language-basics), you will find groovy functions like `println()` in the scripts (see lines `12` to `16`).
 
 Run `rna-ex1.nf` with the default parameters by using the following command:
 
-```
+```bash
 nextflow run rna-ex1.nf
 ```
 
-To specify a different [input parameter](https://www.nextflow.io/docs/latest/config.html#scope-params), re-define the parameter in the command line by calling the name of the parameter headed by `--`, for example:
+To specify a different [input parameter](https://www.nextflow.io/docs/latest/config.html#scope-params), you can use the parameter in the command prefixed with a double dash (`--`). For example:
 
-```
+```bash
 nextflow run rna-ex1.nf --genome "this/and/that"
 ```
 In this example the path leading to the genome file `"$baseDir/data/ggal/genome.fa"` in the script will be overwritten with `"this/and/that"` when you run the command.
-Note: Parameters that are paths or strings should be in quotes.
+
+> Note: Parameter arguments must be enclosed with quotes if they contain spaces or a file glob pattern
 
 ### Step 2 - Build genome index
 
@@ -122,47 +120,51 @@ Note: Parameters that are paths or strings should be in quotes.
 input and creates the genome index by using the `bowtie2-build` tool.
 
 You may recall, that `params.genome` contains only the path to a file.
-In order to access the file we need to evoke the [function `file()`](https://www.nextflow.io/docs/latest/script.html?highlight=file#files-and-i-o) (see line 22 of `rna-ex2.nf`).
+In order to access the file we need to evoke the [`file` method](https://www.nextflow.io/docs/latest/script.html?highlight=file#files-and-i-o) (see line `22` of `rna-ex2.nf`):
 
->     input:
->     file genome from genome_file
+```groovy
+genome_file = file(params.genome)
+```
+
+This is then used in the `buildIndex` process:
+```groovy
+input:
+file genome from genome_file
+```
 
 In this example the object `genome_file` is used as a [channel](https://www.nextflow.io/docs/latest/channel.html) for the input and connects the `params.genome` to the variable `genome` inside the process.
-As such, the variable `genome` can be used in the process to call the information from the channel “genome_file”.
-This variable can only be used within this process, except if it is declared in the output.
+As such, the variable `genome` can be used in the process to call the information from the channel `genome_file`.
+This variable can only be used within this process, _except_ if it is declared in the output.
 
 The following command will fail because [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) is not installed in the test environment.
 Try to run it by using the command:
 
-```
+```bash
 nextflow run rna-ex2.nf
 ```
 
 Add the command line option `-with-docker` to launch the execution through a Docker container as shown below:
 
-```
+```bash
 nextflow run rna-ex2.nf -with-docker
 ```
 
 This time it works because it uses the Docker container `nextflow/rnatoy:1.3` defined in [the
 `nextflow.config` file](https://www.nextflow.io/docs/latest/config.html#configuration-file).
-The `config.file`  in Nextflow is a simple text file containing a set of properties defined using the syntax:
+The `config.file`  in Nextflow is a simple text file containing a set of properties defined using the syntax: `name = value`
 
-> name = value
+In order to avoid having to specify the option `-with-docker` every time, you can add the following line in the `nextflow.config` file:
 
-In order to avoid to add the option `-with-docker` add the following line in the `nextflow.config` file:
-
-```
+```groovy
 docker.enabled = true
 ```
 
-You will find that the process also contains the output block as well as the script block.
-In the script block, bowtie2 is executed in a bash environment using the variable  `genome` from the input block as input file.
-The `bowtie2` output will be passed to the output block via the variable `genome_index`.
+You will find that the process also contains an `output` block as well as a `script` block.
+In the `script` block, bowtie2 is executed in a bash environment using the variable  `genome` from the input block as input file.
+The `bowtie2` output will be passed to the `output` block via the variable `genome_index`.
 The generated bowtie2 output file is named as defined after `file` in the output block, in this case `genome.index<extension>` (see lines 33 to 34).
 
-When a process is initiated it is reported on the terminal with a specific hexadecimal number like [22/7548fa], which [identifies the unique process execution](https://www.nextflow.io/docs/latest/tracing.html?highlight=task#tracing-visualisation).
-These numbers are also the prefix of the directories where each process is executed.
+When a process is initiated it is reported on the terminal with a specific hash identifier like `[22/7548fa]` which [identifies the unique process execution](https://www.nextflow.io/docs/latest/tracing.html?highlight=task#tracing-visualisation). This code is also the prefix of the directories where each process is executed.
 You can inspect the files produced in the work subdirectory generated automatically in the Nextflow project directory.
 
 > Note: Nextflow has built-in default variables.
@@ -171,30 +173,32 @@ You can inspect the files produced in the work subdirectory generated automatica
 
 ### Step 3 - Collect read files by pairs
 
-This step shows how to match *read* files into pairs, so they can be mapped by [*TopHat*](http://ccb.jhu.edu/software/tophat/index.shtml).
+This step shows how to match paired-end FastQ files into pairs, so they can be mapped by [TopHat](http://ccb.jhu.edu/software/tophat/index.shtml).
 The script `rna-ex3.nf` adds the creation of the `read_pairs` channel.
 The [operator `.fromFilePairs`](https://www.nextflow.io/docs/latest/operator.html) emits tuples containing three elements: the pair ID, the first read-pair file and the second read-pair file.
 
 Edit the script `rna-ex3.nf` and add the following statement as the last line:
 
-```
+```groovy
 read_pairs.println()
 ```
 
 Save it and execute it with the following command:
 
-```
+```bash
 nextflow run rna-ex3.nf
 ```
 
 Try it again specifying different read files by using a glob pattern:
 
-```
+```bash
 nextflow run rna-ex3.nf --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 
 It shows how read files matching the pattern specified are grouped in pairs having
 the same prefix.
+
+> NB: The quotes used with `--reads` here are needed to stop your bash command line from automatically expanding the glob path before it gets to nextflow. Without them, the read pairing will not work.
 
 
 
@@ -210,7 +214,7 @@ This allows to group together the results of multiple executions of the same pro
 
 Execute `rna-ex4.nf` by using the following command:
 
-```
+```bash
 nextflow run rna-ex4.nf -resume
 ```
 
@@ -219,7 +223,7 @@ execution.
 
 Try to execute it with more read files as shown below:
 
-```
+```bash
 nextflow run rna-ex4.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 
@@ -236,7 +240,7 @@ In order to keep the sample information, the script renames the files adding the
 
 You can run `rna-ex5.nf` by using the following command:
 
-```
+```bash
 nextflow run rna-ex5.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 
@@ -247,7 +251,7 @@ In script `rna-ex6.nf` the [`publishDir` directive](https://www.nextflow.io/docs
 
 Run the example by using the following command:
 
-```
+```bash
 nextflow run rna-ex6.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 
@@ -255,7 +259,7 @@ Then you will find the quantification files in the folder `results`.
 
 Modify the `rna-ex6.nf` script by adding the following line at the beginning of the file:
 
-```
+```groovy
 params.outdir = 'results'
 ```
 
@@ -265,7 +269,7 @@ By doing so we can change the destination folder for the final output from the c
 
 Run `rna-ex6.nf ` again with the following command:
 
-```
+```bash
 nextflow run rna-ex6.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq' --outdir my_transcripts
 ```
 
@@ -277,8 +281,8 @@ You will find the transcripts produced by the pipeline in the `my_transcripts` f
 This step shows how to execute an action when the pipeline completes the execution.
 In script `rna-ex7.nf` the [`tag` directive](https://www.nextflow.io/docs/latest/process.html?highlight=tag#tag) allows you to associate each process executions with a custom label, making easier to identify them in the log file or in the trace execution report.
 
-> Note: Nextflow processes define the execution of *asynchronous* tasks i.e. they are not
-executed one after another as they are written in the pipeline script as it would happen in a
+> Note: Nextflow processes define the execution of *asynchronous* tasks. They are not
+executed in the order that they are written in the pipeline script as it would happen in a
 common *iterative* programming language.
 
 The script uses the `workflow.onComplete` event handler to print a confirmation message
@@ -286,7 +290,7 @@ when the script completes.
 
 Try to run it by using the following command:
 
-```
+```bash
 nextflow run rna-ex7.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 

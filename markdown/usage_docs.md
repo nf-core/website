@@ -19,6 +19,8 @@ The benefits of having your pipeline in Nextflow include:
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
+**To learn more about nextflow, we have adapted a nextflow tutorial which you can try: [nextflow tutorial](/nextflow_tutorial)**
+
 # Software requirements
 An analysis pipeline chains the execution of multiple tools together.
 In order for this to work, each of those software tools must be installed.
