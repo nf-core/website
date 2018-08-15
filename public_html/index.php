@@ -118,18 +118,14 @@
             <div class="card text-white bg-dark border-light">
               <div class="card-body">
                 <pre class="text-white mb-0">
-
-<span class="text-white-50"># Prerequisites</span>
-<span class="text-white-50">* Java 7 or 8 </span>
-<span class="text-white-50">* Docker engine 1.10.x (or higher)</span>
-
+<span class="text-white-50"># Prerequisites: Java 7 or 8, Docker</span>
 <span class="text-white-50"># Install nextflow</span>
 curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin
 
-<span class="text-white-50"># move nextflow file to your 'PATH'</span>
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
 nextflow run nf-core/RNAseq \
-    -with-docker \
+    -profile standard,docker \
     --genome GRCh37 \
     --reads "data/*_{R1,R2}.fastq.gz"
 
