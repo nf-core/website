@@ -16,7 +16,7 @@ Alternatively, you can install the development version directly from GitHub:
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git
 ```
 
-## <a name="create"></a>Create a pipeline from scratch 
+## <a name="create"></a>Create a pipeline from scratch
 To create a pipeline from scrath, use the command `nf-core create`.
 
 You should see an output like this:
@@ -29,7 +29,7 @@ $ nf-core create
     |\ | |__  __ /  ` /  \ |__) |__         }  {
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
-    
+
 Usage: nf-core create [OPTIONS]
 
   Create a new pipeline using the nf-core template
@@ -50,9 +50,9 @@ nf-core tools will create a Git repository via `git init`. You still have to add
 
 One very important setup is the creation of a branch `TEMPLATE`, right after the initialisation
 from the nf-core template. We will use this branch to keep pipelines in sync with future changes
-in the template. 
+in the template.
 
-Please follow the [template branch](template_branch.md) description.
+Please follow the [synchronisation](sync) description.
 
 
 ## Listing pipelines
@@ -142,6 +142,3 @@ INFO: Updating version in Dockerfile
  - ENV PATH /opt/conda/envs/nfcore-example-0.1.0/bin:$PATH
  + ENV PATH /opt/conda/envs/nfcore-example-1.4/bin:$PATH
 ```
-
-
-
