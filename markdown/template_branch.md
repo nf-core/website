@@ -37,9 +37,9 @@ nf-core create --no-git -n 'YOURPIPELINENAME' -d 'YOUR ACTUAL PIPELINE DESCRIPTI
 This creates a new directory `YOURPIPELINENAME` with the template pipeline files in it.
 Now move these files into your root git directory:
 ```bash
-mv YOURPIPELINENAME/* .
-mv YOURPIPELINENAME/.[!.]* .
-rm -rf YOURPIPELINENAME
+mv nf-core-YOURPIPELINENAME/* .
+mv nf-core-YOURPIPELINENAME/.[!.]* .
+rm -rf nf-core-YOURPIPELINENAME
 ```
 Now make sure the newly created files are in the correct place. It should look similar to this:
 ```
