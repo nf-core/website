@@ -45,7 +45,8 @@ If possible, it's great if pipelines can also have:
 * Benchmarks from running on cloud environments such as [AWS](https://aws.amazon.com/)
 
 ## Pipeline organisation
-It's highly recommended that pipelines are built using the [cookiecutter](https://github.com/nf-core/cookiecutter) starter template, as future developments are likely to be based on this assumption (see [_future plans_](#plans-for-the-future) below).
+It's highly recommended that pipelines are built using the **nf-core tool** [`create`](tools#create) command, as this will ensure future community updates to be propagated to your pipeline (read more [here](sync)).
+
 
 ## Coding style
 
@@ -69,13 +70,14 @@ Pipelines must:
         * This is the best option, as this repository will then be recognised as the "head fork" by GitHub.
     * _If you already have a pipeline_
         * Just fork your pipeline to the nf-core GitHub organisation
+        * Go through [this guide](sync#setup) in order to set up the template syncing
 3. Make sure that your pipeline `README.md` file has a big warning on the front saying that it's under development
 4. When you're happy with it, ping [@nf-core/admin](https://github.com/orgs/nf-core/teams/admin) for a code review
 5. Once the pipeline has been approved, you can remove the development warning on the homepage and the pipeline will be added to the website.
 
 # Plans for the future
 ## Base change automation
-In the future it would be great to have automated bots listen to changes in a base pipeline cookiecutter template. Changes (eg. in pull-requests) could be compared against all other pipelines; any that also apply elsewhere could then be flagged or even modified with automated pull-requests. The reverse could also apply - changes in a downstream pipeline that are shared in the core template could be acted upon.
+
 
 ## Helper scripts
 It's also possible that we could write a python package with helper scripts to make it easier to create custom config files, list available pipelines, check for updates, pull singularity images and so on. This could then be packaged using bioconda and the python package index as its own stand-alone tool.
