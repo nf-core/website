@@ -4,7 +4,7 @@ To help you get started with nf-core, we've put together a companion package, wr
 
 ## Installation
 
-> NB: This is not correct - nf-core hasn't been released yet. Soon!
+> Note: This is not correct - nf-core hasn't been released yet. Soon!
 
 ```
 pip install nf-core

@@ -32,7 +32,7 @@
     </div>
     <div class="triangle triangle-down"></div>
 
-    <div class="container py-5 text-center lead">
+    <div class="container py-5 text-center lead" id="features">
       <p>Nextflow is an incredibly powerful and flexible workflow language.</p>
       <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
     </div>
@@ -118,18 +118,13 @@
             <div class="card text-white bg-dark border-light">
               <div class="card-body">
                 <pre class="text-white mb-0">
-
-<span class="text-white-50"># Prerequisites</span>
-<span class="text-white-50">* Java 7 or 8 </span>
-<span class="text-white-50">* Docker engine 1.10.x (or higher)</span>
-
 <span class="text-white-50"># Install nextflow</span>
 curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin
 
-<span class="text-white-50"># move nextflow file to your 'PATH'</span>
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
 nextflow run nf-core/RNAseq \
-    -with-docker \
+    -profile standard,docker \
     --genome GRCh37 \
     --reads "data/*_{R1,R2}.fastq.gz"
 
@@ -157,12 +152,12 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/beginners"><span>Quickstart Tutorial</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/usage_docs"><span>Quickstart Tutorial</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/docs"><span>Developer docs</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/developer_docs"><span>Developer docs</span></a>
         </div>
       </div>
     </div>
