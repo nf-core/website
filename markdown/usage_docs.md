@@ -14,7 +14,7 @@ The benefits of having your pipeline in Nextflow include:
 * Built-in GitHub support.
 * Compatibility with virtually all computational infrastructures, including all major cluster job schedulers.
 * Integrated software dependency management (Docker, Singularity, Conda).
-* Portability so you can run your pipeline anywhere laptop, cluster or cloud.
+* Portability so you can run your pipeline anywhere: laptop, cluster or cloud.
 * Reproducibility of analyses independent of time and computing platform.
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
