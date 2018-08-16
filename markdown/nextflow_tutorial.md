@@ -198,7 +198,7 @@ nextflow run rna-ex3.nf --reads 'data/ggal/reads/*_{1,2}.fq'
 It shows how read files matching the pattern specified are grouped in pairs having
 the same prefix.
 
-> NB: The quotes used with `--reads` here are needed to stop your bash command line from automatically expanding the glob path before it gets to nextflow. Without them, the read pairing will not work.
+> Note: The quotes used with `--reads` here are needed to stop your bash command line from automatically expanding the glob path before it gets to nextflow. Without them, the read pairing will not work.
 
 
 
