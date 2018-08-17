@@ -2,9 +2,9 @@
 
 To help you get started with nf-core, we've put together a companion package, written in Python.
 
-## Installation
+You can find this tool, plus complete documentation at [https://github.com/nf-core/tools](https://github.com/nf-core/tools)
 
-> Note: This is not correct - nf-core hasn't been released yet. Soon!
+## Installation
 
 ```
 pip install nf-core
