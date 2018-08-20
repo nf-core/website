@@ -54,6 +54,27 @@ in the template.
 
 Please follow the [synchronisation](sync) description.
 
+## Local development and testing
+
+If you have created your pipeline with the `nf-core create` command, there is already a Dockerfile created automatically. The container receipe will install `conda` as package manager, and you can define software
+dependencies by adding packages to the `environment.yml` configuration file in the root directory of your nf-core pipeline.
+
+If you now want to test the Docker container locally, you can do so with the `docker` command: 
+
+```bash
+docker build -t nf-core/<pipeline-name> .
+```
+
+Be sure that you have [Docker](https://www.docker.com/) installed locally, and that the Docker daemon is running.
+
+Once the container is built, it is ready to use in your local Docker container registry. You can now run your `nf-core` pipeline with:
+
+```bash
+nextflow run path/to/my/main.nf -profile test,docker
+```
+
+**Note:** Make sure, that you have tagged your container locally with the same name as is given in `params.container` inside `nextflow.config`.
+
 
 ## Listing pipelines
 To see available pipelines, use the command `nf-core list`
