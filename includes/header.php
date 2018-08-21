@@ -55,12 +55,16 @@ if(strlen($git_sha) != 7){
           <li class="nav-item p-1">
             <a class="nav-link" target="_blank" href="https://gitter.im/nf-core/Lobby">Chat on Gitter</a>
           </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" target="_blank" href="https://twitter.com/nf_core">Follow on twitter</a>
+          </li>
           <li class="nav-item p-1 mb-3">
             <a class="nav-link" target="_blank" href="https://github.com/nf-core">See nf-core on GitHub</a>
           </li>
         </ul>
         <div class="d-none d-md-block" style="position:absolute; right: 1rem;">
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://gitter.im/nf-core/Lobby" data-toggle="tooltip" title="Chat on Gitter"><img height="25px" src="assets/img/gitter.svg" /></a>
+          <a class="nav-link d-inline-block px-2" target="_blank" href="https://twitter.com/nf_core" data-toggle="tooltip" title="Follow on twitter"><img height="25px" src="assets/img/twitter.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://github.com/nf-core" data-toggle="tooltip" title="See nf-core on GitHub"><img height="25px" src="assets/img/github.svg" /></a>
         </div>
       </div>
