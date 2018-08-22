@@ -103,4 +103,7 @@ $(function () {
         }
         $pipelines.detach().appendTo($('.pipelines-container'));
     });
-})
+});
+
+// Gitter sidecar - https://sidecar.gitter.im/
+((window.gitter = {}).chat = {}).options = { room: 'nf-core/Lobby' };
