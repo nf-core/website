@@ -67,7 +67,7 @@ if(strlen($git_sha) != 7){
         </ul>
         <div class="d-none d-md-block" style="position:absolute; right: 1rem;">
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://gitter.im/nf-core/Lobby" data-toggle="tooltip" title="Chat on Gitter"><img height="25px" src="assets/img/gitter.svg" /></a>
-          <a class="nav-link d-inline-block px-2" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core" data-toggle="tooltip" title="Google Groups email list"><img height="25px" src="assets/img/email.svg" /></a>
+          <a class="nav-link d-inline-block px-2" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core" data-toggle="tooltip" title="Google Groups email list"><img height="35px" src="assets/img/google_groups.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://twitter.com/nf_core" data-toggle="tooltip" title="Follow on twitter"><img height="25px" src="assets/img/twitter.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://github.com/nf-core" data-toggle="tooltip" title="See nf-core on GitHub"><img height="25px" src="assets/img/github.svg" /></a>
         </div>
