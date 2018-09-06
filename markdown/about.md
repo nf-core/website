@@ -15,3 +15,13 @@ The nf-core project came about at the start of 2018 as the pet-project of [Phil 
 The NGI has been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems - typically Swedish research groups at first, but later on other core genomics facilities too.
 
 As the number of people interested in these common pipelines grew, it seemed silly to keep all the pipelines under the umbrella of just SciLifeLab, complete with NGI prefixes and logos. To try to open up the effort into a truly collaborative project, [nf-core](https://github.com/nf-core) was created and all relevant pipelines moved to this new GitHub Organisation.
+
+## Get in touch {#contact}
+To get in touch with the nf-core team, you have a few options:
+
+* Chat online with [Gitter](https://gitter.im/nf-core/Lobby) (see the _"Open Chat"_ button below)
+* Email the [Google Groups mailing list](https://groups.google.com/forum/#!forum/nf-core)
+* Create an issue on one of the [GitHub repositories](https://github.com/nf-core)
+* Message or tweet at [@nf_core on twitter](https://twitter.com/nf_core)
+
+To join the nf-core GitHub organisation, just drop us a line on [this GitHub issue](https://github.com/nf-core/nf-co.re/issues/3).
