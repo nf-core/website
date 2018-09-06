@@ -40,7 +40,7 @@
             <ul class="list-unstyled">
               <li><a class="text-muted" href="/about#contributors">List of contributors</a></li>
               <li><a class="text-muted" href="/about#history">Project history</a></li>
-              <li><a class="text-muted" href="/developer_docs#getting-help">Where to get help</a></li>
+              <li><a class="text-muted" href="/about#contact">Get in touch</a></li>
             </ul>
           </div>
         </div>
