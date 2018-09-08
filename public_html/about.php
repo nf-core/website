@@ -12,7 +12,8 @@ include('../includes/header.php');
 // Parse YAML contributors file
 require_once("../Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
-$contributors_html = '<div class="card-deck">';
+$contributors_html = '<div id="contribution_map"></div><br>';
+$contributors_html .= '<div class="card-deck">';
 foreach($contributors['contributors'] as $c){
     // Start card div
     $contributors_html .= '<div class="card contributor card_deck_card"><div class="card-body">';
@@ -67,3 +68,23 @@ echo str_replace('<!-- #### CONTRIBUTORS #### -->', $contributors_html, $content
 
 include('../includes/footer.php');
 ?>
+<script>
+    var map = L.map('contribution_map', {
+        zoom: 2
+    });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var latitude = 0.0, longitude = 0.0;
+    YAML.load('https://raw.githubusercontent.com/nf-core/nf-co.re/master/nf-core-contributors.yaml', function(result) {
+        result.contributors.forEach(function(contributor) {
+            latitude += contributor.location[0];
+            longitude += contributor.location[1];
+            L.marker([contributor.location[0], contributor.location[1]]).addTo(map).bindPopup(contributor.full_name);
+        });
+        var center = [ latitude / result.contributors.length, longitude / result.contributors.length ];
+        map.setView(center);
+    });
+</script>
