@@ -7,12 +7,13 @@ $title = 'About nf-core';
 $subtitle = 'Details about the nf-core project - who is involved and how it was started.';
 $markdown_fn = '../markdown/about.md';
 $no_print_content = true;
+$locations = [];
 include('../includes/header.php');
 
 // Parse YAML contributors file
 require_once("../Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
-$contributors_html = '<div id="contribution_map"></div><br>';
+$contributors_html = '<div id="contributors-map"></div><br>';
 $contributors_html .= '<div class="card-deck">';
 foreach($contributors['contributors'] as $c){
     // Start card div
@@ -41,6 +42,12 @@ foreach($contributors['contributors'] as $c){
             $contributors_html .= '</a>';
         $contributors_html .= '</h6>';
     }
+    // Address
+    if(array_key_exists('address', $c) && array_key_exists('full_name', $c)){
+        $location['full_name'] = $c['full_name'];
+        $location['address'] = $c['address'];
+        array_push($locations, $location);
+    }
     // Description
     if(array_key_exists('description', $c))
         $contributors_html .= '<p class="small text-muted">'.$c['description'].'</p> ';
@@ -63,28 +70,52 @@ foreach($contributors['contributors'] as $c){
     $contributors_html .= '</div></div>';
 }
 $contributors_html .= '</div>';
+$contributors_html .= '<div style="display: none;" id="locations">' . json_encode($locations) . '</div>';
 
 echo str_replace('<!-- #### CONTRIBUTORS #### -->', $contributors_html, $content);
 
 include('../includes/footer.php');
 ?>
 <script>
-    var map = L.map('contribution_map', {
-        zoom: 2
-    });
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    var latitude = 0.0, longitude = 0.0;
-    YAML.load('https://raw.githubusercontent.com/nf-core/nf-co.re/master/nf-core-contributors.yaml', function(result) {
-        result.contributors.forEach(function(contributor) {
-            latitude += contributor.location[0];
-            longitude += contributor.location[1];
-            L.marker([contributor.location[0], contributor.location[1]]).addTo(map).bindPopup(contributor.full_name);
+    $(document).ready(function(){
+        var locations = $.parseJSON($('#locations').text());
+        var latitude = 0.0, longitude = 0.0;
+        var promises = [];
+        var map = L.map('contributors-map', {
+            zoom: 2
         });
-        var center = [ latitude / result.contributors.length, longitude / result.contributors.length ];
-        map.setView(center);
+        var greenIcon = new L.Icon({
+            iconUrl: 'assets/img/marker-icon-2x-green.png',
+            shadowUrl: 'assets/img/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+        locations.forEach(function(location) {
+            var promise = $.Deferred();
+            if (location == null) { return null; }
+            var url = 'https://nominatim.openstreetmap.org/search?q=' + location.address + '&format=json&polygon=1&addressdetails=1&limit=1';
+            $.getJSON(encodeURI(url), function(marker) {
+                var lat = parseFloat(marker[0].lat);
+                var lon = parseFloat(marker[0].lon);
+                latitude += lat;
+                longitude += lon;
+                L.marker([lat, lon], {icon: greenIcon}).addTo(map).bindPopup(location.full_name);
+                promise.resolve();
+            });
+            promises.push(promise);
+        });
+        
+        $.when.apply(this, promises).then(function() {
+            var center = [ latitude / locations.length, longitude / locations.length ];
+            map.setView(center);
+        });
+        
     });
 </script>
