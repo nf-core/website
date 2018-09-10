@@ -24,7 +24,6 @@ if(strlen($git_sha) != 7){
     <!-- Leaflet maps -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js"></script>
-    <script src="assets/js/yaml-0.3.0.min.js"></script>
   </head>
   <body>
 

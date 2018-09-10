@@ -45,7 +45,7 @@ foreach($contributors['contributors'] as $c){
     // Address
     if(array_key_exists('address', $c) && array_key_exists('full_name', $c)){
         $location['full_name'] = $c['full_name'];
-        $location['address'] = $c['address'];
+        $location['location'] = $c['location'];
         array_push($locations, $location);
     }
     // Description
@@ -70,7 +70,7 @@ foreach($contributors['contributors'] as $c){
     $contributors_html .= '</div></div>';
 }
 $contributors_html .= '</div>';
-$contributors_html .= '<div style="display: none;" id="locations">' . json_encode($locations) . '</div>';
+$contributors_html .= '<script type="text/javascript">var locations = '.json_encode($locations).'</script>';
 
 echo str_replace('<!-- #### CONTRIBUTORS #### -->', $contributors_html, $content);
 
@@ -78,9 +78,7 @@ include('../includes/footer.php');
 ?>
 <script>
     $(document).ready(function(){
-        var locations = $.parseJSON($('#locations').text());
         var latitude = 0.0, longitude = 0.0;
-        var promises = [];
         var map = L.map('contributors-map', {
             zoom: 2
         });
@@ -97,25 +95,14 @@ include('../includes/footer.php');
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
         
-        locations.forEach(function(location) {
-            var promise = $.Deferred();
-            if (location == null) { return null; }
-            var url = 'https://nominatim.openstreetmap.org/search?q=' + location.address + '&format=json&polygon=1&addressdetails=1&limit=1';
-            $.getJSON(encodeURI(url), function(marker) {
-                var lat = parseFloat(marker[0].lat);
-                var lon = parseFloat(marker[0].lon);
-                latitude += lat;
-                longitude += lon;
-                L.marker([lat, lon], {icon: greenIcon}).addTo(map).bindPopup(location.full_name);
-                promise.resolve();
-            });
-            promises.push(promise);
+        locations.forEach(function(marker) {
+            if (marker == null) { continue; }
+            latitude += marker.location[0];
+            longitude += marker.location[1];
+            L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup(marker.full_name);
         });
-        
-        $.when.apply(this, promises).then(function() {
-            var center = [ latitude / locations.length, longitude / locations.length ];
-            map.setView(center);
-        });
-        
+
+        var center = [ latitude / locations.length, longitude / locations.length ];
+        map.setView(center);
     });
 </script>
