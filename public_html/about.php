@@ -13,19 +13,22 @@ include('../includes/header.php');
 // Parse YAML contributors file
 require_once("../Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
-$contributors_html = '<div id="contributors-map"></div>';
+$contributors_html = '<div class="card contributors-map-card"><div class="card-body" id="contributors-map"></div></div>';
 $contributors_html .= '<div class="card-deck">';
-foreach($contributors['contributors'] as $c){
+foreach($contributors['contributors'] as $idx => $c){
     // Start card div
     $contributors_html .= '<div class="card contributor card_deck_card"><div class="card-body">';
     // Header, title
+    $img_path = '';
     if(array_key_exists('image_fn', $c)){
         $img_path = 'assets/img/contributors-colour/'.$c['image_fn'];
         if(file_exists($img_path))
             $contributors_html .= '<img class="contributor_logo" title="'.$c['full_name'].'" src="'.$img_path.'">';
     }
+    $card_id = $idx;
     if(array_key_exists('full_name', $c)){
-        $contributors_html .= '<h5 class="card-title">';
+        $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
+        $contributors_html .= '<h5 class="card-title" id="'.$card_id.'">';
         if(array_key_exists('url', $c))
             $contributors_html .= ' <a href="'.$c['url'].'" target="_blank">';
         $contributors_html .= $c['full_name'];
@@ -41,12 +44,6 @@ foreach($contributors['contributors'] as $c){
         if(array_key_exists('affiliation_url', $c))
             $contributors_html .= '</a>';
         $contributors_html .= '</h6>';
-    }
-    // Location
-    if(array_key_exists('location', $c) && array_key_exists('full_name', $c)){
-        $location['full_name'] = $c['full_name'];
-        $location['location'] = $c['location'];
-        array_push($locations, $location);
     }
     // Description
     if(array_key_exists('description', $c))
@@ -68,6 +65,15 @@ foreach($contributors['contributors'] as $c){
     $contributors_html .= '</div>';
     // Close card div
     $contributors_html .= '</div></div>';
+
+    // Location JSON
+    if(array_key_exists('location', $c)){
+        $location['location'] = $c['location'];
+        $location['full_name'] = array_key_exists('full_name', $c) ? $c['full_name'] : '';
+        $location['image_fn'] = $img_path;
+        $location['card_id'] = $card_id;
+        array_push($locations, $location);
+    }
 }
 $contributors_html .= '</div>';
 $contributors_html .= '<script type="text/javascript">var locations = '.json_encode($locations).'</script>';
@@ -94,12 +100,15 @@ include('../includes/footer.php');
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        
+
         locations.forEach(function(marker) {
             if (marker != null) {
                 latitude += marker.location[0];
                 longitude += marker.location[1];
-                L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup(marker.full_name);
+                L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup(
+                    '<a href="#'+marker.card_id+'">'+marker.full_name+'</a>' +
+                    '<br><a href="#'+marker.card_id+'"><img class="contributor_map_logo" title="'+marker.full_name+'" src="'+marker.image_fn+'"></a>'
+                );
             }
         });
 
