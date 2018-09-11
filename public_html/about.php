@@ -24,6 +24,7 @@ foreach($contributors['contributors'] as $idx => $c){
         $img_path = 'assets/img/contributors-colour/'.$c['image_fn'];
         if(file_exists($img_path))
             $contributors_html .= '<img class="contributor_logo" title="'.$c['full_name'].'" src="'.$img_path.'">';
+        else $img_path = '';
     }
     $card_id = $idx;
     if(array_key_exists('full_name', $c)){
@@ -70,8 +71,10 @@ foreach($contributors['contributors'] as $idx => $c){
     if(array_key_exists('location', $c)){
         $location['location'] = $c['location'];
         $location['full_name'] = array_key_exists('full_name', $c) ? $c['full_name'] : '';
-        $location['image_fn'] = $img_path;
         $location['card_id'] = $card_id;
+        if($img_path){
+            $location['image'] = '<br><a href="#'.$card_id.'"><img class="contributor_map_logo" title="'.$location['full_name'].'" src="'.$img_path.'"></a>';
+        } else $location['image'] = '';
         array_push($locations, $location);
     }
 }
@@ -105,10 +108,7 @@ include('../includes/footer.php');
             if (marker != null) {
                 latitude += marker.location[0];
                 longitude += marker.location[1];
-                L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup(
-                    '<a href="#'+marker.card_id+'">'+marker.full_name+'</a>' +
-                    '<br><a href="#'+marker.card_id+'"><img class="contributor_map_logo" title="'+marker.full_name+'" src="'+marker.image_fn+'"></a>'
-                );
+                L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup('<a href="#'+marker.card_id+'">'+marker.full_name+'</a>'+marker.image);
             }
         });
 
