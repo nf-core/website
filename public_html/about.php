@@ -13,7 +13,7 @@ include('../includes/header.php');
 // Parse YAML contributors file
 require_once("../Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
-$contributors_html = '<div id="contributors-map"></div><br>';
+$contributors_html = '<div id="contributors-map"></div>';
 $contributors_html .= '<div class="card-deck">';
 foreach($contributors['contributors'] as $c){
     // Start card div
@@ -42,8 +42,8 @@ foreach($contributors['contributors'] as $c){
             $contributors_html .= '</a>';
         $contributors_html .= '</h6>';
     }
-    // Address
-    if(array_key_exists('address', $c) && array_key_exists('full_name', $c)){
+    // Location
+    if(array_key_exists('location', $c) && array_key_exists('full_name', $c)){
         $location['full_name'] = $c['full_name'];
         $location['location'] = $c['location'];
         array_push($locations, $location);
@@ -96,10 +96,11 @@ include('../includes/footer.php');
         }).addTo(map);
         
         locations.forEach(function(marker) {
-            if (marker == null) { continue; }
-            latitude += marker.location[0];
-            longitude += marker.location[1];
-            L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup(marker.full_name);
+            if (marker != null) {
+                latitude += marker.location[0];
+                longitude += marker.location[1];
+                L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup(marker.full_name);
+            }
         });
 
         var center = [ latitude / locations.length, longitude / locations.length ];
