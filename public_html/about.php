@@ -64,9 +64,9 @@ foreach($contributors['contributors'] as $idx => $c){
     if(array_key_exists('contact_github', $c))
         $contributors_html .= '<a href="https://github.com/'.trim($c['contact_github'], '@').'/" target="_blank" class="badge badge-light" data-toggle="tooltip" title="Primary contact: GitHub @'.trim($c['contact_github'], '@').'"><i class="fab fa-github"></i> '.trim($c['contact_github'], '@').'</a> ';
     if(array_key_exists('twitter', $c)) {
-        if (preg_match("/.*?\/\/twitter.com\/(.*)/", $c['twitter'], $match)) {
+        if (preg_match("/.*?\/\/twitter.com\/(.*)/", $c['twitter'], $match) && count($match) > 0) {
             $twitter_name = $match[1];
-            $contributors_html .= '<a href="https://twitter.com/'.$twitter_name.'/" target="_blank" class="badge badge-light" data-toggle="tooltip" title=""><i class="fab fa-twitter"></i> '.$twitter_name.'</a> ';
+            $contributors_html .= '<a href="https://twitter.com/'.$twitter_name.'/" target="_blank" class="badge badge-light" data-toggle="tooltip" title="@'.$twitter_name.'"><i class="fab fa-twitter"></i> '.$twitter_name.'</a> ';
         }
     }
     $contributors_html .= '</div>';
