@@ -90,7 +90,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 If it all looks good, then commit these files:
 ```
 git add .
-git commit -m “Initial template commit”
+git commit -m "Initial template commit"
 ```
 For the nf-core bot to be able to access your TEMPLATE branch, you need to push it to the upstream repository.
 ```
