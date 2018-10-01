@@ -24,17 +24,20 @@ This section describes how to set up a correct TEMPLATE branch in the case your 
 You should also consider the option to restart your pipeline project by running the `nf-core create` command and simply copy in the modifications you need into the newly created pipeline.
 
 ### Step-by-step procedure
-Create TEMPLATE branch:
+First clone your pipeline into a new directory (in case we mess things up):
 ```bash
-cd pipeline_root_dir
-git checkout --orphan TEMPLATE
+mkdir TMPDIR
+cd TMPDIR
+git clone https://github.com/nf-core/YOURPIPELINENAME.git
 ```
 
-Now remove all the files of your pipeline to be able to have a completely empty branch.
+Then create the new TEMPLATE branch and *delete all your files* in order to have a completely empty branch:
 ```bash
-git rm -rf '*'
+cd pipeline_root_dir
+git checkout --orphan TEMPLATE && git rm -rf '*'
 ```
-Make sure your branch is completely empty by checking the status of `git status`, which should be completely empty:
+
+Make sure your branch is completely empty by checking the status of `git status`:
 ```bash
 $ git status
 On branch TEMPLATE
