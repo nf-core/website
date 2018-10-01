@@ -95,9 +95,9 @@ If it all looks good, then commit these files:
 git add .
 git commit -m "Initial template commit"
 ```
-For the nf-core bot to be able to access your TEMPLATE branch, you need to push it to the upstream repository.
+For the nf-core bot to be able to access your TEMPLATE branch, you need to push it to the upstream repository (https://github.com/nf-core).
 ```
-git push upstream TEMPLATE
+git push origin TEMPLATE
 ```
 
 ### Merge TEMPLATE into master
