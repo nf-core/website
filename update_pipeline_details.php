@@ -76,6 +76,7 @@ foreach($gh_repos as $repo){
             'created_at' => $repo->created_at,
             'updated_at' => $repo->updated_at,
             'pushed_at' => $repo->pushed_at,
+            'last_release' => 0,
             'git_url' => $repo->git_url,
             'ssh_url' => $repo->ssh_url,
             'clone_url' => $repo->clone_url,
@@ -113,6 +114,9 @@ foreach($results['remote_workflows'] as $idx => $repo){
             'draft' => $rel->draft,
             'prerelease' => $rel->prerelease
         );
+        if(strtotime($rel->published_at) > strtotime($results['remote_workflows'][$idx]['last_release'])){
+            $results['remote_workflows'][$idx]['last_release'] = $rel->published_at;
+        }
     }
     if(count($results['remote_workflows'][$idx]['releases']) > 0){
         // Sort releases by date, descending

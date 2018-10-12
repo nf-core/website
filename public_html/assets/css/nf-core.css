@@ -42,6 +42,12 @@ blockquote a {
     min-width: 100%;
   }
 }
+/* Don't stretch the final card across the full row if an odd number */
+@media only screen and (min-width: 1000px) {
+  .card_deck_card.card {
+    max-width: calc(50% - 30px);
+  }
+}
 
 .site-nav {
   padding: .2rem 1rem;
@@ -350,7 +356,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
  */
 
 .pipelines-toolbar .pipeline-filters input {
-  max-width: 6rem;
+  max-width: 10rem;
 }
 .pipelines-toolbar .btn.active {
   opacity: 0.8;
@@ -373,6 +379,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   float: right;
   font-size: 0.8rem;
   color: #999;
+}
+.pipeline .stargazers .far {
+  color: #DAA520;
 }
 .pipeline .stargazers:hover {
   color: #DAA520;
