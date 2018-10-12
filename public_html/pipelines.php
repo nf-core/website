@@ -3,8 +3,20 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+function rsort_releases($a, $b){
+    $t1 = strtotime($a->published_at);
+    $t2 = strtotime($b->published_at);
+    return $t2 - $t1;
+}
+function rsort_pipelines($a, $b){
+    $t1 = strtotime($a->last_release);
+    $t2 = strtotime($b->last_release);
+    return $t2 - $t1;
+}
+
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
+usort($pipelines, 'rsort_pipelines');
 
 // From https://stackoverflow.com/a/18891474/713980
 function time_ago($date) {
@@ -34,14 +46,9 @@ function time_ago($date) {
     }
     return "$difference $periods[$j] {$tense}";
 }
-function rsort_releases($a, $b){
-    $t1 = strtotime($a->published_at);
-    $t2 = strtotime($b->published_at);
-    return $t2 - $t1;
-}
 
 $title = 'Pipelines';
-$subtitle = 'Browse the '.$pipelines_json->pipeline_count.' pipelines that are currently available as part of nf-core.';
+$subtitle = 'Browse the <strong>'.$pipelines_json->pipeline_count.'</strong> pipelines that are currently available as part of nf-core.';
 include('../includes/header.php');
 ?>
 
@@ -50,31 +57,31 @@ include('../includes/header.php');
 <a href="https://gitter.im/nf-core/Lobby">Let us know!</a></p>
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
+  <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
+    <input type="text" class="form-control" placeholder="Search keywords">
+  </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>
   </div>
-  <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
-    <input type="text" class="form-control" placeholder="Filter Text">
-    <div class="input-group-append">
-      <?php if($pipelines_json->published_count > 0): ?>
-        <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">Released</button>
-      <?php endif;
-      if($pipelines_json->devel_count > 0): ?>
-        <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">Development</button>
-      <?php endif;
-      if($pipelines_json->archived_count > 0): ?>
-        <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">Archived</button>
-      <?php endif; ?>
-    </div>
+  <div class="pipeline-filters btn-group btn-group-sm mr-2 mt-2">
+    <?php if($pipelines_json->published_count > 0): ?>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">Released <span class="badge badge-light"><?php echo $pipelines_json->published_count; ?></span></button>
+    <?php endif;
+    if($pipelines_json->devel_count > 0): ?>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">Under development <span class="badge badge-light"><?php echo $pipelines_json->devel_count; ?></span></button>
+    <?php endif;
+    if($pipelines_json->archived_count > 0): ?>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">Archived <span class="badge badge-light"><?php echo $pipelines_json->archived_count; ?></span></button>
+    <?php endif; ?>
   </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
     <button type="button" class="btn btn-link text-body">Sort:</button>
   </div>
   <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
-    <button type="button" class="btn btn-outline-success active">Alphabetical</button>
+    <button type="button" class="btn btn-outline-success active">Last Release</button>
+    <button type="button" class="btn btn-outline-success">Alphabetical</button>
     <button type="button" class="btn btn-outline-success">Status</button>
     <button type="button" class="btn btn-outline-success">Stars</button>
-    <button type="button" class="btn btn-outline-success">Last Release</button>
   </div>
 </div>
 
@@ -85,10 +92,12 @@ include('../includes/header.php');
     <div class="card card_deck_card pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
         <div class="card-body">
             <h3 class="card-title mb-0">
+                <?php if($wf->stargazers_count > 0): ?>
                 <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
                     <i class="far fa-star"></i>
                     <?php echo $wf->stargazers_count; ?>
                 </a>
+                <?php endif; ?>
                 <a href="<?php echo $wf->html_url; ?>" target="_blank" class="pipeline-name">
                     <?php echo $wf->full_name; ?>
                 </a>
