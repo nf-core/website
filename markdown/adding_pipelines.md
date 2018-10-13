@@ -28,6 +28,9 @@ and copy over your code in the relevant places.
 If you really don't want to use the template it should possible to work without it.
 Please see the [manual synchronisation](/sync) documentation.
 
+> Note that workflow names should be all lower-case and contain no punctuation.
+> This is to allow consistent names between platforms (eg. GitHub + Docker Hub).
+
 ## Push to GitHub
 Create a repository on GitHub for your new pipeline under your personal account.
 Make sure _not_ to initialise it with `README` file - you just want an empty repository.
