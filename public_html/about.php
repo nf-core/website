@@ -22,7 +22,7 @@ foreach($contributors['contributors'] as $idx => $c){
     $img_path = '';
     if(array_key_exists('image_fn', $c)){
         $img_path = 'assets/img/contributors-colour/'.$c['image_fn'];
-        if(file_exists($img_path))
+        if($c['image_fn'] and file_exists($img_path))
             $contributors_html .= '<img class="contributor_logo" title="'.$c['full_name'].'" src="'.$img_path.'">';
         else $img_path = '';
     }
