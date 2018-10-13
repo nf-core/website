@@ -1,4 +1,18 @@
-<?php include('../includes/header.php'); ?>
+<?php
+// Get a random subset of contributor institute logos
+require_once("../Spyc.php");
+$contributors = spyc_load_file('../nf-core-contributors.yaml');
+$contributors_img_list = [];
+foreach($contributors['contributors'] as $idx => $c){
+  $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
+  $img_path = 'assets/img/contributors-white/'.$c['image_fn'];
+  if($c['image_fn'] and file_exists($img_path)){
+    $contributors_img_list[] = '<a href="/about#'.$card_id.'"><img src="'.$img_path.'" data-placement="bottom" data-toggle="tooltip" title="'.$c['full_name'].'"></a>';
+  }
+}
+
+include('../includes/header.php');
+?>
 
 
     <div class="homepage-header">
@@ -157,25 +171,17 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/developer_docs"><span>Developer docs</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/guidelines"><span>Developer docs</span></a>
         </div>
       </div>
     </div>
 
     <div class="homepage-usedby">
       <div class="container py-5">
-        <div class="row">
-          <div class="col-12 col-lg-6">
-            <h2>Used by groups all over the world</h2>
-            <p>The nf-core community is spread all over the globe and includes a large
-              number of contributing users. <a href="/about#contributors">See all &raquo;</a></p>
-            <img src="assets/img/contributors-white/NGI.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab NGI">
-            <img src="assets/img/contributors-white/QBiC.svg" data-placement="bottom" data-toggle="tooltip" title="Quantitative Biology Center, Tübingen, Germany">
-            <img src="assets/img/contributors-white/SciLifeLab.svg" data-placement="bottom" data-toggle="tooltip" title="SciLifeLab, Sweden">
-            <img src="assets/img/contributors-white/GIS.svg" data-placement="bottom" data-toggle="tooltip" title="GIS, Singapore">
-            <img src="assets/img/contributors-white/IARC.svg" data-placement="bottom" data-toggle="tooltip" title="IARC, World Health Organisation, France">
-          </div>
-        </div>
+        <h2><a href="/about#contributors">Used by groups all over the world</a></h2>
+        <p>The nf-core community is spread all over the globe and includes a large
+          number of contributing users. <a href="/about#contributors">See all &raquo;</a></p>
+        <?php echo implode($contributors_img_list); ?>
       </div>
     </div>
 

@@ -30,9 +30,10 @@
           <div class="col-6 col-md">
             <h5>For Authors</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/developer_docs">Documentation</a></li>
-              <li><a class="text-muted" href="/errors">Error codes</a></li>
-              <li><a class="text-muted" href="/tools">Helper tools</a></li>
+              <li><a class="text-muted" href="/guidelines">Guidelines</a>
+              <li><a class="text-muted" href="/adding_pipelines">Adding a new pipeline</a>
+              <li><a class="text-muted" href="/errors">Lint error codes</a>
+              <li><a class="text-muted" href="/sync">Template synchronisation</a>
             </ul>
           </div>
           <div class="col-6 col-md">

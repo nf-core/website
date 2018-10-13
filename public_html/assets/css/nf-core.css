@@ -42,6 +42,17 @@ blockquote a {
     min-width: 100%;
   }
 }
+/* Don't stretch the final card across the full row if an odd number */
+@media only screen and (min-width: 1000px) {
+  .card_deck_card.card {
+    max-width: calc(50% - 30px);
+  }
+}
+@media only screen and (max-width: 770px) {
+  pre, code {
+    font-size: 10px;
+  }
+}
 
 .site-nav {
   padding: .2rem 1rem;
@@ -51,10 +62,24 @@ blockquote a {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
-.site-nav li a {
+.site-nav .navbar-nav > li > a {
   margin-left: 1rem;
   margin-right: 1rem;
   transition: ease-in-out color .1s;
+}
+
+.site-nav li .dropdown-menu {
+  background-color: rgba(240,240,240,.95);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 0;
+  margin-top: 3px;
+}
+.site-nav .collapse.show li .dropdown-menu {
+  background-color: transparent;
+}
+.site-nav .dropdown-divider {
+  border-color: #ccc;
 }
 
 .triangle:before {
@@ -211,6 +236,30 @@ footer h5 {
   margin-top: -30px;
 }
 
+.header-link {
+  color: #333;
+  font-size: 30px;
+  margin: 0 10px 0 -42px;
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+h1:hover .header-link, h1:active .header-link, h1:focus .header-link,
+h2:hover .header-link, h2:active .header-link, h2:focus .header-link,
+h3:hover .header-link, h3:active .header-link, h3:focus .header-link,
+h4:hover .header-link, h4:active .header-link, h4:focus .header-link {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 560px) {
+  .header-link {
+    margin: 0;
+    padding-right: 10px;
+    opacity: 1;
+  }
+}
+
 
 
 /*
@@ -313,8 +362,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   display: block;
   color: #ffffff;
 }
-.homepage-usedby h2 {
+.homepage-usedby h2, .homepage-usedby h2 a {
   color: #ffffff;
+  text-decoration: none;
 }
 .homepage-usedby p, .homepage-usedby p a {
   color: rgba(255,255,255,0.8);
@@ -350,7 +400,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
  */
 
 .pipelines-toolbar .pipeline-filters input {
-  max-width: 6rem;
+  max-width: 10rem;
 }
 .pipelines-toolbar .btn.active {
   opacity: 0.8;
@@ -373,6 +423,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   float: right;
   font-size: 0.8rem;
   color: #999;
+}
+.pipeline .stargazers .far {
+  color: #DAA520;
 }
 .pipeline .stargazers:hover {
   color: #DAA520;
@@ -402,7 +455,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
   About Page
 */
-.contributor h5, .contributor h6 {
+.main-content .contributor h5, .main-content .contributor h6 {
   margin: 0 0 0.5rem;
   padding: 0;
 }
