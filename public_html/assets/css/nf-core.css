@@ -48,6 +48,11 @@ blockquote a {
     max-width: calc(50% - 30px);
   }
 }
+@media only screen and (max-width: 770px) {
+  pre, code {
+    font-size: 10px;
+  }
+}
 
 .site-nav {
   padding: .2rem 1rem;
@@ -215,6 +220,30 @@ footer h5 {
 .main-content h1 {
   border-bottom: 1px solid #22ae63;
   margin-top: -30px;
+}
+
+.header-link {
+  color: #333;
+  font-size: 30px;
+  margin: 0 10px 0 -42px;
+  opacity: 0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+h1:hover .header-link, h1:active .header-link, h1:focus .header-link,
+h2:hover .header-link, h2:active .header-link, h2:focus .header-link,
+h3:hover .header-link, h3:active .header-link, h3:focus .header-link,
+h4:hover .header-link, h4:active .header-link, h4:focus .header-link {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 560px) {
+  .header-link {
+    margin: 0;
+    padding-right: 10px;
+    opacity: 1;
+  }
 }
 
 
