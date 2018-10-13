@@ -38,11 +38,21 @@ if(strlen($git_sha) != 7){
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" href="/usage_docs">Usage</a>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown">Usage</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/usage_docs">Getting started</a>
+              <a class="dropdown-item" href="/nextflow_tutorial">Nextflow tutorial</a>
+            </div>
           </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" href="/developer_docs">Developers</a>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link" href="#" role="button" data-toggle="dropdown">Developers</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/developer_docs">Introduction</a>
+              <a class="dropdown-item" href="/adding_pipelines">Adding a new pipeline</a>
+              <a class="dropdown-item" href="/errors">Lint error codes</a>
+              <a class="dropdown-item" href="/sync">Template synchronisation</a>
+            </div>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/tools">Tools</a>

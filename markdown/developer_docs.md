@@ -14,7 +14,7 @@ Some quick links to help you find your way around:
 For now, the guidelines are pretty simple. The below gives an outline of what is required.
 For more detail, please see the [**list of lint test error codes**](errors).
 
-**We highly recommend using the [`nf-core create`](tools#create) command** to begin your project.
+**We highly recommend using the [`nf-core create`](tools#creating-a-new-workflow) command** to begin your project.
 This tool builds a skeleton pipeline from scratch with all of the features required to pass the below tests.
 It also makes it trivial to keep your pipeline in sync with core updates to the nf-core pipeline template (this will be automated, see [pipeline syncing](sync)).
 
@@ -48,7 +48,7 @@ If possible, it's great if pipelines can also have:
 * Benchmarks from running on cloud environments such as [AWS](https://aws.amazon.com/)
 
 ## Pipeline organisation
-It's highly recommended that pipelines are built using the [`nf-core create`](tools#create) command, as this will ensure future community updates to be propagated to your pipeline (read more [here](sync)).
+It's highly recommended that pipelines are built using the [`nf-core create`](tools#creating-a-new-workflow) command, as this will ensure future community updates to be propagated to your pipeline (read more [here](sync)).
 
 ## Coding style
 The nf-core style requirements are growing and maturing over time.
@@ -64,22 +64,6 @@ However, in general, pipelines must:
 * Keep only code for the latest stable on the main `master` branch.
     * The main development code should be kept in a branch called `dev`
 * Use GitHub releases and keep a detailed changelog file
-
-# How to add a new pipeline
-
-1. Join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3)
-2. Create a pipeline repository in the organisation
-    * _If starting from scratch_
-        * Ask an admin to create a new pipeline repository for you and add you as a collaborator.
-        * This is the best option, as this repository will then be recognised as the "head fork" by GitHub.
-    * _If you already have a pipeline_
-        * Talk to us about it on the [nf-core gitter chat](https://gitter.im/nf-core/Lobby)
-        * Fork your pipeline to the nf-core GitHub organisation
-        * Go through [this guide](sync#setup) in order to set up the template syncing
-3. Make sure that your pipeline `README.md` file has a big warning on the front saying that it's under development
-4. Work on the `dev` branch until the automatic lint tests are passing
-5. When you're happy, ping [@nf-core/core](https://github.com/orgs/nf-core/teams/core) for a code review
-5. Once the pipeline has been approved, you can remove the development warning on the main readme and the pipeline. Tag a release and the website will be updated.
 
 # Plans for the future
 There's always more cool stuff we want to do!

@@ -62,10 +62,24 @@ blockquote a {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
-.site-nav li a {
+.site-nav .navbar-nav > li > a {
   margin-left: 1rem;
   margin-right: 1rem;
   transition: ease-in-out color .1s;
+}
+
+.site-nav li .dropdown-menu {
+  background-color: rgba(240,240,240,.95);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: 0;
+  margin-top: 3px;
+}
+.site-nav .collapse.show li .dropdown-menu {
+  background-color: transparent;
+}
+.site-nav .dropdown-divider {
+  border-color: #ccc;
 }
 
 .triangle:before {
