@@ -5,7 +5,7 @@ Before you start typing, check that you're happy with the following points:
 * You're familiar with nf-core and nextflow (see our [introduction docs](/usage_docs)).
 * You're used to working with `git` and [GitHub](https://github.com)
     (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
-* The workflow you're thinking of meets the [nf-core guidelines](/developer_docs#guidelines-for-nf-core-pipelines).
+* The workflow you're thinking of meets the [nf-core guidelines](/guidelines#guidelines-for-nf-core-pipelines).
 
 # Join the community
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
