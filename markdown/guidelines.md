@@ -41,6 +41,11 @@ If possible, it's great if pipelines can also have:
     * The [nf-core template](/tools#creating-a-new-workflow) comes with all required code to support this setup.
 * Benchmarks from running on cloud environments such as [AWS](https://aws.amazon.com/)
 
+## Workflow name
+All nf-core pipeliens should be lower case and without punctuation.
+This is to maximise compatibility with other platforms such as dockerhub, which enforce such rules.
+In documentation, please refer to your pipeline as `nf-core/yourpipeline`.
+
 ## Coding style
 The nf-core style requirements are growing and maturing over time.
 Typically, as we agree on a new standard we try to build a test for it into the `nf-core lint` command.
