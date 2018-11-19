@@ -4,10 +4,12 @@ require_once("../Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_img_list = [];
 foreach($contributors['contributors'] as $idx => $c){
-  $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
-  $img_path = 'assets/img/contributors-white/'.$c['image_fn'];
-  if($c['image_fn'] and file_exists($img_path)){
-    $contributors_img_list[] = '<a href="/about#'.$card_id.'"><img src="'.$img_path.'" data-placement="bottom" data-toggle="tooltip" title="'.$c['full_name'].'"></a>';
+  if(isset($c['image_fn']) and $c['image_fn'] and isset($c['full_name']) and $c['full_name']){
+    $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
+    $img_path = 'assets/img/contributors-white/'.$c['image_fn'];
+    if(file_exists($img_path)){
+      $contributors_img_list[] = '<a href="/about#'.$card_id.'"><img src="'.$img_path.'" data-placement="bottom" data-toggle="tooltip" title="'.$c['full_name'].'"></a>';
+    }
   }
 }
 
