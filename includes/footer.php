@@ -54,6 +54,5 @@
     <script src="assets/js/highlight.pack.js"></script>
     <script src="assets/js/leaflet.js"></script>
     <script src="assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
-    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
   </body>
 </html>
