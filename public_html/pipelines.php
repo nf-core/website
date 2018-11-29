@@ -54,7 +54,7 @@ include('../includes/header.php');
 
 <h1>Available Pipelines</h1>
 <p class="mb-3">Can you think of another pipeline that would fit in well?
-<a href="https://gitter.im/nf-core/Lobby">Let us know!</a></p>
+<a href="https://nf-core-invite.herokuapp.com/">Let us know!</a></p>
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">

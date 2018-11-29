@@ -10,7 +10,7 @@ Before you start typing, check that you're happy with the following points:
 # Join the community
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
 Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
-and introduce yourself on [gitter](https://gitter.im/nf-core/Lobby) or the
+and introduce yourself on [Slack](https://nf-core-invite.herokuapp.com/) or the
 [mailing list](https://groups.google.com/forum/#!forum/nf-core).
 
 It's good to introduce your idea early on so that it can be discussed before you spend lots of time coding.
@@ -117,7 +117,7 @@ this new branch using the UI there.
 Once created, you can open a pull request and select this as the target branch.
 
 If in doubt, ask for help!
-([gitter](https://gitter.im/nf-core/Lobby) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
+([Slack](https://nf-core-invite.herokuapp.com/) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
 
 ## Setting up a test workflow
 Now that your test data is hosted on the web, you can set up a `test` config profile in your
