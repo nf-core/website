@@ -48,7 +48,7 @@ $results = array(
 $gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_api_url, false, $api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-    var_dump($gh_repos);
+    var_dump($http_response_header);
     die("Could not fetch nf-core repositories! $gh_api_url");
 }
 
@@ -98,7 +98,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
     $gh_releases_url = "https://api.github.com/repos/{$repo['full_name']}/releases";
     $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-        var_dump($gh_releases);
+        var_dump($http_response_header);
         die("Could not fetch nf-core release info! $gh_releases_url");
     }
 
@@ -126,7 +126,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
         $gh_tags_url = "https://api.github.com/repos/{$repo['full_name']}/tags";
         $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-            var_dump($gh_tags);
+            var_dump($http_response_header);
             die("Could not fetch nf-core tags info! $gh_tags_url");
         }
         foreach($gh_tags as $tag){
