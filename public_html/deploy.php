@@ -12,11 +12,11 @@ if ( $_POST['payload'] ) {
   }
 
   // Pull the new version of the website repo
-  shell_exec("cd /home/nfcore/nf-co.re && git fetch && git reset --hard origin/master");
+  shell_exec("nohup cd /home/nfcore/nf-co.re && git fetch && git reset --hard origin/master &");
   // Pull the new version of the tools repo
-  shell_exec("cd /home/nfcore/nf-co.re/includes/nf-core/tools && git fetch && git reset --hard origin/master");
+  shell_exec("nohup cd /home/nfcore/nf-co.re/includes/nf-core/tools && git fetch && git reset --hard origin/master &");
   // Update the JSON file describing all the pipeline versions
-  shell_exec("php /home/nfcore/nf-co.re/update_pipeline_details.php &> /home/nfcore/nf-co.re/update.log &");
+  shell_exec("nohup php /home/nfcore/nf-co.re/update_pipeline_details.php &> /home/nfcore/nf-co.re/update.log &");
   die("done " . mktime());
 
 }
