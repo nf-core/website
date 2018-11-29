@@ -64,7 +64,7 @@ if(strlen($git_sha) != 7){
         <hr class="d-md-none">
         <ul class="navbar-nav d-md-none">
           <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://gitter.im/nf-core/Lobby">Chat on Gitter</a>
+            <a class="nav-link" target="_blank" href="https://nf-core-invite.herokuapp.com/">Chat on Slack</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core">Join the email list</a>
@@ -77,7 +77,7 @@ if(strlen($git_sha) != 7){
           </li>
         </ul>
         <div class="d-none d-md-block" style="position:absolute; right: 1rem;">
-          <a class="nav-link d-inline-block px-2" target="_blank" href="https://gitter.im/nf-core/Lobby" data-toggle="tooltip" title="Chat on Gitter"><img height="25px" src="assets/img/gitter.svg" /></a>
+          <a class="nav-link d-inline-block px-2" target="_blank" href="https://nf-core-invite.herokuapp.com/" data-toggle="tooltip" title="Chat on Slack"><img height="25px" src="assets/img/slack.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core" data-toggle="tooltip" title="Google Groups email list"><img height="35px" src="assets/img/google_groups.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://twitter.com/nf_core" data-toggle="tooltip" title="Follow on twitter"><img height="25px" src="assets/img/twitter.svg" /></a>
           <a class="nav-link d-inline-block px-2" target="_blank" href="https://github.com/nf-core" data-toggle="tooltip" title="See nf-core on GitHub"><img height="25px" src="assets/img/github.svg" /></a>
