@@ -19,7 +19,7 @@ As the number of people interested in these common pipelines grew, it seemed sil
 ## Get in touch {#contact}
 To get in touch with the nf-core team, you have a few options:
 
-* Chat online with [Gitter](https://gitter.im/nf-core/Lobby) (see the _"Open Chat"_ button below)
+* Chat online with [Slack](https://nf-core-invite.herokuapp.com/)
 * Email the [Google Groups mailing list](https://groups.google.com/forum/#!forum/nf-core)
 * Create an issue on one of the [GitHub repositories](https://github.com/nf-core)
 * Message or tweet at [@nf_core on twitter](https://twitter.com/nf_core)
