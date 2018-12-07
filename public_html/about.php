@@ -108,8 +108,8 @@ include('../includes/footer.php');
 
         locations.forEach(function(marker) {
             if (marker != null) {
-                latitude += marker.location[0];
-                longitude += marker.location[1];
+                latitude += parseFloat(marker.location[0]);
+                longitude += parseFloat(marker.location[1]);
                 L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup('<a href="#'+marker.card_id+'">'+marker.full_name+'</a>'+marker.image);
             }
         });
