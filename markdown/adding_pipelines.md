@@ -70,6 +70,13 @@ website you use. Docker Cloud has a nicer interface though, so we recommend that
 3. Set your repository to be automatically built from a GitHub repository and link it to your workflow
 4. Configure the repo to automatically build whenever you push a new commit to your GitHub repo
 
+Whilst developing your pipeline on your local fork you will need to create automated builds for two docker images
+with source set to `master` - one with the `dev` tag and the other with the `latest` tag.
+The former will be required for Travis and the latter will be pulled when executing the pipeline locally.
+
+> NB: The default name (`nfcore/<PIPELINE_NAME>`) for the Docker image in the pipeline template
+will need to be replaced i.e. `container` variable in `nextflow.config` and `docker` commands in `.travis.yml`.
+These will need to be changed back to the defaults before you fork the pipeline to `nf-core`.
 
 ## Work on your pipeline
 Ok, now you're all set with your own personal nf-core pipeline!
