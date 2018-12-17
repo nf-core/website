@@ -74,8 +74,8 @@ Whilst developing your pipeline on your local fork you will need to create autom
 with source set to `master` - one with the `dev` tag and the other with the `latest` tag.
 The former will be required for Travis and the latter will be pulled when executing the pipeline locally.
 
-> NB: The default name (`nfcore/<PIPELINE_NAME>`) for the Docker image in the pipeline template
-will need to be replaced i.e. `container` variable in `nextflow.config` and `docker` commands in `.travis.yml`.
+> NB: The default name (`nfcore/<PIPELINE_NAME>`) for the Docker image will need to be replaced
+in the pipeline template i.e. `container` variable in `nextflow.config` and `docker` commands in `.travis.yml`.
 These will need to be changed back to the defaults before you fork the pipeline to `nf-core`.
 
 ## Work on your pipeline
