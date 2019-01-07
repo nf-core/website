@@ -1,0 +1,66 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/sven1103/workflow-setup-wizard/master/example.schema.json",
+    "version": "0.1.0dev",
+    "title": "Workflow Parameter Schema",
+    "description": "Describes Nextflow workflow run parameters.",
+    "type": "object",
+    "definitions": {
+        "parameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Parameter name."
+                },
+                "label": {
+                    "type": "string",
+                    "description": "A human readable parameter label."
+                },
+                "usage": {
+                    "type": "string",
+                    "description": "Purpose of the parameter."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Parameter type.",
+                    "enum": ["string", "integer", "decimal", "boolean", "mem unit"]
+                },
+                "render": {
+                    "type": "string",
+                    "description": "UI render type.",
+                    "enum": ["file", "url", "upload", "range", "check-box", "radio-button", "list-box", "drop-down"]
+                },
+                "choices": {
+                    "type": "array",
+                    "description": "A collection of choices for a parameter value.",
+                    "items": { "type": "string" }
+                },
+                "default_value": {
+                    "type": "string",
+                    "description": "Default parameter value."
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "Regular expression pattern."
+                },
+                "arity": {
+                    "type": "integer",
+                    "description": "Arity of a value."
+                },
+                "required": {
+                    "type": "boolean",
+                    "description": "Flags the parameter as required."
+                }
+            },
+            "required": ["name", "label", "type", "default_value", "render", "required"]
+        }
+    },
+    "properties": {
+        "parameters": {
+            "description": "Array of parameter objects.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/parameter"}
+        }
+    }
+}
