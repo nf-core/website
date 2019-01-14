@@ -36,8 +36,20 @@
                     "description": "A collection of choices for a parameter value.",
                     "items": { "type": "string" }
                 },
+                 "value": {
+                    "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" },
+                        { "type": "boolean" }
+                    ],
+                    "description": "Parameter value."
+                },
                 "default_value": {
-                    "type": "string",
+                    "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" },
+                        { "type": "boolean" }
+                    ],
                     "description": "Default parameter value."
                 },
                 "pattern": {
