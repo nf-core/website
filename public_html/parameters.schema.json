@@ -59,13 +59,9 @@
                 "arity": {
                     "type": "integer",
                     "description": "Arity of a value."
-                },
-                "required": {
-                    "type": "boolean",
-                    "description": "Flags the parameter as required."
                 }
             },
-            "required": ["name", "label", "type", "default_value", "render", "required"]
+            "required": ["name", "label", "type", "default_value", "render"]
         }
     },
     "properties": {
