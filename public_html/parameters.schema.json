@@ -26,6 +26,10 @@
                     "description": "Parameter type.",
                     "enum": ["string", "integer", "decimal", "boolean", "mem unit"]
                 },
+                "group": {
+                    "type": "string",
+                    "description": "Assigns a group tag to the parameter."
+                }
                 "render": {
                     "type": "string",
                     "description": "UI render type.",
