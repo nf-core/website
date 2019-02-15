@@ -129,7 +129,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
             'published_at' => $rel->published_at,
             'html_url' => $rel->html_url,
             'tag_name' => $rel->tag_name,
-            'tag_sha' => None,
+            'tag_sha' => NULL,
             'draft' => $rel->draft,
             'prerelease' => $rel->prerelease
         );
@@ -188,7 +188,7 @@ foreach($old_json['remote_workflows'] as $old_pipeline){
     }
 }
 // Go through new releases
-foreach($results_json['remote_workflows'] as $new_pipeline){
+foreach($results['remote_workflows'] as $new_pipeline){
     $rel_urls = array();
     foreach($new_pipeline['releases'] as $rel){
         if($rel['draft'] || $rel['prerelease']){
