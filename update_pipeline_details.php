@@ -13,9 +13,16 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_pipeline_details.php
 
+// Load the twitter PHP library
+require "includes/libraries/twitteroauth/autoload.php";
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 // Allow PHP fopen to work with remote links
 ini_set("allow_url_fopen", 1);
+
+// Get the twitter auth secrets
+$config = parse_ini_file("config.ini");
+
 // HTTP header to use on API GET requests
 $api_opts = stream_context_create([
     'http' => [
@@ -26,6 +33,18 @@ $api_opts = stream_context_create([
         ]
     ]
 ]);
+
+// Final filename to write JSON to
+$results_fn = dirname(__FILE__).'/public_html/pipelines.json';
+
+// Load a copy of the existing JSON file, if it exists
+$old_json = false;
+$tweets = array();
+if(file_exists($results_fn)){
+    $old_json = json_decode(file_get_contents($results_fn), true);
+}
+
+
 // Function to sort assoc array by key value (name)
 function sort_name($a,$b) {
     return strcmp($a["full_name"], $b["full_name"]);
@@ -153,7 +172,57 @@ foreach($results['remote_workflows'] as $repo){
 
 // Print results to a file
 $results_json = json_encode($results, JSON_PRETTY_PRINT)."\n";
-$results_fn = dirname(__FILE__).'/public_html/pipelines.json';
-file_put_contents($results_fn, $results_json)
+file_put_contents($results_fn, $results_json);
+
+////// Tweet about new releases
+// Get old releases
+$old_rel_tags = array();
+foreach($old_json['remote_workflows'] as $old_pipeline){
+    $old_rel_tags[$old_pipeline['name']] = array();
+    // Collect releases from this pipeline
+    foreach($old_pipeline['releases'] as $rel){
+        if($rel['draft'] || $rel['prerelease']){
+            continue;
+        }
+        $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
+    }
+}
+// Go through new releases
+foreach($results_json['remote_workflows'] as $new_pipeline){
+    $rel_urls = array();
+    foreach($new_pipeline['releases'] as $rel){
+        if($rel['draft'] || $rel['prerelease']){
+            continue;
+        }
+        // See if this tag name was in the previous JSON
+        if(!in_array($rel['tag_name'], $old_rel_tags[$new_pipeline['name']])){
+            // Prepare the tweet content!
+            $tweet = 'Pipeline release! ';
+            $tweet .= $new_pipeline['full_name'].' v'.$rel['tag_name'].' ('.$new_pipeline['description'].')';
+            $tweet_url = "\n\nSee the changelog: ".$rel['html_url'];
+            // 42 chars for tweet URL string with t.co url shortener
+            while( (strlen($tweet) + 42) > $config['twitter_tweet_length'] ){
+                $tweet = substr(rtrim($tweet, '.)'), 0, -3).'..)';
+            }
+            $tweets[] = $tweet.$tweet_url;
+        }
+    }
+}
+
+if(count($tweets) > 0){
+
+    // Connect to twitter
+    $connection = new TwitterOAuth(
+        $config['twitter_key'],
+        $config['twitter_secret'],
+        $config['twitter_access_token'],
+        $config['twitter_access_token_secret']
+    );
+
+    // Post the tweets
+    foreach($tweets as $tweet){
+        $post_tweets = $connection->post("statuses/update", ["status" => $tweet]);
+    }
+}
 
 ?>
