@@ -81,7 +81,7 @@ include('../includes/header.php');
               <h5 class="card-title">Stable Releases</h5>
               <img class="float-right ml-2" height="100px" src="assets/img/releases.svg" />
               <p class="card-text">nf-core pipelines use GitHub releases to tag stable versions of the code
-              and software, making pipeline runs totally reproducable.</p>
+              and software, making pipeline runs totally reproducible.</p>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ include('../includes/header.php');
               <h5 class="card-title">Bioconda</h5>
               <img class="float-right ml-2" height="100px" src="assets/img/bioconda.svg" />
               <p class="card-text">Where possible, pipelines come with a bioconda environment file,
-              allowing you to set up a new environment for the pipeline in a single command.</p>
+              allowing you to set up a new environment for the pipeline with a single command.</p>
             </div>
           </div>
         </div>
