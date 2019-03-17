@@ -59,8 +59,23 @@ Regenerate your pipeline from scratch using the most recent template:
 > Make sure you are within your pipeline root directory before running these commands.
 
 ```bash
-nf-core create --no-git -n 'YOURPIPELINENAME' -d 'YOUR ACTUAL PIPELINE DESCRIPTION'
+nf-core create --no-git
 ```
+
+If your pipeline already has versioned releases (eg. you are not currently on `1.0dev`),
+then specify the version number that you are currently on:
+
+```bash
+nf-core create --no-git --new-version 1.3dev
+```
+
+> The version you choose should match the branch that you intend to merge with.
+> If you already have a release, you should probably be merging in to `dev` eventually,
+> so use the version number specified there.
+
+Follow the prompts to fill in the pipeline name, description and author(s).
+Make sure that you take the exact text that you already have already used in your pipeline's
+`nextflow.config` file (`manifest.name` etc.), if these have already been written.
 
 This creates a new directory `YOURPIPELINENAME` with the template pipeline files in it.
 Now move these files into your root git directory:
@@ -68,7 +83,7 @@ Now move these files into your root git directory:
 ```bash
 mv nf-core-YOURPIPELINENAME/* .
 mv nf-core-YOURPIPELINENAME/.[!.]* .
-rm -rf nf-core-YOURPIPELINENAME
+rmdir nf-core-YOURPIPELINENAME
 ```
 
 Now make sure the newly created files are in the correct place. It should look similar to this:
@@ -126,18 +141,43 @@ in a branch and then you can make a pull-request to `dev` / `master` when ready.
 git checkout dev
 git checkout -b template_merge
 git merge TEMPLATE --allow-unrelated-histories
-git status
 ```
 
-Make sure to go through all the conflicts and resolve them so that your pipeline is properly up to date with the latest template.
-Finally, commit and upload your changes to your GitHub repo.
+You can try extra flags such as `-Xignore-space-at-eol` if you find that the merge command shows entire files as being new.
+
+You'll probably see a _lot_ of merge conflicts:
+
+```
+Auto-merging nextflow.config
+CONFLICT (add/add): Merge conflict in nextflow.config
+Auto-merging main.nf
+CONFLICT (add/add): Merge conflict in main.nf
+Auto-merging environment.yml
+CONFLICT (add/add): Merge conflict in environment.yml
+Auto-merging docs/usage.md
+CONFLICT (add/add): Merge conflict in docs/usage.md
+```
+_..and so on_
+
+Go through each file resolving the merge conflicts carefully.
+Many text editors have plugins to help with this task.
+The [Atom GitHub package](https://github.atom.io/) is one example of an excellent interface to manage merge conflicts
+(see the [docs](https://flight-manual.atom.io/using-atom/sections/github-package/#resolve-conflicts)).
+
+It's highly recommended to use a visual tool to help you with this, as it's easy to make mistakes if handling
+the merge markers manually when there are so many to deal with.
+
+Once you have resolved all merge conflicts, you can commit the changes and push to the GitHub repo:
 
 ```bash
-git add .
 git commit -m "Merged vanilla TEMPLATE branch into main pipeline"
 git push origin template_merge
 ```
 
 The final task is to create a pull request with your changes so that they are included in the upstream repository.
+Once your commits are finally merged into the `master` branch, all future automatic template syncing should work.
+
+When new releases of `nf-core/tools` and it's associated template are released, pull-requests will automatically
+be created to merge updates in to your pipeline for you.
 
 ## *Well done!*
