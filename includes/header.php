@@ -45,6 +45,7 @@ if(strlen($git_sha) != 7){
             <a class="nav-link" href="/usage/introduction" role="button" data-toggle="dropdown">Usage</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
+              <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
               <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
             </div>
           </li>
@@ -97,18 +98,19 @@ if( isset($markdown_fn) and $markdown_fn){
   // Load the docs markdown
   $md_full = file_get_contents($markdown_fn);
   $meta = [];
-  $md_parts = explode('---', $md_full, 3);
-  if(count($md_parts) == 3){
-    $meta = spyc_load($md_parts[1]);
-    $md = $md_parts[2];
-    if(isset($meta['title'])){
-      $title = $meta['title'];
+  $md = $md_full;
+  if(substr($md_full,0,3) == '---'){
+    $md_parts = explode('---', $md_full, 3);
+    if(count($md_parts) == 3){
+      $meta = spyc_load($md_parts[1]);
+      $md = $md_parts[2];
+      if(isset($meta['title'])){
+        $title = $meta['title'];
+      }
+      if(isset($meta['subtitle'])){
+        $subtitle = $meta['subtitle'];
+      }
     }
-    if(isset($meta['subtitle'])){
-      $subtitle = $meta['subtitle'];
-    }
-  } else {
-    $md = $md_full;
   }
 
   // Trim off any content if requested
