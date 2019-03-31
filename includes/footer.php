@@ -8,7 +8,7 @@
       <div class="container">
         <div class="row">
           <div class="col-6 col-md-4">
-            <a class="text-muted" href="/"><img height="30px" src="assets/img/logo/nf-core-logo.svg" /></a>
+            <a class="text-muted" href="/"><img height="30px" src="/assets/img/logo/nf-core-logo.svg" /></a>
             <small class="d-block mb-3 text-muted">Making awesome workflows since &copy; 2018</small>
             <small class="d-block mb-3 text-muted">
               Website by <a href="http://phil.ewels.co.uk/" class="text-muted">Phil Ewels</a>.
@@ -49,11 +49,11 @@
       </div>
     </footer>
 
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/highlight.pack.js"></script>
-    <script src="assets/js/leaflet.js"></script>
-    <script src="assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
+    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script src="/assets/js/leaflet.js"></script>
+    <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
   </body>
 </html>

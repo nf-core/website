@@ -1,10 +1,16 @@
 # Redirect https to https
 RewriteEngine On
+RewriteBase /
 RewriteCond %{SERVER_PORT} 80
 RewriteRule ^(.*)$ https://nf-co.re/$1 [R,L]
 
+# Docs URL rewrite
+RewriteRule ^developers/(.*)$ docs.php?md=$1 [L,NC]
+RewriteRule ^usage/(.*)$ docs.php?md=$1 [L,NC]
+
 # Run Php without filename extension
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
 

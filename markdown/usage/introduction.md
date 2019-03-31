@@ -1,3 +1,8 @@
+---
+title: Introduction
+subtitle: Get to grip with the key concepts used in nf-core pipelines.
+---
+
 # What is nf-core?
 nf-core is a community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
