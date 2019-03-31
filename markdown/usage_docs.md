@@ -96,6 +96,8 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 
 # Helper tools
 
-To help you manage your nf-core pipelines and discover updates, we have written some command-line helper tools. These allow you to list all available pipelines and versions, with information about what versions you're running locally. There are also commands to help downloading pipelines for use offline.
+To help you manage your nf-core pipelines and discover updates, we have written some command-line helper tools.
+These allow you to list all available pipelines and versions, with information about what versions you're running locally.
+There are also commands to help downloading pipelines for use offline.
 
 To find out more about these tools, read the [Tools](/tools) page.
