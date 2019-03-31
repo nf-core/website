@@ -38,6 +38,9 @@ if(strlen($git_sha) != 7){
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/tools">Tools</a>
+          </li>
           <li class="nav-item p-1 dropdown">
             <a class="nav-link" href="/usage_docs" role="button" data-toggle="dropdown">Usage</a>
             <div class="dropdown-menu">
@@ -52,13 +55,6 @@ if(strlen($git_sha) != 7){
               <a class="dropdown-item" href="/adding_pipelines">Adding a new pipeline</a>
               <a class="dropdown-item" href="/errors">Lint error codes</a>
               <a class="dropdown-item" href="/sync">Template synchronisation</a>
-            </div>
-          </li>
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/tools" role="button" data-toggle="dropdown">Tools</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/tools">Overview of commands</a>
-              <a class="dropdown-item" href="/tools-docs">Tools python API docs</a>
             </div>
           </li>
           <li class="nav-item p-1">
