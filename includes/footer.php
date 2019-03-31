@@ -24,6 +24,7 @@
             <ul class="list-unstyled">
               <li><a class="text-muted" href="/usage_docs">Using nf-core</a></li>
               <li><a class="text-muted" href="/pipelines">Available pipelines</a></li>
+              <li><a class="text-muted" href="/pipelines">Helper tools</a></li>
               <li><a class="text-muted" href="/nextflow_tutorial">Nextflow tutorial</a></li>
             </ul>
           </div>
