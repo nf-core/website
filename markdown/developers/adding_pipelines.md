@@ -1,3 +1,8 @@
+---
+title: Adding a new pipeline
+subtitle: Follow this walkthrough to add a new pipeline to nf-core.
+---
+
 # Before you start
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
