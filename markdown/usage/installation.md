@@ -3,13 +3,12 @@ title: Installation
 subtitle: Installing the building blocks needed for running nf-core pipelines.
 ---
 
-# nf-core/YOUR_PIPELINE: Installation
+This documentation assumes that you have already read the [introduction](introduction.md) and are familiar with the tools described below.
 
-To start using the nf-core/YOUR_PIPELINE pipeline, follow the steps below:
-
+# Table of contents
 <!-- Install Atom plugin markdown-toc-auto for this ToC -->
 <!-- TOC START min:2 max:3 link:true asterisk:true -->
-* [Install NextFlow](#install-nextflow)
+* [Install nextflow](#install-nextflow)
 * [Install the pipeline](#install-the-pipeline)
   * [Automatic](#automatic)
   * [Offline](#offline)
@@ -22,7 +21,7 @@ To start using the nf-core/YOUR_PIPELINE pipeline, follow the steps below:
 * [Reference genomes](#reference-genomes)
 <!-- TOC END -->
 
-## Install NextFlow
+## Install nextflow
 Nextflow runs on most POSIX systems (Linux, Mac OSX etc). It can be installed by running the following commands:
 
 ```bash
@@ -43,7 +42,7 @@ See [nextflow.io](https://www.nextflow.io/) for further instructions on how to i
 ## Install the pipeline
 
 ### Automatic
-This pipeline itself needs no installation - NextFlow will automatically fetch it from GitHub if `nf-core/YOUR_PIPELINE` is specified as the pipeline name.
+This pipeline itself needs no installation - nextflow will automatically fetch it from GitHub if `nf-core/YOUR_PIPELINE` is specified as the pipeline name.
 
 ### Offline
 The above method requires an internet connection so that Nextflow can download the pipeline files. If you're running on a system that has no internet connection, you'll need to download and transfer the pipeline files manually:
