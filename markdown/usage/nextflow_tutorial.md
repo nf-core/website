@@ -1,3 +1,8 @@
+---
+title: Nextflow tutorial
+subtitle: Learn the basics of Nextflow and how to write your own Nextflow pipelines.
+---
+
 # How does Nextflow work?
 The general outline of a Nextflow script is as follows, and it will be described in detail in the following sections:
 

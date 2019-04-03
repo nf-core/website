@@ -1,3 +1,8 @@
+---
+title: Guidelines
+subtitle: Guidelines and requirements for nf-core pipelines.
+---
+
 # Requirements for nf-core pipelines
 If you're thinking of adding a new pipeline to nf-core, please read the documentation
 about [adding a new pipeline](/adding_pipelines).
