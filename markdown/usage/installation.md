@@ -67,7 +67,41 @@ If you would like to make changes to the pipeline, it's best to make a fork on G
 
 
 ## Pipeline configuration
-By default, the pipeline loads a basic server configuration [`conf/base.config`](conf/base)
+By default, the pipeline loads a basic server configuration:
+```bash
+process {
+
+  cpus = { check_max( 2, 'cpus' ) }
+  memory = { check_max( 8.GB * task.attempt, 'memory' ) }
+  time = { check_max( 2.h * task.attempt, 'time' ) }
+
+  errorStrategy = { task.exitStatus in [143,137,104,134,139] ? 'retry' : 'terminate' }
+  maxRetries = 1
+  maxErrors = '-1'
+
+  // Process-specific resource requirements
+  withName: fastqc {
+    time = { check_max( 8.h * task.attempt, 'time' ) }
+  }
+  withName:toolX {
+    cpus = { check_max( 8, 'cpus' ) }
+    memory = { check_max( 8.GB * task.attempt, 'memory' ) }
+  }
+  withName: toolY {
+    cpus = { check_max( 10, 'cpus' ) }
+    memory = { check_max( 200.GB * task.attempt, 'memory' ) }
+    time = { check_max( 5.h * task.attempt, 'time' ) }
+  }
+}
+
+params {
+  // Defaults only, expecting to be overwritten
+  max_memory = 128.GB
+  max_cpus = 16
+  max_time = 240.h
+  igenomes_base = 's3://ngi-igenomes/igenomes/'
+}
+```
 This uses a number of sensible defaults for process requirements and is suitable for running
 on a simple (if powerful!) local server.
 
