@@ -7,7 +7,7 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-* You're familiar with nf-core and nextflow (see our [introduction docs](/usage_docs)).
+* You're familiar with nf-core and nextflow (see our [introduction docs](/usage/introduction)).
 * You're used to working with `git` and [GitHub](https://github.com)
     (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 * The workflow you're thinking of meets the [nf-core guidelines](/guidelines#guidelines-for-nf-core-pipelines).
@@ -44,7 +44,7 @@ Even if you already have a working pipeline, it may be easier in the long run to
 and copy over your code in the relevant places.
 
 If you really don't want to use the template it should possible to work without it.
-Please see the [manual synchronisation](/sync) documentation.
+Please see the [manual synchronisation](/developers/sync) documentation.
 
 > Note that workflow names should be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms (eg. GitHub + Docker Hub).
@@ -104,7 +104,7 @@ These will need to be changed back to the defaults before you fork the pipeline 
 ## Work on your pipeline
 Ok, now you're all set with your own personal nf-core pipeline!
 You can now start writing code for real.
-Remember to keep running the `nf-core lint` command (see [docs](http://localhost:8888/tools#linting-a-workflow))
+Remember to keep running the `nf-core lint` command (see [docs](tools#linting-a-workflow))
 to make sure that your workflow passes all of the nf-core tests.
 The automated tests on Travis also run this so you should get an email if something breaks.
 
