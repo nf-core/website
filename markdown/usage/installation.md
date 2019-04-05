@@ -67,7 +67,7 @@ If you would like to make changes to the pipeline, it's best to make a fork on G
 
 
 ## Pipeline configuration
-By default, the pipeline loads a basic server configuration:
+By default, the pipeline loads a basic resource configuration:
 ```bash
 process {
 
