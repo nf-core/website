@@ -7,7 +7,7 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-* You're familiar with nf-core and nextflow (see our [introduction docs](/usage_docs)).
+* You're familiar with nf-core and nextflow (see our [introduction docs](/usage/introduction)).
 * You're used to working with `git` and [GitHub](https://github.com)
     (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 * The workflow you're thinking of meets the [nf-core guidelines](/guidelines#guidelines-for-nf-core-pipelines).
