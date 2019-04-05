@@ -1,3 +1,11 @@
+---
+title: Base Config File
+subtitle: An exemplary base config file for nf-core pipelines.
+---
+
+This is an exemplary `base.config` file that describes basic resource requirements for processes in an nf-core pipeline. All nf-core pipelines have such a file.
+
+```bash
 /*
  * -------------------------------------------------
  *  nf-core/example Nextflow base config file
@@ -41,3 +49,7 @@ params {
   max_time = 240.h
   igenomes_base = 's3://ngi-igenomes/igenomes/'
 }
+
+}
+
+```

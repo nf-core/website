@@ -67,7 +67,7 @@ If you would like to make changes to the pipeline, it's best to make a fork on G
 
 
 ## Pipeline configuration
-By default, the pipeline loads a basic server configuration [`conf/base.config`](../conf/base.config)
+By default, the pipeline loads a basic server configuration [`conf/base.config`](conf/base)
 This uses a number of sensible defaults for process requirements and is suitable for running
 on a simple (if powerful!) local server.
 
