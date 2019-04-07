@@ -72,7 +72,7 @@ Then transfer this file and point the config file to the image:
 
 ```nextflow
 singularity.enabled = true
-process.container = "/path/to/nfcore-YOURPIPELINENAME.simg"
+process.container = "/path/to/nfcore-YOURPIPELINENAME-VERSION.simg"
 ```
 ### Conda
 If you're not able to use Docker or Singularity, you can instead use conda to manage the software requirements.
