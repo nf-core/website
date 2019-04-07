@@ -36,7 +36,7 @@ To run your selected nf-core pipeline, several software packages are required. H
 Please see the [`installation documentation`](usage/installation) for how to run using the below as a one-off. These instructions are about configuring a config file for repeated use.
 
 ### Docker
-Docker is a great way to run {{ cookiecutter.name }}, as it manages all software installations and allows the pipeline to be run in an identical software environment across a range of systems.
+Docker is a great way to run nf-core pipelines, as it manages all software installations and allows the pipeline to be run in an identical software environment across a range of systems.
 
 Nextflow has [excellent integration](https://www.nextflow.io/docs/latest/docker.html) with Docker, and beyond installing the two tools, not much else is required - nextflow will automatically fetch the Docker image that we have created and is hosted at DockerHub at run time.
 
