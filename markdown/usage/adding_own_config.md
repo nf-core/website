@@ -47,7 +47,7 @@ docker.enabled = true
 process.container = "nfcore/YOUR_PIPELINE_NAME"
 ```
 
-Note that the DockerHub organisation name annoyingly can't have a hyphen, so is `nfcore` and not `nf-core`.
+> Note that the DockerHub organisation name annoyingly can't have a hyphen, so it's `nfcore` and not `nf-core`.
 
 ### Singularity image
 Many HPC environments are not able to run Docker due to security issues.
