@@ -35,7 +35,7 @@ If you intend to run the pipeline offline, nextflow will not be able to automati
 First, pull the image file where you have an internet connection:
 
 > NB: The "tag" at the end of this command corresponds to the pipeline version.
-> Here, we're pulling the docker image for version 1.0 of the {{ cookiecutter.name }} pipeline
+> Here, we're pulling the docker image for version 1.0 of the `YOUR_PIPELINE_NAME` pipeline
 > Make sure that this tag corresponds to the version of the pipeline that you're using
 
 ```bash
