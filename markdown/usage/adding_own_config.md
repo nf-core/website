@@ -44,7 +44,6 @@ To add docker support to your own config file, add the following:
 
 ```nextflow
 docker.enabled = true
-process.container = "nfcore/YOUR_PIPELINE_NAME"
 ```
 
 > Note that the DockerHub organisation name annoyingly can't have a hyphen, so it's `nfcore` and not `nf-core`.
