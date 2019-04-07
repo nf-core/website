@@ -65,7 +65,7 @@ If you intend to run the pipeline offline, nextflow will not be able to automati
 First, pull the image file where you have an internet connection:
 
 ```bash
-singularity pull --name nfcore-YOURPIPELINENAME.simg nfcore/YOUR_PIPELINE_NAME
+singularity pull --name nfcore-YOURPIPELINENAME-VERSION.simg nfcore/YOURPIPELINENAME:VERSION
 ```
 
 Then transfer this file and point the config file to the image:
