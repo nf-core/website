@@ -18,9 +18,7 @@ Then, simply run the analysis pipeline:
 nextflow run nf-core/YOUR_PIPELINE_NAME -profile docker --genome '<genome ID>'
 ```
 
-Nextflow will recognise `nf-core/YOUR_PIPELINE_NAME` and download the pipeline from GitHub. The `-profile docker` configuration lists the respective Docker image on DockerHub that we have created and this is downloaded automatically for you.
-
-For more information about how to work with reference genomes, see [`Reference Genomes`](usage/reference_genomes).
+Nextflow will recognise `nf-core/YOUR_PIPELINE_NAME` and download the pipeline from GitHub. The `-profile docker` configuration lists the respective Docker image on DockerHub that we have created and this is downloaded automatically for you. Note that the usage of `--genome` only works when using iGenomes. For more information about this and how to work with reference genomes, see [`Reference Genomes`](usage/reference_genomes).
 
 ### Pipeline versions
 The public docker images are tagged with the same version numbers as the code, which you can use to ensure reproducibility. When running the pipeline, specify the pipeline version with `-r`, for example `-r 1.0`. This uses pipeline code and docker image from this tagged version.
