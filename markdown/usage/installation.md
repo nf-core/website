@@ -146,8 +146,8 @@ To use it first ensure that you have conda installed (we recommend [miniconda](h
 
 ### Configuration profiles
 
-See [`docs/configuration/adding_your_own.md`](configuration/adding_your_own.md)
+See [Adding your own configuration profile](usage/adding_own_config).
 
 ## Reference genomes
 
-See [`docs/configuration/reference_genomes.md`](configuration/reference_genomes.md)
+See [Reference genomes](usage/reference_genomes)
