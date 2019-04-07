@@ -43,7 +43,7 @@ The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.htm
 
 ## Singularity
 It's not always possible to run Docker - it requires special system permissions which may not be feasible in a shared computing environment.
-[Singularity](https://www.sylabs.io/guides/2.5.1/user-guide/) is a container engine alternative to Docker designed to run large analysis jobs on high performance compute clusters.
+[Singularity](https://www.sylabs.io/guides/3.1/user-guide/) is a container engine alternative to Docker designed to run large analysis jobs on high performance compute clusters.
 The main advantage is that it can be used with unprivileged permissions: in this way you can run [Nextflow using Singularity](https://www.nextflow.io/docs/latest/singularity.html) on a server were you don't have root privileges.
 
 As with docker, singularity allows us to bundle all software requirements together into a single image which comes with each nf-core pipeline. This gives simplicity and reproducibility.
