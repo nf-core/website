@@ -104,7 +104,7 @@ These will need to be changed back to the defaults before you fork the pipeline 
 ## Work on your pipeline
 Ok, now you're all set with your own personal nf-core pipeline!
 You can now start writing code for real.
-Remember to keep running the `nf-core lint` command (see [docs](tools#linting-a-workflow))
+Remember to keep running the `nf-core lint` command (see [docs](https://nf-co.re/tools#linting-a-workflow))
 to make sure that your workflow passes all of the nf-core tests.
 The automated tests on Travis also run this so you should get an email if something breaks.
 
