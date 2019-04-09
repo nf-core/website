@@ -26,9 +26,7 @@ The pipeline can't take a list of multiple input files - it takes a glob express
 
 ## Image cannot be build
 
-Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity Image build fails unfortunately. In such a case, please install `mksquashfs` or ask in your IT department that this package is installed for you. 
-
-
+Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity Image build fails unfortunately. See below code snippet that shows such a typical failure:
 ```bash
 Caused by:
   Failed to pull singularity image
@@ -38,6 +36,7 @@ Caused by:
     INFO:    Creating SIF file...
     FATAL:   Unable to pull docker://nfcore/rnaseq:1.3: While searching for mksquashfs: exec: "mksquashfs": executable file not found in $PATH
 ```
+In such a case, please install `mksquashfs` or ask in your IT department that this package is installed for you. 
 
 ## Extra resources and getting help
 If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-core-invite.herokuapp.com/) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
