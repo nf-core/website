@@ -185,3 +185,26 @@ When new releases of `nf-core/tools` and it's associated template are released, 
 be created to merge updates in to your pipeline for you.
 
 ## *Well done!*
+
+## Manual synchronisation
+
+There are rare cases, when the synchronisation needs to be triggered manually, i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync. 
+
+You can do so by running the `sync` script, which is located in the top-level `./bin/` folder in the nf-core tools repository.
+
+You need to provide two environment variables, `TRAVIS_TAG` and `NF_CORE_BOT`. `TRAVIS_TAG` specifies the Github release tag you want to sync, `NF_CORE_BOT` the nf-core bot user password.
+
+To manuall trigger the syncronisation for ALL pipelines, just run:
+
+```bash
+sync
+```
+
+To trigger synchronisation for a particular pipeline, run:
+
+```bash
+sync <pipeline name>
+```
+
+
+
