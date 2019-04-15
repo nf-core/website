@@ -168,12 +168,12 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/usage_docs"><span>Quickstart Tutorial</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"><span>Quickstart Tutorial</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/guidelines"><span>Developer docs</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span>Developer docs</span></a>
         </div>
       </div>
     </div>

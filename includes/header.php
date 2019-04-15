@@ -50,7 +50,7 @@ if(strlen($git_sha) != 7){
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/guidelines" role="button" data-toggle="dropdown">Developers</a>
+            <a class="nav-link" href="developers/guidelines" role="button" data-toggle="dropdown">Developers</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
               <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
