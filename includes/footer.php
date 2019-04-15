@@ -22,19 +22,19 @@
           <div class="col-6 col-md">
             <h5>Getting Started</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/usage_docs">Using nf-core</a></li>
+              <li><a class="text-muted" href="usage/introduction">Using nf-core</a></li>
               <li><a class="text-muted" href="/pipelines">Available pipelines</a></li>
-              <li><a class="text-muted" href="/pipelines">Helper tools</a></li>
-              <li><a class="text-muted" href="/nextflow_tutorial">Nextflow tutorial</a></li>
+              <li><a class="text-muted" href="/tools">Helper tools</a></li>
+              <li><a class="text-muted" href="usage/nextflow_tutorial">Nextflow tutorial</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>For Authors</h5>
             <ul class="list-unstyled">
-              <li><a class="text-muted" href="/guidelines">Guidelines</a>
-              <li><a class="text-muted" href="/adding_pipelines">Adding a new pipeline</a>
+              <li><a class="text-muted" href="developers/guidelines">Guidelines</a>
+              <li><a class="text-muted" href="developers/adding_pipelines">Adding a new pipeline</a>
               <li><a class="text-muted" href="/errors">Lint error codes</a>
-              <li><a class="text-muted" href="/sync">Template synchronisation</a>
+              <li><a class="text-muted" href="developers/sync">Template synchronisation</a>
             </ul>
           </div>
           <div class="col-6 col-md">
