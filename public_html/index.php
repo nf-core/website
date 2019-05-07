@@ -139,8 +139,8 @@ curl -s https://get.nextflow.io | bash
 mv nextflow ~/bin
 
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
-nextflow run nf-core/RNAseq \
-    -profile standard,docker \
+nextflow run nf-core/rnaseq \
+    -profile docker \
     --genome GRCh37 \
     --reads "data/*_{R1,R2}.fastq.gz"
 
