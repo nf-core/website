@@ -89,9 +89,8 @@ include('../includes/footer.php');
 ?>
 <script>
     $(document).ready(function(){
-        var latitude = 0.0, longitude = 0.0;
         var map = L.map('contributors-map', {
-            zoom: 1
+            zoom: 2
         });
         var greenIcon = new L.Icon({
             iconUrl: 'assets/img/marker-icon-2x-green.png',
@@ -108,13 +107,11 @@ include('../includes/footer.php');
 
         locations.forEach(function(marker) {
             if (marker != null) {
-                latitude += parseFloat(marker.location[0]);
-                longitude += parseFloat(marker.location[1]);
                 L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup('<a href="#'+marker.card_id+'">'+marker.full_name+'</a>'+marker.image);
             }
         });
 
-        var center = [ latitude / locations.length, longitude / locations.length ];
+        var center = [ 25, 0 ];
         map.setView(center);
     });
 </script>
