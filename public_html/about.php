@@ -91,7 +91,7 @@ include('../includes/footer.php');
     $(document).ready(function(){
         var latitude = 0.0, longitude = 0.0;
         var map = L.map('contributors-map', {
-            zoom: 2
+            zoom: 1
         });
         var greenIcon = new L.Icon({
             iconUrl: 'assets/img/marker-icon-2x-green.png',
