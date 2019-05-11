@@ -105,13 +105,13 @@ include('../includes/footer.php');
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        var latlngs = [];
         locations.forEach(function(marker) {
             if (marker != null) {
                 L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup('<a href="#'+marker.card_id+'">'+marker.full_name+'</a>'+marker.image);
+                latlngs.push(marker.location);
             }
         });
-
-        var center = [ 25, 0 ];
-        map.setView(center);
+        map.fitBounds(latlngs);
     });
 </script>
