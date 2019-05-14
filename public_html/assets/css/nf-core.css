@@ -466,6 +466,11 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   height: 450px;
   margin-bottom: 2rem;
 }
+@media only screen and (max-width: 770px) {
+    .contributors-map-card {
+        height: 200px;
+    }
+}
 .contributor_map_logo {
   height: 45px;
   margin-top: .25rem;
