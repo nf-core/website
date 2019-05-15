@@ -89,7 +89,6 @@ include('../includes/footer.php');
 ?>
 <script>
     $(document).ready(function(){
-        var latitude = 0.0, longitude = 0.0;
         var map = L.map('contributors-map', {
             zoom: 2
         });
@@ -106,15 +105,13 @@ include('../includes/footer.php');
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        var latlngs = [];
         locations.forEach(function(marker) {
             if (marker != null) {
-                latitude += parseFloat(marker.location[0]);
-                longitude += parseFloat(marker.location[1]);
                 L.marker(marker.location, {icon: greenIcon}).addTo(map).bindPopup('<a href="#'+marker.card_id+'">'+marker.full_name+'</a>'+marker.image);
+                latlngs.push(marker.location);
             }
         });
-
-        var center = [ latitude / locations.length, longitude / locations.length ];
-        map.setView(center);
+        map.fitBounds(latlngs);
     });
 </script>
