@@ -1,13 +1,27 @@
 # _nf-core_ Tutorial
 
-> _Originally written for the Nextflow Camp 2019, Barcelona 2019-09-19_
-> _Last updated: June 2019_
+> Originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))_
+>
+> Duration: **1hr 50**
 
-> **Getting started with nf-core**
-> https://www.nextflow.io/nfcamp/2019/phil2.html
-> 11.10 - 13.00 (1hr 50)
+> Last updated: June 2019
 
-[[toc]]
+## Table of Contents
+* Exercises:
+    [1](#exercise-1),
+    [2](#exercise-2),
+    [3](#exercise-3),
+    [4](#exercise-4),
+    [5](#exercise-5),
+    [6](#exercise-6)
+* [Abstract](#abstract)
+* [Introduction](#introduction)
+* [Installing the _nf-core_ helper tools](#installing-the-nf-core-helper-tools)
+* [Listing available _nf-core_ pipelines](#listing-available-nf-core-pipelines)
+* [Running _nf-core_ pipelines](#running-nf-core-pipelines)
+* [Creating _nf-core_ pipelines](#creating-nf-core-pipelines)
+* [Testing _nf-core_ pipelines](#testing-nf-core-pipelines)
+* [Releasing _nf-core_ pipelines](#releasing-nf-core-pipelines)
 
 ## Abstract
 
@@ -28,17 +42,23 @@ In this tutorial we discuss the best-practice guidelines developed by the _nf-co
 * Use the help flag to print the list command usage
 * List all pipelines
 * Sort pipelines alphabetically, then by popularity
+* Fetch one of the pipelines using `nextflow pull`
+* Use `nf-core list` to see if the pipeline you pulled is up to date
 * Filter pipelines for those that work with RNA
 * Save these pipeline details to a JSON file
 ## Running _nf-core_ pipelines
+### Software requirements for _nf-core_ pipelines
+### Usage instructions and documentation
+### Running pipelines with test data
+### Using _nf-core_ pipelines offline
 ### Exercise 3
 * Install other dependencies (nextflow, docker)
 * Print the command-line usage instructions for the nf-core/rnaseq pipeline
 * In a new directory, run the nf-core/rnaseq pipeline with the provided test data
-* Download the nf-core/rnaseq pipeline for offline use
+* Download the nf-core/rnaseq pipeline for offline use using the `nf-core download` command
 ## Creating _nf-core_ pipelines
 ### Using the nf-core template
-### TODO statements
+### `TODO` statements
 ### How _nf-core_ software packaging works
 ### Exercise 4
 * Make a new pipeline using the template
