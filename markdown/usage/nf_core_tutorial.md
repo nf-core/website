@@ -49,17 +49,26 @@ In this tutorial we discuss the best-practice guidelines developed by the _nf-co
 ## Running _nf-core_ pipelines
 ### Software requirements for _nf-core_ pipelines
 ### Usage instructions and documentation
+### Config profiles
 ### Running pipelines with test data
+### The _nf-core_ launch command
 ### Using _nf-core_ pipelines offline
 ### Exercise 3
 * Install other dependencies (nextflow, docker)
 * Print the command-line usage instructions for the nf-core/rnaseq pipeline
 * In a new directory, run the nf-core/rnaseq pipeline with the provided test data
+* Try launching the RNA pipeline using the `nf-core launch` command
 * Download the nf-core/rnaseq pipeline for offline use using the `nf-core download` command
 ## Creating _nf-core_ pipelines
 ### Using the nf-core template
 ### `TODO` statements
 ### How _nf-core_ software packaging works
+### Forks, branches and pull-requests
+Common difficulties:
+* Changelog must be updated
+* PRs must be against `dev` branch
+* PRs need to be reviewed before being merged _(after first release)_
+### Setting up Docker and Travis CI
 ### Exercise 4
 * Make a new pipeline using the template
 * Update the readme file to fill in the `TODO` statements
@@ -69,7 +78,7 @@ In this tutorial we discuss the best-practice guidelines developed by the _nf-co
 ###  Linting _nf-core_ pipelines
 ### Choosing test data
 ### nf-core/test_datasets
-### Travis CI
+### Travis CI configuration
 ### Exercise 5
 * Run `nf-core lint` on your pipeline and make note of any test warnings / failures
 * Read up on one or two of the linting rules on the nf-core website and see if you can fix some.
@@ -78,8 +87,6 @@ In this tutorial we discuss the best-practice guidelines developed by the _nf-co
 ### Forking to _nf-core_
 ### Initial community review
 ### Making the first release
-## Updating _nf-core_ pipelines
-### Pull-requests and branching
 ### Template updates
 ### Pipeline version numbers
 ### Review releases
