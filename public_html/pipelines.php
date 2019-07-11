@@ -104,7 +104,7 @@ include('../includes/header.php');
                 <?php if($wf->archived): ?>
                 <small class="status-icon text-warning ml-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-toggle="tooltip"></small>
                 <?php elseif(count($wf->releases) == 0): ?>
-                    <small class="status-icon text-danger ml-2 fas fa-exclamation-triangle" title="This pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
+                    <small class="status-icon text-danger ml-2 fas fa-wrench" title="This pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
                 <?php else: ?>
                     <small class="status-icon text-success ml-2 fas fa-check" title="This pipeline is released, tested and good to go." data-toggle="tooltip"></small>
                 <?php endif; ?>
