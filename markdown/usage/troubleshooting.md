@@ -67,11 +67,11 @@ The Singularity installation requires certain host paths to be bound. Check out 
 ```bash
 bind path = /beegfs/work/
 bind path = /scratch
-bind path = /opt/bwhpc
+bind path = /gpfs
 bind path = /home
 ```
 
-Optionally, you can also add Singularity Bind Paths to your call, e.g. using `autoMounts` and/or `runOptions` in the [Singularity scope](https://www.nextflow.io/docs/latest/config.html#config-singularity)
+Optionally, you can also add Singularity Bind Paths to your Nextflow call, e.g. using `autoMounts` and/or `runOptions` in the [Singularity scope](https://www.nextflow.io/docs/latest/config.html#config-singularity)
 
 ## Extra resources and getting help
 
