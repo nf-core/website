@@ -38,7 +38,7 @@ Caused by:
     FATAL:   Unable to pull docker://nfcore/rnaseq:1.3: While searching for mksquashfs: exec: "mksquashfs": executable file not found in $PATH
 ```
 
-In such a case, please install `mksquashfs` or ask in your IT department that this package is installed for you.
+If this is the case, please install `mksquashfs` or ask your IT department to install the package for you.
 
 ## Cannot find input files when using Singularity
 
