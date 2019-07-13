@@ -293,7 +293,7 @@ As described above, when your pipeline is ready for a (first) release please fol
 * Bump the version number of the `dev` branch to a release version (e.g. `1.0.0dev` > `1.0.0`): `nf-core bump-version 1.0.0`
 * Check for pipeline dependencies that are out of date and update these accordingly in the `dev` branch: `nf-core lint .` will tell you which ones are outdated via automated API calls to (bio-) conda
 * Update the `CHANGELOG`, listing everything that has been added/fixed in this release
-* [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) from `dev` to `master` on GitHub after adjusting all of this - waiting for tests to pass
+* [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) from `dev` to `master` on GitHub after adjusting all of this and make sure that all of the CI tests are passing
 * Link some reviewers (2 are required for merging to `master`) - asking for a final review on your release
 * Once approved by two reviewers, merge your PR into `master`
 * Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
