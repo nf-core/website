@@ -290,7 +290,7 @@ This way, a review process will be very fast and we can merge the changes into t
 
 As described above, when your pipeline is ready for a (first) release please follow the steps below to ensure that the pipeline meets the requirements of the nf-core community:
 
-* Bump the `dev` branch containing the changes for the release to a release version (e.g. 1.0.0): `nf-core bump-version 1.0.0`
+* Bump the version number of the `dev` branch to a release version (e.g. `1.0.0dev` > `1.0.0`): `nf-core bump-version 1.0.0`
 * Check for pipeline dependencies that are out of date and update these accordingly in the `dev` branch: `nf-core lint .` will tell you which ones are outdated via automated API calls to (bio-) conda
 * Update the `CHANGELOG`, listing everything that has been added/fixed in this release
 * [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) from `dev` to `master` on GitHub after adjusting all of this - waiting for tests to pass
