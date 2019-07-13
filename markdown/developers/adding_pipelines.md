@@ -285,3 +285,22 @@ Sometimes, especially when adding new features to a pipeline, the dependencies c
 * Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 
 This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
+
+### Release Checklist
+
+As described above, when your pipeline is ready for a (first) release please follow the steps below to ensure that the pipeline meets the requirements of the nf-core community:
+
+* Bump the version number of the `dev` branch to a release version (e.g. `1.0.0dev` > `1.0.0`): `nf-core bump-version 1.0.0`
+* Check for pipeline dependencies that are out of date and update these accordingly in the `dev` branch: `nf-core lint .` will tell you which ones are outdated via automated API calls to (bio-) conda
+* Check that there is a [Zenodo DOI](https://www.zenodo.org/) created for your pipeline
+  * Login/Register at Zenodo using the URL above, then [follow this guide to get a DOI set up for your pipeline](https://guides.github.com/activities/citable-code/) 
+* Update the `CHANGELOG`, listing everything that has been added/fixed in this release
+* [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) from `dev` to `master` on GitHub after adjusting all of this and make sure that all of the CI tests are passing
+* Link some reviewers (2 are required for merging to `master`) - asking for a final review on your release
+* Once approved by two reviewers, merge your PR into `master`
+* Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
+  * Please make sure to use strictly numeric release numbers, most people follow [Semantic Versioning](https://semver.org/), e.g. 1.0.0, 1.0.
+* Optional: Use a [nice code name](http://www.codenamegenerator.com/) for your pipeline release
+* Create your release - tests will run automatically and DockerHub will generate a tagged container for that release.
+=======
+This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
