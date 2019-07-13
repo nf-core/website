@@ -302,3 +302,5 @@ As described above, when your pipeline is ready for a (first) release please fol
   * Please make sure to use strictly numeric release numbers, most people follow [Semantic Versioning](https://semver.org/), e.g. 1.0.0, 1.0.
 * Optional: Use a [nice code name](http://www.codenamegenerator.com/) for your pipeline release
 * Create your release - tests will run automatically and DockerHub will generate a tagged container for that release.
+=======
+This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
