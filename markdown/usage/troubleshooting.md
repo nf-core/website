@@ -42,7 +42,7 @@ If this is the case, please install `mksquashfs` or ask your IT department to in
 
 ## Cannot find input files when using Singularity
 
-Depending on how you install Singularity on your system, there are several often occuring caveats. Typically these result in error messages such as these:
+Depending on how you install Singularity on your system several reoccurring issues have been reported. Typically these result in error messages such as these:
 
 ```bash
 
