@@ -62,7 +62,7 @@ ls -la /path/to/network_storage
 
 If any of these `ls -la` commands returns a `Not Found` error, you will need to set/update Singularity Bind Paths on your system.
 
-The Singularity installation requires certain host paths to be bound. Check out [Singularity Bind Paths Documentation](https://sylabs.io/guides/3.0/user-guide/bind_paths_and_mounts.html) for more information on this in detail. In many cases this can be resolved by adding these paths to your `/etc/singularity/singularity.conf` as illustrated on the document linked above:
+The Singularity installation requires certain host paths to be bound. Please see [Singularity Bind Paths Documentation](https://sylabs.io/guides/3.0/user-guide/bind_paths_and_mounts.html) for a more detailed explanation. In many cases this can be resolved by adding these paths to your `/etc/singularity/singularity.conf` as highlighted in the documentation:
 
 ```bash
 bind path = /beegfs/work/
