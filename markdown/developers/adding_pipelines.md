@@ -299,4 +299,4 @@ As described above, when your pipeline is ready for a (first) release please fol
 * Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
   * Please make sure to use strictly numeric release numbers, most people follow [Semantic Versioning](https://semver.org/), e.g. 1.0.0, 1.0.
 * Optional: Use a [nice code name](http://www.codenamegenerator.com/) for your pipeline release
-* Create your release - tests will automatically run, DockerHub will generate a tagged container for that release.
+* Create your release - tests will run automatically and DockerHub will generate a tagged container for that release.
