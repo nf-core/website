@@ -288,7 +288,7 @@ This way, a review process will be very fast and we can merge the changes into t
 
 ### Release Checklist
 
-Whenever a pipeline is considered ready for a (first) release, developers can simply follow these steps to make sure that the pipeline meets the requirements of the nf-core community. The respective pipeline should follow the Guidelines described above in the Guidelines in general. Then developers can follow these steps to get the pipeline to release:
+As described above, when your pipeline is ready for a (first) release please follow the steps below to ensure that the pipeline meets the requirements of the nf-core community:
 
 * Bump the `dev` branch containing the changes for the release to a release version (e.g. 1.0.0): `nf-core bump-version 1.0.0`
 * Check for pipeline dependencies that are out of date and update these accordingly in the `dev` branch: `nf-core lint .` will tell you which ones are outdated via automated API calls to (bio-) conda
