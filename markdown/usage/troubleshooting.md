@@ -52,7 +52,7 @@ Command error:
   �[0m
 ```
 
-You can check to verify that this is indeed a problem by using a Singularity Shell into your container and checking whether your required paths are available **inside** your container:
+You can verify if this is indeed a problem by using a Singularity Shell to access your container, and to check whether the required paths are available **inside** your container:
 
 ```bash
 singularity shell /path/to/work/singularity/imagename.simg
