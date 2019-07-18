@@ -1,8 +1,7 @@
 ---
 title: Troubleshooting
-subtitle: How to troubleshoot commong mistakes and issues
+subtitle: How to troubleshoot common mistakes and issues
 ---
-
 
 ## Input files not found
 
