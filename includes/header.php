@@ -48,6 +48,7 @@ if(strlen($git_sha) != 7){
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
               <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
+              <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
