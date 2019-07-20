@@ -7,13 +7,8 @@
 > Last updated: June 2019
 
 ## Table of Contents
-* Exercises:
-    [1](#exercise-1),
-    [2](#exercise-2),
-    [3](#exercise-3),
-    [4](#exercise-4),
-    [5](#exercise-5),
-    [6](#exercise-6)
+
+#### Sections
 * [Abstract](#abstract)
 * [Introduction](#introduction)
 * [Installing the _nf-core_ helper tools](#installing-the-nf-core-helper-tools)
@@ -22,6 +17,14 @@
 * [Creating _nf-core_ pipelines](#creating-nf-core-pipelines)
 * [Testing _nf-core_ pipelines](#testing-nf-core-pipelines)
 * [Releasing _nf-core_ pipelines](#releasing-nf-core-pipelines)
+
+#### Exercises
+* [1 - installation](#exercise-1-installation)
+* [2 - listing pipelines](#exercise-2-listing-pipelines)
+* [3 - using pipelines](#exercise-3-using-pipelines)
+* [4 - creating pipelines](#exercise-4-creating-pipelines)
+* [5 - testing pipelines](#exercise-5-testing-pipelines)
+* [6 - releasing pipelines](#exercise-6-releasing-pipelines)
 
 ## Abstract
 
@@ -34,11 +37,11 @@ In this tutorial we discuss the best-practice guidelines developed by the _nf-co
 ### What this tutorial will cover
 ### Where to get help
 ## Installing the _nf-core_ helper tools
-###  Exercise 1
+###  Exercise 1 (installation)
 * Install nf-core/tools
 * Use the help flag to list the available commands
 ## Listing available _nf-core_ pipelines
-###  Exercise 2
+###  Exercise 2 (listing pipelines)
 * Use the help flag to print the list command usage
 * List all pipelines
 * Sort pipelines alphabetically, then by popularity
@@ -53,7 +56,7 @@ In this tutorial we discuss the best-practice guidelines developed by the _nf-co
 ### Running pipelines with test data
 ### The _nf-core_ launch command
 ### Using _nf-core_ pipelines offline
-### Exercise 3
+### Exercise 3 (using pipelines)
 * Install other dependencies (nextflow, docker)
 * Print the command-line usage instructions for the nf-core/rnaseq pipeline
 * In a new directory, run the nf-core/rnaseq pipeline with the provided test data
@@ -69,7 +72,7 @@ Common difficulties:
 * PRs must be against `dev` branch
 * PRs need to be reviewed before being merged _(after first release)_
 ### Setting up Docker and Travis CI
-### Exercise 4
+### Exercise 4 (creating pipelines)
 * Make a new pipeline using the template
 * Update the readme file to fill in the `TODO` statements
 * Add a new process to the pipeline in `main.nf`
@@ -79,7 +82,7 @@ Common difficulties:
 ### Choosing test data
 ### nf-core/test_datasets
 ### Travis CI configuration
-### Exercise 5
+### Exercise 5 (testing pipelines)
 * Run `nf-core lint` on your pipeline and make note of any test warnings / failures
 * Read up on one or two of the linting rules on the nf-core website and see if you can fix some.
 * Take a look at `conf/test.config` and switch the test data for another dataset on nf-core/test_data
@@ -90,7 +93,7 @@ Common difficulties:
 ### Template updates
 ### Pipeline version numbers
 ### Review releases
-### Exercise 6
+### Exercise 6 (releasing pipelines)
 * Use `nf-core bump-version` to update the required version of Nextflow in your pipeline
 * Bump your pipeline's version to 1.0, ready for its first release!
 * Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-cor.re)) and drop us a line about your latest and greatest pipeline plans!
