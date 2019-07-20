@@ -5,6 +5,88 @@ if(strlen($git_sha) != 7){
   $git_sha = '';
 }
 
+// Convert Markdown to HTML if a filename is given
+if( isset($markdown_fn) and $markdown_fn){
+  // Markdown parsing libraries
+  require_once(dirname(__FILE__).'/libraries/parsedown/Parsedown.php');
+  require_once(dirname(__FILE__).'/libraries/parsedown-extra/ParsedownExtra.php');
+  require_once(dirname(__FILE__).'/libraries/Spyc.php');
+
+  // Load the docs markdown
+  $md_full = file_get_contents($markdown_fn);
+  if ($md_full === false) {
+    header('HTTP/1.1 404 Not Found');
+    header('Location: /404');
+    die;
+  }
+  $meta = [];
+  $md = $md_full;
+  if(substr($md_full,0,3) == '---'){
+    $md_parts = explode('---', $md_full, 3);
+    if(count($md_parts) == 3){
+      $meta = spyc_load($md_parts[1]);
+      $md = $md_parts[2];
+      if(isset($meta['title'])){
+        $title = $meta['title'];
+      }
+      if(isset($meta['subtitle'])){
+        $subtitle = $meta['subtitle'];
+      }
+    }
+  }
+
+  // Trim off any content if requested
+  if(isset($md_trim_before) && $md_trim_before){
+    $md = strstr($md, $md_trim_before);
+  }
+  if(isset($md_trim_after) && $md_trim_after){
+    $md = strstr($md, $md_trim_after);
+  }
+
+  // Find and replace markdown content if requested
+  if(isset($md_content_replace)){
+    $md = str_replace($md_content_replace[0], $md_content_replace[1], $md);
+  }
+
+  // Convert to HTML
+  $pd = new ParsedownExtra();
+  $content = $pd->text($md);
+
+  // Automatically add HTML IDs to headers
+  // Add ID attributes to headers
+  $hids = Array();
+  $content = preg_replace_callback(
+    '~<h([1234])>([^<]*)</h([1234])>~Ui', // Ungreedy by default, case insensitive
+    function ($matches) {
+      global $hids;
+      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $matches[2])));
+      $id_match = str_replace('---', '-', $id_match);
+      $hid = $id_match;
+      $i = 1;
+      while(in_array($hid, $hids)){
+        $hid = $id_match.'-'.$i;
+        $i += 1;
+      }
+      $hids[] = $hid;
+      return '<h'.$matches[1].' id="'.$hid.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
+    },
+    $content);
+
+    // Prepend to src URLs if configureds and relative
+    if(isset($src_url_prepend)){
+      $content = preg_replace('/src="(?!https?:\/\/)([^"]+)"/i', 'src="'.$src_url_prepend.'$1"', $content);
+    }
+    // Prepend to href URLs if configureds and relative
+    if(isset($href_url_prepend)){
+      $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)"/i', 'href="'.$href_url_prepend.'$1"', $content);
+    }
+    // Find and replace HTML content if requested
+    if(isset($html_content_replace)){
+      $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
+    }
+
+}
+
 ?><!doctype html>
 <html lang="en">
   <head>
@@ -90,80 +172,23 @@ if(strlen($git_sha) != 7){
 
 <?php
 
-// Convert Markdown to HTML if a filename is given
-if( isset($markdown_fn) and $markdown_fn){
-  // Markdown parsing libraries
-  require_once(dirname(__FILE__).'/libraries/parsedown/Parsedown.php');
-  require_once(dirname(__FILE__).'/libraries/parsedown-extra/ParsedownExtra.php');
-  require_once(dirname(__FILE__).'/libraries/Spyc.php');
-
-  // Load the docs markdown
-  $md_full = file_get_contents($markdown_fn);
-  $meta = [];
-  $md = $md_full;
-  if(substr($md_full,0,3) == '---'){
-    $md_parts = explode('---', $md_full, 3);
-    if(count($md_parts) == 3){
-      $meta = spyc_load($md_parts[1]);
-      $md = $md_parts[2];
-      if(isset($meta['title'])){
-        $title = $meta['title'];
-      }
-      if(isset($meta['subtitle'])){
-        $subtitle = $meta['subtitle'];
-      }
-    }
-  }
-
-  // Trim off any content if requested
-  if(isset($md_trim_before) && $md_trim_before){
-    $md = strstr($md, $md_trim_before);
-  }
-  if(isset($md_trim_after) && $md_trim_after){
-    $md = strstr($md, $md_trim_after);
-  }
-
-  // Convert to HTML
-  $pd = new ParsedownExtra();
-  $content = $pd->text($md);
-
-  // Automatically add HTML IDs to headers
-  // Add ID attributes to headers
-  $hids = Array();
-  $content = preg_replace_callback(
-    '~<h([1234])>([^<]*)</h([1234])>~Ui', // Ungreedy by default, case insensitive
-    function ($matches) {
-      global $hids;
-      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $matches[2])));
-      $id_match = str_replace('---', '-', $id_match);
-      $hid = $id_match;
-      $i = 1;
-      while(in_array($hid, $hids)){
-        $hid = $id_match.'-'.$i;
-        $i += 1;
-      }
-      $hids[] = $hid;
-      return '<h'.$matches[1].' id="'.$hid.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
-    },
-    $content);
-
-}
-
 if(isset($title) and $title): ?>
 
     <div class="mainpage">
       <div class="mainpage-heading">
         <div class="container">
+          <?php if(isset($header_btn_url) && isset($header_btn_text)){
+            echo '<a href="'.$header_btn_url.'" class="btn btn-outline-light float-right d-none d-md-inline-block mt-4">'.$header_btn_text.'</a>';
+          } ?>
           <h1 class="display-3"><?php echo $title; ?></h1>
-          <?php if($subtitle): ?>
-          <p class="lead"><?php echo $subtitle; ?></p>
-          <?php endif; ?>
+          <?php if($subtitle){ echo '<p class="lead">'.$subtitle.'</p>'; } ?>
+          <?php if(isset($header_html)){ echo $header_html; } ?>
         </div>
       </div>
 
       <div class="triangle triangle-down"></div>
 
-      <div class="container main-content">
+      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content"> <?php endif; ?>
 
 <?php endif;
 if( isset($markdown_fn) and $markdown_fn){
