@@ -182,13 +182,13 @@ if(isset($title) and $title): ?>
           } ?>
           <h1 class="display-3"><?php echo $title; ?></h1>
           <?php if($subtitle){ echo '<p class="lead">'.$subtitle.'</p>'; } ?>
-          <?php if($header_html){ echo $header_html; } ?>
+          <?php if(isset($header_html)){ echo $header_html; } ?>
         </div>
       </div>
 
       <div class="triangle triangle-down"></div>
 
-      <div class="container main-content">
+      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content"> <?php endif; ?>
 
 <?php endif;
 if( isset($markdown_fn) and $markdown_fn){
