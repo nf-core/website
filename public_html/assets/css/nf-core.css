@@ -31,6 +31,11 @@ blockquote a {
 table img {
   max-width: 100%;
 }
+.rendered-markdown img {
+  max-width: 80%;
+  margin: 1rem auto;
+  display: block;
+}
 .bg-dark a, .homepage-usedby a {
   color: rgba(255,255,255,.5);
   text-decoration: underline;
@@ -85,6 +90,9 @@ table img {
   border-color: #ccc;
 }
 
+.triangle {
+  position: relative;
+}
 .triangle:before {
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -99,6 +107,9 @@ table img {
 }
 .triangle-down:before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%2322ae63;' /%3E%3C/svg%3E");
+}
+.subheader-triangle-down:before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%23ededed;' /%3E%3C/svg%3E");
 }
 
 .btn-outline-success:not(:disabled):not(.disabled) {
@@ -207,6 +218,11 @@ footer h5 {
 }
 .mainpage-heading code {
   color: #ffffff;
+}
+.mainpage-subheader-heading {
+  background-color: #ededed;
+  margin-top: -30px;
+  padding: 4rem 0 1rem;
 }
 .main-content {
   min-height: 300px;
