@@ -6,6 +6,8 @@ $subtitle = $pipeline->description;
 # Details for parsing markdown readme, fetched from Github
 $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/master/README.md';
 $md_trim_before = '# Introduction';
+$src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/master/';
+$href_url_prepend = 'https://github.com/'.$pipeline->full_name.'/blob/master/';
 
 # Get details for the button to the latest release
 function rsort_releases($a, $b){

@@ -147,6 +147,15 @@ if( isset($markdown_fn) and $markdown_fn){
     },
     $content);
 
+    // Prepend to src URLs if configureds and relative
+    if(isset($src_url_prepend)){
+      $content = preg_replace('/src="(?!https?:\/\/)([^"]+)"/i', 'src="'.$src_url_prepend.'$1"', $content);
+    }
+    // Prepend to href URLs if configureds and relative
+    if(isset($href_url_prepend)){
+      $content = preg_replace('/href="(?!https?:\/\/)([^"]+)"/i', 'href="'.$href_url_prepend.'$1"', $content);
+    }
+
 }
 
 if(isset($title) and $title): ?>
