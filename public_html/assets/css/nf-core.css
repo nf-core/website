@@ -28,6 +28,9 @@ blockquote a {
   color: #999999;
   text-decoration: underline;
 }
+table img {
+  max-width: 100%;
+}
 .bg-dark a, .homepage-usedby a {
   color: rgba(255,255,255,.5);
   text-decoration: underline;
@@ -195,8 +198,12 @@ footer h5 {
   color: #ffffff;
   padding: 3rem 0;
 }
-.mainpage-heading h1 {
+.mainpage-heading h1, .mainpage-heading h1 a {
   color: #ffffff;
+  text-decoration: none;
+}
+.mainpage-heading h1 a:hover, .mainpage-heading h1 a:focus {
+  color: #dae0e5;
 }
 .mainpage-heading code {
   color: #ffffff;

@@ -1,4 +1,6 @@
 <?php
+header('HTTP/1.1 404 Not Found');
+
 $title = 'Error 404';
 $subtitle = 'Page not found';
 $request_url = 'that page';

@@ -1,13 +1,31 @@
 <?php
 
-$title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
+$title = '<a href="/'.$pipeline->name.'">nf-core/<br class="d-sm-none">'.$pipeline->name.'</a>';
 $subtitle = $pipeline->description;
 
 # Details for parsing markdown readme, fetched from Github
-$markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/master/README.md';
-$md_trim_before = '# Introduction';
+# Build the remote file path
+if(count($path_parts) > 1){
+    if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
+        # Clean up URL by removing .md
+        header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
+        exit;
+    }
+    $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/master/'.implode('/', array_slice($path_parts, 1)).'.md';
+} else {
+    $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/master/README.md';
+    $md_trim_before = '# Introduction';
+}
 $src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/master/';
-$href_url_prepend = 'https://github.com/'.$pipeline->full_name.'/blob/master/';
+$href_url_prepend = $pipeline->name.'/';
+$md_content_replace = array(
+    array('# nf-core/'.$pipeline->name.': '),
+    array('# ')
+);
+$html_content_replace = array(
+    array('<table>'),
+    array('<table class="table">')
+);
 
 # Get details for the button to the latest release
 function rsort_releases($a, $b){
