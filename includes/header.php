@@ -78,7 +78,7 @@ if( isset($markdown_fn) and $markdown_fn){
     }
     // Prepend to href URLs if configureds and relative
     if(isset($href_url_prepend)){
-      $content = preg_replace('/href="(?!https?:\/\/)([^"]+)"/i', 'href="'.$href_url_prepend.'$1"', $content);
+      $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)"/i', 'href="'.$href_url_prepend.'$1"', $content);
     }
     // Find and replace HTML content if requested
     if(isset($html_content_replace)){
