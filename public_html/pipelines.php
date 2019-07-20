@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 function rsort_releases($a, $b){
     $t1 = strtotime($a->published_at);
@@ -98,7 +95,7 @@ include('../includes/header.php');
                     <?php echo $wf->stargazers_count; ?>
                 </a>
                 <?php endif; ?>
-                <a href="<?php echo $wf->html_url; ?>" target="_blank" class="pipeline-name">
+                <a href="/<?php echo $wf->name; ?>" class="pipeline-name">
                     <?php echo $wf->full_name; ?>
                 </a>
                 <?php if($wf->archived): ?>

@@ -154,10 +154,12 @@ if(isset($title) and $title): ?>
     <div class="mainpage">
       <div class="mainpage-heading">
         <div class="container">
+          <?php if(isset($header_btn_url) && isset($header_btn_text)){
+            echo '<a href="'.$header_btn_url.'" class="btn btn-outline-light float-right d-none d-md-inline-block mt-4">'.$header_btn_text.'</a>';
+          } ?>
           <h1 class="display-3"><?php echo $title; ?></h1>
-          <?php if($subtitle): ?>
-          <p class="lead"><?php echo $subtitle; ?></p>
-          <?php endif; ?>
+          <?php if($subtitle){ echo '<p class="lead">'.$subtitle.'</p>'; } ?>
+          <?php if($header_html){ echo $header_html; } ?>
         </div>
       </div>
 
