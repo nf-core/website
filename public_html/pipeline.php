@@ -69,13 +69,17 @@ function rsort_releases($a, $b){
     $t2 = strtotime($b->published_at);
     return $t2 - $t1;
 }
+$dev_warning = '';
+$archived_warning = '';
 if(count($pipeline->releases) > 0){
     usort($pipeline->releases, 'rsort_releases');
     $download_bn = '<a href="'.$pipeline->releases[0]->html_url.'" class="btn btn-success btn-lg">Get version '.$pipeline->releases[0]->tag_name.'</a>';
-    $dev_warning = '';
 } else {
     $download_bn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg">See the development code</a>';
     $dev_warning = '<div class="alert alert-danger">This pipeline is currently in development and does not yet have any stable releases.</div>';
+}
+if($pipeline->archived){
+  $archived_warning = '<div class="alert alert-warning">This pipeline has been archived and is no longer being actively maintained.</div>';
 }
 
 # Extra HTML for the header - tags and GitHub URL
@@ -83,7 +87,7 @@ if(count($pipeline->releases) > 0){
 
 <div class="mainpage-subheader-heading">
   <div class="container text-center">
-    <?php echo $dev_warning; ?>
+    <?php echo $dev_warning.$archived_warning; ?>
     <p><?php echo $download_bn; ?></p>
     <div class="btn-group">
       <?php
