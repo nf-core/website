@@ -24,6 +24,10 @@ include('../includes/header.php');
         <div class="hompage-cta-flex">
           <a class="hompage-cta" href="/pipelines">View Pipelines</a>
         </div>
+        <form class="form-inline searchbar_form" action="search" method="get">
+          <input type="search" class="form-control" placeholder="Search" name="q" required>
+          <button type="submit" class="btn btn-outline-success">Search</button>
+        </form>
       </div>
     </div>
 

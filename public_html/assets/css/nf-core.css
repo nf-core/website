@@ -24,6 +24,11 @@ blockquote {
   padding-left: 0.5rem;
   color: #999999;
 }
+mark, .mark {
+  padding: .2em 0;
+  background-color: rgba(251, 235, 129, 0.3);
+  color: inherit;
+}
 blockquote a {
   color: #999999;
   text-decoration: underline;
@@ -348,6 +353,21 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-color: #22ae63;
 }
 
+.searchbar_form {
+  margin-top: 3rem;
+  justify-content: center;
+}
+.searchbar_form input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+.searchbar_form button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+
 
 .homepage-intro {
   background-color: #22ae63;
@@ -467,7 +487,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .pipeline .card-text {
   font-size: 0.9rem;
 }
-.pipeline .pipeline-topic {
+.pipeline .pipeline-topic,
+.search-page-result .pipeline-topic {
   background-color: #f8f9fa;
   color: #159957;
   font-weight: 400;
