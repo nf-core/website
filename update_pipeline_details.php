@@ -113,12 +113,33 @@ usort($results['remote_workflows'], 'sort_name');
 
 // Get additional release data for each repo
 foreach($results['remote_workflows'] as $idx => $repo){
+    // Fetch details of latest commits for this repo
+    $results['remote_workflows'][$idx]['last_commit_sha'] = [ 'master' => '', 'dev' => '' ];
+    $gh_master_refs_url = "https://api.github.com/repos/{$repo['full_name']}/git/refs/heads/master";
+    $gh_master_commits = json_decode(file_get_contents($gh_master_refs_url, false, $api_opts));
+    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        var_dump($http_response_header);
+        echo("Could not fetch nf-core master sha info! $gh_master_refs_url");
+    }
+    if(isset($gh_master_commits->object->sha)){
+        $results['remote_workflows'][$idx]['last_commit_sha']['master'] = $gh_master_commits->object->sha;
+    }
+    $gh_dev_refs_url = "https://api.github.com/repos/{$repo['full_name']}/git/refs/heads/dev";
+    $gh_dev_commits = json_decode(file_get_contents($gh_dev_refs_url, false, $api_opts));
+    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        var_dump($http_response_header);
+        echo("Could not fetch nf-core dev sha info! $gh_dev_refs_url");
+    }
+    if(isset($gh_dev_commits->object->sha)){
+        $results['remote_workflows'][$idx]['last_commit_sha']['dev'] = $gh_dev_commits->object->sha;
+    }
+
     // Fetch release information for this repo
     $gh_releases_url = "https://api.github.com/repos/{$repo['full_name']}/releases";
     $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
-        die("Could not fetch nf-core release info! $gh_releases_url");
+        echo("Could not fetch nf-core release info! $gh_releases_url");
     }
 
     // Save releases to results
@@ -146,7 +167,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
         $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core tags info! $gh_tags_url");
+            echo("Could not fetch nf-core tags info! $gh_tags_url");
         }
         foreach($gh_tags as $tag){
             foreach($results['remote_workflows'][$idx]['releases'] as $relidx => $rel){
