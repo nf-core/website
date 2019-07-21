@@ -2,9 +2,24 @@
 
 $title = 'Search nf-core';
 $subtitle = 'Searching for the term <code>'.$_GET['q'].'</code>';
+$mainpage_container = false;
 include('../includes/header.php');
 
 $search_term = $_GET['q'];
+?>
+<div class="mainpage-subheader-heading">
+  <div class="container text-center">
+    <form class="form-inline searchbar_form" action="search" method="get">
+      <input type="search" class="form-control" placeholder="Search" name="q" required value="<?php echo $search_term; ?>">
+      <button type="submit" class="btn btn-outline-success">Search</button>
+    </form>
+  </div>
+</div>
+<div class="triangle subheader-triangle-down"></div>
+
+<div class="container main-content">
+
+<?php
 include('../includes/search_results.php');
 
 # DEBUG
