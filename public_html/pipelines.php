@@ -55,7 +55,7 @@ include('../includes/header.php');
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
-    <input type="text" class="form-control" placeholder="Search keywords">
+    <input type="text" class="form-control" placeholder="Search keywords" value="<?php echo $_GET['q']; ?>">
   </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>
@@ -77,7 +77,6 @@ include('../includes/header.php');
   <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
     <button type="button" class="btn btn-outline-success active">Last Release</button>
     <button type="button" class="btn btn-outline-success">Alphabetical</button>
-    <button type="button" class="btn btn-outline-success">Status</button>
     <button type="button" class="btn btn-outline-success">Stars</button>
   </div>
 </div>
@@ -109,7 +108,7 @@ include('../includes/header.php');
             <?php if(count($wf->topics) > 0): ?>
               <p class="topics mb-0">
               <?php foreach($wf->topics as $topic): ?>
-                <span class="badge pipeline-topic"><?php echo $topic; ?></span>
+                <a href="/pipelines?q=<?php echo $topic; ?>" class="badge pipeline-topic"><?php echo $topic; ?></a>
               <?php endforeach; ?>
               </p>
             <?php endif; ?>

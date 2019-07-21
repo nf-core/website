@@ -427,6 +427,13 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   background-color: #229b5a;
   color: #fff;
 }
+.pipelines-toolbar .pipeline-filters input.active:not(:focus) {
+  color: #495057;
+  background-color: #fff;
+  border-color: #22ae63;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(84, 171, 106,.25);
+}
 .pipeline .card-title {
   margin-top: 0;
   padding-top: 0;
@@ -465,6 +472,11 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   color: #159957;
   font-weight: 400;
 }
+.mainpage-heading .pipeline-topic {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
 
 /*
   About Page
@@ -497,4 +509,25 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .contributor_map_logo {
   height: 45px;
   margin-top: .25rem;
+}
+
+
+.pipeline-page-toc {
+  background-color: #fcfcfc;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  font-size: 80%;
+  margin: 1rem;
+  padding: 1rem 1rem 0 0;
+}
+@media only screen and (min-width: 770px) {
+  .pipeline-page-toc {
+    width: 250px;
+    float: right;
+    margin: 3rem 0 1rem 1rem;
+  }
+}
+.pipeline-page-toc a.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
