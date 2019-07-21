@@ -159,7 +159,7 @@ $html_content_replace = array(
 # Header - keywords
 $header_html = '<p class="mb-0">';
 foreach($pipeline->topics as $keyword){
-  $header_html .= '<a href="/pipelines?q='.$keyword.'" class="badge font-weight-light btn btn-sm btn-outline-light">'.$keyword.'</a> ';
+  $header_html .= '<a href="/pipelines?q='.$keyword.'" class="badge pipeline-topic">'.$keyword.'</a> ';
 }
 $header_html .= '</p>';
 

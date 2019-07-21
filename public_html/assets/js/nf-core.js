@@ -20,12 +20,27 @@ $(function () {
     });
 
     // Filter pipelines with text
-    $('.pipelines-toolbar .pipeline-filters input').keyup(function(){
-        var ftext = $('.pipelines-toolbar .pipeline-filters input').val();
+    function filter_pipelines_text(ftext){
         $('.pipelines-container .pipeline:contains("'+ftext+'")').show();
         $('.pipelines-container .pipeline:not(:contains("'+ftext+'"))').hide();
         if($('.pipelines-container .pipeline:visible').length == 0){ $('.no-pipelines').show(); }
         else { $('.no-pipelines').hide(); }
+    }
+    // page load
+    if($('.pipelines-toolbar .pipeline-filters input').val()){
+        var ftext = $('.pipelines-toolbar .pipeline-filters input').val();
+        filter_pipelines_text(ftext);
+        $('.pipelines-toolbar .pipeline-filters input').addClass('active');
+    }
+    // onchange
+    $('.pipelines-toolbar .pipeline-filters input').keyup(function(){
+        var ftext = $('.pipelines-toolbar .pipeline-filters input').val();
+        filter_pipelines_text(ftext);
+        if($('.pipelines-toolbar .pipeline-filters input').val()){
+            $('.pipelines-toolbar .pipeline-filters input').addClass('active');
+        } else {
+            $('.pipelines-toolbar .pipeline-filters input').removeClass('active');
+        }
     });
     // Filter pipelines with buttons
     $('.pipelines-toolbar .pipeline-filters button').click(function(){
