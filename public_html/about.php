@@ -81,8 +81,8 @@ $contributors_html .= '<script type="text/javascript">var locations = '.json_enc
 
 echo str_replace('<!-- #### CONTRIBUTORS #### -->', $contributors_html, $content);
 
-include('../includes/footer.php');
 ?>
+
 <script>
     $(document).ready(function(){
         var map = L.map('contributors-map', {
@@ -111,3 +111,5 @@ include('../includes/footer.php');
         map.fitBounds(latlngs);
     });
 </script>
+
+<?php include('../includes/footer.php');
