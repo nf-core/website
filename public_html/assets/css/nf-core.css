@@ -498,3 +498,24 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   height: 45px;
   margin-top: .25rem;
 }
+
+
+.pipeline-page-toc {
+  background-color: #fcfcfc;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  font-size: 80%;
+  margin: 1rem;
+  padding: 1rem 1rem 0 0;
+}
+@media only screen and (min-width: 770px) {
+  .pipeline-page-toc {
+    width: 250px;
+    float: right;
+    margin: 3rem 0 1rem 1rem;
+  }
+}
+.pipeline-page-toc a.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
