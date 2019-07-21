@@ -209,7 +209,8 @@ foreach($results['remote_workflows'] as $new_pipeline){
     }
 }
 
-if(count($tweets) > 0){
+// Only tweet if we're on the live server!
+if(count($tweets) > 0 && $_SERVER['SERVER_NAME'] == 'nf-co.re'){
 
     // Connect to twitter
     $connection = new TwitterOAuth(
