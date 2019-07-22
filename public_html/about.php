@@ -2,6 +2,7 @@
 $title = 'About nf-core';
 $subtitle = 'Details about the nf-core project - who is involved and how it was started.';
 $markdown_fn = '../markdown/about.md';
+$md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/about.md';
 $no_print_content = true;
 $locations = [];
 include('../includes/header.php');

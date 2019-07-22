@@ -5,7 +5,8 @@ nf-core is by design a collaborative effort, and would not exist if it were not 
 
 Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.
 
-> Is your group missing? Please [submit a pull request](https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml) to add yourself!
+> Is your group missing? Please submit a pull request to add yourself!
+> It's just a few lines in a [simple YAML file](https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml)..
 
 <!-- #### CONTRIBUTORS #### -->
 

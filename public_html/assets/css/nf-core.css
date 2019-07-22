@@ -194,12 +194,19 @@ code {
   padding: 0;
 }
 
-footer {
+footer.footer {
   padding: 4rem 0 5rem;
   background-color: rgba(240,240,240,.95);
 }
-footer h5 {
+footer.footer h5 {
   color: #444444;
+}
+footer.subfooter {
+  padding: 2rem 0;
+  background-color: rgba(240,240,240,.5);
+}
+footer, footer a, footer a:hover, footer a:focus, footer a:active {
+  color: #6c757d;
 }
 
 /*

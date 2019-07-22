@@ -9,6 +9,7 @@ if(substr($md_fn, -3) !== '.md'){
 }
 if(file_exists($docs_md_base.$md_fn)){
     $markdown_fn = $docs_md_base.$md_fn;
+    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/'.$md_fn;
     include('../includes/header.php');
     include('../includes/footer.php');
     exit;

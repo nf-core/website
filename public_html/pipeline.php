@@ -223,4 +223,5 @@ echo '<div class="rendered-markdown">';
 echo $content;
 echo '</div>';
 
+$md_github_url = 'https://github.com/'.$pipeline->full_name.'/blob/'.$git_branch.'/'.$filename;
 include('../includes/footer.php');
