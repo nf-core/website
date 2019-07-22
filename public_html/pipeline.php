@@ -74,8 +74,9 @@ if(file_exists($local_tree_fn)){
   }
   $gh_tree_json = file_get_contents($gh_tree_url, false, $api_opts);
   if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+      echo("<!-- Could not fetch nf-core repo tree info! $gh_tree_url -->\n\n<!--");
       var_dump($http_response_header);
-      echo("<!-- Could not fetch nf-core repo tree info! $gh_tree_url -->");
+      echo("-->");
   }
   if($gh_tree_json){
     file_put_contents($local_tree_fn, $gh_tree_json);
@@ -163,6 +164,13 @@ foreach($pipeline->topics as $keyword){
 }
 $header_html .= '</p>';
 
+// Highlight any search terms if we have them
+if(isset($_GET['q']) && strlen($_GET['q'])){
+  $title = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $title);
+  $subtitle = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $subtitle);
+  $header_html = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $header_html);
+}
+
 # Main page nav and header
 $no_print_content = true;
 $mainpage_container = false;
@@ -215,4 +223,5 @@ echo '<div class="rendered-markdown">';
 echo $content;
 echo '</div>';
 
+$md_github_url = 'https://github.com/'.$pipeline->full_name.'/blob/'.$git_branch.'/'.$filename;
 include('../includes/footer.php');
