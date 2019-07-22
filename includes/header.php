@@ -19,6 +19,12 @@ if( isset($markdown_fn) and $markdown_fn){
     header('Location: /404');
     die;
   }
+  // Highlight any search terms if we have them
+  if(isset($_GET['q']) && strlen($_GET['q'])){
+    $md_full = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $md_full);
+  }
+
+  // Get the meta
   $meta = [];
   $md = $md_full;
   if(substr($md_full,0,3) == '---'){

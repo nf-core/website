@@ -24,6 +24,11 @@ blockquote {
   padding-left: 0.5rem;
   color: #999999;
 }
+mark, .mark {
+  padding: .2em 0;
+  background-color: rgba(251, 235, 129, 0.3);
+  color: inherit;
+}
 blockquote a {
   color: #999999;
   text-decoration: underline;
@@ -189,12 +194,19 @@ code {
   padding: 0;
 }
 
-footer {
+footer.footer {
   padding: 4rem 0 5rem;
   background-color: rgba(240,240,240,.95);
 }
-footer h5 {
+footer.footer h5 {
   color: #444444;
+}
+footer.subfooter {
+  padding: 2rem 0;
+  background-color: rgba(240,240,240,.5);
+}
+footer, footer a, footer a:hover, footer a:focus, footer a:active {
+  color: #6c757d;
 }
 
 /*
@@ -212,6 +224,11 @@ footer h5 {
 .mainpage-heading h1, .mainpage-heading h1 a {
   color: #ffffff;
   text-decoration: none;
+}
+@media only screen and (max-width: 770px) {
+  .mainpage-heading h1 {
+    font-size: 3rem;
+  }
 }
 .mainpage-heading h1 a:hover, .mainpage-heading h1 a:focus {
   color: #dae0e5;
@@ -348,6 +365,24 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-color: #22ae63;
 }
 
+.searchbar_form {
+  justify-content: center;
+}
+.searchbar_form input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  width: auto;
+}
+.searchbar_form button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.homepage-header .searchbar_form {
+    margin-top: 3rem;
+}
+
+
 
 .homepage-intro {
   background-color: #22ae63;
@@ -467,7 +502,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .pipeline .card-text {
   font-size: 0.9rem;
 }
-.pipeline .pipeline-topic {
+.pipeline .pipeline-topic,
+.search-page-result .pipeline-topic {
   background-color: #f8f9fa;
   color: #159957;
   font-weight: 400;

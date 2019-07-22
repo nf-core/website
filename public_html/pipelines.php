@@ -55,7 +55,7 @@ include('../includes/header.php');
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
-    <input type="text" class="form-control" placeholder="Search keywords" value="<?php echo $_GET['q']; ?>">
+    <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo $_GET['q']; ?>">
   </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>
