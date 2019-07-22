@@ -226,4 +226,4 @@ if(count($tweets) > 0 && $_SERVER['SERVER_NAME'] == 'nf-co.re'){
     }
 }
 
-?>
+echo("update_pipeline_details done " . mktime());

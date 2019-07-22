@@ -179,11 +179,6 @@ include('../includes/header.php');
 # Pipeline subheader
 
 # Get details for the button to the latest release
-function rsort_releases($a, $b){
-    $t1 = strtotime($a->published_at);
-    $t2 = strtotime($b->published_at);
-    return $t2 - $t1;
-}
 $dev_warning = '';
 $archived_warning = '';
 if(count($pipeline->releases) > 0){

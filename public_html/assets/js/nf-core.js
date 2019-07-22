@@ -118,4 +118,7 @@ $(function () {
         }
         $pipelines.detach().appendTo($('.pipelines-container'));
     });
+
+    // Make the Pipeline stats table sortable
+    $('.pipeline-stats-table').TableSorter();
 });
