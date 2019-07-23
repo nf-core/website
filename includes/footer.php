@@ -57,11 +57,5 @@ if(isset($subfooter) and $subfooter){
       </div>
     </footer>
 
-    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/highlight.pack.js"></script>
-    <script src="/assets/js/leaflet.js"></script>
-    <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
   </body>
 </html>

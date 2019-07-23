@@ -42,6 +42,16 @@ php update_pipeline_details.php
 This will create `public_html/pipelines.json`, which is used by the website.
 Note that this is ignored in the `.gitignore` file and will not be tracked in git history.
 
+Optionally, once you've done that, you can grab the pipeline traffic statistics:
+
+```bash
+php nfcore_stats.json
+```
+
+This creates `nfcore_stats.json`, also ignored in `.gitignore`.
+Note that you'll need the `github_username` and `github_access_token` set in the `config.ini` file for this to work.
+
+
 Ok, you're ready! To run the website locally, you need a standard AMP stack: Apache, MySQL and PHP (MySQL not needed at time of writing). For this, I recommend using the free version of [MAMP](https://www.mamp.info/en/).
 
 Set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
@@ -49,6 +59,13 @@ Set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-
 I've built the site so that most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
 
 Note that the `.htaccess` file is set up to remove the `.php` file extensions in URLs.
+
+## Server Setup
+The webserver needs the following cronjob running to scrape pipeline statistics once a week:
+
+```
+0	0	*	*	0	/usr/local/bin/php /home/nfcore/nfcore_stats.json >> /home/nfcore/update.log 2>&1
+```
 
 ## Credits
 Phil ([@ewels](http://github.com/ewels/)) built this site, mostly over the course of one caffeine-fuelled evening.
