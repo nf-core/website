@@ -1,4 +1,7 @@
 <?php
+
+require_once('functions.php');
+
 // Find the latest commit hash to prevent caching assets
 $git_sha = trim(shell_exec("cd ".dirname(__FILE__)." && git rev-parse --short=7 HEAD"));
 if(strlen($git_sha) != 7){
@@ -110,6 +113,15 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
+    <!-- Other JS -->
+    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script src="/assets/js/leaflet.js"></script>
+    <script src="/assets/js/jquery-table-sorter.js"></script>
+    <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
+
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
   <body>
