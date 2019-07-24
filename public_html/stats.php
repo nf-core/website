@@ -184,7 +184,17 @@ if(count($missing_stats)){ echo '</div>'; }
   </tfoot>
 </table>
 
-<?php endforeach; ?>
+<?php endforeach;
+
+$slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
+?>
+
+<h1>Slack Users</h1>
+<p>We use slack to ask for help and discuss topics in the nf-core community.</p>
+<p>The platform is free to use - you can get an invite using the link in the website header.</p>
+
+<p class="display-4"><?php echo $slack_users->total; ?> nf-core Slack users</p>
+<p class="display-5 text-muted"><?php echo $slack_users->active; ?> active in the past 14 days</p>
 
 <script type="text/javascript">
 $(function(){

@@ -20,20 +20,6 @@ ini_set("allow_url_fopen", 1);
 // Use same updated time for everything
 $updated = time();
 
-// Get the GitHub auth secrets
-$config = parse_ini_file("config.ini");
-$auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
-
-// HTTP header to use on API GET requests
-$api_opts = stream_context_create([
-    'http' => [
-        'method' => 'GET',
-        'header' => [
-            'User-Agent: PHP',
-            "Authorization: Basic $auth"
-        ]
-    ]
-]);
 
 // Final filename to write JSON to
 $results_fn = dirname(__FILE__).'/nfcore_stats.json';
@@ -42,7 +28,8 @@ $results_fn = dirname(__FILE__).'/nfcore_stats.json';
 $results = array(
     'updated' => $updated,
     'pipelines' => array(),
-    'core_repos' => array()
+    'core_repos' => array(),
+    'slack' => array()
 );
 
 // Load a copy of the existing JSON file, if it exists
@@ -50,6 +37,29 @@ if(file_exists($results_fn)){
     $results = json_decode(file_get_contents($results_fn), true);
 }
 $results['updated'] = $updated;
+
+// Get auth secrets
+$config = parse_ini_file("config.ini");
+$gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
+
+
+//
+//
+// GitHub API calls
+//
+//
+
+
+// HTTP header to use on GitHub API GET requests
+$gh_api_opts = stream_context_create([
+    'http' => [
+        'method' => 'GET',
+        'header' => [
+            'User-Agent: PHP',
+            "Authorization: Basic $gh_auth"
+        ]
+    ]
+]);
 
 // Load details of the pipelines
 $pipelines_json = json_decode(file_get_contents('public_html/pipelines.json'));
@@ -73,7 +83,7 @@ foreach($ignored_repos as $name){
 
 // Fetch all repositories at nf-core
 $gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
-$gh_repos = json_decode(file_get_contents($gh_api_url, false, $api_opts));
+$gh_repos = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
     var_dump($http_response_header);
     die("Could not fetch nf-core repositories! $gh_api_url");
@@ -106,7 +116,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
     foreach($results[$repo_type] as $repo_name => $repo_stats){
         // Views
         $gh_views_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/views';
-        $gh_views = json_decode(file_get_contents($gh_views_url, false, $api_opts));
+        $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
             die("Could not fetch nf-core repo views! $gh_views_url");
@@ -117,7 +127,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         }
         // Clones
         $gh_clones_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/clones';
-        $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $api_opts));
+        $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
             die("Could not fetch nf-core repo clones! $gh_clones_url");
@@ -128,7 +138,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         }
         // Contributors
         $gh_contributors_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/stats/contributors';
-        $gh_contributors = json_decode(file_get_contents($gh_contributors_url, false, $api_opts));
+        $gh_contributors = json_decode(file_get_contents($gh_contributors_url, false, $gh_api_opts));
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
@@ -157,7 +167,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
 if(count($contribs_try_again) > 0){
     sleep(10);
     foreach($contribs_try_again as $repo_name => $gh_contributors_url){
-        $gh_contributors = json_decode(file_get_contents($gh_contributors_url, false, $api_opts));
+        $gh_contributors = json_decode(file_get_contents($gh_contributors_url, false, $gh_api_opts));
         if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
             echo("Tried getting contributors after delay for $repo_name, but took too long.");
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
@@ -178,8 +188,54 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
     }
 }
 
+
+
+//
+//
+// SLACK USERS
+//
+//
+
+$slack_api_url = 'https://slack.com/api/team.billableInfo?token='.$config['slack_access_token'].'&pretty=1';
+$slack_api_opts = stream_context_create([
+    'http' => [
+        'method' => 'GET',
+        'header' => [
+            'User-Agent: PHP',
+            'Content-Type: application/x-www-form-urlencoded'
+        ]
+    ]
+]);
+$slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
+if(!in_array("HTTP/1.1 200 OK", $http_response_header) || !isset($slack_users->ok) || !$slack_users->ok){
+    var_dump($http_response_header);
+    echo("Could not fetch slack user list!");
+} else {
+    $results['slack']['user_counts'][$updated] = [
+        'total' => 0,
+        'active' => 0,
+        'inactive' => 0
+    ];
+    foreach($slack_users->billable_info as $uid => $user){
+        $results['slack']['user_counts'][$updated]['total'] += 1;
+        if($user->billing_active){
+            $results['slack']['user_counts'][$updated]['active'] += 1;
+        } else {
+            $results['slack']['user_counts'][$updated]['inactive'] += 1;
+        }
+    }
+}
+
+
+
+//
+//
+// DONE - save results to JSON file
+//
+//
+
 // Print results to a file
 $results_json = json_encode($results, JSON_PRETTY_PRINT)."\n";
 file_put_contents($results_fn, $results_json);
 
-echo("update_pipeline_stats done " . mktime());
+echo("update_stats done " . mktime()."\n");
