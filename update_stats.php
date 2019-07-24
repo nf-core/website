@@ -17,6 +17,9 @@
 // Allow PHP fopen to work with remote links
 ini_set("allow_url_fopen", 1);
 
+// Use same updated time for everything
+$updated = time();
+
 // Get the GitHub auth secrets
 $config = parse_ini_file("config.ini");
 $auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
@@ -37,14 +40,16 @@ $results_fn = dirname(__FILE__).'/nfcore_stats.json';
 
 // Initialise the results array with the current time and placeholders
 $results = array(
-    'updated' => time(),
-    'pipelines' => array()
+    'updated' => $updated,
+    'pipelines' => array(),
+    'core_repos' => array()
 );
 
 // Load a copy of the existing JSON file, if it exists
 if(file_exists($results_fn)){
     $results = json_decode(file_get_contents($results_fn), true);
 }
+$results['updated'] = $updated;
 
 // Load details of the pipelines
 $pipelines_json = json_decode(file_get_contents('public_html/pipelines.json'));
@@ -62,6 +67,38 @@ foreach($ignored_repos as $name){
     if(!isset($results['core_repos'][$name])){
         $results['core_repos'][$name] = array();
     }
+}
+
+// Get snapshot of key metrics for all repos
+
+// Fetch all repositories at nf-core
+$gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
+$gh_repos = json_decode(file_get_contents($gh_api_url, false, $api_opts));
+if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    var_dump($http_response_header);
+    die("Could not fetch nf-core repositories! $gh_api_url");
+}
+foreach($gh_repos as $repo){
+    if(in_array($repo->name, $ignored_repos)){
+        $repo_type = 'core_repos';
+    } else {
+        $repo_type = 'pipelines';
+    }
+    $results[$repo_type][$repo->name]['repo_metrics'][$updated] = array(
+        'id' => $repo->id,
+        'name' => $repo->name,
+        'full_name' => $repo->full_name,
+        'private' => $repo->private,
+        'html_url' => $repo->html_url,
+        'description' => $repo->description,
+        'created_at' => $repo->created_at,
+        'updated_at' => $repo->updated_at,
+        'pushed_at' => $repo->pushed_at,
+        'size' => $repo->size,
+        'stargazers_count' => $repo->stargazers_count,
+        'forks_count' => $repo->forks_count,
+        'archived' => $repo->archived
+    );
 }
 
 // Fetch new statistics for each repo
