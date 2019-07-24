@@ -29,7 +29,8 @@ $results = array(
     'updated' => $updated,
     'pipelines' => array(),
     'core_repos' => array(),
-    'slack' => array()
+    'slack' => array(),
+    'gh_org_members' => array()
 );
 
 // Load a copy of the existing JSON file, if it exists
@@ -81,12 +82,21 @@ foreach($ignored_repos as $name){
 
 // Get snapshot of key metrics for all repos
 
-// Fetch all repositories at nf-core
-$gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
-$gh_repos = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
+// Get the current number of organisation members
+$gh_members_url = 'https://api.github.com/orgs/nf-core/members';
+$gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
     var_dump($http_response_header);
-    die("Could not fetch nf-core repositories! $gh_api_url");
+    die("Could not fetch nf-core members! $gh_members_url");
+}
+$results['gh_org_members'][$updated] = count($gh_members);
+
+// Fetch all repositories at nf-core
+$gh_repos_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
+$gh_repos = json_decode(file_get_contents($gh_repos_url, false, $gh_api_opts));
+if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    var_dump($http_response_header);
+    die("Could not fetch nf-core repositories! $gh_repos_url");
 }
 foreach($gh_repos as $repo){
     if(in_array($repo->name, $ignored_repos)){
