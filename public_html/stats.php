@@ -12,6 +12,10 @@ $pipelines = $pipelines_json->remote_workflows;
 
 $stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
 $stats_json = json_decode(file_get_contents($stats_json_fn));
+
+// Convenience summary stats variable for current slack
+$slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
+
 # echo '<pre>'.print_r($stats, true).'</pre>';
 
 // Run everything twice - keep pipelines and core repos seperate
@@ -31,7 +35,7 @@ $stats_total[$repo_type] = [
   'total_commits' => 0
 ];
 
-$trows = [];
+$trows[$repo_type] = [];
 $missing_stats = [];
 foreach($stats as $repo_name => $repo):
   $metrics = $repo->repo_metrics->{$stats_json->updated};
@@ -54,10 +58,8 @@ foreach($stats as $repo_name => $repo):
     $stats_total[$repo_type]['views_uniques_total'] += $repo->views_uniques_total;
     foreach($repo->contributors as $contributor){
       $gh_username = $contributor->author->login;
-      if(!isset($stats_total[$repo_type]['unique_contributors'][$gh_username])){
-        $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
-      }
-      $stats_total[$repo_type]['unique_contributors'][$gh_username] += $contributor->total;
+      $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
+      $stats_total['total']['unique_contributors'][$gh_username] = 0;
       $stats_total[$repo_type]['total_commits'] += $contributor->total;
       $total_commits += $contributor->total;
     }
@@ -79,9 +81,47 @@ foreach($stats as $repo_name => $repo):
     <td class="text-right"><?php echo isset($repo->views_uniques_total) ? $repo->views_uniques_total : $missing_stat; ?></td>
   </tr>
 <?php
-$trows[] = ob_get_contents();
+$trows[$repo_type][] = ob_get_contents();
 ob_end_clean();
 endforeach;
+
+endforeach;
+
+foreach(array_keys($stats_total['pipelines']) as $akey){
+  if($akey == 'unique_contributors'){
+    continue;
+  }
+  $stats_total['total'][$akey] = $stats_total['pipelines'][$akey] + $stats_total['core_repos'][$akey];
+}
+
+//
+//
+// TOP CARD DECK
+//
+//
+?>
+
+<div class="card-group text-center">
+  <div class="card bg-light"><div class="card-body">
+    <p class="card-text display-4"><?php echo $slack_users->total; ?></p>
+    <p class="card-text text-muted">Slack users</p>
+  </div></div>
+  <div class="card bg-light"><div class="card-body">
+    <p class="card-text display-4"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></p>
+    <p class="card-text text-muted">GitHub organisation members</p>
+  </div></div>
+  <div class="card bg-light"><div class="card-body">
+    <p class="card-text display-4"><?php echo count($stats_total['total']['unique_contributors']); ?></p>
+    <p class="card-text text-muted">GitHub contributors</p>
+  </div></div>
+</div>
+
+
+
+
+<?php
+// The pipeline and core repo tables are the same
+foreach(['pipelines', 'core_repos'] as $repo_type):
 
 if(count($missing_stats)){ echo '<div class="toasts-container">'; }
 foreach($missing_stats as $missing_stat): ?>
@@ -165,7 +205,7 @@ if(count($missing_stats)){ echo '</div>'; }
     </tr>
   </thead>
   <tbody>
-  <?php echo implode($trows); ?>
+  <?php echo implode($trows[$repo_type]); ?>
   </tbody>
   <tfoot class="thead-light">
     <tr>
@@ -186,7 +226,6 @@ if(count($missing_stats)){ echo '</div>'; }
 
 <?php endforeach;
 
-$slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
 ?>
 
 <h1>Slack Users</h1>
