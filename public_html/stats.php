@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$title = 'nf-core statistics';
+$title = 'Community statistics';
 $subtitle = 'Measuring activity across the nf-core community.';
 include('../includes/header.php');
 
@@ -28,39 +28,63 @@ $stats_total = [
 ];
 
 $trows = [];
+$missing_stats = [];
 foreach($pipelines as $wf):
   $stats_total['releases'] += count($wf->releases);
   $stats_total['stargazers'] += $wf->stargazers_count;
   $stats_total['forks'] += $wf->forks_count;
-  $stats_total['clones_count_total'] += $pipeline_stats->{$wf->name}->clones_count_total;
-  $stats_total['clones_uniques_total'] += $pipeline_stats->{$wf->name}->clones_uniques_total;
-  $stats_total['views_count_total'] += $pipeline_stats->{$wf->name}->views_count_total;
-  $stats_total['views_uniques_total'] += $pipeline_stats->{$wf->name}->views_uniques_total;
-  foreach($pipeline_stats->{$wf->name}->contributors as $contributor){
-    $gh_username = $contributor->author->login;
-    if(!isset($stats_total['unique_contributors'][$gh_username])){
-      $stats_total['unique_contributors'][$gh_username] = 0;
+  if(!isset($pipeline_stats->{$wf->name})){
+    $missing_stats[] = $wf->full_name;
+  } else {
+    $stats_total['clones_count_total'] += $pipeline_stats->{$wf->name}->clones_count_total;
+    $stats_total['clones_uniques_total'] += $pipeline_stats->{$wf->name}->clones_uniques_total;
+    $stats_total['views_count_total'] += $pipeline_stats->{$wf->name}->views_count_total;
+    $stats_total['views_uniques_total'] += $pipeline_stats->{$wf->name}->views_uniques_total;
+    foreach($pipeline_stats->{$wf->name}->contributors as $contributor){
+      $gh_username = $contributor->author->login;
+      if(!isset($stats_total['unique_contributors'][$gh_username])){
+        $stats_total['unique_contributors'][$gh_username] = 0;
+      }
+      $stats_total['unique_contributors'][$gh_username] += $contributor->total;
     }
-    $stats_total['unique_contributors'][$gh_username] += $contributor->total;
   }
+  $missing_stat = '<abbr title="New ppeline - stats not yet fetched" data-toggle="tooltip" class="bg-warning">&nbsp;?&nbsp;</abbr>';
   ob_start();
   ?>
   <tr>
     <td><?php echo '<a href="'.$wf->html_url.'" target="_blank">'.$wf->full_name.'</a>'; ?></td>
     <td><?php echo time_ago($wf->created_at, false); ?></td>
     <td class="text-right"><?php echo count($wf->releases); ?></td>
-    <td class="text-right"><?php echo $pipeline_stats->{$wf->name}->num_contributors; ?></td>
+    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->num_contributors) ? $pipeline_stats->{$wf->name}->num_contributors : $missing_stat; ?></td>
     <td class="text-right"><?php echo $wf->stargazers_count; ?></td>
     <td class="text-right"><?php echo $wf->forks_count; ?></td>
-    <td class="text-right"><?php echo $pipeline_stats->{$wf->name}->clones_count_total; ?></td>
-    <td class="text-right"><?php echo $pipeline_stats->{$wf->name}->clones_uniques_total; ?></td>
-    <td class="text-right"><?php echo $pipeline_stats->{$wf->name}->views_count_total; ?></td>
-    <td class="text-right"><?php echo $pipeline_stats->{$wf->name}->views_uniques_total; ?></td>
+    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->clones_count_total) ? $pipeline_stats->{$wf->name}->clones_count_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->clones_uniques_total) ? $pipeline_stats->{$wf->name}->clones_uniques_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->views_count_total) ? $pipeline_stats->{$wf->name}->views_count_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->views_uniques_total) ? $pipeline_stats->{$wf->name}->views_uniques_total : $missing_stat; ?></td>
   </tr>
 <?php
 $trows[] = ob_get_contents();
 ob_end_clean();
 endforeach;
+
+if(count($missing_stats)){ echo '<div class="toasts-container">'; }
+foreach($missing_stats as $missing_stat): ?>
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+  <div class="toast-header">
+    <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="nf-core logo">
+    <strong class="mr-auto">nf-core</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Could not fetch statistics for <code><?php echo $missing_stat; ?></code>
+  </div>
+</div>
+<?php
+endforeach;
+if(count($missing_stats)){ echo '</div>'; }
 ?>
 
 <h1>Pipelines</h1>
@@ -115,4 +139,13 @@ endforeach;
   </tfoot>
 </table>
 
-<?php include('../includes/footer.php'); ?>
+<script type="text/javascript">
+$(function(){
+  $('.toast').toast('show');
+});
+</script>
+
+<?php
+$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('h:i, d-m-Y', $pipeline_stats_json->updated).'</p>';
+
+include('../includes/footer.php'); ?>
