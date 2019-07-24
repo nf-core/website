@@ -157,7 +157,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
   <div class="card bg-light collapse stats_keynumbers_chart" id="twitter_chart" data-parent="#stats_keynumbers_chart_wrapper">
     <div class="card-body">
-      Twitter chart
+      <canvas id="twitter_followers_plot" width="400" height="130"></canvas>
     </div>
   </div>
 </div>
@@ -291,7 +291,7 @@ $(function(){
           data: [
             <?php
             foreach($stats_json->slack->user_counts as $timestamp => $users){
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->inactive.' },';
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->inactive.' },'."\n\t\t\t";
             }
             ?>
           ]
@@ -303,7 +303,7 @@ $(function(){
           data: [
             <?php
             foreach($stats_json->slack->user_counts as $timestamp => $users){
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->active.' },';
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->active.' },'."\n\t\t\t";
             }
             ?>
           ]
@@ -334,6 +334,54 @@ $(function(){
         labels: {
           lineWidth: 1
         }
+      },
+      tooltips: {
+        mode: 'x'
+      },
+    }
+  });
+
+
+  // Twitter followers chart
+  var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
+  var twitter_followers_plot = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          backgroundColor: 'rgba(74, 161, 235, 0.2)',
+          borderColor: 'rgba(74, 161, 235, 1)',
+          data: [
+            <?php
+            foreach($stats_json->twitter->followers_count as $timestamp => $count){
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+            }
+            ?>
+          ]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '@nf_core twitter followers users over time'
+      },
+      elements: {
+        line: {
+          borderWidth: 1,
+          tension: 0 // disables bezier curves
+        }
+      },
+      scales: {
+        xAxes: [{
+          type: 'time'
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      },
+      legend: {
+        display: false
       },
       tooltips: {
         mode: 'x'
