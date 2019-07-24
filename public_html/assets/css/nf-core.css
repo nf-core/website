@@ -67,6 +67,19 @@ table img {
   }
 }
 
+.toasts-container {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
+.toast {
+  background-color: rgba(255,255,255,.90)
+}
+.toast-header img {
+  height: 20px;
+  width: 20px;
+}
+
 .site-nav {
   padding: .2rem 1rem;
   background-color: rgba(240,240,240,.95);
