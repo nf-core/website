@@ -147,12 +147,12 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
   <div class="card bg-light collapse stats_keynumbers_chart" id="gh_orgmembers_chart" data-parent="#stats_keynumbers_chart_wrapper">
     <div class="card-body">
-      GitHub org members chart
+      <canvas id="gh_org_members" width="400" height="130"></canvas>
     </div>
   </div>
   <div class="card bg-light collapse stats_keynumbers_chart" id="gh_contribs_chart" data-parent="#stats_keynumbers_chart_wrapper">
     <div class="card-body">
-      GitHub contribs chart
+      Not yet implemented
     </div>
   </div>
   <div class="card bg-light collapse stats_keynumbers_chart" id="twitter_chart" data-parent="#stats_keynumbers_chart_wrapper">
@@ -188,7 +188,11 @@ endforeach;
 if(count($missing_stats)){ echo '</div>'; }
 ?>
 
-<h1><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h1>
+<h2 class="mt-2"><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
+<p class="text-info small">
+  <i class="far fa-hand-point-right"></i>
+  Click a row to see detailed statistics for that repository.
+</p>
 
 <div class="card mb-3">
   <div class="card-header">
@@ -219,7 +223,7 @@ if(count($missing_stats)){ echo '</div>'; }
 </div>
 
 
-<table class="table table-sm small pipeline-stats-table">
+<table class="table table-hover table-sm small pipeline-stats-table">
   <thead class="thead-light">
     <tr>
       <th>Name</th>
@@ -334,6 +338,54 @@ $(function(){
         labels: {
           lineWidth: 1
         }
+      },
+      tooltips: {
+        mode: 'x'
+      },
+    }
+  });
+
+
+  // GitHub org members chart
+  var ctx = document.getElementById('gh_org_members').getContext('2d');
+  var gh_org_members = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+          borderColor: 'rgba(0,0,0,1)',
+          data: [
+            <?php
+            foreach($stats_json->gh_org_members as $timestamp => $count){
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+            }
+            ?>
+          ]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'nf-core GitHub organisation members over time'
+      },
+      elements: {
+        line: {
+          borderWidth: 1,
+          tension: 0 // disables bezier curves
+        }
+      },
+      scales: {
+        xAxes: [{
+          type: 'time'
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      },
+      legend: {
+        display: false
       },
       tooltips: {
         mode: 'x'
