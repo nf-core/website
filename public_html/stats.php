@@ -102,23 +102,64 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 //
 ?>
 
-<div class="card-group text-center">
-  <div class="card bg-light"><div class="card-body">
-    <p class="card-text display-4"><?php echo $slack_users->total; ?></p>
-    <p class="card-text text-muted">Slack users</p>
-  </div></div>
-  <div class="card bg-light"><div class="card-body">
-    <p class="card-text display-4"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></p>
-    <p class="card-text text-muted">GitHub organisation members</p>
-  </div></div>
-  <div class="card bg-light"><div class="card-body">
-    <p class="card-text display-4"><?php echo count($stats_total['total']['unique_contributors']); ?></p>
-    <p class="card-text text-muted">GitHub contributors</p>
-  </div></div>
-  <div class="card bg-light"><div class="card-body">
-    <p class="card-text display-4"><?php echo $twitter_users; ?></p>
-    <p class="card-text text-muted">Twitter followers</p>
-  </div></div>
+<h1>nf-core in numbers</h1>
+<p class="text-info small">
+  <i class="far fa-hand-point-right"></i>
+  Click a number to see how the community has grown over time
+</p>
+
+<div class="card-group text-center stats_keynumbers">
+  <div class="card bg-light" data-toggle="collapse" data-target="#slack_chart">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $slack_users->total; ?></p>
+      <p class="card-text text-muted">Slack users</p>
+    </div>
+    <div class="bg-icon" style="color: rgba(89, 37, 101, 0.1);"><i class="fab fa-slack"></i></div>
+  </div>
+  <div class="card bg-light" data-toggle="collapse" data-target="#gh_orgmembers_chart">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></p>
+      <p class="card-text text-muted">GitHub organisation members</p>
+    </div>
+    <div class="bg-icon"><i class="fab fa-github"></i></div>
+  </div>
+  <div class="card bg-light" data-toggle="collapse" data-target="#gh_contribs_chart">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo count($stats_total['total']['unique_contributors']); ?></p>
+      <p class="card-text text-muted">GitHub contributors</p>
+    </div>
+    <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
+  </div>
+  <div class="card bg-light" data-toggle="collapse" data-target="#twitter_chart">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $twitter_users; ?></p>
+      <p class="card-text text-muted">Twitter followers</p>
+    </div>
+    <div class="bg-icon" style="color: rgba(74, 161, 235, 0.2);"><i class="fab fa-twitter"></i></div>
+  </div>
+</div>
+<div id="stats_keynumbers_chart_wrapper">
+  <div class="card bg-light collapse stats_keynumbers_chart" id="slack_chart" data-parent="#stats_keynumbers_chart_wrapper">
+    <div class="card-body">
+      <canvas id="slack_users_plot" width="400" height="130"></canvas>
+      <p class="card-text small text-muted text-center"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
+    </div>
+  </div>
+  <div class="card bg-light collapse stats_keynumbers_chart" id="gh_orgmembers_chart" data-parent="#stats_keynumbers_chart_wrapper">
+    <div class="card-body">
+      GitHub org members chart
+    </div>
+  </div>
+  <div class="card bg-light collapse stats_keynumbers_chart" id="gh_contribs_chart" data-parent="#stats_keynumbers_chart_wrapper">
+    <div class="card-body">
+      GitHub contribs chart
+    </div>
+  </div>
+  <div class="card bg-light collapse stats_keynumbers_chart" id="twitter_chart" data-parent="#stats_keynumbers_chart_wrapper">
+    <div class="card-body">
+      Twitter chart
+    </div>
+  </div>
 </div>
 
 
@@ -233,17 +274,74 @@ if(count($missing_stats)){ echo '</div>'; }
 
 ?>
 
-<h1>Slack Users</h1>
-<p>We use slack to ask for help and discuss topics in the nf-core community.</p>
-<p>The platform is free to use - you can get an invite using the link in the website header.</p>
-
-<p class="display-4"><?php echo $slack_users->total; ?> nf-core Slack users</p>
-<p class="display-5 text-muted"><?php echo $slack_users->active; ?> active in the past 14 days</p>
-
 <script type="text/javascript">
 $(function(){
   $('.toast').toast('show');
+
+  // Slack users chart
+  var ctx = document.getElementById('slack_users_plot').getContext('2d');
+  var slack_users_plot = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          label: 'Inactive',
+          backgroundColor: 'rgba(150,150,150, 0.2)',
+          borderColor: 'rgba(150,150,150, 1)',
+          data: [
+            <?php
+            foreach($stats_json->slack->user_counts as $timestamp => $users){
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->inactive.' },';
+            }
+            ?>
+          ]
+        },
+        {
+          label: 'Active',
+          backgroundColor: 'rgba(89, 37, 101, 0.2)',
+          borderColor: 'rgba(89, 37, 101, 1)',
+          data: [
+            <?php
+            foreach($stats_json->slack->user_counts as $timestamp => $users){
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->active.' },';
+            }
+            ?>
+          ]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'nf-core Slack users over time'
+      },
+      elements: {
+        line: {
+          borderWidth: 1,
+          tension: 0 // disables bezier curves
+        }
+      },
+      scales: {
+        xAxes: [{
+          type: 'time'
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      },
+      legend: {
+        position: 'bottom',
+        labels: {
+          lineWidth: 1
+        }
+      },
+      tooltips: {
+        mode: 'x'
+      },
+    }
+  });
 });
+
 </script>
 
 <?php
