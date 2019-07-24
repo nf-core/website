@@ -10,12 +10,15 @@ include('../includes/header.php');
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 
-$pipeline_stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
-$pipeline_stats_json = json_decode(file_get_contents($pipeline_stats_json_fn));
-$pipeline_stats = $pipeline_stats_json->pipelines;
-# echo '<pre>'.print_r($pipeline_stats, true).'</pre>';
+$stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
+$stats_json = json_decode(file_get_contents($stats_json_fn));
+# echo '<pre>'.print_r($stats, true).'</pre>';
 
-$stats_total = [
+// Run everything twice - keep pipelines and core repos seperate
+foreach(['pipelines', 'core_repos'] as $repo_type):
+
+$stats = $stats_json->{$repo_type};
+$stats_total[$repo_type] = [
   'releases' => 0,
   'stargazers' => 0,
   'watchers' => 0,
@@ -24,44 +27,56 @@ $stats_total = [
   'clones_uniques_total' => 0,
   'views_count_total' => 0,
   'views_uniques_total' => 0,
-  'unique_contributors' => []
+  'unique_contributors' => [],
+  'total_commits' => 0
 ];
 
 $trows = [];
 $missing_stats = [];
-foreach($pipelines as $wf):
-  $stats_total['releases'] += count($wf->releases);
-  $stats_total['stargazers'] += $wf->stargazers_count;
-  $stats_total['forks'] += $wf->forks_count;
-  if(!isset($pipeline_stats->{$wf->name})){
-    $missing_stats[] = $wf->full_name;
+foreach($stats as $repo_name => $repo):
+  $metrics = $repo->repo_metrics->{$stats_json->updated};
+  $releases = 0;
+  foreach($pipelines as $wf){
+    if($wf->name == $repo_name){
+      $releases = count($wf->releases);
+    }
+  }
+  $stats_total[$repo_type]['releases'] += $releases;
+  $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
+  $stats_total[$repo_type]['forks'] += $metrics->forks_count;
+  $total_commits = 0;
+  if(!isset($repo)){
+    $missing_stats[] = $metrics->full_name;
   } else {
-    $stats_total['clones_count_total'] += $pipeline_stats->{$wf->name}->clones_count_total;
-    $stats_total['clones_uniques_total'] += $pipeline_stats->{$wf->name}->clones_uniques_total;
-    $stats_total['views_count_total'] += $pipeline_stats->{$wf->name}->views_count_total;
-    $stats_total['views_uniques_total'] += $pipeline_stats->{$wf->name}->views_uniques_total;
-    foreach($pipeline_stats->{$wf->name}->contributors as $contributor){
+    $stats_total[$repo_type]['clones_count_total'] += $repo->clones_count_total;
+    $stats_total[$repo_type]['clones_uniques_total'] += $repo->clones_uniques_total;
+    $stats_total[$repo_type]['views_count_total'] += $repo->views_count_total;
+    $stats_total[$repo_type]['views_uniques_total'] += $repo->views_uniques_total;
+    foreach($repo->contributors as $contributor){
       $gh_username = $contributor->author->login;
-      if(!isset($stats_total['unique_contributors'][$gh_username])){
-        $stats_total['unique_contributors'][$gh_username] = 0;
+      if(!isset($stats_total[$repo_type]['unique_contributors'][$gh_username])){
+        $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
       }
-      $stats_total['unique_contributors'][$gh_username] += $contributor->total;
+      $stats_total[$repo_type]['unique_contributors'][$gh_username] += $contributor->total;
+      $stats_total[$repo_type]['total_commits'] += $contributor->total;
+      $total_commits += $contributor->total;
     }
   }
   $missing_stat = '<abbr title="New ppeline - stats not yet fetched" data-toggle="tooltip" class="bg-warning">&nbsp;?&nbsp;</abbr>';
   ob_start();
   ?>
   <tr>
-    <td><?php echo '<a href="'.$wf->html_url.'" target="_blank">'.$wf->full_name.'</a>'; ?></td>
-    <td><?php echo time_ago($wf->created_at, false); ?></td>
-    <td class="text-right"><?php echo count($wf->releases); ?></td>
-    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->num_contributors) ? $pipeline_stats->{$wf->name}->num_contributors : $missing_stat; ?></td>
-    <td class="text-right"><?php echo $wf->stargazers_count; ?></td>
-    <td class="text-right"><?php echo $wf->forks_count; ?></td>
-    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->clones_count_total) ? $pipeline_stats->{$wf->name}->clones_count_total : $missing_stat; ?></td>
-    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->clones_uniques_total) ? $pipeline_stats->{$wf->name}->clones_uniques_total : $missing_stat; ?></td>
-    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->views_count_total) ? $pipeline_stats->{$wf->name}->views_count_total : $missing_stat; ?></td>
-    <td class="text-right"><?php echo isset($pipeline_stats->{$wf->name}->views_uniques_total) ? $pipeline_stats->{$wf->name}->views_uniques_total : $missing_stat; ?></td>
+    <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank">'.$metrics->full_name.'</a>'; ?></td>
+    <td><?php echo time_ago($metrics->created_at, false); ?></td>
+    <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $releases; ?></td><?php endif; ?>
+    <td class="text-right"><?php echo isset($repo->num_contributors) ? $repo->num_contributors : $missing_stat; ?></td>
+    <td class="text-right"><?php echo $total_commits; ?></td>
+    <td class="text-right"><?php echo $metrics->stargazers_count; ?></td>
+    <td class="text-right"><?php echo $metrics->forks_count; ?></td>
+    <td class="text-right"><?php echo isset($repo->clones_count_total) ? $repo->clones_count_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo isset($repo->clones_uniques_total) ? $repo->clones_uniques_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo isset($repo->views_count_total) ? $repo->views_count_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo isset($repo->views_uniques_total) ? $repo->views_uniques_total : $missing_stat; ?></td>
   </tr>
 <?php
 $trows[] = ob_get_contents();
@@ -87,8 +102,35 @@ endforeach;
 if(count($missing_stats)){ echo '</div>'; }
 ?>
 
-<h1>Pipelines</h1>
-<p>NB: Clones and repo view data collection started in July 2019.</p>
+<h1><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h1>
+
+<div class="card mb-3">
+  <div class="card-header">
+      <button class="btn btn-link p-0 pb-1 collapsed text-muted" type="button" data-toggle="collapse" data-target="#caveats_<?php echo $repo_type; ?>">
+        Read about how these numbers are collected and what caveats should be considered
+      </button>
+  </div>
+  <div id="caveats_<?php echo $repo_type; ?>" class="collapse">
+    <div class="card-body small">
+      <p>Please bear in mind the following points when looking over these numbers:</p>
+      <ul>
+        <li>Many pipelines are worked on long before they are forked to nf-core. The age, stars and other metrics of the original parent repository are not shown.</li>
+        <li>Metrics are for the default (<code>master</code>) branch only</li>
+        <li>Commits and contributors are only counted if associated with a GitHub account</li>
+        <li><code>nextflow pull</code> and <code>nextflow run</code> uses git to clone a remote repo the first time it runs, so the clones count gives some idea of usage. However:
+          <ul>
+            <li><em>Unique cloners</em> is based on IP address, so will under-represent institutional users sharing a single external IP address</li>
+            <li><em>Unique cloners</em> is based on IP address, so will over-represent cloud users using multiple IP addresses</li>
+            <li>Traditional HPC centres may share workflow installations, so only have one clone for many users / pipeline runs</li>
+            <li>Cloud users will typically spin up a new instance and clone the workflow every time that they run a pipeline.</li>
+          </ul>
+        </li>
+        <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for nf-core repos started in July 2019. This is when we started counting the totals.</li>
+        <li>Metrics are fetched using the GitHub API only once per week (last checked <?php echo date('d-m-Y', $stats_json->updated); ?>).</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 <table class="table table-sm small pipeline-stats-table">
@@ -96,8 +138,9 @@ if(count($missing_stats)){ echo '</div>'; }
     <tr>
       <th>Name</th>
       <th>Age</th>
-      <th class="text-right">Releases</th>
-      <th class="text-right"># Contributors</th>
+      <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
+      <th class="text-right">Contributors</th>
+      <th class="text-right">Commits</th>
       <th class="text-right">Stargazers</th>
       <th class="text-right">Forks</th>
       <th class="text-right">Clones</th>
@@ -110,14 +153,15 @@ if(count($missing_stats)){ echo '</div>'; }
     <tr>
       <th>Total:</th>
       <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['releases']; ?></th>
-      <th class="font-weight-light text-right"><?php echo count($stats_total['unique_contributors']); ?> unique</th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['stargazers']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['forks']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['clones_count_total']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['clones_uniques_total']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['views_count_total']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total['views_uniques_total']; ?></th>
+      <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
+      <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_contributors']); ?> unique</th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['forks']; ?></th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
+      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_uniques_total']; ?></th>
     </tr>
   </thead>
   <tbody>
@@ -127,8 +171,9 @@ if(count($missing_stats)){ echo '</div>'; }
     <tr>
       <th>Name</th>
       <th>Age</th>
-      <th class="text-right">Releases</th>
-      <th class="text-right"># Contributors</th>
+      <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
+      <th class="text-right">Contributors</th>
+      <th class="text-right">Commits</th>
       <th class="text-right">Stargazers</th>
       <th class="text-right">Forks</th>
       <th class="text-right">Clones</th>
@@ -139,6 +184,8 @@ if(count($missing_stats)){ echo '</div>'; }
   </tfoot>
 </table>
 
+<?php endforeach; ?>
+
 <script type="text/javascript">
 $(function(){
   $('.toast').toast('show');
@@ -146,6 +193,6 @@ $(function(){
 </script>
 
 <?php
-$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('h:i, d-m-Y', $pipeline_stats_json->updated).'</p>';
+$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('d-m-Y', $stats_json->updated).'</p>';
 
 include('../includes/footer.php'); ?>
