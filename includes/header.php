@@ -108,6 +108,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="/assets/css/leaflet.css" rel="stylesheet">
+    <link href="/assets/css/Chart.min.css" rel="stylesheet">
     <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
@@ -119,6 +120,8 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
     <script src="/assets/js/leaflet.js"></script>
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/Chart.min.js"></script>
     <script src="/assets/js/jquery-table-sorter.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
 
