@@ -13,8 +13,9 @@ $pipelines = $pipelines_json->remote_workflows;
 $stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
 $stats_json = json_decode(file_get_contents($stats_json_fn));
 
-// Convenience summary stats variable for current slack
+// Convenience variables
 $slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
+$twitter_users = $stats_json->twitter->followers_count->{$stats_json->updated};
 
 # echo '<pre>'.print_r($stats, true).'</pre>';
 
@@ -113,6 +114,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   <div class="card bg-light"><div class="card-body">
     <p class="card-text display-4"><?php echo count($stats_total['total']['unique_contributors']); ?></p>
     <p class="card-text text-muted">GitHub contributors</p>
+  </div></div>
+  <div class="card bg-light"><div class="card-body">
+    <p class="card-text display-4"><?php echo $twitter_users; ?></p>
+    <p class="card-text text-muted">Twitter followers</p>
   </div></div>
 </div>
 

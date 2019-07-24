@@ -236,6 +236,24 @@ if(!in_array("HTTP/1.1 200 OK", $http_response_header) || !isset($slack_users->o
     }
 }
 
+//
+//
+// Twitter - get number of followers
+//
+//
+require "includes/libraries/twitteroauth/autoload.php";
+use Abraham\TwitterOAuth\TwitterOAuth;
+// Connect to twitter
+$connection = new TwitterOAuth(
+    $config['twitter_key'],
+    $config['twitter_secret'],
+    $config['twitter_access_token'],
+    $config['twitter_access_token_secret']
+);
+$twitter_stats = $connection->get("users/show", ["screen_name" => 'nf_core']);
+if(isset($twitter_stats->followers_count)){
+    $results['twitter']['followers_count'][$updated] = $twitter_stats->followers_count;
+}
 
 
 //
