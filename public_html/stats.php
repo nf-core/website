@@ -360,6 +360,7 @@ $(function(){
         {
           backgroundColor: 'rgba(0,0,0,0.2)',
           borderColor: 'rgba(0,0,0,1)',
+          pointRadius: 0,
           data: [
             <?php
             foreach($stats_json->gh_org_members as $timestamp => $count){
