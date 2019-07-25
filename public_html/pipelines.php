@@ -18,27 +18,43 @@ usort($pipelines, 'rsort_pipelines');
   <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
     <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo $_GET['q']; ?>">
   </div>
-  <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
+  <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>
   </div>
   <div class="pipeline-filters btn-group btn-group-sm mr-2 mt-2">
     <?php if($pipelines_json->published_count > 0): ?>
-      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">Released <span class="badge badge-light"><?php echo $pipelines_json->published_count; ?></span></button>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">
+        Released
+        <span class="badge badge-light d-none d-lg-inline"><?php echo $pipelines_json->published_count; ?></span>
+      </button>
     <?php endif;
     if($pipelines_json->devel_count > 0): ?>
-      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">Under development <span class="badge badge-light"><?php echo $pipelines_json->devel_count; ?></span></button>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">
+        <span class="d-none d-lg-inline">Under development</span> <span class="d-inline d-lg-none">Dev</span>
+        <span class="badge badge-light d-none d-lg-inline"><?php echo $pipelines_json->devel_count; ?></span>
+      </button>
     <?php endif;
     if($pipelines_json->archived_count > 0): ?>
-      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">Archived <span class="badge badge-light"><?php echo $pipelines_json->archived_count; ?></span></button>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">
+        Archived
+        <span class="badge badge-light d-none d-lg-inline"><?php echo $pipelines_json->archived_count; ?></span>
+      </button>
     <?php endif; ?>
   </div>
-  <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
+  <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
     <button type="button" class="btn btn-link text-body">Sort:</button>
   </div>
   <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
-    <button type="button" class="btn btn-outline-success active">Last Release</button>
+    <button type="button" class="btn btn-outline-success active"><span class="d-none d-xl-inline">Last</span> Release</button>
     <button type="button" class="btn btn-outline-success">Alphabetical</button>
     <button type="button" class="btn btn-outline-success">Stars</button>
+  </div>
+  <div class="btn-group btn-group-sm mt-2 d-none d-xl-block" role="group">
+    <button type="button" class="btn btn-link text-body">Display:</button>
+  </div>
+  <div class="btn-group btn-group-sm mt-2" role="group">
+    <button data-dtype="blocks" type="button" class="display-btn btn btn-outline-success active" title="Display as blocks" data-toggle="tooltip"><i class="fas fa-th-large"></i></button>
+    <button data-dtype="list" type="button" class="display-btn btn btn-outline-success" title="Display as list" data-toggle="tooltip"><i class="fas fa-bars"></i></button>
   </div>
 </div>
 
@@ -47,7 +63,7 @@ usort($pipelines, 'rsort_pipelines');
 <div class="card-deck pipelines-container">
 <?php foreach($pipelines as $wf): ?>
     <div class="card card_deck_card pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
-        <div class="card-body">
+        <div class="card-body clearfix">
             <h3 class="card-title mb-0">
                 <?php if($wf->stargazers_count > 0): ?>
                 <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
@@ -56,7 +72,7 @@ usort($pipelines, 'rsort_pipelines');
                 </a>
                 <?php endif; ?>
                 <a href="/<?php echo $wf->name; ?>" class="pipeline-name">
-                    <?php echo $wf->full_name; ?>
+                    <span class="d-none d-lg-inline">nf-core/</span><?php echo $wf->name; ?>
                 </a>
                 <?php if($wf->archived): ?>
                 <small class="status-icon text-warning ml-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-toggle="tooltip"></small>
@@ -74,7 +90,7 @@ usort($pipelines, 'rsort_pipelines');
               </p>
             <?php endif; ?>
             <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
-            <p class="mb-0 mt-2">
+            <p class="mb-0 mt-2 dl-btn-row">
             <?php if(count($wf->releases) > 0):
                 usort($wf->releases, 'rsort_releases');
                 ?>
