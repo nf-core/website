@@ -158,6 +158,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   <div class="card bg-light collapse stats_keynumbers_chart" id="twitter_chart" data-parent="#stats_keynumbers_chart_wrapper">
     <div class="card-body">
       <canvas id="twitter_followers_plot" width="400" height="130"></canvas>
+      <p class="card-text small text-muted mt-2"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
     </div>
   </div>
 </div>
@@ -328,9 +329,6 @@ $(function(){
       scales: {
         xAxes: [{
           type: 'time'
-        }],
-        yAxes: [{
-          stacked: true
         }]
       },
       legend: {
@@ -379,9 +377,6 @@ $(function(){
       scales: {
         xAxes: [{
           type: 'time'
-        }],
-        yAxes: [{
-          stacked: true
         }]
       },
       legend: {
@@ -403,6 +398,7 @@ $(function(){
         {
           backgroundColor: 'rgba(74, 161, 235, 0.2)',
           borderColor: 'rgba(74, 161, 235, 1)',
+          pointRadius: 0,
           data: [
             <?php
             foreach($stats_json->twitter->followers_count as $timestamp => $count){
@@ -427,9 +423,6 @@ $(function(){
       scales: {
         xAxes: [{
           type: 'time'
-        }],
-        yAxes: [{
-          stacked: true
         }]
       },
       legend: {
