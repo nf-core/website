@@ -142,7 +142,8 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   <div class="card bg-light collapse stats_keynumbers_chart" id="slack_chart" data-parent="#stats_keynumbers_chart_wrapper">
     <div class="card-body">
       <canvas id="slack_users_plot" width="400" height="130"></canvas>
-      <p class="card-text small text-muted text-center"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
+      <p class="card-text small text-muted"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
+      <p class="card-text small text-muted mt-2"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
     </div>
   </div>
   <div class="card bg-light collapse stats_keynumbers_chart" id="gh_orgmembers_chart" data-parent="#stats_keynumbers_chart_wrapper">
@@ -293,6 +294,7 @@ $(function(){
           label: 'Inactive',
           backgroundColor: 'rgba(150,150,150, 0.2)',
           borderColor: 'rgba(150,150,150, 1)',
+          pointRadius: 0,
           data: [
             <?php
             foreach($stats_json->slack->user_counts as $timestamp => $users){
@@ -305,6 +307,7 @@ $(function(){
           label: 'Active',
           backgroundColor: 'rgba(89, 37, 101, 0.2)',
           borderColor: 'rgba(89, 37, 101, 1)',
+          pointRadius: 0,
           data: [
             <?php
             foreach($stats_json->slack->user_counts as $timestamp => $users){
@@ -318,7 +321,8 @@ $(function(){
     options: {
       title: {
         display: true,
-        text: 'nf-core Slack users over time'
+        text: 'nf-core Slack users over time',
+        fontSize: 16
       },
       elements: {
         line: {
@@ -329,6 +333,9 @@ $(function(){
       scales: {
         xAxes: [{
           type: 'time'
+        }],
+        yAxes: [{
+          stacked: true
         }]
       },
       legend: {
@@ -366,7 +373,8 @@ $(function(){
     options: {
       title: {
         display: true,
-        text: 'nf-core GitHub organisation members over time'
+        text: 'nf-core GitHub organisation members over time',
+        fontSize: 16
       },
       elements: {
         line: {
@@ -412,7 +420,8 @@ $(function(){
     options: {
       title: {
         display: true,
-        text: '@nf_core twitter followers users over time'
+        text: '@nf_core twitter followers users over time',
+        fontSize: 16
       },
       elements: {
         line: {
