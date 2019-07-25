@@ -25,6 +25,11 @@ include('../includes/search_results.php');
 # DEBUG
 # echo '<pre>'.print_r($search_results, true).'</pre>';
 
+if(count($search_results['pipelines']) == 0 && count($search_results['documentation']) == 0){
+    echo '<h1>No results</h1>';
+    echo '<p>Sorry, no search results were found. Please try another term.</p>';
+}
+
 if(count($search_results['pipelines']) > 0){
     echo '<h1>Pipelines</h1>';
     foreach($search_results['pipelines'] as $result){
