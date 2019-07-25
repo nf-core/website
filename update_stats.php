@@ -83,13 +83,34 @@ foreach($ignored_repos as $name){
 // Get snapshot of key metrics for all repos
 
 // Get the current number of organisation members
+// Returns 30 results per page!
 $gh_members_url = 'https://api.github.com/orgs/nf-core/members';
-$gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
-if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-    var_dump($http_response_header);
-    die("Could not fetch nf-core members! $gh_members_url");
+$results['gh_org_members'][$updated] = 0;
+$first_page = true;
+$next_page = false;
+while($first_page || $next_page){
+    // reset loop vars
+    $first_page = false;
+    // Get GitHub API results
+    if($next_page){
+        $gh_members_url = $next_page;
+    }
+    $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
+    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        var_dump($http_response_header);
+        die("Could not fetch nf-core members! $gh_members_url");
+    }
+    $results['gh_org_members'][$updated] += count($gh_members);
+    // Look for URL to next page of API results
+    $next_page = false;
+    $m_array = preg_grep('/rel="next"/', $http_response_header);
+    if(count($m_array) > 0){
+        preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
+        if(isset($matches[1])){
+            $next_page = $matches[1];
+        }
+    }
 }
-$results['gh_org_members'][$updated] = count($gh_members);
 
 // Fetch all repositories at nf-core
 $gh_repos_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
