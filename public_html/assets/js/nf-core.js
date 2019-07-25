@@ -118,6 +118,17 @@ $(function () {
         }
         $pipelines.detach().appendTo($('.pipelines-container'));
     });
+    // Change pipelines display type
+    $('.display-btn').click(function(){
+        $('.display-btn').removeClass('active');
+        $(this).addClass('active');
+        var dtype = $(this).data('dtype');
+        if(dtype == 'list' || dtype == 'blocks'){
+            $('.pipelines-container').
+                removeClass('pipelines-container-blocks pipelines-container-list').
+                addClass('pipelines-container-'+dtype);
+        }
+    });
 
     // Make the Pipeline stats table sortable
     $('.pipeline-stats-table').TableSorter();
