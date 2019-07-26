@@ -48,9 +48,10 @@ if(isset($subfooter) and $subfooter){
           <div class="col-6 col-md">
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
+              <li><a href="/about">About nf-core</a></li>
               <li><a href="/about#contributors">List of contributors</a></li>
-              <li><a href="/about#history">Project history</a></li>
-              <li><a href="/about#contact">Get in touch</a></li>
+              <li><a href="/stats">Statistics</a></li>
+              <li><a href="/join">Get involved</a></li>
             </ul>
           </div>
         </div>
