@@ -410,6 +410,10 @@ $(function(){
           data: [
             <?php
             foreach($stats_json->slack->user_counts as $timestamp => $users){
+              // Skip zeros (anything before 2010)
+              if($timestamp < 1262304000){
+                continue;
+              }
               echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->active.' },'."\n\t\t\t";
             }
             ?>
@@ -463,6 +467,10 @@ $(function(){
           data: [
             <?php
             foreach($stats_json->gh_org_members as $timestamp => $count){
+              // Skip zeros (anything before 2010)
+              if($timestamp < 1262304000){
+                continue;
+              }
               echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
             }
             ?>
@@ -513,6 +521,10 @@ $(function(){
             sort($gh_contributors);
             $cumulative_count = 0;
             foreach($gh_contributors as $username => $timestamp){
+              // Skip zeros (anything before 2010)
+              if($timestamp < 1262304000){
+                continue;
+              }
               $cumulative_count += 1;
               echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$cumulative_count.' },'."\n\t\t\t";
             }
@@ -561,6 +573,10 @@ $(function(){
           data: [
             <?php
             foreach($stats_json->twitter->followers_count as $timestamp => $count){
+              // Skip zeros (anything before 2010)
+              if($timestamp < 1262304000){
+                continue;
+              }
               echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
             }
             ?>
