@@ -3,6 +3,17 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+function round_nicely($num){
+  if($num > 1000000){
+    $num /= 1000000;
+    $num = round($num, 2).'M';
+  } else if($num > 1000){
+    $num /= 1000;
+    $num = round($num, 2).'K';
+  }
+  return $num;
+}
+
 $title = 'nf-core in numbers';
 $subtitle = 'Measuring activity across the nf-core community.';
 include('../includes/header.php');
@@ -20,6 +31,14 @@ $twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)}
 
 # echo '<pre>'.print_r($stats, true).'</pre>';
 
+// This is horrible, I know sorry. I'm in a rush :(
+$stats_total_allrepos = [
+  'clones_count' => array(),
+  'clones_uniques' => array(),
+  'views_count' => array(),
+  'views_uniques' => array()
+];
+
 // Run everything twice - keep pipelines and core repos seperate
 foreach(['pipelines', 'core_repos'] as $repo_type):
 
@@ -29,6 +48,10 @@ $stats_total[$repo_type] = [
   'stargazers' => 0,
   'watchers' => 0,
   'forks' => 0,
+  'clones_count' => array(),
+  'clones_uniques' => array(),
+  'views_count' => array(),
+  'views_uniques' => array(),
   'clones_count_total' => 0,
   'clones_uniques_total' => 0,
   'views_count_total' => 0,
@@ -43,11 +66,24 @@ foreach($stats as $repo_name => $repo):
   $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
   $stats_total[$repo_type]['forks'] += $metrics->forks_count;
+
+  foreach(['clones_count', 'clones_uniques', 'views_count', 'views_uniques'] as $key){
+    if(isset($repo->{$key})){
+      foreach($repo->{$key} as $timestamp => $count){
+        if(!isset($stats_total_allrepos[$key][$timestamp])){
+          $stats_total_allrepos[$key][$timestamp] = 0;
+        }
+        $stats_total_allrepos[$key][$timestamp] += $count;
+        if(!isset($stats_total[$repo_type][$key][$timestamp])){
+          $stats_total[$repo_type][$key][$timestamp] = 0;
+        }
+        $stats_total[$repo_type][$key][$timestamp] += $count;
+      }
+    }
+    $stats_total[$repo_type][$key.'_total'] += $repo->{$key.'_total'};
+  }
+
   $total_commits = 0;
-  $stats_total[$repo_type]['clones_count_total'] += $repo->clones_count_total;
-  $stats_total[$repo_type]['clones_uniques_total'] += $repo->clones_uniques_total;
-  $stats_total[$repo_type]['views_count_total'] += $repo->views_count_total;
-  $stats_total[$repo_type]['views_uniques_total'] += $repo->views_uniques_total;
   foreach($repo->contributors as $contributor){
     $gh_username = $contributor->author->login;
     $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
@@ -60,12 +96,12 @@ foreach($stats as $repo_name => $repo):
   <tr>
     <td><?php
     if($metrics->archived){
-      echo '<small class="status-icon text-warning ml-2 fas fa-archive" title="" data-toggle="tooltip" aria-hidden="true" data-original-title="This repo has been archived and is no longer being maintained."></small>';
+      echo '<small class="status-icon text-warning ml-2 fas fa-archive" data-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
     } else if($repo_type == 'pipelines'){
       if($repo->num_releases){
-        echo '<small class="status-icon text-success ml-2 fas fa-check" title="" data-toggle="tooltip" aria-hidden="true" data-original-title="This pipeline is released, tested and good to go."></small>';
+        echo '<small class="status-icon text-success ml-2 fas fa-check" data-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
       } else {
-        echo '<small class="status-icon text-danger ml-2 fas fa-wrench" title="" data-toggle="tooltip" aria-hidden="true" data-original-title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
+        echo '<small class="status-icon text-danger ml-2 fas fa-wrench" data-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
       }
     }
     ?></td>
@@ -95,15 +131,6 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   $stats_total['total'][$akey] = $stats_total['pipelines'][$akey] + $stats_total['core_repos'][$akey];
 }
 
-$total_commit_count = $stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits'];
-if($total_commit_count > 1000000){
-  $total_commit_count /= 1000000;
-  $total_commit_count = round($total_commit_count, 2).'M';
-} else if($total_commit_count > 1000){
-  $total_commit_count /= 1000;
-  $total_commit_count = round($total_commit_count, 2).'K';
-}
-
 //
 //
 // TOP CARD DECK
@@ -124,11 +151,42 @@ if($total_commit_count > 1000000){
   </li>
   <li><a href="#code">Code</a>
     <ul>
+      <li><a href="#repo_traffic">Repository traffic</a></li>
       <li><a href="#pipelines">Pipelines</a></li>
       <li><a href="#core_repos">Core repositories</a></li>
     </ul>
   </li>
 </ul>
+
+<section id="caveats">
+  <div class="card mb-3 mt-2">
+    <div class="card-header">
+      <a href="#caveats_<?php echo $repo_type; ?>" data-toggle="collapse" data-target="#caveats_<?php echo $repo_type; ?>" class="text-muted">
+        <u>Click to expand:</u> How these numbers are collected and what caveats should be considered
+      </a>
+    </div>
+    <div id="caveats_<?php echo $repo_type; ?>" class="collapse">
+      <div class="card-body small">
+        <p>Please bear in mind the following points when looking over these numbers:</p>
+        <ul>
+          <li>Many pipelines are worked on long before they are forked to nf-core. The age, stars and other metrics of the original parent repository are not shown.</li>
+          <li>Metrics are for the default (<code>master</code>) branch only</li>
+          <li>Commits and contributors are only counted if associated with a GitHub account</li>
+          <li><code>nextflow pull</code> and <code>nextflow run</code> uses git to clone a remote repo the first time it runs, so the clones count gives some idea of usage. However:
+            <ul>
+              <li><em>Unique cloners</em> is based on IP address, so will under-represent institutional users sharing a single external IP address</li>
+              <li><em>Unique cloners</em> is based on IP address, so will over-represent cloud users using multiple IP addresses</li>
+              <li>Traditional HPC centres may share workflow installations, so only have one clone for many users / pipeline runs</li>
+              <li>Cloud users will typically spin up a new instance and clone the workflow every time that they run a pipeline.</li>
+            </ul>
+          </li>
+          <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for nf-core repos started in July 2019. This is when we started counting the totals.</li>
+          <li>Metrics are fetched using the GitHub API only once per week (last checked <?php echo date('d-m-Y', $stats_json->updated); ?>).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="community">
 <h1>Community</h1>
@@ -262,12 +320,53 @@ if($total_commit_count > 1000000){
   </div>
   <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $total_commit_count; ?></p>
+      <p class="card-text display-4"><?php echo round_nicely($stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits']); ?></p>
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
   </div>
 </div>
+
+<section id="repo_traffic">
+  <h2>Repository traffic</h2>
+  <p>Every time a nextflow user pulls an nf-core pipeline, the repository is cloned. Here we can track how much that happens across all nf-core repositories.
+  Please note that these numbers come with some caveats <a href="#caveats">[ see more ]</a>.</p>
+  <p>Additionally, GitHub tracks how many times people view repository web pages on github.com.</p>
+
+  <div class="card mt-4">
+    <div class="card-header">Git clones: All nf-core repositories</div>
+    <div class="card-body">
+      <canvas id="repo_clones_plot" height="80"></canvas>
+    </div>
+    <div class="card-footer text-muted text-center small">
+      <div class="row">
+        <div class="col-6 border-right border-secondary">
+          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span><br>Clones
+        </div>
+        <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
+          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span><br>Unique cloners
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header">Visitors: All nf-core repositories</div>
+    <div class="card-body">
+      <canvas id="repo_views_plot" height="80"></canvas>
+    </div>
+    <div class="card-footer text-muted text-center small">
+      <div class="row">
+        <div class="col-6 border-right border-secondary">
+          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span><br>Views
+        </div>
+        <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
+          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span><br>Unique visitors
+        </div>
+      </div>
+    </div>
+  </div>
+</section> <!-- <section id="repo_views"> -->
 
 <?php
 // The pipeline and core repo tables are the same
@@ -279,34 +378,6 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
   <i class="far fa-hand-point-right"></i>
   Click a row to see detailed statistics for that repository.
 </p>
-
-<div class="card mb-3">
-  <div class="card-header">
-    <a href="#caveats_<?php echo $repo_type; ?>" data-toggle="collapse" data-target="#caveats_<?php echo $repo_type; ?>" class="text-muted small">
-      Read about how these numbers are collected and what caveats should be considered
-    </a>
-  </div>
-  <div id="caveats_<?php echo $repo_type; ?>" class="collapse">
-    <div class="card-body small">
-      <p>Please bear in mind the following points when looking over these numbers:</p>
-      <ul>
-        <li>Many pipelines are worked on long before they are forked to nf-core. The age, stars and other metrics of the original parent repository are not shown.</li>
-        <li>Metrics are for the default (<code>master</code>) branch only</li>
-        <li>Commits and contributors are only counted if associated with a GitHub account</li>
-        <li><code>nextflow pull</code> and <code>nextflow run</code> uses git to clone a remote repo the first time it runs, so the clones count gives some idea of usage. However:
-          <ul>
-            <li><em>Unique cloners</em> is based on IP address, so will under-represent institutional users sharing a single external IP address</li>
-            <li><em>Unique cloners</em> is based on IP address, so will over-represent cloud users using multiple IP addresses</li>
-            <li>Traditional HPC centres may share workflow installations, so only have one clone for many users / pipeline runs</li>
-            <li>Cloud users will typically spin up a new instance and clone the workflow every time that they run a pipeline.</li>
-          </ul>
-        </li>
-        <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for nf-core repos started in July 2019. This is when we started counting the totals.</li>
-        <li>Metrics are fetched using the GitHub API only once per week (last checked <?php echo date('d-m-Y', $stats_json->updated); ?>).</li>
-      </ul>
-    </div>
-  </div>
-</div>
 
 
 <div class="table-responsive">
@@ -531,6 +602,162 @@ $(function(){
   chartData['twitter'].options.title.text = '@nf_core twitter followers users over time';
   var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
   var twitter_followers_plot = new Chart(ctx, chartData['twitter']);
+
+  // Repo clones plot
+  chartData['repo_clones'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['repo_clones'].data = {
+    datasets: [
+      {
+        label: 'Clones per week',
+        backgroundColor: 'rgba(83, 164, 81, 1.0)',
+        borderColor: 'rgba(83, 164, 81, 1.0)',
+        fill: false,
+        pointRadius: 0,
+        yAxisID: 'y-axis-count',
+        data: [
+          <?php
+          ksort($stats_total_allrepos['clones_count']);
+          foreach($stats_total_allrepos['clones_count'] as $timestamp => $count){
+            $timestamp = strtotime($timestamp);
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
+            }
+            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Unique cloners per week',
+        backgroundColor: 'rgba(33, 94, 190, 1.0)',
+        borderColor: 'rgba(33, 94, 190, 1.0)',
+        fill: false,
+        pointRadius: 0,
+        yAxisID: 'y-axis-uniques',
+        data: [
+          <?php
+          ksort($stats_total_allrepos['clones_uniques']);
+          foreach($stats_total_allrepos['clones_uniques'] as $timestamp => $count){
+            $timestamp = strtotime($timestamp);
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
+            }
+            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['repo_clones'].options.title.text = 'nf-core git clones per week';
+  chartData['repo_clones'].options.elements.line.borderWidth = 2;
+  chartData['repo_clones'].options.scales.yAxes = [
+    {
+      id: 'y-axis-count',
+      display: true,
+      scaleLabel: {
+        display: true,
+        labelString: 'Clones per week',
+        fontColor: 'rgba(83, 164, 81, 1.0)',
+      },
+      position: 'left',
+      gridLines: { drawOnChartArea: false }
+    },
+    {
+      id: 'y-axis-uniques',
+      display: true,
+      scaleLabel: {
+        display: true,
+        labelString: 'Unique cloners per week',
+        fontColor: 'rgba(33, 94, 190, 1.0)',
+      },
+      position: 'right',
+      gridLines: { drawOnChartArea: false }
+    }
+  ];
+  var ctx = document.getElementById('repo_clones_plot').getContext('2d');
+  var repo_clones_plot = new Chart(ctx, chartData['repo_clones']);
+
+
+
+  // Repo views plot
+  chartData['repo_views'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['repo_views'].data = {
+    datasets: [
+      {
+        label: 'Views per week',
+        backgroundColor: 'rgba(83, 164, 81, 1.0)',
+        borderColor: 'rgba(83, 164, 81, 1.0)',
+        fill: false,
+        pointRadius: 0,
+        yAxisID: 'y-axis-count',
+        data: [
+          <?php
+          ksort($stats_total_allrepos['views_count']);
+          foreach($stats_total_allrepos['views_count'] as $timestamp => $count){
+            $timestamp = strtotime($timestamp);
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
+            }
+            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Unique visitors per week',
+        backgroundColor: 'rgba(33, 94, 190, 1.0)',
+        borderColor: 'rgba(33, 94, 190, 1.0)',
+        fill: false,
+        pointRadius: 0,
+        yAxisID: 'y-axis-uniques',
+        data: [
+          <?php
+          ksort($stats_total_allrepos['views_uniques']);
+          foreach($stats_total_allrepos['views_uniques'] as $timestamp => $count){
+            $timestamp = strtotime($timestamp);
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
+            }
+            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['repo_views'].options.title.text = 'nf-core repository web views per week';
+  chartData['repo_views'].options.elements.line.borderWidth = 2;
+  chartData['repo_views'].options.scales.yAxes = [
+    {
+      id: 'y-axis-count',
+      display: true,
+      scaleLabel: {
+        display: true,
+        labelString: 'Views per week',
+        fontColor: 'rgba(83, 164, 81, 1.0)',
+      },
+      position: 'left',
+      gridLines: { drawOnChartArea: false }
+    },
+    {
+      id: 'y-axis-uniques',
+      display: true,
+      scaleLabel: {
+        display: true,
+        labelString: 'Unique visitors per week',
+        fontColor: 'rgba(33, 94, 190, 1.0)',
+      },
+      position: 'right',
+      gridLines: { drawOnChartArea: false }
+    }
+  ];
+  var ctx = document.getElementById('repo_views_plot').getContext('2d');
+  var repo_views_plot = new Chart(ctx, chartData['repo_views']);
 
   // Make canvas2svg work with ChartJS
   // https://stackoverflow.com/a/52151467/713980
