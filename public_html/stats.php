@@ -175,61 +175,71 @@ if($total_commit_count > 1000000){
   </div>
 </div>
 
-<section id="slack">
-<h2>Slack</h2>
-<p>Slack is a real-time messaging tool, with discussion split into channels and groups.
-We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
-You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
-<div class="card bg-light mt-4">
-  <div class="card-body">
-    <canvas id="slack_users_plot" width="400" height="130"></canvas>
-    <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
-    <p class="card-text small text-muted"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
-  </div>
-</div>
-</section> <!-- <section id="slack"> -->
+<div class="row">
+  <div class="col-lg-6">
 
-<section id="gh_orgmembers">
-<h2>GitHub organisation members</h2>
-<p>We use GitHub to manage all of the code written for nf-core.
-It's a fantastic platform and provides a huge number of tools.
-We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
-drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> or anywhere and we'll send you an invite.
-</p>
-<p>It's not required to be a member of the nf-core GitHub organisation to contribute.
-However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
-</p>
-<div class="card bg-light mt-4">
-  <div class="card-body">
-    <canvas id="gh_orgmembers_plot" width="400" height="130"></canvas>
-    <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
-  </div>
-</div>
-</section> <!-- <section id="gh_orgmembers"> -->
+    <section id="slack">
+      <h2>Slack</h2>
+      <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
+      We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
+      You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
+      <div class="card bg-light mt-4">
+        <div class="card-body">
+          <canvas id="slack_users_plot" width="400" height="200"></canvas>
+          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
+          <p class="card-text small text-muted"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
+        </div>
+      </div>
+    </section> <!-- <section id="slack"> -->
 
-<section id="gh_contribs">
-<h2>GitHub contributors</h2>
-<p>Anybody can fork nf-core repositories and open a pull-request.
-Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
-<div class="card bg-light mt-4">
-  <div class="card-body">
-    <canvas id="gh_contribs_plot" width="400" height="130"></canvas>
-    <p class="card-text small text-muted mt-3"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+    <section id="twitter">
+      <h2>Twitter followers</h2>
+      <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
+      Follower counts give some indication to the level of interest in the nf-core project.</p>
+      <div class="card bg-light mt-4">
+        <div class="card-body">
+          <canvas id="twitter_followers_plot" width="400" height="150"></canvas>
+          <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
+        </div>
+      </div>
+    </section> <!-- <section id="twitter"> -->
   </div>
-</div>
-</section> <!-- <section id="gh_contribs"> -->
 
-<section id="twitter">
-<h2>Twitter followers</h2>
-<p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
-Follower counts give some indication to the level of interest in the nf-core project.</p>
-<div class="card bg-light mt-4">
-  <div class="card-body">
-    <canvas id="twitter_followers_plot" width="400" height="130"></canvas>
-    <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
+  <div class="col-lg-6">
+    <section id="gh_orgmembers">
+
+      <h2>GitHub organisation members</h2>
+      <p>We use GitHub to manage all of the code written for nf-core.
+      It's a fantastic platform and provides a huge number of tools.
+      We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
+      drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> or anywhere and we'll send you an invite.
+      </p>
+      <p>It's not required to be a member of the nf-core GitHub organisation to contribute.
+      However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
+      </p>
+      <div class="card bg-light mt-4">
+        <div class="card-body">
+          <canvas id="gh_orgmembers_plot" width="400" height="150"></canvas>
+          <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
+        </div>
+      </div>
+    </section> <!-- <section id="gh_orgmembers"> -->
+
+    <section id="gh_contribs">
+      <h2>GitHub contributors</h2>
+      <p>Anybody can fork nf-core repositories and open a pull-request.
+      Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
+      <div class="card bg-light mt-4">
+        <div class="card-body">
+          <canvas id="gh_contribs_plot" width="400" height="150"></canvas>
+          <p class="card-text small text-muted mt-3"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+        </div>
+      </div>
+    </section> <!-- <section id="gh_contribs"> -->
+
   </div>
 </div>
-</section> <!-- <section id="twitter"> -->
+
 </section> <!-- <section id="community"> -->
 
 
