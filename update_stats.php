@@ -232,6 +232,10 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
 
             // Count how many total contributors and contributions we have per week
             foreach($contributor->weeks as $w){
+                // Skip zeros (anything before 2010)
+                if($w->w < 1262304000){
+                    continue;
+                }
                 // Find earliest contribution per author
                 if(!isset($results['gh_contributors'][$contributor->author->login])){
                     $results['gh_contributors'][$contributor->author->login] = $w->w;
