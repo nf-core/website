@@ -631,6 +631,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .pipeline-stats-table .thead-light tr th {
   cursor: pointer;
 }
+.pipeline-stats-table tr th,
+.pipeline-stats-table tr td {
+  white-space: nowrap;
+}
 .ts-sort-indicator {
     margin-left: 5px;
 }
