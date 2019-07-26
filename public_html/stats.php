@@ -334,7 +334,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   <p>Additionally, GitHub tracks how many times people view repository web pages on github.com.</p>
 
   <div class="card mt-4">
-    <div class="card-header">Git clones: All nf-core repositories</div>
+    <div class="card-header">
+      <span class="float-right small text-muted"><a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a></span>
+      Git clones: All nf-core repositories
+    </div>
     <div class="card-body">
       <canvas id="repo_clones_plot" height="80"></canvas>
     </div>
@@ -351,7 +354,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
 
   <div class="card mt-4">
-    <div class="card-header">Visitors: All nf-core repositories</div>
+    <div class="card-header">
+      <span class="float-right small text-muted"><a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a></span>
+      Visitors: All nf-core repositories
+    </div>
     <div class="card-body">
       <canvas id="repo_views_plot" height="80"></canvas>
     </div>
