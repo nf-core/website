@@ -278,9 +278,9 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 
 <div class="card mb-3">
   <div class="card-header">
-      <button class="btn btn-link p-0 pb-1 collapsed text-muted" type="button" data-toggle="collapse" data-target="#caveats_<?php echo $repo_type; ?>">
-        Read about how these numbers are collected and what caveats should be considered
-      </button>
+    <a href="#caveats_<?php echo $repo_type; ?>" data-toggle="collapse" data-target="#caveats_<?php echo $repo_type; ?>" class="text-muted small">
+      Read about how these numbers are collected and what caveats should be considered
+    </a>
   </div>
   <div id="caveats_<?php echo $repo_type; ?>" class="collapse">
     <div class="card-body small">
