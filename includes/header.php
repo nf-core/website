@@ -165,8 +165,13 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
             </div>
           </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" href="/about">About</a>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/about">About nf-core</a>
+              <a class="dropdown-item" href="/stats">Statistics</a>
+              <a class="dropdown-item" href="/join">Get involved</a>
+            </div>
           </li>
         </ul>
         <hr class="d-md-none">
@@ -184,12 +189,9 @@ if( isset($markdown_fn) and $markdown_fn){
             <a class="nav-link" target="_blank" href="https://github.com/nf-core">See nf-core on GitHub</a>
           </li>
         </ul>
-        <div class="d-none d-md-block" style="position:absolute; right: 1rem;">
-          <a class="nav-link d-inline-block px-2" target="_blank" href="https://nf-core-invite.herokuapp.com/" data-toggle="tooltip" title="Chat on Slack"><img height="25px" src="/assets/img/slack.svg" /></a>
-          <a class="nav-link d-inline-block px-2" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core" data-toggle="tooltip" title="Google Groups email list"><img height="35px" src="/assets/img/google_groups.svg" /></a>
-          <a class="nav-link d-inline-block px-2" target="_blank" href="https://twitter.com/nf_core" data-toggle="tooltip" title="Follow on twitter"><img height="25px" src="/assets/img/twitter.svg" /></a>
-          <a class="nav-link d-inline-block px-2" target="_blank" href="https://github.com/nf-core" data-toggle="tooltip" title="See nf-core on GitHub"><img height="25px" src="/assets/img/github.svg" /></a>
-        </div>
+        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
+          Join nf-core
+        </a>
       </div>
     </nav>
 
