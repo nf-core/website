@@ -181,7 +181,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
             </ul>
           </li>
           <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for nf-core repos started in July 2019. This is when we started counting the totals.</li>
-          <li>Metrics are fetched using the GitHub API only once per week (last checked <?php echo date('d-m-Y', $stats_json->updated); ?>).</li>
+          <li>Metrics are fetched once per day (last checked <?php echo date('Y-m-d', $stats_json->updated); ?>).</li>
         </ul>
       </div>
     </div>
