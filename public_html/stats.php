@@ -117,6 +117,26 @@ if($total_commit_count > 1000000){
 //
 ?>
 
+<h1>Introduction</h1>
+<p>On this page you can see the beating heart of nf-core - the size of our community and the output of our work.</p>
+<ul>
+  <li><a href="#community">Community</a>
+    <ul>
+      <li><a href="#slack">Slack</a></li>
+      <li><a href="#gh_orgmembers">GitHub organisation members</a></li>
+      <li><a href="#gh_contribs">GitHub contributors</a></li>
+      <li><a href="#twitter">Twitter followers</a></li>
+    </ul>
+  </li>
+  <li><a href="#code">Code</a>
+    <ul>
+      <li><a href="#pipelines">Pipelines</a></li>
+      <li><a href="#core_repos">Core repositories</a></li>
+    </ul>
+  </li>
+</ul>
+
+<section id="community">
 <h1>Community</h1>
 <p>The numbers below track our growth over the various channels that the nf-core community operates in.</p>
 <p class="text-info small">
@@ -125,63 +145,95 @@ if($total_commit_count > 1000000){
 </p>
 
 <div class="card-group text-center stats_keynumbers">
-  <div class="card clickable bg-light" data-toggle="collapse" data-target="#slack_chart">
+  <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $slack_users->total; ?></p>
+      <p class="card-text display-4"><a href="#slack" class="text-body text-decoration-none stretched-link"><?php echo $slack_users->total; ?></a></p>
       <p class="card-text text-muted">Slack users</p>
     </div>
     <div class="bg-icon" style="color: rgba(89, 37, 101, 0.1);"><i class="fab fa-slack"></i></div>
   </div>
-  <div class="card clickable bg-light" data-toggle="collapse" data-target="#gh_orgmembers_chart">
+  <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></p>
+      <p class="card-text display-4"><a href="#gh_orgmembers" class="text-body text-decoration-none stretched-link"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></a></p>
       <p class="card-text text-muted">GitHub organisation members</p>
     </div>
     <div class="bg-icon"><i class="fab fa-github"></i></div>
   </div>
-  <div class="card clickable bg-light" data-toggle="collapse" data-target="#gh_contribs_chart">
+  <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo count($stats_total['total']['unique_contributors']); ?></p>
+      <p class="card-text display-4"><a href="#gh_contribs" class="text-body text-decoration-none stretched-link"><?php echo count($stats_total['total']['unique_contributors']); ?></a></p>
       <p class="card-text text-muted">GitHub contributors</p>
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
   </div>
-  <div class="card clickable bg-light" data-toggle="collapse" data-target="#twitter_chart">
+  <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $twitter_users; ?></p>
+      <p class="card-text display-4"><a href="#twitter" class="text-body text-decoration-none stretched-link"><?php echo $twitter_users; ?></a></p>
       <p class="card-text text-muted">Twitter followers</p>
     </div>
     <div class="bg-icon" style="color: rgba(74, 161, 235, 0.2);"><i class="fab fa-twitter"></i></div>
   </div>
 </div>
-<div id="stats_keynumbers_chart_wrapper">
-  <div class="card bg-light collapse stats_keynumbers_chart" id="slack_chart" data-parent="#stats_keynumbers_chart_wrapper">
-    <div class="card-body">
-      <canvas id="slack_users_plot" width="400" height="130"></canvas>
-      <p class="card-text small text-muted"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
-      <p class="card-text small text-muted mt-2"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
-    </div>
-  </div>
-  <div class="card bg-light collapse stats_keynumbers_chart" id="gh_orgmembers_chart" data-parent="#stats_keynumbers_chart_wrapper">
-    <div class="card-body">
-      <canvas id="gh_org_members" width="400" height="130"></canvas>
-    </div>
-  </div>
-  <div class="card bg-light collapse stats_keynumbers_chart" id="gh_contribs_chart" data-parent="#stats_keynumbers_chart_wrapper">
-    <div class="card-body">
-      Not yet implemented
-    </div>
-  </div>
-  <div class="card bg-light collapse stats_keynumbers_chart" id="twitter_chart" data-parent="#stats_keynumbers_chart_wrapper">
-    <div class="card-body">
-      <canvas id="twitter_followers_plot" width="400" height="130"></canvas>
-      <p class="card-text small text-muted mt-2"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
-    </div>
+
+<section id="slack">
+<h2 class="mt-4 pt-2">Slack</h2>
+<p>Slack is a real-time messaging tool, with discussion split into channels and groups.
+We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
+You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
+<div class="card bg-light mt-4">
+  <div class="card-body">
+    <canvas id="slack_users_plot" width="400" height="130"></canvas>
+    <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
+    <p class="card-text small text-muted"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
   </div>
 </div>
+</section> <!-- <section id="slack"> -->
+
+<section id="gh_orgmembers">
+<h2 class="mt-4 pt-2">GitHub organisation members</h2>
+<p>We use GitHub to manage all of the code written for nf-core.
+It's a fantastic platform and provides a huge number of tools.
+We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
+drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> or anywhere and we'll send you an invite.
+</p>
+<p>It's not required to be a member of the nf-core GitHub organisation to contribute.
+However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
+</p>
+<div class="card bg-light mt-4">
+  <div class="card-body">
+    <canvas id="gh_orgmembers_plot" width="400" height="130"></canvas>
+    <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
+  </div>
+</div>
+</section> <!-- <section id="gh_orgmembers"> -->
+
+<section id="gh_contribs">
+<h2 class="mt-4 pt-2">GitHub contributors</h2>
+<p>Anybody can fork nf-core repositories and open a pull-request.
+Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
+<div class="card bg-light mt-4">
+  <div class="card-body">
+    <canvas id="gh_contribs_plot" width="400" height="130"></canvas>
+    <p class="card-text small text-muted mt-3"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+  </div>
+</div>
+</section> <!-- <section id="gh_contribs"> -->
+
+<section id="twitter">
+<h2 class="mt-4 pt-2">Twitter followers</h2>
+<p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
+Follower counts give some indication to the level of interest in the nf-core project.</p>
+<div class="card bg-light mt-4">
+  <div class="card-body">
+    <canvas id="twitter_followers_plot" width="400" height="130"></canvas>
+    <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
+  </div>
+</div>
+</section> <!-- <section id="twitter"> -->
+</section> <!-- <section id="community"> -->
 
 
-
+<section id="code">
 <h1>Code stats</h1>
 <p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.</p>
 
@@ -232,6 +284,7 @@ endforeach;
 if(count($missing_stats)){ echo '</div>'; }
 ?>
 
+<section id="<?php echo $repo_type; ?>">
 <h2 class="mt-5 pt-0"><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
@@ -320,10 +373,11 @@ if(count($missing_stats)){ echo '</div>'; }
     </tr>
   </tfoot>
 </table>
+</section> <!-- <section id="<?php echo $repo_type; ?>"> -->
 
-<?php endforeach;
+<?php endforeach; ?>
 
-?>
+</section> <!-- <section id="code"> -->
 
 <script type="text/javascript">
 $(function(){
@@ -397,8 +451,8 @@ $(function(){
 
 
   // GitHub org members chart
-  var ctx = document.getElementById('gh_org_members').getContext('2d');
-  var gh_org_members = new Chart(ctx, {
+  var ctx = document.getElementById('gh_orgmembers_plot').getContext('2d');
+  var gh_orgmembers_plot = new Chart(ctx, {
     type: 'line',
     data: {
       datasets: [
@@ -420,6 +474,57 @@ $(function(){
       title: {
         display: true,
         text: 'nf-core GitHub organisation members over time',
+        fontSize: 16
+      },
+      elements: {
+        line: {
+          borderWidth: 1,
+          tension: 0 // disables bezier curves
+        }
+      },
+      scales: {
+        xAxes: [{
+          type: 'time'
+        }]
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        mode: 'x'
+      },
+    }
+  });
+
+
+  // GitHub contributors chart
+  var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
+  var gh_contribs = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          backgroundColor: 'rgba(0,0,0,0.2)',
+          borderColor: 'rgba(0,0,0,1)',
+          pointRadius: 0,
+          data: [
+            <?php
+            $gh_contributors = (array) $stats_json->gh_contributors;
+            sort($gh_contributors);
+            $cumulative_count = 0;
+            foreach($gh_contributors as $username => $timestamp){
+              $cumulative_count += 1;
+              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$cumulative_count.' },'."\n\t\t\t";
+            }
+            ?>
+          ]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'nf-core GitHub code contributors over time',
         fontSize: 16
       },
       elements: {
