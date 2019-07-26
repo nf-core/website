@@ -36,8 +36,11 @@ blockquote a {
 table img {
   max-width: 100%;
 }
-.clickable {
-  cursor: pointer;
+/* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980*/
+section:before {
+    height: 54px;
+    content: "";
+    display:block;
 }
 .rendered-markdown img {
   max-width: 80%;
@@ -643,11 +646,4 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   position: absolute;
   bottom: -80px;
   right: -20px;
-}
-.stats_keynumbers_chart {
-  margin-top: -2px;
-  z-index: -100;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }

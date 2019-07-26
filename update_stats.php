@@ -31,7 +31,11 @@ $results = array(
     'pipelines' => array(),
     'core_repos' => array(),
     'slack' => array(),
-    'gh_org_members' => array()
+    'gh_org_members' => array(),
+    'gh_contributors' => array(),
+    'gh_commits' => array(),
+    'gh_additions' => array(),
+    'gh_deletions' => array()
 );
 
 // Load a copy of the existing JSON file, if it exists
@@ -222,10 +226,27 @@ if(count($contribs_try_again) > 0){
     }
 }
 
-// The data for commits per week is massive - remove it
 foreach(['pipelines', 'core_repos'] as $repo_type){
     foreach($results[$repo_type] as $repo_name => $repo_stats){
         foreach($results[$repo_type][$repo_name]['contributors'] as $idx => $contributor){
+
+            // Count how many total contributors and contributions we have per week
+            foreach($contributor->weeks as $w){
+                // Find earliest contribution per author
+                if(!isset($results['gh_contributors'][$contributor->author->login])){
+                    $results['gh_contributors'][$contributor->author->login] = $w->w;
+                }
+                $results['gh_contributors'][$contributor->login] = min($w->w, $results['gh_contributors'][$contributor->login]);
+                // Sum total contributions for everyone
+                if(!isset($results['gh_commits'][$w->w])){ $results['gh_commits'][$w->w] = 0; }
+                if(!isset($results['gh_additions'][$w->w])){ $results['gh_additions'][$w->w] = 0; }
+                if(!isset($results['gh_deletions'][$w->w])){ $results['gh_deletions'][$w->w] = 0; }
+                $results['gh_commits'][$w->w] += $w->c;
+                $results['gh_additions'][$w->w] += $w->a;
+                $results['gh_deletions'][$w->w] += $w->d;
+            }
+
+            // The data for commits per week is massive - remove it
             unset($results[$repo_type][$repo_name]['contributors'][$idx]->weeks);
         }
     }

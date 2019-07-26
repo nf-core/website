@@ -130,6 +130,6 @@ $(function () {
         }
     });
 
-    // Make the Pipeline stats table sortable
+    // Make the stats tables sortable
     $('.pipeline-stats-table').TableSorter();
 });
