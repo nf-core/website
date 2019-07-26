@@ -69,7 +69,7 @@ foreach($stats as $repo_name => $repo):
       }
     }
     ?></td>
-    <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank">'.$metrics->full_name.'</a>'; ?></td>
+    <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank"><span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
     <td><?php echo time_ago($metrics->created_at, false); ?></td>
     <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
     <td class="text-right"><?php echo $repo->num_contributors; ?></td>
@@ -179,7 +179,7 @@ if($total_commit_count > 1000000){
       You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
       <div class="card bg-light mt-4">
         <div class="card-body">
-          <canvas id="slack_users_plot" width="400" height="200"></canvas>
+          <canvas id="slack_users_plot" height="200"></canvas>
           <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
           <p class="card-text small text-muted"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
         </div>
@@ -192,7 +192,7 @@ if($total_commit_count > 1000000){
       Follower counts give some indication to the level of interest in the nf-core project.</p>
       <div class="card bg-light mt-4">
         <div class="card-body">
-          <canvas id="twitter_followers_plot" width="400" height="150"></canvas>
+          <canvas id="twitter_followers_plot" height="150"></canvas>
           <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
         </div>
       </div>
@@ -213,7 +213,7 @@ if($total_commit_count > 1000000){
       </p>
       <div class="card bg-light mt-4">
         <div class="card-body">
-          <canvas id="gh_orgmembers_plot" width="400" height="150"></canvas>
+          <canvas id="gh_orgmembers_plot" height="150"></canvas>
           <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
         </div>
       </div>
@@ -225,7 +225,7 @@ if($total_commit_count > 1000000){
       Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
       <div class="card bg-light mt-4">
         <div class="card-body">
-          <canvas id="gh_contribs_plot" width="400" height="150"></canvas>
+          <canvas id="gh_contribs_plot" height="150"></canvas>
           <p class="card-text small text-muted mt-3"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
         </div>
       </div>
@@ -305,59 +305,61 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 </div>
 
 
-<table class="table table-hover table-sm small pipeline-stats-table">
-  <thead class="thead-light">
-    <tr>
-      <th>&nbsp;</th>
-      <th>Name</th>
-      <th>Age</th>
-      <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
-      <th class="text-right">Contributors</th>
-      <th class="text-right">Commits</th>
-      <th class="text-right">Stargazers</th>
-      <th class="text-right">Forks</th>
-      <th class="text-right">Clones</th>
-      <th class="text-right">Unique cloners</th>
-      <th class="text-right">Repo views</th>
-      <th class="text-right">Unique repo visitors</th>
-    </tr>
-  </thead>
-  <thead class="thead-dark">
-    <tr>
-      <th>&nbsp;</th>
-      <th>Total:</th>
-      <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
-      <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
-      <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_contributors']); ?> unique</th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['forks']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
-      <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_uniques_total']; ?></th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php echo implode($trows[$repo_type]); ?>
-  </tbody>
-  <tfoot class="thead-light">
-    <tr>
-      <th>&nbsp;</th>
-      <th>Name</th>
-      <th>Age</th>
-      <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
-      <th class="text-right">Contributors</th>
-      <th class="text-right">Commits</th>
-      <th class="text-right">Stargazers</th>
-      <th class="text-right">Forks</th>
-      <th class="text-right">Clones</th>
-      <th class="text-right">Unique cloners</th>
-      <th class="text-right">Repo views</th>
-      <th class="text-right">Unique repo visitors</th>
-    </tr>
-  </tfoot>
-</table>
+<div class="table-responsive">
+  <table class="table table-hover table-sm small pipeline-stats-table">
+    <thead class="thead-light">
+      <tr>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Age</th>
+        <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
+        <th class="text-right">Contributors</th>
+        <th class="text-right">Commits</th>
+        <th class="text-right">Stargazers</th>
+        <th class="text-right">Forks</th>
+        <th class="text-right">Clones</th>
+        <th class="text-right">Unique cloners</th>
+        <th class="text-right">Repo views</th>
+        <th class="text-right">Unique repo visitors</th>
+      </tr>
+    </thead>
+    <thead class="thead-dark">
+      <tr>
+        <th>&nbsp;</th>
+        <th>Total:</th>
+        <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
+        <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
+        <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_contributors']); ?> unique</th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['forks']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_uniques_total']; ?></th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php echo implode($trows[$repo_type]); ?>
+    </tbody>
+    <tfoot class="thead-light">
+      <tr>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Age</th>
+        <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
+        <th class="text-right">Contributors</th>
+        <th class="text-right">Commits</th>
+        <th class="text-right">Stargazers</th>
+        <th class="text-right">Forks</th>
+        <th class="text-right">Clones</th>
+        <th class="text-right">Unique cloners</th>
+        <th class="text-right">Repo views</th>
+        <th class="text-right">Unique repo visitors</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
 </section> <!-- <section id="<?php echo $repo_type; ?>"> -->
 
 <?php endforeach; ?>
