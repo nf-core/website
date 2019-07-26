@@ -122,6 +122,8 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="/assets/js/leaflet.js"></script>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
+    <script src="/assets/js/canvas2svg.js"></script>
+    <script src="/assets/js/FileSaver.js"></script>
     <script src="/assets/js/jquery-table-sorter.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
 
