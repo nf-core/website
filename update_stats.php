@@ -23,6 +23,7 @@ $updated = time();
 
 // Final filename to write JSON to
 $results_fn = dirname(__FILE__).'/nfcore_stats.json';
+$contribs_fn_root = dirname(__FILE__).'/contributor_stats/';
 
 // Initialise the results array with the current time and placeholders
 $results = array(
@@ -72,6 +73,7 @@ foreach($pipelines as $wf){
     if(!isset($results['pipelines'][$wf->name])){
         $results['pipelines'][$wf->name] = array();
     }
+    $results['pipelines'][$wf->name]['num_releases'] = count($wf->releases);
 }
 $ignored_repos = parse_ini_file("ignored_repos.ini")['repos'];
 foreach($ignored_repos as $name){
@@ -169,7 +171,9 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         }
         // Contributors
         $gh_contributors_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/stats/contributors';
-        $gh_contributors = json_decode(file_get_contents($gh_contributors_url, false, $gh_api_opts));
+        $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
+        file_put_contents($contribs_fn_root.$repo_name.'.json', $gh_contributors_raw);
+        $gh_contributors = json_decode($gh_contributors_raw);
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
@@ -181,6 +185,12 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
         $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
+
+        // Commits
+        $results[$repo_type][$repo_name]['commits'] = 0;
+        foreach($gh_contributors as $contributor){
+            $results[$repo_type][$repo_name]['commits'] += $contributor->total;
+        }
 
         // Recalculate totals
         foreach(['views_count', 'views_uniques', 'clones_count', 'clones_uniques'] as $ctype){
@@ -198,7 +208,9 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
 if(count($contribs_try_again) > 0){
     sleep(10);
     foreach($contribs_try_again as $repo_name => $gh_contributors_url){
-        $gh_contributors = json_decode(file_get_contents($gh_contributors_url, false, $gh_api_opts));
+        $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
+        file_put_contents($contribs_fn_root.$repo_name.'.json', $gh_contributors_raw);
+        $gh_contributors = json_decode($gh_contributors_raw);
         if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
             echo("Tried getting contributors after delay for $repo_name, but took too long.");
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){

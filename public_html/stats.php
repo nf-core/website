@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$title = 'Community statistics';
+$title = 'nf-core in numbers';
 $subtitle = 'Measuring activity across the nf-core community.';
 include('../includes/header.php');
 
@@ -15,7 +15,8 @@ $stats_json = json_decode(file_get_contents($stats_json_fn));
 
 // Convenience variables
 $slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
-$twitter_users = $stats_json->twitter->followers_count->{$stats_json->updated};
+$twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
+$twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)};
 
 # echo '<pre>'.print_r($stats, true).'</pre>';
 
@@ -33,20 +34,14 @@ $stats_total[$repo_type] = [
   'views_count_total' => 0,
   'views_uniques_total' => 0,
   'unique_contributors' => [],
-  'total_commits' => 0
+  'total_commits' => 0,
 ];
 
 $trows[$repo_type] = [];
 $missing_stats = [];
 foreach($stats as $repo_name => $repo):
   $metrics = $repo->repo_metrics->{$stats_json->updated};
-  $releases = 0;
-  foreach($pipelines as $wf){
-    if($wf->name == $repo_name){
-      $releases = count($wf->releases);
-    }
-  }
-  $stats_total[$repo_type]['releases'] += $releases;
+  $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
   $stats_total[$repo_type]['forks'] += $metrics->forks_count;
   $total_commits = 0;
@@ -69,9 +64,20 @@ foreach($stats as $repo_name => $repo):
   ob_start();
   ?>
   <tr>
+    <td><?php
+    if($metrics->archived){
+      echo '<small class="status-icon text-warning ml-2 fas fa-archive" title="" data-toggle="tooltip" aria-hidden="true" data-original-title="This repo has been archived and is no longer being maintained."></small>';
+    } else if($repo_type == 'pipelines'){
+      if($repo->num_releases){
+        echo '<small class="status-icon text-success ml-2 fas fa-check" title="" data-toggle="tooltip" aria-hidden="true" data-original-title="This pipeline is released, tested and good to go."></small>';
+      } else {
+        echo '<small class="status-icon text-danger ml-2 fas fa-wrench" title="" data-toggle="tooltip" aria-hidden="true" data-original-title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
+      }
+    }
+    ?></td>
     <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank">'.$metrics->full_name.'</a>'; ?></td>
     <td><?php echo time_ago($metrics->created_at, false); ?></td>
-    <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $releases; ?></td><?php endif; ?>
+    <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
     <td class="text-right"><?php echo isset($repo->num_contributors) ? $repo->num_contributors : $missing_stat; ?></td>
     <td class="text-right"><?php echo $total_commits; ?></td>
     <td class="text-right"><?php echo $metrics->stargazers_count; ?></td>
@@ -95,6 +101,15 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   $stats_total['total'][$akey] = $stats_total['pipelines'][$akey] + $stats_total['core_repos'][$akey];
 }
 
+$total_commit_count = $stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits'];
+if($total_commit_count > 1000000){
+  $total_commit_count /= 1000000;
+  $total_commit_count = round($total_commit_count, 2).'M';
+} else if($total_commit_count > 1000){
+  $total_commit_count /= 1000;
+  $total_commit_count = round($total_commit_count, 2).'K';
+}
+
 //
 //
 // TOP CARD DECK
@@ -102,35 +117,36 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 //
 ?>
 
-<h1>nf-core in numbers</h1>
+<h1>Community</h1>
+<p>The numbers below track our growth over the various channels that the nf-core community operates in.</p>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
   Click a number to see how the community has grown over time
 </p>
 
 <div class="card-group text-center stats_keynumbers">
-  <div class="card bg-light" data-toggle="collapse" data-target="#slack_chart">
+  <div class="card clickable bg-light" data-toggle="collapse" data-target="#slack_chart">
     <div class="card-body">
       <p class="card-text display-4"><?php echo $slack_users->total; ?></p>
       <p class="card-text text-muted">Slack users</p>
     </div>
     <div class="bg-icon" style="color: rgba(89, 37, 101, 0.1);"><i class="fab fa-slack"></i></div>
   </div>
-  <div class="card bg-light" data-toggle="collapse" data-target="#gh_orgmembers_chart">
+  <div class="card clickable bg-light" data-toggle="collapse" data-target="#gh_orgmembers_chart">
     <div class="card-body">
       <p class="card-text display-4"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></p>
       <p class="card-text text-muted">GitHub organisation members</p>
     </div>
     <div class="bg-icon"><i class="fab fa-github"></i></div>
   </div>
-  <div class="card bg-light" data-toggle="collapse" data-target="#gh_contribs_chart">
+  <div class="card clickable bg-light" data-toggle="collapse" data-target="#gh_contribs_chart">
     <div class="card-body">
       <p class="card-text display-4"><?php echo count($stats_total['total']['unique_contributors']); ?></p>
       <p class="card-text text-muted">GitHub contributors</p>
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
   </div>
-  <div class="card bg-light" data-toggle="collapse" data-target="#twitter_chart">
+  <div class="card clickable bg-light" data-toggle="collapse" data-target="#twitter_chart">
     <div class="card-body">
       <p class="card-text display-4"><?php echo $twitter_users; ?></p>
       <p class="card-text text-muted">Twitter followers</p>
@@ -166,6 +182,32 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 
 
 
+<h1>Code stats</h1>
+<p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.</p>
+
+<div class="card-group text-center stats_keynumbers">
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines)) + count(get_object_vars($stats_json->core_repos)); ?></p>
+      <p class="card-text text-muted">Repositories</p>
+    </div>
+    <div class="bg-icon"><i class="far fa-folder"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $stats_total['pipelines']['releases']; ?></p>
+      <p class="card-text text-muted">Pipeline releases</p>
+    </div>
+    <div class="bg-icon"><i class="fas fa-tags"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $total_commit_count; ?></p>
+      <p class="card-text text-muted">Commits</p>
+    </div>
+    <div class="bg-icon"><i class="far fa-file-code"></i></div>
+  </div>
+</div>
 
 <?php
 // The pipeline and core repo tables are the same
@@ -190,7 +232,7 @@ endforeach;
 if(count($missing_stats)){ echo '</div>'; }
 ?>
 
-<h2 class="mt-2"><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
+<h2 class="mt-5 pt-0"><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
   Click a row to see detailed statistics for that repository.
@@ -228,6 +270,7 @@ if(count($missing_stats)){ echo '</div>'; }
 <table class="table table-hover table-sm small pipeline-stats-table">
   <thead class="thead-light">
     <tr>
+      <th>&nbsp;</th>
       <th>Name</th>
       <th>Age</th>
       <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
@@ -243,6 +286,7 @@ if(count($missing_stats)){ echo '</div>'; }
   </thead>
   <thead class="thead-dark">
     <tr>
+      <th>&nbsp;</th>
       <th>Total:</th>
       <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
       <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
@@ -261,6 +305,7 @@ if(count($missing_stats)){ echo '</div>'; }
   </tbody>
   <tfoot class="thead-light">
     <tr>
+      <th>&nbsp;</th>
       <th>Name</th>
       <th>Age</th>
       <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
