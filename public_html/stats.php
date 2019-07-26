@@ -180,8 +180,9 @@ if($total_commit_count > 1000000){
       <div class="card bg-light mt-4">
         <div class="card-body">
           <canvas id="slack_users_plot" height="200"></canvas>
-          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be active when they haven't used slack for the previous 14 days.</p>
-          <p class="card-text small text-muted"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
+          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
+          <p class="card-text small text-muted mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
+          <p class="card-text small text-muted"><a href="#" data-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
         </div>
       </div>
     </section> <!-- <section id="slack"> -->
@@ -193,7 +194,8 @@ if($total_commit_count > 1000000){
       <div class="card bg-light mt-4">
         <div class="card-body">
           <canvas id="twitter_followers_plot" height="150"></canvas>
-          <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
+          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
+          <p class="card-text small text-muted"><a href="#" data-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
         </div>
       </div>
     </section> <!-- <section id="twitter"> -->
@@ -214,7 +216,8 @@ if($total_commit_count > 1000000){
       <div class="card bg-light mt-4">
         <div class="card-body">
           <canvas id="gh_orgmembers_plot" height="150"></canvas>
-          <p class="card-text small text-muted mt-3"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
+          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
+          <p class="card-text small text-muted"><a href="#" data-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
         </div>
       </div>
     </section> <!-- <section id="gh_orgmembers"> -->
@@ -226,7 +229,8 @@ if($total_commit_count > 1000000){
       <div class="card bg-light mt-4">
         <div class="card-body">
           <canvas id="gh_contribs_plot" height="150"></canvas>
-          <p class="card-text small text-muted mt-3"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+          <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
         </div>
       </div>
     </section> <!-- <section id="gh_contribs"> -->
@@ -369,48 +373,15 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 <script type="text/javascript">
 $(function(){
 
-  // Slack users chart
-  var ctx = document.getElementById('slack_users_plot').getContext('2d');
-  var slack_users_plot = new Chart(ctx, {
+  // Placeholder for chart data
+  var chartData = {};
+
+  // Chart.JS base config
+  var chartjs_base = {
     type: 'line',
-    data: {
-      datasets: [
-        {
-          label: 'Inactive',
-          backgroundColor: 'rgba(150,150,150, 0.2)',
-          borderColor: 'rgba(150,150,150, 1)',
-          pointRadius: 0,
-          data: [
-            <?php
-            foreach($stats_json->slack->user_counts as $timestamp => $users){
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->inactive.' },'."\n\t\t\t";
-            }
-            ?>
-          ]
-        },
-        {
-          label: 'Active',
-          backgroundColor: 'rgba(89, 37, 101, 0.2)',
-          borderColor: 'rgba(89, 37, 101, 1)',
-          pointRadius: 0,
-          data: [
-            <?php
-            foreach($stats_json->slack->user_counts as $timestamp => $users){
-              // Skip zeros (anything before 2010)
-              if($timestamp < 1262304000){
-                continue;
-              }
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->active.' },'."\n\t\t\t";
-            }
-            ?>
-          ]
-        }
-      ]
-    },
     options: {
       title: {
         display: true,
-        text: 'nf-core Slack users over time',
         fontSize: 16
       },
       elements: {
@@ -420,181 +391,187 @@ $(function(){
         }
       },
       scales: {
-        xAxes: [{
-          type: 'time'
-        }],
-        yAxes: [{
-          stacked: true
-        }]
+        xAxes: [{ type: 'time' }]
       },
       legend: {
-        position: 'bottom',
-        labels: {
-          lineWidth: 1
-        }
+        display: false
       },
-      tooltips: {
-        mode: 'x'
-      },
+      tooltips: { mode: 'x' },
     }
-  });
+  };
+
+
+
+  // Slack users chart
+  chartData['slack'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['slack'].data = {
+    datasets: [
+      {
+        label: 'Inactive',
+        backgroundColor: 'rgba(150,150,150, 0.2)',
+        borderColor: 'rgba(150,150,150, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($stats_json->slack->user_counts as $timestamp => $users){
+            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->inactive.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Active',
+        backgroundColor: 'rgba(89, 37, 101, 0.2)',
+        borderColor: 'rgba(89, 37, 101, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($stats_json->slack->user_counts as $timestamp => $users){
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
+            }
+            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$users->active.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['slack'].options.title.text = 'nf-core Slack users over time';
+  chartData['slack'].options.scales.yAxes = [{stacked: true }];
+  chartData['slack'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('slack_users_plot').getContext('2d');
+  var slack_users_plot = new Chart(ctx, chartData['slack']);
 
 
   // GitHub org members chart
-  var ctx = document.getElementById('gh_orgmembers_plot').getContext('2d');
-  var gh_orgmembers_plot = new Chart(ctx, {
-    type: 'line',
-    data: {
-      datasets: [
-        {
-          backgroundColor: 'rgba(0,0,0,0.2)',
-          borderColor: 'rgba(0,0,0,1)',
-          pointRadius: 0,
-          data: [
-            <?php
-            foreach($stats_json->gh_org_members as $timestamp => $count){
-              // Skip zeros (anything before 2010)
-              if($timestamp < 1262304000){
-                continue;
-              }
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+  chartData['gh_orgmembers'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['gh_orgmembers'].data = {
+    datasets: [
+      {
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        borderColor: 'rgba(0,0,0,1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($stats_json->gh_org_members as $timestamp => $count){
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
             }
-            ?>
-          ]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'nf-core GitHub organisation members over time',
-        fontSize: 16
-      },
-      elements: {
-        line: {
-          borderWidth: 1,
-          tension: 0 // disables bezier curves
-        }
-      },
-      scales: {
-        xAxes: [{
-          type: 'time'
-        }]
-      },
-      legend: {
-        display: false
-      },
-      tooltips: {
-        mode: 'x'
-      },
-    }
-  });
+            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['gh_orgmembers'].options.title.text = 'nf-core GitHub organisation members over time';
+  var ctx = document.getElementById('gh_orgmembers_plot').getContext('2d');
+  var gh_orgmembers_plot = new Chart(ctx, chartData['gh_orgmembers']);
 
 
   // GitHub contributors chart
-  var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
-  var gh_contribs = new Chart(ctx, {
-    type: 'line',
-    data: {
-      datasets: [
-        {
-          backgroundColor: 'rgba(0,0,0,0.2)',
-          borderColor: 'rgba(0,0,0,1)',
-          pointRadius: 0,
-          data: [
-            <?php
-            $gh_contributors = (array) $stats_json->gh_contributors;
-            sort($gh_contributors);
-            $cumulative_count = 0;
-            foreach($gh_contributors as $username => $timestamp){
-              // Skip zeros (anything before 2010)
-              if($timestamp < 1262304000){
-                continue;
-              }
-              $cumulative_count += 1;
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$cumulative_count.' },'."\n\t\t\t";
+  chartData['gh_contribs'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['gh_contribs'].data = {
+    datasets: [
+      {
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        borderColor: 'rgba(0,0,0,1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          $gh_contributors = (array) $stats_json->gh_contributors;
+          sort($gh_contributors);
+          $cumulative_count = 0;
+          foreach($gh_contributors as $username => $timestamp){
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
             }
-            ?>
-          ]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'nf-core GitHub code contributors over time',
-        fontSize: 16
-      },
-      elements: {
-        line: {
-          borderWidth: 1,
-          tension: 0 // disables bezier curves
-        }
-      },
-      scales: {
-        xAxes: [{
-          type: 'time'
-        }]
-      },
-      legend: {
-        display: false
-      },
-      tooltips: {
-        mode: 'x'
-      },
-    }
-  });
+            $cumulative_count += 1;
+            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$cumulative_count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['gh_contribs'].options.title.text = 'nf-core GitHub code contributors over time';
+  var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
+  var gh_contribs = new Chart(ctx, chartData['gh_contribs']);
 
 
   // Twitter followers chart
-  var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
-  var twitter_followers_plot = new Chart(ctx, {
-    type: 'line',
-    data: {
-      datasets: [
-        {
-          backgroundColor: 'rgba(74, 161, 235, 0.2)',
-          borderColor: 'rgba(74, 161, 235, 1)',
-          pointRadius: 0,
-          data: [
-            <?php
-            foreach($stats_json->twitter->followers_count as $timestamp => $count){
-              // Skip zeros (anything before 2010)
-              if($timestamp < 1262304000){
-                continue;
-              }
-              echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+  chartData['twitter'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['twitter'].data = {
+    datasets: [
+      {
+        backgroundColor: 'rgba(74, 161, 235, 0.2)',
+        borderColor: 'rgba(74, 161, 235, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($stats_json->twitter->followers_count as $timestamp => $count){
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
             }
-            ?>
-          ]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: '@nf_core twitter followers users over time',
-        fontSize: 16
-      },
-      elements: {
-        line: {
-          borderWidth: 1,
-          tension: 0 // disables bezier curves
-        }
-      },
-      scales: {
-        xAxes: [{
-          type: 'time'
-        }]
-      },
-      legend: {
-        display: false
-      },
-      tooltips: {
-        mode: 'x'
-      },
+            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['twitter'].options.title.text = '@nf_core twitter followers users over time';
+  var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
+  var twitter_followers_plot = new Chart(ctx, chartData['twitter']);
+
+  // Make canvas2svg work with ChartJS
+  // https://stackoverflow.com/a/52151467/713980
+  function canvas2svgTweakLib(){
+    C2S.prototype.getContext = function (contextId) {
+      if (contextId=="2d" || contextId=="2D") { return this; }
+      return null;
     }
+    C2S.prototype.style = function () { return this.__canvas.style }
+    C2S.prototype.getAttribute = function (name) { return this[name]; }
+    C2S.prototype.addEventListener =  function(type, listener, eventListenerOptions) {
+      console.log("canvas2svg.addEventListener() not implemented.")
+    }
+  }
+  canvas2svgTweakLib();
+
+  function exportChartJsSVG(target){
+    // Turn off responiveness
+    chartData[target].options.responsive = false;
+    chartData[target].options.animation = false;
+    // canvas2svg 'mock' context
+    var svgContext = C2S(800,400);
+    // new chart on 'mock' context fails:
+    var mySvg = new Chart(svgContext, chartData[target]);
+    // Failed to create chart: can't acquire context from the given item
+    var svg = svgContext.getSerializedSvg(true);
+    // Trigger browser download with SVG
+    var blob = new Blob([svg], {
+      type: "text/plain;charset=utf-8"
+    });
+    saveAs(blob, 'nf-core_'+target+'_plot.svg');
+    // Turn responiveness back on again
+    chartData[target].options.responsive = true;
+    chartData[target].options.animation = true;
+  }
+  $('.dl_plot_svg').click(function(e){
+    e.preventDefault();
+    var target = $(this).data('target');
+    exportChartJsSVG(target);
   });
+
 });
 
 </script>
