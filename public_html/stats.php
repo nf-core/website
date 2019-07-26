@@ -176,7 +176,7 @@ if($total_commit_count > 1000000){
 </div>
 
 <section id="slack">
-<h2 class="mt-4 pt-2">Slack</h2>
+<h2>Slack</h2>
 <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
 You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
@@ -190,7 +190,7 @@ You can join the nf-core slack by getting an invite <a href="https://nf-core-inv
 </section> <!-- <section id="slack"> -->
 
 <section id="gh_orgmembers">
-<h2 class="mt-4 pt-2">GitHub organisation members</h2>
+<h2>GitHub organisation members</h2>
 <p>We use GitHub to manage all of the code written for nf-core.
 It's a fantastic platform and provides a huge number of tools.
 We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
@@ -208,7 +208,7 @@ However, members get the nf-core logo listed on their profile page and full writ
 </section> <!-- <section id="gh_orgmembers"> -->
 
 <section id="gh_contribs">
-<h2 class="mt-4 pt-2">GitHub contributors</h2>
+<h2>GitHub contributors</h2>
 <p>Anybody can fork nf-core repositories and open a pull-request.
 Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
 <div class="card bg-light mt-4">
@@ -220,7 +220,7 @@ Here we count how many different people have contributed at least one commit to 
 </section> <!-- <section id="gh_contribs"> -->
 
 <section id="twitter">
-<h2 class="mt-4 pt-2">Twitter followers</h2>
+<h2>Twitter followers</h2>
 <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
 Follower counts give some indication to the level of interest in the nf-core project.</p>
 <div class="card bg-light mt-4">
@@ -285,7 +285,7 @@ if(count($missing_stats)){ echo '</div>'; }
 ?>
 
 <section id="<?php echo $repo_type; ?>">
-<h2 class="mt-5 pt-0"><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
+<h2><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
   Click a row to see detailed statistics for that repository.
