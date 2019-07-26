@@ -38,29 +38,23 @@ $stats_total[$repo_type] = [
 ];
 
 $trows[$repo_type] = [];
-$missing_stats = [];
 foreach($stats as $repo_name => $repo):
   $metrics = $repo->repo_metrics->{$stats_json->updated};
   $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
   $stats_total[$repo_type]['forks'] += $metrics->forks_count;
   $total_commits = 0;
-  if(!isset($repo)){
-    $missing_stats[] = $metrics->full_name;
-  } else {
-    $stats_total[$repo_type]['clones_count_total'] += $repo->clones_count_total;
-    $stats_total[$repo_type]['clones_uniques_total'] += $repo->clones_uniques_total;
-    $stats_total[$repo_type]['views_count_total'] += $repo->views_count_total;
-    $stats_total[$repo_type]['views_uniques_total'] += $repo->views_uniques_total;
-    foreach($repo->contributors as $contributor){
-      $gh_username = $contributor->author->login;
-      $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
-      $stats_total['total']['unique_contributors'][$gh_username] = 0;
-      $stats_total[$repo_type]['total_commits'] += $contributor->total;
-      $total_commits += $contributor->total;
-    }
+  $stats_total[$repo_type]['clones_count_total'] += $repo->clones_count_total;
+  $stats_total[$repo_type]['clones_uniques_total'] += $repo->clones_uniques_total;
+  $stats_total[$repo_type]['views_count_total'] += $repo->views_count_total;
+  $stats_total[$repo_type]['views_uniques_total'] += $repo->views_uniques_total;
+  foreach($repo->contributors as $contributor){
+    $gh_username = $contributor->author->login;
+    $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
+    $stats_total['total']['unique_contributors'][$gh_username] = 0;
+    $stats_total[$repo_type]['total_commits'] += $contributor->total;
+    $total_commits += $contributor->total;
   }
-  $missing_stat = '<abbr title="New ppeline - stats not yet fetched" data-toggle="tooltip" class="bg-warning">&nbsp;?&nbsp;</abbr>';
   ob_start();
   ?>
   <tr>
@@ -78,14 +72,14 @@ foreach($stats as $repo_name => $repo):
     <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank">'.$metrics->full_name.'</a>'; ?></td>
     <td><?php echo time_ago($metrics->created_at, false); ?></td>
     <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
-    <td class="text-right"><?php echo isset($repo->num_contributors) ? $repo->num_contributors : $missing_stat; ?></td>
+    <td class="text-right"><?php echo $repo->num_contributors; ?></td>
     <td class="text-right"><?php echo $total_commits; ?></td>
     <td class="text-right"><?php echo $metrics->stargazers_count; ?></td>
     <td class="text-right"><?php echo $metrics->forks_count; ?></td>
-    <td class="text-right"><?php echo isset($repo->clones_count_total) ? $repo->clones_count_total : $missing_stat; ?></td>
-    <td class="text-right"><?php echo isset($repo->clones_uniques_total) ? $repo->clones_uniques_total : $missing_stat; ?></td>
-    <td class="text-right"><?php echo isset($repo->views_count_total) ? $repo->views_count_total : $missing_stat; ?></td>
-    <td class="text-right"><?php echo isset($repo->views_uniques_total) ? $repo->views_uniques_total : $missing_stat; ?></td>
+    <td class="text-right"><?php echo $repo->clones_count_total; ?></td>
+    <td class="text-right"><?php echo $repo->clones_uniques_total; ?></td>
+    <td class="text-right"><?php echo $repo->views_count_total; ?></td>
+    <td class="text-right"><?php echo $repo->views_uniques_total; ?></td>
   </tr>
 <?php
 $trows[$repo_type][] = ob_get_contents();
@@ -273,26 +267,7 @@ if($total_commit_count > 1000000){
 
 <?php
 // The pipeline and core repo tables are the same
-foreach(['pipelines', 'core_repos'] as $repo_type):
-
-if(count($missing_stats)){ echo '<div class="toasts-container">'; }
-foreach($missing_stats as $missing_stat): ?>
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-  <div class="toast-header">
-    <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="nf-core logo">
-    <strong class="mr-auto">nf-core</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    Could not fetch statistics for <code><?php echo $missing_stat; ?></code>
-  </div>
-</div>
-<?php
-endforeach;
-if(count($missing_stats)){ echo '</div>'; }
-?>
+foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 
 <section id="<?php echo $repo_type; ?>">
 <h2><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
@@ -391,7 +366,6 @@ if(count($missing_stats)){ echo '</div>'; }
 
 <script type="text/javascript">
 $(function(){
-  $('.toast').toast('show');
 
   // Slack users chart
   var ctx = document.getElementById('slack_users_plot').getContext('2d');
