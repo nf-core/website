@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://nf-co.re/parameters.schema.json",
-    "version": "0.1.0dev",
+    "version": "0.2.0dev",
     "title": "Workflow Parameter Schema",
     "description": "Describes Nextflow workflow run parameters.",
     "type": "object",
@@ -62,9 +62,13 @@
                 "arity": {
                     "type": "integer",
                     "description": "Arity of a value."
+                },
+                "required": {
+                    "type": "boolean",
+                    "description": "True, if a parameter is required."
                 }
             },
-            "required": ["name", "label", "type", "default_value", "render"]
+            "required": ["name", "label", "type", "default_value", "render", "required"]
         }
     },
     "properties": {
