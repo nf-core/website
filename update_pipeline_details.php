@@ -101,10 +101,8 @@ foreach($gh_repos as $repo){
             'clone_url' => $repo->clone_url,
             'size' => $repo->size,
             'stargazers_count' => $repo->stargazers_count,
-            'watchers_count' => $repo->watchers_count,
             'forks_count' => $repo->forks_count,
             'archived' => $repo->archived,
-            'watchers' => $repo->watchers
         );
     }
 }
@@ -195,7 +193,7 @@ foreach($results['remote_workflows'] as $new_pipeline){
             continue;
         }
         // See if this tag name was in the previous JSON
-        if(!in_array($rel['tag_name'], $old_rel_tags[$new_pipeline['name']])){
+        if(!isset($old_rel_tags[$new_pipeline['name']]) || !in_array($rel['tag_name'], $old_rel_tags[$new_pipeline['name']])){
             // Prepare the tweet content!
             $tweet = 'Pipeline release! ';
             $tweet .= $new_pipeline['full_name'].' v'.$rel['tag_name'].' ('.$new_pipeline['description'].')';
@@ -209,7 +207,8 @@ foreach($results['remote_workflows'] as $new_pipeline){
     }
 }
 
-if(count($tweets) > 0){
+// Only tweet if we're on the live server!
+if(count($tweets) > 0 && $_SERVER['SERVER_NAME'] == 'nf-co.re'){
 
     // Connect to twitter
     $connection = new TwitterOAuth(
@@ -225,4 +224,4 @@ if(count($tweets) > 0){
     }
 }
 
-?>
+echo("update_pipeline_details done " . mktime());

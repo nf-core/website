@@ -24,9 +24,28 @@ blockquote {
   padding-left: 0.5rem;
   color: #999999;
 }
+mark, .mark {
+  padding: .2em 0;
+  background-color: rgba(251, 235, 129, 0.3);
+  color: inherit;
+}
 blockquote a {
   color: #999999;
   text-decoration: underline;
+}
+table img {
+  max-width: 100%;
+}
+/* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980*/
+section:before {
+    height: 54px;
+    content: "";
+    display:block;
+}
+.rendered-markdown img {
+  max-width: 80%;
+  margin: 1rem auto;
+  display: block;
 }
 .bg-dark a, .homepage-usedby a {
   color: rgba(255,255,255,.5);
@@ -52,6 +71,19 @@ blockquote a {
   pre, code {
     font-size: 10px;
   }
+}
+
+.toasts-container {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
+.toast {
+  background-color: rgba(255,255,255,.90)
+}
+.toast-header img {
+  height: 20px;
+  width: 20px;
 }
 
 .site-nav {
@@ -82,6 +114,9 @@ blockquote a {
   border-color: #ccc;
 }
 
+.triangle {
+  position: relative;
+}
 .triangle:before {
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -96,6 +131,9 @@ blockquote a {
 }
 .triangle-down:before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%2322ae63;' /%3E%3C/svg%3E");
+}
+.subheader-triangle-down:before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%23ededed;' /%3E%3C/svg%3E");
 }
 
 .btn-outline-success:not(:disabled):not(.disabled) {
@@ -175,12 +213,19 @@ code {
   padding: 0;
 }
 
-footer {
+footer.footer {
   padding: 4rem 0 5rem;
   background-color: rgba(240,240,240,.95);
 }
-footer h5 {
+footer.footer h5 {
   color: #444444;
+}
+footer.subfooter {
+  padding: 2rem 0;
+  background-color: rgba(240,240,240,.5);
+}
+footer, footer a, footer a:hover, footer a:focus, footer a:active {
+  color: #6c757d;
 }
 
 /*
@@ -195,11 +240,25 @@ footer h5 {
   color: #ffffff;
   padding: 3rem 0;
 }
-.mainpage-heading h1 {
+.mainpage-heading h1, .mainpage-heading h1 a {
   color: #ffffff;
+  text-decoration: none;
+}
+@media only screen and (max-width: 770px) {
+  .mainpage-heading h1 {
+    font-size: 3rem;
+  }
+}
+.mainpage-heading h1 a:hover, .mainpage-heading h1 a:focus {
+  color: #dae0e5;
 }
 .mainpage-heading code {
   color: #ffffff;
+}
+.mainpage-subheader-heading {
+  background-color: #ededed;
+  margin-top: -30px;
+  padding: 4rem 0 1rem;
 }
 .main-content {
   min-height: 300px;
@@ -325,6 +384,24 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-color: #22ae63;
 }
 
+.searchbar_form {
+  justify-content: center;
+}
+.searchbar_form input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  width: auto;
+}
+.searchbar_form button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.homepage_search.searchbar_form {
+  margin-bottom: 3rem;
+}
+
+
 
 .homepage-intro {
   background-color: #22ae63;
@@ -404,6 +481,13 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   background-color: #229b5a;
   color: #fff;
 }
+.pipelines-toolbar .pipeline-filters input.active:not(:focus) {
+  color: #495057;
+  background-color: #fff;
+  border-color: #22ae63;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(84, 171, 106,.25);
+}
 .pipeline .card-title {
   margin-top: 0;
   padding-top: 0;
@@ -437,10 +521,57 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .pipeline .card-text {
   font-size: 0.9rem;
 }
-.pipeline .pipeline-topic {
+.pipeline .pipeline-topic,
+.search-page-result .pipeline-topic {
   background-color: #f8f9fa;
   color: #159957;
   font-weight: 400;
+}
+.mainpage-heading .pipeline-topic {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+.pipelines-container-list .pipeline.card_deck_card.card {
+  min-width: 100%;
+  margin-bottom: 0;
+  border-bottom: none;
+  border-radius: 0;
+}
+.pipelines-container-list .pipeline.card_deck_card.card:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.pipelines-container-list .pipeline.card_deck_card.card:last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.pipelines-container-list .pipeline .card-body {
+  padding: 0.8rem;
+}
+.pipelines-container-list .pipeline .card-title {
+  font-size: 1.2rem;
+  width: 30%;
+}
+.pipelines-container-list .card-text {
+    width: 70%;
+    margin-top: 0 !important;
+    margin-bottom: 1rem;
+}
+.pipelines-container-list .card-title,
+.pipelines-container-list .card-text {
+  float: left;
+}
+.pipelines-container-list h3 .status-icon {
+  float: left;
+  margin: 0.3rem 0.5rem 0 0;
+  margin-left: 0 !important;
+}
+.pipelines-container-list .dl-btn-row,
+.pipelines-container-list .topics,
+.pipelines-container-list .stargazers {
+    display: none;
 }
 
 /*
@@ -474,4 +605,49 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .contributor_map_logo {
   height: 45px;
   margin-top: .25rem;
+}
+
+
+.pipeline-page-toc {
+  background-color: #fcfcfc;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  font-size: 80%;
+  margin: 1rem;
+  padding: 1rem 1rem 0 0;
+}
+@media only screen and (min-width: 770px) {
+  .pipeline-page-toc {
+    width: 250px;
+    float: right;
+    margin: 3rem 0 1rem 1rem;
+  }
+}
+.pipeline-page-toc a.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.pipeline-stats-table .thead-light tr th {
+  cursor: pointer;
+}
+.pipeline-stats-table tr th,
+.pipeline-stats-table tr td {
+  white-space: nowrap;
+}
+.ts-sort-indicator {
+    margin-left: 5px;
+}
+
+
+/* Stats page */
+.stats_keynumbers .card {
+  overflow: hidden;
+}
+.stats_keynumbers .bg-icon {
+  font-size: 180px;
+  color: rgba(0,0,0,0.1);
+  position: absolute;
+  bottom: -80px;
+  right: -20px;
 }

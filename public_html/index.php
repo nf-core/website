@@ -26,6 +26,10 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
+    <form class="form-inline searchbar_form homepage_search" action="search" method="get">
+      <input type="search" class="form-control" placeholder="Search" name="q" required>
+      <button type="submit" class="btn btn-outline-success">Search</button>
+    </form>
 
     <div class="triangle triangle-up"></div>
     <div class="homepage-intro">
