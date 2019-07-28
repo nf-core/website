@@ -224,4 +224,4 @@ if(count($tweets) > 0 && $_SERVER['SERVER_NAME'] == 'nf-co.re'){
     }
 }
 
-echo("update_pipeline_details done " . mktime());
+echo("\nupdate_pipeline_details done " . date("Y-m-d h:i:s") . "\n\n");
