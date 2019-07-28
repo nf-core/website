@@ -182,7 +182,10 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
         if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
-            $contribs_try_again[$repo_name] = $gh_contributors_url;
+            $contribs_try_again[$repo_name] = [
+                'repo_type' => $repo_type,
+                'gh_contributors_url' => $gh_contributors_url
+            ];
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
             die("Could not fetch nf-core repo contributors! $gh_contributors_url");
@@ -211,7 +214,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
 // Try contribs again now that we've let it fire
 if(count($contribs_try_again) > 0){
     sleep(10);
-    foreach($contribs_try_again as $repo_name => $gh_contributors_url){
+    foreach($contribs_try_again as $repo_name => $details){
+        extract($details); // $repo_type, $gh_contributors_raw
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root.$repo_name.'.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
@@ -324,4 +328,4 @@ if(isset($twitter_stats->followers_count)){
 $results_json = json_encode($results, JSON_PRETTY_PRINT)."\n";
 file_put_contents($results_fn, $results_json);
 
-echo("update_stats done " . mktime()."\n");
+echo("\nupdate_stats done " . date("Y-m-d h:i:s") . "\n\n");
