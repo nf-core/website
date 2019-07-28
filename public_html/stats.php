@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 function round_nicely($num){
   if($num > 1000000){
@@ -16,6 +16,7 @@ function round_nicely($num){
 
 $title = 'nf-core in numbers';
 $subtitle = 'Measuring activity across the nf-core community.';
+$import_chartjs = true;
 include('../includes/header.php');
 
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
@@ -62,6 +63,16 @@ $stats_total[$repo_type] = [
 
 $trows[$repo_type] = [];
 foreach($stats as $repo_name => $repo):
+  // Exit quietly if something has gone wrong
+  if(!isset($repo->repo_metrics)){
+    echo '<!-- ERROR: $repo->repo_metrics not set for "'.$repo_name.'" -->';
+    continue;
+  }
+  if(!isset($repo->repo_metrics->{$stats_json->updated})){
+    echo '<!-- ERROR: $repo->repo_metrics->'.$stats_json->updated.' not set for "'.$repo_name.'" -->';
+    continue;
+  }
+  // Ok, continue!
   $metrics = $repo->repo_metrics->{$stats_json->updated};
   $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
@@ -98,6 +109,8 @@ foreach($stats as $repo_name => $repo):
     if($metrics->archived){
       echo '<small class="status-icon text-warning ml-2 fas fa-archive" data-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
     } else if($repo_type == 'pipelines'){
+      // Edge case where a new pipeline is added but stats hasn't rerun yet
+      if(!isset($repo->num_releases)){ $repo->num_releases = 0; }
       if($repo->num_releases){
         echo '<small class="status-icon text-success ml-2 fas fa-check" data-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
       } else {
@@ -176,7 +189,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
             <ul>
               <li><em>Unique cloners</em> is based on IP address, so will under-represent institutional users sharing a single external IP address</li>
               <li><em>Unique cloners</em> is based on IP address, so will over-represent cloud users using multiple IP addresses</li>
-              <li>Traditional HPC centres may share workflow installations, so only have one clone for many users / pipeline runs</li>
+              <li>Traditional HPC centres may share workflow installations, so only have one clone for many users &nbsp;/&nbsp; pipeline runs</li>
               <li>Cloud users will typically spin up a new instance and clone the workflow every time that they run a pipeline.</li>
             </ul>
           </li>
@@ -240,7 +253,9 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
           <canvas id="slack_users_plot" height="200"></canvas>
           <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
           <p class="card-text small text-muted mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
-          <p class="card-text small text-muted"><a href="#" data-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
+          <p class="card-text small text-muted">
+            <a href="#" data-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="slack" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          </p>
         </div>
       </div>
     </section> <!-- <section id="slack"> -->
@@ -253,7 +268,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
         <div class="card-body">
           <canvas id="twitter_followers_plot" height="150"></canvas>
           <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
-          <p class="card-text small text-muted"><a href="#" data-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
+          <p class="card-text small text-muted"><a href="#" data-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a>  &nbsp;/&nbsp; <a href="#" data-target="twitter" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
         </div>
       </div>
     </section> <!-- <section id="twitter"> -->
@@ -275,7 +290,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
         <div class="card-body">
           <canvas id="gh_orgmembers_plot" height="150"></canvas>
           <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
-          <p class="card-text small text-muted"><a href="#" data-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
+          <p class="card-text small text-muted"><a href="#" data-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
         </div>
       </div>
     </section> <!-- <section id="gh_orgmembers"> -->
@@ -288,7 +303,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
         <div class="card-body">
           <canvas id="gh_contribs_plot" height="150"></canvas>
           <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
-          <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG.</a></p>
+          <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
         </div>
       </div>
     </section> <!-- <section id="gh_contribs"> -->
@@ -335,7 +350,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 
   <div class="card mt-4">
     <div class="card-header">
-      <span class="float-right small text-muted"><a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a></span>
+      <span class="float-right small text-muted">
+        <a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+        &nbsp;/&nbsp; <a href="#" data-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+      </span>
       Git clones: All nf-core repositories
     </div>
     <div class="card-body">
@@ -355,7 +373,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 
   <div class="card mt-4">
     <div class="card-header">
-      <span class="float-right small text-muted"><a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a></span>
+      <span class="float-right small text-muted">
+        <a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+        &nbsp;/&nbsp; <a href="#" data-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+      </span>
       Visitors: All nf-core repositories
     </div>
     <div class="card-body">
@@ -452,6 +473,7 @@ $(function(){
 
   // Placeholder for chart data
   var chartData = {};
+  var charts = {};
 
   // Chart.JS base config
   var chartjs_base = {
@@ -474,6 +496,16 @@ $(function(){
         display: false
       },
       tooltips: { mode: 'x' },
+      plugins: {
+        zoom: {
+          zoom: {
+            enabled: true,
+            drag: true,
+            mode: 'x',
+            speed: 0.05
+          }
+        }
+      }
     }
   };
 
@@ -522,7 +554,7 @@ $(function(){
     labels: { lineWidth: 1 }
   };
   var ctx = document.getElementById('slack_users_plot').getContext('2d');
-  var slack_users_plot = new Chart(ctx, chartData['slack']);
+  charts['slack'] = new Chart(ctx, chartData['slack']);
 
 
   // GitHub org members chart
@@ -549,7 +581,7 @@ $(function(){
   };
   chartData['gh_orgmembers'].options.title.text = 'nf-core GitHub organisation members over time';
   var ctx = document.getElementById('gh_orgmembers_plot').getContext('2d');
-  var gh_orgmembers_plot = new Chart(ctx, chartData['gh_orgmembers']);
+  charts['gh_orgmembers'] = new Chart(ctx, chartData['gh_orgmembers']);
 
 
   // GitHub contributors chart
@@ -580,7 +612,7 @@ $(function(){
   };
   chartData['gh_contribs'].options.title.text = 'nf-core GitHub code contributors over time';
   var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
-  var gh_contribs = new Chart(ctx, chartData['gh_contribs']);
+  charts['gh_contribs'] = new Chart(ctx, chartData['gh_contribs']);
 
 
   // Twitter followers chart
@@ -607,7 +639,7 @@ $(function(){
   };
   chartData['twitter'].options.title.text = '@nf_core twitter followers users over time';
   var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
-  var twitter_followers_plot = new Chart(ctx, chartData['twitter']);
+  charts['twitter'] = new Chart(ctx, chartData['twitter']);
 
   // Repo clones plot
   chartData['repo_clones'] = JSON.parse(JSON.stringify(chartjs_base));
@@ -684,7 +716,7 @@ $(function(){
     }
   ];
   var ctx = document.getElementById('repo_clones_plot').getContext('2d');
-  var repo_clones_plot = new Chart(ctx, chartData['repo_clones']);
+  charts['repo_clones'] = new Chart(ctx, chartData['repo_clones']);
 
 
 
@@ -763,7 +795,7 @@ $(function(){
     }
   ];
   var ctx = document.getElementById('repo_views_plot').getContext('2d');
-  var repo_views_plot = new Chart(ctx, chartData['repo_views']);
+  charts['repo_views'] = new Chart(ctx, chartData['repo_views']);
 
   // Make canvas2svg work with ChartJS
   // https://stackoverflow.com/a/52151467/713980
@@ -803,6 +835,11 @@ $(function(){
     e.preventDefault();
     var target = $(this).data('target');
     exportChartJsSVG(target);
+  });
+  $('.reset_chart_zoom').click(function(e){
+    e.preventDefault();
+    var target = $(this).data('target');
+    charts[target].resetZoom();
   });
 
 });

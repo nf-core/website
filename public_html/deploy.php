@@ -18,6 +18,6 @@ if ( $_POST['payload'] ) {
   // Pull the new version of the tools repo (code documentation)
   shell_exec("cd /home/nfcore/tools-docs && git fetch && git reset --hard origin/api-doc >> /home/nfcore/update.log 2>&1 &");
 
-  die("deploy done " . mktime());
+  die("\ndeploy done " . date("Y-m-d h:i:s") . "\n\n");
 
 }
