@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 function round_nicely($num){
   if($num > 1000000){
@@ -62,6 +62,16 @@ $stats_total[$repo_type] = [
 
 $trows[$repo_type] = [];
 foreach($stats as $repo_name => $repo):
+  // Exit quietly if something has gone wrong
+  if(!isset($repo->repo_metrics)){
+    echo '<!-- ERROR: $repo->repo_metrics not set for "'.$repo_name.'" -->';
+    continue;
+  }
+  if(!isset($repo->repo_metrics->{$stats_json->updated})){
+    echo '<!-- ERROR: $repo->repo_metrics->'.$stats_json->updated.' not set for "'.$repo_name.'" -->';
+    continue;
+  }
+  // Ok, continue!
   $metrics = $repo->repo_metrics->{$stats_json->updated};
   $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
@@ -98,6 +108,8 @@ foreach($stats as $repo_name => $repo):
     if($metrics->archived){
       echo '<small class="status-icon text-warning ml-2 fas fa-archive" data-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
     } else if($repo_type == 'pipelines'){
+      // Edge case where a new pipeline is added but stats hasn't rerun yet
+      if(!isset($repo->num_releases)){ $repo->num_releases = 0; }
       if($repo->num_releases){
         echo '<small class="status-icon text-success ml-2 fas fa-check" data-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
       } else {
