@@ -4,19 +4,28 @@ RewriteBase /
 RewriteCond %{SERVER_PORT} 80
 RewriteRule ^(.*)$ https://nf-co.re/$1 [R,L]
 
-# Docs URL rewrite
-RewriteRule ^developers/(.*)$ docs.php?md=$1 [L,NC]
-RewriteRule ^usage/(.*)$ docs.php?md=$1 [L,NC]
+# Remove www. from URL
+RewriteCond %{HTTP_HOST} ^www.nf-co.re$ [NC]
+RewriteRule ^(.*)$ https://nf-co.re/$1 [R=301,L]
 
-# Run Php without filename extension
+# Remove double-slashes
+RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
+RewriteRule (.*) %1/%2 [R=301,L]
+
+# Run PHP without filename extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
 
 # Return 404 if original request is .php
-RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
-RewriteRule .* - [L,R=404]
+RewriteCond %{THE_REQUEST} \.php[/\s?] [NC]
+RewriteRule !^404 - [R=404,L]
+
+# Send everything else to our dynamic content loader
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /docs.php?path=$1 [L,NC,QSA]
 
 # Nicer error pages
 ErrorDocument 404 /404.php
