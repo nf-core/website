@@ -61,11 +61,16 @@ I've built the site so that most of the hand-written text is in `/markdown`, to 
 Note that the `.htaccess` file is set up to remove the `.php` file extensions in URLs.
 
 ## Server Setup
-The webserver needs the following cronjob running to scrape pipeline statistics once a week:
+
+### Stats cronjob
+The web server needs the following cronjob running to scrape pipeline statistics once a week:
 
 ```
-0	0	*	*	0	/usr/local/bin/php /home/nfcore/nfcore_stats.json >> /home/nfcore/update.log 2>&1
+0	0	*	*	*	/usr/local/bin/php /home/nfcore/nf-co.re/update_stats.php >> /home/nfcore/update.log 2>&1
 ```
+
+### Tools API docs
+The repo has a softlink for `/tools-docs` which is intended for use on the server and corresponds to the path used in `public_html/deploy.php`. This script pulls the built API docs from the tools repo onto the server so that it can be served at that URL.
 
 ## Credits
 Phil ([@ewels](http://github.com/ewels/)) built this site, mostly over the course of one caffeine-fuelled evening.
