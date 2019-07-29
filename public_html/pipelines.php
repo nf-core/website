@@ -1,55 +1,13 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-function rsort_releases($a, $b){
-    $t1 = strtotime($a->published_at);
-    $t2 = strtotime($b->published_at);
-    return $t2 - $t1;
-}
-function rsort_pipelines($a, $b){
-    $t1 = strtotime($a->last_release);
-    $t2 = strtotime($b->last_release);
-    return $t2 - $t1;
-}
 
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
-usort($pipelines, 'rsort_pipelines');
-
-// From https://stackoverflow.com/a/18891474/713980
-function time_ago($date) {
-    $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
-    $lengths = array("60", "60", "24", "7", "4.35", "12", "10");
-    $now = time();
-    if(is_numeric($date)) $unix_date = $date;
-    else $unix_date = strtotime($date);
-    // check validity of date
-    if (empty($unix_date)) {
-        return $date;
-    }
-    // is it future date or past date
-    if ($now > $unix_date) {
-        $difference = $now - $unix_date;
-        $tense = "ago";
-    } else {
-        $difference = $unix_date - $now;
-        $tense = "from now";
-    }
-    for ($j = 0; $difference >= $lengths[$j] && $j < count($lengths) - 1; $j++) {
-        $difference /= $lengths[$j];
-    }
-    $difference = round($difference);
-    if ($difference != 1) {
-        $periods[$j].= "s";
-    }
-    return "$difference $periods[$j] {$tense}";
-}
 
 $title = 'Pipelines';
 $subtitle = 'Browse the <strong>'.$pipelines_json->pipeline_count.'</strong> pipelines that are currently available as part of nf-core.';
 include('../includes/header.php');
+
+usort($pipelines, 'rsort_pipelines');
 ?>
 
 <h1>Available Pipelines</h1>
@@ -58,30 +16,45 @@ include('../includes/header.php');
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
-    <input type="text" class="form-control" placeholder="Search keywords">
+    <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo $_GET['q']; ?>">
   </div>
-  <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
+  <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>
   </div>
   <div class="pipeline-filters btn-group btn-group-sm mr-2 mt-2">
     <?php if($pipelines_json->published_count > 0): ?>
-      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">Released <span class="badge badge-light"><?php echo $pipelines_json->published_count; ?></span></button>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-released">
+        Released
+        <span class="badge badge-light d-none d-lg-inline"><?php echo $pipelines_json->published_count; ?></span>
+      </button>
     <?php endif;
     if($pipelines_json->devel_count > 0): ?>
-      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">Under development <span class="badge badge-light"><?php echo $pipelines_json->devel_count; ?></span></button>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-dev">
+        <span class="d-none d-lg-inline">Under development</span> <span class="d-inline d-lg-none">Dev</span>
+        <span class="badge badge-light d-none d-lg-inline"><?php echo $pipelines_json->devel_count; ?></span>
+      </button>
     <?php endif;
     if($pipelines_json->archived_count > 0): ?>
-      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">Archived <span class="badge badge-light"><?php echo $pipelines_json->archived_count; ?></span></button>
+      <button type="button" class="btn btn-sm btn-outline-success active" data-target=".pipeline-archived">
+        Archived
+        <span class="badge badge-light d-none d-lg-inline"><?php echo $pipelines_json->archived_count; ?></span>
+      </button>
     <?php endif; ?>
   </div>
-  <div class="btn-group btn-group-sm mt-2 d-none d-sm-block" role="group">
+  <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
     <button type="button" class="btn btn-link text-body">Sort:</button>
   </div>
   <div class="pipeline-sorts btn-group btn-group-sm mr-2 mt-2" role="group">
-    <button type="button" class="btn btn-outline-success active">Last Release</button>
+    <button type="button" class="btn btn-outline-success active"><span class="d-none d-xl-inline">Last</span> Release</button>
     <button type="button" class="btn btn-outline-success">Alphabetical</button>
-    <button type="button" class="btn btn-outline-success">Status</button>
     <button type="button" class="btn btn-outline-success">Stars</button>
+  </div>
+  <div class="btn-group btn-group-sm mt-2 d-none d-xl-block" role="group">
+    <button type="button" class="btn btn-link text-body">Display:</button>
+  </div>
+  <div class="btn-group btn-group-sm mt-2" role="group">
+    <button data-dtype="blocks" type="button" class="display-btn btn btn-outline-success active" title="Display as blocks" data-toggle="tooltip"><i class="fas fa-th-large"></i></button>
+    <button data-dtype="list" type="button" class="display-btn btn btn-outline-success" title="Display as list" data-toggle="tooltip"><i class="fas fa-bars"></i></button>
   </div>
 </div>
 
@@ -90,7 +63,7 @@ include('../includes/header.php');
 <div class="card-deck pipelines-container">
 <?php foreach($pipelines as $wf): ?>
     <div class="card card_deck_card pipeline <?php if($wf->archived): ?>pipeline-archived<?php elseif(count($wf->releases) == 0): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
-        <div class="card-body">
+        <div class="card-body clearfix">
             <h3 class="card-title mb-0">
                 <?php if($wf->stargazers_count > 0): ?>
                 <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers mt-2 ml-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ml-2'></small>" data-toggle="tooltip" data-html="true">
@@ -98,13 +71,13 @@ include('../includes/header.php');
                     <?php echo $wf->stargazers_count; ?>
                 </a>
                 <?php endif; ?>
-                <a href="<?php echo $wf->html_url; ?>" target="_blank" class="pipeline-name">
-                    <?php echo $wf->full_name; ?>
+                <a href="/<?php echo $wf->name; ?>" class="pipeline-name">
+                    <span class="d-none d-lg-inline">nf-core/</span><?php echo $wf->name; ?>
                 </a>
                 <?php if($wf->archived): ?>
                 <small class="status-icon text-warning ml-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-toggle="tooltip"></small>
                 <?php elseif(count($wf->releases) == 0): ?>
-                    <small class="status-icon text-danger ml-2 fas fa-exclamation-triangle" title="This pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
+                    <small class="status-icon text-danger ml-2 fas fa-wrench" title="This pipeline is under active development. Once released on GitHub, it will be production-ready." data-toggle="tooltip"></small>
                 <?php else: ?>
                     <small class="status-icon text-success ml-2 fas fa-check" title="This pipeline is released, tested and good to go." data-toggle="tooltip"></small>
                 <?php endif; ?>
@@ -112,12 +85,12 @@ include('../includes/header.php');
             <?php if(count($wf->topics) > 0): ?>
               <p class="topics mb-0">
               <?php foreach($wf->topics as $topic): ?>
-                <span class="badge pipeline-topic"><?php echo $topic; ?></span>
+                <a href="/pipelines?q=<?php echo $topic; ?>" class="badge pipeline-topic"><?php echo $topic; ?></a>
               <?php endforeach; ?>
               </p>
             <?php endif; ?>
             <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
-            <p class="mb-0 mt-2">
+            <p class="mb-0 mt-2 dl-btn-row">
             <?php if(count($wf->releases) > 0):
                 usort($wf->releases, 'rsort_releases');
                 ?>
