@@ -13,7 +13,15 @@ Here's how the website is built:
 * JavaScript libraries:
     * [jQuery](https://jquery.com/)
     * [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
-    * [highlightjs](https://highlightjs.org/)
+    * [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
+    * [Leaflet](https://leafletjs.com/) _(contributor map)_
+    * [Moment.js](https://momentjs.com/) _(time and date parsing)_
+    * [Chart.js](https://www.chartjs.org/) _(statistics plots)_
+    * [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
+    * [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
+    * [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
+    * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
+    * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
 * PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
 * SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
 
@@ -73,7 +81,7 @@ The web server needs the following cronjob running to scrape pipeline statistics
 The repo has a softlink for `/tools-docs` which is intended for use on the server and corresponds to the path used in `public_html/deploy.php`. This script pulls the built API docs from the tools repo onto the server so that it can be served at that URL.
 
 ## Credits
-Phil ([@ewels](http://github.com/ewels/)) built this site, mostly over the course of one caffeine-fuelled evening.
+Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation. See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
 
 ## Help
 If you have any questions or issues please send us a message on [Slack](https://nf-core-invite.herokuapp.com/).

@@ -128,7 +128,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
     <?php endif; ?>
-    <script src="/assets/js/jquery-table-sorter.js"></script>
+    <script src="/assets/js/jquery.tablesorter.min.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
 
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
