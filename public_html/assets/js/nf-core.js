@@ -131,5 +131,5 @@ $(function () {
     });
 
     // Make the stats tables sortable
-    $('.pipeline-stats-table').TableSorter();
+    $('.pipeline-stats-table').tablesorter();
 });

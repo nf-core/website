@@ -119,7 +119,7 @@ foreach($stats as $repo_name => $repo):
     }
     ?></td>
     <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank"><span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
-    <td><?php echo time_ago($metrics->created_at, false); ?></td>
+    <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago($metrics->created_at, false); ?></td>
     <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
     <td class="text-right"><?php echo $repo->num_contributors; ?></td>
     <td class="text-right"><?php echo $total_commits; ?></td>

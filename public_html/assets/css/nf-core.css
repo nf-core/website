@@ -635,8 +635,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .pipeline-stats-table tr td {
   white-space: nowrap;
 }
-.ts-sort-indicator {
-    margin-left: 5px;
+.pipeline-stats-table .thead-light tr th[data-sortedby] {
+  text-decoration: underline;
 }
 
 
