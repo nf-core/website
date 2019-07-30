@@ -6,14 +6,13 @@ if(!isset($_GET['f'])){
     $textstring = strtolower($textstring);
     $textstring = preg_replace("/[^a-z]/", '', $textstring);
 }
+$filename = 'nf-core-'.preg_replace("/[^a-z]/", '', $textstring).'.png';
+
 if(strlen($textstring) == 0){
     header('HTTP/1.1 404 Not Found');
     include('404.php');
     die();
 }
-
-// Set the content-type
-header("Content-type: image/png");
 
 // Load the base image
 $image = imagecreatefrompng("assets/img/logo/nf-core-repologo-base.png");
@@ -48,6 +47,8 @@ imageAlphaBlending($cropped_image, true);
 imageSaveAlpha($cropped_image, true);
 
 // Make and destroy image
+header("Content-type: image/png");
+header('Content-Disposition: filename="nf-core-'.$filename.'.png"');
 imagepng($cropped_image);
 imagedestroy($cropped_image);
 imagedestroy($image);
