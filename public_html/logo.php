@@ -48,7 +48,7 @@ imageSaveAlpha($cropped_image, true);
 
 // Make and destroy image
 header("Content-type: image/png");
-header('Content-Disposition: filename="nf-core-'.$filename.'.png"');
+header('Content-Disposition: filename="'.$filename.'"');
 imagepng($cropped_image);
 imagedestroy($cropped_image);
 imagedestroy($image);
