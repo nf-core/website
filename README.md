@@ -84,4 +84,4 @@ The repo has a softlink for `/tools-docs` which is intended for use on the serve
 Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation. See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
 
 ## Help
-If you have any questions or issues please send us a message on [Slack](https://nf-core-invite.herokuapp.com/).
+If you have any questions or issues please send us a message on [Slack](https://nf-co.re/join/slack).

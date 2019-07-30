@@ -34,4 +34,5 @@ foreach($pipelines_json->remote_workflows as $pipeline){
 
 # Got this far - must be a 404
 header('HTTP/1.1 404 Not Found');
-header('Location: /404');
+include('404.php');
+die();
