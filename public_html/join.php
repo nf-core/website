@@ -53,7 +53,7 @@ include('../includes/header.php');
 <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
 You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
-<p>Once you have registered, you can access the nf-core slack at <a href="https://nf-core.slack.com/">https://nf-core.slack.com/</a></p>
+<p>Once you have registered, you can access the nf-core slack at <a href="https://nfcore.slack.com/">https://nfcore.slack.com/</a></p>
 
 <h1>
   <img height="120px" src="/assets/img/github.svg" class="float-right bg-white pl-4" />
