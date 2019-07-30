@@ -19,8 +19,9 @@ if( isset($markdown_fn) and $markdown_fn){
   $md_full = file_get_contents($markdown_fn);
   if ($md_full === false) {
     header('HTTP/1.1 404 Not Found');
-    header('Location: /404');
-    die;
+    header('HTTP/1.1 404 Not Found');
+    include('404.php');
+    die();
   }
   // Highlight any search terms if we have them
   if(isset($_GET['q']) && strlen($_GET['q'])){
@@ -174,14 +175,14 @@ if( isset($markdown_fn) and $markdown_fn){
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
-              <a class="dropdown-item" href="/join">Get involved</a>
+              <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>
           </li>
         </ul>
         <hr class="d-md-none">
         <ul class="navbar-nav d-md-none">
           <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://nf-core-invite.herokuapp.com/">Chat on Slack</a>
+            <a class="nav-link" target="_blank" href="https://nf-co.re/join/slack">Chat on Slack</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core">Join the email list</a>
