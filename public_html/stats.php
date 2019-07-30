@@ -247,7 +247,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <h2>Slack</h2>
       <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
       We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
-      You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
+      You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
       <div class="card bg-light mt-4">
         <div class="card-body">
           <canvas id="slack_users_plot" height="200"></canvas>

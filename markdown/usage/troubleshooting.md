@@ -74,6 +74,6 @@ Alternatively, you can also add Singularity Bind Paths to your Nextflow call, e.
 
 ## Extra resources and getting help
 
-If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-core-invite.herokuapp.com/) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
+If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
 
 If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow gitter channel](https://gitter.im/nextflow-io/nextflow) or the [google group](https://groups.google.com/forum/#!forum/nextflow).
