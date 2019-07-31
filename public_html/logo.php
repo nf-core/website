@@ -6,7 +6,7 @@ if(!isset($_GET['f'])){
     $textstring = strtolower($textstring);
     $textstring = preg_replace("/[^a-z]/", '', $textstring);
 }
-$filename = 'nf-core-'.preg_replace("/[^a-z]/", '', $textstring).'.png';
+$filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo.png';
 
 if(strlen($textstring) == 0){
     header('HTTP/1.1 404 Not Found');
