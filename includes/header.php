@@ -47,10 +47,15 @@ if( isset($markdown_fn) and $markdown_fn){
 
   // Trim off any content if requested
   if(isset($md_trim_before) && $md_trim_before){
-    $md = strstr($md, $md_trim_before);
+    // Only trim if the string exists
+    if(stripos($md, $md_trim_before)){
+      $md = stristr($md, $md_trim_before);
+    }
   }
   if(isset($md_trim_after) && $md_trim_after){
-    $md = strstr($md, $md_trim_after);
+    if(stripos($md, $md_trim_after)){
+      $md = stristr($md, $md_trim_after);
+    }
   }
 
   // Find and replace markdown content if requested
