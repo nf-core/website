@@ -165,6 +165,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   <li><a href="#code">Code</a>
     <ul>
       <li><a href="#repo_traffic">Repository traffic</a></li>
+      <li><a href="#contributor_leaderboard">Contributor Leaderboard</a></li>
       <li><a href="#pipelines">Pipelines</a></li>
       <li><a href="#core_repos">Core repositories</a></li>
     </ul>
@@ -201,8 +202,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
 </section>
 
-<section id="community">
-<h1>Community</h1>
+<h1 id="community"><a href="#community" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Community</h1>
 <p>The numbers below track our growth over the various channels that the nf-core community operates in.</p>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
@@ -243,79 +243,68 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 <div class="row">
   <div class="col-lg-6">
 
-    <section id="slack">
-      <h2>Slack</h2>
-      <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
-      We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
-      You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
-      <div class="card bg-light mt-4">
-        <div class="card-body">
-          <canvas id="slack_users_plot" height="200"></canvas>
-          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
-          <p class="card-text small text-muted mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
-          <p class="card-text small text-muted">
-            <a href="#" data-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="slack" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
-          </p>
-        </div>
+    <h2 class="mt-0" id="slack"><a href="#slack" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Slack</h2>
+    <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
+    We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
+    You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="slack_users_plot" height="200"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
+        <p class="card-text small text-muted mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="slack" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
       </div>
-    </section> <!-- <section id="slack"> -->
+    </div>
 
-    <section id="twitter">
-      <h2>Twitter followers</h2>
-      <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
-      Follower counts give some indication to the level of interest in the nf-core project.</p>
-      <div class="card bg-light mt-4">
-        <div class="card-body">
-          <canvas id="twitter_followers_plot" height="150"></canvas>
-          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
-          <p class="card-text small text-muted"><a href="#" data-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a>  &nbsp;/&nbsp; <a href="#" data-target="twitter" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
-        </div>
+    <h2 class="mt-0" id="twitter"><a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Twitter followers</h2>
+    <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
+    Follower counts give some indication to the level of interest in the nf-core project.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="twitter_followers_plot" height="150"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
+        <p class="card-text small text-muted"><a href="#" data-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a>  &nbsp;/&nbsp; <a href="#" data-target="twitter" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
-    </section> <!-- <section id="twitter"> -->
+    </div>
   </div>
 
   <div class="col-lg-6">
-    <section id="gh_orgmembers">
 
-      <h2>GitHub organisation members</h2>
-      <p>We use GitHub to manage all of the code written for nf-core.
-      It's a fantastic platform and provides a huge number of tools.
-      We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
-      drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> or anywhere and we'll send you an invite.
-      </p>
-      <p>It's not required to be a member of the nf-core GitHub organisation to contribute.
-      However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
-      </p>
-      <div class="card bg-light mt-4">
-        <div class="card-body">
-          <canvas id="gh_orgmembers_plot" height="150"></canvas>
-          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
-          <p class="card-text small text-muted"><a href="#" data-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
-        </div>
+    <h2 class="mt-0" id="gh_orgmembers"><a href="#gh_orgmembers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>GitHub organisation members</h2>
+    <p>We use GitHub to manage all of the code written for nf-core.
+    It's a fantastic platform and provides a huge number of tools.
+    We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
+    drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> or anywhere and we'll send you an invite.
+    </p>
+    <p>It's not required to be a member of the nf-core GitHub organisation to contribute.
+    However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
+    </p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="gh_orgmembers_plot" height="150"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
+        <p class="card-text small text-muted"><a href="#" data-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
-    </section> <!-- <section id="gh_orgmembers"> -->
+    </div>
 
-    <section id="gh_contribs">
-      <h2>GitHub contributors</h2>
-      <p>Anybody can fork nf-core repositories and open a pull-request.
-      Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
-      <div class="card bg-light mt-4">
-        <div class="card-body">
-          <canvas id="gh_contribs_plot" height="150"></canvas>
-          <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
-          <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
-        </div>
+    <h2 class="mt-0" id="gh_contribs"><a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>GitHub contributors</h2>
+    <p>Anybody can fork nf-core repositories and open a pull-request.
+    Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="gh_contribs_plot" height="150"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+        <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
-    </section> <!-- <section id="gh_contribs"> -->
+    </div>
 
   </div>
 </div>
 
-</section> <!-- <section id="community"> -->
 
-
-<section id="code">
-<h1>Code stats</h1>
+<h1 id="code"><a href="#code" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Code stats</h1>
 <p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.</p>
 
 <div class="card-group text-center stats_keynumbers">
@@ -342,65 +331,124 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
 </div>
 
-<section id="repo_traffic">
-  <h2>Repository traffic</h2>
-  <p>Every time a nextflow user pulls an nf-core pipeline, the repository is cloned. Here we can track how much that happens across all nf-core repositories.
-  Please note that these numbers come with some caveats <a href="#caveats">[ see more ]</a>.</p>
-  <p>Additionally, GitHub tracks how many times people view repository web pages on github.com.</p>
+<h2 class="mt-0" id="repo_traffic"><a href="#repo_traffic" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Repository traffic</h2>
+<p>Every time a nextflow user pulls an nf-core pipeline, the repository is cloned. Here we can track how much that happens across all nf-core repositories.
+Please note that these numbers come with some caveats <a href="#caveats">[ see more ]</a>.</p>
+<p>Additionally, GitHub tracks how many times people view repository web pages on github.com.</p>
 
-  <div class="card mt-4">
-    <div class="card-header">
-      <span class="float-right small text-muted">
-        <a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
-        &nbsp;/&nbsp; <a href="#" data-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
-      </span>
-      Git clones: All nf-core repositories
-    </div>
-    <div class="card-body">
-      <canvas id="repo_clones_plot" height="80"></canvas>
-    </div>
-    <div class="card-footer text-muted text-center small">
-      <div class="row">
-        <div class="col-6 border-right border-secondary">
-          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span><br>Clones
-        </div>
-        <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
-          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span><br>Unique cloners
-        </div>
+<div class="card mt-4">
+  <div class="card-header">
+    <span class="float-right small text-muted">
+      <a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+      &nbsp;/&nbsp; <a href="#" data-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+    </span>
+    Git clones: All nf-core repositories
+  </div>
+  <div class="card-body">
+    <canvas id="repo_clones_plot" height="80"></canvas>
+  </div>
+  <div class="card-footer text-muted text-center small">
+    <div class="row">
+      <div class="col-6 border-right border-secondary">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span><br>Clones
+      </div>
+      <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span><br>Unique cloners
       </div>
     </div>
   </div>
+</div>
 
-  <div class="card mt-4">
-    <div class="card-header">
-      <span class="float-right small text-muted">
-        <a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
-        &nbsp;/&nbsp; <a href="#" data-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
-      </span>
-      Visitors: All nf-core repositories
-    </div>
-    <div class="card-body">
-      <canvas id="repo_views_plot" height="80"></canvas>
-    </div>
-    <div class="card-footer text-muted text-center small">
-      <div class="row">
-        <div class="col-6 border-right border-secondary">
-          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span><br>Views
-        </div>
-        <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
-          <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span><br>Unique visitors
-        </div>
+<div class="card mt-4">
+  <div class="card-header">
+    <span class="float-right small text-muted">
+      <a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+      &nbsp;/&nbsp; <a href="#" data-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+    </span>
+    Visitors: All nf-core repositories
+  </div>
+  <div class="card-body">
+    <canvas id="repo_views_plot" height="80"></canvas>
+  </div>
+  <div class="card-footer text-muted text-center small">
+    <div class="row">
+      <div class="col-6 border-right border-secondary">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span><br>Views
+      </div>
+      <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span><br>Unique visitors
       </div>
     </div>
   </div>
-</section> <!-- <section id="repo_views"> -->
+</div>
+
+<h2 class="mt-0" id="contributor_leaderboard"><a href="#contributor_leaderboard" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributor Leaderboard</h2>
+<p>We value each and every contribution to nf-core, no matter how small.
+However, that doesn't mean that we can't get competitive!</p>
+<p>Here are the latest stats of who has contributed the greatest number of commits.
+The yellow bars show "core repositories" - repositories that are not pipelines
+(such as the code for this website!).
+A list of these repositories can be found <a href="#core_repos">below</a>.</p>
+
+<table class="table table-sm mt-5">
+  <tbody>
+<?php
+$stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
+$stats_json = json_decode(file_get_contents($stats_json_fn));
+$contributors = [];
+$contribution_counts = [];
+$contribution_counts_bytype = [];
+$top_repos = [];
+foreach(['pipelines', 'core_repos'] as $repo_type){
+    foreach($stats_json->{$repo_type} as $repo_name => $repo){
+        foreach($repo->contributors as $contributor){
+            $login = $contributor->author->login;
+            $contributors[$login] = $contributor->author;
+            if(!isset($contribution_counts[$login])){
+                $contribution_counts[$login] = 0;
+                $contribution_counts_bytype[$login] = ['pipelines' => 0, 'core_repos' => 0];
+                $top_repos[$login] = [$repo_name, $contributor->total];
+            }
+            $contribution_counts[$login] += $contributor->total;
+            $contribution_counts_bytype[$login][$repo_type] += $contributor->total;
+            if($top_repos[$login][1] < $contributor->total){
+              $top_repos[$login] = [$repo_name, $contributor->total];
+            }
+        }
+    }
+}
+arsort($contribution_counts);
+$max_count = max($contribution_counts);
+foreach($contribution_counts as $login => $count){
+    $author = $contributors[$login];
+    $pipeline_commits = $contribution_counts_bytype[$login]['pipelines'];
+    $core_repo_commits = $contribution_counts_bytype[$login]['core_repos'];
+    $pct_pipeline = ($pipeline_commits / $max_count) * 100;
+    $pct_core = ($core_repo_commits / $max_count) * 100;
+    echo '<tr>
+      <td width="10%" class="pr-5">
+        <a style="white-space: nowrap;" href="'.$author->html_url.'" target="_blank"><img src="'.$author->avatar_url.'" class="border rounded-circle mr-1 mb-1" width="50" height="50"> @'.$author->login.'</a>
+      </td>
+      <td class="align-middle">
+        <div class="progress" title="Pipelines: '.$pipeline_commits.' commits<br>Core repos: '.$core_repo_commits.' commits" data-toggle="tooltip" data-html="true">
+          <div class="progress-bar bg-success" role="progressbar" style="width: '.$pct_pipeline.'%">'.($pct_pipeline > 5 ? $pipeline_commits : '').'</div>
+          <div class="progress-bar bg-warning" role="progressbar" style="width: '.$pct_core.'%">'.($pct_core > 5 ? $core_repo_commits : '').'</div>
+        </div>
+      </td>
+      <td class="align-middle pl-5 small text-right text-monospace d-none d-md-table-cell" width="10%">
+        <a href="/'.$top_repos[$login][0].'" title="Repo with most commits" data-toggle="tooltip">'.$top_repos[$login][0].' <span class="badge badge-pill badge-secondary">'.$top_repos[$login][1].'</span></a>
+      </td>
+    </tr>';
+}
+?>
+</tbody>
+</table>
 
 <?php
 // The pipeline and core repo tables are the same
 foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 
-<section id="<?php echo $repo_type; ?>">
-<h2><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
+<h2 class="mt-0" id="<?php echo $repo_type; ?>"><a href="#<?php echo $repo_type; ?>" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
   Click a row to see detailed statistics for that repository.
@@ -462,11 +510,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
     </tfoot>
   </table>
 </div>
-</section> <!-- <section id="<?php echo $repo_type; ?>"> -->
 
 <?php endforeach; ?>
-
-</section> <!-- <section id="code"> -->
 
 <script type="text/javascript">
 $(function(){
