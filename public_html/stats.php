@@ -389,6 +389,15 @@ However, that doesn't mean that we can't get competitive!</p>
 The yellow bars show "core repositories" - repositories that are not pipelines
 (such as the code for this website!).
 A list of these repositories can be found <a href="#core_repos">below</a>.</p>
+<div class="alert alert-light border small">
+  <h6 class="alert-heading">Remember</h6>
+  <ul>
+    <li>There is more to contributing than commits! We're not counting issue comments, reviews or anything else here.</li>
+    <li>People merging pull-requests get bonus commit counts from those merge commits.</li>
+    <li>Some people commit often, others not so much. So it's not a perfect representation of amount of work - just a bit of fun!</li>
+    <li><code>master</code> branch only, and all of the <a href="#caveats">other caveats</a>..</li>
+  </ul>
+</div>
 
 <table class="table table-sm mt-5">
   <tbody>
@@ -436,7 +445,7 @@ foreach($contribution_counts as $login => $count){
         </div>
       </td>
       <td class="align-middle pl-5 small text-right text-monospace d-none d-md-table-cell" width="10%">
-        <a href="/'.$top_repos[$login][0].'" title="Repo with most commits" data-toggle="tooltip">'.$top_repos[$login][0].' <span class="badge badge-pill badge-secondary">'.$top_repos[$login][1].'</span></a>
+        <a href="/'.$top_repos[$login][0].'" title="Repo with most commits ('.$top_repos[$login][1].' commits)" data-toggle="tooltip">'.$top_repos[$login][0].' <span class="badge badge-pill badge-secondary">'.$top_repos[$login][1].'</span></a>
       </td>
     </tr>';
 }
