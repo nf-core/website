@@ -173,6 +173,7 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
               <a class="dropdown-item" href="/errors">Lint error codes</a>
               <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
+              <a class="dropdown-item" href="/developers/pipeline_testing">Pipeline testing</a>
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
