@@ -1,7 +1,7 @@
 <?php
 
 $title = 'nf-core testimonials';
-$subtitle = 'Read about the different people and projects relying on nf-core';
+$subtitle = 'Read about those who use/contribute to nf-core';
 include('../includes/header.php');
 ?>
 
