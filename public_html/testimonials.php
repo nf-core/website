@@ -5,7 +5,7 @@ $subtitle = 'Read about the different people and projects relying on nf-core';
 include('../includes/header.php');
 ?>
 
-<p>We are collecting statements, projects and other peoples (public) comments on how nf-core contributed to their success in analyzing their data. If you know about something that we should probably list here, please let us know!</p>
+<p>We are collating statements and general comments from those who have either contributed to nf-core, or have chosen to routinely deploy nf-core pipelines for their data analysis. Feel free to add your own experiences, and please let us know if we have missed anything!</p>
 <h1>
 <img height="45px" src="/assets/img/dfg_logo.svg" class="float-right bg-white pl-4" />
   German National Sequencing Initiative
