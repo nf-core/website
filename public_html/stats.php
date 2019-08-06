@@ -356,15 +356,14 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     <canvas id="repo_clones_plot" height="80"></canvas>
   </div>
   <div class="card-footer text-muted text-center small">
-    <div class="row align-items-center">
-      <div class="col-6 col-md-4 border-right border-secondary order-6 order-md-1">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span><br>Clones
+    <div class="row">
+      <div class="col-6 border-right border-secondary">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span>
+        <br>Clones since <?php echo date('F Y', min($stats_total['pipelines']['clones_count_since'], $stats_total['core_repos']['clones_count_since'])); ?>
       </div>
-      <div class="col-12 col-md-4 order-1 order-md-6">
-        Total since <?php echo date('Y-m-d', min($stats_total['pipelines']['clones_count_since'], $stats_total['core_repos']['clones_count_since'])); ?>
-      </div>
-      <div class="col-6 col-md-4 order-12 border-left border-secondary" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span><br>Unique cloners
+      <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span>
+        <br>Unique cloners since <?php echo date('F Y', min($stats_total['pipelines']['clones_uniques_since'], $stats_total['core_repos']['clones_uniques_since'])); ?>
       </div>
     </div>
   </div>
@@ -383,14 +382,13 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row align-items-center">
-      <div class="col-6 col-md-4 border-right border-secondary order-6 order-md-1">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span><br>Views
+      <div class="col-6 border-right border-secondary">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span>
+        <br>Views since <?php echo date('F Y', min($stats_total['pipelines']['views_count_since'], $stats_total['core_repos']['views_count_since'])); ?>
       </div>
-      <div class="col-12 col-md-4 order-1 order-md-6">
-        Total since <?php echo date('Y-m-d', min($stats_total['pipelines']['views_count_since'], $stats_total['core_repos']['views_count_since'])); ?>
-      </div>
-      <div class="col-6 col-md-4 order-12 border-left border-secondary" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span><br>Unique visitors
+      <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span>
+        <br>Unique visitors since <?php echo date('F Y', min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since'])); ?>
       </div>
     </div>
   </div>
