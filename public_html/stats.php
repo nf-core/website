@@ -53,9 +53,13 @@ $stats_total[$repo_type] = [
   'clones_uniques' => array(),
   'views_count' => array(),
   'views_uniques' => array(),
+  'clones_count_since' => false,
   'clones_count_total' => 0,
+  'clones_uniques_since' => false,
   'clones_uniques_total' => 0,
+  'views_count_since' => false,
   'views_count_total' => 0,
+  'views_uniques_since' => false,
   'views_uniques_total' => 0,
   'unique_contributors' => [],
   'total_commits' => 0,
@@ -89,6 +93,10 @@ foreach($stats as $repo_name => $repo):
           $stats_total[$repo_type][$key][$timestamp] = 0;
         }
         $stats_total[$repo_type][$key][$timestamp] += $count;
+        if(!$stats_total[$repo_type][$key.'_since']){
+          $stats_total[$repo_type][$key.'_since'] = strtotime($timestamp);
+        }
+        $stats_total[$repo_type][$key.'_since'] = min(strtotime($timestamp), $stats_total[$repo_type][$key.'_since']);
       }
     }
     $stats_total[$repo_type][$key.'_total'] += $repo->{$key.'_total'};
@@ -350,10 +358,12 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   <div class="card-footer text-muted text-center small">
     <div class="row">
       <div class="col-6 border-right border-secondary">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span><br>Clones
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span>
+        <br>Clones since <?php echo date('F Y', min($stats_total['pipelines']['clones_count_since'], $stats_total['core_repos']['clones_count_since'])); ?>
       </div>
       <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span><br>Unique cloners
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span>
+        <br>Unique cloners since <?php echo date('F Y', min($stats_total['pipelines']['clones_uniques_since'], $stats_total['core_repos']['clones_uniques_since'])); ?>
       </div>
     </div>
   </div>
@@ -371,12 +381,14 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     <canvas id="repo_views_plot" height="80"></canvas>
   </div>
   <div class="card-footer text-muted text-center small">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-6 border-right border-secondary">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span><br>Views
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span>
+        <br>Views since <?php echo date('F Y', min($stats_total['pipelines']['views_count_since'], $stats_total['core_repos']['views_count_since'])); ?>
       </div>
       <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
-        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span><br>Unique visitors
+        <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span>
+        <br>Unique visitors since <?php echo date('F Y', min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since'])); ?>
       </div>
     </div>
   </div>
@@ -544,7 +556,10 @@ $(function(){
         }
       },
       scales: {
-        xAxes: [{ type: 'time' }]
+        xAxes: [{
+          type: 'time',
+          time: { minUnit: 'day' }
+        }],
       },
       legend: {
         display: false
@@ -700,7 +715,7 @@ $(function(){
   chartData['repo_clones'].data = {
     datasets: [
       {
-        label: 'Clones per week',
+        label: 'Clones per day',
         backgroundColor: 'rgba(83, 164, 81, 1.0)',
         borderColor: 'rgba(83, 164, 81, 1.0)',
         fill: false,
@@ -721,7 +736,7 @@ $(function(){
         ]
       },
       {
-        label: 'Unique cloners per week',
+        label: 'Unique cloners per day',
         backgroundColor: 'rgba(33, 94, 190, 1.0)',
         borderColor: 'rgba(33, 94, 190, 1.0)',
         fill: false,
@@ -743,7 +758,7 @@ $(function(){
       }
     ]
   };
-  chartData['repo_clones'].options.title.text = 'nf-core git clones per week';
+  chartData['repo_clones'].options.title.text = 'nf-core git clones per day';
   chartData['repo_clones'].options.elements.line.borderWidth = 2;
   chartData['repo_clones'].options.scales.yAxes = [
     {
@@ -751,7 +766,7 @@ $(function(){
       display: true,
       scaleLabel: {
         display: true,
-        labelString: 'Clones per week',
+        labelString: 'Clones per day',
         fontColor: 'rgba(83, 164, 81, 1.0)',
       },
       position: 'left',
@@ -762,7 +777,7 @@ $(function(){
       display: true,
       scaleLabel: {
         display: true,
-        labelString: 'Unique cloners per week',
+        labelString: 'Unique cloners per day',
         fontColor: 'rgba(33, 94, 190, 1.0)',
       },
       position: 'right',
@@ -779,7 +794,7 @@ $(function(){
   chartData['repo_views'].data = {
     datasets: [
       {
-        label: 'Views per week',
+        label: 'Views per day',
         backgroundColor: 'rgba(83, 164, 81, 1.0)',
         borderColor: 'rgba(83, 164, 81, 1.0)',
         fill: false,
@@ -800,7 +815,7 @@ $(function(){
         ]
       },
       {
-        label: 'Unique visitors per week',
+        label: 'Unique visitors per day',
         backgroundColor: 'rgba(33, 94, 190, 1.0)',
         borderColor: 'rgba(33, 94, 190, 1.0)',
         fill: false,
@@ -822,7 +837,7 @@ $(function(){
       }
     ]
   };
-  chartData['repo_views'].options.title.text = 'nf-core repository web views per week';
+  chartData['repo_views'].options.title.text = 'nf-core repository web views per day';
   chartData['repo_views'].options.elements.line.borderWidth = 2;
   chartData['repo_views'].options.scales.yAxes = [
     {
@@ -830,7 +845,7 @@ $(function(){
       display: true,
       scaleLabel: {
         display: true,
-        labelString: 'Views per week',
+        labelString: 'Views per day',
         fontColor: 'rgba(83, 164, 81, 1.0)',
       },
       position: 'left',
@@ -841,7 +856,7 @@ $(function(){
       display: true,
       scaleLabel: {
         display: true,
-        labelString: 'Unique visitors per week',
+        labelString: 'Unique visitors per day',
         fontColor: 'rgba(33, 94, 190, 1.0)',
       },
       position: 'right',
