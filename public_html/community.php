@@ -15,11 +15,11 @@ include('../includes/header.php');
 <ul>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#organisations">Organisations</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
 </ul>
 
 
-<section id="contributors">
-<h2>Contributors</h2>
+<h2 id="contributors"><a href="#contributors" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributors</h2>
 <p>The nf-core pipelines and community is driven by many individuals, listed below. This list updates automatically.</p>
 <p>Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a> on the Statistics page.</p>
 <p class="pt-3">
@@ -43,10 +43,8 @@ foreach($logins as $login){
 }
 ?>
 </p>
-</section> <!-- <section id="contributors"> -->
 
-<section id="organisations">
-<h2>Organisations</h2>
+<h2 id="organisations"><a href="#organisations" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Organisations</h2>
 <p>Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.</p>
 <blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a simple YAML file..</blockquote>
 
@@ -162,7 +160,17 @@ $(function(){
 });
 </script>
 
-</section> <!-- <section id="organisations"> -->
+<h2 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h2>
+<p>We are collating statements and general comments from those who have either contributed to nf-core, or have chosen to routinely deploy
+    nf-core pipelines for their data analysis. Feel free to add your own experiences, and please let us know if we have missed anything!</p>
+<h3 id="dfg_testimonial"><a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img height="45px" src="/assets/img/dfg_logo.svg" class="float-right pl-4" />
+    German National Sequencing Initiative
+</h3>
+<p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
+has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
+large-scale genomics data. Contributors from the Kiel and Tübingen sites are already actively contributing to nf-core, and the other sequencing centers
+in Cologne/Bonn (West German Genome Center) and the Dresden Center are in the process of joining and contributing their expertise too!</p>
 
 
 <?php include('../includes/footer.php');
