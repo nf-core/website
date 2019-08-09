@@ -19,7 +19,7 @@ include('../includes/header.php');
 </ul>
 
 
-<h2 id="contributors"><a href="#contributors" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributors</h2>
+<h1 id="contributors"><a href="#contributors" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributors</h1>
 <p>The nf-core pipelines and community is driven by many individuals, listed below. This list updates automatically.</p>
 <p>Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a> on the Statistics page.</p>
 <p class="pt-3">
@@ -44,7 +44,7 @@ foreach($logins as $login){
 ?>
 </p>
 
-<h2 id="organisations"><a href="#organisations" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Organisations</h2>
+<h1 id="organisations"><a href="#organisations" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Organisations</h1>
 <p>Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.</p>
 <blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a simple YAML file..</blockquote>
 
@@ -160,17 +160,56 @@ $(function(){
 });
 </script>
 
-<h2 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h2>
+<h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 <p>We are collating statements and general comments from those who have either contributed to nf-core, or have chosen to routinely deploy
     nf-core pipelines for their data analysis. Feel free to add your own experiences, and please let us know if we have missed anything!</p>
 <h3 id="dfg_testimonial"><a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img height="45px" src="/assets/img/dfg_logo.svg" class="float-right pl-4" />
+    <img width="350px" src="/assets/img/dfg_logo.svg" class="float-right pl-4" />
     German National Sequencing Initiative
 </h3>
 <p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
 has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
 large-scale genomics data. Contributors from the Kiel and Tübingen sites are already actively contributing to nf-core, and the other sequencing centers
-in Cologne/Bonn (West German Genome Center) and the Dresden Center are in the process of joining and contributing their expertise too!</p>
+in Cologne/Bonn (West German Genome Center) and the Dresden Center have committed to joining and contributing their expertise.</p>
+
+<h3 id="ngi_testimonial"><a href="#ngi_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="250px" src="/assets/img/contributors-colour/NGI.svg" class="float-right pl-4" />
+    <img width="250px" src="/assets/img/contributors-colour/SciLifeLab.svg" class="float-right pl-4" />
+    Swedish National Genomics Infrastructure
+</h3>
+<p>The <a href="https://www.scilifelab.se/platforms/ngi/" target="_blank">Swedish National Genomics Infrastructure (NGI)</a>
+was a founding member of <em>nf-core</em> and is committed to developing analysis methodologies within the <em>nf-core</em>
+community. The NGI provides next-generatation sequencing methodologies for all Swedish researchers, from library prep to sequencing to best-practice bioinformatics analysis.
+We have seen fantastic uptake and feedback from pipelines within the framework and intend to be a longstanding member of the community.</p>
+
+<h3 id="tweet_testimonials"><a href="#tweet_testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    Tweets to @nf_core
+</h3>
+
+<div class="card-columns">
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">.<a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> are making me hate bioinformatics a bit less</p>&mdash; Hadrien Gourlé (@HGourle) <a href="https://twitter.com/HGourle/status/1158973454160465920?ref_src=twsrc%5Etfw">August 7, 2019</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just tested <a href="https://t.co/wERtIS7xPp">https://t.co/wERtIS7xPp</a> with bacterial WGS data. It was very easy to work with. I am very impressed by nf-core! Great community and very important project to promote <a href="https://twitter.com/hashtag/reproducibility?src=hash&amp;ref_src=twsrc%5Etfw">#reproducibility</a> in <a href="https://twitter.com/hashtag/bioinformatics?src=hash&amp;ref_src=twsrc%5Etfw">#bioinformatics</a> analyses. <a href="https://twitter.com/alex_peltzer?ref_src=twsrc%5Etfw">@alex_peltzer</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a></p>&mdash; Rodrigo O. Polo (@ropolo) <a href="https://twitter.com/ropolo/status/1158860737516675073?ref_src=twsrc%5Etfw">August 6, 2019</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Literally everyone should know about that! <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> Harshil Patel from Francis Crick Institute pitches good practice, hydrating and having these cool stickers on his laptop <a href="https://twitter.com/hashtag/bioinfocore?src=hash&amp;ref_src=twsrc%5Etfw">#bioinfocore</a> <a href="https://twitter.com/hashtag/ISMBECCB?src=hash&amp;ref_src=twsrc%5Etfw">#ISMBECCB</a> <a href="https://t.co/tkIgAWfeYZ">https://t.co/tkIgAWfeYZ</a> <a href="https://t.co/pOHNcFh3Yp">pic.twitter.com/pOHNcFh3Yp</a></p>&mdash; Daniel Stekhoven (@DanStekhoven) <a href="https://twitter.com/DanStekhoven/status/1153250437904130048?ref_src=twsrc%5Etfw">July 22, 2019</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">High throughput sequencing data processing keeps getting easier than ever thanks to <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>! <a href="https://t.co/BsaYCOSq3I">https://t.co/BsaYCOSq3I</a></p>&mdash; Ignacio Tripodi (@ignaciot) <a href="https://twitter.com/ignaciot/status/1136688546251542528?ref_src=twsrc%5Etfw">June 6, 2019</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Many useful and well-documented bioinformatics pipelines by the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> team, from RNA-seq, methylation, to this differential ATAC-seq. More in development, <a href="https://t.co/SvAJjIJqHD">https://t.co/SvAJjIJqHD</a> <a href="https://t.co/TCsBWlJyeC">https://t.co/TCsBWlJyeC</a></p>&mdash; Mikhail Dozmorov (@mikhaildozmorov) <a href="https://twitter.com/mikhaildozmorov/status/1116154350026489857?ref_src=twsrc%5Etfw">April 11, 2019</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Alex from <a href="https://twitter.com/QBIC_tue?ref_src=twsrc%5Etfw">@QBIC_tue</a> talking about how <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> enable his genomics pipelines, built on <a href="https://twitter.com/awscloud?ref_src=twsrc%5Etfw">@AWScloud</a> Batch. Really cool. <a href="https://t.co/FDuXdmem1n">pic.twitter.com/FDuXdmem1n</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1100764282617253888?ref_src=twsrc%5Etfw">February 27, 2019</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">My definition of joy: <br>1) Pick a random <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> pipeline <br>2) Launch `nextflow run &lt;name&gt; -profile docker,test`<br>3) Feel proud of that.</p>&mdash; Paolo Di Tommaso (@PaoloDiTommaso) <a href="https://twitter.com/PaoloDiTommaso/status/1073568446238068736?ref_src=twsrc%5Etfw">December 14, 2018</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just managed to get <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> on <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> working on my machines. Really cool. Thanks for all your hard work</p>&mdash; Alastair Kerr (@alastair_kerr) <a href="https://twitter.com/alastair_kerr/status/1068491249315926016?ref_src=twsrc%5Etfw">November 30, 2018</a></blockquote></div>
+
+<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/tallphil?ref_src=twsrc%5Etfw">@tallphil</a> talking at the <a href="https://twitter.com/nextflow?ref_src=twsrc%5Etfw">@nextflow</a> delelopers’ hackathon about the incredible work he and his team have done to build <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>. <a href="https://t.co/SbWQIh2Q5r">pic.twitter.com/SbWQIh2Q5r</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1065614143061991424?ref_src=twsrc%5Etfw">November 22, 2018</a></blockquote></div>
+
+</div>
+
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 <?php include('../includes/footer.php');
