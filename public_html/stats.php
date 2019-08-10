@@ -811,9 +811,9 @@ $(function(){
   chartData['github_prs'].data = {
     datasets: [
       {
-        label: 'Closed',
-        backgroundColor: 'rgba(230,10,10, 0.2)',
-        borderColor: 'rgba(230,10,10, 1)',
+        label: 'Closed / Merged',
+        backgroundColor: 'rgba(104, 72, 186, 0.2)',
+        borderColor: 'rgba(104, 72, 186, 1)',
         pointRadius: 0,
         data: [
           <?php
@@ -825,8 +825,8 @@ $(function(){
       },
       {
         label: 'Open',
-        backgroundColor: 'rgba(100, 220, 10, 0.2)',
-        borderColor: 'rgba(100, 220, 10, 1)',
+        backgroundColor: 'rgba(83, 164, 81, 0.2)',
+        borderColor: 'rgba(83, 164, 81, 1)',
         pointRadius: 0,
         data: [
           <?php
@@ -879,8 +879,8 @@ $(function(){
     datasets: [
       {
         label: 'Closed',
-        backgroundColor: 'rgba(230,10,10, 0.2)',
-        borderColor: 'rgba(230,10,10, 1)',
+        backgroundColor: 'rgba(199, 70, 78, 0.2)',
+        borderColor: 'rgba(199, 70, 78, 1)',
         pointRadius: 0,
         data: [
           <?php
@@ -892,8 +892,8 @@ $(function(){
       },
       {
         label: 'Open',
-        backgroundColor: 'rgba(100, 220, 10, 0.2)',
-        borderColor: 'rgba(100, 220, 10, 1)',
+        backgroundColor: 'rgba(83, 164, 81, 0.2)',
+        borderColor: 'rgba(83, 164, 81, 1)',
         pointRadius: 0,
         data: [
           <?php
@@ -991,8 +991,8 @@ $(function(){
     datasets: [
       {
         label: 'Time to close',
-        backgroundColor: 'rgba(230,10,10, 0.5)',
-        borderColor: 'rgba(230,10,10, 0.5)',
+        backgroundColor: 'rgba(199, 70, 78, 0.5)',
+        borderColor: 'rgba(199, 70, 78, 0.1)',
         pointRadius: 0,
         data: [
           <?php
@@ -1004,8 +1004,8 @@ $(function(){
       },
       {
         label: 'Time to first response',
-        backgroundColor: 'rgba(100, 220, 10, 0.5)',
-        borderColor: 'rgba(100, 220, 10, 0.5)',
+        backgroundColor: 'rgba(83, 164, 81, 0.5)',
+        borderColor: 'rgba(83, 164, 81, 0.1)',
         pointRadius: 0,
         data: [
           <?php
@@ -1044,9 +1044,9 @@ $(function(){
   chartData['github_pr_response_time'].data = {
     datasets: [
       {
-        label: 'Time to close',
-        backgroundColor: 'rgba(230,10,10, 0.5)',
-        borderColor: 'rgba(230,10,10, 0.5)',
+        label: 'Time to merge / close',
+        backgroundColor: 'rgba(104, 72, 186, 0.5)',
+        borderColor: 'rgba(104, 72, 186, 0.1)',
         pointRadius: 0,
         data: [
           <?php
@@ -1058,8 +1058,8 @@ $(function(){
       },
       {
         label: 'Time to first response',
-        backgroundColor: 'rgba(100, 220, 10, 0.5)',
-        borderColor: 'rgba(100, 220, 10, 0.5)',
+        backgroundColor: 'rgba(83, 164, 81, 0.5)',
+        borderColor: 'rgba(83, 164, 81, 0.1)',
         pointRadius: 0,
         data: [
           <?php
