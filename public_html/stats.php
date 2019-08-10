@@ -25,6 +25,15 @@ $pipelines = $pipelines_json->remote_workflows;
 $stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
 $stats_json = json_decode(file_get_contents($stats_json_fn));
 
+$issues_json_fn = dirname(dirname(__FILE__)).'/nfcore_issue_stats.json';
+$issues_json = json_decode(file_get_contents($issues_json_fn), true);
+$issues_json_latest = false;
+foreach($issues_json['stats'] as $key => $arr){
+  if(!is_numeric($key)) continue;
+  if(!$issues_json_latest) $issues_json_latest = $key;
+  $issues_json_latest = min($issues_json_latest, $key);
+}
+
 // Convenience variables
 $slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
 $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
@@ -173,6 +182,8 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   <li><a href="#code">Code</a>
     <ul>
       <li><a href="#repo_traffic">Repository traffic</a></li>
+      <li><a href="#github_prs">Pull Requests</a>, <a href="#github_pr_response_time">response times</a></li>
+      <li><a href="#github_issues">Issues</a>, <a href="#github_issue_response_time">response times</a></li>
       <li><a href="#contributor_leaderboard">Contributor Leaderboard</a></li>
       <li><a href="#pipelines">Pipelines</a></li>
       <li><a href="#core_repos">Core repositories</a></li>
@@ -325,10 +336,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
   <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $stats_total['pipelines']['releases']; ?></p>
-      <p class="card-text text-muted">Pipeline releases</p>
+      <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo round_nicely($issues_json['stats'][$issues_json_latest]['prs']['count']); ?></a></p>
+      <p class="card-text text-muted">Pull Requests</p>
     </div>
-    <div class="bg-icon"><i class="fas fa-tags"></i></div>
+    <div class="bg-icon"><i class="fas fa-code-branch fa-flip-vertical"></i></div>
   </div>
   <div class="card bg-light">
     <div class="card-body">
@@ -336,6 +347,13 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo round_nicely($issues_json['stats'][$issues_json_latest]['issues']['count']); ?></a></p>
+      <p class="card-text text-muted">Issues</p>
+    </div>
+    <div class="bg-icon"><i class="fas fa-exclamation-circle"></i></div>
   </div>
 </div>
 
@@ -391,6 +409,63 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
         <br>Unique visitors since <?php echo date('F Y', min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since'])); ?>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+
+    <h2 class="mt-0" id="github_prs"><a href="#github_prs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pull Requests</h2>
+    <p>When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="github_prs_plot" height="200"></canvas>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="github_prs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+
+    <h2 class="mt-0" id="github_pr_response_time"><a href="#github_pr_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pull Request response times</h2>
+    <p>Pull-requests are reviewed by the nf-core community - they can contain discussion on the code and can be merged and closed.
+    We aim to be prompt with reviews and merging. Note that some PRs can be a simple type and so very fast to merge, others can be major pipeline updates.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="github_pr_response_time_plot" height="200"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original PR author</p>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="github_pr_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_pr_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-6">
+
+    <h2 class="mt-0" id="github_issues"><a href="#github_issues" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Issues</h2>
+    <p>GitHub issues can be created to log feature requests, bug reports or questions.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="github_issues_plot" height="200"></canvas>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="github_issues" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+
+
+    <h2 class="mt-0" id="github_issue_response_time"><a href="#github_issue_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Issue response times</h2>
+    <p>A sign of an active community is a quick response time to issues. Here we see a frequency histogram of how long it takes to respond to and close issues.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="github_issue_response_time_plot" height="200"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original issue author</p>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="github_issue_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_issue_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -709,6 +784,315 @@ $(function(){
   chartData['twitter'].options.title.text = '@nf_core twitter followers users over time';
   var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
   charts['twitter'] = new Chart(ctx, chartData['twitter']);
+
+  // GitHub Pull Requests chart
+  <?php
+  $open_prs = [];
+  $closed_prs = [];
+  $dates_raw = array_unique(array_merge(array_keys($issues_json['stats']['prs']['daily_opened']), array_keys($issues_json['stats']['prs']['daily_closed'])));
+  $dates = [];
+  foreach($dates_raw as $date){
+    $dates[strtotime($date)] = $date;
+  }
+  ksort($dates);
+  $running_open_prs = 0;
+  $running_closed_prs = 0;
+  foreach($dates as $ts => $date){
+    if(isset($issues_json['stats']['prs']['daily_opened'][$date])){
+      $running_open_prs += $issues_json['stats']['prs']['daily_opened'][$date];
+    }
+    if(isset($issues_json['stats']['prs']['daily_closed'][$date])){
+      $running_open_prs -= $issues_json['stats']['prs']['daily_closed'][$date];
+      $running_closed_prs += $issues_json['stats']['prs']['daily_closed'][$date];
+    }
+    $open_prs[date('Y-m-d', $ts)] = $running_open_prs;
+    $closed_prs[date('Y-m-d', $ts)] = $running_closed_prs;
+  }
+  ?>
+  chartData['github_prs'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['github_prs'].data = {
+    datasets: [
+      {
+        label: 'Closed / Merged',
+        backgroundColor: 'rgba(104, 72, 186, 0.2)',
+        borderColor: 'rgba(104, 72, 186, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($closed_prs as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Open',
+        backgroundColor: 'rgba(83, 164, 81, 0.2)',
+        borderColor: 'rgba(83, 164, 81, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($open_prs as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['github_prs'].options.title.text = 'GitHub Pull Requests over time';
+  chartData['github_prs'].options.scales.yAxes = [{stacked: true }];
+  chartData['github_prs'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('github_prs_plot').getContext('2d');
+  charts['github_prs'] = new Chart(ctx, chartData['github_prs']);
+
+
+
+
+  // GitHub issues chart
+  <?php
+  $open_issues = [];
+  $closed_issues = [];
+  $dates_raw = array_unique(array_merge(array_keys($issues_json['stats']['issues']['daily_opened']), array_keys($issues_json['stats']['issues']['daily_closed'])));
+  $dates = [];
+  foreach($dates_raw as $date){
+    $dates[strtotime($date)] = $date;
+  }
+  ksort($dates);
+  $running_open_issues = 0;
+  $running_closed_issues = 0;
+  foreach($dates as $ts => $date){
+    if(isset($issues_json['stats']['issues']['daily_opened'][$date])){
+      $running_open_issues += $issues_json['stats']['issues']['daily_opened'][$date];
+    }
+    if(isset($issues_json['stats']['issues']['daily_closed'][$date])){
+      $running_open_issues -= $issues_json['stats']['issues']['daily_closed'][$date];
+      $running_closed_issues += $issues_json['stats']['issues']['daily_closed'][$date];
+    }
+    $open_issues[date('Y-m-d', $ts)] = $running_open_issues;
+    $closed_issues[date('Y-m-d', $ts)] = $running_closed_issues;
+  }
+  ?>
+  chartData['github_issues'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['github_issues'].data = {
+    datasets: [
+      {
+        label: 'Closed',
+        backgroundColor: 'rgba(199, 70, 78, 0.2)',
+        borderColor: 'rgba(199, 70, 78, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($closed_issues as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Open',
+        backgroundColor: 'rgba(83, 164, 81, 0.2)',
+        borderColor: 'rgba(83, 164, 81, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($open_issues as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['github_issues'].options.title.text = 'GitHub Issues over time';
+  chartData['github_issues'].options.scales.yAxes = [{stacked: true }];
+  chartData['github_issues'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('github_issues_plot').getContext('2d');
+  charts['github_issues'] = new Chart(ctx, chartData['github_issues']);
+
+
+
+
+  <?php
+  // Bin the data so that we can plot a histogram
+  $hour = 60*60;
+  $day = 60*60*24;
+  $bins = [
+    1*$hour => "1 hour",
+    2*$hour => "2 hours",
+    3*$hour => "3 hours",
+    4*$hour => "4 hours",
+    5*$hour => "5 hours",
+    6*$hour => "6 hours",
+    12*$hour => "12 hours",
+    1*$day => "1 day",
+    2*$day => "2 days",
+    3*$day => "3 days",
+    4*$day => "4 days",
+    5*$day => "5 days",
+    6*$day => "6 days",
+    7*$day => "7 days",
+    14*$day => "14 days",
+    31*$day => "1 month",
+    99999999999999999999 => "Over 1 month"
+  ];
+
+  // ISSUES
+  $gh_issue_response_hist = [];
+  $gh_issue_close_hist = [];
+  foreach($issues_json['stats']['issues']['response_times'] as $rt){
+    $key = min(array_filter(array_keys($bins), function ($ts) {
+      global $rt;
+      return $ts > $rt;
+    }));
+    if(!isset($gh_issue_response_hist[$key])) $gh_issue_response_hist[$key] = 0;
+    $gh_issue_response_hist[$key] += 1;
+  }
+  foreach($issues_json['stats']['issues']['close_times'] as $rt){
+    $key = min(array_filter(array_keys($bins), function ($ts) {
+      global $rt;
+      return $ts > $rt;
+    }));
+    if(!isset($gh_issue_close_hist[$key])) $gh_issue_close_hist[$key] = 0;
+    $gh_issue_close_hist[$key] += 1;
+  }
+  ksort($gh_issue_response_hist);
+  ksort($gh_issue_close_hist);
+
+  //PRs
+  $gh_pr_response_hist = [];
+  $gh_pr_close_hist = [];
+  foreach($issues_json['stats']['prs']['response_times'] as $rt){
+    $key = min(array_filter(array_keys($bins), function ($ts) {
+      global $rt;
+      return $ts > $rt;
+    }));
+    if(!isset($gh_pr_response_hist[$key])) $gh_pr_response_hist[$key] = 0;
+    $gh_pr_response_hist[$key] += 1;
+  }
+  foreach($issues_json['stats']['prs']['close_times'] as $rt){
+    $key = min(array_filter(array_keys($bins), function ($ts) {
+      global $rt;
+      return $ts > $rt;
+    }));
+    if(!isset($gh_pr_close_hist[$key])) $gh_pr_close_hist[$key] = 0;
+    $gh_pr_close_hist[$key] += 1;
+  }
+  ksort($gh_pr_response_hist);
+  ksort($gh_pr_close_hist);
+  ?>
+  // GitHub issues response time
+  chartData['github_issue_response_time'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['github_issue_response_time'].data = {
+    datasets: [
+      {
+        label: 'Time to close',
+        backgroundColor: 'rgba(199, 70, 78, 0.5)',
+        borderColor: 'rgba(199, 70, 78, 0.1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($bins as $key => $label){
+            echo $gh_issue_close_hist[$key].', ';
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Time to first response',
+        backgroundColor: 'rgba(83, 164, 81, 0.5)',
+        borderColor: 'rgba(83, 164, 81, 0.1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($gh_issue_response_hist as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['github_issue_response_time'].type = 'bar';
+  chartData['github_issue_response_time'].options.scales.xAxes = [{
+    type: 'category',
+    labels: ["<?php echo implode('", "', array_values($bins)); ?>"],
+  }];
+  chartData['github_issue_response_time'].options.scales.yAxes = [{
+    scaleLabel: {
+      display: true,
+      labelString: 'Number of issues'
+    }
+  }];
+  chartData['github_issue_response_time'].options.title.text = 'GitHub Issues Response Time';
+  chartData['github_issue_response_time'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('github_issue_response_time_plot').getContext('2d');
+  charts['github_issue_response_time'] = new Chart(ctx, chartData['github_issue_response_time']);
+
+
+
+
+  // GitHub PRs response time
+  chartData['github_pr_response_time'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['github_pr_response_time'].data = {
+    datasets: [
+      {
+        label: 'Time to merge / close',
+        backgroundColor: 'rgba(104, 72, 186, 0.5)',
+        borderColor: 'rgba(104, 72, 186, 0.1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($bins as $key => $label){
+            echo $gh_pr_close_hist[$key].', ';
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Time to first response',
+        backgroundColor: 'rgba(83, 164, 81, 0.5)',
+        borderColor: 'rgba(83, 164, 81, 0.1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($gh_pr_response_hist as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['github_pr_response_time'].type = 'bar';
+  chartData['github_pr_response_time'].options.scales.xAxes = [{
+    type: 'category',
+    labels: ["<?php echo implode('", "', array_values($bins)); ?>"],
+  }];
+  chartData['github_pr_response_time'].options.scales.yAxes = [{
+    scaleLabel: {
+      display: true,
+      labelString: 'Number of PRs'
+    }
+  }];
+  chartData['github_pr_response_time'].options.title.text = 'GitHub Pull Request Response Time';
+  chartData['github_pr_response_time'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('github_pr_response_time_plot').getContext('2d');
+  charts['github_pr_response_time'] = new Chart(ctx, chartData['github_pr_response_time']);
+
+
 
   // Repo clones plot
   chartData['repo_clones'] = JSON.parse(JSON.stringify(chartjs_base));
