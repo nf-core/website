@@ -187,12 +187,12 @@ We have seen fantastic uptake and feedback from pipelines within the framework a
     <img width="250px" src="/assets/img/contributors-colour/crick.svg" class="float-right pl-4" />
     The Francis Crick Institute
 </h3>
-<p>The <a href="https://www.crick.ac.uk/research/platforms-and-facilities/bioinformatics-and-biostatistics" target="_blank">The Bioinformatics & Biostatistics group</a>
+<p><a href="https://www.crick.ac.uk/research/platforms-and-facilities/bioinformatics-and-biostatistics" target="_blank">The Bioinformatics & Biostatistics group</a>
 at The Francis Crick Institute has contributed numerous pipelines to the <em>nf-core</em> framework, and we have a vested interest
-in its ongoing development. Our aim is to automate the rather tedious process of going from raw data to processed results to enable
-our scientists to focus on the biological interpretation of their experiments. Through our contribution to <em>nf-core</em> we are able
-to do this in a portable and reproducible manner, and more importantly to the benefit of the entire bioinformatics community. Numerous researchers
-are now using, contributing and providing feedback for the <em>nf-core</em> pipelines we have developed and this is nothing short of amazing!</p>
+in its ongoing development. Our aim is to automate the tedious process of going from raw data to processed results in a portable,
+reproducible and scalable manner, which enables our scientists to focus on the biological interpretation of their experiments.
+Importantly, the quality with which <em>nf-core</em> pipelines are developed benefits the entire bioinformatics community, and
+in turn their evolution is also driven by the community through their use, contributions and extensive feedback.</p>
 
 <h3 id="tweet_testimonials"><a href="#tweet_testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     Tweets to @nf_core
