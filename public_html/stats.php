@@ -432,6 +432,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     <div class="card bg-light mt-4">
       <div class="card-body">
         <canvas id="github_pr_response_time_plot" height="200"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original PR author</p>
         <p class="card-text small text-muted">
           <a href="#" data-target="github_pr_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_pr_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
@@ -454,10 +455,11 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 
 
     <h2 class="mt-0" id="github_issue_response_time"><a href="#github_issue_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Issue response times</h2>
-    <p>A sign of an active community is a quick response time to issues. Here we see a frequency histogram of how long it takes another user (not the original issue author) to reply to an issue.</p>
+    <p>A sign of an active community is a quick response time to issues. Here we see a frequency histogram of how long it takes to respond to and close issues.</p>
     <div class="card bg-light mt-4">
       <div class="card-body">
         <canvas id="github_issue_response_time_plot" height="200"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original issue author</p>
         <p class="card-text small text-muted">
           <a href="#" data-target="github_issue_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_issue_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
