@@ -163,6 +163,7 @@ $(function(){
 <h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 <p>We are collating statements and general comments from those who have either contributed to nf-core, or have chosen to routinely deploy
     nf-core pipelines for their data analysis. Feel free to add your own experiences, and please let us know if we have missed anything!</p>
+
 <h3 id="dfg_testimonial"><a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="350px" src="/assets/img/dfg_logo.svg" class="float-right pl-4" />
     German National Sequencing Initiative
@@ -181,6 +182,17 @@ in Cologne/Bonn (West German Genome Center) and the Dresden Center have committe
 was a founding member of <em>nf-core</em> and is committed to developing analysis methodologies within the <em>nf-core</em>
 community. The NGI provides next-generatation sequencing methodologies for all Swedish researchers, from library prep to sequencing to best-practice bioinformatics analysis.
 We have seen fantastic uptake and feedback from pipelines within the framework and intend to be a longstanding member of the community.</p>
+
+<h3 id="crick_testimonial"><a href="#crick_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="250px" src="/assets/img/contributors-colour/crick.svg" class="float-right pl-4" />
+    The Francis Crick Institute
+</h3>
+<p>The <a href="https://www.crick.ac.uk/research/platforms-and-facilities/bioinformatics-and-biostatistics" target="_blank">The Bioinformatics & Biostatistics group</a>
+at The Francis Crick Institute has contributed numerous pipelines to the <em>nf-core</em> framework, and we have a vested interest
+in its ongoing development. Our aim is to automate the rather tedious process of going from raw data to processed results to enable
+our scientists to focus on the biological interpretation of their experiments. Through our contribution to <em>nf-core</em> we are able
+to do this in a portable and reproducible manner, and more importantly to the benefit of the entire bioinformatics community. Numerous researchers
+are now using, contributing and providing feedback for the <em>nf-core</em> pipelines we have developed and this is nothing short of amazing!</p>
 
 <h3 id="tweet_testimonials"><a href="#tweet_testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     Tweets to @nf_core
