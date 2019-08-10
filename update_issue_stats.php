@@ -11,7 +11,7 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_issue_stats.php
 
-$debug = true;
+$debug = false;
 $num_api_calls = 0;
 $max_repos = false;
 $max_comments = false;
@@ -39,10 +39,14 @@ $base_stats = [
     'comments_count' => 0,
     'authors_count' => [],
     'median_close_time' => 0,
-    'median_response_time' => 0,
+    'median_response_time' => 0
 ];
 $results['stats'][$updated]['issues'] = $base_stats;
 $results['stats'][$updated]['prs'] = $base_stats;
+$results['stats']['issues']['daily_opened'] = [];
+$results['stats']['issues']['daily_closed'] = [];
+$results['stats']['prs']['daily_opened'] = [];
+$results['stats']['prs']['daily_closed'] = [];
 
 // Get auth secrets
 $config = parse_ini_file("config.ini");
@@ -145,6 +149,19 @@ foreach($repos as $repo){
             }
             $results['stats'][$updated][$issue_type]['comments_count'] += $issue['comments'];
             $results['stats'][$updated][$issue_type]['authors_count'][$author] = 0;
+            // Daily opened / closed stats
+            $created_at_day = date('d-m-Y', strtotime($issue['created_at']));
+            if(!isset($results['stats'][$issue_type]['daily_opened'][$created_at_day])){
+                $results['stats'][$issue_type]['daily_opened'][$created_at_day] = 0;
+            }
+            $results['stats'][$issue_type]['daily_opened'][$created_at_day] += 1;
+            if($issue['closed_at']){
+                $closed_at_day = date('d-m-Y', strtotime($issue['closed_at']));
+                if(!isset($results['stats'][$issue_type]['daily_closed'][$closed_at_day])){
+                    $results['stats'][$issue_type]['daily_closed'][$closed_at_day] = 0;
+                }
+                $results['stats'][$issue_type]['daily_closed'][$created_at_day] += 1;
+            }
         }
         // Look for URL to next page of API results
         $next_page = false;
