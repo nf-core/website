@@ -25,6 +25,15 @@ $pipelines = $pipelines_json->remote_workflows;
 $stats_json_fn = dirname(dirname(__FILE__)).'/nfcore_stats.json';
 $stats_json = json_decode(file_get_contents($stats_json_fn));
 
+$issues_json_fn = dirname(dirname(__FILE__)).'/nfcore_issue_stats.json';
+$issues_json = json_decode(file_get_contents($issues_json_fn), true);
+$issues_json_latest = false;
+foreach($issues_json['stats'] as $key => $arr){
+  if(!is_numeric($key)) continue;
+  if(!$issues_json_latest) $issues_json_latest = $key;
+  $issues_json_latest = min($issues_json_latest, $key);
+}
+
 // Convenience variables
 $slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
 $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
@@ -325,10 +334,10 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
   <div class="card bg-light">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $stats_total['pipelines']['releases']; ?></p>
-      <p class="card-text text-muted">Pipeline releases</p>
+      <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo round_nicely($issues_json['stats'][$issues_json_latest]['prs']['count']); ?></a></p>
+      <p class="card-text text-muted">Pull Requests</p>
     </div>
-    <div class="bg-icon"><i class="fas fa-tags"></i></div>
+    <div class="bg-icon"><i class="fas fa-code-branch fa-flip-vertical"></i></div>
   </div>
   <div class="card bg-light">
     <div class="card-body">
@@ -336,6 +345,13 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo round_nicely($issues_json['stats'][$issues_json_latest]['issues']['count']); ?></a></p>
+      <p class="card-text text-muted">Issues</p>
+    </div>
+    <div class="bg-icon"><i class="fas fa-exclamation-circle"></i></div>
   </div>
 </div>
 
@@ -391,6 +407,37 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
         <br>Unique visitors since <?php echo date('F Y', min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since'])); ?>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+
+    <h2 class="mt-0" id="github_prs"><a href="#github_prs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pull Requests</h2>
+    <p>When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="github_prs_plot" height="200"></canvas>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="github_prs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-6">
+
+    <h2 class="mt-0" id="github_issues"><a href="#github_issues" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Issues</h2>
+    <p>GitHub issues can be created to log feature requests, bug reports or questions.</p>
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="github_issues_plot" height="200"></canvas>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="github_issues" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -709,6 +756,139 @@ $(function(){
   chartData['twitter'].options.title.text = '@nf_core twitter followers users over time';
   var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
   charts['twitter'] = new Chart(ctx, chartData['twitter']);
+
+  // GitHub Pull Requests chart
+  <?php
+  $open_prs = [];
+  $closed_prs = [];
+  $dates_raw = array_unique(array_merge(array_keys($issues_json['stats']['prs']['daily_opened']), array_keys($issues_json['stats']['prs']['daily_closed'])));
+  $dates = [];
+  foreach($dates_raw as $date){
+    $dates[strtotime($date)] = $date;
+  }
+  ksort($dates);
+  $running_open_prs = 0;
+  $running_closed_prs = 0;
+  foreach($dates as $ts => $date){
+    if(isset($issues_json['stats']['prs']['daily_opened'][$date])){
+      $running_open_prs += $issues_json['stats']['prs']['daily_opened'][$date];
+    }
+    if(isset($issues_json['stats']['prs']['daily_closed'][$date])){
+      $running_open_prs -= $issues_json['stats']['prs']['daily_closed'][$date];
+      $running_closed_prs += $issues_json['stats']['prs']['daily_closed'][$date];
+    }
+    $open_prs[date('Y-m-d', $ts)] = $running_open_prs;
+    $closed_prs[date('Y-m-d', $ts)] = $running_closed_prs;
+  }
+  ?>
+  chartData['github_prs'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['github_prs'].data = {
+    datasets: [
+      {
+        label: 'Closed',
+        backgroundColor: 'rgba(230,10,10, 0.2)',
+        borderColor: 'rgba(230,10,10, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($closed_prs as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Open',
+        backgroundColor: 'rgba(100, 220, 10, 0.2)',
+        borderColor: 'rgba(100, 220, 10, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($open_prs as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['github_prs'].options.title.text = 'GitHub Pull Requests over time';
+  chartData['github_prs'].options.scales.yAxes = [{stacked: true }];
+  chartData['github_prs'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('github_prs_plot').getContext('2d');
+  charts['github_prs'] = new Chart(ctx, chartData['github_prs']);
+
+
+
+
+  // GitHub issues chart
+  <?php
+  $open_issues = [];
+  $closed_issues = [];
+  $dates_raw = array_unique(array_merge(array_keys($issues_json['stats']['issues']['daily_opened']), array_keys($issues_json['stats']['issues']['daily_closed'])));
+  $dates = [];
+  foreach($dates_raw as $date){
+    $dates[strtotime($date)] = $date;
+  }
+  ksort($dates);
+  $running_open_issues = 0;
+  $running_closed_issues = 0;
+  foreach($dates as $ts => $date){
+    if(isset($issues_json['stats']['issues']['daily_opened'][$date])){
+      $running_open_issues += $issues_json['stats']['issues']['daily_opened'][$date];
+    }
+    if(isset($issues_json['stats']['issues']['daily_closed'][$date])){
+      $running_open_issues -= $issues_json['stats']['issues']['daily_closed'][$date];
+      $running_closed_issues += $issues_json['stats']['issues']['daily_closed'][$date];
+    }
+    $open_issues[date('Y-m-d', $ts)] = $running_open_issues;
+    $closed_issues[date('Y-m-d', $ts)] = $running_closed_issues;
+  }
+  ?>
+  chartData['github_issues'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['github_issues'].data = {
+    datasets: [
+      {
+        label: 'Closed',
+        backgroundColor: 'rgba(230,10,10, 0.2)',
+        borderColor: 'rgba(230,10,10, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($closed_issues as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'Open',
+        backgroundColor: 'rgba(100, 220, 10, 0.2)',
+        borderColor: 'rgba(100, 220, 10, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($open_issues as $date => $count){
+            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['github_issues'].options.title.text = 'GitHub Issues over time';
+  chartData['github_issues'].options.scales.yAxes = [{stacked: true }];
+  chartData['github_issues'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('github_issues_plot').getContext('2d');
+  charts['github_issues'] = new Chart(ctx, chartData['github_issues']);
+
+
 
   // Repo clones plot
   chartData['repo_clones'] = JSON.parse(JSON.stringify(chartjs_base));
