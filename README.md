@@ -50,13 +50,14 @@ php update_pipeline_details.php
 This will create `public_html/pipelines.json`, which is used by the website.
 Note that this is ignored in the `.gitignore` file and will not be tracked in git history.
 
-Optionally, once you've done that, you can grab the pipeline traffic statistics:
+Optionally, once you've done that, you can grab the pipeline traffic and issue statistics:
 
 ```bash
-php nfcore_stats.json
+php update_stats.php
+php update_issue_stats.php
 ```
 
-This creates `nfcore_stats.json`, also ignored in `.gitignore`.
+This creates `nfcore_stats.json` and `nfcore_issue_stats.json`, also ignored in `.gitignore`.
 Note that you'll need the `github_username` and `github_access_token` set in the `config.ini` file for this to work.
 
 
@@ -75,7 +76,10 @@ The web server needs the following cronjob running to scrape pipeline statistics
 
 ```
 0	0	*	*	*	/usr/local/bin/php /home/nfcore/nf-co.re/update_stats.php >> /home/nfcore/update.log 2>&1
+0	2	*	*	*	/usr/local/bin/php /home/nfcore/nf-co.re/update_issue_stats.php >> /home/nfcore/update.log 2>&1
 ```
+
+The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
 
 ### Tools API docs
 The repo has a softlink for `/tools-docs` which is intended for use on the server and corresponds to the path used in `public_html/deploy.php`. This script pulls the built API docs from the tools repo onto the server so that it can be served at that URL.
