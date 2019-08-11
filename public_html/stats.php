@@ -992,8 +992,6 @@ $(function(){
   }
   ksort($gh_pr_response_hist);
   ksort($gh_pr_close_hist);
-  $total_issues = $issues_json['stats'][$issues_json_latest]['issues']['count'];
-  $total_prs = $issues_json['stats'][$issues_json_latest]['prs']['count'];
   ?>
   // GitHub issues response time
   chartData['github_issue_response_time'] = JSON.parse(JSON.stringify(chartjs_base));
@@ -1007,7 +1005,7 @@ $(function(){
         data: [
           <?php
           foreach($bins as $key => $label){
-            echo (($gh_issue_close_hist[$key]/$total_issues)*100).', ';
+            echo (($gh_issue_close_hist[$key]/count($issues_json['stats']['issues']['close_times']))*100).', ';
           }
           ?>
         ]
@@ -1020,7 +1018,7 @@ $(function(){
         data: [
           <?php
           foreach($bins as $key => $label){
-            echo (($gh_issue_response_hist[$key]/$total_issues)*100).', ';
+            echo (($gh_issue_response_hist[$key]/count($issues_json['stats']['issues']['response_times']))*100).', ';
           }
           ?>
         ]
@@ -1054,10 +1052,7 @@ $(function(){
           label += ': ';
         }
         label += Math.round(tooltipItem.yLabel * 100) / 100;
-        label += '% (';
-        var totalIssues = <?php echo $total_issues; ?>;
-        label += Math.round((tooltipItem.yLabel / 100) * totalIssues);
-        label += ' issues)';
+        label += '%';
         return label;
       }
     }
@@ -1086,7 +1081,7 @@ $(function(){
         data: [
           <?php
           foreach($bins as $key => $label){
-            echo (($gh_pr_close_hist[$key]/$total_prs)*100).', ';
+            echo (($gh_pr_close_hist[$key]/count($issues_json['stats']['prs']['close_times']))*100).', ';
           }
           ?>
         ]
@@ -1099,7 +1094,7 @@ $(function(){
         data: [
           <?php
           foreach($bins as $key => $label){
-            echo (($gh_pr_response_hist[$key]/$total_prs)*100).', ';
+            echo (($gh_pr_response_hist[$key]/count($issues_json['stats']['prs']['response_times']))*100).', ';
           }
           ?>
         ]
@@ -1133,10 +1128,7 @@ $(function(){
           label += ': ';
         }
         label += Math.round(tooltipItem.yLabel * 100) / 100;
-        label += '% (';
-        var totalPRs = <?php echo $total_prs; ?>;
-        label += Math.round((tooltipItem.yLabel / 100) * totalPRs);
-        label += ' PRs)';
+        label += '%';
         return label;
       }
     }
