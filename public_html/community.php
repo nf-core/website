@@ -191,8 +191,9 @@ We have seen fantastic uptake and feedback from pipelines within the framework a
 at The Francis Crick Institute has contributed numerous pipelines to the <em>nf-core</em> framework, and we have a vested interest
 in its ongoing development. Our aim is to automate the tedious process of going from raw data to processed results in a portable,
 reproducible and scalable manner, which enables our scientists to focus on the biological interpretation of their experiments.
-Importantly, the quality with which <em>nf-core</em> pipelines are developed benefits the entire bioinformatics community, and
-in turn their evolution is also driven by the community through their use, contributions and extensive feedback.</p>
+More importantly, <em>nf-core</em> pipelines are implemented to benefit the entire bioinformatics community, and in turn their
+evolution is driven by the very same community through their use, contributions and extensive feedback. This is nothing short of
+amazing!</p>
 
 <h3 id="tweet_testimonials"><a href="#tweet_testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     Tweets to @nf_core
