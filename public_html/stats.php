@@ -39,6 +39,18 @@ $slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
 $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
 $twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)};
 
+// Get unique contributors - commits and issues
+$gh_contributors = (array) $stats_json->gh_contributors;
+$gh_contributor_commits = array_keys($gh_contributors);
+$gh_contributor_issues = array_keys($issues_json['authors']);
+foreach($issues_json['authors'] as $author => $info){
+  if(!isset($gh_contributors[$author])){
+    $gh_contributors[$author] = $info['first_contribution'];
+  }
+  $gh_contributors[$author] = min($gh_contributors[$author], $info['first_contribution']);
+}
+
+
 # echo '<pre>'.print_r($stats, true).'</pre>';
 
 // This is horrible, I know sorry. I'm in a rush :(
@@ -70,7 +82,7 @@ $stats_total[$repo_type] = [
   'views_count_total' => 0,
   'views_uniques_since' => false,
   'views_uniques_total' => 0,
-  'unique_contributors' => [],
+  'unique_committers' => [],
   'total_commits' => 0,
 ];
 
@@ -114,8 +126,8 @@ foreach($stats as $repo_name => $repo):
   $total_commits = 0;
   foreach($repo->contributors as $contributor){
     $gh_username = $contributor->author->login;
-    $stats_total[$repo_type]['unique_contributors'][$gh_username] = 0;
-    $stats_total['total']['unique_contributors'][$gh_username] = 0;
+    $stats_total[$repo_type]['unique_committers'][$gh_username] = 0;
+    $stats_total['total']['unique_committers'][$gh_username] = 0;
     $stats_total[$repo_type]['total_commits'] += $contributor->total;
     $total_commits += $contributor->total;
   }
@@ -155,7 +167,7 @@ endforeach;
 endforeach;
 
 foreach(array_keys($stats_total['pipelines']) as $akey){
-  if($akey == 'unique_contributors'){
+  if($akey == 'unique_committers'){
     continue;
   }
   $stats_total['total'][$akey] = $stats_total['pipelines'][$akey] + $stats_total['core_repos'][$akey];
@@ -244,8 +256,8 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     <div class="bg-icon"><i class="fab fa-github"></i></div>
   </div>
   <div class="card bg-light">
-    <div class="card-body">
-      <p class="card-text display-4"><a href="#gh_contribs" class="text-body text-decoration-none stretched-link"><?php echo count($stats_total['total']['unique_contributors']); ?></a></p>
+    <div class="card-body" data-toggle="tooltip" title="<?php echo count($gh_contributor_commits); ?> have committed code, <?php echo count($gh_contributor_issues); ?> have written issues">
+      <p class="card-text display-4"><a href="#gh_contribs" class="text-body text-decoration-none stretched-link"><?php echo count($gh_contributors); ?></a></p>
       <p class="card-text text-muted">GitHub contributors</p>
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
@@ -313,8 +325,8 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
     <div class="card bg-light mt-4">
       <div class="card-body">
-        <canvas id="gh_contribs_plot" height="150"></canvas>
-        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Some pipelines have been moved to the nf-core organisation instead of being forked. Contributions for these repos may predate nf-core.</p>
+        <canvas id="gh_contribs_plot" height="180"></canvas>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Plot truncated to start of 2018 (some pipelines moved to nf-core so have older contributions).</p>
         <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
@@ -559,7 +571,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th>Name</th>
         <th>Age</th>
         <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
-        <th class="text-right">Contributors</th>
+        <th class="text-right">Committers</th>
         <th class="text-right">Commits</th>
         <th class="text-right">Stargazers</th>
         <th class="text-right">Forks</th>
@@ -575,7 +587,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th>Total:</th>
         <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
         <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
-        <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_contributors']); ?> unique</th>
+        <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['forks']; ?></th>
@@ -594,7 +606,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th>Name</th>
         <th>Age</th>
         <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
-        <th class="text-right">Contributors</th>
+        <th class="text-right">Committers</th>
         <th class="text-right">Commits</th>
         <th class="text-right">Stargazers</th>
         <th class="text-right">Forks</th>
@@ -729,32 +741,75 @@ $(function(){
 
 
   // GitHub contributors chart
+  <?php
+  asort($gh_contributors);
+  $issues_cumulative_count = 0;
+  $commits_cumulative_count = 0;
+  $both_cumulative_count = 0;
+  $contribs_commits = [];
+  $contribs_issues = [];
+  $contribs_both = [];
+  foreach($gh_contributors as $username => $timestamp){
+    // Make zeros and old timestamps start of 2018
+    if($timestamp < 1514764800){
+      $timestamp = 1514764800;
+    }
+    if(in_array($username, $gh_contributor_commits) && in_array($username, $gh_contributor_issues)){
+      $both_cumulative_count += 1;
+    } else if(in_array($username, $gh_contributor_commits)){
+      $commits_cumulative_count += 1;
+    } else if(in_array($username, $gh_contributor_issues)){
+      $issues_cumulative_count += 1;
+    }
+    $contribs_commits[] = '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$commits_cumulative_count.' },'."\n\t\t\t";
+    $contribs_issues[] = '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$issues_cumulative_count.' },'."\n\t\t\t";
+    $contribs_both[] = '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$both_cumulative_count.' },'."\n\t\t\t";
+  }
+  ?>
   chartData['gh_contribs'] = JSON.parse(JSON.stringify(chartjs_base));
   chartData['gh_contribs'].data = {
     datasets: [
       {
+        label: 'Commits',
         backgroundColor: 'rgba(0,0,0,0.2)',
         borderColor: 'rgba(0,0,0,1)',
         pointRadius: 0,
         data: [
-          <?php
-          $gh_contributors = (array) $stats_json->gh_contributors;
-          sort($gh_contributors);
-          $cumulative_count = 0;
-          foreach($gh_contributors as $username => $timestamp){
-            // Skip zeros (anything before 2010)
-            if($timestamp < 1262304000){
-              continue;
-            }
-            $cumulative_count += 1;
-            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$cumulative_count.' },'."\n\t\t\t";
-          }
-          ?>
+          <?php echo implode('', $contribs_commits); ?>
+        ]
+      },
+      {
+        label: 'Commits and Issues',
+        backgroundColor: 'rgba(104, 72, 186, 0.2)',
+        borderColor: 'rgba(104, 72, 186, 1.0)',
+        pointRadius: 0,
+        data: [
+          <?php echo implode('', $contribs_both); ?>
+        ]
+      },
+      {
+        label: 'Issues',
+        backgroundColor: 'rgba(83, 164, 81, 0.2)',
+        borderColor: 'rgba(83, 164, 81, 1.0)',
+        pointRadius: 0,
+        data: [
+          <?php echo implode('', $contribs_issues); ?>
         ]
       }
     ]
   };
-  chartData['gh_contribs'].options.title.text = 'nf-core GitHub code contributors over time';
+  chartData['gh_contribs'].options.scales.yAxes = [{
+    stacked: true,
+    scaleLabel: {
+      display: true,
+      labelString: 'Number of contributors'
+    },
+  }];
+  chartData['gh_contribs'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  chartData['gh_contribs'].options.title.text = 'nf-core GitHub contributors over time';
   var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
   charts['gh_contribs'] = new Chart(ctx, chartData['gh_contribs']);
 

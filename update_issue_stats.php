@@ -11,7 +11,7 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_issue_stats.php
 
-$debug = false;
+$debug = true;
 $num_api_calls = 0;
 $max_repos = false;
 $max_comments = false;
@@ -25,30 +25,46 @@ $updated = time();
 
 // Final filename to write JSON to
 $results_fn = dirname(__FILE__).'/nfcore_issue_stats.json';
-$contribs_fn_root = dirname(__FILE__).'/contributor_stats/';
 
 // Load a copy of the existing JSON file, if it exists
 if(file_exists($results_fn)){
     if($debug){ echo "Loading previous stats: $results_fn\n"; }
     $results = json_decode(file_get_contents($results_fn), true);
 }
+$prev_updated = $results['updated'];
 $results['updated'] = $updated;
-$base_stats = [
-    'count' => 0,
-    'open_count' => 0,
-    'comments_count' => 0,
-    'authors_count' => [],
-    'median_close_time' => 0,
-    'median_response_time' => 0
-];
-$results['stats'][$updated]['issues'] = $base_stats;
-$results['stats'][$updated]['prs'] = $base_stats;
-$results['stats']['issues']['daily_opened'] = [];
-$results['stats']['issues']['daily_closed'] = [];
-$results['stats']['issues']['close_times'] = [];
-$results['stats']['prs']['daily_opened'] = [];
-$results['stats']['prs']['daily_closed'] = [];
-$results['stats']['prs']['close_times'] = [];
+
+// First check if we've pulled these in the past hour
+$skip_issue_update = false;
+if($updated - $prev_updated < 60*60){
+    $results['updated'] = $prev_updated;
+    $updated = $prev_updated;
+    $skip_issue_update = true;
+    if($debug){
+        echo "Skipping repo comments pull as cache is from past hour\n";
+    }
+} else if($debug) {
+    echo "Issues results are ".($updated - $prev_updated)." seconds old - pulling again\n";
+}
+
+if(!$skip_issue_update){
+    $base_stats = [
+        'count' => 0,
+        'open_count' => 0,
+        'comments_count' => 0,
+        'authors_count' => [],
+        'median_close_time' => 0,
+        'median_response_time' => 0
+    ];
+    $results['stats'][$updated]['issues'] = $base_stats;
+    $results['stats'][$updated]['prs'] = $base_stats;
+    $results['stats']['issues']['daily_opened'] = [];
+    $results['stats']['issues']['daily_closed'] = [];
+    $results['stats']['issues']['close_times'] = [];
+    $results['stats']['prs']['daily_opened'] = [];
+    $results['stats']['prs']['daily_closed'] = [];
+    $results['stats']['prs']['close_times'] = [];
+}
 
 // Get auth secrets
 $config = parse_ini_file("config.ini");
@@ -90,6 +106,11 @@ foreach($pipelines as $pipeline){
 $num_repos = 0;
 foreach($repos as $repo){
     $num_repos += 1;
+    // First check if we've pulled these in the past hour and skip if so
+    if($skip_issue_update){
+        break;
+    }
+
     if(is_numeric($max_repos)){
         if($num_repos > $max_repos){
             break;
@@ -144,13 +165,17 @@ foreach($repos as $repo){
                 $results['authors'][$author][$issue_type]['num_created'] = 0;
             }
             $results['authors'][$author][$issue_type]['num_created'] += 1;
+            if(!isset($results['authors'][$author]['first_contribution'])){
+                $results['authors'][$author]['first_contribution'] = strtotime($issue['created_at']);
+            }
+            $results['authors'][$author]['first_contribution'] = min($results['authors'][$author]['first_contribution'], strtotime($issue['created_at']));
             // Global stats
             $results['stats'][$updated][$issue_type]['count'] += 1;
             if($issue['state'] == 'open'){
                 $results['stats'][$updated][$issue_type]['open_count'] += 1;
             }
             $results['stats'][$updated][$issue_type]['comments_count'] += $issue['comments'];
-            $results['stats'][$updated][$issue_type]['authors_count'][$author] = 0;
+            $results['stats'][$updated][$issue_type]['authors'][$author] = 0;
             // Daily opened / closed stats
             $created_at_day = date('d-m-Y', strtotime($issue['created_at']));
             if(!isset($results['stats'][$issue_type]['daily_opened'][$created_at_day])){
@@ -187,6 +212,7 @@ foreach($repos as $repo){
             continue;
         }
         foreach($results['repos'][$repo][$issue_type] as $id => $issue){
+
             // For developing - if $max_calls is set, check if we should bail
             $num_calls += 1;
             if(is_numeric($max_comments)){
@@ -194,27 +220,62 @@ foreach($repos as $repo){
                     break 2; // break the outer loop too
                 }
             }
+
             // Skip issues with no comments
             if($issue['num_comments'] == 0){
                 continue;
             }
-            // Lots of API calls! Only look for this if we don't already have details
-            if(isset($issue['first_reply'])){
-                continue;
+
+            // Check we if we have pulled this already
+            $comments_fn = dirname(__FILE__).'/api_cache/issue_comments/'.$repo.'/'.$id.'.json';
+            $fetch_json = true;
+            if(file_exists($comments_fn)){
+                if($debug){ echo "Loading previous comments: $comments_fn\n"; }
+                $gh_comments = json_decode(file_get_contents($comments_fn), true);
+                // Check that there haven't been new comments since we cached this
+                if($issue['num_comments'] == count($gh_comments)){
+                    $fetch_json = false;
+                } else if($debug){
+                    echo "New comments for nf-core/$repo issue #$id: now ".$issue['num_comments'].", previously had ".count($gh_comments)."\n";
+                }
             }
-            // Some issues only have comments from the author
-            if(isset($issue['talking_to_myself']) && $issue['talking_to_myself'] == $issue['num_comments']){
-                continue;
+            if($fetch_json) {
+                $gh_comments = [];
+                $gh_comments_url = $issue['comments_url'];
+                $first_page = true;
+                $next_page = false;
+                while($first_page || $next_page){
+                    $first_page = false;
+                    if($next_page){
+                        $gh_comments_url = $next_page;
+                    }
+                    if($debug){ echo "Fetching $gh_comments_url\n"; }
+                    $num_api_calls += 1;
+                    $gh_new_comments = json_decode(file_get_contents($gh_comments_url, false, $gh_api_opts), true);
+                    $gh_comments = array_merge($gh_comments, $gh_new_comments);
+                    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+                        var_dump($http_response_header);
+                        die("Could not fetch nf-core/$repo issue #$id! $gh_comments_url");
+                    }
+                    // Look for URL to next page of API results
+                    $next_page = false;
+                    $m_array = preg_grep('/rel="next"/', $http_response_header);
+                    if(count($m_array) > 0){
+                        preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
+                        if(isset($matches[1])){
+                            $next_page = $matches[1];
+                        }
+                    }
+                }
+                // Save for next time
+                if (!file_exists(dirname($comments_fn))) {
+                    mkdir(dirname($comments_fn), 0777, true);
+                }
+                $gh_comments_json = json_encode($gh_comments, JSON_PRETTY_PRINT)."\n";
+                file_put_contents($comments_fn, $gh_comments_json);
             }
-            // Ok, should just be issues with new comments from here on
-            $gh_comments_url = $issue['comments_url'];
-            if($debug){ echo "Fetching $gh_comments_url\n"; }
-            $num_api_calls += 1;
-            $gh_comments = json_decode(file_get_contents($gh_comments_url, false, $gh_api_opts), true);
-            if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-                var_dump($http_response_header);
-                die("Could not fetch nf-core/$repo issue #$id! $gh_comments_url");
-            }
+
+            // Ok, lets go through the comments
             $comments_by_created = [];
             $comment_timestamps = [];
             foreach($gh_comments as $comment){
@@ -230,8 +291,12 @@ foreach($repos as $repo){
                     $results['authors'][$author][$issue_type]['num_replies'] = 0;
                 }
                 $results['authors'][$author][$issue_type]['num_replies'] += 1;
+                if(!isset($results['authors'][$author]['first_contribution'])){
+                    $results['authors'][$author]['first_contribution'] = strtotime($issue['created_at']);
+                }
+                $results['authors'][$author]['first_contribution'] = min($results['authors'][$author]['first_contribution'], strtotime($issue['created_at']));
                 // Global stats
-                $results['stats'][$updated][$issue_type]['authors_count'][$author] = 0;
+                $results['stats'][$updated][$issue_type]['authors'][$author] = 0;
             }
             // Special case - the only comments are from the original issue author
             if(count($comment_timestamps) == 0){
@@ -255,8 +320,11 @@ foreach($repos as $repo){
 }
 
 // Count the author stats
-$results['stats'][$updated]['issues']['authors_count'] = count($results['stats'][$updated]['issues']['authors_count']);
-$results['stats'][$updated]['prs']['authors_count'] = count($results['stats'][$updated]['prs']['authors_count']);
+// NB: This will be a bit wrong if we haven't grabbed issues, as won't be counting people who created issues but haven't had a comment
+$results['stats'][$updated]['issues']['authors_count'] = count($results['stats'][$updated]['issues']['authors']);
+$results['stats'][$updated]['prs']['authors_count'] = count($results['stats'][$updated]['prs']['authors']);
+unset($results['stats'][$updated]['issues']['authors']);
+unset($results['stats'][$updated]['prs']['authors']);
 
 // Calculate the median times
 function array_median($arr){
