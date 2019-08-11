@@ -322,7 +322,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 
     <h2 class="mt-0" id="gh_contribs"><a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>GitHub contributors</h2>
     <p>Anybody can fork nf-core repositories and open a pull-request.
-    Here we count how many different people have contributed at least one commit to an nf-core repository.</p>
+    Here we count how many different people have contributed at least one commit to an nf-core repository, or created or commented on an issue or pull-request.</p>
     <div class="card bg-light mt-4">
       <div class="card-body">
         <canvas id="gh_contribs_plot" height="180"></canvas>
