@@ -11,7 +11,7 @@
 // ignored in the .gitignore file and will not be tracked in git history.
 //
 // Manual usage: on command line, simply execute this script:
-//   $ php nfcore_stats.json
+//   $ php update_stats.php
 
 
 // Allow PHP fopen to work with remote links
