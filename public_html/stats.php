@@ -856,7 +856,9 @@ $(function(){
   <?php
   $open_issues = [];
   $closed_issues = [];
+  // Get all dates for opening and closing issues
   $dates_raw = array_unique(array_merge(array_keys($issues_json['stats']['issues']['daily_opened']), array_keys($issues_json['stats']['issues']['daily_closed'])));
+  // Date strings need sorting and formatting
   $dates = [];
   foreach($dates_raw as $date){
     $dates[strtotime($date)] = $date;
@@ -947,6 +949,7 @@ $(function(){
   $gh_issue_response_hist = [];
   $gh_issue_close_hist = [];
   foreach($issues_json['stats']['issues']['response_times'] as $rt){
+    // Find all bins that are bigger than the value, then take the smallest
     $key = min(array_filter(array_keys($bins), function ($ts) {
       global $rt;
       return $ts > $rt;
@@ -955,6 +958,7 @@ $(function(){
     $gh_issue_response_hist[$key] += 1;
   }
   foreach($issues_json['stats']['issues']['close_times'] as $rt){
+    // Find all bins that are bigger than the value, then take the smallest
     $key = min(array_filter(array_keys($bins), function ($ts) {
       global $rt;
       return $ts > $rt;
@@ -969,6 +973,7 @@ $(function(){
   $gh_pr_response_hist = [];
   $gh_pr_close_hist = [];
   foreach($issues_json['stats']['prs']['response_times'] as $rt){
+    // Find all bins that are bigger than the value, then take the smallest
     $key = min(array_filter(array_keys($bins), function ($ts) {
       global $rt;
       return $ts > $rt;
@@ -977,6 +982,7 @@ $(function(){
     $gh_pr_response_hist[$key] += 1;
   }
   foreach($issues_json['stats']['prs']['close_times'] as $rt){
+    // Find all bins that are bigger than the value, then take the smallest
     $key = min(array_filter(array_keys($bins), function ($ts) {
       global $rt;
       return $ts > $rt;
@@ -986,6 +992,8 @@ $(function(){
   }
   ksort($gh_pr_response_hist);
   ksort($gh_pr_close_hist);
+  $total_issues = $issues_json['stats'][$issues_json_latest]['issues']['count'];
+  $total_prs = $issues_json['stats'][$issues_json_latest]['prs']['count'];
   ?>
   // GitHub issues response time
   chartData['github_issue_response_time'] = JSON.parse(JSON.stringify(chartjs_base));
@@ -999,7 +1007,7 @@ $(function(){
         data: [
           <?php
           foreach($bins as $key => $label){
-            echo $gh_issue_close_hist[$key].', ';
+            echo (($gh_issue_close_hist[$key]/$total_issues)*100).', ';
           }
           ?>
         ]
@@ -1011,8 +1019,8 @@ $(function(){
         pointRadius: 0,
         data: [
           <?php
-          foreach($gh_issue_response_hist as $date => $count){
-            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          foreach($bins as $key => $label){
+            echo (($gh_issue_response_hist[$key]/$total_issues)*100).', ';
           }
           ?>
         ]
@@ -1027,9 +1035,33 @@ $(function(){
   chartData['github_issue_response_time'].options.scales.yAxes = [{
     scaleLabel: {
       display: true,
-      labelString: 'Number of issues'
+      labelString: 'Percentage of issues'
+    },
+    ticks: {
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+        return value+'%';
+      }
     }
   }];
+  // Round the tooltip values
+  chartData['github_issue_response_time'].options.tooltips = {
+    mode: 'index',
+    callbacks: {
+      label: function(tooltipItem, data) {
+        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+        if (label) {
+          label += ': ';
+        }
+        label += Math.round(tooltipItem.yLabel * 100) / 100;
+        label += '% (';
+        var totalIssues = <?php echo $total_issues; ?>;
+        label += Math.round((tooltipItem.yLabel / 100) * totalIssues);
+        label += ' issues)';
+        return label;
+      }
+    }
+  }
   chartData['github_issue_response_time'].options.title.text = 'GitHub Issues Response Time';
   chartData['github_issue_response_time'].options.legend = {
     position: 'bottom',
@@ -1053,7 +1085,7 @@ $(function(){
         data: [
           <?php
           foreach($bins as $key => $label){
-            echo $gh_pr_close_hist[$key].', ';
+            echo (($gh_pr_close_hist[$key]/$total_prs)*100).', ';
           }
           ?>
         ]
@@ -1065,8 +1097,8 @@ $(function(){
         pointRadius: 0,
         data: [
           <?php
-          foreach($gh_pr_response_hist as $date => $count){
-            echo '{ x: "'.$date.'", y: '.$count.' },'."\n\t\t\t";
+          foreach($bins as $key => $label){
+            echo (($gh_pr_response_hist[$key]/$total_prs)*100).', ';
           }
           ?>
         ]
@@ -1081,9 +1113,33 @@ $(function(){
   chartData['github_pr_response_time'].options.scales.yAxes = [{
     scaleLabel: {
       display: true,
-      labelString: 'Number of PRs'
+      labelString: 'Percentage of PRs'
+    },
+    ticks: {
+      // Include a dollar sign in the ticks
+      callback: function(value, index, values) {
+        return value+'%';
+      }
     }
   }];
+  // Round the tooltip values
+  chartData['github_pr_response_time'].options.tooltips = {
+    mode: 'index',
+    callbacks: {
+      label: function(tooltipItem, data) {
+        var label = data.datasets[tooltipItem.datasetIndex].label || '';
+        if (label) {
+          label += ': ';
+        }
+        label += Math.round(tooltipItem.yLabel * 100) / 100;
+        label += '% (';
+        var totalPRs = <?php echo $total_prs; ?>;
+        label += Math.round((tooltipItem.yLabel / 100) * totalPRs);
+        label += ' PRs)';
+        return label;
+      }
+    }
+  }
   chartData['github_pr_response_time'].options.title.text = 'GitHub Pull Request Response Time';
   chartData['github_pr_response_time'].options.legend = {
     position: 'bottom',
