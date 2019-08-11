@@ -448,7 +448,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
       <div class="card-body">
         <canvas id="github_issues_plot" height="200"></canvas>
         <p class="card-text small text-muted">
-          <a href="#" data-target="github_issues" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-target="github_issues" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_issues" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -1062,6 +1062,7 @@ $(function(){
       }
     }
   }
+  chartData['github_issue_response_time'].options.plugins.zoom = false;
   chartData['github_issue_response_time'].options.title.text = 'GitHub Issues Response Time';
   chartData['github_issue_response_time'].options.legend = {
     position: 'bottom',
@@ -1140,6 +1141,7 @@ $(function(){
       }
     }
   }
+  chartData['github_pr_response_time'].options.plugins.zoom = false;
   chartData['github_pr_response_time'].options.title.text = 'GitHub Pull Request Response Time';
   chartData['github_pr_response_time'].options.legend = {
     position: 'bottom',
@@ -1325,6 +1327,7 @@ $(function(){
     // Turn off responiveness
     chartData[target].options.responsive = false;
     chartData[target].options.animation = false;
+    chartData[target].options.plugins.zoom = false;
     // canvas2svg 'mock' context
     var svgContext = C2S(800,400);
     // new chart on 'mock' context fails:
@@ -1339,6 +1342,14 @@ $(function(){
     // Turn responiveness back on again
     chartData[target].options.responsive = true;
     chartData[target].options.animation = true;
+    chartData[target].options.plugins.zoom = {
+      zoom: {
+        enabled: true,
+        drag: true,
+        mode: 'x',
+        speed: 0.05
+      }
+    }
   }
   $('.dl_plot_svg').click(function(e){
     e.preventDefault();
