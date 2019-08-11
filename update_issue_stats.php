@@ -45,8 +45,10 @@ $results['stats'][$updated]['issues'] = $base_stats;
 $results['stats'][$updated]['prs'] = $base_stats;
 $results['stats']['issues']['daily_opened'] = [];
 $results['stats']['issues']['daily_closed'] = [];
+$results['stats']['issues']['close_times'] = [];
 $results['stats']['prs']['daily_opened'] = [];
 $results['stats']['prs']['daily_closed'] = [];
+$results['stats']['prs']['close_times'] = [];
 
 // Get auth secrets
 $config = parse_ini_file("config.ini");
