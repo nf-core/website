@@ -197,6 +197,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <li><a href="#github_prs">Pull Requests</a>, <a href="#github_pr_response_time">response times</a></li>
       <li><a href="#github_issues">Issues</a>, <a href="#github_issue_response_time">response times</a></li>
       <li><a href="#contributor_leaderboard">Contributor Leaderboard</a></li>
+      <li><a href="#pipeline_numbers">Pipeline numbers</a></li>
       <li><a href="#pipelines">Pipelines</a></li>
       <li><a href="#core_repos">Core repositories</a></li>
     </ul>
@@ -551,6 +552,22 @@ foreach($contribution_counts as $login => $count){
 ?>
 </tbody>
 </table>
+
+<h2 class="mt-0" id="pipeline_numbers"><a href="#pipeline_numbers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pipeline numbers</h2>
+<p>All nf-core pipelines are only considered stable when they have at least one release. Until then, they are classed as "in development".</p>
+
+<div class="row">
+  <div class="col-lg-6 offset-lg-3">
+    <div class="card bg-light mt-4">
+      <div class="card-body">
+        <canvas id="pipeline_numbers_plot" height="200"></canvas>
+        <p class="card-text small text-muted">
+          <a href="#" data-target="pipeline_numbers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="pipeline_numbers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php
 // The pipeline and core repo tables are the same
@@ -1204,6 +1221,82 @@ $(function(){
   };
   var ctx = document.getElementById('github_pr_response_time_plot').getContext('2d');
   charts['github_pr_response_time'] = new Chart(ctx, chartData['github_pr_response_time']);
+
+
+  // Pipeline numbers plot
+  <?php
+  $pipeline_dates = [];
+  foreach($pipelines as $pipeline){
+    $pipeline_dates[strtotime($pipeline->created_at)] = 'create';
+    $first_release = false;
+    foreach($pipeline->releases as $release){
+      if(!$first_release){
+        $first_release = strtotime($release->published_at);
+      }
+      $first_release = min($first_release, strtotime($release->published_at));
+    }
+    if($first_release){
+      $pipeline_dates[$first_release] = 'release';
+    }
+  }
+  ksort($pipeline_dates);
+  $dev_pipelines = [];
+  $released_pipelines = [];
+  $dev_running = 0;
+  $release_running = 0;
+  foreach($pipeline_dates as $date => $dtype){
+    if($dtype == 'create'){
+      $dev_running += 1;
+    }
+    if($dtype == 'release'){
+      $dev_running -= 1;
+      $release_running += 1;
+    }
+    $released_pipelines[$date] = $release_running;
+    $dev_pipelines[$date] = $dev_running;
+  }
+  ?>
+  chartData['pipeline_numbers'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['pipeline_numbers'].data = {
+    datasets: [
+      {
+        label: 'Released',
+        backgroundColor: 'rgba(83, 164, 81, 0.3)',
+        borderColor: 'rgba(83, 164, 81, 1)',
+        pointRadius: 0,
+        fill: 'origin',  // explicitly fill the first dataset to the x axis
+        data: [
+          <?php
+          foreach($released_pipelines as $timestamp => $count){
+            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      },
+      {
+        label: 'In development',
+        backgroundColor: 'rgba(199, 70, 78, 0.1)',
+        borderColor: 'rgba(199, 70, 78, 1)',
+        pointRadius: 0,
+        data: [
+          <?php
+          foreach($dev_pipelines as $timestamp => $count){
+            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
+          ?>
+        ]
+      }
+    ]
+  };
+  chartData['pipeline_numbers'].options.title.text = 'nf-core pipeline numbers over time';
+  chartData['pipeline_numbers'].options.scales.yAxes = [{stacked: true }];
+  chartData['pipeline_numbers'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
+  chartData['pipeline_numbers'].options.legend = {
+    position: 'bottom',
+    labels: { lineWidth: 1 }
+  };
+  var ctx = document.getElementById('pipeline_numbers_plot').getContext('2d');
+  charts['pipeline_numbers'] = new Chart(ctx, chartData['pipeline_numbers']);
 
 
 
