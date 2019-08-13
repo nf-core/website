@@ -1472,12 +1472,24 @@ $(function(){
   canvas2svgTweakLib();
 
   function exportChartJsSVG(target){
-    // Turn off responiveness
+
+    // Bump default font size
+    Chart.defaults.global.defaultFontSize = 18;
+
+    // Turn off responsiveness
     chartData[target].options.responsive = false;
     chartData[target].options.animation = false;
     chartData[target].options.plugins.zoom = false;
+    chartData[target].options.plugins.zoom = false;
+
+    // Add extra height if we have a legend
+    canvas_height = 400;
+    if (chartData[target].options.legend.position == 'bottom') {
+      canvas_height = 450;
+    }
+
     // canvas2svg 'mock' context
-    var svgContext = C2S(800,400);
+    var svgContext = C2S(800,canvas_height);
     // new chart on 'mock' context fails:
     var mySvg = new Chart(svgContext, chartData[target]);
     // Failed to create chart: can't acquire context from the given item
@@ -1487,7 +1499,9 @@ $(function(){
       type: "text/plain;charset=utf-8"
     });
     saveAs(blob, 'nf-core_'+target+'_plot.svg');
-    // Turn responiveness back on again
+
+    // Reset plots to defaults
+    Chart.defaults.global.defaultFontSize = 12;
     chartData[target].options.responsive = true;
     chartData[target].options.animation = true;
     chartData[target].options.plugins.zoom = {
