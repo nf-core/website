@@ -672,6 +672,7 @@ $(function(){
   chartData['slack'].data = {
     datasets: [
       {
+        fill: 'origin',  // explicitly fill the first dataset to the x axis
         label: 'Inactive',
         backgroundColor: 'rgba(150,150,150, 0.2)',
         borderColor: 'rgba(150,150,150, 1)',
@@ -704,6 +705,7 @@ $(function(){
     ]
   };
   chartData['slack'].options.title.text = 'nf-core Slack users over time';
+  chartData['slack'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['slack'].options.scales.yAxes = [{stacked: true }];
   chartData['slack'].options.legend = {
     position: 'bottom',
@@ -774,6 +776,7 @@ $(function(){
         backgroundColor: 'rgba(0,0,0,0.2)',
         borderColor: 'rgba(0,0,0,1)',
         pointRadius: 0,
+        fill: 'origin',  // explicitly fill the first dataset to the x axis
         data: [
           <?php echo implode('', $contribs_commits); ?>
         ]
@@ -798,6 +801,7 @@ $(function(){
       }
     ]
   };
+  chartData['gh_contribs'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['gh_contribs'].options.scales.yAxes = [{
     stacked: true,
     scaleLabel: {
@@ -872,6 +876,7 @@ $(function(){
         backgroundColor: 'rgba(104, 72, 186, 0.2)',
         borderColor: 'rgba(104, 72, 186, 1)',
         pointRadius: 0,
+        fill: 'origin',  // explicitly fill the first dataset to the x axis
         data: [
           <?php
           foreach($closed_prs as $date => $count){
@@ -897,6 +902,7 @@ $(function(){
   };
   chartData['github_prs'].options.title.text = 'GitHub Pull Requests over time';
   chartData['github_prs'].options.scales.yAxes = [{stacked: true }];
+  chartData['github_prs'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['github_prs'].options.legend = {
     position: 'bottom',
     labels: { lineWidth: 1 }
@@ -941,6 +947,7 @@ $(function(){
         backgroundColor: 'rgba(199, 70, 78, 0.2)',
         borderColor: 'rgba(199, 70, 78, 1)',
         pointRadius: 0,
+        fill: 'origin',  // explicitly fill the first dataset to the x axis
         data: [
           <?php
           foreach($closed_issues as $date => $count){
@@ -966,6 +973,7 @@ $(function(){
   };
   chartData['github_issues'].options.title.text = 'GitHub Issues over time';
   chartData['github_issues'].options.scales.yAxes = [{stacked: true }];
+  chartData['github_issues'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['github_issues'].options.legend = {
     position: 'bottom',
     labels: { lineWidth: 1 }
