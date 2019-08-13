@@ -557,7 +557,7 @@ foreach($contribution_counts as $login => $count){
 <p>All nf-core pipelines are only considered stable when they have at least one release. Until then, they are classed as "in development".</p>
 
 <div class="row">
-  <div class="col-sm-6 offset-sm-3">
+  <div class="col-lg-6 offset-lg-3">
     <div class="card bg-light mt-4">
       <div class="card-body">
         <canvas id="pipeline_numbers_plot" height="200"></canvas>
