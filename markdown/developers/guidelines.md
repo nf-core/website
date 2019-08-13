@@ -15,7 +15,7 @@ This is deliberately fuzzy, but as a rule of thumb workflows should contain at
 least three different processes and be simple enough to run that a new user
 can realistically run the pipeline after spending ten minutes reading the docs.
 Pipelines should be general enough to be of use to multiple groups and research
-projects, but comprehensive enough to cover most steps in a typical analysis.
+projects, but comprehensive enough to cover most steps in a primary analysis.
 
 Different pipelines should not overlap one another too much. For example, having
 multiple choices for tools and parameters to do the same tasks should be contained
