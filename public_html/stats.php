@@ -1256,6 +1256,7 @@ $(function(){
         backgroundColor: 'rgba(83, 164, 81, 0.3)',
         borderColor: 'rgba(83, 164, 81, 1)',
         pointRadius: 0,
+        fill: 'origin',  // explicitly fill the first dataset to the x axis
         data: [
           <?php
           foreach($released_pipelines as $timestamp => $count){
@@ -1281,6 +1282,7 @@ $(function(){
   };
   chartData['pipeline_numbers'].options.title.text = 'nf-core pipeline numbers over time';
   chartData['pipeline_numbers'].options.scales.yAxes = [{stacked: true }];
+  chartData['pipeline_numbers'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['pipeline_numbers'].options.legend = {
     position: 'bottom',
     labels: { lineWidth: 1 }
