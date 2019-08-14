@@ -1487,9 +1487,14 @@ $(function(){
     if (chartData[target].options.legend.position == 'bottom') {
       canvas_height = 450;
     }
+    // Made plot wider if it's views or clones
+    canvas_width = 800;
+    if (chartData[target].options.elements.line.borderWidth == 2) {
+      canvas_width = 1500;
+    }
 
     // canvas2svg 'mock' context
-    var svgContext = C2S(800,canvas_height);
+    var svgContext = C2S(canvas_width,canvas_height);
     // new chart on 'mock' context fails:
     var mySvg = new Chart(svgContext, chartData[target]);
     // Failed to create chart: can't acquire context from the given item
