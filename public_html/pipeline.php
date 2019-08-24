@@ -10,11 +10,14 @@ require_once('../includes/pipeline_page/components.php');
 
 # Markdown file - Readme or docs
 $homepage = false;
+$docs = false;
 if(count($path_parts) == 1){
     $homepage = true;
     require_once('../includes/pipeline_page/docs.php');
+    $docs = true;
 } else if($path_parts[1] == 'docs'){
     require_once('../includes/pipeline_page/docs.php');
+    $docs = true;
 }
 # Base readme - redirect to pipeline root
 else if($_GET['path'] == $pipeline->name.'/README.md' || $_GET['path'] == $pipeline->name.'/README'){
@@ -92,20 +95,20 @@ if($pipeline->archived){
 # echo '<pre>'.print_r($gh_tree_json, true).'</pre>';
 
 if($homepage || isset($md_toc_html)){
-    echo '<div class="row"><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
+    echo '<div class="row"><div class="col-lg-3 order-lg-12"><div class="side-sub-subnav sticky-top">';
     if($homepage){
         echo $pipeline_stats_sidebar;
     }
     if(isset($md_toc_html)){
         echo '<div class="pipeline-page-toc">'.$md_toc_html.'</div>';
     }
-    echo '</div></div><div class="col-lg-8 order-lg-1">';
+    echo '</div></div><div class="col-lg-9 order-lg-1">';
 }
 
-# Print rendered markdown made in header.php
-echo '<div class="rendered-markdown">';
+# Print content
+if($docs){ echo '<div class="rendered-markdown">'; }
 echo $content;
-echo '</div>';
+if($docs){ echo '</div>'; }
 
 if($homepage || isset($md_toc_html)){
   echo '</div></div>';

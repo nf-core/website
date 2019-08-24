@@ -51,7 +51,7 @@ ob_start();
       <p id="clones_count"><?php echo $total_clones; ?></p>
     </div>
     <div class="col-6" style="overflow: none;">
-      <canvas id="clones_plot" height="50"></canvas>
+      <canvas id="clones_plot" height="70"></canvas>
     </div>
   </div>
 
@@ -83,7 +83,7 @@ ob_start();
   </div>
 
   <h6>get in touch</h6>
-  <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>">ask a question on slack</a></p>
+  <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>">ask a question on Slack</a></p>
   <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues">open an issue on GitHub</a></p>
 
 </div>
