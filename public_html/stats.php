@@ -3,6 +3,9 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+// start the clocks
+$start_time = microtime(TRUE);
+
 function round_nicely($num){
   if($num > 1000000){
     $num /= 1000000;
@@ -1534,6 +1537,10 @@ $(function(){
 </script>
 
 <?php
-$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('d-m-Y', $stats_json->updated).'</p>';
+// Stop the clocks!
+$end_time = microtime(TRUE);
+$time_taken = round($end_time - $start_time, 5);
+
+$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('d-m-Y', $stats_json->updated).'. Page generated in '.$time_taken.' seconds.</p>';
 
 include('../includes/footer.php'); ?>

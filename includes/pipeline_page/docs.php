@@ -190,3 +190,5 @@ if(isset($_GET['q']) && strlen($_GET['q'])){
 
 // Footer source link
 $md_github_url = 'https://github.com/'.$pipeline->full_name.'/blob/'.$git_branch.'/'.$filename;
+
+// Content will be rendered by header.php
