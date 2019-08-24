@@ -47,6 +47,10 @@ section:before {
   margin: 1rem auto;
   display: block;
 }
+.rendered-markdown h1:first-of-type {
+  padding-top: 0;
+  margin-top: 2.5rem;
+}
 .bg-dark a, .homepage-usedby a {
   color: rgba(255,255,255,.5);
   text-decoration: underline;
@@ -227,6 +231,57 @@ footer.subfooter {
 footer, footer a, footer a:hover, footer a:focus, footer a:active {
   color: #6c757d;
 }
+
+.nfcore-subnav {
+  font-size: 75%;
+}
+.nfcore-subnav .nav-link {
+  border-bottom: 1px solid #dee2e6;
+}
+.nfcore-subnav .nav-link.active {
+  border-bottom: 1px solid #22ae63;
+  background-color: rgba(84, 171, 106, 0.05);
+  color: #495057;
+}
+.nfcore-subnav .nav-link:hover,
+.nfcore-subnav .nav-link:active,
+.nfcore-subnav .nav-link:focus {
+  background-color: rgba(84, 171, 106, 0.1);
+}
+
+.pipeline-sidebar {
+  font-size: 75%;
+}
+.mainpage .pipeline-sidebar h6 {
+  padding-top: 0;
+  margin-top: 20px;
+  color: #999;
+  font-size: 12px;
+}
+.mainpage .pipeline-sidebar p {
+  margin-bottom: 5px;
+}
+.mainpage .pipeline-sidebar .row p a {
+  text-decoration: none;
+  color: #212529;
+}
+.pipeline-run-cmd {
+  background-color: rgba(220,220,220,0.3);
+  overflow-x: scroll;
+  cursor: text;
+}
+.pipeline-run-cmd code {
+  background-color: transparent;
+  white-space: nowrap;
+}
+.pipeline-run-cmd:hover {
+  background-color: rgba(220,220,220,0.5);
+}
+.pipeline-sidebar .contrib-avatars img {
+  width: 30px;
+  padding: 2px 2px 0 0;
+}
+
 
 /*
  * Main pages
@@ -607,7 +662,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   margin-top: .25rem;
 }
 
-
+.side-sub-subnav {
+    padding-top: 50px;
+}
 .pipeline-page-toc {
   background-color: #fcfcfc;
   border: 1px solid #ededed;
@@ -615,13 +672,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   font-size: 80%;
   margin: 1rem;
   padding: 1rem 1rem 0 0;
-}
-@media only screen and (min-width: 770px) {
-  .pipeline-page-toc {
-    width: 250px;
-    float: right;
-    margin: 3rem 0 1rem 1rem;
-  }
 }
 .pipeline-page-toc a.active {
   text-decoration: underline;
