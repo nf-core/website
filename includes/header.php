@@ -19,7 +19,6 @@ if( isset($markdown_fn) and $markdown_fn){
   $md_full = file_get_contents($markdown_fn);
   if ($md_full === false) {
     header('HTTP/1.1 404 Not Found');
-    header('HTTP/1.1 404 Not Found');
     include('404.php');
     die();
   }
