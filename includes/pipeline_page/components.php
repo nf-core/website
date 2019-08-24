@@ -40,12 +40,12 @@ ob_start();
 ?>
 
 <div class="pipeline-sidebar">
-  <h6>run command</h6>
+  <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
   <div class="border pipeline-run-cmd p-1">
     <code class="small">&raquo; nextflow run <?php echo $pipeline->full_name; ?> -profile test</code>
   </div>
 
-  <h6 id="clones_header">clones</h6>
+  <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones</span></h6>
   <div class="row border-bottom">
     <div class="col-6">
       <p id="clones_count"><?php echo $total_clones; ?></p>
