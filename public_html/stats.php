@@ -139,8 +139,12 @@ foreach($stats as $repo_name => $repo):
         echo '<small class="status-icon text-danger ml-2 fas fa-wrench" data-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
       }
     }
+    $alink = '<a href="'.$metrics->html_url.'" target="_blank">';
+    if($repo_type == 'pipelines'){
+      $alink = '<a href="/'.$metrics->name.'/stats">';
+    }
     ?></td>
-    <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank"><span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
+    <td><?php echo $alink.'<span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
     <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago($metrics->created_at, false); ?></td>
     <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
     <td class="text-right"><?php echo $repo->num_contributors; ?></td>
