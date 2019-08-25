@@ -61,7 +61,7 @@ $stats_total[$repo_type] = [
   'releases' => 0,
   'stargazers' => 0,
   'watchers' => 0,
-  'forks' => 0,
+  'network_forks' => 0,
   'clones_count' => array(),
   'clones_uniques' => array(),
   'views_count' => array(),
@@ -93,7 +93,8 @@ foreach($stats as $repo_name => $repo):
   $metrics = $repo->repo_metrics->{$stats_json->updated};
   $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
-  $stats_total[$repo_type]['forks'] += $metrics->forks_count;
+  $stats_total[$repo_type]['watchers'] += $metrics->subscribers_count;
+  $stats_total[$repo_type]['network_forks_count'] += $metrics->network_forks_count;
 
   foreach(['clones_count', 'clones_uniques', 'views_count', 'views_uniques'] as $key){
     if(isset($repo->{$key})){
@@ -145,7 +146,8 @@ foreach($stats as $repo_name => $repo):
     <td class="text-right"><?php echo $repo->num_contributors; ?></td>
     <td class="text-right"><?php echo $total_commits; ?></td>
     <td class="text-right"><?php echo $metrics->stargazers_count; ?></td>
-    <td class="text-right"><?php echo $metrics->forks_count; ?></td>
+    <td class="text-right"><?php echo $metrics->subscribers_count; ?></td>
+    <td class="text-right"><?php echo $metrics->network_forks_count; ?></td>
     <td class="text-right"><?php echo $repo->clones_count_total; ?></td>
     <td class="text-right"><?php echo $repo->clones_uniques_total; ?></td>
     <td class="text-right"><?php echo $repo->views_count_total; ?></td>
@@ -583,7 +585,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="text-right">Committers</th>
         <th class="text-right">Commits</th>
         <th class="text-right">Stargazers</th>
-        <th class="text-right">Forks</th>
+        <th class="text-right">Watchers</th>
+        <th class="text-right">Network Forks</th>
         <th class="text-right">Clones</th>
         <th class="text-right">Unique cloners</th>
         <th class="text-right">Repo views</th>
@@ -599,7 +602,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['forks']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['watchers']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['network_forks_count']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
@@ -618,7 +622,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="text-right">Committers</th>
         <th class="text-right">Commits</th>
         <th class="text-right">Stargazers</th>
-        <th class="text-right">Forks</th>
+        <th class="text-right">Watchers</th>
+        <th class="text-right">Network Forks</th>
         <th class="text-right">Clones</th>
         <th class="text-right">Unique cloners</th>
         <th class="text-right">Repo views</th>
