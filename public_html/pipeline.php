@@ -9,13 +9,13 @@ $subtitle = $pipeline->description;
 require_once('../includes/pipeline_page/components.php');
 
 # Markdown file - Readme or docs
-$homepage = false;
-$docs = false;
+$pagetab = false;
 if(count($path_parts) == 1){
-    $homepage = true;
+    $pagetab = 'home';
     require_once('../includes/pipeline_page/docs.php');
     $docs = true;
 } else if($path_parts[1] == 'docs'){
+    $pagetab = 'docs';
     require_once('../includes/pipeline_page/docs.php');
     $docs = true;
 }
@@ -26,10 +26,12 @@ else if($_GET['path'] == $pipeline->name.'/README.md' || $_GET['path'] == $pipel
 }
 # Stats
 else if($_GET['path'] == $pipeline->name.'/stats'){
+    $pagetab = 'stats';
     require_once('../includes/pipeline_page/stats.php');
 }
 # Releases
 else if($_GET['path'] == $pipeline->name.'/releases'){
+    $pagetab = 'releases';
     require_once('../includes/pipeline_page/releases.php');
 }
 # Some other URL pattern that we don't recognise - 404
@@ -94,23 +96,24 @@ if($pipeline->archived){
 # echo '<pre>'.print_r($pipeline, true).'</pre>';
 # echo '<pre>'.print_r($gh_tree_json, true).'</pre>';
 
-if($homepage || isset($md_toc_html)){
-    echo '<div class="row"><div class="col-lg-3 order-lg-12"><div class="side-sub-subnav sticky-top">';
-    if($homepage){
+if($pagetab !== 'stats'){
+    echo '<div class="row"><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
+    if($pagetab == 'docs'){
+        echo '<div class="pipeline-page-toc">'.$md_toc_html.'</div>';
+    } else {
         echo $pipeline_stats_sidebar;
     }
-    if(isset($md_toc_html)){
-        echo '<div class="pipeline-page-toc">'.$md_toc_html.'</div>';
-    }
-    echo '</div></div><div class="col-lg-9 order-lg-1">';
+    echo '</div></div><div class="col-lg-8 order-lg-1">';
 }
 
 # Print content
-if($docs){ echo '<div class="rendered-markdown">'; }
-echo $content;
-if($docs){ echo '</div>'; }
+if($pagetab == 'home' || $pagetab == 'docs'){
+  echo '<div class="rendered-markdown">'.$content.'</div>';
+} else {
+  echo $content;
+}
 
-if($homepage || isset($md_toc_html)){
+if($pagetab !== 'stats'){
   echo '</div></div>';
 }
 

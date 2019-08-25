@@ -131,8 +131,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
             'draft' => $rel->draft,
             'prerelease' => $rel->prerelease,
             'tarball_url' => $rel->tarball_url,
-            'zipball_url' => $rel->zipball_url,
-            'body' => $rel->body
+            'zipball_url' => $rel->zipball_url
         );
         if(strtotime($rel->published_at) > strtotime($results['remote_workflows'][$idx]['last_release'])){
             $results['remote_workflows'][$idx]['last_release'] = $rel->published_at;

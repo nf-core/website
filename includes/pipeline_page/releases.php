@@ -2,37 +2,61 @@
 // Build the HTML for a pipeline documentation page.
 // Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
 
-// Grab the libraries for the markdown parsing
-require_once(dirname(dirname(__FILE__)).'/libraries/parsedown/Parsedown.php');
-require_once(dirname(dirname(__FILE__)).'/libraries/parsedown-extra/ParsedownExtra.php');
-
 ob_start();
-foreach($pipeline->releases as $release){
 
-    $pd = new ParsedownExtra();
-    $body_html = $pd->text($release->body);
+echo '<h1>Version history</h1>';
 
-    ?>
+foreach($pipeline->releases as $release){ ?>
 
-<h1 id="<?php echo $release->tag_name; ?>"><a href="#<?php echo $release->tag_name; ?>" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-  <a href="<?php echo $release->html_url; ?>" style="color: inherit;">
-    <span class="badge badge-secondary float-right"><i class="fas fa-tag"></i> <?php echo $release->tag_name; ?></span>
-    <?php echo $release->name; ?>
-  </a>
-</h1>
-<p>
-  <span class="float-right">
-    <a href="<?php echo $release->zipball_url; ?>" class="btn btn-sm btn-outline-success">Download .zip</a>
-    <a href="<?php echo $release->tarball_url; ?>" class="btn btn-sm btn-outline-success">Download .tar.gz</a>
-  </span>
-  <i class="far fa-calendar-alt"></i> Released <?php echo date('j M Y', strtotime($release->published_at)); ?>
-  <small class="text-muted">(<?php echo time_ago($release->published_at); ?>)</small>
-</p>
+<div class="row">
+  <div class="col-auto">
+    <a href="#download-<?php echo $release->tag_sha; ?>" class="text-body" data-toggle="collapse">
+      <samp><?php echo $release->tag_name; ?></samp>
+    </a>
+  </div>
+  <div class="col">
+  </div>
+  <div class="col-auto">
+    <a href="#download-<?php echo $release->tag_sha; ?>" class="text-body" data-toggle="collapse"><small class="text-muted"><?php echo time_ago($release->published_at); ?></small></a>
+    <button class="btn btn-sm btn-link text-body" type="button" data-toggle="collapse" data-target="#download-<?php echo $release->tag_sha; ?>">
+      <i class="fas fa-caret-left"></i>
+  </button>
+  </div>
+</div>
+<div class="collapse" id="download-<?php echo $release->tag_sha; ?>">
+  <div class="row pb-2">
+    <div class="col-sm-6 small">
+      Released <?php echo date('j M Y', strtotime($release->published_at)); ?> &mdash;
+      <code><?php echo substr($release->tag_sha, 0, 7); ?></code>
+    </div>
+    <div class="col-sm-6 text-right">
+      <a href="<?php echo $release->zipball_url; ?>" class="btn btn-sm btn-outline-success">Download .zip</a>
+      <a href="<?php echo $release->tarball_url; ?>" class="btn btn-sm btn-outline-success">Download .tar.gz</a>
+      <a href="<?php echo $release->html_url; ?>" class="btn btn-sm btn-success">View release</a>
+    </div>
+  </div>
+</div>
+<hr class="m-0">
 
-<p><?php echo $body_html; ?></p>
+
 
 <?php
 }
+?>
+<script type="text/javascript">
+$(function(){
+  $('.collapse').on('show.bs.collapse', function () {
+    var target = $(this).attr('id');
+    $("button[data-target='#" + target + "']").html('<i class="fas fa-caret-down"></i>');
+  });
+  $('.collapse').on('hide.bs.collapse', function () {
+    var target = $(this).attr('id');
+    $("button[data-target='#" + target + "']").html('<i class="fas fa-caret-left"></i>');
+  });
+});
+</script>
+
+<?php
 
 $content = ob_get_contents();
 ob_end_clean();
