@@ -87,5 +87,7 @@ The repo has a softlink for `/tools-docs` which is intended for use on the serve
 ## Credits
 Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation. See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
 
+Kudos to the excellent [npm website](https://www.npmjs.com), which provided inspiration for the design of the pipeline pages.
+
 ## Help
 If you have any questions or issues please send us a message on [Slack](https://nf-co.re/join/slack).

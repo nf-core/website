@@ -2,15 +2,52 @@
 // Build the HTML for a pipeline documentation page.
 // Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
 
+// Load pipeline stats
 $stats_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_stats.json';
 $stats_json = json_decode(file_get_contents($stats_json_fn), true);
+$stats = $stats_json['pipelines'][$pipeline->name];
+$metrics = $stats['repo_metrics'][ $stats_json['updated'] ];
+
+// Load full contributor stats for this pipeline
+$contrib_json_fn = dirname(dirname(dirname(__FILE__))).'/contributor_stats/'.$pipeline->name.'.json';
+$contrib_json = json_decode(file_get_contents($contrib_json_fn), true);
 
 ob_start();
 
 ?>
 
-<h1><?php echo $pipeline->full_name; ?> statistics</h1>
-<h2>Repository traffic</h2>
+<div class="card-group text-center stats_keynumbers mt-5 pb-5">
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $metrics['stargazers_count']; ?></p>
+      <p class="card-text text-muted">Stars</p>
+    </div>
+    <div class="bg-icon"><i class="far fa-star"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo $metrics['network_forks_count']; ?></a></p>
+      <p class="card-text text-muted">Forks</p>
+    </div>
+    <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><?php echo $stats['commits']; ?></p>
+      <p class="card-text text-muted">Commits</p>
+    </div>
+    <div class="bg-icon"><i class="far fa-file-code"></i></div>
+  </div>
+  <div class="card bg-light">
+    <div class="card-body">
+      <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo $stats['num_contributors']; ?></a></p>
+      <p class="card-text text-muted">Code contributors</p>
+    </div>
+    <div class="bg-icon"><i class="fas fa-user"></i></div>
+  </div>
+</div>
+
+<h2 id="traffic"><a href="#traffic" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Repository traffic</h2>
 <div class="card mt-4">
   <div class="card-header">
     <span class="float-right small text-muted">
@@ -25,18 +62,18 @@ ob_start();
   <div class="card-footer text-muted text-center small">
     <div class="row">
       <div class="col-6 border-right border-secondary">
-        <span class="text-body lead"><?php echo round_nicely($stats_json['pipelines'][$pipeline->name]['clones_count_total']); ?></span>
-        <br>Clones since <?php echo date('F Y', strtotime(array_keys($stats_json['pipelines'][$pipeline->name]['clones_count'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($stats['clones_count_total']); ?></span>
+        <br>Clones since <?php echo date('F Y', strtotime(array_keys($stats['clones_count'])[0])); ?>
       </div>
       <div class="col-6">
-        <span class="text-body lead"><?php echo round_nicely($stats_json['pipelines'][$pipeline->name]['clones_uniques_total']); ?></span>
-        <br>Unique cloners since <?php echo date('F Y', strtotime(array_keys($stats_json['pipelines'][$pipeline->name]['clones_uniques'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($stats['clones_uniques_total']); ?></span>
+        <br>Unique cloners since <?php echo date('F Y', strtotime(array_keys($stats['clones_uniques'])[0])); ?>
       </div>
     </div>
   </div>
 </div>
 
-<div class="card mt-4">
+<div class="card mt-4 mb-5">
   <div class="card-header">
     <span class="float-right small text-muted">
       <a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
@@ -50,17 +87,38 @@ ob_start();
   <div class="card-footer text-muted text-center small">
     <div class="row align-items-center">
       <div class="col-6 border-right border-secondary">
-        <span class="text-body lead"><?php echo round_nicely($stats_json['pipelines'][$pipeline->name]['views_count_total']); ?></span>
-        <br>Views since <?php echo date('F Y', strtotime(array_keys($stats_json['pipelines'][$pipeline->name]['views_count'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($stats['views_count_total']); ?></span>
+        <br>Views since <?php echo date('F Y', strtotime(array_keys($stats['views_count'])[0])); ?>
       </div>
       <div class="col-6">
-        <span class="text-body lead"><?php echo round_nicely($stats_json['pipelines'][$pipeline->name]['views_uniques_total']); ?></span>
-        <br>Unique visitors since <?php echo date('F Y', strtotime(array_keys($stats_json['pipelines'][$pipeline->name]['views_uniques'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($stats['views_uniques_total']); ?></span>
+        <br>Unique visitors since <?php echo date('F Y', strtotime(array_keys($stats['views_uniques'])[0])); ?>
       </div>
     </div>
   </div>
 </div>
 
+
+<h2 id="contributors"><a href="#contributors" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributors</h2>
+
+<canvas id="contributors_plot" height="80"></canvas>
+
+<div class="alert alert-info small p-2 mt-3 mb-3" role="alert">
+  <i class="far fa-hand-point-right pl-2 pr-2"></i>
+  Hover over the plot or an author's avatar to highlight their commits
+</div>
+<p class="contrib-avatars">
+<?php
+$contrib_avatars = [];
+foreach($contrib_json as $contrib){
+  $contrib_avatars[
+    '<a href="https://github.com/'.$pipeline->full_name.'/commits?author='.$contrib['author']['login'].'" data-author="'.$contrib['author']['login'].'"><img src="'.$contrib['author']['avatar_url'].'"></a>'
+  ] = $contrib['total'];
+}
+arsort($contrib_avatars);
+echo implode(array_keys($contrib_avatars));
+?>
+</p>
 
 <script type="text/javascript">
 $(function(){
@@ -143,7 +201,7 @@ $(function(){
         yAxisID: 'y-axis-count',
         data: [
           <?php
-          foreach($stats_json['pipelines'][$pipeline->name]['clones_count'] as $timestamp => $count){
+          foreach($stats['clones_count'] as $timestamp => $count){
             echo '{ x: "'.date('Y-m-d', strtotime($timestamp)).'", y: '.$count.' },'."\n\t\t\t";
           }
           ?>
@@ -158,7 +216,7 @@ $(function(){
         yAxisID: 'y-axis-uniques',
         data: [
           <?php
-          foreach($stats_json['pipelines'][$pipeline->name]['clones_uniques'] as $timestamp => $count){
+          foreach($stats['clones_uniques'] as $timestamp => $count){
             $timestamp = strtotime($timestamp);
             echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
           }
@@ -188,7 +246,7 @@ $(function(){
         yAxisID: 'y-axis-count',
         data: [
           <?php
-          foreach($stats_json['pipelines'][$pipeline->name]['views_count'] as $timestamp => $count){
+          foreach($stats['views_count'] as $timestamp => $count){
             $timestamp = strtotime($timestamp);
             echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
           }
@@ -204,7 +262,7 @@ $(function(){
         yAxisID: 'y-axis-uniques',
         data: [
           <?php
-          foreach($stats_json['pipelines'][$pipeline->name]['views_uniques'] as $timestamp => $count){
+          foreach($stats['views_uniques'] as $timestamp => $count){
             $timestamp = strtotime($timestamp);
             echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
           }
@@ -218,6 +276,78 @@ $(function(){
   chartData['repo_views'].options.scales.yAxes[1].scaleLabel.labelString = 'Unique visitors per day';
   var ctx = document.getElementById('repo_views_plot').getContext('2d');
   charts['repo_views'] = new Chart(ctx, chartData['repo_views']);
+
+
+
+
+  // Contributors plot
+  chartData['contributors'] = JSON.parse(JSON.stringify(chartjs_base));
+  chartData['contributors'].data = {
+    datasets: [
+      <?php $first = true;
+      foreach($contrib_json as $contrib){ ?>
+        {
+          label: '<?php echo $contrib['author']['login']; ?>',
+          backgroundColor: 'rgba(200, 200, 200, 0.5)',
+          pointRadius: 0,
+          <?php if($first) { echo "fill: 'origin',"; $first = false; } ?>
+          data: [
+            <?php
+            foreach($contrib['weeks'] as $week){
+              echo '{ x: "'.date('Y-m-d', $week['w']).'", y: '.$week['c'].' },'."\n\t\t\t";
+            }
+            ?>
+          ]
+        },
+      <?php } ?>
+    ]
+  };
+  chartData['contributors'].options.title.text = '<?php echo $pipeline->full_name; ?> commits per week';
+  chartData['contributors'].options.scales.xAxes[0].gridLines = { display: false };
+  chartData['contributors'].options.scales.yAxes = [{
+    stacked: true,
+    scaleLabel: {
+      display: true,
+      labelString: '# Commits per week'
+    }
+  }];
+  chartData['contributors'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
+  chartData['contributors'].options.elements.line.borderWidth = 0;
+  chartData['contributors'].options.tooltips = {
+    enabled: false,
+    mode: 'nearest',
+    intersect: false,
+    custom: function(tooltipModel) {
+      tooltipModel.opacity = 0
+    },
+    callbacks: {
+      // Use the footer callback to display the sum of the items showing in the tooltip
+      footer: function(tooltipItems, data) {
+        var dsidx = tooltipItems[0].datasetIndex;
+        var author = charts['contributors'].data.datasets[dsidx].label;
+        // Highlight avatar
+        $('.contrib-avatars a img').css({
+          'filter': 'grayscale(100%)',
+          'opacity': '0.2',
+        });
+        $(".contrib-avatars a[data-author='"+author+"'] img").css({
+          'filter': 'grayscale(0%)',
+          'opacity': '1',
+        });
+        // Higlight plot series
+        $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
+          if(idx == dsidx){
+            dataset.backgroundColor = 'rgba(84, 171, 106, 1.0)';
+          } else {
+            dataset.backgroundColor = 'rgba(200, 200, 200, 0.5)';
+          }
+        });
+        charts['contributors'].update(0);
+      },
+    }
+  };
+  var ctx = document.getElementById('contributors_plot').getContext('2d');
+  charts['contributors'] = new Chart(ctx, chartData['contributors']);
 
 
   // Make canvas2svg work with ChartJS
@@ -293,11 +423,44 @@ $(function(){
     charts[target].resetZoom();
   });
 
+
+  $('.contrib-avatars a').hover(function(){
+    // Highlight avatar
+    $('.contrib-avatars a img').css({
+      'filter': 'grayscale(100%)',
+      'opacity': '0.2',
+    });
+    $(this).find('img').css({
+      'filter': 'grayscale(0%)',
+      'opacity': '1',
+    });
+    // Higlight plot series
+    var author = $(this).data('author');
+    $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
+      if(dataset.label == author){
+        dataset.backgroundColor = 'rgba(84, 171, 106, 1.0)';
+      } else {
+        dataset.backgroundColor = 'rgba(200, 200, 200, 0.5)';
+      }
+    });
+    charts['contributors'].update(0);
+  });
+  $('.contrib-avatars').mouseout(function(){
+    $('.contrib-avatars a img').css({
+      'filter': 'grayscale(0%)',
+      'opacity': '1',
+    });
+    $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
+      dataset.backgroundColor = 'rgba(200, 200, 200, 0.5)';
+    });
+    charts['contributors'].update(0);
+  });
+
 });
 
 </script>
 
 <?php
 
-$content = ob_get_contents();
+$content = '<div class="pipeline-stats">'.ob_get_contents().'</div>';
 ob_end_clean();
