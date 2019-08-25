@@ -105,14 +105,14 @@ ob_start();
 
 <div class="alert alert-info small p-2 mt-3 mb-3" role="alert">
   <i class="far fa-hand-point-right pl-2 pr-2"></i>
-  Hover over the plot or an author's avatar to highlight their commits
+  Hover over the plot or an author's avatar to highlight commits
 </div>
 <p class="contrib-avatars">
 <?php
 $contrib_avatars = [];
 foreach($contrib_json as $contrib){
   $contrib_avatars[
-    '<a href="https://github.com/'.$pipeline->full_name.'/commits?author='.$contrib['author']['login'].'" data-author="'.$contrib['author']['login'].'"><img src="'.$contrib['author']['avatar_url'].'"></a>'
+    '<a class="d-inline-block" href="https://github.com/'.$pipeline->full_name.'/graphs/contributors" data-author="'.$contrib['author']['login'].'" data-toggle="tooltip" title="@'.$contrib['author']['login'].'"><img src="'.$contrib['author']['avatar_url'].'"></a>'
   ] = $contrib['total'];
 }
 arsort($contrib_avatars);
@@ -326,10 +326,12 @@ $(function(){
         var dsidx = tooltipItems[0].datasetIndex;
         var author = charts['contributors'].data.datasets[dsidx].label;
         // Highlight avatar
+        $('.contrib-avatars a').tooltip('hide');
         $('.contrib-avatars a img').css({
           'filter': 'grayscale(100%)',
           'opacity': '0.2',
         });
+        $(".contrib-avatars a[data-author='"+author+"']").tooltip('show');
         $(".contrib-avatars a[data-author='"+author+"'] img").css({
           'filter': 'grayscale(0%)',
           'opacity': '1',
@@ -337,7 +339,7 @@ $(function(){
         // Higlight plot series
         $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
           if(idx == dsidx){
-            dataset.backgroundColor = 'rgba(84, 171, 106, 1.0)';
+            dataset.backgroundColor = '#22ae63';
           } else {
             dataset.backgroundColor = 'rgba(200, 200, 200, 0.5)';
           }
@@ -438,7 +440,7 @@ $(function(){
     var author = $(this).data('author');
     $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
       if(dataset.label == author){
-        dataset.backgroundColor = 'rgba(84, 171, 106, 1.0)';
+        dataset.backgroundColor = '#22ae63';
       } else {
         dataset.backgroundColor = 'rgba(200, 200, 200, 0.5)';
       }
