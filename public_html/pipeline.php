@@ -107,7 +107,7 @@ if($pagetab !== 'stats'){
 }
 
 # Print content
-if($pagetab == 'home' || $pagetab == 'docs'){
+if($pagetab == 'home' || $pagetab == 'docs' || $pagetab == 'releases'){
   echo '<div class="rendered-markdown">'.$content.'</div>';
 } else {
   echo $content;

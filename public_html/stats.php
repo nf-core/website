@@ -6,17 +6,6 @@
 // start the clocks
 $start_time = microtime(TRUE);
 
-function round_nicely($num){
-  if($num > 1000000){
-    $num /= 1000000;
-    $num = round($num, 2).'M';
-  } else if($num > 1000){
-    $num /= 1000;
-    $num = round($num, 2).'K';
-  }
-  return $num;
-}
-
 $title = 'nf-core in numbers';
 $subtitle = 'Measuring activity across the nf-core community.';
 $import_chartjs = true;
