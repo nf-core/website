@@ -156,7 +156,7 @@ function array2ul($array, $parents = array()) {
     $out .= "</ul>";
     return $out;
 }
-if(!$homepage){
+if($pagetab == 'docs'){
     $md_toc_html = array2ul($md_toc);
 }
 
