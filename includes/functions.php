@@ -45,3 +45,14 @@ function rsort_pipelines($a, $b){
     $t2 = strtotime($b->last_release);
     return $t2 - $t1;
 }
+
+function round_nicely($num){
+  if($num > 1000000){
+    $num /= 1000000;
+    $num = round($num, 2).'M';
+  } else if($num > 1000){
+    $num /= 1000;
+    $num = round($num, 2).'K';
+  }
+  return $num;
+}
