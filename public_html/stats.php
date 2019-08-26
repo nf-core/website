@@ -3,16 +3,8 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-function round_nicely($num){
-  if($num > 1000000){
-    $num /= 1000000;
-    $num = round($num, 2).'M';
-  } else if($num > 1000){
-    $num /= 1000;
-    $num = round($num, 2).'K';
-  }
-  return $num;
-}
+// start the clocks
+$start_time = microtime(TRUE);
 
 $title = 'nf-core in numbers';
 $subtitle = 'Measuring activity across the nf-core community.';
@@ -69,7 +61,7 @@ $stats_total[$repo_type] = [
   'releases' => 0,
   'stargazers' => 0,
   'watchers' => 0,
-  'forks' => 0,
+  'network_forks' => 0,
   'clones_count' => array(),
   'clones_uniques' => array(),
   'views_count' => array(),
@@ -101,7 +93,8 @@ foreach($stats as $repo_name => $repo):
   $metrics = $repo->repo_metrics->{$stats_json->updated};
   $stats_total[$repo_type]['releases'] += isset($repo->num_releases) ? $repo->num_releases : 0;
   $stats_total[$repo_type]['stargazers'] += $metrics->stargazers_count;
-  $stats_total[$repo_type]['forks'] += $metrics->forks_count;
+  $stats_total[$repo_type]['watchers'] += $metrics->subscribers_count;
+  $stats_total[$repo_type]['network_forks_count'] += $metrics->network_forks_count;
 
   foreach(['clones_count', 'clones_uniques', 'views_count', 'views_uniques'] as $key){
     if(isset($repo->{$key})){
@@ -146,14 +139,19 @@ foreach($stats as $repo_name => $repo):
         echo '<small class="status-icon text-danger ml-2 fas fa-wrench" data-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
       }
     }
+    $alink = '<a href="'.$metrics->html_url.'" target="_blank">';
+    if($repo_type == 'pipelines'){
+      $alink = '<a href="/'.$metrics->name.'/stats">';
+    }
     ?></td>
-    <td><?php echo '<a href="'.$metrics->html_url.'" target="_blank"><span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
+    <td><?php echo $alink.'<span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
     <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago($metrics->created_at, false); ?></td>
     <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
     <td class="text-right"><?php echo $repo->num_contributors; ?></td>
     <td class="text-right"><?php echo $total_commits; ?></td>
     <td class="text-right"><?php echo $metrics->stargazers_count; ?></td>
-    <td class="text-right"><?php echo $metrics->forks_count; ?></td>
+    <td class="text-right"><?php echo $metrics->subscribers_count; ?></td>
+    <td class="text-right"><?php echo $metrics->network_forks_count; ?></td>
     <td class="text-right"><?php echo $repo->clones_count_total; ?></td>
     <td class="text-right"><?php echo $repo->clones_uniques_total; ?></td>
     <td class="text-right"><?php echo $repo->views_count_total; ?></td>
@@ -591,7 +589,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="text-right">Committers</th>
         <th class="text-right">Commits</th>
         <th class="text-right">Stargazers</th>
-        <th class="text-right">Forks</th>
+        <th class="text-right">Watchers</th>
+        <th class="text-right">Network Forks</th>
         <th class="text-right">Clones</th>
         <th class="text-right">Unique cloners</th>
         <th class="text-right">Repo views</th>
@@ -607,7 +606,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['forks']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['watchers']; ?></th>
+        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['network_forks_count']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
         <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
@@ -626,7 +626,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="text-right">Committers</th>
         <th class="text-right">Commits</th>
         <th class="text-right">Stargazers</th>
-        <th class="text-right">Forks</th>
+        <th class="text-right">Watchers</th>
+        <th class="text-right">Network Forks</th>
         <th class="text-right">Clones</th>
         <th class="text-right">Unique cloners</th>
         <th class="text-right">Repo views</th>
@@ -1534,6 +1535,10 @@ $(function(){
 </script>
 
 <?php
-$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('d-m-Y', $stats_json->updated).'</p>';
+// Stop the clocks!
+$end_time = microtime(TRUE);
+$time_taken = round($end_time - $start_time, 5);
+
+$subfooter = '<p class="mb-0"><i class="far fa-clock"></i> Last updated: '.date('d-m-Y', $stats_json->updated).'. Page generated in '.$time_taken.' seconds.</p>';
 
 include('../includes/footer.php'); ?>
