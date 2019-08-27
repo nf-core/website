@@ -81,10 +81,10 @@ if($pipeline->archived){
     <a class="nav-link<?php if(count($path_parts) == 1){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>">Readme</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if(count($path_parts) > 1 && $path_parts[1] == 'docs'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/docs">Documentation</a>
+    <a class="nav-link<?php if(count($path_parts) > 1 && $path_parts[1] == 'docs'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/docs">Doc<span class="d-none d-sm-inline">umentation</span><span class="d-sm-none">s</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stats</a>
+    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
   <li class="nav-item">
     <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/releases'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases">Releases</a>
