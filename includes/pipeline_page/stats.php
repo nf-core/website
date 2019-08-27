@@ -57,7 +57,7 @@ ob_start();
     <a class="text-body" href="https://github.com/<?php echo $pipeline->full_name; ?>/graphs/traffic">Git clones</a>
   </div>
   <div class="card-body">
-    <canvas id="repo_clones_plot" height="80"></canvas>
+    <div style="height: 250px;"><canvas id="repo_clones_plot" height="80"></canvas></div>
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row">
@@ -82,7 +82,7 @@ ob_start();
     <a class="text-body" href="https://github.com/<?php echo $pipeline->full_name; ?>/graphs/traffic">Visitors</a>
   </div>
   <div class="card-body">
-    <canvas id="repo_views_plot" height="80"></canvas>
+    <div style="height: 250px;"><canvas id="repo_views_plot" height="80"></canvas></div>
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row align-items-center">
@@ -101,7 +101,7 @@ ob_start();
 
 <h2 id="contributors"><a href="#contributors" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributors</h2>
 
-<canvas id="contributors_plot" height="80"></canvas>
+<div style="height: 250px;"><canvas id="contributors_plot" height="80"></canvas></div>
 
 <div class="alert alert-info small p-2 mt-3 mb-3" role="alert">
   <i class="far fa-hand-point-right pl-2 pr-2"></i>
@@ -141,6 +141,7 @@ $(function(){
           tension: 0 // disables bezier curves
         }
       },
+      maintainAspectRatio: false,
       scales: {
         xAxes: [{
           type: 'time',

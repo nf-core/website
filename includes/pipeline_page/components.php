@@ -14,10 +14,14 @@ $num_prs = count($issues_json['repos'][$pipeline->name]['prs']);
 // Get number of clones over time
 $stats_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_stats.json';
 $stats_json = json_decode(file_get_contents($stats_json_fn), true);
+$stats = $stats_json['pipelines'][$pipeline->name]['repo_metrics'][ $stats_json['updated'] ];
 $clones_counts = $stats_json['pipelines'][$pipeline->name]['clones_count'];
 $total_clones = 0;
+$clones_since = false;
 foreach($clones_counts as $datetime => $count){
   $total_clones += $count;
+  if(!$clones_since) $clones_since = strtotime($datetime);
+  $clones_since = min($clones_since, strtotime($datetime));
 }
 
 // Get contributor avatars
@@ -47,13 +51,24 @@ ob_start();
     <code class="small">&raquo; nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
   </div>
 
-  <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones</span></h6>
+  <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last <?php echo time_ago($clones_since, false); ?></span></h6>
   <div class="row border-bottom">
     <div class="col-6">
       <p id="clones_count"><?php echo $total_clones; ?></p>
     </div>
     <div class="col-6" style="overflow: none;">
       <canvas id="clones_plot" height="70"></canvas>
+    </div>
+  </div>
+
+  <div class="row border-bottom">
+    <div class="col-6">
+      <h6>stars</h6>
+      <p><a href="/<?php echo $pipeline->name;?>/stargazers"><?php echo $stats['stargazers_count']; ?></a></p>
+    </div>
+    <div class="col-6">
+      <h6>watchers</h6>
+      <p><a href="/<?php echo $pipeline->name;?>/watchers"><?php echo $stats['subscribers_count']; ?></a></p>
     </div>
   </div>
 
@@ -116,7 +131,7 @@ $(function(){
            ctx.stroke();
            ctx.restore();
         } else {
-          $('#clones_header').text('clones');
+          $('#clones_header').text('clones in last <?php echo time_ago($clones_since, false); ?>');
           $('#clones_count').text('<?php echo $total_clones; ?>');
         }
      }
