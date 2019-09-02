@@ -11,7 +11,7 @@
 // ignored in the .gitignore file and will not be tracked in git history.
 //
 // Manual usage: on command line, simply execute this script:
-//   $ php nfcore_stats.json
+//   $ php update_stats.php
 
 
 // Allow PHP fopen to work with remote links
@@ -146,6 +146,15 @@ foreach($gh_repos as $repo){
         'forks_count' => $repo->forks_count,
         'archived' => $repo->archived
     );
+    // Annoyingly, two values are only available if we query for just this repo
+    $gh_repo_url = 'https://api.github.com/repos/nf-core/'.$repo->name;
+    $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
+    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        var_dump($http_response_header);
+        die("Could not fetch nf-core repo! $gh_repo_url");
+    }
+    $results[$repo_type][$repo->name]['repo_metrics'][$updated]['network_forks_count'] = $gh_repo->network_count;
+    $results[$repo_type][$repo->name]['repo_metrics'][$updated]['subscribers_count'] = $gh_repo->subscribers_count;
 }
 
 // Fetch new statistics for each repo

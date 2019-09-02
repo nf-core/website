@@ -52,4 +52,4 @@ params.igenomes_base = '/path/to/data/igenomes/'
 
 # Help
 
-In any case if you need help with this, please don't hesitate to ask in our [Slack](https://nf-core-invite.herokuapp.com/) channel for help in the `#igenomes` or `#help` channels.
+In any case if you need help with this, please don't hesitate to ask in our dedicated [Slack](https://nf-co.re/join/slack) channels: [`#igenomes`](https://nfcore.slack.com/channels/igenomes) or [`#help`](https://nfcore.slack.com/channels/help).

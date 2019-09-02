@@ -49,9 +49,9 @@ if(isset($subfooter) and $subfooter){
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
               <li><a href="/about">About nf-core</a></li>
-              <li><a href="/about#contributors">List of contributors</a></li>
+              <li><a href="/community">Community</a></li>
               <li><a href="/stats">Statistics</a></li>
-              <li><a href="/join">Get involved</a></li>
+              <li><a href="/join" class="mt-1 btn btn-outline-success">Join nf-core</a></li>
             </ul>
           </div>
         </div>

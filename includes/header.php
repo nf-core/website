@@ -19,8 +19,8 @@ if( isset($markdown_fn) and $markdown_fn){
   $md_full = file_get_contents($markdown_fn);
   if ($md_full === false) {
     header('HTTP/1.1 404 Not Found');
-    header('Location: /404');
-    die;
+    include('404.php');
+    die();
   }
   // Highlight any search terms if we have them
   if(isset($_GET['q']) && strlen($_GET['q'])){
@@ -46,10 +46,15 @@ if( isset($markdown_fn) and $markdown_fn){
 
   // Trim off any content if requested
   if(isset($md_trim_before) && $md_trim_before){
-    $md = strstr($md, $md_trim_before);
+    // Only trim if the string exists
+    if(stripos($md, $md_trim_before)){
+      $md = stristr($md, $md_trim_before);
+    }
   }
   if(isset($md_trim_after) && $md_trim_after){
-    $md = strstr($md, $md_trim_after);
+    if(stripos($md, $md_trim_after)){
+      $md = stristr($md, $md_trim_after);
+    }
   }
 
   // Find and replace markdown content if requested
@@ -128,7 +133,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
     <?php endif; ?>
-    <script src="/assets/js/jquery-table-sorter.js"></script>
+    <script src="/assets/js/jquery.tablesorter.min.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
 
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
@@ -173,15 +178,16 @@ if( isset($markdown_fn) and $markdown_fn){
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
+              <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
-              <a class="dropdown-item" href="/join">Get involved</a>
+              <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>
           </li>
         </ul>
         <hr class="d-md-none">
         <ul class="navbar-nav d-md-none">
           <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://nf-core-invite.herokuapp.com/">Chat on Slack</a>
+            <a class="nav-link" target="_blank" href="https://nf-co.re/join/slack">Chat on Slack</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core">Join the email list</a>
