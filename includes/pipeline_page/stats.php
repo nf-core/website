@@ -202,8 +202,14 @@ $(function(){
         yAxisID: 'y-axis-count',
         data: [
           <?php
-          foreach($stats['clones_count'] as $timestamp => $count){
-            echo '{ x: "'.date('Y-m-d', strtotime($timestamp)).'", y: '.$count.' },'."\n\t\t\t";
+          $dates = [];
+          foreach(array_keys($stats['clones_count']) as $date){
+            $dates[strtotime($date)] = $date;
+          }
+          ksort($dates);
+          foreach($dates as $ts => $date){
+            $count = $stats['clones_count'][$date];
+            echo '{ x: "'.date('Y-m-d', $ts).'", y: '.$count.' },'."\n\t\t\t";
           }
           ?>
         ]
@@ -217,9 +223,14 @@ $(function(){
         yAxisID: 'y-axis-uniques',
         data: [
           <?php
-          foreach($stats['clones_uniques'] as $timestamp => $count){
-            $timestamp = strtotime($timestamp);
-            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          $dates = [];
+          foreach(array_keys($stats['clones_uniques']) as $date){
+            $dates[strtotime($date)] = $date;
+          }
+          ksort($dates);
+          foreach($dates as $ts => $date){
+            $count = $stats['clones_uniques'][$date];
+            echo '{ x: "'.date('Y-m-d', $ts).'", y: '.$count.' },'."\n\t\t\t";
           }
           ?>
         ]
@@ -247,9 +258,14 @@ $(function(){
         yAxisID: 'y-axis-count',
         data: [
           <?php
-          foreach($stats['views_count'] as $timestamp => $count){
-            $timestamp = strtotime($timestamp);
-            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          $dates = [];
+          foreach(array_keys($stats['views_count']) as $date){
+            $dates[strtotime($date)] = $date;
+          }
+          ksort($dates);
+          foreach($dates as $ts => $date){
+            $count = $stats['views_count'][$date];
+            echo '{ x: "'.date('Y-m-d', $ts).'", y: '.$count.' },'."\n\t\t\t";
           }
           ?>
         ]
@@ -263,9 +279,14 @@ $(function(){
         yAxisID: 'y-axis-uniques',
         data: [
           <?php
-          foreach($stats['views_uniques'] as $timestamp => $count){
-            $timestamp = strtotime($timestamp);
-            echo '{ x: "'.date('Y-m-d', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          $dates = [];
+          foreach(array_keys($stats['views_uniques']) as $date){
+            $dates[strtotime($date)] = $date;
+          }
+          ksort($dates);
+          foreach($dates as $ts => $date){
+            $count = $stats['views_uniques'][$date];
+            echo '{ x: "'.date('Y-m-d', $ts).'", y: '.$count.' },'."\n\t\t\t";
           }
           ?>
         ]
