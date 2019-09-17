@@ -162,6 +162,9 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
               <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
+              <a class="dropdown-item" href="/usage/local_installation">Local configuration</a>
+              <a class="dropdown-item" href="/usage/adding_own_config">Adding your cluster config</a>
+              <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
             </div>
           </li>
