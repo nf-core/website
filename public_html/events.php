@@ -154,6 +154,4 @@ foreach($events as $idx => $event):
 
 <?php endforeach;
 
-echo '<pre>'.print_r($events, true).'</pre>';
-
 include('../includes/footer.php');
