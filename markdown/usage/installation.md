@@ -68,7 +68,8 @@ If you would like to make changes to the pipeline, it's best to make a fork on G
 
 ## Pipeline configuration
 By default, the pipeline loads a basic resource configuration:
-```bash
+
+```nextflow
 process {
 
   cpus = { check_max( 2, 'cpus' ) }
@@ -102,6 +103,7 @@ params {
   igenomes_base = 's3://ngi-igenomes/igenomes/'
 }
 ```
+
 This uses a number of sensible defaults for process requirements and is suitable for running
 on a simple (if powerful!) local server.
 

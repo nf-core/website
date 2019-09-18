@@ -1,0 +1,8 @@
+sudo: required
+language: python
+
+install:
+  - sudo apt-get install npm && npm install -g markdownlint-cli
+
+script:
+  - markdownlint ${TRAVIS_BUILD_DIR}/markdown -c ${TRAVIS_BUILD_DIR}/.github/markdownlint.yml --ignore ${TRAVIS_BUILD_DIR}/markdown/pipelines

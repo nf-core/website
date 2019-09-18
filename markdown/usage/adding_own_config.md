@@ -30,6 +30,7 @@ process {
   clusterOptions = '-A myproject'
 }
 ```
+
 ## Software Requirements
 To run your selected nf-core pipeline, several software packages are required. How you satisfy these requirements is essentially up to you and depends on your system. If possible, we _highly_ recommend using either Docker or Singularity.
 
@@ -72,6 +73,7 @@ Then transfer this file and point the config file to the image:
 singularity.enabled = true
 process.container = "/path/to/nfcore-YOURPIPELINENAME-VERSION.simg"
 ```
+
 ### Conda
 If you're not able to use Docker or Singularity, you can instead use conda to manage the software requirements.
 To use conda in your own config file, add the following:
