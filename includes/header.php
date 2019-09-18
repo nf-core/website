@@ -182,6 +182,7 @@ if( isset($markdown_fn) and $markdown_fn){
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
+              <a class="dropdown-item" href="/events">Events</a>
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/join">Join nf-core</a>
