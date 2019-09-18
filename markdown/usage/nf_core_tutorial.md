@@ -3,7 +3,7 @@
 > Originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))_
 >
 > Duration: **1hr 45**
-
+>
 > Last updated: September  2019
 
 ## Table of Contents
@@ -70,7 +70,7 @@ Once installed, you can check that everything is working by printing the help:
 nf-core --help
 ```
 
-###  Exercise 1 (installation)
+### Exercise 1 (installation)
 
 * Install nf-core/tools
 * Use the help flag to list the available commands
@@ -80,7 +80,7 @@ As you saw from the `--help` output, the tool has a range of subcommands. The si
 
 If you supply additional keywords after the command, the listed pipeline will be filtered. Note that this searches more than just the displayed output, including keywords and description text. The `--sort` flag allows you to sort the list (default is by most recently released) and `--json` gives JSON  output for programmatic use.
 
-###  Exercise 2 (listing pipelines)
+### Exercise 2 (listing pipelines)
 
 * Use the help flag to print the list command usage
 * List all pipelines
@@ -216,7 +216,7 @@ Where software packages are not already available on Bioconda or Conda-forge, we
 ### Running with Docker locally
 You can use Docker for testing by building the image locally. The pipeline expects a container with a specific name, so you must _tag_ the Docker image with this. You can build and tag an image in a single step with the following command:
 
-```
+```bash
 docker build -t nfcore/PIPELINE:dev .
 ```
 
@@ -258,7 +258,7 @@ Both services are free to use. To set them up, visit [https://travis-ci.com](htt
 * Add the new software dependencies from this process in to `environment.yaml`
 
 ## Testing _nf-core_ pipelines
-###  Linting _nf-core_ pipelines
+### Linting _nf-core_ pipelines
 Manually checking that a pipeline adheres to all _nf-core_ guidelines and requirements is a difficult job. Wherever possible, we automate such code checks with a [code linter](https://en.wikipedia.org/wiki/Lint_(software)). This runs through a series of tests and reports failures, warnings and passed tests.
 
 The linting code is closely tied to the _nf-core_ template and both change over time. When we change something in the template, we often add a test to the linter to make sure that pipelines do not use the old method.
