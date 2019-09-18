@@ -1,6 +1,9 @@
-# _nf-core_ Tutorial
+---
+title: nf-core tutorial
+subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
+---
 
-> Originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))_
+> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))_
 >
 > Duration: **1hr 45**
 >
@@ -48,7 +51,7 @@ The _nf-core_  Slack can be found at [https://nfcore.slack.com](https://nfcore.s
 
 One additional tool which this author swears by is [TLDR](https://tldr.sh/) - it gives concise command line reference through example commands for most linux tools, including `nextflow`, `docker`, `singularity`,  `conda`, `git` and more. There are many clients, but [raylee/tldr](https://github.com/raylee/tldr) is arguably the simplest - just a single bash script.
 
-## Installing the _nf-core_ helper tools
+## Installing the nf-core helper tools
 Much of this tutorial will make use of the `nf-core` command line tool. This has been developed to provide a range of additional functionality for the project such as pipeline creation, testing and more.
 
 The `nf-core` tool is written in Python and is available from the [Python Package Index](https://pypi.org/project/nf-core/) and [Bioconda](https://bioconda.github.io/recipes/nf-core/README.html). You can install it from either of these channels as follows:
@@ -77,7 +80,7 @@ nf-core --help
 * Install nf-core/tools
 * Use the help flag to list the available commands
 
-## Listing available _nf-core_ pipelines
+## Listing available nf-core pipelines
 As you saw from the `--help` output, the tool has a range of subcommands. The simplest is `nf-core list`, which lists all available _nf-core_ pipelines. The output shows the latest version number, when that was released. If the pipeline has been pulled locally using Nextflow, it tells you when that was and whether you have the latest version.
 
 If you supply additional keywords after the command, the listed pipeline will be filtered. Note that this searches more than just the displayed output, including keywords and description text. The `--sort` flag allows you to sort the list (default is by most recently released) and `--json` gives JSON  output for programmatic use.
@@ -92,8 +95,8 @@ If you supply additional keywords after the command, the listed pipeline will be
 * Filter pipelines for those that work with RNA
 * Save these pipeline details to a JSON file
 
-## Running _nf-core_ pipelines
-### Software requirements for _nf-core_ pipelines
+## Running nf-core pipelines
+### Software requirements for nf-core pipelines
 In order to run _nf-core_ pipelines, you will need to have Nextflow installed ([https://www.nextflow.io](https://www.nextflow.io/)). The only other requirement is a software packaging tool: [Conda](https://docs.conda.io/en/latest/miniconda.html), [Docker](https://www.docker.com) or [Singularity](https://sylabs.io/singularity/). In theory it is possible to run the pipelines with software installed by other methods (_e.g._ environment modules, or manual installation), but this is not recommended. Most people find either Docker or Singularity the best options.
 
 ### Fetching pipeline code
@@ -153,7 +156,7 @@ nextflow run nf-core/PIPELINE -profile test
 
 Note that you will typically still need to combine this with a configuration profile for your system - _e.g._ `-profile test,docker`. Running with the test profile is a great way to confirm that you have Nextflow configured properly for your system before attempting to run with real data.
 
-### The _nf-core_ launch command
+### The nf-core launch command
 Most _nf-core_ pipelines have a number of flags that need to be passed on the command line: some mandatory, some optional. To make it easier to launch pipelines, these parameters are described in a JSON file bundled with the pipeline. The `nf-core launch` command uses this to build an interactive command-line wizard which walks through the different options with descriptions of each, showing the default value and prompting for values.
 
 > _NB: This is an experimental feature - JSON file and rich descriptions of parameters is not yet available for all pipelines._
@@ -166,7 +169,7 @@ To use the launch feature, just specify the pipeline name:
 nf-core launch <PIPELINE>
 ```
 
-### Using _nf-core_ pipelines offline
+### Using nf-core pipelines offline
 Many of the techniques and resources described above require an active internet connection at run time - pipeline files, configuration profiles and software containers are all dynamically fetched when the pipeline is launched. This can be a problem for people using secure computing resources that do not have connections to the internet.
 
 To help with this, the `nf-core download` command automates the fetching of required files for running _nf-core_  pipelines offline. The command can download a specific release of a pipeline with `-r`/`--release` and fetch the singularity container if `--singularity` is passed (this needs Singularity to be installed). All files are saved to a single directory, ready to be transferred to the cluster where the pipeline will be executed.
@@ -181,16 +184,16 @@ To help with this, the `nf-core download` command automates the fetching of requ
 * Try launching the RNA pipeline using the `nf-core launch` command
 * Download the _nf-core/rnaseq_ pipeline for offline use using the `nf-core download` command
 
-## Creating _nf-core_ pipelines
+## Creating nf-core pipelines
 ### Using the nf-core template
 The heart of _nf-core_ is the standardisation of pipeline code structure. To achieve this, all pipelines adhere to a generalised pipeline template. The best way to build an _nf-core_ pipeline is to start by using this template via the `nf-core create` command. This launches an interactive prompt on the command line which asks for things such as pipeline name, a short description and the author's name. These values are then propagated throughout the template files automatically.
 
-### `TODO` statements
+### TODO statements
 Not everything can be completed with a template and all new pipelines will need to edit and add to the resulting pipeline files in a similar set of locations. To make it easier to find these, the _nf-core_ template files have numerous comment lines beginning with `TODO nf-core:`, followed by a description of what should be changed or added. These comment lines can be deleted once the required change has been made.
 
 Most code editors have tools to automatically discover such `TODO` lines and the `nf-core lint` command will flag these. This makes it simple to systematically work through the new pipeline, editing all files where required.
 
-### How _nf-core_ software packaging works
+### How nf-core software packaging works
 The only hard requirement for all _nf-core_ pipelines is that software must be available in Docker images. However, it is recommended that pipelines use the following methodology where possible:
 
 1. Software requirements are defined for Conda in `environment.yml`
@@ -210,7 +213,7 @@ The reason that the above approach is not a hard requirement is that some issues
 
 Alternative approaches are then decided upon on a case-by-case basis. We encourage you to discuss this on Slack early on as we have been able to resolve some such issues in the past.
 
-### Building `environment.yml`
+### Building environment.yml
 The _nf-core_  template will create a simple `environment.yml` file for you with an environment name, conda channels and one or two dependencies. You can then add additional required software to this file. Note that all software packages must have a specific version number pinned - the format is a single equals sign, _e.g_ `package=version`.
 
 Where software packages are not already available on Bioconda or Conda-forge, we encourage developers to add them. This benefits the wider community, as well as just users of the _nf-core_  pipeline.
@@ -259,8 +262,8 @@ Both services are free to use. To set them up, visit [https://travis-ci.com](htt
 * Add a new process to the pipeline in `main.nf`
 * Add the new software dependencies from this process in to `environment.yaml`
 
-## Testing _nf-core_ pipelines
-### Linting _nf-core_ pipelines
+## Testing nf-core pipelines
+### Linting nf-core pipelines
 Manually checking that a pipeline adheres to all _nf-core_ guidelines and requirements is a difficult job. Wherever possible, we automate such code checks with a [code linter](https://en.wikipedia.org/wiki/Lint_(software)). This runs through a series of tests and reports failures, warnings and passed tests.
 
 The linting code is closely tied to the _nf-core_ template and both change over time. When we change something in the template, we often add a test to the linter to make sure that pipelines do not use the old method.
@@ -300,10 +303,10 @@ The provided tests may be sufficient for your pipeline. However, if it is possib
 * Read up on one or two of the linting rules on the nf-core website and see if you can fix some.
 * Take a look at `conf/test.config` and switch the test data for another dataset on nf-core/test_data.
 
-## Releasing _nf-core_ pipelines
+## Releasing nf-core pipelines
 Your pipeline is written and ready to go! Before you can release it with _nf-core_ there are a few steps that need to be done. First, tell everyone about it on Slack in the [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines) channel. Hopefully you've already done this before you spent lots of time on your pipeline, to check that there aren't other similar efforts happening elsewhere. Next, you need to be a member of the [nf-core GitHub organisation](https://github.com/nf-core/). You can find instructions for how to do this at [https://nf-co.re/join](https://nf-co.re/join).
 
-### Forking to _nf-core_
+### Forking to nf-core
 Once you're ready to go, you can fork your repository to _nf-core_. A lot of stuff happens automatically when you do this: the website will update itself to include your new pipeline, complete with rendered documentation pages and usage statistics. Your pipeline will also appear in the `nf-core list` command output and in various other locations.
 
 Unfortunately, at the time of writing, Travis CI, Docker Hub and Zenodo (automated DOI assignment for releases) services are not created automatically. These can only be set up by _nf-core_ administrators, so please ask someone to do this for you on Slack.
