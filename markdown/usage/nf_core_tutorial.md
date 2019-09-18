@@ -28,7 +28,7 @@
 
 ## Abstract
 
-The _nf-core_ community provides a range of tools to help new users get to grips with nextflow - both by providing complete pipelines that can be used out of the box, and also by helping developers with best practices. Companion tools can create a bare-bones pipeline from a template scattered with `TO-DO` pointers and CI with linting tools check code quality. Guidelines and documentation help to get nextflow newbies on their feet in no time. Best of all, the _nf-core_ community is always on hand to help.
+The _nf-core_ community provides a range of tools to help new users get to grips with nextflow - both by providing complete pipelines that can be used out of the box, and also by helping developers with best practices. Companion tools can create a bare-bones pipeline from a template scattered with `TODO` pointers and CI with linting tools check code quality. Guidelines and documentation help to get nextflow newbies on their feet in no time. Best of all, the _nf-core_ community is always on hand to help.
 
 In this tutorial we discuss the best-practice guidelines developed by the _nf-core_ community, why they're important and give insight into the best tips and tricks for budding nextflow pipeline developers. ✨
 
@@ -66,41 +66,22 @@ python setup.py install
 
 Once installed, you can check that everything is working by printing the help:
 
-```console
-$ nf-core --help
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
-
-Usage: nf-core [OPTIONS] COMMAND [ARGS]...
-
-Options:
-  --version      Show the version and exit.
-  -v, --verbose  Verbose output (print debug statements)
-  --help         Show this message and exit.
-
-Commands:
-  list          List nf-core pipelines with local info
-  launch        Run pipeline, interactive parameter prompts
-  download      Download a pipeline and singularity container
-  licences      List software licences for a given workflow
-  create        Create a new pipeline using the template
-  lint          Check pipeline against nf-core guidelines
-  bump-version  Update nf-core pipeline version number
+```bash
+nf-core --help
 ```
 
 ###  Exercise 1 (installation)
+
 * Install nf-core/tools
 * Use the help flag to list the available commands
 
 ## Listing available _nf-core_ pipelines
 As you saw from the `--help` output, the tool has a range of subcommands. The simplest is `nf-core list`, which lists all available _nf-core_ pipelines. The output shows the latest version number, when that was released. If the pipeline has been pulled locally using Nextflow, it tells you when that was and whether you have the latest version.
 
-If you supply additional keywords after the command, it will search the pipelines for that. Note that it searches more than just the displayed output, including keywords and description text. The `--sort` flag allows you to sort the list (default is by most recently released) and `--json` gives JSON  output for programmatic use.
+If you supply additional keywords after the command, the listed pipeline will be filtered. Note that this searches more than just the displayed output, including keywords and description text. The `--sort` flag allows you to sort the list (default is by most recently released) and `--json` gives JSON  output for programmatic use.
 
 ###  Exercise 2 (listing pipelines)
+
 * Use the help flag to print the list command usage
 * List all pipelines
 * Sort pipelines alphabetically, then by popularity (stars)
@@ -114,7 +95,7 @@ If you supply additional keywords after the command, it will search the pipeline
 In order to run _nf-core_ pipelines, you will need to have Nextflow installed ([https://www.nextflow.io](https://www.nextflow.io/)). The only other requirement is a software packaging tool: [Conda](https://docs.conda.io/en/latest/miniconda.html), [Docker](https://www.docker.com) or [Singularity](https://sylabs.io/singularity/). In theory it is possible to run the pipelines with software installed by other methods (_e.g._ environment modules, or manual installation), but this is not recommended. Most people find either Docker or Singularity the best options.
 
 ### Fetching pipeline code
-Unless you are actively developing pipeline code, we recommend using the Nextflow [built-in functionality](https://www.nextflow.io/docs/latest/sharing.html) to fetch _nf-core_ pipelines. Nextflow will automatically fetch the pipeline code when you run `nextflow run nf-core/PIPELINE-NAME`. For the best reproducibility, it is good to explicitly reference the pipeline version number that you wish to use with the `-revision`/`-r` flag. For example:
+Unless you are actively developing pipeline code, we recommend using the Nextflow [built-in functionality](https://www.nextflow.io/docs/latest/sharing.html) to fetch _nf-core_ pipelines. Nextflow will automatically fetch the pipeline code when you run `nextflow run nf-core/PIPELINE`. For the best reproducibility, it is good to explicitly reference the pipeline version number that you wish to use with the `-revision`/`-r` flag. For example:
 
 ```bash
 nextflow run nf-core/rnaseq -revision 1.3
@@ -129,7 +110,7 @@ nextflow pull nf-core/rnaseq
 ```
 
 ### Usage instructions and documentation
-You can find general documentation and instructions for Nextflow and _nf-core_ on the _nf-core_ website: [https://nf-co.re/](https://nf-co.re/). Pipeline-specific documentation is bundled with each pipeline in the `/docs` folder. This can be read either locally, on GitHub, or on the _nf-core_ website. Each pipeline has its own webpage at `https://nf-co.re/PIPELINE-NAME`.
+You can find general documentation and instructions for Nextflow and _nf-core_ on the _nf-core_ website: [https://nf-co.re/](https://nf-co.re/). Pipeline-specific documentation is bundled with each pipeline in the `/docs` folder. This can be read either locally, on GitHub, or on the _nf-core_ website. Each pipeline has its own webpage at `https://nf-co.re/PIPELINE`.
 
 In addition to this documentation, each pipeline comes with basic command line reference. This can be seen by running the pipeline with the `--help` flag, for example:
 
@@ -141,14 +122,14 @@ nextflow run nf-core/rnaseq --help
 Nextflow can load pipeline configurations from multiple locations. To make it easy to apply a group of options on the command line, Nextflow uses the concept of [config profiles](https://www.nextflow.io/docs/latest/config.html#config-profiles).  _nf-core_ pipelines load configuration in the following order:
 
 1. Pipeline: Default 'base' config
-  * Always loaded. Contains pipeline-specific parameters and "sensible defaults" for things like computational requirements
-  * Does _not_ specify any method for software packaging. If nothing else is specified, Nextflow will expect all software to be available on the command line.
+    * Always loaded. Contains pipeline-specific parameters and "sensible defaults" for things like computational requirements
+    * Does _not_ specify any method for software packaging. If nothing else is specified, Nextflow will expect all software to be available on the command line.
 2. Pipeline: Core config profiles
-  * All _nf-core_ pipelines come with some generic config profiles. The most commonly used ones are for software packaging: `docker`, `singularity` and `conda`
-  * Other core profiles are `awsbatch`, `debug` and `test`
+    * All _nf-core_ pipelines come with some generic config profiles. The most commonly used ones are for software packaging: `docker`, `singularity` and `conda`
+    * Other core profiles are `awsbatch`, `debug` and `test`
 3. [nf-core/configs](https://github.com/nf-core/configs): Server profiles
-  * At run time, _nf-core_ pipelines fetch configuration profiles from the [configs](https://github.com/nf-core/configs) remote repository. The profiles here are specific to clusters at different institutions.
-  * Because this is loaded at run time, anyone can add a profile here for their system and it will be immediately available for all _nf-core_ pipelines.
+    * At run time, _nf-core_ pipelines fetch configuration profiles from the [configs](https://github.com/nf-core/configs) remote repository. The profiles here are specific to clusters at different institutions.
+    * Because this is loaded at run time, anyone can add a profile here for their system and it will be immediately available for all _nf-core_ pipelines.
 4. Local config files given to Nextflow with the `-c` flag
 5. Command line configuration
 
@@ -168,7 +149,7 @@ The `test` config profile is a bit of a special case. Whereas all other config p
 nextflow run nf-core/PIPELINE -profile test
 ```
 
-Note that you will typically still need to combine this with a configuration profile for your system - _e.g._ `-profile test,docker`.
+Note that you will typically still need to combine this with a configuration profile for your system - _e.g._ `-profile test,docker`. Running with the test profile is a great way to confirm that you have Nextflow configured properly for your system before attempting to run with real data.
 
 ### The _nf-core_ launch command
 Most _nf-core_ pipelines have a number of flags that need to be passed on the command line: some mandatory, some optional. To make it easier to launch pipelines, these parameters are described in a JSON file bundled with the pipeline. The `nf-core launch` command uses this to build an interactive command-line wizard which walks through the different options with descriptions of each, showing the default value and prompting for values.
@@ -177,6 +158,8 @@ Most _nf-core_ pipelines have a number of flags that need to be passed on the co
 
 Once all prompts have been answered, non-default values are saved to a `params.json` file which can be supplied to Nextflow to run the pipeline. Optionally, the nextflow command can be launched there and then.
 
+To use the launch feature, just specify the pipeline name:
+
 ```bash
 nf-core launch <PIPELINE>
 ```
@@ -184,12 +167,13 @@ nf-core launch <PIPELINE>
 ### Using _nf-core_ pipelines offline
 Many of the techniques and resources described above require an active internet connection at run time - pipeline files, configuration profiles and software containers are all dynamically fetched when the pipeline is launched. This can be a problem for people using secure computing resources that do not have connections to the internet.
 
-To help with this, the `nf-core download` command automates the fetching of required files for running _nf-core_  pipelines offline. The command can download a specific release of a pipeline with `-r`/`--release` and fetch the singularity container if `--singularity` is passed (needs Singularity to be installed). All files are saved to a single directory, ready to be transferred to the cluster where the pipeline will be executed.
+To help with this, the `nf-core download` command automates the fetching of required files for running _nf-core_  pipelines offline. The command can download a specific release of a pipeline with `-r`/`--release` and fetch the singularity container if `--singularity` is passed (this needs Singularity to be installed). All files are saved to a single directory, ready to be transferred to the cluster where the pipeline will be executed.
 
 > _NB: At the time of writing (Sept 2019), functionality to download config files is not yet complete. This should be included soon._
 
 ### Exercise 3 (using pipelines)
-* Install other dependencies (nextflow, docker)
+
+* Install required dependencies (nextflow, docker)
 * Print the command-line usage instructions for the _nf-core/rnaseq_ pipeline
 * In a new directory, run the _nf-core/rnaseq_ pipeline with the provided test data
 * Try launching the RNA pipeline using the `nf-core launch` command
@@ -202,7 +186,7 @@ The heart of _nf-core_ is the standardisation of pipeline code structure. To ach
 ### `TODO` statements
 Not everything can be completed with a template and all new pipelines will need to edit and add to the resulting pipeline files in a similar set of locations. To make it easier to find these, the _nf-core_ template files have numerous comment lines beginning with `TODO nf-core:`, followed by a description of what should be changed or added. These comment lines can be deleted once the required change has been made.
 
-Most code editors have tools to automatically discover such `TODO` lines and the `nf-core lint` command also flags these. This makes it simple to systematically work through the template, editing all files where required.
+Most code editors have tools to automatically discover such `TODO` lines and the `nf-core lint` command will flag these. This makes it simple to systematically work through the new pipeline, editing all files where required.
 
 ### How _nf-core_ software packaging works
 The only hard requirement for all _nf-core_ pipelines is that software must be available in Docker images. However, it is recommended that pipelines use the following methodology where possible:
@@ -241,7 +225,7 @@ Note that it is `nfcore` without a hyphen (docker hub doesn't allow any punctuat
 ### Forks, branches and pull-requests
 All _nf-core_ pipelines use GitHub as their code repository, and git as their version control system. For newcomers to this world, it is helpful to know some of the basic terminology used:
 
-* A _repository_ contains everything for a given project (or pipeline)
+* A _repository_ contains everything for a given project
 * _Commits_ are code checkpoints.
 * A _branch_ is a linear string of commits - multiple parallel branches can be created in a repository
 * Commits from one branch can be _merged_ into another
@@ -298,7 +282,7 @@ git clone --single-branch --branch PIPELINE https://github.com/nf-core/test-data
 
 To set up the test profile, make a new branch on the  [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repo through the web page (see [instructions](https://help.github.com/en/articles/creating-and-deleting-branches-within-your-repository#creating-a-branch)). Fork the repository to your user and open a PR to your new branch with a really (really!) tiny dataset. Once merged, set up the `conf/test.config` file in your pipeline to refer to the URLs for your test data.
 
-These test datasets are used by the automated CI tests. The systems that run these tests are _extremely_ limited in the resources that they have available. Typically, the pipeline should be able to complete in around 10 minutes and use no more than 6-7 GB memory. To achieve this, input files and reference genomes need to be very tiny. If possible, a good approach can be to use PhiX or Yeast as a reference genome. Alternatively, a single small chromosome (or part of a chromosome) can be used. If you are struggling to get the tests to run, ask for help on Slack.
+These test datasets are used by the automated continuous integration tests. The systems that run these tests are _extremely_ limited in the resources that they have available. Typically, the pipeline should be able to complete in around 10 minutes and use no more than 6-7 GB memory. To achieve this, input files and reference genomes need to be very tiny. If possible, a good approach can be to use PhiX or Yeast as a reference genome. Alternatively, a single small chromosome (or part of a chromosome) can be used. If you are struggling to get the tests to run, ask for help on Slack.
 
 When writing `conf/test.config` remember to define all required parameters so that the pipeline will run with only `-profile test`. Note that remote URLs cannot be traversed like a regular file system - so glob file expansions such as `*.fa` will not work.
 
@@ -323,20 +307,30 @@ Once you're ready to go, you can fork your repository to _nf-core_. A lot of stu
 Unfortunately, at the time of writing, Travis CI, Docker Hub and Zenodo (automated DOI assignment for releases) services are not created automatically. These can only be set up by _nf-core_ administrators, so please ask someone to do this for you on Slack.
 
 ### Initial community review
-Once everything is set up and all tests are passing on the `dev` branch, let us know on Slack and we will do a large community review. This is a one-off process that is done before the first release for all pipelines. In order to give a nice interface to review _all_ pipeline code, we create a "pseudo pull request" comparing `dev` against the first commit in the pipeline (hopefully the template creation). This PR will never be merged, but gives the GitHub review web pages where people can comment on specific lines in the code.
+Once everything is set up and all tests are passing on the `dev` branch, let us know on Slack and we will do a large community review. This is a one-off process that is done before the first release for all pipelines. In order to give a nice interface to review _all_ pipeline code, we create a _"pseudo pull request"_ comparing `dev` against the first commit in the pipeline (hopefully the template creation). This PR will never be merged, but gives the GitHub review web pages where people can comment on specific lines in the code.
 
 These first community reviews can take quite a long time and typically result in a lot of comments and suggestions (nf-core/deepvariant famously had 156 comments before it was approved). Try not to be intimidated - this is the main step where the community attempts to standardise and suggest improvements for your code.  Your pipeline will come out the other side stronger than ever!
 
 ### Making the first release
-Once the pseudo-PR is approved, you're ready to make the release. To do this, first bump the pipeline version to a stable tag using `nextflow bump-version`, then open a pull-request from the `dev` branch to `master`. 
+Once the pseudo-PR is approved, you're ready to make the release. To do this, first bump the pipeline version to a stable tag using `nextflow bump-version`, then open a pull-request from the `dev` branch to `master`.  Once tests are passing and two _nf-core_ members have approved this PR, it can be merged to `master`. Then a GitHub release is made, using the contents of the changelog as a description.
 
+Pipeline version numbers (release tags) should be numerical only, using semantic versioning. For example, with a release version `1.4.3`, bumping `1` would correspond to the _major_ release where results would no longer be backwards compatible. Changing `4` would be a minor release, for example adding some new features. Changing `3` would be a patch release for minor things such as fixing bugs.
 
 ### Template updates
-### Pipeline version numbers
-### Review releases
+Over time, new versions of nf-core/tools will be released with changes to the template. In order to keep all _nf-core_ pipelines in sync, we have developed an automated synchronisation procedure. A GitHub bot account, [@nf-core-bot](https://github.com/nf-core-bot) is scripted on a new tools release to use `nf-core create` with the new template using the input values you used on your pipeline. This is committed to the `TEMPLATE` branch and a pull-request created to incorporate these changes into `dev`.
+
+Note that these PRs can sometimes create git _merge conflicts_ which will need to be resolved manually. There are plugins for most code editors to help with this process.  Once resolved and checked this PR can be merged and a new pipeline release created.
+
 ### Exercise 6 (releasing pipelines)
 * Use `nf-core bump-version` to update the required version of Nextflow in your pipeline
 * Bump your pipeline's version to 1.0, ready for its first release!
 * Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-cor.re)) and drop us a line about your latest and greatest pipeline plans!
 * Ask to be a member of the _nf-core_ GitHub organisation by commenting on [this GitHub issue](https://github.com/nf-core/nf-co.re/issues/3)
 * If you're a twitter user, make sure to follow the [@nf_core](https://twitter.com/nf_core) account
+
+## Conclusion
+I hope that this _nf-core_ tutorial has been helpful! Remember that there is more in-depth documentation on many of these topics available on the [nf-core website](https://nf-co.re). If in doubt, please ask for help on Slack.
+
+If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re).
+
+> Phil Ewels, September 2019
