@@ -162,6 +162,7 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
               <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
+              <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
             </div>
           </li>
