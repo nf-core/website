@@ -28,6 +28,7 @@ process < name > {
 }
 
 ```
+
 ## Processes and Channels
 Each script usually has two or more [**processes**](https://www.nextflow.io/docs/latest/process.html), which are steps of the pipeline that work independent from each other.
 For example could the first process produce library indexes and the second process could map reads to the indexed library.
@@ -46,7 +47,7 @@ Each nextflow process ***must end*** with a **script** block, which defines the 
 It can call on the variables from the input section and will release the output to the output section.
 A script is initiated as follows:
 
-```
+```nextflow
 script:
 """
 <user script>
@@ -81,6 +82,7 @@ Clone this repository with the following command in your terminal:
 git clone https://github.com/nextflow-io/crg-course-nov16.git
 cd crg-course-nov16
 ```
+
 Make sure Nextflow and Docker is installed on your computer.
 You can find instructions about this in the [usage documentation](installation).
 
@@ -98,7 +100,8 @@ The script `rna-ex1.nf` defines the pipeline input parameters that can be define
 Such parameters follow the convention `params.<name>` in the `run rna-ex1.nf` script file (see line 5-7 for examples).
 
 This is how the parameter definition looks in the script:
-```groovy
+
+```nextflow
 params.genome = "$baseDir/data/ggal/genome.fa"
 ```
 
@@ -115,6 +118,7 @@ To specify a different [input parameter](https://www.nextflow.io/docs/latest/con
 ```bash
 nextflow run rna-ex1.nf --genome "this/and/that"
 ```
+
 In this example the path leading to the genome file `"$baseDir/data/ggal/genome.fa"` in the script will be overwritten with `"this/and/that"` when you run the command.
 
 > Note: Parameter arguments must be enclosed with quotes if they contain spaces or a file glob pattern
@@ -127,12 +131,13 @@ input and creates the genome index by using the `bowtie2-build` tool.
 You may recall, that `params.genome` contains only the path to a file.
 In order to access the file we need to evoke the [`file` method](https://www.nextflow.io/docs/latest/script.html?highlight=file#files-and-i-o) (see line `22` of `rna-ex2.nf`):
 
-```groovy
+```nextflow
 genome_file = file(params.genome)
 ```
 
 This is then used in the `buildIndex` process:
-```groovy
+
+```nextflow
 input:
 file genome from genome_file
 ```
@@ -160,7 +165,7 @@ The `config.file`  in Nextflow is a simple text file containing a set of propert
 
 In order to avoid having to specify the option `-with-docker` every time, you can add the following line in the `nextflow.config` file:
 
-```groovy
+```nextflow
 docker.enabled = true
 ```
 
@@ -184,7 +189,7 @@ The [operator `.fromFilePairs`](https://www.nextflow.io/docs/latest/operator.htm
 
 Edit the script `rna-ex3.nf` and add the following statement as the last line:
 
-```groovy
+```nextflow
 read_pairs.println()
 ```
 
@@ -264,7 +269,7 @@ Then you will find the quantification files in the folder `results`.
 
 Modify the `rna-ex6.nf` script by adding the following line at the beginning of the file:
 
-```groovy
+```nextflow
 params.outdir = 'results'
 ```
 
@@ -272,7 +277,7 @@ Then, look for the `publishDir` directive in the `makeTranscript` process, and
 replace the `'results'` string with the `params.outdir` parameter.
 By doing so we can change the destination folder for the final output from the command line.
 
-Run `rna-ex6.nf ` again with the following command:
+Run `rna-ex6.nf` again with the following command:
 
 ```bash
 nextflow run rna-ex6.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq' --outdir my_transcripts
