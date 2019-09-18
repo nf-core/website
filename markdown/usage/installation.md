@@ -3,7 +3,7 @@ title: Installation
 subtitle: Installing the building blocks needed for running nf-core pipelines.
 ---
 
-This documentation assumes that you have already read the [introduction](usage/introduction) and are familiar with the tools described below.
+This documentation assumes that you have already read the [introduction](introduction) and are familiar with the tools described below.
 
 # Table of contents
 <!-- Install Atom plugin markdown-toc-auto for this ToC -->
@@ -148,8 +148,8 @@ To use it first ensure that you have conda installed (we recommend [miniconda](h
 
 ### Configuration profiles
 
-See [Adding your own configuration profile](usage/adding_own_config).
+See [Adding your own configuration profile](adding_own_config).
 
 ## Reference genomes
 
-See [Reference genomes](usage/reference_genomes)
+See [Reference genomes](reference_genomes)
