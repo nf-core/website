@@ -6,6 +6,8 @@
 >
 > Last updated: September  2019
 
+**[Click here to see the slides associated with this tutorial.](../assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
+
 ## Table of Contents
 
 #### Sections
