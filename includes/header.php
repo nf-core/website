@@ -94,6 +94,10 @@ if( isset($markdown_fn) and $markdown_fn){
     if(isset($href_url_prepend)){
       $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)"/i', 'href="'.$href_url_prepend.'$1"', $content);
     }
+    // Clean up href URLs if configured
+    if(isset($href_url_suffix_cleanup)){
+      $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
+    }
     // Find and replace HTML content if requested
     if(isset($html_content_replace)){
       $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
