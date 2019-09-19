@@ -6,7 +6,10 @@
     "description": "Describes Nextflow workflow run parameters.",
     "type": "object",
     "definitions": {
-        "name": {
+        "parameter": {
+            "type": "object",
+            "properties": {
+                "name": {
                     "type": "string",
                     "description": "Parameter name."
                 },
