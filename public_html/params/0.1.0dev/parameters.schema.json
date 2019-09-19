@@ -6,10 +6,7 @@
     "description": "Describes Nextflow workflow run parameters.",
     "type": "object",
     "definitions": {
-        "parameter": {
-            "type": "object",
-            "properties": {
-                "name": {
+        "name": {
                     "type": "string",
                     "description": "Parameter name."
                 },
@@ -26,31 +23,42 @@
                     "description": "Parameter type.",
                     "enum": ["string", "integer", "decimal", "boolean", "mem unit"]
                 },
+                "group": {
+                    "type": "string",
+                    "description": "Assigns a group tag to the parameter."
+                },
                 "render": {
                     "type": "string",
                     "description": "UI render type.",
-                    "enum": ["file", "url", "upload", "range", "check-box", "radio-button", "list-box", "drop-down"]
+                    "enum": ["textfield", "file", "url", "upload", "range", "check-box", "radio-button", "list-box", "drop-down", "none"]
                 },
                 "choices": {
                     "type": "array",
-                    "description": "A collection of choices for a parameter value.",
-                    "items": { "type": "string" }
+                    "description": "A collection of choices for a parameter value."
+                },
+                 "value": {
+                    "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" },
+                        { "type": "boolean" }
+                    ],
+                    "description": "Parameter value."
                 },
                 "default_value": {
-                    "type": "string",
+                    "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" },
+                        { "type": "boolean" }
+                    ],
                     "description": "Default parameter value."
                 },
                 "pattern": {
                     "type": "string",
                     "description": "Regular expression pattern."
                 },
-                "arity": {
-                    "type": "integer",
-                    "description": "Arity of a value."
-                },
                 "required": {
                     "type": "boolean",
-                    "description": "Flags the parameter as required."
+                    "description": "True, if a parameter is required."
                 }
             },
             "required": ["name", "label", "type", "default_value", "render", "required"]
