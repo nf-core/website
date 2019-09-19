@@ -54,14 +54,19 @@ One additional tool which this author swears by is [TLDR](https://tldr.sh/) - it
 ## Installing the nf-core helper tools
 Much of this tutorial will make use of the `nf-core` command line tool. This has been developed to provide a range of additional functionality for the project such as pipeline creation, testing and more.
 
-The `nf-core` tool is written in Python and is available from the [Python Package Index](https://pypi.org/project/nf-core/) and [Bioconda](https://bioconda.github.io/recipes/nf-core/README.html). You can install it from either of these channels as follows:
+The `nf-core` tool is written in Python and is available from the [Python Package Index](https://pypi.org/project/nf-core/) and [Bioconda](https://bioconda.github.io/recipes/nf-core/README.html). You can install it from PyPI as follows:
 
 ```bash
 pip install nf-core
-conda install -c bioconda nf-core
 ```
 
-The source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
+If using conda, first set up for bioconda as described in the [bioconda docs](https://bioconda.github.io/user/install.html) and then install nf-core:
+
+```bash
+conda install nf-core
+```
+
+The nf-core/tools source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
 
 ```bash
 git clone https://github.com/nf-core/tools.git nf-core-tools
