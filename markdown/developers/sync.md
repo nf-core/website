@@ -3,7 +3,7 @@ title: Synchronisation
 subtitle: Learn how nf-core pipelines are automatically kept up to date with community standards.
 ---
 
-# Synchronisation
+## Introduction
 To keep all the nf-core pipelines up-to-date with the latest version of the community standards, we have implemented a synchronisation tool.
 This ensures that updates to the community standards are propagated to all the nf-core pipelines.
 

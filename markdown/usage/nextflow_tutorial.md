@@ -3,7 +3,7 @@ title: Nextflow tutorial
 subtitle: Learn the basics of Nextflow and how to write your own Nextflow pipelines.
 ---
 
-# How does Nextflow work?
+## How does Nextflow work?
 The general outline of a Nextflow script is as follows, and it will be described in detail in the following sections:
 
 ```bash
@@ -29,7 +29,7 @@ process < name > {
 
 ```
 
-## Processes and Channels
+### Processes and Channels
 Each script usually has two or more [**processes**](https://www.nextflow.io/docs/latest/process.html), which are steps of the pipeline that work independent from each other.
 For example could the first process produce library indexes and the second process could map reads to the indexed library.
 
@@ -42,7 +42,7 @@ Interestingly, the order of processes within a nextflow script is not important 
 A process will be initiated once all the elements of the channels defined in the input are available.
 
 
-## Scripts
+### Scripts
 Each nextflow process ***must end*** with a **script** block, which defines the code to be executed by the process.
 It can call on the variables from the input section and will release the output to the output section.
 A script is initiated as follows:
@@ -62,7 +62,7 @@ It is possible to use any type of programming language for execution, simply by 
 If no shebang is specified, the command is performed using bash.
 
 
-# Executors
+## Executors
 In the Nextflow framework architecture, the [**executor**](https://www.nextflow.io/docs/latest/executor.html) is the component that determines the system where a pipeline process is run and supervises its execution.
 The executor provides an abstraction between the pipeline processes and the underlying execution system.
 This allows you to write the pipeline functional logic independently from the actual processing platform.
@@ -70,7 +70,7 @@ This allows you to write the pipeline functional logic independently from the ac
 In other words you can write your pipeline script once and have it running on your computer, a cluster resource manager or the cloud by simply changing the executor definition in the Nextflow configuration file.
 
 
-# Nextflow tutorial
+## Nextflow tutorial
 The following steps will guide you through the setup of a typical Nextflow RNAseq pipeline with practical examples to follow.
 
 The [`nextflow-io/crg-course-nov16` GitHub repository](https://github.com/nextflow-io/crg-course-nov16) contains the tutorial material for the *Parallel distributed computational workflows
@@ -86,7 +86,7 @@ cd crg-course-nov16
 Make sure Nextflow and Docker is installed on your computer.
 You can find instructions about this in the [usage documentation](installation).
 
-## Nextflow hands-on
+### Nextflow hands-on
 
 During this tutorial you will implement a proof of concept of a RNA-Seq pipeline which:
 
@@ -94,7 +94,7 @@ During this tutorial you will implement a proof of concept of a RNA-Seq pipeline
 2. Maps read pairs against the genome.
 3. Performs quantification.
 
-### Step 1 - Command line parameters
+#### Step 1 - Command line parameters
 
 The script `rna-ex1.nf` defines the pipeline input parameters that can be defined on the command line but does not contain any processes yet.
 Such parameters follow the convention `params.<name>` in the `run rna-ex1.nf` script file (see line 5-7 for examples).
@@ -123,7 +123,7 @@ In this example the path leading to the genome file `"$baseDir/data/ggal/genome.
 
 > Note: Parameter arguments must be enclosed with quotes if they contain spaces or a file glob pattern
 
-### Step 2 - Build genome index
+#### Step 2 - Build genome index
 
 `rna-ex2.nf`contains the first [process](https://www.nextflow.io/docs/latest/process.html) called `buildIndex`. It takes the genome file as
 input and creates the genome index by using the `bowtie2-build` tool.
@@ -181,7 +181,7 @@ You can inspect the files produced in the work subdirectory generated automatica
 > In this script we see the example of [`${task.cpus}`](https://www.nextflow.io/docs/latest/tracing.html?highlight=task#trace-report), which defines the number of cpus requested for a task execution.
  > As these variables are already defined, they do not need to be initiated in the script, but they can be overwritten in either the config file or in the process.
 
-### Step 3 - Collect read files by pairs
+#### Step 3 - Collect read files by pairs
 
 This step shows how to match paired-end FastQ files into pairs, so they can be mapped by [TopHat](http://ccb.jhu.edu/software/tophat/index.shtml).
 The script `rna-ex3.nf` adds the creation of the `read_pairs` channel.
@@ -212,7 +212,7 @@ the same prefix.
 
 
 
-### Step 4 - Map sequence reads
+#### Step 4 - Map sequence reads
 
 The script `rna-ex4.nf` adds the `mapping` process.
 Note how it declares three inputs:
@@ -238,7 +238,7 @@ nextflow run rna-ex4.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 
 
-### Step 5 - Perform reads quantification
+#### Step 5 - Perform reads quantification
 
 In script `rna-ex5.nf` the `makeTranscript` process is added in order to quantify the reads.
 It takes the annotation file defined in the parameters at the beginning of the nextflow script and the *bam* files produced by *TopHat* in the mapping process.
@@ -254,7 +254,7 @@ You can run `rna-ex5.nf` by using the following command:
 nextflow run rna-ex5.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq'
 ```
 
-### Step 6 - Define the pipeline output
+#### Step 6 - Define the pipeline output
 
 In script `rna-ex6.nf` the [`publishDir` directive](https://www.nextflow.io/docs/latest/process.html?highlight=publishdir#publishdir) is added in order to produce the pipeline output to a folder of your choice.
 `mode : 'copy'` allows us to copy the files into the chosen directory while keeping the original files in the corresponding `work` subfolder.
@@ -286,7 +286,7 @@ nextflow run rna-ex6.nf -resume --reads 'data/ggal/reads/*_{1,2}.fq' --outdir my
 You will find the transcripts produced by the pipeline in the `my_transcripts` folder.
 
 
-### Step 7 - Handle completion event
+#### Step 7 - Handle completion event
 
 This step shows how to execute an action when the pipeline completes the execution.
 In script `rna-ex7.nf` the [`tag` directive](https://www.nextflow.io/docs/latest/process.html?highlight=tag#tag) allows you to associate each process executions with a custom label, making easier to identify them in the log file or in the trace execution report.

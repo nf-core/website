@@ -5,7 +5,7 @@ subtitle: Installing the building blocks needed for running nf-core pipelines.
 
 This documentation assumes that you have already read the [introduction](introduction) and are familiar with the tools described below.
 
-# Table of contents
+## Table of contents
 <!-- Install Atom plugin markdown-toc-auto for this ToC -->
 <!-- TOC START min:2 max:3 link:true asterisk:true -->
 * [Install nextflow](#install-nextflow)
