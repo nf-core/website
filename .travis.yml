@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - "node" # Use latest version of nodejs
 
 before_script:
   - npm install -g markdownlint-cli
