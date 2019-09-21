@@ -129,7 +129,9 @@ foreach($results['remote_workflows'] as $idx => $repo){
             'tag_name' => $rel->tag_name,
             'tag_sha' => NULL,
             'draft' => $rel->draft,
-            'prerelease' => $rel->prerelease
+            'prerelease' => $rel->prerelease,
+            'tarball_url' => $rel->tarball_url,
+            'zipball_url' => $rel->zipball_url
         );
         if(strtotime($rel->published_at) > strtotime($results['remote_workflows'][$idx]['last_release'])){
             $results['remote_workflows'][$idx]['last_release'] = $rel->published_at;
@@ -224,4 +226,4 @@ if(count($tweets) > 0 && $_SERVER['SERVER_NAME'] == 'nf-co.re'){
     }
 }
 
-echo("update_pipeline_details done " . mktime());
+echo("\nupdate_pipeline_details done " . date("Y-m-d h:i:s") . "\n\n");

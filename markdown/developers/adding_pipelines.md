@@ -26,7 +26,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
 Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
-and introduce yourself on [Slack](https://nf-core-invite.herokuapp.com/) or the
+and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
 [mailing list](https://groups.google.com/forum/#!forum/nf-core).
 
 It's good to introduce your idea early on so that it can be discussed before you spend lots of time coding.
@@ -156,7 +156,7 @@ this new branch using the UI there.
 Once created, you can open a pull request and select this as the target branch.
 
 If in doubt, ask for help!
-([Slack](https://nf-core-invite.herokuapp.com/) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
+([Slack](https://nf-co.re/join/slack) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
 
 ## Setting up a test workflow
 
@@ -271,7 +271,7 @@ We are an open and inclusive community, welcoming any contributions to pipelines
 
 Basic rules for such contributions:
 
-* Ask in the [Slack](https://nf-core-invite.herokuapp.com/) channel for the specific pipeline whether there is an open issue on the respective pipeline's issue tracker for the feature you're planning to
+* Ask in the [Slack](https://nf-co.re/join/slack) channel for the specific pipeline whether there is an open issue on the respective pipeline's issue tracker for the feature you're planning to
 * If not, create a new issue there, describing the purpose and ideas you have and wait for someone to comment/discuss
 * If everyone is happy or there is some consensus in the community, start implementing the feature in your [fork](https://help.github.com/en/articles/fork-a-repo) of the respective pipeline
 * Please do not write to multiple channels in the Slack community, rather collect all of the information in a single GitHub issue, which makes it also much easier to follow up on your proposal

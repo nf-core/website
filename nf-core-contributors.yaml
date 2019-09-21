@@ -81,7 +81,7 @@ contributors:
       contact: Harshil Patel
       contact_email: harshil.patel@crick.ac.uk
       contact_github: drpatelh
-      location: [51.5317308, -0.1291342,19]
+      location: [51.5317308, -0.129134219]
       twitter: TheCrick
 
     - full_name: The Competence Centre for Genome Analysis Kiel
@@ -112,14 +112,16 @@ contributors:
       location: [52.0797204, 0.1833987]
       twitter: sangerinstitute
 
-    - full_name: Cancer Research UK Beatson Institute & ICS University of Glasgow
+    - full_name: Beatson Institute & Institute of Cancer Sciences
       short_name: BICR
+      affiliation: Cancer Research UK, University of Glasgow
       description: >
         The Beatson Institute is one of Cancer Research UK’s core-funded institutes.
         They have built an excellent reputation for basic cancer research, including world-class
         metabolism studies and renowned in vivo modelling of tumour growth and metastasis.
       address: Garscube Estate, Switchback Road, Bearsden, Glasgow G61 1BD, United Kingdom
       url: http://www.beatson.gla.ac.uk
+      affiliation_url: https://www.cancerresearchuk.org/
       image_fn: BICR.svg
       contact: Peter Bailey
       contact_email: Peter.Bailey.2@glasgow.ac.uk
@@ -263,10 +265,8 @@ contributors:
       description: >
         The Max Planck Institute for the Science of Human History (MPI-SHH) in Jena was founded in 2014
         to target fundamental questions of human history and evolution since the Paleolithic.
-      affiliation: MPI-SHH
       address: Kahlaische Strasse 10, 07445 Jena
       url: https://www.shh.mpg.de/en
-      affiliation_url: https://www.shh.mpg.de/en
       image_fn: shh.svg
       contact: James A. Fellows Yates
       contact_email: fellows@shh.mpg.de
@@ -296,10 +296,8 @@ contributors:
             Founded in 1831, New York University is now one of the largest private universities in the United States.
             Of the more than 3,000 colleges and universities in America, New York University is one of only 60 member institutions
             of the distinguished Association of American Universities.
-      affiliation: New York University
       address: 50 West 4th Street New York, NY 10012
       url: https://www.nyu.edu
-      affiliation_url: https://www.nyu.edu
       image_fn: nyu.svg
       contact: Tobias Schraink
       contact_email: tobias.schraink@nyumc.org
@@ -336,12 +334,12 @@ contributors:
       contact_github: szilvajuhos
       location: [59.3505174, 18.0221508]
       twitter: NBISwe
-      
+
     - full_name: Institut Curie
       short_name: Curie
       description: >
             The Institut Curie is a private nonprofit organization created in 1909 which combines a leading European cancer research center with a hospital group. The Institut Curie Bioinformatics platform is composed of biostatisticians and software engineers who offer a multidisciplinary expertise to support the biotechnological platforms, the research units and the hospital in their daily activities.
-      affiliation: Institut Curie Bioinformatics platform
+      affiliation: Bioinformatics platform
       address: 26 rue d'Ulm, 75248 Paris Cedex 05, France
       url:  https://science.institut-curie.org
       affiliation_url: https://science.institut-curie.org/platforms/bioinformatics/
@@ -356,13 +354,54 @@ contributors:
       short_name: CZ Biohub
       description: >
         CZ Biohub is an independent, non-profit medical research organization working in collaboration with UC San Francisco, Stanford University and UC Berkeley. Our vision is to develop and apply technologies that will enable doctors to cure, prevent or manage all diseases during our children’s lifetime.
-      affiliation: Chan Zuckerberg Biohub - Data Sciences Platform
       address: 499 Illinois St, San Francisco, CA, 94158
       url: https://www.czbiohub.org/
-      affiliation_url: https://www.czbiohub.org/
       image_fn: czbiohub.svg
       contact: Olga Botvinnik
       contact_email: olga.botvinnik@czbiohub.org
       contact_github: olgabot
       location: [37.765757, -122.387945]
       twitter: czbiohub
+
+    - full_name: The Picower for Learning and Memory
+      short_name: PILM
+      description: >
+        The institute is focused on studying all aspects of learning and memory; specifically, it has received over US$50 million to study Alzheimer's, schizophrenia and similar diseases.
+      affiliation: Bioinformatics Core
+      address: 43 Vassar St, Cambridge, MA 02139
+      url: https://picower.mit.edu/
+      affiliation_url: https://pilm-bioinformatics.github.io/knowledgebase/
+      image_fn: pilm.svg
+      contact: Lorena Pantano
+      contact_email: lpantano@mit.edu
+      contact_github: lpantano
+      location: [42.3623024, -71.0917659]
+      twitter: lopantano
+
+    - full_name: University of California Berkeley
+      short_name: UC Berkeley
+      description: >
+        Our mission in the RISE Lab at Unversity of California is to develop technologies that enable applications to interact intelligently and securely with their environment in real time.
+      affiliation: RISE Lab
+      address: 465 Soda Hall, MC-1776, Berkeley, CA 94720-1776
+      url: https://www.berkeley.edu/
+      affiliation_url: https://rise.cs.berkeley.edu/
+      contact: Michael Heuer
+      contact_github: heuermh
+      image_fn: ucberkeley.svg
+      location: [37.8753756,-122.259602]
+      twitter: bigdatagenomics
+
+    - full_name: Institut Pasteur
+      short_name: Pasteur
+      description: >
+        The Institut Pasteur is a private, non-profit foundation. Its mission is to help prevent and treat diseases, mainly those of infectious origin, through research, teaching, and public health initiatives.
+      affiliation: Hub de Bioinformatique et Biostatistique
+      address: 25-28 Rue du Dr Roux, 75015 Paris, France
+      url: https://www.pasteur.fr/en
+      affiliation_url: https://research.pasteur.fr/en/team/bioinformatics-and-biostatistics-hub/
+      image_fn: pasteur.svg
+      contact: Rémi Planel
+      contact_email: rplanel@pasteur.fr
+      contact_github: rplanel
+      location: [48.840508, 2.311528]
