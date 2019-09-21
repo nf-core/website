@@ -19,8 +19,8 @@ if( isset($markdown_fn) and $markdown_fn){
   $md_full = file_get_contents($markdown_fn);
   if ($md_full === false) {
     header('HTTP/1.1 404 Not Found');
-    header('Location: /404');
-    die;
+    include('404.php');
+    die();
   }
   // Highlight any search terms if we have them
   if(isset($_GET['q']) && strlen($_GET['q'])){
@@ -46,10 +46,15 @@ if( isset($markdown_fn) and $markdown_fn){
 
   // Trim off any content if requested
   if(isset($md_trim_before) && $md_trim_before){
-    $md = strstr($md, $md_trim_before);
+    // Only trim if the string exists
+    if(stripos($md, $md_trim_before)){
+      $md = stristr($md, $md_trim_before);
+    }
   }
   if(isset($md_trim_after) && $md_trim_after){
-    $md = strstr($md, $md_trim_after);
+    if(stripos($md, $md_trim_after)){
+      $md = stristr($md, $md_trim_after);
+    }
   }
 
   // Find and replace markdown content if requested
@@ -89,6 +94,10 @@ if( isset($markdown_fn) and $markdown_fn){
     if(isset($href_url_prepend)){
       $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)"/i', 'href="'.$href_url_prepend.'$1"', $content);
     }
+    // Clean up href URLs if configured
+    if(isset($href_url_suffix_cleanup)){
+      $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
+    }
     // Find and replace HTML content if requested
     if(isset($html_content_replace)){
       $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
@@ -120,11 +129,15 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
     <script src="/assets/js/leaflet.js"></script>
+    <?php if(isset($import_chartjs) && $import_chartjs): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
+    <script src="/assets/js/hammer.min.js"></script>
+    <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
-    <script src="/assets/js/jquery-table-sorter.js"></script>
+    <?php endif; ?>
+    <script src="/assets/js/jquery.tablesorter.min.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
 
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
@@ -153,6 +166,10 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
               <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
+              <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
+              <a class="dropdown-item" href="/usage/local_installation">Local configuration</a>
+              <a class="dropdown-item" href="/usage/adding_own_config">Adding your cluster config</a>
+              <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
             </div>
           </li>
@@ -169,15 +186,17 @@ if( isset($markdown_fn) and $markdown_fn){
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
+              <a class="dropdown-item" href="/events">Events</a>
+              <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
-              <a class="dropdown-item" href="/join">Get involved</a>
+              <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>
           </li>
         </ul>
         <hr class="d-md-none">
         <ul class="navbar-nav d-md-none">
           <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://nf-core-invite.herokuapp.com/">Chat on Slack</a>
+            <a class="nav-link" target="_blank" href="https://nf-co.re/join/slack">Chat on Slack</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core">Join the email list</a>

@@ -12,11 +12,11 @@ usort($pipelines, 'rsort_pipelines');
 
 <h1>Available Pipelines</h1>
 <p class="mb-3">Can you think of another pipeline that would fit in well?
-<a href="https://nf-core-invite.herokuapp.com/">Let us know!</a></p>
+<a href="https://nf-co.re/join/slack">Let us know!</a></p>
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm mr-2 mt-2">
-    <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo $_GET['q']; ?>">
+    <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>">
   </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
     <button type="button" class="btn btn-link text-body">Filter:</button>

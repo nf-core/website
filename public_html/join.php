@@ -1,4 +1,21 @@
 <?php
+
+// Check if we have $_GET['t'] - ie, URL was /join/something
+$config = parse_ini_file("../config.ini");
+$join_redirects = [
+  'slack' => $config['slack_invite_url']
+];
+if(isset($_GET['t'])){
+  $redirect = str_replace('join/', '', $_GET['t']);
+  if(array_key_exists($redirect, $join_redirects)){
+    header('Location: '.$join_redirects[$redirect]);
+  } else {
+    header('HTTP/1.1 404 Not Found');
+    include('404.php');
+    die();
+  }
+}
+
 $title = 'Join nf-core';
 $subtitle = 'Read about the different ways you can get involved with nf-core';
 include('../includes/header.php');
@@ -15,8 +32,8 @@ include('../includes/header.php');
   If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
 </p>
 <p class="text-center">
-  <a href="https://nf-core-invite.herokuapp.com/" class="mb-2 btn btn-success">
-    <i class="fab fa-slack"></i> Get Slack invite
+  <a href="https://nf-co.re/join/slack" class="mb-2 btn btn-success">
+    <i class="fab fa-slack"></i> Join Slack
   </a>
   <a href="https://groups.google.com/forum/#!forum/nf-core" class="mb-2 btn btn-info" style="background-color: #5CA5EF;">
     <i class="fas fa-envelope"></i> Google Groups email list
@@ -35,8 +52,9 @@ include('../includes/header.php');
 </h1>
 <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
-You can join the nf-core slack by getting an invite <a href="https://nf-core-invite.herokuapp.com/">here</a>.</p>
-<p>Once you have registered, you can access the nf-core slack at <a href="https://nf-core.slack.com/">https://nf-core.slack.com/</a></p>
+You can join the nf-core slack <a href="https://nf-co.re/join/slack">here</a>.</p>
+<p>Once you have registered, you can access the nf-core slack at <a href="https://nfcore.slack.com/">https://nfcore.slack.com/</a>
+  <em class="small text-muted">(NB: No hyphen!)</em></p>
 
 <h1>
   <img height="120px" src="/assets/img/github.svg" class="float-right bg-white pl-4" />

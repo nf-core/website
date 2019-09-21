@@ -3,6 +3,12 @@ title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
+* [Input files not found](#input-files-not-found)
+* [Data organization](#data-organization)
+* [Image cannot be built](#image-cannot-be-built)
+* [Cannot find input files when using Singularity](#cannot-find-input-files-when-using-singularity)
+* [Extra resources and getting help](#extra-resources-and-getting-help)
+
 ## Input files not found
 
 If only no file, only one input file , or only read one and not read two is picked up then something is wrong with your input file declaration
@@ -23,7 +29,7 @@ Note that if your sample name is "messy" then you have to be very particular wit
 ## Data organization
 The pipeline can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. If running in paired end mode please make sure that your files are sensibly named so that they can be properly paired. See the previous point.
 
-## Image cannot be build
+## Image cannot be built
 
 Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity Image build fails unfortunately. See below code snippet that shows such a typical failure:
 
@@ -74,6 +80,6 @@ Alternatively, you can also add Singularity Bind Paths to your Nextflow call, e.
 
 ## Extra resources and getting help
 
-If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-core-invite.herokuapp.com/) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
+If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
 
 If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow gitter channel](https://gitter.im/nextflow-io/nextflow) or the [google group](https://groups.google.com/forum/#!forum/nextflow).
