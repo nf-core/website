@@ -11,7 +11,7 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_issue_stats.php
 
-$debug = true;
+$debug = false;
 $num_api_calls = 0;
 $max_repos = false;
 $max_comments = false;
