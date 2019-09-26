@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://nf-co.re/parameters.schema.json",
+    "version": "0.1.0dev",
+    "title": "Workflow Parameter Schema",
+    "description": "Describes Nextflow workflow run parameters.",
+    "type": "object",
+    "definitions": {
+        "parameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Parameter name."
+                },
+                "label": {
+                    "type": "string",
+                    "description": "A human readable parameter label."
+                },
+                "usage": {
+                    "type": "string",
+                    "description": "Purpose of the parameter."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Parameter type.",
+                    "enum": ["string", "integer", "decimal", "boolean", "mem unit"]
+                },
+                "group": {
+                    "type": "string",
+                    "description": "Assigns a group tag to the parameter."
+                },
+                "render": {
+                    "type": "string",
+                    "description": "UI render type.",
+                    "enum": ["textfield", "file", "url", "upload", "range", "check-box", "radio-button", "list-box", "drop-down", "none"]
+                },
+                "choices": {
+                    "type": "array",
+                    "description": "A collection of choices for a parameter value."
+                },
+                 "value": {
+                    "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" },
+                        { "type": "boolean" }
+                    ],
+                    "description": "Parameter value."
+                },
+                "default_value": {
+                    "oneOf": [
+                        { "type": "string" },
+                        { "type": "number" },
+                        { "type": "boolean" }
+                    ],
+                    "description": "Default parameter value."
+                },
+                "pattern": {
+                    "type": "string",
+                    "description": "Regular expression pattern."
+                },
+                "required": {
+                    "type": "boolean",
+                    "description": "True, if a parameter is required."
+                }
+            },
+            "required": ["name", "label", "type", "default_value", "render"]
+        }
+    },
+    "properties": {
+        "parameters": {
+            "description": "Array of parameter objects.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/parameter"}
+        }
+    }
+}
