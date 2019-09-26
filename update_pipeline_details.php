@@ -22,14 +22,16 @@ ini_set("allow_url_fopen", 1);
 
 // Get the twitter auth secrets
 $config = parse_ini_file("config.ini");
+$gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
 
 // HTTP header to use on API GET requests
-$api_opts = stream_context_create([
+$gh_api_opts = stream_context_create([
     'http' => [
         'method' => 'GET',
         'header' => [
             'User-Agent: PHP',
-            'Accept:application/vnd.github.mercy-preview+json' // Needed to get topics (keywords) for now
+            'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
+            "Authorization: Basic $gh_auth"
         ]
     ]
 ]);
@@ -65,7 +67,7 @@ $results = array(
 
 // Fetch all repositories at nf-core
 $gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
-$gh_repos = json_decode(file_get_contents($gh_api_url, false, $api_opts));
+$gh_repos = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
     var_dump($http_response_header);
     die("Could not fetch nf-core repositories! $gh_api_url");
@@ -113,7 +115,7 @@ usort($results['remote_workflows'], 'sort_name');
 foreach($results['remote_workflows'] as $idx => $repo){
     // Fetch release information for this repo
     $gh_releases_url = "https://api.github.com/repos/{$repo['full_name']}/releases";
-    $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $api_opts));
+    $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
         die("Could not fetch nf-core release info! $gh_releases_url");
@@ -143,7 +145,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
 
         // Get commit hash information for each release
         $gh_tags_url = "https://api.github.com/repos/{$repo['full_name']}/tags";
-        $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $api_opts));
+        $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
             die("Could not fetch nf-core tags info! $gh_tags_url");
@@ -205,24 +207,32 @@ foreach($results['remote_workflows'] as $new_pipeline){
                 $tweet = substr(rtrim($tweet, '.)'), 0, -3).'..)';
             }
             $tweets[] = $tweet.$tweet_url;
+            echo("Found new release for ".$new_pipeline['full_name'].": ".$rel['tag_name']."\n");
         }
     }
 }
 
 // Only tweet if we're on the live server!
-if(count($tweets) > 0 && $_SERVER['SERVER_NAME'] == 'nf-co.re'){
+if(count($tweets) > 0){
 
-    // Connect to twitter
-    $connection = new TwitterOAuth(
-        $config['twitter_key'],
-        $config['twitter_secret'],
-        $config['twitter_access_token'],
-        $config['twitter_access_token_secret']
-    );
+    if($_SERVER['SERVER_NAME'] == 'nf-co.re'){
 
-    // Post the tweets
-    foreach($tweets as $tweet){
-        $post_tweets = $connection->post("statuses/update", ["status" => $tweet]);
+        // Connect to twitter
+        $connection = new TwitterOAuth(
+            $config['twitter_key'],
+            $config['twitter_secret'],
+            $config['twitter_access_token'],
+            $config['twitter_access_token_secret']
+        );
+
+        // Post the tweets
+        foreach($tweets as $tweet){
+            $post_tweets = $connection->post("statuses/update", ["status" => $tweet]);
+            echo("Sent tweet: $tweet\n");
+        }
+
+    } else {
+        echo("Not sending tweets because server is: ".$_SERVER['SERVER_NAME']."\n");
     }
 }
 

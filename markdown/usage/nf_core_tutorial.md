@@ -3,13 +3,15 @@ title: nf-core tutorial
 subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
 ---
 
-> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))_
+> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._
 >
 > Duration: **1hr 45**
 >
 > Last updated: September  2019
 
-**[Click here to see the slides associated with this tutorial.](../assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/I9HrOeNJx1if3D" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+**[Click here to download the slides associated with this tutorial.](../assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
 
 ## Table of Contents
 
@@ -54,14 +56,19 @@ One additional tool which this author swears by is [TLDR](https://tldr.sh/) - it
 ## Installing the nf-core helper tools
 Much of this tutorial will make use of the `nf-core` command line tool. This has been developed to provide a range of additional functionality for the project such as pipeline creation, testing and more.
 
-The `nf-core` tool is written in Python and is available from the [Python Package Index](https://pypi.org/project/nf-core/) and [Bioconda](https://bioconda.github.io/recipes/nf-core/README.html). You can install it from either of these channels as follows:
+The `nf-core` tool is written in Python and is available from the [Python Package Index](https://pypi.org/project/nf-core/) and [Bioconda](https://bioconda.github.io/recipes/nf-core/README.html). You can install it from PyPI as follows:
 
 ```bash
 pip install nf-core
-conda install -c bioconda nf-core
 ```
 
-The source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
+If using conda, first set up for bioconda as described in the [bioconda docs](https://bioconda.github.io/user/install.html) and then install nf-core:
+
+```bash
+conda install nf-core
+```
+
+The nf-core/tools source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
 
 ```bash
 git clone https://github.com/nf-core/tools.git nf-core-tools

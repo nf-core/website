@@ -162,7 +162,9 @@ if($pagetab == 'docs'){
 
 # Configs to make relative URLs work
 $src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.implode('/', array_slice($path_parts, 1, -1)).'/';
-$href_url_prepend = $pipeline->name.'/'.implode('/', array_slice($path_parts, 1, -1)).'/';
+$href_url_prepend = '/'.$pipeline->name.'/'.implode('/', array_slice($path_parts, 1)).'/';
+$href_url_prepend = preg_replace('/\/\/+/', '/', $href_url_prepend);
+$href_url_suffix_cleanup = '\.md';
 
 # Styling
 $md_content_replace = array(
