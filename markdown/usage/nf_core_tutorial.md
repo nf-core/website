@@ -3,13 +3,15 @@ title: nf-core tutorial
 subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
 ---
 
-> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))_
+> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._
 >
 > Duration: **1hr 45**
 >
 > Last updated: September  2019
 
-**[Click here to see the slides associated with this tutorial.](../assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/I9HrOeNJx1if3D" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+**[Click here to download the slides associated with this tutorial.](../assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
 
 ## Table of Contents
 
