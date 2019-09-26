@@ -10,7 +10,8 @@ $events = $events_yaml['events'];
 
 $event_type_classes = array(
   'hackathon' => 'primary',
-  'talk' => 'success'
+  'talk' => 'success',
+  'tutorial' => 'info'
 );
 
 # Parse dates and sort events by date
@@ -62,20 +63,31 @@ foreach($events as $idx => $event):
     $past_events = true;
     echo '<h2 id="past_events"><a href="#past_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Past Events</h2>';
   }
+
+  $colour_class = $event_type_classes[strtolower($event['type'])];
 ?>
 
 <!-- Event Card -->
-<div class="card my-4">
-  <div class="card-body">
+<div class="card my-4 border-top-0 border-right-0 border-bottom-0 border-<?php echo $colour_class; ?>">
+  <div class="card-body <?php if($past_events){ echo 'py-2'; } ?>">
     <h5 class="my-0 py-0">
-      <small><span class="badge badge-<?php echo $event_type_classes[strtolower($event['type'])]; ?> float-right small"><?php echo ucfirst($event['type']); ?></span></small>
-      <?php echo $event['title']; ?>
+      <small><span class="badge badge-<?php echo $colour_class; ?> float-right small"><?php echo ucfirst($event['type']); ?></span></small>
+      <a class="text-success" href="#event_<?php echo $idx; ?>_modal" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal"><?php echo $event['title']; ?></a>
     </h5>
-    <h6 class="small text-muted"><?php echo $date_string; ?></h6>
-    <p><?php echo $event['description']; ?></p>
-    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal">
-      See details
-    </button>
+    <?php if(!$past_events): ?>
+      <h6 class="small text-muted"><?php echo $date_string; ?></h6>
+      <p><?php echo $event['description']; ?></p>
+      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal">
+        See details
+      </button>
+    <?php else: ?>
+      <h6 class="small text-muted mb-0">
+        <?php echo $date_string; ?> -
+        <a class="text-success" href="#event_<?php echo $idx; ?>_modal" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal">
+          See details
+        </a>
+      </h6>
+    <?php endif; ?>
   </div>
 </div>
 
@@ -92,23 +104,23 @@ foreach($events as $idx => $event):
       <div class="modal-body">
         <p><?php echo $event['description']; ?></p>
 
-        <dl>
+        <dl class="row small">
         <?php
         // Start time
         if($event['start_time']){
-          echo '<dt>Event starts:</dt><dd>'.date('g.i a, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+          echo '<dt class="col-sm-4">Event starts:</dt><dd class="col-sm-8">'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
         } else {
-          echo '<dt>Event starts:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+          echo '<dt class="col-sm-4">Event starts:</dt><dd class="col-sm-8">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
         }
         // End time
         if($event['end_ts'] > $event['start_ts'] && $event['end_time']){
-          echo '<dt>Event ends:</dt><dd>'.date('g.i a, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+          echo '<dt class="col-sm-4">Event ends:</dt><dd class="col-sm-8">'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
         } else if($event['end_ts'] > $event['start_ts']){
-          echo '<dt>Event ends:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+          echo '<dt class="col-sm-4">Event ends:</dt><dd class="col-sm-8">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
         }
 
         // Location
-        echo '<dt>Location:</dt><dd>';
+        echo '<dt class="col-sm-4">Location:</dt><dd class="col-sm-8">';
         if(isset($event['location_name'])){
           if(isset($event['location_url'])){
             echo '<a href="'.$event['location_url'].'" target="_blank">'.$event['location_name'].'</a>'.'<br>';
@@ -127,25 +139,42 @@ foreach($events as $idx => $event):
         echo '</dd>';
 
         // Location
-        echo '<dt>Contact person:</dt><dd>';
+        echo '<dt class="col-sm-4">Contact person:</dt><dd class="col-sm-8">';
         if(isset($event['contact'])){
-          echo $event['contact'].'<br>';
+          echo $event['contact'];
         }
         if(isset($event['contact_email'])){
-          echo '<a href="mailto:'.$event['contact_email'].'">'.$event['contact_email'].'</a><br>';
+          echo ' (<a href="mailto:'.$event['contact_email'].'">'.$event['contact_email'].'</a>)<br>';
         }
         if(isset($event['contact_github'])){
-          echo '<a href="https://github.com/'.$event['contact_github'].'" target="_blank">@'.$event['contact_github'].'</a>';
+          echo '<a href="https://github.com/'.$event['contact_github'].'" target="_blank"><i class="fab fa-github"></i> '.$event['contact_github'].'</a>';
         }
         echo '</dd>';
+
+        // Event website (twice)
+        if(isset($event['event_url'])){
+          echo '<dt class="col-sm-4">Event website:</dt><dd class="col-sm-8">
+            <a href="'.$event['event_url'].'" target="_blank" style="white-space: nowrap; width: 100%; overflow-x: auto; display: inline-block;">'.$event['event_url'].'</a>
+          </dd>';
+        }
+
+        // Links
+        if(isset($event['links'])){
+          echo '<dt class="col-sm-4">Additional Links:</dt><dd class="col-sm-8">';
+          foreach($event['links'] as $text => $link){
+            echo '<a href="'.$link.'" target="_blank">'.$text.' <i class="fas fa-external-link-alt fa-xs ml-1"></i></a><br>';
+          }
+          echo '</dd>';
+        }
+
         ?>
         </dl>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <?php if(isset($event['registration_url'])): ?>
-          <a href="<?php echo $event['registration_url']; ?>" target="_blank" class="btn btn-primary">Register</a>
+        <?php if(isset($event['event_url'])): ?>
+          <a href="<?php echo $event['event_url']; ?>" target="_blank" class="btn btn-primary">Event Website</a>
         <?php endif; ?>
       </div>
     </div>
