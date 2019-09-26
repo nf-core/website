@@ -3,7 +3,7 @@ title: Adding a new pipeline
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 ---
 
-# Before you start
+## Before you start
 
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
@@ -22,7 +22,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 5. [Making your first release](#making-the-first-release)
 6. [Updates and new releases](#subsequent-releases)
 
-# Join the community
+## Join the community
 
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
 Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
@@ -31,7 +31,7 @@ and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
 
 It's good to introduce your idea early on so that it can be discussed before you spend lots of time coding.
 
-# Create a pipeline from the template
+## Create a pipeline from the template
 
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
 Only when it's ready do we move ito the nf-core GitHub organisation.
@@ -52,7 +52,7 @@ Please see the [manual synchronisation](/developers/sync) documentation.
 > Note that workflow names should be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms (eg. GitHub + Docker Hub).
 
-## Push to GitHub
+### Push to GitHub
 
 Create a repository on GitHub for your new pipeline under your personal account.
 
@@ -63,16 +63,16 @@ Once created, copy the URL and add this as a remote to your local git repository
 and push your code:
 
 ```bash
-# Add a remote called 'origin' - this is the default name for a primary remote
+## Add a remote called 'origin' - this is the default name for a primary remote
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-# Commit any new code changes since you ran the template
+## Commit any new code changes since you ran the template
 git add .
 git commit -m "Starting to build my pipeline"
-# Push to GitHub
+## Push to GitHub
 git push
 ```
 
-## Set up Travis and Docker Hub
+### Set up Travis and Docker Hub
 
 The nf-core pipelines use two additional services that link to GitHub: Travis and Dockerhub.
 Using these enables automated testing (Travis) and automatic Docker image builds (Docker Hub).
@@ -106,7 +106,7 @@ To make the pipeline work with your testing image, switch out `nfcore/<PIPELINE_
 
 These will need to be changed back to the defaults before you fork the pipeline to `nf-core`.
 
-## Work on your pipeline
+### Work on your pipeline
 
 Ok, now you're all set with your own personal nf-core pipeline!
 You can now start writing code for real.
@@ -114,14 +114,14 @@ Remember to keep running the `nf-core lint` command (see [docs](https://nf-co.re
 to make sure that your workflow passes all of the nf-core tests.
 The automated tests on Travis also run this so you should get an email if something breaks.
 
-# Add some test data
+## Add some test data
 
 Whilst the linting tests are good, they're not sufficient by themselves.
 It's also good to get Travis to actually run your pipeline on a minimal dataset.
 Currently, we don't usually check the results that are produced, but it often catches
 syntax errors and other serious problems that cause nextflow to exit with an error.
 
-## Putting the test data on GitHub
+### Putting the test data on GitHub
 
 To avoid bloating the workflow, we don't keep test data in the same repository as
 nf-core workflows.
@@ -158,7 +158,7 @@ Once created, you can open a pull request and select this as the target branch.
 If in doubt, ask for help!
 ([Slack](https://nf-co.re/join/slack) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
 
-## Setting up a test workflow
+### Setting up a test workflow
 
 Now that your test data is hosted on the web, you can set up a `test` config profile in your
 workflow that points to it.
@@ -178,7 +178,7 @@ nextflow run MY_WORKFLOW -profile test,docker
 Note that if you do need to adjust this `nextflow run` command, you'll need to update it
 in the `.travis.yml` config file too.
 
-# Adding your pipeline to the nf-core organisation
+## Adding your pipeline to the nf-core organisation
 
 Ok, so you're essentially finished. Your pipeline is written, the tests pass and
 you're ready to add your workflow to nf-core.
@@ -190,12 +190,12 @@ as an option, please ask one of the nf-core administrators to do this for you.
 Once forked, the [nf-core website](https://nf-co.re) will automatically update
 to list your new pipeline.
 
-## Setting up Travis and Docker Hub
+### Setting up Travis and Docker Hub
 
 Just as with your own fork, Travis and Docker Hub need to be set up for the
 main nf-core fork. You'll need to ask one of the core nf-core team to help you with this.
 
-## Repository setup
+### Repository setup
 
 Remember to configure the repository on the GitHub website with the following:
 
@@ -204,7 +204,7 @@ Remember to configure the repository on the GitHub website with the following:
 * A protected `master` branch that requires review and passing tests
 * Write permissions for `nf-core/all` and admin permissions for `nf-core/admin`
 
-## Differences to your own fork
+### Differences to your own fork
 
 The main difference when working with the main nf-core fork of your workflow is
 that tests for pull-requests against the `master` branch will fail. This is because
@@ -212,13 +212,13 @@ the `master` branch should only ever contain code from the last release.
 Instead, use the `dev` branch for new work and always make pull-requests against
 that. Then the tests should pass.
 
-# Making the first release
+## Making the first release
 
 When the code is stable and ready for a release, make a pull-request from the
 `dev` branch to `master` on the nf-core fork. This is a special case and the tests should pass.
 Once they do, merge the PR yourself and let the nf-core team know that you're ready.
 
-## Version numbers
+### Version numbers
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end.
 Use the `nf-core bump-version` command to do this - there are quite a few locations in the
@@ -228,7 +228,7 @@ Note that when developing the `:dev` tag should be used for docker containers.
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
 when ready - this will check that everything looks correct. You are welcome to use any numeric version number, recommendations are to use [Semantic Versioning](https://semver.org/) as it proved to be a good approach.
 
-## Core pipeline review
+### Core pipeline review
 
 Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-core
 team?! Not to worry, we're a friendly bunch. Let us know about the new pipeline,
@@ -245,7 +245,7 @@ Common things that are flagged at this point are:
 
 We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipelin release. You can also ping people from the nf-core core team to review your pipelin code by `@`ing them.
 
-## Tagging the release
+### Tagging the release
 
 Once the pseudo-PR is approved, we'll close it and you can [create a new release on GitHub](https://help.github.com/en/articles/creating-releases). Put in a basic changelog entry describing the general functionality at release. You may for example copy the content of your `CHANGELOG` file for that purpose into the GitHub release description. Please use a numeric only release name, to make sure that all pipeline releases follow the same pattern.
 
@@ -253,7 +253,7 @@ The nf-core website and helper tools will automatically detect new releases and 
 
 That's it, you're finished! Congratulations!
 
-## Subsequent releases
+### Subsequent releases
 
 Once you've made your first release you can continue to work on your fork and make pull-requests
 against the `dev` branch on the nf-core repository. Now that we have a stable `master` branch,
@@ -265,7 +265,7 @@ pull-request against `master`. If tests pass, it can be merged and a new release
 The `master` branch should always have only the commit from the latest release. This is important
 because the commit ID is used to reference whether the pipeline is up to date or not.
 
-## Adding new pipeline features to existing pipelines
+### Adding new pipeline features to existing pipelines
 
 We are an open and inclusive community, welcoming any contributions to pipelines already present in nf-core. In many cases, the original developers might either not have experience with some new fancy method or simply doesn't have the time to implement everything themselves - so they might be really happy to see you actively contributing!
 
@@ -293,7 +293,7 @@ As described above, when your pipeline is ready for a (first) release please fol
 * Bump the version number of the `dev` branch to a release version (e.g. `1.0.0dev` > `1.0.0`): `nf-core bump-version 1.0.0`
 * Check for pipeline dependencies that are out of date and update these accordingly in the `dev` branch: `nf-core lint .` will tell you which ones are outdated via automated API calls to (bio-) conda
 * Check that there is a [Zenodo DOI](https://www.zenodo.org/) created for your pipeline
-  * Login/Register at Zenodo using the URL above, then [follow this guide to get a DOI set up for your pipeline](https://guides.github.com/activities/citable-code/) 
+  * Login/Register at Zenodo using the URL above, then [follow this guide to get a DOI set up for your pipeline](https://guides.github.com/activities/citable-code/)
 * Update the `CHANGELOG`, listing everything that has been added/fixed in this release
 * [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) from `dev` to `master` on GitHub after adjusting all of this and make sure that all of the CI tests are passing
 * Link some reviewers (2 are required for merging to `master`) - asking for a final review on your release
