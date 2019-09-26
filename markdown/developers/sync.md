@@ -3,7 +3,7 @@ title: Synchronisation
 subtitle: Learn how nf-core pipelines are automatically kept up to date with community standards.
 ---
 
-# Synchronisation
+## Introduction
 To keep all the nf-core pipelines up-to-date with the latest version of the community standards, we have implemented a synchronisation tool.
 This ensures that updates to the community standards are propagated to all the nf-core pipelines.
 
@@ -14,15 +14,15 @@ However, if a pipeline was not created using this command, this documentation wi
 In brief, when the synchronisation tool is triggered it compares every pipeline against the new standards and opens pull requests when mismatches are found.
 These pull requests needs to be manually dealt with by the pipeline maintainers.
 
-Behind the scenes, the synchronisation tool fetches the variables needed for a pipeline and uses this to trigger a <nobr>`nf-core create --no-git`</nobr> command.
+Behind the scenes, the synchronisation tool fetches the variables needed for a pipeline and uses this to trigger a `nf-core create --no-git` command.
 The result from this command is then compared against what is stored in a special branch of the pipeline called the `TEMPLATE` branch.
 If any changes are detected, a pull request is created.
 
 For this to work in practice, the `TEMPLATE` branch needs to have a shared git history with the `master` branch of the pipeline.
-The <nobr>`nf-core create`</nobr> command arranges this by enforcing a first commit to the `master` branch before any development has taken place.
+The `nf-core create` command arranges this by enforcing a first commit to the `master` branch before any development has taken place.
 The next section deals with the case when the pipeline *was not* created by the `nf-core create` command.
 
-## <a name="setup"></a> Set up your pipeline for automatic syncing
+## Set up your pipeline for automatic syncing
 This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
 
 You should also consider the option to restart your pipeline project by running the `nf-core create` command and simply copy in the modifications you need into the newly created pipeline.
@@ -92,7 +92,7 @@ rmdir nf-core-YOURPIPELINENAME
 
 Now make sure the newly created files are in the correct place. It should look similar to this:
 
-```
+```console
 $ git status
 On branch TEMPLATE
 
@@ -101,22 +101,22 @@ No commits yet
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	.gitattributes
-	.github/
-	.gitignore
-	.travis.yml
-	CHANGELOG.md
-	CODE_OF_CONDUCT.md
-	Dockerfile
-	LICENSE
-	README.md
-	assets/
-	bin/
-	conf/
-	docs/
-	environment.yml
-	main.nf
-	nextflow.config
+  .gitattributes
+  .github/
+  .gitignore
+  .travis.yml
+  CHANGELOG.md
+  CODE_OF_CONDUCT.md
+  Dockerfile
+  LICENSE
+  README.md
+  assets/
+  bin/
+  conf/
+  docs/
+  environment.yml
+  main.nf
+  nextflow.config
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -128,7 +128,7 @@ git add .
 git commit -m "Initial template commit"
 ```
 
-For the nf-core bot to be able to access your TEMPLATE branch, you need to push it to the upstream repository (https://github.com/nf-core).
+For the nf-core bot to be able to access your `TEMPLATE` branch, you need to push it to the upstream repository ([https://github.com/nf-core](https://github.com/nf-core)).
 
 ```bash
 git push origin TEMPLATE
@@ -151,7 +151,7 @@ You can try extra flags such as `-Xignore-space-at-eol` if you find that the mer
 
 You'll probably see a _lot_ of merge conflicts:
 
-```
+```git
 Auto-merging nextflow.config
 CONFLICT (add/add): Merge conflict in nextflow.config
 Auto-merging main.nf
@@ -161,7 +161,6 @@ CONFLICT (add/add): Merge conflict in environment.yml
 Auto-merging docs/usage.md
 CONFLICT (add/add): Merge conflict in docs/usage.md
 ```
-_..and so on_
 
 Go through each file resolving the merge conflicts carefully.
 Many text editors have plugins to help with this task.
@@ -188,7 +187,7 @@ be created to merge updates in to your pipeline for you.
 
 ## Manual synchronisation
 
-There are rare cases, when the synchronisation needs to be triggered manually, i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync. 
+There are rare cases, when the synchronisation needs to be triggered manually, i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync.
 
 You can do so by running the `sync` script, which is located in the top-level `./bin/` folder in the nf-core tools repository.
 
@@ -205,6 +204,3 @@ To trigger synchronisation for a particular pipeline, run:
 ```bash
 sync <pipeline name>
 ```
-
-
-

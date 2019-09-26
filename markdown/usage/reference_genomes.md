@@ -1,8 +1,10 @@
 ---
-title: Reference Genomes 
+title: Reference Genomes
 subtitle: How reference genomes are handled in nf-core
 ---
 
+
+## Introduction
 Many nf-core pipelines need a reference genome for alignment, annotation or similar purposes.
 
 Paths to such files can be supplied on the command line at run time, but for convenience it's often better to save these paths in a nextflow config file. See below for instructions on how to do this.
@@ -50,6 +52,6 @@ For example:
 params.igenomes_base = '/path/to/data/igenomes/'
 ```
 
-# Help
+## Help
 
 In any case if you need help with this, please don't hesitate to ask in our dedicated [Slack](https://nf-co.re/join/slack) channels: [`#igenomes`](https://nfcore.slack.com/channels/igenomes) or [`#help`](https://nfcore.slack.com/channels/help).

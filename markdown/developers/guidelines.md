@@ -3,10 +3,14 @@ title: Guidelines
 subtitle: Guidelines and requirements for nf-core pipelines.
 ---
 
-# Requirements for nf-core pipelines
+## Requirements for nf-core pipelines
 
-If you're thinking of adding a new pipeline to nf-core, please read the documentation
-about [adding a new pipeline](/developers/adding_pipelines).
+The aim of nf-core is to have _standardised_ best-practice pipelines.
+To ensure this standardisation, we maintain a set of guidelines which all _nf-core_
+pipelines must adhere to.
+
+> If you're thinking of adding a new pipeline to nf-core, please read the documentation
+> about [adding a new pipeline](/developers/adding_pipelines).
 
 ## Workflow size and specificity
 
