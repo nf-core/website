@@ -30,19 +30,19 @@ if(isset($subfooter) and $subfooter){
           <div class="col-6 col-md">
             <h5>Getting Started</h5>
             <ul class="list-unstyled">
-              <li><a href="usage/introduction">Using nf-core</a></li>
+              <li><a href="/usage/introduction">Using nf-core</a></li>
               <li><a href="/pipelines">Available pipelines</a></li>
               <li><a href="/tools">Helper tools</a></li>
-              <li><a href="usage/nextflow_tutorial">Nextflow tutorial</a></li>
+              <li><a href="/usage/nextflow_tutorial">Nextflow tutorial</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>For Authors</h5>
             <ul class="list-unstyled">
-              <li><a href="developers/guidelines">Guidelines</a>
-              <li><a href="developers/adding_pipelines">Adding a new pipeline</a>
+              <li><a href="/developers/guidelines">Guidelines</a>
+              <li><a href="/developers/adding_pipelines">Adding a new pipeline</a>
               <li><a href="/errors">Lint error codes</a>
-              <li><a href="developers/sync">Template synchronisation</a>
+              <li><a href="/developers/sync">Template synchronisation</a>
             </ul>
           </div>
           <div class="col-6 col-md">
