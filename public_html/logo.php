@@ -15,7 +15,9 @@ if(strlen($textstring) == 0){
 }
 
 // Load the base image
-$image = imagecreatefrompng("assets/img/logo/nf-core-repologo-base.png");
+$template_fn = "assets/img/logo/nf-core-repologo-base.png";
+list($width, $height) = getimagesize($template_fn);
+$image = imagecreatefrompng($template_fn);
 
 // Create some colors
 $black = imagecolorallocate($image, 0, 0, 0);
@@ -38,13 +40,34 @@ imagettftext(
 $text_bbox = imagettfbbox($font_size, 0, $font_path, $textstring);
 $text_width = abs($text_bbox[4] - $text_bbox[0]) + 250;
 $min_width = 2300;
-$image = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => max($text_width, $min_width), 'height' => 1000]);
+$width = max($text_width, $min_width);
+$image = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => $width, 'height' => $height]);
 
 // If a width is given, scale the image
-if(isset($_GET['w']) && is_numeric($_GET['w'])){
-    $image = imagescale($image, $_GET['w']);
+$new_width = false;
+if(isset($_GET['w'])){
+    $new_width = $_GET['w'];
 } else if(isset($_GET['s'])){
-    $image = imagescale($image, 400);
+    $new_width = 400;
+}
+if(is_numeric($new_width)){
+    #$image = imagescale($image, 400, -1, IMG_NEAREST_NEIGHBOUR);
+    // Get new dimensions
+    $resize_factor = $new_width / $width;
+    $new_height = $height * $resize_factor;
+
+    // Create new image, with transparency
+    $image_p = imagecreatetruecolor($new_width, $new_height);
+    imagesetinterpolation($image_p,IMG_BICUBIC);
+    imagealphablending($image_p, false);
+    imagesavealpha($image_p,true);
+    $transparent = imagecolorallocatealpha($image_p, 255, 255, 255, 127);
+
+    // Resample
+    imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+    // Overwrite full size image with resampled
+    $image = $image_p;
 }
 
 // Keep PNG transparency
