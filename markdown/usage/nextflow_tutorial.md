@@ -58,7 +58,7 @@ The `script:` header can be omitted if using triple quote blocks, however we rec
 
 Note that a script block delimited by a `"` character support variable substitutions, while blocks delimited by `'` do not.
 
-It is possible to use any type of programming language for execution, simply by adding a leading shebang statement to the top of the `script` block (eg. `!#/usr/bin/env perl`).
+It is possible to use any type of programming language for execution, simply by adding a leading shebang statement to the top of the `script` block (eg. `#!/usr/bin/env perl`).
 If no shebang is specified, the command is performed using bash.
 
 
