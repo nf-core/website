@@ -150,8 +150,14 @@ $(function(){
           pointHoverBackgroundColor: 'rgba(84, 171, 106, 0)', // transparent
           data: [
             <?php
-            foreach($clones_counts as $datetime => $count){
-              echo '{ x: "'.date('Y-m-d', strtotime($datetime)).'", y: '.$count.' },'."\n\t\t\t";
+            $dates = [];
+            foreach(array_keys($clones_counts) as $date){
+              $dates[strtotime($date)] = $date;
+            }
+            ksort($dates);
+            foreach($dates as $ts => $date){
+              $count = $clones_counts[$date];
+              echo '{ x: "'.date('Y-m-d', $ts).'", y: '.$count.' },'."\n\t\t\t";
             }
             ?>
             ]
