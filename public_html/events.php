@@ -15,6 +15,8 @@ $event_type_classes = array(
 );
 
 # Parse dates and sort events by date
+$future_events = [];
+$past_events = [];
 foreach($events as $idx => $event){
   # Check that start date is set, delete if not
   if(!isset($event['start_date'])){
@@ -35,15 +37,26 @@ foreach($events as $idx => $event){
     $event['end_date'] = $event['start_date'];
     $event['end_ts'] = strtotime($event['end_date'].' '.$event['end_time']);
   }
-  # Update array
-  $events[$idx] = $event;
+  # Update arrays
+  if($event['start_ts'] > time()){
+    $future_events[$idx] = $event;
+  } else {
+    $past_events[$idx] = $event;
+  }
 }
-usort($events, function($a, $b) {
+# Sort future events so that the oldest is at the top
+usort($future_events, function($a, $b) {
+    return $a['start_ts'] - $b['start_ts'];
+});
+# Sort past events so that the newest is at the top
+usort($past_events, function($a, $b) {
     return $b['start_ts'] - $a['start_ts'];
 });
+# Merge event list
+$events = array_merge($future_events, $past_events);
 
-$future_events = false;
-$past_events = false;
+$is_future_events = false;
+$is_past_events = false;
 foreach($events as $idx => $event):
   # Nice date strings
   $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).' - '.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
@@ -55,12 +68,12 @@ foreach($events as $idx => $event):
   }
 
   # Print Upcoming / Past Events headings
-  if(!$future_events && $event['start_ts'] > time()){
-    $future_events = true;
+  if(!$is_future_events && $event['start_ts'] > time()){
+    $is_future_events = true;
     echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Upcoming Events</h2>';
   }
-  if(!$past_events && $event['start_ts'] < time()){
-    $past_events = true;
+  if(!$is_past_events && $event['start_ts'] < time()){
+    $is_past_events = true;
     echo '<h2 id="past_events"><a href="#past_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Past Events</h2>';
   }
 
@@ -69,14 +82,14 @@ foreach($events as $idx => $event):
 
 <!-- Event Card -->
 <div class="card my-4 border-top-0 border-right-0 border-bottom-0 border-<?php echo $colour_class; ?>">
-  <div class="card-body <?php if($past_events){ echo 'py-2'; } ?>">
+  <div class="card-body <?php if($is_past_events){ echo 'py-2'; } ?>">
     <h5 class="my-0 py-0">
       <small><span class="badge badge-<?php echo $colour_class; ?> float-right small"><?php echo ucfirst($event['type']); ?></span></small>
       <a class="text-success" href="#event_<?php echo $idx; ?>_modal" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal"><?php echo $event['title']; ?></a>
     </h5>
-    <?php if(!$past_events): ?>
+    <?php if(!$is_past_events): ?>
       <h6 class="small text-muted"><?php echo $date_string; ?></h6>
-      <p><?php echo $event['description']; ?></p>
+      <p><?php echo nl2br($event['description']); ?></p>
       <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal">
         See details
       </button>
@@ -93,7 +106,7 @@ foreach($events as $idx => $event):
 
 <!-- Event Modal -->
 <div class="modal fade" id="event_<?php echo $idx; ?>_modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title"><?php echo $event['title']; ?></h5>
@@ -102,25 +115,30 @@ foreach($events as $idx => $event):
         </button>
       </div>
       <div class="modal-body">
-        <p><?php echo $event['description']; ?></p>
+        <p><?php echo nl2br($event['description']); ?></p>
+        <?php
+        if($event['details']){
+          echo '<p class="small">'.nl2br($event['details']).'</p>';
+        }
+        ?>
 
         <dl class="row small">
         <?php
         // Start time
         if($event['start_time']){
-          echo '<dt class="col-sm-4">Event starts:</dt><dd class="col-sm-8">'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+          echo '<dt class="col-sm-3">Event starts:</dt><dd class="col-sm-9">'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
         } else {
-          echo '<dt class="col-sm-4">Event starts:</dt><dd class="col-sm-8">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+          echo '<dt class="col-sm-3">Event starts:</dt><dd class="col-sm-9">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
         }
         // End time
         if($event['end_ts'] > $event['start_ts'] && $event['end_time']){
-          echo '<dt class="col-sm-4">Event ends:</dt><dd class="col-sm-8">'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+          echo '<dt class="col-sm-3">Event ends:</dt><dd class="col-sm-9">'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
         } else if($event['end_ts'] > $event['start_ts']){
-          echo '<dt class="col-sm-4">Event ends:</dt><dd class="col-sm-8">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+          echo '<dt class="col-sm-3">Event ends:</dt><dd class="col-sm-9">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
         }
 
         // Location
-        echo '<dt class="col-sm-4">Location:</dt><dd class="col-sm-8">';
+        echo '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
         if(isset($event['location_name'])){
           if(isset($event['location_url'])){
             echo '<a href="'.$event['location_url'].'" target="_blank">'.$event['location_name'].'</a>'.'<br>';
@@ -139,7 +157,7 @@ foreach($events as $idx => $event):
         echo '</dd>';
 
         // Location
-        echo '<dt class="col-sm-4">Contact person:</dt><dd class="col-sm-8">';
+        echo '<dt class="col-sm-3">Contact person:</dt><dd class="col-sm-9">';
         if(isset($event['contact'])){
           echo $event['contact'];
         }
@@ -153,14 +171,14 @@ foreach($events as $idx => $event):
 
         // Event website (twice)
         if(isset($event['event_url'])){
-          echo '<dt class="col-sm-4">Event website:</dt><dd class="col-sm-8">
+          echo '<dt class="col-sm-3">Event website:</dt><dd class="col-sm-9">
             <a href="'.$event['event_url'].'" target="_blank" style="white-space: nowrap; width: 100%; overflow-x: auto; display: inline-block;">'.$event['event_url'].'</a>
           </dd>';
         }
 
         // Links
         if(isset($event['links'])){
-          echo '<dt class="col-sm-4">Additional Links:</dt><dd class="col-sm-8">';
+          echo '<dt class="col-sm-3">Additional Links:</dt><dd class="col-sm-9">';
           foreach($event['links'] as $text => $link){
             echo '<a href="'.$link.'" target="_blank">'.$text.' <i class="fas fa-external-link-alt fa-xs ml-1"></i></a><br>';
           }
