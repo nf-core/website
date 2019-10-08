@@ -215,7 +215,7 @@ foreach($results['remote_workflows'] as $new_pipeline){
 // Only tweet if we're on the live server!
 if(count($tweets) > 0){
 
-    if($_SERVER['SERVER_NAME'] == 'nf-co.re'){
+    if(isset($config['twitter_key']) && $config['twitter_key'] != 'TWITTER_KEY'){
 
         // Connect to twitter
         $connection = new TwitterOAuth(
@@ -232,7 +232,7 @@ if(count($tweets) > 0){
         }
 
     } else {
-        echo("Not sending tweets because server is: ".$_SERVER['SERVER_NAME']."\n");
+        echo("Not sending tweets because config twitter_key is not set.\n");
     }
 }
 
