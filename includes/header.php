@@ -119,6 +119,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
     <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
+    <link href="/assets/css/nf-core-dark.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -145,7 +146,10 @@ if( isset($markdown_fn) and $markdown_fn){
   <body>
 
     <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
-      <a class="navbar-brand d-md-none" href="/"><img height="25px" src="/assets/img/logo/nf-core-logo.svg" /></a>
+      <a class="navbar-brand d-md-none" href="/">
+        <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
+        <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

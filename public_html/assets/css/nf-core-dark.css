@@ -1,0 +1,153 @@
+.hide-light {
+    display: none;
+}
+@media (prefers-color-scheme: dark) {
+  .hide-dark {
+      display: none;
+  }
+  .hide-light {
+      display: inherit;
+  }
+  img {
+    opacity: .75;
+    transition: opacity .5s ease-in-out;
+  }
+  img:hover {
+    opacity: 1;
+  }
+  body {
+    background-color: #181a1b;
+    color: #D0CCC5;
+  }
+  .text-body {
+    color: #D0CCC5!important;
+  }
+  .text-dark {
+    color: #D0CCC5!important;
+  }
+  .bg-light, .alert-light {
+    background-color: #1C1F21!important;
+  }
+  .border {
+    border-color: #1F2124!important;
+  }
+  .bg-white {
+    background-color: #181a1b!important;
+  }
+  img.bg-white {
+    opacity: 1;
+  }
+  a, a:hover, a:focus, a:active {
+    color: rgb(111, 178, 232);
+  }
+  code {
+    background-color: rgba(220,220,220,0.05)
+  }
+  .form-control {
+    color: #CAC6BE;
+    background-color: #181A1B;
+    border-color: #363F48;
+  }
+  .form-control:focus {
+    color: rgb(202, 198, 190);
+    background-color: rgb(24, 26, 27);
+  }
+  .card {
+    background-color: #181A1B;
+    border-color: rgba(102, 102, 102, 0.13);
+  }
+  .badge-light {
+    color: rgb(218, 215, 210);
+    background-color: rgb(26, 28, 29);
+  }
+  .main-content pre,
+  .pipeline-run-cmd {
+    background-color: rgba(34, 36, 38, 0.3);
+    border-color: rgba(58, 58, 58, 0.6) !important;
+  }
+  .hljs {
+    color: rgb(214, 211, 205);
+  }
+  .table .thead-light th {
+    color: #D0CCC5;
+    background-color: #1C1F21;
+    border-color: #1F2124;
+  }
+
+  .site-nav,
+  .site-nav li .dropdown-menu {
+    background-color: rgba(35,35,35,.95);
+  }
+  .navbar-light .navbar-nav .nav-link,
+  .site-nav li .dropdown-menu .dropdown-item {
+    color: rgba(255,255,255,.5);
+  }
+  .navbar-light .navbar-nav .nav-link:hover,
+  .navbar-light .navbar-nav .nav-link:focus,
+  .navbar-light .navbar-nav .nav-link:active,
+  .site-nav li .dropdown-menu .dropdown-item:hover,
+  .site-nav li .dropdown-menu .dropdown-item:focus,
+  .site-nav li .dropdown-menu .dropdown-item:active {
+    color: rgba(255,255,255,.9);
+  }
+  .site-nav li .dropdown-menu .dropdown-item:hover,
+  .site-nav li .dropdown-menu .dropdown-item:focus,
+  .site-nav li .dropdown-menu .dropdown-item:active {
+    background-color: rgba(20,20,20,.95);
+  }
+
+  footer.footer {
+    background-color: rgba(28, 30, 31, 0.95);
+  }
+  footer.footer h5 {
+    color: rgb(208, 204, 197);
+  }
+  footer.footer,
+  footer.footer a {
+    color: rgb(189, 184, 174);
+  }
+  footer.subfooter {
+    background-color: rgba(28, 30, 31, 0.45);
+  }
+
+  .mainpage-heading, .homepage-intro {
+    background-color: #1D9655;
+  }
+  .triangle-up:before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,100 50,0 0,100' style='fill:%231D9655;' /%3E%3C/svg%3E");
+  }
+  .triangle-down:before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%231D9655;' /%3E%3C/svg%3E");
+  }
+  .mainpage-subheader-heading {
+    background-color: #343434;
+  }
+  .subheader-triangle-down:before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%23343434;' /%3E%3C/svg%3E");
+  }
+
+  .nfcore-subnav .nav-link.active {
+    background-color: rgba(84, 171, 106, 0.5);
+    color: rgba(255,255,255,.9);
+  }
+
+
+
+
+  .hompage-cta:before {
+    background-color: rgba(50,50,50,.55);
+  }
+
+  .pipeline .pipeline-topic, .search-page-result .pipeline-topic {
+    background-color: #080808;
+  }
+  .pipeline-page-toc {
+    background-color: rgba(28, 30, 31, 0.95);
+    border: 1px solid rgba(28, 30, 31, 0.45);
+  }
+  .mainpage .pipeline-sidebar .row p a {
+    text-decoration: none;
+    color: #D0CCC5;
+  }
+
+}
