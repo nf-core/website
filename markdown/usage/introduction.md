@@ -65,8 +65,6 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 * _recommended:_ at least 8GB of RAM
 * _recommended:_ Docker engine 1.10.x (or higher)
 
-
-
 1. Install Nextflow
 
     ```bash
