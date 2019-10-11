@@ -123,7 +123,7 @@ systemctl -t slice | grep type-your-username-here
 
 This will give you your username in `cgroups`, for example:
 
-```
+```bash
 user-30030283.slice                           loaded active active User Slice of username
 ```
 
@@ -135,7 +135,7 @@ systemctl status user-30030283.slice | grep "Memory:"
 
 It will give you something like this:
 
-```
+```bash
    Memory: 24.2M (limit: 8.0G)
              ├─ 2816 grep --color=auto Memory:
 ```
