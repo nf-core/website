@@ -135,7 +135,7 @@ So, the amount of memory available to this user on this machine is 8 GB.
 
 > NB. We recommend to have at least 4 GB available. 
 
-You may also try to explicitly control the Java heap size by setting `NXF_OPTS='-Xms1g -Xmx4g'` (`1g` and `4g` are just an example!) in your command line environment (typically, ~/.bashrc or ~./bash_profile). 
+You may also try to explicitly control the Java heap size by setting `NXF_OPTS='-Xms1g -Xmx4g'` (`1g` and `4g` are just an example!) in your command line environment (typically, `~/.bashrc` or `~./bash_profile`). 
 
 > NB. Your values for the `-Xms` and `-Xmx` arguments should be less then the amount of memory available to you. 
 
