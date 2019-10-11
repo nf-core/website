@@ -26,7 +26,7 @@ The benefits of having your pipeline in Nextflow include:
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
-**To learn more about nextflow, we have adapted a nextflow tutorial which you can try: [nextflow tutorial](/usage/nextflow_tutorial)**
+To learn more about nextflow, we have adapted a nextflow tutorial which you can try: [nextflow tutorial](/usage/nextflow_tutorial).
 
 ## Software requirements
 
@@ -67,7 +67,7 @@ However, the software still runs in your operating system environment. As such, 
 
 In order to run a Nextflow pipeline from nf-core on your local computer you need to install Nextflow and Docker on your computer.
 
-**System requirements:**
+System requirements:
 
 * Java 7 or 8
 * _recommended:_ at least 8GB of RAM
