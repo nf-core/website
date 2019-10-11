@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Open+Sans:300,400,700');
+.hide-light {
+    display: none;
+}
 body {
   color: #444444;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -226,6 +229,9 @@ footer.subfooter {
 }
 footer, footer a, footer a:hover, footer a:focus, footer a:active {
   color: #6c757d;
+}
+.theme-switcher label {
+  cursor: pointer;
 }
 
 .nfcore-subnav {

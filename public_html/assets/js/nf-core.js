@@ -12,6 +12,14 @@ $(function () {
     // Don't try to guess markdown language to highlight (gets it wrong most of the time)
     hljs.configure({languages: []});
 
+    // Function to switch CSS theme file
+    $('.theme-switcher label').click(function(){
+        var theme = $(this).find('input').val();
+        var newlink = '/assets/css/nf-core-'+theme+'.css';
+        $('#theme-stylesheet').attr('href', newlink);
+        document.cookie = 'nfcoretheme='+theme+'; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/';
+    });
+
     // Override the .contains() filter to be case insenstive
     $.expr[":"].contains = $.expr.createPseudo(function(arg) {
         return function( elem ) {
