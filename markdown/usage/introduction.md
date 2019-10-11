@@ -4,6 +4,7 @@ subtitle: Get to grip with the key concepts used in nf-core pipelines.
 ---
 
 ## What is nf-core?
+
 nf-core is a community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
 nf-core has three target audiences: facilities, single users and developers.
@@ -12,6 +13,7 @@ Single users profit from portable, documented and easy to use workflows.
 But you can also become a developer and write your own pipeline in Nextflow using already available templates and helper tools.
 
 ## What is Nextflow?
+
 Nextflow is a *workflow manager*.
 It has been developed specifically to ease the creation and execution of bioinformatics pipelines.
 The benefits of having your pipeline in Nextflow include:
@@ -27,12 +29,14 @@ Whether your pipeline is a simple BLAST execution or a complex genome annotation
 **To learn more about nextflow, we have adapted a nextflow tutorial which you can try: [nextflow tutorial](/usage/nextflow_tutorial)**
 
 ## Software requirements
+
 An analysis pipeline chains the execution of multiple tools together.
 In order for this to work, each of those software tools must be installed.
 Historically, this can be a source of great frustration and a key step where reproducibility between analyses is lost.
 All nf-core pipelines fully utilise the built-in support for software packaging that Nextflow offers.
 
 ### Docker
+
 [Docker](https://www.docker.com/) is a tool to package and run software within isolated environments called containers.
 Importantly, a Docker container images can be shared. As such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
 The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.html) and container technology enables us to:
@@ -42,6 +46,7 @@ The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.htm
 * Share our work with the world.
 
 ### Singularity
+
 It's not always possible to run Docker - it requires special system permissions which may not be feasible in a shared computing environment.
 [Singularity](https://www.sylabs.io/guides/3.1/user-guide/) is a container engine alternative to Docker designed to run large analysis jobs on high performance compute clusters.
 The main advantage is that it can be used with unprivileged permissions: in this way you can run [Nextflow using Singularity](https://www.nextflow.io/docs/latest/singularity.html) on a server were you don't have root privileges.
@@ -49,6 +54,7 @@ The main advantage is that it can be used with unprivileged permissions: in this
 As with docker, singularity allows us to bundle all software requirements together into a single image which comes with each nf-core pipeline. This gives simplicity and reproducibility.
 
 ### Conda
+
 [Conda](https://conda.io/) is a software packaging system that helps to find and install packages.
 Conda can create isolated 'environments' with software installations that can be switched between.
 
@@ -58,6 +64,7 @@ Conda makes the installation and management of software dependencies far simpler
 However, the software still runs in your operating system environment. As such, if it's possible to use either docker or singularity, those options are preferred.
 
 ## How to run a pipeline
+
 In order to run a Nextflow pipeline from nf-core on your local computer you need to install Nextflow and Docker on your computer.
 
 **System requirements:**
@@ -104,6 +111,7 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
     You will find the specific parameters required for each pipeline in the documentation of the respective pipeline.
 
 ## Memory usage
+
 We recommend to check your possible memory usage limit on a machine where you are going to launch a pipeline, as a Java machine used to orchestrate the pipeline will require a certain amount of physical memory. For example, if resources on the machine are managed with [cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html), you could check the amount of available memory using the following commands:
 
 ```bash
