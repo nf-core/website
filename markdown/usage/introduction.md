@@ -5,7 +5,7 @@ subtitle: Get to grip with the key concepts used in nf-core pipelines.
 
 # We need a top level header here
 
-## What is nf-core?
+## What is nf-core
 
 nf-core is a community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
@@ -14,7 +14,7 @@ For facilities it provides highly automated and optimized pipelines that guarant
 Single users profit from portable, documented and easy to use workflows.
 But you can also become a developer and write your own pipeline in Nextflow using already available templates and helper tools.
 
-## What is Nextflow?
+## What is Nextflow
 
 Nextflow is a *workflow manager*.
 It has been developed specifically to ease the creation and execution of bioinformatics pipelines.
