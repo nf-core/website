@@ -106,7 +106,7 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
     You will find the specific parameters required for each pipeline in the documentation of the respective pipeline.
 
 ## Memory usage
-We recommend to check your possible memory usage limit on a machine where you are going to launch a pipeline, as a Java machine used to orchestrate the pipeline will require a certain amount of physical memory. For example, if resources on the machine are managed with [cgroups] (http://man7.org/linux/man-pages/man7/cgroups.7.html), you could check the amount of available memory using the following commands:
+We recommend to check your possible memory usage limit on a machine where you are going to launch a pipeline, as a Java machine used to orchestrate the pipeline will require a certain amount of physical memory. For example, if resources on the machine are managed with [cgroups](http://man7.org/linux/man-pages/man7/cgroups.7.html), you could check the amount of available memory using the following commands:
 
 ```bash
 systemctl -t slice | grep type-your-username-here
@@ -139,7 +139,7 @@ You may also try to explicitly control the Java heap size by setting `NXF_OPTS='
 
 > NB. Your values for the `-Xms` and `-Xmx` arguments should be less then the amount of memory available to you. 
 
-See [-Xms](https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/jrdocs/refman/optionX.html#wp999527) and [-Xmx] (https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/jrdocs/refman/optionX.html#wp999528) Java machine arguments for details.
+See [-Xms](https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/jrdocs/refman/optionX.html#wp999527) and [-Xmx](https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/jrdocs/refman/optionX.html#wp999528) Java machine arguments for details.
 
 ## Helper tools
 
