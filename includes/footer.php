@@ -29,6 +29,19 @@ if(isset($subfooter) and $subfooter){
               <a href="http://jquery.com/">jQuery</a> JS and syntax colouring
               with <a href="https://highlightjs.org/">highlight.js</a>.
             </small>
+            <div class="btn-toolbar mb-3" role="toolbar">
+              <div class="theme-switcher border btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-light <?php if($theme == 'auto') echo 'active'; ?>" data-toggle="tooltip" title="Auto Light / Dark">
+                  <input type="radio" value="auto" autocomplete="off" checked> <i class="fas fa-adjust"></i>
+                </label>
+                <label class="btn btn-light <?php if($theme == 'light') echo 'active'; ?>" data-toggle="tooltip" title="Light Theme">
+                  <input type="radio" value="light" autocomplete="off"> <i class="fas fa-sun"></i>
+                </label>
+                <label class="btn btn-light <?php if($theme == 'dark') echo 'active'; ?>" data-toggle="tooltip" title="Dark Theme">
+                  <input type="radio" value="dark" autocomplete="off"> <i class="fas fa-moon"></i>
+                </label>
+              </div>
+            </div>
           </div>
           <div class="col-6 col-md">
             <h5>Getting Started</h5>

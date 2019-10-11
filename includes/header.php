@@ -8,6 +8,12 @@ if(strlen($git_sha) != 7){
   $git_sha = '';
 }
 
+// Theme switcher cookie
+$theme = 'auto';
+if(isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 'light', 'dark'])) {
+  $theme = $_COOKIE['nfcoretheme'];
+}
+
 // Convert Markdown to HTML if a filename is given
 if( isset($markdown_fn) and $markdown_fn){
   // Markdown parsing libraries
@@ -119,7 +125,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
     <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
-    <link href="/assets/css/nf-core-dark.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
+    <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
