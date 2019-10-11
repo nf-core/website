@@ -68,6 +68,7 @@ However, the software still runs in your operating system environment. As such, 
 In order to run a Nextflow pipeline from nf-core on your local computer you need to install Nextflow and Docker on your computer.
 
 **System requirements:**
+
 * Java 7 or 8
 * _recommended:_ at least 8GB of RAM
 * _recommended:_ Docker engine 1.10.x (or higher)
