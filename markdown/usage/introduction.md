@@ -105,6 +105,42 @@ In order to run a Nextflow pipeline from nf-core on your local computer you need
 
     You will find the specific parameters required for each pipeline in the documentation of the respective pipeline.
 
+## Memory usage
+We recommend to check your possible memory usage limit on a machine where you are going to launch a pipeline, as a Java machine used to orchestrate the pipeline will require a certain amount of physical memory. For example, if resources on the machine are managed with [cgroups] (http://man7.org/linux/man-pages/man7/cgroups.7.html), you could check the amount of available memory using the following commands:
+
+```bash
+systemctl -t slice | grep type-your-username-here
+```
+
+This will give you your username in `cgroups`, for example:
+
+```
+user-30030283.slice                           loaded active active User Slice of username
+```
+
+Next, use your `cgroups` username (in this example, `user-30030283.slice`) to inquire about a possible memory usage limit:
+
+```bash
+systemctl status user-30030283.slice | grep "Memory:"
+```
+
+It will give you something like this:
+
+```
+   Memory: 24.2M (limit: 8.0G)
+             ├─ 2816 grep --color=auto Memory:
+```
+
+So, the amount of memory available to this user on this machine is 8 GB.
+
+> NB. We recommend to have at least 4 GB available. 
+
+You may also try to explicitly control the Java heap size by setting `NXF_OPTS='-Xms1g -Xmx4g'` (`1g` and `4g` are just an example!) in your command line environment (typically, ~/.bashrc or ~./bash_profile). 
+
+> NB. Your values for the `-Xms` and `-Xmx` arguments should be less then the amount of memory available to you. 
+
+See [-Xms](https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/jrdocs/refman/optionX.html#wp999527) and [-Xmx] (https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/jrdocs/refman/optionX.html#wp999528) Java machine arguments for details.
+
 ## Helper tools
 
 To help you manage your nf-core pipelines and discover updates, we have written some command-line helper tools.
