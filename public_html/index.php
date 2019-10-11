@@ -19,7 +19,10 @@ include('../includes/header.php');
 
     <div class="homepage-header">
       <div class="homepage-header-contents col-md-5">
-        <h1><img src="assets/img/logo/nf-core-logo.svg" /></h1>
+        <h1>
+            <img src="assets/img/logo/nf-core-logo.svg" class="hide-dark">
+            <img src="assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
+        </h1>
         <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
         <div class="hompage-cta-flex">
           <a class="hompage-cta" href="/pipelines">View Pipelines</a>
