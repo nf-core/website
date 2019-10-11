@@ -1,9 +1,4 @@
----
-title: Introduction
-subtitle: Get to grip with the key concepts used in nf-core pipelines.
----
-
-# We need a top level header here
+# WE NEED A TOP LEVEL HEADER HERE, AND IT NEEDS TO BE THE FIRST LINE
 
 ## What is nf-core
 
