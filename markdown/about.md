@@ -8,6 +8,7 @@ The core team members who administer the nf-core project are listed below:
 * [@drpatelh](https://github.com/drpatelh): Harshil Patel
 * [@ewels](https://github.com/ewels): Phil Ewels
 * [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+* [@olgabot](https://github.com/olgabot): Olga Botvinnik
 * [@sven1103](https://github.com/sven1103): Sven F.
 
 We regularly review members - if you'd like to be involved, drop us a line on Slack.

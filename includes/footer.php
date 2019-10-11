@@ -16,7 +16,10 @@ if(isset($subfooter) and $subfooter){
       <div class="container">
         <div class="row">
           <div class="col-6 col-md-4">
-            <a href="/"><img height="30px" src="/assets/img/logo/nf-core-logo.svg" /></a>
+            <a href="/">
+                <img height="30px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
+                <img height="30px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
+            </a>
             <small class="d-block mb-3">Making awesome workflows since &copy; 2018</small>
             <small class="d-block mb-3">
               Website by <a href="http://phil.ewels.co.uk/">Phil Ewels</a>.

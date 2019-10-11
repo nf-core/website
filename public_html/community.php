@@ -65,9 +65,17 @@ foreach($contributors['contributors'] as $idx => $c){
     // Header, title
     $img_path = '';
     if(array_key_exists('image_fn', $c)){
+        // Dark theme
+        $hide_dark = '';
+        $dark_img_path = 'assets/img/contributors-white/'.$c['image_fn'];
+        if($c['image_fn'] and file_exists($dark_img_path)){
+            $contributors_html .= '<img class="contributor_logo hide-light" title="'.$c['full_name'].'" src="'.$dark_img_path.'">';
+            $hide_dark = 'hide-dark';
+        }
+        // Normal, light theme
         $img_path = 'assets/img/contributors-colour/'.$c['image_fn'];
         if($c['image_fn'] and file_exists($img_path))
-            $contributors_html .= '<img class="contributor_logo" title="'.$c['full_name'].'" src="'.$img_path.'">';
+            $contributors_html .= '<img class="contributor_logo '.$hide_dark.'" title="'.$c['full_name'].'" src="'.$img_path.'">';
         else $img_path = '';
     }
     $card_id = $idx;
