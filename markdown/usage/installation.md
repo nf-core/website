@@ -129,7 +129,7 @@ The process is very similar: running the pipeline with the option `-profile sing
 If running offline with Singularity, you'll need to download and transfer the Singularity image first:
 
 ```bash
-singularity pull --name nf-core-YOUR_PIPELINE.simg nf-core/YOUR_PIPELINE
+singularity pull --name nf-core/YOUR_PIPELINE_NAME-1.0.img docker://nfcore/YOUR_PIPELINE_NAME:1.0
 ```
 
 Once transferred, use `-with-singularity` and specify the path to the image file:
