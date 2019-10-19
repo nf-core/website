@@ -107,6 +107,9 @@ usort($pipelines, 'rsort_pipelines');
 <?php endforeach; ?>
 </div>
 
-<p class="mt-5"><small class="text-muted">Page last synced with GitHub <?php echo time_ago($pipelines_json->updated); ?>.</small></p>
+<p class="mt-5 small text-muted">
+  Page last synced with GitHub <?php echo time_ago($pipelines_json->updated); ?>.
+  See also <a href="/pipeline_health">pipeline repository health</a>.
+</p>
 
 <?php include('../includes/footer.php'); ?>
