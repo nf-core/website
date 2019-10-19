@@ -639,6 +639,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 
 <?php endforeach; ?>
 
+<p class="mt-5 small text-muted">See also <a href="/pipeline_health">pipeline repository health</a>.</p>
+
 <script type="text/javascript">
 $(function(){
 
