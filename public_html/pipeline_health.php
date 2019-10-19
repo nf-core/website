@@ -22,6 +22,7 @@ define('GH_API_OPTS',
       'method' => 'GET',
       'header' => [
         'User-Agent: PHP',
+        'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
         "Authorization: Basic $gh_auth"
       ]
     ]
@@ -46,7 +47,6 @@ class RepoHealth {
   // Test result variables
   public $repo_wikis;
   public $repo_issues;
-  public $repo_sponsorships;
   public $repo_merge_commits;
   public $repo_merge_rebase;
   public $repo_merge_squash;
@@ -54,7 +54,6 @@ class RepoHealth {
   public $repo_keywords;
   public $repo_description;
   public $repo_url;
-  public $repo_social_preview;
   public $team_all;
   public $team_core;
   public $branch_master_protection;
@@ -100,7 +99,6 @@ class RepoHealth {
   private function test_repo(){
     if(isset($this->gh_repo->has_wiki)) $this->repo_wikis = !$this->gh_repo->has_wiki;
     if(isset($this->gh_repo->has_issues)) $this->repo_issues = $this->gh_repo->has_issues;
-    // $this->repo_sponsorships;
     if(isset($this->gh_repo->allow_merge_commit)) $this->repo_merge_commits = $this->gh_repo->allow_merge_commit;
     if(isset($this->gh_repo->allow_rebase_merge)) $this->repo_merge_rebase = $this->gh_repo->allow_rebase_merge;
     if(isset($this->gh_repo->allow_squash_merge)) $this->repo_merge_squash = !$this->gh_repo->allow_squash_merge;
@@ -220,7 +218,6 @@ foreach($core_repos as $core_repo){
 $test_names = [
   'repo_wikis' => "Wikis",
   'repo_issues' => "Issues",
-  'repo_sponsorships' => "Sponsorships",
   'repo_merge_commits' => "Merge commits",
   'repo_merge_rebase' => "Rebase merging",
   'repo_merge_squash' => "Squash merges",
@@ -228,7 +225,6 @@ $test_names = [
   'repo_keywords' => "Keywords",
   'repo_description' => "Description",
   'repo_url' => "Repo URL",
-  'repo_social_preview' => "Social preview",
   'team_all' => "Team all",
   'team_core' => "Team core",
   'branch_master_protection' => "master protection",
@@ -237,7 +233,6 @@ $test_names = [
 $test_descriptions = [
   'repo_wikis' => "Disable wikis",
   'repo_issues' => "Enable issues",
-  'repo_sponsorships' => "Disable sponsorships",
   'repo_merge_commits' => "Allow merge commits",
   'repo_merge_rebase' => "Allow rebase merging",
   'repo_merge_squash' => "Do not allow squash merges",
@@ -245,7 +240,6 @@ $test_descriptions = [
   'repo_keywords' => "Minimum keywords set",
   'repo_description' => "Description must be set",
   'repo_url' => "URL should be set to https://nf-co.re/[PIPELINE-NAME]",
-  'repo_social_preview' => "Social preview created",
   'team_all' => "Write access for nf-core/all",
   'team_core' => "Admin access for nf-core/core",
   'branch_master_protection' => "master branch protection",
