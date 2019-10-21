@@ -143,7 +143,7 @@ include('../includes/header.php');
                 <pre class="text-white mb-0">
 <span class="text-white-50"># Install nextflow</span>
 curl -s https://get.nextflow.io | bash
-mv nextflow ~/bin
+mv nextflow ~/bin/
 
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
 nextflow run nf-core/rnaseq \
