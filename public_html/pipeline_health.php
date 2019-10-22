@@ -4,6 +4,9 @@ $subtitle = 'Check repository settings for all nf-core pipelines';
 $mainpage_container = false;
 include('../includes/header.php');
 
+// Refresh cache?
+$refresh = false;
+
 // Get auth secrets
 $config = parse_ini_file("../config.ini");
 $gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
@@ -50,6 +53,7 @@ class RepoHealth {
   ];
   public $required_topics = ['nf-core'];
   public $web_url = 'https://nf-co.re';
+  public $refresh = false;
 
   // Data vars
   public $gh_repo;
@@ -97,22 +101,42 @@ class RepoHealth {
   private function get_repo_data(){
     // Super annoyingly, the teams call misses just one or two keys we need :(
     if(is_null($this->gh_repo) || !isset($this->gh_repo->allow_merge_commit)){
-      $gh_repo_url = 'https://api.github.com/repos/nf-core/'.$this->name;
-      $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
+      $gh_repo_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/repo_'.$this->name.'.json';
+      if(file_exists($gh_repo_cache) && !$this->refresh){
+        $this->gh_repo = json_decode(file_get_contents($gh_repo_cache));
+      } else {
+        $gh_repo_url = 'https://api.github.com/repos/nf-core/'.$this->name;
+        $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
+
+        // Save for next time
+        if (!file_exists(dirname($gh_repo_cache))) {
+          mkdir(dirname($gh_repo_cache), 0777, true);
+        }
+        $gh_repo_json = json_encode($this->gh_repo, JSON_PRETTY_PRINT)."\n";
+        file_put_contents($gh_repo_cache, $gh_repo_json);
+      }
     }
   }
   private function get_branch_data(){
 
-    $gh_branch_master_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/master/protection';
-    $gh_branch_master = json_decode(@file_get_contents($gh_branch_master_url, false, GH_API_OPTS));
-    if(in_array("HTTP/1.1 200 OK", $http_response_header) && is_object($gh_branch_master)){
-      $this->gh_branch_master = $gh_branch_master;
-    }
+    foreach(['master', 'dev'] as $branch){
+      $gh_branch_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/branch_'.$this->name.'_'.$branch.'.json';
+      if(file_exists($gh_branch_cache) && !$this->refresh){
+        $this->gh_repo = json_decode(file_get_contents($gh_branch_cache));
+      } else {
+        $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/'.$branch.'/protection';
+        $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
+        if(in_array("HTTP/1.1 200 OK", $http_response_header) && is_object($gh_branch)){
+          $this->{'gh_branch_'.$branch} = $gh_branch;
 
-    $gh_branch_dev_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/dev/protection';
-    $gh_branch_dev = json_decode(@file_get_contents($gh_branch_dev_url, false, GH_API_OPTS));
-    if(in_array("HTTP/1.1 200 OK", $http_response_header) && is_object($gh_branch_dev)){
-      $this->gh_branch_dev = $gh_branch_dev;
+          // Save for next time
+          if (!file_exists(dirname($gh_branch_cache))) {
+            mkdir(dirname($gh_branch_cache), 0777, true);
+          }
+          $gh_branch_json = json_encode($this->{'gh_branch_'.$branch}, JSON_PRETTY_PRINT)."\n";
+          file_put_contents($gh_branch_cache, $gh_branch_json);
+        }
+      }
     }
 
 //    if($this->name == 'tools'){
@@ -220,10 +244,23 @@ function get_gh_team_repos($team){
   global $pipelines_json;
   global $pipelines;
   global $core_repos;
+  global $refresh;
 
   // Get team ID
-  $gh_team_url = 'https://api.github.com/orgs/nf-core/teams/'.$team;
-  $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
+  $gh_teams_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/team_'.$team.'.json';
+  if(file_exists($gh_teams_cache) && !$refresh){
+    $gh_team = json_decode(file_get_contents($gh_teams_cache));
+  } else {
+    $gh_team_url = 'https://api.github.com/orgs/nf-core/teams/'.$team;
+    $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
+
+    // Save for next time
+    if (!file_exists(dirname($gh_teams_cache))) {
+      mkdir(dirname($gh_teams_cache), 0777, true);
+    }
+    $gh_team_json = json_encode($gh_team, JSON_PRETTY_PRINT)."\n";
+    file_put_contents($gh_teams_cache, $gh_team_json);
+  }
 
   $gh_team_repos_url = 'https://api.github.com/teams/'.$gh_team->id.'/repos';
   $first_page = true;
@@ -292,12 +329,20 @@ foreach($pipelines_json as $wf){
 }
 
 // Get any missing data and run tests
-foreach($pipelines as $pipeline){
+foreach($pipelines as $idx => $pipeline){
   $pipeline->get_data();
+  if($pipeline->gh_repo->archived){
+    unset($pipelines[$idx]);
+    continue;
+  }
   $pipeline->run_tests();
 }
-foreach($core_repos as $core_repo){
+foreach($core_repos as $idx => $core_repo){
   $core_repo->get_data();
+  if($core_repo->gh_repo->archived){
+    unset($core_repos[$idx]);
+    continue;
+  }
   $core_repo->run_tests();
 }
 
