@@ -476,6 +476,27 @@ $pipeline_test_urls = $base_test_urls;
 $core_repo_test_names = $base_test_names;
 $core_repo_test_descriptions = $base_test_descriptions;
 $core_repo_test_urls = $base_test_urls;
+$core_repo_ignore_tests = [
+  'branch_dev_exists',
+  'branch_template_exists',
+  'branch_master_strict_updates',
+  'branch_master_required_ci',
+  'branch_master_stale_reviews',
+  'branch_master_code_owner_reviews',
+  'branch_master_required_num_reviews',
+  'branch_master_enforce_admins',
+  'branch_dev_strict_updates',
+  'branch_dev_required_ci',
+  'branch_dev_stale_reviews',
+  'branch_dev_code_owner_reviews',
+  'branch_dev_required_num_reviews',
+  'branch_dev_enforce_admins',
+];
+foreach($core_repo_ignore_tests as $key){
+  unset($core_repo_test_names[$key]);
+  unset($core_repo_test_descriptions[$key]);
+  unset($core_repo_test_urls[$key]);
+}
 
 // Get any missing data and run tests
 foreach($pipelines as $idx => $pipeline){
