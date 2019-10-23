@@ -1,6 +1,6 @@
 <?php
-$title = 'Pipeline health';
-$subtitle = 'Check repository settings for all nf-core pipelines';
+$title = 'Repository health';
+$subtitle = 'Check GitHub settings for all nf-core repositories';
 $mainpage_container = false;
 include('../includes/header.php');
 
