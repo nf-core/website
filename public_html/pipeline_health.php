@@ -64,6 +64,7 @@ class RepoHealth {
   // Data vars
   public $gh_repo;
   public $gh_teams = [];
+  public $gh_branches;
   public $gh_branch_master;
   public $gh_branch_dev;
 
@@ -81,6 +82,9 @@ class RepoHealth {
   public $team_core;
 
   // Branch test vars
+  public $branch_master_exists;
+  public $branch_dev_exists;
+  public $branch_template_exists;
   public $branch_master_strict_updates;
   public $branch_master_required_ci;
   public $branch_master_stale_reviews;
@@ -115,9 +119,7 @@ class RepoHealth {
         $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
 
         // Save for next time
-        if (!file_exists(dirname($gh_repo_cache))) {
-          mkdir(dirname($gh_repo_cache), 0777, true);
-        }
+        if (!file_exists(dirname($gh_repo_cache))) mkdir(dirname($gh_repo_cache), 0777, true);
         $gh_repo_json = json_encode($this->gh_repo, JSON_PRETTY_PRINT)."\n";
         file_put_contents($gh_repo_cache, $gh_repo_json);
       }
@@ -125,12 +127,27 @@ class RepoHealth {
   }
   private function get_branch_data(){
 
+    // List of all branches
+    $gh_all_branches_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/branches_'.$this->name.'.json';
+    if(file_exists($gh_all_branches_cache) && !$this->refresh){
+      $this->gh_branches = json_decode(file_get_contents($gh_all_branches_cache));
+    } else {
+      $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches';
+      $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
+      // Save for next time
+      if (!file_exists(dirname($gh_all_branches_cache))) mkdir(dirname($gh_branch_cache), 0777, true);
+      $gh_branches_json = json_encode($this->gh_branches, JSON_PRETTY_PRINT)."\n";
+      file_put_contents($gh_all_branches_cache, $gh_branches_json);
+    }
+
+    // Details of branch protection for master and dev
     foreach(['master', 'dev'] as $branch){
       $gh_branch_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/branch_'.$this->name.'_'.$branch.'.json';
       if(file_exists($gh_branch_cache) && !$this->refresh){
         $gh_branch = json_decode(file_get_contents($gh_branch_cache));
         if(is_object($gh_branch)){
           $this->{'gh_branch_'.$branch} = $gh_branch;
+        } else {
         }
       } else {
         $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/'.$branch.'/protection';
@@ -139,16 +156,12 @@ class RepoHealth {
           $this->{'gh_branch_'.$branch} = $gh_branch;
 
           // Save for next time
-          if (!file_exists(dirname($gh_branch_cache))) {
-            mkdir(dirname($gh_branch_cache), 0777, true);
-          }
+          if (!file_exists(dirname($gh_branch_cache))) mkdir(dirname($gh_branch_cache), 0777, true);
           $gh_branch_json = json_encode($this->{'gh_branch_'.$branch}, JSON_PRETTY_PRINT)."\n";
           file_put_contents($gh_branch_cache, $gh_branch_json);
         } else {
           // Write an empty cache file
-          if (!file_exists(dirname($gh_branch_cache))) {
-            mkdir(dirname($gh_branch_cache), 0777, true);
-          }
+          if (!file_exists(dirname($gh_branch_cache))) mkdir(dirname($gh_branch_cache), 0777, true);
           $gh_branch_json = json_encode('', JSON_PRETTY_PRINT)."\n";
           file_put_contents($gh_branch_cache, $gh_branch_json);
         }
@@ -182,6 +195,20 @@ class RepoHealth {
     $this->team_core = isset($this->gh_teams['core']) ? $this->gh_teams['core']->admin : false;
   }
   private function test_branch(){
+    // Check that branches exist
+    $branch_exist_tests = [ 'template', 'dev', 'master'];
+    if(isset($this->gh_branches)){
+      $this->branch_master_exists = false;
+      $this->branch_dev_exists = false;
+      $this->branch_template_exists = false;
+      foreach($this->gh_branches as $branch){
+        if(in_array(strtolower($branch->name), $branch_exist_tests)){
+          $this->{'branch_'.strtolower($branch->name).'_exists'} = true;
+        }
+      }
+    }
+
+    // Test branch protection for master and dev
     foreach (['dev', 'master'] as $branch) {
       $prs_required = $branch == 'master' ? 2 : 1;
       if(!isset($this->{'gh_branch_'.$branch}) || !is_object($this->{'gh_branch_'.$branch})){
@@ -224,12 +251,20 @@ class RepoHealth {
   }
 
   public function print_table_cell($test_name){
+    $test_url = $this->test_urls[$test_name];
+    $test_url = str_replace('{repo}', $this->name, $test_url);
     if(is_null($this->$test_name)){
-      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true"><i class="fas fa-question text-secondary"></i></td>';
+      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+        <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
+      </td>';
     } else if($this->$test_name){
-      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true"><i class="fas fa-check text-success"></i></td>';
+      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+        <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-check text-success"></i></a>
+      </td>';
     } else {
-      echo '<td class="table-danger text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true"><i class="fas fa-times text-danger"></i></td>';
+      echo '<td class="table-danger text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+        <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-times text-danger"></i></a>
+      </td>';
     }
   }
 }
@@ -266,9 +301,7 @@ function get_gh_team_repos($team){
     $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
 
     // Save for next time
-    if (!file_exists(dirname($gh_teams_cache))) {
-      mkdir(dirname($gh_teams_cache), 0777, true);
-    }
+    if (!file_exists(dirname($gh_teams_cache))) mkdir(dirname($gh_teams_cache), 0777, true);
     $gh_team_json = json_encode($gh_team, JSON_PRETTY_PRINT)."\n";
     file_put_contents($gh_teams_cache, $gh_team_json);
   }
@@ -303,9 +336,7 @@ function get_gh_team_repos($team){
     }
 
     // Save for next time
-    if (!file_exists(dirname($gh_team_repos_cache))) {
-      mkdir(dirname($gh_team_repos_cache), 0777, true);
-    }
+    if (!file_exists(dirname($gh_team_repos_cache))) mkdir(dirname($gh_team_repos_cache), 0777, true);
     $gh_team_repos_json = json_encode($gh_team_repos, JSON_PRETTY_PRINT)."\n";
     file_put_contents($gh_team_repos_cache, $gh_team_repos_json);
   }
@@ -363,6 +394,9 @@ $base_test_names = [
   'repo_url' => "Repo URL",
   'team_all' => "Team all",
   'team_core' => "Team core",
+  'branch_master_exists' => 'master: exists',
+  'branch_dev_exists' => 'dev: exists',
+  'branch_template_exists' => 'TEMPLATE: exists',
   'branch_master_strict_updates' => 'master: strict updates',
   'branch_master_required_ci' => 'master: required CI',
   'branch_master_stale_reviews' => 'master: stale reviews',
@@ -388,6 +422,9 @@ $base_test_descriptions = [
   'repo_url' => "URL should be set to https://nf-co.re",
   'team_all' => "Write access for nf-core/all",
   'team_core' => "Admin access for nf-core/core",
+  'branch_master_exists' => 'master branch: branch must exist',
+  'branch_dev_exists' => 'dev branch: branch must exist',
+  'branch_template_exists' => 'TEMPLATE branch: branch must exist',
   'branch_master_strict_updates' => 'master branch: do not require branch to be up to date before merging',
   'branch_master_required_ci' => 'master branch: minimum set of CI tests must pass',
   'branch_master_stale_reviews' => 'master branch: reviews not marked stale after new commits',
@@ -401,19 +438,50 @@ $base_test_descriptions = [
   'branch_dev_required_num_reviews' => 'dev branch: 1 review required',
   'branch_dev_enforce_admins' => 'dev branch: do not enforce rules for admins',
 ];
+$base_test_urls = [
+  'repo_wikis' =>                         'https://github.com/nf-core/{repo}/settings',
+  'repo_issues' =>                        'https://github.com/nf-core/{repo}/settings',
+  'repo_merge_commits' =>                 'https://github.com/nf-core/{repo}/settings',
+  'repo_merge_rebase' =>                  'https://github.com/nf-core/{repo}/settings',
+  'repo_merge_squash' =>                  'https://github.com/nf-core/{repo}/settings',
+  'repo_default_branch' =>                'https://github.com/nf-core/{repo}/settings/branches',
+  'repo_keywords' =>                      'https://github.com/nf-core/{repo}',
+  'repo_description' =>                   'https://github.com/nf-core/{repo}',
+  'repo_url' =>                           'https://github.com/nf-core/{repo}',
+  'team_all' =>                           'https://github.com/nf-core/{repo}/settings/collaboration',
+  'team_core' =>                          'https://github.com/nf-core/{repo}/settings/collaboration',
+  'branch_master_exists' =>               'https://github.com/nf-core/{repo}/branches',
+  'branch_dev_exists' =>                  'https://github.com/nf-core/{repo}/branches',
+  'branch_template_exists' =>             'https://github.com/nf-core/{repo}/branches',
+  'branch_master_strict_updates' =>       'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_master_required_ci' =>          'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_master_stale_reviews' =>        'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_master_code_owner_reviews' =>   'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_master_required_num_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_master_enforce_admins' =>       'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_dev_strict_updates' =>          'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_dev_required_ci' =>             'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_dev_stale_reviews' =>           'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_dev_code_owner_reviews' =>      'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_dev_required_num_reviews' =>    'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_dev_enforce_admins' =>          'https://github.com/nf-core/{repo}/settings/branches',
+];
+
 
 $pipeline_test_names = $base_test_names;
 $pipeline_test_descriptions = $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
+$pipeline_test_urls = $base_test_urls;
 
 $core_repo_test_names = $base_test_names;
 $core_repo_test_descriptions = $base_test_descriptions;
-
+$core_repo_test_urls = $base_test_urls;
 
 // Get any missing data and run tests
 foreach($pipelines as $idx => $pipeline){
-  $pipeline->test_names = $pipeline_test_names;
+  $pipeline->test_names = $base_test_names;
   $pipeline->test_descriptions = $pipeline_test_descriptions;
+  $pipeline->test_urls = $base_test_urls;
   $pipeline->get_data();
   if($pipeline->gh_repo->archived){
     unset($pipelines[$idx]);
@@ -422,8 +490,9 @@ foreach($pipelines as $idx => $pipeline){
   $pipeline->run_tests();
 }
 foreach($core_repos as $idx => $core_repo){
-  $core_repo->test_names = $core_repo_test_names;
-  $core_repo->test_descriptions = $core_repo_test_descriptions;
+  $core_repo->test_names = $base_test_names;
+  $core_repo->test_descriptions = $base_test_descriptions;
+  $core_repo->test_urls = $base_test_urls;
   $core_repo->get_data();
   if($core_repo->gh_repo->archived){
     unset($core_repos[$idx]);
