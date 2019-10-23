@@ -5,9 +5,14 @@ $mainpage_container = false;
 include('../includes/header.php');
 
 // Refresh cache?
-$refresh = false;
-if(isset($_GET['refresh'])){
-  $refresh = true;
+function is_refresh_cache($repo = null){
+  if(!isset($_GET['action']) || $_GET['action'] != 'refresh')
+    return false;
+  if(isset($_GET['repos']) && $_GET['repos'] == 'all')
+    return true;
+  if($repo && isset($_GET['repos']) && $_GET['repos'] == $repo)
+    return true;
+  return false;
 }
 
 // Get auth secrets
@@ -42,9 +47,9 @@ class RepoHealth {
   // Init vars
   public $name;
   public $refresh = false;
-  public function __construct($name, $refresh) {
+  public function __construct($name) {
     $this->name = $name;
-    $this->refresh = $refresh;
+    $this->refresh = is_refresh_cache($this->name);
   }
   public $required_status_check_contexts = [
     'continuous-integration/travis-ci',
@@ -305,9 +310,9 @@ class RepoHealth {
 
 // Pipeline health class
 class PipelineHealth extends RepoHealth {
-  public function __construct($name, $refresh) {
+  public function __construct($name) {
     $this->name = $name;
-    $this->refresh = $refresh;
+    $this->refresh = is_refresh_cache($this->name);
     $this->web_url = 'https://nf-co.re/'.$this->name;
   }
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
@@ -324,11 +329,10 @@ function get_gh_team_repos($team){
   global $pipelines_json;
   global $pipelines;
   global $core_repos;
-  global $refresh;
 
   // Get team ID
   $gh_teams_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/team_'.$team.'.json';
-  if(file_exists($gh_teams_cache) && !$refresh){
+  if(file_exists($gh_teams_cache) && !is_refresh_cache()){
     $gh_team = json_decode(file_get_contents($gh_teams_cache));
   } else {
     $gh_team_url = 'https://api.github.com/orgs/nf-core/teams/'.$team;
@@ -341,7 +345,7 @@ function get_gh_team_repos($team){
   }
 
   $gh_team_repos_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/team_'.$team.'_repos.json';
-  if(file_exists($gh_team_repos_cache) && !$refresh){
+  if(file_exists($gh_team_repos_cache) && !is_refresh_cache()){
     $gh_team_repos = json_decode(file_get_contents($gh_team_repos_cache));
   } else {
     $gh_team_repos_url = 'https://api.github.com/teams/'.$gh_team->id.'/repos';
@@ -382,7 +386,7 @@ function get_gh_team_repos($team){
     foreach($pipelines_json as $wf){
       if($wf->name == $repo->name){
         if(!array_key_exists($repo->name, $pipelines)){
-          $pipelines[$repo->name] = new PipelineHealth($repo->name, $refresh);
+          $pipelines[$repo->name] = new PipelineHealth($repo->name);
           $pipelines[$repo->name]->gh_repo = $repo;
         }
         $pipelines[$repo->name]->gh_teams[$team] = $repo->permissions;
@@ -392,7 +396,7 @@ function get_gh_team_repos($team){
     // Make a core repo object
     if(!$is_pipeline){
       if(!array_key_exists($repo->name, $core_repos)){
-        $core_repos[$repo->name] = new CoreRepoHealth($repo->name, $refresh);
+        $core_repos[$repo->name] = new CoreRepoHealth($repo->name);
         $core_repos[$repo->name]->gh_repo = $repo;
       }
       $core_repos[$repo->name]->gh_teams[$team] = $repo->permissions;
@@ -411,7 +415,7 @@ foreach($pipelines_json as $wf){
     }
   } else {
     if(!array_key_exists($wf->name, $pipelines)){
-      $pipelines[$wf->name] = new PipelineHealth($wf->name, $refresh);
+      $pipelines[$wf->name] = new PipelineHealth($wf->name);
     }
   }
 }
@@ -615,7 +619,25 @@ foreach($core_repos as $idx => $core_repo){
   </div>
 
   <h2>Actions</h2>
-  <p><a href="?refresh" class="btn btn-primary refresh-btn">Refresh data</a> <em class="small text-muted">(warning: page will take a minute or two to load)</em></p>
+  <form class="form-inline" action="" method="get">
+    <select class="custom-select" name="repos">
+      <optgroup label="All repositories">
+        <option value="all" selected>All pipelines</option>
+      </optgroup>
+      <optgroup label="Pipelines">
+      <?php foreach ($pipelines as $repo){
+        echo '<option>'.$repo->name.'</option>';
+      } ?>
+      </optgroup>
+      <optgroup label="Core Repos">
+      <?php foreach ($core_repos as $repo){
+        echo '<option>'.$repo->name.'</option>';
+      } ?>
+      </optgroup>
+    </select>
+    <button type="submit" name="action" value="refresh" class="btn btn-primary my-1 mx-2 refresh-btn">Refresh data</button>
+  </form>
+  <p><em class="small text-muted">Warning: page will take a minute or two to load. Even when refreshing one repo, some tests will be refreshed for all repos.</em></p>
 
 </div>
 
@@ -626,9 +648,10 @@ $(function(){
     $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
   });
 
-  // If the URL has ?refresh in it, remove it so that reloads don't refresh
-  if(window.location.href.includes('?refresh')){
-    window.history.replaceState({}, "nf-core", window.location.href.replace('?refresh', ''));
+  // Remove all get data from the URL
+  if(window.location.href.includes('?')){
+    var url_parts = window.location.href.split('?');
+    window.history.replaceState({}, "nf-core", url_parts[0]);
   }
 });
 </script>
