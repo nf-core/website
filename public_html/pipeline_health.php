@@ -67,6 +67,8 @@ class RepoHealth {
   public $gh_branches;
   public $gh_branch_master;
   public $gh_branch_dev;
+  public $gh_webpage;
+  public $gh_social_preview;
 
   // Test result variables
   public $repo_wikis;
@@ -78,6 +80,7 @@ class RepoHealth {
   public $repo_keywords;
   public $repo_description;
   public $repo_url;
+  public $social_preview;
   public $team_all;
   public $team_core;
 
@@ -101,11 +104,13 @@ class RepoHealth {
   public function get_data(){
     $this->get_repo_data();
     $this->get_branch_data();
+    $this->get_repo_webpage();
   }
   public function run_tests(){
     $this->test_repo();
     $this->test_teams();
     $this->test_branch();
+    $this->test_webpage();
   }
 
   private function get_repo_data(){
@@ -167,6 +172,28 @@ class RepoHealth {
         }
       }
     }
+  }
+
+  private function get_repo_webpage(){
+
+    // List of all branches
+    $gh_webpage_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/repo_ghpage_'.$this->name.'.html';
+    if(file_exists($gh_webpage_cache) && !$this->refresh){
+      $this->gh_webpage = file_get_contents($gh_webpage_cache);
+    } else {
+      $gh_webpage_url = 'https://github.com/nf-core/'.$this->name;
+      $this->gh_webpage = @file_get_contents($gh_webpage_url);
+      // Save for next time
+      if (!file_exists(dirname($gh_webpage_cache))) mkdir(dirname($gh_webpage_cache), 0777, true);
+      file_put_contents($gh_webpage_cache, $this->gh_webpage);
+    }
+
+    // Pull out social image
+    preg_match('/<meta name="twitter:image:src" content="([^"]+)" \/>/', $this->gh_webpage, $social_matches);
+    if(array_key_exists(1, $social_matches)){
+      $this->gh_social_preview = $social_matches[1];
+    }
+
   }
 
   private function test_topics(){
@@ -247,6 +274,13 @@ class RepoHealth {
       if(!isset($data->enforce_admins)) $this->{'branch_'.$branch.'_enforce_admins'} = false;
       else $this->{'branch_'.$branch.'_enforce_admins'} = $data->enforce_admins->enabled == false;
 
+    }
+  }
+
+  private function test_webpage(){
+    if(isset($this->gh_webpage)){
+      $startswith = 'https://repository-images.githubusercontent.com';
+      $this->social_preview = substr($this->gh_social_preview, 0, strlen($startswith)) == $startswith;
     }
   }
 
@@ -392,6 +426,7 @@ $base_test_names = [
   'repo_keywords' => "Keywords",
   'repo_description' => "Description",
   'repo_url' => "Repo URL",
+  'social_preview' => "Social preview",
   'team_all' => "Team all",
   'team_core' => "Team core",
   'branch_master_exists' => 'master: exists',
@@ -420,6 +455,7 @@ $base_test_descriptions = [
   'repo_keywords' => "Minimum keywords set",
   'repo_description' => "Description must be set",
   'repo_url' => "URL should be set to https://nf-co.re",
+  'social_preview' => "Repo should have a social preview image set",
   'team_all' => "Write access for nf-core/all",
   'team_core' => "Admin access for nf-core/core",
   'branch_master_exists' => 'master branch: branch must exist',
@@ -448,6 +484,7 @@ $base_test_urls = [
   'repo_keywords' =>                      'https://github.com/nf-core/{repo}',
   'repo_description' =>                   'https://github.com/nf-core/{repo}',
   'repo_url' =>                           'https://github.com/nf-core/{repo}',
+  'social_preview' =>                     'https://github.com/nf-core/{repo}/settings',
   'team_all' =>                           'https://github.com/nf-core/{repo}/settings/collaboration',
   'team_core' =>                          'https://github.com/nf-core/{repo}/settings/collaboration',
   'branch_master_exists' =>               'https://github.com/nf-core/{repo}/branches',
@@ -578,7 +615,7 @@ foreach($core_repos as $idx => $core_repo){
   </div>
 
   <h2>Actions</h2>
-  <p><a href="?refresh" class="btn btn-primary refresh-btn">Refresh data</a> <em class="small text-muted">(warning: page will take ~30 seconds to load)</em></p>
+  <p><a href="?refresh" class="btn btn-primary refresh-btn">Refresh data</a> <em class="small text-muted">(warning: page will take a minute or two to load)</em></p>
 
 </div>
 
