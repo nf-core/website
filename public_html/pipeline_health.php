@@ -6,6 +6,9 @@ include('../includes/header.php');
 
 // Refresh cache?
 $refresh = false;
+if(isset($_GET['refresh'])){
+  $refresh = true;
+}
 
 // Get auth secrets
 $config = parse_ini_file("../config.ini");
@@ -38,8 +41,10 @@ class RepoHealth {
 
   // Init vars
   public $name;
-  public function __construct($name) {
+  public $refresh = false;
+  public function __construct($name, $refresh) {
     $this->name = $name;
+    $this->refresh = $refresh;
   }
   public $required_status_check_contexts = [
     'continuous-integration/travis-ci',
@@ -53,7 +58,8 @@ class RepoHealth {
   ];
   public $required_topics = ['nf-core'];
   public $web_url = 'https://nf-co.re';
-  public $refresh = false;
+  public $test_names;
+  public $test_descriptions;
 
   // Data vars
   public $gh_repo;
@@ -122,7 +128,10 @@ class RepoHealth {
     foreach(['master', 'dev'] as $branch){
       $gh_branch_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/branch_'.$this->name.'_'.$branch.'.json';
       if(file_exists($gh_branch_cache) && !$this->refresh){
-        $this->gh_repo = json_decode(file_get_contents($gh_branch_cache));
+        $gh_branch = json_decode(file_get_contents($gh_branch_cache));
+        if(is_object($gh_branch)){
+          $this->{'gh_branch_'.$branch} = $gh_branch;
+        }
       } else {
         $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/'.$branch.'/protection';
         $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
@@ -135,15 +144,16 @@ class RepoHealth {
           }
           $gh_branch_json = json_encode($this->{'gh_branch_'.$branch}, JSON_PRETTY_PRINT)."\n";
           file_put_contents($gh_branch_cache, $gh_branch_json);
+        } else {
+          // Write an empty cache file
+          if (!file_exists(dirname($gh_branch_cache))) {
+            mkdir(dirname($gh_branch_cache), 0777, true);
+          }
+          $gh_branch_json = json_encode('', JSON_PRETTY_PRINT)."\n";
+          file_put_contents($gh_branch_cache, $gh_branch_json);
         }
       }
     }
-
-//    if($this->name == 'tools'){
-//      echo ("Done with the api call to $gh_branch_dev_url<br>");
-//      echo '<pre><code>'.print_r($this->gh_branch_dev, true).'</code></pre>';
-//      echo '<pre><code>'.print_r($http_response_header, true).'</code></pre>';
-//    }
   }
 
   private function test_topics(){
@@ -215,19 +225,20 @@ class RepoHealth {
 
   public function print_table_cell($test_name){
     if(is_null($this->$test_name)){
-      echo '<td class="table-secondary text-center"><i class="fas fa-question text-secondary"></i></td>';
+      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true"><i class="fas fa-question text-secondary"></i></td>';
     } else if($this->$test_name){
-      echo '<td class="table-success text-center"><i class="fas fa-check text-success"></i></td>';
+      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true"><i class="fas fa-check text-success"></i></td>';
     } else {
-      echo '<td class="table-danger text-center"><i class="fas fa-times text-danger"></i></td>';
+      echo '<td class="table-danger text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true"><i class="fas fa-times text-danger"></i></td>';
     }
   }
 }
 
 // Pipeline health class
 class PipelineHealth extends RepoHealth {
-  public function __construct($name) {
+  public function __construct($name, $refresh) {
     $this->name = $name;
+    $this->refresh = $refresh;
     $this->web_url = 'https://nf-co.re/'.$this->name;
   }
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
@@ -262,53 +273,65 @@ function get_gh_team_repos($team){
     file_put_contents($gh_teams_cache, $gh_team_json);
   }
 
-  $gh_team_repos_url = 'https://api.github.com/teams/'.$gh_team->id.'/repos';
-  $first_page = true;
-  $next_page = false;
-  while($first_page || $next_page){
-
-    // reset loop vars
-    $first_page = false;
-    // Get GitHub API results
-    if($next_page){
-      $gh_team_repos_url = $next_page;
-    }
-    $gh_team_repos = json_decode(file_get_contents($gh_team_repos_url, false, GH_API_OPTS));
-
-    // Make repo health objects
-    foreach($gh_team_repos as $repo){
-      // Make a pipeline object
-      $is_pipeline = false;
-      foreach($pipelines_json as $wf){
-        if($wf->name == $repo->name){
-          if(!array_key_exists($repo->name, $pipelines)){
-            $pipelines[$repo->name] = new PipelineHealth($repo->name);
-            $pipelines[$repo->name]->gh_repo = $repo;
-          }
-          $pipelines[$repo->name]->gh_teams[$team] = $repo->permissions;
-          $is_pipeline = true;
-        }
-      }
-      // Make a core repo object
-      if(!$is_pipeline){
-        if(!array_key_exists($repo->name, $core_repos)){
-          $core_repos[$repo->name] = new CoreRepoHealth($repo->name);
-          $core_repos[$repo->name]->gh_repo = $repo;
-        }
-        $core_repos[$repo->name]->gh_teams[$team] = $repo->permissions;
-      }
-    }
-
-    // Look for URL to next page of API results
+  $gh_team_repos_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/team_'.$team.'_repos.json';
+  if(file_exists($gh_team_repos_cache) && !$refresh){
+    $gh_team_repos = json_decode(file_get_contents($gh_team_repos_cache));
+  } else {
+    $gh_team_repos_url = 'https://api.github.com/teams/'.$gh_team->id.'/repos';
+    $first_page = true;
     $next_page = false;
-    $m_array = preg_grep('/rel="next"/', $http_response_header);
-    if(count($m_array) > 0){
-      preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
-      if(isset($matches[1])){
-        $next_page = $matches[1];
+    $gh_team_repos = [];
+    while($first_page || $next_page){
+
+      // reset loop vars
+      $first_page = false;
+      // Get GitHub API results
+      if($next_page){
+        $gh_team_repos_url = $next_page;
+      }
+      $gh_team_repos = array_merge($gh_team_repos, json_decode(file_get_contents($gh_team_repos_url, false, GH_API_OPTS)));
+
+      // Look for URL to next page of API results
+      $next_page = false;
+      $m_array = preg_grep('/rel="next"/', $http_response_header);
+      if(count($m_array) > 0){
+        preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
+        if(isset($matches[1])){
+          $next_page = $matches[1];
+        }
       }
     }
 
+    // Save for next time
+    if (!file_exists(dirname($gh_team_repos_cache))) {
+      mkdir(dirname($gh_team_repos_cache), 0777, true);
+    }
+    $gh_team_repos_json = json_encode($gh_team_repos, JSON_PRETTY_PRINT)."\n";
+    file_put_contents($gh_team_repos_cache, $gh_team_repos_json);
+  }
+
+  // Make repo health objects
+  foreach($gh_team_repos as $repo){
+    // Make a pipeline object
+    $is_pipeline = false;
+    foreach($pipelines_json as $wf){
+      if($wf->name == $repo->name){
+        if(!array_key_exists($repo->name, $pipelines)){
+          $pipelines[$repo->name] = new PipelineHealth($repo->name, $refresh);
+          $pipelines[$repo->name]->gh_repo = $repo;
+        }
+        $pipelines[$repo->name]->gh_teams[$team] = $repo->permissions;
+        $is_pipeline = true;
+      }
+    }
+    // Make a core repo object
+    if(!$is_pipeline){
+      if(!array_key_exists($repo->name, $core_repos)){
+        $core_repos[$repo->name] = new CoreRepoHealth($repo->name, $refresh);
+        $core_repos[$repo->name]->gh_repo = $repo;
+      }
+      $core_repos[$repo->name]->gh_teams[$team] = $repo->permissions;
+    }
   }
 }
 get_gh_team_repos('all');
@@ -323,27 +346,9 @@ foreach($pipelines_json as $wf){
     }
   } else {
     if(!array_key_exists($wf->name, $pipelines)){
-      $pipelines[$wf->name] = new PipelineHealth($wf->name);
+      $pipelines[$wf->name] = new PipelineHealth($wf->name, $refresh);
     }
   }
-}
-
-// Get any missing data and run tests
-foreach($pipelines as $idx => $pipeline){
-  $pipeline->get_data();
-  if($pipeline->gh_repo->archived){
-    unset($pipelines[$idx]);
-    continue;
-  }
-  $pipeline->run_tests();
-}
-foreach($core_repos as $idx => $core_repo){
-  $core_repo->get_data();
-  if($core_repo->gh_repo->archived){
-    unset($core_repos[$idx]);
-    continue;
-  }
-  $core_repo->run_tests();
 }
 
 $base_test_names = [
@@ -380,7 +385,7 @@ $base_test_descriptions = [
   'repo_default_branch' => "master as default branch",
   'repo_keywords' => "Minimum keywords set",
   'repo_description' => "Description must be set",
-  'repo_url' => "URL should be set to https://nf-co.re/",
+  'repo_url' => "URL should be set to https://nf-co.re",
   'team_all' => "Write access for nf-core/all",
   'team_core' => "Admin access for nf-core/core",
   'branch_master_strict_updates' => 'master branch: do not require branch to be up to date before merging',
@@ -404,12 +409,35 @@ $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re
 $core_repo_test_names = $base_test_names;
 $core_repo_test_descriptions = $base_test_descriptions;
 
+
+// Get any missing data and run tests
+foreach($pipelines as $idx => $pipeline){
+  $pipeline->test_names = $pipeline_test_names;
+  $pipeline->test_descriptions = $pipeline_test_descriptions;
+  $pipeline->get_data();
+  if($pipeline->gh_repo->archived){
+    unset($pipelines[$idx]);
+    continue;
+  }
+  $pipeline->run_tests();
+}
+foreach($core_repos as $idx => $core_repo){
+  $core_repo->test_names = $core_repo_test_names;
+  $core_repo->test_descriptions = $core_repo_test_descriptions;
+  $core_repo->get_data();
+  if($core_repo->gh_repo->archived){
+    unset($core_repos[$idx]);
+    continue;
+  }
+  $core_repo->run_tests();
+}
+
 ?>
 
 <div class="container-fluid main-content">
   <h2>Pipelines</h2>
   <div class="table-responsive">
-    <table class="table table-sm small">
+    <table class="table table-hover table-sm small">
       <thead>
         <tr>
           <th class="small text-nowrap">Pipeline Name</th>
@@ -432,13 +460,10 @@ $core_repo_test_descriptions = $base_test_descriptions;
       </tbody>
     </table>
   </div>
-</div>
 
-
-<div class="container-fluid main-content">
   <h2>Core repos</h2>
   <div class="table-responsive">
-    <table class="table table-sm small">
+    <table class="table table-hover table-sm small">
       <thead>
         <tr>
           <th class="small text-nowrap">Pipeline Name</th>
@@ -461,7 +486,26 @@ $core_repo_test_descriptions = $base_test_descriptions;
       </tbody>
     </table>
   </div>
+
+  <h2>Actions</h2>
+  <p><a href="?refresh" class="btn btn-primary refresh-btn">Refresh data</a> <em class="small text-muted">(warning: page will take ~30 seconds to load)</em></p>
+
 </div>
+
+<script type="text/javascript">
+$(function(){
+  // Disable the refresh button to prevent button mashing
+  $('.refresh-btn').click(function(){
+    $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+  });
+
+  // If the URL has ?refresh in it, remove it so that reloads don't refresh
+  if(window.location.href.includes('?refresh')){
+    window.history.replaceState({}, "nf-core", window.location.href.replace('?refresh', ''));
+  }
+});
+</script>
+
 
 
 <?php
