@@ -507,16 +507,45 @@ $base_test_urls = [
   'branch_dev_required_num_reviews' =>    'https://github.com/nf-core/{repo}/settings/branches',
   'branch_dev_enforce_admins' =>          'https://github.com/nf-core/{repo}/settings/branches',
 ];
+$base_merge_table_col_headings = [
+    'Team access' => [
+      'team_all',
+      'team_core',
+    ],
+    'Branches exist' => [
+      'branch_master_exists',
+      'branch_dev_exists',
+      'branch_template_exists',
+    ],
+    'Branch protection: master' => [
+      'branch_master_strict_updates',
+      'branch_master_required_ci',
+      'branch_master_stale_reviews',
+      'branch_master_code_owner_reviews',
+      'branch_master_required_num_reviews',
+      'branch_master_enforce_admins',
+    ],
+    'Branch protection: dev' => [
+      'branch_dev_strict_updates',
+      'branch_dev_required_ci',
+      'branch_dev_stale_reviews',
+      'branch_dev_code_owner_reviews',
+      'branch_dev_required_num_reviews',
+      'branch_dev_enforce_admins',
+    ],
+];
 
 
 $pipeline_test_names = $base_test_names;
 $pipeline_test_descriptions = $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
 $pipeline_test_urls = $base_test_urls;
+$pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
 $core_repo_test_names = $base_test_names;
 $core_repo_test_descriptions = $base_test_descriptions;
 $core_repo_test_urls = $base_test_urls;
+$core_repo_merge_table_col_headings = $base_merge_table_col_headings;
 $core_repo_ignore_tests = [
   'branch_dev_exists',
   'branch_template_exists',
@@ -572,9 +601,27 @@ foreach($core_repos as $idx => $core_repo){
       <thead>
         <tr>
           <th class="small text-nowrap">Pipeline Name</th>
-          <?php foreach ($pipeline_test_names as $key => $name){
-            echo '<th class="small text-nowrap" title="'.$pipeline_test_descriptions[$key].'" data-toggle="tooltip" data-placement="top">'.$name.'</th>';
-          } ?>
+          <?php
+          $description = $pipeline_test_descriptions[$key];
+          $m_names_printed = [];
+          $colspan = '';
+          foreach ($pipeline_test_names as $key => $name){
+            $print = true;
+            foreach($pipeline_merge_table_col_headings as $m_name => $m_keys){
+              if(in_array($key, $m_keys)){
+                if(!in_array($m_name, $m_names_printed)){
+                  $colspan = 'colspan="'.count($m_keys).'"';
+                  $description = $m_name;
+                  $name = $m_name;
+                  $m_names_printed[] = $m_name;
+                } else {
+                  $print = false;
+                }
+              }
+            }
+            if($print) echo '<th '.$colspan.' class="small text-nowrap" title="'.$description.'" data-toggle="tooltip" data-placement="top">'.$name.'</th>';
+          }
+          ?>
         </tr>
       </thead>
       <tbody>
