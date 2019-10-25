@@ -139,7 +139,8 @@ class RepoHealth {
     if(is_fix_repo($this->name)){
       $this->fix_repo();
       $this->fix_topics();
-      $this->fix_teams();
+      $this->fix_teams('all');
+      $this->fix_teams('core');
       $this->fix_branch();
       // $this->fix_webpage();
       $this->run_tests();
@@ -312,14 +313,12 @@ class RepoHealth {
     if(!$this->repo_url) $payload['homepage'] = $this->web_url;
     if(count($payload) > 0){
       $gh_edit_repo_url = 'https://api.github.com/repos/nf-core/'.$this->name;
-      echo '<p>'.$this->name.' - '.$gh_edit_repo_url.'</p>';
-      echo '<pre><code>'.json_encode($payload, JSON_PRETTY_PRINT).'</code></pre>';
       $updated_data = $this->_send_gh_api_data($gh_edit_repo_url, $payload, 'PATCH');
       if($updated_data){
         $this->gh_repo = $updated_data;
         $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
       } else {
-        echo '<div class="alert alert-danger">Could not update repository data for '.$repo->name.'</div>';
+        echo '<div class="alert alert-danger">Could not update repository data for '.$this->name.'</div>';
       }
     }
   }
@@ -334,12 +333,20 @@ class RepoHealth {
         $this->gh_repo->topics = $updated_data->names;
         $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
       } else {
-        echo '<div class="alert alert-danger">Could not update repository topics for '.$repo->name.'</div>';
+        echo '<div class="alert alert-danger">Could not update repository topics for '.$this->name.'</div>';
       }
     }
   }
 
-  private function fix_teams(){
+  private function fix_teams($team){
+    global $gh_team_ids;
+    if(!$this->{'team_'.$team}){
+      if($team == 'core') $payload = array('permission' => 'admin');
+      if($team == 'all') $payload = array('permission' => 'push');
+      $gh_edit_team_url = 'https://api.github.com/teams/'.$gh_team_ids[$team].'/repos/nf-core/'.$this->name;
+      echo '<p>'.$this->name.' - '.$team.' - '.$gh_edit_team_url.'</p>';
+      echo '<pre><code>'.json_encode($payload, JSON_PRETTY_PRINT).'</code></pre>';
+    }
   }
 
   private function fix_branch(){
@@ -365,9 +372,11 @@ class RepoHealth {
     if(in_array("HTTP/1.1 200 OK", $http_response_header)){
       return $result;
     } else {
-      echo '<pre><code>';
-      var_dump($http_response_header);
-      echo '</code></pre>';
+      echo '<div class="alert alert-danger">';
+        echo '<h4 class="alert-heading">Error fetching GitHub API</h4>';
+        echo '<p>There was a problem with the following URL: '.$url.'</p>';
+        echo '<pre><code>'.print_r($http_response_header, true).'</code></pre>';
+      echo '</div>';
       return false;
     }
   }
@@ -418,6 +427,7 @@ function get_gh_team_repos($team){
   global $pipelines_json;
   global $pipelines;
   global $core_repos;
+  global $gh_team_ids;
 
   // Get team ID
   $gh_teams_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/team_'.$team.'.json';
@@ -432,6 +442,7 @@ function get_gh_team_repos($team){
     $gh_team_json = json_encode($gh_team, JSON_PRETTY_PRINT)."\n";
     file_put_contents($gh_teams_cache, $gh_team_json);
   }
+  $gh_team_ids[$team] = $gh_team->id;
 
   $gh_team_repos_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/team_'.$team.'_repos.json';
   if(file_exists($gh_team_repos_cache) && !is_refresh_cache()){
@@ -492,6 +503,7 @@ function get_gh_team_repos($team){
     }
   }
 }
+$gh_team_ids = [];
 get_gh_team_repos('all');
 get_gh_team_repos('core');
 
