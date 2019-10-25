@@ -602,10 +602,10 @@ foreach($core_repos as $idx => $core_repo){
         <tr>
           <th class="small text-nowrap">Pipeline Name</th>
           <?php
-          $description = $pipeline_test_descriptions[$key];
           $m_names_printed = [];
           $colspan = '';
           foreach ($pipeline_test_names as $key => $name){
+            $description = $pipeline_test_descriptions[$key];
             $print = true;
             foreach($pipeline_merge_table_col_headings as $m_name => $m_keys){
               if(in_array($key, $m_keys)){
