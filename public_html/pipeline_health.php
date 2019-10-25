@@ -15,9 +15,20 @@ function is_refresh_cache($repo = null){
   return false;
 }
 
+// Fix repo?
+function is_fix_repo($repo = null){
+  if(!isset($_GET['action']) || $_GET['action'] != 'fix')
+    return false;
+  if(isset($_GET['repos']) && $_GET['repos'] == 'all')
+    return true;
+  if($repo && isset($_GET['repos']) && $_GET['repos'] == $repo)
+    return true;
+  return false;
+}
+
 // Get auth secrets
 $config = parse_ini_file("../config.ini");
-$gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
+define('GH_AUTH', base64_encode($config['github_username'].':'.$config['github_access_token']));
 
 // Load pipelines JSON
 $pipelines_json = json_decode(file_get_contents('pipelines.json'))->remote_workflows;
@@ -35,7 +46,7 @@ define('GH_API_OPTS',
         'User-Agent: PHP',
         'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
         'Accept:application/vnd.github.luke-cage-preview+json', // Needed to get protected branch required reviews
-        "Authorization: Basic $gh_auth"
+        "Authorization: Basic ".GH_AUTH
       ]
     ]
   ])
@@ -47,9 +58,16 @@ class RepoHealth {
   // Init vars
   public $name;
   public $refresh = false;
+  public $cache_base;
   public function __construct($name) {
     $this->name = $name;
     $this->refresh = is_refresh_cache($this->name);
+
+    // Cache filenames
+    $this->cache_base = dirname(dirname(__FILE__)).'/api_cache/pipeline_health';
+    $this->gh_repo_cache = $this->cache_base.'/repo_'.$this->name.'.json';
+    $this->gh_all_branches_cache = $this->cache_base.'/branches_'.$this->name.'.json';
+    $this->gh_webpage_cache = $this->cache_base.'/repo_ghpage_'.$this->name.'.html';
   }
   public $required_status_check_contexts = [
     'continuous-integration/travis-ci',
@@ -117,42 +135,43 @@ class RepoHealth {
     $this->test_branch();
     $this->test_webpage();
   }
+  public function fix_tests(){
+    if(is_fix_repo($this->name)){
+      $this->fix_repo();
+      $this->fix_topics();
+      $this->fix_teams();
+      $this->fix_branch();
+      // $this->fix_webpage();
+      $this->run_tests();
+    }
+  }
 
   private function get_repo_data(){
     // Super annoyingly, the teams call misses just one or two keys we need :(
     if(is_null($this->gh_repo) || !isset($this->gh_repo->allow_merge_commit)){
-      $gh_repo_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/repo_'.$this->name.'.json';
-      if(file_exists($gh_repo_cache) && !$this->refresh){
-        $this->gh_repo = json_decode(file_get_contents($gh_repo_cache));
+      if(file_exists($this->gh_repo_cache) && !$this->refresh){
+        $this->gh_repo = json_decode(file_get_contents($this->gh_repo_cache));
       } else {
         $gh_repo_url = 'https://api.github.com/repos/nf-core/'.$this->name;
         $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
-
-        // Save for next time
-        if (!file_exists(dirname($gh_repo_cache))) mkdir(dirname($gh_repo_cache), 0777, true);
-        $gh_repo_json = json_encode($this->gh_repo, JSON_PRETTY_PRINT)."\n";
-        file_put_contents($gh_repo_cache, $gh_repo_json);
+        $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
       }
     }
   }
   private function get_branch_data(){
 
     // List of all branches
-    $gh_all_branches_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/branches_'.$this->name.'.json';
-    if(file_exists($gh_all_branches_cache) && !$this->refresh){
-      $this->gh_branches = json_decode(file_get_contents($gh_all_branches_cache));
+    if(file_exists($this->gh_all_branches_cache) && !$this->refresh){
+      $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
     } else {
       $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches';
       $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
-      // Save for next time
-      if (!file_exists(dirname($gh_all_branches_cache))) mkdir(dirname($gh_branch_cache), 0777, true);
-      $gh_branches_json = json_encode($this->gh_branches, JSON_PRETTY_PRINT)."\n";
-      file_put_contents($gh_all_branches_cache, $gh_branches_json);
+      $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
     }
 
     // Details of branch protection for master and dev
     foreach(['master', 'dev'] as $branch){
-      $gh_branch_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/branch_'.$this->name.'_'.$branch.'.json';
+      $gh_branch_cache = $this->cache_base.'/branch_'.$this->name.'_'.$branch.'.json';
       if(file_exists($gh_branch_cache) && !$this->refresh){
         $gh_branch = json_decode(file_get_contents($gh_branch_cache));
         if(is_object($gh_branch)){
@@ -164,16 +183,10 @@ class RepoHealth {
         $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
         if(in_array("HTTP/1.1 200 OK", $http_response_header) && is_object($gh_branch)){
           $this->{'gh_branch_'.$branch} = $gh_branch;
-
-          // Save for next time
-          if (!file_exists(dirname($gh_branch_cache))) mkdir(dirname($gh_branch_cache), 0777, true);
-          $gh_branch_json = json_encode($this->{'gh_branch_'.$branch}, JSON_PRETTY_PRINT)."\n";
-          file_put_contents($gh_branch_cache, $gh_branch_json);
+          $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_'.$branch});
         } else {
           // Write an empty cache file
-          if (!file_exists(dirname($gh_branch_cache))) mkdir(dirname($gh_branch_cache), 0777, true);
-          $gh_branch_json = json_encode('', JSON_PRETTY_PRINT)."\n";
-          file_put_contents($gh_branch_cache, $gh_branch_json);
+          $this->_save_cache_data($gh_branch_cache, '');
         }
       }
     }
@@ -182,15 +195,12 @@ class RepoHealth {
   private function get_repo_webpage(){
 
     // List of all branches
-    $gh_webpage_cache = dirname(dirname(__FILE__)).'/api_cache/pipeline_health/repo_ghpage_'.$this->name.'.html';
-    if(file_exists($gh_webpage_cache) && !$this->refresh){
-      $this->gh_webpage = file_get_contents($gh_webpage_cache);
+    if(file_exists($this->gh_webpage_cache) && !$this->refresh){
+      $this->gh_webpage = file_get_contents($this->gh_webpage_cache);
     } else {
       $gh_webpage_url = 'https://github.com/nf-core/'.$this->name;
       $this->gh_webpage = @file_get_contents($gh_webpage_url);
-      // Save for next time
-      if (!file_exists(dirname($gh_webpage_cache))) mkdir(dirname($gh_webpage_cache), 0777, true);
-      file_put_contents($gh_webpage_cache, $this->gh_webpage);
+      $this->_save_cache_data($this->gh_webpage_cache, $this->gh_webpage, false);
     }
 
     // Pull out social image
@@ -289,6 +299,86 @@ class RepoHealth {
     }
   }
 
+
+  private function fix_repo(){
+    // https://developer.github.com/v3/repos/#edit
+    $payload = array();
+    if(!$this->repo_wikis) $payload['has_wiki'] = false;
+    if(!$this->repo_issues) $payload['has_issues'] = true;
+    if(!$this->repo_merge_commits) $payload['allow_merge_commit'] = true;
+    if(!$this->repo_merge_rebase) $payload['allow_rebase_merge'] = true;
+    if(!$this->repo_merge_squash) $payload['allow_squash_merge'] = false;
+    if(!$this->repo_default_branch) $payload['default_branch'] = 'master';
+    if(!$this->repo_url) $payload['homepage'] = $this->web_url;
+    if(count($payload) > 0){
+      $gh_edit_repo_url = 'https://api.github.com/repos/nf-core/'.$this->name;
+      echo '<p>'.$this->name.' - '.$gh_edit_repo_url.'</p>';
+      echo '<pre><code>'.json_encode($payload, JSON_PRETTY_PRINT).'</code></pre>';
+      $updated_data = $this->_send_gh_api_data($gh_edit_repo_url, $payload, 'PATCH');
+      if($updated_data){
+        $this->gh_repo = $updated_data;
+        $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
+      } else {
+        echo '<div class="alert alert-danger">Could not update repository data for '.$repo->name.'</div>';
+      }
+    }
+  }
+
+  private function fix_topics(){
+    // https://developer.github.com/v3/repos/#replace-all-topics-for-a-repository
+    if(!$this->repo_keywords){
+      $topics = array( 'names' => array_values(array_unique(array_merge($this->gh_repo->topics, $this->required_topics))) );
+      $gh_edit_topics_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/topics';
+      $updated_data = $this->_send_gh_api_data($gh_edit_topics_url, $topics, 'PUT');
+      if($updated_data){
+        $this->gh_repo->topics = $updated_data->names;
+        $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
+      } else {
+        echo '<div class="alert alert-danger">Could not update repository topics for '.$repo->name.'</div>';
+      }
+    }
+  }
+
+  private function fix_teams(){
+  }
+
+  private function fix_branch(){
+  }
+
+
+
+  public function _send_gh_api_data($url, $content, $method='POST'){
+    $context = stream_context_create([
+      'http' => [
+        'method' => $method,
+        'header' => [
+          'Content-Type: application/json',
+          'User-Agent: PHP',
+          'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
+          'Accept:application/vnd.github.luke-cage-preview+json', // Needed to get protected branch required reviews
+          "Authorization: Basic ".GH_AUTH
+        ],
+        'content' => json_encode($content)
+      ]
+    ]);
+    $result = json_decode(file_get_contents($url, false, $context));
+    if(in_array("HTTP/1.1 200 OK", $http_response_header)){
+      return $result;
+    } else {
+      echo '<pre><code>';
+      var_dump($http_response_header);
+      echo '</code></pre>';
+      return false;
+    }
+  }
+
+  private function _save_cache_data($path, $data, $encode_json=true){
+    if (!file_exists(dirname($path))) mkdir(dirname($path), 0777, true);
+    if($encode_json) $data_json = json_encode($data, JSON_PRETTY_PRINT)."\n";
+    else $data_json = $data;
+    file_put_contents($path, $data_json);
+  }
+
   public function print_table_cell($test_name){
     $test_url = $this->test_urls[$test_name];
     $test_url = str_replace('{repo}', $this->name, $test_url);
@@ -311,8 +401,7 @@ class RepoHealth {
 // Pipeline health class
 class PipelineHealth extends RepoHealth {
   public function __construct($name) {
-    $this->name = $name;
-    $this->refresh = is_refresh_cache($this->name);
+    parent::__construct($name);
     $this->web_url = 'https://nf-co.re/'.$this->name;
   }
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
@@ -568,7 +657,7 @@ foreach($core_repo_ignore_tests as $key){
   unset($core_repo_test_urls[$key]);
 }
 
-// Get any missing data and run tests
+// Get any missing data and run tests / fix problems
 foreach($pipelines as $idx => $pipeline){
   $pipeline->test_names = $base_test_names;
   $pipeline->test_descriptions = $pipeline_test_descriptions;
@@ -579,6 +668,7 @@ foreach($pipelines as $idx => $pipeline){
     continue;
   }
   $pipeline->run_tests();
+  $pipeline->fix_tests();
 }
 foreach($core_repos as $idx => $core_repo){
   $core_repo->test_names = $base_test_names;
@@ -590,7 +680,11 @@ foreach($core_repos as $idx => $core_repo){
     continue;
   }
   $core_repo->run_tests();
+  $core_repo->fix_tests();
 }
+
+ksort($pipelines);
+ksort($core_repos);
 
 ?>
 
@@ -667,7 +761,7 @@ foreach($core_repos as $idx => $core_repo){
 
   <h2>Actions</h2>
   <form class="form-inline" action="" method="get">
-    <select class="custom-select" name="repos">
+    <select class="custom-select repos-select" name="repos">
       <optgroup label="All repositories">
         <option value="all" selected>All pipelines</option>
       </optgroup>
@@ -682,7 +776,8 @@ foreach($core_repos as $idx => $core_repo){
       } ?>
       </optgroup>
     </select>
-    <button type="submit" name="action" value="refresh" class="btn btn-primary my-1 mx-2 refresh-btn">Refresh data</button>
+    <button type="submit" name="action" value="refresh" class="btn btn-primary my-1 ml-2 refresh-btn">Refresh data</button>
+    <button type="submit" name="action" value="fix" class="btn btn-info my-1 ml-1 fix-btn">Fix data</button>
   </form>
   <p><em class="small text-muted">Warning: page will take a minute or two to load. Even when refreshing one repo, some tests will be refreshed for all repos.</em></p>
 
@@ -690,9 +785,22 @@ foreach($core_repos as $idx => $core_repo){
 
 <script type="text/javascript">
 $(function(){
-  // Disable the refresh button to prevent button mashing
+  // Disable the buttons to prevent button mashing
   $('.refresh-btn').click(function(){
     $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+  });
+  $('.fix-btn').click(function(e){
+    if(!confirm('This will attempt to change repository settings! Are you sure?')){
+      e.preventDefault();
+    } else {
+      if($('.repos-select').val() == 'all'){
+        if(!confirm('Seriously - ALL nf-core repost. Are you super sure?')){
+          e.preventDefault();
+        } else {
+          $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+        }
+      }
+    }
   });
 
   // Remove all get data from the URL
