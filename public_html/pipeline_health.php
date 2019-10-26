@@ -66,6 +66,7 @@ class RepoHealth {
     // Cache filenames
     $this->cache_base = dirname(dirname(__FILE__)).'/api_cache/pipeline_health';
     $this->gh_repo_cache = $this->cache_base.'/repo_'.$this->name.'.json';
+    $this->gh_release_cache = $this->cache_base.'/release_'.$this->name.'.json';
     $this->gh_all_branches_cache = $this->cache_base.'/branches_'.$this->name.'.json';
     $this->gh_webpage_cache = $this->cache_base.'/repo_ghpage_'.$this->name.'.html';
   }
@@ -87,6 +88,7 @@ class RepoHealth {
 
   // Data vars
   public $gh_repo;
+  public $gh_release;
   public $gh_teams = [];
   public $gh_branches;
   public $gh_branch_master;
@@ -147,7 +149,7 @@ class RepoHealth {
     }
   }
 
-  private function get_repo_data(){
+  public function get_repo_data(){
     // Super annoyingly, the teams call misses just one or two keys we need :(
     if(is_null($this->gh_repo) || !isset($this->gh_repo->allow_merge_commit)){
       if(file_exists($this->gh_repo_cache) && !$this->refresh){
@@ -159,7 +161,19 @@ class RepoHealth {
       }
     }
   }
-  private function get_branch_data(){
+
+  public function get_release_data(){
+    // Currently only used to get last release for tools, as have otheres from pipelines.json
+    if(file_exists($this->gh_release_cache) && !$this->refresh){
+      $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
+    } else {
+      $gh_release_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/releases/latest';
+      $this->gh_release = json_decode(file_get_contents($gh_release_url, false, GH_API_OPTS));
+      $this->_save_cache_data($this->gh_release_cache, $this->gh_release);
+    }
+  }
+
+  public function get_branch_data(){
 
     // List of all branches
     if(file_exists($this->gh_all_branches_cache) && !$this->refresh){
@@ -193,7 +207,7 @@ class RepoHealth {
     }
   }
 
-  private function get_repo_webpage(){
+  public function get_repo_webpage(){
 
     // List of all branches
     if(file_exists($this->gh_webpage_cache) && !$this->refresh){
@@ -416,11 +430,31 @@ class RepoHealth {
 
 // Pipeline health class
 class PipelineHealth extends RepoHealth {
+  // URL should point to pipeline page
   public function __construct($name) {
     parent::__construct($name);
     $this->web_url = 'https://nf-co.re/'.$this->name;
   }
+  // Keywords should also include nextflow, workflow and pipeline
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
+  // Variables for release tests
+  public $has_release;
+  public $last_release;
+  public $release_after_tools;
+
+  // Extra pipeline-specific tests
+  public function run_tests(){
+    parent::run_tests();
+    $this->test_releases();
+  }
+
+  public function test_releases(){
+    global $tools_last_release;
+    if(!$this->has_release) $this->release_after_tools = false;
+    else if($this->last_release && $tools_last_release){
+      $this->release_after_tools = strtotime($this->last_release) > strtotime($tools_last_release);
+    }
+  }
 }
 
 // Core repo health class
@@ -515,7 +549,7 @@ $gh_team_ids = [];
 get_gh_team_repos('all');
 get_gh_team_repos('core');
 
-// Loop through pipelines, in case there are any without team access
+// Loop through pipelines
 foreach($pipelines_json as $wf){
   // Remove archived pipelines
   if($wf->archived){
@@ -523,8 +557,15 @@ foreach($pipelines_json as $wf){
       unset($pipelines[$wf->name]);
     }
   } else {
+    // Add, in case there are any without team access
     if(!array_key_exists($wf->name, $pipelines)){
       $pipelines[$wf->name] = new PipelineHealth($wf->name);
+    }
+    // Add data for release tests
+    $pipelines[$wf->name]->has_release = false;
+    if(count($wf->releases) > 0){
+      $pipelines[$wf->name]->has_release = true;
+      $pipelines[$wf->name]->last_release = end($wf->releases)->published_at;
     }
   }
 }
@@ -645,10 +686,19 @@ $base_merge_table_col_headings = [
 ];
 
 
-$pipeline_test_names = $base_test_names;
-$pipeline_test_descriptions = $base_test_descriptions;
+$pipeline_test_names = [
+  'has_release' => 'Released',
+  'release_after_tools' => 'Released after tools',
+  ] + $base_test_names;
+$pipeline_test_descriptions = [
+  'has_release' => 'Has at least one release',
+  'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
+  ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
-$pipeline_test_urls = $base_test_urls;
+$pipeline_test_urls = [
+  'has_release' =>         'https://github.com/nf-core/{repo}/releases',
+  'release_after_tools' => 'https://github.com/nf-core/{repo}/releases',
+  ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
 $core_repo_test_names = $base_test_names;
@@ -679,22 +729,10 @@ foreach($core_repo_ignore_tests as $key){
 
 // Get any missing data and run tests / fix problems
 $updated_teams = [];
-foreach($pipelines as $idx => $pipeline){
-  $pipeline->test_names = $base_test_names;
-  $pipeline->test_descriptions = $pipeline_test_descriptions;
-  $pipeline->test_urls = $base_test_urls;
-  $pipeline->get_data();
-  if($pipeline->gh_repo->archived){
-    unset($pipelines[$idx]);
-    continue;
-  }
-  $pipeline->run_tests();
-  $pipeline->fix_tests();
-}
 foreach($core_repos as $idx => $core_repo){
-  $core_repo->test_names = $base_test_names;
-  $core_repo->test_descriptions = $base_test_descriptions;
-  $core_repo->test_urls = $base_test_urls;
+  $core_repo->test_names = $core_repo_test_names;
+  $core_repo->test_descriptions = $core_repo_test_descriptions;
+  $core_repo->test_urls = $core_repo_test_urls;
   $core_repo->get_data();
   if($core_repo->gh_repo->archived){
     unset($core_repos[$idx]);
@@ -703,6 +741,22 @@ foreach($core_repos as $idx => $core_repo){
   $core_repo->run_tests();
   $core_repo->fix_tests();
 }
+// Tools: Get release info
+$core_repos['tools']->get_release_data();
+$tools_last_release = $core_repos['tools']->gh_release->published_at;
+foreach($pipelines as $idx => $pipeline){
+  $pipeline->test_names = $pipeline_test_names;
+  $pipeline->test_descriptions = $pipeline_test_descriptions;
+  $pipeline->test_urls = $pipeline_test_urls;
+  $pipeline->get_data();
+  if($pipeline->gh_repo->archived){
+    unset($pipelines[$idx]);
+    continue;
+  }
+  $pipeline->run_tests();
+  $pipeline->fix_tests();
+}
+
 
 foreach($updated_teams as $team => $updated){
   if($updated){
