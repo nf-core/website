@@ -80,6 +80,8 @@ class RepoHealth {
     // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
     // If we really want to do this, might have to query the repo contents..??
   ];
+  public $branch_exist_tests = ['master'];
+  public $branches_protection = ['master'];
   public $required_topics = ['nf-core'];
   public $web_url = 'https://nf-co.re';
   public $test_names;
@@ -135,7 +137,7 @@ class RepoHealth {
   public function run_tests(){
     $this->test_repo();
     $this->test_teams();
-    $this->test_branch();
+    $this->test_branch_exists();
     $this->test_webpage();
   }
   public function fix_tests(){
@@ -143,8 +145,7 @@ class RepoHealth {
       $this->fix_repo();
       $this->fix_topics();
       $this->fix_teams();
-      $this->fix_branch();
-      // $this->fix_webpage();
+      // Done! Refresh the test statuses
       $this->run_tests();
     }
   }
@@ -251,22 +252,22 @@ class RepoHealth {
     $this->team_all = isset($this->gh_teams['all']) ? $this->gh_teams['all']->push : false;
     $this->team_core = isset($this->gh_teams['core']) ? $this->gh_teams['core']->admin : false;
   }
-  public function test_branch(){
+  public function test_branch_exists(){
     // Check that branches exist
-    $branch_exist_tests = [ 'template', 'dev', 'master'];
     if(isset($this->gh_branches)){
       $this->branch_master_exists = false;
       $this->branch_dev_exists = false;
       $this->branch_template_exists = false;
       foreach($this->gh_branches as $branch){
-        if(in_array(strtolower($branch->name), $branch_exist_tests)){
+        if(in_array(strtolower($branch->name), $this->branch_exist_tests)){
           $this->{'branch_'.strtolower($branch->name).'_exists'} = true;
         }
       }
     }
-
+  }
+  public function test_branch_protection(){
     // Test branch protection for master and dev
-    foreach (['dev', 'master'] as $branch) {
+    foreach ($this->branches_protection as $branch) {
       $prs_required = $branch == 'master' ? 2 : 1;
       if(!isset($this->{'gh_branch_'.$branch}) || !is_object($this->{'gh_branch_'.$branch})){
         $this->{'branch_'.$branch.'_strict_updates'} = false;
@@ -367,9 +368,9 @@ class RepoHealth {
     }
   }
 
-  private function fix_branch(){
+  public function fix_branch_protection(){
     // Fix branch protection for master and dev
-    foreach (['dev', 'master'] as $branch) {
+    foreach ($this->branches_protection as $branch) {
       // Convenience vars for test results
       $test_results = [
         $this->{'branch_'.$branch.'_enforce_admins'},
@@ -434,7 +435,7 @@ class RepoHealth {
         echo '<strong class="mr-2">Error with GitHub API</strong> ';
         echo 'There was a problem with the following URL: <code class="mr-2">'.$url.'</code> (<code>'.$method.'</code>)';
         echo '<br><span class="text-muted small">See the browser console for details</span>';
-        echo '<script>console.log('.json_encode($content).'); console.log('.json_encode($http_response_header).'); </script>';
+        echo '<script>console.log('.$url.', '.json_encode($content).', '.json_encode($http_response_header).'); </script>';
       echo '</div>';
       return false;
     }
@@ -473,6 +474,9 @@ class PipelineHealth extends RepoHealth {
     parent::__construct($name);
     $this->web_url = 'https://nf-co.re/'.$this->name;
   }
+  // We need more branches in pipelines
+  public $branch_exist_tests = ['template', 'dev', 'master']; // lower case
+  public $branches_protection = ['dev', 'master'];
   // Keywords should also include nextflow, workflow and pipeline
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
   // Variables for release tests
@@ -483,6 +487,7 @@ class PipelineHealth extends RepoHealth {
   // Extra pipeline-specific tests
   public function run_tests(){
     parent::run_tests();
+    $this->test_branch_protection();
     $this->test_releases();
   }
 
@@ -491,6 +496,14 @@ class PipelineHealth extends RepoHealth {
     if(!$this->has_release) $this->release_after_tools = false;
     else if($this->last_release && $tools_last_release){
       $this->release_after_tools = strtotime($this->last_release) > strtotime($tools_last_release);
+    }
+  }
+
+  // Extra pipeline-specific fixes
+  public function fix_tests(){
+    parent::fix_tests();
+    if(is_fix_repo($this->name)){
+      $this->fix_branch_protection();
     }
   }
 }
