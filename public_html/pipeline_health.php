@@ -368,6 +368,44 @@ class RepoHealth {
   }
 
   private function fix_branch(){
+    // Fix branch protection for master and dev
+    foreach (['dev', 'master'] as $branch) {
+      // Convenience vars for test results
+      $test_results = [
+        $this->{'branch_'.$branch.'_enforce_admins'},
+        $this->{'branch_'.$branch.'_strict_updates'},
+        $this->{'branch_'.$branch.'_required_ci'},
+        $this->{'branch_'.$branch.'_stale_reviews'},
+        $this->{'branch_'.$branch.'_code_owner_reviews'},
+        $this->{'branch_'.$branch.'_required_num_reviews'},
+      ];
+
+      // At least one failure
+      if(count(array_keys($test_results, true)) != count($test_results)){
+        $contexts = array_values( array_unique( array_merge(
+          $this->required_status_check_contexts,
+          $this->{'gh_branch_'.$branch}->required_status_checks->contexts
+        )));
+        $payload = array(
+          "enforce_admins" => false,
+          "required_status_checks" => array(
+            "strict" => false,
+            "contexts" => $contexts,
+          ),
+          "required_pull_request_reviews" => array(
+            "dismiss_stale_reviews" => false,
+            "require_code_owner_reviews" => false,
+            "required_approving_review_count" => $branch == 'master' ? 2 : 1,
+          ),
+          "restrictions" => null
+        );
+        $gh_edit_branch_protection_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/'.$branch.'/protection';
+        $updated_data = $this->_send_gh_api_data($gh_edit_branch_protection_url, $payload, 'PUT');
+        if($updated_data){
+          $this->{'gh_branch_'.$branch} = $updated_data;
+        }
+      }
+    }
   }
 
 
