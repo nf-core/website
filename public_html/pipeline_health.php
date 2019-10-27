@@ -270,12 +270,12 @@ class RepoHealth {
     foreach ($this->branches_protection as $branch) {
       $prs_required = $branch == 'master' ? 2 : 1;
       if(!isset($this->{'gh_branch_'.$branch}) || !is_object($this->{'gh_branch_'.$branch})){
-        $this->{'branch_'.$branch.'_strict_updates'} = false;
-        $this->{'branch_'.$branch.'_required_ci'} = false;
-        $this->{'branch_'.$branch.'_stale_reviews'} = false;
-        $this->{'branch_'.$branch.'_code_owner_reviews'} = false;
-        $this->{'branch_'.$branch.'_required_num_reviews'} = false;
-        $this->{'branch_'.$branch.'_enforce_admins'} = false;
+        $this->{'branch_'.$branch.'_strict_updates'} = -1;
+        $this->{'branch_'.$branch.'_required_ci'} = -1;
+        $this->{'branch_'.$branch.'_stale_reviews'} = -1;
+        $this->{'branch_'.$branch.'_code_owner_reviews'} = -1;
+        $this->{'branch_'.$branch.'_required_num_reviews'} = -1;
+        $this->{'branch_'.$branch.'_enforce_admins'} = -1;
         continue;
       }
       $data = $this->{'gh_branch_'.$branch};
@@ -455,6 +455,10 @@ class RepoHealth {
       echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
       </td>';
+    } else if($this->$test_name === -1){
+      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+        <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-times text-secondary"></i></a>
+      </td>';
     } else if($this->$test_name){
       echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-check text-success"></i></a>
@@ -493,7 +497,7 @@ class PipelineHealth extends RepoHealth {
 
   public function test_releases(){
     global $tools_last_release;
-    if(!$this->has_release) $this->release_after_tools = false;
+    if(!$this->has_release) $this->release_after_tools = -1;
     else if($this->last_release && $tools_last_release){
       $this->release_after_tools = strtotime($this->last_release) > strtotime($tools_last_release);
     }
