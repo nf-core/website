@@ -269,13 +269,19 @@ class RepoHealth {
     // Test branch protection for master and dev
     foreach ($this->branches_protection as $branch) {
       $prs_required = $branch == 'master' ? 2 : 1;
-      if(!isset($this->{'gh_branch_'.$branch}) || !is_object($this->{'gh_branch_'.$branch})){
+      if(!$this->{'branch_'.$branch.'_exists'}){
         $this->{'branch_'.$branch.'_strict_updates'} = -1;
         $this->{'branch_'.$branch.'_required_ci'} = -1;
         $this->{'branch_'.$branch.'_stale_reviews'} = -1;
         $this->{'branch_'.$branch.'_code_owner_reviews'} = -1;
         $this->{'branch_'.$branch.'_required_num_reviews'} = -1;
         $this->{'branch_'.$branch.'_enforce_admins'} = -1;
+        $this->test_descriptions['branch_'.$branch.'_strict_updates'] = $branch.' branch does not exist';
+        $this->test_descriptions['branch_'.$branch.'_required_ci'] = $branch.' branch does not exist';
+        $this->test_descriptions['branch_'.$branch.'_stale_reviews'] = $branch.' branch does not exist';
+        $this->test_descriptions['branch_'.$branch.'_code_owner_reviews'] = $branch.' branch does not exist';
+        $this->test_descriptions['branch_'.$branch.'_required_num_reviews'] = $branch.' branch does not exist';
+        $this->test_descriptions['branch_'.$branch.'_enforce_admins'] = $branch.' branch does not exist';
         continue;
       }
       $data = $this->{'gh_branch_'.$branch};
@@ -363,7 +369,6 @@ class RepoHealth {
       $gh_edit_team_url = 'https://api.github.com/teams/'.$gh_team_ids[$team].'/repos/nf-core/'.$this->name;
       if($this->_send_gh_api_data($gh_edit_team_url, $payload, 'PUT')){
         $updated_teams[$team] = true;
-        $_GET['action'] = 'refresh';
       }
     }
   }
@@ -381,12 +386,17 @@ class RepoHealth {
         $this->{'branch_'.$branch.'_required_num_reviews'},
       ];
 
-      // At least one failure
+      // Only run if we have at least one test failure
       if(count(array_keys($test_results, true)) != count($test_results)){
-        $contexts = array_values( array_unique( array_merge(
-          $this->required_status_check_contexts,
-          $this->{'gh_branch_'.$branch}->required_status_checks->contexts
-        )));
+        // Add needed required-CI tests to what's already there if we have something
+        if(is_object($this->{'gh_branch_'.$branch}) && isset($this->{'gh_branch_'.$branch}->required_status_checks)){
+          $contexts = array_values( array_unique( array_merge(
+            $this->required_status_check_contexts,
+            $this->{'gh_branch_'.$branch}->required_status_checks->contexts
+          )));
+        } else {
+          $contexts = $this->required_status_check_contexts;
+        }
         $payload = array(
           "enforce_admins" => false,
           "required_status_checks" => array(
@@ -404,6 +414,8 @@ class RepoHealth {
         $updated_data = $this->_send_gh_api_data($gh_edit_branch_protection_url, $payload, 'PUT');
         if($updated_data){
           $this->{'gh_branch_'.$branch} = $updated_data;
+          $gh_branch_cache = $this->cache_base.'/branch_'.$this->name.'_'.$branch.'.json';
+          $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_'.$branch});
         }
       }
     }
@@ -508,6 +520,8 @@ class PipelineHealth extends RepoHealth {
     parent::fix_tests();
     if(is_fix_repo($this->name)){
       $this->fix_branch_protection();
+      // Done! Refresh the test statuses
+      $this->run_tests();
     }
   }
 }
@@ -815,6 +829,7 @@ foreach($pipelines as $idx => $pipeline){
 
 foreach($updated_teams as $team => $updated){
   if($updated){
+    $_GET['action'] = 'refresh';
     get_gh_team_repos($team);
     foreach($pipelines as $pipeline){
       $pipeline->test_teams();
