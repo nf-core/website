@@ -1,4 +1,6 @@
 <?php
+ ini_set('display_errors', 'On');
+ error_reporting(E_ALL | E_STRICT);
 // Build the HTML for a pipeline documentation page.
 // Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
 $import_chartjs = true;
@@ -8,7 +10,11 @@ $import_chartjs = true;
 // Get number of open issues and PRs
 $issues_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_issue_stats.json';
 $issues_json = json_decode(file_get_contents($issues_json_fn), true);
-$num_issues = count($issues_json['repos'][$pipeline->name]['issues']);
+$num_issues = 0;
+foreach($issues_json['repos'][$pipeline->name]['issues'] as $issue){
+  $num_issues += (int)($issue['state']=='open');
+}
+
 $num_prs = count($issues_json['repos'][$pipeline->name]['prs']);
 
 // Get number of clones over time
