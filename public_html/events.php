@@ -85,18 +85,18 @@ foreach($events as $idx => $event):
   <div class="card-body <?php if($is_past_events){ echo 'py-2'; } ?>">
     <h5 class="my-0 py-0">
       <small><span class="badge badge-<?php echo $colour_class; ?> float-right small"><?php echo ucfirst($event['type']); ?></span></small>
-      <a class="text-success" href="#event_<?php echo $idx; ?>_modal" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal"><?php echo $event['title']; ?></a>
+      <a class="text-success" href="#<?php echo $event['id']; ?>" data-toggle="modal" data-target="#<?php echo $event['id']; ?>"><?php echo $event['title']; ?></a>
     </h5>
     <?php if(!$is_past_events): ?>
       <h6 class="small text-muted"><?php echo $date_string; ?></h6>
       <p><?php echo nl2br($event['description']); ?></p>
-      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal">
+      <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#<?php echo $event['id']; ?>">
         See details
       </button>
     <?php else: ?>
       <h6 class="small text-muted mb-0">
         <?php echo $date_string; ?> -
-        <a class="text-success" href="#event_<?php echo $idx; ?>_modal" data-toggle="modal" data-target="#event_<?php echo $idx; ?>_modal">
+        <a class="text-success" href="#<?php echo $event['id']; ?>" data-toggle="modal" data-target="#<?php echo $event['id']; ?>">
           See details
         </a>
       </h6>
@@ -105,7 +105,7 @@ foreach($events as $idx => $event):
 </div>
 
 <!-- Event Modal -->
-<div class="modal fade" id="event_<?php echo $idx; ?>_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="<?php echo $event['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -199,6 +199,33 @@ foreach($events as $idx => $event):
   </div>
 </div>
 
-<?php endforeach;
+<?php endforeach; ?>
 
+<script>
+// Deep link to modals so we have URLs specific to events
+$(document).ready(function(){
+
+  // If we have a hash on page load, show the modal
+  if(window.location.hash){
+    $(window.location.hash).modal('show');
+  }
+
+  // Set the browser URL to the modal hash when shown
+  // Don't set window.location.hash as this makes the browser scroll
+  $('.modal').on('show.bs.modal', function (e) {
+    var clean_href = window.location.href.replace(window.location.hash, '');
+    window.history.replaceState({}, '', clean_href+'#'+$(this).attr('id'));
+  });
+
+  // Remove the hash from the URL when the modal is hidden
+  // Don't set window.location.hash as this makes the browser scroll
+  $('.modal').on('hide.bs.modal', function (e) {
+    var clean_href = window.location.href.replace(window.location.hash, '');
+    window.history.replaceState({}, '', clean_href);
+  });
+
+});
+</script>
+
+<?php
 include('../includes/footer.php');
