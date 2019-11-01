@@ -1,6 +1,5 @@
 <?php
- ini_set('display_errors', 'On');
- error_reporting(E_ALL | E_STRICT);
+ 
 // Build the HTML for a pipeline documentation page.
 // Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
 $import_chartjs = true;
