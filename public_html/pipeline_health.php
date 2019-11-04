@@ -71,7 +71,7 @@ class RepoHealth {
     $this->gh_webpage_cache = $this->cache_base.'/repo_ghpage_'.$this->name.'.html';
   }
   public $required_status_check_contexts = [
-    'continuous-integration/travis-ci',
+    'Travis CI - Pull Request',
     // TODO - after official switch to GitHub Actions, need new CI test names here:
     // Markdown
     // YAML
