@@ -70,6 +70,8 @@ class RepoHealth {
     $this->gh_all_branches_cache = $this->cache_base.'/branches_'.$this->name.'.json';
     $this->gh_webpage_cache = $this->cache_base.'/repo_ghpage_'.$this->name.'.html';
   }
+
+  // Names of required CI checks. These are added to whatever already exists.
   public $required_status_check_contexts = [
     'Travis CI - Pull Request',
     // TODO - after official switch to GitHub Actions, need new CI test names here:
@@ -79,6 +81,11 @@ class RepoHealth {
     // test
     // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
     // If we really want to do this, might have to query the repo contents..??
+  ];
+
+  // Names of old CI tests that must not be present any more
+  public $required_remove_status_check_contexts = [
+    'continuous-integration/travis-ci'
   ];
   public $branch_exist_tests = ['master'];
   public $branches_protection = ['master'];
@@ -293,7 +300,11 @@ class RepoHealth {
         // Don't require branches to be up to date before merging.
         $this->{'branch_'.$branch.'_strict_updates'} = $data->required_status_checks->strict == false;
         // At least the minimum set of required CI tests
-        $this->{'branch_'.$branch.'_required_ci'} = !array_diff($this->required_status_check_contexts, $data->required_status_checks->contexts);
+        $has_min_ci_checks = !array_diff($this->required_status_check_contexts, $data->required_status_checks->contexts);
+        // None of the required tests that we don't want
+        $has_removed_ci_checks = count(array_diff($this->required_remove_status_check_contexts, $data->required_status_checks->contexts)) == count($this->required_remove_status_check_contexts);
+        // Only pass if both of the above pass
+        $this->{'branch_'.$branch.'_required_ci'} = $has_min_ci_checks && $has_removed_ci_checks;
       }
       if(!isset($data->required_pull_request_reviews)){
         $this->{'branch_'.$branch.'_stale_reviews'} = false;
@@ -397,6 +408,9 @@ class RepoHealth {
         } else {
           $contexts = $this->required_status_check_contexts;
         }
+        // Remove any old contexts that we don't want
+        $contexts = array_diff($contexts, $this->required_remove_status_check_contexts);
+
         $payload = array(
           "enforce_admins" => false,
           "required_status_checks" => array(
