@@ -89,8 +89,14 @@ blockquote {
   color: #fff;
   background-color: rgba(255,255,255,.075);
 }
-.progress {
+.progress, .modal-content {
   background-color: #2d2e2f;
+}
+.modal-content .close {
+  color: #fff;
+}
+.modal-content .modal-header, .modal-content .modal-footer {
+  border-color: #222;
 }
 
 .site-nav,
