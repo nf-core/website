@@ -6,7 +6,7 @@ $join_redirects = [
   'slack' => $config['slack_invite_url']
 ];
 if(isset($_GET['t'])){
-  $redirect = str_replace('join/', '', $_GET['t']);
+  $redirect = rtrim(str_replace('join/', '', $_GET['t']), '/');
   if(array_key_exists($redirect, $join_redirects)){
     header('Location: '.$join_redirects[$redirect]);
   } else {
