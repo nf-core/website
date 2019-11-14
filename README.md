@@ -1,4 +1,3 @@
-
 <img src="public_html/assets/img/logo/nf-core-logo.png" width="400">
 
 # [nf-co.re](https://github.com/nf-core/nf-co.re)
@@ -6,26 +5,28 @@
 This repository contains code for the nf-core website: **http://nf-co.re/**
 
 ## Packages used
+
 Here's how the website is built:
 
-* Language: PHP
-* HTML / CSS / JS framework: [Bootstrap v4](http://getbootstrap.com/)
-* JavaScript libraries:
-    * [jQuery](https://jquery.com/)
-    * [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
-    * [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
-    * [Leaflet](https://leafletjs.com/) _(contributor map)_
-    * [Moment.js](https://momentjs.com/) _(time and date parsing)_
-    * [Chart.js](https://www.chartjs.org/) _(statistics plots)_
-    * [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
-    * [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
-    * [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
-    * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
-    * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
-* PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
-* SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
+- Language: PHP
+- HTML / CSS / JS framework: [Bootstrap v4](http://getbootstrap.com/)
+- JavaScript libraries:
+  - [jQuery](https://jquery.com/)
+  - [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
+  - [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
+  - [Leaflet](https://leafletjs.com/) _(contributor map)_
+  - [Moment.js](https://momentjs.com/) _(time and date parsing)_
+  - [Chart.js](https://www.chartjs.org/) _(statistics plots)_
+  - [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
+  - [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
+  - [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
+  - [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
+  - [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
+- PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
+- SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
 
 ## Development
+
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
 **IMPORTANT:** The repo has git submodules, so remember to use the `--recursive` flag:
@@ -46,6 +47,7 @@ Next, you'll need to build the `pipelines.json` file that powers much of the sit
 First you'll need a `config.ini` text file with values for `github_username` and `github_access_token` set in it
 ([instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line),
 the token only needs the `public_repo` permission). This file is ignored in `.gitignore` for security reasons. Then you can run:
+
 ```bash
 php update_pipeline_details.php
 ```
@@ -59,6 +61,7 @@ Optionally, once you've done that, you can grab the pipeline traffic and issue s
 php update_issue_stats.php
 php update_stats.php
 ```
+
 Note that your github account needs push rights for the nf-core permission for the `update_stats.php` to work.
 
 This creates `nfcore_stats.json` and `nfcore_issue_stats.json`, also ignored in `.gitignore`.
@@ -74,6 +77,7 @@ Note that the `.htaccess` file is set up to remove the `.php` file extensions in
 ## Server Setup
 
 ### Stats cronjob
+
 The web server needs the following cronjob running to scrape pipeline statistics once a week:
 
 ```
@@ -84,12 +88,19 @@ The web server needs the following cronjob running to scrape pipeline statistics
 The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
 
 ### Tools API docs
+
 The repo has a softlink for `/tools-docs` which is intended for use on the server and corresponds to the path used in `public_html/deploy.php`. This script pulls the built API docs from the tools repo onto the server so that it can be served at that URL.
 
+## Contribution guidelines
+
+If you are looking forward to contribute to the website or add your institution to the official list of contributors, please have a look at the [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
+
+## Community
+
+If you have any questions or issues please send us a message on [Slack](https://nf-co.re/join/slack).
+
 ## Credits
+
 Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation. See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
 
 Kudos to the excellent [npm website](https://www.npmjs.com), which provided inspiration for the design of the pipeline pages.
-
-## Help
-If you have any questions or issues please send us a message on [Slack](https://nf-co.re/join/slack).
