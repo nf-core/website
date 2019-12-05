@@ -1,0 +1,23 @@
+name: Lint Markdown
+on:
+  push:
+    paths: markdown/**
+  pull_request:
+    paths: markdown/**
+
+jobs:
+  test_markdown:
+    name: Test markdown syntax
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v1
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+
+      - name: Install markdown lint
+        run: npm install -g markdownlint-cli
+
+      - name: Run markdown lint
+        run: markdownlint ./markdown -c .github/markdownlint.yml --ignore ./markdown/pipelines

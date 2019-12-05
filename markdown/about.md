@@ -20,4 +20,5 @@ The NGI had been developing analysis pipelines for use with it's genomics data f
 
 As the number of users and contributors grew, the pipelines began to outgrow the SciLifeLab and NGI branding. To try to open up the effort into a truly collaborative project, [nf-core](https://github.com/nf-core) was created and all relevant pipelines moved to this new GitHub Organisation.
 
-The early days of nf-core were greatly shaped by [Alex Peltzer](https://apeltzer.github.io/) ([@apeltzer](https://github.com/apeltzer/)), [Sven Fillinger](https://uni-tuebingen.de/en/research/research-infrastructure/quantitative-biology-center-qbic/team0/sven-fillinger/) ([@sven1103](https://github.com/sven1103/)) and [Andreas Wilm](https://andreas-wilm.github.io/) ([@andreas-wilm](https://github.com/andreas-wilm/)). Without them, the project would not exist.
+The early days of nf-core were greatly shaped by [Alex Peltzer](https://apeltzer.github.io/) ([@apeltzer](https://github.com/apeltzer/)), [Sven Fillinger](https://uni-tuebingen.de/en/research/research-infrastructure/quantitative-biology-center-qbic/team0/sven-fillinger/) ([@sven1103](https://github.com/sven1103/)) and [Andreas Wilm](https://andreas-wilm.github.io/) ([@andreas-wilm](https://github.com/andreas-wilm/)).
+Without them, the project would not exist.
