@@ -60,6 +60,7 @@ If possible, it's great if pipelines can also have:
   * Nearly all nf-core pipelines use a conda `env` script to list their software requirements.
     The pipeline Docker images are then built using this, meaning that with a single file your pipeline can support nextflow users running with conda, docker or singularity.
   * The [nf-core template](/tools#creating-a-new-workflow) comes with all required code to support this setup.
+* All pipelines should use by default a recent reference genomes (_ie_ `GRCh38` for human...)
 * Optimised output file formats
   * Pipelines should generate `CRAM` alignment files by default, but have a `--bam` option to generate `BAM` outputs if required by the user.
 * Digital object identifiers (DOIs) for easy referencing in literature
