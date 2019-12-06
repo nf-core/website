@@ -28,10 +28,6 @@ if( isset($markdown_fn) and $markdown_fn){
     include('404.php');
     die();
   }
-  // Highlight any search terms if we have them
-  if(isset($_GET['q']) && strlen($_GET['q'])){
-    $md_full = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $md_full);
-  }
 
   // Get the meta
   $meta = [];
@@ -71,6 +67,11 @@ if( isset($markdown_fn) and $markdown_fn){
   // Convert to HTML
   $pd = new ParsedownExtra();
   $content = $pd->text($md);
+
+  // Highlight any search terms if we have them
+  if(isset($_GET['q']) && strlen($_GET['q'])){
+    $content = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $content);
+  }
 
   // Automatically add HTML IDs to headers
   // Add ID attributes to headers
