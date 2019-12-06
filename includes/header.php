@@ -77,10 +77,11 @@ if( isset($markdown_fn) and $markdown_fn){
   // Add ID attributes to headers
   $hids = Array();
   $content = preg_replace_callback(
-    '~<h([1234])>([^<]*)</h([1234])>~Ui', // Ungreedy by default, case insensitive
+    '~<h([1234])>(\S*)</h([1234])>~Ui', // Ungreedy by default, case insensitive
     function ($matches) {
       global $hids;
-      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $matches[2])));
+      $id_match = strip_tags($matches[2]);
+      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
       $id_match = str_replace('---', '-', $id_match);
       $hid = $id_match;
       $i = 1;
