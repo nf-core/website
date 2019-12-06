@@ -10,7 +10,7 @@ To ensure this standardisation, we maintain a set of guidelines which all _nf-co
 pipelines must adhere to.
 
 > If you're thinking of adding a new pipeline to nf-core, please read the documentation
-> about [adding a new pipeline](/developers/adding_pipelines).
+> about [adding a new pipeline](adding_pipelines.md).
 
 ## Workflow size and specificity
 
