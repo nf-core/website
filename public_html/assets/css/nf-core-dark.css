@@ -56,6 +56,13 @@ blockquote {
   background-color: #181A1B;
   border-color: rgba(102, 102, 102, 0.13);
 }
+/* .stats_keynumbers .bg-icon {
+  font-size: 180px;
+  color: rgba(255,255,255,0.1);
+  position: absolute;
+  bottom: -80px;
+  right: -20px;
+} */
 .alert-info {
   background-color: #1c353b;
   border-color: #36646e;
@@ -173,10 +180,14 @@ footer .btn-light:not(:disabled):not(.disabled).active {
 }
 
 .nfcore-subnav .nav-link.active {
-  background-color: rgba(84, 171, 106, 0.5);
+  background-color: rgba(0, 154, 85, .9);
   color: rgba(255,255,255,.9);
 }
 
+.nfcore-subnav .nav-link:hover {
+  background-color: rgba(0, 154, 85, .5);
+  color: rgba(255,255,255,.9);
+}
 
 
 
