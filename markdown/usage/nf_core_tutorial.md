@@ -338,7 +338,7 @@ Note that these PRs can sometimes create git _merge conflicts_ which will need t
 ### Exercise 6 (releasing pipelines)
 * Use `nf-core bump-version` to update the required version of Nextflow in your pipeline
 * Bump your pipeline's version to 1.0, ready for its first release!
-* Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-cor.re)) and drop us a line about your latest and greatest pipeline plans!
+* Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-co.re)) and drop us a line about your latest and greatest pipeline plans!
 * Ask to be a member of the _nf-core_ GitHub organisation by commenting on [this GitHub issue](https://github.com/nf-core/nf-co.re/issues/3)
 * If you're a twitter user, make sure to follow the [@nf_core](https://twitter.com/nf_core) account
 
