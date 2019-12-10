@@ -25,7 +25,7 @@ $updated = time();
 
 // Final filename to write JSON to
 $results_fn = dirname(__FILE__).'/nfcore_issue_stats.json';
-
+$results = array("updated"=>$updated);
 // Load a copy of the existing JSON file, if it exists
 if(file_exists($results_fn)){
     if($debug){ echo "Loading previous stats: $results_fn\n"; }
