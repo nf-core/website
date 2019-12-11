@@ -13,7 +13,7 @@ body {
 .text-body {
   color: #e5e6e7!important;
 }
-.text-dark {
+.text-dark, a.text-dark:focus, a.text-dark:hover {
   color: #e5e6e7!important;
 }
 .bg-light, .alert-light {
@@ -194,8 +194,6 @@ footer .btn-light:not(:disabled):not(.disabled).active {
   background-color: rgba(0, 154, 85, .5);
   color: rgba(255,255,255,.9);
 }
-
-
 
 .hompage-cta:before {
   background-color: rgba(50,50,50,.55);
