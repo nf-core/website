@@ -169,6 +169,45 @@ footer .btn-light:not(:disabled):not(.disabled).active {
   border-color: #4e555b;
 }
 
+
+.btn-outline-success:not(:disabled):not(.disabled) {
+    border-color: #1D9655;
+    color: #1D9655;
+}
+.btn-outline-success:not(:disabled):not(.disabled):hover {
+    background-color: #1D9655;
+}
+.btn-success:not(:disabled):not(.disabled) {
+    background-color: #1D9655;
+    border-color: #1D9655;
+}
+.main-content h1 {
+  border-bottom: 1px solid #1D9655;
+}
+.hompage-cta {
+  color: #1D9655;
+}
+.hompage-cta:after {
+  border: 2px solid #1D9655;
+}
+.hompage-cta:hover,
+.hompage-cta:focus {
+  color: #1D9655;
+}
+
+.hompage-cta:active:before {
+  background-color: #1D9655;
+}
+.hompage-cta:active:after {
+  border-color: #1D9655;
+}
+.pipelines-toolbar .btn-outline-success:not(.active):not(:disabled):not(.disabled):hover {
+  color: #1D9655;
+}
+.pipelines-toolbar .pipeline-filters input.active:not(:focus) {
+  border-color: #1D9655;
+}
+
 .mainpage-heading, .homepage-intro {
   background-color: #1D9655;
 }
@@ -186,6 +225,7 @@ footer .btn-light:not(:disabled):not(.disabled).active {
 }
 
 .nfcore-subnav .nav-link.active {
+  border-bottom: 1px solid #1D9655;
   background-color: rgba(0, 154, 85, .9);
   color: rgba(255,255,255,.9);
 }
