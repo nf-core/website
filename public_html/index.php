@@ -12,6 +12,9 @@ foreach($contributors['contributors'] as $idx => $c){
     }
   }
 }
+// Shuffle and truncate the list
+shuffle($contributors_img_list);
+$contributors_img_list = array_slice($contributors_img_list, 0, 18);
 
 include('../includes/header.php');
 ?>
@@ -60,7 +63,7 @@ include('../includes/header.php');
       <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
     </div>
 
-    <div class="container homepage-feature-boxes">
+    <div id="features" class="container homepage-feature-boxes">
       <div class="row">
         <div class="col-md-4 mb-5">
           <div class="card">
@@ -125,15 +128,36 @@ include('../includes/header.php');
       </div>
     </div>
 
+    <div class="bg-secondary py-5">
+      <div class="container">
+
+        <div class="row videos-row">
+          <div class="col-md-6">
+            <div class="embed-responsive embed-responsive-16by9 hidden-xs hidden-sm">
+              <iframe id="nf-core-video" class="embed-responsive-item" src="https://www.youtube.com/embed/gUM9acK25tQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-switch left video-chooser">
+              <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"><span class="hidden-lg hidden-md label label-default">Video:</span> Introduction to nf-core <em>(1:01)</em></a></li>
+              <!-- <li><a href="https://youtu.be/Gg5neIPuiVo" data-src="https://www.youtube.com/embed/Gg5neIPuiVo"><span class="hidden-lg hidden-md label label-default">Video:</span> Installing MultiQC <em>(4:33)</em></a></li> -->
+            </ul>
+            <p class="mt-3 ml-md-4 text-white-50 small"><em>More videos coming soon..</em></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <div class="bg-dark py-5">
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <h2 class="text-white">Get started in minutes</h2>
+            <h2 id="get-started" class="text-white">Get started in minutes</h2>
             <p class="text-white-50">Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
-            <p class="text-white-50">nf-core pipelines come with built-in support for
-              <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank">AWS iGenomes</a>
-              with common species.</p>
+            <p class="text-white-50">Most nf-core genomics pipelines come with built-in support for
+              <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;">AWS-iGenomes</a>,
+              with genome references for over 30 common species.</p>
             <p class="text-white-50">The nf-core companion tool makes it easy to list all available nf-core pipelines
               and shows which are available locally. Local versions are checked against the latest available release.</p>
           </div>
@@ -185,12 +209,13 @@ nf-core list
       </div>
     </div>
 
-    <div class="homepage-usedby">
+    <div id="community" class="homepage-usedby">
       <div class="container py-5">
         <h2><a href="/about#contributors">Used by groups all over the world</a></h2>
         <p>The nf-core community is spread all over the globe and includes a large
-          number of contributing users. <a href="/about#contributors">See all &raquo;</a></p>
+          number of contributing users.</p>
         <?php echo implode($contributors_img_list); ?>
+        <p><a class="btn btn-success float-right" href="/about#contributors">See a complete list &raquo;</a></p>
       </div>
     </div>
 

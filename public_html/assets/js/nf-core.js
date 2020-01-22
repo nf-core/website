@@ -27,6 +27,16 @@ $(function () {
         };
     });
 
+    // Homepage video switcher
+    $('.video-chooser a').click(function(e){
+        if($('#nf-core-video').is(':visible')){
+          e.preventDefault();
+          $('.video-chooser a').removeClass('active');
+          $(this).addClass('active');
+          $('#nf-core-video').attr('src', $(this).data('src'));
+        }
+    });
+
     // Filter pipelines with text
     function filter_pipelines_text(ftext){
         $('.pipelines-container .pipeline:contains("'+ftext+'")').show();
