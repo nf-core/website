@@ -47,8 +47,10 @@ include('../includes/header.php');
 </p>
 
 <h1>
-  <img height="120px" src="/assets/img/slack.svg" class="float-right bg-white pl-4" />
-  Slack
+  <a class="text-success text-decoration-none" href="https://nfcore.slack.com/" target="_blank">
+    <img height="120px" src="/assets/img/slack.svg" class="float-right bg-white pl-4" />
+    Slack
+  </a>
 </h1>
 <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
@@ -57,8 +59,10 @@ You can join the nf-core slack <a href="https://nf-co.re/join/slack">here</a>.</
   <em class="small text-muted">(NB: No hyphen!)</em></p>
 
 <h1>
-  <img height="120px" src="/assets/img/github.svg" class="float-right bg-white pl-4" />
-  GitHub organisation
+  <a class="text-success text-decoration-none" href="https://github.com/nf-core/" target="_blank">
+    <img height="120px" src="/assets/img/github.svg" class="float-right bg-white pl-4" />
+    GitHub organisation
+  </a>
 </h1>
 <p>We use GitHub to manage all of the code written for nf-core.
 It's a fantastic platform and provides a huge number of tools.
@@ -67,16 +71,32 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
 </p>
 
 <h1>
-  <img height="120px" src="/assets/img/twitter.svg" class="float-right bg-white pl-4" />
-  Twitter
+  <a class="text-success text-decoration-none" href="https://twitter.com/nf_core" target="_blank">
+    <img height="120px" src="/assets/img/twitter.svg" class="float-right bg-white pl-4" />
+    Twitter
+  </a>
 </h1>
 <p>The <a href="https://twitter.com/nf_core">@nf_core</a> is a low-volume account that sends
     automated tweets whenever a new pipeline release is tagged. Relevant news and events are occasionally also tweeted.
     See <a href="https://twitter.com/nf_core">https://twitter.com/nf_core</a></p>
 
 <h1>
-  <img height="120px" src="/assets/img/google_groups.svg" class="float-right bg-white pl-4" />
-  Google Groups
+  <a class="text-success text-decoration-none" href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" target="_blank">
+    <img width="144px" src="/assets/img/youtube.svg" class="float-right bg-white pl-4" />
+    YouTube
+  </a>
+</h1>
+<p>The <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ">nf-core</a> YouTube account is used for tutorial videos
+    and has a playlist to collect recordings of presentations about nf-core from across the web.
+    See <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ">https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ</a>
+    <br><em class="small">(if we reach 100 subscribers then we can get a nicer URL!)</em>
+</p>
+
+<h1>
+  <a class="text-success text-decoration-none" href="https://groups.google.com/forum/#!forum/nf-core" target="_blank">
+    <img height="120px" src="/assets/img/google_groups.svg" class="float-right bg-white pl-4" />
+    Google Groups
+  </a>
 </h1>
 <p>If slack isn't your thing and you prefer traditional email lists, head over to
     <a href="https://groups.google.com/forum/#!forum/nf-core">https://groups.google.com/forum/#!forum/nf-core</a> and send us a message!</p>
