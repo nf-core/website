@@ -171,6 +171,14 @@ footer .btn-light:not(:disabled):not(.disabled).active {
   background-color: #545b62;
   border-color: #4e555b;
 }
+.social-icons a.social-github img {
+  -webkit-filter: invert(80%) opacity(70%);
+  filter: invert(80%) opacity(70%);
+}
+.social-icons a.social-github:hover img, .social-icons a.social-github:focus img, .social-icons a.social-github:active img {
+  -webkit-filter: invert(80%) opacity(100%);
+  filter: invert(80%) opacity(100%);
+}
 
 
 .btn-outline-success:not(:disabled):not(.disabled) {
