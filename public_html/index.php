@@ -211,11 +211,11 @@ nf-core list
 
     <div id="community" class="homepage-usedby">
       <div class="container py-5">
-        <h2><a href="/about#contributors">Used by groups all over the world</a></h2>
+        <h2><a href="/community#organisations">Used by groups all over the world</a></h2>
         <p>The nf-core community is spread all over the globe and includes a large
           number of contributing users.</p>
         <?php echo implode($contributors_img_list); ?>
-        <p><a class="btn btn-success float-right" href="/about#contributors">See a complete list &raquo;</a></p>
+        <p><a class="btn btn-success float-right" href="/community#organisations">See a complete list &raquo;</a></p>
       </div>
     </div>
 
