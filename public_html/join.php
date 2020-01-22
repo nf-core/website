@@ -35,14 +35,17 @@ include('../includes/header.php');
   <a href="https://nf-co.re/join/slack" class="mb-2 btn btn-success">
     <i class="fab fa-slack"></i> Join Slack
   </a>
-  <a href="https://groups.google.com/forum/#!forum/nf-core" class="mb-2 btn btn-info" style="background-color: #5CA5EF;">
-    <i class="fas fa-envelope"></i> Google Groups email list
-  </a>
   <a href="https://github.com/nf-core" class="mb-2 btn btn-dark">
     <i class="fab fa-github"></i> nf-core on GitHub
   </a>
   <a href="https://twitter.com/nf_core" class="mb-2 btn btn-info" style="background-color: #4AA1EB;">
     <i class="fab fa-twitter"></i> @nf_core on twitter
+  </a>
+  <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" class="mb-2 btn btn-danger" style="background-color: #EA3C1E;">
+    <i class="fab fa-youtube"></i> YouTube
+  </a>
+  <a href="https://groups.google.com/forum/#!forum/nf-core" class="mb-2 btn btn-info" style="background-color: #5CA5EF;">
+    <i class="fas fa-envelope"></i> Google Groups email list
   </a>
 </p>
 
