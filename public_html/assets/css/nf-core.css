@@ -233,6 +233,24 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
 .theme-switcher label {
   cursor: pointer;
 }
+.social-icons {
+  float:left;
+}
+.social-icons a {
+  margin-left: 6px;
+  text-decoration: none;
+}
+.social-icons a img {
+  width: 20px;
+  -webkit-filter: opacity(70%);
+  filter: opacity(70%);
+  -webkit-transition: filter 0.1s ease-in-out;
+  transition: filter 0.1s ease-in-out;
+}
+.social-icons a:hover img, .social-icons a:focus img, .social-icons a:active img {
+  -webkit-filter: opacity(100%);
+  filter: opacity(100%);
+}
 
 .nfcore-subnav {
   font-size: 75%;
