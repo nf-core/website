@@ -14,7 +14,6 @@ foreach($contributors['contributors'] as $idx => $c){
 }
 // Shuffle and truncate the list
 shuffle($contributors_img_list);
-$contributors_img_list = array_slice($contributors_img_list, 0, 18);
 
 include('../includes/header.php');
 ?>
@@ -211,11 +210,20 @@ nf-core list
 
     <div id="community" class="homepage-usedby">
       <div class="container py-5">
-        <h2><a href="/community#organisations">Used by groups all over the world</a></h2>
+        <h2>
+          <a class="btn btn-success float-right d-none d-md-inline" href="/community#organisations">See a complete list &raquo;</a>
+          <a href="/community#organisations">Used by groups all over the world</a>
+        </h2>
         <p>The nf-core community is spread all over the globe and includes a large
           number of contributing users.</p>
-        <?php echo implode($contributors_img_list); ?>
-        <p><a class="btn btn-success float-right" href="/community#organisations">See a complete list &raquo;</a></p>
+        <p><a class="btn btn-success d-inline d-md-none" href="/community#organisations">See a complete list &raquo;</a></p>
+        <div class="homepage_contrib_logos">
+          <?php foreach($contributors_img_list as $idx => $img){
+            // Hide images after 18 shown
+            if($idx > 16) echo str_replace('<a href', '<a style="display:none;" href', $img);
+            else echo str_replace('<a href', '<a class="contrib_shown" href', $img);
+          } ?>
+        </div>
       </div>
     </div>
 
