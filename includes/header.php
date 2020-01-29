@@ -133,7 +133,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
     <!-- Other JS -->
-    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
