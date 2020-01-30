@@ -101,7 +101,7 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
     Google Groups
   </a>
 </h1>
-<p>If slack isn't your thing and you prefer traditional email lists, head over to
+<p>If Slack isn't your thing and you prefer traditional email lists, head over to
     <a href="https://groups.google.com/forum/#!forum/nf-core">https://groups.google.com/forum/#!forum/nf-core</a> and send us a message!</p>
 
 <?php include('../includes/footer.php');
