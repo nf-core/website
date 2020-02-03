@@ -52,7 +52,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * If the pipeline fails, check the [troubleshooting docs](/usage/troubleshooting.md) and ask for help on the nf-core Slack (see [https://nf-co.re/join](https://nf-co.re/join)).
 
-4. Read the pipeline documentation to see which command-line parameters are required. These will be specific to your data type and usage.
+5. Read the pipeline documentation to see which command-line parameters are required. These will be specific to your data type and usage.
 
 6. Launch the pipeline with some real data by omitting the `test` config profile and providing the required pipeline-specific parameters. For example, if you want to run the `methylseq` pipeline, you might use the following command:
 

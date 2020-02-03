@@ -3,7 +3,7 @@ title: Installation
 subtitle: Installing the software requirements needed for running nf-core pipelines.
 ---
 
-##  Nextflow
+## Nextflow
 
 All nf-core pipelines use Nextflow - this is the only absolute requirement for running pipelines.
 
