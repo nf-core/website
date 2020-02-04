@@ -23,6 +23,12 @@ mv nextflow ~/bin/
 # sudo mv nextflow /usr/local/bin
 ```
 
+You can also install Nextflow using [Bioconda](https://bioconda.github.io/):
+
+```bash
+conda install -c bioconda nextflow
+```
+
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation. This makes it easier to update.
 
 Updating nextflow is as simple as running `nextflow self-update`.
