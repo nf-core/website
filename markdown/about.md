@@ -13,6 +13,8 @@ The core team members who administer the nf-core project are listed below:
 
 We regularly review members - if you'd like to be involved, drop us a line on Slack.
 
+All nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
+
 ## History {#history}
 The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
 

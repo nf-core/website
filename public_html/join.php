@@ -23,12 +23,16 @@ include('../includes/header.php');
 
 <p>We use a few different tools to organise the nf-core community -
     you are welcome to join us at any or all!</p>
+<p class="text-warning small">
+  <i class="fas fa-exclamation-triangle mr-1"></i>
+  All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-warning" style="text-decoration:underline;">code of conduct</a>
+</p>
 <p class="text-info small">
-  <i class="fas fa-question-circle"></i>
+  <i class="fas fa-question-circle mr-1"></i>
   If you would like help with running nf-core pipelines, Slack is the best place to start.
 </p>
 <p class="text-info small">
-  <i class="fas fa-bug"></i>
+  <i class="fas fa-bug mr-1"></i>
   If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
 </p>
 <p class="text-center">
