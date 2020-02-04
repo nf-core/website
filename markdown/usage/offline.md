@@ -29,7 +29,7 @@ To run a pipeline offline you need the pipeline code, the software requirements 
 To help with this process, we have created a helper tool as part of the _nf-core_ package to automate this for you.
 
 On a computer with an internet connection, run `nf-core download <pipeline>` to download the pipeline and config profiles.
-Add the argument `--singularty` to also fetch the singularity container (requires Singularity to be installed on your system).
+Add the argument `--singularity` to also fetch the singularity container (requires Singularity to be installed on your system).
 
 The pipeline and requirements will be downloaded, configured with their relative paths and packaged in to a `.tar.gz` file by default. This can then be transferred to your offline system and unpacked.
 

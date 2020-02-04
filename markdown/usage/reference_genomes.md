@@ -7,9 +7,9 @@ Many nf-core pipelines need a reference genome for alignment, annotation or simi
 
 ## Illumina iGenomes
 To make the use of reference genomes easier, Illumina has developed a centralised resource called [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
-Multiple reference index types are held together with consistent structure for multiple genomes.
+The most commonly used reference files are organised in a consistent structure for multiple genomes.
 
-We have put a copy of iGenomes up onto AWS S3 hosting and this pipeline is configured to use this by default.
+We have uploaded a copy of iGenomes onto AWS S3 and nf-core pipelines are configured to use this by default.
 AWS-iGenomes is hosted by Amazon as part of the [Registry of Open Data](https://registry.opendata.aws/aws-igenomes/) and are free to use. For more information about the AWS iGenomes, see [https://ewels.github.io/AWS-iGenomes](https://ewels.github.io/AWS-iGenomes/).
 
 All AWS-iGenome paths are specified in pipelines that support them.
@@ -27,7 +27,7 @@ Using `--genome <id>` will then look to your local system for the reference inst
 
 ## Adding paths to a config file
 
-If you can not use the AWS-iGenomes references, you are always able to supply reference genome paths on the command line at run time.
+If you are unable to use the AWS-iGenomes references, you can still supply reference genome paths on the command line via the pipeline's parameters e.g. `--fasta` or `--gtf`.
 
 If you are using the same references repeatedly, it can be more convenient to save these paths in a nextflow config file.
 Pipelines that support AWS-iGenomes can also be configured to support custom genome IDs and paths.
