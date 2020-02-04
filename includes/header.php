@@ -64,6 +64,9 @@ if( isset($markdown_fn) and $markdown_fn){
     $md = str_replace($md_content_replace[0], $md_content_replace[1], $md);
   }
 
+  // Format Nextflow code blocks as Groovy
+  $md = preg_replace('/```nextflow/i', '```groovy', $md);
+
   // Convert to HTML
   $pd = new ParsedownExtra();
   $content = $pd->text($md);
