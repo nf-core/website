@@ -26,7 +26,7 @@ Whether your pipeline is a simple BLAST execution or a complex genome annotation
 
 ## How to run a pipeline
 
-Nextflow works best when you have an active internet connection, as it is able to fetch all pipeline reqiurements. If you need to run offline, please see [_Running offline_](offline.md).
+Nextflow works best when you have an active internet connection, as it is able to fetch all pipeline requirements. If you need to run offline, please see [_Running offline_](offline.md).
 
 1. First, make sure that you have all required software installed (Nextflow + Docker / Singularity / Conda). See the [installation docs](installation.md) for more information.
 
@@ -34,23 +34,23 @@ Nextflow works best when you have an active internet connection, as it is able t
 
 3. Configure Nextflow to run on your system.
 
-    * The simplest way to run is with `-profile docker` (or `singularity` /  `conda`) which will tell nextflow will execute jobs locally using Docker for software requirements.
+    * The simplest way to run is with `-profile docker` (or `singularity` /  `conda`) which will tell Nextflow to execute jobs locally using Docker to fulfil the software requirements.
 
-    * For more complex configuration of nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
+    * For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
 
-4. To test that everything is working properly, try running the tests for you your pipeline of interest in your terminal:
+4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
 
     ```bash
     nextflow run nf-core/<pipeline_name> -profile test,docker
     ```
 
-    * Replace `<pipeline_name>` with the name of a nf-core pipeline.
+    * Replace `<pipeline_name>` with the name of an nf-core pipeline.
 
     * There is no need to download anything first - nextflow will pull the code for you from the GitHub repository automatically and fetch the software requirements too.
 
     * If you don't have Docker installed, replace `docker` in the command with either `singularity` or `conda`.
 
-    * If the pipeline fails, check the [troubleshooting docs](/usage/troubleshooting.md) and ask for help on the nf-core Slack (see [https://nf-co.re/join](https://nf-co.re/join)).
+    * If the pipeline fails, check the [troubleshooting docs](/usage/troubleshooting.md) and ask for help on the nf-core Slack channel for that particular pipeline (see [https://nf-co.re/join](https://nf-co.re/join)).
 
 5. Read the pipeline documentation to see which command-line parameters are required. These will be specific to your data type and usage.
 
@@ -64,10 +64,10 @@ Nextflow works best when you have an active internet connection, as it is able t
 
 ## Tips and tricks
 
-* Hyphens matter! Core nextflow options use one (`-`), pipeline specific paramters use two (`--`)
+* Hyphens matter! Core Nextflow command-line options use one (`-`) whereas pipeline specific parameters use two (`--`)
 * Specify `--email your@email.com` to receive emails when your pipeline completes
 * Always specify `-r <version-number>` when running to explicitly use a specific release. Then an identical command can be used in the future to give identical results.
-* Use `-resume` to restart pipelines that did not complete: successful tasks skipped using the outputs from the previous run.
+* Use `-resume` to restart pipelines that did not complete. This ensures that successful tasks from the previous run wont be re-executed.
 * Use `nextflow log` to find names of all previous runs in your directory. These can be used with `-resume` to restart specific runs.
 * Be clever with multiple Nextflow configuration locations.. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
 
