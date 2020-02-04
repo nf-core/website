@@ -30,6 +30,12 @@ Nextflow works best when you have an active internet connection, as it is able t
 
 1. First, make sure that you have all required software installed (Nextflow + Docker / Singularity / Conda). See the [installation docs](installation.md) for more information.
 
+  * Try running the Nextflow "hello world" example to make sure that the tools are working properly:
+
+    ```bash
+    nextflow run hello
+    ```
+
 2. Choose a pipeline to run. See the available pipelines at [https://nf-co.re/pipelines](https://nf-co.re/pipelines). If you have [nf-core/tools](tools.md) installed, run `nf-core list`
 
 3. Configure Nextflow to run on your system.
