@@ -5,8 +5,7 @@ subtitle: Installing the software requirements needed for running nf-core pipeli
 
 ## Nextflow
 
-All nf-core pipelines use Nextflow - this is the only absolute requirement for running pipelines.
-
+All nf-core pipelines use Nextflow, so this must be present on the system where you launch your analysis.
 See [nextflow.io](https://www.nextflow.io/) for the latest installation instructions.
 
 Generally speaking, Nextflow runs on most POSIX systems (Linux, Mac OSX etc) and can typically be installed by running the following commands:
@@ -35,7 +34,7 @@ Once installed you will probably need to configure Nextflow to run on your syste
 
 An analysis pipeline chains the execution of multiple tools together.
 Historically, all tools would have to be manually installed, often a source of great frustration and a key step where reproducibility between analyses is lost.
-All nf-core pipelines fully utilise the built-in support for software packaging that Nextflow offers - namely Docker, Singularity and Conda:
+nf-core pipelines utilise the built-in support for software packaging that Nextflow offers: all can work with Docker and Singularity, and most pipelines also have support for Conda.
 
 * [Docker](https://docs.docker.com/install/)
   * Typically used locally / on single-user servers and the cloud.
@@ -48,7 +47,7 @@ All nf-core pipelines fully utilise the built-in support for software packaging 
   * Does not need root access or any daemon processes - images built from files
 * [Conda](https://conda.io/)
   * Packaging system that manages environments instead of running analysis in containers.
-  * The software still runs in your operating system environment, theoretically the reproducibility of results is slightly lower than Docker / Singularity due to this.
+  * The reproducibility of results is slightly lower than Docker / Singularity. This is due to potential changes in low-level package dependencies over time, and because the software still runs in your native operating system environment.
 
 ## Pipeline code
 
@@ -66,4 +65,6 @@ Note that you should _only_ do this if you intend to make significant changes to
 
 ## Reference genomes
 
-Some pipelines come with built-in support for iGenomes references. It may be preferable for you to download a local copy of these to your system. For more information, see [_Reference genomes_](reference_genomes).
+Some pipelines come with built-in support for iGenomes references.
+It may be preferable for you to download a local copy of these to your system to avoid fetching the same reference many times.
+For more information, see [_Reference genomes_](reference_genomes).

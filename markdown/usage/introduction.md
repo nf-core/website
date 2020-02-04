@@ -46,9 +46,9 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * Replace `<pipeline_name>` with the name of an nf-core pipeline.
 
-    * There is no need to download anything first - nextflow will pull the code for you from the GitHub repository automatically and fetch the software requirements too.
-
     * If you don't have Docker installed, replace `docker` in the command with either `singularity` or `conda`.
+
+    * There is no need to download anything first - nextflow will pull the code for you from the GitHub repository automatically and fetch the software requirements too.
 
     * If the pipeline fails, check the [troubleshooting docs](/usage/troubleshooting.md) and ask for help on the nf-core Slack channel for that particular pipeline (see [https://nf-co.re/join](https://nf-co.re/join)).
 
