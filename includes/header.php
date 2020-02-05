@@ -203,6 +203,7 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/events">Events</a>
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
+              <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>
