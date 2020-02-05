@@ -37,6 +37,10 @@
     RewriteCond %{REQUEST_FILENAME}.php -f
     RewriteRule ^(.*)$ $1.php
 
+    # Redirect .md URLs to remove the extension
+    RewriteCond %{REQUEST_URI} ^(.*)\.md$
+    RewriteRule (.*) %1 [R=301,L]
+
     # Return 404 if original request is .php
     RewriteCond %{THE_REQUEST} \.php[/\s?] [NC]
     RewriteRule !^404 - [R=404,L]
