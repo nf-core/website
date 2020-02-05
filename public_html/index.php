@@ -8,7 +8,7 @@ foreach($contributors['contributors'] as $idx => $c){
     $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
     $img_path = 'assets/img/contributors-white/'.$c['image_fn'];
     if(file_exists($img_path)){
-      $contributors_img_list[] = '<a href="/about#'.$card_id.'"><img src="'.$img_path.'" data-placement="bottom" data-toggle="tooltip" title="'.$c['full_name'].'"></a>';
+      $contributors_img_list[] = '<a href="/community#'.$card_id.'"><img src="'.$img_path.'" data-placement="bottom" data-toggle="tooltip" title="'.$c['full_name'].'"></a>';
     }
   }
 }
