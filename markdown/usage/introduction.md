@@ -56,14 +56,14 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * There is no need to download anything first - nextflow will pull the code for you from the GitHub repository automatically and fetch the software requirements too.
 
-    * If the pipeline fails, check the [troubleshooting docs](/usage/troubleshooting.md) and ask for help on the nf-core Slack channel for that particular pipeline (see [https://nf-co.re/join](https://nf-co.re/join)).
+    * If the pipeline fails, check the [troubleshooting docs](troubleshooting.md) and ask for help on the nf-core Slack channel for that particular pipeline (see [https://nf-co.re/join](https://nf-co.re/join)).
 
 5. Read the pipeline documentation to see which command-line parameters are required. These will be specific to your data type and usage.
 
 6. Launch the pipeline with some real data by omitting the `test` config profile and providing the required pipeline-specific parameters. For example, if you want to run the `methylseq` pipeline, you might use the following command:
 
     ```bash
-    nextflow run nf-core/methylseq -profile docker -reads 'input_data/*.fastq.gz' --outdir myproj/results --genome GRCh38
+    nextflow run nf-core/methylseq -profile docker --reads 'input_data/*.fastq.gz' --outdir myproj/results --genome GRCh38
     ```
 
 7. Once complete, check the pipeline execution and quality control reports. Each pipeline comes with documentation describing the different outputs.

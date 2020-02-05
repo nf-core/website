@@ -41,4 +41,4 @@ For more information about the nf-core helper tools, see the [documentation](htt
 
 Some pipelines require reference genomes and have built-in integration of AWS-iGenomes.
 If you wish to use these references you must download them and transfer to your offline cluster.
-Once transferred, follow the [reference genomes documentation](reference_genomes) to configure the base path for the references.
+Once transferred, follow the [reference genomes documentation](reference_genomes.md) to configure the base path for the references.

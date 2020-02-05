@@ -52,4 +52,4 @@ params {
 You can add as many genomes as you like as long as they have unique IDs.
 References are used with the command line option `--genome YOUR-ID`.
 
-Read the [Nextflow configuration documentation](/usage/configuration) for more information about custom config files.
+Read the [Nextflow configuration documentation](configuration.md) for more information about custom config files.
