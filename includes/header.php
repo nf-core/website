@@ -64,6 +64,9 @@ if( isset($markdown_fn) and $markdown_fn){
     $md = str_replace($md_content_replace[0], $md_content_replace[1], $md);
   }
 
+  // Format Nextflow code blocks as Groovy
+  $md = preg_replace('/```nextflow/i', '```groovy', $md);
+
   // Convert to HTML
   $pd = new ParsedownExtra();
   $content = $pd->text($md);
@@ -176,11 +179,10 @@ if( isset($markdown_fn) and $markdown_fn){
             <a class="nav-link" href="/usage/introduction" role="button" data-toggle="dropdown">Usage</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
-              <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
-              <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
+              <a class="dropdown-item" href="/usage/installation">Installation</a>
+              <a class="dropdown-item" href="/usage/configuration">Nextflow configuration</a>
+              <a class="dropdown-item" href="/usage/offline">Running offline</a>
               <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
-              <a class="dropdown-item" href="/usage/local_installation">Local configuration</a>
-              <a class="dropdown-item" href="/usage/adding_own_config">Adding your cluster config</a>
               <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
             </div>
