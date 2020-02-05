@@ -31,9 +31,10 @@ conda install -c bioconda nextflow
 
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation. This makes it easier to update.
 
-Updating nextflow is as simple as running `nextflow self-update`.
+Updating nextflow is as simple as running `nextflow self-update`
+or `conda update nextflow`, depending on how it was installed.
 
-Once installed you will probably need to configure Nextflow to run on your system. For instructions, see [_Nextflow configuration_](configuration).
+Once installed you will probably need to configure Nextflow to run on your system. For instructions, see [_Nextflow configuration_](configuration.md).
 
 
 ## Pipeline software
@@ -46,14 +47,15 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   * Typically used locally / on single-user servers and the cloud.
   * Analysis runs in a _container_, which behaves like an isolated operating system
   * Previously required system root access, though a "rootless mode" is available since late 2019
-  * Best option for ultimate reproducibility
 * [Singularity](https://www.sylabs.io/)
   * Often used as an alternative to Docker on multi-user systems such as HPC systems.
   * Also runs _containers_ and can create these from Docker images
   * Does not need root access or any daemon processes - images built from files
 * [Conda](https://conda.io/)
   * Packaging system that manages environments instead of running analysis in containers.
-  * The reproducibility of results is slightly lower than Docker / Singularity. This is due to potential changes in low-level package dependencies over time, and because the software still runs in your native operating system environment.
+  * Poorer reproducibility than Docker / Singularity
+    * There can be changes in low-level package dependencies over time
+    * The software still runs in your native operating system environment and so core system functions can differ
 
 ## Pipeline code
 

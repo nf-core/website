@@ -38,10 +38,14 @@ If not, please follow the instructions in the repository readme to add your clus
 ## Custom configuration files
 
 If you are the only person to be running this pipeline, you can create a local config file and use this.
-Nextflow looks for these files in three locations (in this order):
+Nextflow looks for these files in three locations:
 
 1. User's home directory: `~/.nextflow/config`
 2. Analysis working directory: `nextflow.config`
 3. Custom path specified on the command line: `-c path/to/config` (multiple can be given)
+
+Configuration parameters are loaded one after another and overwrite previous values.
+Hardcoded pipeline defaults are first, then the user's home directory, then the work directory,
+then every `-c` file in the order supplied, and finally command line `--parameter` options.
 
 See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html) for more information about configuration syntax and available parameters.
