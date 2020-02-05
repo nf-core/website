@@ -18,7 +18,7 @@ There are three main types of pipeline configuration that you can use:
 2. [Shared _nf-core/configs_ configuration profiles](#shared-nf-core-configs)
 3. [Custom configuration files](#custom-configuration-files)
 
-Note that most users will need to specify an "executor" - telling Nextflow how to subject jobs to a job scheduler (_e.g._ SGE, LSF, SLURM, PBS, AWS Batch _etc._).
+Note that most users will need to specify an "executor" - telling Nextflow how to submit jobs to a job scheduler (_e.g._ SGE, LSF, SLURM, PBS, AWS Batch _etc._).
 This can be done within share configuration profiles or in custom configuration files.
 For more information on how to specify an executor, please refer to the [Nextflow documentation](https://www.nextflow.io/docs/latest/executor.html#executor-page).
 
