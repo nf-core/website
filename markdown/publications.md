@@ -1,7 +1,7 @@
 Do you know of an nf-core publication that we're missing?
 Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/markdown/publications.md).
 
-# nf-core project
+# The nf-core project
 
 Preprint for the main nf-core paper, describing the community and framework:
 
@@ -21,10 +21,10 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Nature_ **573**, 149-150 (2019)](https://www.nature.com/articles/d41586-019-02619-z);
 > doi: [10.1038/d41586-019-02619-z](https://doi.org/10.1038/d41586-019-02619-z)
 
-# nf-core pipelines
+# Pipeline publications
 
 
-## [nf-core/sarek](https://nf-co.re/sarek)
+### [nf-core/sarek](https://nf-co.re/sarek)
 
 > **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 1; peer review: awaiting peer review].
 >
@@ -34,7 +34,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > doi: [10.12688/f1000research.16665.1](https://doi.org/10.12688/f1000research.16665.1)
 
 
-## [nf-core/mhcquant](https://nf-co.re/mhcquant)
+### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
 > **MHCquant: Automated and Reproducible Data Analysis for Immunopeptidomics**
 >
@@ -44,7 +44,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > doi: [10.1021/acs.jproteome.9b00313](https://doi.org/10.1021/acs.jproteome.9b00313)
 
 
-## [nf-core/lncpipe](https://nf-co.re/lncpipe)
+### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
 > **LncPipe: A Nextflow-based pipeline for identification and analysis of long non-coding RNAs from RNA-Seq data.**
 >
