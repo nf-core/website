@@ -1,4 +1,4 @@
-# Core team {#core}
+## Core team {#core}
 The core team members who administer the nf-core project are listed below:
 
 * [@alneberg](https://github.com/alneberg): Johannes Alneberg
@@ -13,7 +13,7 @@ We regularly review members - if you'd like to be involved, drop us a line on Sl
 
 All nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
-# History
+## History
 The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
 
 The NGI had been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems; typically Swedish research groups at first, but later on other groups and core genomics facilities too such as [QBIC](http://qbic.life/) in Tübingen.
