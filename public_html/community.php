@@ -15,6 +15,7 @@ include('../includes/header.php');
 <ul>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#organisations">Organisations</a></li>
+    <li><a href="#initiatives">Projects we are involved with</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
 </ul>
 
@@ -168,7 +169,7 @@ $(function(){
 });
 </script>
 
-<h1 id="initiatives"><a href="#initiatives" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Projects we are involves with</h1>
+<h1 id="initiatives"><a href="#initiatives" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Projects we are involved with</h1>
 <p>A number of large projects are committing to working with the nf-core community for data analysis pipelines. You can see an overview of these below.</p>
 
 <h3 id="dfg_testimonial"><a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>

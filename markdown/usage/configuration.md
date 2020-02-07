@@ -20,7 +20,7 @@ Alternatively, you can create your own configuration files and supply these to t
 There are three main types of pipeline configuration that you can use:
 
 1. [Basic pipeline configuration profiles](#basic-configuration-profiles)
-2. [Shared _nf-core/configs_ configuration profiles](#shared-nf-core-configs)
+2. [Shared _nf-core/configs_ configuration profiles](#shared-nf-coreconfigs)
 3. [Custom configuration files](#custom-configuration-files)
 
 Note that most users will need to specify an "executor" - telling Nextflow how to submit jobs to a job scheduler (_e.g._ SGE, LSF, SLURM, PBS, AWS Batch _etc._).
