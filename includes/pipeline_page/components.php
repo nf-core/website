@@ -69,11 +69,11 @@ ob_start();
   <div class="row border-bottom">
     <div class="col-6">
       <h6>stars</h6>
-      <p><a href="/<?php echo $pipeline->name;?>/stargazers"><?php echo $stats['stargazers_count']; ?></a></p>
+      <p><a href="<?php echo $pipeline->html_url;?>/stargazers"><?php echo $stats['stargazers_count']; ?></a></p>
     </div>
     <div class="col-6">
       <h6>watchers</h6>
-      <p><a href="/<?php echo $pipeline->name;?>/watchers"><?php echo $stats['subscribers_count']; ?></a></p>
+      <p><a href="<?php echo $pipeline->html_url;?>/watchers"><?php echo $stats['subscribers_count']; ?></a></p>
     </div>
   </div>
 
