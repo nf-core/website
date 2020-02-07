@@ -9,7 +9,12 @@ It has built-in support for HPC execution schedulers such as Slurm, SGE, PBS, LS
 In order to get nf-core pipelines to run properly on your system, you will need to configure Nextflow so that it knows how best to run your analysis jobs.
 Each nf-core pipeline comes with "sensible defaults" for every configuration option. These are then overwritten as needed.
 
-Pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`. Multiple profiles can be specified in a comma-separated list.
+**You do not need to edit the pipeline code to configure nf-core pipelines.**
+If you edit the pipeline defaults then you cannot update to more recent versions of the pipeline without overwriting your changes.
+You also run the risk of moving away from the canonical pipeline and losing reproducibility.
+
+Pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`.
+Multiple profiles can be specified in a comma-separated list.
 Alternatively, you can create your own configuration files and supply these to the pipeline when running.
 
 There are three main types of pipeline configuration that you can use:
