@@ -36,7 +36,7 @@ Nextflow works best when you have an active internet connection, as it is able t
         nextflow run hello
         ```
 
-2. Choose a pipeline to run. See the available pipelines at [https://nf-co.re/pipelines](https://nf-co.re/pipelines). If you have [nf-core/tools](tools.md) installed, run `nf-core list`
+2. Choose a pipeline to run. See the available pipelines at [https://nf-co.re/pipelines](https://nf-co.re/pipelines). If you have [https://nf-core/tools](https://nf-co.re/tools) installed, run `nf-core list`
 
 3. Configure Nextflow to run on your system.
 
