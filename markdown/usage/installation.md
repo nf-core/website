@@ -148,8 +148,8 @@ To use it first ensure that you have conda installed (we recommend [miniconda](h
 
 ### Configuration profiles
 
-See [Adding your own configuration profile](adding_own_config).
+See [Adding your own configuration profile](adding_own_config.md).
 
 ## Reference genomes
 
-See [Reference genomes](reference_genomes)
+See [Reference genomes](reference_genomes.md)
