@@ -8,7 +8,7 @@ subtitle: How reference genomes are handled in nf-core
 Many nf-core pipelines need a reference genome for alignment, annotation or similar purposes.
 
 Paths to such files can be supplied on the command line at run time, but for convenience it's often better to save these paths in a nextflow config file. See below for instructions on how to do this.
-Read [Adding your own cluster configuration](adding_own_config) to find out how to set up custom config files.
+Read [Adding your own cluster configuration](adding_own_config.md) to find out how to set up custom config files.
 
 ## Adding paths to a config file
 Specifying long paths every time you run the pipeline is a pain.

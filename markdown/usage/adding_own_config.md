@@ -34,7 +34,7 @@ process {
 ## Software Requirements
 To run your selected nf-core pipeline, several software packages are required. How you satisfy these requirements is essentially up to you and depends on your system. If possible, we _highly_ recommend using either Docker or Singularity.
 
-Please see the [`installation documentation`](usage/installation) for how to run using the below as a one-off. These instructions are about configuring a config file for repeated use.
+Please see the [`installation documentation`](installation.md) for how to run using the below as a one-off. These instructions are about configuring a config file for repeated use.
 
 ### Docker
 Docker is a great way to run nf-core pipelines, as it manages all software installations and allows the pipeline to be run in an identical software environment across a range of systems.

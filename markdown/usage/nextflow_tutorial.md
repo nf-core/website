@@ -84,7 +84,7 @@ cd crg-course-nov16
 ```
 
 Make sure Nextflow and Docker is installed on your computer.
-You can find instructions about this in the [usage documentation](installation).
+You can find instructions about this in the [usage documentation](installation.md).
 
 ### Nextflow hands-on
 
