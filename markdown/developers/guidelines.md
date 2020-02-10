@@ -54,7 +54,7 @@ All nf-core pipelines _must_ adhere to the following:
 
 ## Recommended features
 
-If possible, it's great if pipelines can also have:
+If possible, it's best if pipelines can also have:
 
 * All software bundled using [bioconda](https://bioconda.github.io/)
   * Nearly all nf-core pipelines use a conda `env` script to list their software requirements.
@@ -74,7 +74,7 @@ If possible, it's great if pipelines can also have:
 
 All nf-core pipelines should be lower case and without punctuation.
 This is to maximise compatibility with other platforms such as dockerhub, which enforce such rules.
-In documentation, please refer to your pipeline as `nf-core/yourpipeline`.
+In the documentation, please refer to your pipeline as `nf-core/yourpipeline`.
 
 ## Coding style
 
