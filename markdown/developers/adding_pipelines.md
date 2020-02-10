@@ -47,7 +47,7 @@ Even if you already have a working pipeline, it may be easier in the long run to
 and copy over your code in the relevant places.
 
 If you really don't want to use the template it should possible to work without it.
-Please see the [manual synchronisation](sync.md) documentation.
+Please see the [manual synchronisation](/developers/sync.md) documentation.
 
 > Note that workflow names should be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms (eg. GitHub + Docker Hub).
