@@ -3,7 +3,6 @@ title: Installation
 subtitle: Installing the software requirements needed for running nf-core pipelines.
 ---
 
-<<<<<<< HEAD
 This documentation assumes that you have already read the [introduction](introduction.md) and are familiar with the tools described below.
 
 ## Table of contents
