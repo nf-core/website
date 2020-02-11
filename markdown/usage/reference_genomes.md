@@ -5,10 +5,6 @@ subtitle: How reference genomes are handled in nf-core
 
 Many nf-core pipelines need a reference genome for alignment, annotation or similar purposes.
 
-<<<<<<< HEAD
-Paths to such files can be supplied on the command line at run time, but for convenience it's often better to save these paths in a nextflow config file. See below for instructions on how to do this.
-Read [Adding your own cluster configuration](adding_own_config.md) to find out how to set up custom config files.
-=======
 ## Illumina iGenomes
 To make the use of reference genomes easier, Illumina has developed a centralised resource called [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
 The most commonly used reference files are organised in a consistent structure for multiple genomes.
@@ -28,7 +24,6 @@ params.igenomes_base = '/path/to/data/igenomes/'
 ```
 
 Using `--genome <id>` will then look to your local system for the reference instead of AWS S3.
->>>>>>> upstream/master
 
 ## Adding paths to a config file
 
