@@ -3,35 +3,12 @@ title: Installation
 subtitle: Installing the software requirements needed for running nf-core pipelines.
 ---
 
-<<<<<<< HEAD
-This documentation assumes that you have already read the [introduction](introduction.md) and are familiar with the tools described below.
-
-## Table of contents
-<!-- Install Atom plugin markdown-toc-auto for this ToC -->
-<!-- TOC START min:2 max:3 link:true asterisk:true -->
-* [Install nextflow](#install-nextflow)
-* [Install the pipeline](#install-the-pipeline)
-  * [Automatic](#automatic)
-  * [Offline](#offline)
-  * [Development](#development)
-* [Pipeline configuration](#pipeline-configuration)
-  * [Docker](#docker)
-  * [Singularity](#singularity)
-  * [Conda](#conda)
-  * [Configuration profiles](#configuration-profiles)
-* [Reference genomes](#reference-genomes)
-<!-- TOC END -->
-
-## Install nextflow
-Nextflow runs on most POSIX systems (Linux, Mac OSX etc). It can be installed by running the following commands:
-=======
 ## Nextflow
 
 All nf-core pipelines use Nextflow, so this must be present on the system where you launch your analysis.
 See [nextflow.io](https://www.nextflow.io/) for the latest installation instructions.
 
 Generally speaking, Nextflow runs on most POSIX systems (Linux, Mac OSX etc) and can typically be installed by running the following commands:
->>>>>>> upstream/master
 
 ```bash
 # Make sure that Java v8+ is installed:
@@ -86,24 +63,16 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
 
 This pipeline itself needs no installation - nextflow will automatically fetch it from GitHub if `nf-core/<pipeline-name>` is specified as the pipeline name.
 
-This method requires an internet connection. If you're running on a system that has no internet connection, please see the [Running Offline](/usage/offline) documentation.
+This method requires an internet connection. If you're running on a system that has no internet connection, please see the [Running Offline](offline.md) documentation.
 
 ### Development
 
 If you would like to make changes to the pipeline, fork the GitHub repository and then clone the files. Once cloned you can run the pipeline with `nextflow run <path-to-repo>`.
 
-<<<<<<< HEAD
-See [Adding your own configuration profile](adding_own_config.md).
-
-## Reference genomes
-
-See [Reference genomes](reference_genomes.md)
-=======
 Note that you should _only_ do this if you intend to make significant changes to the pipeline. All configuration options can be changed without editing the pipeline code. Forking the pipeline repositories means that you cannot use stable releases and you will fall behind new updates.
 
 ## Reference genomes
 
 Some pipelines come with built-in support for iGenomes references.
 It may be preferable for you to download a local copy of these to your system to avoid fetching the same reference many times.
-For more information, see [_Reference genomes_](reference_genomes).
->>>>>>> upstream/master
+For more information, see [_Reference genomes_](reference_genomes.md).

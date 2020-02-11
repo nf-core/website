@@ -24,31 +24,7 @@ The benefits of having your pipeline in Nextflow include:
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
-<<<<<<< HEAD
-**To learn more about nextflow, we have adapted a nextflow tutorial which you can try: [nextflow tutorial](nextflow_tutorial.md)**
-
-## Software requirements
-An analysis pipeline chains the execution of multiple tools together.
-In order for this to work, each of those software tools must be installed.
-Historically, this can be a source of great frustration and a key step where reproducibility between analyses is lost.
-All nf-core pipelines fully utilise the built-in support for software packaging that Nextflow offers.
-
-### Docker
-[Docker](https://www.docker.com/) is a tool to package and run software within isolated environments called containers.
-Importantly, a Docker container images can be shared. As such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
-The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.html) and container technology enables us to:
-
-* Simplify the setup of complicated software, libraries and modules.
-* Make our results, analysis and graphs 100% reproducible.
-* Share our work with the world.
-
-### Singularity
-It's not always possible to run Docker - it requires special system permissions which may not be feasible in a shared computing environment.
-[Singularity](https://www.sylabs.io/guides/3.1/user-guide/) is a container engine alternative to Docker designed to run large analysis jobs on high performance compute clusters.
-The main advantage is that it can be used with unprivileged permissions: in this way you can run [Nextflow using Singularity](https://www.nextflow.io/docs/latest/singularity.html) on a server were you don't have root privileges.
-=======
 ## How to run a pipeline
->>>>>>> upstream/master
 
 Nextflow works best when you have an active internet connection, as it is able to fetch all pipeline requirements. If you need to run offline, please see [_Running offline_](offline.md).
 
