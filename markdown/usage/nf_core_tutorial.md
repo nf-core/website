@@ -154,7 +154,7 @@ nextflow run nf-core/rnaseq -profile test,docker
 nextflow run nf-core/hlatyping -profile singularity,debug
 ```
 
-Note that the order in which config profiles are specified matters...
+Note that the order in which config profiles are specified matters. Their priority increases from left to right.
 
 ### Running pipelines with test data
 The `test` config profile is a bit of a special case. Whereas all other config profiles tell Nextflow how to run on different computational systems, the `test` profile configures each `nf-core` pipeline to run without _any_ other command line flags. It specifies URLs for test data and all required parameters. Because of this, you can test any _nf-core_ pipeline with the following command:

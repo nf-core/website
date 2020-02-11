@@ -27,6 +27,53 @@ $(function () {
         };
     });
 
+    // Homepage video switcher
+    $('.video-chooser a').click(function(e){
+        if($('#nf-core-video').is(':visible')){
+          e.preventDefault();
+          $('.video-chooser a').removeClass('active');
+          $(this).addClass('active');
+          $('#nf-core-video').attr('src', $(this).data('src'));
+        }
+    });
+
+    // Homepage contributor images fading in and out
+    var h_contrib_imgs = $('.homepage_contrib_logos a');
+    if(h_contrib_imgs.length > 0){
+        setTimeout(function(){ switch_contrib_img(); }, 2000);
+    }
+    function switch_contrib_img(){
+        // Reset if all images have been shown
+        if($('.homepage_contrib_logos a:hidden:not(.contrib_shown)').length == 0){
+            $('.homepage_contrib_logos a').removeClass('contrib_shown');
+            $('.homepage_contrib_logos a:visible').addClass('contrib_shown');
+        }
+
+        // Get random seeds for images to fade in and out
+        var vis_imgs = $('.homepage_contrib_logos a:visible');
+        var img_out_idx = Math.floor(Math.random()*vis_imgs.length);
+
+        var hidden_imgs = $('.homepage_contrib_logos a:hidden:not(.contrib_shown)');
+        var img_in_idx = Math.floor(Math.random()*hidden_imgs.length);
+
+        // Label with a class
+        hidden_imgs.eq(img_in_idx).addClass('contrib_fade_in contrib_shown');
+        vis_imgs.eq(img_out_idx).addClass('contrib_fade_out');
+
+        // Move image to be faded in next to the one to be faded out
+        hidden_imgs.eq(img_in_idx).detach().insertAfter(vis_imgs.eq(img_out_idx));
+
+        // Fade images in and out
+        $('.contrib_fade_in').fadeIn();
+        $('.contrib_fade_out').hide();
+
+        // Clear labels
+        $('.homepage_contrib_logos a').removeClass('contrib_fade_in contrib_fade_out');
+
+        // Run this again in 2 seconds
+        setTimeout(function(){ switch_contrib_img(); }, 3000);
+    }
+
     // Filter pipelines with text
     function filter_pipelines_text(ftext){
         $('.pipelines-container .pipeline:contains("'+ftext+'")').show();

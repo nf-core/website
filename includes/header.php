@@ -28,10 +28,6 @@ if( isset($markdown_fn) and $markdown_fn){
     include('404.php');
     die();
   }
-  // Highlight any search terms if we have them
-  if(isset($_GET['q']) && strlen($_GET['q'])){
-    $md_full = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $md_full);
-  }
 
   // Get the meta
   $meta = [];
@@ -68,18 +64,27 @@ if( isset($markdown_fn) and $markdown_fn){
     $md = str_replace($md_content_replace[0], $md_content_replace[1], $md);
   }
 
+  // Format Nextflow code blocks as Groovy
+  $md = preg_replace('/```nextflow/i', '```groovy', $md);
+
   // Convert to HTML
   $pd = new ParsedownExtra();
   $content = $pd->text($md);
+
+  // Highlight any search terms if we have them
+  if(isset($_GET['q']) && strlen($_GET['q'])){
+    $content = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $content);
+  }
 
   // Automatically add HTML IDs to headers
   // Add ID attributes to headers
   $hids = Array();
   $content = preg_replace_callback(
-    '~<h([1234])>([^<]*)</h([1234])>~Ui', // Ungreedy by default, case insensitive
+    '~<h([1234])>(.*?)</h([1234])>~Ui', // Ungreedy by default, case insensitive
     function ($matches) {
       global $hids;
-      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $matches[2])));
+      $id_match = strip_tags($matches[2]);
+      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
       $id_match = str_replace('---', '-', $id_match);
       $hid = $id_match;
       $i = 1;
@@ -131,7 +136,7 @@ if( isset($markdown_fn) and $markdown_fn){
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
     <!-- Other JS -->
-    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/jquery-3.4.1.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
@@ -174,17 +179,16 @@ if( isset($markdown_fn) and $markdown_fn){
             <a class="nav-link" href="/usage/introduction" role="button" data-toggle="dropdown">Usage</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
-              <a class="dropdown-item" href="/usage/installation">Installing dependencies</a>
-              <a class="dropdown-item" href="/usage/nextflow_tutorial">Nextflow tutorial</a>
+              <a class="dropdown-item" href="/usage/installation">Installation</a>
+              <a class="dropdown-item" href="/usage/configuration">Nextflow configuration</a>
+              <a class="dropdown-item" href="/usage/offline">Running offline</a>
               <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
-              <a class="dropdown-item" href="/usage/local_installation">Local configuration</a>
-              <a class="dropdown-item" href="/usage/adding_own_config">Adding your cluster config</a>
               <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="developers/guidelines" role="button" data-toggle="dropdown">Developers</a>
+            <a class="nav-link" href="/developers/guidelines" role="button" data-toggle="dropdown">Developers</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
               <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
@@ -199,6 +203,8 @@ if( isset($markdown_fn) and $markdown_fn){
               <a class="dropdown-item" href="/events">Events</a>
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
+              <a class="dropdown-item" href="/publications">Publications</a>
+              <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>
           </li>

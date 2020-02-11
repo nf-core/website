@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - "node" # Use latest version of nodejs
-
-before_script:
-  - npm install -g markdownlint-cli
-
-script:
-  - markdownlint ${TRAVIS_BUILD_DIR}/markdown -c ${TRAVIS_BUILD_DIR}/.github/markdownlint.yml --ignore ${TRAVIS_BUILD_DIR}/markdown/pipelines
