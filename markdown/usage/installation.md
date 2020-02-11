@@ -8,7 +8,7 @@ This documentation assumes that you have already read the [introduction](introdu
 ## Table of contents
 <!-- Install Atom plugin markdown-toc-auto for this ToC -->
 <!-- TOC START min:2 max:3 link:true asterisk:true -->
-* [Install nextflow](#install-nextflo)
+* [Install nextflow](#install-nextflow)
 * [Install the pipeline](#install-the-pipeline)
   * [Automatic](#automatic)
   * [Offline](#offline)
