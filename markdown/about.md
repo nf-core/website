@@ -11,7 +11,7 @@ The core team members who administer the nf-core project are listed below:
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik
 * [@sven1103](https://github.com/sven1103): Sven F.
 
-We regularly review members - if you'd like to be involved, drop us a line on Slack.
+We regularly review members - if you'd like to be involved, drop us a message on Slack.
 
 ## History {#history}
 The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
