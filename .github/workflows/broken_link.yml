@@ -1,6 +1,10 @@
 name: Check Markdown links
 
-on: push
+on:
+  push:
+    paths: markdown/**
+  pull_request:
+    paths: markdown/**
 
 jobs:
   markdown-link-check:
