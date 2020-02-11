@@ -15,6 +15,7 @@ include('../includes/header.php');
 <ul>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#organisations">Organisations</a></li>
+    <li><a href="#initiatives">Projects we are involved with</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
 </ul>
 
@@ -168,18 +169,28 @@ $(function(){
 });
 </script>
 
-<h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
-<p>We are collating statements and general comments from those who have either contributed to nf-core, or have chosen to routinely deploy
-    nf-core pipelines for their data analysis. Feel free to add your own experiences, and please let us know if we have missed anything!</p>
+<h1 id="initiatives"><a href="#initiatives" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Projects we are involved with</h1>
+<p>A number of large projects are committing to working with the nf-core community for data analysis pipelines. You can see an overview of these below.</p>
 
 <h3 id="dfg_testimonial"><a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/dfg_logo.svg" class="float-right pl-4" />
+    <img width="350px" src="/assets/img/contributors-colour/dfg_logo.svg" class="float-right pl-4" />
     German National Sequencing Initiative
 </h3>
 <p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
 has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
 large-scale genomics data. Contributors from the Kiel and Tübingen sites are already actively contributing to nf-core, and the other sequencing centers
 in Cologne/Bonn (West German Genome Center) and the Dresden Center have committed to joining and contributing their expertise.</p>
+
+<h3 id="easi_genomics_testimonial"><a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="350px" src="/assets/img/contributors-colour/EASI-Genomics.svg" class="float-right pl-4" />
+    EASI-Genomics
+</h3>
+<p><a href="https://www.easi-genomics.eu/" target="_blank">EASI-Genomics</a>
+provides easy and seamless access to cutting-edge DNA sequencing technologies to researchers from academia and industry, within a framework that ensures compliance with ethical and legal requirements, as well as FAIR and secure data management.
+EASI-Genomics aims to build a community of practice, which leverages advanced sequencing technologies beyond country and sector borders to tackle global challenges in science.
+It organizes competitive calls to get fully-funded access to state-of-the-art facilities and services, including integrative data analysis.</p>
+<p>EASI-Genomics partners are committed to working within community best-practices for the bioinformatics processing of the data that they produce.
+To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
 
 <h3 id="ngi_testimonial"><a href="#ngi_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="250px" src="/assets/img/contributors-colour/NGI.svg" class="float-right pl-4" />
@@ -203,9 +214,7 @@ More importantly, <em>nf-core</em> pipelines are implemented to benefit the enti
 evolution is driven by the very same community through their use, contributions and extensive feedback. This is nothing short of
 amazing!</p>
 
-<h3 id="tweet_testimonials"><a href="#tweet_testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    Tweets to @nf_core
-</h3>
+<h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 
 <div class="card-columns">
 
