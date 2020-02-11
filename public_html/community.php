@@ -57,7 +57,7 @@ foreach($logins as $login){
 <?php
 // Parse YAML contributors file
 $locations = [];
-require_once("../Spyc.php");
+require_once("../includes/libraries/Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_html = '';
 foreach($contributors['contributors'] as $idx => $c){
