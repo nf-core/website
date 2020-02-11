@@ -18,3 +18,4 @@ jobs:
     - uses: gaurav-nelson/github-action-markdown-link-check@0.5.0
       with:
         use-quite-mode: 'yes'
+        config-file: '../mlc_config.json'
