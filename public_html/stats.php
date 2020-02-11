@@ -245,7 +245,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <p class="card-text display-4"><a href="#slack" class="text-body text-decoration-none stretched-link"><?php echo $slack_users->total; ?></a></p>
       <p class="card-text text-muted">Slack users</p>
     </div>
-    <div class="bg-icon" style="color: rgba(89, 37, 101, 0.1);"><i class="fab fa-slack"></i></div>
+    <div class="bg-icon"><i class="fab fa-slack"></i></div>
   </div>
   <div class="card bg-light">
     <div class="card-body">

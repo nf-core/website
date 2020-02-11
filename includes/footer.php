@@ -20,7 +20,7 @@ if(isset($subfooter) and $subfooter){
                 <img height="30px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
                 <img height="30px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
             </a>
-            <small class="d-block mb-3">Making awesome workflows since &copy; 2018</small>
+            <small class="d-block mb-3">Making awesome workflows since 2018</small>
             <small class="d-block mb-3">
               Website by <a href="http://phil.ewels.co.uk/">Phil Ewels</a>.
               Icons from <a href="http://www.flaticon.com/">flaticon.com</a>
@@ -29,19 +29,40 @@ if(isset($subfooter) and $subfooter){
               <a href="http://jquery.com/">jQuery</a> JS and syntax colouring
               with <a href="https://highlightjs.org/">highlight.js</a>.
             </small>
-            <div class="btn-toolbar mb-3" role="toolbar">
-              <div class="theme-switcher border btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-light <?php if($theme == 'auto') echo 'active'; ?>" data-toggle="tooltip" title="Auto Light / Dark">
-                  <input type="radio" value="auto" autocomplete="off" checked> <i class="fas fa-adjust"></i>
-                </label>
-                <label class="btn btn-light <?php if($theme == 'light') echo 'active'; ?>" data-toggle="tooltip" title="Light Theme">
-                  <input type="radio" value="light" autocomplete="off"> <i class="fas fa-sun"></i>
-                </label>
-                <label class="btn btn-light <?php if($theme == 'dark') echo 'active'; ?>" data-toggle="tooltip" title="Dark Theme">
-                  <input type="radio" value="dark" autocomplete="off"> <i class="fas fa-moon"></i>
-                </label>
+            <div class="d-md-flex">
+              <div class="btn-toolbar mb-3 mr-4" role="toolbar">
+                <div class="theme-switcher border btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-light <?php if($theme == 'auto') echo 'active'; ?>" data-toggle="tooltip" title="Auto Light / Dark">
+                    <input type="radio" value="auto" autocomplete="off" checked> <i class="fas fa-adjust"></i>
+                  </label>
+                  <label class="btn btn-light <?php if($theme == 'light') echo 'active'; ?>" data-toggle="tooltip" title="Light Theme">
+                    <input type="radio" value="light" autocomplete="off"> <i class="fas fa-sun"></i>
+                  </label>
+                  <label class="btn btn-light <?php if($theme == 'dark') echo 'active'; ?>" data-toggle="tooltip" title="Dark Theme">
+                    <input type="radio" value="dark" autocomplete="off"> <i class="fas fa-moon"></i>
+                  </label>
+                </div>
+              </div>
+
+              <div class="social-icons mb-3">
+                <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-toggle="tooltip">
+                 <img src="/assets/img/slack.svg" />
+                </a>
+                <a href="https://github.com/nf-core/" target="_blank" class="social-github" title="GitHub" data-toggle="tooltip">
+                 <img src="/assets/img/github.svg" />
+                </a>
+                <a href="https://twitter.com/nf_core" target="_blank" title="twitter" data-toggle="tooltip">
+                 <img src="/assets/img/twitter.svg" />
+                </a>
+                <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" target="_blank" title="YouTube" data-toggle="tooltip">
+                 <img src="/assets/img/youtube.svg" />
+                </a>
+                <a href="https://groups.google.com/forum/#!forum/nf-core" target="_blank" title="Google Groups" data-toggle="tooltip">
+                 <img src="/assets/img/google_groups.svg" />
+                </a>
               </div>
             </div>
+
           </div>
           <div class="col-6 col-md">
             <h5>Getting Started</h5>

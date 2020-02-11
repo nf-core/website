@@ -13,8 +13,11 @@ body {
 .text-body {
   color: #e5e6e7!important;
 }
-.text-dark {
+.text-dark, a.text-dark:focus, a.text-dark:hover {
   color: #e5e6e7!important;
+}
+.bg-secondary {
+  background-color: rgba(50,50,50,.55)!important;
 }
 .bg-light, .alert-light {
   background-color: #1C1F21!important;
@@ -55,6 +58,13 @@ blockquote {
 .card {
   background-color: #181A1B;
   border-color: rgba(102, 102, 102, 0.13);
+}
+.stats_keynumbers .bg-icon {
+  font-size: 180px;
+  color: rgba(255,255,255,0.1);
+  position: absolute;
+  bottom: -80px;
+  right: -20px;
 }
 .alert-info {
   background-color: #1c353b;
@@ -161,6 +171,53 @@ footer .btn-light:not(:disabled):not(.disabled).active {
   background-color: #545b62;
   border-color: #4e555b;
 }
+.social-icons a.social-github img {
+  -webkit-filter: invert(80%) opacity(70%);
+  filter: invert(80%) opacity(70%);
+}
+.social-icons a.social-github:hover img, .social-icons a.social-github:focus img, .social-icons a.social-github:active img {
+  -webkit-filter: invert(80%) opacity(100%);
+  filter: invert(80%) opacity(100%);
+}
+
+
+.btn-outline-success:not(:disabled):not(.disabled) {
+    border-color: #1D9655;
+    color: #1D9655;
+}
+.btn-outline-success:not(:disabled):not(.disabled):hover {
+    background-color: #1D9655;
+}
+.btn-success:not(:disabled):not(.disabled) {
+    background-color: #1D9655;
+    border-color: #1D9655;
+}
+.main-content h1 {
+  border-bottom: 1px solid #1D9655;
+}
+.hompage-cta {
+  color: #1D9655;
+}
+.hompage-cta:after {
+  border: 2px solid #1D9655;
+}
+.hompage-cta:hover,
+.hompage-cta:focus {
+  color: #1D9655;
+}
+
+.hompage-cta:active:before {
+  background-color: #1D9655;
+}
+.hompage-cta:active:after {
+  border-color: #1D9655;
+}
+.pipelines-toolbar .btn-outline-success:not(.active):not(:disabled):not(.disabled):hover {
+  color: #1D9655;
+}
+.pipelines-toolbar .pipeline-filters input.active:not(:focus) {
+  border-color: #1D9655;
+}
 
 .mainpage-heading, .homepage-intro {
   background-color: #1D9655;
@@ -179,12 +236,15 @@ footer .btn-light:not(:disabled):not(.disabled).active {
 }
 
 .nfcore-subnav .nav-link.active {
-  background-color: rgba(84, 171, 106, 0.5);
+  border-bottom: 1px solid #1D9655;
+  background-color: rgba(0, 154, 85, .9);
   color: rgba(255,255,255,.9);
 }
 
-
-
+.nfcore-subnav .nav-link:hover {
+  background-color: rgba(0, 154, 85, .5);
+  color: rgba(255,255,255,.9);
+}
 
 .hompage-cta:before {
   background-color: rgba(50,50,50,.55);
