@@ -192,12 +192,19 @@ will automatically update to list your new pipeline.
 
 ### Branch setup
 
+All nf-core pipelines use branches called `dev` and `master`.
+The `master` branch should contain the code from the latest stable release, `dev` should have the latest development code.
+Before the first release is made we set `dev` as the default repository branch instead of `master`;
+this means that the latest code runs by default up until the first release.
+After the first release we switch the default back to `master`.
+
 We want people to run the latest development code by default up until the first release.
-To do this, we set `dev` as default and delete the `master` branch.
-We will create the `master` branch again when you are ready to create the first release.
+To do this, we set `dev` as the default repository branch.
+After a release is created, we set the default branch back to `master` so that the default
+action is to run the latest stable release code.
 
 Once you have forked the repository, create a new branch called `dev` for the active development.
-In the repository settings, set `dev` to be the default branch and then delete the `master` branch.
+In the repository settings, set `dev` to be the default branch.
 
 ### Repository setup
 
@@ -207,6 +214,10 @@ Remember to configure the repository on the GitHub website with the following:
 * Issues enabled, disable Wiki and Projects
 * A protected `master` branch that requires review and passing tests
 * Write permissions for `nf-core/all` and admin permissions for `nf-core/admin`
+
+You can check that all of these settings are done correctly by referring to your pipeline
+in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
+This reports the status of various checks and also has the option of fixing errors for you via the GitHub API.
 
 ### Setting up Travis and Docker Hub
 
@@ -223,7 +234,7 @@ that. Then the tests should pass.
 
 ## Making the first release
 
-When the code is stable and ready for a release, create the `master` branch again and set this as the default branch.
+When the code is stable and ready for a release, set the `master` branch to be the default branch again.
 Bump the version numbers on `dev` (see below) and make a pull-request from the `dev` branch to `master` on the nf-core fork.
 This is a special case and the tests should pass.
 Once they do, merge the PR yourself and let the nf-core team know that you're ready.
