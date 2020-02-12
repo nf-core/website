@@ -90,6 +90,6 @@ However, in general, pipelines must:
   * Reference files (eg. auto-generate missing reference files, where possible)
 * Keep only code for the latest stable release on the main `master` branch.
   * The main development code should be kept in a branch called `dev`
-  * The nf-core `master` branch should be deleted and `dev` set as the default until the first release
+  * The nf-core `dev` branch should be set as the default branch up until the first release
 * Use GitHub releases and [keep a detailed changelog](https://keepachangelog.com/en/1.0.0/) file
 * Follow a versioning approach, e.g. [Semantic Versioning](https://semver.org/) for your pipeline releases
