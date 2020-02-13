@@ -5,6 +5,7 @@ Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/mar
 
 Main publication for the main nf-core paper, describing the community and framework:
 
+<!-- nf-core-altmetric -->
 > **The nf-core framework for community-curated bioinformatics pipelines**
 >
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen
