@@ -3,11 +3,21 @@ Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/mar
 
 # The nf-core project
 
-Preprint for the main nf-core paper, describing the community and framework:
+Main publication for the main nf-core paper, describing the community and framework:
+
+<!-- nf-core-altmetric -->
+> **The nf-core framework for community-curated bioinformatics pipelines**
+>
+> Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen
+>
+> [_Nat Biotechnolgy_ (2020)](https://doi.org/10.1038/s41587-020-0439-x);
+> doi: [10.1038/s41587-020-0439-x](https://dx.doi.org/10.1038/s41587-020-0439-x)
+
+Preprint for the main nf-core paper (significantly different from the final Nature Biotech paper):
 
 > **_nf-core:_ Community curated bioinformatics pipelines**
 >
-> Philip A Ewels, Alexander Peltzer, Sven Fillinger, Johannes Alneberg, Harshil Patel, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso, Sven Nahnsen
+> Philip Ewels, Alexander Peltzer, Sven Fillinger, Johannes Alneberg, Harshil Patel, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso, Sven Nahnsen
 >
 > [_bioRxiv_ 610741](https://www.biorxiv.org/content/10.1101/610741v3);
 > doi: [10.1101/610741](https://doi.org/10.1101/610741)
