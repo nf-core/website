@@ -57,7 +57,7 @@ The main place for this is Slack - an instant messaging service.
 The _nf-core_  Slack can be found at [https://nfcore.slack.com](https://nfcore.slack.com/) (_NB: no hyphen in `nfcore`!_).
 To join you will need an invite, which you can get at [https://nf-co.re/join/slack](https://nf-co.re/join/slack).
 
-The _nf-core_ Slack organisation has channels dedicated for each pipeline, as well as specific topics (_eg._ [#help](https://nfcore.slack.com/channels/help), [#pipelines](https://nfcore.slack.com/channels/pipelines), [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines), [#tools](https://nfcore.slack.com/channels/tools), [#configs](https://nfcore.slack.com/channels/configs), [#request-review](https://nfcore.slack.com/channels/request-review), [#coding-style](https://nfcore.slack.com/channels/coding-style) and much more).
+The _nf-core_ Slack organisation has channels dedicated for each pipeline, as well as specific topics (_eg._ [#help](https://nfcore.slack.com/channels/help), [#pipelines](https://nfcore.slack.com/channels/pipelines), [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines), [#tools](https://nfcore.slack.com/channels/tools), [#configs](https://nfcore.slack.com/channels/configs), [#request-review](https://nfcore.slack.com/channels/request-review) and much more).
 
 One additional tool which we like a lot is [TLDR](https://tldr.sh/) - it gives concise command line reference through example commands for most linux tools, including `nextflow`, `docker`, `singularity`,  `conda`, `git` and more.
 There are many clients, but [raylee/tldr](https://github.com/raylee/tldr) is arguably the simplest - just a single bash script.
