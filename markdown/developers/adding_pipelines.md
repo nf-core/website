@@ -267,11 +267,13 @@ Common things that are flagged at this point are:
 
 We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipelin release. You can also ping people from the nf-core core team to review your pipelin code by `@`ing them.
 
-### Tagging the release
+### Making the release
 
-Once the pseudo-PR is approved, we'll close it and you can [create a new release on GitHub](https://help.github.com/en/articles/creating-releases). Put in a basic changelog entry describing the general functionality at release. You may for example copy the content of your `CHANGELOG` file for that purpose into the GitHub release description. Please use a numeric only release name, to make sure that all pipeline releases follow the same pattern.
+Once the pseudo-PR is approved, we'll close it and you can go ahead with releasing the pipeline.
+Put in a basic changelog entry describing the general functionality at release.
+When you're ready, follow the instructions in the nf-core [release checklist](release_checklist.md).
 
-The nf-core website and helper tools will automatically detect new releases and update accordingly.
+The nf-core website and helper tools will automatically detect the new release and be updated accordingly.
 
 That's it, you're finished! Congratulations!
 
@@ -305,24 +307,5 @@ Sometimes, especially when adding new features to a pipeline, the dependencies c
 * Add *only* the newly required dependencies to the `environment.yml` in the pipeline code
 * List this new dependency as something new in the `CHANGELOG`
 * Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
-
-This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
-
-### Release Checklist
-
-As described above, when your pipeline is ready for a (first) release please follow the steps below to ensure that the pipeline meets the requirements of the nf-core community:
-
-* Bump the version number of the `dev` branch to a release version (e.g. `1.0.0dev` > `1.0.0`): `nf-core bump-version 1.0.0`
-* Check for pipeline dependencies that are out of date and update these accordingly in the `dev` branch: `nf-core lint .` will tell you which ones are outdated via automated API calls to (bio-) conda
-* Check that there is a [Zenodo DOI](https://www.zenodo.org/) created for your pipeline
-  * Login/Register at Zenodo using the URL above, then [follow this guide to get a DOI set up for your pipeline](https://guides.github.com/activities/citable-code/)
-* Update the `CHANGELOG`, listing everything that has been added/fixed in this release
-* [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) from `dev` to `master` on GitHub after adjusting all of this and make sure that all of the CI tests are passing
-* Link some reviewers (2 are required for merging to `master`) - asking for a final review on your release
-* Once approved by two reviewers, merge your PR into `master`
-* Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
-  * Please make sure to use strictly numeric release numbers, most people follow [Semantic Versioning](https://semver.org/), e.g. 1.0.0, 1.0.
-* Optional: Use a [nice code name](http://www.codenamegenerator.com/) for your pipeline release
-* Create your release. The tests will run automatically and DockerHub will generate a tagged container for that release.
 
 This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
