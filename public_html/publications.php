@@ -7,7 +7,7 @@ $no_print_content = true;
 include('../includes/header.php');
 
 $altmetric_insert = '<!-- nf-core-altmetric -->';
-$altmetric_donut = '<div style="float:right;" data-badge-details="right" data-badge-type="medium-donut" data-doi="10.1038/s41587-020-0439-x" data-hide-no-mentions="true" class="altmetric-embed"></div>';
+$altmetric_donut = '<div style="float:right; background-color:#ffffff; border-radius:5px; padding:15px 15px 0 15px; margin:-15px -15px 0 0;" data-badge-details="right" data-badge-type="medium-donut" data-doi="10.1038/s41587-020-0439-x" data-hide-no-mentions="true" class="altmetric-embed"></div>';
 $content = str_replace($altmetric_insert, $altmetric_donut, $content);
 echo $content;
 
