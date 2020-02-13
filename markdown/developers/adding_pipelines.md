@@ -187,13 +187,24 @@ First, fork your workflow repository to the nf-core GitHub organisation by
 clicking 'Fork' at the top of the GitHub webpage. If you don't see nf-core
 as an option, please ask one of the nf-core administrators to do this for you.
 
-Once forked, the [nf-core website](https://nf-co.re) will automatically update
-to list your new pipeline.
+Once you have forked the pipeline repository, the [nf-core website](https://nf-co.re)
+will automatically update to list your new pipeline.
 
-### Setting up Travis and Docker Hub
+### Branch setup
 
-Just as with your own fork, Travis and Docker Hub need to be set up for the
-main nf-core fork. You'll need to ask one of the core nf-core team to help you with this.
+All nf-core pipelines use branches called `dev` and `master`.
+The `master` branch should contain the code from the latest stable release, `dev` should have the latest development code.
+Before the first release is made we set `dev` as the default repository branch instead of `master`;
+this means that the latest code runs by default up until the first release.
+After the first release we switch the default back to `master`.
+
+We want people to run the latest development code by default up until the first release.
+To do this, we set `dev` as the default repository branch.
+After a release is created, we set the default branch back to `master` so that the default
+action is to run the latest stable release code.
+
+Once you have forked the repository, create a new branch called `dev` for the active development.
+In the repository settings, set `dev` to be the default branch.
 
 ### Repository setup
 
@@ -203,6 +214,15 @@ Remember to configure the repository on the GitHub website with the following:
 * Issues enabled, disable Wiki and Projects
 * A protected `master` branch that requires review and passing tests
 * Write permissions for `nf-core/all` and admin permissions for `nf-core/admin`
+
+You can check that all of these settings are done correctly by referring to your pipeline
+in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
+This reports the status of various checks and also has the option of fixing errors for you via the GitHub API.
+
+### Setting up Travis and Docker Hub
+
+Just as with your own fork, Travis and Docker Hub need to be set up for the
+main nf-core fork. You'll need to ask one of the core nf-core team to help you with this.
 
 ### Differences to your own fork
 
@@ -214,8 +234,9 @@ that. Then the tests should pass.
 
 ## Making the first release
 
-When the code is stable and ready for a release, make a pull-request from the
-`dev` branch to `master` on the nf-core fork. This is a special case and the tests should pass.
+When the code is stable and ready for a release, set the `master` branch to be the default branch again.
+Bump the version numbers on `dev` (see below) and make a pull-request from the `dev` branch to `master` on the nf-core fork.
+This is a special case and the tests should pass.
 Once they do, merge the PR yourself and let the nf-core team know that you're ready.
 
 ### Version numbers
@@ -226,7 +247,8 @@ code that need updating and this ensures that it happens in the correct places.
 Note that when developing the `:dev` tag should be used for docker containers.
 
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
-when ready - this will check that everything looks correct. You are welcome to use any numeric version number, recommendations are to use [Semantic Versioning](https://semver.org/) as it proved to be a good approach.
+when ready - this will check that everything looks correct.
+You are welcome to use any numeric version number, though we recommend using [Semantic Versioning](https://semver.org/).
 
 ### Core pipeline review
 

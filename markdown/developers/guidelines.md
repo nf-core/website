@@ -88,7 +88,8 @@ However, in general, pipelines must:
 * Run with as little input as possible
   * Metadata (eg. be able to run with just FastQ files, where possible)
   * Reference files (eg. auto-generate missing reference files, where possible)
-* Keep only code for the latest stable on the main `master` branch.
+* Keep only code for the latest stable release on the main `master` branch.
   * The main development code should be kept in a branch called `dev`
+  * The nf-core `dev` branch should be set as the default branch up until the first release
 * Use GitHub releases and [keep a detailed changelog](https://keepachangelog.com/en/1.0.0/) file
 * Follow a versioning approach, e.g. [Semantic Versioning](https://semver.org/) for your pipeline releases
