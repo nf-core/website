@@ -5,7 +5,7 @@ Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/mar
 
 Main publication for the main nf-core paper, describing the community and framework:
 
-<!-- nf-core-altmetric -->
+<!-- nf-core-nat-biotech-altmetric -->
 > **The nf-core framework for community-curated bioinformatics pipelines**
 >
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen
@@ -15,6 +15,7 @@ Main publication for the main nf-core paper, describing the community and framew
 
 Preprint for the main nf-core paper (significantly different from the final Nature Biotech paper):
 
+<!-- nf-core-biorxiv-altmetric -->
 > **_nf-core:_ Community curated bioinformatics pipelines**
 >
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Johannes Alneberg, Harshil Patel, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso, Sven Nahnsen
@@ -24,6 +25,7 @@ Preprint for the main nf-core paper (significantly different from the final Natu
 
 Article in _Nature_ describing scientific workflows (including nf-core):
 
+<!-- nf-core-nature-altmetric -->
 > **Workflow systems turn raw data into scientific knowledge**
 >
 > Jeffrey M. Perkel
@@ -36,6 +38,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 ### [nf-core/sarek](https://nf-co.re/sarek)
 
+<!-- nf-core-sarek-f1000-altmetric -->
 > **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 1; peer review: awaiting peer review].
 >
 > Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
@@ -46,6 +49,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
+<!-- nf-core-mhcquant-jproteome-altmetric -->
 > **MHCquant: Automated and Reproducible Data Analysis for Immunopeptidomics**
 >
 > Leon Bichmann, Annika Nelde, Michael Ghosh, Lukas Heumos, Christopher Mohr, Alexander Peltzer, Leon Kuchenbecker, Timo Sachsenberg, Juliane S. Walz, Stefan Stevanović, Hans-Georg Rammensee, and Oliver Kohlbacher
@@ -56,6 +60,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
+<!-- nf-core-lncpipe-jgg-altmetric -->
 > **LncPipe: A Nextflow-based pipeline for identification and analysis of long non-coding RNAs from RNA-Seq data.**
 >
 > Qi Zhao, Yu Sun, Dawei Wang, Hongwan Zhang, Kai Yu, Jian Zheng, Zhixiang Zuo.
