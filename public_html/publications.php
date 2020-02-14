@@ -32,7 +32,7 @@ $content = str_replace($altmetric_insert, $altmetric_donut, $content);
 echo $content;
 
 $altmetric_insert = '<!-- nf-core-lncpipe-jgg-altmetric -->';
-$altmetric_donut = '<div style="float:right; background-color:#ffffff; border-radius:5px; padding:15px 15px 0 15px; margin:-15px -15px 0 0;" data-badge-details="right" data-badge-type="medium-donut" data-doi="j.jgg.2018.06.005" data-hide-no-mentions="true" class="altmetric-embed"></div>';
+$altmetric_donut = '<div style="float:right; background-color:#ffffff; border-radius:5px; padding:15px 15px 0 15px; margin:-15px -15px 0 0;" data-badge-details="right" data-badge-type="medium-donut" data-doi="10.1016/j.jgg.2018.06.005" data-hide-no-mentions="true" class="altmetric-embed"></div>';
 $content = str_replace($altmetric_insert, $altmetric_donut, $content);
 echo $content;
 
