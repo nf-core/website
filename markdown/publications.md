@@ -47,6 +47,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > doi: [10.12688/f1000research.16665.1](https://doi.org/10.12688/f1000research.16665.1)
 
 
+### [nf-core/coproid](https://nf-co.re/coproid)
+
+<!-- pub-stats 10.1101/871533 -->
+> **_CoproID_ predicts the source of coprolites and paleofeces using microbiome composition and host DNA content**
+>
+> Maxime Borry, Bryan Cordova, Angela Perri, Marsha C. Wibowo, Tanvi Honap, Wing Tung Jada Ko, Jie Yu, Kate Britton, Linus Girdland Flink, Robert C. Power, Ingelise Stuijts, Domingo Salazar Garcia, Courtney A. Hofman, Richard W. Hagan, Thérèse Samdapawindé Kagone, Nicolas Meda, Hélène Carabin, David Jacobson, Karl Reinhard, Cecil M. Lewis Jr., Aleksandar Kostic, Choongwon Jeong, Alexander Herbig, Alexander Hübner, Christina Warinner
+>
+> [_bioRxiv_ 871533](https://www.biorxiv.org/content/10.1101/871533v2);
+> doi: [10.1101/871533](https://doi.org/10.1101/871533)
+
+
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
 <!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
