@@ -225,8 +225,8 @@ From the [nf-core/logos repository](https://github.com/nf-core/logos), download 
 
 * Update the pipeline name
 * Update the pipeline description
-* Save as ` assets/nf-core-<pipeline-name>_social_preview.svg`
-* Export as ` assets/nf-core-<pipeline-name>_social_preview.png`
+* Save as `assets/nf-core-<pipeline-name>_social_preview.svg`
+* Export as `assets/nf-core-<pipeline-name>_social_preview.png`
 * Upload it on the nf-core pipeline GitHub repository in the _Social Preview_ section in the _Settings_ tab
 
 If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
