@@ -145,7 +145,7 @@ nextflow run nf-core/rnaseq -revision 1.3
 If not specified, Nextflow will fetch the default branch:
 
 * `master`  for _nf-core_ released pipelines, and will be the latest release
-* `dev` for _nf-core_pipelines still in development, and will contain the latest development code
+* `dev` for _nf-core_ pipelines still in development, and will contain the latest development code
 
 If you would like to run the latest development code, use `-r dev`.
 
@@ -162,7 +162,7 @@ nextflow pull nf-core/rnaseq
 You can find general documentation and instructions for Nextflow and _nf-core_ on the _nf-core_ website: [https://nf-co.re/](https://nf-co.re/).
 Pipeline-specific documentation is bundled with each pipeline in the `/docs` folder.
 This can be read either locally, on GitHub, or on the _nf-core_ website.
-Each pipeline has its own webpage at `https://nf-co.re/PIPELINE` (_e.g._ [nf-co.re/rnaseq](https://nf-co.re/rnaseq))
+Each pipeline has its own webpage at `https://nf-co.re/<pipeline_name>` (_e.g._ [nf-co.re/rnaseq](https://nf-co.re/rnaseq))
 
 In addition to this documentation, each pipeline comes with basic command line reference.
 This can be seen by running the pipeline with the `--help` flag, for example:
@@ -207,7 +207,7 @@ It specifies URLs for test data and all required parameters.
 Because of this, you can test any _nf-core_ pipeline with the following command:
 
 ```bash
-nextflow run nf-core/PIPELINE -profile test
+nextflow run nf-core/<pipeline_name> -profile test
 ```
 
 Note that you will typically still need to combine this with a configuration profile for your system - _e.g._ `-profile test,docker`.
@@ -226,7 +226,7 @@ Once all prompts have been answered, non-default values are saved to a `params.j
 To use the launch feature, just specify the pipeline name:
 
 ```bash
-nf-core launch <PIPELINE>
+nf-core launch <pipeline_name>
 ```
 
 ### Using nf-core pipelines offline
@@ -238,7 +238,6 @@ To help with this, the `nf-core download` command automates the fetching of requ
 The command can download a specific release of a pipeline with `-r`/`--release` and fetch the singularity container if `--singularity` is passed (this needs Singularity to be installed).
 All files are saved to a single directory, ready to be transferred to the cluster where the pipeline will be executed.
 
-> _NB: At the time of writing (Sept 2019), functionality to download config files is not yet complete.
 This should be included soon._
 
 ### Exercise (using pipelines)
