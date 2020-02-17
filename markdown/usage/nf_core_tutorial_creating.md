@@ -396,7 +396,7 @@ Your pipeline will come out the other side stronger than ever!
 ### Making the first release
 
 Once the pseudo-PR is approved, you're ready to make the release.
-To do this, first bump the pipeline version to a stable tag using `nextflow bump-version`, then open a pull-request from the `dev` branch to `master`.
+To do this, first bump the pipeline version to a stable tag using `nf-core bump-version`, then open a pull-request from the `dev` branch to `master`.
 Once tests are passing and two _nf-core_ members have approved this PR, it can be merged to `master`.
 Then a GitHub release is made, using the contents of the changelog as a description.
 
@@ -418,7 +418,7 @@ There are plugins for most code editors to help with this process.
 
 ### Exercise (releasing pipelines)
 
-* Use `nf-core bump-version` to update the required version of Nextflow in your pipeline
+* Use `nf-core bump-version --nextflow` to update the required version of Nextflow in your pipeline
 * Bump your pipeline's version to 1.0, ready for its first release!
 * Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-cor.re)) and drop us a line about your latest and greatest pipeline plans!
 * Ask to be a member of the _nf-core_ GitHub organisation by commenting on [this GitHub issue](https://github.com/nf-core/nf-co.re/issues/3)
