@@ -13,10 +13,6 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 * If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones),
   have a look and see if all issues are closed, or can be resolved
   * It's fine to decide that some things should be postponed until the next release - just move them on to the next milestone
-* Check that there is a [Zenodo DOI](https://www.zenodo.org/) created for your pipeline
-  * [Login/Register at Zenodo](https://www.zenodo.org/) and then
-    [follow this guide](https://guides.github.com/activities/citable-code/)
-    to get a DOI set up for your pipeline
 
 ## Steps to release
 
