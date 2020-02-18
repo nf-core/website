@@ -223,11 +223,17 @@ This reports the status of various checks and also has the option of fixing erro
 
 From the [nf-core/logos repository](https://github.com/nf-core/logos), download the [social preview image template](https://github.com/nf-core/logos/blob/master/nf-core-logos/social_preview_image_template.svg), and follow these instructions:
 
+* Open the `social_preview_image_template.svg` file using [Inkscape](https://inkscape.org/) or any other vector graphics editor
+* You might need to install the google font [Maven Pro](https://fonts.google.com/specimen/Maven+Pro)
 * Update the pipeline name
+* If, and only if pipeline name is too long then center the logo
 * Update the pipeline description
 * Save as `assets/nf-core-<pipeline-name>_social_preview.svg`
 * Export as `assets/nf-core-<pipeline-name>_social_preview.png`
 * Upload it on the nf-core pipeline GitHub repository in the _Social Preview_ section in the _Settings_ tab
+
+Unfortunately, these steps cannot be automated, as the description of the pipeline could take one or two lines.
+Line break should not 
 
 If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
