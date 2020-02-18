@@ -53,6 +53,10 @@ include('../includes/header.php');
             <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
           </div>
         </div>
+        <p class="text-center text-white m-0 pb-3">
+          nf-core is now published in <a class="text-white link-underline" href="https://www.nature.com/articles/s41587-020-0439-x" target="_blank">Nature Biotechnology</a>!
+          <a class="text-white link-underline" href="https://rdcu.be/b1GjZ" target="_blank">Read the full text here</a>.
+        </p>
       </div>
     </div>
     <div class="triangle triangle-down"></div>
