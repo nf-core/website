@@ -23,18 +23,16 @@ include('../includes/header.php');
 
 <p>We use a few different tools to organise the nf-core community -
     you are welcome to join us at any or all!</p>
-<p class="text-warning small">
-  <i class="fas fa-exclamation-triangle mr-1"></i>
-  All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-warning" style="text-decoration:underline;">code of conduct</a>
-</p>
-<p class="text-info small">
-  <i class="fas fa-question-circle mr-1"></i>
-  If you would like help with running nf-core pipelines, Slack is the best place to start.
-</p>
-<p class="text-info small">
-  <i class="fas fa-bug mr-1"></i>
-  If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
-</p>
+<div class="join-warnings">
+  <p class="text-info small">
+    <i class="fas fa-exclamation-triangle mr-1"></i>
+    All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-info">code of conduct</a>
+  </p>
+  <p class="small" style="color: #D93F66;">
+    <i class="fab fa-gitter mr-1"></i>
+    If your question is about Nextflow and not directly related to nf-core, please use the main <a style="color: #D93F66;" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
+  </p>
+</div>
 <p class="text-center">
   <a href="https://nf-co.re/join/slack" class="mb-2 btn btn-success">
     <i class="fab fa-slack"></i> Join Slack
@@ -55,10 +53,14 @@ include('../includes/header.php');
 
 <h1>
   <a class="text-success text-decoration-none" href="https://nfcore.slack.com/" target="_blank">
-    <img height="120px" src="/assets/img/slack.svg" class="float-right bg-white pl-4" />
+    <img height="120px" src="/assets/img/slack.svg" class="join-pull-img" />
     Slack
   </a>
 </h1>
+<p class="text-info small">
+  <i class="fas fa-question-circle mr-1"></i>
+  If you would like help with running nf-core pipelines, Slack is the best place to start.
+</p>
 <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
 You can join the nf-core slack <a href="https://nf-co.re/join/slack">here</a>.</p>
@@ -67,10 +69,14 @@ You can join the nf-core slack <a href="https://nf-co.re/join/slack">here</a>.</
 
 <h1>
   <a class="text-success text-decoration-none" href="https://github.com/nf-core/" target="_blank">
-    <img height="120px" src="/assets/img/github.svg" class="float-right bg-white pl-4" />
+    <img height="120px" src="/assets/img/github.svg" class="join-pull-img" />
     GitHub organisation
   </a>
 </h1>
+<p class="text-info small">
+  <i class="fas fa-bug mr-1"></i>
+  If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
+</p>
 <p>We use GitHub to manage all of the code written for nf-core.
 It's a fantastic platform and provides a huge number of tools.
 We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
@@ -79,7 +85,7 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
 
 <h1>
   <a class="text-success text-decoration-none" href="https://twitter.com/nf_core" target="_blank">
-    <img height="120px" src="/assets/img/twitter.svg" class="float-right bg-white pl-4" />
+    <img height="120px" src="/assets/img/twitter.svg" class="join-pull-img" />
     Twitter
   </a>
 </h1>
@@ -89,7 +95,7 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
 
 <h1>
   <a class="text-success text-decoration-none" href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" target="_blank">
-    <img width="144px" src="/assets/img/youtube.svg" class="float-right bg-white pl-4" />
+    <img width="144px" src="/assets/img/youtube.svg" class="join-pull-img" />
     YouTube
   </a>
 </h1>
@@ -101,7 +107,7 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
 
 <h1>
   <a class="text-success text-decoration-none" href="https://groups.google.com/forum/#!forum/nf-core" target="_blank">
-    <img height="120px" src="/assets/img/google_groups.svg" class="float-right bg-white pl-4" />
+    <img height="120px" src="/assets/img/google_groups.svg" class="join-pull-img" />
     Google Groups
   </a>
 </h1>
