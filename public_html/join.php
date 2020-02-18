@@ -53,7 +53,7 @@ include('../includes/header.php');
 
 <h1>
   <a class="text-success text-decoration-none" href="https://nfcore.slack.com/" target="_blank">
-    <img height="120px" src="/assets/img/slack.svg" class="join-pull-img" />
+    <span class="join-pull-img"><img height="120px" src="/assets/img/slack.svg" /></span>
     Slack
   </a>
 </h1>
@@ -69,7 +69,7 @@ You can join the nf-core slack <a href="https://nf-co.re/join/slack">here</a>.</
 
 <h1>
   <a class="text-success text-decoration-none" href="https://github.com/nf-core/" target="_blank">
-    <img height="120px" src="/assets/img/github.svg" class="join-pull-img" />
+    <span class="join-pull-img join-gh-logo"><img height="120px" src="/assets/img/github.svg" /></span>
     GitHub organisation
   </a>
 </h1>
@@ -85,7 +85,7 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
 
 <h1>
   <a class="text-success text-decoration-none" href="https://twitter.com/nf_core" target="_blank">
-    <img height="120px" src="/assets/img/twitter.svg" class="join-pull-img" />
+    <span class="join-pull-img"><img height="120px" src="/assets/img/twitter.svg" /></span>
     Twitter
   </a>
 </h1>
@@ -95,7 +95,7 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
 
 <h1>
   <a class="text-success text-decoration-none" href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" target="_blank">
-    <img width="144px" src="/assets/img/youtube.svg" class="join-pull-img" />
+    <span class="join-pull-img"><img width="144px" src="/assets/img/youtube.svg" /></span>
     YouTube
   </a>
 </h1>
