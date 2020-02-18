@@ -25,7 +25,7 @@ body {
 .border {
   border-color: #1F2124!important;
 }
-.bg-white {
+.bg-white, .join-pull-img {
   background-color: #181a1b!important;
 }
 .text-black-50 {
@@ -268,6 +268,8 @@ footer .btn-light:not(:disabled):not(.disabled).active {
 .contrib-avatars a img:hover {
   opacity: 1;
 }
+.join-gh-logo img {
+  filter: brightness(0) invert(1);
 mark, .mark {
   background-color: rgba(251, 235, 129, 0.1);
 }
