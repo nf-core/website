@@ -12,6 +12,8 @@ Main publication for the main nf-core paper, describing the community and framew
 >
 > [_Nat Biotechnology_ (2020)](https://www.nature.com/articles/s41587-020-0439-x);
 > doi: [10.1038/s41587-020-0439-x](https://doi.org/10.1038/s41587-020-0439-x)
+>
+> ReadCube: [View full text](https://rdcu.be/b1GjZ)
 
 Preprint for the main nf-core paper (significantly different from the final Nature Biotech paper):
 
