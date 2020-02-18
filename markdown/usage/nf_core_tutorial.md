@@ -8,13 +8,10 @@ subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
 > Duration: **1hr 45**
 >
 > Updated for the nf-core Hackathon 2020, London 2020-03 _(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))._
-> Material was updated, but not the presentation.
-> But it's still a good one, and it's currently being updated as well.
-> The slides mentioning Travis-CI are not up to date since we switched to GitHub Actions.
 > Last updated: February 2020
 
 <!-- markdownlint-disable -->
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/I9HrOeNJx1if3D" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/sToqg2FJcGUJZ2" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 <!-- markdownlint-restore -->
 
 **[Click here to download the slides associated with this tutorial.](../assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
