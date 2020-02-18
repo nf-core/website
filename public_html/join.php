@@ -23,16 +23,14 @@ include('../includes/header.php');
 
 <p>We use a few different tools to organise the nf-core community -
     you are welcome to join us at any or all!</p>
-<div class="join-warnings">
-  <p class="text-info small">
-    <i class="fas fa-exclamation-triangle mr-1"></i>
-    All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-info">code of conduct</a>
-  </p>
-  <p class="small" style="color: #D93F66;">
-    <i class="fab fa-gitter mr-1"></i>
-    If your question is about Nextflow and not directly related to nf-core, please use the main <a style="color: #D93F66;" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
-  </p>
-</div>
+<p class="text-info small">
+  <i class="fas fa-exclamation-triangle mr-1"></i>
+  All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-info link-underline">code of conduct</a>
+</p>
+<p class="small" style="color: #D93F66;">
+  <i class="fab fa-gitter mr-1"></i>
+  If your question is about Nextflow and not directly related to nf-core, please use the main <a style="color: #D93F66;" class="link-underline" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
+</p>
 <p class="text-center">
   <a href="https://nf-co.re/join/slack" class="mb-2 btn btn-success">
     <i class="fab fa-slack"></i> Join Slack
