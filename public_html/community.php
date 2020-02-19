@@ -193,7 +193,7 @@ It organizes competitive calls to get fully-funded access to state-of-the-art fa
 To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
 
 <h3 id="bovreg_testimonial"><a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/contributors-colour/BovReg.jpeg" class="float-right pl-4" />
+    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-right pl-4" />
     BovReg
 </h3>
 <p><a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
