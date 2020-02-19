@@ -428,7 +428,7 @@ Each file Each file (`branch.yml`, `ci.yml` and `linting.yml`) defines several t
 #### `branch.yml`
 
 This is already set up and does not need to be edited.
-It will check that a PR is made on `dev` unless it's for a release or a patch.
+It will check that pull-requests going to the nf-core repo `master` branch only come from the `dev` or `patch` branches (for releases).
 
 #### `linting.yml`
 
