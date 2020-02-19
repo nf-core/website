@@ -5,7 +5,7 @@ Hi there! Many thanks for taking an interest in improving the nf-core website.
 ## Instructions to add your institution to the list of contributors
 
 1. Fork this repo
-2. Add your institute details and your name to the [nf-core-contributors.yaml](nf-core-contributors.yaml)
+2. Add your institute details and your name to the [nf-core-contributors.yaml](../nf-core-contributors.yaml)
 
 Here's the desired format
 
@@ -26,13 +26,13 @@ Here's the desired format
   twitter: CRGenomica
 ```
 
-3. For the purpose of displaying your institution logo, please also add the `SVG` of your institutions logo. These logos are displayed on the [main page](https://nf-co.re/) as 
-well as in the [community page](https://nf-co.re/community#organisations). 
+3. For the purpose of displaying your institution logo, please also add the `SVG` of your institutions logo. These logos are displayed on the [main page](https://nf-co.re/) as
+well as in the [community page](https://nf-co.re/community#organisations).
 
-Please note that`nf-co.re` website makes use of the `light/dark` mode so it's recommended that you add the logo for both modes. You could make use of `Adobe Illustrator/Inkscape` for converting the logo in two variants. 
+Please note that`nf-co.re` website makes use of the `light/dark` mode so it's recommended that you add the logo for both modes. You could make use of `Adobe Illustrator/Inkscape` for converting the logo in two variants.
 
-* The `colored SVG logo` needs to be added to the [contributors-colour](public_html/assets/img/contributors-colour) directory. 
-* The `white SVG logo` needs to be added to the [contributors-white](public_html/assets/img/contributors-white/) directory.
+* The `colored SVG logo` needs to be added to the [contributors-colour](../public_html/assets/img/contributors-colour) directory.
+* The `white SVG logo` needs to be added to the [contributors-white](../public_html/assets/img/contributors-white/) directory.
 
 ## Contribution workflow
 

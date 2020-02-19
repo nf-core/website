@@ -9,7 +9,7 @@ The core team members who administer the nf-core project are listed below:
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik
 * [@sven1103](https://github.com/sven1103): Sven F.
 
-We regularly review members - if you'd like to be involved, drop us a line on Slack.
+We regularly review members - if you'd like to be involved, drop us a message on Slack.
 
 All nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
