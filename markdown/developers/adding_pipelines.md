@@ -233,7 +233,7 @@ From the [nf-core/logos repository](https://github.com/nf-core/logos), download 
 * Upload it on the nf-core pipeline GitHub repository in the _Social Preview_ section in the _Settings_ tab
 
 Unfortunately, these steps cannot be automated, as the description of the pipeline could take one or two lines.
-Line break should look nice and be readable
+Line break should look nice and be readable.
 
 If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
