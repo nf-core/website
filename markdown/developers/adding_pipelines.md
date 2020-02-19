@@ -226,14 +226,14 @@ From the [nf-core/logos repository](https://github.com/nf-core/logos), download 
 * Open the `social_preview_image_template.svg` file using [Inkscape](https://inkscape.org/) or any other vector graphics editor
 * You might need to install the google font [Maven Pro](https://fonts.google.com/specimen/Maven+Pro)
 * Update the pipeline name
-* If, and only if pipeline name is too long then center the logo
+* If the pipeline name goes beyond the apple, centre the logo in the image
 * Update the pipeline description
 * Save as `assets/nf-core-<pipeline-name>_social_preview.svg`
 * Export as `assets/nf-core-<pipeline-name>_social_preview.png`
 * Upload it on the nf-core pipeline GitHub repository in the _Social Preview_ section in the _Settings_ tab
 
 Unfortunately, these steps cannot be automated, as the description of the pipeline could take one or two lines.
-Line break should not 
+Line break should look nice and be readable
 
 If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
