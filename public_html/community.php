@@ -192,6 +192,15 @@ It organizes competitive calls to get fully-funded access to state-of-the-art fa
 <p>EASI-Genomics partners are committed to working within community best-practices for the bioinformatics processing of the data that they produce.
 To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
 
+<h3 id="bovreg_testimonial"><a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-right pl-4" />
+    BovReg
+</h3>
+<p><a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
+<a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
+to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.</p>
+<p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
+
 <h3 id="ngi_testimonial"><a href="#ngi_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="250px" src="/assets/img/contributors-colour/NGI.svg" class="float-right pl-4" />
     <img width="250px" src="/assets/img/contributors-colour/SciLifeLab.svg" class="float-right pl-4" />
