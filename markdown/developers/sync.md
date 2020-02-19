@@ -3,26 +3,191 @@ title: Synchronisation
 subtitle: Learn how nf-core pipelines are automatically kept up to date with community standards.
 ---
 
-## Introduction
+# Introduction
 To keep all the nf-core pipelines up-to-date with the latest version of the community standards, we have implemented a synchronisation tool.
 This ensures that updates to the community standards are propagated to all the nf-core pipelines.
+
+1. [How it works](#how-it-works)
+2. [Merging automated PRs](#merging-automated-prs)
+3. [Manual synchronisation](#manual-synchronisation)
+4. [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively)
 
 If a pipeline is created using the `nf-core create` command, everything is automagically set up for the synchronisation to work.
 However, if a pipeline was not created using this command, this documentation will tell you how to set it up properly.
 
-## How it works
-In brief, when the synchronisation tool is triggered it compares every pipeline against the new standards and opens pull requests when mismatches are found.
-These pull requests needs to be manually dealt with by the pipeline maintainers.
+# How it works
 
-Behind the scenes, the synchronisation tool fetches the variables needed for a pipeline and uses this to trigger a `nf-core create --no-git` command.
-The result from this command is then compared against what is stored in a special branch of the pipeline called the `TEMPLATE` branch.
-If any changes are detected, a pull request is created.
+The `nf-core` helper tools have a subcommand for synchronising a pipeline with the nf-core template.
+Although this can be run manually, it is usually only used by the GitHub Actions automation:
+when a new version of nf-core/tools is released it runs for all nf-core pipelines and automatically opens pull-requests (PRs) with the necessary changes to every pipeline.
+These pull requests then need to be manually dealt with by the pipeline maintainers.
+
+Behind the scenes, this synchronisation is done by using `git`.
+Each repository has a special `TEMPLATE` branch which contains only the "vanilla" code made by the create tool.
+The synchronisation tool fetches the variables needed for a pipeline and uses this to trigger a `nf-core create --no-git` command with the latest version of the template.
+The result from this is then compared against what is stored in the `TEMPLATE` branch and committed.
+When merging from the `TEMPLATE` branch back in to the main `dev` branch of the pipeline, `git` should be clever enough to know what has been changed since the template was first used, and only present the relevant changes.
 
 For this to work in practice, the `TEMPLATE` branch needs to have a shared git history with the `master` branch of the pipeline.
 The `nf-core create` command arranges this by enforcing a first commit to the `master` branch before any development has taken place.
-The next section deals with the case when the pipeline *was not* created by the `nf-core create` command.
+If the pipeline *was not* created by the `nf-core create` command, this has to be set up manually.
+For instructions on this, see [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively).
 
-## Set up your pipeline for automatic syncing
+# Merging automated PRs
+
+When a new release of tools is created, each pipeline will get an automated pull-request (PR) opened to merge the changes to the template in to the pipeline.
+
+If there are no merge conflicts on the PR, then that's great!
+If you're are happy with the changes, feel free to just merge it in to the `dev` branch directly.
+
+However, it is quite likely that the PR is quite big with a lot of merge conflicts.
+You're going to have to merge these manually.
+Sorry about this, but there's no way around it..
+
+You should not be actively working on the main nf-core repository, so we need to bring these changes to your personal fork.
+The steps we need to do are:
+
+1. Pull the nf-core/<pipeline>:TEMPLATE changes to your fork
+2. Resolve the merge conflicts
+3. Push these updates to your fork on GitHub
+4. Make a PR from your fork to the main nf-core repo
+
+Once you have merged this PR from your fork, this PR will automatically show as merged.
+You will not need to touch it.
+
+## Pull the changes to your fork
+
+On the command line, go to the directory where you have checked out your fork of the pipeline repository.
+Add the nf-core fork as a _git remote_ called `upstream`:
+
+```bash
+git remote add upstream https://github.com/nf-core/<pipeline>.git
+```
+
+Next, check out a new branch to make these changes in:
+
+```bash
+git checkout -b merging-template-updates
+```
+
+Finally, pull the `TEMPLATE` branch from the `upstream` repo:
+
+```bash
+git pull upstream TEMPLATE
+```
+
+## Resolving merge conflicts
+
+You will probably get a tonne of log messages telling you about merge conflicts:
+
+```console
+$ git pull upstream TEMPLATE
+
+remote: Enumerating objects: 33, done.
+remote: Counting objects: 100% (33/33), done.
+remote: Compressing objects: 100% (18/18), done.
+remote: Total 33 (delta 15), reused 33 (delta 15), pack-reused 0
+Unpacking objects: 100% (33/33), done.
+From github.com:nf-core/rnaseq
+ * branch            TEMPLATE   -> FETCH_HEAD
+   55d617e..2d7814a  TEMPLATE   -> upstream/TEMPLATE
+Auto-merging nextflow.config
+CONFLICT (content): Merge conflict in nextflow.config
+Auto-merging main.nf
+CONFLICT (content): Merge conflict in main.nf
+Auto-merging environment.yml
+CONFLICT (content): Merge conflict in environment.yml
+...
+```
+
+If you look at the current status, you will see the files that have merge conflicts that need resolving _(Unmerged paths)_:
+
+```console
+$ git status
+
+On branch merging-template-updates
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+
+    modified:   .github/ISSUE_TEMPLATE/bug_report.md
+    modified:   .github/ISSUE_TEMPLATE/feature_request.md
+    modified:   .github/markdownlint.yml
+    modified:   .gitignore
+    new file:   bin/markdown_to_html.py
+    deleted:    bin/markdown_to_html.r
+    deleted:    conf/awsbatch.config
+
+Unmerged paths:
+  (use "git add/rm <file>..." as appropriate to mark resolution)
+
+    both modified:   .github/CONTRIBUTING.md
+    both modified:   .github/PULL_REQUEST_TEMPLATE.md
+    both added:      .github/workflows/branch.yml
+    both added:      .github/workflows/ci.yml
+    both added:      .github/workflows/linting.yml
+    deleted by them: .travis.yml
+    both modified:   CHANGELOG.md
+    both modified:   CODE_OF_CONDUCT.md
+    both modified:   Dockerfile
+    both modified:   README.md
+    both modified:   assets/multiqc_config.yaml
+    both modified:   bin/scrape_software_versions.py
+    both modified:   conf/base.config
+    both modified:   conf/igenomes.config
+    both modified:   conf/test.config
+    both modified:   docs/output.md
+    both modified:   docs/usage.md
+    both modified:   environment.yml
+    both modified:   main.nf
+    both modified:   nextflow.config
+```
+
+You now need to go through each of these files to resolve every merge conflict.
+Most code editors have tools to help with this, for example [Atom](https://flight-manual.atom.io/using-atom/sections/github-package/#resolve-conflicts) and [VSCode](https://code.visualstudio.com/docs/editor/versioncontrol#_merge-conflicts) have built-in support.
+
+Be careful when resolving conflicts.
+Most of the time you will want to use the version from the `TEMPLATE` branch,
+but be aware that some of this new template code may need to be customised by your pipeline.
+In other words, you may need to manually combine the two versions in to one new code block.
+
+If you have any doubts, ask for help on the nf-core Slack.
+
+## Pushing the resolved changes to your fork
+
+When all merge conflicts have been resolved and all files are staged, you can commit and push these changes as with any other new code:
+
+```bash
+git commit -m "Merged changes from nf-core template
+git push --set-upstream origin merging-template-updates
+```
+
+## Merging to the nf-core repository
+
+Once the changes are on your fork, you can make a pull request to the main nf-core fork.
+This should be reviewed and merged as usual.
+You should see in the commit history on the PR that there is a commit by the @nf-core-bot user, with the same commit hash found in the automated `TEMPLATE` PR.
+
+Once your fork is merged, the automated PR will also show as merged and will close automatically.
+
+# Manual synchronisation
+
+There are rare cases, when the synchronisation needs to be triggered manually,
+i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync.
+
+You can do so by running the `nf-core sync` command:
+
+```bash
+cd my_pipeline
+git checkout dev # or your most up to date branch
+nf-core sync --make-template-branch
+```
+
+Much of the merging process should then be the same as described above with the automated pull requests.
+
+# Setting up a pipeline for syncing retrospectively
 This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
 
 You should also consider the option to restart your pipeline project by running the `nf-core create` command and simply copy in the modifications you need into the newly created pipeline.
@@ -183,24 +348,4 @@ Once your commits are finally merged into the `master` branch, all future automa
 When new releases of `nf-core/tools` and it's associated template are released, pull-requests will automatically
 be created to merge updates in to your pipeline for you.
 
-## *Well done!*
-
-## Manual synchronisation
-
-There are rare cases, when the synchronisation needs to be triggered manually, i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync.
-
-You can do so by running the `sync` script, which is located in the top-level `./bin/` folder in the nf-core tools repository.
-
-You need to provide two environment variables, `TRAVIS_TAG` and `NF_CORE_BOT`. `TRAVIS_TAG` specifies the Github release tag you want to sync, `NF_CORE_BOT` the nf-core bot user password.
-
-To manuall trigger the syncronisation for ALL pipelines, just run:
-
-```bash
-sync
-```
-
-To trigger synchronisation for a particular pipeline, run:
-
-```bash
-sync <pipeline name>
-```
+That's it, you're done! **Congratulations!**
