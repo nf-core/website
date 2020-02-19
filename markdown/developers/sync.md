@@ -7,15 +7,13 @@ subtitle: Learn how nf-core pipelines are automatically kept up to date with com
 To keep all the nf-core pipelines up-to-date with the latest version of the community standards, we have implemented a synchronisation tool.
 This ensures that updates to the community standards are propagated to all the nf-core pipelines.
 
-1. [How it works](#how-it-works)
-2. [Merging automated PRs](#merging-automated-prs)
-3. [Manual synchronisation](#manual-synchronisation)
-4. [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively)
+There are three topics covered in this documentation page:
 
-If a pipeline is created using the `nf-core create` command, everything is automagically set up for the synchronisation to work.
-However, if a pipeline was not created using this command, this documentation will tell you how to set it up properly.
+1. [Merging automated PRs](#merging-automated-prs)
+2. [Manual synchronisation](#manual-synchronisation)
+3. [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively)
 
-# How it works
+### How template synchronisation works
 
 The `nf-core` helper tools have a subcommand for synchronising a pipeline with the nf-core template.
 Although this can be run manually, it is usually only used by the GitHub Actions automation:
@@ -39,7 +37,6 @@ When a new release of tools is created, each pipeline will get an automated pull
 
 If there are no merge conflicts on the PR, then that's great!
 If you're are happy with the changes, feel free to just merge it in to the `dev` branch directly.
-
 However, it is quite likely that the PR is quite big with a lot of merge conflicts.
 You're going to have to merge these manually.
 Sorry about this, but there's no way around it..
@@ -47,7 +44,7 @@ Sorry about this, but there's no way around it..
 You should not be actively working on the main nf-core repository, so we need to bring these changes to your personal fork.
 The steps we need to do are:
 
-1. Pull the nf-core/<pipeline>:TEMPLATE changes to your fork
+1. Pull the `nf-core/<pipeline>` `TEMPLATE` changes to your fork
 2. Resolve the merge conflicts
 3. Push these updates to your fork on GitHub
 4. Make a PR from your fork to the main nf-core repo
@@ -55,7 +52,7 @@ The steps we need to do are:
 Once you have merged this PR from your fork, this PR will automatically show as merged.
 You will not need to touch it.
 
-## Pull the changes to your fork
+### Pull the changes to your fork
 
 On the command line, go to the directory where you have checked out your fork of the pipeline repository.
 Add the nf-core fork as a _git remote_ called `upstream`:
@@ -76,7 +73,7 @@ Finally, pull the `TEMPLATE` branch from the `upstream` repo:
 git pull upstream TEMPLATE
 ```
 
-## Resolving merge conflicts
+### Resolving merge conflicts
 
 You will probably get a tonne of log messages telling you about merge conflicts:
 
@@ -155,16 +152,16 @@ In other words, you may need to manually combine the two versions in to one new 
 
 If you have any doubts, ask for help on the nf-core Slack.
 
-## Pushing the resolved changes to your fork
+### Pushing the resolved changes to your fork
 
 When all merge conflicts have been resolved and all files are staged, you can commit and push these changes as with any other new code:
 
 ```bash
-git commit -m "Merged changes from nf-core template
+git commit -m "Merged changes from nf-core template"
 git push --set-upstream origin merging-template-updates
 ```
 
-## Merging to the nf-core repository
+### Merging to the nf-core repository
 
 Once the changes are on your fork, you can make a pull request to the main nf-core fork.
 This should be reviewed and merged as usual.
