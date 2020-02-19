@@ -180,11 +180,12 @@ if( isset($markdown_fn) and $markdown_fn){
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installation</a>
-              <a class="dropdown-item" href="/usage/configuration">Nextflow configuration</a>
+              <a class="dropdown-item" href="/usage/configuration">Pipeline configuration</a>
               <a class="dropdown-item" href="/usage/offline">Running offline</a>
               <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
               <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
+              <a class="dropdown-item" href="/usage/nextflow">Nextflow resources</a>
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
