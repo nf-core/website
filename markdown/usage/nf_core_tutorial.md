@@ -8,7 +8,6 @@ subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
 > Duration: **1hr 45**
 >
 > Updated for the nf-core Hackathon 2020, London 2020-03 _(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))._
-> Last updated: February 2020
 
 <!-- markdownlint-disable -->
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/sToqg2FJcGUJZ2" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
@@ -161,10 +160,10 @@ For example:
 nextflow run nf-core/rnaseq -revision 1.3
 ```
 
-If not specified, Nextflow will fetch the default branch:
+If not specified, Nextflow will fetch the default branch.
+For pipelines with a stable release this the default branch is `master` - this branch contains code from the latest release.
+For pipelines in early development that don't have any releases, the default branch is `dev`.
 
-* `master`  for _nf-core_ released pipelines, and will be the latest release
-* `dev` for _nf-core_ pipelines still in development, and will contain the latest development code
 
 If you would like to run the latest development code, use `-r dev`.
 
@@ -428,28 +427,34 @@ Each file Each file (`branch.yml`, `ci.yml` and `linting.yml`) defines several t
 
 #### `branch.yml`
 
-This is already set up and should not be touched.
+This is already set up and does not need to be edited.
 It will check that a PR is made on `dev` unless it's for a release or a patch.
 
 #### `linting.yml`
 
-This is already set up and should not be touched.
+This is already set up and does not need to be edited.
 It will check:
 
 * That all Markdown documentation follow a proper syntax.
-(if you're using `atom` of `Visual Studio Code` or any similar editor, plugins are available to help you out: _e.g._ [markdownlint for atom](https://atom.io/packages/linter-markdownlint), [markdownlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint))
+  * Many code editors have similar packages to help with markdown validation. For example, [markdownlint for atom](https://atom.io/packages/linter-markdownlint) and [markdownlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint))
+  * You can run the markdown linting on the command line by [installing markdownlint](https://www.npmjs.com/package/markdownlint) and running the command `markdownlint . -c .github/markdownlint.yml`
 * That all YAML file follow a proper syntax.
-* That the code follow the nf-core linting.
+* That the pipeline code follows the nf-core linting rules.
+  * You can run this manually with the `nf-core lint` command.
 
 #### `ci.yml`
 
-The `nxf_ver` variable sets the `NXF_VER` environment variable twice.
+This file defines a GitHub Actions workflow that tests your pipeline with the small test dataset.
+It should mostly work out of the box, but it may need some editing from you to customise it for your pipeline.
+
+The matrix `nxf_ver` variable sets the `NXF_VER` environment variable twice.
 This tells GitHub Actions to run the tests twice in parallel - once with the latest version of Nextflow (`NXF_VER=''`) and once with the minimum version supported by the pipeline.
 Do not edit this version number manually - it appears in multiple locations through the pipeline code, so it's better to use `nf-core bump-version --nextflow` instead.
 
-The provided tests may be sufficient for your pipeline.
+The provided tests run your pipeline with the `-profile test,docker` flags. This may be sufficient for your pipeline.
 However, if it is possible to run the pipeline with significantly different options (for example, different alignment tools), then it is good to test all of these.
 You can do this by adding additional tests in the `jobs` block.
+Do not try add a run for every possible combination of parameters, as it will take too long to run.
 
 ### Exercise 5 (testing pipelines)
 
@@ -494,9 +499,9 @@ Once tests are passing and two _nf-core_ members have approved this PR, it can b
 Then a GitHub release is made, using the contents of the changelog as a description.
 
 Pipeline version numbers (release tags) should be numerical only, using [semantic versioning](https://semver.org/spec/v2.0.0.html).
-For example, with a release version `1.4.3`, bumping `1` would correspond to the _major_ release where results would no longer be backwards compatible.
-Changing `4` would be a minor release, for example adding some new features.
-Changing `3` would be a patch release for minor things such as fixing bugs.
+For example, with a release version `1.4.3`, bumping to `2.0` would correspond to the _major_ release where results would no longer be backwards compatible.
+Bumping to `1.5` would be a minor release, for example adding some new features.
+Bumping to `1.4.4` would be a patch release for minor things such as fixing bugs.
 
 ### Template updates
 
