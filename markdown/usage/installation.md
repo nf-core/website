@@ -63,7 +63,7 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
 
 This pipeline itself needs no installation - nextflow will automatically fetch it from GitHub if `nf-core/<pipeline-name>` is specified as the pipeline name.
 
-This method requires an internet connection. If you're running on a system that has no internet connection, please see the [Running Offline](/usage/offline) documentation.
+This method requires an internet connection. If you're running on a system that has no internet connection, please see the [Running Offline](offline.md) documentation.
 
 ### Development
 
@@ -75,4 +75,4 @@ Note that you should _only_ do this if you intend to make significant changes to
 
 Some pipelines come with built-in support for iGenomes references.
 It may be preferable for you to download a local copy of these to your system to avoid fetching the same reference many times.
-For more information, see [_Reference genomes_](reference_genomes).
+For more information, see [_Reference genomes_](reference_genomes.md).
