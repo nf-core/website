@@ -24,6 +24,7 @@ Here's how the website is built:
     * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
 * PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
 * SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
+
 ## Development
 
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
