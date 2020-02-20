@@ -5,7 +5,7 @@ subtitle: Learn how nf-core pipelines are automatically kept up to date with com
 
 # Introduction
 To keep all the nf-core pipelines up-to-date with the latest version of the community standards, we have implemented a synchronisation tool.
-This ensures that updates to the community standards are propagated to all the nf-core pipelines.
+This ensures that updates to the community standards are propagated to all nf-core pipelines.
 
 There are three topics covered in this documentation page:
 
@@ -15,30 +15,30 @@ There are three topics covered in this documentation page:
 
 ### How template synchronisation works
 
-The `nf-core` helper tools have a subcommand for synchronising a pipeline with the nf-core template.
+The `nf-core` helper tools have a subcommand for synchronising a pipeline with the nf-core template (`nf-core sync`).
 Although this can be run manually, it is usually only used by the GitHub Actions automation:
-when a new version of nf-core/tools is released it runs for all nf-core pipelines and automatically opens pull-requests (PRs) with the necessary changes to every pipeline.
-These pull requests then need to be manually dealt with by the pipeline maintainers.
+when a new version of `nf-core/tools` is released it runs for all nf-core pipelines and automatically opens pull-requests (PRs) with the necessary changes required to update every pipeline.
+These pull requests then need to be manually resolved and merged by the pipeline maintainers.
 
 Behind the scenes, this synchronisation is done by using `git`.
-Each repository has a special `TEMPLATE` branch which contains only the "vanilla" code made by the create tool.
-The synchronisation tool fetches the variables needed for a pipeline and uses this to trigger a `nf-core create --no-git` command with the latest version of the template.
+Each repository has a special `TEMPLATE` branch which contains only the "vanilla" code made by the `nf-core create` tool.
+The synchronisation tool fetches the essential variables needed to recreate the pipeline and uses this to trigger a `nf-core create --no-git` command with the latest version of the template.
 The result from this is then compared against what is stored in the `TEMPLATE` branch and committed.
-When merging from the `TEMPLATE` branch back in to the main `dev` branch of the pipeline, `git` should be clever enough to know what has been changed since the template was first used, and only present the relevant changes.
+When merging from the `TEMPLATE` branch back into the main `dev` branch of the pipeline, `git` should be clever enough to know what has changed since the template was first used, and therefore, it will only present the relevant changes.
 
-For this to work in practice, the `TEMPLATE` branch needs to have a shared git history with the `master` branch of the pipeline.
-The `nf-core create` command arranges this by enforcing a first commit to the `master` branch before any development has taken place.
+For this to work in practice, the `TEMPLATE` branch needs to have a shared `git` history with the `master` branch of the pipeline.
+The `nf-core create` command initially does this by enforcing a first commit to the `master` branch before any development has taken place.
 If the pipeline *was not* created by the `nf-core create` command, this has to be set up manually.
 For instructions on this, see [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively).
 
 # Merging automated PRs
 
-When a new release of tools is created, each pipeline will get an automated pull-request (PR) opened to merge the changes to the template in to the pipeline.
+When a new release of tools is created, each pipeline will get an automated pull-request (PR) opened to merge the changes to the template into the pipeline.
 
 If there are no merge conflicts on the PR, then that's great!
-If you're are happy with the changes, feel free to just merge it in to the `dev` branch directly.
+If you are happy with the changes, feel free to just merge it into the `dev` branch directly.
 However, it is quite likely that the PR is quite big with a lot of merge conflicts.
-You're going to have to merge these manually.
+You're going to have to resolve and merge these manually.
 Sorry about this, but there's no way around it..
 
 You should not be actively working on the main nf-core repository, so we need to bring these changes to your personal fork.
@@ -49,7 +49,7 @@ The steps we need to do are:
 3. Push these updates to your fork on GitHub
 4. Make a PR from your fork to the main nf-core repo
 
-Once you have merged this PR from your fork, this PR will automatically show as merged.
+Once you have committed and pushed the updates to your fork and merged these in to the nf-core repository, the automated PR will close itself and show as merged.
 You will not need to touch it.
 
 ### Pull the changes to your fork
@@ -163,7 +163,7 @@ git push --set-upstream origin merging-template-updates
 
 ### Merging to the nf-core repository
 
-Once the changes are on your fork, you can make a pull request to the main nf-core fork.
+Once the changes are on your fork, you can make a pull request to the main nf-core repository for the pipeline.
 This should be reviewed and merged as usual.
 You should see in the commit history on the PR that there is a commit by the @nf-core-bot user, with the same commit hash found in the automated `TEMPLATE` PR.
 
