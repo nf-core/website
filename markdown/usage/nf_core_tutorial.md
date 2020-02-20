@@ -87,7 +87,6 @@ You can install the latest released version from PyPI as follows:
 pip install nf-core
 ```
 
-
 Or this command to install the `dev` version:
 
 ```bash
