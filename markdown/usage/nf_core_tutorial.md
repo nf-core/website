@@ -436,7 +436,8 @@ Each file Each file (`branch.yml`, `ci.yml` and `linting.yml`) defines several t
 
 This is already set up and does not need to be edited.
 It will check that pull-requests going to the nf-core repo `master` branch only come from the `dev` or `patch` branches (for releases).
-In case you want to add branch protection for a repository out of _nf-core_, you can add an extra step to the workflow with that repository name. Do keep the _nf-core_ branch protection, though, so that the `nf-core lint` command does not throw an error.
+In case you want to add branch protection for a repository out of _nf-core_, you can add an extra step to the workflow with that repository name.
+You can leave the _nf-core_ branch protection in place so that the `nf-core lint` command does not throw an error - it only runs on nf-core repositories so it should be ignored.
 
 #### `linting.yml`
 
