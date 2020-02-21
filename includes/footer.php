@@ -54,7 +54,7 @@ if(isset($subfooter) and $subfooter){
                 <a href="https://twitter.com/nf_core" target="_blank" title="twitter" data-toggle="tooltip">
                  <img src="/assets/img/twitter.svg" />
                 </a>
-                <a href="https://www.youtube.com/c/nfcore" target="_blank" title="YouTube" data-toggle="tooltip">
+                <a href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-toggle="tooltip">
                  <img src="/assets/img/youtube.svg" />
                 </a>
                 <a href="https://groups.google.com/forum/#!forum/nf-core" target="_blank" title="Google Groups" data-toggle="tooltip">
