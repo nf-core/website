@@ -30,21 +30,21 @@ subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
 
 #### Exercises
 
-* [1 - installation](#exercise-1-installation)
-* [2 - listing pipelines](#exercise-2-listing-pipelines)
-* [3 - using pipelines](#exercise-3-using-pipelines)
-* [4 - creating pipelines](#exercise-4-creating-pipelines)
-* [5 - testing pipelines](#exercise-5-testing-pipelines)
-* [6 - releasing pipelines](#exercise-6-releasing-pipelines)
+* [1 - Installation](#exercise-1-installation)
+* [2 - Listing pipelines](#exercise-2-listing-pipelines)
+* [3 - Using pipelines](#exercise-3-using-pipelines)
+* [4 - Creating pipelines](#exercise-4-creating-pipelines)
+* [5 - Testing pipelines](#exercise-5-testing-pipelines)
+* [6 - Releasing pipelines](#exercise-6-releasing-pipelines)
 
 ## Abstract
 
-The _nf-core_ community provides a range of tools to help new users get to grips with nextflow - both by providing complete pipelines that can be used out of the box, and also by helping developers with best practices.
+The _nf-core_ community provides a range of tools to help new users get to grips with Nextflow - both by providing complete pipelines that can be used out of the box, and also by helping developers with best practices.
 Companion tools can create a bare-bones pipeline from a template scattered with `TODO` pointers and CI with linting tools check code quality.
-Guidelines and documentation help to get nextflow newbies on their feet in no time.
+Guidelines and documentation help to get Nextflow newbies on their feet in no time.
 Best of all, the _nf-core_ community is always on hand to help.
 
-In this tutorial we discuss the best-practice guidelines developed by the _nf-core_ community, why they're important and give insight into the best tips and tricks for budding nextflow pipeline developers. ✨
+In this tutorial we discuss the best-practice guidelines developed by the _nf-core_ community, why they're important and give insight into the best tips and tricks for budding Nextflow pipeline developers. ✨
 
 ## Introduction
 
@@ -239,7 +239,7 @@ The `nf-core launch` command uses this to build an interactive command-line wiza
 
 > _NB: This is an experimental feature - JSON file and rich descriptions of parameters is not yet available for all pipelines._
 
-Once all prompts have been answered, non-default values are saved to a `params.json` file which can be supplied to Nextflow to run the pipeline. Optionally, the nextflow command can be launched there and then.
+Once all prompts have been answered, non-default values are saved to a `params.json` file which can be supplied to Nextflow to run the pipeline. Optionally, the Nextflow command can be launched there and then.
 
 To use the launch feature, just specify the pipeline name:
 
@@ -258,7 +258,7 @@ All files are saved to a single directory, ready to be transferred to the cluste
 
 ### Exercise 3 (using pipelines)
 
-* Install required dependencies (nextflow, docker)
+* Install required dependencies (Nextflow, Docker)
 * Print the command-line usage instructions for the _nf-core/rnaseq_ pipeline
 * In a new directory, run the _nf-core/rnaseq_ pipeline with the provided test data
 * Try launching the RNA pipeline using the `nf-core launch` command
