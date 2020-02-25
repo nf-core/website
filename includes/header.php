@@ -121,6 +121,11 @@ $page_title = 'nf-core';
 if(isset($title) && strlen($title) > 0){
   $page_title = $title.' &raquo; nf-core';
 }
+// Page meta description
+$page_meta = 'A collection of high quality Nextflow pipelines';
+if(isset($subtitle) && strlen($subtitle) > 0){
+  $page_meta = $subtitle;
+}
 
 ?><!doctype html>
 <html lang="en">
@@ -128,7 +133,7 @@ if(isset($title) && strlen($title) > 0){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $page_title; ?></title>
-    <meta name="description" content="A collection of high quality Nextflow pipelines">
+    <meta name="description" content="<?php echo $page_meta; ?>">
     <meta name="author" content="Phil Ewels">
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
