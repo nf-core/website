@@ -116,12 +116,18 @@ if( isset($markdown_fn) and $markdown_fn){
 
 }
 
+// Page title
+$page_title = 'nf-core';
+if(isset($title) && strlen($title) > 0){
+  $page_title = $title.' &raquo; nf-core';
+}
+
 ?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>nf-core</title>
+    <title><?php echo $page_title; ?></title>
     <meta name="description" content="A collection of high quality Nextflow pipelines">
     <meta name="author" content="Phil Ewels">
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
