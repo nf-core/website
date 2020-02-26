@@ -119,12 +119,12 @@ if( isset($markdown_fn) and $markdown_fn){
 // Page title
 $page_title = 'nf-core';
 if(isset($title) && strlen($title) > 0){
-  $page_title = $title.' &raquo; nf-core';
+  $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)).' &raquo; nf-core';
 }
 // Page meta description
 $page_meta = 'A collection of high quality Nextflow pipelines';
 if(isset($subtitle) && strlen($subtitle) > 0){
-  $page_meta = $subtitle;
+  $page_meta = strip_tags($subtitle);
 }
 
 ?><!doctype html>
