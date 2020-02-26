@@ -3,7 +3,7 @@
 require_once('../includes/functions.php');
 usort($pipeline->releases, 'rsort_releases');
 
-$title = '<a href="/'.$pipeline->name.'">nf-core/<br class="d-sm-none">'.$pipeline->name.'</a>';
+$title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
 $subtitle = $pipeline->description;
 
 require_once('../includes/pipeline_page/components.php');
