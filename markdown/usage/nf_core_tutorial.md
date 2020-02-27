@@ -234,7 +234,7 @@ You can use Docker for testing by building the image locally. The pipeline expec
 docker build -t nfcore/PIPELINE:dev .
 ```
 
-Note that it is `nfcore` without a hyphen (docker hub doesn't allow any punctuation). The `.` refers to the current working directory - if run in the root pipeline folder this will tell Docker to use the `Dockerfile` recipe found there.
+Note that it is `nfcore` without a hyphen (Docker Hub doesn't allow any punctuation). The `.` refers to the current working directory - if run in the root pipeline folder this will tell Docker to use the `Dockerfile` recipe found there.
 
 ### Forks, branches and pull-requests
 All _nf-core_ pipelines use GitHub as their code repository, and git as their version control system. For newcomers to this world, it is helpful to know some of the basic terminology used:

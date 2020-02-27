@@ -74,7 +74,7 @@ git push
 
 ### Set up Travis and Docker Hub
 
-The nf-core pipelines use two additional services that link to GitHub: Travis and Dockerhub.
+The nf-core pipelines use two additional services that link to GitHub: Travis and Docker Hub.
 Using these enables automated testing (Travis) and automatic Docker image builds (Docker Hub).
 
 Just like with GitHub, you can run these on your personal fork for testing purposes.
@@ -87,7 +87,7 @@ The repository should already contain the required `.travis.yml` file, so the ne
 time you push a commit the tests will be automatically triggered.
 
 The process for Docker Hub is similar, though a little more fiddly. Docker has a number
-of  different docker websites (docker hub, docker cloud, docker swarm _etc._), but
+of  different docker websites (Docker Hub, Docker Cloud, Docker Swarm _etc._), but
 they seem to be moving towards consolidating on just Docker Hub. So it's best to use that.
 
 1. Go to [hub.docker.com](https://hub.docker.com) and create an account
