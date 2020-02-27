@@ -192,27 +192,15 @@ It organizes competitive calls to get fully-funded access to state-of-the-art fa
 <p>EASI-Genomics partners are committed to working within community best-practices for the bioinformatics processing of the data that they produce.
 To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
 
-<h3 id="ngi_testimonial"><a href="#ngi_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="250px" src="/assets/img/contributors-colour/NGI.svg" class="float-right pl-4" />
-    <img width="250px" src="/assets/img/contributors-colour/SciLifeLab.svg" class="float-right pl-4" />
-    Swedish National Genomics Infrastructure
+<h3 id="bovreg_testimonial"><a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-right pl-4" />
+    BovReg
 </h3>
-<p>The <a href="https://www.scilifelab.se/platforms/ngi/" target="_blank">Swedish National Genomics Infrastructure (NGI)</a>
-was a founding member of <em>nf-core</em> and is committed to developing analysis methodologies within the <em>nf-core</em>
-community. The NGI provides next-generatation sequencing methodologies for all Swedish researchers, from library prep to sequencing to best-practice bioinformatics analysis.
-We have seen fantastic uptake and feedback from pipelines within the framework and intend to be a longstanding member of the community.</p>
+<p><a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
+<a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
+to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.</p>
+<p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
 
-<h3 id="crick_testimonial"><a href="#crick_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="250px" src="/assets/img/contributors-colour/crick.svg" class="float-right pl-4" />
-    The Francis Crick Institute
-</h3>
-<p><a href="https://www.crick.ac.uk/research/platforms-and-facilities/bioinformatics-and-biostatistics" target="_blank">The Bioinformatics & Biostatistics group</a>
-at The Francis Crick Institute has contributed numerous pipelines to the <em>nf-core</em> framework, and we have a vested interest
-in its ongoing development. Our aim is to automate the tedious process of going from raw data to processed results in a portable,
-reproducible and scalable manner, which enables our scientists to focus on the biological interpretation of their experiments.
-More importantly, <em>nf-core</em> pipelines are implemented to benefit the entire bioinformatics community, and in turn their
-evolution is driven by the very same community through their use, contributions and extensive feedback. This is nothing short of
-amazing!</p>
 
 <h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 

@@ -8,7 +8,7 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-* You're familiar with nf-core and nextflow (see our [introduction docs](/usage/introduction)).
+* You're familiar with nf-core and nextflow (see our [introduction docs](../usage/introduction.md)).
 * You're used to working with `git` and [GitHub](https://github.com)
     (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 * The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/developers/guidelines).
@@ -47,7 +47,7 @@ Even if you already have a working pipeline, it may be easier in the long run to
 and copy over your code in the relevant places.
 
 If you really don't want to use the template it should possible to work without it.
-Please see the [manual synchronisation](/developers/sync) documentation.
+Please see the [manual synchronisation](sync.md) documentation.
 
 > Note that workflow names should be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms (eg. GitHub + Docker Hub).
@@ -218,6 +218,24 @@ Remember to configure the repository on the GitHub website with the following:
 You can check that all of these settings are done correctly by referring to your pipeline
 in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
 This reports the status of various checks and also has the option of fixing errors for you via the GitHub API.
+
+### Social Preview Image
+
+From the [nf-core/logos repository](https://github.com/nf-core/logos), download the [social preview image template](https://github.com/nf-core/logos/blob/master/nf-core-logos/social_preview_image_template.svg), and follow these instructions:
+
+* Open the `social_preview_image_template.svg` file using [Inkscape](https://inkscape.org/) or any other vector graphics editor
+* You might need to install the google font [Maven Pro](https://fonts.google.com/specimen/Maven+Pro)
+* Update the pipeline name
+* If the pipeline name goes beyond the apple, centre the logo in the image
+* Update the pipeline description
+* Save as `assets/nf-core-<pipeline-name>_social_preview.svg`
+* Export as `assets/nf-core-<pipeline-name>_social_preview.png`
+* Upload it on the nf-core pipeline GitHub repository in the _Social Preview_ section in the _Settings_ tab
+
+Unfortunately, these steps cannot be automated, as the description of the pipeline could take one or two lines.
+Line break should look nice and be readable.
+
+If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
 ### Setting up Travis and Docker Hub
 
