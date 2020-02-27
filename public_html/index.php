@@ -100,7 +100,7 @@ include('../includes/header.php');
               <h5 class="card-title text-center">Docker</h5>
               <img class="float-right ml-2" height="100px" src="assets/img/docker.svg" />
               <p class="card-text">Software dependencies are always available in a bundled docker container,
-              which Nextflow can automatically download from dockerhub.</p>
+              which Nextflow can automatically download from Docker Hub.</p>
             </div>
           </div>
         </div>
