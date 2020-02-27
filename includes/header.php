@@ -116,13 +116,24 @@ if( isset($markdown_fn) and $markdown_fn){
 
 }
 
+// Page title
+$page_title = 'nf-core';
+if(isset($title) && strlen($title) > 0){
+  $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)).' &raquo; nf-core';
+}
+// Page meta description
+$page_meta = 'A collection of high quality Nextflow pipelines';
+if(isset($subtitle) && strlen($subtitle) > 0){
+  $page_meta = strip_tags($subtitle);
+}
+
 ?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>nf-core</title>
-    <meta name="description" content="A collection of high quality Nextflow pipelines">
+    <title><?php echo $page_title; ?></title>
+    <meta name="description" content="<?php echo $page_meta; ?>">
     <meta name="author" content="Phil Ewels">
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -180,11 +191,12 @@ if( isset($markdown_fn) and $markdown_fn){
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installation</a>
-              <a class="dropdown-item" href="/usage/configuration">Nextflow configuration</a>
+              <a class="dropdown-item" href="/usage/configuration">Pipeline configuration</a>
               <a class="dropdown-item" href="/usage/offline">Running offline</a>
               <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
               <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
+              <a class="dropdown-item" href="/usage/nextflow">Nextflow resources</a>
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
