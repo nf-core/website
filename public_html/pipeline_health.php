@@ -73,12 +73,10 @@ class RepoHealth {
 
   // Names of required CI checks. These are added to whatever already exists.
   public $required_status_check_contexts = [
-    'Travis CI - Pull Request',
-    // TODO - after official switch to GitHub Actions, need new CI test names here:
-    // Markdown
-    // YAML
-    // nf-core
-    // test
+    Markdown
+    YAML
+    nf-core
+    test
     // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
     // If we really want to do this, might have to query the repo contents..??
   ];
