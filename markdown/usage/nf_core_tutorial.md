@@ -324,7 +324,7 @@ You can build and tag an image in a single step with the following command:
 docker build -t nfcore/PIPELINE:dev .
 ```
 
-Note that it is `nfcore` without a hyphen (docker hub doesn't allow any punctuation).
+Note that it is `nfcore` without a hyphen (Docker Hub doesn't allow any punctuation).
 The `.` refers to the current working directory - if run in the root pipeline folder this will tell Docker to use the `Dockerfile` recipe found there.
 
 ### Forks, branches and pull-requests

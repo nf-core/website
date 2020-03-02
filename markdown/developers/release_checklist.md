@@ -30,9 +30,9 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
   * Once approved by two reviewers, merge your PR into `master`
 * Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
   * Optional: Use a [nice code name](http://www.codenamegenerator.com/) for your pipeline release
-* Create your release. The tests will run automatically and DockerHub will generate a tagged container for that release.
+* Create your release. The tests will run automatically and Docker Hub will generate a tagged container for that release.
   * The nf-core website will automatically update and should automatically send a tweet about the pipeline release within minutes.
-  * After about 30 Minutes, the DockerHub Image for the pipeline will be ready and the released version can be used.
+  * After about 30 Minutes, the Docker Hub Image for the pipeline will be ready and the released version can be used.
 
 ## After release
 

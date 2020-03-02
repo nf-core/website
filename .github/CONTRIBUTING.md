@@ -51,7 +51,7 @@ If you're not used to this workflow with git, you can start with some [basic doc
 
 ## Tests
 
-When you create a pull request with changes, [Travis CI](https://travis-ci.org/) will run automatic tests.
+When you create a pull request with changes, Github Actions will run automatic tests.
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course we can help out before then.
 For now, the only test is for Markdown syntax, using the `markdownlint` package.
 
