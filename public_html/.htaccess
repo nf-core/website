@@ -1,16 +1,56 @@
-# Redirect https to https
-RewriteEngine On
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://nf-co.re/$1 [R,L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-# Run Php without filename extension
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php
+    # Specific deleted pages
+    RewriteRule ^/?usage/local_installation$ /usage/installation? [L,R=301]
+    RewriteRule ^/?usage/adding_own_config$ /usage/configuration? [L,R=301]
+    RewriteRule ^/?usage/nextflow_tutorial$ /usage/nextflow? [L,R=301]
 
-# Return 404 if original request is .php
-RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
-RewriteRule .* - [L,R=404]
+    # Redirect https to https
+    RewriteCond %{SERVER_PORT} 80
+    RewriteRule ^(.*)$ https://nf-co.re/$1 [R,L]
 
-# Nicer error pages
-ErrorDocument 404 /404.php
+    # Remove www. from URL
+    RewriteCond %{HTTP_HOST} ^www.nf-co.re$ [NC]
+    RewriteRule ^(.*)$ https://nf-co.re/$1 [R=301,L]
+
+    # Remove trailing slashes
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule (.*)/$ /$1 [L,R=301]
+
+    # Return join names to join.php
+    RewriteCond %{REQUEST_URI} ^/join/(.*)$
+    RewriteRule ^(.*)$ /join.php?t=$1 [L,NC,QSA]
+
+    # Nicer URL for logos
+    RewriteCond %{REQUEST_URI} ^/logo/(.*)$
+    RewriteRule ^(.*)$ /logo.php?t=$1 [L,NC,QSA]
+
+    # Remove double-slashes
+    RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
+    RewriteRule (.*) %1/%2 [R=301,L]
+
+    # Run PHP without filename extension
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php
+
+    # Redirect .md URLs to remove the extension
+    RewriteCond %{REQUEST_URI} ^(.*)\.md$
+    RewriteRule (.*) %1 [R=301,L]
+
+    # Return 404 if original request is .php
+    RewriteCond %{THE_REQUEST} \.php[/\s?] [NC]
+    RewriteRule !^404 - [R=404,L]
+
+    # Send everything else to our dynamic content loader
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /docs.php?path=$1 [L,NC,QSA]
+
+    # Nicer error pages
+    ErrorDocument 404 /404.php
+
+</IfModule>

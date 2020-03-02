@@ -1,0 +1,132 @@
+# ---------------------------------------------------------------
+# nf-core events. Add event below to be featured on the website
+# ---------------------------------------------------------------
+
+events:
+
+  - id: hackathon-francis-crick-2020
+    title: nf-core hackathon @ The Francis Crick, London
+    type: hackathon
+    start_date: "2020-03-04"
+    start_time: "09:00"
+    end_date: "2020-03-06"
+    end_time: "17:00"
+    description: >
+      The Francis Crick Institute in London will be hosting a three-day
+      nf-core hackathon after an official Nextflow workshop.
+    address: 1 Midland Rd, London NW1 1ST
+    location_name: The Francis Crick Institute
+    location_url: https://www.crick.ac.uk/
+    location_latlng: [51.5317308, -0.129134219]
+    event_url: https://www.eventbrite.com/e/nf-core-hackathon-march-2020-tickets-73422896861
+    contact: Harshil Patel
+    contact_email: harshil.patel@crick.ac.uk
+    contact_github: drpatelh
+    links:
+      Hackathon project page: https://github.com/orgs/nf-core/projects/5
+
+  - id: hackathon-scilifelab-2019
+    title: nf-core hackathon @ SciLifeLab, Sweden
+    type: hackathon
+    start_date: "2019-12-04"
+    start_time: "09:00"
+    end_date: "2019-12-06"
+    end_time: "17:00"
+    description: >
+      Informal meetup for anyone interested in learning more about nf-core and Nextflow.
+      Join to work on your own pipeline, existing pipeline issues, supporting code or just to
+      give yourself some dedicated time to get to grips with the Nextflow ecosystem.
+      Everyone is welcome to join, even if it's just for a couple of hours.
+    details: >
+      Hackathon will be in Milky Way and Andromeda, Alfa 2 in SciLifeLab Stockholm.
+      If you need access to the building, please get in touch with Phil.
+    address: Tomtebodavägen 23A, 17165 Solna, Sweden
+    location_name: SciLifeLab
+    location_url: https://scilifelab.se/
+    location_latlng: [59.3505174, 18.0221508]
+    contact: Phil Ewels
+    contact_email: phil.ewels@scilifelab.se
+    contact_github: ewels
+    event_url: https://doodle.com/poll/pp5ce9hsdwkw8qya
+    links:
+      Hackathon project page: https://github.com/orgs/nf-core/projects/4
+
+  - id: nextflow-camp-2019-tutorial
+    title: "Nextflow Camp 2019: Getting started with nf-core"
+    type: tutorial
+    start_date: "2019-09-19"
+    start_time: "11:15"
+    end_date: "2019-09-19"
+    end_time: "13:00"
+    description: >
+      In this tutorial we discuss the best-practice guidelines developed by the nf-core community,
+      why they're important and give insight into the best tips and tricks for budding nextflow pipeline developers.
+    address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
+    location_name: Centre for Genomic Regulation, Barcelona
+    location_url: https://www.crg.eu/
+    location_latlng: [41.385242, 2.194323]
+    event_url: https://www.nextflow.io/nfcamp/2019/phil-tutorial.html
+    contact: Phil Ewels
+    contact_email: phil.ewels@scilifelab.se
+    contact_github: ewels
+    links:
+      Tutorial material: https://nf-co.re/usage/nf_core_tutorial
+      Slides: https://www.slideshare.net/tallphil/nextflow-camp-2019-nfcore-tutorial
+
+  - id: nextflow-camp-2019-community-updates
+    title: "Nextflow Camp 2019: nf-core community updates"
+    type: talk
+    start_date: "2019-09-19"
+    start_time: "09:10"
+    end_date: "2019-09-19"
+    end_time: "09:45"
+    description: >
+      Now in its second year, the nf-core community continues to develop at a rapid pace.
+      More and more pipelines are being added to the list of stable releases, and the suite of framework tools continues to grow.
+      In this talk I will describe recent updates from the nextflow nf-core community - what's new with pipelines, best-practices, tips & tricks and the nf-core companion tools.
+    address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
+    location_name: Centre for Genomic Regulation, Barcelona
+    location_url: https://www.crg.eu/
+    location_latlng: [41.385242, 2.194323]
+    event_url: https://www.nextflow.io/nfcamp/2019/phil.html
+    contact: Phil Ewels
+    contact_email: phil.ewels@scilifelab.se
+    contact_github: ewels
+    links:
+      Slides: https://www.slideshare.net/tallphil/nextflow-camp-2019-nfcore-community-updates
+      Video: https://www.youtube.com/watch?v=PAp3gdEMSeQ
+
+  - id: hackathon-qbic-2019
+    title: nf-core hackathon @ QBiC Tübingen, Germany
+    type: hackathon
+    start_date: "2019-04-08"
+    end_date: "2019-04-09"
+    description: >
+      QBiC is holding a two-day nf-core hackathon.
+    address: Auf der Morgenstelle 10, 72076 Tübingen, Germany
+    location_name: QBiC
+    location_url: http://qbic.life
+    location_latlng: [48.5379169, 9.0339095]
+    contact: Alexander Peltzer
+    contact_email: alex.peltzer@mailbox.org
+    contact_github: apeltzer
+    links:
+      Hackathon project page: https://github.com/orgs/nf-core/projects/2
+
+  - id: hackathon-scilifelab-2018
+    title: nf-core hackathon @ SciLifeLab, Sweden
+    type: hackathon
+    start_date: "2018-08-06"
+    start_time: "09:00"
+    end_date: "2018-08-10"
+    description: >
+      Low-key get together and hackathon for nf-core projects in Sweden.
+    address: Tomtebodavägen 23A, 17165 Solna, Sweden
+    location_name: SciLifeLab
+    location_url: https://scilifelab.se/
+    location_latlng: [59.3505174, 18.0221508]
+    contact: Phil Ewels
+    contact_email: phil.ewels@scilifelab.se
+    contact_github: ewels
+    links:
+      Hackathon project page: https://github.com/orgs/nf-core/projects/1
