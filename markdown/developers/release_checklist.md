@@ -18,7 +18,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 
 * Bump the version number of the `dev` branch to a release version
   * For example, `1.0.0dev` becomes `1.0.0`
-  * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version 1.0.0`
+  * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version <path_to_cloned_pipeline> 1.0.0`
   * Please make sure to use strictly numeric release numbers
   * If in doubt, use [Semantic Versioning](https://semver.org/) as a guide
 * Run `nf-core lint` with the `--release` flag and check that there are no test failures.
