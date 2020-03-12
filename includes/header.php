@@ -152,6 +152,10 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
     <script src="/assets/js/leaflet.js"></script>
+    <?php if(isset($import_jqueryui) && $import_jqueryui): ?>
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
+    <?php endif; ?>
     <?php if(isset($import_chartjs) && $import_chartjs): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
