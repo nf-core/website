@@ -115,6 +115,7 @@ function validate_cache_id($cache_id){
     }
 
     // Check that timestamp isn't too old
+    global $expires_timestamp;
     $expires_timestamp = $id_parts[0] + MAX_JSON_BUILD_CACHE_AGE;
     if(time() > $expires_timestamp){
         return_json(array(
@@ -135,8 +136,8 @@ function validate_cache_id($cache_id){
 }
 
 // Got this far without printing JSON - build web GUI
-$title = 'JSON Schema Builder';
-$subtitle = 'Customise a JSON Schema for your pipeline';
+$title = 'Parameter schema';
+$subtitle = 'Customise a JSON Schema for your pipeline parameters';
 if($schema_cache) $import_schema_builder = true;
 include('../includes/header.php');
 
@@ -168,7 +169,7 @@ if(!$schema_cache){ ?>
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
             <div class="col">
-                <button class="btn btn-block btn-light schema-panel-btn" data-target="#schema-builder">nf-core JSON Schema builder</button>
+                <button class="btn btn-block btn-light schema-panel-btn" data-target="#schema-builder">nf-core parameter JSON Schema builder</button>
             </div>
             <div class="col-sm-auto">
                 <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished">Finished</button>
