@@ -11,6 +11,7 @@ $self_url .= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 // Holder for cache that we may load later
 $schema_cache = false;
 $schema = false;
+$expires_timestamp = false;
 
 function return_json($response){
     header('Content-type: application/json');
@@ -33,7 +34,7 @@ $schema_cache_files = glob($cache_dir.'/*.json');
 foreach($schema_cache_files as $fn) {
     $fn_parts = explode('_', $fn);
     if(count($fn_parts) == 2 && is_numeric($fn_parts[0])){
-        if($fn_parts[0] < time() - MAX_JSON_BUILD_CACHE_AGE){
+        if($fn_parts[0] < (time() - MAX_JSON_BUILD_CACHE_AGE)){
             unlink($fn);
         }
     }
@@ -75,6 +76,8 @@ if(isset($_POST['post_content']) && $_POST['post_content'] == 'json_schema'){
     }
 }
 
+// TODO - build code to handle schema submitted from buider tool
+
 // GET request - polling for the results of a Schema builder
 elseif(isset($_GET['id'])){
     $cache_id = $_GET['id'];
@@ -89,7 +92,8 @@ elseif(isset($_GET['id'])){
     }
 
     // Check that timestamp isn't too old
-    if($id_parts[0] < time() - MAX_JSON_BUILD_CACHE_AGE){
+    $expires_timestamp = $id_parts[0] + MAX_JSON_BUILD_CACHE_AGE;
+    if(time() > $expires_timestamp){
         return_json(array(
             'status' => 'error',
             'message' => 'JSON Build cache is too old (max '.(MAX_JSON_BUILD_CACHE_AGE/60/60).' hours): '.date('r', $id_parts[0])
@@ -124,7 +128,7 @@ elseif(isset($_GET['id'])){
 // Got this far without printing JSON - build web GUI
 $title = 'JSON Schema Builder';
 $subtitle = 'Customise a JSON Schema for your pipeline';
-$import_jqueryui = true;
+$import_schema_builder = true;
 include('../includes/header.php');
 
 if(!$schema_cache){ ?>
@@ -144,87 +148,22 @@ if(!$schema_cache){ ?>
 
 <?php } else { ?>
 
-    <p class="lead">Schema cache ID: <code><?php echo $cache_id; ?></code></p>
+    <p class="lead">Schema cache ID: <code><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
     <div class="alert alert-info small">
         <strong>Need something with more power?</strong>
-        Try <a href="https://json-schema-editor.tangramjs.com/editor.html#/" target="_blank">json-schema-editor.tangramjs.com</a>,
-        <a href="https://jsondraft.com/" target="_blank">https://jsondraft.com</a>
+        Try <a href="https://jsondraft.com/" target="_blank">jsondraft.com</a>,
+        <a href="https://json-schema-editor.tangramjs.com/editor.html#/" target="_blank">json-schema-editor.tangramjs.com</a>
         or <a href="https://json-schema.org/implementations.html#editors" target="_blank">other JSON Schema editors</a>.
     </div>
 
+    <div class="schema-builder"></div>
+
+    <pre id="json_schema"><?php echo json_encode($schema, JSON_PRETTY_PRINT); ?></pre>
+
     <?php
-    // TODO - write this
 
+    // TODO - write status and buttons to save schema when finished
 
-    // Build GUI web form
-
-    // Include schema data if we have it in variables from above
-    function print_schema_obj($schema_obj){
-        foreach($schema_obj as $id => $param){
-            $results .= '<div class="card mb-2"><div class="card-body p-2">';
-
-            // Nested group object
-            if($param['type'] == 'object'){
-                $results .= print_schema_obj($param['properties']);
-            }
-            // Everything else
-            else {
-                // <option value="array">array</option>
-                // <option value="null">null</option>
-                $type_select = '<select class="form-control">
-                    <option '.($param['type'] == 'string' ? 'selected="selected"' : '').' value="string">string</option>
-                    <option '.($param['type'] == 'number' ? 'selected="selected"' : '').' value="number">number</option>
-                    <option '.($param['type'] == 'boolean' ? 'selected="selected"' : '').' value="boolean">boolean</option>
-                    <option '.($param['type'] == 'object' ? 'selected="selected"' : '').' value="object">object (group)</option>
-                </select>';
-
-                $results .= '
-                <div class="row">
-                    <div class="col-sm-3 schema-id">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control text-monospace" value="'.$id.'">
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label>Type</label>
-                            '.$type_select.'
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Description</label>
-                            <input type="text" class="form-control" value="'.$param['description'].'">
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label>Default</label>
-                            <input type="text" class="form-control" value="'.$param['default'].'">
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <div class="form-group">
-                            <label>Required</label>
-                            <input type="checkbox" class="form-control" checked="'.$param['default'].'">
-                        </div>
-                    </div>
-                </div>
-                ';
-            }
-
-            $results .= '</div></div>';
-        }
-        return $results;
-    }
-
-    echo print_schema_obj($schema['properties']['input']['properties']);
-
-    // Include status and buttons to save if the above variables are set
-
-
-    echo '<pre>'.print_r($schema, true).'</pre>';
 }
 
 include('../includes/footer.php');
