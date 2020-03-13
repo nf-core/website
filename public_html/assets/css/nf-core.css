@@ -817,10 +817,21 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
 
 /* JSON Schema Builder */
+.schema-builder-header {
+  top: 56px; /* Height of nav bar */
+  margin: 2rem 0 0.8rem;
+  font-size: .875rem;
+  background-color: #f8f9fa;
+  border: 1px solid #ededed;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+}
+
 .schema_row, .schema_row input, .schema_row select {
   font-size: 0.8rem;
   background-color: #f9f9f9;
-  margin-bottom: 0.2rem;
+  border-radius: 0.2rem;
+  margin: 0 0 0.2rem;
 }
 .schema_row div:hover, .schema_row:focus-within {
   background-color: #f3f3f3;
@@ -857,4 +868,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .schema_row_grabber:hover i, .schema_row_config:hover i {
   color: #333;
+}
+
+#json_schema {
+  font-size: 0.7rem;
 }
