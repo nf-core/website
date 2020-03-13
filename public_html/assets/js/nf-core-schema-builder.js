@@ -3,6 +3,7 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
+// TODO - write parameter validation for special settings
 // TODO - handle objects / groups
 
 // Global variables
@@ -118,7 +119,6 @@ $(function () {
 
             // Validate
             if(!validate_param(param)){
-                console.log("Parameter didn't validate, resetting");
                 $(this).val( schema['properties']['input']['properties'][id][param_key] );
                 $(this).focus();
             } else {
@@ -134,6 +134,15 @@ $(function () {
                         if(param_default.toLowerCase() != 'true'){
                             schema['properties']['input']['properties'][id]['default'] = 'False';
                         }
+                    }
+
+                    // Remove special settings if not supported by the type
+                    if($(this).val() != 'string'){
+                        delete schema['properties']['input']['properties'][id]['pattern'];
+                    }
+                    if($(this).val() != 'range'){
+                        delete schema['properties']['input']['properties'][id]['minimum'];
+                        delete schema['properties']['input']['properties'][id]['maximum'];
                     }
 
                     row.replaceWith(generate_row(id, schema['properties']['input']['properties'][id]));
@@ -189,7 +198,100 @@ $(function () {
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
+    //
+    // Settings modal
+    //
+    $('#schema-builder').on('click', '.schema_row_config', function(){
+        // Get row
+        var row = $(this).closest('.schema_row');
+        var id = row.data('id');
+
+        // Build modal
+        $('#settings_modal .modal-title span').text(id);
+        $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
+        $('.no_special_settings, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+
+        if(['boolean', 'object'].indexOf(schema['properties']['input']['properties'][id]['type']) !== -1){
+            $('.no_special_settings').show();
+        }
+        if(['boolean', 'object'].indexOf(schema['properties']['input']['properties'][id]['type']) == -1){
+            $('.settings_enum_group').show();
+        }
+        if(schema['properties']['input']['properties'][id]['type'] == 'string'){
+            $('.settings_pattern_group').show();
+        }
+        if(schema['properties']['input']['properties'][id]['type'] == 'range'){
+            $('.settings_minmax_group').show();
+        }
+
+        // Fill modal boxes
+        if(schema['properties']['input']['properties'][id]['enum'] instanceof Array){
+            $('#settings_enum').val( schema['properties']['input']['properties'][id]['enum'].join('|') );
+        }
+        if(schema['properties']['input']['properties'][id].hasOwnProperty('pattern')){
+            $('#settings_pattern').val( schema['properties']['input']['properties'][id]['pattern'] );
+        }
+        if(schema['properties']['input']['properties'][id].hasOwnProperty('minimum')){
+            $('#settings_minimum').val( schema['properties']['input']['properties'][id]['minimum'] );
+        }
+        if(schema['properties']['input']['properties'][id].hasOwnProperty('maximum')){
+            $('#settings_maximum').val( schema['properties']['input']['properties'][id]['maximum'] );
+        }
+
+        $('#settings_modal').modal('show');
+    });
+    // Save modal
+    $('#settings_save').click(function(e){
+
+        var id = $('#settings_modal .modal-title span').text();
+
+        var settings_enum = $('#settings_enum').val().trim().split('|');
+        // Trim whitespace from each element and remove empties
+        $.map(settings_enum, $.trim);
+        settings_enum = settings_enum.filter(function (el) { return el.length > 0; });
+        var settings_pattern = $('#settings_pattern').val().trim();
+        var settings_minimum = $('#settings_minimum').val().trim().replace(/^\d\.-/g, '');
+        var settings_maximum = $('#settings_maximum').val().trim().replace(/^\d\.-/g, '');
+
+        // Validate inputs
+        if(settings_minimum.length > 0 && settings_maximum.length > 0){
+            if(settings_maximum < settings_minimum){
+                alert('Error: Maximum value must be more than minimum');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+
+        if(settings_enum.length > 0){
+            schema['properties']['input']['properties'][id]['enum'] = settings_enum;
+        }
+        if(settings_pattern.length > 0){
+            schema['properties']['input']['properties'][id]['pattern'] = settings_pattern;
+        }
+        if(settings_minimum.length > 0){
+            schema['properties']['input']['properties'][id]['minimum'] = settings_minimum;
+        }
+        if(settings_maximum.length > 0){
+            schema['properties']['input']['properties'][id]['maximum'] = settings_maximum;
+        }
+
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+
+
+    });
+    // Revalidate default value once modal settings changed
+    $('#settings_modal').on('hidden.bs.modal', function (e) {
+        var id = $('#settings_modal .modal-title span').text();
+        var param = JSON.parse(JSON.stringify(schema['properties']['input']['properties'][id]));
+        if(!validate_param(param)){
+            $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").focus();
+        }
+    });
+
+    //
     // Copy schema button
+    //
     $('.copy-schema-btn').click(function(){
         // select the content
         var target = $('#json_schema');
@@ -251,10 +353,10 @@ function generate_row(id, param){
         } else {
             attrs = 'type="number"';
         }
-        if(/^[\d.]+$/.test(param['minimum'])){
+        if(/^-?[\d\.]+$/.test(param['minimum'])){
             attrs += ' min="'+param['minimum']+'"';
         }
-        if(/^[\d.]+$/.test(param['maximum'])){
+        if(/^-?[\d\.]+$/.test(param['maximum'])){
             attrs += ' max="'+param['maximum']+'"';
         }
         if(param['default'] != undefined){
@@ -364,6 +466,12 @@ function validate_param(param){
             return false;
         }
     }
+
+    // TODO - write this
+    // Check that default matches enum
+
+    // TODO - write this
+    // Check that default matches regex pattern
 
     return true;
 }
