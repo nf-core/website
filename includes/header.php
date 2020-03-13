@@ -152,10 +152,6 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
     <script src="/assets/js/leaflet.js"></script>
-    <?php if(isset($import_jqueryui) && $import_jqueryui): ?>
-    <script src="/assets/js/jquery-ui.min.js"></script>
-    <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
-    <?php endif; ?>
     <?php if(isset($import_chartjs) && $import_chartjs): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
@@ -163,6 +159,12 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
+    <?php endif; ?>
+    <?php if(isset($import_schema_builder) && $import_schema_builder): ?>
+    <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif; ?>
     <script src="/assets/js/jquery.tablesorter.min.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
