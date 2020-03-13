@@ -5,7 +5,6 @@
 
 // TODO - handle objects / groups
 // TODO - handle required variables
-// TODO - add reordering functionality
 
 // Global variables
 var schema = '';
@@ -28,6 +27,12 @@ $(function () {
 
     // Build the schema builder
     $('#schema-builder').html( generate_obj(schema['properties']['input']['properties'], 1) );
+
+    // Make the rows sortable
+    $('#schema-builder').sortable({
+        handle: '.schema_row_grabber',
+        placeholder: 'schema_row_move_placeholder alert alert-warning'
+    });
 
     //
     // FINISHED button
@@ -121,6 +126,19 @@ $(function () {
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
+    // Sorting - element has been moved
+    $('#schema-builder').on('sortstop', function(e, ui){
+        // Don't actually need to know where it landed - just rebuild schema from the DOM
+        var new_schema = JSON.parse(JSON.stringify(schema));
+        new_schema['properties']['input']['properties'] = {};
+        $('.schema_row').each(function(idx, row){
+            var id = $(row).data('id');
+            new_schema['properties']['input']['properties'][id] = schema['properties']['input']['properties'][id];
+        });
+        schema = new_schema;
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
 
     // Copy schema button
     $('.copy-schema-btn').click(function(){
@@ -171,7 +189,7 @@ function generate_row(id, param){
 
     results = `
     <div class="row schema_row" data-id="`+id+`">
-        <div class="col-sm-auto align-self-center schema_row_grabber">
+        <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
             <i class="fas fa-grip-vertical"></i>
         </div>
         <div class="col-sm-auto">
