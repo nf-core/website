@@ -4,7 +4,6 @@
 //
 
 // TODO - handle objects / groups
-// TODO - handle required variables
 
 // Global variables
 var schema = '';
@@ -146,7 +145,10 @@ $(function () {
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
+
+    //
     // Sorting - element has been moved
+    //
     $('#schema-builder').on('sortstop', function(e, ui){
         // Don't actually need to know where it landed - just rebuild schema from the DOM
         var new_schema = JSON.parse(JSON.stringify(schema));
@@ -156,6 +158,33 @@ $(function () {
             new_schema['properties']['input']['properties'][id] = schema['properties']['input']['properties'][id];
         });
         schema = new_schema;
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
+
+    //
+    // Required - required checkbox pressed
+    //
+    $('#schema-builder').on('change', 'input.param_required', function(){
+        var row = $(this).closest('.schema_row');
+        var id = row.data('id');
+        var is_required = $(this).is(':checked');
+        // Check that the required array exists
+        if(!schema['properties']['input'].hasOwnProperty('required')){
+            schema['properties']['input']['required'] = [];
+        }
+        if(is_required){
+            schema['properties']['input']['required'].push(id);
+        } else {
+            var idx = schema['properties']['input']['required'].indexOf(id);
+            if (idx !== -1) {
+                schema['properties']['input']['required'].splice(idx, 1);
+            }
+        }
+        // Remove required array if empty
+        if(schema['properties']['input']['required'].length == 0){
+            delete schema['properties']['input']['required'];
+        }
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
@@ -234,6 +263,11 @@ function generate_row(id, param){
         default_input = '<input '+attrs+' class="param_key" data-param_key="default">';
     }
 
+    var is_required = false;
+    if (schema['properties']['input']['required'].indexOf(id) !== -1) {
+        is_required = true;
+    }
+
 
     var results = `
     <div class="row schema_row" data-id="`+id+`">
@@ -243,7 +277,7 @@ function generate_row(id, param){
         <div class="col-sm-auto">
             `+(param['type'] == 'object' ? '' : `
             <label>Required
-                <input type="checkbox" checked="`+param['default']+`">
+                <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+`" class="param_required">
             </label>
             `)+`
         </div>
