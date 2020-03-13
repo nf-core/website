@@ -168,6 +168,9 @@ if(!$schema_cache){ ?>
 
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
+            <div class="col-sm-auto">
+                <button class="btn btn-outline-secondary add-param-btn">Add Parameter</button>
+            </div>
             <div class="col">
                 <button class="btn btn-block btn-light schema-panel-btn" data-target="#schema-builder">nf-core parameter JSON Schema builder</button>
             </div>

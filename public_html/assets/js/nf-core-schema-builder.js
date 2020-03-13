@@ -7,6 +7,7 @@
 
 // Global variables
 var schema = '';
+var new_param_idx = 1;
 
 $(function () {
 
@@ -33,6 +34,28 @@ $(function () {
         placeholder: 'schema_row_move_placeholder alert alert-warning'
     });
 
+    // Add parameter button
+    $('.add-param-btn').click(function(e){
+        var new_id = 'new_param_'+new_param_idx;
+        while (Object.keys(schema['properties']['input']['properties']).indexOf(new_id) != -1) {
+            new_param_idx += 1;
+            new_id = 'new_param_'+new_param_idx;
+        }
+        var new_param = {
+            "type": "string",
+            "description": "",
+            "default": ""
+        };
+        schema['properties']['input']['properties'][new_id] = new_param;
+        param_row = $( generate_row(new_id, new_param) );
+        param_row.appendTo('#schema-builder').find('.param_id').select();
+        scroll_to( param_row );
+        new_param_idx += 1;
+
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
+
     //
     // FINISHED button
     //
@@ -51,6 +74,7 @@ $(function () {
 
         // Post the results to PHP when finished
         if($(this).data('target') == '#schema-finished'){
+            $('.add-param-btn').attr('disabled', true);
             $('#schema-send-status').text("Saving schema..");
 
             post_data = {
@@ -69,6 +93,8 @@ $(function () {
                     $('#schema-send-status').text("Oops, something went wrong!");
                 }
             });
+        } else {
+            $('.add-param-btn').attr('disabled', false);
         }
     });
 
@@ -76,7 +102,7 @@ $(function () {
     // LISTENERS
     //
     // Listeners to update on change
-    $('#schema-builder').on('change', 'input, select', function(){
+    $('#schema-builder').on('change blur', 'input, select', function(){
         var row = $(this).closest('.schema_row');
 
         // Parse data attributes
@@ -94,7 +120,7 @@ $(function () {
                 } else {
 
                     // TODO - doesn't handle objects / groups
-                    // Do it in a slightly odd way to preserver key order
+                    // Do it in a slightly odd way to preserve key order
                     var new_schema = JSON.parse(JSON.stringify(schema));
                     new_schema['properties']['input']['properties'] = {};
                     for(k in schema['properties']['input']['properties']){
@@ -332,11 +358,9 @@ $(function () {
 function scroll_to(target_el){
     var el_offset = target_el.offset().top - 124;
     var doc_offset = $(document).scrollTop();
-    if(doc_offset > el_offset){
-        $([document.documentElement, document.body]).animate({
-            scrollTop: el_offset
-        }, 500);
-    }
+    $([document.documentElement, document.body]).animate({
+        scrollTop: el_offset
+    }, 500);
 }
 
 function generate_obj(obj, level){
