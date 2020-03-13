@@ -3,6 +3,10 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
+// TODO - handle objects / groups
+// TODO - handle required variables
+// TODO - add reordering functionality
+
 // Global variables
 var schema = '';
 
@@ -15,13 +19,60 @@ $(function () {
     $('.cache_expires_at').show();
 
     // Parse initial JSON Schema
-    schema = JSON.parse($('#json_schema').text());
+    try {
+        schema = JSON.parse($('#json_schema').text());
+    } catch(e){
+        alert("Error - Schema JSON could not be parsed. See the browser console for details.");
+        console.log(e);
+    }
 
     // Build the schema builder
-    $('.schema-builder').html( generate_obj(schema['properties']['input']['properties'], 1) );
+    $('#schema-builder').html( generate_obj(schema['properties']['input']['properties'], 1) );
 
+    //
+    // FINISHED button
+    //
+    // Toggle between panels
+    $('.schema-panel-btn').click(function(){
+        var target = $( $(this).data('target') );
+        if(target.is(':hidden')){
+            $('.schema-panel:visible').fadeOut('fast', function(){
+                target.fadeIn('fast');
+                scroll_to(target);
+            });
+        } else {
+            // Already visible, just scroll to top
+            scroll_to(target);
+        }
+
+        // Post the results to PHP when finished
+        if($(this).data('target') == '#schema-finished'){
+            $('#schema-send-status').text("Saving schema..");
+
+            post_data = {
+                'post_content': 'json_schema',
+                'version': 'web_builder',
+                'status': 'web_builder_edited',
+                'api': 'true',
+                'cache_id': $('#schema_cache_id').text(),
+                'schema': JSON.stringify(schema)
+            };
+            $.post( "json_schema_build", post_data).done(function( returned_data ) {
+                console.log("Sent schema to API. Response:", returned_data);
+                if(returned_data.status == 'recieved'){
+                    $('#schema-send-status').text("Ok, that's it - done!");
+                } else {
+                    $('#schema-send-status').text("Oops, something went wrong!");
+                }
+            });
+        }
+    });
+
+    //
+    // LISTENERS
+    //
     // Listeners to update on change
-    $('.schema-builder').on('change', 'input, select', function(){
+    $('#schema-builder').on('change', 'input, select', function(){
         var row = $(this).closest('.schema_row');
 
         // Parse data attributes
@@ -71,8 +122,40 @@ $(function () {
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
+    // Copy schema button
+    $('.copy-schema-btn').click(function(){
+        // select the content
+        var target = $('#json_schema');
+        var currentFocus = document.activeElement;
+        target.attr('disabled', false);
+        target.focus();
+        target.select();
+
+        // copy the selection
+        try {
+            document.execCommand("copy");
+        } catch(e) {
+            alert('Copy action did not work - please copy schema manually')
+            console.log(e);
+        }
+        // restore original focus
+        if (currentFocus && typeof currentFocus.focus === "function") {
+            currentFocus.focus();
+        }
+        target.attr('disabled', true);
+    });
+
 });
 
+function scroll_to(target_el){
+    var el_offset = target_el.offset().top - 124;
+    var doc_offset = $(document).scrollTop();
+    if(doc_offset > el_offset){
+        $([document.documentElement, document.body]).animate({
+            scrollTop: el_offset
+        }, 500);
+    }
+}
 
 function generate_obj(obj, level){
     var results = '';
