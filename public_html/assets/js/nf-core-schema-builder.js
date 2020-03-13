@@ -3,7 +3,6 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
-// TODO - write parameter validation for special settings
 // TODO - handle objects / groups
 
 // Global variables
@@ -250,10 +249,24 @@ $(function () {
         $.map(settings_enum, $.trim);
         settings_enum = settings_enum.filter(function (el) { return el.length > 0; });
         var settings_pattern = $('#settings_pattern').val().trim();
-        var settings_minimum = $('#settings_minimum').val().trim().replace(/^\d\.-/g, '');
-        var settings_maximum = $('#settings_maximum').val().trim().replace(/^\d\.-/g, '');
+        var settings_minimum = $('#settings_minimum').val().trim();
+        var settings_maximum = $('#settings_maximum').val().trim();
 
         // Validate inputs
+        if(settings_minimum.length > 0){
+            if(isNaN(parseFloat(settings_minimum))){
+                alert('Error: Minimum value must be numeric');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+        if(settings_maximum.length > 0){
+            if(isNaN(parseFloat(settings_maximum))){
+                alert('Error: Maximum value must be numeric');
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
         if(settings_minimum.length > 0 && settings_maximum.length > 0){
             if(settings_maximum < settings_minimum){
                 alert('Error: Maximum value must be more than minimum');
@@ -444,34 +457,46 @@ function validate_param(param){
 
     // Check that the minimum and maximum is valid
     if(['integer', 'number', 'range'].includes(param['type'])){
-        if(/^[\d.]+$/.test(param['minimum'])){
-            if(param['default'] < param['minimum']){
-                alert('Error: Value must be greater than or equal to '+param['minimum']);
+        if(param.hasOwnProperty('minimum') && !isNaN(parseFloat(param['minimum']))){
+            if(parseFloat(param['default']) < parseFloat(param['minimum'])){
+                alert('Error: Default value must be greater than or equal to minimum value: '+param['minimum']);
                 return false;
             }
         }
-        if(/^[\d.]+$/.test(param['maximum'])){
-            if(param['default'] > param['maximum']){
-                alert('Error: Value must be less than or equal to '+param['minimum']);
+        if(param.hasOwnProperty('maximum') && !isNaN(parseFloat(param['maximum']))){
+            if(parseFloat(param['default']) > parseFloat(param['maximum'])){
+                alert('Error: Default value must be less than or equal to maximum value: '+param['maximum']);
                 return false;
             }
         }
+
     }
 
     // Check integers are integers
     if(param['type'] == 'integer'){
         var default_int = parseInt(param['default']);
         if(String(default_int) !== String(param['default'])){
-            alert('Error: Value is not an integer');
+            alert('Error: Default value is not an integer');
             return false;
         }
     }
 
-    // TODO - write this
     // Check that default matches enum
+    if(param['enum'] instanceof Array){
+        if(param['enum'].indexOf(param['default']) == -1){
+            alert('Error: Default value must be one of the Enumerated values: '+param['enum'].join(', '));
+            return false;
+        }
+    }
 
-    // TODO - write this
     // Check that default matches regex pattern
+    if(param.hasOwnProperty('pattern')){
+        var re = new RegExp(param['pattern']);
+        if(!re.test(param['default'])){
+            alert('Error: Default value must match the parameter pattern regex: '+param['pattern']);
+            return false;
+        }
+    }
 
     return true;
 }
