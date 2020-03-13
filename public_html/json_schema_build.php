@@ -193,6 +193,74 @@ if(!$schema_cache){ ?>
         <textarea id="json_schema" class="form-control text-monospace disabled" disabled rows="30"><?php echo json_encode($schema, JSON_PRETTY_PRINT); ?></textarea>
     </div>
 
+    <!-- Params schema settings modal -->
+    <div class="modal fade" id="settings_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title h4 text-monospace">params.<span></span></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted text-italic no_special_settings">No special settings available</p>
+                    <div class="form-group settings_enum_group">
+                        <label for="settings_enum">Enumerated values</label>
+                        <input type="text" class="form-control" id="settings_enum" placeholder="value_1|value_2|value_3">
+                        <small class="form-text text-muted">
+                            Input values must be one of these. Separate with the pipe (<code>|</code>) character.
+                            <a href="https://json-schema.org/understanding-json-schema/reference/generic.html#enumerated-values" target="_blank">
+                                <i class="fas fa-question-circle"></i>
+                            </a>
+                        </small>
+                    </div>
+                    <div class="form-group settings_pattern_group">
+                        <label for="settings_pattern">Pattern</label>
+                        <input type="text" class="form-control" id="settings_pattern" placeholder="^[A-Za-z_][A-Za-z0-9_]*$">
+                        <small class="form-text text-muted">
+                            Regular expression to validate the input against
+                            <a href="https://json-schema.org/understanding-json-schema/reference/string.html#regular-expressions" target="_blank">
+                                <i class="fas fa-question-circle"></i>
+                            </a>
+                        </small>
+                    </div>
+                    <div class="settings_minmax_group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group mb-0">
+                                    <label for="settings_minimum">Minimum</label>
+                                    <input type="number" class="form-control" id="settings_minimum">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group mb-0">
+                                    <label for="settings_maximum">Maximum</label>
+                                    <input type="number" class="form-control" id="settings_maximum">
+                                </div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted mb-1">
+                            Number that value must be less than / greater than or equal to
+                            <a href="https://json-schema.org/understanding-json-schema/reference/numeric.html#range" target="_blank">
+                                <i class="fas fa-question-circle"></i>
+                            </a>
+                        </small>
+                    </div>
+                </div>
+                <div class="modal-footer row">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Delete parameter</button>
+                    </div>
+                    <div class="col text-right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="settings_save">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php
 
     // TODO - write status and buttons to save schema when finished
