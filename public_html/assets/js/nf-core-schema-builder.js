@@ -85,40 +85,60 @@ $(function () {
 
         // Update ID if changed
         if($(this).hasClass('param_id')){
-            var new_id = $(this).val();
+            var new_id = $(this).val().trim();
 
-            // TODO - doesn't handle objects / groups
-            // Do it in a slightly odd way to preserver key order
-            var new_schema = JSON.parse(JSON.stringify(schema));
-            new_schema['properties']['input']['properties'] = {};
-            for(k in schema['properties']['input']['properties']){
-                var new_k = k;
-                if(k == id){ new_k =  new_id};
-                new_schema['properties']['input']['properties'][new_k] = schema['properties']['input']['properties'][k];
+            // Check if it actually changed
+            if(new_id != id){
+                if(!validate_id(new_id)){
+                    $(this).val(id);
+                    $(this).focus();
+                } else {
+
+                    // TODO - doesn't handle objects / groups
+                    // Do it in a slightly odd way to preserver key order
+                    var new_schema = JSON.parse(JSON.stringify(schema));
+                    new_schema['properties']['input']['properties'] = {};
+                    for(k in schema['properties']['input']['properties']){
+                        var new_k = k;
+                        if(k == id){ new_k =  new_id};
+                        new_schema['properties']['input']['properties'][new_k] = schema['properties']['input']['properties'][k];
+                    }
+                    schema = new_schema;
+
+                    id = new_id;
+                    row.data('id', id);
+                }
             }
-            schema = new_schema;
-
-            id = new_id;
-            row.data('id', id);
         }
 
         // Update param keys if changed
         if($(this).hasClass('param_key')){
             var param_key = $(this).data('param_key');
-            schema['properties']['input']['properties'][id][param_key] = $(this).val();
+            var param = JSON.parse(JSON.stringify(schema['properties']['input']['properties'][id]));
+            param[param_key] = $(this).val().trim();
 
-            // Type has changed - rebuild row
-            if(param_key == 'type'){
+            // Validate
+            if(!validate_param(param)){
+                console.log("Parameter didn't validate, resetting");
+                $(this).val( schema['properties']['input']['properties'][id][param_key] );
+                $(this).focus();
+            } else {
 
-                // If now a boolean and defult is not string 'True', set to False
-                if($(this).val() == 'boolean'){
-                    var param_default = row.find("input[data-param_key='default']").val();
-                    if(param_default.toLowerCase() != 'true'){
-                        schema['properties']['input']['properties'][id]['default'] = 'False';
+                schema['properties']['input']['properties'][id] = param;
+
+                // Type has changed - rebuild row
+                if(param_key == 'type'){
+
+                    // If now a boolean and defult is not string 'True', set to False
+                    if($(this).val() == 'boolean'){
+                        var param_default = row.find("input[data-param_key='default']").val().trim();
+                        if(param_default.toLowerCase() != 'true'){
+                            schema['properties']['input']['properties'][id]['default'] = 'False';
+                        }
                     }
-                }
 
-                row.replaceWith(generate_row(id, schema['properties']['input']['properties'][id]));
+                    row.replaceWith(generate_row(id, schema['properties']['input']['properties'][id]));
+                }
             }
 
         }
@@ -187,7 +207,35 @@ function generate_obj(obj, level){
 
 function generate_row(id, param){
 
-    results = `
+    var default_input = '';
+    if(param['type'] == 'boolean'){
+        default_input = `
+            <select class="param_key" data-param_key="default">
+                <option `+(param['default'] == 'True' ? 'selected="selected"' : '')+`>True</option>
+                <option `+(param['default'] == 'False' ? 'selected="selected"' : '')+`>False</option>
+            </select>`;
+    }
+    if(['string', 'integer', 'number', 'range'].includes(param['type'])){
+        var attrs = '';
+        if(param['type'] == 'string'){
+            attrs = 'type="text"';
+        } else {
+            attrs = 'type="number"';
+        }
+        if(/^[\d.]+$/.test(param['minimum'])){
+            attrs += ' min="'+param['minimum']+'"';
+        }
+        if(/^[\d.]+$/.test(param['maximum'])){
+            attrs += ' max="'+param['maximum']+'"';
+        }
+        if(param['default'] != undefined){
+            attrs += ' value="'+param['default']+'"';
+        }
+        default_input = '<input '+attrs+' class="param_key" data-param_key="default">';
+    }
+
+
+    var results = `
     <div class="row schema_row" data-id="`+id+`">
         <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
             <i class="fas fa-grip-vertical"></i>
@@ -209,6 +257,8 @@ function generate_row(id, param){
                 <select class="param_key" data-param_key="type">
                     <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
                     <option `+(param['type'] == 'number' ? 'selected="selected"' : '')+` value="number">number</option>
+                    <option `+(param['type'] == 'integer' ? 'selected="selected"' : '')+` value="integer">integer</option>
+                    <option `+(param['type'] == 'range' ? 'selected="selected"' : '')+` value="range">range</option>
                     <option `+(param['type'] == 'boolean' ? 'selected="selected"' : '')+` value="boolean">boolean</option>
                     <option `+(param['type'] == 'object' ? 'selected="selected"' : '')+` value="object">object (group)</option>
                 </select>
@@ -220,14 +270,7 @@ function generate_row(id, param){
             </label>
         </div>
         <div class="col-sm-3">
-            <label>Default
-                `+(param['type'] == 'boolean' ? `
-                <select class="param_key" data-param_key="default">
-                    <option `+(param['default'] == 'True' ? 'selected="selected"' : '')+`>True</option>
-                    <option `+(param['default'] == 'False' ? 'selected="selected"' : '')+`>False</option>
-                </select>
-                ` : '<input type="text" class="param_key" data-param_key="default" value="'+param['default']+'">')+`
-            </label>
+            <label>Default `+default_input+`</label>
         </div>
         <div class="col-sm-auto align-self-center schema_row_config">
             <i class="fas fa-cog"></i>
@@ -237,6 +280,56 @@ function generate_row(id, param){
     return results;
 }
 
-function validate_param(){
+function validate_id(id){
+    // Check that the ID is simple
+    var re = new RegExp("^[a-zA-Z0-9_]+$");
+    if(!re.test(id)){
+        alert('Error: Parameter ID must be just alphanumeric / underscores');
+        return false;
+    }
 
+    // Check that the ID is not a duplicate
+    // TODO - ignores groups
+    var num_hits = 0;
+    for(k in schema['properties']['input']['properties']){
+        if(k == id){
+            num_hits += 1;
+        }
+    }
+    if(num_hits > 0){
+        alert('Error: New parameter ID is a duplicate');
+        return false;
+    }
+
+    return true;
+}
+
+function validate_param(param){
+
+    // Check that the minimum and maximum is valid
+    if(['integer', 'number', 'range'].includes(param['type'])){
+        if(/^[\d.]+$/.test(param['minimum'])){
+            if(param['default'] < param['minimum']){
+                alert('Error: Value must be greater than or equal to '+param['minimum']);
+                return false;
+            }
+        }
+        if(/^[\d.]+$/.test(param['maximum'])){
+            if(param['default'] > param['maximum']){
+                alert('Error: Value must be less than or equal to '+param['minimum']);
+                return false;
+            }
+        }
+    }
+
+    // Check integers are integers
+    if(param['type'] == 'integer'){
+        var default_int = parseInt(param['default']);
+        if(String(default_int) !== String(param['default'])){
+            alert('Error: Value is not an integer');
+            return false;
+        }
+    }
+
+    return true;
 }
