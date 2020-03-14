@@ -187,7 +187,7 @@ if(!$schema_cache){ ?>
                 <p>If you still have <code>nf-core schema build</code> running in the background,
                     it should now update with your new schema. You can close this window.</p>
                 <p>If you didn't use <code>nf-core schema build</code> or it has already exited,
-                    copy the schema below and paste it in to your pipeline's <code>parameters.settings.json</code> file.</p>
+                    copy the schema below and paste it in to your pipeline's <code>nextflow_schema.json</code> file.</p>
                 <button class="btn btn-block btn-outline-secondary copy-schema-btn">
                     <i class="far fa-copy mr-2"></i> Copy pipeline schema
                 </button>
