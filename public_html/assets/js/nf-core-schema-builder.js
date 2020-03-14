@@ -3,6 +3,10 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
+// TODO - add option to hide from launch wizard
+// TODO - add FontAweseome icon for each param
+// TODO - make Enter and Tab / Shift+Tab move around fields
+
 // TODO - handle objects / groups
 
 // Global variables
@@ -26,7 +30,7 @@ $(function () {
     }
 
     // Build the schema builder
-    $('#schema-builder').html( generate_obj(schema['properties']['input']['properties'], 1) );
+    $('#schema-builder').html( generate_obj(schema['properties']['params']['properties'], 1) );
 
     // Make the rows sortable
     $('#schema-builder').sortable({
@@ -37,7 +41,7 @@ $(function () {
     // Add parameter button
     $('.add-param-btn').click(function(e){
         var new_id = 'new_param_'+new_param_idx;
-        while (Object.keys(schema['properties']['input']['properties']).indexOf(new_id) != -1) {
+        while (Object.keys(schema['properties']['params']['properties']).indexOf(new_id) != -1) {
             new_param_idx += 1;
             new_id = 'new_param_'+new_param_idx;
         }
@@ -46,7 +50,7 @@ $(function () {
             "description": "",
             "default": ""
         };
-        schema['properties']['input']['properties'][new_id] = new_param;
+        schema['properties']['params']['properties'][new_id] = new_param;
         param_row = $( generate_row(new_id, new_param) );
         param_row.appendTo('#schema-builder').find('.param_id').select();
         scroll_to( param_row );
@@ -122,11 +126,11 @@ $(function () {
                     // TODO - doesn't handle objects / groups
                     // Do it in a slightly odd way to preserve key order
                     var new_schema = JSON.parse(JSON.stringify(schema));
-                    new_schema['properties']['input']['properties'] = {};
-                    for(k in schema['properties']['input']['properties']){
+                    new_schema['properties']['params']['properties'] = {};
+                    for(k in schema['properties']['params']['properties']){
                         var new_k = k;
                         if(k == id){ new_k =  new_id};
-                        new_schema['properties']['input']['properties'][new_k] = schema['properties']['input']['properties'][k];
+                        new_schema['properties']['params']['properties'][new_k] = schema['properties']['params']['properties'][k];
                     }
                     schema = new_schema;
 
@@ -139,16 +143,16 @@ $(function () {
         // Update param keys if changed
         if($(this).hasClass('param_key')){
             var param_key = $(this).data('param_key');
-            var param = JSON.parse(JSON.stringify(schema['properties']['input']['properties'][id]));
+            var param = JSON.parse(JSON.stringify(schema['properties']['params']['properties'][id]));
             param[param_key] = $(this).val().trim();
 
             // Validate
             if(!validate_param(param)){
-                $(this).val( schema['properties']['input']['properties'][id][param_key] );
+                $(this).val( schema['properties']['params']['properties'][id][param_key] );
                 $(this).focus();
             } else {
 
-                schema['properties']['input']['properties'][id] = param;
+                schema['properties']['params']['properties'][id] = param;
 
                 // Type has changed - rebuild row
                 if(param_key == 'type'){
@@ -157,20 +161,20 @@ $(function () {
                     if($(this).val() == 'boolean'){
                         var param_default = row.find("input[data-param_key='default']").val().trim();
                         if(param_default.toLowerCase() != 'true'){
-                            schema['properties']['input']['properties'][id]['default'] = 'False';
+                            schema['properties']['params']['properties'][id]['default'] = 'False';
                         }
                     }
 
                     // Remove special settings if not supported by the type
                     if($(this).val() != 'string'){
-                        delete schema['properties']['input']['properties'][id]['pattern'];
+                        delete schema['properties']['params']['properties'][id]['pattern'];
                     }
                     if($(this).val() != 'range'){
-                        delete schema['properties']['input']['properties'][id]['minimum'];
-                        delete schema['properties']['input']['properties'][id]['maximum'];
+                        delete schema['properties']['params']['properties'][id]['minimum'];
+                        delete schema['properties']['params']['properties'][id]['maximum'];
                     }
 
-                    row.replaceWith(generate_row(id, schema['properties']['input']['properties'][id]));
+                    row.replaceWith(generate_row(id, schema['properties']['params']['properties'][id]));
                 }
             }
 
@@ -186,10 +190,10 @@ $(function () {
     $('#schema-builder').on('sortstop', function(e, ui){
         // Don't actually need to know where it landed - just rebuild schema from the DOM
         var new_schema = JSON.parse(JSON.stringify(schema));
-        new_schema['properties']['input']['properties'] = {};
+        new_schema['properties']['params']['properties'] = {};
         $('.schema_row').each(function(idx, row){
             var id = $(row).data('id');
-            new_schema['properties']['input']['properties'][id] = schema['properties']['input']['properties'][id];
+            new_schema['properties']['params']['properties'][id] = schema['properties']['params']['properties'][id];
         });
         schema = new_schema;
         // Update printed schema in page
@@ -204,20 +208,20 @@ $(function () {
         var id = row.data('id');
         var is_required = $(this).is(':checked');
         // Check that the required array exists
-        if(!schema['properties']['input'].hasOwnProperty('required')){
-            schema['properties']['input']['required'] = [];
+        if(!schema['properties']['params'].hasOwnProperty('required')){
+            schema['properties']['params']['required'] = [];
         }
         if(is_required){
-            schema['properties']['input']['required'].push(id);
+            schema['properties']['params']['required'].push(id);
         } else {
-            var idx = schema['properties']['input']['required'].indexOf(id);
+            var idx = schema['properties']['params']['required'].indexOf(id);
             if (idx !== -1) {
-                schema['properties']['input']['required'].splice(idx, 1);
+                schema['properties']['params']['required'].splice(idx, 1);
             }
         }
         // Remove required array if empty
-        if(schema['properties']['input']['required'].length == 0){
-            delete schema['properties']['input']['required'];
+        if(schema['properties']['params']['required'].length == 0){
+            delete schema['properties']['params']['required'];
         }
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
@@ -236,31 +240,31 @@ $(function () {
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
         $('.no_special_settings, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
-        if(['boolean', 'object'].indexOf(schema['properties']['input']['properties'][id]['type']) !== -1){
+        if(['boolean', 'object'].indexOf(schema['properties']['params']['properties'][id]['type']) !== -1){
             $('.no_special_settings').show();
         }
-        if(['boolean', 'object'].indexOf(schema['properties']['input']['properties'][id]['type']) == -1){
+        if(['boolean', 'object'].indexOf(schema['properties']['params']['properties'][id]['type']) == -1){
             $('.settings_enum_group').show();
         }
-        if(schema['properties']['input']['properties'][id]['type'] == 'string'){
+        if(schema['properties']['params']['properties'][id]['type'] == 'string'){
             $('.settings_pattern_group').show();
         }
-        if(schema['properties']['input']['properties'][id]['type'] == 'range'){
+        if(schema['properties']['params']['properties'][id]['type'] == 'range'){
             $('.settings_minmax_group').show();
         }
 
         // Fill modal boxes
-        if(schema['properties']['input']['properties'][id]['enum'] instanceof Array){
-            $('#settings_enum').val( schema['properties']['input']['properties'][id]['enum'].join('|') );
+        if(schema['properties']['params']['properties'][id]['enum'] instanceof Array){
+            $('#settings_enum').val( schema['properties']['params']['properties'][id]['enum'].join('|') );
         }
-        if(schema['properties']['input']['properties'][id].hasOwnProperty('pattern')){
-            $('#settings_pattern').val( schema['properties']['input']['properties'][id]['pattern'] );
+        if(schema['properties']['params']['properties'][id].hasOwnProperty('pattern')){
+            $('#settings_pattern').val( schema['properties']['params']['properties'][id]['pattern'] );
         }
-        if(schema['properties']['input']['properties'][id].hasOwnProperty('minimum')){
-            $('#settings_minimum').val( schema['properties']['input']['properties'][id]['minimum'] );
+        if(schema['properties']['params']['properties'][id].hasOwnProperty('minimum')){
+            $('#settings_minimum').val( schema['properties']['params']['properties'][id]['minimum'] );
         }
-        if(schema['properties']['input']['properties'][id].hasOwnProperty('maximum')){
-            $('#settings_maximum').val( schema['properties']['input']['properties'][id]['maximum'] );
+        if(schema['properties']['params']['properties'][id].hasOwnProperty('maximum')){
+            $('#settings_maximum').val( schema['properties']['params']['properties'][id]['maximum'] );
         }
 
         $('#settings_modal').modal('show');
@@ -302,16 +306,16 @@ $(function () {
         }
 
         if(settings_enum.length > 0){
-            schema['properties']['input']['properties'][id]['enum'] = settings_enum;
+            schema['properties']['params']['properties'][id]['enum'] = settings_enum;
         }
         if(settings_pattern.length > 0){
-            schema['properties']['input']['properties'][id]['pattern'] = settings_pattern;
+            schema['properties']['params']['properties'][id]['pattern'] = settings_pattern;
         }
         if(settings_minimum.length > 0){
-            schema['properties']['input']['properties'][id]['minimum'] = settings_minimum;
+            schema['properties']['params']['properties'][id]['minimum'] = settings_minimum;
         }
         if(settings_maximum.length > 0){
-            schema['properties']['input']['properties'][id]['maximum'] = settings_maximum;
+            schema['properties']['params']['properties'][id]['maximum'] = settings_maximum;
         }
 
         // Update printed schema in page
@@ -322,7 +326,7 @@ $(function () {
     // Revalidate default value once modal settings changed
     $('#settings_modal').on('hidden.bs.modal', function (e) {
         var id = $('#settings_modal .modal-title span').text();
-        var param = JSON.parse(JSON.stringify(schema['properties']['input']['properties'][id]));
+        var param = JSON.parse(JSON.stringify(schema['properties']['params']['properties'][id]));
         if(!validate_param(param)){
             $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").focus();
         }
@@ -403,7 +407,7 @@ function generate_row(id, param){
     }
 
     var is_required = false;
-    if (schema['properties']['input']['required'].indexOf(id) !== -1) {
+    if (schema['properties']['params']['required'].indexOf(id) !== -1) {
         is_required = true;
     }
 
@@ -464,7 +468,7 @@ function validate_id(id){
     // Check that the ID is not a duplicate
     // TODO - ignores groups
     var num_hits = 0;
-    for(k in schema['properties']['input']['properties']){
+    for(k in schema['properties']['params']['properties']){
         if(k == id){
             num_hits += 1;
         }
