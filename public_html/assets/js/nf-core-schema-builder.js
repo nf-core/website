@@ -5,7 +5,7 @@
 
 // TODO - add option to hide from launch wizard
 // TODO - add FontAweseome icon for each param
-// TODO - make Enter and Tab / Shift+Tab move around fields
+// TODO - make Enter and Tab / Shift+Tab move around fields. Shift + up/down to move up and down.
 
 // TODO - handle objects / groups
 
