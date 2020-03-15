@@ -58,10 +58,10 @@ $(function () {
 
     // Add group button
     $('.add-group-btn').click(function(e){
-        var new_id = 'new_group_'+new_group_idx;
+        var new_id = 'New Group '+new_group_idx;
         while (Object.keys(schema['properties']['params']['properties']).indexOf(new_id) != -1) {
             new_group_idx += 1;
-            new_id = 'new_group_'+new_group_idx;
+            new_id = 'New Group '+new_group_idx;
         }
         var new_param = {
             "type": "object",
@@ -588,7 +588,7 @@ function generate_group_row(id, param, child_params){
                     <i class="fas fa-grip-vertical"></i>
                 </div>
                 <div class="col schema-id">
-                    <label>ID
+                    <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
                     </label>
                 </div>
