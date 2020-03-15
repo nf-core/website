@@ -141,10 +141,35 @@ $title = 'Parameter schema';
 $subtitle = 'Customise a JSON Schema for your pipeline parameters';
 if($schema_cache) $import_schema_builder = true;
 include('../includes/header.php');
+?>
 
-if(!$schema_cache){ ?>
+<p class="mt-5">nf-core pipelines have a file in their root directories called <code>nextflow_schema.json</code> which
+describes the input parameters that the pipeline accepts.
+This page helps pipeline authors to build their pipeline schema file by using a graphical interface.</p>
 
-<p class="mt-5">Typically this page is launched automatically and prefilled by the <code>nf-core schema build</code> command
+<div class="row">
+    <div class="col"><hr></div>
+    <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>read more</small></a></div>
+    <div class="col"><hr></div>
+</div>
+<div class="collapse" id="page_help">
+    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> standard,
+    with a couple of extra assumptions:</p>
+    <ul>
+        <li>The pipeline parameters are held in a <code>params</code> object (<code>schema['properties']['params']['properties']</code>)</li>
+        <li>Beyond this, only groups one-<code>object</code> deep are used (groups or no groups are fine, but no nested groups)</li>
+    </ul>
+    <p>We also use a couple of extra standard flags:</p>
+    <ul>
+        <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
+        <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;&lt;/code&gt;</code> - <i class="fas fa-flask"></i> )</li>
+    </ul>
+    <hr>
+</div>
+
+<?php if(!$schema_cache){ ?>
+
+<p>Typically this page is launched automatically and prefilled by the <code>nf-core schema build</code> command
 (see the <a href="/tools">Tools</a> page for more information), however you can also paste in a JSON Schema below.</p>
 
 <form method="post" action="">
