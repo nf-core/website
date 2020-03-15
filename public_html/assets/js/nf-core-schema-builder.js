@@ -3,8 +3,6 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
-// TODO - make Enter and Tab / Shift+Tab move around fields. Shift + up/down to move up and down.
-
 // Global variables
 var schema = '';
 var new_param_idx = 1;
@@ -217,6 +215,27 @@ $(function () {
 
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
+
+    //
+    // Keypress listener - move around with keyboard shortcuts
+    //
+    $('#schema-builder').on('keydown', 'input, select', function(e){
+        // Enter key
+        if(e.which == 13){
+            e.preventDefault();
+            var current_class = '.'+$(this).attr('class').split(' ').join('.');
+            var row = $(this).closest('.schema_row');
+            // Shift + Enter - go up
+            if(e.shiftKey){
+                row.prev('.schema_row').find(current_class).focus();
+            }
+            // Just enter -go down
+            else {
+                row.next('.schema_row').find(current_class).focus();
+            }
+        }
+        // Tab works as we want already by default
     });
 
     //
@@ -534,7 +553,7 @@ function generate_param_row(id, param){
     var default_input = '';
     if(param['type'] == 'boolean'){
         default_input = `
-            <select class="param_key" data-param_key="default">
+            <select class="param_key param_default" data-param_key="default">
                 <option `+(param['default'] == 'True' ? 'selected="selected"' : '')+`>True</option>
                 <option `+(param['default'] == 'False' ? 'selected="selected"' : '')+`>False</option>
             </select>`;
@@ -555,7 +574,7 @@ function generate_param_row(id, param){
         if(param['default'] != undefined){
             attrs += ' value="'+param['default']+'"';
         }
-        default_input = '<input '+attrs+' class="param_key" data-param_key="default">';
+        default_input = '<input '+attrs+' class="param_key param_default" data-param_key="default">';
     }
 
     var is_required = false;
@@ -598,12 +617,12 @@ function generate_param_row(id, param){
         </div>
         <div class="col-sm-3">
             <label>Description
-                <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
+                <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
             </label>
         </div>
         <div class="col-sm-1">
             <label>Type
-                <select class="param_key" data-param_key="type">
+                <select class="param_key param_type" data-param_key="type">
                     <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
                     <option `+(param['type'] == 'number' ? 'selected="selected"' : '')+` value="number">number</option>
                     <option `+(param['type'] == 'integer' ? 'selected="selected"' : '')+` value="integer">integer</option>

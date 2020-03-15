@@ -164,6 +164,9 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
+    <p>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.
+    Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.
+    <code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.</p>
     <hr>
 </div>
 
