@@ -3,7 +3,6 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
-// TODO - add FontAweseome icon for each param
 // TODO - make Enter and Tab / Shift+Tab move around fields. Shift + up/down to move up and down.
 
 // TODO - JSON Schema required array should be in parent object only? needs thought for groups
@@ -312,12 +311,9 @@ $(function () {
             modal_header = '<span>'+id+'</span>';
         }
         $('#settings_modal .modal-title').html(modal_header);
-        $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
-        $('.no_special_settings, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+        $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum, #settings_fa_icon').val('');
+        $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
-        if(['boolean', 'object'].indexOf(param['type']) !== -1){
-            $('.no_special_settings').show();
-        }
         if(['boolean', 'object'].indexOf(param['type']) == -1){
             $('.settings_enum_group').show();
         }
@@ -341,6 +337,9 @@ $(function () {
         if(param.hasOwnProperty('maximum')){
             $('#settings_maximum').val( param['maximum'] );
         }
+        if(param.hasOwnProperty('fa_icon')){
+            $('#settings_fa_icon').val( param['fa_icon'] );
+        }
 
         $('#settings_modal').modal('show');
     });
@@ -353,48 +352,60 @@ $(function () {
         var id = $('#settings_modal .modal-title span').text();
         var param = find_param_in_schema(id);
 
-        var settings_enum = $('#settings_enum').val().trim().split('|');
+        var settings = {};
+        settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
-        $.map(settings_enum, $.trim);
-        settings_enum = settings_enum.filter(function (el) { return el.length > 0; });
-        var settings_pattern = $('#settings_pattern').val().trim();
-        var settings_minimum = $('#settings_minimum').val().trim();
-        var settings_maximum = $('#settings_maximum').val().trim();
+        $.map(settings.enum, $.trim);
+        settings.enum = settings.enum.filter(function (el) { return el.length > 0; });
+        settings.pattern = $('#settings_pattern').val().trim();
+        settings.minimum = $('#settings_minimum').val().trim();
+        settings.maximum = $('#settings_maximum').val().trim();
+        settings.fa_icon = $('#settings_fa_icon').val().trim();
 
         // Validate inputs
-        if(settings_minimum.length > 0){
-            if(isNaN(parseFloat(settings_minimum))){
+        if(settings.minimum.length > 0){
+            if(isNaN(parseFloat(settings.minimum))){
                 alert('Error: Minimum value must be numeric');
                 e.preventDefault();
                 e.stopPropagation();
             }
         }
-        if(settings_maximum.length > 0){
-            if(isNaN(parseFloat(settings_maximum))){
+        if(settings.maximum.length > 0){
+            if(isNaN(parseFloat(settings.maximum))){
                 alert('Error: Maximum value must be numeric');
                 e.preventDefault();
                 e.stopPropagation();
             }
         }
-        if(settings_minimum.length > 0 && settings_maximum.length > 0){
-            if(settings_maximum < settings_minimum){
+        if(settings.minimum.length > 0 && settings.maximum.length > 0){
+            if(settings.maximum < settings.minimum){
                 alert('Error: Maximum value must be more than minimum');
                 e.preventDefault();
                 e.stopPropagation();
             }
         }
+        // Check that the font-awesome icon looks right
+        if(settings.fa_icon.length > 0){
+            var re = new RegExp('<i class="fa[a-z -]+"><\/i>');
+            if(!re.test(settings.fa_icon)){
+                alert('Error: FontAwesome icon must match the regex: <i class="fa[a-z -]+"><\/i>');
+                return false;
+            } else {
+               // Update the icon in the row
+               $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($(settings.fa_icon));
+           }
+       } else {
+           // Update the icon in the row
+           $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($('<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>'));
+       }
 
-        if(settings_enum.length > 0){
-            param['enum'] = settings_enum;
-        }
-        if(settings_pattern.length > 0){
-            param['pattern'] = settings_pattern;
-        }
-        if(settings_minimum.length > 0){
-            param['minimum'] = settings_minimum;
-        }
-        if(settings_maximum.length > 0){
-            param['maximum'] = settings_maximum;
+        // Update the schema
+        for (var key in settings) {
+            if(settings[key].length > 0){
+                param[key] = settings[key];
+            } else {
+                delete param[key];
+            }
         }
 
         // Update printed schema in page
@@ -549,12 +560,45 @@ function generate_param_row(id, param){
     }
 
     var is_hidden = false;
+    if(param['hidden']){
+        is_hidden = true;
+    }
+
+    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
+    if(param['fa_icon'] != undefined){
+        fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
+    }
 
 
     var results = `
     <div class="row schema_row" data-id="`+id+`">
-        <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
+        <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber">
             <i class="fas fa-grip-vertical"></i>
+        </div>
+        <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
+        <div class="col schema-id">
+            <label>ID
+                <input type="text" class="text-monospace param_id" value="`+id+`">
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <label>Description
+                <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
+            </label>
+        </div>
+        <div class="col-sm-1">
+            <label>Type
+                <select class="param_key" data-param_key="type">
+                    <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
+                    <option `+(param['type'] == 'number' ? 'selected="selected"' : '')+` value="number">number</option>
+                    <option `+(param['type'] == 'integer' ? 'selected="selected"' : '')+` value="integer">integer</option>
+                    <option `+(param['type'] == 'range' ? 'selected="selected"' : '')+` value="range">range</option>
+                    <option `+(param['type'] == 'boolean' ? 'selected="selected"' : '')+` value="boolean">boolean</option>
+                </select>
+            </label>
+        </div>
+        <div class="col-sm-3">
+            <label>Default `+default_input+`</label>
         </div>
         <div class="col-sm-auto">
             `+(param['type'] == 'object' ? '' : `
@@ -569,30 +613,6 @@ function generate_param_row(id, param){
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+`" class="param_hidden">
             </label>
             `)+`
-        </div>
-        <div class="col schema-id">
-            <label>ID
-                <input type="text" class="text-monospace param_id" value="`+id+`">
-            </label>
-        </div>
-        <div class="col-sm-2">
-            <label>Type
-                <select class="param_key" data-param_key="type">
-                    <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
-                    <option `+(param['type'] == 'number' ? 'selected="selected"' : '')+` value="number">number</option>
-                    <option `+(param['type'] == 'integer' ? 'selected="selected"' : '')+` value="integer">integer</option>
-                    <option `+(param['type'] == 'range' ? 'selected="selected"' : '')+` value="range">range</option>
-                    <option `+(param['type'] == 'boolean' ? 'selected="selected"' : '')+` value="boolean">boolean</option>
-                </select>
-            </label>
-        </div>
-        <div class="col-sm-3">
-            <label>Description
-                <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
-            </label>
-        </div>
-        <div class="col-sm-3">
-            <label>Default `+default_input+`</label>
         </div>
         <div class="col-sm-auto align-self-center schema_row_config">
             <i class="fas fa-cog"></i>
@@ -723,11 +743,10 @@ function validate_param(param){
                 return false;
             }
         }
-
     }
 
     // Empty defaults are always ok
-    if(param['default'].length == 0){
+    if(param.hasOwnProperty('default') && param['default'].length == 0){
         return true;
     }
 

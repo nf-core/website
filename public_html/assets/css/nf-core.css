@@ -35,7 +35,14 @@ blockquote a {
 table img {
   max-width: 100%;
 }
-/* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980*/
+
+/* Bootstrap placeholder text is way too similar colour to real input */
+.form-control::-webkit-input-placeholder { color: #ccc; }
+.form-control::-moz-placeholder { color: #ccc; }
+.form-control:-ms-input-placeholder { color: #ccc; }
+.form-control::placeholder { color: #ccc; }
+
+/* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980 */
 section:before {
     height: 54px;
     content: "";
@@ -879,6 +886,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .schema_row_grabber:hover i, .schema_row_config:hover i {
   color: #333;
+}
+.param_fa_icon_missing {
+  color: #ccc;
 }
 .schema_row_move_placeholder {
   height: 3rem;

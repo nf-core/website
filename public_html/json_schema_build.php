@@ -162,7 +162,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <p>We also use a couple of extra standard flags:</p>
     <ul>
         <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
-        <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;&lt;/code&gt;</code> - <i class="fas fa-flask"></i> )</li>
+        <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
     <hr>
 </div>
@@ -236,7 +236,6 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-muted text-italic no_special_settings">No special settings available</p>
                     <div class="form-group settings_enum_group">
                         <label for="settings_enum">Enumerated values</label>
                         <input type="text" class="form-control" id="settings_enum" placeholder="value_1|value_2|value_3">
@@ -277,6 +276,14 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                             <a href="https://json-schema.org/understanding-json-schema/reference/numeric.html#range" target="_blank">
                                 <i class="fas fa-question-circle"></i>
                             </a>
+                        </small>
+                    </div>
+                    <div class="form-group settings_fa_icon_group">
+                        <label for="settings_enum">FontAwesome Icon</label>
+                        <input type="text" class="form-control text-monospace" id="settings_fa_icon" placeholder='&lt;i class=&quot;far fa-question-circle&quot;&gt;&lt;/i&gt;'>
+                        <small class="form-text text-muted">
+                            Icon for use in web interfaces. Find at <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a>
+                            <em>(free icons only)</em> and copy the full string.</code>
                         </small>
                     </div>
                 </div>
