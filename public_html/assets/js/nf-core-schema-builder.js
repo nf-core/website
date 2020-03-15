@@ -3,7 +3,6 @@
 // Custom javascript for the nf-core JSON Schema Builder interface
 //
 
-// TODO - add option to hide from launch wizard
 // TODO - add FontAweseome icon for each param
 // TODO - make Enter and Tab / Shift+Tab move around fields. Shift + up/down to move up and down.
 
@@ -279,6 +278,26 @@ $(function () {
     });
 
     //
+    // Hidden - hidden checkbox pressed
+    //
+    $('#schema-builder').on('change', 'input.param_hidden', function(){
+        var id = $(this).closest('.schema_row').data('id');
+        var is_required = $(this).is(':checked');
+
+        // Find and update param
+        var param = find_param_in_schema(id);
+        if(is_required){
+            param['hidden'] = true;
+        } else {
+            delete param['hidden'];
+        }
+        update_param_in_schema(id, param);
+
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
+
+    //
     // Settings modal
     //
     $('#schema-builder').on('click', '.schema_row_config', function(){
@@ -529,6 +548,8 @@ function generate_param_row(id, param){
         }
     }
 
+    var is_hidden = false;
+
 
     var results = `
     <div class="row schema_row" data-id="`+id+`">
@@ -539,6 +560,13 @@ function generate_param_row(id, param){
             `+(param['type'] == 'object' ? '' : `
             <label>Required
                 <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+`" class="param_required">
+            </label>
+            `)+`
+        </div>
+        <div class="col-sm-auto">
+            `+(param['type'] == 'object' ? '' : `
+            <label>Hidden
+                <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+`" class="param_hidden">
             </label>
             `)+`
         </div>
