@@ -407,8 +407,11 @@ function generate_row(id, param){
     }
 
     var is_required = false;
-    if (schema['properties']['params']['required'].indexOf(id) !== -1) {
-        is_required = true;
+    // Check that the required array exists
+    if(schema['properties']['params'].hasOwnProperty('required')){
+        if (schema['properties']['params']['required'].indexOf(id) !== -1) {
+            is_required = true;
+        }
     }
 
 
