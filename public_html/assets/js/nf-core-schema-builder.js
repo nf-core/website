@@ -172,7 +172,7 @@ $(function () {
             new_param[param_key] = $(this).val().trim();
 
             // Validate
-            if(!validate_param(param)){
+            if(!validate_param(new_param)){
                 // Replace value with old copy from schema
                 $(this).val( param[param_key] );
                 $(this).focus();
@@ -685,23 +685,29 @@ function validate_param(param){
     if(['integer', 'number', 'range'].includes(param['type'])){
         if(param.hasOwnProperty('minimum') && !isNaN(parseFloat(param['minimum']))){
             if(parseFloat(param['default']) < parseFloat(param['minimum'])){
-                alert('Error: Default value must be greater than or equal to minimum value: '+param['minimum']);
+                alert('Error: Default value "'+param['default']+'" must be greater than or equal to minimum value: '+param['minimum']);
                 return false;
             }
         }
         if(param.hasOwnProperty('maximum') && !isNaN(parseFloat(param['maximum']))){
             if(parseFloat(param['default']) > parseFloat(param['maximum'])){
-                alert('Error: Default value must be less than or equal to maximum value: '+param['maximum']);
+                alert('Error: Default value "'+param['default']+'" must be less than or equal to maximum value: '+param['maximum']);
                 return false;
             }
         }
 
     }
 
+    // Empty defaults are always ok
+    if(param['default'].length == 0){
+        return true;
+    }
+
     // Check that numbers and ranges are numbers
     if(['number', 'range'].includes(param['type'])){
-        if(isNaN(parseFloat(param['maximum']))){
-            alert('Error: Default value is not a number');
+        var default_float = parseFloat(param['default']);
+        if(String(default_float) !== String(param['default'])){
+            alert('Error: Default value "'+param['default']+'" is not a number');
             return false;
         }
     }
@@ -710,7 +716,7 @@ function validate_param(param){
     if(param['type'] == 'integer'){
         var default_int = parseInt(param['default']);
         if(String(default_int) !== String(param['default'])){
-            alert('Error: Default value is not an integer');
+            alert('Error: Default value "'+param['default']+'" is not an integer');
             return false;
         }
     }
@@ -718,7 +724,7 @@ function validate_param(param){
     // Check that default matches enum
     if(param['enum'] instanceof Array){
         if(param['enum'].indexOf(param['default']) == -1){
-            alert('Error: Default value must be one of the Enumerated values: '+param['enum'].join(', '));
+            alert('Error: Default value "'+param['default']+'" must be one of the Enumerated values: '+param['enum'].join(', '));
             return false;
         }
     }
@@ -727,7 +733,7 @@ function validate_param(param){
     if(param.hasOwnProperty('pattern')){
         var re = new RegExp(param['pattern']);
         if(!re.test(param['default'])){
-            alert('Error: Default value must match the parameter pattern regex: '+param['pattern']);
+            alert('Error: Default value "'+param['default']+'" must match the parameter pattern regex: '+param['pattern']);
             return false;
         }
     }
