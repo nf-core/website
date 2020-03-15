@@ -5,8 +5,6 @@
 
 // TODO - make Enter and Tab / Shift+Tab move around fields. Shift + up/down to move up and down.
 
-// TODO - JSON Schema required array should be in parent object only? needs thought for groups
-
 // Global variables
 var schema = '';
 var new_param_idx = 1;
@@ -228,6 +226,7 @@ $(function () {
         // Don't actually need to know where it landed - just rebuild schema from the DOM
         var new_schema = JSON.parse(JSON.stringify(schema));
         new_schema['properties']['params']['properties'] = {};
+        new_schema['properties']['params']['required'] = [];
         $('.schema_row').each(function(idx, row){
             var id = $(row).data('id');
             var param = JSON.parse(JSON.stringify(find_param_in_schema(id)));
@@ -236,14 +235,33 @@ $(function () {
             if ($(this).parent('.card-body').length) {
                 var group_id = $(this).parent().data('id');
                 new_schema['properties']['params']['properties'][group_id]['properties'][id] = param;
+                if($(this).find('.param_required').is(':checked')){
+                    new_schema['properties']['params']['properties'][group_id]['required'].push(id);
+                }
             } else {
                 new_schema['properties']['params']['properties'][id] = param;
+                if($(this).find('.param_required').is(':checked')){
+                    new_schema['properties']['params']['required'].push(id);
+                }
                 // If a group, delete contents of that as well
                 if(new_schema['properties']['params']['properties'][id].hasOwnProperty('properties')){
                     new_schema['properties']['params']['properties'][id]['properties'] = {};
+                    new_schema['properties']['params']['properties'][id]['required'] = [];
                 }
             }
         });
+        // Clear empty required arrays
+        if(new_schema['properties']['params']['required'].length == 0){
+            delete new_schema['properties']['params']['required'];
+        }
+        for(k in new_schema['properties']['params']['properties']){
+            if(new_schema['properties']['params']['properties'][k].hasOwnProperty('required')){
+                if(new_schema['properties']['params']['properties'][k]['required'].length == 0){
+                    delete new_schema['properties']['params']['properties'][k]['required'];
+                }
+            }
+        }
+
         schema = new_schema;
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
@@ -253,27 +271,9 @@ $(function () {
     // Required - required checkbox pressed
     //
     $('#schema-builder').on('change', 'input.param_required', function(){
-        var row = $(this).closest('.schema_row');
-        var id = row.data('id');
+        var id = $(this).closest('.schema_row').data('id');
         var is_required = $(this).is(':checked');
-        // Check that the required array exists
-        if(!schema['properties']['params'].hasOwnProperty('required')){
-            schema['properties']['params']['required'] = [];
-        }
-        if(is_required){
-            schema['properties']['params']['required'].push(id);
-        } else {
-            var idx = schema['properties']['params']['required'].indexOf(id);
-            if (idx !== -1) {
-                schema['properties']['params']['required'].splice(idx, 1);
-            }
-        }
-        // Remove required array if empty
-        if(schema['properties']['params']['required'].length == 0){
-            delete schema['properties']['params']['required'];
-        }
-        // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        set_required(id, is_required);
     });
 
     //
@@ -442,9 +442,16 @@ $(function () {
                     }
                     // Move contents of the group out if we're going to delete it
                     if(k == id){
-                        schema['properties']['params']['properties'][j] = schema['properties']['params']['properties'][k]['properties'][j];
-                        // NOT WORKING
+                        // Move the HTML row out of the group
                         $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
+
+                        // Move the schema param in to the top-level params object
+                        schema['properties']['params']['properties'][j] = schema['properties']['params']['properties'][k]['properties'][j];
+
+                        // If it is required, set this on the top-level params object
+                        if(schema['properties']['params']['properties'][k].hasOwnProperty('required') && schema['properties']['params']['properties'][k]['required'].indexOf(j) != -1){
+                            set_required(j, true);
+                        }
                     }
                 }
             }
@@ -556,6 +563,14 @@ function generate_param_row(id, param){
     if(schema['properties']['params'].hasOwnProperty('required')){
         if (schema['properties']['params']['required'].indexOf(id) !== -1) {
             is_required = true;
+        }
+    }
+    // Lazy, just checking if it's in any group rather than specifically its own
+    for(k in schema['properties']['params']['properties']){
+        if(schema['properties']['params']['properties'][k].hasOwnProperty('required')){
+            if (schema['properties']['params']['properties'][k]['required'].indexOf(id) !== -1) {
+                is_required = true;
+            }
         }
     }
 
@@ -786,6 +801,44 @@ function validate_param(param){
     }
 
     return true;
+}
+
+
+function set_required(id, is_required){
+    // Function to set the required flag in the JSON Schema for a given ID
+    var schema_parent = null;
+    // Get the parent object in the schema
+    if(schema['properties']['params']['properties'].hasOwnProperty(id)){
+        schema_parent = schema['properties']['params'];
+    } else {
+        // Iterate through groups, looking for ID
+        for(k in schema['properties']['params']['properties']){
+            // Check if group
+            if(schema['properties']['params']['properties'][k].hasOwnProperty('properties')){
+                if(schema['properties']['params']['properties'][k]['properties'].hasOwnProperty(id)){
+                    schema_parent =  schema['properties']['params']['properties'][k];
+                }
+            }
+        }
+    }
+    // Check that the required array exists
+    if(!schema_parent.hasOwnProperty('required')){
+        schema_parent['required'] = [];
+    }
+    if(is_required){
+        schema_parent['required'].push(id);
+    } else {
+        var idx = schema_parent['required'].indexOf(id);
+        if (idx !== -1) {
+            schema_parent['required'].splice(idx, 1);
+        }
+    }
+    // Remove required array if empty
+    if(schema_parent['required'].length == 0){
+        delete schema_parent['required'];
+    }
+    // Update printed schema in page
+    $('#json_schema').text(JSON.stringify(schema, null, 4));
 }
 
 
