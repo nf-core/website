@@ -7,7 +7,6 @@
 // TODO - add FontAweseome icon for each param
 // TODO - make Enter and Tab / Shift+Tab move around fields. Shift + up/down to move up and down.
 
-// TODO - delete button doesn't do anything yet
 // TODO - JSON Schema required array should be in parent object only? needs thought for groups
 
 // Global variables
@@ -157,7 +156,9 @@ $(function () {
                     id = new_id;
                     row.data('id', id);
                     if(row.hasClass('schema_group_row')){
-                        row.closest('.schema_group').find('.card-body').data('id', id);
+                        var group = row.closest('.schema_group');
+                        group.data('id', id);
+                        group.find('.card-body').data('id', id);
                     }
                 }
             }
@@ -274,7 +275,11 @@ $(function () {
         var param = find_param_in_schema(id);
 
         // Build modal
-        $('#settings_modal .modal-title span').text(id);
+        var modal_header = 'params.<span>'+id+'</span>';
+        if(param['type'] == 'object'){
+            modal_header = '<span>'+id+'</span>';
+        }
+        $('#settings_modal .modal-title').html(modal_header);
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
         $('.no_special_settings, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
@@ -307,7 +312,10 @@ $(function () {
 
         $('#settings_modal').modal('show');
     });
-    // Save modal
+
+    //
+    // Settings Modal - save button
+    //
     $('#settings_save').click(function(e){
 
         var id = $('#settings_modal .modal-title span').text();
@@ -366,9 +374,47 @@ $(function () {
     $('#settings_modal').on('hidden.bs.modal', function (e) {
         var id = $('#settings_modal .modal-title span').text();
         var param = find_param_in_schema(id);
-        if(!validate_param(param)){
-            $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").focus();
+        // It may have been deleted
+        if(param){
+            if(!validate_param(param)){
+                $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").focus();
+            }
         }
+    });
+
+    //
+    // Settings Modal - delete button
+    //
+    $('#settings_delete').click(function(e){
+        var id = $('#settings_modal .modal-title span').text();
+        var row_el = $('.schema_row[data-id="'+id+'"]');
+        var group_el = $('.schema_group[data-id="'+id+'"]');
+
+        for(k in schema['properties']['params']['properties']){
+            // Check if group
+            if(schema['properties']['params']['properties'][k].hasOwnProperty('properties')){
+                for(j in schema['properties']['params']['properties'][k]['properties']){
+                    if(j == id){
+                        delete schema['properties']['params']['properties'][k]['properties'][j];
+                    }
+                    // Move contents of the group out if we're going to delete it
+                    if(k == id){
+                        schema['properties']['params']['properties'][j] = schema['properties']['params']['properties'][k]['properties'][j];
+                        // NOT WORKING
+                        $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
+                    }
+                }
+            }
+            if(k == id){
+                delete schema['properties']['params']['properties'][k];
+            }
+        }
+
+        row_el.remove();
+        group_el.remove();
+
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
     //
@@ -522,7 +568,7 @@ function generate_group_row(id, param, child_params){
     }
 
     var results = `
-    <div class="card schema_group">
+    <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
             <div class="row schema_row schema_group_row mb-0" data-id="`+id+`">
                 <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
@@ -537,6 +583,9 @@ function generate_group_row(id, param, child_params){
                     <label>Description
                         <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
                     </label>
+                </div>
+                <div class="col-sm-auto align-self-center schema_row_config">
+                    <i class="fas fa-cog"></i>
                 </div>
             </div>
         </div>
@@ -685,5 +734,5 @@ function find_param_in_schema(id){
         }
     }
 
-    console.error("Could not find param "+id);
+    console.warn("Could not find param '"+id+"'");
 }
