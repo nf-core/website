@@ -32,9 +32,10 @@ if (!file_exists($cache_dir)) {
 // Loop through files and delete any that are too old
 $schema_cache_files = glob($cache_dir.'/*.json');
 foreach($schema_cache_files as $fn) {
-    $fn_parts = explode('_', $fn);
+    $fn_parts = explode('_', basename($fn));
     if(count($fn_parts) == 2 && is_numeric($fn_parts[0])){
-        if($fn_parts[0] < (time() - MAX_JSON_BUILD_CACHE_AGE)){
+        $fn_expires = $fn_parts[0] + MAX_JSON_BUILD_CACHE_AGE;
+        if(time() > $fn_expires){
             unlink($fn);
         }
     }
@@ -169,7 +170,7 @@ if(!$schema_cache){ ?>
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
             <div class="col-sm-auto">
-                <button class="btn btn-outline-secondary add-param-btn">Add Parameter</button>
+                <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square"></i> Parameter</button>
             </div>
             <div class="col">
                 <button class="btn btn-block btn-light schema-panel-btn" data-target="#schema-builder">nf-core parameter JSON Schema builder</button>
