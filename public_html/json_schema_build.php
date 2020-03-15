@@ -170,13 +170,13 @@ if(!$schema_cache){ ?>
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
             <div class="col-sm-auto">
-                <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square"></i> Parameter</button>
+                <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square mr-1"></i> Parameter</button>
             </div>
             <div class="col">
                 <button class="btn btn-block btn-light schema-panel-btn" data-target="#schema-builder">nf-core parameter JSON Schema builder</button>
             </div>
             <div class="col-sm-auto">
-                <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished">Finished</button>
+                <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished"><i class="fas fa-check-square mr-1"></i> Finished</button>
             </div>
         </div>
     </div>
@@ -254,7 +254,7 @@ if(!$schema_cache){ ?>
                 </div>
                 <div class="modal-footer row">
                     <div class="col-auto">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Delete parameter</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
                     </div>
                     <div class="col text-right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

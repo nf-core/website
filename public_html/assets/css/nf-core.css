@@ -822,7 +822,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   margin: 2rem 0 0.8rem;
   font-size: .875rem;
   background-color: #f8f9fa;
-  border: 1px solid #ededed;
+  border: 1px solid #cccccc;
   border-radius: 0.2rem;
   padding: 0.5rem 1rem;
 }
@@ -870,6 +870,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .ui-sortable-helper .schema_row_grabber {
   cursor: grabbing;
+}
+.ui-sortable-helper, .ui-selecting, .ui-selected  {
+  border: 1px solid #cccccc;
 }
 .schema_row_grabber i, .schema_row_config i {
   color: #666;
