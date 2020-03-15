@@ -859,9 +859,17 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   appearance: none;
 }
 .schema_row_grabber, .schema_row_config {
-  cursor: pointer;
   line-height: 3rem;
   vertical-align: middle;
+}
+.schema_row_config {
+  cursor: pointer;
+}
+.schema_row_grabber {
+  cursor: grab;
+}
+.ui-sortable-helper .schema_row_grabber {
+  cursor: grabbing;
 }
 .schema_row_grabber i, .schema_row_config i {
   color: #666;
