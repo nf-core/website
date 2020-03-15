@@ -7,6 +7,8 @@
 var schema = '';
 var new_param_idx = 1;
 var new_group_idx = 1;
+var help_text_icon_template = '<i class="fas fa-comment-slash help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
+var no_help_text_icon = '<i class="fas fa-comment-dots help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
 
 $(function () {
 
@@ -330,7 +332,7 @@ $(function () {
             modal_header = '<span>'+id+'</span>';
         }
         $('#settings_modal .modal-title').html(modal_header);
-        $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum, #settings_fa_icon').val('');
+        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum, #settings_fa_icon').val('');
         $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
         if(['boolean', 'object'].indexOf(param['type']) == -1){
@@ -344,6 +346,9 @@ $(function () {
         }
 
         // Fill modal boxes
+        if(param.hasOwnProperty('help_text')){
+            $('#settings_help_text').val( param['help_text'] );
+        }
         if(param['enum'] instanceof Array){
             $('#settings_enum').val( param['enum'].join('|') );
         }
@@ -372,14 +377,15 @@ $(function () {
         var param = find_param_in_schema(id);
 
         var settings = {};
-        settings.enum = $('#settings_enum').val().trim().split('|');
-        // Trim whitespace from each element and remove empties
-        $.map(settings.enum, $.trim);
-        settings.enum = settings.enum.filter(function (el) { return el.length > 0; });
+        settings.help_text = $('#settings_help_text').val().trim();
         settings.pattern = $('#settings_pattern').val().trim();
         settings.minimum = $('#settings_minimum').val().trim();
         settings.maximum = $('#settings_maximum').val().trim();
         settings.fa_icon = $('#settings_fa_icon').val().trim();
+        settings.enum = $('#settings_enum').val().trim().split('|');
+        // Trim whitespace from each element and remove empties
+        $.map(settings.enum, $.trim);
+        settings.enum = settings.enum.filter(function (el) { return el.length > 0; });
 
         // Validate inputs
         if(settings.minimum.length > 0){
@@ -413,10 +419,17 @@ $(function () {
                // Update the icon in the row
                $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($(settings.fa_icon));
            }
-       } else {
+        } else {
            // Update the icon in the row
            $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($('<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>'));
-       }
+        }
+
+        // Update the help-text icon
+        var help_text_icon = help_text_icon_template;
+        if(settings.help_text.length > 0){
+            help_text_icon = no_help_text_icon;
+        }
+        $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
 
         // Update the schema
         for (var key in settings) {
@@ -603,10 +616,15 @@ function generate_param_row(id, param){
         fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
     }
 
+    var help_text_icon = help_text_icon_template;
+    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
+        help_text_icon = no_help_text_icon;
+    }
+
 
     var results = `
-    <div class="row schema_row" data-id="`+id+`">
-        <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber">
+    <div class="row schema_row border" data-id="`+id+`">
+        <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
         <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
@@ -620,6 +638,7 @@ function generate_param_row(id, param){
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
             </label>
         </div>
+        <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
         <div class="col-sm-1">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
@@ -648,7 +667,7 @@ function generate_param_row(id, param){
             </label>
             `)+`
         </div>
-        <div class="col-sm-auto align-self-center schema_row_config">
+        <div class="col-sm-auto align-self-center schema_row_config border-left">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -662,6 +681,16 @@ function generate_group_row(id, param, child_params){
         child_params = '';
     }
 
+    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
+    if(param['fa_icon'] != undefined){
+        fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
+    }
+
+    var help_text_icon = help_text_icon_template;
+    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
+        help_text_icon = no_help_text_icon;
+    }
+
     var results = `
     <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
@@ -669,6 +698,7 @@ function generate_group_row(id, param, child_params){
                 <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
+                <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -679,6 +709,7 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
                     </label>
                 </div>
+                <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
                 <div class="col-sm-auto align-self-center schema_row_config">
                     <i class="fas fa-cog"></i>
                 </div>
