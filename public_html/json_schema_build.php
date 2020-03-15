@@ -205,7 +205,7 @@ if(!$schema_cache){ ?>
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title h4 text-monospace">params.<span></span></span>
+                    <span class="modal-title h4 text-monospace"></span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -257,7 +257,7 @@ if(!$schema_cache){ ?>
                 </div>
                 <div class="modal-footer row">
                     <div class="col-auto">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
                     </div>
                     <div class="col text-right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
