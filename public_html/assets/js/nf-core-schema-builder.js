@@ -126,7 +126,7 @@ $(function () {
     // LISTENERS
     //
     // Listeners to update on change
-    $('#schema-builder').on('change blur', 'input, select', function(){
+    $('#schema-builder').on('change', 'input, select', function(){
         var row = $(this).closest('.schema_row');
 
         // Parse data attributes
@@ -200,8 +200,21 @@ $(function () {
                         delete param['maximum'];
                     }
 
+                    // Validate and empty default before we build the HTML to avoid warnings
+                    var focus_default = false;
+                    if(!validate_param(param)){
+                        param['default'] = '';
+                        focus_default = true;
+                    }
+
                     row.replaceWith(generate_param_row(id, param));
+
+                    if(focus_default){
+                        $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").removeAttr('value').focus();
+                    }
                 }
+
+                update_param_in_schema(id, param);
             }
 
         }
@@ -685,7 +698,15 @@ function validate_param(param){
 
     }
 
-    // Check integers are integers
+    // Check that numbers and ranges are numbers
+    if(['number', 'range'].includes(param['type'])){
+        if(isNaN(parseFloat(param['maximum']))){
+            alert('Error: Default value is not a number');
+            return false;
+        }
+    }
+
+    // Check that integers are integers
     if(param['type'] == 'integer'){
         var default_int = parseInt(param['default']);
         if(String(default_int) !== String(param['default'])){
@@ -730,6 +751,30 @@ function find_param_in_schema(id){
         if(schema['properties']['params']['properties'][k].hasOwnProperty('properties')){
             if(schema['properties']['params']['properties'][k]['properties'].hasOwnProperty(id)){
                 return schema['properties']['params']['properties'][k]['properties'][id];
+            }
+        }
+    }
+
+    console.warn("Could not find param '"+id+"'");
+}
+
+function update_param_in_schema(id, new_param){
+    // Given an ID, find the param schema even if it's in a group
+    // Assumes max one level of nesting and unique IDs everywhere
+
+    // Simple case - not in a group
+    if(schema['properties']['params']['properties'].hasOwnProperty(id)){
+        schema['properties']['params']['properties'][id] = new_param;
+        return true;
+    }
+
+    // Iterate through groups, looking for ID
+    for(k in schema['properties']['params']['properties']){
+        // Check if group
+        if(schema['properties']['params']['properties'][k].hasOwnProperty('properties')){
+            if(schema['properties']['params']['properties'][k]['properties'].hasOwnProperty(id)){
+                schema['properties']['params']['properties'][k]['properties'][id] = new_param;
+                return true;
             }
         }
     }
