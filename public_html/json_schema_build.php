@@ -161,12 +161,20 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     </ul>
     <p>We also use a couple of extra standard flags:</p>
     <ul>
+        <li><code>help_text</code>, a longer description providing more in-depth help. Typically <code>description</code> is just a few words long and the longer help text is shown when a user requests it.</li>
         <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
-    <p>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.
-    Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.
-    <code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.</p>
+    <h5>Tips:</h5>
+    <ul>
+        <li>
+            Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.
+            Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.
+            <code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.
+        </li>
+        <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings, such as the help text. Some of these fields only show for specific parameter types.</li>
+        <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
+    </ul>
     <hr>
 </div>
 
@@ -239,6 +247,13 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group settings_help_text_group">
+                        <label for="settings_enum">Help text</label>
+                        <textarea class="form-control" id="settings_help_text" rows="5"></textarea>
+                        <small class="form-text text-muted">
+                            Longer help text explaining how to use the parameter. Typically shown on user request.
+                        </small>
+                    </div>
                     <div class="form-group settings_enum_group">
                         <label for="settings_enum">Enumerated values</label>
                         <input type="text" class="form-control" id="settings_enum" placeholder="value_1|value_2|value_3">
