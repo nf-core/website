@@ -251,7 +251,9 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                         <label for="settings_enum">Help text</label>
                         <textarea class="form-control" id="settings_help_text" rows="5"></textarea>
                         <small class="form-text text-muted">
-                            Longer help text explaining how to use the parameter. Typically shown on user request.
+                            Longer help text explaining how to use the parameter, typically shown on user request.
+                            Some tools may render <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">markdown</a>,
+                            some may render as plain text.
                         </small>
                     </div>
                     <div class="form-group settings_enum_group">
