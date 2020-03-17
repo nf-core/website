@@ -563,6 +563,14 @@ $(function () {
     });
 
     //
+    // Collapse group button
+    //
+    $('#schema-builder').on('click', '.schema_group_collapse', function(){
+        $(this).closest('.schema_group').find('.card-body').slideToggle('fast');
+        $(this).find('i').toggleClass('fa-angle-double-down fa-angle-double-up')
+    });
+
+    //
     // Copy schema button
     //
     $('.copy-schema-btn').click(function(){
@@ -775,6 +783,9 @@ function generate_group_row(id, param, child_params){
                 <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
                 <div class="col-sm-auto align-self-center schema_row_config">
                     <i class="fas fa-cog"></i>
+                </div>
+                <div class="col-sm-auto align-self-center schema_group_collapse">
+                    <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>
         </div>
