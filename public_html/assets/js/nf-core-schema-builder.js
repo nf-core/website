@@ -9,6 +9,7 @@ var new_param_idx = 1;
 var new_group_idx = 1;
 var help_text_icon_template = '<i class="fas fa-comment-slash help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
 var no_help_text_icon = '<i class="fas fa-comment-dots help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
+var prev_focus = false;
 
 $(function () {
 
@@ -223,6 +224,7 @@ $(function () {
     // Keypress listener - move around with keyboard shortcuts
     //
     $('#schema-builder').on('keydown', 'input, select', function(e){
+
         // Enter key
         if(e.which == 13){
             e.preventDefault();
@@ -237,13 +239,61 @@ $(function () {
                 row.next('.schema_row').find(current_class).focus();
             }
         }
+
         // Tab works as we want already by default
+
+        // cmd + shift + , (open settings)
+        if(e.which == 188 && e.shiftKey && (e.ctrlKey || e.metaKey)){
+            // Get row of focussed element
+            var row = $(':focus').closest('.schema_row');
+            if(row.length == 1){
+                var id = row.data('id');
+                prev_focus = $(':focus');
+                launch_settings_modal(id);
+            }
+        }
+
+        // cmd + shif + up cursor (move row up)
+        if(e.which == 38 && e.shiftKey && (e.ctrlKey || e.metaKey)){
+            // Get row of focussed element
+            var row = $(':focus').closest('.schema_row');
+            if(row.hasClass('schema_group_row')){
+                row = $(':focus').closest('.schema_group');
+            }
+            if(row.length == 1){
+                prev_focus = $(':focus');
+                var row_before = row.prev();
+                row.insertBefore(row_before);
+                schema_order_change();
+                prev_focus.focus();
+            }
+        }
+
+        // cmd + shif + down cursor (move row down)
+        if(e.which == 40 && e.shiftKey && (e.ctrlKey || e.metaKey)){
+            // Get row of focussed element
+            var row = $(':focus').closest('.schema_row');
+            if(row.hasClass('schema_group_row')){
+                row = $(':focus').closest('.schema_group');
+            }
+            if(row.length == 1){
+                prev_focus = $(':focus');
+                var row_after = row.next();
+                row.insertAfter(row_after);
+                schema_order_change();
+                prev_focus.focus();
+            }
+        }
     });
 
     //
     // Sorting - element has been moved
     //
     $('#schema-builder, .schema_group .card-body').on('sortstop', function(e, ui){
+        schema_order_change();
+    });
+
+    function schema_order_change(){
         // Don't actually need to know where it landed - just rebuild schema from the DOM
         var new_schema = JSON.parse(JSON.stringify(schema));
         new_schema['properties'] = {};
@@ -286,7 +336,7 @@ $(function () {
         schema = new_schema;
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
-    });
+    };
 
     //
     // Required - required checkbox pressed
@@ -320,10 +370,14 @@ $(function () {
     //
     // Settings modal
     //
-    $('#schema-builder').on('click', '.schema_row_config', function(){
+    $('#schema-builder').on('click', '.schema_row_config, .help_text_icon', function(){
         // Get row
         var row = $(this).closest('.schema_row');
         var id = row.data('id');
+        launch_settings_modal(id);
+    });
+
+    function launch_settings_modal(id){
         var param = find_param_in_schema(id);
 
         // Build modal
@@ -366,6 +420,10 @@ $(function () {
         }
 
         $('#settings_modal').modal('show');
+    }
+    // Focus the help text once the modal has opened
+    $('#settings_modal').on('shown.bs.modal', function (e) {
+        $('#settings_help_text').focus();
     });
 
     //
@@ -453,6 +511,9 @@ $(function () {
         if(param){
             if(!validate_param(param)){
                 $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").focus();
+            } else if(prev_focus){
+                prev_focus.focus();
+                prev_focus = false;
             }
         }
     });
