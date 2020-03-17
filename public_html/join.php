@@ -41,7 +41,7 @@ include('../includes/header.php');
   <a href="https://twitter.com/nf_core" class="mb-2 btn btn-info" style="background-color: #4AA1EB;">
     <i class="fab fa-twitter"></i> @nf_core on twitter
   </a>
-  <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" class="mb-2 btn btn-danger" style="background-color: #EA3C1E;">
+  <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-danger" style="background-color: #EA3C1E;">
     <i class="fab fa-youtube"></i> YouTube
   </a>
   <a href="https://groups.google.com/forum/#!forum/nf-core" class="mb-2 btn btn-info" style="background-color: #5CA5EF;">
@@ -92,15 +92,14 @@ drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> o
     See <a href="https://twitter.com/nf_core">https://twitter.com/nf_core</a></p>
 
 <h1>
-  <a class="text-success text-decoration-none" href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ" target="_blank">
+  <a class="text-success text-decoration-none" href="https://www.youtube.com/c/nf-core" target="_blank">
     <span class="join-pull-img"><img width="144px" src="/assets/img/youtube.svg" /></span>
     YouTube
   </a>
 </h1>
-<p>The <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ">nf-core</a> YouTube account is used for tutorial videos
+<p>The <a href="https://www.youtube.com/c/nf-core">nf-core</a> YouTube account is used for tutorial videos
     and has a playlist to collect recordings of presentations about nf-core from across the web.
-    See <a href="https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ">https://www.youtube.com/channel/UCfdY8g6eA6IuYZ8oyyNsabQ</a>
-    <br><em class="small">(if we reach 100 subscribers then we can get a nicer URL!)</em>
+    See <a href="https://www.youtube.com/c/nf-core">https://www.youtube.com/c/nf-core</a>
 </p>
 
 <h1>

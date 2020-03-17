@@ -72,37 +72,31 @@ git commit -m "Starting to build my pipeline"
 git push
 ```
 
-### Set up Travis and Docker Hub
+### Set up GitHub Actions and Docker Hub
 
-The nf-core pipelines use two additional services that link to GitHub: Travis and Dockerhub.
-Using these enables automated testing (Travis) and automatic Docker image builds (Docker Hub).
+The nf-core pipelines use GitHub Actions for automated testing. Additionally,
+by linking the GitHub repository to Docker Hub, Docker image builds are automated as well.
 
 Just like with GitHub, you can run these on your personal fork for testing purposes.
 Once you've merged your pipeline in to the nf-core organisation, we will also set them
 up there, but that happens later.
 
-To enable Travis, go to [travis-ci.com](https://travis-ci.com) and log in with your
-GitHub credentials. Add a new GitHub repository and select your new pipeline.
-The repository should already contain the required `.travis.yml` file, so the next
-time you push a commit the tests will be automatically triggered.
+The GitHub Actions are automatically executed with every push, based on the scripts in `.github/workflows`.
 
-The process for Docker Hub is similar, though a little more fiddly. Docker has a number
-of  different docker websites (docker hub, docker cloud, docker swarm _etc._), but
-they seem to be moving towards consolidating on just Docker Hub. So it's best to use that.
-
+The following steps are needed to set Docker Hub
 1. Go to [hub.docker.com](https://hub.docker.com) and create an account
-2. Create a new repository for your workflow
-3. Set your repository to be automatically built from a GitHub repository and link it to your workflow
-4. Configure the repo to automatically build whenever you push a new commit to your GitHub repo
+2. Create a new repository on Docker Hub with your pipeline name
+3. Set your repository to be automatically built from a GitHub repository and link it to your pipeline
+4. Configure the repo to automatically build whenever you push a new commit to your GitHub repository
 
 Whilst developing your pipeline on your local fork you will need to create automated builds for two docker images
 with source set to `master` - one with the `dev` tag and the other with the `latest` tag.
-The former will be required for Travis and the latter will be pulled when executing the pipeline locally.
+The former will be required for GitHub Actions and the latter will be pulled when executing the pipeline locally.
 
 Note: The template assumes that your Docker image is hosted on the nf-core Docker Hub organisation.
 To make the pipeline work with your testing image, switch out `nfcore/<PIPELINE_NAME>` for your address
 (`username/<PIPELINE_NAME>`). You'll find this in the `container` variable in `nextflow.config` and
-`docker` commands in `.travis.yml`.
+the `docker` commands in `.github/workflows/.ci.yml`.
 
 These will need to be changed back to the defaults before you fork the pipeline to `nf-core`.
 
@@ -110,14 +104,15 @@ These will need to be changed back to the defaults before you fork the pipeline 
 
 Ok, now you're all set with your own personal nf-core pipeline!
 You can now start writing code for real.
-Remember to keep running the `nf-core lint` command (see [docs](https://nf-co.re/tools#linting-a-workflow))
-to make sure that your workflow passes all of the nf-core tests.
-The automated tests on Travis also run this so you should get an email if something breaks.
+Remember to run the `nf-core lint` command (see [docs](https://nf-co.re/tools#linting-a-workflow))
+to make sure that your workflow passes all of the nf-core compatibility tests.
+The automated tests on Github Actions also run this, so you should get a
+notification from GitHub if something breaks.
 
 ## Add some test data
 
 Whilst the linting tests are good, they're not sufficient by themselves.
-It's also good to get Travis to actually run your pipeline on a minimal dataset.
+It's also good to get GitHub Actions to actually run your pipeline on a minimal dataset.
 Currently, we don't usually check the results that are produced, but it often catches
 syntax errors and other serious problems that cause nextflow to exit with an error.
 
@@ -137,7 +132,7 @@ git checkout -b MY_WORKFLOW
 ```
 
 Now add your test data files - note that they must be **very small**.
-GitHub has quite a low file size limit, and the Travis jobs will time out with anything
+GitHub has quite a low file size limit, and the GitHub Actions will time out with anything
 that's not tiny. We typically use PhiX / Yeast / part of a chromosome as a reference
 and aggressively subsampled input data.
 
@@ -176,7 +171,7 @@ nextflow run MY_WORKFLOW -profile test,docker
 ```
 
 Note that if you do need to adjust this `nextflow run` command, you'll need to update it
-in the `.travis.yml` config file too.
+in the `.github/workflows/` YAML files too.
 
 ## Adding your pipeline to the nf-core organisation
 
@@ -237,10 +232,11 @@ Line break should look nice and be readable.
 
 If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
-### Setting up Travis and Docker Hub
+### Setting up GitHub Actions and Docker Hub
 
-Just as with your own fork, Travis and Docker Hub need to be set up for the
+Just as with your own fork, Docker Hub needs to be set up for the
 main nf-core fork. You'll need to ask one of the core nf-core team to help you with this.
+The GitHub Actions should run without any additional adjustments.
 
 ### Differences to your own fork
 
@@ -320,7 +316,7 @@ Basic rules for such contributions:
 
 ### Adding new dependencies to an existing pipeline
 
-Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the TravisCI tests run through when testing your updated code. To achieve that, please follow these steps:
+Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the GitHub Actions tests run through when testing your updated code. To achieve that, please follow these steps:
 
 * Add *only* the newly required dependencies to the `environment.yml` in the pipeline code
 * List this new dependency as something new in the `CHANGELOG`
