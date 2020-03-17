@@ -165,18 +165,26 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
-    <h5>Tips:</h5>
-    <ul>
-        <li>
-            Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.
-            Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.
-            <code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.
-        </li>
-        <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings, such as the help text. Some of these fields only show for specific parameter types.</li>
-        <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
-    </ul>
     <hr>
 </div>
+
+<h5>Tips:</h5>
+<ul>
+    <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
+    <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
+    <li>The <i class="fas fa-comment-slash help_text_icon"></i> / <i class="fas fa-comment-dots help_text_icon"></i> icons
+        show whether help text has been written. To add, click the settings button on the right.</li>
+    <li>Be a power user with keyboard shortcuts!
+        <ul class="small">
+            <li>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.</li>
+            <li>Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.</li>
+            <li><code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.</li>
+            <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">,</code> opens the settings panel.</li>
+            <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">&uarr;</code> moves the row up.</li>
+            <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">&darr;</code> moves the row down.</li>
+        </ul>
+    </li>
+</ul>
 
 <?php if(!$schema_cache){ ?>
 
@@ -196,12 +204,6 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 <?php } else { ?>
 
     <p class="lead">Schema cache ID: <code id="schema_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
-    <div class="alert alert-info small">
-        <strong>Need something with more power?</strong>
-        Try <a href="https://jsondraft.com/" target="_blank">jsondraft.com</a>,
-        <a href="https://json-schema-editor.tangramjs.com/editor.html#/" target="_blank">json-schema-editor.tangramjs.com</a>
-        or <a href="https://json-schema.org/implementations.html#editors" target="_blank">other JSON Schema editors</a>.
-    </div>
 
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
