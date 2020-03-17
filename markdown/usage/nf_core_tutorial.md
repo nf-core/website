@@ -369,7 +369,7 @@ To set up an automated docker container build for the master and the dev branche
 
 * Master branch build rule (comes by default). Set the "Source Type" to "branch", "Source" to "master" and "Docker tag" to "latest".
 * dev branch build rule. Set _Source Type_ to `branch`, _Source_ to `dev` and _Docker tag_ to `dev`.
-* Tag build rule: this will build a container for your pipeline releases, and should follow the scenario "Match versions". Set the "Source Type" to "Tag", "Source" to "/^[0-9.]+$/" and "Docker Tag" to "release-{sourceref}".
+* Tag build rule: this will build a container for your pipeline releases, and is similar to the scenario _"Match versions"_. Set the _Source Type_ to `Tag`, _Source_ to `/^[0-9.]+$/` and _Docker Tag_ to `{sourceref}`.
 * For all build rules, the _Dockerfile location_ should be set to `Dockerfile` and the _Build context_ set to `/`. _Autobuild_ and _Build Caching_ should be on.
 
 ### Exercise 4 (creating pipelines)
