@@ -116,13 +116,24 @@ if( isset($markdown_fn) and $markdown_fn){
 
 }
 
+// Page title
+$page_title = 'nf-core';
+if(isset($title) && strlen($title) > 0){
+  $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)).' &raquo; nf-core';
+}
+// Page meta description
+$page_meta = 'A collection of high quality Nextflow pipelines';
+if(isset($subtitle) && strlen($subtitle) > 0){
+  $page_meta = strip_tags($subtitle);
+}
+
 ?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>nf-core</title>
-    <meta name="description" content="A collection of high quality Nextflow pipelines">
+    <title><?php echo $page_title; ?></title>
+    <meta name="description" content="<?php echo $page_meta; ?>">
     <meta name="author" content="Phil Ewels">
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -148,6 +159,12 @@ if( isset($markdown_fn) and $markdown_fn){
     <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
+    <?php endif; ?>
+    <?php if(isset($import_schema_builder) && $import_schema_builder): ?>
+    <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif; ?>
     <script src="/assets/js/jquery.tablesorter.min.js"></script>
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
