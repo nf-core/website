@@ -156,7 +156,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> standard,
     with a couple of extra assumptions:</p>
     <ul>
-        <li>The pipeline parameters are held in a <code>params</code> object (<code>schema['properties']['params']['properties']</code>)</li>
+        <li>The top-level schema is an <code>object</code>, where each of the <code>properties</code> are a pipeline parameter</li>
         <li>Beyond this, only groups one-<code>object</code> deep are used (groups or no groups are fine, but no nested groups)</li>
     </ul>
     <p>We also use a couple of extra standard flags:</p>
