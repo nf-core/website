@@ -287,6 +287,10 @@ $(function () {
             }
         }
     });
+    //
+    // Initialize icon picker
+    //
+    $('.icp-dd').iconpicker({animation:false});
 
     //
     // Sorting - element has been moved
@@ -388,8 +392,8 @@ $(function () {
             modal_header = '<span>'+id+'</span>';
         }
         $('#settings_modal .modal-title').html(modal_header);
-        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum, #settings_fa_icon').val('');
-        $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
+        $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group, .settings_fa_icon_group' ).hide();
 
         if(['boolean', 'object'].indexOf(param['type']) == -1){
             $('.settings_enum_group').show();
@@ -400,15 +404,6 @@ $(function () {
         if(param['type'] == 'range'){
             $('.settings_minmax_group').show();
         }
-        //
-        // Settings Modal - icon picker
-        //
-
-        $('#settings_fa_icon').iconpicker({animation:false});
-        $('#settings_fa_icon').on('iconpickerSelected', function (e) {
-            icon_val = '<i class=\"'+ e.iconpickerValue +'\"></i>'
-            $('#settings_fa_icon').val(icon_val)
-    });
 
         // Fill modal boxes
         if(param.hasOwnProperty('help_text')){
@@ -425,9 +420,6 @@ $(function () {
         }
         if(param.hasOwnProperty('maximum')){
             $('#settings_maximum').val( param['maximum'] );
-        }
-        if(param.hasOwnProperty('fa_icon')){
-            $('#settings_fa_icon').val( param['fa_icon'] );
         }
 
         $('#settings_modal').modal('show');
@@ -450,7 +442,6 @@ $(function () {
         settings.pattern = $('#settings_pattern').val().trim();
         settings.minimum = $('#settings_minimum').val().trim();
         settings.maximum = $('#settings_maximum').val().trim();
-        settings.fa_icon = $('#settings_fa_icon').val().trim();
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
         $.map(settings.enum, $.trim);
@@ -691,9 +682,9 @@ function generate_param_row(id, param){
         is_hidden = true;
     }
 
-    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
+    var fa_icon = 'far fa-question-circle fa-fw param_fa_icon_missing';
     if(param['fa_icon'] != undefined){
-        fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
+        fa_icon = $(param['fa_icon']) + "fa-fw";
     }
 
     var help_text_icon = help_text_icon_template;
@@ -707,7 +698,16 @@ function generate_param_row(id, param){
         <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
+        <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">
+        <div class="btn-group">
+                            <button data-selected="`+ fa_icon.split(' ')[1] +`" type="button"
+                                    class="icp icp-dd btn btn-default dropdown-toggle iconpicker-component"
+                                    data-toggle="dropdown"><i class="`+ fa_icon +`"></i>
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu"></div>
+                        </div>
+        </div>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
