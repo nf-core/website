@@ -140,6 +140,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <link href="/assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
+    <link href="/assets/css/iconpicker.css" rel="stylesheet">
     <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
     <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
     <!-- FontAwesome -->
@@ -164,6 +165,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
     <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/iconpicker.js"></script>
     <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif; ?>
     <script src="/assets/js/jquery.tablesorter.min.js"></script>
