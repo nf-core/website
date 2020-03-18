@@ -400,6 +400,15 @@ $(function () {
         if(param['type'] == 'range'){
             $('.settings_minmax_group').show();
         }
+        //
+        // Settings Modal - icon picker
+        //
+
+        $('#settings_fa_icon').iconpicker({animation:false});
+        $('#settings_fa_icon').on('iconpickerSelected', function (e) {
+            icon_val = '<i class=\"'+ e.iconpickerValue +'\"></i>'
+            $('#settings_fa_icon').val(icon_val)
+    });
 
         // Fill modal boxes
         if(param.hasOwnProperty('help_text')){
