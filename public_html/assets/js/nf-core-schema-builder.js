@@ -19,6 +19,109 @@ $(function () {
     );
     $('.cache_expires_at').show();
 
+    //
+    // FontAwesome icon picker
+    //
+    // Get the list of font-awesome icons
+    $.getJSON('assets/js/fa-icons.json', function(fa_icons) {
+
+        // Make the popover
+        var popover_template = `
+            <div class="popover fa_icon_picker" role="tooltip">
+                <div class="arrow"></div>
+                <div class="popover-header"></div>
+                <div class="popover-body"></div>
+            </div>
+        `;
+        var popover_title = '<input type="text" class="form-control fa_icon_picker_input" placeholder="Search">';
+        var popover_content = '<div class="d-flex flex-wrap">';
+        for(icon in fa_icons){
+            popover_content += '<button class="btn btn-sm btn-light m-1" data-searchterms="'+fa_icons[icon]+'" data-classname="'+icon+'"><i class="'+icon+' fa-fw"></i></button>';
+        }
+        popover_content += '</div>';
+
+        // Initialise Bootstrap popover for icon picker
+        $('#schema-builder').popover({
+            selector: '.param_fa_icon',
+            html: true,
+            sanitize: false,
+            placement: 'right',
+            offset: 100,
+            animation: false,
+            template: popover_template,
+            title: popover_title,
+            content: popover_content
+        });
+
+        // Listener for when the popover is triggered
+        // Needs selector class instead of root class.
+        $('.param_fa_icon').on('show.bs.popover', function () {
+            // Only show one popover at a time
+            $('.param_fa_icon').popover('hide');
+            // Reset the selected icon button classes
+            $('.fa_icon_picker .popover-body .btn').removeClass('btn-success').addClass('btn-light');
+        });
+
+        // Focus the search bar when triggered
+        $('.param_fa_icon').on('shown.bs.popover', function () {
+            var row = $(this).closest('.schema_row');
+            var id = row.data('id');
+            var param = find_param_in_schema(id);
+            prev_focus = $(this);
+            // Highlight the picked icon
+            if(param.hasOwnProperty('fa_icon') && param.fa_icon.length > 0){
+                var matching_btn = $('.fa_icon_picker .popover-body .btn[data-classname="'+param.fa_icon+'"]').removeClass('btn-light').addClass('btn-success');
+            }
+            $('.fa_icon_picker:visible').data('id', id);
+            // Focus the input once we've finished showing the popover
+            setTimeout(function(){
+                $('.fa_icon_picker_input').focus();
+            }, 10);
+        });
+
+        // Filter icons
+        $('body').on('keyup', '.fa_icon_picker_input', function(e){
+            var search_term = $(this).val().trim();
+            var popover = $(this).closest('.fa_icon_picker');
+            if(search_term.length == 0){
+                popover.find(".popover-body div button").show();
+            } else {
+                popover.find(".popover-body div button").hide();
+                popover.find(".popover-body div button[data-searchterms*='"+search_term+"'], .popover-body div button[data-classname*='"+search_term+"']").show();
+            }
+        });
+
+        // Icon clicked
+        $('body').on('click', '.fa_icon_picker button', function(e){
+            var class_name = $(this).data('classname');
+
+            // Update schema
+            var id = $('.fa_icon_picker:visible').data('id');
+            var param = find_param_in_schema(id);
+            param.fa_icon = class_name;
+            update_param_in_schema(id, param);
+
+            // Update printed schema in page
+            $('#json_schema').text(JSON.stringify(schema, null, 4));
+
+            // Update form
+            $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
+            $('.param_fa_icon').popover('hide');
+            prev_focus.focus();
+        });
+
+        // Dismiss popover if click elsewhere
+        $(document).click(function(e) {
+            var target = $(e.target);
+            if(!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length){
+                $('.param_fa_icon').popover('hide');
+                if(prev_focus){
+                    prev_focus.focus();
+                }
+            }
+        });
+    });
+
     // Parse initial JSON Schema
     try {
         schema = JSON.parse($('#json_schema').text());
@@ -225,7 +328,7 @@ $(function () {
     //
     // Keypress listener - move around with keyboard shortcuts
     //
-    $('#schema-builder').on('keydown', 'input, select', function(e){
+    $('body').on('keydown', 'input, select', function(e){
 
         // Enter key
         if(e.which == 13){
@@ -283,6 +386,14 @@ $(function () {
                 var row_after = row.next();
                 row.insertAfter(row_after);
                 schema_order_change();
+                prev_focus.focus();
+            }
+        }
+
+        // Escape - hide icon picker
+        if(e.which == 27){
+            if($('.popover:visible').length){
+                $('.param_fa_icon').popover('hide');
                 prev_focus.focus();
             }
         }
@@ -372,7 +483,7 @@ $(function () {
     //
     // Settings modal
     //
-    $('#schema-builder').on('click', '.schema_row_config, .help_text_icon', function(){
+    $('#schema-builder').on('click', '.schema_row_config, .schema_row_help_text_icon', function(){
         // Get row
         var row = $(this).closest('.schema_row');
         var id = row.data('id');
@@ -388,7 +499,7 @@ $(function () {
             modal_header = '<span>'+id+'</span>';
         }
         $('#settings_modal .modal-title').html(modal_header);
-        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum, #settings_fa_icon').val('');
+        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
         $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
         if(['boolean', 'object'].indexOf(param['type']) == -1){
@@ -417,9 +528,6 @@ $(function () {
         if(param.hasOwnProperty('maximum')){
             $('#settings_maximum').val( param['maximum'] );
         }
-        if(param.hasOwnProperty('fa_icon')){
-            $('#settings_fa_icon').val( param['fa_icon'] );
-        }
 
         $('#settings_modal').modal('show');
     }
@@ -441,7 +549,6 @@ $(function () {
         settings.pattern = $('#settings_pattern').val().trim();
         settings.minimum = $('#settings_minimum').val().trim();
         settings.maximum = $('#settings_maximum').val().trim();
-        settings.fa_icon = $('#settings_fa_icon').val().trim();
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
         $.map(settings.enum, $.trim);
@@ -468,20 +575,6 @@ $(function () {
                 e.preventDefault();
                 e.stopPropagation();
             }
-        }
-        // Check that the font-awesome icon looks right
-        if(settings.fa_icon.length > 0){
-            var re = new RegExp('<i class="fa[a-z -]+"><\/i>');
-            if(!re.test(settings.fa_icon)){
-                alert('Error: FontAwesome icon must match the regex: <i class="fa[a-z -]+"><\/i>');
-                return false;
-            } else {
-               // Update the icon in the row
-               $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($(settings.fa_icon));
-           }
-        } else {
-           // Update the icon in the row
-           $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($('<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>'));
         }
 
         // Update the help-text icon
@@ -684,7 +777,7 @@ function generate_param_row(id, param){
 
     var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
     if(param['fa_icon'] != undefined){
-        fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
+        fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
     }
 
     var help_text_icon = help_text_icon_template;
@@ -698,7 +791,7 @@ function generate_param_row(id, param){
         <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
+        <button class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -709,7 +802,7 @@ function generate_param_row(id, param){
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
             </label>
         </div>
-        <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
+        <div class="col-sm-auto align-self-center schema_row_help_text_icon iconpicker-component">`+help_text_icon+`</div>
         <div class="col-sm-1">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">

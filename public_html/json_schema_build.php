@@ -140,8 +140,10 @@ function validate_cache_id($cache_id){
 $title = 'Parameter schema';
 $subtitle = 'Customise a JSON Schema for your pipeline parameters';
 if($schema_cache) $import_schema_builder = true;
+$mainpage_container = false;
 include('../includes/header.php');
 ?>
+<div class="container">
 
 <p class="mt-5">nf-core pipelines have a file in their root directories called <code>nextflow_schema.json</code> which
 describes the input parameters that the pipeline accepts.
@@ -204,6 +206,8 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 <?php } else { ?>
 
     <p class="lead">Schema cache ID: <code id="schema_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
+</div>
+<div class="container-fluid main-content">
 
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
@@ -235,8 +239,11 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 </button>
             </div>
         </div>
-        <textarea id="json_schema" class="form-control text-monospace disabled" disabled rows="30"><?php echo json_encode($schema, JSON_PRETTY_PRINT); ?></textarea>
     </div>
+
+    <h3>Pipeline JSON Schema</h3>
+    <p>This is the schema for your pipeline. As you change values in the form above, it will update. When you are finished, click <em>Finished</em> in the top toolbar.</p>
+    <textarea id="json_schema" class="form-control text-monospace disabled" disabled rows="30"><?php echo json_encode($schema, JSON_PRETTY_PRINT); ?></textarea>
 
     <!-- Params schema settings modal -->
     <div class="modal fade" id="settings_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -300,18 +307,10 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                             </a>
                         </small>
                     </div>
-                    <div class="form-group settings_fa_icon_group">
-                        <label for="settings_enum">FontAwesome Icon</label>
-                        <input type="text" class="form-control text-monospace" id="settings_fa_icon" placeholder='&lt;i class=&quot;far fa-question-circle&quot;&gt;&lt;/i&gt;'>
-                        <small class="form-text text-muted">
-                            Icon for use in web interfaces. Find at <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a>
-                            <em>(free icons only)</em> and copy the full string.</code>
-                        </small>
-                    </div>
                 </div>
                 <div class="modal-footer row">
                     <div class="col-auto">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> Delete</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> Delete parameter</button>
                     </div>
                     <div class="col text-right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -322,10 +321,8 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         </div>
     </div>
 
-    <?php
+</div> <!-- .container-fluid -->
 
-    // TODO - write status and buttons to save schema when finished
-
-}
+<?php } // if $schema_cache
 
 include('../includes/footer.php');
