@@ -788,22 +788,23 @@ function generate_param_row(id, param){
 
     var results = `
     <div class="row schema_row border" data-id="`+id+`">
-        <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber border-right">
+        <div class="col-auto align-self-center schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <button class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</button>
+        <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
             </label>
         </div>
-        <div class="col-sm-3">
+        <div class="d-sm-none w-100"></div>
+        <div class="col">
             <label>Description
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
             </label>
         </div>
-        <div class="col-sm-auto align-self-center schema_row_help_text_icon iconpicker-component">`+help_text_icon+`</div>
-        <div class="col-sm-1">
+        <div class="col-auto align-self-center schema_row_help_text_icon iconpicker-component">`+help_text_icon+`</div>
+        <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
                     <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
@@ -814,24 +815,25 @@ function generate_param_row(id, param){
                 </select>
             </label>
         </div>
-        <div class="col-sm-3">
+        <div class="d-sm-none w-100"></div>
+        <div class="col">
             <label>Default `+default_input+`</label>
         </div>
-        <div class="col-sm-auto">
+        <div class="col-auto">
             `+(param['type'] == 'object' ? '' : `
-            <label>Required
+            <label>R<span class="d-none d-lg-inline">equired</span>
                 <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+`" class="param_required">
             </label>
             `)+`
         </div>
-        <div class="col-sm-auto">
+        <div class="col-auto">
             `+(param['type'] == 'object' ? '' : `
-            <label>Hidden
+            <label>H<span class="d-none d-lg-inline">idden</span>
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+`" class="param_hidden">
             </label>
             `)+`
         </div>
-        <div class="col-sm-auto align-self-center schema_row_config border-left">
+        <div class="col-auto align-self-center schema_row_config border-left">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -859,10 +861,10 @@ function generate_group_row(id, param, child_params){
     <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
             <div class="row schema_row schema_group_row mb-0" data-id="`+id+`">
-                <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
+                <div class="col-auto align-self-center schema_row_grabber">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
+                <div class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</div>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -873,11 +875,11 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
                     </label>
                 </div>
-                <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
-                <div class="col-sm-auto align-self-center schema_row_config">
+                <div class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
+                <div class="col-auto align-self-center schema_row_config">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-sm-auto align-self-center schema_group_collapse">
+                <div class="col-auto align-self-center schema_group_collapse">
                     <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>
