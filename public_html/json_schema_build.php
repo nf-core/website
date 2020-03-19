@@ -256,15 +256,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group settings_help_text_group">
-                        <label for="settings_enum">Help text</label>
-                        <textarea class="form-control" id="settings_help_text" rows="5"></textarea>
-                        <small class="form-text text-muted">
-                            Longer help text explaining how to use the parameter, typically shown on user request.
-                            Some tools may render <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">markdown</a>,
-                            some may render as plain text.
-                        </small>
-                    </div>
+                    <p class="text-muted settings_nothing_special">No special settings available.</p>
                     <div class="form-group settings_enum_group">
                         <label for="settings_enum">Enumerated values</label>
                         <input type="text" class="form-control" id="settings_enum" placeholder="value_1|value_2|value_3">
@@ -308,13 +300,72 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                         </small>
                     </div>
                 </div>
-                <div class="modal-footer row">
-                    <div class="col-auto">
+                <div class="modal-footer">
+                    <div class="col-auto pl-0">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> Delete parameter</button>
                     </div>
-                    <div class="col text-right">
+                    <div class="col text-right pr-0">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="settings_save">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help text modal -->
+    <div class="modal fade" id="help_text_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title h4 text-monospace"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="help_text_input">
+                        Parameter help text is used for generating documentation and shown on demand for the command-line and web launch tools.
+                    </label>
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-helptext">Write</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-helptext-preview">Preview</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body tab-content">
+                            <div class="tab-pane fade show active" id="tab-helptext" role="tabpanel">
+                                <div class="form-group help_text_modal_group">
+                                    <textarea class="form-control" id="help_text_input" rows="5"></textarea>
+                                    <small class="form-text text-muted">
+                                        You can use <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">markdown</a>,
+                                        but remember that this will be shown raw on the command line. So no tables please!
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-helptext-preview" role="tabpanel">
+                                <p>Command-line:</p>
+                                <pre><span class="helptext-preview-title"></span>
+<span class="helptext-preview-description"></span>
+
+<span class="helptext-preview-helptext text-muted"></span></pre>
+                                <p>Website:</p>
+                                <div class="card helptext-html-preview">
+                                    <div class="card-body">
+                                        <h4 class="mt-0 pt-0"><code class="helptext-preview-title"></code></h4>
+                                        <p class="lead helptext-preview-description"></p>
+                                        <div class="helptext-preview-helptext"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col text-right">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="help_text_save">Save</button>
                     </div>
                 </div>
             </div>

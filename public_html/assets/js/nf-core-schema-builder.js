@@ -113,10 +113,14 @@ $(function () {
         // Dismiss popover if click elsewhere
         $(document).click(function(e) {
             var target = $(e.target);
+            // Is a click outside the icon popover and button
             if(!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length){
-                $('.param_fa_icon').popover('hide');
-                if(prev_focus){
-                    prev_focus.focus();
+                // Do we have an icon picker open?
+                if($('.fa_icon_picker:visible').length){
+                    $('.param_fa_icon').popover('hide');
+                    if(prev_focus){
+                        prev_focus.focus();
+                    }
                 }
             }
         });
@@ -480,10 +484,91 @@ $(function () {
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
+
+    //
+    // Help-text modal
+    //
+    $('#schema-builder').on('click', '.schema_row_help_text_icon', function(e){
+
+        // Populate the help text modal
+        var id = $(this).closest('.schema_row').data('id');
+        var param = find_param_in_schema(id);
+        $('#help_text_modal .modal-title').html('params.<span>'+id+'</span>');
+        $('.helptext-preview-title').text('--'+id);
+        if(param.description == undefined){
+            param.description = '';
+        }
+        $('.helptext-preview-description').text(param.description);
+        if(param.help_text == undefined){
+            param.help_text = '';
+        }
+        $('#help_text_input').val(param.help_text);
+        $('.helptext-preview-helptext').text(param.help_text);
+
+        // Reset the tabs
+        $('#help_text_modal .card-header-tabs .nav-link').removeClass('active');
+        $('#help_text_modal .card-header-tabs .nav-link[href="#tab-helptext"]').addClass('active');
+        $('#help_text_modal .tab-pane').removeClass('active show');
+        $('#help_text_modal #tab-helptext').addClass('active show');
+
+        // Show the modal
+        prev_focus = $(this);
+        $('#help_text_modal').modal('show');
+    });
+
+    // Focus the help text inputs
+    $('#help_text_modal').on('shown.bs.modal', function(){
+        $('#help_text_input').focus();
+    });
+
+    // Refocus page when modal closes
+    $('#help_text_modal').on('hidden.bs.modal', function(){
+        if(prev_focus){
+            prev_focus.focus();
+        }
+    });
+
+    // Re-render preview on tab change
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        if($(e.target).attr('href') == '#tab-helptext-preview'){
+            // Update basic text
+            $('.helptext-preview-helptext').text($('#help_text_input').val());
+
+            // Convert markdown to HTML
+            var md_converter = new showdown.Converter();
+            var help_text_html = md_converter.makeHtml( $('#help_text_input').val() );
+            $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
+        }
+    })
+
+    // Save the help text
+    $('#help_text_save').click(function(){
+        var id = $('#help_text_modal .modal-title span').text();
+        var param = find_param_in_schema(id);
+        var help_text = $('#help_text_input').val();
+
+        // Update the help-text icon
+        var help_text_icon = help_text_icon_template;
+        if(help_text.length > 0){
+            help_text_icon = no_help_text_icon;
+        }
+        $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
+
+        // Update the schema
+        if(help_text.length > 0){
+            param.help_text = help_text;
+        } else {
+            delete param.help_text;
+        }
+
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
+
     //
     // Settings modal
     //
-    $('#schema-builder').on('click', '.schema_row_config, .schema_row_help_text_icon', function(){
+    $('#schema-builder').on('click', '.schema_row_config', function(){
         // Get row
         var row = $(this).closest('.schema_row');
         var id = row.data('id');
@@ -499,10 +584,12 @@ $(function () {
             modal_header = '<span>'+id+'</span>';
         }
         $('#settings_modal .modal-title').html(modal_header);
-        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
-        $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+        $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
+        $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
-        if(['boolean', 'object'].indexOf(param['type']) == -1){
+        if(['boolean', 'object'].indexOf(param['type']) != -1){
+            $('.settings_nothing_special').show();
+        } else {
             $('.settings_enum_group').show();
         }
         if(param['type'] == 'string'){
@@ -513,9 +600,6 @@ $(function () {
         }
 
         // Fill modal boxes
-        if(param.hasOwnProperty('help_text')){
-            $('#settings_help_text').val( param['help_text'] );
-        }
         if(param['enum'] instanceof Array){
             $('#settings_enum').val( param['enum'].join('|') );
         }
@@ -531,10 +615,6 @@ $(function () {
 
         $('#settings_modal').modal('show');
     }
-    // Focus the help text once the modal has opened
-    $('#settings_modal').on('shown.bs.modal', function (e) {
-        $('#settings_help_text').focus();
-    });
 
     //
     // Settings Modal - save button
@@ -545,7 +625,6 @@ $(function () {
         var param = find_param_in_schema(id);
 
         var settings = {};
-        settings.help_text = $('#settings_help_text').val().trim();
         settings.pattern = $('#settings_pattern').val().trim();
         settings.minimum = $('#settings_minimum').val().trim();
         settings.maximum = $('#settings_maximum').val().trim();
@@ -576,14 +655,6 @@ $(function () {
                 e.stopPropagation();
             }
         }
-
-        // Update the help-text icon
-        var help_text_icon = help_text_icon_template;
-        if(settings.help_text.length > 0){
-            help_text_icon = no_help_text_icon;
-        }
-        $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
-
         // Update the schema
         for (var key in settings) {
             if(settings[key].length > 0){
@@ -803,7 +874,7 @@ function generate_param_row(id, param){
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
             </label>
         </div>
-        <div class="col-auto align-self-center schema_row_help_text_icon iconpicker-component">`+help_text_icon+`</div>
+        <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
         <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
@@ -870,12 +941,12 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="text-monospace param_id" value="`+id+`">
                     </label>
                 </div>
+                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
                 <div class="col">
                     <label>Description
                         <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
                     </label>
                 </div>
-                <div class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
                 <div class="col-auto align-self-center schema_row_config">
                     <i class="fas fa-cog"></i>
                 </div>
