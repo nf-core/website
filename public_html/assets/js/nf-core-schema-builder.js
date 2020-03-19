@@ -19,6 +19,113 @@ $(function () {
     );
     $('.cache_expires_at').show();
 
+    //
+    // FontAwesome icon picker
+    //
+    // Get the list of font-awesome icons
+    $.getJSON('assets/js/fa-icons.json', function(fa_icons) {
+
+        // Make the popover
+        var popover_template = `
+            <div class="popover fa_icon_picker" role="tooltip">
+                <div class="arrow"></div>
+                <div class="popover-header"></div>
+                <div class="popover-body"></div>
+            </div>
+        `;
+        var popover_title = '<input type="text" class="form-control fa_icon_picker_input" placeholder="Search">';
+        var popover_content = '<div class="d-flex flex-wrap">';
+        for(icon in fa_icons){
+            popover_content += '<button class="btn btn-sm btn-light m-1" data-searchterms="'+fa_icons[icon]+'" data-classname="'+icon+'"><i class="'+icon+' fa-fw"></i></button>';
+        }
+        popover_content += '</div>';
+
+        // Initialise Bootstrap popover for icon picker
+        $('#schema-builder').popover({
+            selector: '.param_fa_icon',
+            html: true,
+            sanitize: false,
+            placement: 'right',
+            offset: 100,
+            animation: false,
+            template: popover_template,
+            title: popover_title,
+            content: popover_content
+        });
+
+        // Listener for when the popover is triggered
+        // Needs selector class instead of root class.
+        $('.param_fa_icon').on('show.bs.popover', function () {
+            // Only show one popover at a time
+            $('.param_fa_icon').popover('hide');
+            // Reset the selected icon button classes
+            $('.fa_icon_picker .popover-body .btn').removeClass('btn-success').addClass('btn-light');
+        });
+
+        // Focus the search bar when triggered
+        $('.param_fa_icon').on('shown.bs.popover', function () {
+            var row = $(this).closest('.schema_row');
+            var id = row.data('id');
+            var param = find_param_in_schema(id);
+            prev_focus = $(this);
+            // Highlight the picked icon
+            if(param.hasOwnProperty('fa_icon') && param.fa_icon.length > 0){
+                var matching_btn = $('.fa_icon_picker .popover-body .btn[data-classname="'+param.fa_icon+'"]').removeClass('btn-light').addClass('btn-success');
+            }
+            $('.fa_icon_picker:visible').data('id', id);
+            // Focus the input once we've finished showing the popover
+            setTimeout(function(){
+                $('.fa_icon_picker_input').focus();
+            }, 10);
+        });
+
+        // Filter icons
+        $('body').on('keyup', '.fa_icon_picker_input', function(e){
+            var search_term = $(this).val().trim();
+            var popover = $(this).closest('.fa_icon_picker');
+            if(search_term.length == 0){
+                popover.find(".popover-body div button").show();
+            } else {
+                popover.find(".popover-body div button").hide();
+                popover.find(".popover-body div button[data-searchterms*='"+search_term+"'], .popover-body div button[data-classname*='"+search_term+"']").show();
+            }
+        });
+
+        // Icon clicked
+        $('body').on('click', '.fa_icon_picker button', function(e){
+            var class_name = $(this).data('classname');
+
+            // Update schema
+            var id = $('.fa_icon_picker:visible').data('id');
+            var param = find_param_in_schema(id);
+            param.fa_icon = class_name;
+            update_param_in_schema(id, param);
+
+            // Update printed schema in page
+            $('#json_schema').text(JSON.stringify(schema, null, 4));
+
+            // Update form
+            $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
+            $('.param_fa_icon').popover('hide');
+            prev_focus.focus();
+        });
+
+        // Dismiss popover if click elsewhere
+        $(document).click(function(e) {
+            var target = $(e.target);
+            // Is a click outside the icon popover and button
+            if(!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length){
+                // Do we have an icon picker open?
+                if($('.fa_icon_picker:visible').length){
+                    $('.param_fa_icon').popover('hide');
+                    if(prev_focus){
+                        prev_focus.focus();
+                    }
+                }
+            }
+        });
+    });
+
     // Parse initial JSON Schema
     try {
         schema = JSON.parse($('#json_schema').text());
@@ -225,7 +332,7 @@ $(function () {
     //
     // Keypress listener - move around with keyboard shortcuts
     //
-    $('#schema-builder').on('keydown', 'input, select', function(e){
+    $('body').on('keydown', 'input, select', function(e){
 
         // Enter key
         if(e.which == 13){
@@ -283,6 +390,14 @@ $(function () {
                 var row_after = row.next();
                 row.insertAfter(row_after);
                 schema_order_change();
+                prev_focus.focus();
+            }
+        }
+
+        // Escape - hide icon picker
+        if(e.which == 27){
+            if($('.popover:visible').length){
+                $('.param_fa_icon').popover('hide');
                 prev_focus.focus();
             }
         }
@@ -369,10 +484,91 @@ $(function () {
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
+
+    //
+    // Help-text modal
+    //
+    $('#schema-builder').on('click', '.schema_row_help_text_icon', function(e){
+
+        // Populate the help text modal
+        var id = $(this).closest('.schema_row').data('id');
+        var param = find_param_in_schema(id);
+        $('#help_text_modal .modal-title').html('params.<span>'+id+'</span>');
+        $('.helptext-preview-title').text('--'+id);
+        if(param.description == undefined){
+            param.description = '';
+        }
+        $('.helptext-preview-description').text(param.description);
+        if(param.help_text == undefined){
+            param.help_text = '';
+        }
+        $('#help_text_input').val(param.help_text);
+        $('.helptext-preview-helptext').text(param.help_text);
+
+        // Reset the tabs
+        $('#help_text_modal .card-header-tabs .nav-link').removeClass('active');
+        $('#help_text_modal .card-header-tabs .nav-link[href="#tab-helptext"]').addClass('active');
+        $('#help_text_modal .tab-pane').removeClass('active show');
+        $('#help_text_modal #tab-helptext').addClass('active show');
+
+        // Show the modal
+        prev_focus = $(this);
+        $('#help_text_modal').modal('show');
+    });
+
+    // Focus the help text inputs
+    $('#help_text_modal').on('shown.bs.modal', function(){
+        $('#help_text_input').focus();
+    });
+
+    // Refocus page when modal closes
+    $('#help_text_modal').on('hidden.bs.modal', function(){
+        if(prev_focus){
+            prev_focus.focus();
+        }
+    });
+
+    // Re-render preview on tab change
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        if($(e.target).attr('href') == '#tab-helptext-preview'){
+            // Update basic text
+            $('.helptext-preview-helptext').text($('#help_text_input').val());
+
+            // Convert markdown to HTML
+            var md_converter = new showdown.Converter();
+            var help_text_html = md_converter.makeHtml( $('#help_text_input').val() );
+            $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
+        }
+    })
+
+    // Save the help text
+    $('#help_text_save').click(function(){
+        var id = $('#help_text_modal .modal-title span').text();
+        var param = find_param_in_schema(id);
+        var help_text = $('#help_text_input').val();
+
+        // Update the help-text icon
+        var help_text_icon = help_text_icon_template;
+        if(help_text.length > 0){
+            help_text_icon = no_help_text_icon;
+        }
+        $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
+
+        // Update the schema
+        if(help_text.length > 0){
+            param.help_text = help_text;
+        } else {
+            delete param.help_text;
+        }
+
+        // Update printed schema in page
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    });
+
     //
     // Settings modal
     //
-    $('#schema-builder').on('click', '.schema_row_config, .help_text_icon', function(){
+    $('#schema-builder').on('click', '.schema_row_config', function(){
         // Get row
         var row = $(this).closest('.schema_row');
         var id = row.data('id');
@@ -388,10 +584,12 @@ $(function () {
             modal_header = '<span>'+id+'</span>';
         }
         $('#settings_modal .modal-title').html(modal_header);
-        $('#settings_help_text, #settings_enum, #settings_pattern, #settings_minimum, #settings_maximum, #settings_fa_icon').val('');
-        $('.settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+        $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
+        $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
-        if(['boolean', 'object'].indexOf(param['type']) == -1){
+        if(['boolean', 'object'].indexOf(param['type']) != -1){
+            $('.settings_nothing_special').show();
+        } else {
             $('.settings_enum_group').show();
         }
         if(param['type'] == 'string'){
@@ -402,9 +600,6 @@ $(function () {
         }
 
         // Fill modal boxes
-        if(param.hasOwnProperty('help_text')){
-            $('#settings_help_text').val( param['help_text'] );
-        }
         if(param['enum'] instanceof Array){
             $('#settings_enum').val( param['enum'].join('|') );
         }
@@ -417,16 +612,9 @@ $(function () {
         if(param.hasOwnProperty('maximum')){
             $('#settings_maximum').val( param['maximum'] );
         }
-        if(param.hasOwnProperty('fa_icon')){
-            $('#settings_fa_icon').val( param['fa_icon'] );
-        }
 
         $('#settings_modal').modal('show');
     }
-    // Focus the help text once the modal has opened
-    $('#settings_modal').on('shown.bs.modal', function (e) {
-        $('#settings_help_text').focus();
-    });
 
     //
     // Settings Modal - save button
@@ -437,11 +625,9 @@ $(function () {
         var param = find_param_in_schema(id);
 
         var settings = {};
-        settings.help_text = $('#settings_help_text').val().trim();
         settings.pattern = $('#settings_pattern').val().trim();
         settings.minimum = $('#settings_minimum').val().trim();
         settings.maximum = $('#settings_maximum').val().trim();
-        settings.fa_icon = $('#settings_fa_icon').val().trim();
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
         $.map(settings.enum, $.trim);
@@ -469,28 +655,6 @@ $(function () {
                 e.stopPropagation();
             }
         }
-        // Check that the font-awesome icon looks right
-        if(settings.fa_icon.length > 0){
-            var re = new RegExp('<i class="fa[a-z -]+"><\/i>');
-            if(!re.test(settings.fa_icon)){
-                alert('Error: FontAwesome icon must match the regex: <i class="fa[a-z -]+"><\/i>');
-                return false;
-            } else {
-               // Update the icon in the row
-               $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($(settings.fa_icon));
-           }
-        } else {
-           // Update the icon in the row
-           $(".schema_row[data-id='"+id+"'] .param_fa_icon i").replaceWith($('<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>'));
-        }
-
-        // Update the help-text icon
-        var help_text_icon = help_text_icon_template;
-        if(settings.help_text.length > 0){
-            help_text_icon = no_help_text_icon;
-        }
-        $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
-
         // Update the schema
         for (var key in settings) {
             if(settings[key].length > 0){
@@ -683,8 +847,16 @@ function generate_param_row(id, param){
     }
 
     var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined){
-        fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
+    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+        var re = new RegExp('^fa[a-z -]+$');
+        if(!re.test(param['fa_icon'])){
+            console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
+            delete param['fa_icon'];
+            update_param_in_schema(id, param);
+            $('#json_schema').text(JSON.stringify(schema, null, 4));
+        } else {
+            fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
+        }
     }
 
     var help_text_icon = help_text_icon_template;
@@ -695,22 +867,23 @@ function generate_param_row(id, param){
 
     var results = `
     <div class="row schema_row border" data-id="`+id+`">
-        <div class="col-sm-auto align-self-center d-none d-sm-block schema_row_grabber border-right">
+        <div class="col-auto align-self-center schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
+        <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
             </label>
         </div>
-        <div class="col-sm-3">
+        <div class="d-sm-none w-100"></div>
+        <div class="col">
             <label>Description
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
             </label>
         </div>
-        <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
-        <div class="col-sm-1">
+        <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+        <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
                     <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
@@ -721,24 +894,25 @@ function generate_param_row(id, param){
                 </select>
             </label>
         </div>
-        <div class="col-sm-3">
+        <div class="d-sm-none w-100"></div>
+        <div class="col">
             <label>Default `+default_input+`</label>
         </div>
-        <div class="col-sm-auto">
+        <div class="col-auto">
             `+(param['type'] == 'object' ? '' : `
-            <label>Required
+            <label>R<span class="d-none d-lg-inline">equired</span>
                 <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+`" class="param_required">
             </label>
             `)+`
         </div>
-        <div class="col-sm-auto">
+        <div class="col-auto">
             `+(param['type'] == 'object' ? '' : `
-            <label>Hidden
+            <label>H<span class="d-none d-lg-inline">idden</span>
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+`" class="param_hidden">
             </label>
             `)+`
         </div>
-        <div class="col-sm-auto align-self-center schema_row_config border-left">
+        <div class="col-auto align-self-center schema_row_config border-left">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -753,8 +927,16 @@ function generate_group_row(id, param, child_params){
     }
 
     var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined){
-        fa_icon = $(param['fa_icon']).addClass('fa-fw').get(0).outerHTML;
+    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+        var re = new RegExp('^fa[a-z -]+$');
+        if(!re.test(param['fa_icon'])){
+            console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
+            delete param['fa_icon'];
+            update_param_in_schema(id, param);
+            $('#json_schema').text(JSON.stringify(schema, null, 4));
+        } else {
+            fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
+        }
     }
 
     var help_text_icon = help_text_icon_template;
@@ -766,25 +948,25 @@ function generate_group_row(id, param, child_params){
     <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
             <div class="row schema_row schema_group_row mb-0" data-id="`+id+`">
-                <div class="col-sm-auto align-self-center schema_row_grabber d-none d-sm-block">
+                <div class="col-auto align-self-center schema_row_grabber">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <div class="col-sm-auto align-self-center d-none d-sm-block param_fa_icon ">`+fa_icon+`</div>
+                <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
                     </label>
                 </div>
+                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
                 <div class="col">
                     <label>Description
                         <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
                     </label>
                 </div>
-                <div class="col-sm-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</div>
-                <div class="col-sm-auto align-self-center schema_row_config">
+                <div class="col-auto align-self-center schema_row_config">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-sm-auto align-self-center schema_group_collapse">
+                <div class="col-auto align-self-center schema_group_collapse">
                     <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>
