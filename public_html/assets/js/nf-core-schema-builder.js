@@ -864,7 +864,7 @@ function generate_group_row(id, param, child_params){
                 <div class="col-auto align-self-center schema_row_grabber">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <div class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</div>
+                <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
