@@ -847,8 +847,16 @@ function generate_param_row(id, param){
     }
 
     var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined){
-        fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
+    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+        var re = new RegExp('^fa[a-z -]+$');
+        if(!re.test(param['fa_icon'])){
+            console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
+            delete param['fa_icon'];
+            update_param_in_schema(id, param);
+            $('#json_schema').text(JSON.stringify(schema, null, 4));
+        } else {
+            fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
+        }
     }
 
     var help_text_icon = help_text_icon_template;
