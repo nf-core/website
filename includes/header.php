@@ -161,7 +161,6 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <?php endif; ?>
     <?php if(isset($import_schema_builder) && $import_schema_builder): ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
-    <link href="/assets/css/iconpicker.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/showdown.min.js"></script>
