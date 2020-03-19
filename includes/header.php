@@ -140,8 +140,6 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <link href="/assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
-    <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
-    <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -152,6 +150,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
     <script src="/assets/js/leaflet.js"></script>
+    <!-- Page-specific CSS and JS -->
     <?php if(isset($import_chartjs) && $import_chartjs): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
@@ -168,8 +167,11 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif; ?>
     <script src="/assets/js/jquery.tablesorter.min.js"></script>
-    <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
 
+    <!-- Custom nf-core CSS and JS -->
+    <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
+    <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
+    <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
   <body>
