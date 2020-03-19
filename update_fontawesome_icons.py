@@ -1,35 +1,27 @@
 #!/usr/bin/env python
 
-# this file updates iconpicker.js to contain the most recent versions of icons.
+# Fetches the latest list of the FontAwesome icons and builds a
+# JSON file with identifiers and search terms.
 
 import urllib.request
-import yaml
 import json
-import re
 
-# parse the yml file from font awesome
-url = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.yml"
-f = urllib.request.urlopen(url)
-myfile = f.read()
-yml = yaml.load(myfile, Loader=yaml.FullLoader)
+# Note that the version of FontAwesome must match the one imported in header.php
+fontawesome_version = '5.12.1'
+
+# parse the JSON file from Font Awesome
+url = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/{}/metadata/icons.json".format(fontawesome_version)
+with urllib.request.urlopen(url) as f:
+    fa_icons = json.loads(f.read().decode())
 
 # create the icons json object, to be put into iconpicker.js
-jsonf = {'icons':[]}
-for d in yml: # loop through all keys of the yml dict
-    for s in yml[d]['styles']: # create one object for each style (e.g. "brand", "solid") of an icon
-      jsonf['icons'].append(
-          {
-          'title': 'fa'+s[0]+ ' fa-'+d, # create 'fab' class name for brand icons, "fas" for solid, etc.
-          'searchTerms': yml[d]['search']['terms']
-          }
-      )
-jsonf = json.dumps(jsonf, ensure_ascii=False) # prohibit ascii conversion, which breaks for special characters
-f.close()
+icons = {};
+for d in fa_icons: # loop through all keys of the fa_icons dict
+    for s in fa_icons[d]['styles']: # create one object for each style (e.g. "brand", "solid") of an icon
+      icon_class = 'fa'+s[0]+ ' fa-'+d # create 'fab' class name for brand icons, "fas" for solid, etc.
+      search_terms = ' '.join(fa_icons[d]['search']['terms'])
+      icons[icon_class] = search_terms
 
-# replace icon json object inside iconpicker.js
-with open('public_html/assets/js/iconpicker.js', 'r+') as f :
-  jsf = f.read()
-  jsf = re.sub(r'\{\n\s+icons(.*)\}',jsonf,jsf,flags=re.M|re.S)
-  f.seek(0)
-  f.write(jsf)
-  f.truncate()
+# Write to a JSON file for the website
+with open('public_html/assets/js/fa-icons.json', 'w') as fh :
+    json.dump(icons, fh, ensure_ascii=False) # prohibit ascii conversion, which breaks for special characters
