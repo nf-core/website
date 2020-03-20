@@ -275,7 +275,11 @@ $(function () {
             var param_key = $(this).data('param_key');
             var param = find_param_in_schema(id);
             var new_param = JSON.parse(JSON.stringify(param));
-            new_param[param_key] = $(this).val().trim();
+            if($(this).val().trim().length == 0){
+                delete new_param[param_key];
+            } else {
+                new_param[param_key] = $(this).val().trim();
+            }
 
             // Validate
             if(!validate_param(new_param)){
@@ -798,6 +802,11 @@ function generate_obj(obj, level){
 
 function generate_param_row(id, param){
 
+    var description = '';
+    if(param['description'] != undefined){
+        description = param['description'];
+    }
+
     var default_input = '';
     if(param['type'] == 'boolean'){
         default_input = `
@@ -879,7 +888,7 @@ function generate_param_row(id, param){
         <div class="d-sm-none w-100"></div>
         <div class="col">
             <label>Description
-                <input type="text" class="param_key param_description" data-param_key="description" value="`+param['description']+`">
+                <input type="text" class="param_key param_description" data-param_key="description" value="`+description+`">
             </label>
         </div>
         <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
@@ -922,6 +931,11 @@ function generate_param_row(id, param){
 
 function generate_group_row(id, param, child_params){
 
+    var description = '';
+    if(param['description'] != undefined){
+        description = param['description'];
+    }
+
     if(child_params == undefined){
         child_params = '';
     }
@@ -960,7 +974,7 @@ function generate_group_row(id, param, child_params){
                 <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
                 <div class="col">
                     <label>Description
-                        <input type="text" class="param_key" data-param_key="description" value="`+param['description']+`">
+                        <input type="text" class="param_key" data-param_key="description" value="`+description+`">
                     </label>
                 </div>
                 <div class="col-auto align-self-center schema_row_config">
