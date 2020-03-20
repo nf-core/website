@@ -198,7 +198,20 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <input type="hidden" name="version" value="web_input">
     <div class="form-group">
         <label for="schema_input">Paste your JSON Schema:</label>
-        <textarea name="schema" id="schema_input" class="form-control text-monospace small" rows=10></textarea>
+        <textarea name="schema" id="schema_input" class="form-control text-monospace small" rows=10>
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/YOUR_PIPELINE/master/nextflow_schema.json",
+    "title": "Nextflow pipeline parameters",
+    "description": "This pipeline uses Nextflow and processes some kind of data. The JSON Schema was built using the nf-core pipeline schema builder.",
+    "type": "object",
+    "properties": {
+        "some_parameter": {
+            "type": "string"
+        }
+    }
+}
+        </textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
