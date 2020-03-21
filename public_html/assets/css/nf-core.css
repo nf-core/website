@@ -847,7 +847,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   background-color: #ededed;
 }
 .schema_row label {
-  color: #ddd;
+  color: #bbb;
   margin: 0.2rem 0 0;
   font-size: 0.7rem;
   width: 100%;
@@ -921,7 +921,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 
 .fa_icon_picker.popover {
-  width: 17rem;
+  width: 15.3rem;
 }
 .fa_icon_picker .popover-header input {
   outline: none;
@@ -945,4 +945,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
 #json_schema {
   font-size: 0.7rem;
+}
+.schema_row input[type=number]{
+  width: 4rem;
+}
+.copy-schema-btn{
+  width: 15rem;
 }
