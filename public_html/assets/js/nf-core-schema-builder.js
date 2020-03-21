@@ -831,7 +831,7 @@ function generate_param_row(id, param){
         if(param['default'] != undefined){
             attrs += ' value="'+param['default']+'"';
         }
-        default_input = '<input '+attrs+' class="param_key param_default" data-param_key="default">';
+        default_input = '<div class="w-100"><input '+attrs+' class="param_key param_default" data-param_key="default"></div>';
     }
 
     var is_required = false;
@@ -962,7 +962,7 @@ function generate_group_row(id, param, child_params){
     <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
             <div class="row schema_row schema_group_row mb-0" data-id="`+id+`">
-                <div class="col-auto align-self-center schema_row_grabber">
+                <div class="col-auto align-self-center schema_row_grabber border-right">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
                 <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
@@ -977,7 +977,7 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+description+`">
                     </label>
                 </div>
-                <div class="col-auto align-self-center schema_row_config">
+                <div class="col-auto align-self-center schema_row_config border-left">
                     <i class="fas fa-cog"></i>
                 </div>
                 <div class="col-auto align-self-center schema_group_collapse">
@@ -1000,7 +1000,7 @@ function init_group_sortable(){
     $('#schema-builder').sortable({
         handle: '.schema_row_grabber',
         tolerance: 'pointer',
-        placeholder: 'schema_row_move_placeholder alert alert-warning',
+        placeholder: 'schema_row_move_placeholder alert alert-secondary',
         connectWith: '.schema_group .card-body'
     });
 
@@ -1008,7 +1008,7 @@ function init_group_sortable(){
     $(".schema_group .card-body").sortable({
         handle: '.schema_row_grabber',
         tolerance: 'pointer',
-        placeholder: 'schema_row_move_placeholder alert alert-warning',
+        placeholder: 'schema_row_move_placeholder alert alert-secondary',
         connectWith: '#schema-builder, .schema_group .card-body'
     });
 
