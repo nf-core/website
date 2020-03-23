@@ -175,7 +175,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
     <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
     <li>The <i class="fas fa-comment-slash help_text_icon"></i> / <i class="fas fa-comment-dots help_text_icon"></i> icons
-        show whether help text has been written. To add, click the settings button on the right.</li>
+        show whether help text has been written. To add, click on it.</li>
     <li>Be a power user with keyboard shortcuts!
         <ul class="small">
             <li>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.</li>
@@ -213,7 +213,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 }
         </textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
 </form>
 
 <?php } else { ?>
@@ -247,7 +247,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     it should now update with your new schema. You can close this window.</p>
                 <p>If you didn't use <code>nf-core schema build</code> or it has already exited,
                     copy the schema below and paste it in to your pipeline's <code>nextflow_schema.json</code> file.</p>
-                <button class="btn btn-block btn-outline-secondary copy-schema-btn">
+                <button class="btn btn-block btn-outline-secondary copy-schema-btn m-auto">
                     <i class="far fa-copy mr-2"></i> Copy pipeline schema
                 </button>
             </div>
