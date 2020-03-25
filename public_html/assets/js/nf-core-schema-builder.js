@@ -36,7 +36,7 @@ $(function () {
         var popover_title = '<input type="text" class="form-control fa_icon_picker_input" placeholder="Search">';
         var popover_content = '<div class="d-flex flex-wrap">';
         for(icon in fa_icons){
-            popover_content += '<button class="btn btn-sm btn-light m-1" data-searchterms="'+fa_icons[icon]+'" data-classname="'+icon+'"><i class="'+icon+' fa-fw"></i></button>';
+            popover_content += '<button class="btn btn-sm btn-light m-1" data-searchterms="'+fa_icons[icon]+'" data-classname="'+icon+'"><i class="'+icon+' fa-2x fa-fw"></i></button>';
         }
         popover_content += '</div>';
 
