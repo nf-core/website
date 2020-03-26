@@ -751,27 +751,14 @@ $(function(){
         borderColor: theme=='light' ?'rgba(0,0,0,1)':'rgba(255,255,255,0.9)',
         pointRadius: 0,
         data: [
-          { x: "2018-11-16 00:00:00", y: 4 },
-			{ x: "2018-11-19 00:00:00", y: 4 },
-			{ x: "2018-11-20 00:00:00", y: 4 },
-			{ x: "2018-11-21 00:00:00", y: 4 },
-			{ x: "2018-11-22 00:00:00", y: 4 },
-			{ x: "2018-11-23 00:00:00", y: 4 },
-			{ x: "2018-11-24 00:00:00", y: 4 },
-			{ x: "2018-11-26 00:00:00", y: 4 },
-			{ x: "2018-11-27 00:00:00", y: 4 },
-			{ x: "2018-11-29 00:00:00", y: 4 },
-			{ x: "2018-11-30 00:00:00", y: 4 },
-			{ x: "2018-12-03 00:00:00", y: 4 },
-			{ x: "2018-12-04 00:00:00", y: 4 }
           <?php
-          // foreach($stats_json->gh_org_members as $timestamp => $count){
-          //   // Skip zeros (anything before 2010)
-          //   if($timestamp < 1262304000){
-          //     continue;
-          //   }
-          //   echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
-          // }
+          foreach($stats_json->gh_org_members as $timestamp => $count){
+            // Skip zeros (anything before 2010)
+            if($timestamp < 1262304000){
+              continue;
+            }
+            echo '{ x: "'.date('Y-m-d H:i:s', $timestamp).'", y: '.$count.' },'."\n\t\t\t";
+          }
           ?>
         ]
       }
