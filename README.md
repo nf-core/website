@@ -55,16 +55,18 @@ php update_pipeline_details.php
 This will create `public_html/pipelines.json`, which is used by the website.
 Note that this is ignored in the `.gitignore` file and will not be tracked in git history.
 
-Optionally, once you've done that, you can grab the pipeline traffic and issue statistics:
+Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
 
 ```bash
 php update_issue_stats.php
 php update_stats.php
+php update_fontawesome_icons.php
 ```
 
 Note that your github account needs push rights for the nf-core permission for the `update_stats.php` to work.
 
-This creates `nfcore_stats.json` and `nfcore_issue_stats.json`, also ignored in `.gitignore`.
+This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
+all also ignored in `.gitignore`.
 
 Ok, you're ready! To run the website locally, you need a standard AMP stack: Apache, MySQL and PHP (MySQL not needed at time of writing). For this, I recommend using the free version of [MAMP](https://www.mamp.info/en/).
 
