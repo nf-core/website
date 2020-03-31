@@ -82,7 +82,7 @@ include('../includes/header.php');
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">CI Testing</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/travis-ci.svg" />
+              <img class="float-right ml-2" height="100px" src="assets/img/github-actions.png" />
               <p class="card-text">Every time a change is made to the pipeline code,
               nf-core pipelines use continuous-integration testing to ensure that nothing has broken.</p>
             </div>
