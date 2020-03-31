@@ -7,7 +7,7 @@ import urllib.request
 import json
 
 # Note that the version of FontAwesome must match the one imported in header.php
-fontawesome_version = '5.12.1'
+fontawesome_version = '5.13.0'
 
 # parse the JSON file from Font Awesome
 url = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/{}/metadata/icons.json".format(fontawesome_version)
