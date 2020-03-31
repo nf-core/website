@@ -135,8 +135,22 @@ $(function () {
     }
 
     // Build the schema builder
-    $('#schema-builder').html( generate_obj(schema['properties'], 1) );
-    init_group_sortable();
+    try {
+        $('#schema-builder').html( generate_obj(schema['properties'], 1) );
+        init_group_sortable();
+    } catch(e){
+        alert("Error: Could not load schema JSON! Substituted for a blank schema.");
+        console.error(e);
+        schema = {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "$id": "https://raw.githubusercontent.com/YOUR_PIPELINE/master/nextflow_schema.json",
+            "title": "Nextflow pipeline parameters",
+            "description": "This pipeline uses Nextflow and processes some kind of data. The JSON Schema was built using the nf-core pipeline schema builder.",
+            "type": "object",
+            "properties": { }
+        };
+        $('#json_schema').text(JSON.stringify(schema, null, 4));
+    }
 
     // Add parameter button
     $('.add-param-btn').click(function(e){
@@ -296,8 +310,10 @@ $(function () {
                     // If now a boolean and defult is not string 'True', set to False
                     if($(this).val() == 'boolean'){
                         var param_default = row.find("input[data-param_key='default']").val().trim();
-                        if(param_default.toLowerCase() != 'true'){
-                            param['default'] = 'False';
+                        if(param_default.toLowerCase() == 'true'){
+                            param['default'] = true;
+                        } else {
+                            param['default'] = false;
                         }
                     }
 
@@ -321,6 +337,30 @@ $(function () {
 
                     if(focus_default){
                         $(".schema_row[data-id='"+id+"'] .param_key[data-param_key='default']").removeAttr('value').focus();
+                    }
+                }
+
+                // Convert bool default strings to bool
+                if(param['type'] == 'boolean'){
+                    if(!param.hasOwnProperty('default')){
+                        param['default'] = false;
+                    } else if(typeof param['default'] != "boolean"){
+                        if(param['default'].toLowerCase() == 'true'){
+                            param['default'] = true;
+                        } else {
+                            param['default'] = false;
+                        }
+                    }
+                }
+
+                // Convert number types
+                if(['number', 'int', 'range'].indexOf(param['type']) != -1){
+                    if(param.hasOwnProperty('default') && typeof param['default'] == "string" && param['default'].trim() != ''){
+                        if(param['type'] == 'int'){
+                            param['default'] = parseInt(param['default']);
+                        } else {
+                            param['default'] = parseFloat(param['default']);
+                        }
                     }
                 }
 
@@ -811,8 +851,8 @@ function generate_param_row(id, param){
     if(param['type'] == 'boolean'){
         default_input = `
             <select class="param_key param_default" data-param_key="default">
-                <option `+(param['default'] == 'True' ? 'selected="selected"' : '')+`>True</option>
-                <option `+(param['default'] == 'False' ? 'selected="selected"' : '')+`>False</option>
+                <option `+(param['default'] ? 'selected="selected"' : '')+`>True</option>
+                <option `+(!param['default'] ? 'selected="selected"' : '')+`>False</option>
             </select>`;
     }
     if(['string', 'integer', 'number', 'range'].includes(param['type'])){
