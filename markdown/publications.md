@@ -41,7 +41,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/sarek](https://nf-co.re/sarek)
 
 <!-- pub-stats 10.12688/f1000research.16665.1 -->
-> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 1; peer review: 1 approved].
+> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 1; peer review: 2 approved].
 >
 > Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
 >
