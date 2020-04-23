@@ -25,7 +25,7 @@ In the era of [FAIR](https://www.force11.org/group/fairgroup/fairprinciples) (Fi
 
 ### Choosing a repository
 
-It’s recommended to choose a domain-specific repository when possible. It is also important to consider the sustainability of the repository to ensure that the data will remain public. Please see[SciLifeLab's data guidelines](https://scilifelab-data-guidelines.readthedocs.io/en/latest/docs/index.html) or the [EBI archive wizard](https://www.ebi.ac.uk/submission/) for suggestions depending on data type. You can also refer to the [ELIXIR Deposition Databases](https://elixir-europe.org/services/tag/elixir-deposition-databases) and [Scientific Data’s Recommended Data Repositories](https://www.nature.com/sdata/policies/repositories), to find suitable repositories.
+It’s recommended to choose a domain-specific repository when possible. It is also important to consider the sustainability of the repository to ensure that the data will remain public. Please see [SciLifeLab's data guidelines](https://scilifelab-data-guidelines.readthedocs.io/en/latest/docs/index.html) or the [EBI archive wizard](https://www.ebi.ac.uk/submission/) for suggestions depending on data type. You can also refer to the [ELIXIR Deposition Databases](https://elixir-europe.org/services/tag/elixir-deposition-databases) and [Scientific Data’s Recommended Data Repositories](https://www.nature.com/sdata/policies/repositories), to find suitable repositories.
 
 For datasets that do not fit into domain-specific repositories, you can use an institutional repository when available (e.g. [SciLifeLab Data Repository](https://scilifelab.figshare.com/)) or a general repository such as [Figshare](https://figshare.com/) and [Zenodo](https://zenodo.org/).
 
