@@ -38,9 +38,7 @@ Metadata should be provided to help others discover, identify and interpret the 
 
 Some repositories require md5 checksums to be uploaded along with the files. Also consider adding checks that your data files follow the intended file formats and can be opened by standard software for those formats.
 
-Consult the docs/output page to see if the pipeline generates the sums automatically and where to find them.
-
-/ Feedback from nf-core team needed /: Or where should this be specified?
+If you are using a Linux system, you can generate md5 checksums using the `md5sum` command.
 
 #### Choosing a license
 
