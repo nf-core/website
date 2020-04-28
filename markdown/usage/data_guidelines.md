@@ -31,7 +31,7 @@ For datasets that do not fit into domain-specific repositories, you can use an i
 
 ### Preparing for submission
 
-#### **Describing and organizing your data**
+#### Describing and organizing your data
 
 Metadata should be provided to help others discover, identify and interpret the data. Researchers are strongly encouraged to use community metadata standards and ontologies where these are in place, consult e.g [FAIRsharing.org](https://fairsharing.org/databases/). Data repositories may also provide guidance about metadata standards and requirements. Capture any additional documentation needed to enable reuse of the data in Readme text files and [Data Dictionaries](https://help.osf.io/hc/en-us/articles/360019739054-How-to-Make-a-Data-Dictionary) that describe what all the variable names and values in your data really mean. Identifiers to refer to e.g. ontology terms can be designed for computers or for people; in a FAIR data context it is recommended to supply both a human-readable as well as a machine-resolvable Persistent Identifier (PID) for each concept used in the data.
 
