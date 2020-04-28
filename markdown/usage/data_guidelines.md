@@ -11,9 +11,8 @@ A Data Management Plan (DMP) is a revisable document explaining how you intend t
 
 ### Data storage and computational resources
 
-To estimate computational resources needed for a specific pipeline see docs/output page ...
-
-/ Feedback from nf-core team needed /: Insert statement/instructions on where or how to get the estimated file sizes, folder structures etc.
+To estimate computational resources needed for a specific pipeline please see the pipeline documentation. This lists the different output filetypes you can expect.
+In the future we hope to automate a full run of each pipeline after every release. The pipeline docs will then show a full set of results from a real run, along with all file sizes. This can then be used as a guide as to what to expect for your data.
 
 Backing up and archiving your data is essential. The 3-2-1 rule of thumb means that you should have 3 copies of the data, on 2 different types of media, and 1 of the copies at different physical location. Consider uploading the raw data to a repository already when receiving them, under an embargo (if that is important to you). This way you always have an off-site backup with the added benefit of making the data sharing phase more efficient. Identifying a suitable repository early on will allow you to conform to their standards and metadata requirements already from the start.
 
