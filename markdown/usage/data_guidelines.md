@@ -7,7 +7,10 @@ subtitle:
 
 ### Data Management Plan
 
-A Data Management Plan (DMP) is a revisable document explaining how you intend to handle new and existing data, during and following the conclusion of your research project. It is wise to write a DMP as early as possible, using either a tool provided by your host institution or [DS Wizard](http://dsw.scilifelab.se/) ([users outside Sweden](https://ds-wizard.org/)). Ethical and legal considerations regarding the data will depend on where the research is conducted, this is especially true for projects including sensitive human data. For more  information about the Swedish context, please review this page on [Sensitive personal data](https://scilifelab-data-guidelines.readthedocs.io/en/latest/docs/general/sensitive_data.html).
+A Data Management Plan (DMP) is a revisable document explaining how you intend to handle new and existing data, during and following the conclusion of your research project. 
+It is wise to write a DMP as early as possible, using either a tool provided by your host institution or for example 
+[DS Wizard](https://ds-wizard.org/) or [DMP Online](https://dmponline.dcc.ac.uk/). 
+Ethical and legal considerations regarding the data will depend on where the research is conducted, this is especially true for projects including sensitive human data. For more  information about the Swedish context, please review this page on [Sensitive personal data](https://scilifelab-data-guidelines.readthedocs.io/en/latest/docs/general/sensitive_data.html).
 
 ### Data storage and computational resources
 
