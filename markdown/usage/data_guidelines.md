@@ -4,6 +4,7 @@ subtitle:
 ---
 
 ## Data management
+Research data management concerns the organization, storage, preservation, and sharing of data that is collected or analyzed during a research project. Proper planning and data management facilitates sharing and allows others to validate and reuse the data. Also, funding agencies are recognizing the importance of research data management and some now request detailed Data Management Plans (DMP) as part of the grant application. Guidance is provided below to aid the creation of DMPs, estimate resources needed by nf-core workflows, and how to share the resulting data.
 
 ### Data Management Plan
 
