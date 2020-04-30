@@ -1,6 +1,6 @@
 ---
-title: Resource Estimation and Data sharing
-subtitle: Data Management Guidelines
+title: Data Management
+subtitle: How to plan your project, estimate resources, and share your results.
 ---
 
 ## Data management
