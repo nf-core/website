@@ -1,6 +1,6 @@
 ---
 title: Resource Estimation and Data sharing
-subtitle:
+subtitle: Data Management Guidelines
 ---
 
 ## Data management
