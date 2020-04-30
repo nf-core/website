@@ -1,5 +1,5 @@
 ---
-title: Data Management Guidelines
+title: Resource Estimation and Data sharing
 subtitle:
 ---
 
