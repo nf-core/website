@@ -204,6 +204,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/usage/offline">Running offline</a>
               <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
               <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
+              <a class="dropdown-item" href="/usage/data_management">Data Management</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
               <a class="dropdown-item" href="/usage/nextflow">Nextflow resources</a>
             </div>
