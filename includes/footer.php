@@ -67,27 +67,38 @@ if(isset($subfooter) and $subfooter){
           <div class="col-6 col-md">
             <h5>Getting Started</h5>
             <ul class="list-unstyled">
-              <li><a href="/usage/introduction">Using nf-core</a></li>
               <li><a href="/pipelines">Available pipelines</a></li>
               <li><a href="/tools">Helper tools</a></li>
-              <li><a href="/usage/nextflow_tutorial">Nextflow tutorial</a></li>
+              <li><a href="/usage/introduction">Getting started</a></li>
+              <li><a href="/usage/installation">Installation</a></li>
+              <li><a href="/usage/configuration">Pipeline configuration</a></li>
+              <li><a href="/usage/offline">Running offline</a></li>
+              <li><a href="/usage/nf_core_tutorial">nf-core tutorial</a></li>
+              <li><a href="/usage/reference_genomes">Reference genomes</a></li>
+              <li><a href="/usage/data_management">Data Management</a></li>
+              <li><a href="/usage/troubleshooting">Troubleshooting</a></li>
+              <li><a href="/usage/nextflow">Nextflow resources</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>For Authors</h5>
             <ul class="list-unstyled">
-              <li><a href="/developers/guidelines">Guidelines</a>
-              <li><a href="/developers/adding_pipelines">Adding a new pipeline</a>
-              <li><a href="/errors">Lint error codes</a>
-              <li><a href="/developers/sync">Template synchronisation</a>
+              <li><a href="/developers/guidelines">Guidelines</a></li>
+              <li><a href="/developers/adding_pipelines">Adding a new pipeline</a></li>
+              <li><a href="/developers/release_checklist">Release checklist</a></li>
+              <li><a href="/errors">Lint error codes</a></li>
+              <li><a href="/developers/sync">Template synchronisation</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
             <h5>About nf-core</h5>
             <ul class="list-unstyled">
               <li><a href="/about">About nf-core</a></li>
+              <li><a href="/events">Events</a></li>
               <li><a href="/community">Community</a></li>
               <li><a href="/stats">Statistics</a></li>
+              <li><a href="/publications">Publications</a></li>
+              <li><a href="/code_of_conduct">Code of conduct</a></li>
               <li><a href="/join" class="mt-1 btn btn-outline-success">Join nf-core</a></li>
             </ul>
           </div>
