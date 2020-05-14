@@ -36,10 +36,10 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 
 A number of events are automatically triggered after the pipeline is released:
 
-  * A tagged container for the release will be built in the [nf-core Docker Hub](https://hub.docker.com/orgs/nfcore/repositories) account. This will take ~30-45 minutes to build after the release.
-  * The [nf-core website](https://nf-co.re/pipelines) will be updated automatically with the release information.
-  * The [nf-core Twitter](https://twitter.com/nf_core) account will send out an automated tweet about the pipeline release within minutes.
-  * A [Zenodo DOI](https://zenodo.org/) is automatically generated that provides a persistent means with which to cite the pipeline.
+* A tagged container for the release will be built in the [nf-core Docker Hub](https://hub.docker.com/orgs/nfcore/repositories) account. This will take ~30-45 minutes to build after the release.
+* The [nf-core website](https://nf-co.re/pipelines) will be updated automatically with the release information.
+* The [nf-core Twitter](https://twitter.com/nf_core) account will send out an automated tweet about the pipeline release within minutes.
+* A [Zenodo DOI](https://zenodo.org/) is automatically generated that provides a persistent means with which to cite the pipeline.
 
 After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
 
