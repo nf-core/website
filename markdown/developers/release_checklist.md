@@ -39,10 +39,15 @@ A number of events are automatically triggered after the pipeline is released:
   * The [nf-core website](https://nf-co.re/pipelines) will be updated automatically with the release information.
   * The [nf-core Twitter](https://twitter.com/nf_core) account will send out an automated tweet about the pipeline release within minutes.
   * A [Zenodo DOI](https://zenodo.org/) is automatically generated that provides a persistent means with which to cite the pipeline.
-    * After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline.
-        * Search for your pipeline on Zenodo and find the DOI that allows you to "Cite all versions" of the pipeline.
-        * Uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and insert the Zenodo DOI. You should just be able to edit and commit the changes on the `master` branch directly.
-        * Add in a badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md). As with the point above, you should just be able to edit and commit the changes on the `master` branch directly so its probably best to make both changes together.
+
+After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
+
+* Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
+* Uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and insert the Zenodo DOI. You should just be able to edit and commit the changes on the `master` branch directly.
+* Add in a badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md). As with the point above, you should just be able to edit and commit the changes on the `master` branch directly.
+
+Finally, don't forget to bump up the pipeline version number in the development branch:
+
 * Bump the version number again on the `dev` branch to a new `dev` version
   * For example, `1.0.0` becomes `1.1.0dev`
   * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version 1.1.0dev`
