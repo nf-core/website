@@ -166,7 +166,7 @@ usort($past_events, function($a, $b) {
     return $b['start_ts'] - $a['start_ts'];
 });
 
-function print_events($events){
+function print_events($events, $is_past_event){
   global $event_type_classes;
   foreach($events as $idx => $event):
     # Nice date strings
@@ -214,14 +214,14 @@ function print_events($events){
 
 echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Upcoming Events</h2>';
 if(count($future_events) > 0){
-    print_events($future_events);
+    print_events($future_events, false);
 } else {
     print '<p class="text-muted">No events found</p>';
 }
 
 echo '<h2 id="past_events"><a href="#past_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Past Events</h2>';
 if(count($past_events) > 0){
-    print_events($past_events);
+    print_events($past_events, true);
 } else {
     print '<p class="text-muted">No events found</p>';
 }
