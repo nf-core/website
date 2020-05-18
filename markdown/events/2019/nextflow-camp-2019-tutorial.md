@@ -21,4 +21,4 @@ why they're important and give insight into the best tips and tricks for budding
 
 ### Speaker
 
-Phil Ewels ([@ewels](https://github.com/ewels)), [mailto:phil.ewels@scilifelab.se](phil.ewels@scilifelab.se)
+Phil Ewels ([@ewels](https://github.com/ewels)), [phil.ewels@scilifelab.se](mailto:phil.ewels@scilifelab.se)

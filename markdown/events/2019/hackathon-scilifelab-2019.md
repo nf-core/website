@@ -20,7 +20,7 @@ Everyone is welcome to join, even if it's just for a couple of hours.
 The hackathon will be in Milky Way and Andromeda, Alfa 2 in SciLifeLab Stockholm.
 If you need access to the building, please get in touch with Phil.
 
-This event is being organised by Phil Ewels ([@ewels](https://github.com/ewels), [mailto:phil.ewels@scilifelab.se](phil.ewels@scilifelab.se)).
+This event is being organised by Phil Ewels ([@ewels](https://github.com/ewels), [phil.ewels@scilifelab.se](mailto:phil.ewels@scilifelab.se)).
 
 ## Hackathon project page
 [https://github.com/orgs/nf-core/projects/4](https://github.com/orgs/nf-core/projects/4)
