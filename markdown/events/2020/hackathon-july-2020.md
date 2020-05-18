@@ -1,0 +1,61 @@
+---
+title: Hackathon July 2020
+subtitle: our first fully remote hackathon
+type: hackathon
+start_date: "2020-07-13"
+start_time: "13:00"
+end_date: "2020-07-17"
+end_time: "17:00"
+---
+
+The nf-core hackathon in July this year will be fully virtual, so you
+can contribute to nf-core and get your pipeline started
+from the comfort of your homes.
+
+Join us to get help and guidance for writing your own Nextflow pipelines
+using the best practice guidelines implemented by the nf-core community
+or contribute to existing pipelines and advancing the current infrastructure.
+This will be a very informal event and it's great for learning,
+sharing ideas and solving issues intensively.
+
+## Schedule
+
+The Hackathon will be held on the same dates as a parallel Nextflow workshop.
+
+Every day at 13:00h CEST there will be a webinar followed by a Q+A session.
+After this, a catch-up of the hackathon progress will be held.
+
+**Monday** - Introduction to nf-core, tutorial on how to run pipelines
+**Tuesday** - Feature: nf-core pipelines for common data types
+**Wednesday** - Data management solutions by Elin Kronander
+**Thursday** - Tutorial on nf-core tools and guidelines
+**Friday** - Future directions: Nextflow DSL2 and nf-core modules
+
+A remote Pub Quiz  will be held on Thursday 17-19h CEST.
+
+## How it works
+
+To participate, all you need is a computer with an internet connection.
+Presentations will be run using Zoom and live-streamed to YouTube,
+where they will be also be available afterwards. Discussion and collaboration
+will be handled in dedicated channels in the nf-core Slack organisation.
+
+Relevant links will be emailed to participants ahead of the event. For more
+details or if you have questions, please post a message in the nf-core Slack.
+See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
+All nf-core code is open source with the MIT licence and available on
+GitHub: [https://github.com/nf-core](https://github.com/nf-core)
+
+This event is being organised by the nf-core core team.
+
+## Hackathon project page
+
+[https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
+
+## Registration
+
+Please register through this google form:
+[https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
+
+To register to the Nextflow workshop held during the same dates, please follow this link:
+[DKFZ registration portal](DKFZ portal).
