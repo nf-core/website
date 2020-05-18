@@ -260,9 +260,14 @@ if(isset($title) and $title): ?>
     <div class="mainpage">
       <div class="mainpage-heading">
         <div class="container">
-          <?php if(isset($header_btn_url) && isset($header_btn_text)){
-            echo '<a href="'.$header_btn_url.'" class="btn btn-outline-light float-right d-none d-md-inline-block mt-4">'.$header_btn_text.'</a>';
-          } ?>
+          <?php
+          if(isset($md_github_url) and $md_github_url){
+            echo '<a href="'.$md_github_url.'" class="edit-md-btn btn btn-sm btn-outline-light float-right d-none d-md-inline-block ml-2 mt-4" title="Edit this page on GitHub" data-toggle="tooltip" data-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
+          }
+          if(isset($header_btn_url) && isset($header_btn_text)){
+            echo '<a href="'.$header_btn_url.'" class="btn btn-sm btn-outline-light float-right d-none d-md-inline-block mt-4">'.$header_btn_text.'</a>';
+          }
+          ?>
           <h1 class="display-3"><?php echo $title; ?></h1>
           <?php if($subtitle){ echo '<p class="lead">'.$subtitle.'</p>'; } ?>
           <?php if(isset($header_html)){ echo $header_html; } ?>
