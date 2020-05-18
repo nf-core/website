@@ -168,7 +168,7 @@ usort($past_events, function($a, $b) {
 # Merge event list
 $events = array_merge($future_events, $past_events);
 
-$is_future_events = false;
+$is_future_event = false;
 $is_past_event = false;
 foreach($events as $idx => $event):
   # Nice date strings
@@ -181,8 +181,8 @@ foreach($events as $idx => $event):
   }
 
   # Print Upcoming / Past Events headings
-  if(!$is_future_events && $event['start_ts'] > time()){
-    $is_future_events = true;
+  if(!$is_future_event && $event['start_ts'] > time()){
+    $is_future_event = true;
     echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Upcoming Events</h2>';
   }
   if(!$is_past_event && $event['start_ts'] < time()){
