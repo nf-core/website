@@ -22,4 +22,4 @@ In this talk I will describe recent updates from the nextflow nf-core community 
 
 ### Speaker
 
-Phil Ewels ([@ewels](https://github.com/ewels)), [mailto:phil.ewels@scilifelab.se](phil.ewels@scilifelab.se)
+Phil Ewels ([@ewels](https://github.com/ewels)), [phil.ewels@scilifelab.se](mailto:phil.ewels@scilifelab.se)

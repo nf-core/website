@@ -13,7 +13,7 @@ location_latlng: [59.3505174, 18.0221508]
 
 Low-key get together and hackathon for nf-core projects in Sweden.
 
-This event is being organised by Phil Ewels ([@ewels](https://github.com/ewels), [mailto:phil.ewels@scilifelab.se](phil.ewels@scilifelab.se)).
+This event is being organised by Phil Ewels ([@ewels](https://github.com/ewels), [phil.ewels@scilifelab.se](mailto:phil.ewels@scilifelab.se)).
 
 ## Hackathon project page
 [https://github.com/orgs/nf-core/projects/1](https://github.com/orgs/nf-core/projects/1)

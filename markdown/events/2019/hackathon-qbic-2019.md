@@ -12,7 +12,7 @@ location_latlng: [48.5379169, 9.0339095]
 
 QBiC is holding a two-day nf-core hackathon.
 
-This event is being organised by Alexander Peltzer ([@apeltzer](https://github.com/apeltzer), [mailto:alex.peltzer@mailbox.org](alex.peltzer@mailbox.org)).
+This event is being organised by Alexander Peltzer ([@apeltzer](https://github.com/apeltzer), [alex.peltzer@mailbox.org](mailto:alex.peltzer@mailbox.org)).
 
 ## Hackathon project page
 [https://github.com/orgs/nf-core/projects/2](https://github.com/orgs/nf-core/projects/2)
