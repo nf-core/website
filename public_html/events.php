@@ -165,32 +165,19 @@ usort($future_events, function($a, $b) {
 usort($past_events, function($a, $b) {
     return $b['start_ts'] - $a['start_ts'];
 });
-# Merge event list
-$events = array_merge($future_events, $past_events);
 
-$is_future_event = false;
-$is_past_event = false;
-foreach($events as $idx => $event):
-  # Nice date strings
-  $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).' - '.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-  if(date('mY', $event['start_ts']) == date('mY', $event['end_ts'])){
-    $date_string = date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']).' - '.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-  }
-  if(date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])){
-    $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-  }
-
-  # Print Upcoming / Past Events headings
-  if(!$is_future_event && $event['start_ts'] > time()){
-    $is_future_event = true;
-    echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Upcoming Events</h2>';
-  }
-  if(!$is_past_event && $event['start_ts'] < time()){
-    $is_past_event = true;
-    echo '<h2 id="past_events"><a href="#past_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Past Events</h2>';
-  }
-
-  $colour_class = $event_type_classes[strtolower($event['type'])];
+function print_events($events){
+  global $event_type_classes;
+  foreach($events as $idx => $event):
+    # Nice date strings
+    $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).' - '.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+    if(date('mY', $event['start_ts']) == date('mY', $event['end_ts'])){
+      $date_string = date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']).' - '.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+    }
+    if(date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])){
+      $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+    }
+    $colour_class = $event_type_classes[strtolower($event['type'])];
 ?>
 
 <!-- Event Card -->
@@ -221,7 +208,22 @@ foreach($events as $idx => $event):
   </div>
 </div>
 
+<?php
+  endforeach;
+}
 
-<?php endforeach;
+echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Upcoming Events</h2>';
+if(count($future_events) > 0){
+    print_events($future_events);
+} else {
+    print '<p class="text-muted">No events found</p>';
+}
+
+echo '<h2 id="past_events"><a href="#past_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Past Events</h2>';
+if(count($past_events) > 0){
+    print_events($past_events);
+} else {
+    print '<p class="text-muted">No events found</p>';
+}
 
 include('../includes/footer.php');
