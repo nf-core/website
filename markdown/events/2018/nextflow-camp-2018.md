@@ -12,6 +12,8 @@ location_url: https://www.crg.eu/
 location_latlng: [41.385242, 2.194323]
 ---
 
+## Abstract
+
 The [Swedish National Genomics Infrastructure (NGI)](https://ngisweden.scilifelab.se/) has been a key user and proponent of nextflow since soon after its initial release. We have produced several popular pipelines as well as writing recommendations on best practices. Our oldest pipeline for RNA sequencing analysis is used in production at NGI Stockholm and has been used to process nearly 20,000 samples since April 2017.
 
 The open-source NGI pipelines hosted on GitHub have now been forked by hundreds of users for their own development. This collaborative expansion has proceeded rapidly and is now beginning to outgrow the NGI branding of the pipelines. To encourage further growth and greater collaboration, we started a new initiative called [nf-core](http://nf-co.re/): a community effort to collect, curate and collaborate on high quality nextflow bioinformatics workflows.
@@ -19,6 +21,8 @@ The open-source NGI pipelines hosted on GitHub have now been forked by hundreds 
 Shared pipelines will give increased reproducibility between groups and greater collective development power. To help pipeline developers we have written a companion [cookiecutter](https://cookiecutter.readthedocs.io/en/latest/) template to generate starter workflows and a command line tool to lint code and check for adherence to nf-core guidelines. Pipelines make the best use of Nextflow features possible, with support for [Conda](https://conda.io/), [Docker](https://www.docker.com/) and [Singularity](https://www.sylabs.io/singularity/), with reference genomes available from the cloud. Consistency between pipelines means that all work in a similar manner with comparable requirements.
 
 There has been fantastic feedback from the user community about nf-core. The first twitter post in February 2018 was seen by nearly four thousand people and the account now has over 140 followers. There are currently seven pipelines available (at the time of writing) with many more on the way.
+
+## Links and slides
 
 * Event page: [https://www.nextflow.io/nfhack/2018/phil.html](https://www.nextflow.io/nfcamp/2018/phil.html)
 * Slides: [https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines](https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines)
