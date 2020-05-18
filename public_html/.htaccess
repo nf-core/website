@@ -23,6 +23,10 @@
     RewriteCond %{REQUEST_URI} ^/join/(.*)$
     RewriteRule ^(.*)$ /join.php?t=$1 [L,NC,QSA]
 
+    # Event pages
+    RewriteCond %{REQUEST_URI} ^/events/(.*)$
+    RewriteRule ^(.*)$ /events.php?event=$1 [L,NC,QSA]
+
     # Nicer URL for logos
     RewriteCond %{REQUEST_URI} ^/logo/(.*)$
     RewriteRule ^(.*)$ /logo.php?t=$1 [L,NC,QSA]
