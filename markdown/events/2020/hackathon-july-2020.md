@@ -46,7 +46,7 @@ See [https://nf-co.re/join](https://nf-co.re/join) for information on how to joi
 All nf-core code is open source with the MIT licence and available on
 GitHub: [https://github.com/nf-core](https://github.com/nf-core)
 
-This event is being organised by the nf-core core team.
+This event is being organised by the nf-core [core team](https://nf-co.re/about).
 
 ## Hackathon project page
 
