@@ -4,10 +4,12 @@
 // Convert Markdown to HTML
 //
 
+// Common functions
+require_once('functions.php');
+
 // Markdown parsing libraries
 require_once(dirname(__FILE__).'/libraries/parsedown/Parsedown.php');
 require_once(dirname(__FILE__).'/libraries/parsedown-extra/ParsedownExtra.php');
-require_once(dirname(__FILE__).'/libraries/Spyc.php');
 
 // Load the docs markdown
 $md_full = file_get_contents($markdown_fn);
@@ -20,18 +22,14 @@ if ($md_full === false) {
 // Get the meta
 $meta = [];
 $md = $md_full;
-if(substr($md_full,0,3) == '---'){
-  $md_parts = explode('---', $md_full, 3);
-  if(count($md_parts) == 3){
-    $meta = spyc_load($md_parts[1]);
-    $md = $md_parts[2];
-    if(isset($meta['title'])){
-      $title = $meta['title'];
-    }
-    if(isset($meta['subtitle'])){
-      $subtitle = $meta['subtitle'];
-    }
-  }
+$fm = parse_md_front_matter($md_full);
+$meta = $fm['meta'];
+$md = $fm['md'];
+if(isset($meta['title'])){
+  $title = $meta['title'];
+}
+if(isset($meta['subtitle'])){
+  $subtitle = $meta['subtitle'];
 }
 
 // Trim off any content if requested
