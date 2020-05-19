@@ -69,23 +69,30 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
     $header_html .= '</dl>';
     $header_html .= '</div><div class="col-md-6">';
     // Location
-    $header_html .=  '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
-    if(isset($event['location_name'])){
-      if(isset($event['location_url'])){
-        $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'" target="_blank">'.$event['location_name'].'</a>'.'<br>';
-      } else {
-        $header_html .=  $event['location_name'].'<br>';
-      }
-    } else if(isset($event['location_url'])){
-      $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'" target="_blank">'.$event['location_url'].'</a>'.'<br>';
+    if(
+        array_key_exists('location_name', $event) ||
+        array_key_exists('location_url', $event) ||
+        array_key_exists('address', $event) ||
+        array_key_exists('location_latlng', $event)
+    ) {
+        $header_html .=  '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
+        if(isset($event['location_name'])){
+          if(isset($event['location_url'])){
+            $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_name'].'</a>'.'<br>';
+          } else {
+            $header_html .=  $event['location_name'].'<br>';
+          }
+        } else if(isset($event['location_url'])){
+          $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_url'].'</a>'.'<br>';
+        }
+        if(isset($event['address'])){
+          $header_html .=  $event['address'].'<br>';
+        }
+        if(isset($event['location_latlng'])){
+          $header_html .=  '<a class="mt-2 btn btn-sm btn-outline-light" href="https://www.google.com/maps/search/?api=1&query='.implode(',', $event['location_latlng']).'" target="_blank">See map</a>';
+        }
+        $header_html .= '</dd>';
     }
-    if(isset($event['address'])){
-      $header_html .=  $event['address'].'<br>';
-    }
-    if(isset($event['location_latlng'])){
-      $header_html .=  '<a class="mt-2 btn btn-sm btn-outline-light" href="https://www.google.com/maps/search/?api=1&query='.implode(',', $event['location_latlng']).'" target="_blank">See map</a>';
-    }
-    $header_html .= '</dd>';
     $header_html .= '</div></div>';
   }
 
