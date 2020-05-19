@@ -61,10 +61,11 @@ will be handled in dedicated channels in the nf-core Slack organisation.
 Relevant links will be emailed to participants ahead of the event. For more
 details or if you have questions, please post a message in the nf-core Slack.
 See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
+
 All nf-core code is open source with the MIT licence and available on
 GitHub: [https://github.com/nf-core](https://github.com/nf-core)
 
-This event is being organised by the nf-core core team.
+This event is being organised by the nf-core [core team](https://nf-co.re/about).
 
 ## Hackathon project page
 
