@@ -4,10 +4,12 @@
 // Convert Markdown to HTML
 //
 
+// Common functions
+require_once('functions.php');
+
 // Markdown parsing libraries
 require_once(dirname(__FILE__).'/libraries/parsedown/Parsedown.php');
 require_once(dirname(__FILE__).'/libraries/parsedown-extra/ParsedownExtra.php');
-require_once(dirname(__FILE__).'/libraries/Spyc.php');
 
 // Load the docs markdown
 $md_full = file_get_contents($markdown_fn);
@@ -20,18 +22,14 @@ if ($md_full === false) {
 // Get the meta
 $meta = [];
 $md = $md_full;
-if(substr($md_full,0,3) == '---'){
-  $md_parts = explode('---', $md_full, 3);
-  if(count($md_parts) == 3){
-    $meta = spyc_load($md_parts[1]);
-    $md = $md_parts[2];
-    if(isset($meta['title'])){
-      $title = $meta['title'];
-    }
-    if(isset($meta['subtitle'])){
-      $subtitle = $meta['subtitle'];
-    }
-  }
+$fm = parse_md_front_matter($md_full);
+$meta = $fm['meta'];
+$md = $fm['md'];
+if(isset($meta['title'])){
+  $title = $meta['title'];
+}
+if(isset($meta['subtitle'])){
+  $subtitle = $meta['subtitle'];
 }
 
 // Trim off any content if requested
@@ -98,6 +96,9 @@ if(isset($href_url_prepend)){
 if(isset($href_url_suffix_cleanup)){
   $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
 }
+// Add CSS classes to tables
+$content = str_replace('<table>', '<table class="table table-bordered table-striped table-sm small">', $content);
+
 // Find and replace HTML content if requested
 if(isset($html_content_replace)){
   $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
