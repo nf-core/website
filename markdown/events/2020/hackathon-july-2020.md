@@ -1,6 +1,6 @@
 ---
 title: Hackathon July 2020
-subtitle: our first fully remote hackathon
+subtitle: The first online-only nf-core hackathon
 type: hackathon
 start_date: "2020-07-13"
 start_time: "13:00"
@@ -70,5 +70,4 @@ This event is being organised by the nf-core [core team](https://nf-co.re/about)
 ## Hackathon project page
 
 [https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
-
 
