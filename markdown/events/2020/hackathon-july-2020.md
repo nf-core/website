@@ -18,6 +18,14 @@ or contribute to existing pipelines and advancing the current infrastructure.
 This will be a very informal event and it's great for learning,
 sharing ideas and solving issues intensively.
 
+## Registration
+
+Please register to the nf-core hackathon through this google form:
+[https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
+
+To register for the Nextflow workshop held during the same dates,
+please refer to the DKFZ portal. Places are limited for the Nextflow workshop.
+
 ## Schedule
 
 The Hackathon will be held on the same dates as a parallel Nextflow workshop.
@@ -32,6 +40,16 @@ After this, a catch-up of the hackathon progress will be held.
 **Friday** - Future directions: Nextflow DSL2 and nf-core modules
 
 A remote Pub Quiz  will be held on Thursday 17-19h CEST.
+
+Below is the full schedule. All times are indicated in CEST.
+
+|              |          Monday         |           Tuesday          |         Wednesday         |          Thursday          |                      Friday                      |
+|:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
+|    9 - 12h   |                         |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
+|   13 - 14h   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines |            DSL2 & modules in nf-core           |
+|  14 - 14.30h |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |                   Daily wrap-up                  |
+| 14.30h - 17h |          Hack!          |            Hack!           |           Hack!           |            Hack!           | Hack! |
+|   17 - 19h   |                         |                            |                           |       Remote Pub Quiz      |                                                  |
 
 ## How it works
 
@@ -52,10 +70,4 @@ This event is being organised by the nf-core core team.
 
 [https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
 
-## Registration
 
-Please register through this google form:
-[https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
-
-To register to the Nextflow workshop held during the same dates, please follow this link:
-[DKFZ registration portal](DKFZ portal).
