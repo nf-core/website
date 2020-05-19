@@ -51,8 +51,8 @@ Below is the full schedule. All times are indicated in CEST.
 |:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
 |    09:00 - 12:00   |                         |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
 |   13:00 - 14:00   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines |            DSL2 & modules in nf-core           |
-|  14:00 - 14.30 |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |                   Daily wrap-up                  |
-| 14.30 - 17:00 |          Hack!          |            Hack!           |           Hack!           |            Hack!           | Hack! |
+|  14:00 - 14:30 |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |                   Daily wrap-up                  |
+| 14:30 - 17:00 |          Hack!          |            Hack!           |           Hack!           |            Hack!           | Hack! |
 |   17:00 - 19:00   |                         |                            |                           |       Remote Pub Quiz      |                                                  |
 
 ## How it works
