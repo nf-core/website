@@ -43,13 +43,13 @@ A remote Pub Quiz  will be held on Thursday 17-19h CEST.
 
 Below is the full schedule. All times are indicated in CEST.
 
-|              |          Monday         |           Tuesday          |         Wednesday         |          Thursday          |                      Friday                      |
-|:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
-|    9 - 12h   |                         |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
-|   13 - 14h   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines |            DSL2 & modules in nf-core           |
-|  14 - 14.30h |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |                   Daily wrap-up                  |
-| 14.30h - 17h |          Hack!          |            Hack!           |           Hack!           |            Hack!           | Hack! |
-|   17 - 19h   |                         |                            |                           |       Remote Pub Quiz      |                                                  |
+|              |          Monday         |           Tuesday          |         Wednesday         |          Thursday          |            Friday           |
+|:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:---------------------------:|
+|    9 - 12h   |                         |            Hack!           |           Hack!           |            Hack!           |            Hack!            |
+|   13 - 14h   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines | DSL2 and modules in nf-core |
+|  14 - 14.30h |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |        Daily wrap-up        |
+| 14.30h - 17h |          Hack!          |            Hack!           |           Hack!           |            Hack!           |            Hack!            |
+|   17 - 19h   |                         |                            |                           |       Remote Pub Quiz      |                             |
 
 ## How it works
 
