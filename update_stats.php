@@ -104,7 +104,8 @@ while($first_page || $next_page){
     $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
-        die("Could not fetch nf-core members! $gh_members_url");
+        echo("Could not fetch nf-core members! $gh_members_url");
+        continue;
     }
     $results['gh_org_members'][$updated] += count($gh_members);
     // Look for URL to next page of API results
@@ -151,7 +152,8 @@ foreach($gh_repos as $repo){
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
-        die("Could not fetch nf-core repo! $gh_repo_url");
+        echo("Could not fetch nf-core repo! $gh_repo_url");
+        continue;
     }
     $results[$repo_type][$repo->name]['repo_metrics'][$updated]['network_forks_count'] = $gh_repo->network_count;
     $results[$repo_type][$repo->name]['repo_metrics'][$updated]['subscribers_count'] = $gh_repo->subscribers_count;
@@ -165,7 +167,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo views! $gh_views_url");
+            echo("Could not fetch nf-core repo views! $gh_views_url");
+            continue;
         }
         foreach($gh_views->views as $view){
             $results[$repo_type][$repo_name]['views_count'][$view->timestamp] = $view->count;
@@ -176,7 +179,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo clones! $gh_clones_url");
+            echo("Could not fetch nf-core repo clones! $gh_clones_url");
+            continue;
         }
         foreach($gh_clones->clones as $clone){
             $results[$repo_type][$repo_name]['clones_count'][$clone->timestamp] = $clone->count;
@@ -197,7 +201,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
             ];
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo contributors! $gh_contributors_url");
+            echo("Could not fetch nf-core repo contributors! $gh_contributors_url");
+            continue;
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
         $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
@@ -211,7 +216,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         // Recalculate totals
         foreach(['views_count', 'views_uniques', 'clones_count', 'clones_uniques'] as $ctype){
             $results[$repo_type][$repo_name][$ctype.'_total'] = 0;
-            if(count($results[$repo_type][$repo_name][$ctype]) > 0){
+            if(isset($results[$repo_type][$repo_name][$ctype]) && count($results[$repo_type][$repo_name][$ctype]) > 0){
                 foreach($results[$repo_type][$repo_name][$ctype] as $stat){
                     $results[$repo_type][$repo_name][$ctype.'_total'] += $stat;
                 }
@@ -230,9 +235,11 @@ if(count($contribs_try_again) > 0){
         $gh_contributors = json_decode($gh_contributors_raw);
         if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
             echo("Tried getting contributors after delay for $repo_name, but took too long.");
+            continue;
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo contributors! $gh_contributors_url");
+            echo("Could not fetch nf-core repo contributors! $gh_contributors_url");
+            continue;
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
         $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
