@@ -1,11 +1,13 @@
 ---
 title: Hackathon July 2020
-subtitle: our first fully remote hackathon
+subtitle: The first online-only nf-core hackathon
 type: hackathon
 start_date: "2020-07-13"
 start_time: "13:00"
 end_date: "2020-07-17"
 end_time: "17:00"
+location_name: Zoom, Slack & YouTube.
+location_url: '#how-it-works'
 ---
 
 The nf-core hackathon in July this year will be fully virtual, so you
@@ -24,32 +26,35 @@ Please register to the nf-core hackathon through this google form:
 [https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
 
 To register for the Nextflow workshop held during the same dates,
-please refer to the DKFZ portal. Places are limited for the Nextflow workshop.
+please refer to the [DKFZ portal](https://indico.dkfz.de/event/225/).
+Places are limited for the Nextflow workshop.
 
 ## Schedule
 
 The Hackathon will be held on the same dates as a parallel Nextflow workshop.
 
-Every day at 13:00h CEST there will be a webinar followed by a Q+A session.
+Every day at 13:00 CEST there will be a webinar followed by a Q+A session.
 After this, a catch-up of the hackathon progress will be held.
 
-**Monday** - Introduction to nf-core, tutorial on how to run pipelines
-**Tuesday** - Feature: nf-core pipelines for common data types
-**Wednesday** - Data management solutions by Elin Kronander
-**Thursday** - Tutorial on nf-core tools and guidelines
-**Friday** - Future directions: Nextflow DSL2 and nf-core modules
+The presentations held each day will be as follows:
 
-A remote Pub Quiz  will be held on Thursday 17-19h CEST.
+* **Monday** - Introduction to nf-core, tutorial on how to run pipelines
+* **Tuesday** - Feature: nf-core pipelines for common data types
+* **Wednesday** - Data management solutions by Elin Kronander
+* **Thursday** - Tutorial on nf-core tools and guidelines
+* **Friday** - Future directions: Nextflow DSL2 and nf-core modules
+
+A remote Pub Quiz  will be held on Thursday 17:00-19:00 CEST.
 
 Below is the full schedule. All times are indicated in CEST.
 
-|              |          Monday         |           Tuesday          |         Wednesday         |          Thursday          |            Friday           |
-|:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:---------------------------:|
-|    9 - 12h   |                         |            Hack!           |           Hack!           |            Hack!           |            Hack!            |
-|   13 - 14h   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines | DSL2 and modules in nf-core |
-|  14 - 14.30h |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |        Daily wrap-up        |
-| 14.30h - 17h |          Hack!          |            Hack!           |           Hack!           |            Hack!           |            Hack!            |
-|   17 - 19h   |                         |                            |                           |       Remote Pub Quiz      |                             |
+|              |          Monday         |           Tuesday          |         Wednesday         |          Thursday          |                      Friday                      |
+|:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
+|    09:00 - 12:00   |                         |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
+|   13:00 - 14:00   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines |            DSL2 & modules in nf-core           |
+|  14:00 - 14:30 |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |                   Daily wrap-up                  |
+| 14:30 - 17:00 |          Hack!          |            Hack!           |           Hack!           |            Hack!           | Hack! |
+|   17:00 - 19:00   |                         |                            |                           |       Remote Pub Quiz      |                                                  |
 
 ## How it works
 
@@ -70,5 +75,3 @@ This event is being organised by the nf-core [core team](https://nf-co.re/about)
 ## Hackathon project page
 
 [https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
-
-
