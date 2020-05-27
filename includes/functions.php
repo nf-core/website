@@ -1,6 +1,26 @@
 <?php
 // Common PHP functions for the website
 
+// Pull out YAML front-matter from a markdown file
+require_once(dirname(__FILE__).'/libraries/Spyc.php');
+function parse_md_front_matter($md_full){
+    if(substr($md_full,0,3) == '---'){
+      $md_parts = explode('---', $md_full, 3);
+      if(count($md_parts) == 3){
+        $meta = spyc_load($md_parts[1]);
+        $md = $md_parts[2];
+        return array(
+            'meta' => $meta,
+            'md' => $md
+        );
+      }
+    }
+    return array(
+        'meta' => null,
+        'md' => $md_full
+    );
+}
+
 // From https://stackoverflow.com/a/18891474/713980
 function time_ago($date, $ago=true) {
     $periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");

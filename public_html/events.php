@@ -69,23 +69,30 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
     $header_html .= '</dl>';
     $header_html .= '</div><div class="col-md-6">';
     // Location
-    $header_html .=  '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
-    if(isset($event['location_name'])){
-      if(isset($event['location_url'])){
-        $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'" target="_blank">'.$event['location_name'].'</a>'.'<br>';
-      } else {
-        $header_html .=  $event['location_name'].'<br>';
-      }
-    } else if(isset($event['location_url'])){
-      $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'" target="_blank">'.$event['location_url'].'</a>'.'<br>';
+    if(
+        array_key_exists('location_name', $event) ||
+        array_key_exists('location_url', $event) ||
+        array_key_exists('address', $event) ||
+        array_key_exists('location_latlng', $event)
+    ) {
+        $header_html .=  '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
+        if(isset($event['location_name'])){
+          if(isset($event['location_url'])){
+            $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_name'].'</a>'.'<br>';
+          } else {
+            $header_html .=  $event['location_name'].'<br>';
+          }
+        } else if(isset($event['location_url'])){
+          $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_url'].'</a>'.'<br>';
+        }
+        if(isset($event['address'])){
+          $header_html .=  $event['address'].'<br>';
+        }
+        if(isset($event['location_latlng'])){
+          $header_html .=  '<a class="mt-2 btn btn-sm btn-outline-light" href="https://www.google.com/maps/search/?api=1&query='.implode(',', $event['location_latlng']).'" target="_blank">See map</a>';
+        }
+        $header_html .= '</dd>';
     }
-    if(isset($event['address'])){
-      $header_html .=  $event['address'].'<br>';
-    }
-    if(isset($event['location_latlng'])){
-      $header_html .=  '<a class="mt-2 btn btn-sm btn-outline-light" href="https://www.google.com/maps/search/?api=1&query='.implode(',', $event['location_latlng']).'" target="_blank">See map</a>';
-    }
-    $header_html .= '</dd>';
     $header_html .= '</div></div>';
   }
 
@@ -107,35 +114,24 @@ $subtitle = 'Details of past and future nf-core meetups.';
 $md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-events.yaml';
 include('../includes/header.php');
 
-require_once("../includes/libraries/Spyc.php");
+# To get parse_md_front_matter() function
+require_once('../includes/functions.php');
 
 // Load event front-matter
-$event_keys = [
-  'title',
-  'subtitle',
-  'type',
-  'start_date',
-  'start_time',
-  'end_date',
-  'address',
-  'location_name',
-  'location_url',
-  'location_latlng'
-];
 $events = [];
 $year_dirs = glob($md_base.'events/*', GLOB_ONLYDIR);
 foreach($year_dirs as $year){
   $event_mds = glob($year.'/*.md');
   foreach($event_mds as $event_md){
-    // Load the file as YAML, filter for expected keys
-    $event = array_filter( spyc_load_file($event_md),
-      function ($key) use ($event_keys) {
-        return in_array($key, $event_keys);
-      }, ARRAY_FILTER_USE_KEY
-    );
-    // Add the URL
-    $event['url'] = '/events/'.basename($year).'/'.str_replace('.md', '', basename($event_md));
-    $events[] = $event;
+    // Load the file
+    $md_full = file_get_contents($event_md);
+    if ($md_full !== false) {
+      $fm = parse_md_front_matter($md_full);
+      // Add the URL
+      $fm['meta']['url'] = '/events/'.basename($year).'/'.str_replace('.md', '', basename($event_md));
+      // Add to the events array
+      $events[] = $fm['meta'];
+    }
   }
 }
 
@@ -193,7 +189,7 @@ function print_events($events, $is_past_event){
     }
     if(!$is_past_event): ?>
       <h6 class="small text-muted"><?php echo $date_string; ?></h6>
-      <p><?php echo nl2br($event['description']); ?></p>
+      <?php if(array_key_exists('description', $event)){ echo '<p>'.nl2br($event['description']).'</p>'; } ?>
       <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
         See details
       </a>
