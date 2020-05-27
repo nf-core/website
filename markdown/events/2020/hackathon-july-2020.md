@@ -26,7 +26,8 @@ Please register to the nf-core hackathon through this google form:
 [https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
 
 To register for the Nextflow workshop held during the same dates,
-please refer to the DKFZ portal. Places are limited for the Nextflow workshop.
+please refer to the [DKFZ portal](https://indico.dkfz.de/event/225/).
+Places are limited for the Nextflow workshop.
 
 ## Schedule
 
