@@ -39,8 +39,8 @@ to YouTube and archived there.
 
 ## Hackathon registration
 
-Please register to the nf-core hackathon through this google form:
-[https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
+**Please register to the nf-core hackathon through this google form:
+[https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)**
 
 Registration is free and non-binding. This helps us to organise the event:
 numbers of people, experience and interests allow us to prepare working groups
