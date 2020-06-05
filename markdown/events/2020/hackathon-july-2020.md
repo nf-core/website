@@ -23,13 +23,13 @@ sharing ideas and solving issues intensively.
 Please note that there are two separate events running in parallel:
 
 * Nextflow training
-    * Mornings - organised through [DKFZ](https://dkfz.de)
-    * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/)
-    * Places are limited
+  * Mornings - organised through [DKFZ](https://dkfz.de)
+  * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/)
+  * Places are limited
 * nf-core hackathon
-    * Afternoons (mornings too if you want) - organised by nf-core community
-    * Free to attend!
-    * No limit on attendance, everyone welcome
+  * Afternoons (mornings too if you want) - organised by nf-core community
+  * Free to attend!
+  * No limit on attendance, everyone welcome
 
 ## Registration
 
