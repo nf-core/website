@@ -10,6 +10,8 @@ location_name: Zoom, Slack & YouTube.
 location_url: '#how-it-works'
 ---
 
+## Introduction
+
 The nf-core hackathon in July this year will be fully virtual, so you
 can contribute to nf-core and get your pipeline started
 from the comfort of your homes.
@@ -25,24 +27,32 @@ Please note that there are two separate events running in parallel:
 * Nextflow training
   * Mornings - organised through [DKFZ](https://dkfz.de)
   * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/)
-  * Places are limited
+  * Free to attend!
+  * Places are limited to 30 external people
 * nf-core hackathon
   * Afternoons (mornings too if you want) - organised by nf-core community
   * Free to attend!
   * No limit on attendance, everyone welcome
 
-## Registration
+All presentations for both the training and hackathon will be live-streamed
+to YouTube and archived there.
+
+## Hackathon registration
 
 Please register to the nf-core hackathon through this google form:
 [https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
 
-Registration is free and non-binding. This just helps us to organise the event:
+Registration is free and non-binding. This helps us to organise the event:
 numbers of people, experience and interests allow us to prepare working groups
 and ensure that presentations are as relevant as possible.
 
+We are hoping to send a few goodies in the post to everyone who registers,
+so remember to fill in your postal address!
+
 ## Schedule
 
-The Hackathon will be held on the same dates as a parallel Nextflow workshop.
+The Hackathon will be held on the same dates as a
+[parallel Nextflow workshop](https://indico.dkfz.de/event/225/timetable/#all.detailed).
 
 Every day at 13:00 CEST there will be a webinar followed by a Q+A session.
 After this, a catch-up of the hackathon progress will be held.
