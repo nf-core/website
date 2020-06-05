@@ -20,14 +20,25 @@ or contribute to existing pipelines and advancing the current infrastructure.
 This will be a very informal event and it's great for learning,
 sharing ideas and solving issues intensively.
 
+Please note that there are two separate events running in parallel:
+
+* Nextflow training
+    * Mornings - organised through [DKFZ](https://dkfz.de)
+    * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/)
+    * Places are limited
+* nf-core hackathon
+    * Afternoons (mornings too if you want) - organised by nf-core community
+    * Free to attend!
+    * No limit on attendance, everyone welcome
+
 ## Registration
 
 Please register to the nf-core hackathon through this google form:
 [https://forms.gle/qo3USZuK2LDJAqHS9](https://forms.gle/qo3USZuK2LDJAqHS9)
 
-To register for the Nextflow workshop held during the same dates,
-please refer to the [DKFZ portal](https://indico.dkfz.de/event/225/).
-Places are limited for the Nextflow workshop.
+Registration is free and non-binding. This just helps us to organise the event:
+numbers of people, experience and interests allow us to prepare working groups
+and ensure that presentations are as relevant as possible.
 
 ## Schedule
 
