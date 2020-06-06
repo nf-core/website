@@ -7,6 +7,7 @@ subtitle: How to troubleshoot common mistakes and issues
 * [Data organization](#data-organization)
 * [Image cannot be built](#image-cannot-be-built)
 * [Cannot find input files when using Singularity](#cannot-find-input-files-when-using-singularity)
+* [Warning about 'sticked on revision'](#warning-about-sticked-on-revision)
 * [Extra resources and getting help](#extra-resources-and-getting-help)
 
 ## Input files not found
@@ -77,6 +78,26 @@ bind path = /home
 ```
 
 Alternatively, you can also add Singularity Bind Paths to your Nextflow call, e.g. using `autoMounts` and/or `runOptions` in the [Singularity scope](https://www.nextflow.io/docs/latest/config.html#config-singularity)
+
+## Warning about sticked on revision
+
+If you get a warning like the following:
+
+```bash
+Project nf-core/eager currently is sticked on revision: dev -- you need to specify explicitly a revision with the option -r to use it
+```
+
+This is a nextflow error, with less commonly seen terminology. What this means is that you have multiple versions of nf-core/eager pulled (e.g. 2.0.0, 2.1.0, 2.1.1, dev etc.). When you have multiple versions, you must always specify which one you want to use - there is no 'default'. Therefore, with every `nextflow run nf-core/<PIPELINE>` command you must always indicate which version with `-r`.
+
+For example:
+
+```bash
+nextflow run nf-core/eager -r 2.1.0 --reads '/<path>/<to>/data/*_{R1,R2}_*.fq.gz' <...>
+```
+
+Specifying the version of the run you are using is highly recommended, as it helps in full reproducibility. In the sense that if you explicitly record the whole command _with_ the version for your publication or internal reports, then anyone who wants to check your work can use the exact version you used (including all internal tools).
+
+You can see more information on the nextflow documentation [here](https://www.nextflow.io/docs/latest/sharing.html#handling-revisions).
 
 ## Extra resources and getting help
 

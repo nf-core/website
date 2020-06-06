@@ -36,7 +36,6 @@ or `conda update nextflow`, depending on how it was installed.
 
 Once installed you will probably need to configure Nextflow to run on your system. For instructions, see [_Nextflow configuration_](configuration.md).
 
-
 ## Pipeline software
 
 An analysis pipeline chains the execution of multiple tools together.

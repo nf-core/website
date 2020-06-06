@@ -72,7 +72,7 @@ include('../includes/header.php');
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Documentation</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/docs.svg" />
+              <img class="float-right ml-3" height="100px" src="assets/img/docs.svg" />
               <p class="card-text">Extensive documentation covering installation, usage and description of output files
               ensures that you won't be left in the dark.</p>
             </div>
@@ -82,7 +82,7 @@ include('../includes/header.php');
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">CI Testing</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/travis-ci.svg" />
+              <img class="float-right ml-3" height="90px" src="assets/img/github-actions.svg" />
               <p class="card-text">Every time a change is made to the pipeline code,
               nf-core pipelines use continuous-integration testing to ensure that nothing has broken.</p>
             </div>
@@ -92,7 +92,7 @@ include('../includes/header.php');
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Stable Releases</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/releases.svg" />
+              <img class="float-right ml-3" height="100px" src="assets/img/releases.svg" />
               <p class="card-text">nf-core pipelines use GitHub releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
             </div>
@@ -101,10 +101,10 @@ include('../includes/header.php');
         <div class="col-md-4 mb-5">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center">Docker</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/docker.svg" />
+              <h5 class="card-title">Docker</h5>
+              <img class="float-right ml-3" height="100px" src="assets/img/docker.svg" />
               <p class="card-text">Software dependencies are always available in a bundled docker container,
-              which Nextflow can automatically download from dockerhub.</p>
+              which Nextflow can automatically download from Docker Hub.</p>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ include('../includes/header.php');
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Singularity</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/singularity.svg" />
+              <img class="float-right ml-3" height="100px" src="assets/img/singularity.svg" />
               <p class="card-text">If you're not able to use Docker, built-in support for Singularity can
               solve your HPC container problems. These are built from the docker containers.</p>
             </div>
@@ -122,7 +122,7 @@ include('../includes/header.php');
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Bioconda</h5>
-              <img class="float-right ml-2" height="100px" src="assets/img/bioconda.svg" />
+              <img class="float-right ml-3" height="100px" src="assets/img/bioconda.svg" />
               <p class="card-text">Where possible, pipelines come with a bioconda environment file,
               allowing you to set up a new environment for the pipeline with a single command.</p>
             </div>

@@ -98,6 +98,14 @@ foreach($pipelines as $pipeline){
     $repos[] = $pipeline['name'];
 }
 
+// Delete cached pipelines stats for pipelines that have been deleted
+foreach(array_keys($results['repos']) as $repo_name) {
+    if(!in_array($repo_name, $repos)){
+        echo("\nRemoving $repo_name from the cached results as it appears to have been deleted.\n");
+        unset($results['repos'][$repo_name]);
+    }
+}
+
 
 // Get all issues for all repos
 
@@ -137,7 +145,8 @@ foreach($repos as $repo){
         $gh_issues = json_decode(file_get_contents($gh_issues_url, false, $gh_api_opts), true);
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core/$repo issues! $gh_issues_url");
+            echo("\nCould not fetch nf-core/$repo issues! $gh_issues_url\n");
+            continue;
         }
         // Don't clobber what we already have - set keys individually
         foreach($gh_issues as $issue){
@@ -255,7 +264,8 @@ foreach($repos as $repo){
                     $gh_comments = array_merge($gh_comments, $gh_new_comments);
                     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
                         var_dump($http_response_header);
-                        die("Could not fetch nf-core/$repo issue #$id! $gh_comments_url");
+                        echo("\nCould not fetch nf-core/$repo issue #$id! $gh_comments_url\n");
+                        continue;
                     }
                     // Look for URL to next page of API results
                     $next_page = false;

@@ -73,7 +73,9 @@ $pipelines = $pipelines_json->remote_workflows;
 $contribs_try_again = [];
 
 // Build array of repos to query
+$pipelines_json_names = [];
 foreach($pipelines as $wf){
+    $pipelines_json_names[] = $wf->name;
     if(!isset($results['pipelines'][$wf->name])){
         $results['pipelines'][$wf->name] = array();
     }
@@ -83,6 +85,14 @@ $ignored_repos = parse_ini_file("ignored_repos.ini")['repos'];
 foreach($ignored_repos as $name){
     if(!isset($results['core_repos'][$name])){
         $results['core_repos'][$name] = array();
+    }
+}
+
+// Delete cached pipelines stats for pipelines that have been deleted
+foreach(array_keys($results['pipelines']) as $wfname) {
+    if(!in_array($wfname, $pipelines_json_names)){
+        echo("\nRemoving $wfname from the cached results as it appears to have been deleted.\n");
+        unset($results['pipelines'][$wfname]);
     }
 }
 
@@ -104,7 +114,8 @@ while($first_page || $next_page){
     $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
-        die("Could not fetch nf-core members! $gh_members_url");
+        echo("\nCould not fetch nf-core members! $gh_members_url");
+        continue;
     }
     $results['gh_org_members'][$updated] += count($gh_members);
     // Look for URL to next page of API results
@@ -151,7 +162,8 @@ foreach($gh_repos as $repo){
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
-        die("Could not fetch nf-core repo! $gh_repo_url");
+        echo("\nCould not fetch nf-core repo! $gh_repo_url");
+        continue;
     }
     $results[$repo_type][$repo->name]['repo_metrics'][$updated]['network_forks_count'] = $gh_repo->network_count;
     $results[$repo_type][$repo->name]['repo_metrics'][$updated]['subscribers_count'] = $gh_repo->subscribers_count;
@@ -165,7 +177,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo views! $gh_views_url");
+            echo("\nCould not fetch nf-core repo views! $gh_views_url");
+            continue;
         }
         foreach($gh_views->views as $view){
             $results[$repo_type][$repo_name]['views_count'][$view->timestamp] = $view->count;
@@ -176,7 +189,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo clones! $gh_clones_url");
+            echo("\nCould not fetch nf-core repo clones! $gh_clones_url");
+            continue;
         }
         foreach($gh_clones->clones as $clone){
             $results[$repo_type][$repo_name]['clones_count'][$clone->timestamp] = $clone->count;
@@ -197,7 +211,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
             ];
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo contributors! $gh_contributors_url");
+            echo("\nCould not fetch nf-core repo contributors! $gh_contributors_url");
+            continue;
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
         $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
@@ -211,7 +226,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         // Recalculate totals
         foreach(['views_count', 'views_uniques', 'clones_count', 'clones_uniques'] as $ctype){
             $results[$repo_type][$repo_name][$ctype.'_total'] = 0;
-            if(count($results[$repo_type][$repo_name][$ctype]) > 0){
+            if(isset($results[$repo_type][$repo_name][$ctype]) && count($results[$repo_type][$repo_name][$ctype]) > 0){
                 foreach($results[$repo_type][$repo_name][$ctype] as $stat){
                     $results[$repo_type][$repo_name][$ctype.'_total'] += $stat;
                 }
@@ -229,10 +244,12 @@ if(count($contribs_try_again) > 0){
         file_put_contents($contribs_fn_root.$repo_name.'.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
         if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
-            echo("Tried getting contributors after delay for $repo_name, but took too long.");
+            echo("\nTried getting contributors after delay for $repo_name, but took too long.");
+            continue;
         } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core repo contributors! $gh_contributors_url");
+            echo("\nCould not fetch nf-core repo contributors! $gh_contributors_url");
+            continue;
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
         $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
@@ -290,7 +307,7 @@ $slack_api_opts = stream_context_create([
 $slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header) || !isset($slack_users->ok) || !$slack_users->ok){
     var_dump($http_response_header);
-    echo("Could not fetch slack user list!");
+    echo("\nCould not fetch slack user list!");
 } else {
     $results['slack']['user_counts'][$updated] = [
         'total' => 0,
