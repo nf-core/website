@@ -6,6 +6,7 @@ ob_start();
 
 echo '<h1>Version history</h1>';
 
+$first = true;
 foreach($pipeline->releases as $release){ ?>
 
 <div class="row">
@@ -19,11 +20,11 @@ foreach($pipeline->releases as $release){ ?>
   <div class="col-auto">
     <a href="#download-<?php echo $release->tag_sha; ?>" class="text-body" data-toggle="collapse"><small class="text-muted"><?php echo time_ago($release->published_at); ?></small></a>
     <button class="btn btn-sm btn-link text-body" type="button" data-toggle="collapse" data-target="#download-<?php echo $release->tag_sha; ?>">
-      <i class="fas fa-caret-left"></i>
+      <i class="fas fa-caret-<?php echo $first ? 'down' : 'left'; ?>"></i>
   </button>
   </div>
 </div>
-<div class="collapse" id="download-<?php echo $release->tag_sha; ?>">
+<div class="collapse <?php if($first){ echo 'show'; } ?>" id="download-<?php echo $release->tag_sha; ?>">
   <div class="row pb-2">
     <div class="col-sm-6 small">
       Released <?php echo date('j M Y', strtotime($release->published_at)); ?> &mdash;
@@ -40,7 +41,7 @@ foreach($pipeline->releases as $release){ ?>
 
 
 
-<?php
+<?php $first = false;
 }
 ?>
 <script type="text/javascript">
