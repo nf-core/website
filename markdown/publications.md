@@ -57,6 +57,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_PeerJ_, 9001 (2020)](https://peerj.com/articles/9001);
 > doi: [10.7717/peerj.9001](https://doi.org/10.7717/peerj.9001)
 
+### [nf-core/eager](https://nf-co.re/eager)
+
+<!-- pub-stats 10.1101/2020.06.11.145615v1 -->
+> **Reproducible, portable, and efficient ancient genome reconstruction with nf-core/eager**
+>
+> James A. Fellow Yates, Thiseas Christos Lamnidis, Maxime Borry, Aida Andrades Valtueña, Zandra Fagernäs, Stephen Clayton, Maxime U. Garcia, Judith Neukamm, Alexander Peltzer
+>
+> [_BiorXiV_, 2020.06.11.145615 (2020)](https://www.biorxiv.org/content/10.1101/2020.06.11.145615v1);
+> doi: [10.1101/2020.06.11.145615](https://doi.org/10.1101/2020.06.11.145615)
+
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
 <!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
