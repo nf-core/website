@@ -7,22 +7,17 @@ nf-core has a variety of recognisable images and other graphic designs for the c
 
 All files are released under various forms of 'open' licenses (see each item), meaning you can re-use and re-model (sometimes with attribution) as you see fit.
 
-## Logo
+## Logo, Font & Colours
 
 All information for the nf-core logo can be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos).
 
-## Fonts
-
 The font(s) typically used in nf-core graphic design (particularly logos) is [Maven Pro](https://fonts.google.com/specimen/Maven+Pro), which is released under a Open Font License (see link for details).
-
 The exact variants of the fonts can also be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos).
-
-## Colours
 
 The nf-core green colour is as follows:
 
-* RGB: `36,176,100`
-* Hex: `#24B064`
+* RGB: <span class="badge badge-info" style="background-color: rgb(36,176,100);">36,176,100</span>
+* Hex: <span class="badge badge-info" style="background-color: rgb(36,176,100);">#24B064</span>
 
 ## Presentation Templates
 
@@ -43,8 +38,8 @@ Original files can be seen on the respective pipeline GitHub repositories, which
 
 | Workflow Example   | nf-core Pipeline | License/Publication |
 |:------------------:|------------------|---------|
-| <a href="https://raw.githubusercontent.com/nf-core/sarek/master/docs/images/sarek_workflow.png"><img src="https://raw.githubusercontent.com/nf-core/sarek/master/docs/images/sarek_workflow.png" alt="nf-core/sarek workflow" width="30%"></a> | [sarek](https://nf-co.re/sarek) | From [Garcia _et al._ (2020, F1000 Research)](https://doi.org/10.12688/f1000research.16665.1) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
-| <a href="https://raw.githubusercontent.com/nf-core/eager/dev/docs/images/output/overview/eager2_workflow.png"><img src="https://raw.githubusercontent.com/nf-core/eager/dev/docs/images/output/overview/eager2_workflow.png" alt="nf-core/eager workflow" width="70%"></a> | [eager](https://nf-co.re/eager) | From [Fellows Yates _et al._ (2020, bioRxiv)](https://doi.org/10.1101/2020.06.11.145615) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license |
+| <a href="https://github.com/nf-core/sarek/blob/master/docs/images/sarek_workflow.png"><img src="https://raw.githubusercontent.com/nf-core/sarek/master/docs/images/sarek_workflow.png" alt="nf-core/sarek workflow" height="300"></a> | [nf-core/sarek](https://nf-co.re/sarek) | From [Garcia _et al._ (2020, F1000 Research)](https://doi.org/10.12688/f1000research.16665.1) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
+| <a href="https://github.com/nf-core/eager/blob/dev/docs/images/output/overview/eager2_workflow.png"><img src="https://raw.githubusercontent.com/nf-core/eager/dev/docs/images/output/overview/eager2_workflow.png" alt="nf-core/eager workflow" width="400"></a> | [nf-core/eager](https://nf-co.re/eager) | From [Fellows Yates _et al._ (2020, bioRxiv)](https://doi.org/10.1101/2020.06.11.145615) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license |
 
 ### Components
 
@@ -52,8 +47,8 @@ Furthermore, there are some sub-components (such as icons) of the above example 
 
 | Object | Description | Link | Source |
 |:------:|-------------|------|----------|
-| ![Single FASTQ Icon](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/single_fastq.png)   | Single FASTQ File Icon | [SVG](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/single_fastq.svg) | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
-| ![Double FASTQ Icon](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/double_fastq.png)   | Single FASTQ File Icon | [SVG](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/double_fastq.svg) | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
-| ![Single BAM Icon](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/single_bam.png)       | Single BAM File Icon   | [SVG](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/single_bam.svg)   | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |]
-| ![Double BAM Icon](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/double_bam.png)       | Single BAM File Icon   | [SVG](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/double_bam.svg)   | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |]
-| ![Multiple VCF Icon](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/multiple_vcf.png)   | Multiple VCF File Icon | [SVG](../../public_html/assets/graphic_design_assets/workflow_schematics_components/sarek/multiple_vcf.svg) | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
+| <img title="Single FASTQ Icon" src="/assets/graphic_design_assets/workflow_schematics_components/sarek/single_fastq.png" height="50">   | Single FASTQ File Icon | [SVG](/assets/graphic_design_assets/workflow_schematics_components/sarek/single_fastq.svg) <br> [PNG](/assets/graphic_design_assets/workflow_schematics_components/sarek/single_fastq.png) | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
+| <img title="Double FASTQ Icon" src="/assets/graphic_design_assets/workflow_schematics_components/sarek/double_fastq.png" height="50">   | Multiple FASTQ File Icon | [SVG](/assets/graphic_design_assets/workflow_schematics_components/sarek/double_fastq.svg) <br> [PNG](/assets/graphic_design_assets/workflow_schematics_components/sarek/double_fastq.png) | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
+| <img title="Single BAM Icon" src="/assets/graphic_design_assets/workflow_schematics_components/sarek/single_bam.png" height="50">       | Single BAM File Icon   | [SVG](/assets/graphic_design_assets/workflow_schematics_components/sarek/single_bam.svg)   <br> [PNG](/assets/graphic_design_assets/workflow_schematics_components/sarek/single_bam.png)   | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |]
+| <img title="Double BAM Icon" src="/assets/graphic_design_assets/workflow_schematics_components/sarek/double_bam.png" height="50">       | Multiple BAM File Icon   | [SVG](/assets/graphic_design_assets/workflow_schematics_components/sarek/double_bam.svg)   <br> [PNG](/assets/graphic_design_assets/workflow_schematics_components/sarek/double_bam.png)   | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |]
+| <img title="Multiple VCF Icon" src="/assets/graphic_design_assets/workflow_schematics_components/sarek/multiple_vcf.png" height="50">   | Multiple VCF File Icon | [SVG](/assets/graphic_design_assets/workflow_schematics_components/sarek/multiple_vcf.svg) <br> [PNG](/assets/graphic_design_assets/workflow_schematics_components/sarek/multiple_vcf.png) | [nf-core/sarek](https://nf-co.re/sarek); under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
