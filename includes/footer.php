@@ -88,6 +88,7 @@ if(isset($subfooter) and $subfooter){
               <li><a href="/developers/release_checklist">Release checklist</a></li>
               <li><a href="/errors">Lint error codes</a></li>
               <li><a href="/developers/sync">Template synchronisation</a></li>
+              <li><a href="/developers/design_guidelines">Design Guidelines</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
