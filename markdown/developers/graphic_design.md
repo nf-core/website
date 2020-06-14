@@ -6,13 +6,30 @@ subtitle: Templates, common images, and design-related content for nf-core.
 ## Introduction
 
 nf-core has a variety of recognisable images and other graphic designs for the community project.
-To help facilitate the identification of nf-core pipelines and related material, we provide here a variety of files that can be used for all nf-core-related content, e.g. pipeline logos, presentations, or workflow diagrams.
+To help facilitate the identification of nf-core pipelines and related material, we provide here a variety of files that can be used for all nf-core-related content, such as pipeline logos, presentations, or workflow diagrams.
 
 All files are released under various forms of 'open' licenses, meaning you can re-use and re-model as you see fit.
 
-## Logo, Font & Colours
+## Logo
 
-All information for the nf-core logo can be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos).
+All information for the nf-core logo can be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos) and are released under the MIT licence.
+
+| Type | Logo | Links |
+|----|----|----|
+| Main nf-core logo | <img src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-logo.png" width="300"> | [PNG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo.png) <br> [SVG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo.svg) <br> [Adobe Illustrator `.ai`](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo.ai) |
+| Dark backgrounds | <img class="bg-dark d-block p-2" src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-logo-darkbg.png" width="300"> | [PNG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-darkbg.png) <br> [SVG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-darkbg.svg) <br> [Adobe Illustrator `.ai`](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-darkbg.ai) |
+| Monochrome - dark background | <img class="bg-dark d-block p-2" src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-logo-mono-white.png" width="300"> | [PNG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-mono-white.png) <br> [SVG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-mono-white.svg) <br> [Adobe Illustrator `.ai`](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-mono-white.ai) |
+| Square | <img src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-logo-square.png" width="60"> | [PNG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-square.png) <br> [SVG](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-square.svg) <br> [Adobe Illustrator `.ai`](https://github.com/nf-core/logos/blob/master/nf-core-logos/nf-core-logo-square.ai) |
+
+See also the [Social preview template](https://github.com/nf-core/logos/blob/master/nf-core-logos/social_preview_image_template.svg).
+
+The `nf-core create` command will generate a logo for your pipeline automatically.
+However, you can also do this yourself by visiting [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where `pipelinename` can be anything.
+
+Please note that nf-core is a separate entity from Nextflow.
+You can find information about the Nextflow trademark with associated logo files at [https://github.com/nextflow-io/trademark](https://github.com/nextflow-io/trademark)
+
+## Font & Colours
 
 The font used in nf-core designs is _Maven Pro Bold (700)_, available at [Google Fonts](https://fonts.google.com/specimen/Maven+Pro), under the Open Font License.
 
