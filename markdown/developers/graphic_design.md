@@ -43,8 +43,8 @@ Original files can be seen on the respective pipeline GitHub repositories, which
 
 | Workflow Example   | nf-core Pipeline | License/Publication |
 |:------------------:|------------------|---------|
-| <img src="https://raw.githubusercontent.com/nf-core/sarek/master/docs/images/sarek_workflow.png" alt="nf-core/sarek workflow" width="30%"> | [sarek](https://nf-co.re/sarek) | From [Garcia _et al._ (2020, F1000 Research)](https://doi.org/10.12688/f1000research.16665.1) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
-| <img src="https://raw.githubusercontent.com/nf-core/eager/dev/docs/images/output/overview/eager2_workflow.png" alt="nf-core/eager workflow" width="70%"> | [eager](https://nf-co.re/eager) | From [Fellows Yates _et al._ (2020, bioRxiv)](https://doi.org/10.1101/2020.06.11.145615) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license |
+| <a href="https://raw.githubusercontent.com/nf-core/sarek/master/docs/images/sarek_workflow.png"><img src="https://raw.githubusercontent.com/nf-core/sarek/master/docs/images/sarek_workflow.png" alt="nf-core/sarek workflow" width="30%"></a> | [sarek](https://nf-co.re/sarek) | From [Garcia _et al._ (2020, F1000 Research)](https://doi.org/10.12688/f1000research.16665.1) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. |
+| <a href="https://raw.githubusercontent.com/nf-core/eager/dev/docs/images/output/overview/eager2_workflow.png"><img src="https://raw.githubusercontent.com/nf-core/eager/dev/docs/images/output/overview/eager2_workflow.png" alt="nf-core/eager workflow" width="70%"></a> | [eager](https://nf-co.re/eager) | From [Fellows Yates _et al._ (2020, bioRxiv)](https://doi.org/10.1101/2020.06.11.145615) under a [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license |
 
 ### Components
 
