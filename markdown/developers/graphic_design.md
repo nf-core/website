@@ -3,16 +3,18 @@ title: Graphic Design
 subtitle: Templates, common images, and design-related content for nf-core.
 ---
 
-nf-core has a variety of recognisable images and other graphic designs for the community project. To help facilitate the identification of nf-core pipelines and related material, we provide here a variety of files that can be used for all nf-core-related content, e.g. pipeline logos, presentations, or workflow diagrams.
+## Introduction
 
-All files are released under various forms of 'open' licenses (see each item), meaning you can re-use and re-model (sometimes with attribution) as you see fit.
+nf-core has a variety of recognisable images and other graphic designs for the community project.
+To help facilitate the identification of nf-core pipelines and related material, we provide here a variety of files that can be used for all nf-core-related content, e.g. pipeline logos, presentations, or workflow diagrams.
+
+All files are released under various forms of 'open' licenses, meaning you can re-use and re-model as you see fit.
 
 ## Logo, Font & Colours
 
 All information for the nf-core logo can be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos).
 
-The font(s) typically used in nf-core graphic design (particularly logos) is [Maven Pro](https://fonts.google.com/specimen/Maven+Pro), which is released under a Open Font License (see link for details).
-The exact variants of the fonts can also be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos).
+The font used in nf-core designs is _Maven Pro Bold (700)_, available at [Google Fonts](https://fonts.google.com/specimen/Maven+Pro), under the Open Font License.
 
 The nf-core green colour is as follows:
 
@@ -30,11 +32,14 @@ If you wish to introduce or run training sessions to your group or network, you 
 
 ## Workflow Schematics
 
+It is often useful to have simplified diagrams that outline the main functionality and steps of a pipeline.
+This helps new users get an overview of a workflow when visiting a pipeline webpage or repository for the first time.
+
 ### Examples
 
-It is often useful to have simplified diagrams that outline the main functionality and steps of a pipeline. We include here examples of different types from other pipelines that can be re-used and modified for your own.
+See below for some examples of nf-core workflow schematics that can be re-used and modified for your own pipeline.
 
-Original files can be seen on the respective pipeline GitHub repositories, which can be accessed via the corresponding links.
+Click the schematic image to see the original.
 
 | Workflow Example   | nf-core Pipeline | License/Publication |
 |:------------------:|------------------|---------|
@@ -43,7 +48,7 @@ Original files can be seen on the respective pipeline GitHub repositories, which
 
 ### Components
 
-Furthermore, there are some sub-components (such as icons) of the above example workflows made by members of the community, that are generally applicable to every pipeline. A couple of examples of these can be seen below, but are all accessible on the [nf-co.re website GitHub repository](https://github.com/nf-core/nf-co.re/assets/graphic_design/workflow_schematics/subcomponents), and can be re-used for your own graphics.
+Some components that may be useful are shown below:
 
 | Object | Description | Link | Source |
 |:------:|-------------|------|----------|
