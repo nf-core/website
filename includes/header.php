@@ -120,6 +120,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/developers/release_checklist">Release checklist</a>
               <a class="dropdown-item" href="/errors">Lint error codes</a>
               <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
+              <a class="dropdown-item" href="/developers/design_guidelines">Design Guidelines</a>
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
