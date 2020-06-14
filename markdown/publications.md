@@ -60,7 +60,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/eager](https://nf-co.re/eager)
 
 <!-- pub-stats 10.1101/2020.06.11.145615v1 -->
-> **Reproducible, portable, and effcient ancient genome reconstruction with nf-core/eager**
+> **Reproducible, portable, and efficient ancient genome reconstruction with nf-core/eager**
 >
 > James A. Fellow Yates, Thiseas Christos Lamnidis, Maxime Borry, Aida Andrades Valtueña, Zandra Fagernäs, Stephen Clayton, Maxime U. Garcia, Judith Neukamm, Alexander Peltzer
 >
