@@ -1,5 +1,5 @@
 ---
-title: Graphic Design
+title: Design Guidelines
 subtitle: Templates, common images, and design-related content for nf-core.
 ---
 
