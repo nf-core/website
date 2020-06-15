@@ -1,0 +1,25 @@
+name: Lint YAML
+on:
+  push:
+    paths: **.{yml,yaml}
+  pull_request:
+    paths: **.{yml,yaml}
+
+jobs:
+  test_yaml:
+    name: Test YAML syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v1
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+
+      - name: Install yaml-lint
+        run: npm install -g yaml-lint
+
+      - name: Run yaml-lint
+        run: yamllint $(find ${GITHUB_WORKSPACE} -type f -name "*.yml")
