@@ -178,8 +178,8 @@ $(function(){
 </h3>
 <p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
 has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
-large-scale genomics data. Contributors from the Kiel and Tübingen sites are already actively contributing to nf-core, and the other sequencing centers
-in Cologne/Bonn (West German Genome Center) and the Dresden Center have committed to joining and contributing their expertise.</p>
+large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden sites are already actively contributing to nf-core, and the other sequencing center
+in Cologne/Bonn (West German Genome Center) has committed to joining and contributing its expertise.</p>
 
 <h3 id="easi_genomics_testimonial"><a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="350px" src="/assets/img/contributors-colour/EASI-Genomics.svg" class="float-right pl-4" />
