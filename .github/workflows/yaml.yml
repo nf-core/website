@@ -1,9 +1,9 @@
 name: Lint YAML
 on:
   push:
-    paths: **.{yml,yaml}
+    paths: '**.ya?ml'
   pull_request:
-    paths: **.{yml,yaml}
+    paths: '**.ya?ml'
 
 jobs:
   test_yaml:
