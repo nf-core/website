@@ -7,8 +7,8 @@
 var schema = '';
 var new_param_idx = 1;
 var new_group_idx = 1;
-var help_text_icon_template = '<i class="fas fa-comment-slash help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
-var no_help_text_icon = '<i class="fas fa-comment-dots help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
+var help_text_icon_template = '<i class="fas fa-book help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
+var no_help_text_icon = '<i class="fas fa-book help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
 var prev_focus = false;
 
 $(function () {
@@ -895,7 +895,7 @@ function generate_param_row(id, param){
         is_hidden = true;
     }
 
-    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
+    var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
     if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
@@ -980,7 +980,7 @@ function generate_group_row(id, param, child_params){
         child_params = '';
     }
 
-    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
+    var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
     if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
