@@ -371,8 +371,13 @@ hr {
   color: #ddd;
 }
 .param_fa_icon_missing, .help_text_icon.help_text_icon_no_text {
-  color: #999;
+  color: #616161;
 }
+.param_fa_icon:hover .param_fa_icon_missing,
+.schema_row_help_text_icon:hover .help_text_icon.help_text_icon_no_text {
+  color: #ddd;
+}
+
 .popover,
 .popover-header,
 .popover-body{
