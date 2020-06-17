@@ -41,14 +41,17 @@ include('../includes/header.php');
       <div class="container">
         <div class="row">
           <div class="col-md-4 py-3 py-md-5 px-md-4">
+            <i class="fad fa-industry-alt fa-3x mb-2"></i>
             <h3 class="display-5 text-white">For facilities</h3>
             <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
           </div>
           <div class="col-md-4 py-3 py-md-5 px-md-4">
+            <i class="fad fa-users fa-3x mb-2"></i>
             <h3 class="display-5 text-white">For users</h3>
             <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
           </div>
           <div class="col-md-4 py-3 py-md-5 px-md-4">
+            <i class="fad fa-laptop-code fa-3x mb-2"></i>
             <h3 class="display-5 text-white">For developers</h3>
             <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
           </div>
@@ -197,17 +200,17 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>See what's available</h3>
           <p>Check out the available pipelines to see if we have what you need. Each comes with release details, keywords and a description.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span>Available pipelines</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span><i class="fas fa-toolbox mr-1"></i> Available pipelines</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
           <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"><span>Quickstart Tutorial</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"><span><i class="fad fa-graduation-cap mr-1"></i> Quickstart Tutorial</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Get into the code</h3>
           <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span>Developer docs</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span><i class="fad fa-code mr-1"></i> Developer docs</span></a>
         </div>
       </div>
     </div>
