@@ -200,7 +200,7 @@ nf-core list
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>See what's available</h3>
           <p>Check out the available pipelines to see if we have what you need. Each comes with release details, keywords and a description.</p>
-          <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span><i class="fad fa-toolbox mr-1"></i> Available pipelines</span></a>
+          <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span><i class="fas fa-toolbox mr-1"></i> Available pipelines</span></a>
         </div>
         <div class="col-md-4 px-md-5 mb-5 mb-md-0">
           <h3>Run a pipeline</h3>
