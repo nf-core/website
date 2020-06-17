@@ -29,7 +29,21 @@ Please request to join the [nf-core GitHub organisation](https://github.com/nf-c
 and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
 [mailing list](https://groups.google.com/forum/#!forum/nf-core).
 
-It's good to introduce your idea early on so that it can be discussed before you spend lots of time coding.
+**It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.**
+
+The [nf-core guidelines](/developers/guidelines) state that no two pipelines should overlap too much
+in their purpose and results. There may be an existing pipeline that can be extended to give the
+functionality that you are looking for, or there could be another group working on a similar to the
+pipeline to the one you're planning.
+
+To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
+as possible. Ideally before you make a start on your pipeline!
+
+All nf-core discussion happens on the nf-core Slack, which you can join here:
+[https://nf-co.re/join](https://nf-co.re/join)
+
+These topics are specifically discussed in the `#new-pipelines` channel:
+[https://nfcore.slack.com/channels/new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
 ## Create a pipeline from the template
 
