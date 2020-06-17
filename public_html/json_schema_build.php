@@ -151,42 +151,50 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
 <div class="row">
     <div class="col"><hr></div>
-    <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>read more</small></a></div>
+    <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>click here to read more</small></a></div>
     <div class="col"><hr></div>
 </div>
 <div class="collapse" id="page_help">
+    <h5>nf-core schema</h5>
+
     <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> standard,
     with a couple of extra assumptions:</p>
     <ul>
-        <li>The top-level schema is an <code>object</code>, where each of the <code>properties</code> are a pipeline parameter</li>
-        <li>Beyond this, only groups one-<code>object</code> deep are used (groups or no groups are fine, but no nested groups)</li>
+        <li>The top-level schema is an <code>object</code>, where each of the <code>properties</code> are a pipeline parameter or group of parameters</li>
+        <li>Only groups one-<code>object</code> deep are allowed (groups or no groups are fine, but no nested groups)</li>
+        <li>Before use in validation, all groups are flattened. As such, no duplicate keys are allowed across groups.</li>
     </ul>
-    <p>We also use a couple of extra standard flags:</p>
+    <p>We also use a couple of extra JSON keys:</p>
     <ul>
         <li><code>help_text</code>, a longer description providing more in-depth help. Typically <code>description</code> is just a few words long and the longer help text is shown when a user requests it.</li>
         <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
-    <hr>
-</div>
 
-<h5>Tips:</h5>
-<ul>
-    <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
-    <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
-    <li>The <i class="fas fa-comment-slash help_text_icon"></i> / <i class="fas fa-comment-dots help_text_icon"></i> icons
-        show whether help text has been written. To add, click on it.</li>
-    <li>Be a power user with keyboard shortcuts!
-        <ul class="small">
-            <li>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.</li>
-            <li>Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.</li>
-            <li><code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.</li>
-            <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">,</code> opens the settings panel.</li>
-            <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">&uarr;</code> moves the row up.</li>
-            <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">&darr;</code> moves the row down.</li>
-        </ul>
-    </li>
-</ul>
+    <h5>Tips:</h5>
+    <ul>
+        <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
+        <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
+        <li>The <i class="fas fa-icons"></i> allows you to set a custom icon for the parameter or group.</li>
+        <li>The <i class="fas fa-book help_text_icon"></i> icon shows whether help text has been written. To add, click on it.</li>
+        <li>Be a power user with keyboard shortcuts!
+            <ul class="small">
+                <li>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.</li>
+                <li>Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.</li>
+                <li><code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.</li>
+                <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">,</code> opens the settings panel.</li>
+                <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">&uarr;</code> moves the row up.</li>
+                <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">&darr;</code> moves the row down.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col"><hr></div>
+        <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>hide read-more text</small></a></div>
+        <div class="col"><hr></div>
+    </div>
+</div>
 
 <?php if(!$schema_cache){ ?>
 
