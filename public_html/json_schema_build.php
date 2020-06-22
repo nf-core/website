@@ -179,7 +179,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <li>The <i class="fas fa-book help_text_icon"></i> icon shows whether help text has been written. To add, click on it.</li>
         <li>Be a power user with keyboard shortcuts!
             <ul class="small">
-                <li>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Tab</code>+<code class="border shadow-sm">Enter</code> to go up and down.</li>
+                <li>Use <code class="border shadow-sm">Enter</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Enter</code> to go up and down.</li>
                 <li>Use <code class="border shadow-sm">Tab</code> and <code class="border shadow-sm">Shift</code>+<code class="border shadow-sm">Tab</code> to go right and left.</li>
                 <li><code class="border shadow-sm">Space</code> toggles checkboxes and opens dropdown boxes.</li>
                 <li><code class="border shadow-sm">ctrl</code>+<code class="border shadow-sm">shift</code>+<code class="border shadow-sm">,</code> opens the settings panel.</li>
