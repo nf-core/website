@@ -198,6 +198,18 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
 <?php if(!$schema_cache){ ?>
 
+<h3>Load Schema</h3>
+
+<p>If you previously ran <code>nf-core schema build</code> and forgot to save, you can resume editing by entering the build ID below:</p>
+<form method="get" action="" class="form-inline mb-2">
+    <input type="text" class="form-control mr-2" name="id" placeholder="Build ID">
+    <button type="submit" class="btn btn-primary">Load</button>
+</form>
+
+<p>Note that if you did save and want to continue editing, just run <code>nf-core schema build</code> in your workflow again.</p>
+
+<h3>New Schema</h3>
+
 <p>Typically this page is launched automatically and prefilled by the <code>nf-core schema build</code> command
 (see the <a href="/tools">Tools</a> page for more information), however you can also paste in a JSON Schema below.</p>
 
