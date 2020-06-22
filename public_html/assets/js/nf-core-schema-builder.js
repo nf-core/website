@@ -275,9 +275,11 @@ $(function () {
 
                     id = new_id;
                     row.data('id', id);
+                    row.attr('data-id', id); // Update DOM as well so that selectors work
                     if(row.hasClass('schema_group_row')){
                         var group = row.closest('.schema_group');
                         group.data('id', id);
+                        group.attr('data-id', id); // Update DOM as well so that selectors work
                         group.find('.card-body').data('id', id);
                     }
                 }
