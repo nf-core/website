@@ -55,7 +55,7 @@ $(function () {
 
         // Listener for when the popover is triggered
         // Needs selector class instead of root class.
-        $('.param_fa_icon').on('show.bs.popover', function () {
+        $('body').on('show.bs.popover', '.param_fa_icon', function () {
             // Only show one popover at a time
             $('.param_fa_icon').popover('hide');
             // Reset the selected icon button classes
@@ -63,7 +63,7 @@ $(function () {
         });
 
         // Focus the search bar when triggered
-        $('.param_fa_icon').on('shown.bs.popover', function () {
+        $('body').on('shown.bs.popover', '.param_fa_icon', function () {
             var row = $(this).closest('.schema_row');
             var id = row.data('id');
             var param = find_param_in_schema(id);
@@ -539,8 +539,20 @@ $(function () {
         // Populate the help text modal
         var id = $(this).closest('.schema_row').data('id');
         var param = find_param_in_schema(id);
-        $('#help_text_modal .modal-title').html('params.<span>'+id+'</span>');
-        $('.helptext-preview-title').text('--'+id);
+        var modal_header = 'params.<span>'+id+'</span>';
+        var preview_cli_title = '--'+id;
+        var preview_web_title = '<code>--'+id+'</code>';
+        if(param['type'] == 'object'){
+            modal_header = '<span>'+id+'</span>';
+            preview_cli_title = '== '+id+' ==';
+            preview_web_title = id;
+        }
+        if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){
+            preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
+        }
+        $('#help_text_modal .modal-title').html(modal_header);
+        $('.helptext-cli-preview-title').html(preview_cli_title);
+        $('.helptext-web-preview-title').html(preview_web_title);
         if(param.description == undefined){
             param.description = '';
         }
@@ -626,10 +638,13 @@ $(function () {
 
         // Build modal
         var modal_header = 'params.<span>'+id+'</span>';
+        var delete_btn_txt = 'Delete parameter';
         if(param['type'] == 'object'){
             modal_header = '<span>'+id+'</span>';
+            delete_btn_txt = 'Delete group';
         }
         $('#settings_modal .modal-title').html(modal_header);
+        $('#settings_delete span').html(delete_btn_txt);
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
         $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
