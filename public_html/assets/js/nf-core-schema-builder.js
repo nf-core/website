@@ -539,8 +539,17 @@ $(function () {
         // Populate the help text modal
         var id = $(this).closest('.schema_row').data('id');
         var param = find_param_in_schema(id);
-        $('#help_text_modal .modal-title').html('params.<span>'+id+'</span>');
-        $('.helptext-preview-title').text('--'+id);
+        var modal_header = 'params.<span>'+id+'</span>';
+        var preview_cli_title = '--'+id;
+        var preview_web_title = '<code>--'+id+'</code>';
+        if(param['type'] == 'object'){
+            modal_header = '<span>'+id+'</span>';
+            preview_cli_title = '== '+id+' ==';
+            preview_web_title = id;
+        }
+        $('#help_text_modal .modal-title').html(modal_header);
+        $('.helptext-cli-preview-title').html(preview_cli_title);
+        $('.helptext-web-preview-title').html(preview_web_title);
         if(param.description == undefined){
             param.description = '';
         }
