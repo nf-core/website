@@ -626,10 +626,13 @@ $(function () {
 
         // Build modal
         var modal_header = 'params.<span>'+id+'</span>';
+        var delete_btn_txt = 'Delete parameter';
         if(param['type'] == 'object'){
             modal_header = '<span>'+id+'</span>';
+            delete_btn_txt = 'Delete group';
         }
         $('#settings_modal .modal-title').html(modal_header);
+        $('#settings_delete span').html(delete_btn_txt);
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
         $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 

@@ -335,7 +335,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 </div>
                 <div class="modal-footer">
                     <div class="col-auto pl-0">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> Delete parameter</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> <span>Delete parameter</span></button>
                     </div>
                     <div class="col text-right pr-0">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
