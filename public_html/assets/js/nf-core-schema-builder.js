@@ -547,6 +547,9 @@ $(function () {
             preview_cli_title = '== '+id+' ==';
             preview_web_title = id;
         }
+        if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){
+            preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
+        }
         $('#help_text_modal .modal-title').html(modal_header);
         $('.helptext-cli-preview-title').html(preview_cli_title);
         $('.helptext-web-preview-title').html(preview_web_title);
