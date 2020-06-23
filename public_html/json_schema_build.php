@@ -335,7 +335,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 </div>
                 <div class="modal-footer">
                     <div class="col-auto pl-0">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> Delete parameter</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal" id="settings_delete"><i class="fas fa-trash-alt mr-1"></i> <span>Delete parameter</span></button>
                     </div>
                     <div class="col text-right pr-0">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -358,7 +358,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 </div>
                 <div class="modal-body">
                     <label for="help_text_input">
-                        Parameter help text is used for generating documentation and shown on demand for the command-line and web launch tools.
+                        Help text is used for generating documentation and is shown on demand for the command-line and web launch tools.
                     </label>
                     <div class="card">
                         <div class="card-header">
@@ -369,24 +369,24 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                         </div>
                         <div class="card-body tab-content">
                             <div class="tab-pane fade show active" id="tab-helptext" role="tabpanel">
-                                <div class="form-group help_text_modal_group">
+                                <div class="form-group help_text_modal_group mb-0">
                                     <textarea class="form-control" id="help_text_input" rows="5"></textarea>
-                                    <small class="form-text text-muted">
-                                        You can use <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">markdown</a>,
-                                        but remember that this will be shown raw on the command line. So no tables please!
+                                    <small class="form-text text-muted mt-2">
+                                        <i class="fab fa-markdown"></i> <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> is supported,
+                                        but this will be shown raw on the command line so please keep it simple.
                                     </small>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab-helptext-preview" role="tabpanel">
                                 <p>Command-line:</p>
-                                <pre><span class="helptext-preview-title"></span>
+                                <pre><span class="helptext-cli-preview-title"></span>
 <span class="helptext-preview-description"></span>
 
 <span class="helptext-preview-helptext text-muted"></span></pre>
                                 <p>Website:</p>
                                 <div class="card helptext-html-preview">
                                     <div class="card-body">
-                                        <h4 class="mt-0 pt-0"><code class="helptext-preview-title"></code></h4>
+                                        <h4 class="mt-0 pt-0 helptext-web-preview-title"></h4>
                                         <p class="lead helptext-preview-description"></p>
                                         <div class="helptext-preview-helptext"></div>
                                     </div>
