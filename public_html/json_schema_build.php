@@ -372,7 +372,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                                 <div class="form-group help_text_modal_group mb-0">
                                     <textarea class="form-control" id="help_text_input" rows="5"></textarea>
                                     <small class="form-text text-muted mt-2">
-                                        <i class="fab fa-markdown"></i> <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> supported,
+                                        <i class="fab fa-markdown"></i> <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown</a> is supported,
                                         but this will be shown raw on the command line so please keep it simple.
                                     </small>
                                 </div>
