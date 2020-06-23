@@ -55,7 +55,7 @@ $(function () {
 
         // Listener for when the popover is triggered
         // Needs selector class instead of root class.
-        $('.param_fa_icon').on('show.bs.popover', function () {
+        $('body').on('show.bs.popover', '.param_fa_icon', function () {
             // Only show one popover at a time
             $('.param_fa_icon').popover('hide');
             // Reset the selected icon button classes
@@ -63,7 +63,7 @@ $(function () {
         });
 
         // Focus the search bar when triggered
-        $('.param_fa_icon').on('shown.bs.popover', function () {
+        $('body').on('shown.bs.popover', '.param_fa_icon', function () {
             var row = $(this).closest('.schema_row');
             var id = row.data('id');
             var param = find_param_in_schema(id);
