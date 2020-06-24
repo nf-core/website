@@ -489,10 +489,27 @@ $(function () {
             delete new_schema['required'];
         }
         for(k in new_schema['properties']){
+            // Remove empty required arrays at group level
             if(new_schema['properties'][k].hasOwnProperty('required')){
                 if(new_schema['properties'][k]['required'].length == 0){
                     delete new_schema['properties'][k]['required'];
                 }
+            }
+            // Set group hidden flag
+            if(new_schema['properties'][k].hasOwnProperty('properties')){
+                var is_group_hidden = true;
+                var num_children = 0;
+                for (child_param_id in new_schema['properties'][k]['properties']){
+                    var child_param = new_schema['properties'][k]['properties'][child_param_id];
+                    if(!child_param['hidden']){
+                        is_group_hidden = false;
+                    }
+                    num_children += 1;
+                }
+                if(num_children == 0){
+                    is_group_hidden = false;
+                }
+                $('.schema_row[data-id="'+k+'"] .param_hidden').prop('checked', is_group_hidden);
             }
         }
 
