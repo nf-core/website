@@ -1047,10 +1047,15 @@ function generate_group_row(id, param, child_params){
     }
 
     var is_hidden = true;
+    var num_children = 0;
     for (child_param in param['properties']){
         if(!param['properties'][child_param]['hidden']){
             is_hidden = false;
         }
+        num_children += 1;
+    }
+    if(num_children == 0){
+        is_hidden = false;
     }
 
     var results = `
