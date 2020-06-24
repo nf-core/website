@@ -1000,12 +1000,12 @@ function generate_param_row(id, param){
             <label>Default `+default_input+`</label>
         </div>
         <div class="col-auto">
-            <label>R<span class="d-none d-lg-inline">equired</span>
+            <label class="text-center">R<span class="d-none d-lg-inline">equired</span>
                 <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+` class="param_required">
             </label>
         </div>
         <div class="col-auto">
-            <label>H<span class="d-none d-lg-inline">ide</span>
+            <label class="text-center">H<span class="d-none d-lg-inline">ide</span>
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
             </label>
         </div>
@@ -1078,7 +1078,7 @@ function generate_group_row(id, param, child_params){
                     </label>
                 </div>
                 <div class="col-auto">
-                    <label>H<span class="d-none d-lg-inline">ide</span>
+                    <label class="text-center">H<span class="d-none d-lg-inline">ide</span>
                         <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
                     </label>
                 </div>
