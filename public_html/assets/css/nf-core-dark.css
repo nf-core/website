@@ -79,6 +79,10 @@ blockquote {
   border-color: #36646e;
   color: #ade4f1;
 }
+.alert-secondary{
+  background-color: #616161;
+  border-color: #616161;
+}
 .badge-light {
   color: rgb(218, 215, 210);
   background-color: rgb(26, 28, 29);
@@ -316,11 +320,12 @@ hr {
   border-color: #2b4764;
 }
 .btn-outline-primary{
-  border-color: #2b4764;
+  border-color: #2C5886;
+  color: #2C5886;
 }
 .schema_row, .schema_row input, .schema_row select, .param_fa_icon {
   background-color: #333;
-  color: #ddd;
+  color: #ededed;
 }
 .schema_row div:hover,
 .schema_row div:hover input,
@@ -354,21 +359,24 @@ hr {
 .schema_row > button:focus {
   background-color: #616161;
 }
+.schema_group {
+  box-shadow: 2px 2px 5px rgb(0, 0, 0,0.75);
+}
 .schema_row_grabber i, .schema_row_config i, .schema_group_collapse i {
   color: #999;
 }
 .schema_row_grabber:hover i, .schema_row_config:hover i, .schema_group_collapse:hover i {
-  color: #ddd;
+  color: #ededed;
 }
 .help_text_icon{
-  color: #ddd;
+  color: #ededed;
 }
 .param_fa_icon_missing, .help_text_icon.help_text_icon_no_text {
   color: #616161;
 }
 .param_fa_icon:hover .param_fa_icon_missing,
 .schema_row_help_text_icon:hover .help_text_icon.help_text_icon_no_text {
-  color: #ddd;
+  color: #ededed;
 }
 
 .popover,
