@@ -212,6 +212,75 @@ $(function () {
         $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
     });
 
+    // Preview docs button
+    $('.preview-docs-btn').click(function(e){
+        var preview = '';
+        for(k in schema['properties']){
+            // Simple top-level params
+            var preview_wrapper_start = '';
+            var preview_wrapper_end = '';
+            var this_preview = make_param_html_docs_preview(k, schema['properties'][k]);
+
+            // Groups
+            if(schema['properties'][k].hasOwnProperty('properties')){
+                preview_wrapper_start = '<div class="help-preview-group">';
+                preview_wrapper_end = '</div>';
+                var is_group_hidden = true;
+                var num_children = 0;
+                for(j in schema['properties'][k]['properties']){
+                    this_preview += make_param_html_docs_preview(j, schema['properties'][k]['properties'][j]);
+                    if(!schema['properties'][k]['properties'][j]['hidden']){
+                        is_group_hidden = false;
+                    }
+                    num_children += 1;
+                }
+                if(num_children == 0){
+                    is_group_hidden = false;
+                }
+                if(is_group_hidden){
+                    preview_wrapper_start = '<div class="help-preview-group help-preview-param-hidden">';
+                }
+            }
+
+            // Add to the preview
+            preview += preview_wrapper_start + this_preview + preview_wrapper_end;
+        }
+        $('#preview_docs_modal .modal-body').html(preview);
+        $('#preview_docs_modal').modal('show');
+    });
+    function make_param_html_docs_preview(param_id, param){
+        // Header text and icon
+        var hidden_class = param['hidden'] ? 'help-preview-param-hidden' : '';
+        var preview = '<div class="help-preview-param '+hidden_class+'">';
+        var fa_icon = '';
+        if(param['type'] == 'object'){
+            if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){ fa_icon = '<i class="'+param['fa_icon']+' mr-3"></i> '; }
+            preview += '<h2>'+fa_icon+param_id+'</h2>';
+        } else {
+            if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){ fa_icon = '<i class="'+param['fa_icon']+' ml-3"></i> '; }
+            preview += '<h4 class="text-secondary"><code>--'+param_id+'</code>'+fa_icon+'</h4>';
+        }
+        if(param['description'] !== undefined){
+            preview += '<p class="lead">'+param['description']+'</p>';
+        }
+        if(param['help_text'] !== undefined){
+            var md_converter = new showdown.Converter();
+            var help_text_html = md_converter.makeHtml( param['help_text'] );
+            preview += help_text_html;
+        }
+        preview += '</div>';
+        return preview;
+    }
+
+    // Preview docs - show / hiden hidden params
+    $('#preview_help_show_hidden').on('change', function(){
+        if($(this).is(':checked')){
+            $('.help-preview-param-hidden').slideDown('fast');
+        } else {
+            $('.help-preview-param-hidden').slideUp('fast');
+        }
+    });
+
     //
     // FINISHED button
     //

@@ -961,3 +961,26 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 #json_schema {
   font-size: 0.7rem;
 }
+
+.help-preview-group {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  margin: 3rem 0;
+}
+.help-preview-group h2, .help-preview-group h4 {
+  padding-top: 0;
+  margin-top: 0;
+}
+.help-preview-group:first-child {
+  margin-top: 1rem;
+}
+.help-preview-group:last-child{
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.help-preview-param {
+  margin-bottom: 1.5rem;
+}
+.help-preview-param-hidden {
+  display: none;
+}
