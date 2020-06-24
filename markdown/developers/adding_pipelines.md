@@ -203,13 +203,9 @@ will automatically update to list your new pipeline.
 
 All nf-core pipelines use branches called `dev` and `master`.
 The `master` branch should contain the code from the latest stable release, `dev` should have the latest development code.
-Before the first release is made we set `dev` as the default repository branch instead of `master`;
-this means that the latest code runs by default up until the first release.
-After the first release we switch the default back to `master`.
-
 We want people to run the latest development code by default up until the first release.
 To do this, we set `dev` as the default repository branch.
-After a release is created, we set the default branch back to `master` so that the default
+After an initial release is created, we set the default branch back to `master` so that the default
 action is to run the latest stable release code.
 
 Once you have forked the repository, create a new branch called `dev` for the active development.
