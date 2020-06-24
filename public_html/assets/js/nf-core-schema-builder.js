@@ -550,8 +550,9 @@ $(function () {
                 if(!is_hidden){
                     is_group_hidden = false;
                 } else {
-                    for (child_param_id in param['properties']){
-                        if(!param['properties'][child_param_id]['hidden']){
+                    for (child_param_id in parent_group[1]['properties']){
+                        var child_param = parent_group[1]['properties'][child_param_id];
+                        if(!child_param['hidden']){
                             is_group_hidden = false;
                         }
                     }
