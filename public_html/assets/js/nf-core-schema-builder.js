@@ -575,10 +575,27 @@ $(function () {
             delete new_schema['required'];
         }
         for(k in new_schema['properties']){
+            // Remove empty required arrays at group level
             if(new_schema['properties'][k].hasOwnProperty('required')){
                 if(new_schema['properties'][k]['required'].length == 0){
                     delete new_schema['properties'][k]['required'];
                 }
+            }
+            // Set group hidden flag
+            if(new_schema['properties'][k].hasOwnProperty('properties')){
+                var is_group_hidden = true;
+                var num_children = 0;
+                for (child_param_id in new_schema['properties'][k]['properties']){
+                    var child_param = new_schema['properties'][k]['properties'][child_param_id];
+                    if(!child_param['hidden']){
+                        is_group_hidden = false;
+                    }
+                    num_children += 1;
+                }
+                if(num_children == 0){
+                    is_group_hidden = false;
+                }
+                $('.schema_row[data-id="'+k+'"] .param_hidden').prop('checked', is_group_hidden);
             }
         }
 
@@ -601,16 +618,51 @@ $(function () {
     //
     $('#schema-builder').on('change', 'input.param_hidden', function(){
         var id = $(this).closest('.schema_row').data('id');
-        var is_required = $(this).is(':checked');
-
-        // Find and update param
+        var is_hidden = $(this).is(':checked');
         var param = find_param_in_schema(id);
-        if(is_required){
-            param['hidden'] = true;
-        } else {
-            delete param['hidden'];
+
+        // Group
+        if(param['type'] == 'object'){
+            for(child_param_id in param['properties']){
+                var child_param = param['properties'][child_param_id];
+                if(is_hidden){
+                    child_param['hidden'] = true;
+                    $('.schema_row[data-id="'+child_param_id+'"] .param_hidden').prop('checked', true);
+                } else {
+                    delete child_param['hidden'];
+                    $('.schema_row[data-id="'+child_param_id+'"] .param_hidden').prop('checked', false);
+                }
+                update_param_in_schema(child_param_id, child_param);
+            }
         }
-        update_param_in_schema(id, param);
+
+        // Single param
+        else {
+            // Find and update param
+            if(is_hidden){
+                param['hidden'] = true;
+            } else {
+                delete param['hidden'];
+            }
+            update_param_in_schema(id, param);
+
+            // Check that group hidden needs to be checked or not
+            var parent_group = find_param_group(id);
+            if(parent_group !== false){
+                var is_group_hidden = true;
+                if(!is_hidden){
+                    is_group_hidden = false;
+                } else {
+                    for (child_param_id in parent_group[1]['properties']){
+                        var child_param = parent_group[1]['properties'][child_param_id];
+                        if(!child_param['hidden']){
+                            is_group_hidden = false;
+                        }
+                    }
+                }
+                $('.schema_row[data-id="'+parent_group[0]+'"] .param_hidden').prop('checked', is_group_hidden);
+            }
+        }
 
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
@@ -1051,18 +1103,14 @@ function generate_param_row(id, param){
             <label>Default `+default_input+`</label>
         </div>
         <div class="col-auto">
-            `+(param['type'] == 'object' ? '' : `
-            <label>R<span class="d-none d-lg-inline">equired</span>
-                <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+`" class="param_required">
+            <label class="text-center">R<span class="d-none d-lg-inline">equired</span>
+                <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+` class="param_required">
             </label>
-            `)+`
         </div>
         <div class="col-auto">
-            `+(param['type'] == 'object' ? '' : `
-            <label>H<span class="d-none d-lg-inline">idden</span>
-                <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+`" class="param_hidden">
+            <label class="text-center">H<span class="d-none d-lg-inline">ide</span>
+                <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
             </label>
-            `)+`
         </div>
         <div class="col-auto align-self-center schema_row_config border-left">
             <i class="fas fa-cog"></i>
@@ -1101,6 +1149,18 @@ function generate_group_row(id, param, child_params){
         help_text_icon = no_help_text_icon;
     }
 
+    var is_hidden = true;
+    var num_children = 0;
+    for (child_param in param['properties']){
+        if(!param['properties'][child_param]['hidden']){
+            is_hidden = false;
+        }
+        num_children += 1;
+    }
+    if(num_children == 0){
+        is_hidden = false;
+    }
+
     var results = `
     <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
@@ -1114,10 +1174,20 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="text-monospace param_id" value="`+id+`">
                     </label>
                 </div>
-                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
                 <div class="col">
                     <label>Description
                         <input type="text" class="param_key" data-param_key="description" value="`+description+`">
+                    </label>
+                </div>
+                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+                <div class="col-auto d-none d-lg-block">
+                    <label>Type
+                        <input type="text" disabled="disabled" value="Group">
+                    </label>
+                </div>
+                <div class="col-auto">
+                    <label class="text-center">H<span class="d-none d-lg-inline">ide</span>
+                        <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
                     </label>
                 </div>
                 <div class="col-auto align-self-center schema_row_config border-left">
@@ -1320,6 +1390,28 @@ function find_param_in_schema(id){
         if(schema['properties'][k].hasOwnProperty('properties')){
             if(schema['properties'][k]['properties'].hasOwnProperty(id)){
                 return schema['properties'][k]['properties'][id];
+            }
+        }
+    }
+
+    console.warn("Could not find param '"+id+"'");
+}
+
+function find_param_group(id){
+    // Given an ID, return the object group that the param is in.
+    // If not in a group, return False
+
+    // Simple case - not in a group
+    if(schema['properties'].hasOwnProperty(id)){
+        return false;
+    }
+
+    // Iterate through groups, looking for ID
+    for(k in schema['properties']){
+        // Check if group
+        if(schema['properties'][k].hasOwnProperty('properties')){
+            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
+                return [k, schema['properties'][k]];
             }
         }
     }
