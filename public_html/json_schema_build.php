@@ -244,16 +244,19 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
-            <div class="col-8 col-lg-4">
-                <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square mr-1"></i> Parameter</button>
-                <button class="btn btn-outline-secondary add-group-btn"><i class="fas fa-folder-plus mr-1"></i> Group</button>
-            </div>
-            <div class="col-lg-4 d-none d-lg-block">
-                <button class="btn btn-block btn-light schema-panel-btn" data-target="#schema-builder">
-                    nf-core schema builder
-                </button>
+            <div class="col">
+                <div class="btn-group mr-3" role="group">
+                    <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square mr-1"></i> Add parameter</button>
+                    <button class="btn btn-outline-secondary add-group-btn"><i class="fas fa-folder-plus mr-1"></i> Add group</button>
+                </div>
+                <div class="btn-group mr-3" role="group">
+                    <button class="btn btn-outline-secondary collapse-groups-btn"><i class="fas fa-folder mr-1"></i> Collapse groups</button>
+                    <button class="btn btn-outline-secondary expand-groups-btn"><i class="fas fa-folder-open mr-1"></i> Expand groups</button>
+                </div>
+                <button class="btn btn-outline-secondary to-top-btn schema-panel-btn" data-target="#schema-builder"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</button>
             </div>
             <div class="col-4 text-right">
+                <button class="btn btn-outline-primary preview-docs-btn mr-1"><i class="fas fa-book mr-1"></i> Preview docs</button>
                 <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished"><i class="fas fa-check-square mr-1"></i> Finished</button>
             </div>
         </div>
@@ -267,9 +270,13 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     it should now update with your new schema. You can close this window.</p>
                 <p>If you didn't use <code>nf-core schema build</code> or it has already exited,
                     copy the schema below and paste it in to your pipeline's <code>nextflow_schema.json</code> file.</p>
-                <button class="btn btn-block btn-outline-secondary copy-schema-btn m-auto">
+                <p>Remember that you can run <code>nf-core schema build</code> as many times as you like to make incremental updates.</p>
+                <p class="text-center"><button class="btn btn-outline-secondary copy-schema-btn">
                     <i class="far fa-copy mr-2"></i> Copy pipeline schema
-                </button>
+                </button><p>
+                <p class="text-center"><button class="btn btn-outline-secondary back-to-editor-btn schema-panel-btn" data-target="#schema-builder">
+                    <i class="fas fa-brackets-curly mr-2"></i> Back to editor
+                </button></p>
             </div>
         </div>
     </div>
@@ -400,6 +407,30 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="help_text_save">Save</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview docs modal -->
+    <div class="modal fade" id="preview_docs_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Pipeline options documentation preview</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <div class="col">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="preview_help_show_hidden">
+                            <label class="custom-control-label" for="preview_help_show_hidden">Show hidden params</label>
+                        </div>
+                    </div>
+                    <div class="col text-right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
                 </div>
             </div>
         </div>
