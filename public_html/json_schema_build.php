@@ -252,6 +252,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 <button class="btn btn-outline-secondary to-top-btn schema-panel-btn" data-target="#schema-builder"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</button>
             </div>
             <div class="col-4 text-right">
+                <button class="btn btn-outline-primary preview-docs-btn mr-1"><i class="fas fa-book mr-1"></i> Preview docs</button>
                 <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished"><i class="fas fa-check-square mr-1"></i> Finished</button>
             </div>
         </div>
@@ -402,6 +403,30 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="help_text_save">Save</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview docs modal -->
+    <div class="modal fade" id="preview_docs_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Pipeline options documentation preview</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <div class="col">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="preview_help_show_hidden">
+                            <label class="custom-control-label" for="preview_help_show_hidden">Show hidden params</label>
+                        </div>
+                    </div>
+                    <div class="col text-right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
                 </div>
             </div>
         </div>
