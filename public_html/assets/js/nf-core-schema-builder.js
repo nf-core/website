@@ -200,6 +200,18 @@ $(function () {
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
+    // Collapse groups button
+    $('.collapse-groups-btn').click(function(e){
+        $('.schema_group').find('.card-body').slideUp('fast');
+        $('.schema_group').find('i.fa-angle-double-down').toggleClass('fa-angle-double-down fa-angle-double-up');
+    });
+
+    // Expand groups button
+    $('.expand-groups-btn').click(function(e){
+        $('.schema_group').find('.card-body').slideDown('fast');
+        $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
+    });
+
     //
     // FINISHED button
     //
@@ -218,7 +230,7 @@ $(function () {
 
         // Post the results to PHP when finished
         if($(this).data('target') == '#schema-finished'){
-            $('.add-param-btn').attr('disabled', true);
+            $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr('disabled', true);
             $('#schema-send-status').text("Saving schema..");
 
             post_data = {
@@ -238,7 +250,12 @@ $(function () {
                 }
             });
         } else {
-            $('.add-param-btn').attr('disabled', false);
+            $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr('disabled', false);
+        }
+
+        // Warn about the console finishing
+        if($(this).hasClass('back-to-editor-btn')){
+            alert("nf-core schema build will have now exited. Any further change will have to be manually copied to your schema file. Note that you can run nf-core schema build as often as you like for updates.");
         }
     });
 
@@ -792,7 +809,7 @@ $(function () {
     //
     $('#schema-builder').on('click', '.schema_group_collapse', function(){
         $(this).closest('.schema_group').find('.card-body').slideToggle('fast');
-        $(this).find('i').toggleClass('fa-angle-double-down fa-angle-double-up')
+        $(this).find('i').toggleClass('fa-angle-double-down fa-angle-double-up');
     });
 
     //
