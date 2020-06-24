@@ -245,10 +245,14 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <div class="schema-builder-header sticky-top">
         <div class="row align-items-center">
             <div class="col">
-                <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square mr-1"></i> Add parameter</button>
-                <button class="btn btn-outline-secondary add-group-btn mr-3"><i class="fas fa-folder-plus mr-1"></i> Add group</button>
-                <button class="btn btn-outline-secondary collapse-groups-btn"><i class="fas fa-folder mr-1"></i> Collapse groups</button>
-                <button class="btn btn-outline-secondary expand-groups-btn"><i class="fas fa-folder-open mr-1"></i> Expand groups</button>
+                <div class="btn-group mr-3" role="group">
+                    <button class="btn btn-outline-secondary add-param-btn"><i class="fas fa-plus-square mr-1"></i> Add parameter</button>
+                    <button class="btn btn-outline-secondary add-group-btn"><i class="fas fa-folder-plus mr-1"></i> Add group</button>
+                </div>
+                <div class="btn-group mr-3" role="group">
+                    <button class="btn btn-outline-secondary collapse-groups-btn"><i class="fas fa-folder mr-1"></i> Collapse groups</button>
+                    <button class="btn btn-outline-secondary expand-groups-btn"><i class="fas fa-folder-open mr-1"></i> Expand groups</button>
+                </div>
                 <button class="btn btn-outline-secondary to-top-btn schema-panel-btn" data-target="#schema-builder"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</button>
             </div>
             <div class="col-4 text-right">
