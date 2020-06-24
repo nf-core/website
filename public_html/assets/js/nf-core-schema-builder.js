@@ -583,7 +583,6 @@ $(function () {
             }
             // Set group hidden flag, drag + drop helper text
             if(new_schema['properties'][k].hasOwnProperty('properties')){
-                console.log($('.schema_row[data-id="'+k+'"] .group-drag-drop-help'));
                 $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').addClass('d-none');
                 var is_group_hidden = true;
                 var num_children = 0;
