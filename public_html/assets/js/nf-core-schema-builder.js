@@ -581,8 +581,10 @@ $(function () {
                     delete new_schema['properties'][k]['required'];
                 }
             }
-            // Set group hidden flag
+            // Set group hidden flag, drag + drop helper text
             if(new_schema['properties'][k].hasOwnProperty('properties')){
+                console.log($('.schema_row[data-id="'+k+'"] .group-drag-drop-help'));
+                $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').addClass('d-none');
                 var is_group_hidden = true;
                 var num_children = 0;
                 for (child_param_id in new_schema['properties'][k]['properties']){
@@ -594,6 +596,7 @@ $(function () {
                 }
                 if(num_children == 0){
                     is_group_hidden = false;
+                    $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').removeClass('d-none');
                 }
                 $('.schema_row[data-id="'+k+'"] .param_hidden').prop('checked', is_group_hidden);
             }
@@ -1150,6 +1153,7 @@ function generate_group_row(id, param, child_params){
     }
 
     var is_hidden = true;
+    var drop_help_hidden = 'd-none';
     var num_children = 0;
     for (child_param in param['properties']){
         if(!param['properties'][child_param]['hidden']){
@@ -1159,6 +1163,7 @@ function generate_group_row(id, param, child_params){
     }
     if(num_children == 0){
         is_hidden = false;
+        drop_help_hidden = '';
     }
 
     var results = `
@@ -1198,7 +1203,10 @@ function generate_group_row(id, param, child_params){
                 </div>
             </div>
         </div>
-        <div class="card-body" data-id="`+id+`">`+child_params+`</div>
+        <div class="card-body" data-id="`+id+`">
+            <p class="group-drag-drop-help `+drop_help_hidden+`">Drag and drop a parameter here</p>
+            `+child_params+`
+        </div>
     </div>
     `;
 
