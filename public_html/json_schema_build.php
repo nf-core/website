@@ -111,7 +111,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 </div>
 <div class="container-fluid main-content">
 
-    <div class="schema-builder-header sticky-top">
+    <div class="schema-gui-header sticky-top">
         <div class="row align-items-center">
             <div class="col">
                 <div class="btn-group mr-3" role="group">
@@ -124,7 +124,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 </div>
                 <button class="btn btn-outline-secondary to-top-btn schema-panel-btn" data-target="#schema-builder"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</button>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-auto">
                 <button class="btn btn-outline-primary preview-docs-btn mr-1"><i class="fas fa-book mr-1"></i> Preview docs</button>
                 <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished"><i class="fas fa-check-square mr-1"></i> Finished</button>
             </div>
