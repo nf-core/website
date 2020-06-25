@@ -18,7 +18,7 @@ function build_form_param($param_id, $param, $is_required){
 
     // Hidden
     $hide_class = '';
-    if(isset($param['hidden']) && (strtolower($param['hidden']) == 'true' || $param['hidden'] == true)){
+    if(isset($param['hidden']) && (strtolower($param['hidden']) == 'true' || $param['hidden'] === true)){
         $hide_class = 'is_hidden';
     }
 
@@ -55,11 +55,11 @@ function build_form_param($param_id, $param, $is_required){
     $value = '';
     if(isset($param['default'])){
         $placeholder = 'placeholder="'.$param['default'].'"';
-        $value = 'value="'.$param['default'].'"';
+        $value = $param['default'];
     }
     // Supplied value
     if(isset($cache['input_params'][$param_id])){
-        $value = 'value="'.$cache['input_params'][$param_id].'"';
+        $value = $cache['input_params'][$param_id];
     }
 
     // Required
@@ -70,6 +70,16 @@ function build_form_param($param_id, $param, $is_required){
         $validation_text = '<div class="invalid-feedback">This parameter is required</div>';
     }
 
+    // Input element
+    $input_el = '<input type="text" class="form-control text-monospace" id="'.$param_id.'" name="'.$param_id.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
+    if($param['type'] == 'boolean'){
+        $input_el = '
+        <select class="custom-select" id="'.$param_id.'" name="'.$param_id.'" '.$required.'>
+            <option '.($value === false || strtolower($value) == 'false' ? 'selected' : '').'value="false">False</option>
+            <option '.($value === true || strtolower($value) == 'true' ? 'selected' : '').' value="true">True</option>
+        </select>';
+    }
+
     // Build HTML
     return '
     <div class="form-group param-form-group '.$hide_class.'" id="'.$param_id.'_group">
@@ -77,8 +87,7 @@ function build_form_param($param_id, $param, $is_required){
             <div class="input-group-prepend">
                 <label class="input-group-text text-monospace" for="'.$param_id.'">'.$fa_icon.$dash_param_id.'</label>
             </div>
-            <input type="email" class="form-control text-monospace" id="'.$param_id.'" name="'.$param_id.'" '.$placeholder.' '.$value.' '.$required.'>
-            '.$help_text_btn.'
+            '.$input_el.$help_text_btn.'
         </div>
         '.$validation_text.$description.$help_text.'
     </div>';
@@ -121,7 +130,7 @@ if(!$cache){ ?>
                                 $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
                                 $hidden_class = 'is_hidden';
                                 foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
-                                    if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] == false)){
+                                    if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                                         $hidden_class = '';
                                     }
                                 }
@@ -157,7 +166,7 @@ if(!$cache){ ?>
                 $child_parameters = '';
                 foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
                     $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($param_id, $schema['properties'][$param_id]['required']));
-                    if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] == false)){
+                    if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                         $hidden_class = '';
                     }
                 }
