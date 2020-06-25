@@ -181,52 +181,55 @@ if(!$cache){ ?>
         For those running on a system with no internet connection, you can copy the parameters JSON to a file
         and use the supplied command to launch.</p>
 
-    <div class="schema-gui-header sticky-top">
-        <div class="row align-items-center">
-            <div class="col-md-auto">
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-stream mr-1"></i> <span>Jump to section</span>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <?php
-                        foreach($schema['properties'] as $param_id => $param){
-                            if($param['type'] == 'object'){
-                                $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
-                                $hidden_class = 'is_hidden';
-                                foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
-                                    if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
-                                        $hidden_class = '';
+    <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
+
+        <input type="hidden" name="cache_id" value="<?php echo $cache_id; ?>">
+
+        <div class="schema-gui-header sticky-top">
+            <div class="row align-items-center">
+                <div class="col-md-auto">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-stream mr-1"></i> <span>Jump to section</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <?php
+                            foreach($schema['properties'] as $param_id => $param){
+                                if($param['type'] == 'object'){
+                                    $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
+                                    $hidden_class = 'is_hidden';
+                                    foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
+                                        if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
+                                            $hidden_class = '';
+                                        }
                                     }
+                                    $fa_icon = '';
+                                    if(isset($param['fa_icon'])){
+                                        $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
+                                    }
+                                    echo '<a class="dropdown-item '.$hidden_class.'" href="#'.$html_id.'">'.$fa_icon.$param_id.'</a>';
                                 }
-                                $fa_icon = '';
-                                if(isset($param['fa_icon'])){
-                                    $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
-                                }
-                                echo '<a class="dropdown-item '.$hidden_class.'" href="#'.$html_id.'">'.$fa_icon.$param_id.'</a>';
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-secondary btn-show-hidden-fields">
+                        <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden fields</span>
+                        <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden fields</span>
+                    </button>
+                </div>
+                <div class="col d-none d-lg-block">
+                    <span id="progress_section" class="text-muted">&nbsp;</span>
+                    <div class="progress" style="height: 2px;">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
-                <button class="btn btn-outline-secondary btn-show-hidden-fields">
-                    <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden fields</span>
-                    <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden fields</span>
-                </button>
-                <a class="d-none d-md-inline btn btn-outline-secondary to-top-btn" href="#schema_launcher_form"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</a>
-            </div>
-            <div class="col d-none d-lg-block">
-                <div class="progress" style="height: 2px;">
-                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="col-md-auto">
+                    <button type="submit" class="btn btn-primary"><i class="fad fa-rocket-launch mr-1"></i> Launch</button>
                 </div>
             </div>
-            <div class="col-md-auto">
-                <button class="btn btn-primary launcher-panel-btn" data-target="#schema-finished"><i class="fad fa-rocket-launch mr-1"></i> Launch</button>
-            </div>
         </div>
-    </div>
 
-    <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
         <?php
         foreach($schema['properties'] as $param_id => $param){
             if($param['type'] == 'object'){
@@ -277,9 +280,6 @@ if(!$cache){ ?>
         </div>
     </form>
 
-    <h3>Set status to saved</h3>
-    <p id="schema-send-status"></p>
-    <button class="btn btn-primary launcher-panel-btn" data-target="#params-finished">Set as saved</button>
     <h3>Cache results</h3>
     <pre><?php print_r($cache); ?></pre>
 
