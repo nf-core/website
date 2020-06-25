@@ -11,6 +11,32 @@ $(function () {
     );
     $('.cache_expires_at').show();
 
+    // Show / hide hidden fields
+    $('.btn-show-hidden-fields').click(function(){
+        $('.is_hidden, .is_not_hidden').toggleClass('is_hidden is_not_hidden');
+    });
+
+    // Listen to the page scroll
+    window.onscroll = function(){
+        // Progress bar
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var formTop = document.getElementById("schema_launcher_form").offsetTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight - formTop;
+        var scrolled = ((winScroll - formTop) / height) * 100;
+        if(winScroll < formTop){ scrolled = 0; }
+        $('.progress-bar').css('width', scrolled+"%").attr('area-valuenow', scrolled);
+
+        // Jump to section dropdown
+        var newLabel = 'Jump to section';
+        $('legend:visible').each(function(){
+            var this_offset = $(this).closest('fieldset').offset().top - 30;
+            if(winScroll > this_offset && winScroll < this_offset + $(this).closest('fieldset').outerHeight(true)){
+                newLabel = $(this).text();
+            }
+        });
+        $('#dropdownMenuButton span').text(newLabel);
+    };
+
     // Parse initial JSON Schema
     try {
         schema = JSON.parse($('#json_schema').text());
@@ -18,6 +44,15 @@ $(function () {
         alert("Error - Schema JSON could not be parsed. See the browser console for details.");
         console.log(e);
     }
+
+    // Validate form on submit
+    $('#schema_launcher_form').on('submit', function(event) {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+    });
 
     //
     // FINISHED button
