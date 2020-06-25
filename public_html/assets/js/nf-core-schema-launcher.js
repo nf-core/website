@@ -26,7 +26,7 @@ $(function () {
         if(winScroll < formTop){ scrolled = 0; }
 
         // Jump to section dropdown
-        var newLabel = '&nbsp;';
+        var newLabel = 'Nextflow command-line flags';
         $('legend:visible').each(function(){
             var this_offset = $(this).closest('fieldset').offset().top - 30;
             if(winScroll > this_offset && winScroll < this_offset + $(this).closest('fieldset').outerHeight(true)){

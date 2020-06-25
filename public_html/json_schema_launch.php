@@ -79,7 +79,7 @@ function build_form_param($param_id, $param, $is_required){
 
     // Required
     $required = '';
-    $required_asterisk = ' (NR)';
+    $required_asterisk = '';
     $validation_text = '';
     if($is_required){
         $required = 'required';
@@ -219,7 +219,7 @@ if(!$cache){ ?>
                     </button>
                 </div>
                 <div class="col d-none d-lg-block">
-                    <span id="progress_section" class="text-muted">&nbsp;</span>
+                    <span id="progress_section" class="text-muted">Nextflow command-line flags</span>
                     <div class="progress" style="height: 2px;">
                         <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
