@@ -18,23 +18,25 @@ $(function () {
 
     // Listen to the page scroll
     window.onscroll = function(){
-        // Progress bar
+        // Progress bar width
         var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         var formTop = document.getElementById("schema_launcher_form").offsetTop;
         var height = document.documentElement.scrollHeight - document.documentElement.clientHeight - formTop;
         var scrolled = ((winScroll - formTop) / height) * 100;
         if(winScroll < formTop){ scrolled = 0; }
-        $('.progress-bar').css('width', scrolled+"%").attr('area-valuenow', scrolled);
 
         // Jump to section dropdown
-        var newLabel = 'Jump to section';
+        var newLabel = '&nbsp;';
         $('legend:visible').each(function(){
             var this_offset = $(this).closest('fieldset').offset().top - 30;
             if(winScroll > this_offset && winScroll < this_offset + $(this).closest('fieldset').outerHeight(true)){
                 newLabel = $(this).text();
             }
         });
-        $('#dropdownMenuButton span').text(newLabel);
+
+        // Update progress bar
+        $('.progress-bar').css('width', scrolled+"%").attr('area-valuenow', scrolled);
+        $('#progress_section').html(newLabel);
     };
 
     // Parse initial JSON Schema
@@ -58,46 +60,5 @@ $(function () {
         form.classList.add('was-validated');
       }, false);
     });
-
-    //
-    // FINISHED button
-    //
-    // Toggle between panels
-    $('.launcher-panel-btn').click(function(){
-
-        // Post the results to PHP when finished
-        if($(this).data('target') == '#params-finished'){
-            $('#schema-send-status').text("Saving schema..");
-
-            post_data = {
-                'post_content': 'json_schema_launcher',
-                'version': 'web_builder',
-                'status': 'launch_params_complete',
-                'api': 'true',
-                'cache_id': $('#params_cache_id').text(),
-                'schema': JSON.stringify(schema),
-                'nxf_flags': JSON.stringify({
-                    "-resume": true,
-                    "-revision": "dev"
-                }),
-                'input_params': JSON.stringify({
-                    "input": "./design.csv",
-                    "broad_cutoff": "0.2",
-                    "fasta": "foobar"
-                })
-            };
-            $.post( "json_schema_launch", post_data).done(function( returned_data ) {
-                console.log("Sent schema to API. Response:", returned_data);
-                if(returned_data.status == 'recieved'){
-                    $('#schema-send-status').text("Ok, that's it - done!");
-                } else {
-                    console.log("Data sent to API:", post_data);
-                    $('#schema-send-status').text("Oops, something went wrong!");
-                }
-            });
-        }
-    });
-
-
 
 });
