@@ -10,9 +10,24 @@ require_once('../includes/libraries/parsedown/Parsedown.php');
 require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
 $pd = new ParsedownExtra();
 
-function build_form_param($param_id, $param, $is_required){
-
+function parse_md($text){
     global $pd;
+    // Remove whitespace on lines that are only whitespace
+    $text = preg_replace('/^\s*$/m', '', $text);
+    // Remove global text indentation
+    $indents = array();
+    foreach(explode("\n",$text) as $l){
+        if(strlen($l) > 0){
+            $indents[] = strlen($l) - strlen(ltrim($l));
+        }
+    }
+    if(min($indents) > 0){
+        $text = preg_replace('/^\s{'.min($indents).'}/m', '', $text);
+    }
+    return $pd->text($text);
+}
+
+function build_form_param($param_id, $param, $is_required){
 
     $dash_param_id = substr($param_id, 0, 1) == '-' ? $param_id : '--'.$param_id;
 
@@ -38,14 +53,14 @@ function build_form_param($param_id, $param, $is_required){
     $help_text_btn = '';
     $help_text = '';
     if(isset($param['help_text']) && strlen(trim($param['help_text'])) > 0){
-        $help_text_btn = '<div class="input-group-append">
-            <button class="btn input-group-btn" type="button" title="Show help text" data-toggle="collapse" href="#help-text-'.$param_id.'" aria-expanded="false">
+        $help_text_btn = '<div class="input-group-append" title="Show help text" data-toggle="tooltip">
+            <button class="btn input-group-btn" type="button" data-toggle="collapse" href="#help-text-'.$param_id.'" aria-expanded="false">
                 <i class="fas fa-question-circle"></i>
             </button>
         </div>';
         $help_text = '<div class="collapse" id="help-text-'.$param_id.'">
             <div class="card card-body small text-muted launcher-help-text">
-                '.$pd->text($param['help_text']).'
+                '.parse_md($param['help_text']).'
             </div>
         </div>';
     }
@@ -64,20 +79,70 @@ function build_form_param($param_id, $param, $is_required){
 
     // Required
     $required = '';
+    $required_asterisk = ' (NR)';
     $validation_text = '';
     if($is_required){
         $required = 'required';
+        $required_asterisk = '<sup class="text-danger ml-2" title="Required" data-toggle="tooltip">*</sup>';
         $validation_text = '<div class="invalid-feedback">This parameter is required</div>';
     }
 
-    // Input element
-    $input_el = '<input type="text" class="form-control text-monospace" id="'.$param_id.'" name="'.$param_id.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
+    // Text, number, integer, range input
+    $input_type = 'text';
+    $step = '';
+    $minimum = '';
+    $maximum = '';
+    $pattern = '';
+    $title = '';
+    if($param['type'] == 'number' || $param['type'] == 'integer'){
+        $input_type = 'number';
+    }
+    if($param['type'] == 'range'){
+        $input_type = 'range';
+    }
+    if($param['type'] == 'integer'){
+        $step = 'step="1"';
+        $pattern = 'pattern="\d+"';
+        $title = 'title="Must be an integer"';
+    }
+    if(array_key_exists('minimum', $param) && strlen($param['minimum']) > 0){
+        $minimum = 'min="'.$param['minimum'].'"';
+    }
+    if(array_key_exists('maximum', $param) && strlen($param['maximum']) > 0){
+        $maximum = 'max="'.$param['maximum'].'"';
+    }
+    if(array_key_exists('pattern', $param) && strlen($param['pattern']) > 0){
+        $pattern = 'pattern="'.$param['pattern'].'"';
+        $title = 'title="Must match pattern \''.$param['pattern'].'\'"';
+    }
+    if(array_key_exists('pattern', $param) && strlen($param['pattern']) > 0){
+        $pattern = 'pattern="'.$param['pattern'].'"';
+        $title = 'title="Must match pattern \''.$param['pattern'].'\'"';
+    }
+    $input_el = '<input type="'.$input_type.'" '.$step.' '.$minimum.' '.$maximum.' '.$pattern.' '.$title.' class="form-control text-monospace" id="'.$param_id.'" name="'.$param_id.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
+
+    // Boolean input
     if($param['type'] == 'boolean'){
         $input_el = '
-        <select class="custom-select" id="'.$param_id.'" name="'.$param_id.'" '.$required.'>
-            <option '.($value === false || strtolower($value) == 'false' ? 'selected' : '').'value="false">False</option>
-            <option '.($value === true || strtolower($value) == 'true' ? 'selected' : '').' value="true">True</option>
-        </select>';
+        <div class="form-control pl-4">
+            <div class="form-check form-check-inline mr-4">
+                <input '.($value === true || strtolower($value) == 'true' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$param_id.'_true" name="'.$param_id.'" '.$required.' value="true">
+                <label class="form-check-label" for="'.$param_id.'_true">True</label>
+            </div>
+            <div class="form-check form-check-inline" id="'.$param_id.'" name="'.$param_id.'" '.$required.'>
+                <input '.($value === false || strtolower($value) == 'false' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$param_id.'_false" name="'.$param_id.'" '.$required.' value="false">
+                <label class="form-check-label" for="'.$param_id.'_false">False</label>
+            </div>
+        </div>';
+    }
+
+    // enum input
+    if(array_key_exists('enum', $param) && count($param['enum']) > 0){
+        $input_el = '<select class="custom-select" id="'.$param_id.'" name="'.$param_id.'" '.$required.'>';
+        foreach($param['enum'] as $option){
+            $input_el .= '<option '.($value == $option ? 'selected' : '').' value="'.$option.'">'.$option.'</option>';
+        }
+        $input_el .= '</select>';
     }
 
     // Build HTML
@@ -85,11 +150,11 @@ function build_form_param($param_id, $param, $is_required){
     <div class="form-group param-form-group '.$hide_class.'" id="'.$param_id.'_group">
         <div class="input-group">
             <div class="input-group-prepend">
-                <label class="input-group-text text-monospace" for="'.$param_id.'">'.$fa_icon.$dash_param_id.'</label>
+                <label class="input-group-text text-monospace" for="'.$param_id.'">'.$fa_icon.$dash_param_id.$required_asterisk.'</label>
             </div>
-            '.$input_el.$help_text_btn.'
+            '.$input_el.$help_text_btn.$validation_text.'
         </div>
-        '.$validation_text.$description.$help_text.'
+        '.$description.$help_text.'
     </div>';
 }
 
@@ -134,7 +199,11 @@ if(!$cache){ ?>
                                         $hidden_class = '';
                                     }
                                 }
-                                echo '<a class="dropdown-item '.$hidden_class.'" href="#'.$html_id.'">'.$param_id.'</a>';
+                                $fa_icon = '';
+                                if(isset($param['fa_icon'])){
+                                    $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
+                                }
+                                echo '<a class="dropdown-item '.$hidden_class.'" href="#'.$html_id.'">'.$fa_icon.$param_id.'</a>';
                             }
                         }
                         ?>
@@ -157,7 +226,7 @@ if(!$cache){ ?>
         </div>
     </div>
 
-    <form id="schema_launcher_form" action="" method="post">
+    <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
         <?php
         foreach($schema['properties'] as $param_id => $param){
             if($param['type'] == 'object'){
@@ -165,22 +234,36 @@ if(!$cache){ ?>
                 $hidden_class = 'is_hidden';
                 $child_parameters = '';
                 foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
-                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($param_id, $schema['properties'][$param_id]['required']));
+                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $schema['properties'][$param_id]['required']));
                     if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                         $hidden_class = '';
                     }
                 }
+                $fa_icon = '';
+                if(isset($param['fa_icon'])){
+                    $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3"></i>';
+                }
+                $description = '';
+                if(isset($param['description'])){
+                    $description = '<p class="form-text">'.$param['description'].'</p>';
+                }
+                $helptext = '';
+                if(isset($param['help_text'])){
+                    $helptext = '<small class="form-text text-muted">'.$param['help_text'].'</small>';
+                }
                 if(strlen($child_parameters) > 0){
-                    echo '<fieldset class="'.$hidden_class.'">';
-                    echo '<legend class="h2" id="'.$html_id.'"><a href="#'.$html_id.'" class="header-link"><span class="fas fa-link"></span></a>'.$param_id.'</legend>';
-                    if(isset($param['description'])){
-                        echo '<p class="form-text">'.$param['description'].'</p>';
-                    }
-                    if(isset($param['help_text'])){
-                        echo '<small class="form-text text-muted">'.$param['help_text'].'</small>';
-                    }
-                    echo $child_parameters;
-                    echo '</fieldset>';
+                    echo '
+                    <fieldset class="'.$hidden_class.'" id="'.$html_id.'">
+                        <div class="card">
+                            <legend class="h2 card-header">
+                                <a href="#'.$html_id.'" class="header-link"><span class="fas fa-link"></span></a>
+                                '.$fa_icon.$param_id.'
+                            </legend>
+                            <div class="card-body">
+                                '.$description.$helptext.$child_parameters.'
+                            </div>
+                        </div>
+                    </fieldset>';
                 }
             } else {
                 echo build_form_param($param_id, $param, @in_array($param_id, $schema['required']));
