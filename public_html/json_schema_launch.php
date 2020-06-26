@@ -5,6 +5,8 @@ $post_content_type = 'json_schema_launcher';
 $post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status'];
 require_once('../includes/json_schema.php');
 
+$is_cli_waiting = $cache['version'] !== 'web_builder';
+
 // Save form output
 $error_msgs = array();
 if(isset($_POST['post_content']) && $_POST['post_content'] == "json_schema_launcher_webform"){
@@ -158,7 +160,6 @@ function build_form_param($param_id, $param, $is_required){
     $minimum = '';
     $maximum = '';
     $pattern = '';
-    $title = '';
     if($param['type'] == 'number' || $param['type'] == 'integer'){
         $input_type = 'number';
     }
@@ -168,7 +169,7 @@ function build_form_param($param_id, $param, $is_required){
     if($param['type'] == 'integer'){
         $step = 'step="1"';
         $pattern = 'pattern="\d+"';
-        $title = 'title="Must be an integer"';
+        $validation_text = '<div class="invalid-feedback">Must be an integer</div>';
     }
     if(array_key_exists('minimum', $param) && strlen($param['minimum']) > 0){
         $minimum = 'min="'.$param['minimum'].'"';
@@ -178,13 +179,9 @@ function build_form_param($param_id, $param, $is_required){
     }
     if(array_key_exists('pattern', $param) && strlen($param['pattern']) > 0){
         $pattern = 'pattern="'.$param['pattern'].'"';
-        $title = 'title="Must match pattern \''.$param['pattern'].'\'"';
+        $validation_text = '<div class="invalid-feedback">Must match pattern <code>'.$param['pattern'].'</code></div>';
     }
-    if(array_key_exists('pattern', $param) && strlen($param['pattern']) > 0){
-        $pattern = 'pattern="'.$param['pattern'].'"';
-        $title = 'title="Must match pattern \''.$param['pattern'].'\'"';
-    }
-    $input_el = '<input type="'.$input_type.'" '.$step.' '.$minimum.' '.$maximum.' '.$pattern.' '.$title.' class="form-control text-monospace" id="'.$form_param_name.'" name="'.$form_param_name.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
+    $input_el = '<input type="'.$input_type.'" '.$step.' '.$minimum.' '.$maximum.' '.$pattern.' class="form-control text-monospace" id="'.$form_param_name.'" name="'.$form_param_name.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
 
     // Boolean input
     if($param['type'] == 'boolean'){
@@ -277,15 +274,15 @@ if(!$cache){ ?>
                                     if(isset($param['fa_icon'])){
                                         $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
                                     }
-                                    echo '<a class="dropdown-item '.$hidden_class.'" href="#'.$html_id.'">'.$fa_icon.$param_id.'</a>';
+                                    echo '<a class="dropdown-item '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$param_id.'</a>';
                                 }
                             }
                             ?>
                         </div>
                     </div>
-                    <button class="btn btn-outline-secondary btn-show-hidden-fields">
-                        <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden fields</span>
-                        <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden fields</span>
+                    <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay="500">
+                        <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
+                        <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
                     </button>
                 </div>
                 <div class="col d-none d-lg-block">
@@ -328,10 +325,7 @@ if(!$cache){ ?>
                     echo '
                     <fieldset class="'.$hidden_class.'" id="'.$html_id.'">
                         <div class="card">
-                            <legend class="h2 card-header">
-                                <a href="#'.$html_id.'" class="header-link"><span class="fas fa-link"></span></a>
-                                '.$fa_icon.$param_id.'
-                            </legend>
+                            <legend class="h2 card-header">'.$fa_icon.$param_id.'</legend>
                             <div class="card-body">
                                 '.$description.$helptext.$child_parameters.'
                             </div>

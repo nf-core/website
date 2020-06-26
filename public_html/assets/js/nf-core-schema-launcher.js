@@ -3,6 +3,10 @@
 // Custom javascript for the nf-core JSON Schema Launcher interface
 //
 
+// Globals
+validation_error = false;
+section_label = 'Nextflow command-line flags';
+
 $(function () {
 
     // Show the cache expiration time in local timezone
@@ -12,12 +16,12 @@ $(function () {
     $('.cache_expires_at').show();
 
     // Show / hide hidden fields
-    $('.btn-show-hidden-fields').click(function(){
+    $('.btn-show-hidden-fields').click(function(e){
+        e.preventDefault();
         $('.is_hidden, .is_not_hidden').toggleClass('is_hidden is_not_hidden');
     });
 
     // Listen to the page scroll
-    var validation_error = false;
     window.onscroll = function(){
         // Progress bar width
         var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -27,28 +31,24 @@ $(function () {
         if(winScroll < formTop){ scrolled = 0; }
 
         // Jump to section dropdown
-        var newLabel = 'Nextflow command-line flags';
         $('legend:visible').each(function(){
             var this_offset = $(this).closest('fieldset').offset().top - 30;
             if(winScroll > this_offset && winScroll < this_offset + $(this).closest('fieldset').outerHeight(true)){
-                newLabel = $(this).text();
+                section_label = $(this).text();
             }
         });
 
         // Update progress bar
         $('.progress-bar').css('width', scrolled+"%").attr('area-valuenow', scrolled);
         if(!validation_error){
-            $('#progress_section').html(newLabel);
+            $('#progress_section').html(section_label);
         }
     };
 
     // Page-scroll links
-    ///////////////////////////////////////////////////
-    // TODO - NOT WORKING
-    ///////////////////////////////////////////////////
-    $('body').on('.scroll_to_link', 'click', function(e){
+    $('body').on('click', '.scroll_to_link', function(e){
         e.preventDefault();
-        scroll_to($(this));
+        scroll_to($($(this).attr('href')));
     });
 
     // Validate form on submit - snippet from Bootstrap docs
@@ -56,24 +56,30 @@ $(function () {
     var forms = document.getElementsByClassName('needs-validation');
     $('#form_validation_error_toast').toast({ 'autohide': false });
     // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            validation_error = true;
-            $('.btn-launch').removeClass('btn-primary').addClass('btn-danger');
-            $('.progress-bar').addClass('bg-danger');
-            $('.validation-warning').show();
-            $('#form_validation_error_toast').toast('show');
-            $('#progress_section').html("Error validating inputs");
-            $('#validation_fail_list').html('');
-            $('input:invalid').each(function(){
-                $('#validation_fail_list').append('<li><a href="#'+$(this).attr('id')+'" class="scroll_to_link"><code>'+$(this).attr('name').replace('params_', '--').replace('nxf_flag_', '')+'</code></a></li>')
-            })
-            scroll_to($('input:invalid').first());
+    $('#schema_launcher_form').on('submit change keyup', function(e) {
+
+        // Only run validation on change and keyup if we have already submitted / validated
+        if(e.type =='change' || e.type =='keyup'){
+            if(!$(this).hasClass('was-validated')){
+                return;
+            }
         }
-        form.classList.add('was-validated');
+
+        // Validate form
+        if ($(this)[0].checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+            validation_error = true;
+            set_validation_styles(false);
+            // If form was submitted, scroll to first error
+            if(e.type =='submit'){
+                scroll_to($('input:invalid').first());
+            }
+        } else {
+            validation_error = false;
+            set_validation_styles(true);
+        }
+        $(this).addClass('was-validated');
 
         // Radio button form group classes
         $('.form-control:has(.form-check-input[type="radio"]:valid)').addClass('radio-form-control-valid');
@@ -83,7 +89,33 @@ $(function () {
         $('.input-group:has(input:valid) .input-group-prepend, .input-group:has(input:valid) .input-group-append').addClass('input-group-append-valid');
         $('.input-group:has(input:invalid) .input-group-prepend, .input-group:has(input:invalid) .input-group-append').addClass('input-group-append-invalid');
 
-      }, false);
     });
 
 });
+
+function set_validation_styles(form_is_valid){
+    // Reset
+    $('#validation_fail_list').html('');
+    $('.form-control:has(.form-check-input[type="radio"])').removeClass('radio-form-control-valid radio-form-control-invalid');
+    $('.input-group .input-group-prepend').removeClass('input-group-append-valid input-group-append-invalid');
+
+    // Invalid
+    if(!form_is_valid){
+        $('.btn-launch').removeClass('btn-primary').addClass('btn-danger');
+        $('.progress-bar').addClass('bg-danger');
+        $('.validation-warning').show();
+        $('#form_validation_error_toast').toast('show');
+        $('#progress_section').html($('input:invalid').length+" parameter"+($('input:invalid').length > 1 ? 's' : '')+" with errors").removeClass('text-muted').addClass('text-danger');
+        $('input:invalid').each(function(){
+            $('#validation_fail_list').append('<li><a href="#'+$(this).attr('id')+'" class="scroll_to_link"><code>'+$(this).attr('name').replace('params_', '--').replace('nxf_flag_', '')+'</code></a></li>')
+        })
+    }
+    // Valid
+    else {
+        $('.btn-launch').addClass('btn-primary').removeClass('btn-danger');
+        $('.progress-bar').removeClass('bg-danger');
+        $('.validation-warning').hide();
+        $('#form_validation_error_toast').toast('hide');
+        $('#progress_section').html(section_label).addClass('text-muted').removeClass('text-danger');
+    }
+}
