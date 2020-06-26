@@ -5,6 +5,67 @@ $post_content_type = 'json_schema_launcher';
 $post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status'];
 require_once('../includes/json_schema.php');
 
+// Save form output
+$error_msgs = array();
+if(isset($_POST['post_content']) && $_POST['post_content'] == "json_schema_launcher_webform"){
+    $error_msgs = save_launcher_form();
+}
+function save_launcher_form(){
+    // global vars
+    global $cache_dir;
+    global $cache;
+    // Check cache ID
+    if(!isset($_POST['cache_id'])){
+        return ["No cache ID supplied"];
+    }
+    $id_check = validate_cache_id($_POST['cache_id']);
+    if(!isset($id_check['status'])){
+        return ["Problem loading cache: <pre>".$id_check.'</pre>'];
+    }
+    if($id_check['status'] == 'error'){
+        return ["Problem loading cache: ".$id_check['message']];
+    }
+    // Load cache
+    $cache_id = $_POST['cache_id'];
+    $cache_fn = $cache_dir.'/'.$cache_id.'.json';
+    if(!file_exists($cache_fn)) {
+        return ["Cache file not found: <code>".$cache_fn.'</code>'];
+    }
+    $cache = json_decode(file_get_contents($cache_fn), true);
+    if(!isset($cache['schema'])){
+        return ["Cache had no schema: <code>".$cache_fn.'</code>'];
+    }
+    $cache['schema'] = json_decode($cache['schema'], true);
+    if(!isset($cache['schema']['properties']) || count($cache['schema']['properties']) == 0){
+        return ["Cache schema was empty: <code>".$cache_fn.'</code><pre>'.print_r($cache['schema'], true).'</pre>'];
+    }
+
+    // Overwrite some keys (not schema)
+    $cache['version'] = 'web_builder';
+    $cache['status'] = 'launch_params_complete';
+    $cache['nxf_flags'] = array();
+    $cache['input_params'] = array();
+
+    // Loop through POST vars and set params
+    foreach ($_POST as $k => $v){
+        if(substr($k,0,7) == 'params_'){
+            $cache['input_params'][substr($k,7)] = $v;
+        }
+        if(substr($k,0,9) == 'nxf_flag_'){
+            $cache['nxf_flags'][substr($k,9)] = $v;
+        }
+    }
+    // Write to JSON file
+    $cache['schema'] = json_encode($cache['schema']);
+    $cache['nxf_flags'] = json_encode($cache['nxf_flags']);
+    $cache['input_params'] = json_encode($cache['input_params']);
+    $cache_json = json_encode($cache, JSON_PRETTY_PRINT)."\n";
+    file_put_contents($cache_fn, $cache_json);
+    // Redirect to web URL
+    header('Location: '.$self_url.'?id='.$cache_id);
+    exit;
+}
+
 // Markdown parsing libraries
 require_once('../includes/libraries/parsedown/Parsedown.php');
 require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
@@ -30,6 +91,10 @@ function parse_md($text){
 function build_form_param($param_id, $param, $is_required){
 
     $dash_param_id = substr($param_id, 0, 1) == '-' ? $param_id : '--'.$param_id;
+    $form_param_name = 'params_'.$param_id;
+    if(substr($param_id,0,1) == '-'){
+        $form_param_name = 'nxf_flag_'.$param_id;
+    }
 
     // Hidden
     $hide_class = '';
@@ -119,18 +184,18 @@ function build_form_param($param_id, $param, $is_required){
         $pattern = 'pattern="'.$param['pattern'].'"';
         $title = 'title="Must match pattern \''.$param['pattern'].'\'"';
     }
-    $input_el = '<input type="'.$input_type.'" '.$step.' '.$minimum.' '.$maximum.' '.$pattern.' '.$title.' class="form-control text-monospace" id="'.$param_id.'" name="'.$param_id.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
+    $input_el = '<input type="'.$input_type.'" '.$step.' '.$minimum.' '.$maximum.' '.$pattern.' '.$title.' class="form-control text-monospace" id="'.$form_param_name.'" name="'.$form_param_name.'" '.$placeholder.' value="'.$value.'" '.$required.'>';
 
     // Boolean input
     if($param['type'] == 'boolean'){
         $input_el = '
         <div class="form-control pl-4">
             <div class="form-check form-check-inline mr-4">
-                <input '.($value === true || strtolower($value) == 'true' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$param_id.'_true" name="'.$param_id.'" '.$required.' value="true">
+                <input '.($value === true || strtolower($value) == 'true' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$form_param_name.'_true" name="'.$form_param_name.'" '.$required.' value="true">
                 <label class="form-check-label" for="'.$param_id.'_true">True</label>
             </div>
-            <div class="form-check form-check-inline" id="'.$param_id.'" name="'.$param_id.'" '.$required.'>
-                <input '.($value === false || strtolower($value) == 'false' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$param_id.'_false" name="'.$param_id.'" '.$required.' value="false">
+            <div class="form-check form-check-inline">
+                <input '.($value === false || strtolower($value) == 'false' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$form_param_name.'_false" name="'.$form_param_name.'" '.$required.' value="false">
                 <label class="form-check-label" for="'.$param_id.'_false">False</label>
             </div>
         </div>';
@@ -138,7 +203,7 @@ function build_form_param($param_id, $param, $is_required){
 
     // enum input
     if(array_key_exists('enum', $param) && count($param['enum']) > 0){
-        $input_el = '<select class="custom-select" id="'.$param_id.'" name="'.$param_id.'" '.$required.'>';
+        $input_el = '<select class="custom-select" id="'.$form_param_name.'" name="'.$form_param_name.'" '.$required.'>';
         foreach($param['enum'] as $option){
             $input_el .= '<option '.($value == $option ? 'selected' : '').' value="'.$option.'">'.$option.'</option>';
         }
@@ -164,6 +229,10 @@ $subtitle = 'Configure workflow parameters for a pipeline run.';
 if($cache) $import_schema_launcher = true;
 include('../includes/header.php');
 
+if(count($error_msgs) > 0){
+    echo '<div class="alert alert-danger">'.implode('<br>', $error_msgs).'</div>';
+}
+
 if(!$cache){ ?>
 
 <h3>Launch a pipeline</h3>
@@ -184,6 +253,7 @@ if(!$cache){ ?>
     <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
 
         <input type="hidden" name="cache_id" value="<?php echo $cache_id; ?>">
+        <input type="hidden" name="post_content" value="json_schema_launcher_webform">
 
         <div class="schema-gui-header sticky-top">
             <div class="row align-items-center">
@@ -194,11 +264,11 @@ if(!$cache){ ?>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <?php
-                            foreach($schema['properties'] as $param_id => $param){
+                            foreach($cache['schema']['properties'] as $param_id => $param){
                                 if($param['type'] == 'object'){
                                     $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
                                     $hidden_class = 'is_hidden';
-                                    foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
+                                    foreach($cache['schema']['properties'][$param_id]['properties'] as $child_param_id => $child_param){
                                         if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                                             $hidden_class = '';
                                         }
@@ -225,19 +295,19 @@ if(!$cache){ ?>
                     </div>
                 </div>
                 <div class="col-md-auto">
-                    <button type="submit" class="btn btn-primary"><i class="fad fa-rocket-launch mr-1"></i> Launch</button>
+                    <button type="submit" class="btn btn-primary btn-launch"><i class="fad fa-rocket-launch mr-1"></i> Launch</button>
                 </div>
             </div>
         </div>
 
         <?php
-        foreach($schema['properties'] as $param_id => $param){
+        foreach($cache['schema']['properties'] as $param_id => $param){
             if($param['type'] == 'object'){
                 $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
                 $hidden_class = 'is_hidden';
                 $child_parameters = '';
-                foreach($schema['properties'][$param_id]['properties'] as $child_param_id => $child_param){
-                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $schema['properties'][$param_id]['required']));
+                foreach($cache['schema']['properties'][$param_id]['properties'] as $child_param_id => $child_param){
+                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $cache['schema']['properties'][$param_id]['required']));
                     if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                         $hidden_class = '';
                     }
@@ -269,21 +339,30 @@ if(!$cache){ ?>
                     </fieldset>';
                 }
             } else {
-                echo build_form_param($param_id, $param, @in_array($param_id, $schema['required']));
+                echo build_form_param($param_id, $param, @in_array($param_id, $cache['schema']['required']));
             }
         }
         ?>
         <div class="mt-5 text-center">
-            <button type="submit" class="btn btn-lg btn-primary launcher-panel-btn" data-target="#schema-finished">
-                <i class="fad fa-rocket-launch mr-1"></i> Launch workflow
+            <button type="submit" class="btn btn-lg btn-primary  btn-launch" data-target="#schema-finished">
+                <i class="fad fa-rocket-launch"></i> Launch workflow
             </button>
+            <p class="small text-danger mt-2 validation-warning" style="display: none;">Please fix validation errors before launching.</p>
         </div>
     </form>
 
-    <h3>Cache results</h3>
-    <pre><?php print_r($cache); ?></pre>
-
-    <script type="application/json" id="json_schema"><?php echo json_encode($schema, JSON_PRETTY_PRINT); ?></script>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="form_validation_error_toast">
+        <div class="toast-header">
+            <strong class="mr-auto text-danger">Validation error</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            <p>There was a problem validating some of your parameters:</p>
+            <ul id="validation_fail_list"></ul>
+        </div>
+    </div>
 
 <?php } // if $cache
 

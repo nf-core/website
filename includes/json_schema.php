@@ -41,7 +41,7 @@ if(isset($_POST['post_content']) && $_POST['post_content'] == $post_content_type
 
     // Was a cache ID supplied?
     if(isset($_POST['cache_id'])){
-        validate_cache_id($_POST['cache_id']);
+        validate_cache_id_api($_POST['cache_id']);
         $cache_id = $_POST['cache_id'];
     } else {
         // Build a string for the filename with the timestamp and random string
@@ -76,13 +76,22 @@ if(isset($_POST['post_content']) && $_POST['post_content'] == $post_content_type
 }
 
 // GET request - polling for the results of a Schema builder
-elseif(isset($_GET['id'])){
+elseif(isset($_GET['id']) && !isset($_POST['post_content'])){
     $cache_id = $_GET['id'];
-    validate_cache_id($cache_id);
+    validate_cache_id_api($cache_id);
     $cache_fn = $cache_dir.'/'.$cache_id.'.json';
 
     $cache = json_decode(file_get_contents($cache_fn), true);
-    $schema = json_decode($cache['schema'], true);
+
+    // Decode JSON objects
+    foreach(['schema', 'nxf_flags', 'input_params'] as $k){
+        if(isset($cache[$k])){
+            $parsed_json = json_decode($cache[$k], true);
+            if($parsed_json !== NULL){
+                $cache[$k] = $parsed_json;
+            }
+        }
+    }
 
     // API check response
     if(isset($_GET['api']) && $_GET['api'] = 'true'){
@@ -97,11 +106,18 @@ elseif(isset($_GET['id'])){
     }
 }
 
+function validate_cache_id_api($cache_id){
+    $check = validate_cache_id($cache_id);
+    if($check['status'] == 'error'){
+        return_json($check);
+    }
+}
+
 function validate_cache_id($cache_id){
     // Check that ID looks valid
     $id_parts = explode('_', $cache_id);
     if(count($id_parts) != 2 || !is_numeric($id_parts[0])){
-        return_json(array(
+        return (array(
             'status' => 'error',
             'message' => 'JSON Build cache ID looks wrong: '.$cache_id
         ));
@@ -111,7 +127,7 @@ function validate_cache_id($cache_id){
     global $expires_timestamp;
     $expires_timestamp = $id_parts[0] + MAX_JSON_BUILD_CACHE_AGE;
     if(time() > $expires_timestamp){
-        return_json(array(
+        return (array(
             'status' => 'error',
             'message' => 'JSON Build cache is too old (max '.(MAX_JSON_BUILD_CACHE_AGE/60/60/24).' days): '.date('r', $id_parts[0])
         ));
@@ -121,9 +137,13 @@ function validate_cache_id($cache_id){
     global $cache_dir;
     $cache_fn = $cache_dir.'/'.$cache_id.'.json';
     if (!file_exists($cache_fn)) {
-        return_json(array(
+        return (array(
             'status' => 'error',
             'message' => 'JSON Build cache not found: '.$cache_id
         ));
     }
+    return (array(
+        'status' => 'success',
+        'message' => 'JSON Build cache looks valid: '.$cache_id
+    ));
 }
