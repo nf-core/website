@@ -113,7 +113,7 @@ function build_form_param($param_id, $param, $is_required){
     // Description
     $description = '';
     if(isset($param['description'])){
-        $description = '<small class="form-text">'.$param['description'].'</small>';
+        $description = '<small class="form-text">'.parse_md($param['description']).'</small>';
     }
 
     // Help text
@@ -189,11 +189,11 @@ function build_form_param($param_id, $param, $is_required){
         <div class="form-control pl-4">
             <div class="form-check form-check-inline mr-4">
                 <input '.($value === true || strtolower($value) == 'true' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$form_param_name.'_true" name="'.$form_param_name.'" '.$required.' value="true">
-                <label class="form-check-label" for="'.$param_id.'_true">True</label>
+                <label class="form-check-label" for="'.$form_param_name.'_true">True</label>
             </div>
             <div class="form-check form-check-inline">
                 <input '.($value === false || strtolower($value) == 'false' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$form_param_name.'_false" name="'.$form_param_name.'" '.$required.' value="false">
-                <label class="form-check-label" for="'.$param_id.'_false">False</label>
+                <label class="form-check-label" for="'.$form_param_name.'_false">False</label>
             </div>
         </div>';
     }
@@ -212,7 +212,7 @@ function build_form_param($param_id, $param, $is_required){
     <div class="form-group param-form-group '.$hide_class.'" id="'.$param_id.'_group">
         <div class="input-group">
             <div class="input-group-prepend">
-                <label class="input-group-text text-monospace" for="'.$param_id.'">'.$fa_icon.$dash_param_id.$required_asterisk.'</label>
+                <label class="input-group-text text-monospace" for="'.$form_param_name.'">'.$fa_icon.$dash_param_id.$required_asterisk.'</label>
             </div>
             '.$input_el.$help_text_btn.$validation_text.'
         </div>
