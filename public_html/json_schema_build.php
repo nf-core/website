@@ -134,7 +134,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <div class="schema-panel" id="schema-finished" style="display:none;">
         <div class="card mb-5">
             <div class="card-body">
-                <h4 id="schema-send-status">Ok, that's it - done!</h4>
+                <h2 id="schema-send-status">Ok, that's it - done!</h2>
                 <p>If you still have <code>nf-core schema build</code> running in the background,
                     it should now update with your new schema. You can close this window.</p>
                 <p>If you didn't use <code>nf-core schema build</code> or it has already exited,

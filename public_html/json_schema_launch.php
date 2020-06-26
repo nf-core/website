@@ -2,10 +2,25 @@
 
 $cache_dir = dirname(dirname(__FILE__)).'/api_cache/json_launch';
 $post_content_type = 'json_schema_launcher';
-$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status'];
+$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status', 'cli_launch', 'nfcore_launch_command', 'nextflow_cmd'];
 require_once('../includes/json_schema.php');
 
-$is_cli_waiting = $cache['version'] !== 'web_builder';
+// Return to editor
+if(isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true'){
+    $cache['cli_launch'] = false;
+    $cache['version'] = 'web_builder';
+    $cache['status'] = 'waiting_for_user';
+
+    // Write to JSON file
+    $cache['schema'] = json_encode($cache['schema']);
+    $cache['nxf_flags'] = json_encode($cache['nxf_flags']);
+    $cache['input_params'] = json_encode($cache['input_params']);
+    $cache_json = json_encode($cache, JSON_PRETTY_PRINT)."\n";
+    file_put_contents($cache_fn, $cache_json);
+    // Redirect to web URL
+    header('Location: '.$self_url.'?id='.$cache_id);
+    exit;
+}
 
 // Save form output
 $error_msgs = array();
@@ -91,6 +106,8 @@ function parse_md($text){
 }
 
 function build_form_param($param_id, $param, $is_required){
+
+    global $cache;
 
     $dash_param_id = substr($param_id, 0, 1) == '-' ? $param_id : '--'.$param_id;
     $form_param_name = 'params_'.$param_id;
@@ -236,16 +253,58 @@ if(!$cache){ ?>
 
 <p>You can run <code>nf-core launch</code> to submit any pipeline schema to this page and set the parameters required for launch.</p>
 
+<?php } else if($cache['status'] == 'launch_params_complete') { ?>
+
+<h1>Launch parameters saved</h1>
+
+<?php if(isset($cache['cli_launch']) && $cache['cli_launch']): ?>
+<p>The <code>nf-core launch</code> command running in your terminal should have automatically detected your settings.
+    Follow the prompts in your command line to launch the pipeline.</p>
+<p>If the launch command has stopped running for any reason, you can still launch by following the instructions below:</p>
+<?php else: ?>
+<p>Your workflow parameters are ready to go! Follow the instructions below for instructions on how to launch your pipeline:</p>
+<?php endif; ?>
+
+<h3>If your system has an internet connection</h3>
+<p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
+<p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
+    simply run the following command and follow the prompts:</p>
+<pre><?php echo $cache['nfcore_launch_command'].' --id '.$cache_id; ?></pre>
+
+<h3>Launching with no internet and without nf-core/tools</h3>
+<p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
+<pre><?php echo json_encode($cache['input_params']); ?></pre>
+
+<p>Then, launch Nextflow with the following command:</p>
+<pre><?php echo $cache['nextflow_cmd']; ?> -params-file nf-params.json</pre>
+
+<h3>Continue editing</h3>
+<p>If you would like to continue editing your workflow parameters, click the button below:</p>
+<form action="" method="get">
+    <input type="hidden" name="id" value="<?php echo $cache_id; ?>">
+    <input type="hidden" name="return_to_editor" value="true">
+    <button type="submit" class="btn btn-outline-primary">
+        <i class="fas fa-pencil-alt mr-1"></i>
+        Return to editor
+    </button>
+</form>
+
+
 <?php } else { ?>
 
     <p class="lead">Params cache ID: <code id="params_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
 
     <p>Go through the pipeline inputs below, setting them to the values that you would like.
-        When you're done, click <em>Launch</em> and your parameters will be saved.</p>
-    <p>If you came to this page by using the <code>nf-core launch</code> command then the changes should be detected.
-        If not, the page shown will show a command that you can use to directly launch the workflow.
+        When you're done, click <em>Launch</em> and your parameters will be saved.
+        <?php if($cache['cli_launch']): ?>
+        The <code>nf-core launch</code> command running in the background should detect your changes and give you further instructions.
+        <?php endif; ?>
+    </p>
+    <?php if(!$cache['cli_launch']): ?>
+    <p>The page shown will show a command that you can use to directly launch the workflow.
         For those running on a system with no internet connection, you can copy the parameters JSON to a file
         and use the supplied command to launch.</p>
+    <?php endif; ?>
 
     <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
 
@@ -280,7 +339,7 @@ if(!$cache){ ?>
                             ?>
                         </div>
                     </div>
-                    <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay="500">
+                    <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 0 }'>
                         <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
                         <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
                     </button>
@@ -292,7 +351,9 @@ if(!$cache){ ?>
                     </div>
                 </div>
                 <div class="col-md-auto">
-                    <button type="submit" class="btn btn-primary btn-launch"><i class="fad fa-rocket-launch mr-1"></i> Launch</button>
+                    <button type="submit" class="btn btn-primary btn-launch" title="Save parameters and <?php if($cache['cli_launch']) echo 'return to the command line"'; else echo 'copy command to launch' ?>" data-toggle="tooltip" data-delay='{ "show": 800, "hide": 0 }'>
+                        <i class="fad fa-rocket-launch mr-1"></i> Launch
+                    </button>
                 </div>
             </div>
         </div>

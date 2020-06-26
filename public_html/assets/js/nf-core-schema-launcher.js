@@ -74,6 +74,7 @@ $(function () {
             // If form was submitted, scroll to first error
             if(e.type =='submit'){
                 scroll_to($('input:invalid').first());
+                $('input:invalid').first().focus();
             }
         } else {
             validation_error = false;
