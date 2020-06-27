@@ -1,145 +1,14 @@
 <?php
 
-// Only keep cached schema for 24 hours
-define("MAX_JSON_BUILD_CACHE_AGE", 60*60*24);
-
-// Build URL for this page
-if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') $self_url = "https://";
-else $self_url = "http://";
-$self_url .= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-
-// Holder for cache that we may load later
-$schema_cache = false;
-$schema = false;
-$expires_timestamp = false;
-
-function return_json($response){
-    header('Content-type: application/json');
-    echo json_encode($response, JSON_PRETTY_PRINT);
-    exit;
-}
-
-//
-// Cache house keeping
-//
-
-// Check that the cache directory exists, create it if not
 $cache_dir = dirname(dirname(__FILE__)).'/api_cache/json_builder';
-if (!file_exists($cache_dir)) {
-    mkdir($cache_dir, 0777, true);
-}
-
-// Loop through files and delete any that are too old
-$schema_cache_files = glob($cache_dir.'/*.json');
-foreach($schema_cache_files as $fn) {
-    $fn_parts = explode('_', basename($fn));
-    if(count($fn_parts) == 2 && is_numeric($fn_parts[0])){
-        $fn_expires = $fn_parts[0] + MAX_JSON_BUILD_CACHE_AGE;
-        if(time() > $fn_expires){
-            unlink($fn);
-        }
-    }
-}
-
-//
-// POST request - we've been sent a JSON Schema
-//
-if(isset($_POST['post_content']) && $_POST['post_content'] == 'json_schema'){
-
-    // Was a cache ID supplied?
-    if(isset($_POST['cache_id'])){
-        validate_cache_id($_POST['cache_id']);
-        $cache_id = $_POST['cache_id'];
-    } else {
-        // Build a string for the filename with the timestamp and random string
-        $cache_id = time().'_'.substr(md5(rand()), 0, 12);
-    }
-    $cache_fn = $cache_dir.'/'.$cache_id.'.json';
-
-    // Build a dict with the schema and 'status' => 'waiting_for_user'
-    $schema_cache = array(
-        'version' => $_POST['version'],
-        'schema' => $_POST['schema'],
-        'status' => $_POST['status']
-    );
-    $schema_cache_json = json_encode($schema_cache, JSON_PRETTY_PRINT)."\n";
-
-    // Write to JSON file
-    file_put_contents($cache_fn, $schema_cache_json);
-
-    // Return with URL to check status cache if this came from the API (nf-core tools)
-    if(isset($_POST['api']) && $_POST['api'] == 'true'){
-        return_json(array(
-            'status' => 'recieved',
-            'web_url' => $self_url.'?id='.$cache_id,
-            'api_url' => $self_url.'?id='.$cache_id.'&api=true'
-        ));
-    }
-
-    // Not API, it came from the page form - redirect to the web url
-    else {
-        header('Location: '.$self_url.'?id='.$cache_id);
-        exit;
-    }
-}
-
-// GET request - polling for the results of a Schema builder
-elseif(isset($_GET['id'])){
-    $cache_id = $_GET['id'];
-    validate_cache_id($cache_id);
-    $cache_fn = $cache_dir.'/'.$cache_id.'.json';
-
-    $schema_cache = json_decode(file_get_contents($cache_fn), true);
-    $schema = json_decode($schema_cache['schema'], true);
-
-    // API check response
-    if(isset($_GET['api']) && $_GET['api'] = 'true'){
-        // Return just 'waiting_for_user' if flag still set
-        if($schema_cache['status'] == 'waiting_for_user'){
-            return_json(array('status' => 'waiting_for_user'));
-        }
-        // Presumably has been saved, so just return everything
-        else {
-            return_json($schema_cache);
-        }
-    }
-}
-
-function validate_cache_id($cache_id){
-    // Check that ID looks valid
-    $id_parts = explode('_', $cache_id);
-    if(count($id_parts) != 2 || !is_numeric($id_parts[0])){
-        return_json(array(
-            'status' => 'error',
-            'message' => 'JSON Build cache ID looks wrong: '.$cache_id
-        ));
-    }
-
-    // Check that timestamp isn't too old
-    global $expires_timestamp;
-    $expires_timestamp = $id_parts[0] + MAX_JSON_BUILD_CACHE_AGE;
-    if(time() > $expires_timestamp){
-        return_json(array(
-            'status' => 'error',
-            'message' => 'JSON Build cache is too old (max '.(MAX_JSON_BUILD_CACHE_AGE/60/60).' hours): '.date('r', $id_parts[0])
-        ));
-    }
-
-    // Check if temp file exists, return error if not
-    global $cache_dir;
-    $cache_fn = $cache_dir.'/'.$cache_id.'.json';
-    if (!file_exists($cache_fn)) {
-        return_json(array(
-            'status' => 'error',
-            'message' => 'JSON Build cache not found: '.$cache_id
-        ));
-    }
-}
+$post_content_type = 'json_schema';
+$post_keys = ['version', 'schema', 'status'];
+require_once('../includes/json_schema.php');
 
 // Got this far without printing JSON - build web GUI
 $title = 'Parameter schema';
 $subtitle = 'Customise a JSON Schema for your pipeline parameters';
-if($schema_cache) $import_schema_builder = true;
+if($cache) $import_schema_builder = true;
 $mainpage_container = false;
 include('../includes/header.php');
 ?>
@@ -196,7 +65,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     </div>
 </div>
 
-<?php if(!$schema_cache){ ?>
+<?php if(!$cache){ ?>
 
 <h3>Load Schema</h3>
 
@@ -242,7 +111,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 </div>
 <div class="container-fluid main-content">
 
-    <div class="schema-builder-header sticky-top">
+    <div class="schema-gui-header sticky-top">
         <div class="row align-items-center">
             <div class="col">
                 <div class="btn-group mr-3" role="group">
@@ -255,7 +124,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 </div>
                 <button class="btn btn-outline-secondary to-top-btn schema-panel-btn" data-target="#schema-builder"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</button>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-auto">
                 <button class="btn btn-outline-primary preview-docs-btn mr-1"><i class="fas fa-book mr-1"></i> Preview docs</button>
                 <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished"><i class="fas fa-check-square mr-1"></i> Finished</button>
             </div>
@@ -265,7 +134,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <div class="schema-panel" id="schema-finished" style="display:none;">
         <div class="card mb-5">
             <div class="card-body">
-                <h4 id="schema-send-status">Ok, that's it - done!</h4>
+                <h2 id="schema-send-status">Ok, that's it - done!</h2>
                 <p>If you still have <code>nf-core schema build</code> running in the background,
                     it should now update with your new schema. You can close this window.</p>
                 <p>If you didn't use <code>nf-core schema build</code> or it has already exited,
@@ -283,7 +152,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
     <h3>Pipeline JSON Schema</h3>
     <p>This is the schema for your pipeline. As you change values in the form above, it will update. When you are finished, click <em>Finished</em> in the top toolbar.</p>
-    <textarea id="json_schema" class="form-control text-monospace disabled" disabled rows="30"><?php echo json_encode($schema, JSON_PRETTY_PRINT); ?></textarea>
+    <textarea id="json_schema" class="form-control text-monospace disabled" disabled rows="30"><?php echo json_encode($cache['schema'], JSON_PRETTY_PRINT); ?></textarea>
 
     <!-- Params schema settings modal -->
     <div class="modal fade" id="settings_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -438,6 +307,6 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
 </div> <!-- .container-fluid -->
 
-<?php } // if $schema_cache
+<?php } // if $cache
 
 include('../includes/footer.php');
