@@ -962,14 +962,6 @@ $(function () {
 
 });
 
-function scroll_to(target_el){
-    var el_offset = target_el.offset().top - 124;
-    var doc_offset = $(document).scrollTop();
-    $([document.documentElement, document.body]).animate({
-        scrollTop: el_offset
-    }, 500);
-}
-
 function generate_obj(obj, level){
     var results = '';
     for (var id in obj){

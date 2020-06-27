@@ -188,3 +188,11 @@ $(function () {
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
 });
+
+function scroll_to(target_el){
+    var el_offset = target_el.offset().top - 140;
+    var doc_offset = $(document).scrollTop();
+    $([document.documentElement, document.body]).animate({
+        scrollTop: el_offset
+    }, 500);
+}

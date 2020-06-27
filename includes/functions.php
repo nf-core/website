@@ -76,3 +76,22 @@ function round_nicely($num){
   }
   return $num;
 }
+
+function return_json($response){
+    // Spit out a JSON response with correct headers and exit
+    header('Content-type: application/json');
+    echo json_encode($response, JSON_PRETTY_PRINT);
+    exit;
+}
+
+function get_self_url($strip_query=true){
+    // Build URL for this page
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') $self_url = "https://";
+    else $self_url = "http://";
+    if($strip_query){
+      $url = strtok($_SERVER["REQUEST_URI"], '?');
+    } else {
+      $url = $_SERVER["REQUEST_URI"];
+    }
+    return $self_url.$_SERVER['HTTP_HOST'].$url;
+}
