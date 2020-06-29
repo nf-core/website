@@ -240,18 +240,129 @@ function build_form_param($param_id, $param, $is_required){
 // Got this far without printing JSON - build web GUI
 $title = 'Launch pipeline';
 $subtitle = 'Configure workflow parameters for a pipeline run.';
-if($cache) $import_schema_launcher = true;
+$import_schema_launcher = true;
 include('../includes/header.php');
 
 if(count($error_msgs) > 0){
     echo '<div class="alert alert-danger">'.implode('<br>', $error_msgs).'</div>';
 }
 
-if(!$cache){ ?>
+if(!$cache){
 
-<h3>Launch a pipeline</h3>
+    // Get the pipelines
+    $pipelines_json = json_decode(file_get_contents('pipelines.json'));
+    $pipelines = array();
+    foreach($pipelines_json->remote_workflows as $wf){
+        if($wf->archived) continue;
+        $releases = [];
+        if(count($wf->releases) > 0){
+            usort($wf->releases, 'rsort_releases');
+            foreach($wf->releases as $release){
+                $releases[] = 'v'.$release->tag_name;
+            }
+        } else {
+            $releases = ['dev'];
+        }
+        $pipelines[$wf->name] = json_encode($releases);
+    }
+?>
 
-<p>You can run <code>nf-core launch</code> to submit any pipeline schema to this page and set the parameters required for launch.</p>
+<p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
+    It typically works in combination with the <a href="/tools"><code>nf-core</code> helper package</a>.
+</p>
+
+<h2>Launch a pipeline from the web</h2>
+
+<p>Pick a pipeline and release below to show the launch form for that pipeline.
+When you click <em>Finished</em>, your inputs will be saved and you'll be shown the commands
+to use to launch the pipeline with your choices.</p>
+
+<div class="card card-body mb-3">
+    <form action="" method="get" class="row" id="launch_select_pipeline">
+        <div class="col">
+            <div class="form-group mb-0 mr-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-monospace">nf-core launch</span>
+                    </div>
+                    <select class="custom-select" name="pipeline" id="launch-pipeline-name">
+                        <option value="">Select a pipeline</option>
+                        <option value="">--</option>
+                    <?php
+                    foreach($pipelines as $wf_name => $releases_json){
+                        echo '<option data-releases=\''.$releases_json.'\'>'.$wf_name.'</option>';
+                    }
+                    ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group mb-0 mr-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-monospace">-revision</span>
+                    </div>
+                    <select class="custom-select" name="release" id="launch-pipeline-release" disabled>
+                        <option>Please select a pipeline</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary btn-launch" id="launch-pipeline-submit" disabled>
+                <i class="fad fa-rocket-launch"></i> Launch
+            </button>
+        </div>
+    </form>
+</div>
+
+<p>For more options, such as launching a custom pipeline or using a GitHub branch, please use this tool locally - see below.</p>
+<p>Read more about the different nf-core pipelines on the <a href="/pipelines">Pipelines</a> page.</p>
+
+<h2>Launch a pipeline locally</h2>
+
+<p>You can run <code>nf-core launch</code> to submit any pipeline schema to this page and set the parameters required for launch.
+This should work with any Nextflow pipeline (though the experience is best for pipelines that have a <code>nextflow_schema.json</code> file).</p>
+
+<p>For example, to launch the <a href="/atacseq">nf-core/atacseq</a> pipeline in your current directory:</p>
+<pre>nf-core launch atacseq</pre>
+
+<p>To launch your own custom pipeline that you have locally:</p>
+<pre>nf-core launch ./my_pipeline/</pre>
+
+<p>The tool will check the pipeline's schema and create one if none exists, and then ask if you want to use this web tool or the command-line wizard:<p>
+<pre>$ nf-core launch atacseq
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 1.10.dev0
+
+
+INFO: This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
+
+
+INFO: Using local workflow: nf-core/atacseq (dev - 00d035c)
+
+INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
+
+<span style="color:purple;">Would you like to enter pipeline parameters using a web-based interface or a command-line wizard?</span>
+
+? Choose launch method (Use arrow keys)
+ <span style="color:green;">&#x276f;</span> Web based
+   Command line</pre>
+
+<p>If you select <code>Web based</code>, then this web page will load with the pipeline parameters for you to fill in.
+    The command-line tool will wait for you to click <em>Finished</em> and then offer to run Nextflow with the supplied parameters.</p>
+
+<p>The command-line wizard uses the exact same procedure, but runs entirely locally with a prompt system.
+    That is best for those running on offline systems, or if you are concerned about sending sensitive information over the web.</p>
+
+<p>The nf-core website stores a cached copy of your answers for 2 weeks under a random ID.</p>
 
 <?php } else if($cache['status'] == 'launch_params_complete') { ?>
 
