@@ -42,7 +42,37 @@ function launch_pipeline_web($pipeline, $release){
     }
     // Build the POST data
     $gh_launch_schema_response = json_decode($gh_launch_schema_json, true);
-    $gh_launch_schema = base64_decode($gh_launch_schema_response['content']);
+    $gh_launch_schema = json_decode(base64_decode($gh_launch_schema_response['content']), true);
+    $nxf_flag_schema = array(
+        'Nextflow command-line flags' => [
+            'type' => 'object',
+            'description' => 'General Nextflow flags to control how the pipeline runs.',
+            'help_text' => "These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.",
+            'properties' => [
+                '-name' => [
+                    'type' => 'string',
+                    'description' => 'Unique name for this nextflow run',
+                    'pattern' => '^[a-zA-Z0-9-_]+$'
+                ],
+                '-profile' => [
+                    'type' => 'string',
+                    'description' => 'Configuration profile'
+                ],
+                '-work-dir' => [
+                    'type' => 'string',
+                    'description' => 'Work directory for intermediate files',
+                    'default' => './work',
+                ],
+                '-resume' => [
+                    'type' => 'boolean',
+                    'description' => 'Resume previous run, if found',
+                    'help_text' => "Execute the script using the cached results, useful to continue executions that was stopped by an error",
+                    'default' => False
+                ]
+            ]
+        ]
+    );
+    $gh_launch_schema['properties'] = $nxf_flag_schema + $gh_launch_schema['properties'];
     $_POST['post_content'] = 'json_schema_launcher';
     $_POST['api'] = 'false';
     $_POST['version'] = 'web_launcher';
@@ -53,7 +83,7 @@ function launch_pipeline_web($pipeline, $release){
     $_POST['pipeline'] = $pipeline;
     $_POST['revision'] = $release;
     $_POST['nextflow_cmd'] = "nextflow run $pipeline -r $release";
-    $_POST['schema'] = $gh_launch_schema; // Already JSON encoded
+    $_POST['schema'] = json_encode($gh_launch_schema);
     return [];
 }
 
