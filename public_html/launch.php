@@ -3,7 +3,7 @@
 require_once('../includes/functions.php');
 $error_msgs = array();
 
-// Get availalble pipelines / releases
+// Get available pipelines / releases
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = array();
 foreach($pipelines_json->remote_workflows as $wf){
@@ -23,9 +23,39 @@ foreach($pipelines_json->remote_workflows as $wf){
 if(isset($_GET['pipeline']) && isset($_GET['release'])){
     $error_msgs = launch_pipeline_web($_GET['pipeline'], $_GET['release']);
 }
+$nxf_flag_schema = array(
+    'Nextflow command-line flags' => [
+        'type' => 'object',
+        'description' => 'General Nextflow flags to control how the pipeline runs.',
+        'help_text' => "These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.",
+        'properties' => [
+            '-name' => [
+                'type' => 'string',
+                'description' => 'Unique name for this nextflow run',
+                'pattern' => '^[a-zA-Z0-9-_]+$'
+            ],
+            '-profile' => [
+                'type' => 'string',
+                'description' => 'Configuration profile'
+            ],
+            '-work-dir' => [
+                'type' => 'string',
+                'description' => 'Work directory for intermediate files',
+                'default' => './work',
+            ],
+            '-resume' => [
+                'type' => 'boolean',
+                'description' => 'Resume previous run, if found',
+                'help_text' => "Execute the script using the cached results, useful to continue executions that was stopped by an error",
+                'default' => False
+            ]
+        ]
+    ]
+);
 function launch_pipeline_web($pipeline, $release){
     // Check that we recognise the pipeline name
     global $pipelines;
+    global $nxf_flag_schema;
     if(!array_key_exists($_GET['pipeline'], $pipelines)){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
@@ -43,35 +73,6 @@ function launch_pipeline_web($pipeline, $release){
     // Build the POST data
     $gh_launch_schema_response = json_decode($gh_launch_schema_json, true);
     $gh_launch_schema = json_decode(base64_decode($gh_launch_schema_response['content']), true);
-    $nxf_flag_schema = array(
-        'Nextflow command-line flags' => [
-            'type' => 'object',
-            'description' => 'General Nextflow flags to control how the pipeline runs.',
-            'help_text' => "These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.",
-            'properties' => [
-                '-name' => [
-                    'type' => 'string',
-                    'description' => 'Unique name for this nextflow run',
-                    'pattern' => '^[a-zA-Z0-9-_]+$'
-                ],
-                '-profile' => [
-                    'type' => 'string',
-                    'description' => 'Configuration profile'
-                ],
-                '-work-dir' => [
-                    'type' => 'string',
-                    'description' => 'Work directory for intermediate files',
-                    'default' => './work',
-                ],
-                '-resume' => [
-                    'type' => 'boolean',
-                    'description' => 'Resume previous run, if found',
-                    'help_text' => "Execute the script using the cached results, useful to continue executions that was stopped by an error",
-                    'default' => False
-                ]
-            ]
-        ]
-    );
     $gh_launch_schema['properties'] = $nxf_flag_schema + $gh_launch_schema['properties'];
     $_POST['post_content'] = 'json_schema_launcher';
     $_POST['api'] = 'false';
@@ -80,7 +81,7 @@ function launch_pipeline_web($pipeline, $release){
     $_POST['cli_launch'] = false;
     $_POST['nxf_flags'] = "{}";
     $_POST['input_params'] = "{}";
-    $_POST['pipeline'] = $pipeline;
+    $_POST['pipeline'] = 'nf-core/'.$pipeline;
     $_POST['revision'] = $release;
     $_POST['nextflow_cmd'] = "nextflow run $pipeline -r $release";
     $_POST['schema'] = json_encode($gh_launch_schema);
@@ -434,7 +435,15 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 
 <p>The nf-core website stores a cached copy of your answers for 2 weeks under a random ID.</p>
 
-<?php } else if($cache['status'] == 'launch_params_complete') { ?>
+<?php } else if($cache['status'] == 'launch_params_complete') {
+
+    $nxf_flags = ' ';
+    foreach($cache['nxf_flags'] as $key => $val){
+        if(!$nxf_flag_schema['Nextflow command-line flags']['properties'][$key]['default'] == $val){
+            $nxf_flags .= "$key $val ";
+        }
+    }
+    ?>
 
 <h1>Launch parameters saved</h1>
 
@@ -457,7 +466,7 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 <pre><?php echo json_encode($cache['input_params']); ?></pre>
 
 <p>Then, launch Nextflow with the following command:</p>
-<pre><?php echo $cache['nextflow_cmd']; ?> -params-file nf-params.json</pre>
+<pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?>-params-file nf-params.json</pre>
 
 <h3>Continue editing</h3>
 <p>If you would like to continue editing your workflow parameters, click the button below:</p>
