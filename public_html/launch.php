@@ -1,14 +1,72 @@
 <?php
 
+require_once('../includes/functions.php');
+$error_msgs = array();
+
+// Get availalble pipelines / releases
+$pipelines_json = json_decode(file_get_contents('pipelines.json'));
+$pipelines = array();
+foreach($pipelines_json->remote_workflows as $wf){
+    if($wf->archived) continue;
+    $releases = [];
+    if(count($wf->releases) > 0){
+        usort($wf->releases, 'rsort_releases');
+        foreach($wf->releases as $release){
+            $releases[] = 'v'.$release->tag_name;
+        }
+    }
+    $releases[] = 'dev';
+    $pipelines[$wf->name] = $releases;
+}
+
+// Loading launch page for a pipeline from the website
+if(isset($_GET['pipeline']) && isset($_GET['release'])){
+    $error_msgs = launch_pipeline_web($_GET['pipeline'], $_GET['release']);
+}
+function launch_pipeline_web($pipeline, $release){
+    // Check that we recognise the pipeline name
+    global $pipelines;
+    if(!array_key_exists($_GET['pipeline'], $pipelines)){
+        return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
+    }
+    // Try to fetch the nextflow_schema.json file
+    $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
+    $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
+    $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
+    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        return [
+            "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
+            "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
+            "<!-- URL attempted: $gh_launch_schema_url -->"
+        ];
+    }
+    // Build the POST data
+    $gh_launch_schema_response = json_decode($gh_launch_schema_json, true);
+    $gh_launch_schema = base64_decode($gh_launch_schema_response['content']);
+    $_POST['post_content'] = 'json_schema_launcher';
+    $_POST['api'] = 'false';
+    $_POST['version'] = 'web_launcher';
+    $_POST['status'] = 'waiting_for_user';
+    $_POST['cli_launch'] = false;
+    $_POST['nxf_flags'] = "{}";
+    $_POST['input_params'] = "{}";
+    $_POST['pipeline'] = $pipeline;
+    $_POST['revision'] = $release;
+    $_POST['nextflow_cmd'] = "nextflow run $pipeline -r $release";
+    $_POST['schema'] = $gh_launch_schema; // Already JSON encoded
+    return [];
+}
+
+// Share code to go through POST data and handle cache
 $cache_dir = dirname(dirname(__FILE__)).'/api_cache/json_launch';
 $post_content_type = 'json_schema_launcher';
-$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status', 'cli_launch', 'nfcore_launch_command', 'nextflow_cmd'];
+$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status', 'cli_launch', 'nextflow_cmd', 'pipeline', 'revision'];
 require_once('../includes/json_schema.php');
 
 // Return to editor
 if(isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true'){
     $cache['cli_launch'] = false;
-    $cache['version'] = 'web_builder';
+    $cache['version'] = 'web_launcher';
     $cache['status'] = 'waiting_for_user';
 
     // Write to JSON file
@@ -23,7 +81,6 @@ if(isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true'){
 }
 
 // Save form output
-$error_msgs = array();
 if(isset($_POST['post_content']) && $_POST['post_content'] == "json_schema_launcher_webform"){
     $error_msgs = save_launcher_form();
 }
@@ -31,6 +88,7 @@ function save_launcher_form(){
     // global vars
     global $cache_dir;
     global $cache;
+    global $self_url;
     // Check cache ID
     if(!isset($_POST['cache_id'])){
         return ["No cache ID supplied"];
@@ -58,7 +116,7 @@ function save_launcher_form(){
     }
 
     // Overwrite some keys (not schema)
-    $cache['version'] = 'web_builder';
+    $cache['version'] = 'web_launcher';
     $cache['status'] = 'launch_params_complete';
     $cache['nxf_flags'] = array();
     $cache['input_params'] = array();
@@ -247,25 +305,7 @@ if(count($error_msgs) > 0){
     echo '<div class="alert alert-danger">'.implode('<br>', $error_msgs).'</div>';
 }
 
-if(!$cache){
-
-    // Get the pipelines
-    $pipelines_json = json_decode(file_get_contents('pipelines.json'));
-    $pipelines = array();
-    foreach($pipelines_json->remote_workflows as $wf){
-        if($wf->archived) continue;
-        $releases = [];
-        if(count($wf->releases) > 0){
-            usort($wf->releases, 'rsort_releases');
-            foreach($wf->releases as $release){
-                $releases[] = 'v'.$release->tag_name;
-            }
-        } else {
-            $releases = ['dev'];
-        }
-        $pipelines[$wf->name] = json_encode($releases);
-    }
-?>
+if(!$cache){ ?>
 
 <p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
     It typically works in combination with the <a href="/tools"><code>nf-core</code> helper package</a>.
@@ -290,7 +330,7 @@ to use to launch the pipeline with your choices.</p>
                         <option value="">--</option>
                     <?php
                     foreach($pipelines as $wf_name => $releases_json){
-                        echo '<option data-releases=\''.$releases_json.'\'>'.$wf_name.'</option>';
+                        echo '<option data-releases=\''.json_encode($releases_json).'\'>'.$wf_name.'</option>';
                     }
                     ?>
                     </select>
@@ -380,7 +420,7 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 <p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
 <p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
     simply run the following command and follow the prompts:</p>
-<pre><?php echo $cache['nfcore_launch_command'].' --id '.$cache_id; ?></pre>
+<pre>nf-core launch --id <?php echo $cache_id; ?></pre>
 
 <h3>Launching with no internet and without nf-core/tools</h3>
 <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
