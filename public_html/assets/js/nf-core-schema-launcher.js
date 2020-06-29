@@ -40,28 +40,30 @@ $(function () {
     });
 
     // Listen to the page scroll
-    window.onscroll = function(){
-        // Progress bar width
-        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        var formTop = document.getElementById("schema_launcher_form").offsetTop;
-        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight - formTop;
-        var scrolled = ((winScroll - formTop) / height) * 100;
-        if(winScroll < formTop){ scrolled = 0; }
+    if(document.getElementById("schema_launcher_form")){
+        window.onscroll = function(){
+            // Progress bar width
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var formTop = document.getElementById("schema_launcher_form").offsetTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight - formTop;
+            var scrolled = ((winScroll - formTop) / height) * 100;
+            if(winScroll < formTop){ scrolled = 0; }
 
-        // Jump to section dropdown
-        $('legend:visible').each(function(){
-            var this_offset = $(this).closest('fieldset').offset().top - 30;
-            if(winScroll > this_offset && winScroll < this_offset + $(this).closest('fieldset').outerHeight(true)){
-                section_label = $(this).text();
+            // Jump to section dropdown
+            $('legend:visible').each(function(){
+                var this_offset = $(this).closest('fieldset').offset().top - 30;
+                if(winScroll > this_offset && winScroll < this_offset + $(this).closest('fieldset').outerHeight(true)){
+                    section_label = $(this).text();
+                }
+            });
+
+            // Update progress bar
+            $('.progress-bar').css('width', scrolled+"%").attr('area-valuenow', scrolled);
+            if(!validation_error){
+                $('#progress_section').html(section_label);
             }
-        });
-
-        // Update progress bar
-        $('.progress-bar').css('width', scrolled+"%").attr('area-valuenow', scrolled);
-        if(!validation_error){
-            $('#progress_section').html(section_label);
-        }
-    };
+        };
+    }
 
     // Page-scroll links
     $('body').on('click', '.scroll_to_link', function(e){
