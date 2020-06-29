@@ -21,6 +21,24 @@ $(function () {
         $('.is_hidden, .is_not_hidden').toggleClass('is_hidden is_not_hidden');
     });
 
+    // Launch select-pipeline form
+    $('#launch-pipeline-name').change(function(){
+        var wf_name = $(this).val();
+        var option_el = $(this).find(':selected');
+        var releases = option_el.data('releases');
+        if(wf_name == ''){
+            $('#launch-pipeline-release').html('<option>Please select a pipeline</option>');
+            $('#launch-pipeline-release').attr('disabled', true);
+            $('#launch-pipeline-submit').attr('disabled', true);
+        } else {
+            $('#launch-pipeline-release').html('').attr('disabled', false);
+            for(idx in releases){
+                $('#launch-pipeline-release').append('<option>'+releases[idx]+'</option>')
+            }
+            $('#launch-pipeline-submit').attr('disabled', false);
+        }
+    });
+
     // Listen to the page scroll
     window.onscroll = function(){
         // Progress bar width
@@ -52,10 +70,7 @@ $(function () {
     });
 
     // Validate form on submit - snippet from Bootstrap docs
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
     $('#form_validation_error_toast').toast({ 'autohide': false });
-    // Loop over them and prevent submission
     $('#schema_launcher_form').on('submit change keyup', function(e) {
 
         // Only run validation on change and keyup if we have already submitted / validated
