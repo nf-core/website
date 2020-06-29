@@ -1,14 +1,103 @@
 <?php
 
+require_once('../includes/functions.php');
+$error_msgs = array();
+
+// Get available pipelines / releases
+$pipelines_json = json_decode(file_get_contents('pipelines.json'));
+$pipelines = array();
+foreach($pipelines_json->remote_workflows as $wf){
+    if($wf->archived) continue;
+    $releases = [];
+    if(count($wf->releases) > 0){
+        usort($wf->releases, 'rsort_releases');
+        foreach($wf->releases as $release){
+            $releases[] = 'v'.$release->tag_name;
+        }
+    }
+    $releases[] = 'dev';
+    $pipelines[$wf->name] = $releases;
+}
+
+// Loading launch page for a pipeline from the website
+if(isset($_GET['pipeline']) && isset($_GET['release'])){
+    $error_msgs = launch_pipeline_web($_GET['pipeline'], $_GET['release']);
+}
+$nxf_flag_schema = array(
+    'Nextflow command-line flags' => [
+        'type' => 'object',
+        'description' => 'General Nextflow flags to control how the pipeline runs.',
+        'help_text' => "These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.",
+        'properties' => [
+            '-name' => [
+                'type' => 'string',
+                'description' => 'Unique name for this nextflow run',
+                'pattern' => '^[a-zA-Z0-9-_]+$'
+            ],
+            '-profile' => [
+                'type' => 'string',
+                'description' => 'Configuration profile'
+            ],
+            '-work-dir' => [
+                'type' => 'string',
+                'description' => 'Work directory for intermediate files',
+                'default' => './work',
+            ],
+            '-resume' => [
+                'type' => 'boolean',
+                'description' => 'Resume previous run, if found',
+                'help_text' => "Execute the script using the cached results, useful to continue executions that was stopped by an error",
+                'default' => False
+            ]
+        ]
+    ]
+);
+function launch_pipeline_web($pipeline, $release){
+    // Check that we recognise the pipeline name
+    global $pipelines;
+    global $nxf_flag_schema;
+    if(!array_key_exists($_GET['pipeline'], $pipelines)){
+        return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
+    }
+    // Try to fetch the nextflow_schema.json file
+    $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
+    $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
+    $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
+    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        return [
+            "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
+            "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
+            "<!-- URL attempted: $gh_launch_schema_url -->"
+        ];
+    }
+    // Build the POST data
+    $gh_launch_schema_response = json_decode($gh_launch_schema_json, true);
+    $gh_launch_schema = json_decode(base64_decode($gh_launch_schema_response['content']), true);
+    $gh_launch_schema['properties'] = $nxf_flag_schema + $gh_launch_schema['properties'];
+    $_POST['post_content'] = 'json_schema_launcher';
+    $_POST['api'] = 'false';
+    $_POST['version'] = 'web_launcher';
+    $_POST['status'] = 'waiting_for_user';
+    $_POST['cli_launch'] = false;
+    $_POST['nxf_flags'] = "{}";
+    $_POST['input_params'] = "{}";
+    $_POST['pipeline'] = 'nf-core/'.$pipeline;
+    $_POST['revision'] = $release;
+    $_POST['nextflow_cmd'] = "nextflow run $pipeline -r $release";
+    $_POST['schema'] = json_encode($gh_launch_schema);
+    return [];
+}
+
+// Share code to go through POST data and handle cache
 $cache_dir = dirname(dirname(__FILE__)).'/api_cache/json_launch';
 $post_content_type = 'json_schema_launcher';
-$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status', 'cli_launch', 'nfcore_launch_command', 'nextflow_cmd'];
+$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status', 'cli_launch', 'nextflow_cmd', 'pipeline', 'revision'];
 require_once('../includes/json_schema.php');
 
 // Return to editor
 if(isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true'){
     $cache['cli_launch'] = false;
-    $cache['version'] = 'web_builder';
+    $cache['version'] = 'web_launcher';
     $cache['status'] = 'waiting_for_user';
 
     // Write to JSON file
@@ -23,7 +112,6 @@ if(isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true'){
 }
 
 // Save form output
-$error_msgs = array();
 if(isset($_POST['post_content']) && $_POST['post_content'] == "json_schema_launcher_webform"){
     $error_msgs = save_launcher_form();
 }
@@ -31,6 +119,7 @@ function save_launcher_form(){
     // global vars
     global $cache_dir;
     global $cache;
+    global $self_url;
     // Check cache ID
     if(!isset($_POST['cache_id'])){
         return ["No cache ID supplied"];
@@ -58,7 +147,7 @@ function save_launcher_form(){
     }
 
     // Overwrite some keys (not schema)
-    $cache['version'] = 'web_builder';
+    $cache['version'] = 'web_launcher';
     $cache['status'] = 'launch_params_complete';
     $cache['nxf_flags'] = array();
     $cache['input_params'] = array();
@@ -240,7 +329,7 @@ function build_form_param($param_id, $param, $is_required){
 // Got this far without printing JSON - build web GUI
 $title = 'Launch pipeline';
 $subtitle = 'Configure workflow parameters for a pipeline run.';
-if($cache) $import_schema_launcher = true;
+$import_schema_launcher = true;
 include('../includes/header.php');
 
 if(count($error_msgs) > 0){
@@ -249,11 +338,112 @@ if(count($error_msgs) > 0){
 
 if(!$cache){ ?>
 
-<h3>Launch a pipeline</h3>
+<p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
+    It typically works in combination with the <a href="/tools"><code>nf-core</code> helper package</a>.
+</p>
 
-<p>You can run <code>nf-core launch</code> to submit any pipeline schema to this page and set the parameters required for launch.</p>
+<h2>Launch a pipeline from the web</h2>
 
-<?php } else if($cache['status'] == 'launch_params_complete') { ?>
+<p>Pick a pipeline and release below to show the launch form for that pipeline.
+When you click <em>Finished</em>, your inputs will be saved and you'll be shown the commands
+to use to launch the pipeline with your choices.</p>
+
+<div class="card card-body mb-3">
+    <form action="" method="get" class="row" id="launch_select_pipeline">
+        <div class="col">
+            <div class="form-group mb-0 mr-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-monospace">nf-core launch</span>
+                    </div>
+                    <select class="custom-select" name="pipeline" id="launch-pipeline-name">
+                        <option value="">Select a pipeline</option>
+                        <option value="">--</option>
+                    <?php
+                    foreach($pipelines as $wf_name => $releases_json){
+                        echo '<option data-releases=\''.json_encode($releases_json).'\'>'.$wf_name.'</option>';
+                    }
+                    ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group mb-0 mr-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-monospace">-revision</span>
+                    </div>
+                    <select class="custom-select" name="release" id="launch-pipeline-release" disabled>
+                        <option>Please select a pipeline</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary btn-launch" id="launch-pipeline-submit" disabled>
+                <i class="fad fa-rocket-launch"></i> Launch
+            </button>
+        </div>
+    </form>
+</div>
+
+<p>For more options, such as launching a custom pipeline or using a GitHub branch, please use this tool locally - see below.</p>
+<p>Read more about the different nf-core pipelines on the <a href="/pipelines">Pipelines</a> page.</p>
+
+<h2>Launch a pipeline locally</h2>
+
+<p>You can run <code>nf-core launch</code> to submit any pipeline schema to this page and set the parameters required for launch.
+This should work with any Nextflow pipeline (though the experience is best for pipelines that have a <code>nextflow_schema.json</code> file).</p>
+
+<p>For example, to launch the <a href="/atacseq">nf-core/atacseq</a> pipeline in your current directory:</p>
+<pre>nf-core launch atacseq</pre>
+
+<p>To launch your own custom pipeline that you have locally:</p>
+<pre>nf-core launch ./my_pipeline/</pre>
+
+<p>The tool will check the pipeline's schema and create one if none exists, and then ask if you want to use this web tool or the command-line wizard:<p>
+<pre>$ nf-core launch atacseq
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 1.10.dev0
+
+
+INFO: This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
+
+
+INFO: Using local workflow: nf-core/atacseq (dev - 00d035c)
+
+INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
+
+<span style="color:purple;">Would you like to enter pipeline parameters using a web-based interface or a command-line wizard?</span>
+
+? Choose launch method (Use arrow keys)
+ <span style="color:green;">&#x276f;</span> Web based
+   Command line</pre>
+
+<p>If you select <code>Web based</code>, then this web page will load with the pipeline parameters for you to fill in.
+    The command-line tool will wait for you to click <em>Finished</em> and then offer to run Nextflow with the supplied parameters.</p>
+
+<p>The command-line wizard uses the exact same procedure, but runs entirely locally with a prompt system.
+    That is best for those running on offline systems, or if you are concerned about sending sensitive information over the web.</p>
+
+<p>The nf-core website stores a cached copy of your answers for 2 weeks under a random ID.</p>
+
+<?php } else if($cache['status'] == 'launch_params_complete') {
+
+    $nxf_flags = ' ';
+    foreach($cache['nxf_flags'] as $key => $val){
+        if(!$nxf_flag_schema['Nextflow command-line flags']['properties'][$key]['default'] == $val){
+            $nxf_flags .= "$key $val ";
+        }
+    }
+    ?>
 
 <h1>Launch parameters saved</h1>
 
@@ -269,14 +459,14 @@ if(!$cache){ ?>
 <p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
 <p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
     simply run the following command and follow the prompts:</p>
-<pre><?php echo $cache['nfcore_launch_command'].' --id '.$cache_id; ?></pre>
+<pre>nf-core launch --id <?php echo $cache_id; ?></pre>
 
 <h3>Launching with no internet and without nf-core/tools</h3>
 <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
 <pre><?php echo json_encode($cache['input_params']); ?></pre>
 
 <p>Then, launch Nextflow with the following command:</p>
-<pre><?php echo $cache['nextflow_cmd']; ?> -params-file nf-params.json</pre>
+<pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?>-params-file nf-params.json</pre>
 
 <h3>Continue editing</h3>
 <p>If you would like to continue editing your workflow parameters, click the button below:</p>
