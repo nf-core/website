@@ -20,9 +20,6 @@ foreach($pipelines_json->remote_workflows as $wf){
 }
 
 // Loading launch page for a pipeline from the website
-if(isset($_GET['pipeline']) && isset($_GET['release'])){
-    $error_msgs = launch_pipeline_web($_GET['pipeline'], $_GET['release']);
-}
 $nxf_flag_schema = array(
     'Nextflow command-line flags' => [
         'type' => 'object',
@@ -52,6 +49,9 @@ $nxf_flag_schema = array(
         ]
     ]
 );
+if(isset($_GET['pipeline']) && isset($_GET['release'])){
+    $error_msgs = launch_pipeline_web($_GET['pipeline'], $_GET['release']);
+}
 function launch_pipeline_web($pipeline, $release){
     // Check that we recognise the pipeline name
     global $pipelines;
