@@ -52,9 +52,9 @@ include('../includes/header.php');
 # Get details for the button to the latest release
 $pipeline_warning = '';
 if(count($pipeline->releases) > 0){
-    $download_bn = '<a href="'.$pipeline->releases[0]->html_url.'" class="btn btn-success btn-lg">Get version '.$pipeline->releases[0]->tag_name.'</a>';
+    $launch_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release='.$pipeline->releases[0]->tag_name.'" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch version '.$pipeline->releases[0]->tag_name.'</a>';
 } else {
-    $download_bn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg">See the development code</a>';
+    $launch_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
     $pipeline_warning = '<div class="alert alert-danger">This pipeline is currently in development and does not yet have any stable releases.</div>';
 }
 if($pipeline->archived){
@@ -67,7 +67,7 @@ if($pipeline->archived){
 <div class="mainpage-subheader-heading">
   <div class="container text-center">
     <?php echo $pipeline_warning; ?>
-    <p><?php echo $download_bn; ?></p>
+    <p><?php echo $launch_btn; ?></p>
     <p class="mb-0"><a href="<?php echo $pipeline->html_url; ?>" class="text-dark"><i class="fab fa-github"></i> <?php echo $pipeline->html_url; ?></a></p>
   </div>
 </div>
