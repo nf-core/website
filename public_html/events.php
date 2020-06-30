@@ -4,6 +4,7 @@ $md_base = dirname(dirname(__file__))."/markdown/";
 $event_type_classes = array(
   'hackathon' => 'primary',
   'talk' => 'success',
+  'poster' => 'secondary',
   'tutorial' => 'info'
 );
 

@@ -30,6 +30,7 @@ Please note that there are two separate events running in parallel:
   * Free to attend!
   * Places are limited to 30 external people
 * nf-core hackathon
+  * [**Register here**](https://forms.gle/qo3USZuK2LDJAqHS9)
   * Afternoons (mornings too if you want) - organised by nf-core community
   * Free to attend!
   * No limit on attendance, everyone welcome
