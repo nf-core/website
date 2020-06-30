@@ -502,9 +502,21 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 </form>
 
 
-<?php } else { ?>
+<?php } else {
+    $pipeline_name_header = '';
+    if(isset($cache['pipeline']) && strlen($cache['pipeline']) > 0 && $cache['pipeline'] != '.'){
+        $pipeline_name_header = '<p class="lead">Pipeline: <code>'.$cache['pipeline'].'</code>';
+        if(isset($cache['revision']) && strlen($cache['revision']) > 0){
+            $pipeline_name_header .= ' (<code>'.$cache['revision'].'</code>)';
+        }
+        $pipeline_name_header .= '</p>';
+    }
+    ?>
 
-    <p class="lead">Params cache ID: <code id="params_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
+    <div class="alert alert-info">
+        <?php echo $pipeline_name_header; ?>
+        <p class="lead mb-0">Launch ID: <code><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
+    </div>
 
     <p>Go through the pipeline inputs below, setting them to the values that you would like.
         When you're done, click <em>Launch</em> and your parameters will be saved.
