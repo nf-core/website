@@ -86,7 +86,7 @@ if(count($pipeline->releases) > 0){
   if(file_exists($gh_launch_schema_fn)){
     $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
   } else {
-    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-sparkles mr-1"></i> See the development code</a>';
+    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-construction mr-1"></i> See the latest code</a>';
   }
   $pipeline_warning = '<div class="alert alert-danger">This pipeline is currently in development and does not yet have any stable releases.</div>';
 }
