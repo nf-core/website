@@ -80,13 +80,13 @@ if(count($pipeline->releases) > 0){
   if(file_exists($gh_launch_schema_fn)){
     $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release='.$pipeline->releases[0]->tag_name.'" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch version '.$pipeline->releases[0]->tag_name.'</a>';
   } else {
-    $cta_btn = '<a href="'.$pipeline->releases[0]->html_url.'" class="btn btn-success btn-lg"><i class="fas fa-download mr-1"></i> Get version '.$pipeline->releases[0]->tag_name.'</a>';
+    $cta_btn = '<a href="'.$pipeline->releases[0]->html_url.'" class="btn btn-success btn-lg"><i class="fas fa-tags mr-1"></i> See version '.$pipeline->releases[0]->tag_name.'</a>';
   }
 } else {
   if(file_exists($gh_launch_schema_fn)){
     $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
   } else {
-    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fas fa-download mr-1"></i> See the development code</a>';
+    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-sparkles mr-1"></i> See the development code</a>';
   }
   $pipeline_warning = '<div class="alert alert-danger">This pipeline is currently in development and does not yet have any stable releases.</div>';
 }
