@@ -60,15 +60,37 @@ function launch_pipeline_web($pipeline, $release){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
     // Try to fetch the nextflow_schema.json file
-    $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
-    $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
-    $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    $gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
+    $gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
+    # Build directories if needed
+    if (!is_dir(dirname($gh_launch_schema_fn))) {
+      mkdir(dirname($gh_launch_schema_fn), 0777, true);
+    }
+    // Load cache if not 'dev'
+    if(file_exists($gh_launch_no_schema_fn) && $release != 'dev'){
         return [
             "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
             "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
             "<!-- URL attempted: $gh_launch_schema_url -->"
         ];
+    } else if(file_exists($gh_launch_schema_fn) && $release != 'dev'){
+        $gh_launch_schema_json = file_get_contents($gh_launch_schema_fn);
+    } else {
+        $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
+        $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
+        $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
+        if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+            # Remember for next time
+            file_put_contents($gh_launch_no_schema_fn, '');
+            return [
+                "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
+                "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
+                "<!-- URL attempted: $gh_launch_schema_url -->"
+            ];
+        } else {
+            # Save cache
+            file_put_contents($gh_launch_schema_fn, $gh_launch_schema_json);
+        }
     }
     // Build the POST data
     $gh_launch_schema_response = json_decode($gh_launch_schema_json, true);
@@ -480,9 +502,21 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 </form>
 
 
-<?php } else { ?>
+<?php } else {
+    $pipeline_name_header = '';
+    if(isset($cache['pipeline']) && strlen($cache['pipeline']) > 0 && $cache['pipeline'] != '.'){
+        $pipeline_name_header = '<p class="lead">Pipeline: <code>'.$cache['pipeline'].'</code>';
+        if(isset($cache['revision']) && strlen($cache['revision']) > 0){
+            $pipeline_name_header .= ' (<code>'.$cache['revision'].'</code>)';
+        }
+        $pipeline_name_header .= '</p>';
+    }
+    ?>
 
-    <p class="lead">Params cache ID: <code id="params_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
+    <div class="alert alert-info">
+        <?php echo $pipeline_name_header; ?>
+        <p class="lead mb-0">Launch ID: <code><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
+    </div>
 
     <p>Go through the pipeline inputs below, setting them to the values that you would like.
         When you're done, click <em>Launch</em> and your parameters will be saved.
