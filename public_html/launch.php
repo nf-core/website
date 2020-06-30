@@ -60,8 +60,8 @@ function launch_pipeline_web($pipeline, $release){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
     // Try to fetch the nextflow_schema.json file
-    $gh_launch_schema_fn = dirname(dirname(dirname(__FILE__)))."/api_cache/json_schema/{$pipeline}/{$release}.json";
-    $gh_launch_no_schema_fn = dirname(dirname(dirname(__FILE__)))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
+    $gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
+    $gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
     # Build directories if needed
     if (!is_dir(dirname($gh_launch_schema_fn))) {
       mkdir(dirname($gh_launch_schema_fn), 0777, true);
