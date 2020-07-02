@@ -98,7 +98,7 @@ or on the <a href="https://nfcore.slack.com/channels/github-invitations"><code>#
 
 <h1>
   <a class="text-success text-decoration-none" href="https://www.youtube.com/c/nf-core" target="_blank">
-    <span class="join-pull-img"><img width="144px" src="/assets/img/youtube.svg" /></span>
+    <span class="join-pull-img"><img width="120px" src="/assets/img/youtube.svg" /></span>
     YouTube
   </a>
 </h1>
