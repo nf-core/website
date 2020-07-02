@@ -280,7 +280,7 @@ Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-c
 team?! Not to worry, we're a friendly bunch. Let us know about the new pipeline,
 when you're ready we will create a fake pull-request against the first commit in
 the pipeline. This gives the PR review interface showing all code that you've
-written. We will go through everything and request and changes that we think are
+written. We will go through everything and request changes that we think are
 necessary until you're good to go.
 
 Common things that are flagged at this point are:
