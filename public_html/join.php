@@ -25,7 +25,7 @@ include('../includes/header.php');
     you are welcome to join us at any or all!</p>
 <p class="text-center">
   <a href="https://nf-co.re/join/slack" class="mb-2 btn btn-lg btn-success">
-    <i class="fab fa-slack"></i> Join Slack
+    <i class="fab fa-slack"></i> Join nf-core Slack
   </a>
   <a href="https://github.com/nf-core" class="mb-2 btn btn-lg btn-dark">
     <i class="fab fa-github"></i> nf-core on GitHub
@@ -34,7 +34,7 @@ include('../includes/header.php');
     <i class="fab fa-twitter"></i> @nf_core on twitter
   </a>
   <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
-    <i class="fab fa-youtube"></i> YouTube
+    <i class="fab fa-youtube"></i> nf-core on YouTube
   </a>
 </p>
 <p class="text-info small">
@@ -60,8 +60,7 @@ include('../includes/header.php');
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.</p>
 <p>Once you have registered, you can access the nf-core slack at <a href="https://nfcore.slack.com/">https://nfcore.slack.com/</a>
   <em class="small text-muted">(NB: No hyphen!)</em></p>
-<p><a class="btn btn-success mr-2" href="https://nf-co.re/join/slack"><i class="fab fa-slack"></i> Get Slack invite</a>
-Follow this link to get an invite to join the nf-core Slack organisation.
+<p><a class="btn btn-success mr-2" href="https://nf-co.re/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
 </p>
 
 <h1>
