@@ -50,6 +50,26 @@ and ensure that presentations are as relevant as possible.
 We are hoping to send a few goodies in the post to everyone who registers,
 so remember to fill in your postal address!
 
+## How it works
+
+To participate, all you need is a computer with an internet connection.
+Presentations will be run using Zoom and live-streamed to YouTube,
+where they will be also be available afterwards. Discussion and collaboration
+will be handled in dedicated channels in the nf-core Slack organisation.
+
+Relevant links will be emailed to participants ahead of the event. For more
+details or if you have questions, please post a message in the nf-core Slack.
+See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
+
+All nf-core code is open source with the MIT licence and available on
+GitHub: [https://github.com/nf-core](https://github.com/nf-core)
+
+This event is being organised by the nf-core [core team](https://nf-co.re/about).
+
+### Hackathon project page
+
+[https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
+
 ## Schedule
 
 The Hackathon will be held on the same dates as a
@@ -70,30 +90,79 @@ A remote Pub Quiz  will be held on Thursday 17:00-19:00 CEST.
 
 Below is the full schedule. All times are indicated in CEST.
 
-|              |          Monday         |           Tuesday          |         Wednesday         |          Thursday          |                      Friday                      |
-|:------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
-|    09:00 - 12:00   |                         |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
-|   13:00 - 14:00   | Introduction to nf-core | Featured nf-core pipelines | Data management solutions | nf-core tools & guidelines |            DSL2 & modules in nf-core           |
-|  14:00 - 14:30 |     Hackathon start     |        Daily wrap-up       |       Daily wrap-up       |        Daily wrap-up       |                   Daily wrap-up                  |
-| 14:30 - 17:00 |          Hack!          |            Hack!           |           Hack!           |            Hack!           | Hack! |
-|   17:00 - 19:00   |                         |                            |                           |       Remote Pub Quiz      |                                                  |
+|                   |       Monday 13th       |        Tuesday 14th        |      Wednesday 15th       |       Thursday 16th        |                   Friday 17th                    |
+|:-----------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
+|  09:00 - 12:00    |         Hack!           |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
+|  13:00 - 14:00    | [Introduction to nf-core](#introduction) | [DSL2 & modules in nf-core](#dsl2-modules-in-nf-core) | [Data management solutions](#data-management-solutions) | [nf-core tools & guidelines](#nf-core-tools-guidelines) | [Featured nf-core pipelines](#featured-nf-core-pipelines) |
+|  (14:00 ish)      | 14:00 - Hackathon start | 14:30 - Daily wrap-up      | 13:30 - Daily wrap-up     | 13:30 - Daily wrap-up      |         14:00 - Daily wrap-up                    |
+| 14:20 ish - 17:00 |          Hack!          |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
+|  17:00 - 19:00    |                         |                            |                           |       Remote Pub Quiz      |                                                  |
 
-## How it works
 
-To participate, all you need is a computer with an internet connection.
-Presentations will be run using Zoom and live-streamed to YouTube,
-where they will be also be available afterwards. Discussion and collaboration
-will be handled in dedicated channels in the nf-core Slack organisation.
 
-Relevant links will be emailed to participants ahead of the event. For more
-details or if you have questions, please post a message in the nf-core Slack.
-See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
+### Introduction
 
-All nf-core code is open source with the MIT licence and available on
-GitHub: [https://github.com/nf-core](https://github.com/nf-core)
+#### Hackathon welcome
 
-This event is being organised by the nf-core [core team](https://nf-co.re/about).
+Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
+_Monday 13th, 13:00 - 13:20_
 
-## Hackathon project page
+#### Introduction to nf-core
 
-[https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
+Philip Ewels ([@ewels](https://github.com/ewels))<br>
+_Monday 13th, 13:20 - 13:40_
+
+#### Tutorial: running pipelines
+
+Friederike Hanssen ([@FriederikeHanssen](https://github.com/FriederikeHanssen))<br>
+_Monday 13th, 13:40 - 14:00_
+
+### DSL2 & modules in nf-core
+
+#### Introduction to DSL2 in Nextflow
+
+Paolo Di Tommaso ([@pditommaso](https://github.com/pditommaso)) & Evan Floden ([@evanfloden](https://github.com/evanfloden))<br>
+_Tuesday 14th, 13:00 - 13:30_
+
+#### DSL2 in nf-core
+
+Harshil Patel ([@drpatelh](https://github.com/drpatelh))<br>
+_Tuesday 14th, 13:30 - 14:00_
+
+#### Biocontainers
+
+Björn Grüning ([@bgruening](https://github.com/bgruening))<br>
+_Tuesday 14th, 14:00 - 14:30_
+
+### Data management solutions
+
+Elin Kronander ([@elinkronander](https://github.com/elinkronander))<br>
+_Wednesday 15th, 13:00 - 13:30_
+
+### nf-core tools & guidelines
+
+Philip Ewels ([@ewels](https://github.com/ewels))<br>
+_Thursday 16th, 13:00 - 13:30_
+
+### Featured nf-core pipelines
+
+#### [nf-core/sarek](/sarek)
+
+Maxime Garcia ([@maxulysse](https://github.com/maxulysse))<br>
+_Friday 17th, 13:00 - 13:20_
+
+#### [nf-core/rnaseq](/rnaseq)
+
+Alex Peltzer ([@apeltzer](https://github.com/apeltzer))<br>
+_Friday 17th, 13:20 - 13:40_
+
+#### [nf-core/viralrecon](/viralrecon)
+
+Harshil Patel ([@drpatelh](https://github.com/drpatelh))<br>
+_Friday 17th, 13:40 - 14:00_
+
+
+### Final wrap-up and closing remarks
+
+Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
+_Friday 17th, 16:30 - 17:00_
