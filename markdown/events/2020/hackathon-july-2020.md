@@ -90,19 +90,57 @@ A remote Pub Quiz  will be held on Thursday 17:00-19:00 CEST.
 
 Below is the full schedule. All times are indicated in CEST.
 
-|                   |       Monday 13th       |        Tuesday 14th        |      Wednesday 15th       |       Thursday 16th        |                   Friday 17th                    |
-|:-----------------:|:-----------------------:|:--------------------------:|:-------------------------:|:--------------------------:|:------------------------------------------------:|
-|  09:00 - 12:00    |         Hack!           |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
-|  13:00 - 14:00    | [Introduction to nf-core](#introduction) | [DSL2 & modules in nf-core](#dsl2-modules-in-nf-core) | [Data management solutions](#data-management-solutions) | [nf-core tools & guidelines](#nf-core-tools-guidelines) | [Featured nf-core pipelines](#featured-nf-core-pipelines) |
-|  (14:00 ish)      | 14:00 - Hackathon start | 14:30 - Daily wrap-up      | 13:30 - Daily wrap-up     | 13:30 - Daily wrap-up      |         14:00 - Daily wrap-up                    |
-| 14:20 ish - 17:00 |          Hack!          |            Hack!           |           Hack!           |            Hack!           |                       Hack!                      |
-|  17:00 - 19:00    |                         |                            |                           |       Remote Pub Quiz      |                                                  |
+### Schedule overview
 
+#### Monday 13th
 
+* 09:00 - 12:00 - Hack!
+* 13:00 - [Hackathon Introduction](#hackathon-introduction)
+    * 13:00 - [Welcome talk](#welcome-talk)
+    * 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
+    * 13:40 - [Tutorial: running pipelines](#tutorial-running-pipelines)
+* 14:00 - 17:00 - Hack!
 
-### Introduction
+#### Tuesday 14th
 
-#### Hackathon welcome
+* 09:00 - 12:00 - Hack!
+* 13:00 - [DSL2 & modules in nf-core](#dsl2-amp-modules-in-nf-core)
+    * 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
+    * 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
+    * 14:00 - [Biocontainers](#biocontainers)
+* 14:30 - Daily wrap-up
+* 14:50 - 17:00 - Hack!
+
+#### Wednesday 15th
+
+* 09:00 - 12:00 - Hack!
+* 13:00 - [Data management solutions](#data-management-solutions)
+* 13:30 - Daily wrap-up
+* 13:50 - 17:00 - Hack!
+
+#### Thursday 16th
+
+* 09:00 - 12:00 - Hack!
+* 13:00 - [nf-core tools & guidelines](#nf-core-tools-amp-guidelines)
+* 13:30 - Daily wrap-up
+* 13:50 - 17:00 - Hack!
+* 17:00 - 19:00 - Remote Pub Quiz
+
+#### Friday 17th
+
+* 09:00 - 12:00 - Hack!
+* 13:00 - [Featured nf-core pipelines](#featured-nf-core-pipelines)
+    * 13:00 - [nf-core/sarek](#nf-coresarek)
+    * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
+    * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
+* 14:00 - Daily wrap-up
+* 16:30 - [Final wrap-up and closing remarks](#final-wrap-up-and-closing-remarks)
+
+---
+
+### Hackathon Introduction
+
+#### Welcome talk
 
 Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
 _Monday 13th, 13:00 - 13:20_
@@ -116,6 +154,8 @@ _Monday 13th, 13:20 - 13:40_
 
 Friederike Hanssen ([@FriederikeHanssen](https://github.com/FriederikeHanssen))<br>
 _Monday 13th, 13:40 - 14:00_
+
+---
 
 ### DSL2 & modules in nf-core
 
@@ -134,15 +174,21 @@ _Tuesday 14th, 13:30 - 14:00_
 Björn Grüning ([@bgruening](https://github.com/bgruening))<br>
 _Tuesday 14th, 14:00 - 14:30_
 
+---
+
 ### Data management solutions
 
 Elin Kronander ([@elinkronander](https://github.com/elinkronander))<br>
 _Wednesday 15th, 13:00 - 13:30_
 
+---
+
 ### nf-core tools & guidelines
 
 Philip Ewels ([@ewels](https://github.com/ewels))<br>
 _Thursday 16th, 13:00 - 13:30_
+
+---
 
 ### Featured nf-core pipelines
 
