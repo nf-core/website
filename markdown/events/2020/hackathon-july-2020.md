@@ -35,8 +35,9 @@ Please note that there are two separate events running in parallel:
   * Free to attend!
   * No limit on attendance, everyone welcome
 
-All presentations for both the training and hackathon will be live-streamed
-to YouTube and archived there.
+> <i class="fab fa-youtube mr-2"></i>
+> All presentations for both the training and hackathon will be live-streamed to YouTube.
+> [The nf-core talks are shown below](#hackathon-introduction).
 
 ## Hackathon registration
 
@@ -81,21 +82,20 @@ After this, a catch-up of the hackathon progress will be held.
 The presentations held each day will be as follows:
 
 * **Monday** - Introduction to nf-core, tutorial on how to run pipelines
-* **Tuesday** - Feature: nf-core pipelines for common data types
+* **Tuesday** - Future directions: Nextflow DSL2 and nf-core modules
 * **Wednesday** - Data management solutions by Elin Kronander
 * **Thursday** - Tutorial on nf-core tools and guidelines
-* **Friday** - Future directions: Nextflow DSL2 and nf-core modules
+* **Friday** - Feature: nf-core pipelines for common data types
 
 A remote Pub Quiz  will be held on Thursday 17:00-19:00 CEST.
 
-Below is the full schedule. All times are indicated in CEST.
-
-### Schedule overview
+All times are indicated in CEST (Central European Summer Time, UTC+2).
+If you're in a different time zone, [this time-zone converter tool](https://savvytime.com/converter/cest) may be useful.
 
 #### Monday 13th
 
 * 09:00 - 12:00 - Hack!
-* 13:00 - [Hackathon Introduction](#hackathon-introduction)
+* 13:00 - [**Hackathon Introduction**](#hackathon-introduction)
   * 13:00 - [Welcome talk](#welcome-talk)
   * 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
   * 13:40 - [Tutorial: running pipelines](#tutorial-running-pipelines)
@@ -104,7 +104,7 @@ Below is the full schedule. All times are indicated in CEST.
 #### Tuesday 14th
 
 * 09:00 - 12:00 - Hack!
-* 13:00 - [DSL2 & modules in nf-core](#dsl2-amp-modules-in-nf-core)
+* 13:00 - [**DSL2 & modules in nf-core**](#dsl2-amp-modules-in-nf-core)
   * 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
   * 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
   * 14:00 - [Biocontainers](#biocontainers)
@@ -114,14 +114,14 @@ Below is the full schedule. All times are indicated in CEST.
 #### Wednesday 15th
 
 * 09:00 - 12:00 - Hack!
-* 13:00 - [Data management solutions](#data-management-solutions)
+* 13:00 - [**Data management solutions**](#data-management-solutions)
 * 13:30 - Daily wrap-up
 * 13:50 - 17:00 - Hack!
 
 #### Thursday 16th
 
 * 09:00 - 12:00 - Hack!
-* 13:00 - [nf-core tools & guidelines](#nf-core-tools-amp-guidelines)
+* 13:00 - [**nf-core tools & guidelines**](#nf-core-tools-amp-guidelines)
 * 13:30 - Daily wrap-up
 * 13:50 - 17:00 - Hack!
 * 17:00 - 19:00 - Remote Pub Quiz
@@ -129,12 +129,12 @@ Below is the full schedule. All times are indicated in CEST.
 #### Friday 17th
 
 * 09:00 - 12:00 - Hack!
-* 13:00 - [Featured nf-core pipelines](#featured-nf-core-pipelines)
+* 13:00 - [**Featured nf-core pipelines**](#featured-nf-core-pipelines)
   * 13:00 - [nf-core/sarek](#nf-coresarek)
   * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
   * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
 * 14:00 - Daily wrap-up
-* 16:30 - [Final wrap-up and closing remarks](#final-wrap-up-and-closing-remarks)
+* 16:30 - [**Final wrap-up and closing remarks**](#final-wrap-up-and-closing-remarks)
 
 ---
 
@@ -149,6 +149,10 @@ _Monday 13th, 13:00 - 13:20_
 
 Philip Ewels ([@ewels](https://github.com/ewels))<br>
 _Monday 13th, 13:20 - 13:40_
+
+An overview of the nf-core community.
+A little background about how nf-core started and how it has developed over the past three years.
+I'll discuss how we communicate and collaborate within nf-core, and cover the nf-core principles and guidelines that we use.
 
 #### Tutorial: running pipelines
 
@@ -187,6 +191,9 @@ _Wednesday 15th, 13:00 - 13:30_
 
 Philip Ewels ([@ewels](https://github.com/ewels))<br>
 _Thursday 16th, 13:00 - 13:30_
+
+An overview of the [nf-core/tools helper package](/tools) and how we use this to enforce nf-core guidelines.
+I'll describe how template synchronisation works and cover recent changes and improvements so that you know what to expect in upcoming releases.
 
 ---
 
