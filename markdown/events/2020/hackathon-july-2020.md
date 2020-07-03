@@ -96,18 +96,18 @@ Below is the full schedule. All times are indicated in CEST.
 
 * 09:00 - 12:00 - Hack!
 * 13:00 - [Hackathon Introduction](#hackathon-introduction)
-    * 13:00 - [Welcome talk](#welcome-talk)
-    * 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
-    * 13:40 - [Tutorial: running pipelines](#tutorial-running-pipelines)
+  * 13:00 - [Welcome talk](#welcome-talk)
+  * 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
+  * 13:40 - [Tutorial: running pipelines](#tutorial-running-pipelines)
 * 14:00 - 17:00 - Hack!
 
 #### Tuesday 14th
 
 * 09:00 - 12:00 - Hack!
 * 13:00 - [DSL2 & modules in nf-core](#dsl2-amp-modules-in-nf-core)
-    * 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
-    * 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
-    * 14:00 - [Biocontainers](#biocontainers)
+  * 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
+  * 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
+  * 14:00 - [Biocontainers](#biocontainers)
 * 14:30 - Daily wrap-up
 * 14:50 - 17:00 - Hack!
 
@@ -130,9 +130,9 @@ Below is the full schedule. All times are indicated in CEST.
 
 * 09:00 - 12:00 - Hack!
 * 13:00 - [Featured nf-core pipelines](#featured-nf-core-pipelines)
-    * 13:00 - [nf-core/sarek](#nf-coresarek)
-    * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
-    * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
+  * 13:00 - [nf-core/sarek](#nf-coresarek)
+  * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
+  * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
 * 14:00 - Daily wrap-up
 * 16:30 - [Final wrap-up and closing remarks](#final-wrap-up-and-closing-remarks)
 
