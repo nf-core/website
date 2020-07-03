@@ -12,7 +12,7 @@ foreach($pipelines_json->remote_workflows as $wf){
     if(count($wf->releases) > 0){
         usort($wf->releases, 'rsort_releases');
         foreach($wf->releases as $release){
-            $releases[] = 'v'.$release->tag_name;
+            $releases[] = $release->tag_name;
         }
     }
     $releases[] = 'dev';
