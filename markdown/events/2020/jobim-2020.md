@@ -24,6 +24,13 @@ Maxime Garcia will be giving a 20-minute talk about the nf-core community.
 The talk will be available for anyone to watch after the conference.
 It will be posted on this page when ready.
 
+<div class="row">
+    <div class="col-md-6">
+        <iframe src="https://maxulysse.github.io/jobim2020" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+        <div style="margin-bottom:5px"> <strong> <a href="https://maxulysse.github.io/jobim2020" title="nf-core, a community effort for collaborative, peer-reviewed analysis pipelines" target="_blank">nf-core, a community effort for collaborative, peer-reviewed analysis pipelines</a> </strong> from <strong><a href="https://maxulysse.github.io" target="_blank">Maxime Garcia</a></strong> </div>
+    </div>
+</div>
+
 ### Abstract
 
 Paper Reference: Ewels, P.A., Peltzer, A., Fillinger, S. et al. The nf-core framework for community-curated bioinformatics pipelines. Nat Biotechnol (2020). [doi.org/10.1038/s41587-020-0439-x](https://doi.org/10.1038/s41587-020-0439-x)
