@@ -359,7 +359,12 @@ if(count($error_msgs) > 0){
     echo '<div class="alert alert-danger">'.implode('<br>', $error_msgs).'</div>';
 }
 
-if(!$cache){ ?>
+if(!$cache){
+
+/////////////////////////////////////////////////////////////
+// EMPTY - NO CACHE ID
+/////////////////////////////////////////////////////////////
+?>
 
 <p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
     It typically works in combination with the <a href="/tools"><code>nf-core</code> helper package</a>.
@@ -455,7 +460,13 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 
 <p>The nf-core website stores a cached copy of your answers for 2 weeks under a random ID.</p>
 
-<?php } else if($cache['status'] == 'launch_params_complete') {
+<?php }
+
+/////////////////////////////////////////////////////////////
+// COMPLETE - PARAMETERS ENTERED
+/////////////////////////////////////////////////////////////
+
+else if($cache['status'] == 'launch_params_complete') {
 
     $nxf_flags = ' ';
     foreach($cache['nxf_flags'] as $param_id => $param_value){
@@ -493,6 +504,17 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
             }
         }
     }
+
+    // Tower payload
+    $tower_fields = array(
+        "pipeline" => "https://github.com/".$cache['pipeline'],
+        "revision" => $cache['revision'],
+        "configParams" => htmlspecialchars(json_encode(array("params" => $cache['input_params']), JSON_PRETTY_PRINT)),
+        // "computeEnvId" => "", // the user compute env Id (default user primary env)
+        // "workDir" => "", // the pipeline work dir
+        // "configProfiles" => "", // one or more nextflow profile names
+        // "resume" => "", // true|false
+    );
     ?>
 
 <h1>Launch parameters saved</h1>
@@ -511,11 +533,28 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
     simply run the following command and follow the prompts:</p>
 <pre>nf-core launch --id <?php echo $cache_id; ?></pre>
 
+<h3>Launch using Nextflow Tower</h3>
+<?php if(substr($cache['pipeline'], 0, 8) == 'nf-core/'){ ?>
+<p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
+(requires a Nextflow Tower account).</p>
+<form method="get" action="https://scratch.staging-tower.xyz/launch" target="_blank" class="mb-3">
+    <?php foreach($tower_fields as $name => $value){
+        echo '<input type="hidden" name="'.$name.'" value="'.$value.'">';
+    } ?>
+    <button type="submit" class="btn btn-primary" style="background-color: #4259E0;">
+        <i class="fad fa-rocket mr-1"></i>
+        Nextflow Tower &nbsp; &#x276f; &nbsp; Launch
+    </button>
+</form>
+<?php } else { ?>
+<p>Sorry, this feature is not supported for pipelines that are launched from a local directory (<code><?php echo $cache['pipeline']; ?></code>)</p>
+<?php } ?>
+
 <h3>Launching with no internet and without nf-core/tools</h3>
 
 <?php if(count($cache['input_params']) > 0): ?>
 <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
-<pre><?php echo json_encode($cache['input_params']); ?></pre>
+<pre><?php echo json_encode($cache['input_params'], JSON_PRETTY_PRINT); ?></pre>
 
 <p>Then, launch Nextflow with the following command:</p>
 <pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?>-params-file nf-params.json</pre>
@@ -538,6 +577,11 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 
 
 <?php } else {
+
+/////////////////////////////////////////////////////////////
+// IN PROGRESS - BUILD FORM
+/////////////////////////////////////////////////////////////
+
     $pipeline_name_header = '';
     if(isset($cache['pipeline']) && strlen($cache['pipeline']) > 0 && $cache['pipeline'] != '.'){
         $pipeline_name_header = '<p class="lead">Pipeline: <code>'.$cache['pipeline'].'</code>';
