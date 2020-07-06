@@ -926,7 +926,78 @@ $(function () {
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
+    //
+    // multi-select modal
+    //
+    
+    $('#multi_select_modal').on('change', '.move_param', function(){
+        var num_selected = $('#multi_select_modal').find('.move_param:checked').length;
+        if(num_selected>0){
+            $('#multi_select_modal #move_params').removeClass("disabled");
+            if(num_selected === 1){
+                $('#multi_select_modal #move_params').html("Move 1 parameter");
+            } else {
+            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
+            }
+        } else{
+            $('#multi_select_modal #move_params').addClass("disabled");
+            $('#multi_select_modal #move_params').html("Move parameters");
+        }
+    })
+    $('#schema-builder').on('click', '.schema_group_move_params', function () {
+        // Get row
+        var row = $(this).closest('.schema_group');
+        var id = row.data('id');
+        launch_multi_select_modal(id);
+    });
+    function launch_multi_select_modal(id) {
+        // Reset button to initial state
+        $('#multi_select_modal #move_params').addClass("disabled");
+        $('#multi_select_modal #move_params').html("Move parameters");
+        // Build modal
+        $('#multi_select_modal .modal-header h4 span').html(id)
+        var params = '';
+        for (k in schema['properties']) {
+            // skip over Groups
+            if (schema['properties'][k].hasOwnProperty('properties')) {
+                continue
+            }
+            
 
+            // Add to the preview
+            params += `
+                <tr>
+                    <td>
+                        <input type="checkbox" aria-label="Move this parameter" class="move_param" data-id=`+k+`>
+                    </td>
+                    <td>
+                        `+k+`
+                    </td>
+                    <td>
+                        `+ schema['properties'][k].description +`
+                    </td>
+                </tr>
+                `
+
+        }
+        $('#multi_select_modal tbody').html(params)
+        
+
+        $('#multi_select_modal').modal('show');
+        
+    }
+    $("#move_params").click(function(){
+        var id = $('#multi_select_modal .modal-header h4 span').text();
+        var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
+        var selected_params = $('#multi_select_modal').find('.move_param:checked')
+        for (let i = 0; i < selected_params.length; i++) {
+            var p_id = $(selected_params[i]).data('id')
+            var row_el = $('.schema_row[data-id="' + p_id + '"]');
+            group_el.append(row_el)
+        }
+        schema_order_change();
+    }
+    )
     //
     // Collapse group button
     //
@@ -1188,6 +1259,9 @@ function generate_group_row(id, param, child_params){
                 </div>
                 <div class="col-auto align-self-center schema_row_config border-left">
                     <i class="fas fa-cog"></i>
+                </div>
+                <div class="col-auto align-self-center schema_group_move_params" alt-text="Move paramter(s) into this group">
+                    <i class="fas fa-folder-download"></i> 
                 </div>
                 <div class="col-auto align-self-center schema_group_collapse">
                     <i class="fas fa-angle-double-down"></i>

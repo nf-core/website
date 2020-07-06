@@ -304,7 +304,40 @@ This page helps pipeline authors to build their pipeline schema file by using a 
             </div>
         </div>
     </div>
-
+    <!-- Moving multiple params into group modal -->
+    <div class="modal fade" id="multi_select_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Move parameters into this <span></span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                            <th scope="col">Move</th>
+                            <th scope="col">Parameter</th>
+                            <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="col text-right pr-0">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary disabled" data-dismiss="modal" id="move_params">
+                        Move parameters
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div> <!-- .container-fluid -->
 
 <?php } // if $cache

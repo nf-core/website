@@ -865,7 +865,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .schema_row div:hover, .schema_row:focus-within {
   background-color: #f3f3f3;
 }
-.schema_row div:focus-within, .schema_row_grabber:hover, .schema_row_config:hover, .schema_group_collapse:hover {
+.schema_row div:focus-within, .schema_row_grabber:hover, .schema_row_config:hover, .schema_group_collapse:hover,
+.schema_group_move_params:hover {
   background-color: #ededed;
 }
 .schema_row label {
@@ -887,19 +888,24 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   -webkit-appearance: none;
   appearance: none;
 }
-.schema_row_grabber, .schema_row_config, .schema_group_collapse {
+.schema_row_grabber, .schema_row_config, .schema_group_collapse, .schema_group_move_params {
   line-height: 3rem;
   vertical-align: middle;
   background-color: #f3f3f3;
 }
-.schema_row .schema_row_grabber:hover, .schema_row .schema_row_config:hover, .schema_row .schema_group_collapse:hover, .schema_row > button:hover, .schema_row > button:focus {
+.schema_row .schema_row_grabber:hover, 
+.schema_row .schema_row_config:hover, 
+.schema_row .schema_group_collapse:hover, 
+.schema_row .schema_group_move_params:hover, 
+.schema_row > button:hover, 
+.schema_row > button:focus {
   background-color: #ededed;
   outline: none;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
-.schema_row_config, .schema_group_collapse {
+.schema_row_config, .schema_group_collapse, .schema_group_move_params {
   cursor: pointer;
 }
 .schema_row_grabber {
@@ -911,10 +917,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .ui-sortable-helper, .ui-selecting, .ui-selected  {
   border: 1px solid #cccccc;
 }
-.schema_row_grabber i, .schema_row_config i, .schema_group_collapse i {
+.schema_row_grabber i, .schema_row_config i, .schema_group_collapse i, .schema_group_move_params i {
   color: #666;
 }
-.schema_row_grabber:hover i, .schema_row_config:hover i, .schema_group_collapse:hover i {
+.schema_row_grabber:hover i, .schema_row_config:hover i, .schema_group_collapse:hover i, .schema_group_move_params:hover i {
   color: #333;
 }
 .schema_row > button {
