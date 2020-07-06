@@ -324,6 +324,10 @@ hr {
   background-color: #2b4764;
   border-color: #2b4764;
 }
+.btn-primary.disabled{
+  background-color: #1D3044;
+  border-color: #1D3044;
+}
 .btn-outline-primary{
   border-color: #2C5886;
   color: #2C5886;
@@ -353,13 +357,15 @@ hr {
 .schema_row label {
   color: #999;
 }
-.schema_row_grabber, .schema_row_config, .schema_group_collapse {
+.schema_row_grabber, .schema_row_config, .schema_group_collapse, 
+.schema_group_move_params{
   background-color: #333;
   border-color: #333;
 }
 .schema_row .schema_row_grabber:hover,
 .schema_row .schema_row_config:hover,
 .schema_row .schema_group_collapse:hover,
+.schema_group_move_params:hover,
 .schema_row > button:hover,
 .schema_row > button:focus {
   background-color: #616161;
@@ -367,10 +373,16 @@ hr {
 .schema_group {
   box-shadow: 2px 2px 5px rgb(0, 0, 0,0.75);
 }
-.schema_row_grabber i, .schema_row_config i, .schema_group_collapse i {
+.schema_row_grabber i, 
+.schema_row_config i, 
+.schema_group_collapse i, 
+.schema_group_move_params i {
   color: #999;
 }
-.schema_row_grabber:hover i, .schema_row_config:hover i, .schema_group_collapse:hover i {
+.schema_row_grabber:hover i, 
+.schema_row_config:hover i, 
+.schema_group_collapse:hover i, 
+.schema_group_move_params:hover i {
   color: #ededed;
 }
 .help_text_icon{
