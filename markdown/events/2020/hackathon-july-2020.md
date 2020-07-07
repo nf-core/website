@@ -82,7 +82,7 @@ Here are the details for each project:
   * Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
   * Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
   * Slides on HackMD: [Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ), [View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv)
-* Existing nf-core pipeline development: 
+* Existing nf-core pipeline development:
   * Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
   * Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
   * Slides on HackMD: [Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg), [View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD)
@@ -97,7 +97,6 @@ Here are the details for each project:
 
 Tasks, in the form of GitHub issues, can be gathered and organised within the hackathon project board on GitHub:
 [https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
-
 
 If you'd like to form sub-groups, for example to work on a specific pipeline, that's fine.
 Just remember to check back in with the main group periodically.
