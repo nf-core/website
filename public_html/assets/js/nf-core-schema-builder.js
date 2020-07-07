@@ -963,8 +963,6 @@ $(function () {
             if (schema['properties'][k].hasOwnProperty('properties')) {
                 continue
             }
-            
-
             // Add to the preview
             params += `
                 <tr>
@@ -979,14 +977,13 @@ $(function () {
                     </td>
                 </tr>
                 `
-
         }
         if (params===''){
-            params = '<div class="alert alert-info">No ungrouped parameters available.</div>'
-            $('#multi_select_modal .table').remove()
-            $('#multi_select_modal .modal-body').html(params)
+            params = '<div class="alert alert-info">No ungrouped parameters available.</div>';
+            $('#multi_select_modal .table').remove();
+            $('#multi_select_modal .modal-body').html(params);
         } else {
-            $('#multi_select_modal tbody').html(params)
+            $('#multi_select_modal tbody').html(params);
         }
         $('#multi_select_modal').modal('show');
         
@@ -994,19 +991,21 @@ $(function () {
     $('#move_params').click(function(){
         var id = $('#multi_select_modal .modal-header h4 span').text();
         var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
-        var selected_params = $('#multi_select_modal').find('.select_param:checked')
+        var selected_params = $('#multi_select_modal').find('.select_param:checked');
         for (let i = 0; i < selected_params.length; i++) {
-            var p_id = $(selected_params[i]).data('id')
+            var p_id = $(selected_params[i]).data('id');
             var row_el = $('.schema_row[data-id="' + p_id + '"]');
-            group_el.append(row_el)
+            group_el.append(row_el);
         }
         schema_order_change();
     });
     // select all parameter checkboxes via button
     $('#select_all_params').click(function(){
-        $('.select_param').prop('checked', true)
+        $('.select_param').prop('checked', true);
+        $('.select_param').trigger("change");
+
     });
-    // hodl shift for selecting a range of checkboxes
+    // hold shift for selecting a range of checkboxes
     $('#multi_select_modal').on('click','.select_param',function(e) {
         var checkboxes = $('.select_param');   
         if (!last_checked_box) {
