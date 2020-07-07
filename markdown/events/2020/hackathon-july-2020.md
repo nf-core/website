@@ -57,19 +57,52 @@ To participate, all you need is a computer with an internet connection.
 Presentations will be run using Zoom and live-streamed to YouTube,
 where they will be also be available afterwards. Discussion and collaboration
 will be handled in dedicated channels in the nf-core Slack organisation.
+**YouTube streams are embedded in the page below.**
 
-Relevant links will be emailed to participants ahead of the event. For more
-details or if you have questions, please post a message in the nf-core Slack.
+For details or questions, please post a message in the
+[`#hackathon-july-2020` channel](https://nfcore.slack.com/channels/hackathon-july-2020)
+in the nf-core Slack.
 See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
 
 All nf-core code is open source with the MIT licence and available on
-GitHub: [https://github.com/nf-core](https://github.com/nf-core)
-
+GitHub ([https://github.com/nf-core](https://github.com/nf-core)).
 This event is being organised by the nf-core [core team](https://nf-co.re/about).
 
-### Hackathon project page
+### Hackathon projects
 
+Work within the hackathon will be loosely gathered into projects.
+Each project has its own Slack channel and Jitsi meeting room for communication.
+For the wrap-up daily sessions, the progress made during the day will be presented in the form of HackMD slides.
+
+Tasks, in the form of GitHub issues, can be gathered and organised within the hackathon project board on GitHub:
 [https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
+
+If you'd like to form sub-groups, for example to work on a specific pipeline, that's fine.
+Just remember to check back in with the main group periodically.
+
+##### New pipeline development
+
+* <i class="fab fa-fw fa-slack text-muted mr-2"></i> Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
+* <i class="fas fa-fw fa-video text-muted mr-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
+* <i class="fab fa-fw fa-markdown text-muted mr-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv) ]
+
+##### Existing nf-core pipeline development
+
+* <i class="fab fa-fw fa-slack text-muted mr-2"></i> Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
+* <i class="fas fa-fw fa-video text-muted mr-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
+* <i class="fab fa-fw fa-markdown text-muted mr-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD) ]
+
+##### Improving nf-core framework tools (written in Python)
+
+* <i class="fab fa-fw fa-slack text-muted mr-2"></i> Slack channel: [`#hackathon-july-2020-tools`](https://nfcore.slack.com/channels/hackathon-july-2020-tools)
+* <i class="fas fa-fw fa-video text-muted mr-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement](https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement)
+* <i class="fab fa-fw fa-markdown text-muted mr-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP) ]
+
+##### Nextflow DSL2 modules
+
+* <i class="fab fa-fw fa-slack text-muted mr-2"></i> Slack channel: [`#hackathon-july-2020-modules-dsl2`](https://nfcore.slack.com/channels/hackathon-july-2020-modules-dsl2)
+* <i class="fas fa-fw fa-video text-muted mr-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2](https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2)
+* <i class="fab fa-fw fa-markdown text-muted mr-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD) ]
 
 ## Schedule
 
@@ -140,6 +173,10 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 
 ### Hackathon Introduction
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nzk4qzSFBb4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/99218495584) for this session.
+
 #### Welcome talk
 
 Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
@@ -182,12 +219,20 @@ _Tuesday 14th, 14:00 - 14:30_
 
 ### Data management solutions
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u1kg8HTimXk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/96839947521) for this session.
+
 Elin Kronander ([@elinkronander](https://github.com/elinkronander))<br>
 _Wednesday 15th, 13:00 - 13:30_
 
 ---
 
 ### nf-core tools & guidelines
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Xl_bCDeqaUY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/96822836533) for this session.
 
 Philip Ewels ([@ewels](https://github.com/ewels))<br>
 _Thursday 16th, 13:00 - 13:30_
@@ -216,6 +261,10 @@ _Friday 17th, 13:40 - 14:00_
 
 
 ### Final wrap-up and closing remarks
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/e-eEWFM0ozs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/97710057433) for this session.
 
 Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
 _Friday 17th, 16:30 - 17:00_
