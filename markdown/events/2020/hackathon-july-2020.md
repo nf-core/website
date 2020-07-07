@@ -83,6 +83,13 @@ Each group has its own Slack channel:
 Tasks, in the form of GitHub issues, can be gathered and organised within the hackathon project board on GitHub:
 [https://github.com/orgs/nf-core/projects/6](https://github.com/orgs/nf-core/projects/6)
 
+For the wrap-up daily sessions, the progress made during the day will presented in the form of HackMD slides. To show your participation in the Hackathon groups, you can contribute to the slides. Each group has its own slides deck:
+
+* New pipelines slides: [Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ), [View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv)
+* Existing pipelines slides: [Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg), [View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD)
+* Tools slides: [Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg), [View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP)
+* DSL2 modules slides: [Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw), [View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD)
+
 If you'd like to form sub-groups, for example to work on a specific pipeline, that's fine.
 Just remember to check back in with the main group periodically.
 
@@ -157,6 +164,8 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nzk4qzSFBb4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+Join the [Zoom Meeting](https://zoom.us/j/99218495584) for this session.
+
 #### Welcome talk
 
 Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
@@ -201,6 +210,8 @@ _Tuesday 14th, 14:00 - 14:30_
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/u1kg8HTimXk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+Join the [Zoom Meeting](https://zoom.us/j/96839947521) for this session.
+
 Elin Kronander ([@elinkronander](https://github.com/elinkronander))<br>
 _Wednesday 15th, 13:00 - 13:30_
 
@@ -209,6 +220,8 @@ _Wednesday 15th, 13:00 - 13:30_
 ### nf-core tools & guidelines
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Xl_bCDeqaUY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/96822836533) for this session.
 
 Philip Ewels ([@ewels](https://github.com/ewels))<br>
 _Thursday 16th, 13:00 - 13:30_
@@ -239,6 +252,8 @@ _Friday 17th, 13:40 - 14:00_
 ### Final wrap-up and closing remarks
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/e-eEWFM0ozs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/97710057433) for this session.
 
 Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))<br>
 _Friday 17th, 16:30 - 17:00_
