@@ -10,6 +10,7 @@ var new_group_idx = 1;
 var help_text_icon_template = '<i class="fas fa-book help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
 var no_help_text_icon = '<i class="fas fa-book help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
 var prev_focus = false;
+var last_checked_box = null;
 
 $(function () {
 
@@ -1001,11 +1002,24 @@ $(function () {
         }
         schema_order_change();
     });
-
+    // select all parameter checkboxes via button
     $('#select_all_params').click(function(){
         $('.select_param').prop('checked', true)
     });
-
+    // hodl shift for selecting a range of checkboxes
+    $('#multi_select_modal').on('click','.select_param',function(e) {
+        var checkboxes = $('.select_param');   
+        if (!last_checked_box) {
+            last_checked_box = this;
+            return;
+        }
+        if (e.shiftKey) {
+            var start = checkboxes.index(this);
+            var end = checkboxes.index(last_checked_box);
+            checkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', last_checked_box.checked);
+        }
+        last_checked_box = this;
+    });
     //
     // Collapse group button
     //
