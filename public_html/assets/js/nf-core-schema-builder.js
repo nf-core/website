@@ -930,8 +930,8 @@ $(function () {
     // multi-select modal
     //
     
-    $('#multi_select_modal').on('change', '.move_param', function(){
-        var num_selected = $('#multi_select_modal').find('.move_param:checked').length;
+    $('#multi_select_modal').on('change', '.select_param', function(){
+        var num_selected = $('#multi_select_modal').find('.select_param:checked').length;
         if(num_selected>0){
             $('#multi_select_modal #move_params').removeClass("disabled");
             if(num_selected === 1){
@@ -968,7 +968,7 @@ $(function () {
             params += `
                 <tr>
                     <td>
-                        <input type="checkbox" aria-label="Move this parameter" class="move_param" data-id=`+k+` id="group-move-`+k+`">
+                        <input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+k+` id="group-move-`+k+`">
                     </td>
                     <td>
                         <label for="group-move-`+k+`" class="text-monospace">`+k+`</label>
@@ -980,16 +980,20 @@ $(function () {
                 `
 
         }
-        $('#multi_select_modal tbody').html(params)
-        
-
+        if (params===''){
+            params = '<div class="alert alert-info">No ungrouped parameters available.</div>'
+            $('#multi_select_modal .table').remove()
+            $('#multi_select_modal .modal-body').html(params)
+        } else {
+            $('#multi_select_modal tbody').html(params)
+        }
         $('#multi_select_modal').modal('show');
         
     }
     $("#move_params").click(function(){
         var id = $('#multi_select_modal .modal-header h4 span').text();
         var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
-        var selected_params = $('#multi_select_modal').find('.move_param:checked')
+        var selected_params = $('#multi_select_modal').find('.select_param:checked')
         for (let i = 0; i < selected_params.length; i++) {
             var p_id = $(selected_params[i]).data('id')
             var row_el = $('.schema_row[data-id="' + p_id + '"]');
@@ -997,6 +1001,10 @@ $(function () {
         }
         schema_order_change();
     });
+
+    $("#select_all_params").click(function(){
+        $('.select_param').prop('checked', true)
+    })
     //
     // Collapse group button
     //
