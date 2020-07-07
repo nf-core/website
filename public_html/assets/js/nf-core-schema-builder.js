@@ -1005,6 +1005,12 @@ $(function () {
         $('.select_param').trigger("change");
 
     });
+    // select all parameter checkboxes via button
+    $('#deselect_all_params').click(function () {
+        $('.select_param').prop('checked', false);
+        $('.select_param').trigger("change");
+
+    });
     // hold shift for selecting a range of checkboxes
     $('#multi_select_modal').on('click','.select_param',function(e) {
         var checkboxes = $('.select_param');   

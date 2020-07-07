@@ -327,9 +327,13 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                         <tbody>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-light" id="select_all_params">Select all</button>
+                    
                 </div>
                 <div class="modal-footer">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-light" id="select_all_params">Select all</button>
+                        <button type="button" class="btn btn-light" id="deselect_all_params">Deselect all</button>
+                    </div>
                     <div class="col text-right pr-0">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary disabled" id="move_params">
