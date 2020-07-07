@@ -990,7 +990,7 @@ $(function () {
         $('#multi_select_modal').modal('show');
         
     }
-    $("#move_params").click(function(){
+    $('#move_params').click(function(){
         var id = $('#multi_select_modal .modal-header h4 span').text();
         var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
         var selected_params = $('#multi_select_modal').find('.select_param:checked')
@@ -1002,9 +1002,10 @@ $(function () {
         schema_order_change();
     });
 
-    $("#select_all_params").click(function(){
+    $('#select_all_params').click(function(){
         $('.select_param').prop('checked', true)
-    })
+    });
+
     //
     // Collapse group button
     //
@@ -1146,7 +1147,7 @@ function generate_param_row(id, param){
         <div class="col-auto align-self-center schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
+        <button class="col-auto align-self-center param_fa_icon " title="Select icon" data-toggle="tooltip">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -1158,7 +1159,7 @@ function generate_param_row(id, param){
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+description+`">
             </label>
         </div>
-        <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+        <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
         <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
@@ -1184,7 +1185,7 @@ function generate_param_row(id, param){
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
             </label>
         </div>
-        <div class="col-auto align-self-center schema_row_config border-left">
+        <div class="col-auto align-self-center schema_row_config border-left"  title="Open settings" data-toggle="tooltip">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -1242,7 +1243,7 @@ function generate_group_row(id, param, child_params){
                 <div class="col-auto align-self-center schema_row_grabber border-right">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
+                <button class="col-auto align-self-center param_fa_icon" data-toggle="tooltip" title="Select icon">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -1253,7 +1254,7 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+description+`">
                     </label>
                 </div>
-                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+                <button class="col-auto align-self-center schema_row_help_text_icon"  title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
                 <div class="col-auto d-none d-lg-block">
                     <label>Type
                         <input type="text" disabled="disabled" value="Group">
@@ -1264,13 +1265,13 @@ function generate_group_row(id, param, child_params){
                         <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
                     </label>
                 </div>
-                <div class="col-auto align-self-center schema_row_config border-left">
+                <div class="col-auto align-self-center schema_row_config border-left" title="Open settings" data-toggle="tooltip">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_move_params" title="Move parameter(s) into this group">
+                <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-toggle="tooltip">
                     <i class="fas fa-folder-download"></i> 
                 </div>
-                <div class="col-auto align-self-center schema_group_collapse">
+                <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-toggle="tooltip">
                     <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>

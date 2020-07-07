@@ -44,7 +44,8 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <ul>
         <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
         <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
-        <li>The <i class="fas fa-icons"></i> allows you to set a custom icon for the parameter or group.</li>
+        <li>Click the <i class="fas fa-folder-download"></i> icon to select top-level parameters to move into the group.</li>
+        <li>The <i class="fas fa-icons"></i> icon allows you to set a custom icon for the parameter or group.</li>
         <li>The <i class="fas fa-book help_text_icon"></i> icon shows whether help text has been written. To add, click on it.</li>
         <li>Be a power user with keyboard shortcuts!
             <ul class="small">
