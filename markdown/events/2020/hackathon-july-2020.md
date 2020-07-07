@@ -61,7 +61,7 @@ will be handled in dedicated channels in the nf-core Slack organisation.
 
 Relevant links will be emailed to participants ahead of the event. For more
 details or if you have questions, please post a message in the
-[`#hackathon-july2020` channel](https://nfcore.slack.com/channels/hackathon-july2020)
+[`#hackathon-july-2020` channel](https://nfcore.slack.com/channels/hackathon-july-2020)
 in the nf-core Slack.
 See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
 
