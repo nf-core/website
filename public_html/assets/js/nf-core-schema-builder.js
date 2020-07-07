@@ -968,13 +968,13 @@ $(function () {
             params += `
                 <tr>
                     <td>
-                        <input type="checkbox" aria-label="Move this parameter" class="move_param" data-id=`+k+`>
+                        <input type="checkbox" aria-label="Move this parameter" class="move_param" data-id=`+k+` id="group-move-`+k+`">
                     </td>
                     <td>
-                        `+k+`
+                        <label for="group-move-`+k+`" class="text-monospace">`+k+`</label>
                     </td>
                     <td>
-                        `+ schema['properties'][k].description +`
+                        <label for="group-move-`+k+`" class="small">`+ schema['properties'][k].description +`</label>
                     </td>
                 </tr>
                 `
@@ -996,8 +996,7 @@ $(function () {
             group_el.append(row_el)
         }
         schema_order_change();
-    }
-    )
+    });
     //
     // Collapse group button
     //
@@ -1260,7 +1259,7 @@ function generate_group_row(id, param, child_params){
                 <div class="col-auto align-self-center schema_row_config border-left">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_move_params" alt-text="Move paramter(s) into this group">
+                <div class="col-auto align-self-center schema_group_move_params" title="Move parameter(s) into this group">
                     <i class="fas fa-folder-download"></i> 
                 </div>
                 <div class="col-auto align-self-center schema_group_collapse">
