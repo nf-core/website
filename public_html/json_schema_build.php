@@ -316,25 +316,27 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text" id="btnGroupAddon"><i class="fad fa-search"></i></div>
+                    <div class="alert alert-info mb-0" id="no_params_alert">No ungrouped parameters available.</div>
+                    <div class="params_table">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" id="btnGroupAddon"><i class="fad fa-search"></i></div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search parameters" id = "search_parameters" aria-label="Search parameters">
                         </div>
-                        <input type="text" class="form-control" placeholder="Search parameters" id = "search_parameters" aria-label="Search parameters">
+                        <p class="small text-muted mb-0 mt-2">Select a range of parameters by holding the shift key while selecting two parameters.</p>
+                        <table class="table table-sm" id="params_table">
+                            <thead>
+                                <tr>
+                                <th scope="col" style="width:1%"></th>
+                                <th scope="col">Parameter</th>
+                                <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
-                    <p class="small text-muted mb-0 mt-2">Select a range of parameters by holding the shift key while selecting two parameters.</p>
-                    <table class="table table-sm" id="params_table">
-                        <thead>
-                            <tr>
-                            <th scope="col" style="width:1%"></th>
-                            <th scope="col">Parameter</th>
-                            <th scope="col">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    
                 </div>
                 <div class="modal-footer">
                     <div class="btn-group" role="group">
