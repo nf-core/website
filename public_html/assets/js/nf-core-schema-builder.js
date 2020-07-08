@@ -168,7 +168,6 @@ $(function () {
         schema['properties'][new_id] = new_param;
         param_row = $( generate_param_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        param_row.tooltip();
         scroll_to( param_row );
         schema_order_change();
         new_param_idx += 1;
@@ -193,7 +192,6 @@ $(function () {
         schema['properties'][new_id] = new_param;
         param_row = $( generate_group_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        param_row.tooltip();
         scroll_to( param_row );
         init_group_sortable();
         schema_order_change();
@@ -929,24 +927,13 @@ $(function () {
         // Update printed schema in page
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
+
+
     //
-    // multi-select modal
+    // Group parameter multi-select modal
     //
-    
-    $('#multi_select_modal').on('change', '.select_param', function(){
-        var num_selected = $('#multi_select_modal').find('.select_param:checked').length;
-        if(num_selected>0){
-            $('#multi_select_modal #move_params').removeClass("disabled");
-            if(num_selected === 1){
-                $('#multi_select_modal #move_params').html("Move 1 parameter");
-            } else {
-            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
-            }
-        } else{
-            $('#multi_select_modal #move_params').addClass("disabled");
-            $('#multi_select_modal #move_params').html("Move parameters");
-        }
-    })
+
+    // Launch the modal
     $('#schema-builder').on('click', '.schema_group_move_params', function () {
         // Get row
         var row = $(this).closest('.schema_group');
@@ -962,9 +949,27 @@ $(function () {
         $("#search_parameters").val("");
         // Build modal
         $('#multi_select_modal .modal-header h4 span').html(id)
-        update_params_table();
-        $('#multi_select_modal').modal('show');   
+        update_group_params_table();
+        $('#multi_select_modal').modal('show');
     }
+
+    // Change checkbox in modal
+    $('#multi_select_modal').on('change', '.select_param', function(){
+        var num_selected = $('#multi_select_modal').find('.select_param:checked').length;
+        if(num_selected>0){
+            $('#multi_select_modal #move_params').removeClass("disabled");
+            if(num_selected === 1){
+                $('#multi_select_modal #move_params').html("Move 1 parameter");
+            } else {
+            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
+            }
+        } else{
+            $('#multi_select_modal #move_params').addClass("disabled");
+            $('#multi_select_modal #move_params').html("Move parameters");
+        }
+    });
+
+    // Submit modal
     // move selected parameters into the group, close modal if no top-level parameters are left
     $('#move_params').click(function(){
         var id = $('#multi_select_modal .modal-header h4 span').text();
@@ -976,16 +981,16 @@ $(function () {
             group_el.append(row_el);
         }
         schema_order_change();
-        update_params_table();
+        update_group_params_table();
         $('#multi_select_modal #move_params').addClass("disabled");
         $('#multi_select_modal #move_params').html("Move parameters");
         if (!$('#multi_select_modal .params_table').is(":visible")){
-            $('#multi_select_modal').modal('toggle');   
+            $('#multi_select_modal').modal('toggle');
         }
     });
 
-    // creates and updates the parameter table 
-    function update_params_table(){
+    // creates and updates the parameter table
+    function update_group_params_table(){
         $("#search_parameters").val("");
         var params = '';
         for (k in schema['properties']) {
@@ -1022,30 +1027,27 @@ $(function () {
     });
     // hold shift for selecting a range of checkboxes
     $('#multi_select_modal').on('click','.select_param',function(e) {
-        var checkboxes = $('.select_param');   
-        if (!last_checked_box) {
-            last_checked_box = this;
-            return;
-        }
-        if (e.shiftKey) {
+        var checkboxes = $('.select_param');
+        if (e.shiftKey && last_checked_box) {
             var start = checkboxes.index(this);
             var end = checkboxes.index(last_checked_box);
             checkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', last_checked_box.checked);
         }
         last_checked_box = this;
     });
-    // filter parameters table from https://www.w3schools.com/howto/howto_js_filter_table.asp
-    $('#search_parameters').on('input propertychange',function(){
+    // filter parameters table
+    $('#search_parameters').keyup(function(){
         var q = $("#search_parameters").val();
-        if(q===""){
-            $("#params_table tr").show();
+        if(q.trim().length == 0){
+            $('#params_table tr').show();
+        } else {
+            $('#params_table tr').filter(function () {
+                if($(this).data('id')){
+                    return !$(this).data('id').includes(q);
+                }
+            }).hide();
         }
-        $("#params_table tr").filter(function () {
-            if($(this).data("id")){
-                return !$(this).data("id").includes(q);
-            }
-        }).hide();
-    })
+    });
 
     //
     // Collapse group button
@@ -1310,7 +1312,7 @@ function generate_group_row(id, param, child_params){
                     <i class="fas fa-cog"></i>
                 </div>
                 <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-toggle="tooltip">
-                    <i class="fas fa-folder-download"></i> 
+                    <i class="fas fa-folder-download"></i>
                 </div>
                 <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-toggle="tooltip">
                     <i class="fas fa-angle-double-down"></i>
@@ -1353,7 +1355,7 @@ function init_group_sortable(){
             ui.sender.sortable('cancel');
         }
     });
-    // 
+    //
 }
 
 function validate_id(id, old_id){
