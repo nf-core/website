@@ -41,7 +41,6 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/code_highlighting/github.css" rel="stylesheet" >
-    <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
@@ -52,22 +51,27 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
-    <script src="/assets/js/leaflet.js"></script>
     <!-- Page-specific CSS and JS -->
-    <?php if(isset($import_chartjs) && $import_chartjs): ?>
+    <?php if(isset($import_leaflet) && $import_leaflet): ?>
+    <link href="/assets/css/leaflet.css" rel="stylesheet">
+    <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet">
+    <script src="/assets/js/leaflet.js"></script>
+    <script src="/assets/js/Leaflet.fullscreen.min.js"></script>
+    <?php endif;
+    if(isset($import_chartjs) && $import_chartjs): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
     <script src="/assets/js/hammer.min.js"></script>
     <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
-    <?php endif; ?>
-    <?php if(isset($import_schema_launcher) && $import_schema_launcher): ?>
+    <?php endif;
+    if(isset($import_schema_launcher) && $import_schema_launcher): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
-    <?php endif; ?>
-    <?php if(isset($import_schema_builder) && $import_schema_builder): ?>
+    <?php endif;
+    if(isset($import_schema_builder) && $import_schema_builder): ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
     <script src="/assets/js/moment.js"></script>
