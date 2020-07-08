@@ -938,7 +938,7 @@ $(function () {
             if(num_selected === 1){
                 $('#multi_select_modal #move_params').html("Move 1 parameter");
             } else {
-                $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
+            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
             }
         } else{
             $('#multi_select_modal #move_params').addClass("disabled");
@@ -963,6 +963,7 @@ $(function () {
         update_params_table();
         $('#multi_select_modal').modal('show');   
     }
+    // move selected parameters into the group, close modal if no top-level parameters are left
     $('#move_params').click(function(){
         var id = $('#multi_select_modal .modal-header h4 span').text();
         var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
@@ -981,7 +982,7 @@ $(function () {
         }
     });
 
-
+    // creates and updates the parameter table 
     function update_params_table(){
         $("#search_parameters").val("");
         var params = '';
@@ -990,14 +991,13 @@ $(function () {
             if (schema['properties'][k].hasOwnProperty('properties')) {
                 continue
             }
-            // Add to the preview
+            // create row for the table
             params += `
 				<tr data-id=`+ k + `>
-                    <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+k+` id="group-move-`+k+`"></td>
-                    <td><label for="group-move-`+k+`" class="text-monospace">`+k+`</label></td>
-                    <td><label for="group-move-`+k+`" class="small">`+ schema['properties'][k].description +`</label></td>
+                    <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
+                    <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
+                    <td><label for="group-move-`+ k + `" class="small">` + schema['properties'][k].description +`</label></td>
                 </tr>
-                `
         }
         if (params === '') {
             // show placeholder text if no top-level parameters are available
@@ -1044,23 +1044,6 @@ $(function () {
                 return !$(this).data("id").includes(q);
             }
         }).hide();
-        // input = document.getElementById('search_parameters');
-        // filter = input.value.toUpperCase();
-        // table = document.getElementById('params_table');
-        // tr = table.getElementsByTagName('tr');
-
-        // // Loop through all table rows, and hide those who don't match the search query
-        // for (i = 0; i < tr.length; i++) {
-        //     td = tr[i].getElementsByTagName("td")[1];
-        //     if (td) {
-        //         txtValue = td.textContent || td.innerText;
-        //         if (txtValue.toUpperCase().contains(filter) > -1) {
-        //             tr[i].style.display = "";
-        //         } else {
-        //             tr[i].style.display = "none";
-        //         }
-        //     }
-        // }
     })
 
     //
@@ -1369,6 +1352,7 @@ function init_group_sortable(){
             ui.sender.sortable('cancel');
         }
     });
+    // 
 }
 
 function validate_id(id, old_id){
