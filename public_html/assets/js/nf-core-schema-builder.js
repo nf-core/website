@@ -938,7 +938,7 @@ $(function () {
             if(num_selected === 1){
                 $('#multi_select_modal #move_params').html("Move 1 parameter");
             } else {
-            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
+                $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
             }
         } else{
             $('#multi_select_modal #move_params').addClass("disabled");
@@ -966,15 +966,9 @@ $(function () {
             // Add to the preview
             params += `
                 <tr>
-                    <td>
-                        <input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+k+` id="group-move-`+k+`">
-                    </td>
-                    <td>
-                        <label for="group-move-`+k+`" class="text-monospace">`+k+`</label>
-                    </td>
-                    <td>
-                        <label for="group-move-`+k+`" class="small">`+ schema['properties'][k].description +`</label>
-                    </td>
+                    <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+k+` id="group-move-`+k+`"></td>
+                    <td><label for="group-move-`+k+`" class="text-monospace">`+k+`</label></td>
+                    <td><label for="group-move-`+k+`" class="small">`+ schema['properties'][k].description +`</label></td>
                 </tr>
                 `
         }
