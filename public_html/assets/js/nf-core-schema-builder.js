@@ -10,6 +10,7 @@ var new_group_idx = 1;
 var help_text_icon_template = '<i class="fas fa-book help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
 var no_help_text_icon = '<i class="fas fa-book help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
 var prev_focus = false;
+var last_checked_box = null;
 
 $(function () {
 
@@ -927,6 +928,127 @@ $(function () {
         $('#json_schema').text(JSON.stringify(schema, null, 4));
     });
 
+
+    //
+    // Group parameter multi-select modal
+    //
+
+    // Launch the modal
+    $('#schema-builder').on('click', '.schema_group_move_params', function () {
+        // Get row
+        var row = $(this).closest('.schema_group');
+        var id = row.data('id');
+        launch_multi_select_modal(id);
+    });
+    function launch_multi_select_modal(id) {
+        // Reset everything to initial state
+        $('#multi_select_modal #move_params').addClass("disabled");
+        $('#multi_select_modal #move_params').html("Move parameters");
+        $('#multi_select_modal .params_table').show();
+        $('#multi_select_modal #no_params_alert').hide();
+        $("#search_parameters").val("");
+        // Build modal
+        $('#multi_select_modal .modal-header h4 span').html(id)
+        update_group_params_table();
+        $('#multi_select_modal').modal('show');
+    }
+
+    // Change checkbox in modal
+    $('#multi_select_modal').on('change', '.select_param', function(){
+        var num_selected = $('#multi_select_modal').find('.select_param:checked').length;
+        if(num_selected>0){
+            $('#multi_select_modal #move_params').removeClass("disabled");
+            if(num_selected === 1){
+                $('#multi_select_modal #move_params').html("Move 1 parameter");
+            } else {
+            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
+            }
+        } else{
+            $('#multi_select_modal #move_params').addClass("disabled");
+            $('#multi_select_modal #move_params').html("Move parameters");
+        }
+    });
+
+    // Submit modal
+    // move selected parameters into the group, close modal if no top-level parameters are left
+    $('#move_params').click(function(){
+        var id = $('#multi_select_modal .modal-header h4 span').text();
+        var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
+        var selected_params = $('#multi_select_modal').find('.select_param:checked');
+        for (let i = 0; i < selected_params.length; i++) {
+            var p_id = $(selected_params[i]).data('id');
+            var row_el = $('.schema_row[data-id="' + p_id + '"]');
+            group_el.append(row_el);
+        }
+        schema_order_change();
+        update_group_params_table();
+        $('#multi_select_modal #move_params').addClass("disabled");
+        $('#multi_select_modal #move_params').html("Move parameters");
+        if (!$('#multi_select_modal .params_table').is(":visible")){
+            $('#multi_select_modal').modal('toggle');
+        }
+    });
+
+    // creates and updates the parameter table
+    function update_group_params_table(){
+        $("#search_parameters").val("");
+        var params = '';
+        for (k in schema['properties']) {
+            // skip over Groups
+            if (schema['properties'][k].hasOwnProperty('properties')) {
+                continue
+            }
+            // create row for the table
+            params += `<tr data-id=`+ k + `>
+                    <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
+                    <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
+                    <td><label for="group-move-`+ k + `" class="small">` + schema['properties'][k].description +`</label></td>
+                </tr>`;
+        }
+        if (params === '') {
+            // show placeholder text if no top-level parameters are available
+            $('#multi_select_modal .params_table').hide();
+            $('#multi_select_modal #no_params_alert').show();
+        } else {
+            $('#multi_select_modal tbody').html(params);
+        }
+    }
+    // select all parameter checkboxes via button
+    $('#select_all_params').click(function(){
+        $('.select_param:visible').prop('checked', true);
+        $('.select_param').trigger("change");
+
+    });
+    // select all parameter checkboxes via button
+    $('#deselect_all_params').click(function () {
+        $('.select_param:visible').prop('checked', false);
+        $('.select_param').trigger("change");
+
+    });
+    // hold shift for selecting a range of checkboxes
+    $('#multi_select_modal').on('click','.select_param',function(e) {
+        var checkboxes = $('.select_param');
+        if (e.shiftKey && last_checked_box) {
+            var start = checkboxes.index(this);
+            var end = checkboxes.index(last_checked_box);
+            checkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', last_checked_box.checked);
+        }
+        last_checked_box = this;
+    });
+    // filter parameters table
+    $('#search_parameters').keyup(function(){
+        var q = $("#search_parameters").val();
+        if(q.trim().length == 0){
+            $('#params_table tr').show();
+        } else {
+            $('#params_table tr').filter(function () {
+                if($(this).data('id')){
+                    return !$(this).data('id').includes(q);
+                }
+            }).hide();
+        }
+    });
+
     //
     // Collapse group button
     //
@@ -1068,7 +1190,7 @@ function generate_param_row(id, param){
         <div class="col-auto align-self-center schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
+        <button class="col-auto align-self-center param_fa_icon " title="Select icon" data-toggle="tooltip">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -1080,7 +1202,7 @@ function generate_param_row(id, param){
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+description+`">
             </label>
         </div>
-        <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+        <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
         <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
@@ -1106,7 +1228,7 @@ function generate_param_row(id, param){
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
             </label>
         </div>
-        <div class="col-auto align-self-center schema_row_config border-left">
+        <div class="col-auto align-self-center schema_row_config border-left"  title="Open settings" data-toggle="tooltip">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -1164,7 +1286,7 @@ function generate_group_row(id, param, child_params){
                 <div class="col-auto align-self-center schema_row_grabber border-right">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
+                <button class="col-auto align-self-center param_fa_icon" data-toggle="tooltip" title="Select icon">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -1175,7 +1297,7 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+description+`">
                     </label>
                 </div>
-                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+                <button class="col-auto align-self-center schema_row_help_text_icon"  title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
                 <div class="col-auto d-none d-lg-block">
                     <label>Type
                         <input type="text" disabled="disabled" value="Group">
@@ -1186,10 +1308,13 @@ function generate_group_row(id, param, child_params){
                         <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
                     </label>
                 </div>
-                <div class="col-auto align-self-center schema_row_config border-left">
+                <div class="col-auto align-self-center schema_row_config border-left" title="Open settings" data-toggle="tooltip">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_collapse">
+                <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-toggle="tooltip">
+                    <i class="fas fa-folder-download"></i>
+                </div>
+                <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-toggle="tooltip">
                     <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>
@@ -1230,6 +1355,7 @@ function init_group_sortable(){
             ui.sender.sortable('cancel');
         }
     });
+    //
 }
 
 function validate_id(id, old_id){

@@ -5,7 +5,7 @@
 
 $(function () {
     // Enable tooltips
-    $('[data-toggle="tooltip"]').tooltip()
+    $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 
     // Enable code highlighting
     hljs.initHighlightingOnLoad();
