@@ -952,42 +952,15 @@ $(function () {
         launch_multi_select_modal(id);
     });
     function launch_multi_select_modal(id) {
-        // Reset button and search to initial state
+        // Reset everything to initial state
         $('#multi_select_modal #move_params').addClass("disabled");
         $('#multi_select_modal #move_params').html("Move parameters");
+        $('#multi_select_modal .params_table').show();
+        $('#multi_select_modal #no_params_alert').hide();
         $("#search_parameters").val("");
         // Build modal
         $('#multi_select_modal .modal-header h4 span').html(id)
-        var params = '';
-        for (k in schema['properties']) {
-            // skip over Groups
-            if (schema['properties'][k].hasOwnProperty('properties')) {
-                continue
-            }
-            // Add to the preview
-            params += `
-                <tr data-id=`+k+`>
-                    <td>
-                        <input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+k+` id="group-move-`+k+`">
-                    </td>
-                    <td>
-                        <label for="group-move-`+k+`" class="text-monospace">`+k+`</label>
-                    </td>
-                    <td>
-                        <label for="group-move-`+k+`" class="small">`+ schema['properties'][k].description +`</label>
-                    </td>
-                </tr>
-                `
-        }
-        if (params===''){
-            // add placeholder text if no top-level parameters are available
-            params = '<div class="alert alert-info">No ungrouped parameters available.</div>';
-            $('#multi_select_modal .table').remove();
-            $('#multi_select_modal .table').remove();
-            $('#multi_select_modal .modal-body').html(params);
-        } else {
-            $('#multi_select_modal tbody').html(params);
-        }
+        update_params_table();
         $('#multi_select_modal').modal('show');   
     }
     $('#move_params').click(function(){
@@ -1000,7 +973,46 @@ $(function () {
             group_el.append(row_el);
         }
         schema_order_change();
+        update_params_table();
+        $('#multi_select_modal #move_params').addClass("disabled");
+        $('#multi_select_modal #move_params').html("Move parameters");
+        if (!$('#multi_select_modal .params_table').is(":visible")){
+            $('#multi_select_modal').modal('toggle');   
+        }
     });
+
+
+    function update_params_table(){
+        $("#search_parameters").val("");
+        var params = '';
+        for (k in schema['properties']) {
+            // skip over Groups
+            if (schema['properties'][k].hasOwnProperty('properties')) {
+                continue
+            }
+            // Add to the preview
+            params += `
+                <tr data-id=`+ k + `>
+                    <td>
+                        <input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `">
+                    </td>
+                    <td>
+                        <label for="group-move-`+ k + `" class="text-monospace">` + k + `</label>
+                    </td>
+                    <td>
+                        <label for="group-move-`+ k + `" class="small">` + schema['properties'][k].description + `</label>
+                    </td>
+                </tr>
+                `
+        }
+        if (params === '') {
+            // show placeholder text if no top-level parameters are available
+            $('#multi_select_modal .params_table').hide();
+            $('#multi_select_modal #no_params_alert').show();
+        } else {
+            $('#multi_select_modal tbody').html(params);
+        }
+    }
     // select all parameter checkboxes via button
     $('#select_all_params').click(function(){
         $('.select_param:visible').prop('checked', true);
