@@ -994,12 +994,11 @@ $(function () {
                 continue
             }
             // create row for the table
-            params += `
-				<tr data-id=`+ k + `>
+            params += `<tr data-id=`+ k + `>
                     <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
                     <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
                     <td><label for="group-move-`+ k + `" class="small">` + schema['properties'][k].description +`</label></td>
-                </tr>
+                </tr>`;
         }
         if (params === '') {
             // show placeholder text if no top-level parameters are available
