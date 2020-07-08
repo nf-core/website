@@ -44,7 +44,8 @@ This page helps pipeline authors to build their pipeline schema file by using a 
     <ul>
         <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
         <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
-        <li>The <i class="fas fa-icons"></i> allows you to set a custom icon for the parameter or group.</li>
+        <li>Click the <i class="fas fa-folder-download"></i> icon to select top-level parameters to move into the group.</li>
+        <li>The <i class="fas fa-icons"></i> icon allows you to set a custom icon for the parameter or group.</li>
         <li>The <i class="fas fa-book help_text_icon"></i> icon shows whether help text has been written. To add, click on it.</li>
         <li>Be a power user with keyboard shortcuts!
             <ul class="small">
@@ -304,7 +305,54 @@ This page helps pipeline authors to build their pipeline schema file by using a 
             </div>
         </div>
     </div>
-
+    <!-- Moving multiple params into group modal -->
+    <div class="modal fade" id="multi_select_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Move parameters into <span></span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info mb-0" id="no_params_alert">No ungrouped parameters available.</div>
+                    <div class="params_table">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" id="btnGroupAddon"><i class="fad fa-search"></i></div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search parameters" id = "search_parameters" aria-label="Search parameters">
+                        </div>
+                        <p class="small text-muted mb-0 mt-2">Select a range of parameters by holding the shift key while selecting two parameters.</p>
+                        <table class="table table-sm" id="params_table">
+                            <thead>
+                                <tr>
+                                <th scope="col" style="width:1%"></th>
+                                <th scope="col">Parameter</th>
+                                <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-secondary" id="select_all_params">Select all</button>
+                        <button type="button" class="btn btn-outline-secondary" id="deselect_all_params">Deselect all</button>
+                    </div>
+                    <div class="col text-right pr-0">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary disabled" id="move_params">
+                        Move parameters
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div> <!-- .container-fluid -->
 
 <?php } // if $cache
