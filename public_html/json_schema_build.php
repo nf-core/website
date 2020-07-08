@@ -316,7 +316,14 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-sm">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text" id="btnGroupAddon"><i class="fad fa-search"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search parameters" id = "search_parameters" aria-label="Search parameters">
+                    </div>
+                    <p class="small text-muted mb-0 mt-2">Select a range of parameters by holding the shift key while selecting two parameters.</p>
+                    <table class="table table-sm" id="params_table">
                         <thead>
                             <tr>
                             <th scope="col" style="width:1%"></th>

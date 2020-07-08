@@ -952,9 +952,10 @@ $(function () {
         launch_multi_select_modal(id);
     });
     function launch_multi_select_modal(id) {
-        // Reset button to initial state
+        // Reset button and search to initial state
         $('#multi_select_modal #move_params').addClass("disabled");
         $('#multi_select_modal #move_params').html("Move parameters");
+        $("#search_parameters").val("");
         // Build modal
         $('#multi_select_modal .modal-header h4 span').html(id)
         var params = '';
@@ -965,7 +966,7 @@ $(function () {
             }
             // Add to the preview
             params += `
-                <tr>
+                <tr data-id=`+k+`>
                     <td>
                         <input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+k+` id="group-move-`+k+`">
                     </td>
@@ -979,14 +980,15 @@ $(function () {
                 `
         }
         if (params===''){
+            // add placeholder text if no top-level parameters are available
             params = '<div class="alert alert-info">No ungrouped parameters available.</div>';
+            $('#multi_select_modal .table').remove();
             $('#multi_select_modal .table').remove();
             $('#multi_select_modal .modal-body').html(params);
         } else {
             $('#multi_select_modal tbody').html(params);
         }
-        $('#multi_select_modal').modal('show');
-        
+        $('#multi_select_modal').modal('show');   
     }
     $('#move_params').click(function(){
         var id = $('#multi_select_modal .modal-header h4 span').text();
@@ -1001,13 +1003,13 @@ $(function () {
     });
     // select all parameter checkboxes via button
     $('#select_all_params').click(function(){
-        $('.select_param').prop('checked', true);
+        $('.select_param:visible').prop('checked', true);
         $('.select_param').trigger("change");
 
     });
     // select all parameter checkboxes via button
     $('#deselect_all_params').click(function () {
-        $('.select_param').prop('checked', false);
+        $('.select_param:visible').prop('checked', false);
         $('.select_param').trigger("change");
 
     });
@@ -1025,6 +1027,36 @@ $(function () {
         }
         last_checked_box = this;
     });
+    // filter parameters table from https://www.w3schools.com/howto/howto_js_filter_table.asp
+    $('#search_parameters').on('input propertychange',function(){
+        var q = $("#search_parameters").val();
+        if(q===""){
+            $("#params_table tr").show();
+        }
+        $("#params_table tr").filter(function () {
+            if($(this).data("id")){
+                return !$(this).data("id").includes(q);
+            }
+        }).hide();
+        // input = document.getElementById('search_parameters');
+        // filter = input.value.toUpperCase();
+        // table = document.getElementById('params_table');
+        // tr = table.getElementsByTagName('tr');
+
+        // // Loop through all table rows, and hide those who don't match the search query
+        // for (i = 0; i < tr.length; i++) {
+        //     td = tr[i].getElementsByTagName("td")[1];
+        //     if (td) {
+        //         txtValue = td.textContent || td.innerText;
+        //         if (txtValue.toUpperCase().contains(filter) > -1) {
+        //             tr[i].style.display = "";
+        //         } else {
+        //             tr[i].style.display = "none";
+        //         }
+        //     }
+        // }
+    })
+
     //
     // Collapse group button
     //
