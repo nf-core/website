@@ -6,6 +6,7 @@
 $title = 'Community';
 $subtitle = 'Find out who is involved in the nf-core project';
 $md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml';
+$import_leaflet = true;
 include('../includes/header.php');
 
 ?>
@@ -143,6 +144,7 @@ var locations = <?php echo json_encode($locations, JSON_PRETTY_PRINT); ?>;
 
 $(function(){
     var map = L.map('contributors-map', {
+        fullscreenControl: true,
         zoom: 2
     });
     var greenIcon = new L.Icon({
