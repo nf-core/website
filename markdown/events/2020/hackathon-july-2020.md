@@ -127,7 +127,6 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 
 #### Monday 13th
 
-* 09:00 - 12:00 - Hack!
 * 13:00 - [**Hackathon Introduction**](#hackathon-introduction)
   * 13:00 - [Welcome talk](#welcome-talk)
   * 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
@@ -140,7 +139,6 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 * 13:00 - [**DSL2 & modules in nf-core**](#dsl2-amp-modules-in-nf-core)
   * 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
   * 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
-  * 14:00 - [Biocontainers](#biocontainers)
 * 14:30 - Daily wrap-up
 * 14:50 - 17:00 - Hack!
 
@@ -166,7 +164,6 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
   * 13:00 - [nf-core/sarek](#nf-coresarek)
   * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
   * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
-* 14:00 - Daily wrap-up
 * 16:30 - [**Final wrap-up and closing remarks**](#final-wrap-up-and-closing-remarks)
 
 ---
@@ -199,6 +196,10 @@ _Monday 13th, 13:40 - 14:00_
 ---
 
 ### DSL2 & modules in nf-core
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dZAU6SWheZ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom meeting](https://zoom.us/j/93069261534) for this session.
 
 #### Introduction to DSL2 in Nextflow
 
@@ -243,6 +244,10 @@ I'll describe how template synchronisation works and cover recent changes and im
 ---
 
 ### Featured nf-core pipelines
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MMH72Y03bo4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Join the [Zoom Meeting](https://zoom.us/j/99496605202) for this session.
 
 #### [nf-core/sarek](/sarek)
 
