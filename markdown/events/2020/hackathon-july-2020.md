@@ -211,11 +211,6 @@ _Tuesday 14th, 13:00 - 13:30_
 Harshil Patel ([@drpatelh](https://github.com/drpatelh))<br>
 _Tuesday 14th, 13:30 - 14:00_
 
-#### Biocontainers
-
-Björn Grüning ([@bgruening](https://github.com/bgruening))<br>
-_Tuesday 14th, 14:00 - 14:30_
-
 ---
 
 ### Data management solutions
