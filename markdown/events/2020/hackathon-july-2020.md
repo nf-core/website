@@ -29,6 +29,8 @@ Please note that there are two separate events running in parallel:
   * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/)
   * Free to attend!
   * Places are limited to 30 external people
+  * Live streams on YouTube
+    * Monday: [https://youtu.be/8_i8Tn335X0](https://youtu.be/8_i8Tn335X0)
 * nf-core hackathon
   * [**Register here**](https://forms.gle/qo3USZuK2LDJAqHS9)
   * Afternoons (mornings too if you want) - organised by nf-core community
