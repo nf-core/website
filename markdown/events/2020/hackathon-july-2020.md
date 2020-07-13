@@ -195,6 +195,8 @@ I'll discuss how we communicate and collaborate within nf-core, and cover the nf
 Friederike Hanssen ([@FriederikeHanssen](https://github.com/FriederikeHanssen))<br>
 _Monday 13th, 13:40 - 14:00_
 
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRemOGM6-wBs7uxn4paNwVWkVUj3DlFJPrKqGCgwfaVjkQuaoDGmitXbviETa21HxXxOcK7pDttJUeX/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
 ---
 
 ### DSL2 & modules in nf-core
