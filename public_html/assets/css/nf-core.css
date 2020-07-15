@@ -62,7 +62,8 @@ section:before {
   margin: 1rem auto;
   display: block;
 }
-.rendered-markdown h1:first-of-type {
+.rendered-markdown h1:first-of-type,
+.schema-docs h1:first-of-type {
   padding-top: 0;
   margin-top: 2.5rem;
 }
@@ -777,21 +778,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
 .side-sub-subnav {
     padding-top: 50px;
-}
-.pipeline-page-toc {
-  background-color: #fcfcfc;
-  border: 1px solid #ededed;
-  border-radius: 5px;
-  font-size: 14px;
-  margin: 1rem;
-  padding: 1rem 1rem 0 0.5rem;
-}
-.pipeline-page-toc .fa-ul {
-  margin-left: 1.5em;
-}
-.pipeline-page-toc a.active {
-  text-decoration: underline;
-  font-weight: bold;
 }
 
 .pipeline-stats-table .thead-light tr th {

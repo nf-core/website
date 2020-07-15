@@ -14,15 +14,21 @@ if(count($path_parts) == 1){
     $pagetab = 'home';
     require_once('../includes/pipeline_page/docs.php');
     $docs = true;
-} else if($path_parts[1] == 'docs'){
-    $pagetab = 'docs';
-    require_once('../includes/pipeline_page/docs.php');
-    $docs = true;
 }
 # Base readme - redirect to pipeline root
 else if($_GET['path'] == $pipeline->name.'/README.md' || $_GET['path'] == $pipeline->name.'/README'){
     header('Location: /'.$pipeline->name);
     exit;
+}
+# Usage docs
+else if($_GET['path'] == $pipeline->name.'/usage'){
+    $pagetab = 'usage';
+    require_once('../includes/pipeline_page/usage.php');
+}
+# output docs
+else if($_GET['path'] == $pipeline->name.'/output'){
+    $pagetab = 'output';
+    require_once('../includes/pipeline_page/output.php');
 }
 # Stats
 else if($_GET['path'] == $pipeline->name.'/stats'){
@@ -112,8 +118,12 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if(count($path_parts) == 1){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>">Readme</a>
   </li>
+
   <li class="nav-item">
-    <a class="nav-link<?php if(count($path_parts) > 1 && $path_parts[1] == 'docs'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/docs">Doc<span class="d-none d-sm-inline">umentation</span><span class="d-sm-none">s</span></a>
+    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/usage'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/usage">Usage</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/output'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/output">Outputs</a>
   </li>
   <li class="nav-item">
     <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
@@ -130,8 +140,8 @@ if($pipeline->archived){
 
 if($pagetab !== 'stats'){
     echo '<div class="row"><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
-    if($pagetab == 'docs'){
-        echo '<div class="pipeline-page-toc">'.$md_toc_html.'</div>';
+    if($pagetab == 'usage' || $pagetab == 'output'){
+        echo '<div class="pipeline-page-toc">'.$toc_content.'</div>';
     } else {
         echo $pipeline_stats_sidebar;
     }
@@ -139,7 +149,8 @@ if($pagetab !== 'stats'){
 }
 
 # Print content
-if($pagetab == 'home' || $pagetab == 'docs' || $pagetab == 'releases'){
+if($pagetab == 'home' || $pagetab == 'usage' || $pagetab == 'output' || $pagetab == 'releases'){
+  echo $schema_content;
   echo '<div class="rendered-markdown">'.$content.'</div>';
 } else {
   echo $content;
