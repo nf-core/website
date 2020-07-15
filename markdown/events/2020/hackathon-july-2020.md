@@ -120,7 +120,7 @@ The presentations held each day will be as follows:
 * **Tuesday** - Future directions: Nextflow DSL2 and nf-core modules
 * **Wednesday** - Data management solutions by Elin Kronander
 * **Thursday** - Tutorial on nf-core tools and guidelines
-* **Friday** - Feature: nf-core pipelines for common data types
+* **Friday** - Feature: nf-core pipelines for common data types & Biocontainers
 
 A remote Pub Quiz  will be held on Thursday 17:00-19:00 CEST.
 
@@ -162,17 +162,18 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 #### Friday 17th
 
 * 09:00 - 12:00 - Hack!
-* 13:00 - [**Featured nf-core pipelines**](#featured-nf-core-pipelines)
+* 13:00 - [**Featured nf-core pipelines & Biocontainers**](#featured-nf-core-pipelines)
   * 13:00 - [nf-core/sarek](#nf-coresarek)
   * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
   * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
+  * 14:00 - [Biocontainers](#Biocontainers)
 * 16:30 - [**Final wrap-up and closing remarks**](#final-wrap-up-and-closing-remarks)
 
 ---
 
 ### Hackathon Introduction
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nzk4qzSFBb4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nzk4qzSFBb4?start=91&end=2588" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Join the [Zoom Meeting](https://zoom.us/j/99218495584) for this session.
 
@@ -201,7 +202,7 @@ _Monday 13th, 13:40 - 14:00_
 
 ### DSL2 & modules in nf-core
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dZAU6SWheZ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dZAU6SWheZ4?start=26" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Join the [Zoom meeting](https://zoom.us/j/93069261534) for this session.
 
@@ -242,7 +243,7 @@ I'll describe how template synchronisation works and cover recent changes and im
 
 ---
 
-### Featured nf-core pipelines
+### Featured nf-core pipelines & Biocontainers
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MMH72Y03bo4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -263,6 +264,10 @@ _Friday 17th, 13:20 - 13:40_
 Harshil Patel ([@drpatelh](https://github.com/drpatelh))<br>
 _Friday 17th, 13:40 - 14:00_
 
+#### Biocontainers
+
+Björn Grüning ([@bgruening](https://github.com/bgruening))<br>
+_Friday 17th, 14:00 - 14:30_
 
 ### Final wrap-up and closing remarks
 
