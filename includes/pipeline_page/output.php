@@ -5,6 +5,7 @@
 # Details for parsing markdown file, fetched from Github
 # Build the remote file path
 # Special case - root docs is allow
+
 # General docs page
 if($path_parts[1] == 'output'){
     if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
@@ -12,7 +13,7 @@ if($path_parts[1] == 'output'){
         header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
         exit;
     }
-    $filename = 'docs/'.implode('/', array_slice($path_parts, 1)).'.md';
+    $filename = implode('/', array_slice($path_parts, 1)).'.md';
 }
 # Must be the readme
 else {
@@ -29,7 +30,7 @@ if($pipeline->last_release !== 0){
   $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->pushed_at."/";
 }
 $local_md_fn = $local_fn_base.$filename;
-$markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.$filename;
+$markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/docs/'.$filename;
 
 # Check if we have a local copy of the markdown file and fetch if not
 if(file_exists($local_md_fn)){
