@@ -172,7 +172,7 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 
 ### Hackathon Introduction
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nzk4qzSFBb4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nzk4qzSFBb4?start=91&end=2588" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Join the [Zoom Meeting](https://zoom.us/j/99218495584) for this session.
 
@@ -201,7 +201,7 @@ _Monday 13th, 13:40 - 14:00_
 
 ### DSL2 & modules in nf-core
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dZAU6SWheZ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dZAU6SWheZ4?start=26" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Join the [Zoom meeting](https://zoom.us/j/93069261534) for this session.
 
