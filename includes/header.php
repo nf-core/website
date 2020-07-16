@@ -77,6 +77,9 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
+    <?php endif; 
+    if(isset($schema_content) && $schema_content): ?>
+    <script src="/assets/js/showdown.min.js"></script>
     <?php endif; ?>
     <script src="/assets/js/jquery.tablesorter.min.js"></script>
 
