@@ -247,7 +247,9 @@ I'll describe how template synchronisation works and cover recent changes and im
 
 ### Virtual social event
 
-![Pub Quiz](/assets/markdown_assets/events/2020/hackathon-july-2020/pub-quiz-nextflow-nf-core.png "Background picture by Freepik")
+![Pub Quiz]( "Background picture by Freepik")
+<img src="/assets/markdown_assets/events/2020/hackathon-july-2020/pub-quiz-nextflow-nf-core.png" width="500" height="500" />
+_Background picture by Freepik_
 
 Join the [Zoom Meeting](https://zoom.us/j/96590125895) for the social event.
 _Thursday 16th, 17:00 - 19:00_
