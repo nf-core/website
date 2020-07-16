@@ -157,7 +157,7 @@ If you're in a different time zone, [this time-zone converter tool](https://savv
 * 13:00 - [**nf-core tools & guidelines**](#nf-core-tools-amp-guidelines)
 * 13:30 - Daily wrap-up
 * 13:50 - 17:00 - Hack!
-* 17:00 - 19:00 - Remote Pub Quiz
+* 17:00 - 19:00 - [**Virtual social event**](#virtual-social-event)
 
 #### Friday 17th
 
@@ -227,6 +227,8 @@ Join the [Zoom Meeting](https://zoom.us/j/96839947521) for this session.
 Elin Kronander ([@elinkronander](https://github.com/elinkronander))<br>
 _Wednesday 15th, 13:00 - 13:30_
 
+**[Click here to download the slides from this talk.](/assets/markdown_assets/usage/talk_slides/DM_talk_Elin_Kronander_nf-core_150720.pdf)**
+
 ---
 
 ### nf-core tools & guidelines
@@ -240,6 +242,17 @@ _Thursday 16th, 13:00 - 13:30_
 
 An overview of the [nf-core/tools helper package](/tools) and how we use this to enforce nf-core guidelines.
 I'll describe how template synchronisation works and cover recent changes and improvements so that you know what to expect in upcoming releases.
+
+---
+
+### Virtual social event
+
+![Pub Quiz](/assets/markdown_assets/usage/pub_quiz/pub-quiz-nextflow-nf-core.png "Background picture by Freepik")
+
+Join the [Zoom Meeting](https://zoom.us/j/96590125895) for the social event.
+_Thursday 16th, 17:00 - 19:00_
+
+The virtual social event consists on a Pub Quiz on Nextflow and nf-core followed by a virtual escape room in small teams.
 
 ---
 
