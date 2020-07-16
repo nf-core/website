@@ -187,6 +187,20 @@ $(function () {
 
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
+
+    // render markdown elements
+    var md_converter = new showdown.Converter();
+    $('.schema-docs-help-text, .schema-docs-description').each(function () {
+        this.innerHTML = md_converter.makeHtml(this.innerHTML);
+    });
+
+    // Add selected pipeline version to URL
+    $('#version_select').on('change',function(){
+        var selected = $('option:selected',this).text();
+        var pipeline = $('#version_select').data('pipeline');
+        var url = document.location.href.split(pipeline);
+        document.location.href = url[0] + pipeline + "/" + selected + url[1];
+    })
 });
 
 function scroll_to(target_el){

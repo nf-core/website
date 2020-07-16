@@ -85,8 +85,8 @@ if(file_exists($gh_launch_schema_fn)){
 $raw_json = file_get_contents($gh_launch_schema_fn);
 $schema = json_decode($raw_json, TRUE);
 
-$schema_content = '<div class="schema-docs data-offset="0""><h1>Parameters</h1>';
-$toc_content = '<div class="pipeline-page-toc list-group">';
+$schema_content = '<div class="schema-docs"><h1>Parameters</h1>';
+
   foreach($schema["properties"] as $k=>$v){
     // for loop through top level items
       $fa_icon='<i class="fa-icons fa-fw mr-2 text-muted"></i> ';
@@ -94,30 +94,27 @@ $toc_content = '<div class="pipeline-page-toc list-group">';
         if(array_key_exists("fa_icon", $v)){
           $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-2"></i> '; 
         }
-        $schema_content.='<h2>'.$fa_icon.$k.'</h2>';
+        $schema_content.='<h2 id="'.strtolower(preg_replace("/\/|\s/","-",$k)).'"><a href="#'.strtolower(preg_replace("/\/|\s/","-",$k)).'" class="header-link"><span class="fas fa-link"></span></a>'.$fa_icon.$k.'</h2>';
         if(array_key_exists("description", $v)){
         $schema_content.='<p class="lead">'.$v['description'].'</p>';
         }
-        $toc_content.='<a class="list-group-item" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","_",$k).'-body" aria-expanded="true" aria-controls="collapseOne">'
-        .$k.
-        '</a><ul class="collapse" id="'.preg_replace("/\/|\s/","_",$k).'-body" >';
         foreach($v["properties"] as $kk=>$vv){
           // for loop through each param in a group
-          $fa_icon='<i class="fa-icons fa-fw mr-1 text-muted"></i> ';
+          $fa_icon='<i class="fa-icons fa-fw ml-0 text-muted"></i> ';
           if(array_key_exists("fa_icon", $vv)){
-            $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw mr-1"></i> '; 
+            $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw ml-0"></i> '; 
           }
-          $schema_content.='<p id="'.$kk.'-docs"><span>' . $fa_icon .'<code>--'.$kk.'</code>: </span>';
-          if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
-            $schema_content.='<span class="schema-docs-helptext">'.$vv['help_text'].'</span>';
-          }
-          elseif(array_key_exists("description", $vv) && $vv["description"]!=""){
+          $schema_content.='<h3 id="'.$kk.'">
+          <a href="#'.strtolower(preg_replace("/\/|\s/","-",$kk)).'" class="header-link">
+            <span class="fas fa-link"></span>
+          </a>'. $fa_icon .'<code>--'.$kk.'</code></h3>';
+          if(array_key_exists("description", $vv) && $vv["description"]!=""){
             $schema_content.='<span class="schema-docs-description">'.$vv['description'].'</span>';
           }
-          $toc_content.='</p>';
-          $toc_content.='<li class="mb-1"><a href="#'.$kk.'-docs"><code>--'.$kk.'</code></a></li>';//need to put an offset for navbar
-        }
-        $toc_content.='</ul>';
+          if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
+            $schema_content.='<span class="schema-docs-help-text">'.$vv['help_text'].'</span>';
+          }
+        }        
       }else{
         //top level parameter
         if(array_key_exists("fa_icon", $v)){
@@ -129,7 +126,7 @@ $toc_content = '<div class="pipeline-page-toc list-group">';
     
   }
   $schema_content .= '</div>';
-  $toc_content .= '</div>';
+  
 }
 # Configs to make relative URLs work
 $src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.implode('/', array_slice($path_parts, 1, -1)).'/';
