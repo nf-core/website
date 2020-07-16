@@ -279,7 +279,7 @@ _Friday 17th, 13:40 - 14:00_
 
 #### Biocontainers
 
-Björn Grüning ([@bgruening](https://github.com/bgruening))<br>	
+Björn Grüning ([@bgruening](https://github.com/bgruening))<br>
 _Friday 17th, 14:00 - 14:30_
 
 ### Final wrap-up and closing remarks
