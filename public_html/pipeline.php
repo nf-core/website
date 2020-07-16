@@ -10,6 +10,8 @@ require_once('../includes/pipeline_page/components.php');
 
 # Markdown file - Readme or docs
 $pagetab = false;
+$version = 'master';
+$schema_content = '';
 if(count($path_parts) == 1){
     $pagetab = 'home';
     require_once('../includes/pipeline_page/docs.php');
@@ -99,7 +101,6 @@ if(count($pipeline->releases) > 0){
 if($pipeline->archived){
   $pipeline_warning = '<div class="alert alert-warning">This pipeline has been archived and is no longer being actively maintained.</div>';
 }
-
 # Extra HTML for the header - tags and GitHub URL
 ?>
 
@@ -131,6 +132,24 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/releases'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases">Releases</a>
   </li>
+  <li >
+    <div class="input-group">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="version_select"><i class="fas fa-tags"></i></label>
+  </div>
+  <select class="custom-select" id="version_select" data-pipeline="<?php echo $pipeline->name?>">
+     <?php
+      
+      foreach($pipeline->releases as $release){
+      ?>
+        <option value="<?php echo strtolower($release->tag_name); ?>"><?php echo $release->tag_name; ?></option>
+      <?php
+      }
+      ?>
+      <option value="dev">dev</option>
+  </select>
+</div>
+  </li>
 </ul>
 
 <?php
@@ -139,25 +158,27 @@ if($pipeline->archived){
 # echo '<pre>'.print_r($gh_tree_json, true).'</pre>';
 
 if($pagetab !== 'stats'){
-    echo '<div class="row"><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
+    echo '<div class="row"><div class="col-lg-8 order-lg-1">';
+}
+# Print content
+if($pagetab == 'home' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'releases'){
+  $content = '<div class="rendered-markdown">'.$content.$schema_content.'</div>';
+  echo '<div >'.$content.'</div>';
+} 
+else {
+  echo $content;
+}
+if($pagetab !== 'stats'){
+    echo '</div><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
     if($pagetab == 'usage' || $pagetab == 'output'){
-        echo '<div class="pipeline-page-toc">'.$toc_content.'</div>';
+        echo '<div class="pipeline-page-toc">'.generate_toc($content,2).'</div>';
     } else {
         echo $pipeline_stats_sidebar;
     }
-    echo '</div></div><div class="col-lg-8 order-lg-1">';
-}
-
-# Print content
-if($pagetab == 'home' || $pagetab == 'usage' || $pagetab == 'output' || $pagetab == 'releases'){
-  echo $schema_content;
-  echo '<div class="rendered-markdown">'.$content.'</div>';
-} else {
-  echo $content;
 }
 
 if($pagetab !== 'stats'){
-  echo '</div></div>';
+  echo '</div></div></div>';
 }
 
 include('../includes/footer.php');

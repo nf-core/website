@@ -95,3 +95,25 @@ function get_self_url($strip_query=true){
     }
     return $self_url.$_SERVER['HTTP_HOST'].$url;
 }
+
+//Adapted from http://www.10stripe.com/articles/automatically-generate-table-of-contents-php.php
+function generate_toc($html_string, $depth){
+	/*AutoTOC function written by Alex Freeman
+	* Released under CC-by-sa 3.0 license
+	* http://www.10stripe.com/  */
+
+	
+	//get the headings down to the specified depth
+  $pattern = '/<h[2][^>]*><a[^>]*>.*?<\/a>(.*?)<\/h[2]>/';
+	preg_match_all($pattern,$html_string,$matches);
+  // loop through all headings and attach it to the toc 
+  $contents = '<div class="list-group">';
+  foreach ($matches[1] as $heading) {
+    $heading_name = preg_replace('/<i[^>]*>.*?<\/i>\s/','',$heading); // remove icon to only get the heading text
+    $toc_item = '<a class="list-group-item list-group-item-action"  href="#'.strtolower(preg_replace("/\/|\s/","-",$heading_name)).'">'
+        .$heading.'</a>';
+    $contents .= $toc_item;
+  }	
+	$contents .='</div>';
+	return $contents;
+}
