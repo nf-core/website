@@ -1190,7 +1190,7 @@ function generate_param_row(id, param){
         <div class="col-auto align-self-center schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <button class="col-auto align-self-center param_fa_icon " title="Select icon" data-toggle="tooltip">`+fa_icon+`</button>
+        <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -1286,7 +1286,7 @@ function generate_group_row(id, param, child_params){
                 <div class="col-auto align-self-center schema_row_grabber border-right">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <button class="col-auto align-self-center param_fa_icon" data-toggle="tooltip" title="Select icon">`+fa_icon+`</button>
+                <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
                         <input type="text" class="text-monospace param_id" value="`+id+`">
