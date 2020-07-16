@@ -227,7 +227,7 @@ Join the [Zoom Meeting](https://zoom.us/j/96839947521) for this session.
 Elin Kronander ([@elinkronander](https://github.com/elinkronander))<br>
 _Wednesday 15th, 13:00 - 13:30_
 
-**[Click here to download the slides from this talk.](/assets/markdown_assets/usage/talk_slides/DM_talk_Elin_Kronander_nf-core_150720.pdf)**
+**[Click here to download the slides from this talk.](/assets/markdown_assets/events/2020/hackathon-july-2020/DM_talk_Elin_Kronander_nf-core_150720.pdf)**
 
 ---
 
@@ -247,7 +247,7 @@ I'll describe how template synchronisation works and cover recent changes and im
 
 ### Virtual social event
 
-![Pub Quiz](/assets/markdown_assets/usage/pub_quiz/pub-quiz-nextflow-nf-core.png "Background picture by Freepik")
+![Pub Quiz](/assets/markdown_assets/events/2020/hackathon-july-2020/pub-quiz-nextflow-nf-core.png "Background picture by Freepik")
 
 Join the [Zoom Meeting](https://zoom.us/j/96590125895) for the social event.
 _Thursday 16th, 17:00 - 19:00_
