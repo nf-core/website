@@ -188,13 +188,7 @@ $(function () {
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
 
-    if ($('.schema-docs-help-text, .schema-docs-description').length >0){
-        // render markdown elements
-        var md_converter = new showdown.Converter();
-        $('.schema-docs-help-text, .schema-docs-description').each(function () {
-            this.innerHTML = md_converter.makeHtml(this.innerHTML);
-        });
-    }
+    // version number injection in the URL in the docs
     if ($('#version_select').length >0){
         if (document.location.href.match(/\/\d.\d|\/dev/)){
             //update selected option in select dropdown if version was found in the url

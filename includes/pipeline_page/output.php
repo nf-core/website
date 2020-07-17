@@ -44,23 +44,7 @@ if(file_exists($local_md_fn)){
   if($md_contents){
     file_put_contents($local_md_fn, $md_contents);
     $markdown_fn = $local_md_fn;
-  } else {
-    # Edge case: No releases, but dev branch doesn't exist - use master instead
-    $git_branch = 'master';
-    $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.$filename;
-    $md_contents = file_get_contents($markdown_fn);
-    if($md_contents){
-      file_put_contents($local_md_fn, $md_contents);
-      $markdown_fn = $local_md_fn;
-    }
-    # File doesn't exist - 404
-    else {
-      $markdown_fn = false;
-      header('HTTP/1.1 404 Not Found');
-      include('404.php');
-      die();
-    }
-  }
+  } 
 }
 
 # Configs to make relative URLs work
