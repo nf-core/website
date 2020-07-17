@@ -48,14 +48,14 @@ else if($_GET['path'] == $pipeline->name.'/releases'){
     require_once('../includes/pipeline_page/releases.php');
 }
 // handling urls with a version in it
-else if(count($path_parts) >= 2 && preg_match('/^\d.\d$|^dev/',$path_parts[1])){
+else if(count($path_parts) >= 2 && preg_match('/^\d+\.\d+\.\d+|^\d+\.\d+$|^dev/',$path_parts[1])){
   $release = $path_parts[1];
   foreach($pipeline->releases as $releases)
   if($releases==$release){
     $release_url = $releases->html_url;
   }
   $release_href = $pipeline->name.'/'.$release;
-  if(count($path_parts) == 2 && preg_match('/^\d.\d$|^dev/',$path_parts[1])){
+  if(count($path_parts) == 2 && preg_match('/^\d+\.\d+\.\d+|^\d+.\d+$|^dev/',$path_parts[1])){
     $pagetab = 'home';
     require_once('../includes/pipeline_page/docs.php');
   }else{
