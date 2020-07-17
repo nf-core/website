@@ -181,24 +181,25 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='releases'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/releases">Releases</a>
   </li>
-  <li >
+  <?php if($pagetab == 'home' || $pagetab == 'output' || $pagetab == 'usage'): ?>
+  <li>
     <div class="input-group">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="version_select"><i class="fas fa-tags"></i></label>
-  </div>
-  <select class="custom-select" id="version_select" data-pipeline="<?php echo $pipeline->name?>">
-     <?php
-      
-      foreach($pipeline->releases as $release){
-      ?>
-        <option value="<?php echo strtolower($release->tag_name); ?>"><?php echo $release->tag_name; ?></option>
-      <?php
-      }
-      ?>
-      <option value="dev">dev</option>
-  </select>
-</div>
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="version_select"><i class="fas fa-tags"></i></label>
+      </div>
+      <select class="custom-select" id="version_select" data-pipeline="<?php echo $pipeline->name?>">
+        <?php
+          foreach($pipeline->releases as $release){
+          ?>
+            <option value="<?php echo strtolower($release->tag_name); ?>"><?php echo $release->tag_name; ?></option>
+          <?php
+          }
+          ?>
+          <option value="dev">dev</option>
+      </select>
+    </div>
   </li>
+  <?php endif; ?>
 </ul>
 
 <?php
