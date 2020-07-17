@@ -8,10 +8,10 @@
 
 
 if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
-    # Clean up URL by removing .md
-    header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
-    exit;
-  }
+  # Clean up URL by removing .md
+  header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
+  exit;
+}
 $filename = 'docs/usage.md';
 $md_trim_before = '# Introduction';
 
@@ -38,23 +38,6 @@ if(file_exists($local_md_fn)){
   if($md_contents){
     file_put_contents($local_md_fn, $md_contents);
     $markdown_fn = $local_md_fn;
-  } else {
-    # Edge case: No releases, but dev branch doesn't exist - use master instead
-    $git_branch = $release;
-    $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.$filename;
-    print_r($markdown_fn);
-    $md_contents = file_get_contents($markdown_fn);
-    if($md_contents){
-      file_put_contents($local_md_fn, $md_contents);
-      $markdown_fn = $local_md_fn;
-    }
-    # File doesn't exist - 404
-    else {
-      $markdown_fn = false;
-      header('HTTP/1.1 404 Not Found');
-      include('404.php');
-      die();
-    }
   }
 }
 
@@ -79,6 +62,29 @@ if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn))
   }
 }
 if(file_exists($gh_launch_schema_fn)){
+
+// Markdown parsing libraries
+require_once('../includes/libraries/parsedown/Parsedown.php');
+require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
+$pd = new ParsedownExtra();
+
+function parse_md($text){
+    global $pd;
+    // Remove whitespace on lines that are only whitespace
+    $text = preg_replace('/^\s*$/m', '', $text);
+    // Remove global text indentation
+    $indents = array();
+    foreach(explode("\n",$text) as $l){
+        if(strlen($l) > 0){
+            $indents[] = strlen($l) - strlen(ltrim($l));
+        }
+    }
+    if(min($indents) > 0){
+        $text = preg_replace('/^\s{'.min($indents).'}/m', '', $text);
+    }
+    return $pd->text($text);
+}
+
 $raw_json = file_get_contents($gh_launch_schema_fn);
 $schema = json_decode($raw_json, TRUE);
 
@@ -106,10 +112,10 @@ $schema_content = '<div class="schema-docs"><h1>Parameters</h1>';
             <span class="fas fa-link"></span>
           </a>'. $fa_icon .'<code>--'.$kk.'</code></h3>';
           if(array_key_exists("description", $vv) && $vv["description"]!=""){
-            $schema_content.='<span class="schema-docs-description">'.$vv['description'].'</span>';
+            $schema_content.='<span class="schema-docs-description">'.parse_md($vv['description']).'</span>';
           }
           if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
-            $schema_content.='<span class="schema-docs-help-text">'.$vv['help_text'].'</span>';
+            $schema_content.='<span class="schema-docs-help-text">'.parse_md($vv['help_text']).'</span>';
           }
         }        
       }else{
@@ -120,10 +126,8 @@ $schema_content = '<div class="schema-docs"><h1>Parameters</h1>';
         $schema_content.='<h4 class="text-secondary">' . $fa_icon .'<code>--'.$vv.'</code></h4>';
         '<h4 class="text-secondary">' . $fa_icon .'<code>--'.$vv.'</code></h4>';
       }
-    
   }
   $schema_content .= '</div>';
-  
 }
 # Configs to make relative URLs work
 $src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.implode('/', array_slice($path_parts, 1, -1)).'/';
