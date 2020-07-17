@@ -5,20 +5,20 @@
 # Details for parsing markdown file, fetched from Github
 # Build the remote file path
 # Special case - root docs is allow
-if($path_parts[1] == 'usage'){
-    if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
-        # Clean up URL by removing .md
-        header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
-        exit;
-    }
-    $filename = 'docs/'.implode('/', array_slice($path_parts, 1)).'.md';
-    $md_trim_before = '# Introduction';
-}
+
+
+if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
+    # Clean up URL by removing .md
+    header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
+    exit;
+  }
+$filename = 'docs/usage.md';
+$md_trim_before = '# Introduction';
 
 # Build the local and remote file paths based on whether we have a release or not
-if($pipeline->last_release !== 0){
-  $git_branch = 'master';
-  $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->last_release."/";
+if($release !== 'dev'){
+  $git_branch = $release;
+  $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$release."/";
 } else {
   $git_branch = 'dev';
   $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->pushed_at."/";
@@ -40,8 +40,9 @@ if(file_exists($local_md_fn)){
     $markdown_fn = $local_md_fn;
   } else {
     # Edge case: No releases, but dev branch doesn't exist - use master instead
-    $git_branch = 'master';
+    $git_branch = $release;
     $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.$filename;
+    print_r($markdown_fn);
     $md_contents = file_get_contents($markdown_fn);
     if($md_contents){
       file_put_contents($local_md_fn, $md_contents);
@@ -58,10 +59,6 @@ if(file_exists($local_md_fn)){
 }
 
 # Try to fetch the nextflow_schema.json file for the latest release, taken from pipeline.php
-$release = 'dev';
-if(count($pipeline->releases) > 0){
-  $release = $pipeline->releases[0]->tag_name;
-}
 $gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.json";
 $gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
 # Build directories if needed
