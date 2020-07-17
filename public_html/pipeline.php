@@ -10,7 +10,12 @@ require_once('../includes/pipeline_page/components.php');
 
 # Markdown file - Readme or docs
 $pagetab = false;
-$version = 'master';
+$release = 'dev';
+$release_href = $pipeline->name;
+if(count($pipeline->releases) > 0){
+  $release = $pipeline->releases[0]->tag_name;
+  $release_url = $pipeline->releases[0]->html_url;
+}
 $schema_content = '';
 if(count($path_parts) == 1){
     $pagetab = 'home';
@@ -42,6 +47,46 @@ else if($_GET['path'] == $pipeline->name.'/releases'){
     $pagetab = 'releases';
     require_once('../includes/pipeline_page/releases.php');
 }
+// handling urls with a version in it
+else if(count($path_parts) >= 2 && preg_match('/^\d.\d$|^dev/',$path_parts[1])){
+  $release = $path_parts[1];
+  foreach($pipeline->releases as $releases)
+  if($releases==$release){
+    $release_url = $releases->html_url;
+  }
+  $release_href = $pipeline->name.'/'.$release;
+  if(count($path_parts) == 2 && preg_match('/^\d.\d$|^dev/',$path_parts[1])){
+    $pagetab = 'home';
+    require_once('../includes/pipeline_page/docs.php');
+  }else{
+    
+  switch($path_parts[2]){
+    case 'usage':
+      $pagetab = 'usage';
+      require_once('../includes/pipeline_page/usage.php');
+    break;
+    case 'output':
+      $pagetab = 'output';
+      require_once('../includes/pipeline_page/output.php');
+      break;
+    case 'stats':
+      $pagetab = 'stats';
+      require_once('../includes/pipeline_page/stats.php');
+      break;
+    case 'releases':
+      $pagetab = 'releases';
+      require_once('../includes/pipeline_page/releases.php');
+      break;
+    default:
+      header('HTTP/1.1 404 Not Found');
+      include('404.php');
+      die();
+  }
+
+
+  }
+
+}
 # Some other URL pattern that we don't recognise - 404
 else {
     header('HTTP/1.1 404 Not Found');
@@ -58,10 +103,6 @@ include('../includes/header.php');
 # Pipeline subheader
 
 # Try to fetch the nextflow_schema.json file for the latest release, to see whether we can have a 'Launch' button
-$release = 'dev';
-if(count($pipeline->releases) > 0){
-  $release = $pipeline->releases[0]->tag_name;
-}
 $gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.json";
 $gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
 # Build directories if needed
@@ -85,10 +126,18 @@ if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn))
 # Get details for the Call To Action button
 $pipeline_warning = '';
 if(count($pipeline->releases) > 0){
+  if($release!="dev"){
   if(file_exists($gh_launch_schema_fn)){
-    $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release='.$pipeline->releases[0]->tag_name.'" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch version '.$pipeline->releases[0]->tag_name.'</a>';
+    $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release='.$release.'" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch version '.$release.'</a>';
   } else {
-    $cta_btn = '<a href="'.$pipeline->releases[0]->html_url.'" class="btn btn-success btn-lg"><i class="fas fa-tags mr-1"></i> See version '.$pipeline->releases[0]->tag_name.'</a>';
+    $cta_btn = '<a href="'.$release_url.'" class="btn btn-success btn-lg"><i class="fas fa-tags mr-1"></i> See version '.$release.'</a>';
+  }
+  }else{
+    if(file_exists($gh_launch_schema_fn)){
+    $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
+  } else {
+    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-construction mr-1"></i> See the latest code</a>';
+  }  
   }
 } else {
   if(file_exists($gh_launch_schema_fn)){
@@ -117,20 +166,20 @@ if($pipeline->archived){
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
-    <a class="nav-link<?php if(count($path_parts) == 1){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>">Readme</a>
+    <a class="nav-link<?php if(count($path_parts) == 1){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>">Readme</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/usage'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/usage">Usage</a>
+    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/usage">Usage</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/output'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/output">Outputs</a>
+    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/output">Outputs</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
+    <a class="nav-link<?php if($pagetab=='stats'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($_GET['path'] == $pipeline->name.'/releases'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases">Releases</a>
+    <a class="nav-link<?php if($pagetab=='releases'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/releases">Releases</a>
   </li>
   <li >
     <div class="input-group">
