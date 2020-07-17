@@ -6,24 +6,15 @@
 # Build the remote file path
 # Special case - root docs is allow
 # General docs page
-if($path_parts[1] == 'output'){
-    if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
-        # Clean up URL by removing .md
-        header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
-        exit;
-    }
-    $filename = 'docs/'.implode('/', array_slice($path_parts, 1)).'.md';
-}
+
 # Must be the readme
-else {
-    $filename = 'README.md';
-    $md_trim_before = '# Introduction';
-}
+$filename = 'README.md';
+$md_trim_before = '# Introduction';
 
 # Build the local and remote file paths based on whether we have a release or not
-if($pipeline->last_release !== 0){
-  $git_branch = 'master';
-  $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->last_release."/";
+if($release !== 'dev'){
+  $git_branch = $release;
+  $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$release."/";
 } else {
   $git_branch = 'dev';
   $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->pushed_at."/";
@@ -43,22 +34,6 @@ if(file_exists($local_md_fn)){
   if($md_contents){
     file_put_contents($local_md_fn, $md_contents);
     $markdown_fn = $local_md_fn;
-  } else {
-    # Edge case: No releases, but dev branch doesn't exist - use master instead
-    $git_branch = 'master';
-    $markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.$filename;
-    $md_contents = file_get_contents($markdown_fn);
-    if($md_contents){
-      file_put_contents($local_md_fn, $md_contents);
-      $markdown_fn = $local_md_fn;
-    }
-    # File doesn't exist - 404
-    else {
-      $markdown_fn = false;
-      header('HTTP/1.1 404 Not Found');
-      include('404.php');
-      die();
-    }
   }
 }
 

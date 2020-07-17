@@ -7,30 +7,24 @@
 # Special case - root docs is allow
 
 # General docs page
-if($path_parts[1] == 'output'){
-    if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
-        # Clean up URL by removing .md
-        header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
-        exit;
-    }
-    $filename = implode('/', array_slice($path_parts, 1)).'.md';
+
+if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
+    # Clean up URL by removing .md
+    header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
+    exit;
 }
-# Must be the readme
-else {
-    $filename = 'README.md';
-    $md_trim_before = '# Introduction';
-}
+$filename = 'docs/usage.md';
 
 # Build the local and remote file paths based on whether we have a release or not
-if($pipeline->last_release !== 0){
-  $git_branch = 'master';
-  $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->last_release."/";
+if($release !== 'dev'){
+  $git_branch = $release;
+  $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$release."/";
 } else {
   $git_branch = 'dev';
   $local_fn_base = dirname(dirname(dirname(__FILE__)))."/markdown/pipelines/".$pipeline->name."/".$pipeline->pushed_at."/";
 }
 $local_md_fn = $local_fn_base.$filename;
-$markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/docs/'.$filename;
+$markdown_fn = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.$filename;
 
 # Check if we have a local copy of the markdown file and fetch if not
 if(file_exists($local_md_fn)){
