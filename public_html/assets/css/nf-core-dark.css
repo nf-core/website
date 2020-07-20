@@ -102,6 +102,9 @@ blockquote a {
   color: rgb(218, 215, 210);
   background-color: rgb(26, 28, 29);
 }
+.badge-secondary {
+  color: rgb(218, 215, 210);
+}
 .main-content pre,
 .pipeline-run-cmd {
   background-color: rgba(34, 36, 38, 0.3);
@@ -423,11 +426,19 @@ hr {
 .text-muted{
   color: #999;
 }
-.list-group-item{
-  background-color: #343434;
-  color: #ededed;
+.toc nav a {
+  color: #999;
 }
-.list-group-item:hover{
-  background-color: #616161;
-  color: #ededed; 
+.toc>nav>a,
+.toc>nav>nav{
+  border: 1px solid #343434;
+}
+.toc nav a:hover {
+  background-color: rgba(255,255,255,.075);
+}
+.toc nav .nav-link.active{
+  color: #999;
+}
+.toc nav nav .nav-link.active{
+  color: #999;
 }
