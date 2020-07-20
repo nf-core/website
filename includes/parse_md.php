@@ -64,25 +64,7 @@ if(isset($_GET['q']) && strlen($_GET['q'])){
 
 // Automatically add HTML IDs to headers
 // Add ID attributes to headers
-$hids = Array();
-$content = preg_replace_callback(
-  '~<h([1234])>(.*?)</h([1234])>~Ui', // Ungreedy by default, case insensitive
-  function ($matches) {
-    global $hids;
-    $id_match = strip_tags($matches[2]);
-    $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
-    $id_match = str_replace('---', '-', $id_match);
-    $hid = $id_match;
-    $i = 1;
-    while(in_array($hid, $hids)){
-      $hid = $id_match.'-'.$i;
-      $i += 1;
-    }
-    $hids[] = $hid;
-    return '<h'.$matches[1].' id="'.$hid.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
-  },
-  $content
-);
+$content = add_ids_to_headers($content);
 
 // Prepend to src URLs if configureds and relative
 if(isset($src_url_prepend)){
