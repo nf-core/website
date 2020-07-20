@@ -97,23 +97,74 @@ function get_self_url($strip_query=true){
 }
 
 //Adapted from http://www.10stripe.com/articles/automatically-generate-table-of-contents-php.php
-function generate_toc($html_string, $depth){
-	/*AutoTOC function written by Alex Freeman
-	* Released under CC-by-sa 3.0 license
-	* http://www.10stripe.com/  */
-
+function generate_toc($html_string){
+	// /*AutoTOC function written by Alex Freeman
+	// * Released under CC-by-sa 3.0 license
+	// * http://www.10stripe.com/  */
 	
-	//get the headings down to the specified depth
-  $pattern = '/<h[2][^>]*><a[^>]*>.*?<\/a>(.*?)<\/h[2]>/';
-	preg_match_all($pattern,$html_string,$matches);
-  // loop through all headings and attach it to the toc 
-  $contents = '<div class="list-group">';
-  foreach ($matches[1] as $heading) {
-    $heading_name = preg_replace('/<i[^>]*>.*?<\/i>\s/','',$heading); // remove icon to only get the heading text
-    $toc_item = '<a class="list-group-item list-group-item-action"  href="#'.strtolower(preg_replace("/\/|\s/","-",$heading_name)).'">'
-        .$heading.'</a>';
-    $contents .= $toc_item;
-  }	
-	$contents .='</div>';
-	return $contents;
+  $toc = '';
+  $curr_level = 0;
+  $id_regex = "~<h([23])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"][^>]*>(.*)</h[23]>~Ui";
+  preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
+  if($matches){
+    foreach($matches as $match){
+      $level = $match[1];
+      $class = $match[2];
+      if(!strpos($class, 'section-header')){
+        $level += 1;
+      }
+      $id = $match[3];
+      $name = trim(str_replace('&nbsp;','', htmlentities(strip_tags($match[4]) )));
+      if($level > $curr_level){
+        $toc .= "\n".'<nav class="nav flex-column">'."\n";
+      } else if($level == $curr_level) {
+        $toc .= "\n";
+      } else {
+        while($level < $curr_level){
+          $toc .= "\n</nav>\n\n";
+          $curr_level -= 1;
+        }
+      }
+      $curr_level = $level;
+      if(preg_match('/<code>.*?<\/code>/',$match[0])){
+        $name='<code>'.$name.'</code>';
+      }
+      if(preg_match('/<i.*?<\/i>/',$match[0],$icon_match)){  
+        $name=$icon_match[0].$name;
+      }
+      $name=str_replace('hidden','',$name);// remove artifact from "hidden" badge
+      $toc .= '<a class="nav-link" href="#'.$id.'">'.$name.'</a>';
+    }
+  }
+  while($curr_level > 1){
+    $toc .= '</nav>';
+    $curr_level -= 1;
+  }
+    return $toc;
 }
+
+
+function add_ids_to_headers($content_input){
+  // Automatically add HTML IDs to headers
+  // Add ID attributes to headers
+  $hids = Array();
+  $content_output = preg_replace_callback(
+    '~<h([1234])>(.*?)</h([1234])>~Ui', // Ungreedy by default, case insensitive
+    function ($matches) use($hids) {
+      $id_match = strip_tags($matches[2]);
+      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
+      $id_match = str_replace('---', '-', $id_match);
+      $hid = $id_match;
+      $i = 1;      
+      while(in_array($hid, $hids)){
+        $hid = $id_match.'-'.$i;
+        $i += 1;
+      }
+      $hids[] = $hid;
+      return '<h'.$matches[1].' id="'.$hid.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
+    },
+    $content_input
+  );
+  return $content_output;
+  return $content_input;
+};
