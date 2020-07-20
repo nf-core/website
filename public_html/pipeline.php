@@ -221,7 +221,8 @@ else {
 if($pagetab !== 'stats'){
     echo '</div><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
     if($pagetab == 'usage' || $pagetab == 'output'){
-        echo '<div class="pipeline-page-toc">'.generate_toc($content,2).'</div>';
+      $toc = '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
+        echo $toc;
     } else {
         echo $pipeline_stats_sidebar;
     }
