@@ -97,20 +97,22 @@ $schema_content = '<div class="schema-docs"><h1>Parameters</h1>';
         if(array_key_exists("fa_icon", $v)){
           $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-2"></i> '; 
         }
-        $schema_content.='<h2 id="'.strtolower(preg_replace("/\/|\s/","-",$k)).'"><a href="#'.strtolower(preg_replace("/\/|\s/","-",$k)).'" class="header-link"><span class="fas fa-link"></span></a>'.$fa_icon.$k.'</h2>';
+        $schema_content .= add_ids_to_headers('<h2><a>'.$fa_icon.$k.'</a></h2>');
         if(array_key_exists("description", $v)){
         $schema_content.='<p class="lead">'.$v['description'].'</p>';
         }
         foreach($v["properties"] as $kk=>$vv){
           // for loop through each param in a group
           $fa_icon='<i class="fa-icons fa-fw ml-0 text-muted"></i> ';
+          $hidden_label ='';
           if(array_key_exists("fa_icon", $vv)){
             $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw ml-0"></i> '; 
           }
-          $schema_content.='<h3 id="'.$kk.'">
-          <a href="#'.strtolower(preg_replace("/\/|\s/","-",$kk)).'" class="header-link">
-            <span class="fas fa-link"></span>
-          </a>'. $fa_icon .'<code>--'.$kk.'</code></h3>';
+          if(array_key_exists("hidden", $vv) && $vv["hidden"]){
+            $hidden_label = '<div><span class="badge badge-pill badge-secondary">hidden</span></div>'; 
+          }
+          $schema_content.='<div class="d-flex justify-content-between align-items-center">';
+          $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$hidden_label.'</div>';
           if(array_key_exists("description", $vv) && $vv["description"]!=""){
             $schema_content.='<span class="schema-docs-description">'.parse_md($vv['description']).'</span>';
           }
