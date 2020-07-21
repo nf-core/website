@@ -88,7 +88,7 @@ function parse_md($text){
 $raw_json = file_get_contents($gh_launch_schema_fn);
 $schema = json_decode($raw_json, TRUE);
 
-$schema_content = '<div class="schema-docs"><h1>Parameters</h1>';
+$schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters</h1>');
 
   foreach($schema["properties"] as $k=>$v){
     // for loop through top level items

@@ -437,8 +437,14 @@ hr {
   background-color: rgba(255,255,255,.075);
 }
 .toc nav .nav-link.active{
-  color: #999;
+  color: #e5e6e7;
 }
-.toc nav nav .nav-link.active{
-  color: #999;
+.toc nav nav .nav-link.active,
+.toc nav nav nav .nav-link.active{
+  color: #e5e6e7;
 }
+.toc .nav-link.active code{
+  color: #e5e6e7;
+  background-color: rgba(220,220,220,0.25);
+}
+
