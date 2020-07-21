@@ -1061,8 +1061,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .toc {
   margin-top:10px;
-  height: 93vh;
-  overflow-y: scroll;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 .toc nav a {
   color: #444444;
