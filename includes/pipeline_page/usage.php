@@ -93,11 +93,18 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
   foreach($schema["properties"] as $k=>$v){
     // for loop through top level items
       $fa_icon='<i class="fa-icons fa-fw mr-2 text-muted"></i> ';
+      $required_label = '';
       if($v["type"]=="object"){
         if(array_key_exists("fa_icon", $v)){
           $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-2"></i> '; 
         }
-        $schema_content .= add_ids_to_headers('<h2><a>'.$fa_icon.$k.'</a></h2>');
+        $schema_content .= '<div class="d-flex justify-content-between align-items-center">';
+        
+        if(array_key_exists("required", $v)){    
+          $required_label = '<div><span class="badge badge-warning">required</span></div>'; 
+        }
+        $schema_content .= add_ids_to_headers('<h2><a>'.$fa_icon.$k.'</a></h2>').$required_label;
+        $schema_content .='</div>';
         if(array_key_exists("description", $v)){
         $schema_content.='<p class="lead">'.$v['description'].'</p>';
         }
@@ -105,14 +112,18 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
           // for loop through each param in a group
           $fa_icon='<i class="fa-icons fa-fw ml-0 text-muted"></i> ';
           $hidden_label ='';
+          $required_label = '';
           if(array_key_exists("fa_icon", $vv)){
             $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw ml-0"></i> '; 
           }
           if(array_key_exists("hidden", $vv) && $vv["hidden"]){
-            $hidden_label = '<div><span class="badge badge-pill badge-secondary">hidden</span></div>'; 
+            $hidden_label = '<div><span class="badge badge-secondary">hidden</span></div>'; 
+          }
+          if(array_key_exists("required", $vv)){
+            $required_label = '<div><span class="badge badge-warning">required</span></div>'; 
           }
           $schema_content.='<div class="d-flex justify-content-between align-items-center">';
-          $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$hidden_label.'</div>';
+          $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$hidden_label.$required_label.'</div>';
           if(array_key_exists("description", $vv) && $vv["description"]!=""){
             $schema_content.='<span class="schema-docs-description">'.parse_md($vv['description']).'</span>';
           }
