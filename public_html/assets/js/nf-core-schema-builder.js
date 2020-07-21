@@ -11,6 +11,7 @@ var help_text_icon_template = '<i class="fas fa-book help_text_icon help_text_ic
 var no_help_text_icon = '<i class="fas fa-book help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
 var prev_focus = false;
 var last_checked_box = null;
+showdown.setFlavor('github'); 
 
 $(function () {
 
