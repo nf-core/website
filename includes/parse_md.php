@@ -85,3 +85,6 @@ $content = str_replace('<table>', '<table class="table table-bordered table-stri
 if(isset($html_content_replace)){
   $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
 }
+
+// Find and replace emojis names with images
+$content = preg_replace('/:([\S]+?):/','<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">',$content);
