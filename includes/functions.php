@@ -96,11 +96,7 @@ function get_self_url($strip_query=true){
     return $self_url.$_SERVER['HTTP_HOST'].$url;
 }
 
-//Adapted from http://www.10stripe.com/articles/automatically-generate-table-of-contents-php.php
 function generate_toc($html_string){
-	// /*AutoTOC function written by Alex Freeman
-	// * Released under CC-by-sa 3.0 license
-  // * http://www.10stripe.com/  */
   $toc = '';
   $curr_level = 0;
   $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"][^>]*>(.*)</h[1-3]>~Ui";
