@@ -212,15 +212,26 @@ if($pagetab !== 'stats'){
 }
 # Print content
 if($pagetab == 'home' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'releases'){
-  $content = '<div class="rendered-markdown">'.$content.$schema_content.'</div>';
-  echo '<div >'.$content.'</div>';
+  if(preg_match('/<!-- params-docs -->/')){
+    $content = '<div class="rendered-markdown">'.preg_replace('/<!-- params-docs -->/',$schema_content,$content).'</div>';  
+  } else {
+    $content = '<div class="rendered-markdown">'.$content.$schema_content.'</div>';
+  }
+  echo $content;
 } 
 else {
   echo $content;
 }
 if($pagetab !== 'stats'){
     echo '</div><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
-    if($pagetab == 'usage' || $pagetab == 'output'){
+    if($pagetab == 'usage'){
+      $toc = '<div class="btn-group mt-1" role="group">
+                    <button class="btn btn-outline-secondary collapse-groups-btn" id="toggle_details" data-toggle="collapse"  data-target=".schema-docs-help-text" aria-expanded="false"><i class="fa mr-1"></i> Toggle details</button>
+                    <button class="btn btn-outline-secondary collapse-groups-btn" id="show_hidden" data-toggle="collapse" data-target=".param_hidden" aria-expanded="false"><i class="fa mr-1"></i> Show hidden</button>
+                </div>';
+      $toc .= '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
+        echo $toc;
+    } else if($pagetab == 'output'){
       $toc = '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
         echo $toc;
     } else {

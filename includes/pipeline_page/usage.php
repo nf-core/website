@@ -102,12 +102,40 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
             $required_label = '<div><span class="badge badge-warning">required</span></div>'; 
           }
           $schema_content.='<div class="d-flex justify-content-between align-items-center">';
-          $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$hidden_label.$required_label.'</div>';
-          if(array_key_exists("description", $vv) && $vv["description"]!=""){
-            $schema_content.='<span class="schema-docs-description">'.parse_md($vv['description']).'</span>';
+          if($hidden_label){
+            $schema_content.=add_ids_to_headers('<h6>'.$fa_icon.'--'.$kk.'</h6>').$hidden_label.$required_label.'</div>';
+          } else {
+            $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$required_label.'</div>';
           }
-          if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
-            $schema_content.='<span class="schema-docs-help-text">'.parse_md($vv['help_text']).'</span>';
+          if(!$hidden_label){
+            if(array_key_exists("description", $vv) && $vv["description"]!=""){
+              $schema_content.='<div class="row"><span class="schema-docs-description col-10">'.parse_md($vv['description']).'</span>';
+              if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
+                $help_text = parse_md($vv['help_text']);
+                if(strlen($help_text)>150){
+                  $schema_content.='<div class="col-2">';
+                  $schema_content.='<button class="btn btn-outline-secondary" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","-",$kk).'-help" aria-expanded="false"><i class="fa"></i> Details</button>';
+                  $schema_content.='</div>';
+                  $schema_content.='</div><span class="collapse schema-docs-help-text" id="'.preg_replace("/\/|\s/","-",$kk).'-help">'.$help_text.'</span>';  
+                }else{
+                  $schema_content.='</div><span class="schema-docs-help-text">'.$help_text.'</span>';
+                }
+              }else{
+                $schema_content.='</div>';
+              }
+            }
+          } else {
+            if(array_key_exists("description", $vv) && $vv["description"]!=""){
+              $schema_content.='<div class="collapse param_hidden">';
+              $schema_content.='<div class="row"><span class="schema-docs-description col-10">'.parse_md($vv['description']).'</span>';
+              if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
+                $help_text = parse_md($vv['help_text']);
+                $schema_content.='</div><span class="schema-docs-help-text">'.$help_text.'</span>';
+              }else{
+                $schema_content.='</div>';
+              }
+              $schema_content.='</div>';
+            }
           }
         }        
       }else{
@@ -126,6 +154,11 @@ $src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'
 $href_url_prepend = '/'.$pipeline->name.'/'.implode('/', array_slice($path_parts, 1)).'/';
 $href_url_prepend = preg_replace('/\/\/+/', '/', $href_url_prepend);
 $href_url_suffix_cleanup = '\.md';
+
+$md_content_replace = array(
+    array(''),
+    array('# ')
+);
 
 # Styling
 $md_content_replace = array(

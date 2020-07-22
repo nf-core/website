@@ -1068,7 +1068,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   color: #444444;
 }
 .toc>nav>a,
-.toc>nav>nav{
+.toc>nav>nav,
+.toc>nav>nav>a{
   border: 1px solid rgba(220,220,220,0.6);
 }
 .toc nav a:hover {
@@ -1094,4 +1095,18 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-left: 1px solid #159957;
   background-color: rgba(34, 174, 99, .15);
 }
-
+.schema-docs [aria-expanded="false"] .fa:before {   
+  content: "\f077";
+}
+.schema-docs [aria-expanded="true"] .fa:before {
+  content: "\f078";
+}
+.side-sub-subnav #toggle_details[aria-expanded="false"] .fa:before {
+  content: "\f07c";
+}
+.side-sub-subnav #show_hidden[aria-expanded="false"] .fa:before {
+  content: "\f00e";
+}
+.side-sub-subnav #show_hidden[aria-expanded="true"] .fa:before {
+  content: "\f010";
+}
