@@ -79,9 +79,7 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
         }
         $schema_content .= '<div class="d-flex justify-content-between align-items-center">';
         
-        if(array_key_exists("required", $v)){    
-          $required_label = '<div><span class="badge badge-warning">required</span></div>'; 
-        }
+        
         $schema_content .= add_ids_to_headers('<h2><a>'.$fa_icon.$k.'</a></h2>').$required_label;
         $schema_content .='</div>';
         if(array_key_exists("description", $v)){
@@ -98,11 +96,11 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
           if(array_key_exists("hidden", $vv) && $vv["hidden"]){
             $hidden_label = '<div><span class="badge badge-secondary">hidden</span></div>'; 
           }
-          if(array_key_exists("required", $vv)){
+          if(array_key_exists("required", $v) && in_array($kk,$v["required"])){
             $required_label = '<div><span class="badge badge-warning">required</span></div>'; 
           }
           $schema_content.='<div class="d-flex justify-content-between align-items-center">';
-          if($hidden_label){
+          if($hidden_label){//lower the visibility of hidden parameters
             $schema_content.=add_ids_to_headers('<h6>'.$fa_icon.'--'.$kk.'</h6>').$hidden_label.$required_label.'</div>';
           } else {
             $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$required_label.'</div>';
@@ -112,7 +110,7 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
               $schema_content.='<div class="row"><span class="schema-docs-description col-10">'.parse_md($vv['description']).'</span>';
               if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
                 $help_text = parse_md($vv['help_text']);
-                if(strlen($help_text)>150){
+                if(strlen($help_text)>150){ // collapse long help texts
                   $schema_content.='<div class="col-2">';
                   $schema_content.='<button class="btn btn-outline-secondary" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","-",$kk).'-help" aria-expanded="false"><i class="fa"></i> Details</button>';
                   $schema_content.='</div>';
@@ -124,7 +122,7 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
                 $schema_content.='</div>';
               }
             }
-          } else {
+          } else { // collapse description and help text for hidden params
             if(array_key_exists("description", $vv) && $vv["description"]!=""){
               $schema_content.='<div class="collapse param_hidden">';
               $schema_content.='<div class="row"><span class="schema-docs-description col-10">'.parse_md($vv['description']).'</span>';
