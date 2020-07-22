@@ -5,8 +5,7 @@
 # Details for parsing markdown file, fetched from Github
 # Build the remote file path
 # Special case - root docs is allow
-
-
+require_once('../includes/parse_md.php');
 if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
   # Clean up URL by removing .md
   header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
@@ -40,7 +39,6 @@ if(file_exists($local_md_fn)){
     $markdown_fn = $local_md_fn;
   }
 }
-
 # Try to fetch the nextflow_schema.json file for the latest release, taken from pipeline.php
 $gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.json";
 $gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
@@ -64,26 +62,7 @@ if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn))
 if(file_exists($gh_launch_schema_fn)){
 
 // Markdown parsing libraries
-require_once('../includes/libraries/parsedown/Parsedown.php');
-require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
-$pd = new ParsedownExtra();
 
-function parse_md($text){
-    global $pd;
-    // Remove whitespace on lines that are only whitespace
-    $text = preg_replace('/^\s*$/m', '', $text);
-    // Remove global text indentation
-    $indents = array();
-    foreach(explode("\n",$text) as $l){
-        if(strlen($l) > 0){
-            $indents[] = strlen($l) - strlen(ltrim($l));
-        }
-    }
-    if(min($indents) > 0){
-        $text = preg_replace('/^\s{'.min($indents).'}/m', '', $text);
-    }
-    return $pd->text($text);
-}
 
 $raw_json = file_get_contents($gh_launch_schema_fn);
 $schema = json_decode($raw_json, TRUE);
