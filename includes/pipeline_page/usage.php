@@ -112,9 +112,9 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
                 $help_text = parse_md($vv['help_text']);
                 if(strlen($help_text)>150){ // collapse long help texts
                   $schema_content.='<div class="col-2">';
-                  $schema_content.='<button class="btn btn-outline-secondary" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","-",$kk).'-help" aria-expanded="false"><i class="fa"></i> Details</button>';
+                  $schema_content.='<button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","-",$kk).'-help" aria-expanded="false"><i class="fas fa-question-circle"></i> Help</button>';
                   $schema_content.='</div>';
-                  $schema_content.='</div><span class="collapse schema-docs-help-text" id="'.preg_replace("/\/|\s/","-",$kk).'-help">'.$help_text.'</span>';
+                  $schema_content.='</div><div class="collapse card schema-docs-help-text" id="'.preg_replace("/\/|\s/","-",$kk).'-help"><div class="card-body small text-muted">'.$help_text.'</div></div>';
                 }else{
                   $schema_content.='</div><span class="schema-docs-help-text">'.$help_text.'</span>';
                 }
