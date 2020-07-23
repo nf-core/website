@@ -384,9 +384,6 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   border-bottom: 1px solid #22ae63;
   margin-top: -30px;
 }
-.main-content h3 .fa-fw, .main-content .h3 .fa-fw {
-  color: #6c757d;
-}
 
 .header-link {
   color: #333;
@@ -1065,6 +1062,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   right: 3rem;
   z-index: 5000;
 }
+
+.pipeline-page-content h3, .pipeline-page-content .h3 {
+  color: #6c757d;
+}
 .toc > .list-group {
   margin-top:10px;
   height: calc(100vh - 7rem);
@@ -1114,6 +1115,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .toc .fa-fw {
   margin-right: 0.5rem;
+  opacity: 0.8;
 }
 .schema-docs [aria-expanded="false"] .fa:before {
   content: "\f077";
