@@ -68,7 +68,10 @@ Note that your github account needs push rights for the nf-core permission for t
 This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
 all also ignored in `.gitignore`.
 
-Ok, you're ready! To run the website locally, you need a standard AMP stack: Apache, MySQL and PHP (MySQL not needed at time of writing). For this, I recommend using the free version of [MAMP](https://www.mamp.info/en/).
+Ok, you're ready! To run the website locally, just start the apache-php server with:
+```bash
+docker-compose up
+```
 
 Set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
 
