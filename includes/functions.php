@@ -77,6 +77,12 @@ function round_nicely($num){
   return $num;
 }
 
+function endswith($haystack, $needle){
+  $length = strlen( $needle );
+  if( !$length ) { return true; }
+  return substr( $haystack, -$length ) === $needle;
+}
+
 function return_json($response){
     // Spit out a JSON response with correct headers and exit
     header('Content-type: application/json');
@@ -124,7 +130,7 @@ function generate_toc($html_string){
       if(preg_match('/<code>.*?<\/code>/',$match[0])){
         $name='<code>'.$name.'</code>';
       }
-      if(preg_match('/<i.*?<\/i>/',$match[0],$icon_match)){  
+      if(preg_match('/<i.*?<\/i>/',$match[0],$icon_match)){
         $name=$icon_match[0].$name;
       }
       $name=str_replace('hidden','',$name);// remove artifact from "hidden" badge
@@ -150,7 +156,7 @@ function add_ids_to_headers($content_input){
       $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
       $id_match = str_replace('---', '-', $id_match);
       $hid = $id_match;
-      $i = 1;      
+      $i = 1;
       while(in_array($hid, $hids)){
         $hid = $id_match.'-'.$i;
         $i += 1;

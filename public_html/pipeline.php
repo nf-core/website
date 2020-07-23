@@ -5,97 +5,78 @@ usort($pipeline->releases, 'rsort_releases');
 
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
 $subtitle = $pipeline->description;
+$schema_content = '';
 
 require_once('../includes/pipeline_page/components.php');
 
-# Markdown file - Readme or docs
-$pagetab = false;
+########
+## Figure out what page we're rendering
+########
+
+# URL path to readme - redirect to pipeline root
+if(endswith($_GET['path'], '/README')){
+  header('Location: /'.substr($_GET['path'], 0, -7));
+  exit;
+}
+
+# Set defaults (Readme tab)
+$pagetab = ''; # empty string is home / readme
 $release = 'dev';
-$release_href = $pipeline->name;
+$latest_release = 'dev';
 if(count($pipeline->releases) > 0){
-  $release = $pipeline->releases[0]->tag_name;
+  $release = $latest_release = $pipeline->releases[0]->tag_name;
   $release_url = $pipeline->releases[0]->html_url;
 }
-$schema_content = '';
-if(count($path_parts) == 1){
-    $pagetab = 'home';
-    require_once('../includes/pipeline_page/docs.php');
-    $docs = true;
+
+# Find release from URL if set
+if(count($path_parts) > 1){
+  foreach($pipeline->releases as $r){
+    if($path_parts[1] == $r->tag_name){
+      $release = $r->tag_name;
+      $release_url = $releases->html_url;
+    }
+  }
+  if($path_parts[1] == 'dev'){
+    $release = 'dev';
+    $release_url = null;
+  }
 }
-# Base readme - redirect to pipeline root
-else if($_GET['path'] == $pipeline->name.'/README.md' || $_GET['path'] == $pipeline->name.'/README'){
-    header('Location: /'.$pipeline->name);
-    exit;
-}
+
 # Usage docs
-else if($_GET['path'] == $pipeline->name.'/usage'){
-    $pagetab = 'usage';
-    require_once('../includes/pipeline_page/usage.php');
+if(endswith($_GET['path'], '/usage')){
+  $pagetab = 'usage';
+  require_once('../includes/pipeline_page/usage.php');
 }
-# output docs
-else if($_GET['path'] == $pipeline->name.'/output'){
-    $pagetab = 'output';
-    require_once('../includes/pipeline_page/output.php');
+# Output docs
+else if(endswith($_GET['path'], '/output')){
+  $pagetab = 'output';
+  require_once('../includes/pipeline_page/output.php');
 }
 # Stats
-else if($_GET['path'] == $pipeline->name.'/stats'){
-    $pagetab = 'stats';
-    require_once('../includes/pipeline_page/stats.php');
+else if(endswith($_GET['path'], '/stats')){
+  $pagetab = 'stats';
+  require_once('../includes/pipeline_page/stats.php');
 }
 # Releases
-else if($_GET['path'] == $pipeline->name.'/releases'){
-    $pagetab = 'releases';
-    require_once('../includes/pipeline_page/releases.php');
-}
-// handling urls with a version in it
-else if(count($path_parts) >= 2 && preg_match('/^\d+\.\d+\.\d+|^\d+\.\d+$|^dev/',$path_parts[1])){
-  $release = $path_parts[1];
-  foreach($pipeline->releases as $releases)
-  if($releases==$release){
-    $release_url = $releases->html_url;
-  }
-  $release_href = $pipeline->name.'/'.$release;
-  if(count($path_parts) == 2 && preg_match('/^\d+\.\d+\.\d+|^\d+.\d+$|^dev/',$path_parts[1])){
-    $pagetab = 'home';
-    require_once('../includes/pipeline_page/docs.php');
-  }else{
-
-  switch($path_parts[2]){
-    case 'usage':
-      $pagetab = 'usage';
-      require_once('../includes/pipeline_page/usage.php');
-    break;
-    case 'output':
-      $pagetab = 'output';
-      require_once('../includes/pipeline_page/output.php');
-      break;
-    case 'stats':
-      $pagetab = 'stats';
-      require_once('../includes/pipeline_page/stats.php');
-      break;
-    case 'releases':
-      $pagetab = 'releases';
-      require_once('../includes/pipeline_page/releases.php');
-      break;
-    default:
-      header('HTTP/1.1 404 Not Found');
-      include('404.php');
-      die();
-  }
-
-
-  }
-
+else if(endswith($_GET['path'], '/releases')){
+  $pagetab = 'releases';
+  require_once('../includes/pipeline_page/releases.php');
 }
 # Some other URL pattern that we don't recognise - 404
-else {
-    header('HTTP/1.1 404 Not Found');
-    include('404.php');
-    die();
+else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'.$release){
+  header('HTTP/1.1 404 Not Found');
+  $suggestion_404_url = '/'.$pipeline->name;
+  include('404.php');
+  die();
 }
 
+# Still the homepage,
+if($pagetab == ''){
+  require_once('../includes/pipeline_page/docs.php');
+}
 
 # Main page nav and header
+$url_base = '/'.$pipeline->name.'/'.$release;
 $no_print_content = true;
 $mainpage_container = false;
 include('../includes/header.php');
@@ -123,34 +104,40 @@ if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn))
   }
 }
 
+########
 # Get details for the Call To Action button
+########
+# Text, URL and icon for the CTA button
+$cta_txt = $release == "dev" ? 'See the latest code' : 'See version '.$release;
+$cta_url = $pipeline->html_url;
+$cta_icon = $release == "dev" ? '<i class="fad fa-construction mr-1"></i> ' : '<i class="fas fa-tags mr-1"></i> ';
+if(file_exists($gh_launch_schema_fn)){
+  $cta_txt = $release == "dev" ? 'Launch development version' : 'Launch version '.$release;
+  $cta_url = '/launch?pipeline='.$pipeline->name.'&release='.$release;
+  $cta_icon = '<i class="fad fa-rocket-launch mr-1"></i> ';
+}
+# Build button
+$cta_btn = '<a href="'.$cta_url.'" class="btn btn-success btn-lg">'.$cta_icon.$cta_txt.'</a>';
+
+########
+# Warning alert box
+########
 $pipeline_warning = '';
-if(count($pipeline->releases) > 0){
-  if($release!="dev"){
-  if(file_exists($gh_launch_schema_fn)){
-    $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release='.$release.'" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch version '.$release.'</a>';
-  } else {
-    $cta_btn = '<a href="'.$release_url.'" class="btn btn-success btn-lg"><i class="fas fa-tags mr-1"></i> See version '.$release.'</a>';
-  }
-  }else{
-    if(file_exists($gh_launch_schema_fn)){
-    $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
-  } else {
-    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-construction mr-1"></i> See the latest code</a>';
-  }
-  }
-} else {
-  if(file_exists($gh_launch_schema_fn)){
-    $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
-  } else {
-    $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-construction mr-1"></i> See the latest code</a>';
-  }
+$latest_stable = 'The latest stable release is <a href="/'.$pipeline->name.'/'.$latest_release.'"><code>v'.$latest_release.'</code></a>';
+if(count($pipeline->releases) == 0){
   $pipeline_warning = '<div class="alert alert-danger">This pipeline is currently in development and does not yet have any stable releases.</div>';
+} else if($release == 'dev'){
+  $pipeline_warning = '<div class="alert alert-warning">You are viewing the development version pages for this pipeline. '.$latest_stable.'</div>';
+} else if($release != $latest_release){
+  $pipeline_warning = '<div class="alert alert-warning">These pages are for an old version of the pipeline (<code>v'.$release.'</code>). '.$latest_stable.'</div>';
 }
 if($pipeline->archived){
   $pipeline_warning = '<div class="alert alert-warning">This pipeline has been archived and is no longer being actively maintained.</div>';
 }
+
+########
 # Extra HTML for the header - tags and GitHub URL
+########
 ?>
 
 <div class="mainpage-subheader-heading">
@@ -166,36 +153,38 @@ if($pipeline->archived){
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
-    <a class="nav-link<?php if(count($path_parts) == 1){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>">Readme</a>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/usage">Usage</a>
+    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>">Readme</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/output">Outputs</a>
+    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage">Usage</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='stats'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
+    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Outputs</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='releases'){ echo ' active'; } ?>" href="/<?php echo $release_href; ?>/releases">Releases</a>
+    <a class="nav-link<?php if($pagetab=='stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
-  <?php if($pagetab == 'home' || $pagetab == 'output' || $pagetab == 'usage'): ?>
-  <li>
-    <div class="input-group">
+  <li class="nav-item">
+    <a class="nav-link<?php if($pagetab=='releases'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases">Releases</a>
+  </li>
+  <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage'): ?>
+  <li class="pt-1 pl-3">
+    <div class="input-group input-group-sm">
       <div class="input-group-prepend">
         <label class="input-group-text" for="version_select"><i class="fas fa-tags"></i></label>
       </div>
-      <select class="custom-select" id="version_select" data-pipeline="<?php echo $pipeline->name?>">
+      <select class="custom-select custom-select-sm" id="version_select" data-pipeline="<?php echo $pipeline->name?>">
         <?php
-          foreach($pipeline->releases as $release){
-          ?>
-            <option value="<?php echo strtolower($release->tag_name); ?>"><?php echo $release->tag_name; ?></option>
-          <?php
-          }
-          ?>
-          <option value="dev">dev</option>
+        $releases = [];
+        foreach($pipeline->releases as $r){
+          array_push($releases, $r->tag_name);
+        }
+        array_push($releases, "dev");
+        foreach($releases as $r){
+          $selected = $r == $release ? 'selected="selected"' : '';
+          echo '<option value="/'.$pipeline->name.'/'.$r.'/'.$pagetab.'" '.$selected.'>'.$r.'</option>';
+        }
+        ?>
       </select>
     </div>
   </li>
@@ -203,44 +192,49 @@ if($pipeline->archived){
 </ul>
 
 <?php
-
-# echo '<pre>'.print_r($pipeline, true).'</pre>';
-# echo '<pre>'.print_r($gh_tree_json, true).'</pre>';
-
+########
+# Make a row with a column for content for everything except the stats page
+########
 if($pagetab !== 'stats'){
-    echo '<div class="row"><div class="col-lg-8 order-lg-1">';
+  echo '<div class="row"><div class="col-lg-8 order-lg-1">';
 }
+
+########
 # Print content
-if($pagetab == 'home' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'releases'){
-  if(preg_match('/<!-- params-docs -->/')){
-    $content = '<div class="rendered-markdown">'.preg_replace('/<!-- params-docs -->/',$schema_content,$content).'</div>';
-  } else {
-    $content = '<div class="rendered-markdown">'.$content.$schema_content.'</div>';
-  }
-  echo $content;
+########
+# Add on the rendered schema docs (empty string if we don't have it)
+if(preg_match('/<!-- params-docs -->/')){
+  $content = preg_replace('/<!-- params-docs -->/', $schema_content, $content);
+} else {
+  $content .= $schema_content;
 }
-else {
-  echo $content;
-}
-if($pagetab !== 'stats'){
-    echo '</div><div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
-    if($pagetab == 'usage'){
-      $toc = '<div class="btn-group mt-1" role="group">
-                    <button class="btn btn-outline-secondary collapse-groups-btn" id="toggle_details" data-toggle="collapse"  data-target=".schema-docs-help-text" aria-expanded="false"><i class="fa mr-1"></i> Toggle details</button>
-                    <button class="btn btn-outline-secondary collapse-groups-btn" id="show_hidden" data-toggle="collapse" data-target=".param_hidden" aria-expanded="false"><i class="fa mr-1"></i> Show hidden</button>
-                </div>';
-      $toc .= '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
-        echo $toc;
-    } else if($pagetab == 'output'){
-      $toc = '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
-        echo $toc;
-    } else {
-        echo $pipeline_stats_sidebar;
-    }
-}
+echo '<div class="rendered-markdown">'.$content.'</div>';
 
+########
+# Sidebar for everything except the stats page
+########
 if($pagetab !== 'stats'){
-  echo '</div></div></div>';
+  echo '</div>'; # end of the content div
+  echo '<div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
+
+  # Pipeline homepage & releases - key stats
+  if(in_array($pagetab, ['', 'releases'])){
+    echo $pipeline_stats_sidebar;
+  }
+  # Documentation - ToC
+  else {
+    $toc = '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
+    # Add on the action buttons for the parameters docs
+    if($pagetab == 'usage'){
+      $toc .= '<div class="btn-group mt-1" role="group">
+                <button class="btn btn-outline-secondary collapse-groups-btn" id="toggle_details" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false"><i class="fas fa-question-circle mr-1"></i> Toggle help</button>
+                <button class="btn btn-outline-secondary collapse-groups-btn" id="show_hidden" data-toggle="collapse" data-target=".param_hidden" aria-expanded="false"><i class="fa mr-1"></i> Show hidden</button>
+              </div>';
+    }
+    echo $toc;
+  }
+  echo '</div></div>'; # end of the sidebar col
+  echo '</div>'; # end of the row
 }
 
 include('../includes/footer.php');
