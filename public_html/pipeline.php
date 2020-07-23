@@ -208,7 +208,7 @@ if(preg_match('/<!-- params-docs -->/')){
 } else {
   $content .= $schema_content;
 }
-echo '<div class="rendered-markdown">'.$content.'</div>';
+echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 
 ########
 # Sidebar for everything except the stats page
