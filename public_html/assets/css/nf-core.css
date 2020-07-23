@@ -1061,7 +1061,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .toc {
   margin-top:10px;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 7rem);
   overflow-y: auto;
 }
 .toc nav a {
@@ -1102,7 +1102,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   content: "\f078";
 }
 .side-sub-subnav #toggle_details[aria-expanded="false"] .fa:before {
-  content: "\f07c";
+  content: "\f322";
+}
+.side-sub-subnav #toggle_details[aria-expanded="true"] .fa:before {
+  content: "\f325";
 }
 .side-sub-subnav #show_hidden[aria-expanded="false"] .fa:before {
   content: "\f00e";
