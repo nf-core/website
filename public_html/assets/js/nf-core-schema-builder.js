@@ -738,6 +738,7 @@ $(function () {
             var md_converter = new showdown.Converter();
             var help_text_html = md_converter.makeHtml( $('#help_text_input').val() );
             $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
+            $('.helptext-html-preview .helptext-preview-helptext table').addClass('table table-bordered table-striped table-sm small table-responsive')
         }
     })
 
