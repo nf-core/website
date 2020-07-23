@@ -38,7 +38,7 @@ if(file_exists($local_md_fn)){
   if($md_contents){
     file_put_contents($local_md_fn, $md_contents);
     $markdown_fn = $local_md_fn;
-  } 
+  }
 }
 
 # Configs to make relative URLs work
