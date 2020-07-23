@@ -187,6 +187,26 @@ $(function () {
 
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
+
+    // version number injection in the URL in the docs
+    if ($('#version_select').length >0){
+        if (document.location.href.match(/\/\d+\.\d+|\/dev/)){
+            //update selected option in select dropdown if version was found in the url
+            var pipeline = $('#version_select').data('pipeline');
+            var url = document.location.href.split(pipeline);
+            var selected_version = url[1].match(/^\/(\d+\.\d+\.\d+)|^\/(\d+\.\d+)|^\/(dev)/)[0]; // extract version from url
+            selected_version = selected_version.replace("/","");
+            $('#version_select option[value="' + selected_version + '"]').attr("selected", true); // update selected option in select input
+        }
+        // Add selected pipeline version to URL
+        $('#version_select').on('change',function(){
+            var selected = $('option:selected',this).text();
+            var pipeline = $('#version_select').data('pipeline');
+            var url = document.location.href.split(pipeline);
+            url[1] = url[1].replace(/^\/\d+\.\d+\.\d+|^\/\d+\.\d+|^\/dev/,"/"); // remove previously added version in url
+            document.location.href = url[0] + pipeline + "/" + selected + url[1]; // add selected version into url after pipeline name and before the rest
+        })
+    }
 });
 
 function scroll_to(target_el){

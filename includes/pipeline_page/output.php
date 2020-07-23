@@ -5,11 +5,15 @@
 # Details for parsing markdown file, fetched from Github
 # Build the remote file path
 # Special case - root docs is allow
+
 # General docs page
 
-# Must be the readme
-$filename = 'README.md';
-$md_trim_before = '# Introduction';
+if(substr($_SERVER['REQUEST_URI'], -3) == '.md'){
+    # Clean up URL by removing .md
+    header('Location: '.substr($_SERVER['REQUEST_URI'], 0, -3));
+    exit;
+}
+$filename = 'docs/usage.md';
 
 # Build the local and remote file paths based on whether we have a release or not
 if($release !== 'dev'){
@@ -34,7 +38,7 @@ if(file_exists($local_md_fn)){
   if($md_contents){
     file_put_contents($local_md_fn, $md_contents);
     $markdown_fn = $local_md_fn;
-  }
+  } 
 }
 
 # Configs to make relative URLs work

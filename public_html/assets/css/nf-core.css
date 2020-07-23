@@ -62,7 +62,12 @@ section:before {
   margin: 1rem auto;
   display: block;
 }
-.rendered-markdown h1:first-of-type {
+img.emoji{
+  margin:0;
+  display: inline;
+}
+.rendered-markdown h1:first-of-type,
+.schema-docs h1:first-of-type {
   padding-top: 0;
   margin-top: 2.5rem;
 }
@@ -395,6 +400,7 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
 .h3:hover .header-link, .h3:active .header-link, .h3:focus .header-link,
 .h4:hover .header-link, .h4:active .header-link, .h4:focus .header-link {
   opacity: 1;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 560px) {
@@ -778,21 +784,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .side-sub-subnav {
     padding-top: 50px;
 }
-.pipeline-page-toc {
-  background-color: #fcfcfc;
-  border: 1px solid #ededed;
-  border-radius: 5px;
-  font-size: 14px;
-  margin: 1rem;
-  padding: 1rem 1rem 0 0.5rem;
-}
-.pipeline-page-toc .fa-ul {
-  margin-left: 1.5em;
-}
-.pipeline-page-toc a.active {
-  text-decoration: underline;
-  font-weight: bold;
-}
 
 .pipeline-stats-table .thead-light tr th {
   cursor: pointer;
@@ -1067,4 +1058,58 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   bottom: 3rem;
   right: 3rem;
   z-index: 5000;
+}
+.toc {
+  margin-top:10px;
+  height: calc(100vh - 7rem);
+  overflow-y: auto;
+}
+.toc nav a {
+  color: #444444;
+}
+.toc>nav>a,
+.toc>nav>nav,
+.toc>nav>nav>a{
+  border: 1px solid rgba(220,220,220,0.6);
+}
+.toc nav a:hover {
+  background-color: #f8f9fa; 
+}
+.toc nav nav {
+  display: none;
+}
+.toc nav > .active + nav,
+.toc nav nav > .active + nav {
+	display: block;
+}
+.toc nav .nav-link.active{
+  color: #444444;
+  border-radius: 0;
+  border-left: 3px solid #159957;
+  background-color: rgba(34, 174, 99, .25);
+}
+.toc nav nav .nav-link.active,
+.toc nav nav nav .nav-link.active{
+  color: #444444;
+  border-radius: 0;
+  border-left: 1px solid #159957;
+  background-color: rgba(34, 174, 99, .15);
+}
+.schema-docs [aria-expanded="false"] .fa:before {   
+  content: "\f077";
+}
+.schema-docs [aria-expanded="true"] .fa:before {
+  content: "\f078";
+}
+.side-sub-subnav #toggle_details[aria-expanded="false"] .fa:before {
+  content: "\f322";
+}
+.side-sub-subnav #toggle_details[aria-expanded="true"] .fa:before {
+  content: "\f325";
+}
+.side-sub-subnav #show_hidden[aria-expanded="false"] .fa:before {
+  content: "\f00e";
+}
+.side-sub-subnav #show_hidden[aria-expanded="true"] .fa:before {
+  content: "\f010";
 }
