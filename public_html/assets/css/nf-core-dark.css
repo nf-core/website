@@ -66,8 +66,13 @@ blockquote a {
 }
 .input-group-prepend .input-group-text{
   color: #fff;
-  background-color: #545b62;
-  border-color: #363F48;
+  background-color: #343434;
+  border-color: #343434;
+}
+.input-group .custom-select{
+  background-color: #616161;
+  border-color: #616161;
+  color: #ededed;
 }
 .card {
   background-color: #181A1B;
@@ -96,6 +101,9 @@ blockquote a {
 .badge-light {
   color: rgb(218, 215, 210);
   background-color: rgb(26, 28, 29);
+}
+.badge-secondary {
+  color: rgb(218, 215, 210);
 }
 .main-content pre,
 .pipeline-run-cmd {
@@ -276,7 +284,10 @@ footer .btn-light:not(:disabled):not(.disabled).active,
 .subheader-triangle-down:before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%23343434;' /%3E%3C/svg%3E");
 }
-
+.nfcore-subnav .nav-link {
+  border-bottom: 1px solid #343434;
+  color: rgba(255,255,255,.7);
+}
 .nfcore-subnav .nav-link.active {
   border-bottom: 1px solid #1D9655;
   background-color: rgba(0, 154, 85, .9);
@@ -420,3 +431,26 @@ hr {
 .text-muted{
   color: #999;
 }
+.toc nav a {
+  color: #999;
+}
+.toc>nav>a,
+.toc>nav>nav,
+.toc>nav>nav>a{
+  border: 1px solid #343434;
+}
+.toc nav a:hover {
+  background-color: rgba(255,255,255,.075);
+}
+.toc nav .nav-link.active{
+  color: #e5e6e7;
+}
+.toc nav nav .nav-link.active,
+.toc nav nav nav .nav-link.active{
+  color: #e5e6e7;
+}
+.toc .nav-link.active code{
+  color: #e5e6e7;
+  background-color: rgba(220,220,220,0.25);
+}
+
