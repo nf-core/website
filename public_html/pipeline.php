@@ -223,14 +223,15 @@ if($pagetab !== 'stats'){
   }
   # Documentation - ToC
   else {
-    $toc = '<nav class="toc nav flex-column">'.generate_toc($content).'</nav>';
+    $toc = '<nav class="toc">';
     # Add on the action buttons for the parameters docs
     if($pagetab == 'usage'){
-      $toc .= '<div class="btn-group mt-1" role="group">
+      $toc .= '<div class="btn-group w-100 mt-3 mb-1" role="group">
                 <button class="btn btn-outline-secondary collapse-groups-btn" id="toggle_details" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false"><i class="fas fa-question-circle mr-1"></i> Toggle help</button>
                 <button class="btn btn-outline-secondary collapse-groups-btn" id="show_hidden" data-toggle="collapse" data-target=".param_hidden" aria-expanded="false"><i class="fa mr-1"></i> Show hidden</button>
               </div>';
     }
+    $toc .= generate_toc($content).'</nav>';
     echo $toc;
   }
   echo '</div></div>'; # end of the sidebar col

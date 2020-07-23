@@ -378,7 +378,7 @@ hr {
 .schema_row label {
   color: #999;
 }
-.schema_row_grabber, .schema_row_config, .schema_group_collapse, 
+.schema_row_grabber, .schema_row_config, .schema_group_collapse,
 .schema_group_move_params{
   background-color: #333;
   border-color: #333;
@@ -394,15 +394,15 @@ hr {
 .schema_group {
   box-shadow: 2px 2px 5px rgb(0, 0, 0,0.75);
 }
-.schema_row_grabber i, 
-.schema_row_config i, 
-.schema_group_collapse i, 
+.schema_row_grabber i,
+.schema_row_config i,
+.schema_group_collapse i,
 .schema_group_move_params i {
   color: #999;
 }
-.schema_row_grabber:hover i, 
-.schema_row_config:hover i, 
-.schema_group_collapse:hover i, 
+.schema_row_grabber:hover i,
+.schema_row_config:hover i,
+.schema_group_collapse:hover i,
 .schema_group_move_params:hover i {
   color: #ededed;
 }
@@ -431,26 +431,22 @@ hr {
 .text-muted{
   color: #999;
 }
-.toc nav a {
+.toc .list-group .list-group-item {
   color: #999;
+  background-color: transparent;
 }
-.toc>nav>a,
-.toc>nav>nav,
-.toc>nav>nav>a{
+.toc > .list-group > .list-group-item,
+.toc > .list-group > .list-group,
+.toc > .list-group > .list-group > .list-group-item {
   border: 1px solid #343434;
 }
-.toc nav a:hover {
+.toc .list-group a:hover {
   background-color: rgba(255,255,255,.075);
 }
-.toc nav .nav-link.active{
+.toc .list-group .list-group-item.active {
   color: #e5e6e7;
 }
-.toc nav nav .nav-link.active,
-.toc nav nav nav .nav-link.active{
-  color: #e5e6e7;
-}
-.toc .nav-link.active code{
+.toc .nav-link.active code {
   color: #e5e6e7;
   background-color: rgba(220,220,220,0.25);
 }
-
