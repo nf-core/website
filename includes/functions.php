@@ -117,31 +117,31 @@ function generate_toc($html_string){
       $id = $match[3];
       $name = trim(str_replace('&nbsp;','', htmlentities(strip_tags($match[4]) )));
       if($level > $curr_level){
-        $toc .= "\n".'<nav class="nav flex-column">'."\n";
+        $toc .= "\n".'<div class="list-group">'."\n";
       } else if($level == $curr_level) {
         $toc .= "\n";
       } else {
         while($level < $curr_level){
-          $toc .= "\n</nav>\n\n";
+          $toc .= "\n</div>\n\n";
           $curr_level -= 1;
         }
       }
       $curr_level = $level;
       if(preg_match('/<code>.*?<\/code>/',$match[0])){
-        $name='<code>'.$name.'</code>';
+        $name = '<code>'.$name.'</code>';
       }
       if(preg_match('/<i.*?<\/i>/',$match[0],$icon_match)){
-        $name=$icon_match[0].$name;
+        $name = $icon_match[0].$name;
       }
-      $name=str_replace('hidden','',$name);// remove artifact from "hidden" badge
-      $toc .= '<a class="nav-link" href="#'.$id.'">'.$name.'</a>';
+      $name = str_replace('hidden','',$name); // remove artifact from "hidden" badge
+      $toc .= '<a class="list-group-item list-group-item-action" href="#'.$id.'">'.$name.'</a>';
     }
   }
   while($curr_level > 1){
-    $toc .= '</nav>';
+    $toc .= '</div>';
     $curr_level -= 1;
   }
-    return $toc;
+  return $toc;
 }
 
 
