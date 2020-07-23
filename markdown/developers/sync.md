@@ -179,7 +179,7 @@ You can do so by running the `nf-core sync` command:
 ```bash
 cd my_pipeline
 git checkout dev # or your most up to date branch
-nf-core sync --make-template-branch
+nf-core sync
 ```
 
 Much of the merging process should then be the same as described above with the automated pull requests.
