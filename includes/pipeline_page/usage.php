@@ -75,11 +75,11 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
       $required_label = '';
       if($v["type"]=="object"){
         if(array_key_exists("fa_icon", $v)){
-          $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-2"></i> '; 
+          $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-2"></i> ';
         }
         $schema_content .= '<div class="d-flex justify-content-between align-items-center">';
-        
-        
+
+
         $schema_content .= add_ids_to_headers('<h2><a>'.$fa_icon.$k.'</a></h2>').$required_label;
         $schema_content .='</div>';
         if(array_key_exists("description", $v)){
@@ -91,13 +91,13 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
           $hidden_label ='';
           $required_label = '';
           if(array_key_exists("fa_icon", $vv)){
-            $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw ml-0"></i> '; 
+            $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw ml-0"></i> ';
           }
           if(array_key_exists("hidden", $vv) && $vv["hidden"]){
-            $hidden_label = '<div><span class="badge badge-secondary">hidden</span></div>'; 
+            $hidden_label = '<div><span class="badge badge-secondary">hidden</span></div>';
           }
           if(array_key_exists("required", $v) && in_array($kk,$v["required"])){
-            $required_label = '<div><span class="badge badge-warning">required</span></div>'; 
+            $required_label = '<div><span class="badge badge-warning">required</span></div>';
           }
           $schema_content.='<div class="d-flex justify-content-between align-items-center">';
           if($hidden_label){//lower the visibility of hidden parameters
@@ -114,7 +114,7 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
                   $schema_content.='<div class="col-2">';
                   $schema_content.='<button class="btn btn-outline-secondary" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","-",$kk).'-help" aria-expanded="false"><i class="fa"></i> Details</button>';
                   $schema_content.='</div>';
-                  $schema_content.='</div><span class="collapse schema-docs-help-text" id="'.preg_replace("/\/|\s/","-",$kk).'-help">'.$help_text.'</span>';  
+                  $schema_content.='</div><span class="collapse schema-docs-help-text" id="'.preg_replace("/\/|\s/","-",$kk).'-help">'.$help_text.'</span>';
                 }else{
                   $schema_content.='</div><span class="schema-docs-help-text">'.$help_text.'</span>';
                 }
@@ -135,11 +135,11 @@ $schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters
               $schema_content.='</div>';
             }
           }
-        }        
+        }
       }else{
         //top level parameter
         if(array_key_exists("fa_icon", $v)){
-          $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-1"></i> '; 
+          $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-1"></i> ';
         }
         $schema_content.='<h4 class="text-secondary">' . $fa_icon .'<code>--'.$vv.'</code></h4>';
         '<h4 class="text-secondary">' . $fa_icon .'<code>--'.$vv.'</code></h4>';

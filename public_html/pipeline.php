@@ -59,7 +59,7 @@ else if(count($path_parts) >= 2 && preg_match('/^\d+\.\d+\.\d+|^\d+\.\d+$|^dev/'
     $pagetab = 'home';
     require_once('../includes/pipeline_page/docs.php');
   }else{
-    
+
   switch($path_parts[2]){
     case 'usage':
       $pagetab = 'usage';
@@ -137,7 +137,7 @@ if(count($pipeline->releases) > 0){
     $cta_btn = '<a href="/launch?pipeline='.$pipeline->name.'&release=dev" class="btn btn-success btn-lg"><i class="fad fa-rocket-launch mr-1"></i> Launch development version</a>';
   } else {
     $cta_btn = '<a href="'.$pipeline->html_url.'" class="btn btn-success btn-lg"><i class="fad fa-construction mr-1"></i> See the latest code</a>';
-  }  
+  }
   }
 } else {
   if(file_exists($gh_launch_schema_fn)){
@@ -213,12 +213,12 @@ if($pagetab !== 'stats'){
 # Print content
 if($pagetab == 'home' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'releases'){
   if(preg_match('/<!-- params-docs -->/')){
-    $content = '<div class="rendered-markdown">'.preg_replace('/<!-- params-docs -->/',$schema_content,$content).'</div>';  
+    $content = '<div class="rendered-markdown">'.preg_replace('/<!-- params-docs -->/',$schema_content,$content).'</div>';
   } else {
     $content = '<div class="rendered-markdown">'.$content.$schema_content.'</div>';
   }
   echo $content;
-} 
+}
 else {
   echo $content;
 }
