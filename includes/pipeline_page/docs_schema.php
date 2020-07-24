@@ -11,7 +11,7 @@ if(file_exists($gh_pipeline_schema_fn)){
 
   $schema = json_decode(file_get_contents($gh_pipeline_schema_fn), TRUE);
 
-  function print_param($level, $param_id, $param, $is_required=false){
+  function print_param($is_group, $param_id, $param, $is_required=false){
     $is_hidden = false;
     $hidden_class = '';
     if(array_key_exists("hidden", $param) && $param["hidden"]){
@@ -27,9 +27,6 @@ if(file_exists($gh_pipeline_schema_fn)){
       }
     }
 
-    $div_start = '<div class="param-docs param-docs-'.$level.$hidden_class.' clearfix">';
-    $div_end = '</div>';
-
     # Build heading
     if(array_key_exists("fa_icon", $param)){
       $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw"></i> ';
@@ -37,8 +34,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       $fa_icon = '<i class="fad fa-circle fa-fw text-muted"></i> ';
     }
     $h_text = $param_id;
-    if($level > 2){ $h_text = '<code>'.$h_text.'</code>'; }
-    $heading = _h($level, $fa_icon.$h_text, $is_hidden);
+    if(!$is_group){ $h_text = '<code>'.$h_text.'</code>'; }
 
     # Description
     $description = '';
@@ -50,44 +46,48 @@ if(file_exists($gh_pipeline_schema_fn)){
     $help_text_btn = '';
     $help_text = '';
     if(array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0){
-      // Show help if hidden, as we toggle the whole content
-      if(!$is_hidden){
-        $help_text_btn = '
-          <button class="btn btn-sm btn-outline-info float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
-            <i class="fas fa-question-circle"></i> Help
-          </button>';
-      }
-      $help_collapse = $is_hidden ? '' : 'collapse';
+      $help_text_btn = '
+        <button class="btn btn-sm btn-outline-info float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
+          <i class="fas fa-question-circle"></i> Help
+        </button>';
       $help_text = '
-        <div class="'.$help_collapse.' card schema-docs-help-text" id="'.$param_id.'-help">
+        <div class="collapse card col-12 schema-docs-help-text" id="'.$param_id.'-help">
           <div class="card-body small text-muted">'.parse_md($param['help_text']).'</div>
         </div>';
-    }
-
-    # Hidden button
-    $hidden_btn = '';
-    if($is_hidden){
-      $hidden_btn = '
-        <button class="btn btn-sm btn-outline-secondary float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-body" aria-expanded="false">
-          <i class="fas fa-eye-slash"></i> Show hidden
-        </button>';
     }
 
     # Labels
     $labels = [];
     if($is_required){
-      $labels[] = '<span class="badge badge-warning ml-2">required</span>';
+      $labels[] = '<span class="small badge badge-warning ml-2">required</span>';
+    }
+    if($is_hidden){
+      $labels[] = '<span class="small badge badge-light ml-2">hidden</span>';
     }
     $labels_helpbtn = '';
-    if(count($labels) > 0 || strlen($help_text_btn) || strlen($hidden_btn)){
-      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>';
+    if(count($labels) > 0 || strlen($help_text_btn)){
+      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.implode(' ', $labels).'</div>';
     }
 
     # Body
-    $body_collapse = $is_hidden ? 'param-docs-body-hidden collapse' : '';
-    $param_body = '<div id="'.$param_id.'-body" class="param-docs-body '.$body_collapse.'">'.$description.$help_text.'</div>';
+    $param_body = '<div id="'.$param_id.'-body" class="param-docs-body small">'.$description.'</div>';
 
-    return $div_start.$heading.$labels_helpbtn.$param_body.$div_end;
+    # Extra group classes
+    $mt = '';
+    $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 ';
+    if($is_group){
+      $mt = 'mt-5';
+      $id_cols = 'col h2';
+    }
+
+    # Build row
+    return '
+    <div class="row '.$hidden_class.' params-docs-row border-bottom pt-2 '.$mt.'">
+      <div class="'.$id_cols.'">'.$fa_icon.$h_text.'</div>
+      <div class="col">'.$param_body.'</div>
+      <div class="col-auto">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
+      '.$help_text.'
+    </div>';
   }
 
   $schema_content = '<div class="schema-docs">';
@@ -95,14 +95,14 @@ if(file_exists($gh_pipeline_schema_fn)){
   foreach($schema["properties"] as $param_id => $param){
     // Groups
     if($param["type"] == "object"){
-      $schema_content .= print_param(2, $param_id, $param);
+      $schema_content .= print_param(true, $param_id, $param);
       // Group-level params
       foreach($param["properties"] as $child_param_id => $child_param){
         $is_required = false;
         if(array_key_exists("required", $param) && in_array($child_param_id, $param["required"])){
           $is_required = true;
         }
-        $schema_content .= print_param(3, '--'.$child_param_id, $child_param, $is_required);
+        $schema_content .= print_param(false, '--'.$child_param_id, $child_param, $is_required);
       }
     }
     // Top-level params
@@ -111,7 +111,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       if(array_key_exists("required", $schema) && in_array($param_id, $schema["required"])){
         $is_required = true;
       }
-      $schema_content .= print_param(3, '--'.$param_id, $param, $is_required);
+      $schema_content .= print_param(false, '--'.$param_id, $param, $is_required);
     }
   }
   $schema_content .= '</div>'; // .schema-docs
