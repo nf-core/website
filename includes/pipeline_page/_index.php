@@ -249,7 +249,7 @@ echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 ########
 if($pagetab !== 'stats'){
   echo '</div>'; # end of the content div
-  echo '<div class="col-lg-4 order-lg-12"><div class="side-sub-subnav sticky-top">';
+  echo '<div class="col-lg-4 order-lg-12 pl-2"><div class="side-sub-subnav sticky-top">';
 
   # Pipeline homepage & releases - key stats
   if(in_array($pagetab, ['', 'releases'])){
