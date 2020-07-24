@@ -95,7 +95,7 @@ if(endswith($_GET['path'], '/usage')){
   $pagetab = 'usage';
   $filename = 'docs/usage.md';
   $md_trim_before = '# Introduction';
-  require_once('../includes/pipeline_page/docs_schema.php');
+  require_once('docs_schema.php');
 }
 # Output docs
 else if(endswith($_GET['path'], '/output')){
@@ -106,12 +106,12 @@ else if(endswith($_GET['path'], '/output')){
 # Stats
 else if(endswith($_GET['path'], '/stats')){
   $pagetab = 'stats';
-  require_once('../includes/pipeline_page/stats.php');
+  require_once('stats.php');
 }
 # Releases
 else if(endswith($_GET['path'], '/releases')){
   $pagetab = 'releases';
-  require_once('../includes/pipeline_page/releases.php');
+  require_once('releases.php');
 }
 # Some other URL pattern that we don't recognise - 404
 else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'.$release){
@@ -129,7 +129,7 @@ if($pagetab == ''){
 # Prep local cache and variables for docs markdown
 // NB: $content rendered in header.php
 if(in_array($pagetab, ['', 'usage', 'output'])){
-  require_once('../includes/pipeline_page/docs_md.php');
+  require_once('docs_md.php');
 }
 
 # Main page nav and header
@@ -253,7 +253,7 @@ if($pagetab !== 'stats'){
 
   # Pipeline homepage & releases - key stats
   if(in_array($pagetab, ['', 'releases'])){
-    require_once('../includes/pipeline_page/sidebar.php');
+    require_once('sidebar.php');
   }
   # Documentation - ToC
   else {
