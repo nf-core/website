@@ -105,7 +105,7 @@ function get_self_url($strip_query=true){
 function generate_toc($html_string){
   $toc = '';
   $curr_level = 0;
-  $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"][^>]*>(.*)</h[1-3]>~Ui";
+  $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"][^>]*>(.*)</h[1-3]>~Uis";
   preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
   if($matches){
     foreach($matches as $match){
