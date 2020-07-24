@@ -29,8 +29,14 @@ foreach($clones_counts as $datetime => $count){
 // Get contributor avatars
 $contrib_avatars = [];
 foreach($stats_json['pipelines'][$pipeline->name]['contributors'] as $contributor){
+  $contributions = $contributor['total'];
+  if ($contributions >1){
+    $contributions .= " contributions";
+  } else{
+    $contributions .= " contribution";
+  }
   $contrib_avatars[
-    '<a href="'.$contributor['author']['html_url'].'" title="@'.$contributor['author']['login'].', '.$contributor['total'].' contributions" data-toggle="tooltip"><img src="'.$contributor['author']['avatar_url'].'"></a>'
+    '<a href="'.$contributor['author']['html_url'].'" title="@'.$contributor['author']['login'].', '.$contributions.'" data-toggle="tooltip"><img src="'.$contributor['author']['avatar_url'].'"></a>'
   ] = $contributor['total'];
 }
 arsort($contrib_avatars);
@@ -46,9 +52,13 @@ $last_commit = time_ago($pipeline->updated_at);
 ?>
 
 <div class="pipeline-sidebar">
-  <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
-  <div class="border pipeline-run-cmd p-1">
-    <code class="small"> nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
+  <div class="row border-bottom pb-2">
+    <div class="col-12">
+      <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
+      <div class="border pipeline-run-cmd p-1">
+        <code class="small"> nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
+      </div>
+    </div>
   </div>
 
   <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last <?php echo time_ago($clones_since, false); ?></span></h6>
@@ -93,16 +103,17 @@ $last_commit = time_ago($pipeline->updated_at);
       <p><a href="<?php echo $pipeline->html_url; ?>/pulls"><?php echo $num_prs; ?></a></p>
     </div>
   </div>
-
-  <div class="border-bottom">
-    <h6>collaborators</h6>
-    <p class="contrib-avatars"><?php echo implode(array_keys($contrib_avatars)); ?></p>
+  <div class="row border-bottom">
+    <div class="col-12">
+      <h6>collaborators</h6>
+      <p class="contrib-avatars"><?php echo implode(array_keys($contrib_avatars)); ?></p>
+    </div>
   </div>
-
-  <h6>get in touch</h6>
-  <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack mr-1"></i> Ask a question on Slack</a></p>
-  <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github mr-1"></i> Open an issue on GitHub</a></p>
-
+  <div>
+    <h6>get in touch</h6>
+      <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack mr-1"></i> Ask a question on Slack</a></p>
+      <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github mr-1"></i> Open an issue on GitHub</a></p>
+  </div>
 </div>
 
 <script type="text/javascript">
