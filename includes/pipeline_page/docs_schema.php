@@ -13,9 +13,14 @@ if(file_exists($gh_pipeline_schema_fn)){
 
   function print_param($level, $param_id, $param, $is_required=false){
     $is_hidden = false;
+    $hidden_class = '';
     if(array_key_exists("hidden", $param) && $param["hidden"]){
       $is_hidden = true;
+      $hidden_class = ' param-docs-hidden';
     }
+
+    $div_start = '<div class="param-docs param-docs-'.$level.$hidden_class.' clearfix">';
+    $div_end = '</div>';
 
     # Build heading
     if(array_key_exists("fa_icon", $param)){
@@ -36,7 +41,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     # Help text
     $help_text_btn = '';
     $help_text = '';
-    if(array_key_exists("help_text", $param)){
+    if(array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0){
       $help_text_btn = '
         <button class="btn btn-sm btn-outline-secondary float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
           <i class="fas fa-question-circle"></i> Help
@@ -55,11 +60,11 @@ if(file_exists($gh_pipeline_schema_fn)){
     if($is_required){
       $labels[] = '<span class="badge badge-warning ml-2">required</span>';
     }
-    if(count($labels) > 0){
-      $labels_str = '<div class="float-right">'.implode(' ', $labels).'</div>';
+    if(count($labels) > 0 || strlen($help_text_btn)){
+      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.implode(' ', $labels).'</div>';
     }
 
-    return $labels_str.$heading.$help_text_btn.$description.$help_text;
+    return $div_start.$heading.$labels_helpbtn.$description.$help_text.$div_end;
   }
 
   $schema_content = '<div class="schema-docs">';
@@ -74,7 +79,7 @@ if(file_exists($gh_pipeline_schema_fn)){
         if(array_key_exists("required", $param) && in_array($child_param_id, $param["required"])){
           $is_required = true;
         }
-        $schema_content .= print_param(3, $child_param_id, $child_param, $is_required);
+        $schema_content .= print_param(3, '--'.$child_param_id, $child_param, $is_required);
       }
     }
     // Top-level params
@@ -83,7 +88,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       if(array_key_exists("required", $schema) && in_array($param_id, $schema["required"])){
         $is_required = true;
       }
-      $schema_content .= print_param(3, $param_id, $param, $is_required);
+      $schema_content .= print_param(3, '--'.$param_id, $param, $is_required);
     }
   }
   $schema_content .= '</div>'; // .schema-docs
