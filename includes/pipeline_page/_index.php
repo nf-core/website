@@ -261,13 +261,18 @@ if($pagetab !== 'stats'){
     $toc .= generate_toc($content);
     # Add on the action buttons for the parameters docs
     if($pagetab == 'usage'){
-      $toc .= '<div class="btn-group w-100 mt-3 mb-1" role="group">
-                <button class="btn btn-sm btn-outline-secondary collapse-groups-btn" id="toggle_details" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false"><i class="fas fa-question-circle mr-1"></i> Show all help</button>
-                <button class="btn btn-sm btn-outline-secondary collapse-groups-btn" id="show_hidden" data-toggle="collapse" data-target=".param_hidden" aria-expanded="false"><i class="fa mr-1"></i> Show hidden params</button>
-              </div>';
+      $toc .= '
+      <div class="btn-group w-100 mt-3 mb-1" role="group">
+        <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
+          <i class="fas fa-question-circle mr-1"></i> Show all help
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".param-docs-body-hidden, .toc .collapse" aria-expanded="false">
+          <i class="fas fa-eye-slash"></i> Show hidden params
+        </button>
+      </div>';
     }
     # Back to top link
-    $toc .= '<p class="small"><a href="#" class="text-muted">Back to top</a></p>';
+    $toc .= '<p class="small text-right"><a href="#" class="text-muted">Back to top</a></p>';
     $toc .='</nav>';
     echo $toc;
   }

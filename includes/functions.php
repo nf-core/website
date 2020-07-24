@@ -105,17 +105,17 @@ function get_self_url($strip_query=true){
 function generate_toc($html_string){
   $toc = '';
   $curr_level = 0;
-  $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"][^>]*>(.*)</h[1-3]>~Uis";
+  $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
   preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
   if($matches){
     foreach($matches as $match){
+      $whole_str = $match[0];
       $level = $match[1];
-      $class = $match[2];
-      if(!strpos($class, 'section-header')){
-        $level += 1;
-      }
-      $id = $match[3];
-      $name = trim(str_replace('&nbsp;','', htmlentities(strip_tags($match[4]) )));
+      $before_attrs = trim($match[2]);
+      $id = trim($match[3]);
+      $after_attrs = trim($match[4]);
+      $h_content = $match[5];
+      $name = trim(str_replace('&nbsp;','', htmlentities(strip_tags($h_content) )));
       if($level > $curr_level){
         $toc .= "\n".'<div class="list-group">'."\n";
       } else if($level == $curr_level) {
@@ -127,14 +127,16 @@ function generate_toc($html_string){
         }
       }
       $curr_level = $level;
-      if(preg_match('/<code>.*?<\/code>/',$match[0])){
+      if(preg_match('/<code>.*?<\/code>/',$whole_str)){
         $name = '<code>'.$name.'</code>';
       }
-      if(preg_match('/<i.*?<\/i>/',$match[0],$icon_match)){
+      if(preg_match('/<i.*?<\/i>/',$whole_str,$icon_match)){
         $name = $icon_match[0].$name;
       }
       $name = str_replace('hidden','',$name); // remove artifact from "hidden" badge
-      $toc .= '<a class="list-group-item list-group-item-action" href="#'.$id.'">'.$name.'</a>';
+      $is_hidden = strpos($before_attrs, 'toc-hidden') !== false || strpos($after_attrs, 'toc-hidden') !== false;
+      $toc_hidden = $is_hidden ? 'collapse' : '';
+      $toc .= '<a class="list-group-item list-group-item-action '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
   while($curr_level > 1){
@@ -145,7 +147,7 @@ function generate_toc($html_string){
 }
 
 $heading_ids = [];
-function _h($level, $html){
+function _h($level, $html, $toc_hidden=false){
   ////////////////
   // Build a heading tag with ID and anchor link
   ////////////////
@@ -159,12 +161,19 @@ function _h($level, $html){
     $hid = $base_hid.'-'.$i;
     $i += 1;
   }
+  # Class for hiding in ToC
+  $toc_hidden_class = $toc_hidden ? 'toc-hidden' : '';
   return '
-    <h'.$level.' id="'.$hid.'">
+    <h'.$level.' id="'.$hid.'" class="'.$toc_hidden_class.'">
       <a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>
       '.$html.'
     </h'.$level.'>';
 };
+function _h1($html){ return _h(1, $html); }
+function _h2($html){ return _h(2, $html); }
+function _h3($html){ return _h(3, $html); }
+function _h4($html){ return _h(4, $html); }
+function _h5($html){ return _h(5, $html); }
 
 
 function add_ids_to_headers($content_input){
