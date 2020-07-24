@@ -266,7 +266,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <p class="card-text display-4"><a href="#twitter" class="text-body text-decoration-none stretched-link"><?php echo $twitter_users; ?></a></p>
       <p class="card-text text-muted">Twitter followers</p>
     </div>
-    <div class="bg-icon" style="color: rgba(74, 161, 235, 0.2);"><i class="fab fa-twitter"></i></div>
+    <div class="bg-icon"><i class="fab fa-twitter"></i></div>
   </div>
 </div>
 
@@ -642,8 +642,15 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 <p class="mt-5 small text-muted">See also <a href="/pipeline_health">pipeline repository health</a>.</p>
 
 <script type="text/javascript">
+var theme = "<?php echo $theme; ?>"
 $(function(){
-
+  if(theme ==='auto'){
+    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+      theme = 'dark';
+    } else {
+      theme = 'light';
+    }
+  }
   // Placeholder for chart data
   var chartData = {};
   var charts = {};
@@ -740,8 +747,8 @@ $(function(){
   chartData['gh_orgmembers'].data = {
     datasets: [
       {
-        backgroundColor: 'rgba(0,0,0,0.2)',
-        borderColor: 'rgba(0,0,0,1)',
+        backgroundColor: theme=='light' ?'rgba(0,0,0,0.2)':'rgba(255,255,255,0.7)',
+        borderColor: theme=='light' ?'rgba(0,0,0,1)':'rgba(255,255,255,0.9)',
         pointRadius: 0,
         data: [
           <?php
@@ -793,8 +800,8 @@ $(function(){
     datasets: [
       {
         label: 'Commits',
-        backgroundColor: 'rgba(0,0,0,0.2)',
-        borderColor: 'rgba(0,0,0,1)',
+        backgroundColor: theme=='light' ?'rgba(0,0,0,0.2)':'rgba(255,255,255,0.7)',
+        borderColor: theme=='light' ?'rgba(0,0,0,1)':'rgba(255,255,255,0.9)',
         pointRadius: 0,
         fill: 'origin',  // explicitly fill the first dataset to the x axis
         data: [

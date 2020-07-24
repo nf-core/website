@@ -3,11 +3,21 @@
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 
+$msg = '';
+if(isset($_GET['update']) && time() - $pipelines_json->updated > 60*10){
+  $output = shell_exec("php ../update_pipeline_details.php 2>&1 | tee -a /home/nfcore/update.log");
+  $msg = '<div class="alert alert-success">Manual pipeline update sync triggered: <pre>'.$output.'</pre></div>';
+} elseif(isset($_GET['update'])){
+  $msg = '<div class="alert alert-warning">Manual pipeline update can only be triggered at least 10 minutes apart</div>';
+}
+
 $title = 'Pipelines';
 $subtitle = 'Browse the <strong>'.$pipelines_json->pipeline_count.'</strong> pipelines that are currently available as part of nf-core.';
 include('../includes/header.php');
 
 usort($pipelines, 'rsort_pipelines');
+
+echo $msg;
 ?>
 
 <h1>Available Pipelines</h1>
@@ -109,6 +119,7 @@ usort($pipelines, 'rsort_pipelines');
 
 <p class="mt-5 small text-muted">
   Page last synced with GitHub <?php echo time_ago($pipelines_json->updated); ?>.
+  <a href="/pipelines?update">Click here</a> to trigger an update.
   See also <a href="/pipeline_health">pipeline repository health</a>.
 </p>
 

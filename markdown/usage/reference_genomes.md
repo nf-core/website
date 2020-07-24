@@ -6,6 +6,7 @@ subtitle: How reference genomes are handled in nf-core
 Many nf-core pipelines need a reference genome for alignment, annotation or similar purposes.
 
 ## Illumina iGenomes
+
 To make the use of reference genomes easier, Illumina has developed a centralised resource called [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
 The most commonly used reference files are organised in a consistent structure for multiple genomes.
 

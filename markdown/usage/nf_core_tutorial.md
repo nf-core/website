@@ -87,7 +87,6 @@ You can install the latest released version from PyPI as follows:
 pip install nf-core
 ```
 
-
 Or this command to install the `dev` version:
 
 ```bash
@@ -164,7 +163,6 @@ If not specified, Nextflow will fetch the default branch.
 For pipelines with a stable release this the default branch is `master` - this branch contains code from the latest release.
 For pipelines in early development that don't have any releases, the default branch is `dev`.
 
-
 If you would like to run the latest development code, use `-r dev`.
 
 Note that once pulled, Nextflow will use the local cached version for subsequent runs.
@@ -216,6 +214,8 @@ nextflow run nf-core/rnaseq -profile singularity,debug
 
 Note that the order in which config profiles are specified matters.
 Their priority increases from left to right.
+
+Our tip: Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
 
 ### Running pipelines with test data
 
@@ -307,7 +307,7 @@ We encourage you to discuss this on Slack early on as we have been able to resol
 
 ### Building environment.yml
 
-The _nf-core_  template will create a simple `environment.yml` file for you with an environment name, conda channels and one or two dependencies.
+The _nf-core_ template will create a simple `environment.yml` file for you with an environment name, conda channels and one or two dependencies.
 You can then add additional required software to this file.
 Note that all software packages must have a specific version number pinned - the format is a single equals sign, _e.g_ `package=version`.
 
@@ -364,6 +364,13 @@ That way, you can be confident that everything will work when you fork or open a
 
 This service is free to use.
 To set it up, visit [https://hub.docker.com](https://hub.docker.com) and link your personal GitHub repository.
+
+To set up an automated docker container build for the master and the dev branches, as well as for all releases, go to the builds tab of your docker hub repository. There, select build configurations. The source repository should be set to your GitHub repository. Three build rules should be set:
+
+* Master branch build rule (comes by default). Set the "Source Type" to "branch", "Source" to "master" and "Docker tag" to "latest".
+* dev branch build rule. Set _Source Type_ to `branch`, _Source_ to `dev` and _Docker tag_ to `dev`.
+* Tag build rule: this will build a container for your pipeline releases, and is similar to the scenario _"Match versions"_. Set the _Source Type_ to `Tag`, _Source_ to `/^[0-9.]+$/` and _Docker Tag_ to `{sourceref}`.
+* For all build rules, the _Dockerfile location_ should be set to `Dockerfile` and the _Build context_ set to `/`. _Autobuild_ and _Build Caching_ should be on.
 
 ### Exercise 4 (creating pipelines)
 
@@ -429,6 +436,8 @@ Each file Each file (`branch.yml`, `ci.yml` and `linting.yml`) defines several t
 
 This is already set up and does not need to be edited.
 It will check that pull-requests going to the nf-core repo `master` branch only come from the `dev` or `patch` branches (for releases).
+In case you want to add branch protection for a repository out of _nf-core_, you can add an extra step to the workflow with that repository name.
+You can leave the _nf-core_ branch protection in place so that the `nf-core lint` command does not throw an error - it only runs on nf-core repositories so it should be ignored.
 
 #### `linting.yml`
 

@@ -4,6 +4,7 @@ subtitle: How to run your first nf-core pipeline.
 ---
 
 ## What is nf-core?
+
 nf-core is a community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
 nf-core has three target audiences: facilities, single users and developers.
@@ -12,6 +13,7 @@ Single users profit from portable, documented and easy to use workflows.
 But you can also become a developer and write your own pipeline in Nextflow using already available templates and helper tools.
 
 ## What is Nextflow?
+
 Nextflow is a *workflow manager*.
 It has been developed specifically to ease the creation and execution of bioinformatics pipelines.
 The benefits of having your pipeline in Nextflow include:
@@ -40,7 +42,9 @@ Nextflow works best when you have an active internet connection, as it is able t
 
 3. Configure Nextflow to run on your system.
 
-    * The simplest way to run is with `-profile docker` (or `singularity` /  `conda`) which will tell Nextflow to execute jobs locally using Docker to fulfil the software requirements.
+    * The simplest way to run is with `-profile docker` (or `singularity`) which will tell Nextflow to execute jobs locally using Docker to fulfil the software requirements.
+
+    * Conda is also supported with `-profile conda`. However this option is not recommended, as reproducibility of the results can't be guaranteed without containerization.
 
     * For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
 
@@ -75,7 +79,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 * Always specify `-r <version-number>` when running to explicitly use a specific release. Then an identical command can be used in the future to give identical results.
 * Use `-resume` to restart pipelines that did not complete. This ensures that successful tasks from the previous run wont be re-executed.
 * Use `nextflow log` to find names of all previous runs in your directory. These can be used with `-resume` to restart specific runs.
-* Be clever with multiple Nextflow configuration locations.. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
+* Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
 
 ## Helper tools
 

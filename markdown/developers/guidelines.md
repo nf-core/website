@@ -12,7 +12,13 @@ pipelines must adhere to.
 > If you're thinking of adding a new pipeline to nf-core, please read the documentation
 > about [adding a new pipeline](adding_pipelines.md).
 
-## Workflow size and specificity
+## General rules
+
+The instructions below are subject to interpretation and specific scenarios.
+If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
+You can join the nf-core Slack [here](/join).
+
+### Workflow size
 
 We aim to have a _"not too big, not too small"_ rule with nf-core pipelines.
 This is deliberately fuzzy, but as a rule of thumb workflows should contain at
@@ -21,13 +27,16 @@ can realistically run the pipeline after spending ten minutes reading the docs.
 Pipelines should be general enough to be of use to multiple groups and research
 projects, but comprehensive enough to cover most steps in a primary analysis.
 
-Different pipelines should not overlap one another too much. For example, having
-multiple choices for tools and parameters to do the same tasks should be contained
-in a single pipeline with varying parameters. However, if the purpose of the
-pipeline tasks and results are different, then this should be a separate pipeline.
+### Workflow specificity
 
-The above instructions are subject to interpretation and specific scenarios.
-If in doubt, please ask the community for feedback on [Slack](https://nf-co.re/join/slack).
+The nf-core community was founded to allow different groups to collaborate on
+pipelines instead of reinventing the same workflows in each institute.
+As such, different pipelines should not overlap one another too much:
+there should only be a single pipeline for a given data + analysis type.
+However, if the _purpose_ of the pipeline tasks and results are different, then this should be a separate pipeline.
+
+If you would like to use a different set of tools to do a comparable analysis, then this should be
+added to the existing pipeline instead of creating something new.
 
 ## Minimum requirements
 

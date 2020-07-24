@@ -11,19 +11,20 @@ Here's how the website is built:
 * Language: PHP
 * HTML / CSS / JS framework: [Bootstrap v4](http://getbootstrap.com/)
 * JavaScript libraries:
-    * [jQuery](https://jquery.com/)
-    * [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
-    * [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
-    * [Leaflet](https://leafletjs.com/) _(contributor map)_
-    * [Moment.js](https://momentjs.com/) _(time and date parsing)_
-    * [Chart.js](https://www.chartjs.org/) _(statistics plots)_
-    * [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
-    * [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
-    * [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
-    * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
-    * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
+  * [jQuery](https://jquery.com/)
+  * [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
+  * [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
+  * [Leaflet](https://leafletjs.com/) _(contributor map)_
+  * [Moment.js](https://momentjs.com/) _(time and date parsing)_
+  * [Chart.js](https://www.chartjs.org/) _(statistics plots)_
+  * [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
+  * [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
+  * [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
+  * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
+  * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
 * PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
 * SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
+
 ## Development
 
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
@@ -54,18 +55,23 @@ php update_pipeline_details.php
 This will create `public_html/pipelines.json`, which is used by the website.
 Note that this is ignored in the `.gitignore` file and will not be tracked in git history.
 
-Optionally, once you've done that, you can grab the pipeline traffic and issue statistics:
+Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
 
 ```bash
 php update_issue_stats.php
 php update_stats.php
+php update_fontawesome_icons.php
 ```
 
 Note that your github account needs push rights for the nf-core permission for the `update_stats.php` to work.
 
-This creates `nfcore_stats.json` and `nfcore_issue_stats.json`, also ignored in `.gitignore`.
+This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
+all also ignored in `.gitignore`.
 
-Ok, you're ready! To run the website locally, you need a standard AMP stack: Apache, MySQL and PHP (MySQL not needed at time of writing). For this, I recommend using the free version of [MAMP](https://www.mamp.info/en/).
+Ok, you're ready! To run the website locally, just start the apache-php server with:
+```bash
+docker-compose up
+```
 
 Set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
 

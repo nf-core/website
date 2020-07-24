@@ -29,7 +29,21 @@ Please request to join the [nf-core GitHub organisation](https://github.com/nf-c
 and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
 [mailing list](https://groups.google.com/forum/#!forum/nf-core).
 
-It's good to introduce your idea early on so that it can be discussed before you spend lots of time coding.
+**It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.**
+
+The [nf-core guidelines](/developers/guidelines) state that no two pipelines should overlap too much
+in their purpose and results. There may be an existing pipeline that can be extended to give the
+functionality that you are looking for, or there could be another group working on a similar to the
+pipeline to the one you're planning.
+
+To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
+as possible. Ideally before you make a start on your pipeline!
+
+All nf-core discussion happens on the nf-core Slack, which you can join here:
+[https://nf-co.re/join](https://nf-co.re/join)
+
+These topics are specifically discussed in the `#new-pipelines` channel:
+[https://nfcore.slack.com/channels/new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
 
 ## Create a pipeline from the template
 
@@ -189,13 +203,9 @@ will automatically update to list your new pipeline.
 
 All nf-core pipelines use branches called `dev` and `master`.
 The `master` branch should contain the code from the latest stable release, `dev` should have the latest development code.
-Before the first release is made we set `dev` as the default repository branch instead of `master`;
-this means that the latest code runs by default up until the first release.
-After the first release we switch the default back to `master`.
-
 We want people to run the latest development code by default up until the first release.
 To do this, we set `dev` as the default repository branch.
-After a release is created, we set the default branch back to `master` so that the default
+After an initial release is created, we set the default branch back to `master` so that the default
 action is to run the latest stable release code.
 
 Once you have forked the repository, create a new branch called `dev` for the active development.
@@ -270,7 +280,7 @@ Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-c
 team?! Not to worry, we're a friendly bunch. Let us know about the new pipeline,
 when you're ready we will create a fake pull-request against the first commit in
 the pipeline. This gives the PR review interface showing all code that you've
-written. We will go through everything and request and changes that we think are
+written. We will go through everything and request changes that we think are
 necessary until you're good to go.
 
 Common things that are flagged at this point are:
