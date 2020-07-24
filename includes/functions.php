@@ -144,28 +144,50 @@ function generate_toc($html_string){
   return $toc;
 }
 
+$heading_ids = [];
+function _h($level, $html){
+  ////////////////
+  // Build a heading tag with ID and anchor link
+  ////////////////
+  global $heading_ids;
+  # Clean up the ID
+  $hid = strip_tags($html);
+  $hid = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $hid)));
+  # Avoid duplicate IDs
+  $i = 1; $base_hid = $hid;
+  while(in_array($hid, $heading_ids)){
+    $hid = $base_hid.'-'.$i;
+    $i += 1;
+  }
+  return '
+    <h'.$level.' id="'.$hid.'">
+      <a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>
+      '.$html.'
+    </h'.$level.'>';
+};
+
 
 function add_ids_to_headers($content_input){
-  // Automatically add HTML IDs to headers
-  // Add ID attributes to headers
-  $hids = Array();
+  //////////////////
+  // Add IDs and anchor links to all headings in a block of HTML
+  //////////////////
+  global $heading_ids;
   $content_output = preg_replace_callback(
     '~<h([1234])>(.*?)</h([1234])>~Ui', // Ungreedy by default, case insensitive
-    function ($matches) use($hids) {
+    function ($matches) use($heading_ids) {
       $id_match = strip_tags($matches[2]);
       $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
       $id_match = str_replace('---', '-', $id_match);
       $hid = $id_match;
       $i = 1;
-      while(in_array($hid, $hids)){
+      while(in_array($hid, $heading_ids)){
         $hid = $id_match.'-'.$i;
         $i += 1;
       }
-      $hids[] = $hid;
+      $heading_ids[] = $hid;
       return '<h'.$matches[1].' id="'.$hid.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
     },
     $content_input
   );
   return $content_output;
-  return $content_input;
-};
+}

@@ -59,94 +59,94 @@ if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn))
     file_put_contents($gh_launch_schema_fn, $gh_launch_schema_json);
   }
 }
+
+###############
+# RENDER JSON SCHEMA PARAMETERS DOCS
+###############
 if(file_exists($gh_launch_schema_fn)){
 
-// Markdown parsing libraries
+  $raw_json = file_get_contents($gh_launch_schema_fn);
+  $schema = json_decode($raw_json, TRUE);
 
+  function print_param($level, $param_id, $param, $is_required=false){
+    $is_hidden = false;
+    if(array_key_exists("hidden", $param) && $param["hidden"]){
+      $is_hidden = true;
+    }
 
-$raw_json = file_get_contents($gh_launch_schema_fn);
-$schema = json_decode($raw_json, TRUE);
+    # Build heading
+    if(array_key_exists("fa_icon", $param)){
+      $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw"></i> ';
+    } else {
+      $fa_icon = '<i class="fad fa-circle fa-fw text-muted"></i> ';
+    }
+    $h_text = $param_id;
+    if($level > 2){ $h_text = '<code>'.$h_text.'</code>'; }
+    $heading = _h($level, $fa_icon.$h_text);
 
-$schema_content = '<div class="schema-docs">'.add_ids_to_headers('<h1>Parameters</h1>');
+    # Description
+    $description = '';
+    if(array_key_exists("description", $param)){
+      $description = parse_md($param['description']);
+    }
 
-  foreach($schema["properties"] as $k=>$v){
-    // for loop through top level items
-      $fa_icon='<i class="fa-icons fa-fw mr-2 text-muted"></i> ';
-      $required_label = '';
-      if($v["type"]=="object"){
-        if(array_key_exists("fa_icon", $v)){
-          $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-2"></i> ';
-        }
-        $schema_content .= '<div class="d-flex justify-content-between align-items-center">';
+    # Help text
+    $help_text_btn = '';
+    $help_text = '';
+    if(array_key_exists("help_text", $param)){
+      $help_text_btn = '
+        <button class="btn btn-sm btn-outline-secondary float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
+          <i class="fas fa-question-circle"></i> Help
+        </button>';
+      $help_text = '
+        <div class="collapse card schema-docs-help-text" id="'.$param_id.'-help">
+          <div class="card-body small text-muted">'.parse_md($param['help_text']).'</div>
+        </div>';
+    }
 
+    # Labels
+    $labels = [];
+    if($is_hidden){
+      $labels[] = '<span class="badge badge-secondary ml-2">hidden</span>';
+    }
+    if($is_required){
+      $labels[] = '<span class="badge badge-warning ml-2">required</span>';
+    }
+    if(count($labels) > 0){
+      $labels_str = '<div class="float-right">'.implode(' ', $labels).'</div>';
+    }
 
-        $schema_content .= add_ids_to_headers('<h2><a>'.$fa_icon.$k.'</a></h2>').$required_label;
-        $schema_content .='</div>';
-        if(array_key_exists("description", $v)){
-        $schema_content.='<p class="lead">'.$v['description'].'</p>';
-        }
-        foreach($v["properties"] as $kk=>$vv){
-          // for loop through each param in a group
-          $fa_icon='<i class="fa-icons fa-fw ml-0 text-muted"></i> ';
-          $hidden_label ='';
-          $required_label = '';
-          if(array_key_exists("fa_icon", $vv)){
-            $fa_icon = '<i class="'.$vv['fa_icon'].' fa-fw ml-0"></i> ';
-          }
-          if(array_key_exists("hidden", $vv) && $vv["hidden"]){
-            $hidden_label = '<div><span class="badge badge-secondary">hidden</span></div>';
-          }
-          if(array_key_exists("required", $v) && in_array($kk,$v["required"])){
-            $required_label = '<div><span class="badge badge-warning">required</span></div>';
-          }
-          $schema_content.='<div class="d-flex justify-content-between align-items-center">';
-          if($hidden_label){//lower the visibility of hidden parameters
-            $schema_content.=add_ids_to_headers('<h6>'.$fa_icon.'--'.$kk.'</h6>').$hidden_label.$required_label.'</div>';
-          } else {
-            $schema_content.=add_ids_to_headers('<h3>'.$fa_icon.'<code>--'.$kk.'</code></h3>').$required_label.'</div>';
-          }
-          if(!$hidden_label){
-            if(array_key_exists("description", $vv) && $vv["description"]!=""){
-              $schema_content.='<div class="row"><span class="schema-docs-description col-10">'.parse_md($vv['description']).'</span>';
-              if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
-                $help_text = parse_md($vv['help_text']);
-                if(strlen($help_text)>150){ // collapse long help texts
-                  $schema_content.='<div class="col-2">';
-                  $schema_content.='<button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" href="#'.preg_replace("/\/|\s/","-",$kk).'-help" aria-expanded="false"><i class="fas fa-question-circle"></i> Help</button>';
-                  $schema_content.='</div>';
-                  $schema_content.='</div><div class="collapse card schema-docs-help-text" id="'.preg_replace("/\/|\s/","-",$kk).'-help"><div class="card-body small text-muted">'.$help_text.'</div></div>';
-                }else{
-                  $schema_content.='</div><span class="schema-docs-help-text">'.$help_text.'</span>';
-                }
-              }else{
-                $schema_content.='</div>';
-              }
-            }
-          } else { // collapse description and help text for hidden params
-            if(array_key_exists("description", $vv) && $vv["description"]!=""){
-              $schema_content.='<div class="collapse param_hidden">';
-              $schema_content.='<div class="row"><span class="schema-docs-description col-10">'.parse_md($vv['description']).'</span>';
-              if(array_key_exists("help_text", $vv) && $vv["help_text"]!=""  ){
-                $help_text = parse_md($vv['help_text']);
-                $schema_content.='</div><span class="schema-docs-help-text">'.$help_text.'</span>';
-              }else{
-                $schema_content.='</div>';
-              }
-              $schema_content.='</div>';
-            }
-          }
-        }
-      }else{
-        //top level parameter
-        if(array_key_exists("fa_icon", $v)){
-          $fa_icon = '<i class="'.$v['fa_icon'].' fa-fw mr-1"></i> ';
-        }
-        $schema_content.='<h4 class="text-secondary">' . $fa_icon .'<code>--'.$vv.'</code></h4>';
-        '<h4 class="text-secondary">' . $fa_icon .'<code>--'.$vv.'</code></h4>';
-      }
+    return $labels_str.$heading.$help_text_btn.$description.$help_text;
   }
-  $schema_content .= '</div>';
+
+  $schema_content = '<div class="schema-docs">';
+  $schema_content .= _h(1, 'Parameters');
+  foreach($schema["properties"] as $param_id => $param){
+    // Groups
+    if($param["type"] == "object"){
+      $schema_content .= print_param(2, $param_id, $param);
+      // Group-level params
+      foreach($param["properties"] as $child_param_id => $child_param){
+        $is_required = false;
+        if(array_key_exists("required", $param) && in_array($child_param_id, $param["required"])){
+          $is_required = true;
+        }
+        $schema_content .= print_param(3, $child_param_id, $child_param, $is_required);
+      }
+    }
+    // Top-level params
+    else {
+      $is_required = false;
+      if(array_key_exists("required", $schema) && in_array($param_id, $schema["required"])){
+        $is_required = true;
+      }
+      $schema_content .= print_param(3, $param_id, $param, $is_required);
+    }
+  }
+  $schema_content .= '</div>'; // .schema-docs
 }
+
+
 # Configs to make relative URLs work
 $src_url_prepend = 'https://raw.githubusercontent.com/'.$pipeline->full_name.'/'.$git_branch.'/'.implode('/', array_slice($path_parts, 1, -1)).'/';
 $href_url_prepend = '/'.$pipeline->name.'/'.implode('/', array_slice($path_parts, 1)).'/';
