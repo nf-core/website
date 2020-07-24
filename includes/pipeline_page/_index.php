@@ -262,7 +262,7 @@ if($pagetab !== 'stats'){
     # Add on the action buttons for the parameters docs
     if($pagetab == 'usage'){
       $toc .= '
-      <div class="btn-group w-100 mt-3 mb-1" role="group">
+      <div class="btn-group w-100 mt-2 mb-1" role="group">
         <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
           <i class="fas fa-question-circle mr-1"></i> Show all help
         </button>
@@ -272,7 +272,7 @@ if($pagetab !== 'stats'){
       </div>';
     }
     # Back to top link
-    $toc .= '<p class="small text-right"><a href="#" class="text-muted">Back to top</a></p>';
+    $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
     $toc .='</nav>';
     echo $toc;
   }
