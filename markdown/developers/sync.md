@@ -179,8 +179,17 @@ You can do so by running the `nf-core sync` command:
 ```bash
 cd my_pipeline
 git checkout dev # or your most up to date branch
-nf-core sync --make-template-branch
+nf-core sync .
 ```
+
+Note that the `sync` command assumes that you have a branch called `TEMPLATE`, so you may need to pull this from the upstream nf-core repository if you are working on a fork:
+
+```bash
+git remote add upstream https://github.com/nf-core/PIPELINE.git
+git checkout --track upstream/TEMPLATE
+```
+
+Remember to go back to your `dev` branch as above before running `nf-core sync`.
 
 Much of the merging process should then be the same as described above with the automated pull requests.
 
@@ -293,7 +302,7 @@ git commit -m "Initial template commit"
 For the nf-core bot to be able to access your `TEMPLATE` branch, you need to push it to the upstream repository ([https://github.com/nf-core](https://github.com/nf-core)).
 
 ```bash
-git push origin TEMPLATE
+git push --set-upstream origin TEMPLATE
 ```
 
 ### Merge TEMPLATE into main branches

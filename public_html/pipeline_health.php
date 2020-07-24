@@ -87,6 +87,7 @@ class RepoHealth {
   ];
   public $branch_exist_tests = ['master'];
   public $branches_protection = ['master'];
+  public $branch_default = 'master';
   public $required_topics = ['nf-core'];
   public $web_url = 'https://nf-co.re';
   public $test_names;
@@ -248,7 +249,7 @@ class RepoHealth {
     if(isset($this->gh_repo->allow_merge_commit)) $this->repo_merge_commits = $this->gh_repo->allow_merge_commit;
     if(isset($this->gh_repo->allow_rebase_merge)) $this->repo_merge_rebase = $this->gh_repo->allow_rebase_merge;
     if(isset($this->gh_repo->allow_squash_merge)) $this->repo_merge_squash = !$this->gh_repo->allow_squash_merge;
-    if(isset($this->gh_repo->default_branch)) $this->repo_default_branch = $this->gh_repo->default_branch == 'master';
+    if(isset($this->gh_repo->default_branch)) $this->repo_default_branch = $this->gh_repo->default_branch == $this->branch_default;
     if(isset($this->gh_repo->topics)) $this->repo_keywords = $this->test_topics();
     if(isset($this->gh_repo->description)) $this->repo_description = $this->gh_repo->description;
     if(isset($this->gh_repo->homepage)) $this->repo_url = $this->gh_repo->homepage == $this->web_url;
@@ -267,6 +268,10 @@ class RepoHealth {
         if(in_array(strtolower($branch->name), $this->branch_exist_tests)){
           $this->{'branch_'.strtolower($branch->name).'_exists'} = true;
         }
+      }
+      // Check that the branch that should be default actually exists
+      if(!$this->{'branch_'.strtolower($this->branch_default).'_exists'}){
+        $this->repo_default_branch = -1;
       }
     }
   }
@@ -339,7 +344,7 @@ class RepoHealth {
     if(!$this->repo_merge_commits) $payload['allow_merge_commit'] = true;
     if(!$this->repo_merge_rebase) $payload['allow_rebase_merge'] = true;
     if(!$this->repo_merge_squash) $payload['allow_squash_merge'] = false;
-    if(!$this->repo_default_branch) $payload['default_branch'] = 'master';
+    if(!$this->repo_default_branch) $payload['default_branch'] = $this->branch_default;
     if(!$this->repo_url) $payload['homepage'] = $this->web_url;
     if(count($payload) > 0){
       $gh_edit_repo_url = 'https://api.github.com/repos/nf-core/'.$this->name;
@@ -647,6 +652,8 @@ foreach($pipelines_json as $wf){
     if(count($wf->releases) > 0){
       $pipelines[$wf->name]->has_release = true;
       $pipelines[$wf->name]->last_release = end($wf->releases)->published_at;
+    } else {
+      $pipelines[$wf->name]->branch_default = 'dev';
     }
   }
 }
@@ -686,7 +693,7 @@ $base_test_descriptions = [
   'repo_merge_commits' => "Allow merge commits",
   'repo_merge_rebase' => "Allow rebase merging",
   'repo_merge_squash' => "Do not allow squash merges",
-  'repo_default_branch' => "master as default branch",
+  'repo_default_branch' => "default branch master (released) or dev (no releases)",
   'repo_keywords' => "Minimum keywords set",
   'repo_description' => "Description must be set",
   'repo_url' => "URL should be set to https://nf-co.re",

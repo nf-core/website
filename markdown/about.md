@@ -8,6 +8,7 @@ The core team members who administer the nf-core project are listed below:
 * [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik
 * [@sven1103](https://github.com/sven1103): Sven F.
+* [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 
 We regularly review members - if you'd like to be involved, drop us a message on Slack.
 
