@@ -74,17 +74,16 @@ if(file_exists($gh_pipeline_schema_fn)){
 
     # Extra group classes
     $mt = '';
-    $h2 = '';
+    $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 ';
     if($is_group){
       $mt = 'mt-5';
-      $h2 = 'h2';
+      $id_cols = 'col h2';
     }
 
     # Build row
     return '
-    <div class="row '.$hidden_class.' params-docs-row border-bottom '.$mt.'">
-      <div class="col-auto '.$h2.'">'.$fa_icon.'</div>
-      <div class="col-10 col-md-5 col-lg-4 col-xl-3 '.$h2.'">'.$h_text.'</div>
+    <div class="row '.$hidden_class.' params-docs-row border-bottom pt-2 '.$mt.'">
+      <div class="'.$id_cols.'">'.$fa_icon.$h_text.'</div>
       <div class="col">'.$param_body.'</div>
       <div class="col-auto">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
       '.$help_text.'
