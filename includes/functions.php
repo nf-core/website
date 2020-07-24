@@ -151,7 +151,7 @@ function _h($level, $html){
   ////////////////
   global $heading_ids;
   # Clean up the ID
-  $hid = strip_tags($html);
+  $hid = trim(strip_tags($html));
   $hid = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $hid)));
   # Avoid duplicate IDs
   $i = 1; $base_hid = $hid;
