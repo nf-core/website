@@ -8,7 +8,7 @@ on:
 jobs:
   test_markdown:
     name: Test markdown syntax
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v1
