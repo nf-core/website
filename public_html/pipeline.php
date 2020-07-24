@@ -3,20 +3,32 @@
 require_once('../includes/functions.php');
 usort($pipeline->releases, 'rsort_releases');
 
+########
+## Configure page header
+########
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
 $subtitle = $pipeline->description;
 $schema_content = '';
 $import_chartjs = true;
 
-########
-## Figure out what page we're rendering
-########
-
-# URL path to readme - redirect to pipeline root
-if(endswith($_GET['path'], '/README')){
-  header('Location: /'.substr($_GET['path'], 0, -7));
-  exit;
+# Header - keywords
+$header_html = '<p class="mb-0">';
+foreach($pipeline->topics as $keyword){
+  $header_html .= '<a href="/pipelines?q='.$keyword.'" class="badge pipeline-topic">'.$keyword.'</a> ';
 }
+$header_html .= '</p>';
+
+// Highlight any search terms if we have them
+if(isset($_GET['q']) && strlen($_GET['q'])){
+  $title = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $title);
+  $subtitle = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $subtitle);
+  $header_html = preg_replace("/(".$_GET['q'].")/i", "<mark>$1</mark>", $header_html);
+}
+
+
+########
+## Work out the pipeline release
+########
 
 # Set defaults (Readme tab)
 $pagetab = ''; # empty string is home / readme
@@ -41,15 +53,55 @@ if(count($path_parts) > 1){
   }
 }
 
+########
+## Load and cache the pipeline JSON schema if we have one
+########
+# Try to fetch the nextflow_schema.json file for the latest release, to see whether we can have a 'Launch' button
+$gh_pipeline_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.json";
+$gh_pipeline_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
+# Build directories if needed
+if (!is_dir(dirname($gh_pipeline_schema_fn))) {
+  mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
+}
+// Load cache if not 'dev'
+if((!file_exists($gh_pipeline_schema_fn) && !file_exists($gh_pipeline_no_schema_fn)) || $release == 'dev'){
+  $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
+  $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
+  $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
+  if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    # Remember for next time
+    file_put_contents($gh_pipeline_no_schema_fn, '');
+  } else {
+    # Parse out file content
+    $gh_launch_schema_response = json_decode($gh_launch_schema_json, TRUE);
+    $gh_launch_schema = base64_decode($gh_launch_schema_response['content'], TRUE);
+    # Save cache
+    file_put_contents($gh_pipeline_schema_fn, $gh_launch_schema);
+  }
+}
+
+########
+## Figure out what page we're rendering
+########
+
+# URL path to readme - redirect to pipeline root
+if(endswith($_GET['path'], '/README')){
+  header('Location: /'.substr($_GET['path'], 0, -7));
+  exit;
+}
+
 # Usage docs
 if(endswith($_GET['path'], '/usage')){
   $pagetab = 'usage';
-  require_once('../includes/pipeline_page/usage.php');
+  $filename = 'docs/usage.md';
+  $md_trim_before = '# Introduction';
+  require_once('../includes/pipeline_page/docs_schema.php');
 }
 # Output docs
 else if(endswith($_GET['path'], '/output')){
   $pagetab = 'output';
-  require_once('../includes/pipeline_page/output.php');
+  $filename = 'docs/output.md';
+  $md_trim_before = '# Introduction';
 }
 # Stats
 else if(endswith($_GET['path'], '/stats')){
@@ -68,10 +120,16 @@ else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'
   include('404.php');
   die();
 }
-
-# Still the homepage,
+# Homepage,
 if($pagetab == ''){
-  require_once('../includes/pipeline_page/docs.php');
+  $filename = 'README.md';
+  $md_trim_before = '# Introduction';
+}
+
+# Prep local cache and variables for docs markdown
+// NB: $content rendered in header.php
+if(in_array($pagetab, ['', 'usage', 'output'])){
+  require_once('../includes/pipeline_page/docs_md.php');
 }
 
 # Main page nav and header
@@ -80,29 +138,6 @@ $no_print_content = true;
 $mainpage_container = false;
 include('../includes/header.php');
 
-# Pipeline subheader
-
-# Try to fetch the nextflow_schema.json file for the latest release, to see whether we can have a 'Launch' button
-$gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.json";
-$gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
-# Build directories if needed
-if (!is_dir(dirname($gh_launch_schema_fn))) {
-  mkdir(dirname($gh_launch_schema_fn), 0777, true);
-}
-// Load cache if not 'dev'
-if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn)) || $release == 'dev'){
-  $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
-  $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
-  $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-  if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-    # Remember for next time
-    file_put_contents($gh_launch_no_schema_fn, '');
-  } else {
-    # Save cache
-    file_put_contents($gh_launch_schema_fn, $gh_launch_schema_json);
-  }
-}
-
 ########
 # Get details for the Call To Action button
 ########
@@ -110,7 +145,7 @@ if((!file_exists($gh_launch_schema_fn) && !file_exists($gh_launch_no_schema_fn))
 $cta_txt = $release == "dev" ? 'See the latest code' : 'See version '.$release;
 $cta_url = $pipeline->html_url;
 $cta_icon = $release == "dev" ? '<i class="fad fa-construction mr-1"></i> ' : '<i class="fas fa-tags mr-1"></i> ';
-if(file_exists($gh_launch_schema_fn)){
+if(file_exists($gh_pipeline_schema_fn)){
   $cta_txt = $release == "dev" ? 'Launch development version' : 'Launch version '.$release;
   $cta_url = '/launch?pipeline='.$pipeline->name.'&release='.$release;
   $cta_icon = '<i class="fad fa-rocket-launch mr-1"></i> ';
@@ -202,7 +237,7 @@ if($pagetab !== 'stats'){
 # Print content
 ########
 # Add on the rendered schema docs (empty string if we don't have it)
-if(preg_match('/<!-- params-docs -->/')){
+if(preg_match('/<!-- params-docs -->/', $content)){
   $content = preg_replace('/<!-- params-docs -->/', $schema_content, $content);
 } else {
   $content .= $schema_content;
@@ -230,7 +265,8 @@ if($pagetab !== 'stats'){
                 <button class="btn btn-outline-secondary collapse-groups-btn" id="show_hidden" data-toggle="collapse" data-target=".param_hidden" aria-expanded="false"><i class="fa mr-1"></i> Show hidden</button>
               </div>';
     }
-    $toc .= generate_toc($content).'</nav>';
+    $toc .= generate_toc($content);
+    $toc .='</nav>';
     echo $toc;
   }
   echo '</div></div>'; # end of the sidebar col

@@ -59,7 +59,9 @@ function parse_md($markdown){
 
   // Find and replace markdown content if requested
   if(isset($md_content_replace)){
-    $md = str_replace($md_content_replace[0], $md_content_replace[1], $md);
+    foreach($md_content_replace as $repl){
+      $md = preg_replace($repl[0], $repl[1], $md);
+    }
   }
 
   // Format Nextflow code blocks as Groovy
