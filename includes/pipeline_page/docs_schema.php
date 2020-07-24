@@ -18,6 +18,14 @@ if(file_exists($gh_pipeline_schema_fn)){
       $is_hidden = true;
       $hidden_class = ' param-docs-hidden';
     }
+    if($param['type'] == 'object'){
+      $is_hidden = true;
+      foreach($param['properties'] as $child_param_id => $child_param){
+        if(!array_key_exists("hidden", $child_param) || !$child_param["hidden"]){
+          $is_hidden = false;
+        }
+      }
+    }
 
     $div_start = '<div class="param-docs param-docs-'.$level.$hidden_class.' clearfix">';
     $div_end = '</div>';
@@ -30,7 +38,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     }
     $h_text = $param_id;
     if($level > 2){ $h_text = '<code>'.$h_text.'</code>'; }
-    $heading = _h($level, $fa_icon.$h_text);
+    $heading = _h($level, $fa_icon.$h_text, $is_hidden);
 
     # Description
     $description = '';
@@ -42,33 +50,48 @@ if(file_exists($gh_pipeline_schema_fn)){
     $help_text_btn = '';
     $help_text = '';
     if(array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0){
-      $help_text_btn = '
-        <button class="btn btn-sm btn-outline-secondary float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
-          <i class="fas fa-question-circle"></i> Help
-        </button>';
+      // Show help if hidden, as we toggle the whole content
+      if(!$is_hidden){
+        $help_text_btn = '
+          <button class="btn btn-sm btn-outline-info float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
+            <i class="fas fa-question-circle"></i> Help
+          </button>';
+      }
+      $help_collapse = $is_hidden ? '' : 'collapse';
       $help_text = '
-        <div class="collapse card schema-docs-help-text" id="'.$param_id.'-help">
+        <div class="'.$help_collapse.' card schema-docs-help-text" id="'.$param_id.'-help">
           <div class="card-body small text-muted">'.parse_md($param['help_text']).'</div>
         </div>';
     }
 
+    # Hidden button
+    $hidden_btn = '';
+    if($is_hidden){
+      $hidden_btn = '
+        <button class="btn btn-sm btn-outline-secondary float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-body" aria-expanded="false">
+          <i class="fas fa-eye-slash"></i> Show hidden
+        </button>';
+    }
+
     # Labels
     $labels = [];
-    if($is_hidden){
-      $labels[] = '<span class="badge badge-secondary ml-2">hidden</span>';
-    }
     if($is_required){
       $labels[] = '<span class="badge badge-warning ml-2">required</span>';
     }
-    if(count($labels) > 0 || strlen($help_text_btn)){
-      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.implode(' ', $labels).'</div>';
+    $labels_helpbtn = '';
+    if(count($labels) > 0 || strlen($help_text_btn) || strlen($hidden_btn)){
+      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>';
     }
 
-    return $div_start.$heading.$labels_helpbtn.$description.$help_text.$div_end;
+    # Body
+    $body_collapse = $is_hidden ? 'param-docs-body-hidden collapse' : '';
+    $param_body = '<div id="'.$param_id.'-body" class="param-docs-body '.$body_collapse.'">'.$description.$help_text.'</div>';
+
+    return $div_start.$heading.$labels_helpbtn.$param_body.$div_end;
   }
 
   $schema_content = '<div class="schema-docs">';
-  $schema_content .= _h(1, 'Parameters');
+  $schema_content .= _h1('Parameters');
   foreach($schema["properties"] as $param_id => $param){
     // Groups
     if($param["type"] == "object"){

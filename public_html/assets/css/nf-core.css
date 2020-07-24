@@ -1118,24 +1118,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   margin-right: 0.5rem;
   opacity: 0.8;
 }
-.schema-docs [aria-expanded="false"] .fa:before {
-  content: "\f077";
-}
-.schema-docs [aria-expanded="true"] .fa:before {
-  content: "\f078";
-}
-.side-sub-subnav #toggle_details[aria-expanded="false"] .fa:before {
-  content: "\f322";
-}
-.side-sub-subnav #toggle_details[aria-expanded="true"] .fa:before {
-  content: "\f325";
-}
-.side-sub-subnav #show_hidden[aria-expanded="false"] .fa:before {
-  content: "\f00e";
-}
-.side-sub-subnav #show_hidden[aria-expanded="true"] .fa:before {
-  content: "\f010";
-}
 
 .param-docs {
   padding: 1.5rem 0;
@@ -1146,5 +1128,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .param_labels_helpbtn {
   float:right;
-  margin-top: -30px;
+  margin-top: -40px;
+}
+.param-docs-body {
+  padding: 0 1rem;
 }
