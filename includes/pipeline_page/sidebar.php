@@ -1,10 +1,7 @@
 <?php
-
-// Build the HTML for a pipeline documentation page.
-// Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
-$import_chartjs = true;
-
+/////////////////////
 // Sidebar for pipeline homepage with key stats
+/////////////////////
 
 // Get number of open issues and PRs
 $issues_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_issue_stats.json';
@@ -47,7 +44,6 @@ if(count($pipeline->releases) > 0){
 }
 $last_commit = time_ago($pipeline->updated_at);
 
-ob_start();
 ?>
 
 <div class="pipeline-sidebar">
@@ -216,7 +212,3 @@ $(function(){
   });
 });
 </script>
-
-<?php
-$pipeline_stats_sidebar = ob_get_contents();
-ob_end_clean();

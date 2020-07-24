@@ -6,8 +6,7 @@ usort($pipeline->releases, 'rsort_releases');
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
 $subtitle = $pipeline->description;
 $schema_content = '';
-
-require_once('../includes/pipeline_page/components.php');
+$import_chartjs = true;
 
 ########
 ## Figure out what page we're rendering
@@ -219,7 +218,7 @@ if($pagetab !== 'stats'){
 
   # Pipeline homepage & releases - key stats
   if(in_array($pagetab, ['', 'releases'])){
-    echo $pipeline_stats_sidebar;
+    require_once('../includes/pipeline_page/sidebar.php');
   }
   # Documentation - ToC
   else {
