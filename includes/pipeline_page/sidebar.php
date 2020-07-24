@@ -1,10 +1,7 @@
 <?php
-
-// Build the HTML for a pipeline documentation page.
-// Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
-$import_chartjs = true;
-
+/////////////////////
 // Sidebar for pipeline homepage with key stats
+/////////////////////
 
 // Get number of open issues and PRs
 $issues_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_issue_stats.json';
@@ -39,21 +36,19 @@ foreach($stats_json['pipelines'][$pipeline->name]['contributors'] as $contributo
 arsort($contrib_avatars);
 
 // Last release and last commit
-$last_release = 'N/A';
-$release_cmd = '';
+$last_release_time = 'N/A';
+$release_cmd = ' -r '.$release;
 if(count($pipeline->releases) > 0){
-  $last_release = time_ago($pipeline->releases[0]->published_at);
-  $release_cmd = ' -r '.$pipeline->releases[0]->tag_name;
+  $last_release_time = time_ago($pipeline->releases[0]->published_at);
 }
 $last_commit = time_ago($pipeline->updated_at);
 
-ob_start();
 ?>
 
 <div class="pipeline-sidebar">
   <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
   <div class="border pipeline-run-cmd p-1">
-    <code class="small">&raquo; nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
+    <code class="small"> nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
   </div>
 
   <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last <?php echo time_ago($clones_since, false); ?></span></h6>
@@ -216,7 +211,3 @@ $(function(){
   });
 });
 </script>
-
-<?php
-$pipeline_stats_sidebar = ob_get_contents();
-ob_end_clean();
