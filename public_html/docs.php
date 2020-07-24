@@ -29,7 +29,7 @@ foreach($pipelines_json->remote_workflows as $pipeline){
         }
 
         # Include the script that renders the pipeline page, then exit
-        include('pipeline.php');
+        include('../includes/pipeline_page/_index.php');
         exit;
     }
 }

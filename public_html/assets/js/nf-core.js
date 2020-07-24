@@ -187,6 +187,11 @@ $(function () {
 
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
+
+    // Pipeline page version number dropdown
+    $('#version_select').on('change', function(){
+        document.location.href = $(this).val();
+    })
 });
 
 function scroll_to(target_el){
