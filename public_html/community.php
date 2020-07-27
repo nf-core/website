@@ -203,6 +203,21 @@ To this end they will use <em>nf-core</em> pipelines to process data and contrib
 to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.</p>
 <p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
 
+<h3 id="dockstore"><a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="350px" src="/assets/img/contributors-colour/dockstore.svg" class="float-right pl-0" />
+    Dockstore
+</h3>
+<p><a href="https://www.dockstore.org/" target="_blank">Dockstore</a> is a platform used by researchers across the world to share reproducible computational analyses and hosts hundreds of individual tools and workflows created by more than a hundred different contributors.</p>
+<p>By using lightweight containerization technology along with the essential metadata needed for combining tools into scientific analysis "recipes", Dockstore allows users to create, share, publish (using citable DOIs) and reproducibly reuse these recipes across platforms and compute environments.</p>
+
+
+<h3 id="workflowhub"><a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    <img width="250px" src="/assets/img/contributors-colour/workflowhub.svg" class="float-right px-4" />
+    Workflow Hub
+</h3>
+<p><a href="https://www.workflowhub.eu/" target="_blank">Workflow Hub</a> was created as part of the <a href="https://www.eosc-life.eu/" target="_blank">EOSC-Life</a> WP2: <em>Tools Collaboratory and Research Objects</em> to glue in federated workflow and tool descriptions across research infrastructures.</p>
+<p>It is workflow system agnostic, supports a repository of workflows in native and standardised form and the virtual aggregation of established tool, workflow and registries to support discovery over a fragmented ecosystem. The federated registry will support a common API to simplify access for tool developers.</p>
+
 
 <h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 
