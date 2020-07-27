@@ -183,7 +183,7 @@ if($pipeline->archived){
 </div>
 <div class="triangle subheader-triangle-down"></div>
 
-<div class="container main-content">
+<div class="container-fluid main-content">
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
@@ -230,7 +230,7 @@ if($pipeline->archived){
 # Make a row with a column for content for everything except the stats page
 ########
 if($pagetab !== 'stats'){
-  echo '<div class="row"><div class="col-lg-8 order-lg-1">';
+  echo '<div class="row"><div class="col">';
 }
 
 ########
@@ -249,7 +249,7 @@ echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 ########
 if($pagetab !== 'stats'){
   echo '</div>'; # end of the content div
-  echo '<div class="col-lg-4 order-lg-12 pl-2"><div class="side-sub-subnav sticky-top">';
+  echo '<div class="col-auto d-none d-lg-block pl-2"><div class="side-sub-subnav sticky-top">';
 
   # Pipeline homepage & releases - key stats
   if(in_array($pagetab, ['', 'releases'])){

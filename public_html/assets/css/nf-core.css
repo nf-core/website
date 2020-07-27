@@ -366,6 +366,7 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
 }
 .main-content {
   min-height: 300px;
+  max-width: 1800px;
   margin-top: 1rem;
   margin-bottom: 6rem;
   font-size: 1.1rem;
@@ -1121,10 +1122,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .param-docs-hidden {
   background-color: #f9f9f9;
 }
-.param_labels_helpbtn {
-  float:right;
-  margin-top: -40px;
-}
-.param-docs-body {
-  padding: 0 1rem;
+@media only screen and (max-width: 770px) {
+  .params-docs-row code {
+    font-size: 87.5%;
+  }
 }
