@@ -24,8 +24,9 @@ body {
 }
 .border,
 .border-right,
-.border-left {
-  border-color: #1F2124!important;
+.border-left,
+.border-bottom {
+  border-color: #343434!important;
 }
 .bg-white, .join-pull-img {
   background-color: #181a1b!important;
@@ -99,7 +100,7 @@ blockquote a {
   border-color: #616161;
 }
 .badge-light {
-  color: rgb(218, 215, 210);
+  color: #e5e6e7;
   background-color: rgb(26, 28, 29);
 }
 .badge-secondary {
@@ -115,15 +116,19 @@ blockquote a {
   color: #999999;
 }
 .table {
-  color: #fff;
+  color: #999;
 }
 .table .thead-light th {
-  color: #e5e6e7;
+  color: #999;
   background-color: #1C1F21;
   border-color: #1F2124;
 }
 .table td {
   border-color: #454d55;
+}
+.table-bordered td,
+.table-bordered thead th{
+  border-color: #343434;
 }
 .table-hover tbody tr:hover {
   color: #fff;
@@ -230,7 +235,6 @@ footer .btn-light:not(:disabled):not(.disabled).active,
   filter: invert(80%) opacity(100%);
 }
 
-
 .btn-outline-success:not(:disabled):not(.disabled) {
     border-color: #1D9655;
     color: #1D9655;
@@ -242,6 +246,15 @@ footer .btn-light:not(:disabled):not(.disabled).active,
     background-color: #1D9655;
     border-color: #1D9655;
 }
+.btn-outline-info:not(:disabled):not(.disabled) {
+    border-color: #36646e;
+    color: #36646e;
+}
+.btn-outline-info:not(:disabled):not(.disabled):hover {
+    color: #1c353b;
+    background-color: #36646e;
+}
+
 .main-content h1 {
   border-bottom: 1px solid #1D9655;
 }
