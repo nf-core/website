@@ -101,7 +101,7 @@ blockquote a {
 }
 .badge-light {
   color: #e5e6e7;
-  background-color: rgb(26, 28, 29);
+  background-color: #343434;
 }
 .badge-secondary {
   color: rgb(218, 215, 210);
@@ -110,10 +110,10 @@ blockquote a {
 .pipeline-run-cmd {
   background-color: rgba(34, 36, 38, 0.3);
   border-color: rgba(58, 58, 58, 0.6) !important;
-  color: #999999;
+  color: #999;
 }
 .hljs {
-  color: #999999;
+  color: #999;
 }
 .table {
   color: #999;
@@ -429,7 +429,6 @@ hr {
 .schema_row_help_text_icon:hover .help_text_icon.help_text_icon_no_text {
   color: #ededed;
 }
-
 .popover,
 .popover-header,
 .popover-body{
@@ -464,5 +463,10 @@ hr {
   background-color: rgba(220,220,220,0.25);
 }
 .param-docs-hidden {
-  background-color: #333;
+  color: #999;
+  background-color: #181a1b;
+}
+.param-docs-hidden code{
+  color: #999;
+  background-color: #181a1b;
 }
