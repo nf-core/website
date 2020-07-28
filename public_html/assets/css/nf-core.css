@@ -1112,12 +1112,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-top: 0;
   border-bottom: 0;
 }
-.toc .list-group .list-group:hover,
-.toc .list-group .list-group .list-group:hover,
 .toc .list-group > .active + .list-group,
-.toc .list-group > .list-group-item:hover + .list-group,
-.toc .list-group .list-group > .active + .list-group,
-.toc .list-group .list-group > .list-group-item:hover + .list-group
+.toc .list-group .list-group > .active + .list-group
 {
   display: block;
 }
