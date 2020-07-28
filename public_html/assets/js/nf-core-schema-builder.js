@@ -1028,7 +1028,11 @@ $(function () {
         $('#multi_select_modal #no_params_alert').hide();
         $("#search_parameters").val("");
         // Build modal
-        $('#multi_select_modal .modal-header h4 span').html(id)
+        var param = find_param_in_schema(id);
+        var title = id;
+        if(param && param.title !== undefined){ title = param.title; }
+        $('#multi_select_modal').data('param-id', id);
+        $('#multi_select_modal .modal-header h4 span').html(title)
         update_group_params_table();
         $('#multi_select_modal').modal('show');
     }
@@ -1052,33 +1056,31 @@ $(function () {
     // Submit modal
     // move selected parameters into the group, close modal if no top-level parameters are left
     $('#move_params').click(function(){
-        var id = $('#multi_select_modal .modal-header h4 span').text();
+        var id = $('#multi_select_modal').data('param-id');
         var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
-        var selected_params = $('#multi_select_modal').find('.select_param:checked');
-        for (let i = 0; i < selected_params.length; i++) {
-            var p_id = $(selected_params[i]).data('id');
-            var row_el = $('.schema_row[data-id="' + p_id + '"]');
+        $('#multi_select_modal').find('.select_param:checked').each(function(){
+            var row_el = $('.schema_row[data-id="' + $(this).data('id') + '"]');
             group_el.append(row_el);
-        }
+        });
         schema_order_change();
         update_group_params_table();
-        $('#multi_select_modal #move_params').addClass("disabled");
-        $('#multi_select_modal #move_params').html("Move parameters");
-        if (!$('#multi_select_modal .params_table').is(":visible")){
-            $('#multi_select_modal').modal('toggle');
-        }
+        $('#multi_select_modal').modal('hide');
     });
 
     // creates and updates the parameter table
     function update_group_params_table(){
         $("#search_parameters").val("");
         var params = '';
-        for (k in schema['definitions']) {
+        for (k in schema['properties']) {
             // create row for the table
+            var description = '';
+            if (schema['properties'][k].hasOwnProperty('description')){
+                description = schema['properties'][k]['description'];
+            };
             params += `<tr data-id=`+ k + `>
                     <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
                     <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
-                    <td><label for="group-move-`+ k + `" class="small">` + schema['definitions'][k].description +`</label></td>
+                    <td><label for="group-move-`+ k + `" class="small">` + description +`</label></td>
                 </tr>`;
         }
         if (params === '') {
