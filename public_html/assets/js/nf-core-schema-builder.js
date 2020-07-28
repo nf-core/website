@@ -717,17 +717,18 @@ $(function () {
         // Populate the help text modal
         var id = $(this).closest('.schema_row').data('id');
         var param = find_param_in_schema(id);
-        var modal_header = 'params.<span>'+id+'</span>';
+        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var preview_cli_title = '--'+id;
         var preview_web_title = '<code>--'+id+'</code>';
-        if(param['type'] == 'object'){
-            modal_header = '<span>'+id+'</span>';
-            preview_cli_title = '== '+id+' ==';
-            preview_web_title = id;
+        if(param.title != undefined){
+            modal_header = param.title;
+            preview_cli_title = param.title;
+            preview_web_title = param.title;
         }
         if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){
             preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
         }
+        $('#help_text_modal').data('param-id', id);
         $('#help_text_modal .modal-title').html(modal_header);
         $('.helptext-cli-preview-title').html(preview_cli_title);
         $('.helptext-web-preview-title').html(preview_web_title);
@@ -779,7 +780,7 @@ $(function () {
 
     // Save the help text
     $('#help_text_save').click(function(){
-        var id = $('#help_text_modal .modal-title span').text();
+        var id = $('#help_text_modal').data('param-id');
         var param = find_param_in_schema(id);
         var help_text = $('#help_text_input').val();
 

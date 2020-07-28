@@ -229,7 +229,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title h4 text-monospace"></span>
+                    <span class="modal-title h4"></span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -257,9 +257,8 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                             </div>
                             <div class="tab-pane fade" id="tab-helptext-preview" role="tabpanel">
                                 <p>Command-line:</p>
-                                <pre><span class="helptext-cli-preview-title"></span>
+                                <pre><span class="helptext-cli-preview-title font-weight-bold"></span>
 <span class="helptext-preview-description"></span>
-
 <span class="helptext-preview-helptext text-muted"></span></pre>
                                 <p>Website:</p>
                                 <div class="card helptext-html-preview">
