@@ -608,10 +608,6 @@ $(function () {
                 }
             }
         });
-        // Clear empty required arrays
-        if(new_schema['required'].length == 0){
-            delete new_schema['required'];
-        }
         for(k in new_schema['definitions']){
             // Remove empty required arrays at group level
             if(new_schema['definitions'][k].hasOwnProperty('required')){
@@ -637,6 +633,20 @@ $(function () {
                 }
                 $('.schema_row[data-id="'+k+'"] .param_hidden').prop('checked', is_group_hidden);
             }
+        }
+
+        // Clean up empty schema elements
+        if(Object.keys(new_schema['properties']).length == 0){
+            delete new_schema['properties'];
+        }
+        if(Object.keys(new_schema['definitions']).length == 0){
+            delete new_schema['definitions'];
+        }
+        if(new_schema['allOf'].length == 0){
+            delete new_schema['allOf'];
+        }
+        if(new_schema['required'].length == 0){
+            delete new_schema['required'];
         }
 
         schema = new_schema;
@@ -816,12 +826,11 @@ $(function () {
         var param = find_param_in_schema(id);
 
         // Build modal
-        var modal_header = 'params.<span>'+id+'</span>';
+        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var delete_btn_txt = 'Delete parameter';
-        if(param['type'] == 'object'){
-            modal_header = '<span>'+id+'</span>';
-            delete_btn_txt = 'Delete group';
-        }
+        if(param.title != undefined){ modal_header = param.title; }
+        if(param['type'] == 'object'){ delete_btn_txt = 'Delete group'; }
+        $('#settings_modal').data('param-id', id);
         $('#settings_modal .modal-title').html(modal_header);
         $('#settings_delete span').html(delete_btn_txt);
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
@@ -861,7 +870,7 @@ $(function () {
     //
     $('#settings_save').click(function(e){
 
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var param = find_param_in_schema(id);
 
         var settings = {};
@@ -911,7 +920,7 @@ $(function () {
     });
     // Revalidate default value once modal settings changed
     $('#settings_modal').on('hidden.bs.modal', function (e) {
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var param = find_param_in_schema(id);
         // It may have been deleted
         if(param){
@@ -928,7 +937,7 @@ $(function () {
     // Settings Modal - delete button
     //
     $('#settings_delete').click(function(e){
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var row_el = $('.schema_row[data-id="'+id+'"]');
         var group_el = $('.schema_group[data-id="'+id+'"]');
 
@@ -938,28 +947,60 @@ $(function () {
                 delete schema['properties'][k];
             }
         }
-        // Check if group
+        // Go through groups
         for(k in schema['definitions']){
-            for(j in schema['definitions'][k]['properties']){
-                if(j == id){
-                    delete schema['definitions'][k]['properties'][j];
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                for(j in schema['definitions'][k]['properties']){
+                    // Parameter to delete is in a group
+                    if(j == id){
+                        delete schema['definitions'][k]['properties'][j];
+                    }
+                    // Group itself is being deleted - move contents of the group
+                    if(k == id){
+                        // Move the HTML row out of the group
+                        $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
+
+                        // Move the schema param in to the top-level schema object
+                        if(!schema.hasOwnProperty('properties')){
+                            schema['properties'] = {};
+                        }
+                        schema['properties'][j] = schema['definitions'][k]['properties'][j];
+
+                        // If it is required, set this on the top-level schema object
+                        if(schema['definitions'][k].hasOwnProperty('required') && schema['definitions'][k]['required'].indexOf(j) != -1){
+                            set_required(j, true);
+                        }
+                    }
                 }
-                // Move contents of the group out if we're going to delete it
-                if(k == id){
-                    // Move the HTML row out of the group
-                    $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
-
-                    // Move the schema param in to the top-level schema object
-                    schema['properties'][j] = schema['definitions'][k]['properties'][j];
-
-                    // If it is required, set this on the top-level schema object
-                    if(schema['definitions'][k].hasOwnProperty('required') && schema['definitions'][k]['required'].indexOf(j) != -1){
-                        set_required(j, true);
+            }
+            // Delete the group from the schema
+            if(k == id){
+                delete schema['definitions'][k];
+                // Loop backwards from allOf and remove matching definition
+                var i = schema['allOf'].length;
+                while (i--) {
+                    if (schema['allOf'][i]["$ref"] == "#/definitions/"+k){
+                        schema['allOf'].splice(i, 1);
                     }
                 }
             }
         }
 
+        // Clean up empty schema elements
+        if(schema.hasOwnProperty('properties') && Object.keys(schema['properties']).length == 0){
+            delete schema['properties'];
+        }
+        if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
+            delete schema['definitions'];
+        }
+        if(schema.hasOwnProperty('allOf') && schema['allOf'].length == 0){
+            delete schema['allOf'];
+        }
+        if(schema.hasOwnProperty('required') && schema['required'].length == 0){
+            delete schema['required'];
+        }
+
+        // Delete the HTML elements - one of these won't match anything
         row_el.remove();
         group_el.remove();
 
@@ -1416,7 +1457,7 @@ function validate_id(id, old_id){
     // Check that the ID is not a duplicate
     var num_hits = 0;
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         num_hits += 1;
     }
     // Iterate through groups, looking for ID
@@ -1500,7 +1541,7 @@ function set_required(id, is_required){
     var schema_parent = null;
     // Get the parent object in the schema
     //   top-level properties
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema_parent = schema;
     }
     //   grouped properties
@@ -1540,12 +1581,12 @@ function find_param_in_schema(id){
     // Assumes max one level of nesting and unique IDs everywhere
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         return schema['properties'][id];
     }
 
     // This ID is itself a group
-    if(schema['definitions'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)){
         return schema['definitions'][id];
     }
 
@@ -1559,7 +1600,7 @@ function find_param_in_schema(id){
         }
     }
 
-    console.warn("Could not find param: '"+id+"'", schema);
+    console.warn("Could not find param: '"+id+"'");
 }
 
 function find_param_group(id){
@@ -1567,7 +1608,7 @@ function find_param_group(id){
     // If not in a group, return False
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         return false;
     }
 
@@ -1581,7 +1622,7 @@ function find_param_group(id){
         }
     }
 
-    console.warn("Could not find param group: '"+id+"'", schema);
+    console.warn("Could not find param group: '"+id+"'");
 }
 
 function update_param_in_schema(id, new_param){
@@ -1589,13 +1630,13 @@ function update_param_in_schema(id, new_param){
     // Assumes max one level of nesting and unique IDs everywhere
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema['properties'][id] = new_param;
         return true;
     }
 
     // This ID is itself a group
-    if(schema['definitions'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)){
         schema['definitions'][id] = new_param;
         return true;
     }
@@ -1611,5 +1652,5 @@ function update_param_in_schema(id, new_param){
         }
     }
 
-    console.warn("Could not find param to update: '"+id+"'", schema);
+    console.warn("Could not find param to update: '"+id+"'");
 }
