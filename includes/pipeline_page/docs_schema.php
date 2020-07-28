@@ -51,9 +51,8 @@ if(file_exists($gh_pipeline_schema_fn)){
           <i class="fas fa-question-circle"></i> Help
         </button>';
       $help_text = '
-        <div class="collapse card col-12 schema-docs-help-text mb-2" id="'.$param_id.'-help">
-          <div class="card-body small text-muted py-2 px-0">'.parse_md($param['help_text'])['content'].'</div>
-        </div>';
+        <div class="collapse bg-lightgray col-12 schema-docs-help-text p-2 mb-2 small" id="'.$param_id.'-help">
+          '.parse_md($param['help_text'])['content'].'</div>';
     }
 
     # Labels
@@ -84,10 +83,11 @@ if(file_exists($gh_pipeline_schema_fn)){
 
     # Build row
     return '
-    <div class="row '.$hidden_class.' params-docs-row border-bottom d-flex '.$row_class.'">
+    <div class="row '.$hidden_class.' param-docs-row border-bottom d-flex '.$row_class.'">
       <div class="'.$id_cols.'">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>').'</div>
-      <div class="col">'.$param_body.$help_text.'</div>
-      <div class="col-auto">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
+      <div class="col">'.$param_body.'</div>
+      <div class="col-auto text-right">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
+      '.$help_text.'
     </div>';
   }
 
