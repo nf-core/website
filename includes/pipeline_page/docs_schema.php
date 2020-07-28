@@ -52,7 +52,7 @@ if(file_exists($gh_pipeline_schema_fn)){
         </button>';
       $help_text = '
         <div class="collapse card col-12 schema-docs-help-text mb-2" id="'.$param_id.'-help">
-          <div class="card-body small text-muted p-2">'.parse_md($param['help_text'])['content'].'</div>
+          <div class="card-body small text-muted py-2 px-0">'.parse_md($param['help_text'])['content'].'</div>
         </div>';
     }
 
