@@ -77,7 +77,6 @@ if(file_exists($gh_pipeline_schema_fn)){
     $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 small-h';
     $h_level = 'h3';
     if($is_group){
-      // $row_class = 'mt-3';
       $row_class = 'align-items-baseline mt-5';
       $id_cols = 'col pl-0 h2';
       $h_level = 'h2';

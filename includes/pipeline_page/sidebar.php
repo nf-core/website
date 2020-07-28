@@ -111,8 +111,8 @@ $last_commit = time_ago($pipeline->updated_at);
   </div>
   <div>
     <h6>get in touch</h6>
-      <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack mr-1"></i> Ask a question on Slack</a></p>
-      <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github mr-1"></i> Open an issue on GitHub</a></p>
+    <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack mr-1"></i> Ask a question on Slack</a></p>
+    <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github mr-1"></i> Open an issue on GitHub</a></p>
   </div>
 </div>
 
