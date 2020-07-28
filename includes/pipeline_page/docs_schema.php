@@ -33,8 +33,8 @@ if(file_exists($gh_pipeline_schema_fn)){
     } else {
       $fa_icon = '<i class="fad fa-circle fa-fw text-muted"></i> ';
     }
-    $h_text = $param_id;
-    if(!$is_group){ $h_text = '<code>'.$h_text.'</code>'; }
+    $h_text = $param['title'];
+    if(!$is_group){ $h_text = '<code>'.$param_id.'</code>'; }
 
     # Description
     $description = '';
@@ -77,13 +77,13 @@ if(file_exists($gh_pipeline_schema_fn)){
     $h_level = 'h3';
     if($is_group){
       $row_class = 'align-items-baseline mt-5';
-      $id_cols = 'col pl-0 h2';
+      $id_cols = 'col-auto pl-0 h2';
       $h_level = 'h2';
     }
 
     # Build row
     return '
-    <div class="row '.$hidden_class.' param-docs-row border-bottom d-flex '.$row_class.'">
+    <div class="row '.$hidden_class.' param-docs-row border-bottom d-flex py-2 '.$row_class.'">
       <div class="'.$id_cols.'">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>').'</div>
       <div class="col">'.$param_body.'</div>
       <div class="col-auto text-right">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
@@ -93,7 +93,7 @@ if(file_exists($gh_pipeline_schema_fn)){
 
   $schema_content = '<div class="schema-docs">';
   $schema_content .= _h1('Parameters');
-  foreach($schema["properties"] as $param_id => $param){
+  foreach($schema["definitions"] as $param_id => $param){
     // Groups
     if($param["type"] == "object"){
       $schema_content .= print_param(true, $param_id, $param);
