@@ -40,9 +40,12 @@ body {
 a, a:hover, a:focus, a:active {
   color: rgb(111, 178, 232);
 }
-code {
+code, .pipeline-run-cmd .code{
   background-color: rgba(220,220,220,0.1);
   color: #db9444;
+}
+.pipeline-run-cmd .btn{
+  border-color: #363F48;
 }
 blockquote {
   color: #98b9eb;
@@ -109,8 +112,7 @@ blockquote a {
 .badge-secondary {
   color: rgb(218, 215, 210);
 }
-.main-content pre,
-.pipeline-run-cmd {
+.main-content pre{
   background-color: rgba(34, 36, 38, 0.3);
   border-color: rgba(58, 58, 58, 0.6) !important;
   color: #999;

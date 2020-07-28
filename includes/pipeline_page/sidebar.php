@@ -55,8 +55,11 @@ $last_commit = time_ago($pipeline->updated_at);
   <div class="row border-bottom pb-2">
     <div class="col-12">
       <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
-      <div class="border pipeline-run-cmd p-1">
-        <code class="small"> nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
+      <div class="input-group pipeline-run-cmd">
+        <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test" aria-label="Copy run command" readonly="">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary copy-txt" data-target="pipeline-run-cmd-text" type="button"><i class="fad fa-clipboard"></i></button>
+        </div>
       </div>
     </div>
   </div>

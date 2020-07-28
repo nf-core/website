@@ -95,7 +95,7 @@ img.emoji{
   }
 }
 @media only screen and (max-width: 770px) {
-  pre, code {
+  pre, code, .code {
     font-size: 10px;
   }
 }
@@ -228,6 +228,7 @@ code {
   padding: 2px 6px;
   color: inherit;
 }
+
 .main-content pre {
   background-color: rgba(220,220,220,0.3);
   border-radius: 3px;
@@ -309,17 +310,14 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   text-decoration: none;
   color: #212529;
 }
-.pipeline-run-cmd {
+.pipeline-run-cmd input{
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   background-color: rgba(220,220,220,0.3);
   overflow-x: auto;
   cursor: text;
 }
-.pipeline-run-cmd code {
-  background-color: transparent;
-  white-space: nowrap;
-}
-.pipeline-run-cmd:hover {
-  background-color: rgba(220,220,220,0.5);
+.pipeline-run-cmd .btn-outline-secondary{
+  border-color: #CED4DA;
 }
 .pipeline-sidebar .contrib-avatars img {
   width: 42px;
