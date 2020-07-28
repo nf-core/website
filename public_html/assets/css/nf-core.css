@@ -366,7 +366,7 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
 }
 .main-content {
   min-height: 300px;
-  max-width: 1800px;
+  max-width: 1440px;
   margin-top: 1rem;
   margin-bottom: 6rem;
   font-size: 1.1rem;
@@ -379,16 +379,10 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
-h2[id]::before, .bd-content > h3[id]::before, .bd-content > h4[id]::before {
-    display: block;
-    height: 50px;
-    margin-top: -50px;
-    content: "";
-}
-.main-content h1::before, .main-content h2::before, .main-content h3::before,
-.main-content h4::before, .main-content h5::before, .main-content h6::before,
-.main-content .h1::before, .main-content .h2::before, .main-content .h3::before,
-.main-content .h4::before, .main-content .h5::before, .main-content .h6::before {
+.main-content h1[id]::before, .main-content h2[id]::before, .main-content h3[id]::before,
+.main-content h4[id]::before, .main-content h5[id]::before, .main-content h6[id]::before,
+.main-content .h1[id]::before, .main-content .h2[id]::before, .main-content .h3[id]::before,
+.main-content .h4[id]::before, .main-content .h5[id]::before, .main-content .h6[id]::before {
   display: block;
   content: "";
   padding-top: 50px;
