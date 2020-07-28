@@ -194,28 +194,6 @@ function save_launcher_form(){
     exit;
 }
 
-// Markdown parsing libraries
-require_once('../includes/libraries/parsedown/Parsedown.php');
-require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
-$pd = new ParsedownExtra();
-
-function parse_md($text){
-    global $pd;
-    // Remove whitespace on lines that are only whitespace
-    $text = preg_replace('/^\s*$/m', '', $text);
-    // Remove global text indentation
-    $indents = array();
-    foreach(explode("\n",$text) as $l){
-        if(strlen($l) > 0){
-            $indents[] = strlen($l) - strlen(ltrim($l));
-        }
-    }
-    if(min($indents) > 0){
-        $text = preg_replace('/^\s{'.min($indents).'}/m', '', $text);
-    }
-    return $pd->text($text);
-}
-
 function build_form_param($param_id, $param, $is_required){
 
     global $cache;
@@ -241,7 +219,7 @@ function build_form_param($param_id, $param, $is_required){
     // Description
     $description = '';
     if(isset($param['description'])){
-        $description = '<small class="form-text">'.parse_md($param['description']).'</small>';
+        $description = '<small class="form-text">'.parse_md($param['description'])['content'].'</small>';
     }
 
     // Help text
@@ -255,7 +233,7 @@ function build_form_param($param_id, $param, $is_required){
         </div>';
         $help_text = '<div class="collapse" id="help-text-'.$param_id.'">
             <div class="card card-body small text-muted launcher-help-text">
-                '.parse_md($param['help_text']).'
+                '.parse_md($param['help_text'])['content'].'
             </div>
         </div>';
     }
