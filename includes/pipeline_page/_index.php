@@ -116,7 +116,7 @@ else if(endswith($_GET['path'], '/output')){
 # Stats
 else if(endswith($_GET['path'], '/stats')){
   $pagetab = 'stats';
-  require_once('stats.php');
+  require_once('pipeline_stats.php');
 }
 # Releases
 else if(endswith($_GET['path'], '/releases')){
@@ -241,11 +241,9 @@ if($pipeline->archived){
 
 <?php
 ########
-# Make a row with a column for content for everything except the stats page
+# Make a row with a column for content
 ########
-if($pagetab !== 'stats'){
-  echo '<div class="row"><div class="col-12 col-lg-9">';
-}
+echo '<div class="row"><div class="col-12 col-lg-9">';
 
 ########
 # Print content
@@ -261,38 +259,36 @@ echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 ########
 # Sidebar for everything except the stats page
 ########
-if($pagetab !== 'stats'){
-  echo '</div>'; # end of the content div
-  echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+echo '</div>'; # end of the content div
+echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
 
-  # Pipeline homepage & releases - key stats
-  if(in_array($pagetab, ['', 'releases'])){
-    require_once('sidebar.php');
-  }
-  # Documentation - ToC
-  else {
-    $toc = '<nav class="toc">';
-    $toc .= generate_toc($content);
-    # Add on the action buttons for the parameters docs
-    if($pagetab == 'usage'){
-      $toc .= '
-      <div class="btn-group w-100 mt-2 mb-1" role="group">
-        <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
-          <i class="fas fa-question-circle mr-1"></i> Show all help
-        </button>
-        <button class="btn btn-sm btn-outline-secondary btn-show-hidden-params" data-toggle="collapse" data-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
-          <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
-          <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
-        </button>
-      </div>';
-    }
-    # Back to top link
-    $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
-    $toc .='</nav>';
-    echo $toc;
-  }
-  echo '</div></div>'; # end of the sidebar col
-  echo '</div>'; # end of the row
+# Pipeline homepage & releases - key stats
+if(in_array($pagetab, ['', 'stats', 'releases'])){
+  require_once('sidebar.php');
 }
+# Documentation - ToC
+else {
+  $toc = '<nav class="toc">';
+  $toc .= generate_toc($content);
+  # Add on the action buttons for the parameters docs
+  if($pagetab == 'usage'){
+    $toc .= '
+    <div class="btn-group w-100 mt-2 mb-1" role="group">
+      <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
+        <i class="fas fa-question-circle mr-1"></i> Show all help
+      </button>
+      <button class="btn btn-sm btn-outline-secondary btn-show-hidden-params" data-toggle="collapse" data-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
+        <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
+        <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
+      </button>
+    </div>';
+  }
+  # Back to top link
+  $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+  $toc .='</nav>';
+  echo $toc;
+}
+echo '</div></div>'; # end of the sidebar col
+echo '</div>'; # end of the row
 
 include('../includes/footer.php');
