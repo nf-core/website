@@ -7,8 +7,8 @@
 var schema = '';
 var new_param_idx = 1;
 var new_group_idx = 1;
-var help_text_icon_template = '<i class="fas fa-book help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
-var no_help_text_icon = '<i class="fas fa-book help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
+var missing_help_text_icon = '<i class="fas fa-book help_text_icon help_text_icon_no_text"></i>';
+var has_help_text_icon = '<i class="fas fa-book help_text_icon"></i>';
 var prev_focus = false;
 var last_checked_box = null;
 showdown.setFlavor('github');
@@ -220,46 +220,6 @@ $(function () {
         $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
     });
 
-    // Preview docs button
-    $('.preview-docs-btn').click(function(e){
-        var preview = '';
-        var preview_wrapper_start = '';
-        var preview_wrapper_end = '';
-        var this_preview = '';
-        // Simple top-level params
-        for(k in schema['properties']){
-            this_preview = make_param_html_docs_preview(k, schema['properties'][k]);
-        }
-        // Groups
-        for(k in schema['definitions']){
-            if(schema['definitions'][k].hasOwnProperty('properties')){
-                preview_wrapper_start = '<div class="help-preview-group">';
-                preview_wrapper_end = '</div>';
-                var is_group_hidden = true;
-                var num_children = 0;
-                for(j in schema['definitions'][k]['properties']){
-                    this_preview += make_param_html_docs_preview(j, schema['definitions'][k]['properties'][j]);
-                    if(!schema['definitions'][k]['properties'][j]['hidden']){
-                        is_group_hidden = false;
-                    }
-                    num_children += 1;
-                }
-                if(num_children == 0){
-                    is_group_hidden = false;
-                }
-                if(is_group_hidden){
-                    preview_wrapper_start = '<div class="help-preview-group help-preview-param-hidden">';
-                }
-            }
-
-            // Add to the preview
-            preview += preview_wrapper_start + this_preview + preview_wrapper_end;
-        }
-        $('#preview_docs_modal .modal-body').html(preview);
-        $('#preview_docs_modal .modal-body table').addClass('table table-bordered table-striped table-sm small')
-        $('#preview_docs_modal .modal-body table').wrap('<div class="table-responsive"></div>');
-        $('#preview_docs_modal').modal('show');
-    });
     function make_param_html_docs_preview(param_id, param){
         // Header text and icon
         var hidden_class = param['hidden'] ? 'help-preview-param-hidden' : '';
@@ -804,9 +764,9 @@ $(function () {
         var help_text = $('#help_text_input').val();
 
         // Update the help-text icon
-        var help_text_icon = help_text_icon_template;
+        var help_text_icon = missing_help_text_icon;
         if(help_text.length > 0){
-            help_text_icon = no_help_text_icon;
+            help_text_icon = has_help_text_icon;
         }
         $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
 
@@ -1261,9 +1221,9 @@ function generate_param_row(id, param){
         }
     }
 
-    var help_text_icon = help_text_icon_template;
+    var help_text_icon = missing_help_text_icon;
     if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
-        help_text_icon = no_help_text_icon;
+        help_text_icon = has_help_text_icon;
     }
 
 
@@ -1347,9 +1307,9 @@ function generate_group_row(id, param, child_params){
         }
     }
 
-    var help_text_icon = help_text_icon_template;
+    var help_text_icon = missing_help_text_icon;
     if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
-        help_text_icon = no_help_text_icon;
+        help_text_icon = has_help_text_icon;
     }
 
     var is_hidden = true;
@@ -1384,7 +1344,7 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+description+`">
                     </label>
                 </div>
-                <button class="col-auto align-self-center schema_row_help_text_icon"  title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
+                <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
                 <div class="col-auto d-none d-lg-block">
                     <label>Type
                         <input type="text" disabled="disabled" value="Group">
