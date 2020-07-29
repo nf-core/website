@@ -21,7 +21,8 @@ foreach($pipelines_json->remote_workflows as $wf){
 
 // Loading launch page for a pipeline from the website
 $nxf_flag_schema = array(
-    'Nextflow command-line flags' => [
+    'coreNextflow' => [
+        'title' => 'Nextflow command-line flags',
         'type' => 'object',
         'description' => 'General Nextflow flags to control how the pipeline runs.',
         'help_text' => "These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.",
@@ -95,7 +96,16 @@ function launch_pipeline_web($pipeline, $release){
     // Build the POST data
     $gh_launch_schema_response = json_decode($gh_launch_schema_json, true);
     $gh_launch_schema = json_decode(base64_decode($gh_launch_schema_response['content']), true);
-    $gh_launch_schema['properties'] = $nxf_flag_schema + $gh_launch_schema['properties'];
+    // Add in the core nextflow options to the schema
+    if(!isset($gh_launch_schema['definitions'])){
+        $gh_launch_schema['definitions'] = array();
+    }
+    $gh_launch_schema['definitions'] = $nxf_flag_schema + $gh_launch_schema['definitions'];
+    if(!isset($gh_launch_schema['allOf'])){
+        $gh_launch_schema['allOf'] = array();
+    }
+    array_unshift($gh_launch_schema['allOf'], array('$ref' => '#/definitions/coreNextflow'));
+    // Set the remaining POST keys
     $_POST['post_content'] = 'json_schema_launcher';
     $_POST['api'] = 'false';
     $_POST['version'] = 'web_launcher';
@@ -164,7 +174,18 @@ function save_launcher_form(){
         return ["Cache had no schema: <code>".$cache_fn.'</code>'];
     }
     $cache['schema'] = json_decode($cache['schema'], true);
-    if(!isset($cache['schema']['properties']) || count($cache['schema']['properties']) == 0){
+    $num_params = 0;
+    if(isset($cache['schema']['properties'])){
+        $num_params += count($cache['schema']['properties']);
+    }
+    if(isset($cache['schema']['definitions'])){
+        foreach($cache['schema']['definitions'] as $def){
+            if(isset($def['properties'])){
+                $num_params += count($def['properties']);
+            }
+        }
+    }
+    if($num_params == 0){
         return ["Cache schema was empty: <code>".$cache_fn.'</code><pre>'.print_r($cache['schema'], true).'</pre>'];
     }
 
@@ -437,10 +458,7 @@ This should work with any Nextflow pipeline (though the experience is best for p
 
 
 INFO: This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
-
-
 INFO: Using local workflow: nf-core/atacseq (dev - 00d035c)
-
 INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 
 <span style="color:purple;">Would you like to enter pipeline parameters using a web-based interface or a command-line wizard?</span>
@@ -461,7 +479,7 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 
     $nxf_flags = ' ';
     foreach($cache['nxf_flags'] as $key => $val){
-        if(!$nxf_flag_schema['Nextflow command-line flags']['properties'][$key]['default'] == $val){
+        if(!$nxf_flag_schema['coreNextflow']['properties'][$key]['default'] == $val){
             $nxf_flags .= "$key $val ";
         }
     }
@@ -538,31 +556,48 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
         <div class="schema-gui-header sticky-top">
             <div class="row align-items-center">
                 <div class="col-md-auto">
+                    <?php if(isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0): ?>
                     <div class="btn-group">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-stream mr-1"></i> <span>Jump to section</span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <?php
-                            foreach($cache['schema']['properties'] as $param_id => $param){
-                                if($param['type'] == 'object'){
-                                    $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
-                                    $hidden_class = 'is_hidden';
-                                    foreach($cache['schema']['properties'][$param_id]['properties'] as $child_param_id => $child_param){
-                                        if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
-                                            $hidden_class = '';
-                                        }
-                                    }
-                                    $fa_icon = '';
-                                    if(isset($param['fa_icon'])){
-                                        $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
-                                    }
-                                    echo '<a class="dropdown-item '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$param_id.'</a>';
+                            // Definition groups
+                            foreach($cache['schema']['allOf'] as $allof){
+                                if(!isset($allof['$ref']) || !isset($cache['schema']['definitions'])){
+                                    continue;
                                 }
+                                $group_id = substr($allof['$ref'], 14);
+                                if(!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0){
+                                    continue;
+                                }
+                                $group = $cache['schema']['definitions'][$group_id];
+                                $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
+                                $hidden_class = 'is_hidden';
+                                foreach($group['properties'] as $param_id => $param){
+                                    if(!isset($param['hidden']) || (strtolower($param['hidden']) == 'false' || $param['hidden'] === false)){
+                                        $hidden_class = '';
+                                    }
+                                }
+                                $fa_icon = '';
+                                if(isset($group['fa_icon'])){
+                                    $fa_icon = '<i class="'.$group['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
+                                }
+                                $title = $group_id;
+                                if(isset($group['title'])){
+                                    $title = $group['title'];
+                                }
+                                echo '<a class="dropdown-item '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$title.'</a>';
+                            }
+                            // Top-level parameters
+                            if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
+                                echo '<a class="dropdown-item scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</a>';
                             }
                             ?>
                         </div>
                     </div>
+                    <?php endif; ?>
                     <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 0 }'>
                         <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
                         <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
@@ -583,43 +618,69 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
         </div>
 
         <?php
-        foreach($cache['schema']['properties'] as $param_id => $param){
-            if($param['type'] == 'object'){
-                $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($param_id)));
+        // Definition groups
+        if(isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0){
+            foreach($cache['schema']['allOf'] as $allof){
+                if(!isset($allof['$ref']) || !isset($cache['schema']['definitions'])){
+                    continue;
+                }
+                $group_id = substr($allof['$ref'], 14);
+                if(!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0){
+                    continue;
+                }
+                $group = $cache['schema']['definitions'][$group_id];
                 $hidden_class = 'is_hidden';
                 $child_parameters = '';
-                foreach($cache['schema']['properties'][$param_id]['properties'] as $child_param_id => $child_param){
-                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $cache['schema']['properties'][$param_id]['required']));
+                foreach($group['properties'] as $child_param_id => $child_param){
+                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $group['required']));
                     if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                         $hidden_class = '';
                     }
                 }
                 $fa_icon = '';
-                if(isset($param['fa_icon'])){
-                    $fa_icon = '<i class="'.$param['fa_icon'].' fa-fw mr-3"></i>';
+                if(isset($group['fa_icon'])){
+                    $fa_icon = '<i class="'.$group['fa_icon'].' fa-fw mr-3"></i>';
+                }
+                $title = $group_id;
+                if(isset($group['title'])){
+                    $title = $group['title'];
                 }
                 $description = '';
-                if(isset($param['description'])){
-                    $description = '<p class="form-text">'.$param['description'].'</p>';
+                if(isset($group['description'])){
+                    $description = '<p class="form-text">'.$group['description'].'</p>';
                 }
                 $helptext = '';
-                if(isset($param['help_text'])){
-                    $helptext = '<small class="form-text text-muted">'.$param['help_text'].'</small>';
+                if(isset($group['help_text'])){
+                    $helptext = '<small class="form-text text-muted">'.$group['help_text'].'</small>';
                 }
                 if(strlen($child_parameters) > 0){
                     echo '
-                    <fieldset class="'.$hidden_class.'" id="'.$html_id.'">
+                    <fieldset class="'.$hidden_class.'" id="'.$group_id.'">
                         <div class="card">
-                            <legend class="h2 card-header">'.$fa_icon.$param_id.'</legend>
+                            <legend class="h2 card-header">'.$fa_icon.$title.'</legend>
                             <div class="card-body">
                                 '.$description.$helptext.$child_parameters.'
                             </div>
                         </div>
                     </fieldset>';
                 }
-            } else {
-                echo build_form_param($param_id, $param, @in_array($param_id, $cache['schema']['required']));
             }
+        }
+        // Top-level parameters
+        if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
+            $child_parameters = '';
+            foreach($cache['schema']['properties'] as $param_id => $param){
+                $child_parameters .= build_form_param($param_id, $param, @in_array($param_id, $cache['schema']['required']));
+            }
+            echo '
+            <fieldset id="ungrouped-parameters">
+                <div class="card">
+                    <legend class="h2 card-header"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</legend>
+                    <div class="card-body">
+                        '.$child_parameters.'
+                    </div>
+                </div>
+            </fieldset>';
         }
         ?>
         <div class="mt-5 text-center">
