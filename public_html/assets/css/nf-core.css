@@ -1096,6 +1096,12 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
 }
+@media only screen and (max-width: 1440px) {
+  .toc > .list-group  {
+    max-height: calc(100vh - 9.1rem);
+  }
+}
+
 .toc > .list-group > .list-group-item {
   font-weight: bold;
 }

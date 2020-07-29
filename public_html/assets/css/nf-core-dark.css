@@ -148,7 +148,16 @@ blockquote a {
 .modal-content .modal-header, .modal-content .modal-footer {
   border-color: #222;
 }
-
+.toast {
+  background-color: rgba(35,35,35,.95);
+}
+.toast-header {
+  color: #fff;
+  background-color: #343434;
+}
+.toast .close{
+  color: #fff;
+}
 .site-nav,
 .site-nav li .dropdown-menu,
 .popover {
