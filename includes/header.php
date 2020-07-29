@@ -17,6 +17,11 @@ if(isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 
 // Convert Markdown to HTML if a filename is given
 if(isset($markdown_fn) and $markdown_fn){
   require_once('parse_md.php');
+  $parsed_out = parse_md($markdown_fn);
+  $content = $parsed_out["content"];
+  $meta = $parsed_out["meta"];
+  $title = $parsed_out["title"];
+  $subtitle = $parsed_out["subtitle"];
 }
 
 // Page title
@@ -86,8 +91,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
-  <body>
-
+  <body data-spy="scroll" data-target=".toc" data-offset="15">
     <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
       <a class="navbar-brand d-md-none" href="/">
         <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
@@ -189,7 +193,7 @@ if(isset($title) and $title): ?>
 
       <div class="triangle triangle-down"></div>
 
-      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content"> <?php endif; ?>
+      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content pt-5"> <?php endif; ?>
 
 <?php endif;
 if( isset($markdown_fn) and $markdown_fn){

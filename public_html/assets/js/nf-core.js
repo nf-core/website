@@ -187,6 +187,22 @@ $(function () {
 
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
+
+    // Pipeline page version number dropdown
+    $('#version_select').on('change', function(){
+        document.location.href = $(this).val();
+    })
+
+    //copy text to clipboard
+    $('.toast').toast();
+    $('.copy-txt').on('click',function(){
+        var target = $(this).data("target");
+        var target_id = '#'+target;
+        $(target_id).select();
+        document.execCommand('copy');
+        $(target_id).blur();
+        $('#pipeline_sidebar_cmd_copied').toast('show');
+    })
 });
 
 function scroll_to(target_el){
