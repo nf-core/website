@@ -1,6 +1,7 @@
 <?php
 
 require_once('../includes/functions.php');
+require_once('../includes/parse_md.php');
 $error_msgs = array();
 
 // Get available pipelines / releases
