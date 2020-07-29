@@ -133,7 +133,6 @@ function generate_toc($html_string){
       if(preg_match('/<i.*?<\/i>/',$whole_str,$icon_match)){
         $name = $icon_match[0].$name;
       }
-      $name = str_replace('hidden','',$name); // remove artifact from "hidden" badge
       $is_hidden = strpos($before_attrs, 'toc-hidden') !== false || strpos($after_attrs, 'toc-hidden') !== false;
       $toc_hidden = $is_hidden ? 'collapse' : '';
       $toc .= '<a class="list-group-item list-group-item-action '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
@@ -176,17 +175,16 @@ function _h4($html){ return _h(4, $html); }
 function _h5($html){ return _h(5, $html); }
 
 
-function add_ids_to_headers($content_input){
+function add_ids_to_headers($content_input, $is_hidden=false){
   //////////////////
   // Add IDs and anchor links to all headings in a block of HTML
   //////////////////
   global $heading_ids;
   $content_output = preg_replace_callback(
     '~<h([1234])>(.*?)</h([1234])>~Ui', // Ungreedy by default, case insensitive
-    function ($matches) use($heading_ids) {
-      $id_match = strip_tags($matches[2]);
-      $id_match = strtolower( preg_replace('/[^\w\-\.]/', '', str_replace(' ', '-', $id_match)));
-      $id_match = str_replace('---', '-', $id_match);
+    function ($matches) use($heading_ids, $is_hidden) {
+      $id_match = trim(strip_tags($matches[2]));
+      $id_match = strtolower( preg_replace('/[^\w\-\.]+/', '', str_replace(' ', '-', $id_match)));
       $hid = $id_match;
       $i = 1;
       while(in_array($hid, $heading_ids)){
@@ -194,7 +192,8 @@ function add_ids_to_headers($content_input){
         $i += 1;
       }
       $heading_ids[] = $hid;
-      return '<h'.$matches[1].' id="'.$hid.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
+      $hidden_class = $is_hidden ? 'toc-hidden' : '';
+      return '<h'.$matches[1].' id="'.$hid.'" class="'.$hidden_class.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
     },
     $content_input
   );
