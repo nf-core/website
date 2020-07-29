@@ -583,6 +583,11 @@ $(function () {
         new_schema['definitions'] = {};
         new_schema['allOf'] = [];
         new_schema['required'] = [];
+
+        // Ensure that top-level params are at the bottom of the DOM
+        $('#schema-builder > .schema_row').appendTo('#schema-builder');
+
+        // Parse the DOM to build the new schema
         $('.schema_row').each(function(idx, row){
             var id = $(row).data('id');
             var param = JSON.parse(JSON.stringify(find_param_in_schema(id)));
