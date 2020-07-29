@@ -194,12 +194,14 @@ $(function () {
     })
 
     //copy text to clipboard
+    $('.toast').toast();
     $('.copy-txt').on('click',function(){
         var target = $(this).data("target");
         var target_id = '#'+target;
         $(target_id).select();
         document.execCommand('copy');
         $(target_id).blur();
+        $('#pipeline_sidebar_cmd_copied').toast('show');
     })
 });
 
