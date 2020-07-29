@@ -96,7 +96,8 @@ function parse_md($markdown){
     $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
   }
   // Add CSS classes to tables
-  $content = str_replace('<table>', '<table class="table table-bordered table-striped table-sm small">', $content);
+  $content = str_replace('<table>', '<div class="table-responsive"><table class="table table-bordered table-striped table-sm small">', $content);
+  $content = str_replace('</table>', '</table></div>', $content);
 
   // Find and replace HTML content if requested
   if(isset($html_content_replace)){
