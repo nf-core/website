@@ -138,7 +138,7 @@ function generate_toc($html_string){
       $toc .= '<a class="list-group-item list-group-item-action '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
-  while($curr_level > 0){
+  while($curr_level > 1){
     $toc .= '</div>';
     $curr_level -= 1;
   }
