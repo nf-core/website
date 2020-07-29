@@ -26,14 +26,19 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 <div class="collapse" id="page_help">
     <h5>nf-core schema</h5>
 
-    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> <em>Draft 7</em> standard.</p>
-    <p>
-        Pipeline parameters should be described as <code>properties</code> either in the top-level schema, or in subschema within <code>definitions</code>.
-        The <code>definitions</code> subschemas are used to group parameters for the user-interface.
-        The <code>definitions</code> subschema are combined in the main schema using <code>allOf</code> for parameter validation.
-    </p>
-    <p>Although the schema parameter validation can handle object-nesting of parameters (eg. <code>params.foo.bar = "baz"</code>) and multiple-levels of nesting subschema groups,
-    the nf-core tools such as this builder currently ignore such structures.</p>
+    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> <em>Draft 7</em> standard:</p>
+    <ul>
+        <li>Pipeline parameters should be described as <code>properties</code> either in the top-level schema, or in subschema within <code>definitions</code>.</li>
+        <li>The <code>definitions</code> subschemas are used to group parameters for the user-interface.
+            <ul>
+                <li>They are combined in the main schema using <code>allOf</code> for parameter validation.</li>
+                <li><code>allOf</code> is a list, the order of this list defines the order that the groups are displayed.</li>
+            </ul>
+        </li>
+        <li>Ungrouped params in the main schema <code>properties</code> are fine, but they will always be sorted at the end, after all <code>definitions</code> groups.</li>
+    </ul>
+    <p>Although the pipeline parameter validation can handle nesting of parameters in schema <code>objects</code> (eg. <code>params.foo.bar = "baz"</code>) and multiple-levels
+        of nesting <code>definitions</code> subschema groups, this is not supported by nf-core - tools such as this builder are likely to behave unpredictably.</p>
     <p>We use a couple of extra JSON keys in addition to the standard JSON Schema set:</p>
     <ul>
         <li><code>help_text</code>, a longer description providing more in-depth help. Typically <code>description</code> is just a few words long and the longer help text is shown when a user requests it.</li>
@@ -41,7 +46,15 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
 
-    <h5>Tips:</h5>
+    <h5>Schema tips:</h5>
+    <ul>
+        <li><code>string</code>, <code>number</code>, <code>integer</code> and <code>range</code> parameters can take a list of <em>enumerated values</em> - a set of allowed values. User interfaces will then display a dropdown select-list.</li>
+        <li><code>string</code> params can also have a <em>pattern</em> - a regular expression to validate the input.</li>
+        <li><code>range</code> parameters can have either a <em>Minimum</em> or a <em>Maximum</em> or both.</li>
+        <li>All of the above settings are accessible through the settings <i class="fas fa-cog"></i></li>
+    </ul>
+
+    <h5>Builder tips:</h5>
     <ul>
         <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
         <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
