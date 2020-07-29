@@ -280,8 +280,9 @@ if($pagetab !== 'stats'){
         <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
           <i class="fas fa-question-circle mr-1"></i> Show all help
         </button>
-        <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".param-docs-body-hidden, .toc .collapse" aria-expanded="false">
-          <i class="fas fa-eye-slash"></i> Show hidden params
+        <button class="btn btn-sm btn-outline-secondary btn-show-hidden-params" data-toggle="collapse" data-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
+          <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
+          <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
         </button>
       </div>';
     }
