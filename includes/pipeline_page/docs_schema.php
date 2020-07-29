@@ -92,7 +92,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     <div class="row param-docs-row border-bottom '.$row_class.'">
       <div class="'.$id_cols.' param-docs-row-id-col">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>', $is_hidden).'</div>
       <div class="col">'.$param_body.'</div>
-      <div class="col-auto text-right">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
+      <div class="col-auto text-right">'.$help_text_btn.implode(' ', $labels).'</div>
       '.$help_text.'
     </div>';
   }
