@@ -11,7 +11,7 @@ var help_text_icon_template = '<i class="fas fa-book help_text_icon help_text_ic
 var no_help_text_icon = '<i class="fas fa-book help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
 var prev_focus = false;
 var last_checked_box = null;
-showdown.setFlavor('github'); 
+showdown.setFlavor('github');
 
 $(function () {
 
@@ -138,7 +138,7 @@ $(function () {
 
     // Build the schema builder
     try {
-        $('#schema-builder').html( generate_obj(schema['properties'], 1) );
+        $('#schema-builder').html( generate_obj() );
         init_group_sortable();
     } catch(e){
         alert("Error: Could not load schema JSON! Substituted for a blank schema.");
@@ -179,19 +179,25 @@ $(function () {
 
     // Add group button
     $('.add-group-btn').click(function(e){
-        var new_id = 'New Group '+new_group_idx;
-        while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
-            new_group_idx += 1;
-            new_id = 'New Group '+new_group_idx;
+        var new_id = 'new_group_'+new_group_idx;
+        var new_title = 'New Group '+new_group_idx;
+        if(!schema.hasOwnProperty('definitions')){
+            schema['definitions'] = {};
         }
-        var new_param = {
+        while (Object.keys(schema['definitions']).indexOf(new_id) != -1) {
+            new_group_idx += 1;
+            new_id = 'new_group_'+new_group_idx;
+            new_title = 'New Group '+new_group_idx;
+        }
+        var new_group = {
+            "title": new_title,
             "type": "object",
             "description": "",
             "default": "",
             "properties": {}
         };
-        schema['properties'][new_id] = new_param;
-        param_row = $( generate_group_row(new_id, new_param) );
+        schema['definitions'][new_id] = new_group;
+        param_row = $( generate_group_row(new_id, new_group) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
         scroll_to( param_row );
         init_group_sortable();
@@ -217,21 +223,23 @@ $(function () {
     // Preview docs button
     $('.preview-docs-btn').click(function(e){
         var preview = '';
+        var preview_wrapper_start = '';
+        var preview_wrapper_end = '';
+        var this_preview = '';
+        // Simple top-level params
         for(k in schema['properties']){
-            // Simple top-level params
-            var preview_wrapper_start = '';
-            var preview_wrapper_end = '';
-            var this_preview = make_param_html_docs_preview(k, schema['properties'][k]);
-
-            // Groups
-            if(schema['properties'][k].hasOwnProperty('properties')){
+            this_preview = make_param_html_docs_preview(k, schema['properties'][k]);
+        }
+        // Groups
+        for(k in schema['definitions']){
+            if(schema['definitions'][k].hasOwnProperty('properties')){
                 preview_wrapper_start = '<div class="help-preview-group">';
                 preview_wrapper_end = '</div>';
                 var is_group_hidden = true;
                 var num_children = 0;
-                for(j in schema['properties'][k]['properties']){
-                    this_preview += make_param_html_docs_preview(j, schema['properties'][k]['properties'][j]);
-                    if(!schema['properties'][k]['properties'][j]['hidden']){
+                for(j in schema['definitions'][k]['properties']){
+                    this_preview += make_param_html_docs_preview(j, schema['definitions'][k]['properties'][j]);
+                    if(!schema['definitions'][k]['properties'][j]['hidden']){
                         is_group_hidden = false;
                     }
                     num_children += 1;
@@ -248,6 +256,8 @@ $(function () {
             preview += preview_wrapper_start + this_preview + preview_wrapper_end;
         }
         $('#preview_docs_modal .modal-body').html(preview);
+        $('#preview_docs_modal .modal-body table').addClass('table table-bordered table-striped table-sm small')
+        $('#preview_docs_modal .modal-body table').wrap('<div class="table-responsive"></div>');
         $('#preview_docs_modal').modal('show');
     });
     function make_param_html_docs_preview(param_id, param){
@@ -312,7 +322,7 @@ $(function () {
                 'cache_id': $('#schema_cache_id').text(),
                 'schema': JSON.stringify(schema)
             };
-            $.post( "json_schema_build", post_data).done(function( returned_data ) {
+            $.post( "pipeline_schema_builder", post_data).done(function( returned_data ) {
                 console.log("Sent schema to API. Response:", returned_data);
                 if(returned_data.status == 'recieved'){
                     $('#schema-send-status').text("Ok, that's it - done!");
@@ -339,10 +349,17 @@ $(function () {
 
         // Parse data attributes
         var id = row.data('id');
+        var is_group = row.hasClass('schema_group_row');
+        var new_id = false;
 
         // Update ID if changed
         if($(this).hasClass('param_id')){
-            var new_id = $(this).val().trim();
+            new_id = $(this).val().trim();
+
+            // Check if this is a group title
+            if(is_group){
+                new_id = new_id.toLowerCase().replace(/[^a-z0-9_]+/g, '_').replace(/^_+|_+$/gm,'');
+            }
 
             // Check if it actually changed
             if(new_id != id){
@@ -354,10 +371,20 @@ $(function () {
                     // Do it in a slightly odd way to preserve key order
                     var new_schema = JSON.parse(JSON.stringify(schema));
                     new_schema['properties'] = {};
+                    new_schema['definitions'] = {};
+                    new_schema['allOf'] = [];
+                    // Top-level params
                     for(k in schema['properties']){
                         var new_k = k;
                         if(k == id){ new_k =  new_id};
                         new_schema['properties'][new_k] = schema['properties'][k];
+                    }
+                    // Groups
+                    for(k in schema['definitions']){
+                        var new_k = k;
+                        if(k == id){ new_k =  new_id};
+                        new_schema['definitions'][new_k] = schema['definitions'][k];
+                        new_schema['allOf'].push({"$ref": "#/definitions/"+new_k});
                     }
                     schema = new_schema;
 
@@ -375,9 +402,14 @@ $(function () {
         }
 
         // Update param keys if changed
-        if($(this).hasClass('param_key')){
+        if($(this).hasClass('param_key') || (is_group && new_id)){
             var param_key = $(this).data('param_key');
             var param = find_param_in_schema(id);
+            // Changing the group title
+            if(is_group && new_id){
+                param_key = "title";
+                param = find_param_in_schema(new_id);
+            }
             var new_param = JSON.parse(JSON.stringify(param));
             if($(this).val().trim().length == 0){
                 delete new_param[param_key];
@@ -548,48 +580,50 @@ $(function () {
         // Don't actually need to know where it landed - just rebuild schema from the DOM
         var new_schema = JSON.parse(JSON.stringify(schema));
         new_schema['properties'] = {};
+        new_schema['definitions'] = {};
+        new_schema['allOf'] = [];
         new_schema['required'] = [];
         $('.schema_row').each(function(idx, row){
             var id = $(row).data('id');
             var param = JSON.parse(JSON.stringify(find_param_in_schema(id)));
 
+            // Groups
+            if ($(this).hasClass('schema_group_row')) {
+                new_schema['definitions'][id] = param;
+                new_schema['definitions'][id]['properties'] = {};
+                new_schema['definitions'][id]['required'] = [];
+                new_schema['allOf'].push({"$ref": "#/definitions/"+id});
+            }
             // Check if we are inside a group
-            if ($(this).parent('.card-body').length) {
+            else if ($(this).parent('.card-body').length) {
                 var group_id = $(this).parent().data('id');
-                new_schema['properties'][group_id]['properties'][id] = param;
+                new_schema['definitions'][group_id]['properties'][id] = param;
                 if($(this).find('.param_required').is(':checked')){
-                    new_schema['properties'][group_id]['required'].push(id);
+                    new_schema['definitions'][group_id]['required'].push(id);
                 }
-            } else {
+            }
+            // Top-level parameters
+            else {
                 new_schema['properties'][id] = param;
                 if($(this).find('.param_required').is(':checked')){
                     new_schema['required'].push(id);
                 }
-                // If a group, delete contents of that as well
-                if(new_schema['properties'][id].hasOwnProperty('properties')){
-                    new_schema['properties'][id]['properties'] = {};
-                    new_schema['properties'][id]['required'] = [];
-                }
             }
         });
-        // Clear empty required arrays
-        if(new_schema['required'].length == 0){
-            delete new_schema['required'];
-        }
-        for(k in new_schema['properties']){
+        for(k in new_schema['definitions']){
             // Remove empty required arrays at group level
-            if(new_schema['properties'][k].hasOwnProperty('required')){
-                if(new_schema['properties'][k]['required'].length == 0){
-                    delete new_schema['properties'][k]['required'];
+            if(new_schema['definitions'][k].hasOwnProperty('required')){
+                if(new_schema['definitions'][k]['required'].length == 0){
+                    delete new_schema['definitions'][k]['required'];
                 }
             }
             // Set group hidden flag, drag + drop helper text
-            if(new_schema['properties'][k].hasOwnProperty('properties')){
+            if(new_schema['definitions'][k].hasOwnProperty('properties')){
                 $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').addClass('d-none');
                 var is_group_hidden = true;
                 var num_children = 0;
-                for (child_param_id in new_schema['properties'][k]['properties']){
-                    var child_param = new_schema['properties'][k]['properties'][child_param_id];
+                for (child_param_id in new_schema['definitions'][k]['properties']){
+                    var child_param = new_schema['definitions'][k]['properties'][child_param_id];
                     if(!child_param['hidden']){
                         is_group_hidden = false;
                     }
@@ -601,6 +635,20 @@ $(function () {
                 }
                 $('.schema_row[data-id="'+k+'"] .param_hidden').prop('checked', is_group_hidden);
             }
+        }
+
+        // Clean up empty schema elements
+        if(Object.keys(new_schema['properties']).length == 0){
+            delete new_schema['properties'];
+        }
+        if(Object.keys(new_schema['definitions']).length == 0){
+            delete new_schema['definitions'];
+        }
+        if(new_schema['allOf'].length == 0){
+            delete new_schema['allOf'];
+        }
+        if(new_schema['required'].length == 0){
+            delete new_schema['required'];
         }
 
         schema = new_schema;
@@ -681,17 +729,18 @@ $(function () {
         // Populate the help text modal
         var id = $(this).closest('.schema_row').data('id');
         var param = find_param_in_schema(id);
-        var modal_header = 'params.<span>'+id+'</span>';
+        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var preview_cli_title = '--'+id;
         var preview_web_title = '<code>--'+id+'</code>';
-        if(param['type'] == 'object'){
-            modal_header = '<span>'+id+'</span>';
-            preview_cli_title = '== '+id+' ==';
-            preview_web_title = id;
+        if(param.title != undefined){
+            modal_header = param.title;
+            preview_cli_title = param.title;
+            preview_web_title = param.title;
         }
         if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){
             preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
         }
+        $('#help_text_modal').data('param-id', id);
         $('#help_text_modal .modal-title').html(modal_header);
         $('.helptext-cli-preview-title').html(preview_cli_title);
         $('.helptext-web-preview-title').html(preview_web_title);
@@ -738,12 +787,14 @@ $(function () {
             var md_converter = new showdown.Converter();
             var help_text_html = md_converter.makeHtml( $('#help_text_input').val() );
             $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
+            $('.helptext-html-preview .helptext-preview-helptext table').addClass('table table-bordered table-striped table-sm small')
+            $('.helptext-html-preview .helptext-preview-helptext table').wrap('<div class="table-responsive"></div>')
         }
     })
 
     // Save the help text
     $('#help_text_save').click(function(){
-        var id = $('#help_text_modal .modal-title span').text();
+        var id = $('#help_text_modal').data('param-id');
         var param = find_param_in_schema(id);
         var help_text = $('#help_text_input').val();
 
@@ -779,12 +830,11 @@ $(function () {
         var param = find_param_in_schema(id);
 
         // Build modal
-        var modal_header = 'params.<span>'+id+'</span>';
+        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var delete_btn_txt = 'Delete parameter';
-        if(param['type'] == 'object'){
-            modal_header = '<span>'+id+'</span>';
-            delete_btn_txt = 'Delete group';
-        }
+        if(param.title != undefined){ modal_header = param.title; }
+        if(param['type'] == 'object'){ delete_btn_txt = 'Delete group'; }
+        $('#settings_modal').data('param-id', id);
         $('#settings_modal .modal-title').html(modal_header);
         $('#settings_delete span').html(delete_btn_txt);
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
@@ -824,7 +874,7 @@ $(function () {
     //
     $('#settings_save').click(function(e){
 
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var param = find_param_in_schema(id);
 
         var settings = {};
@@ -874,7 +924,7 @@ $(function () {
     });
     // Revalidate default value once modal settings changed
     $('#settings_modal').on('hidden.bs.modal', function (e) {
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var param = find_param_in_schema(id);
         // It may have been deleted
         if(param){
@@ -891,37 +941,70 @@ $(function () {
     // Settings Modal - delete button
     //
     $('#settings_delete').click(function(e){
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var row_el = $('.schema_row[data-id="'+id+'"]');
         var group_el = $('.schema_group[data-id="'+id+'"]');
 
+        // Top level properties
         for(k in schema['properties']){
-            // Check if group
-            if(schema['properties'][k].hasOwnProperty('properties')){
-                for(j in schema['properties'][k]['properties']){
+            if(k == id){
+                delete schema['properties'][k];
+            }
+        }
+        // Go through groups
+        for(k in schema['definitions']){
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                for(j in schema['definitions'][k]['properties']){
+                    // Parameter to delete is in a group
                     if(j == id){
-                        delete schema['properties'][k]['properties'][j];
+                        delete schema['definitions'][k]['properties'][j];
                     }
-                    // Move contents of the group out if we're going to delete it
+                    // Group itself is being deleted - move contents of the group
                     if(k == id){
                         // Move the HTML row out of the group
                         $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
 
                         // Move the schema param in to the top-level schema object
-                        schema['properties'][j] = schema['properties'][k]['properties'][j];
+                        if(!schema.hasOwnProperty('properties')){
+                            schema['properties'] = {};
+                        }
+                        schema['properties'][j] = schema['definitions'][k]['properties'][j];
 
                         // If it is required, set this on the top-level schema object
-                        if(schema['properties'][k].hasOwnProperty('required') && schema['properties'][k]['required'].indexOf(j) != -1){
+                        if(schema['definitions'][k].hasOwnProperty('required') && schema['definitions'][k]['required'].indexOf(j) != -1){
                             set_required(j, true);
                         }
                     }
                 }
             }
+            // Delete the group from the schema
             if(k == id){
-                delete schema['properties'][k];
+                delete schema['definitions'][k];
+                // Loop backwards from allOf and remove matching definition
+                var i = schema['allOf'].length;
+                while (i--) {
+                    if (schema['allOf'][i]["$ref"] == "#/definitions/"+k){
+                        schema['allOf'].splice(i, 1);
+                    }
+                }
             }
         }
 
+        // Clean up empty schema elements
+        if(schema.hasOwnProperty('properties') && Object.keys(schema['properties']).length == 0){
+            delete schema['properties'];
+        }
+        if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
+            delete schema['definitions'];
+        }
+        if(schema.hasOwnProperty('allOf') && schema['allOf'].length == 0){
+            delete schema['allOf'];
+        }
+        if(schema.hasOwnProperty('required') && schema['required'].length == 0){
+            delete schema['required'];
+        }
+
+        // Delete the HTML elements - one of these won't match anything
         row_el.remove();
         group_el.remove();
 
@@ -949,7 +1032,11 @@ $(function () {
         $('#multi_select_modal #no_params_alert').hide();
         $("#search_parameters").val("");
         // Build modal
-        $('#multi_select_modal .modal-header h4 span').html(id)
+        var param = find_param_in_schema(id);
+        var title = id;
+        if(param && param.title !== undefined){ title = param.title; }
+        $('#multi_select_modal').data('param-id', id);
+        $('#multi_select_modal .modal-header h4 span').html(title)
         update_group_params_table();
         $('#multi_select_modal').modal('show');
     }
@@ -973,21 +1060,15 @@ $(function () {
     // Submit modal
     // move selected parameters into the group, close modal if no top-level parameters are left
     $('#move_params').click(function(){
-        var id = $('#multi_select_modal .modal-header h4 span').text();
+        var id = $('#multi_select_modal').data('param-id');
         var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
-        var selected_params = $('#multi_select_modal').find('.select_param:checked');
-        for (let i = 0; i < selected_params.length; i++) {
-            var p_id = $(selected_params[i]).data('id');
-            var row_el = $('.schema_row[data-id="' + p_id + '"]');
+        $('#multi_select_modal').find('.select_param:checked').each(function(){
+            var row_el = $('.schema_row[data-id="' + $(this).data('id') + '"]');
             group_el.append(row_el);
-        }
+        });
         schema_order_change();
         update_group_params_table();
-        $('#multi_select_modal #move_params').addClass("disabled");
-        $('#multi_select_modal #move_params').html("Move parameters");
-        if (!$('#multi_select_modal .params_table').is(":visible")){
-            $('#multi_select_modal').modal('toggle');
-        }
+        $('#multi_select_modal').modal('hide');
     });
 
     // creates and updates the parameter table
@@ -995,15 +1076,15 @@ $(function () {
         $("#search_parameters").val("");
         var params = '';
         for (k in schema['properties']) {
-            // skip over Groups
-            if (schema['properties'][k].hasOwnProperty('properties')) {
-                continue
-            }
             // create row for the table
+            var description = '';
+            if (schema['properties'][k].hasOwnProperty('description')){
+                description = schema['properties'][k]['description'];
+            };
             params += `<tr data-id=`+ k + `>
                     <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
                     <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
-                    <td><label for="group-move-`+ k + `" class="small">` + schema['properties'][k].description +`</label></td>
+                    <td><label for="group-move-`+ k + `" class="small">` + description +`</label></td>
                 </tr>`;
         }
         if (params === '') {
@@ -1085,28 +1166,23 @@ $(function () {
 
 });
 
-function generate_obj(obj, level){
+function generate_obj(){
     var results = '';
-    for (var id in obj){
-        if (obj.hasOwnProperty(id)) {
-
-            // Groups
-            if(obj[id]['type'] == 'object'){
-
-                // Generate child rows
-                var child_params = '';
-                for (var child_id in obj[id]['properties']){
-                    if (obj[id]['properties'].hasOwnProperty(child_id)) {
-                        child_params += generate_param_row(child_id, obj[id]['properties'][child_id]);
-                    }
+    // Regular rows
+    for (var id in schema['properties']){
+        results += generate_param_row(id, schema['properties'][id]);
+    }
+    // Groups
+    for (var id in schema['definitions']){
+        if (schema['definitions'][id].hasOwnProperty('properties')) {
+            // Generate child rows
+            var child_params = '';
+            for (var child_id in schema['definitions'][id]['properties']){
+                if (schema['definitions'][id]['properties'].hasOwnProperty(child_id)) {
+                    child_params += generate_param_row(child_id, schema['definitions'][id]['properties'][child_id]);
                 }
-                results += generate_group_row(id, obj[id], child_params);
             }
-
-            // Regular rows
-            else {
-                results += generate_param_row(id, obj[id]);
-            }
+            results += generate_group_row(id, schema['definitions'][id], child_params);
         }
     }
     return results;
@@ -1153,10 +1229,10 @@ function generate_param_row(id, param){
             is_required = true;
         }
     }
-    // Lazy, just checking if it's in any group rather than specifically its own
-    for(k in schema['properties']){
-        if(schema['properties'][k].hasOwnProperty('required')){
-            if (schema['properties'][k]['required'].indexOf(id) !== -1) {
+    // Lazy, just checking if it's required in any group rather than specifically its own
+    for(k in schema['definitions']){
+        if(schema['definitions'][k].hasOwnProperty('required')){
+            if (schema['definitions'][k]['required'].indexOf(id) !== -1) {
                 is_required = true;
             }
         }
@@ -1239,6 +1315,11 @@ function generate_param_row(id, param){
 
 function generate_group_row(id, param, child_params){
 
+    var title = id;
+    if(param['title'] != undefined){
+        title = param['title'];
+    }
+
     var description = '';
     if(param['description'] != undefined){
         description = param['description'];
@@ -1290,7 +1371,7 @@ function generate_group_row(id, param, child_params){
                 <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
-                        <input type="text" class="text-monospace param_id" value="`+id+`">
+                        <input type="text" class="text-monospace param_id" value="`+title+`">
                     </label>
                 </div>
                 <div class="col">
@@ -1382,15 +1463,13 @@ function validate_id(id, old_id){
     // Check that the ID is not a duplicate
     var num_hits = 0;
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         num_hits += 1;
     }
     // Iterate through groups, looking for ID
-    for(k in schema['properties']){
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                num_hits += 1;
-            }
+    for(k in schema['definitions']){
+        if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+            num_hits += 1;
         }
     }
     if(num_hits > 0){
@@ -1467,15 +1546,17 @@ function set_required(id, is_required){
     // Function to set the required flag in the JSON Schema for a given ID
     var schema_parent = null;
     // Get the parent object in the schema
-    if(schema['properties'].hasOwnProperty(id)){
+    //   top-level properties
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema_parent = schema;
-    } else {
+    }
+    //   grouped properties
+    else {
         // Iterate through groups, looking for ID
-        for(k in schema['properties']){
-            // Check if group
-            if(schema['properties'][k].hasOwnProperty('properties')){
-                if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                    schema_parent =  schema['properties'][k];
+        for(k in schema['definitions']){
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                    schema_parent =  schema['definitions'][k];
                 }
             }
         }
@@ -1506,21 +1587,26 @@ function find_param_in_schema(id){
     // Assumes max one level of nesting and unique IDs everywhere
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         return schema['properties'][id];
     }
 
-    // Iterate through groups, looking for ID
-    for(k in schema['properties']){
+    // This ID is itself a group
+    if(schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)){
+        return schema['definitions'][id];
+    }
+
+    // Iterate through groups, looking for ID in groups
+    for(k in schema['definitions']){
         // Check if group
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                return schema['properties'][k]['properties'][id];
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                return schema['definitions'][k]['properties'][id];
             }
         }
     }
 
-    console.warn("Could not find param '"+id+"'");
+    console.warn("Could not find param: '"+id+"'");
 }
 
 function find_param_group(id){
@@ -1528,21 +1614,21 @@ function find_param_group(id){
     // If not in a group, return False
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         return false;
     }
 
     // Iterate through groups, looking for ID
-    for(k in schema['properties']){
+    for(k in schema['definitions']){
         // Check if group
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                return [k, schema['properties'][k]];
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                return [k, schema['definitions'][k]];
             }
         }
     }
 
-    console.warn("Could not find param '"+id+"'");
+    console.warn("Could not find param group: '"+id+"'");
 }
 
 function update_param_in_schema(id, new_param){
@@ -1550,21 +1636,27 @@ function update_param_in_schema(id, new_param){
     // Assumes max one level of nesting and unique IDs everywhere
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema['properties'][id] = new_param;
         return true;
     }
 
+    // This ID is itself a group
+    if(schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)){
+        schema['definitions'][id] = new_param;
+        return true;
+    }
+
     // Iterate through groups, looking for ID
-    for(k in schema['properties']){
+    for(k in schema['definitions']){
         // Check if group
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                schema['properties'][k]['properties'][id] = new_param;
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                schema['definitions'][k]['properties'][id] = new_param;
                 return true;
             }
         }
     }
 
-    console.warn("Could not find param '"+id+"'");
+    console.warn("Could not find param to update: '"+id+"'");
 }

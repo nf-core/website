@@ -99,21 +99,31 @@ if(file_exists($gh_pipeline_schema_fn)){
 
   $schema_content = '<div class="schema-docs">';
   $schema_content .= _h1('Parameters');
-  foreach($schema["definitions"] as $param_id => $param){
-    // Groups
-    if($param["type"] == "object"){
-      $schema_content .= print_param(true, $param_id, $param);
+  // Definition groups
+  if(isset($schema['allOf']) && count($schema['allOf']) > 0){
+    foreach($schema['allOf'] as $allof){
+      if(!isset($allof['$ref']) || !isset($schema['definitions'])){
+        continue;
+      }
+      $group_id = substr($allof['$ref'], 14);
+      if(!isset($schema['definitions'][$group_id]) || count($schema['definitions'][$group_id]) == 0){
+        continue;
+      }
+      $group = $schema['definitions'][$group_id];
+      $schema_content .= print_param(true, $group_id, $group);
       // Group-level params
-      foreach($param["properties"] as $child_param_id => $child_param){
+      foreach($group["properties"] as $param_id => $param){
         $is_required = false;
-        if(array_key_exists("required", $param) && in_array($child_param_id, $param["required"])){
+        if(array_key_exists("required", $group) && in_array($param_id, $group["required"])){
           $is_required = true;
         }
-        $schema_content .= print_param(false, '--'.$child_param_id, $child_param, $is_required);
+        $schema_content .= print_param(false, '--'.$param_id, $param, $is_required);
       }
     }
-    // Top-level params
-    else {
+  }
+  // Top-level params
+  if(isset($schema['properties']) && count($schema['properties']) > 0){
+    foreach($schema['properties'] as $param_id => $param){
       $is_required = false;
       if(array_key_exists("required", $schema) && in_array($param_id, $schema["required"])){
         $is_required = true;
