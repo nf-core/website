@@ -457,10 +457,17 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 <?php } else if($cache['status'] == 'launch_params_complete') {
 
     $nxf_flags = ' ';
-    foreach($cache['nxf_flags'] as $key => $val){
-        if(!$nxf_flag_schema['coreNextflow']['properties'][$key]['default'] == $val){
-            $nxf_flags .= "$key $val ";
+    foreach($cache['nxf_flags'] as $param_id => $param_value){
+        if(!isset($nxf_flag_schema['coreNextflow']['properties'][$param_id])){
+            continue;
         }
+        $param = $nxf_flag_schema['coreNextflow']['properties'][$param_id];
+        if($param['default'] == $param_value){
+            continue;
+        } elseif($param['type'] == 'boolean' && (!isset($param['default']) || $param['default'] == '') && $param_value == 'false'){
+            continue;
+        }
+        $nxf_flags .= "$param_id $param_value ";
     }
 
     // Clean up default-value params
@@ -504,11 +511,18 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
 <pre>nf-core launch --id <?php echo $cache_id; ?></pre>
 
 <h3>Launching with no internet and without nf-core/tools</h3>
+
+<?php if(count($cache['input_params']) > 0): ?>
 <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
 <pre><?php echo json_encode($cache['input_params']); ?></pre>
 
 <p>Then, launch Nextflow with the following command:</p>
 <pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?>-params-file nf-params.json</pre>
+
+<?php else: ?>
+<p>Launch Nextflow with the following command:</p>
+<pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?></pre>
+<?php endif; ?>
 
 <h3>Continue editing</h3>
 <p>If you would like to continue editing your workflow parameters, click the button below:</p>
