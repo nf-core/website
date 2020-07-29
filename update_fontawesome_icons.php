@@ -2,7 +2,7 @@
 //
 // update_fontawesome_icons.json
 // ---------------------------
-// The json_schema_build.php page has an icon picker for FontAwesome icons
+// The pipeline_schema_builder.php page has an icon picker for FontAwesome icons
 // so that pipeline authors can icon-ise their pipeline parameters.
 // We load Font Awesome on the site through a JavaScript FA kit that always
 // gives us the latest version of Font Awesome icons.
