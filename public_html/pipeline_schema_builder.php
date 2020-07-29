@@ -12,18 +12,15 @@ if($cache) $import_schema_builder = true;
 $mainpage_container = false;
 include('../includes/header.php');
 ?>
-<div class="container">
+<div class="container container-xl">
 
+<button class="btn btn-outline-info float-right ml-2 mb-2" data-toggle="collapse" href="#page_help"><i class="fas fa-question-circle mr-1"></i> Help</button>
 <p class="mt-5">nf-core pipelines have a file in their root directories called <code>nextflow_schema.json</code> which
 describes the input parameters that the pipeline accepts.
 This page helps pipeline authors to build their pipeline schema file by using a graphical interface.</p>
 
-<div class="row">
-    <div class="col"><hr></div>
-    <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>click here to read more</small></a></div>
-    <div class="col"><hr></div>
-</div>
-<div class="collapse" id="page_help">
+<div class="card collapse mb-2" id="page_help">
+  <div class="card-body">
     <h5>nf-core schema</h5>
 
     <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> <em>Draft 7</em> standard:</p>
@@ -72,12 +69,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
             </ul>
         </li>
     </ul>
-
-    <div class="row">
-        <div class="col"><hr></div>
-        <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>hide read-more text</small></a></div>
-        <div class="col"><hr></div>
-    </div>
+  </div>
 </div>
 
 <?php if(!$cache){ ?>
@@ -124,7 +116,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
     <p class="lead">Schema cache ID: <code id="schema_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
 </div>
-<div class="container-fluid main-content">
+<div class="container container-xl main-content">
 
     <div class="schema-gui-header sticky-top">
         <div class="row align-items-center">
@@ -366,7 +358,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
             </div>
         </div>
     </div>
-</div> <!-- .container-fluid -->
+</div> <!-- .container-xl -->
 
 <?php } // if $cache
 
