@@ -670,19 +670,27 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
         </div>
     </form>
 
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="form_validation_error_toast">
-        <div class="toast-header">
-            <strong class="mr-auto text-danger">Validation error</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            <p>There was a problem validating some of your parameters:</p>
-            <ul id="validation_fail_list"></ul>
-        </div>
-    </div>
+<?php
+} // if $cache
 
-<?php } // if $cache
+// Collect this content into a variable to be inserted in to the very end of the HTML
+ob_start();
+?>
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="form_validation_error_toast">
+    <div class="toast-header">
+        <strong class="mr-auto text-danger">Validation error</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        <p>There was a problem validating some of your parameters:</p>
+        <ul id="validation_fail_list"></ul>
+    </div>
+</div>
+
+<?php
+$end_of_html = ob_get_contents();
+ob_end_clean();
 
 include('../includes/footer.php');
