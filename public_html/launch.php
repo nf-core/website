@@ -462,6 +462,29 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
             $nxf_flags .= "$key $val ";
         }
     }
+
+    // Clean up default-value params
+    foreach($cache['input_params'] as $param_id => $param_value){
+        // Get the param from the schema
+        $param = false;
+        if(isset($cache['schema']['properties']) and isset($cache['schema']['properties'][$param_id])){
+            $param = $cache['schema']['properties'][$param_id];
+        } elseif(isset($cache['schema']['definitions'])){
+            foreach($cache['schema']['definitions'] as $group_id => $group){
+                if(isset($group['properties']) and isset($group['properties'][$param_id])){
+                    $param = $group['properties'][$param_id];
+                }
+            }
+        }
+        // Delete from input_params if they're the same as the default
+        if($param && $param['default'] == $param_value){
+            unset($cache['input_params'][$param_id]);
+        } elseif($param && $param['type'] == 'boolean'){
+            if((!isset($param['default']) || $param['default'] == '') && $param_value == 'false'){
+                unset($cache['input_params'][$param_id]);
+            }
+        }
+    }
     ?>
 
 <h1>Launch parameters saved</h1>
