@@ -256,6 +256,8 @@ $(function () {
             preview += preview_wrapper_start + this_preview + preview_wrapper_end;
         }
         $('#preview_docs_modal .modal-body').html(preview);
+        $('#preview_docs_modal .modal-body table').addClass('table table-bordered table-striped table-sm small')
+        $('#preview_docs_modal .modal-body table').wrap('<div class="table-responsive"></div>');
         $('#preview_docs_modal').modal('show');
     });
     function make_param_html_docs_preview(param_id, param){
@@ -785,6 +787,8 @@ $(function () {
             var md_converter = new showdown.Converter();
             var help_text_html = md_converter.makeHtml( $('#help_text_input').val() );
             $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
+            $('.helptext-html-preview .helptext-preview-helptext table').addClass('table table-bordered table-striped table-sm small')
+            $('.helptext-html-preview .helptext-preview-helptext table').wrap('<div class="table-responsive"></div>')
         }
     })
 
