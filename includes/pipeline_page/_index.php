@@ -116,7 +116,7 @@ else if(endswith($_GET['path'], '/output')){
 # Stats
 else if(endswith($_GET['path'], '/stats')){
   $pagetab = 'stats';
-  require_once('stats.php');
+  require_once('pipeline_stats.php');
 }
 # Releases
 else if(endswith($_GET['path'], '/releases')){
