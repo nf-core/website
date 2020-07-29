@@ -61,28 +61,28 @@ function launch_pipeline_web($pipeline, $release){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
     // Try to fetch the nextflow_schema.json file
-    $gh_launch_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
-    $gh_launch_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
+    $gh_pipeline_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
+    $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
     # Build directories if needed
-    if (!is_dir(dirname($gh_launch_schema_fn))) {
-      mkdir(dirname($gh_launch_schema_fn), 0777, true);
+    if (!is_dir(dirname($gh_pipeline_schema_fn))) {
+      mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
     }
     // Load cache if not 'dev'
-    if(file_exists($gh_launch_no_schema_fn) && $release != 'dev'){
+    if(file_exists($gh_pipeline_no_schema_fn) && $release != 'dev'){
         return [
             "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
             "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
             "<!-- URL attempted: $gh_launch_schema_url -->"
         ];
-    } else if(file_exists($gh_launch_schema_fn) && $release != 'dev'){
-        $gh_launch_schema_json = file_get_contents($gh_launch_schema_fn);
+    } else if(file_exists($gh_pipeline_schema_fn) && $release != 'dev'){
+        $gh_launch_schema_json = file_get_contents($gh_pipeline_schema_fn);
     } else {
         $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
         $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
         $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             # Remember for next time
-            file_put_contents($gh_launch_no_schema_fn, '');
+            file_put_contents($gh_pipeline_no_schema_fn, '');
             return [
                 "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
                 "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
@@ -90,7 +90,7 @@ function launch_pipeline_web($pipeline, $release){
             ];
         } else {
             # Save cache
-            file_put_contents($gh_launch_schema_fn, $gh_launch_schema_json);
+            file_put_contents($gh_pipeline_schema_fn, $gh_launch_schema_json);
         }
     }
     // Build the POST data
@@ -215,28 +215,6 @@ function save_launcher_form(){
     exit;
 }
 
-// Markdown parsing libraries
-require_once('../includes/libraries/parsedown/Parsedown.php');
-require_once('../includes/libraries/parsedown-extra/ParsedownExtra.php');
-$pd = new ParsedownExtra();
-
-function parse_md($text){
-    global $pd;
-    // Remove whitespace on lines that are only whitespace
-    $text = preg_replace('/^\s*$/m', '', $text);
-    // Remove global text indentation
-    $indents = array();
-    foreach(explode("\n",$text) as $l){
-        if(strlen($l) > 0){
-            $indents[] = strlen($l) - strlen(ltrim($l));
-        }
-    }
-    if(min($indents) > 0){
-        $text = preg_replace('/^\s{'.min($indents).'}/m', '', $text);
-    }
-    return $pd->text($text);
-}
-
 function build_form_param($param_id, $param, $is_required){
 
     global $cache;
@@ -262,7 +240,7 @@ function build_form_param($param_id, $param, $is_required){
     // Description
     $description = '';
     if(isset($param['description'])){
-        $description = '<small class="form-text">'.parse_md($param['description']).'</small>';
+        $description = '<small class="form-text">'.parse_md($param['description'])['content'].'</small>';
     }
 
     // Help text
@@ -276,7 +254,7 @@ function build_form_param($param_id, $param, $is_required){
         </div>';
         $help_text = '<div class="collapse" id="help-text-'.$param_id.'">
             <div class="card card-body small text-muted launcher-help-text">
-                '.parse_md($param['help_text']).'
+                '.parse_md($param['help_text'])['content'].'
             </div>
         </div>';
     }

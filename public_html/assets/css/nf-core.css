@@ -44,6 +44,15 @@ table img {
 .underline {
   text-decoration: underline;
 }
+.card p:last-child {
+  margin-bottom: 0;
+}
+.toast {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  z-index: 100000;
+}
 
 /* Bootstrap placeholder text is way too similar colour to real input */
 .form-control::-webkit-input-placeholder { color: #ccc; }
@@ -62,7 +71,12 @@ section:before {
   margin: 1rem auto;
   display: block;
 }
-.rendered-markdown h1:first-of-type {
+img.emoji{
+  margin:0;
+  display: inline;
+}
+.rendered-markdown h1:first-of-type,
+.schema-docs h1:first-of-type {
   padding-top: 0;
   margin-top: 2.5rem;
 }
@@ -87,7 +101,7 @@ section:before {
   }
 }
 @media only screen and (max-width: 770px) {
-  pre, code {
+  pre, code, .code {
     font-size: 10px;
   }
 }
@@ -220,6 +234,7 @@ code {
   padding: 2px 6px;
   color: inherit;
 }
+
 .main-content pre {
   background-color: rgba(220,220,220,0.3);
   border-radius: 3px;
@@ -290,7 +305,7 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
 }
 .mainpage .pipeline-sidebar h6 {
   padding-top: 0;
-  margin-top: 20px;
+  margin-top: 5px;
   color: #999;
   font-size: 12px;
 }
@@ -301,17 +316,14 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   text-decoration: none;
   color: #212529;
 }
-.pipeline-run-cmd {
+.pipeline-run-cmd input{
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   background-color: rgba(220,220,220,0.3);
-  overflow-x: scroll;
+  overflow-x: auto;
   cursor: text;
 }
-.pipeline-run-cmd code {
-  background-color: transparent;
-  white-space: nowrap;
-}
-.pipeline-run-cmd:hover {
-  background-color: rgba(220,220,220,0.5);
+.pipeline-run-cmd .btn-outline-secondary{
+  border-color: #CED4DA;
 }
 .pipeline-sidebar .contrib-avatars img {
   width: 42px;
@@ -363,13 +375,23 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   font-size: 1.1rem;
   line-height: 1.6;
 }
+.container-fluid.main-content {
+  max-width: 1440px;
+}
 .main-content h1, .main-content h2, .main-content h3,
 .main-content h4, .main-content h5, .main-content h6,
 .main-content .h1, .main-content .h2, .main-content .h3,
 .main-content .h4, .main-content .h5, .main-content .h6 {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  padding-top: 60px;
+}
+.main-content h1[id]::before, .main-content h2[id]::before, .main-content h3[id]::before,
+.main-content h4[id]::before, .main-content h5[id]::before, .main-content h6[id]::before,
+.main-content .h1[id]::before, .main-content .h2[id]::before, .main-content .h3[id]::before,
+.main-content .h4[id]::before, .main-content .h5[id]::before, .main-content .h6[id]::before {
+  display: block;
+  content: "";
+  padding-top: 50px;
   margin-top: -50px;
 }
 .main-content h1 {
@@ -395,8 +417,19 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
 .h3:hover .header-link, .h3:active .header-link, .h3:focus .header-link,
 .h4:hover .header-link, .h4:active .header-link, .h4:focus .header-link {
   opacity: 1;
+  text-decoration: none;
 }
-
+/* disable nav-link visibility, because the header-offset breaks it in a table-like setting: */
+.schema-docs h1:hover .header-link, .schema-docs h1:active .header-link, .schema-docs h1:focus .header-link,
+.schema-docs h2:hover .header-link, .schema-docs h2:active .header-link, .schema-docs h2:focus .header-link,
+.schema-docs h3:hover .header-link, .schema-docs h3:active .header-link, .schema-docs h3:focus .header-link,
+.schema-docs h4:hover .header-link, .schema-docs h4:active .header-link, .schema-docs h4:focus .header-link,
+.schema-docs.h1:hover .header-link, .schema-docs .h1:active .header-link, .schema-docs .h1:focus .header-link,
+.schema-docs.h2:hover .header-link, .schema-docs .h2:active .header-link, .schema-docs .h2:focus .header-link,
+.schema-docs.h3:hover .header-link, .schema-docs .h3:active .header-link, .schema-docs .h3:focus .header-link,
+.schema-docs.h4:hover .header-link, .schema-docs .h4:active .header-link, .schema-docs .h4:focus .header-link {
+  opacity: 0;
+}
 @media only screen and (max-width: 560px) {
   .header-link {
     margin: 0;
@@ -775,23 +808,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   margin-top: .25rem;
 }
 
-.side-sub-subnav {
+.pipeline-page-content, .side-sub-subnav {
     padding-top: 50px;
-}
-.pipeline-page-toc {
-  background-color: #fcfcfc;
-  border: 1px solid #ededed;
-  border-radius: 5px;
-  font-size: 14px;
-  margin: 1rem;
-  padding: 1rem 1rem 0 0.5rem;
-}
-.pipeline-page-toc .fa-ul {
-  margin-left: 1.5em;
-}
-.pipeline-page-toc a.active {
-  text-decoration: underline;
-  font-weight: bold;
 }
 
 .pipeline-stats-table .thead-light tr th {
@@ -1067,4 +1085,99 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   bottom: 3rem;
   right: 3rem;
   z-index: 5000;
+}
+
+.pipeline-page-content h3, .pipeline-page-content .h3 {
+  color: #6c757d;
+}
+.toc > .list-group {
+  margin-top:10px;
+  padding-bottom:1px;
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+}
+@media only screen and (max-width: 1440px) {
+  .toc > .list-group  {
+    max-height: calc(100vh - 9.1rem);
+  }
+}
+
+.toc > .list-group > .list-group-item {
+  font-weight: bold;
+}
+.toc .list-group .list-group {
+  display: none;
+  font-size: 90%;
+}
+.toc .list-group .list-group .list-group-item {
+  border-radius: 0;
+}
+.toc > .list-group > .list-group-item:last-of-type {
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+.toc > .list-group > .list-group-item.active:last-of-type {
+  border-radius: 0;
+}
+.toc .list-group .list-group .list-group {
+  font-size: 80%;
+}
+.toc .list-group .list-group .list-group .list-group-item {
+  border-top: 0;
+  border-bottom: 0;
+}
+.toc .list-group > .active + .list-group,
+.toc .list-group .list-group > .active + .list-group
+{
+  display: block;
+}
+.toc .list-group .list-group-item.active{
+  color: #444444;
+  background-color: rgba(34, 174, 99, .25);
+  border: 1px solid rgba(0,0,0,.125);
+  border-left: 5px solid #159957;
+}
+.toc .list-group .list-group .list-group-item.active {
+  border-left: 3px solid #159957;
+  background-color: rgba(34, 174, 99, .15);
+}
+.toc .list-group .list-group .list-group .list-group-item.active {
+  border-left: 1px solid #159957;
+  background-color: rgba(34, 174, 99, .05);
+}
+.toc .fa-fw {
+  margin-right: 0.5rem;
+  opacity: 0.8;
+}
+.param-docs-row-id-col, .param-docs-row-id-col code, .hidden_params_alert code {
+  white-space: nowrap;
+}
+.param-docs-row-id-col {
+  overflow-x: auto;
+}
+.param-docs-row p:last-child {
+  margin-bottom: 0;
+}
+.param-docs-hidden {
+  background-color: #f9f9f9;
+}
+.param-docs-row-group.param-docs-hidden {
+  background-color: inherit;
+}
+.small-h h3{
+  font-size:1rem;
+}
+@media only screen and (max-width: 770px) {
+  .param-docs-row code {
+    font-size: 87.5%;
+  }
+}
+.bg-lightgray{
+  background-color: rgba(220,220,220,0.2);
+}
+.hidden_params_alert {
+  margin: 3rem -15px;
+}
+.btn-show-hidden-params .collapsing {
+  display: none;
 }
