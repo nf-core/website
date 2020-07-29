@@ -1168,10 +1168,6 @@ $(function () {
 
 function generate_obj(){
     var results = '';
-    // Regular rows
-    for (var id in schema['properties']){
-        results += generate_param_row(id, schema['properties'][id]);
-    }
     // Groups
     for (var id in schema['definitions']){
         if (schema['definitions'][id].hasOwnProperty('properties')) {
@@ -1184,6 +1180,10 @@ function generate_obj(){
             }
             results += generate_group_row(id, schema['definitions'][id], child_params);
         }
+    }
+    // Regular rows
+    for (var id in schema['properties']){
+        results += generate_param_row(id, schema['properties'][id]);
     }
     return results;
 }
