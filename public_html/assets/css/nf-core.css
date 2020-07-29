@@ -47,6 +47,12 @@ table img {
 .card p:last-child {
   margin-bottom: 0;
 }
+.toast {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  z-index: 100000;
+}
 
 /* Bootstrap placeholder text is way too similar colour to real input */
 .form-control::-webkit-input-placeholder { color: #ccc; }
@@ -412,10 +418,10 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   text-decoration: none;
 }
 /* disable nav-link visibility, because the header-offset breaks it in a table-like setting: */
-.schema-docs h1:hover .header-link, .schema-docs h1:active .header-link, .schema-docs h1:focus .header-link, 
-.schema-docs h2:hover .header-link, .schema-docs h2:active .header-link, .schema-docs h2:focus .header-link, 
-.schema-docs h3:hover .header-link, .schema-docs h3:active .header-link, .schema-docs h3:focus .header-link, 
-.schema-docs h4:hover .header-link, .schema-docs h4:active .header-link, .schema-docs h4:focus .header-link, 
+.schema-docs h1:hover .header-link, .schema-docs h1:active .header-link, .schema-docs h1:focus .header-link,
+.schema-docs h2:hover .header-link, .schema-docs h2:active .header-link, .schema-docs h2:focus .header-link,
+.schema-docs h3:hover .header-link, .schema-docs h3:active .header-link, .schema-docs h3:focus .header-link,
+.schema-docs h4:hover .header-link, .schema-docs h4:active .header-link, .schema-docs h4:focus .header-link,
 .schema-docs.h1:hover .header-link, .schema-docs .h1:active .header-link, .schema-docs .h1:focus .header-link,
 .schema-docs.h2:hover .header-link, .schema-docs .h2:active .header-link, .schema-docs .h2:focus .header-link,
 .schema-docs.h3:hover .header-link, .schema-docs .h3:active .header-link, .schema-docs .h3:focus .header-link,
