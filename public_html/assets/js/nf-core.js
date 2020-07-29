@@ -192,6 +192,15 @@ $(function () {
     $('#version_select').on('change', function(){
         document.location.href = $(this).val();
     })
+
+    //copy text to clipboard
+    $('.copy-txt').on('click',function(){
+        var target = $(this).data("target");
+        var target_id = '#'+target;
+        $(target_id).select();
+        document.execCommand('copy');
+        $(target_id).blur();
+    })
 });
 
 function scroll_to(target_el){
