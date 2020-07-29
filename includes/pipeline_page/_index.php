@@ -4,6 +4,16 @@ require_once('../includes/functions.php');
 usort($pipeline->releases, 'rsort_releases');
 
 ########
+## Redirect old style URLs
+########
+if(count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'usage'){
+  header('Location: /'.$pipeline->name.'/usage');
+}
+if(count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'output'){
+  header('Location: /'.$pipeline->name.'/output');
+}
+
+########
 ## Configure page header
 ########
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
@@ -115,8 +125,12 @@ else if(endswith($_GET['path'], '/releases')){
 }
 # Some other URL pattern that we don't recognise - 404
 else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'.$release){
+  $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
   header('HTTP/1.1 404 Not Found');
-  $suggestion_404_url = '/'.$pipeline->name;
+  $suggestion_404_urls = [
+    $protocol.$_SERVER['HTTP_HOST'].'/'.$pipeline->name,
+    'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.trim(str_replace($path_parts[0], '', $_GET['path']), '/').'.md'
+  ];
   include('404.php');
   die();
 }
@@ -174,7 +188,7 @@ if($pipeline->archived){
 ########
 ?>
 
-<div class="mainpage-subheader-heading">
+<div class="container-fluid mainpage-subheader-heading">
   <div class="container text-center">
     <?php echo $pipeline_warning; ?>
     <p><?php echo $cta_btn; ?></p>
@@ -266,8 +280,9 @@ if($pagetab !== 'stats'){
         <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
           <i class="fas fa-question-circle mr-1"></i> Show all help
         </button>
-        <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".param-docs-body-hidden, .toc .collapse" aria-expanded="false">
-          <i class="fas fa-eye-slash"></i> Show hidden params
+        <button class="btn btn-sm btn-outline-secondary btn-show-hidden-params" data-toggle="collapse" data-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
+          <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
+          <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
         </button>
       </div>';
     }

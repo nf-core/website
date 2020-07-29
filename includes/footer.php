@@ -103,6 +103,10 @@ if(isset($subfooter) and $subfooter){
         </div>
       </div>
     </footer>
-
+    <?php
+    if(isset($end_of_html) and $end_of_html){
+      echo $end_of_html;
+    }
+    ?>
   </body>
 </html>
