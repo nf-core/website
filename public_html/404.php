@@ -21,6 +21,7 @@ if(isset($suggestion_404_urls)){
     echo '<li><a href="'.$url.'">'.$url.'</a></li>';
   }
   echo '</ul>';
+  echo '<img src="/assets/img/thesearenotthedroidsyourelookingfor.gif" class="w-50">';
 }
 
 include('../includes/footer.php'); ?>
