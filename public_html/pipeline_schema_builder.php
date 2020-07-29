@@ -26,17 +26,18 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 <div class="collapse" id="page_help">
     <h5>nf-core schema</h5>
 
-    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> standard,
-    with a couple of extra assumptions:</p>
-    <ul>
-        <li>The top-level schema is an <code>object</code>, where each of the <code>properties</code> are a pipeline parameter or group of parameters</li>
-        <li>Only groups one-<code>object</code> deep are allowed (groups or no groups are fine, but no nested groups)</li>
-        <li>Before use in validation, all groups are flattened. As such, no duplicate keys are allowed across groups.</li>
-    </ul>
-    <p>We also use a couple of extra JSON keys:</p>
+    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> <em>Draft 7</em> standard.</p>
+    <p>
+        Pipeline parameters should be described as <code>properties</code> either in the top-level schema, or in subschema within <code>definitions</code>.
+        The <code>definitions</code> subschemas are used to group parameters for the user-interface.
+        The <code>definitions</code> subschema are combined in the main schema using <code>allOf</code> for parameter validation.
+    </p>
+    <p>Although the schema parameter validation can handle object-nesting of parameters (eg. <code>params.foo.bar = "baz"</code>) and multiple-levels of nesting subschema groups,
+    the nf-core tools such as this builder currently ignore such structures.</p>
+    <p>We use a couple of extra JSON keys in addition to the standard JSON Schema set:</p>
     <ul>
         <li><code>help_text</code>, a longer description providing more in-depth help. Typically <code>description</code> is just a few words long and the longer help text is shown when a user requests it.</li>
-        <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces and help text etc.</li>
+        <li><code>hidden: True</code>, which tells tools to ignore this <code>param</code> in interfaces by default.</li>
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
 
@@ -160,7 +161,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title h4 text-monospace"></span>
+                    <span class="modal-title h4"></span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -228,7 +229,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title h4 text-monospace"></span>
+                    <span class="modal-title h4"></span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -256,9 +257,8 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                             </div>
                             <div class="tab-pane fade" id="tab-helptext-preview" role="tabpanel">
                                 <p>Command-line:</p>
-                                <pre><span class="helptext-cli-preview-title"></span>
+                                <pre><span class="helptext-cli-preview-title font-weight-bold"></span>
 <span class="helptext-preview-description"></span>
-
 <span class="helptext-preview-helptext text-muted"></span></pre>
                                 <p>Website:</p>
                                 <div class="card helptext-html-preview">
@@ -310,7 +310,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Move parameters into <span></span></h4>
+                    <h4>Move parameters into "<span></span>"</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
