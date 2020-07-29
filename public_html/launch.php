@@ -632,7 +632,7 @@ INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
                 $hidden_class = 'is_hidden';
                 $child_parameters = '';
                 foreach($group['properties'] as $child_param_id => $child_param){
-                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($group['required']));
+                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $group['required']));
                     if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
                         $hidden_class = '';
                     }
