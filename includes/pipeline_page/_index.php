@@ -4,6 +4,16 @@ require_once('../includes/functions.php');
 usort($pipeline->releases, 'rsort_releases');
 
 ########
+## Redirect old style URLs
+########
+if(count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'usage'){
+  header('Location: /'.$pipeline->name.'/usage');
+}
+if(count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'output'){
+  header('Location: /'.$pipeline->name.'/output');
+}
+
+########
 ## Configure page header
 ########
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
@@ -115,8 +125,12 @@ else if(endswith($_GET['path'], '/releases')){
 }
 # Some other URL pattern that we don't recognise - 404
 else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'.$release){
+  $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
   header('HTTP/1.1 404 Not Found');
-  $suggestion_404_url = '/'.$pipeline->name;
+  $suggestion_404_urls = [
+    $protocol.$_SERVER['HTTP_HOST'].'/'.$pipeline->name,
+    'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.trim(str_replace($path_parts[0], '', $_GET['path']), '/').'.md'
+  ];
   include('404.php');
   die();
 }
