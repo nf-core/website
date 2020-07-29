@@ -197,7 +197,7 @@ if($pipeline->archived){
 </div>
 <div class="triangle subheader-triangle-down"></div>
 
-<div class="container-fluid main-content">
+<div class="container container-xl main-content">
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
