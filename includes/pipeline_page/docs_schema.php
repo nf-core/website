@@ -10,21 +10,24 @@ require_once('../includes/parse_md.php');
 if(file_exists($gh_pipeline_schema_fn)){
 
   $schema = json_decode(file_get_contents($gh_pipeline_schema_fn), TRUE);
+  $hidden_params = [];
 
   function print_param($is_group, $param_id, $param, $is_required=false){
+    global $hidden_params;
+    // Is this parameter hidden?
     $is_hidden = false;
-    $hidden_class = '';
     if(array_key_exists("hidden", $param) && $param["hidden"]){
       $is_hidden = true;
-      $hidden_class = ' param-docs-hidden';
     }
-    if($param['type'] == 'object'){
+    if($is_group){
       $is_hidden = true;
       foreach($param['properties'] as $child_param_id => $child_param){
         if(!array_key_exists("hidden", $child_param) || !$child_param["hidden"]){
           $is_hidden = false;
         }
       }
+    } else if($is_hidden) {
+        $hidden_params[] = $param_id;
     }
 
     # Build heading
@@ -76,17 +79,20 @@ if(file_exists($gh_pipeline_schema_fn)){
     $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 small-h';
     $h_level = 'h3';
     if($is_group){
-      $row_class = 'align-items-baseline mt-5';
+      $row_class = 'align-items-baseline mt-5 param-docs-row-group';
       $id_cols = 'col pl-0 h2';
       $h_level = 'h2';
+    }
+    if($is_hidden){
+      $row_class .= ' param-docs-hidden collapse';
     }
 
     # Build row
     return '
-    <div class="row '.$hidden_class.' param-docs-row border-bottom d-flex '.$row_class.'">
-      <div class="'.$id_cols.'">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>').'</div>
+    <div class="row param-docs-row border-bottom '.$row_class.'">
+      <div class="'.$id_cols.' param-docs-row-id-col">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>', $is_hidden).'</div>
       <div class="col">'.$param_body.'</div>
-      <div class="col-auto text-right">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
+      <div class="col-auto text-right">'.$help_text_btn.implode(' ', $labels).'</div>
       '.$help_text.'
     </div>';
   }
@@ -115,5 +121,15 @@ if(file_exists($gh_pipeline_schema_fn)){
       $schema_content .= print_param(false, '--'.$param_id, $param, $is_required);
     }
   }
+
+  // Hidden params
+  if(count($hidden_params) > 0){
+    $schema_content .= '
+    <div class="alert border bg-light small hidden_params_alert collapse show">
+      <p>The following uncommon parameters have been hidden: <code>'.implode('</code>, <code>', $hidden_params).'</code></p>
+      <p><a href=".param-docs-hidden, .toc .collapse, .hidden_params_alert" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">Click here</a> to show all hidden params.</p>
+    </div>';
+  }
+
   $schema_content .= '</div>'; // .schema-docs
 }

@@ -55,10 +55,10 @@ $last_commit = time_ago($pipeline->updated_at);
   <div class="row border-bottom pb-2">
     <div class="col-12">
       <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
-      <div class="input-group pipeline-run-cmd">
+      <div class="input-group input-group-sm pipeline-run-cmd">
         <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test" aria-label="Copy run command" readonly="">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary copy-txt" data-target="pipeline-run-cmd-text" type="button"><i class="fad fa-clipboard"></i></button>
+          <button class="btn btn-outline-secondary copy-txt" data-target="pipeline-run-cmd-text" data-toggle="tooltip" title="Copy to clipboard" type="button"><i class="fad fa-clipboard px-1"></i></button>
         </div>
       </div>
     </div>
@@ -116,6 +116,24 @@ $last_commit = time_ago($pipeline->updated_at);
     <h6>get in touch</h6>
     <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack mr-1"></i> Ask a question on Slack</a></p>
     <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github mr-1"></i> Open an issue on GitHub</a></p>
+  </div>
+</div>
+
+<?php
+// Collect this content into a variable to be inserted in to the very end of the HTML
+ob_start();
+?>
+
+<div class="toast" id="pipeline_sidebar_cmd_copied" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="">
+    <strong class="mr-auto">Command copied!</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Paste this command into your terminal to run the pipeline with a small test dataset.
   </div>
 </div>
 
@@ -225,3 +243,7 @@ $(function(){
   });
 });
 </script>
+
+<?php
+$end_of_html = ob_get_contents();
+ob_end_clean();
