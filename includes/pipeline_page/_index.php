@@ -188,7 +188,7 @@ if($pipeline->archived){
 ########
 ?>
 
-<div class="mainpage-subheader-heading">
+<div class="container-fluid mainpage-subheader-heading">
   <div class="container text-center">
     <?php echo $pipeline_warning; ?>
     <p><?php echo $cta_btn; ?></p>

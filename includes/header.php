@@ -193,7 +193,7 @@ if(isset($title) and $title): ?>
 
       <div class="triangle triangle-down"></div>
 
-      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content"> <?php endif; ?>
+      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content pt-5"> <?php endif; ?>
 
 <?php endif;
 if( isset($markdown_fn) and $markdown_fn){
