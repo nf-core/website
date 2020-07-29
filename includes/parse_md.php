@@ -19,7 +19,10 @@ function parse_md($markdown){
   global $href_url_prepend;
   global $href_url_suffix_cleanup;
   global $html_content_replace;
+  global $title;
+  global $subtitle;
 
+  $output = array();
   // Load the docs markdown
   if(substr($markdown, -3) == '.md'){
     $md_full = file_get_contents($markdown);
@@ -101,7 +104,11 @@ function parse_md($markdown){
   }
 
   // Find and replace emojis names with images
-  $content = preg_replace('/:([\S]+?):/','<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">',$content);
+  $content = preg_replace('/:(?!\/)([\S]+?):/','<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">',$content);
 
-  return $content;
+  $output['content'] = $content;
+  $output["meta"] = $meta;
+  $output["title"] = $title;
+  $output["subtitle"] = $subtitle;
+  return $output;
 }

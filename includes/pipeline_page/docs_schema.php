@@ -39,7 +39,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     # Description
     $description = '';
     if(array_key_exists("description", $param)){
-      $description = parse_md($param['description']);
+      $description = parse_md($param['description'])['content'];
     }
 
     # Help text
@@ -47,13 +47,12 @@ if(file_exists($gh_pipeline_schema_fn)){
     $help_text = '';
     if(array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0){
       $help_text_btn = '
-        <button class="btn btn-sm btn-outline-info float-right ml-2" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
+        <button class="btn btn-sm btn-outline-info ml-2 mb-1 mt-1" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
           <i class="fas fa-question-circle"></i> Help
         </button>';
       $help_text = '
-        <div class="collapse card col-12 schema-docs-help-text" id="'.$param_id.'-help">
-          <div class="card-body small text-muted">'.parse_md($param['help_text']).'</div>
-        </div>';
+        <div class="collapse bg-lightgray col-12 schema-docs-help-text p-2 mb-2 small" id="'.$param_id.'-help">
+          '.parse_md($param['help_text'])['content'].'</div>';
     }
 
     # Labels
@@ -73,19 +72,21 @@ if(file_exists($gh_pipeline_schema_fn)){
     $param_body = '<div id="'.$param_id.'-body" class="param-docs-body small">'.$description.'</div>';
 
     # Extra group classes
-    $mt = '';
-    $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 ';
+    $row_class = 'align-items-center';
+    $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 small-h';
+    $h_level = 'h3';
     if($is_group){
-      $mt = 'mt-5';
-      $id_cols = 'col h2';
+      $row_class = 'align-items-baseline mt-5';
+      $id_cols = 'col pl-0 h2';
+      $h_level = 'h2';
     }
 
     # Build row
     return '
-    <div class="row '.$hidden_class.' params-docs-row border-bottom pt-2 '.$mt.'">
-      <div class="'.$id_cols.'">'.$fa_icon.$h_text.'</div>
+    <div class="row '.$hidden_class.' param-docs-row border-bottom d-flex '.$row_class.'">
+      <div class="'.$id_cols.'">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>').'</div>
       <div class="col">'.$param_body.'</div>
-      <div class="col-auto">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
+      <div class="col-auto text-right">'.$help_text_btn.$hidden_btn.implode(' ', $labels).'</div>
       '.$help_text.'
     </div>';
   }

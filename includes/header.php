@@ -17,7 +17,11 @@ if(isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 
 // Convert Markdown to HTML if a filename is given
 if(isset($markdown_fn) and $markdown_fn){
   require_once('parse_md.php');
-  $content = parse_md($markdown_fn);
+  $parsed_out = parse_md($markdown_fn);
+  $content = $parsed_out["content"];
+  $meta = $parsed_out["meta"];
+  $title = $parsed_out["title"];
+  $subtitle = $parsed_out["subtitle"];
 }
 
 // Page title
