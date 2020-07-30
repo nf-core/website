@@ -490,3 +490,22 @@ hr {
   color: #999;
   background-color: #181a1b;
 }
+
+/* dark mode scroll bar */
+*::-webkit-scrollbar {
+    max-width: 10px !important;
+    max-height: 10px !important;
+    background: #1d1d1d !important;
+}
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+    background: #1d1d1d !important;
+}
+*::-webkit-scrollbar-thumb {
+    background: rgba(175, 175, 175, 0.5) !important;
+    border-radius: 20px;
+}
+*:root {
+    scrollbar-color: rgba(175, 175, 175, 0.5) #1d1d1d !important;
+    scrollbar-width: thin !important;
+}
