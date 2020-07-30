@@ -47,12 +47,6 @@ table img {
 .card p:last-child {
   margin-bottom: 0;
 }
-.toast {
-  position: fixed;
-  top: 5rem;
-  right: 2rem;
-  z-index: 100000;
-}
 
 /* Bootstrap placeholder text is way too similar colour to real input */
 .form-control::-webkit-input-placeholder { color: #ccc; }
@@ -106,13 +100,12 @@ img.emoji{
   }
 }
 
-.toasts-container {
-    position: fixed;
-    bottom: 5px;
-    right: 5px;
-}
 .toast {
-  background-color: rgba(255,255,255,.90)
+  background-color: rgba(255,255,255,.90);
+  position: fixed;
+  bottom: 0.5rem;
+  right: 1rem;
+  z-index: 5000;
 }
 .toast-header img {
   height: 20px;
@@ -1079,12 +1072,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .input-group-append-invalid label, .input-group-append-invalid .btn {
   border-color: #dc3545;
-}
-#form_validation_error_toast {
-  position: fixed;
-  bottom: 3rem;
-  right: 3rem;
-  z-index: 5000;
 }
 
 .pipeline-page-content h3, .pipeline-page-content .h3 {
