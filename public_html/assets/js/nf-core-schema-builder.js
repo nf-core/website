@@ -104,7 +104,7 @@ $(function () {
             update_param_in_schema(id, param);
 
             // Update printed schema in page
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
 
             // Update form
             $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
@@ -151,7 +151,7 @@ $(function () {
             "type": "object",
             "properties": { }
         };
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     }
 
     // Add parameter button
@@ -174,7 +174,7 @@ $(function () {
         new_param_idx += 1;
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     // Add group button
@@ -205,7 +205,7 @@ $(function () {
         new_group_idx += 1;
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     // Collapse groups button
@@ -419,7 +419,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     //
@@ -543,12 +543,6 @@ $(function () {
             }
         });
         for(k in new_schema['definitions']){
-            // Remove empty required arrays at group level
-            if(new_schema['definitions'][k].hasOwnProperty('required')){
-                if(new_schema['definitions'][k]['required'].length == 0){
-                    delete new_schema['definitions'][k]['required'];
-                }
-            }
             // Set group hidden flag, drag + drop helper text
             if(new_schema['definitions'][k].hasOwnProperty('properties')){
                 $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').addClass('d-none');
@@ -569,23 +563,9 @@ $(function () {
             }
         }
 
-        // Clean up empty schema elements
-        if(Object.keys(new_schema['properties']).length == 0){
-            delete new_schema['properties'];
-        }
-        if(Object.keys(new_schema['definitions']).length == 0){
-            delete new_schema['definitions'];
-        }
-        if(new_schema['allOf'].length == 0){
-            delete new_schema['allOf'];
-        }
-        if(new_schema['required'].length == 0){
-            delete new_schema['required'];
-        }
-
         schema = new_schema;
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     };
 
     //
@@ -649,7 +629,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
 
@@ -745,7 +725,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     //
@@ -850,7 +830,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
 
 
     });
@@ -922,26 +902,12 @@ $(function () {
             }
         }
 
-        // Clean up empty schema elements
-        if(schema.hasOwnProperty('properties') && Object.keys(schema['properties']).length == 0){
-            delete schema['properties'];
-        }
-        if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
-            delete schema['definitions'];
-        }
-        if(schema.hasOwnProperty('allOf') && schema['allOf'].length == 0){
-            delete schema['allOf'];
-        }
-        if(schema.hasOwnProperty('required') && schema['required'].length == 0){
-            delete schema['required'];
-        }
-
         // Delete the HTML elements - one of these won't match anything
         row_el.remove();
         group_el.remove();
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
 
@@ -1182,7 +1148,7 @@ function generate_param_row(id, param){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
@@ -1268,7 +1234,7 @@ function generate_group_row(id, param, child_params){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
@@ -1505,12 +1471,8 @@ function set_required(id, is_required){
             schema_parent['required'].splice(idx, 1);
         }
     }
-    // Remove required array if empty
-    if(schema_parent['required'].length == 0){
-        delete schema_parent['required'];
-    }
     // Update printed schema in page
-    $('#json_schema').text(JSON.stringify(schema, null, 4));
+    update_schema_html(schema);
 }
 
 
@@ -1580,15 +1542,66 @@ function update_param_in_schema(id, new_param){
     }
 
     // Iterate through groups, looking for ID
-    for(k in schema['definitions']){
-        // Check if group
-        if(schema['definitions'][k].hasOwnProperty('properties')){
-            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
-                schema['definitions'][k]['properties'][id] = new_param;
-                return true;
+    if(schema.hasOwnProperty('definitions')){
+        for(k in schema['definitions']){
+            // Check if group
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                    schema['definitions'][k]['properties'][id] = new_param;
+                    return true;
+                }
             }
         }
     }
 
     console.warn("Could not find param to update: '"+id+"'");
+}
+
+function update_schema_html(schema){
+    // Clean up empty keys in schema
+    schema = clean_empty_schema_keys(schema);
+    if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
+        delete schema['definitions'];
+    }
+    if(schema.hasOwnProperty('definitions')){
+        for(k in schema['definitions']){
+            schema['definitions'][k] = clean_empty_schema_keys(schema['definitions'][k]);
+        }
+    }
+    // Update in page
+    $('#json_schema').text(JSON.stringify(schema, null, 4));
+}
+function clean_empty_schema_keys(subschema){
+    if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length == 0){
+        delete subschema['properties'];
+    }
+    if(subschema.hasOwnProperty('allOf') && subschema['allOf'].length == 0){
+        delete subschema['allOf'];
+    }
+    if(subschema.hasOwnProperty('required') && subschema['required'].length == 0){
+        delete subschema['required'];
+    }
+    if(subschema.hasOwnProperty('properties')){
+        for(j in subschema['properties']){
+            subschema['properties'][j] = clean_empty_param_keys(subschema['properties'][j]);
+        }
+    }
+    return subschema;
+}
+function clean_empty_param_keys(param){
+
+    // Clean up empty strings
+    if(param.hasOwnProperty('description') && param['description'] == ''){
+        delete param['description'];
+    }
+    if(param.hasOwnProperty('default') && param['default'] == ''){
+        delete param['default'];
+    }
+    if(param.hasOwnProperty('help_text') && param['help_text'] == ''){
+        delete param['help_text'];
+    }
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'] == ''){
+        delete param['fa_icon'];
+    }
+    return param;
 }
