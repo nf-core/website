@@ -479,7 +479,11 @@ else if($cache['status'] == 'launch_params_complete') {
         } elseif($param['type'] == 'boolean' && (!isset($param['default']) || $param['default'] == '') && $param_value == 'false'){
             continue;
         }
-        $nxf_flags .= "$param_id $param_value ";
+        if($param['type'] == 'boolean' && $param_value == 'true'){
+            $nxf_flags .= "$param_id ";
+        } else {
+            $nxf_flags .= "$param_id $param_value ";
+        }
     }
 
     // Clean up default-value params
@@ -510,10 +514,10 @@ else if($cache['status'] == 'launch_params_complete') {
         "pipeline" => "https://github.com/".$cache['pipeline'],
         "revision" => $cache['revision'],
         "configParams" => "",
+        "resume" => $cache['nxf_flags']['-resume'] == 'true' ? 'true' : 'false'
         // "computeEnvId" => "", // the user compute env Id (default user primary env)
         // "workDir" => "", // the pipeline work dir
         // "configProfiles" => "", // one or more nextflow profile names
-        // "resume" => "", // true|false
     );
     // Convert params JSON to nextflow config syntax
     foreach($cache['input_params'] as $param_id => $param_val){
@@ -549,9 +553,12 @@ else if($cache['status'] == 'launch_params_complete') {
 <p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
 (requires a Nextflow Tower account).</p>
 <form method="get" action="https://scratch.staging-tower.xyz/launch" target="_blank" class="mb-3">
-    <?php foreach($tower_fields as $name => $value){
+    <?php
+    foreach($tower_fields as $name => $value){
+        echo '<pre>'.print_r($value, true).'</pre>';
         echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'">';
-    } ?>
+    }
+    ?>
     <button type="submit" class="btn btn-primary" style="background-color: #4259E0;">
         <i class="fad fa-rocket mr-1"></i>
         Nextflow Tower &nbsp; &#x276f; &nbsp; Launch
