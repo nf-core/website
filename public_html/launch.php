@@ -329,6 +329,7 @@ function build_form_param($param_id, $param, $is_required){
     // enum input
     if(array_key_exists('enum', $param) && count($param['enum']) > 0){
         $input_el = '<select class="custom-select" id="'.$form_param_name.'" name="'.$form_param_name.'" '.$required.'>';
+        $input_el .= '<option value="">[ Select an option ]</option>';
         foreach($param['enum'] as $option){
             $input_el .= '<option '.($value == $option ? 'selected' : '').' value="'.$option.'">'.$option.'</option>';
         }
