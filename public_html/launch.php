@@ -516,9 +516,12 @@ else if($cache['status'] == 'launch_params_complete') {
         "configParams" => "",
         "resume" => $cache['nxf_flags']['-resume'] == 'true' ? 'true' : 'false'
         // "computeEnvId" => "", // the user compute env Id (default user primary env)
-        // "workDir" => "", // the pipeline work dir
         // "configProfiles" => "", // one or more nextflow profile names
     );
+    // Only set workDir if not default
+    if($cache['nxf_flags']['-work-dir'] !== $nxf_flag_schema['coreNextflow']['properties']['-work-dir']['default']){
+        $tower_fields["workDir"] = $cache['nxf_flags']['-work-dir'];
+    }
     // Convert params JSON to nextflow config syntax
     foreach($cache['input_params'] as $param_id => $param_val){
         // Booleans
