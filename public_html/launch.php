@@ -555,7 +555,6 @@ else if($cache['status'] == 'launch_params_complete') {
 <form method="get" action="https://scratch.staging-tower.xyz/launch" target="_blank" class="mb-3">
     <?php
     foreach($tower_fields as $name => $value){
-        echo '<pre>'.print_r($value, true).'</pre>';
         echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'">';
     }
     ?>
