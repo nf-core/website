@@ -126,10 +126,12 @@ else if(endswith($_GET['path'], '/releases')){
 # Some other URL pattern that we don't recognise - 404
 else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'.$release){
   $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+  $url_string = trim(str_replace($pipeline->name, '', $_GET['path']), '/');
+  $url_string = trim(str_replace($release, '', $url_string), '/');
   header('HTTP/1.1 404 Not Found');
   $suggestion_404_urls = [
     $protocol.$_SERVER['HTTP_HOST'].'/'.$pipeline->name,
-    'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.trim(str_replace($path_parts[0], '', $_GET['path']), '/').'.md'
+    'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.$url_string.'.md'
   ];
   include('404.php');
   die();
