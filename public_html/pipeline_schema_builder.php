@@ -12,28 +12,30 @@ if($cache) $import_schema_builder = true;
 $mainpage_container = false;
 include('../includes/header.php');
 ?>
-<div class="container">
+<div class="container container-xl">
 
+<button class="btn btn-outline-info float-right ml-2 mb-2" data-toggle="collapse" href="#page_help"><i class="fas fa-question-circle mr-1"></i> Help</button>
 <p class="mt-5">nf-core pipelines have a file in their root directories called <code>nextflow_schema.json</code> which
 describes the input parameters that the pipeline accepts.
 This page helps pipeline authors to build their pipeline schema file by using a graphical interface.</p>
 
-<div class="row">
-    <div class="col"><hr></div>
-    <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>click here to read more</small></a></div>
-    <div class="col"><hr></div>
-</div>
-<div class="collapse" id="page_help">
+<div class="card collapse mb-2" id="page_help">
+  <div class="card-body">
     <h5>nf-core schema</h5>
 
-    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> <em>Draft 7</em> standard.</p>
-    <p>
-        Pipeline parameters should be described as <code>properties</code> either in the top-level schema, or in subschema within <code>definitions</code>.
-        The <code>definitions</code> subschemas are used to group parameters for the user-interface.
-        The <code>definitions</code> subschema are combined in the main schema using <code>allOf</code> for parameter validation.
-    </p>
-    <p>Although the schema parameter validation can handle object-nesting of parameters (eg. <code>params.foo.bar = "baz"</code>) and multiple-levels of nesting subschema groups,
-    the nf-core tools such as this builder currently ignore such structures.</p>
+    <p>nf-core schema files use the <a href="https://json-schema.org/" target="_blank">JSON Schema</a> <em>Draft 7</em> standard:</p>
+    <ul>
+        <li>Pipeline parameters should be described as <code>properties</code> either in the top-level schema, or in subschema within <code>definitions</code>.</li>
+        <li>The <code>definitions</code> subschemas are used to group parameters for the user-interface.
+            <ul>
+                <li>They are combined in the main schema using <code>allOf</code> for parameter validation.</li>
+                <li><code>allOf</code> is a list, the order of this list defines the order that the groups are displayed.</li>
+            </ul>
+        </li>
+        <li>Ungrouped params in the main schema <code>properties</code> are fine, but they will always be sorted at the end, after all <code>definitions</code> groups.</li>
+    </ul>
+    <p>Although the pipeline parameter validation can handle nesting of parameters in schema <code>objects</code> (eg. <code>params.foo.bar = "baz"</code>) and multiple-levels
+        of nesting <code>definitions</code> subschema groups, this is not supported by nf-core - tools such as this builder are likely to behave unpredictably.</p>
     <p>We use a couple of extra JSON keys in addition to the standard JSON Schema set:</p>
     <ul>
         <li><code>help_text</code>, a longer description providing more in-depth help. Typically <code>description</code> is just a few words long and the longer help text is shown when a user requests it.</li>
@@ -41,7 +43,15 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         <li><code>fa_icon</code>, a <a href="https://fontawesome.com/" target="_blank">fontawesome.com</a> icon for use in web interfaces (eg: <code>&lt;i class="fas fa-flask"&gt;&lt;/i&gt;</code> - <i class="fas fa-flask"></i> )</li>
     </ul>
 
-    <h5>Tips:</h5>
+    <h5>Schema tips:</h5>
+    <ul>
+        <li><code>string</code>, <code>number</code>, <code>integer</code> and <code>range</code> parameters can take a list of <em>enumerated values</em> - a set of allowed values. User interfaces will then display a dropdown select-list.</li>
+        <li><code>string</code> params can also have a <em>pattern</em> - a regular expression to validate the input.</li>
+        <li><code>range</code> parameters can have either a <em>Minimum</em> or a <em>Maximum</em> or both.</li>
+        <li>All of the above settings are accessible through the settings <i class="fas fa-cog"></i></li>
+    </ul>
+
+    <h5>Builder tips:</h5>
     <ul>
         <li>Click the <i class="fas fa-cog"></i> icon on the right to access more settings.</li>
         <li>Click and drag the <i class="fas fa-grip-vertical"></i> icon on the left to re-order parameters and groups.</li>
@@ -59,12 +69,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
             </ul>
         </li>
     </ul>
-
-    <div class="row">
-        <div class="col"><hr></div>
-        <div class="col-auto"><a class="text-muted" data-toggle="collapse" href="#page_help" role="button"><small>hide read-more text</small></a></div>
-        <div class="col"><hr></div>
-    </div>
+  </div>
 </div>
 
 <?php if(!$cache){ ?>
@@ -111,7 +116,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
 
     <p class="lead">Schema cache ID: <code id="schema_cache_id"><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
 </div>
-<div class="container-fluid main-content">
+<div class="container container-xl main-content">
 
     <div class="schema-gui-header sticky-top">
         <div class="row align-items-center">
@@ -127,7 +132,6 @@ This page helps pipeline authors to build their pipeline schema file by using a 
                 <button class="btn btn-outline-secondary to-top-btn schema-panel-btn" data-target="#schema-builder"><i class="fas fa-arrow-to-top mr-1"></i> Back to top</button>
             </div>
             <div class="col-auto">
-                <button class="btn btn-outline-primary preview-docs-btn mr-1"><i class="fas fa-book mr-1"></i> Preview docs</button>
                 <button class="btn btn-primary schema-panel-btn" data-target="#schema-finished"><i class="fas fa-check-square mr-1"></i> Finished</button>
             </div>
         </div>
@@ -282,29 +286,6 @@ This page helps pipeline authors to build their pipeline schema file by using a 
         </div>
     </div>
 
-    <!-- Preview docs modal -->
-    <div class="modal fade" id="preview_docs_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Pipeline options documentation preview</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer">
-                    <div class="col">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="preview_help_show_hidden">
-                            <label class="custom-control-label" for="preview_help_show_hidden">Show hidden params</label>
-                        </div>
-                    </div>
-                    <div class="col text-right"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Moving multiple params into group modal -->
     <div class="modal fade" id="multi_select_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
@@ -353,7 +334,7 @@ This page helps pipeline authors to build their pipeline schema file by using a 
             </div>
         </div>
     </div>
-</div> <!-- .container-fluid -->
+</div> <!-- .container-xl -->
 
 <?php } // if $cache
 
