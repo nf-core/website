@@ -105,6 +105,7 @@ function get_self_url($strip_query=true){
 function generate_toc($html_string){
   $toc = '';
   $curr_level = 0;
+  $counter = 0;
   $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
   preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
   if($matches){
@@ -118,12 +119,14 @@ function generate_toc($html_string){
       $name = trim(str_replace('&nbsp;','', htmlentities(strip_tags($h_content) )));
       if($level > $curr_level){
         $toc .= "\n".'<div class="list-group">'."\n";
+        $counter +=1;
       } else if($level == $curr_level) {
         $toc .= "\n";
       } else {
         while($level < $curr_level){
           $toc .= "\n</div>\n\n";
           $curr_level -= 1;
+          $counter -=1;
         }
       }
       $curr_level = $level;
@@ -138,9 +141,9 @@ function generate_toc($html_string){
       $toc .= '<a class="list-group-item list-group-item-action '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
-  while($curr_level > 1){
+  while($counter > 0){
     $toc .= '</div>';
-    $curr_level -= 1;
+    $counter -= 1;
   }
   return $toc;
 }
