@@ -90,8 +90,8 @@ $(function () {
             set_validation_styles(false);
             // If form was submitted, scroll to first error
             if(e.type =='submit'){
-                scroll_to($('input:invalid').first());
-                $('input:invalid').first().focus();
+                scroll_to($('input:invalid, select:invalid').first());
+                $('input:invalid, select:invalid').first().focus();
             }
         } else {
             validation_error = false;
@@ -105,7 +105,7 @@ $(function () {
 
         // Input group addons
         $('.input-group:has(input:valid) .input-group-prepend, .input-group:has(input:valid) .input-group-append').addClass('input-group-append-valid');
-        $('.input-group:has(input:invalid) .input-group-prepend, .input-group:has(input:invalid) .input-group-append').addClass('input-group-append-invalid');
+        $('.input-group:has(input:invalid, select:invalid) .input-group-prepend, .input-group:has(input:invalid, select:invalid) .input-group-append').addClass('input-group-append-invalid');
 
     });
 
@@ -119,12 +119,15 @@ function set_validation_styles(form_is_valid){
 
     // Invalid
     if(!form_is_valid){
+        var invalid_els = $('input:invalid, select:invalid');
         $('.btn-launch').removeClass('btn-primary').addClass('btn-danger');
         $('.progress-bar').addClass('bg-danger');
         $('.validation-warning').show();
         $('#form_validation_error_toast').toast('show');
-        $('#progress_section').html($('input:invalid').length+" parameter"+($('input:invalid').length > 1 ? 's' : '')+" with errors").removeClass('text-muted').addClass('text-danger');
-        $('input:invalid').each(function(){
+        $('#progress_section').html(
+            invalid_els.length+" parameter"+(invalid_els.length > 1 ? 's' : '')+" with errors"
+        ).removeClass('text-muted').addClass('text-danger');
+        invalid_els.each(function(){
             $('#validation_fail_list').append('<li><a href="#'+$(this).attr('id')+'" class="scroll_to_link"><code>'+$(this).attr('name').replace('params_', '--').replace('nxf_flag_', '')+'</code></a></li>')
         })
     }
