@@ -301,17 +301,34 @@ $(function () {
                     new_schema['definitions'] = {};
                     new_schema['allOf'] = [];
                     // Top-level params
-                    for(k in schema['properties']){
-                        var new_k = k;
-                        if(k == id){ new_k =  new_id};
-                        new_schema['properties'][new_k] = schema['properties'][k];
+                    if(schema.hasOwnProperty('properties')){
+                        for(k in schema['properties']){
+                            var new_k = k;
+                            if(k == id){ new_k = new_id; console.log("FOUDN 1"); };
+                            new_schema['properties'][new_k] = schema['properties'][k];
+                        }
                     }
                     // Groups
-                    for(k in schema['definitions']){
-                        var new_k = k;
-                        if(k == id){ new_k =  new_id};
-                        new_schema['definitions'][new_k] = schema['definitions'][k];
-                        new_schema['allOf'].push({"$ref": "#/definitions/"+new_k});
+                    if(schema.hasOwnProperty('definitions')){
+                        for(d in schema['definitions']){
+
+                            // Has the definition ID changed?
+                            var new_d = d;
+                            if(d == id){ new_d = new_id; };
+                            new_schema['definitions'][new_d] = schema['definitions'][d];
+                            new_schema['allOf'].push({"$ref": "#/definitions/"+new_d});
+
+                            // Grouped parameters
+                            var new_subschema = JSON.parse(JSON.stringify(schema['definitions'][d]));
+                            new_schema['definitions'][new_d]['properties'] = {};
+                            if(new_subschema.hasOwnProperty('properties')){
+                                for(k in new_subschema['properties']){
+                                    var new_k = k;
+                                    if(k == id){ new_k = new_id; };
+                                    new_schema['definitions'][new_d]['properties'][new_k] = new_subschema['properties'][k];
+                                }
+                            }
+                        }
                     }
                     schema = new_schema;
 
@@ -649,18 +666,18 @@ $(function () {
             preview_cli_title = param.title;
             preview_web_title = param.title;
         }
-        if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){
+        if(param.hasOwnProperty('fa_icon') && param['fa_icon'].length > 3){
             preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
         }
         $('#help_text_modal').data('param-id', id);
         $('#help_text_modal .modal-title').html(modal_header);
         $('.helptext-cli-preview-title').html(preview_cli_title);
         $('.helptext-web-preview-title').html(preview_web_title);
-        if(param.description == undefined){
+        if(!param.hasOwnProperty('description')){
             param.description = '';
         }
         $('.helptext-preview-description').text(param.description);
-        if(param.help_text == undefined){
+        if(!param.hasOwnProperty('help_text')){
             param.help_text = '';
         }
         $('#help_text_input').val(param.help_text);
@@ -932,7 +949,7 @@ $(function () {
         // Build modal
         var param = find_param_in_schema(id);
         var title = id;
-        if(param && param.title !== undefined){ title = param.title; }
+        if(param && param.hasOwnProperty('title')){ title = param.title; }
         $('#multi_select_modal').data('param-id', id);
         $('#multi_select_modal .modal-header h4 span').html(title)
         update_group_params_table();
