@@ -509,12 +509,23 @@ else if($cache['status'] == 'launch_params_complete') {
     $tower_fields = array(
         "pipeline" => "https://github.com/".$cache['pipeline'],
         "revision" => $cache['revision'],
-        "configParams" => htmlspecialchars(json_encode(array("params" => $cache['input_params']), JSON_PRETTY_PRINT)),
+        "configParams" => "",
         // "computeEnvId" => "", // the user compute env Id (default user primary env)
         // "workDir" => "", // the pipeline work dir
         // "configProfiles" => "", // one or more nextflow profile names
         // "resume" => "", // true|false
     );
+    // Convert params JSON to nextflow config syntax
+    foreach($cache['input_params'] as $param_id => $param_val){
+        // Booleans
+        if($param_val == 'true' || $param_val == 'false'){
+            $tower_fields["configParams"] .= 'params.'.$param_id.' = '.$param_val."\n";
+        }
+        // Strings, in quotes
+        else {
+            $tower_fields["configParams"] .= 'params.'.$param_id.' = "'.$param_val.'"'."\n";
+        }
+    }
     ?>
 
 <h1>Launch parameters saved</h1>
@@ -539,7 +550,7 @@ else if($cache['status'] == 'launch_params_complete') {
 (requires a Nextflow Tower account).</p>
 <form method="get" action="https://scratch.staging-tower.xyz/launch" target="_blank" class="mb-3">
     <?php foreach($tower_fields as $name => $value){
-        echo '<input type="hidden" name="'.$name.'" value="'.$value.'">';
+        echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'">';
     } ?>
     <button type="submit" class="btn btn-primary" style="background-color: #4259E0;">
         <i class="fad fa-rocket mr-1"></i>
