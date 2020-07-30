@@ -664,7 +664,7 @@ $(function () {
         var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var preview_cli_title = '--'+id;
         var preview_web_title = '<code>--'+id+'</code>';
-        if(param.title != undefined){
+        if(param.hasOwnProperty('title')){
             modal_header = param.title;
             preview_cli_title = param.title;
             preview_web_title = param.title;
@@ -764,7 +764,7 @@ $(function () {
         // Build modal
         var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var delete_btn_txt = 'Delete parameter';
-        if(param.title != undefined){ modal_header = param.title; }
+        if(param.hasOwnProperty('title')){ modal_header = param.title; }
         if(param['type'] == 'object'){ delete_btn_txt = 'Delete group'; }
         $('#settings_modal').data('param-id', id);
         $('#settings_modal .modal-title').html(modal_header);
@@ -1123,7 +1123,7 @@ function generate_obj(){
 function generate_param_row(id, param){
 
     var description = '';
-    if(param['description'] != undefined){
+    if(param.hasOwnProperty('description')){
         description = param['description'];
     }
 
@@ -1148,7 +1148,7 @@ function generate_param_row(id, param){
         if(/^-?[\d\.]+$/.test(param['maximum'])){
             attrs += ' max="'+param['maximum']+'"';
         }
-        if(param['default'] != undefined){
+        if(param.hasOwnProperty('description')){
             attrs += ' value="'+param['default']+'"';
         }
         default_input = '<div class="w-100"><input '+attrs+' class="param_key param_default" data-param_key="default"></div>';
@@ -1176,7 +1176,7 @@ function generate_param_row(id, param){
     }
 
     var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
@@ -1189,7 +1189,7 @@ function generate_param_row(id, param){
     }
 
     var help_text_icon = missing_help_text_icon;
-    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
+    if(param.hasOwnProperty('help_text') && param['help_text'].trim().length > 0){
         help_text_icon = has_help_text_icon;
     }
 
@@ -1248,12 +1248,12 @@ function generate_param_row(id, param){
 function generate_group_row(id, param, child_params){
 
     var title = id;
-    if(param['title'] != undefined){
+    if(param.hasOwnProperty('title')){
         title = param['title'];
     }
 
     var description = '';
-    if(param['description'] != undefined){
+    if(param.hasOwnProperty('description')){
         description = param['description'];
     }
 
@@ -1262,7 +1262,7 @@ function generate_group_row(id, param, child_params){
     }
 
     var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
@@ -1275,7 +1275,7 @@ function generate_group_row(id, param, child_params){
     }
 
     var help_text_icon = missing_help_text_icon;
-    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
+    if(param.hasOwnProperty('help_text') && param['help_text'].trim().length > 0){
         help_text_icon = has_help_text_icon;
     }
 
