@@ -220,39 +220,6 @@ $(function () {
         $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
     });
 
-    function make_param_html_docs_preview(param_id, param){
-        // Header text and icon
-        var hidden_class = param['hidden'] ? 'help-preview-param-hidden' : '';
-        var preview = '<div class="help-preview-param '+hidden_class+'">';
-        var fa_icon = '';
-        if(param['type'] == 'object'){
-            if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){ fa_icon = '<i class="'+param['fa_icon']+' mr-3"></i> '; }
-            preview += '<h2>'+fa_icon+param_id+'</h2>';
-        } else {
-            if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){ fa_icon = '<i class="'+param['fa_icon']+' ml-3"></i> '; }
-            preview += '<h4 class="text-secondary"><code>--'+param_id+'</code>'+fa_icon+'</h4>';
-        }
-        if(param['description'] !== undefined){
-            preview += '<p class="lead">'+param['description']+'</p>';
-        }
-        if(param['help_text'] !== undefined){
-            var md_converter = new showdown.Converter();
-            var help_text_html = md_converter.makeHtml( param['help_text'] );
-            preview += help_text_html;
-        }
-        preview += '</div>';
-        return preview;
-    }
-
-    // Preview docs - show / hiden hidden params
-    $('#preview_help_show_hidden').on('change', function(){
-        if($(this).is(':checked')){
-            $('.help-preview-param-hidden').slideDown('fast');
-        } else {
-            $('.help-preview-param-hidden').slideUp('fast');
-        }
-    });
-
     //
     // FINISHED button
     //
