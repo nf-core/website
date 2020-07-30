@@ -104,7 +104,7 @@ $(function () {
             update_param_in_schema(id, param);
 
             // Update printed schema in page
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
 
             // Update form
             $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
@@ -151,7 +151,7 @@ $(function () {
             "type": "object",
             "properties": { }
         };
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     }
 
     // Add parameter button
@@ -174,7 +174,7 @@ $(function () {
         new_param_idx += 1;
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     // Add group button
@@ -205,7 +205,7 @@ $(function () {
         new_group_idx += 1;
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     // Collapse groups button
@@ -218,39 +218,6 @@ $(function () {
     $('.expand-groups-btn').click(function(e){
         $('.schema_group').find('.card-body').slideDown('fast');
         $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
-    });
-
-    function make_param_html_docs_preview(param_id, param){
-        // Header text and icon
-        var hidden_class = param['hidden'] ? 'help-preview-param-hidden' : '';
-        var preview = '<div class="help-preview-param '+hidden_class+'">';
-        var fa_icon = '';
-        if(param['type'] == 'object'){
-            if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){ fa_icon = '<i class="'+param['fa_icon']+' mr-3"></i> '; }
-            preview += '<h2>'+fa_icon+param_id+'</h2>';
-        } else {
-            if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){ fa_icon = '<i class="'+param['fa_icon']+' ml-3"></i> '; }
-            preview += '<h4 class="text-secondary"><code>--'+param_id+'</code>'+fa_icon+'</h4>';
-        }
-        if(param['description'] !== undefined){
-            preview += '<p class="lead">'+param['description']+'</p>';
-        }
-        if(param['help_text'] !== undefined){
-            var md_converter = new showdown.Converter();
-            var help_text_html = md_converter.makeHtml( param['help_text'] );
-            preview += help_text_html;
-        }
-        preview += '</div>';
-        return preview;
-    }
-
-    // Preview docs - show / hiden hidden params
-    $('#preview_help_show_hidden').on('change', function(){
-        if($(this).is(':checked')){
-            $('.help-preview-param-hidden').slideDown('fast');
-        } else {
-            $('.help-preview-param-hidden').slideUp('fast');
-        }
     });
 
     //
@@ -334,17 +301,34 @@ $(function () {
                     new_schema['definitions'] = {};
                     new_schema['allOf'] = [];
                     // Top-level params
-                    for(k in schema['properties']){
-                        var new_k = k;
-                        if(k == id){ new_k =  new_id};
-                        new_schema['properties'][new_k] = schema['properties'][k];
+                    if(schema.hasOwnProperty('properties')){
+                        for(k in schema['properties']){
+                            var new_k = k;
+                            if(k == id){ new_k = new_id; console.log("FOUDN 1"); };
+                            new_schema['properties'][new_k] = schema['properties'][k];
+                        }
                     }
                     // Groups
-                    for(k in schema['definitions']){
-                        var new_k = k;
-                        if(k == id){ new_k =  new_id};
-                        new_schema['definitions'][new_k] = schema['definitions'][k];
-                        new_schema['allOf'].push({"$ref": "#/definitions/"+new_k});
+                    if(schema.hasOwnProperty('definitions')){
+                        for(d in schema['definitions']){
+
+                            // Has the definition ID changed?
+                            var new_d = d;
+                            if(d == id){ new_d = new_id; };
+                            new_schema['definitions'][new_d] = schema['definitions'][d];
+                            new_schema['allOf'].push({"$ref": "#/definitions/"+new_d});
+
+                            // Grouped parameters
+                            var new_subschema = JSON.parse(JSON.stringify(schema['definitions'][d]));
+                            new_schema['definitions'][new_d]['properties'] = {};
+                            if(new_subschema.hasOwnProperty('properties')){
+                                for(k in new_subschema['properties']){
+                                    var new_k = k;
+                                    if(k == id){ new_k = new_id; };
+                                    new_schema['definitions'][new_d]['properties'][new_k] = new_subschema['properties'][k];
+                                }
+                            }
+                        }
                     }
                     schema = new_schema;
 
@@ -452,7 +436,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     //
@@ -576,12 +560,6 @@ $(function () {
             }
         });
         for(k in new_schema['definitions']){
-            // Remove empty required arrays at group level
-            if(new_schema['definitions'][k].hasOwnProperty('required')){
-                if(new_schema['definitions'][k]['required'].length == 0){
-                    delete new_schema['definitions'][k]['required'];
-                }
-            }
             // Set group hidden flag, drag + drop helper text
             if(new_schema['definitions'][k].hasOwnProperty('properties')){
                 $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').addClass('d-none');
@@ -602,23 +580,9 @@ $(function () {
             }
         }
 
-        // Clean up empty schema elements
-        if(Object.keys(new_schema['properties']).length == 0){
-            delete new_schema['properties'];
-        }
-        if(Object.keys(new_schema['definitions']).length == 0){
-            delete new_schema['definitions'];
-        }
-        if(new_schema['allOf'].length == 0){
-            delete new_schema['allOf'];
-        }
-        if(new_schema['required'].length == 0){
-            delete new_schema['required'];
-        }
-
         schema = new_schema;
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     };
 
     //
@@ -682,7 +646,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
 
@@ -697,23 +661,23 @@ $(function () {
         var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var preview_cli_title = '--'+id;
         var preview_web_title = '<code>--'+id+'</code>';
-        if(param.title != undefined){
+        if(param.hasOwnProperty('title')){
             modal_header = param.title;
             preview_cli_title = param.title;
             preview_web_title = param.title;
         }
-        if(param['fa_icon'] !== undefined && param['fa_icon'].length > 3){
+        if(param.hasOwnProperty('fa_icon') && param['fa_icon'].length > 3){
             preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
         }
         $('#help_text_modal').data('param-id', id);
         $('#help_text_modal .modal-title').html(modal_header);
         $('.helptext-cli-preview-title').html(preview_cli_title);
         $('.helptext-web-preview-title').html(preview_web_title);
-        if(param.description == undefined){
+        if(!param.hasOwnProperty('description')){
             param.description = '';
         }
         $('.helptext-preview-description').text(param.description);
-        if(param.help_text == undefined){
+        if(!param.hasOwnProperty('help_text')){
             param.help_text = '';
         }
         $('#help_text_input').val(param.help_text);
@@ -778,7 +742,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
     //
@@ -797,7 +761,7 @@ $(function () {
         // Build modal
         var modal_header = '<span class="text-monospace">params.'+id+'</span>';
         var delete_btn_txt = 'Delete parameter';
-        if(param.title != undefined){ modal_header = param.title; }
+        if(param.hasOwnProperty('title')){ modal_header = param.title; }
         if(param['type'] == 'object'){ delete_btn_txt = 'Delete group'; }
         $('#settings_modal').data('param-id', id);
         $('#settings_modal .modal-title').html(modal_header);
@@ -883,7 +847,7 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
 
 
     });
@@ -955,26 +919,12 @@ $(function () {
             }
         }
 
-        // Clean up empty schema elements
-        if(schema.hasOwnProperty('properties') && Object.keys(schema['properties']).length == 0){
-            delete schema['properties'];
-        }
-        if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
-            delete schema['definitions'];
-        }
-        if(schema.hasOwnProperty('allOf') && schema['allOf'].length == 0){
-            delete schema['allOf'];
-        }
-        if(schema.hasOwnProperty('required') && schema['required'].length == 0){
-            delete schema['required'];
-        }
-
         // Delete the HTML elements - one of these won't match anything
         row_el.remove();
         group_el.remove();
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
     });
 
 
@@ -999,7 +949,7 @@ $(function () {
         // Build modal
         var param = find_param_in_schema(id);
         var title = id;
-        if(param && param.title !== undefined){ title = param.title; }
+        if(param && param.hasOwnProperty('title')){ title = param.title; }
         $('#multi_select_modal').data('param-id', id);
         $('#multi_select_modal .modal-header h4 span').html(title)
         update_group_params_table();
@@ -1156,7 +1106,7 @@ function generate_obj(){
 function generate_param_row(id, param){
 
     var description = '';
-    if(param['description'] != undefined){
+    if(param.hasOwnProperty('description')){
         description = param['description'];
     }
 
@@ -1181,7 +1131,7 @@ function generate_param_row(id, param){
         if(/^-?[\d\.]+$/.test(param['maximum'])){
             attrs += ' max="'+param['maximum']+'"';
         }
-        if(param['default'] != undefined){
+        if(param.hasOwnProperty('description')){
             attrs += ' value="'+param['default']+'"';
         }
         default_input = '<div class="w-100"><input '+attrs+' class="param_key param_default" data-param_key="default"></div>';
@@ -1209,20 +1159,20 @@ function generate_param_row(id, param){
     }
 
     var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
     }
 
     var help_text_icon = missing_help_text_icon;
-    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
+    if(param.hasOwnProperty('help_text') && param['help_text'].trim().length > 0){
         help_text_icon = has_help_text_icon;
     }
 
@@ -1281,12 +1231,12 @@ function generate_param_row(id, param){
 function generate_group_row(id, param, child_params){
 
     var title = id;
-    if(param['title'] != undefined){
+    if(param.hasOwnProperty('title')){
         title = param['title'];
     }
 
     var description = '';
-    if(param['description'] != undefined){
+    if(param.hasOwnProperty('description')){
         description = param['description'];
     }
 
@@ -1295,20 +1245,20 @@ function generate_group_row(id, param, child_params){
     }
 
     var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
     }
 
     var help_text_icon = missing_help_text_icon;
-    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
+    if(param.hasOwnProperty('help_text') && param['help_text'].trim().length > 0){
         help_text_icon = has_help_text_icon;
     }
 
@@ -1538,12 +1488,8 @@ function set_required(id, is_required){
             schema_parent['required'].splice(idx, 1);
         }
     }
-    // Remove required array if empty
-    if(schema_parent['required'].length == 0){
-        delete schema_parent['required'];
-    }
     // Update printed schema in page
-    $('#json_schema').text(JSON.stringify(schema, null, 4));
+    update_schema_html(schema);
 }
 
 
@@ -1613,15 +1559,66 @@ function update_param_in_schema(id, new_param){
     }
 
     // Iterate through groups, looking for ID
-    for(k in schema['definitions']){
-        // Check if group
-        if(schema['definitions'][k].hasOwnProperty('properties')){
-            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
-                schema['definitions'][k]['properties'][id] = new_param;
-                return true;
+    if(schema.hasOwnProperty('definitions')){
+        for(k in schema['definitions']){
+            // Check if group
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                    schema['definitions'][k]['properties'][id] = new_param;
+                    return true;
+                }
             }
         }
     }
 
     console.warn("Could not find param to update: '"+id+"'");
+}
+
+function update_schema_html(schema){
+    // Clean up empty keys in schema
+    schema = clean_empty_schema_keys(schema);
+    if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
+        delete schema['definitions'];
+    }
+    if(schema.hasOwnProperty('definitions')){
+        for(k in schema['definitions']){
+            schema['definitions'][k] = clean_empty_schema_keys(schema['definitions'][k]);
+        }
+    }
+    // Update in page
+    $('#json_schema').text(JSON.stringify(schema, null, 4));
+}
+function clean_empty_schema_keys(subschema){
+    if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length == 0){
+        delete subschema['properties'];
+    }
+    if(subschema.hasOwnProperty('allOf') && subschema['allOf'].length == 0){
+        delete subschema['allOf'];
+    }
+    if(subschema.hasOwnProperty('required') && subschema['required'].length == 0){
+        delete subschema['required'];
+    }
+    if(subschema.hasOwnProperty('properties')){
+        for(j in subschema['properties']){
+            subschema['properties'][j] = clean_empty_param_keys(subschema['properties'][j]);
+        }
+    }
+    return subschema;
+}
+function clean_empty_param_keys(param){
+
+    // Clean up empty strings
+    if(param.hasOwnProperty('description') && param['description'] == ''){
+        delete param['description'];
+    }
+    if(param.hasOwnProperty('default') && param['default'] == ''){
+        delete param['default'];
+    }
+    if(param.hasOwnProperty('help_text') && param['help_text'] == ''){
+        delete param['help_text'];
+    }
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'] == ''){
+        delete param['fa_icon'];
+    }
+    return param;
 }
