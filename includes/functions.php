@@ -123,9 +123,8 @@ function generate_toc($html_string){
       } else if($level == $curr_level) {
         $toc .= "\n";
       } else {
-        while($level < $curr_level){
+        while($level < $counter){
           $toc .= "\n</div>\n\n";
-          $curr_level -= 1;
           $counter -=1;
         }
       }
