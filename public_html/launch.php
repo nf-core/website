@@ -558,7 +558,7 @@ else if($cache['status'] == 'launch_params_complete') {
 <?php if(substr($cache['pipeline'], 0, 8) == 'nf-core/'){ ?>
 <p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
 (requires a Nextflow Tower account).</p>
-<form method="get" action="https://scratch.staging-tower.xyz/launch" target="_blank" class="mb-3">
+<form method="get" action="https://tower.nf/launch" target="_blank" class="mb-3">
     <?php
     foreach($tower_fields as $name => $value){
         echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'">';
