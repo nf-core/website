@@ -66,21 +66,24 @@ if(count($path_parts) > 1){
 ########
 ## Load and cache the pipeline JSON schema if we have one
 ########
-# Try to fetch the nextflow_schema.json file for the latest release, to see whether we can have a 'Launch' button
+# Make cache file names
 $gh_pipeline_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.json";
 $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline->name}/{$release}.NO_SCHEMA";
 # Build directories if needed
 if (!is_dir(dirname($gh_pipeline_schema_fn))) {
   mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
 }
-// Load cache if not 'dev'
+// Try to fetch the nextflow_schema.json file for the selected release, if not already cached or release==dev. Decides later if Launch button is included on the page or not.
 if((!file_exists($gh_pipeline_schema_fn) && !file_exists($gh_pipeline_no_schema_fn)) || $release == 'dev'){
   $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
   $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
   $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
   if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    echo '<script>console.log("Sent request to '.$gh_launch_schema_url.'"," got http response header:",'.json_encode($http_response_header, JSON_HEX_TAG).')</script>';
     # Remember for next time
-    file_put_contents($gh_pipeline_no_schema_fn, '');
+    if(in_array("HTTP/1.1 404 Not Found", $http_response_header)){
+      file_put_contents($gh_pipeline_no_schema_fn, '');
+    }
   } else {
     # Parse out file content
     $gh_launch_schema_response = json_decode($gh_launch_schema_json, TRUE);
