@@ -866,7 +866,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   padding: 0.5rem 1rem;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
-
+.schema-gui-header .dropdown-menu {
+  max-height: 80vh;
+  overflow-y: auto;
+}
 .schema_row, .schema_row input, .schema_row select {
   font-size: 0.8rem;
   background-color: #f9f9f9;

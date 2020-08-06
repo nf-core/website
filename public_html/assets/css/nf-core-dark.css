@@ -166,11 +166,13 @@ blockquote a {
 }
 .site-nav,
 .site-nav li .dropdown-menu,
+.schema-gui-header .dropdown-menu,
 .popover {
   background-color: rgba(35,35,35,.95);
 }
 .navbar-light .navbar-nav .nav-link,
-.site-nav li .dropdown-menu .dropdown-item {
+.site-nav li .dropdown-menu .dropdown-item,
+.schema-gui-header .dropdown-menu .dropdown-item {
   color: rgba(255,255,255,.7);
 }
 .nav-tabs .nav-link.active{
@@ -189,12 +191,18 @@ blockquote a {
 .navbar-light .navbar-nav .nav-link:active,
 .site-nav li .dropdown-menu .dropdown-item:hover,
 .site-nav li .dropdown-menu .dropdown-item:focus,
-.site-nav li .dropdown-menu .dropdown-item:active {
+.site-nav li .dropdown-menu .dropdown-item:active,
+.schema-gui-header .dropdown-menu .dropdown-item:hover,
+.schema-gui-header .dropdown-menu .dropdown-item:focus,
+.schema-gui-header .dropdown-menu .dropdown-item:active {
   color: #e5e6e7;
 }
 .site-nav li .dropdown-menu .dropdown-item:hover,
 .site-nav li .dropdown-menu .dropdown-item:focus,
-.site-nav li .dropdown-menu .dropdown-item:active {
+.site-nav li .dropdown-menu .dropdown-item:active,
+.schema-gui-header .dropdown-menu .dropdown-item:hover,
+.schema-gui-header .dropdown-menu .dropdown-item:focus,
+.schema-gui-header .dropdown-menu .dropdown-item:active {
   background-color: rgba(20,20,20,.95);
 }
 .site-nav .navbar-toggler {

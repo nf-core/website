@@ -61,14 +61,14 @@ function launch_pipeline_web($pipeline, $release){
     if(!array_key_exists($_GET['pipeline'], $pipelines)){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
-    // Try to fetch the nextflow_schema.json file
+    // Make cache file names
     $gh_pipeline_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
     $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
-    # Build directories if needed
+    // Build directories if needed
     if (!is_dir(dirname($gh_pipeline_schema_fn))) {
-      mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
+        mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
     }
-    // Load cache if not 'dev'
+    // Load from cache if not 'dev', otherwise build
     if(file_exists($gh_pipeline_no_schema_fn) && $release != 'dev'){
         return [
             "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
@@ -84,8 +84,9 @@ function launch_pipeline_web($pipeline, $release){
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             # Remember for next time
             file_put_contents($gh_pipeline_no_schema_fn, '');
+            echo '<script>console.log("Sent request to '.$gh_launch_schema_url.'"," got http response header:",'.json_encode($http_response_header, JSON_HEX_TAG).')</script>';
             return [
-                "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
+                "Error  - Could not find a pipeline schema for <code>$pipeline@$release</code>.",
                 "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
                 "<!-- URL attempted: $gh_launch_schema_url -->"
             ];
