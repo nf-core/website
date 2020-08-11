@@ -1131,7 +1131,7 @@ function generate_param_row(id, param){
         if(/^-?[\d\.]+$/.test(param['maximum'])){
             attrs += ' max="'+param['maximum']+'"';
         }
-        if(param.hasOwnProperty('description')){
+        if (param.hasOwnProperty('default')){
             attrs += ' value="'+param['default']+'"';
         }
         default_input = '<div class="w-100"><input '+attrs+' class="param_key param_default" data-param_key="default"></div>';
