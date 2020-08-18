@@ -1625,7 +1625,7 @@ function autosave_schema(schema){
             schema['definitions'][k] = clean_empty_schema_keys(schema['definitions'][k]);
         }
     }
-    // Update in page
+    
     post_data = {
         post_content: "json_schema",
         version: "web_builder",
