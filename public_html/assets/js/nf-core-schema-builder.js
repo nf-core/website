@@ -161,9 +161,13 @@ $(function () {
     // Add parameter button
     $('.add-param-btn').click(function(e){
         var new_id = 'new_param_'+new_param_idx;
-        while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
-            new_param_idx += 1;
-            new_id = 'new_param_'+new_param_idx;
+        if(schema.hasOwnProperty('properties')){
+            while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
+                new_param_idx += 1;
+                new_id = 'new_param_'+new_param_idx;
+            }
+        } else {
+            schema['properties'] = {};
         }
         var new_param = {
             "type": "string",
@@ -1401,8 +1405,10 @@ function validate_id(id, old_id){
     }
     // Iterate through groups, looking for ID
     for(k in schema['definitions']){
-        if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
-            num_hits += 1;
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
+                num_hits += 1;
+            }
         }
     }
     if(num_hits > 0){
