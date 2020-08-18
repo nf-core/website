@@ -1616,15 +1616,6 @@ function update_schema_html(schema){
 }
 function autosave_schema(schema){
     // autosave schema file
-    schema = clean_empty_schema_keys(schema);
-    if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
-        delete schema['definitions'];
-    }
-    if(schema.hasOwnProperty('definitions')){
-        for(k in schema['definitions']){
-            schema['definitions'][k] = clean_empty_schema_keys(schema['definitions'][k]);
-        }
-    }
     
     post_data = {
         post_content: "json_schema",
