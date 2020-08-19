@@ -254,7 +254,7 @@ $(function () {
             post_data = {
                 'post_content': 'json_schema',
                 'version': 'web_builder',
-                'status': 'web_builder_edited',
+                'status': 'web_builder_finished',
                 'api': 'true',
                 'cache_id': $('#schema_cache_id').text(),
                 'schema': JSON.stringify(schema)
@@ -1620,7 +1620,7 @@ function autosave_schema(schema){
     post_data = {
         post_content: "json_schema",
         version: "web_builder",
-        status: "web_builder_edited",
+        status: "web_builder_autosave",
         api: "true",
         cache_id: $("#schema_cache_id").text(),
         schema: JSON.stringify(schema),
