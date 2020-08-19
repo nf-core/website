@@ -1588,6 +1588,21 @@ function update_schema_html(schema){
     // Update in page
     $('#json_schema').text(JSON.stringify(schema, null, 4));
 }
+function autosave_schema(schema){
+    // autosave schema file
+    
+    post_data = {
+        post_content: "json_schema",
+        version: "web_builder",
+        status: "waiting_for_user",
+        api: "true",
+        cache_id: $("#schema_cache_id").text(),
+        schema: JSON.stringify(schema),
+    };
+    $.post("pipeline_schema_builder", post_data).done(function (returned_data) {
+        console.log("Sent schema to API. Response:", returned_data);
+    });
+}
 function clean_empty_schema_keys(subschema){
     if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length == 0){
         delete subschema['properties'];
