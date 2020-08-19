@@ -106,6 +106,8 @@ $(function () {
             // Update printed schema in page
             update_schema_html(schema);
 
+            autosave_schema(schema);
+
             // Update form
             $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
             $('.param_fa_icon').popover('hide');
@@ -152,6 +154,8 @@ $(function () {
             "properties": { }
         };
         update_schema_html(schema);
+
+        autosave_schema(schema);
     }
 
     // Add parameter button
@@ -175,6 +179,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     // Add group button
@@ -206,6 +212,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     // Collapse groups button
@@ -437,6 +445,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     //
@@ -583,6 +593,8 @@ $(function () {
         schema = new_schema;
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     };
 
     //
@@ -647,6 +659,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
 
@@ -743,6 +757,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     //
@@ -849,7 +865,7 @@ $(function () {
         // Update printed schema in page
         update_schema_html(schema);
 
-
+        autosave_schema(schema);
     });
     // Revalidate default value once modal settings changed
     $('#settings_modal').on('hidden.bs.modal', function (e) {
@@ -925,6 +941,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
 
@@ -1166,6 +1184,7 @@ function generate_param_row(id, param){
             delete param['fa_icon'];
             update_param_in_schema(id, param);
             update_schema_html(schema);
+            autosave_schema(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
@@ -1252,6 +1271,7 @@ function generate_group_row(id, param, child_params){
             delete param['fa_icon'];
             update_param_in_schema(id, param);
             update_schema_html(schema);
+            autosave_schema(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
@@ -1490,6 +1510,8 @@ function set_required(id, is_required){
     }
     // Update printed schema in page
     update_schema_html(schema);
+    
+    autosave_schema(schema);
 }
 
 
