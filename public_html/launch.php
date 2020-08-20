@@ -51,8 +51,9 @@ $nxf_flag_schema = array(
         ]
     ]
 );
-if(isset($_GET['pipeline']) && isset($_GET['release'])){
-    $error_msgs = launch_pipeline_web($_GET['pipeline'], $_GET['release']);
+$release = isset($_GET['release']) ? $_GET['release'] : false;
+if(isset($_GET['pipeline'])){
+    $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
 }
 function launch_pipeline_web($pipeline, $release){
     // Check that we recognise the pipeline name
@@ -60,6 +61,14 @@ function launch_pipeline_web($pipeline, $release){
     global $nxf_flag_schema;
     if(!array_key_exists($_GET['pipeline'], $pipelines)){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
+    }
+    // Set release to latest if not given
+    if($release === false){
+        $release = $pipelines[$pipeline][0];
+    }
+    // Check that we recognise the release / branch name
+    if(!in_array($release, $pipelines[$pipeline])){
+        return ["Error - Pipeline release <code>$release</code> not recognised.", "Available <code>$pipeline</code> releases: <ul><li>".implode("</li><li>", $pipelines[$pipeline])."</li></ul>"];
     }
     // Make cache file names
     $gh_pipeline_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
