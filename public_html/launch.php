@@ -95,7 +95,7 @@ function launch_pipeline_web($pipeline, $release){
             file_put_contents($gh_pipeline_no_schema_fn, '');
             echo '<script>console.log("Sent request to '.$gh_launch_schema_url.'"," got http response header:",'.json_encode($http_response_header, JSON_HEX_TAG).')</script>';
             return [
-                "Error  - Could not find a pipeline schema for <code>$pipeline@$release</code>.",
+                "Error  - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>.",
                 "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
                 "<!-- URL attempted: $gh_launch_schema_url -->"
             ];
