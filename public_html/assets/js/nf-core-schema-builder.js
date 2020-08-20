@@ -106,6 +106,8 @@ $(function () {
             // Update printed schema in page
             update_schema_html(schema);
 
+            autosave_schema(schema);
+
             // Update form
             $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
             $('.param_fa_icon').popover('hide');
@@ -152,6 +154,8 @@ $(function () {
             "properties": { }
         };
         update_schema_html(schema);
+
+        autosave_schema(schema);
     }
 
     // Add parameter button
@@ -179,6 +183,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     // Add group button
@@ -210,6 +216,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     // Collapse groups button
@@ -441,6 +449,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     //
@@ -587,6 +597,8 @@ $(function () {
         schema = new_schema;
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     };
 
     //
@@ -651,6 +663,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
 
@@ -747,6 +761,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     //
@@ -853,7 +869,7 @@ $(function () {
         // Update printed schema in page
         update_schema_html(schema);
 
-
+        autosave_schema(schema);
     });
     // Revalidate default value once modal settings changed
     $('#settings_modal').on('hidden.bs.modal', function (e) {
@@ -929,6 +945,8 @@ $(function () {
 
         // Update printed schema in page
         update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
 
@@ -1170,6 +1188,7 @@ function generate_param_row(id, param){
             delete param['fa_icon'];
             update_param_in_schema(id, param);
             update_schema_html(schema);
+            autosave_schema(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
@@ -1256,6 +1275,7 @@ function generate_group_row(id, param, child_params){
             delete param['fa_icon'];
             update_param_in_schema(id, param);
             update_schema_html(schema);
+            autosave_schema(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
@@ -1496,6 +1516,8 @@ function set_required(id, is_required){
     }
     // Update printed schema in page
     update_schema_html(schema);
+    
+    autosave_schema(schema);
 }
 
 
@@ -1593,6 +1615,21 @@ function update_schema_html(schema){
     }
     // Update in page
     $('#json_schema').text(JSON.stringify(schema, null, 4));
+}
+function autosave_schema(schema){
+    // autosave schema file
+    
+    post_data = {
+        post_content: "json_schema",
+        version: "web_builder",
+        status: "waiting_for_user",
+        api: "true",
+        cache_id: $("#schema_cache_id").text(),
+        schema: JSON.stringify(schema),
+    };
+    $.post("pipeline_schema_builder", post_data).done(function (returned_data) {
+        console.log("Sent schema to API. Response:", returned_data);
+    });
 }
 function clean_empty_schema_keys(subschema){
     if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length == 0){
