@@ -1154,7 +1154,7 @@ function generate_param_row(id, param){
             attrs += ' max="'+param['maximum']+'"';
         }
         if (param.hasOwnProperty('default')){
-            attrs += ' value="'+param['default']+'"';
+            attrs += ' value="' + param['default'].replace(/"/g, '&quot;')+'"';
         }
         default_input = '<div class="w-100"><input '+attrs+' class="param_key param_default" data-param_key="default"></div>';
     }
@@ -1214,7 +1214,7 @@ function generate_param_row(id, param){
         <div class="d-sm-none w-100"></div>
         <div class="col">
             <label>Description
-                <input type="text" class="param_key param_description" data-param_key="description" value="`+description+`">
+                <input type="text" class="param_key param_description" data-param_key="description" value="`+ description.replace(/"/g, '&quot;')+`">
             </label>
         </div>
         <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
@@ -1260,7 +1260,7 @@ function generate_group_row(id, param, child_params){
 
     var description = '';
     if(param.hasOwnProperty('description')){
-        description = param['description'];
+        description = param['description'].replace(/"/g, '&quot;');
     }
 
     if(child_params == undefined){
@@ -1315,7 +1315,7 @@ function generate_group_row(id, param, child_params){
                 </div>
                 <div class="col">
                     <label>Description
-                        <input type="text" class="param_key" data-param_key="description" value="`+description+`">
+                        <input type="text" class="param_key" data-param_key="description" value="`+ description.replace(/"/g, '&quot;')+`">
                     </label>
                 </div>
                 <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
