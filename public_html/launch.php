@@ -61,6 +61,9 @@ function launch_pipeline_web($pipeline, $release){
     if(!array_key_exists($_GET['pipeline'], $pipelines)){
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
+    if($release == 'latest'){
+            $release = $pipelines[$pipeline][0];
+        }
     // Make cache file names
     $gh_pipeline_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.json";
     $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__))."/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
