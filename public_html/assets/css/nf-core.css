@@ -1022,7 +1022,11 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   display: none;
 }
 
-
+@media only screen and (min-width: 992px) {
+  #launch_select_pipeline .form-group {
+    margin-bottom: 0;
+  }
+}
 .main-content fieldset {
   margin-top: 50px;
 }

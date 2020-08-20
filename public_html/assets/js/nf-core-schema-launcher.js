@@ -27,7 +27,7 @@ $(function () {
         var option_el = $(this).find(':selected');
         var releases = option_el.data('releases');
         if(wf_name == ''){
-            $('#launch-pipeline-release').html('<option>Please select a pipeline</option>');
+            $('#launch-pipeline-release').html('<option>Pipeline release</option>');
             $('#launch-pipeline-release').attr('disabled', true);
             $('#launch-pipeline-submit').attr('disabled', true);
         } else {
