@@ -388,37 +388,29 @@ to use to launch the pipeline with your choices.</p>
 
 <div class="card card-body mb-3">
     <form action="" method="get" class="row" id="launch_select_pipeline">
-        <div class="col">
-            <div class="form-group mb-0 mr-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text text-monospace">nf-core launch</span>
-                    </div>
-                    <select class="custom-select" name="pipeline" id="launch-pipeline-name">
-                        <option value="">Select a pipeline</option>
-                        <option value="">--</option>
-                    <?php
-                    foreach($pipelines as $wf_name => $releases_json){
-                        echo '<option data-releases=\''.json_encode($releases_json).'\'>'.$wf_name.'</option>';
-                    }
-                    ?>
-                    </select>
-                </div>
+        <div class="col-12 col-lg">
+            <div class="form-group">
+                <label for="launch-pipeline-name" class="d-lg-none">Pipeline:</label>
+                <select class="custom-select" name="pipeline" id="launch-pipeline-name">
+                    <option value="">Select a pipeline</option>
+                    <option value="">--</option>
+                <?php
+                foreach($pipelines as $wf_name => $releases_json){
+                    echo '<option data-releases=\''.json_encode($releases_json).'\'>'.$wf_name.'</option>';
+                }
+                ?>
+                </select>
             </div>
         </div>
-        <div class="col">
-            <div class="form-group mb-0 mr-3">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text text-monospace">-revision</span>
-                    </div>
-                    <select class="custom-select" name="release" id="launch-pipeline-release" disabled>
-                        <option>Please select a pipeline</option>
-                    </select>
-                </div>
+        <div class="col-12 col-lg">
+            <div class="form-group">
+                <label for="launch-pipeline-release" class="d-lg-none">Release:</label>
+                <select class="custom-select" name="release" id="launch-pipeline-release" disabled>
+                    <option>Pipeline release</option>
+                </select>
             </div>
         </div>
-        <div class="col-auto">
+        <div class="col-12 col-lg-auto">
             <button type="submit" class="btn btn-primary btn-launch" id="launch-pipeline-submit" disabled>
                 <i class="fad fa-rocket-launch"></i> Launch
             </button>
