@@ -324,8 +324,8 @@ function build_form_param($param_id, $param, $is_required){
     // Boolean input
     if($param['type'] == 'boolean'){
         $input_el = '
-        <div class="form-control pl-4">
-            <div class="form-check form-check-inline mr-4">
+        <div class="form-control pl-md-4">
+            <div class="form-check form-check-inline  mr-md-4">
                 <input '.($value === true || strtolower($value) == 'true' ? 'checked' : '').' class="form-check-input" type="radio" id="'.$form_param_name.'_true" name="'.$form_param_name.'" '.$required.' value="true">
                 <label class="form-check-label" for="'.$form_param_name.'_true">True</label>
             </div>
