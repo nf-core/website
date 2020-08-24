@@ -98,6 +98,9 @@ img.emoji{
   pre, code, .code {
     font-size: 10px;
   }
+  .form-control{
+    min-width: 50%;
+  }
 }
 
 .toast {
@@ -1164,9 +1167,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 @media only screen and (max-width: 770px) {
   .param-docs-row code {
     font-size: 87.5%;
-  }
-  .form-control{
-    min-width: 50%;
   }
 }
 .bg-lightgray{
