@@ -22,7 +22,7 @@ In this workshop we will first review the ideas of FAIR principles for computati
 
 Alex Peltzer will be giving a 10-minute lightning talk about the concept behind Nextflow and nf-core and give a short update on how approaches to enable FAIRification of nf-core workflows are currently developed.
 
-##Slides 
+##Slides
 
 <iframe src="http://slides.com/apeltzer/eccb2020-nf-nf-core" width="700" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 <div style="margin-bottom:5px"> <strong> <a href="http://slides.com/apeltzer/eccb2020-nf-nf-core" title="Scalable, reproducible bioinformatics workflows using Nextflow & nf-core" target="_blank">Scalable, reproducible bioinformatics workflows using Nextflow & nf-core</a> </strong> by <strong><a href="https://apeltzer.github.io" target="_blank">Alexander Peltzer</a></strong> </div>
