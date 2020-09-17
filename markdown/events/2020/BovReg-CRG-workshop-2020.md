@@ -6,7 +6,7 @@ start_date: "2020-11-17"
 start_time: "09:30" 
 end_date: "2020-11-20"
 end_time: "16:30"
-location_name: Remote
+location_name: Online
 location_url: https://www.bovreg.eu/crg-online-workshop-november-17-20-2020/
 ---
 
