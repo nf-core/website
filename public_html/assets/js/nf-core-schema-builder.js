@@ -1576,7 +1576,8 @@ function find_param_group(id){
 function update_param_in_schema(id, new_param){
     // Given an ID, find the param schema even if it's in a group
     // Assumes max one level of nesting and unique IDs everywhere
-
+    new_param.description = reverse_sanitize_html(new_param.description)
+    new_param.default = reverse_sanitize_html(new_param.default);
     // Simple case - not in a group
     if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema['properties'][id] = new_param;
@@ -1680,4 +1681,17 @@ function sanitize_html(string) {
     };
     const reg = /[&<>"'`/]/ig;
     return string.replace(reg, (match) => (map[match]));
+}
+function reverse_sanitize_html(string) {
+  const map = {
+    "&amp;": "&",
+    "&lt;": "<",
+    "&gt;": ">",
+    "&quot;": '"',
+    "&#x27;": "'",
+    "&grave;": "`",
+    "&#x2F;": "/",
+  };
+  const reg = /&(amp|lt|gt|quot|#x2F|grave|#x2F);/gi;
+  return string.replace(reg, (match) => map[match]);
 }
