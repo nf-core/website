@@ -6,7 +6,6 @@ start_date: "2020-09-28"
 start_time: "11:00 CEST"
 end_date: "2020-09-28"
 end_time: "12:00 CEST"
-location_name: Online
 location_url: https://stockholmuniversity.zoom.us/j/66498969128
 ---
 

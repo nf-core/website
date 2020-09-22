@@ -6,7 +6,6 @@ start_date: "2020-07-21"
 start_time: "17:30"
 end_date: "2020-07-21"
 end_time: "18:15"
-location_name: Online
 location_url: https://bcc2020.github.io/
 ---
 
