@@ -51,6 +51,8 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   // Add event meta to the subtitle
   //
 
+  $output = parse_md($markdown_fn);
+
   // Event type badge
   if(isset($meta['type'])){
     $colour_class = $event_type_classes[strtolower($meta['type'])];
@@ -58,7 +60,10 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
     $subtitle = '<span class="badge badge-'.$colour_class.' mr-3"><i class="'.$icon_class.' mr-1"></i>'.ucfirst($meta['type']).'</span> '.$subtitle;
   }
 
-  $event = sanitise_date_meta($meta);
+  $event = sanitise_date_meta($output["meta"]);
+  print_r($meta);
+  echo var_dump($meta);
+  echo "HELLLOOWOOWOW";
   if($event){
     $header_html = '<div class="row" style="margin-bottom:-1rem;"><div class="col-md-6">';
     $header_html .= '<dl>';
@@ -83,14 +88,15 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
         array_key_exists('address', $event) ||
         array_key_exists('location_latlng', $event)
     ) {
-        $header_html .=  '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
         if(isset($event['location_name'])){
+          $header_html .=  '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
           if(isset($event['location_url'])){
             $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_name'].'</a>'.'<br>';
           } else {
             $header_html .=  $event['location_name'].'<br>';
           }
         } else if(isset($event['location_url'])){
+          $header_html .=  '<dt>Web address:</dt><dd>';
           $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_url'].'</a>'.'<br>';
         }
         if(isset($event['address'])){
@@ -105,6 +111,8 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   }
 
   $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/'.$_GET['event'].'.md';
+
+  // header.php runs parse_md() again to produce main page content
   include('../includes/header.php');
   include('../includes/footer.php');
   exit;
