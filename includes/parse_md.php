@@ -31,7 +31,7 @@ function parse_md($markdown){
       include('404.php');
       die();
     }
-  }else{
+  } else {
     $md_full = $markdown;
   }
   // Get the meta
