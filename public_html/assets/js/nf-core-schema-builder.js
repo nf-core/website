@@ -1155,7 +1155,7 @@ function generate_param_row(id, param){
         }
         if (param.hasOwnProperty('default')){
             if(param['type']==='string'){
-                param['default'] = sanitize_html(param['default']);
+                param['default'] = param['default'];
             }
             attrs += ' value="' + param['default']+'"';
         }
@@ -1519,7 +1519,7 @@ function set_required(id, is_required){
     }
     // Update printed schema in page
     update_schema_html(schema);
-    
+
     autosave_schema(schema);
 }
 
@@ -1621,7 +1621,7 @@ function update_schema_html(schema){
 }
 function autosave_schema(schema){
     // autosave schema file
-    
+
     post_data = {
         post_content: "json_schema",
         version: "web_builder",
