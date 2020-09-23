@@ -6,7 +6,6 @@ start_date: "2020-07-01"
 start_time: "11:20"
 end_date: "2020-07-01"
 end_time: "11:40"
-location_name: Online
 location_url: https://jobim2020.sciencesconf.org/
 ---
 
