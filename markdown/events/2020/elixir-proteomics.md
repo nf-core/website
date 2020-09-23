@@ -17,3 +17,5 @@ The meeting will be on Zoom ([https://stockholmuniversity.zoom.us/j/66498969128]
 and also live-streamed to YouTube ([https://youtu.be/uilfxXCVz2o](https://youtu.be/uilfxXCVz2o)).
 
 The YouTube video will be available to watch after the event has finished.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uilfxXCVz2o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
