@@ -61,9 +61,7 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   }
 
   $event = sanitise_date_meta($output["meta"]);
-  print_r($meta);
-  echo var_dump($meta);
-  echo "HELLLOOWOOWOW";
+ 
   if($event){
     $header_html = '<div class="row" style="margin-bottom:-1rem;"><div class="col-md-6">';
     $header_html .= '<dl>';
