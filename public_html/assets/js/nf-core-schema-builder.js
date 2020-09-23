@@ -1155,7 +1155,7 @@ function generate_param_row(id, param){
         }
         if (param.hasOwnProperty('default')){
             if(param['type']==='string'){
-                param['default'] = sanitize_html(param['default']);
+                param['default'] = param['default'];
             }
             attrs += ' value="' + param['default']+'"';
         }
