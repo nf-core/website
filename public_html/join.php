@@ -46,7 +46,7 @@ include('../includes/header.php');
   If your question is about Nextflow and not directly related to nf-core, please use the main <a class="link-underline" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
 </div>
 
-<h1 id="slack"><a href="#slack" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+<h1 id="slack" class="mt-5"><a href="#slack" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
   <span class="join-pull-img"><img height="120px" src="/assets/img/slack.svg" /></span>
   Slack
 </h1>
@@ -61,7 +61,7 @@ We use it to provide help to people running nf-core pipelines, as well as discus
 <p><a class="btn btn-success mr-2" href="https://nf-co.re/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
 </p>
 
-<h1 id="github"><a href="#github" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+<h1 id="github" class="mt-5"><a href="#github" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
   <span class="join-pull-img join-gh-logo"><img height="120px" src="/assets/img/github.svg" /></span>
   GitHub organisation
 </h1>
@@ -80,7 +80,7 @@ or on the <a href="https://nfcore.slack.com/channels/github-invitations"><code>#
   <i class="fab fa-github"></i> nf-core on GitHub
 </a></p>
 
-<h1 id="twitter"><a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+<h1 id="twitter" class="mt-5"><a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
   <span class="join-pull-img"><img height="120px" src="/assets/img/twitter.svg" /></span>
   Twitter
 </h1>
@@ -89,7 +89,7 @@ or on the <a href="https://nfcore.slack.com/channels/github-invitations"><code>#
 <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large">Follow @nf_core</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<h1 id="youtube"><a href="#youtube" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+<h1 id="youtube" class="mt-5"><a href="#youtube" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
   <span class="join-pull-img"><img width="120px" src="/assets/img/youtube.svg" /></span>
   YouTube
 </h1>
