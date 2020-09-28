@@ -14,8 +14,8 @@ for one of the ELIXIR Proteomics Community regular monthly meetings,
 to speak about nf-core and how the two communities can work together.
 
 The meeting will be on Zoom ([https://stockholmuniversity.zoom.us/j/66498969128](https://stockholmuniversity.zoom.us/j/66498969128))
-and also live-streamed to YouTube ([https://youtu.be/uilfxXCVz2o](https://youtu.be/uilfxXCVz2o)).
+and also live-streamed to YouTube ([https://youtu.be/vxDv_hVkycM](https://youtu.be/vxDv_hVkycM)).
 
-You can catch up with the YouTube video below or at [https://www.youtube.com/embed/vxDv_hVkycM](https://www.youtube.com/embed/vxDv_hVkycM).
+You can catch up with the YouTube video below or at [https://youtu.be/vxDv_hVkycM](https://youtu.be/vxDv_hVkycM).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vxDv_hVkycM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
