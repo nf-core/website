@@ -126,7 +126,7 @@ function launch_pipeline_web($pipeline, $release){
     $_POST['input_params'] = "{}";
     $_POST['pipeline'] = 'nf-core/'.$pipeline;
     $_POST['revision'] = $release;
-    $_POST['nextflow_cmd'] = "nextflow run $pipeline -r $release";
+    $_POST['nextflow_cmd'] = "nextflow run nf-core/$pipeline -r $release";
     $_POST['schema'] = json_encode($gh_launch_schema);
     return [];
 }
@@ -633,80 +633,114 @@ else if($cache['status'] == 'launch_params_complete') {
         For those running on a system with no internet connection, you can copy the parameters JSON to a file
         and use the supplied command to launch.</p>
     <?php endif; ?>
+    <div class="row">
+        <div class="col-12 col-lg-9">
+            <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
 
-    <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
+                <input type="hidden" name="cache_id" value="<?php echo $cache_id; ?>">
+                <input type="hidden" name="post_content" value="json_schema_launcher_webform">
 
-        <input type="hidden" name="cache_id" value="<?php echo $cache_id; ?>">
-        <input type="hidden" name="post_content" value="json_schema_launcher_webform">
-
-        <div class="schema-gui-header sticky-top">
-            <div class="row align-items-center">
-                <div class="col-md-auto">
-                    <?php if(isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0): ?>
-                    <div class="btn-group">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-                            <i class="far fa-stream mr-1"></i> <span>Jump to section</span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <?php
-                            // Definition groups
-                            foreach($cache['schema']['allOf'] as $allof){
-                                if(!isset($allof['$ref']) || !isset($cache['schema']['definitions'])){
-                                    continue;
-                                }
-                                $group_id = substr($allof['$ref'], 14);
-                                if(!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0){
-                                    continue;
-                                }
-                                $group = $cache['schema']['definitions'][$group_id];
-                                $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
-                                $hidden_class = 'is_hidden';
-                                foreach($group['properties'] as $param_id => $param){
-                                    if(!isset($param['hidden']) || (strtolower($param['hidden']) == 'false' || $param['hidden'] === false)){
-                                        $hidden_class = '';
-                                    }
-                                }
-                                $fa_icon = '';
-                                if(isset($group['fa_icon'])){
-                                    $fa_icon = '<i class="'.$group['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
-                                }
-                                $title = $group_id;
-                                if(isset($group['title'])){
-                                    $title = $group['title'];
-                                }
-                                echo '<a class="dropdown-item '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$title.'</a>';
-                            }
-                            // Top-level parameters
-                            if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
-                                echo '<a class="dropdown-item scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</a>';
-                            }
-                            ?>
+                <div class="schema-gui-header sticky-top">
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 0 }'>
+                                <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
+                                <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
+                            </button>
+                        </div>
+                        <div class="col d-none d-lg-block">
+                            <span id="progress_section" class="text-muted">Nextflow command-line flags</span>
+                            <div class="progress" style="height: 2px;">
+                                <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-primary btn-launch" title="Save parameters and <?php if($cache['cli_launch']) echo 'return to the command line"'; else echo 'copy command to launch' ?>" data-toggle="tooltip" data-delay='{ "show": 800, "hide": 0 }'>
+                                <i class="fad fa-rocket-launch mr-1"></i> Launch
+                            </button>
                         </div>
                     </div>
-                    <?php endif; ?>
-                    <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 0 }'>
-                        <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
-                        <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
+                </div>
+                <?php
+                // Definition groups
+                if(isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0){
+                    foreach($cache['schema']['allOf'] as $allof){
+                        if(!isset($allof['$ref']) || !isset($cache['schema']['definitions'])){
+                            continue;
+                        }
+                        $group_id = substr($allof['$ref'], 14);
+                        $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
+                        if(!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0){
+                            continue;
+                        }
+                        $group = $cache['schema']['definitions'][$group_id];
+                        $hidden_class = 'is_hidden';
+                        $child_parameters = '';
+                        foreach($group['properties'] as $child_param_id => $child_param){
+                            $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $group['required']));
+                            if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
+                                $hidden_class = '';
+                            }
+                        }
+                        $fa_icon = '';
+                        if(isset($group['fa_icon'])){
+                            $fa_icon = '<i class="'.$group['fa_icon'].' fa-fw mr-3"></i>';
+                        }
+                        $title = $group_id;
+                        if(isset($group['title'])){
+                            $title = $group['title'];
+                        }
+                        $description = '';
+                        if(isset($group['description'])){
+                            $description = '<p class="form-text">'.$group['description'].'</p>';
+                        }
+                        $helptext = '';
+                        if(isset($group['help_text'])){
+                            $helptext = '<small class="form-text text-muted">'.$group['help_text'].'</small>';
+                        }
+                        if(strlen($child_parameters) > 0){
+                            echo '
+                            <fieldset class="'.$hidden_class.'" id="'.$html_id.'">
+                                <div class="card">
+                                    <legend class="h2 card-header">'.$fa_icon.$title.'</legend>
+                                    <div class="card-body">
+                                        '.$description.$helptext.$child_parameters.'
+                                    </div>
+                                </div>
+                            </fieldset>';
+                        }
+                    }
+                }
+                // Top-level parameters
+                if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
+                    $child_parameters = '';
+                    foreach($cache['schema']['properties'] as $param_id => $param){
+                        $child_parameters .= build_form_param($param_id, $param, @in_array($param_id, $cache['schema']['required']));
+                    }
+                    echo '
+                    <fieldset id="ungrouped-parameters">
+                        <div class="card">
+                            <legend class="h2 card-header"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</legend>
+                            <div class="card-body">
+                                '.$child_parameters.'
+                            </div>
+                        </div>
+                    </fieldset>';
+                }
+                ?>
+                <div class="mt-5 text-center">
+                    <button type="submit" class="btn btn-lg btn-primary  btn-launch" data-target="#schema-finished">
+                        <i class="fad fa-rocket-launch"></i> Launch workflow
                     </button>
+                    <p class="small text-danger mt-2 validation-warning" style="display: none;">Please fix validation errors before launching.</p>
                 </div>
-                <div class="col d-none d-lg-block">
-                    <span id="progress_section" class="text-muted">Nextflow command-line flags</span>
-                    <div class="progress" style="height: 2px;">
-                        <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="col-md-auto">
-                    <button type="submit" class="btn btn-primary btn-launch" title="Save parameters and <?php if($cache['cli_launch']) echo 'return to the command line"'; else echo 'copy command to launch' ?>" data-toggle="tooltip" data-delay='{ "show": 800, "hide": 0 }'>
-                        <i class="fad fa-rocket-launch mr-1"></i> Launch
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
-
         <?php
-        // Definition groups
-        if(isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0){
-            foreach($cache['schema']['allOf'] as $allof){
+            if(isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0):
+                $toc_list='<div class="list-group">';
+                // Definition groups
+                foreach($cache['schema']['allOf'] as $allof){
                 if(!isset($allof['$ref']) || !isset($cache['schema']['definitions'])){
                     continue;
                 }
@@ -715,67 +749,38 @@ else if($cache['status'] == 'launch_params_complete') {
                     continue;
                 }
                 $group = $cache['schema']['definitions'][$group_id];
+                $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
                 $hidden_class = 'is_hidden';
-                $child_parameters = '';
-                foreach($group['properties'] as $child_param_id => $child_param){
-                    $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $group['required']));
-                    if(!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)){
+                foreach($group['properties'] as $param_id => $param){
+                    if(!isset($param['hidden']) || (strtolower($param['hidden']) == 'false' || $param['hidden'] === false)){
                         $hidden_class = '';
                     }
                 }
                 $fa_icon = '';
                 if(isset($group['fa_icon'])){
-                    $fa_icon = '<i class="'.$group['fa_icon'].' fa-fw mr-3"></i>';
+                    $fa_icon = '<i class="'.$group['fa_icon'].' fa-fw mr-3 text-secondary"></i>';
                 }
                 $title = $group_id;
                 if(isset($group['title'])){
                     $title = $group['title'];
                 }
-                $description = '';
-                if(isset($group['description'])){
-                    $description = '<p class="form-text">'.$group['description'].'</p>';
+                $toc_list.='<a class="list-group-item list-group-item-action font-weight-normal '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$title.'</a>';
                 }
-                $helptext = '';
-                if(isset($group['help_text'])){
-                    $helptext = '<small class="form-text text-muted">'.$group['help_text'].'</small>';
+                // Top-level parameters
+                if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
+                $toc_list.='<a class="list-group-item list-group-item-action font-weight-normal scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</a>';
                 }
-                if(strlen($child_parameters) > 0){
-                    echo '
-                    <fieldset class="'.$hidden_class.'" id="'.$group_id.'">
-                        <div class="card">
-                            <legend class="h2 card-header">'.$fa_icon.$title.'</legend>
-                            <div class="card-body">
-                                '.$description.$helptext.$child_parameters.'
-                            </div>
-                        </div>
-                    </fieldset>';
-                }
-            }
-        }
-        // Top-level parameters
-        if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
-            $child_parameters = '';
-            foreach($cache['schema']['properties'] as $param_id => $param){
-                $child_parameters .= build_form_param($param_id, $param, @in_array($param_id, $cache['schema']['required']));
-            }
-            echo '
-            <fieldset id="ungrouped-parameters">
-                <div class="card">
-                    <legend class="h2 card-header"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</legend>
-                    <div class="card-body">
-                        '.$child_parameters.'
-                    </div>
-                </div>
-            </fieldset>';
-        }
+                $toc_list.='</div>';
+
+            endif;
+        $toc = '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top"><nav class="toc">';
+        $toc .= $toc_list;
+        # Back to top link
+        $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+        $toc .='</nav></div></div>';
+        echo $toc;
+        echo '</div>';// close row div
         ?>
-        <div class="mt-5 text-center">
-            <button type="submit" class="btn btn-lg btn-primary  btn-launch" data-target="#schema-finished">
-                <i class="fad fa-rocket-launch"></i> Launch workflow
-            </button>
-            <p class="small text-danger mt-2 validation-warning" style="display: none;">Please fix validation errors before launching.</p>
-        </div>
-    </form>
 
 <?php
 } // if $cache
