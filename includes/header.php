@@ -76,6 +76,16 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
+    if(isset($aws) && $aws): ?>
+    <link rel="shortcut icon" href="https://aws.amazon.com/favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.765.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <?php endif;
     if(isset($import_schema_builder) && $import_schema_builder): ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
