@@ -43,10 +43,12 @@ if(isset($_GET['q']) && strlen($_GET['q'])){
 # Set defaults (Readme tab)
 $pagetab = ''; # empty string is home / readme
 $release = 'dev';
+$release_hash = null;
 $latest_release = 'dev';
 if(count($pipeline->releases) > 0){
   $release = $latest_release = $pipeline->releases[0]->tag_name;
   $release_url = $pipeline->releases[0]->html_url;
+  $release_hash = $pipeline->releases[0]->tag_sha;
 }
 
 # Find release from URL if set
@@ -55,14 +57,15 @@ if(count($path_parts) > 1){
     if($path_parts[1] == $r->tag_name){
       $release = $r->tag_name;
       $release_url = $releases->html_url;
+      $release_hash = $r->tag_sha;
     }
   }
   if($path_parts[1] == 'dev'){
     $release = 'dev';
     $release_url = null;
+    $release_hash = null;
   }
 }
-
 ########
 ## Load and cache the pipeline JSON schema if we have one
 ########
@@ -115,6 +118,11 @@ else if(endswith($_GET['path'], '/output')){
   $pagetab = 'output';
   $filename = 'docs/output.md';
   $md_trim_before = '# Introduction';
+}
+# Example output
+else if(endswith($_GET['path'], '/example_output')){
+  $pagetab = 'example_output';
+  require_once('example_output.php');
 }
 # Stats
 else if(endswith($_GET['path'], '/stats')){
@@ -214,13 +222,18 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Outputs</a>
   </li>
+  <?php if(isset($release_hash) && $release_hash): ?>
+  <li class="nav-item">
+    <a class="nav-link<?php if($pagetab=='example_output'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/example_output">Example<span class="d-none d-sm-inline"> output</span></a>
+  </li>
+  <?php endif; ?>
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='releases'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases">Releases</a>
   </li>
-  <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage'): ?>
+  <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'example_output'): ?>
   <li class="pt-1 pl-3">
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
@@ -230,10 +243,10 @@ if($pipeline->archived){
         <?php
         $releases = [];
         foreach($pipeline->releases as $r){
-          array_push($releases, $r->tag_name);
+          $releases[$r->tag_name] = $r->tag_sha;
         }
-        array_push($releases, "dev");
-        foreach($releases as $r){
+        $releases["dev"] = "";
+        foreach($releases as $r => $h){
           $selected = $r == $release ? 'selected="selected"' : '';
           echo '<option value="/'.$pipeline->name.'/'.$r.'/'.$pagetab.'" '.$selected.'>'.$r.'</option>';
         }
@@ -242,6 +255,7 @@ if($pipeline->archived){
     </div>
   </li>
   <?php endif; ?>
+  
 </ul>
 
 <?php
