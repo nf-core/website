@@ -44,36 +44,6 @@ If you forget the recursive flag (I always do), the markdown conversion won't wo
 git submodule update --init --recursive
 ```
 
-### First-run
-
-Much of the site is powered by a `pipelines.json` file.
-The webserver does this automatically when GitHub events trigger an update, but you'll need to run the script manually.
-Assuming you have PHP available on the command line, you can do this as follows.
-
-First you'll need a `config.ini` text file with values for `github_username` and `github_access_token`.
-See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
-This file is ignored in `.gitignore` for security reasons. Then you can run:
-
-```bash
-php update_pipeline_details.php
-```
-
-This will create `public_html/pipelines.json`, which is used by the website.
-Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
-
-Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
-
-```bash
-php update_issue_stats.php
-php update_stats.php
-php update_fontawesome_icons.php
-```
-
-Note that your GitHub account needs push rights for the nf-core permission for the `update_stats.php` to work.
-
-This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
-all also ignored in `.gitignore`.
-
 ### Running a local server
 
 Ok, you're ready! To run the website locally, just start the apache-php server with:
@@ -90,6 +60,51 @@ set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-
 Most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
 
 Note that the `.htaccess` file is set up to remove the `.php` file extensions in URLs.
+
+### First-run
+
+Much of the site is powered by a `pipelines.json` file.
+The webserver does this automatically when GitHub events trigger an update, but you'll need to run the script manually.
+
+#### Access tokens
+
+First you'll need a `config.ini` text file with values for `github_username` and `github_access_token`.
+See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
+This file is ignored in `.gitignore` for security reasons.
+
+#### Running PHP scripts
+
+It's easiest to run these first manual update scripts on the command line. If you have PHP available
+then you may be able to do this directly. Alternatively, if you are using Docker as above then you can
+open a shell inside the running container. The container is typically named `web` (you can check this
+with the `docker ps` command), so you can open an interactive shell using the following command:
+
+```bash
+docker exec -it web /bin/bash
+```
+
+#### Update scripts
+
+The following command will create `public_html/pipelines.json`, which is used by the website.
+
+```bash
+php update_pipeline_details.php
+```
+
+Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
+
+Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
+
+```bash
+php update_issue_stats.php
+php update_stats.php
+php update_fontawesome_icons.php
+```
+
+Note that your GitHub account needs push rights for the nf-core permission for the `update_stats.php` to work.
+
+This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
+all also ignored in `.gitignore`.
 
 ## Production Server Setup
 
