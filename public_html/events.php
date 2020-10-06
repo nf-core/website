@@ -5,13 +5,16 @@ $event_type_classes = array(
   'hackathon' => 'primary',
   'talk' => 'success',
   'poster' => 'secondary',
-  'tutorial' => 'info'
+  'tutorial' => 'info',
+  'workshop' => 'light'
 );
 $event_type_icons = array(
   'hackathon' => 'fas fa-laptop-code',
   'talk' => 'fas fa-presentation',
   'poster' => 'far fa-image',
-  'tutorial' => 'fas fa-graduation-cap'
+  'tutorial' => 'fas fa-graduation-cap',
+  'workshop' => 'fas fa-chalkboard-teacher'
+
 );
 
 // Helper functions

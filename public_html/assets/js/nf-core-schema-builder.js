@@ -316,7 +316,7 @@ $(function () {
                     if(schema.hasOwnProperty('properties')){
                         for(k in schema['properties']){
                             var new_k = k;
-                            if(k == id){ new_k = new_id; console.log("FOUDN 1"); };
+                            if(k == id){ new_k = new_id; console.log("FOUND 1"); };
                             new_schema['properties'][new_k] = schema['properties'][k];
                         }
                     }
@@ -1155,7 +1155,7 @@ function generate_param_row(id, param){
         }
         if (param.hasOwnProperty('default')){
             if(param['type']==='string'){
-                param['default'] = sanitize_html(param['default']);
+                param['default'] = param['default'];
             }
             attrs += ' value="' + param['default']+'"';
         }
@@ -1410,6 +1410,10 @@ function validate_id(id, old_id){
     }
     // Iterate through groups, looking for ID
     for(k in schema['definitions']){
+        // Check that the id is not already a group id
+        if (k===id) {
+          num_hits += 1;
+        }
         if(schema['definitions'][k].hasOwnProperty('properties')){
             if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
                 num_hits += 1;
@@ -1519,7 +1523,7 @@ function set_required(id, is_required){
     }
     // Update printed schema in page
     update_schema_html(schema);
-    
+
     autosave_schema(schema);
 }
 
@@ -1621,7 +1625,6 @@ function update_schema_html(schema){
 }
 function autosave_schema(schema){
     // autosave schema file
-    
     post_data = {
         post_content: "json_schema",
         version: "web_builder",
