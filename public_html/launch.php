@@ -2,8 +2,8 @@
 
 require_once('../includes/functions.php');
 require_once('../includes/parse_md.php');
+$mainpage_container = false;
 $error_msgs = array();
-
 // Get available pipelines / releases
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = array();
@@ -376,6 +376,7 @@ if(!$cache){
 /////////////////////////////////////////////////////////////
 ?>
 
+<div class="container main-content pt-5">
 <p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
     It typically works in combination with the <a href="/tools"><code>nf-core</code> helper package</a>.
 </p>
@@ -599,8 +600,7 @@ else if($cache['status'] == 'launch_params_complete') {
         Return to editor
     </button>
 </form>
-
-
+</div>
 <?php } else {
 
 /////////////////////////////////////////////////////////////
@@ -616,7 +616,7 @@ else if($cache['status'] == 'launch_params_complete') {
         $pipeline_name_header .= '</p>';
     }
     ?>
-
+    <div class="container container-xl main-content">
     <div class="alert alert-info">
         <?php echo $pipeline_name_header; ?>
         <p class="lead mb-0">Launch ID: <code><?php echo $cache_id; ?></code> <small class="cache_expires_at" style="display:none;">(expires <span><?php echo $expires_timestamp; ?></span>)</small></p>
@@ -776,12 +776,12 @@ else if($cache['status'] == 'launch_params_complete') {
         $toc = '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top"><nav class="toc">';
         $toc .= $toc_list;
         # Back to top link
-        $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+        $toc .= '<p class="small text-right"><a href="#schema_launcher_form" class="text-muted scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
         $toc .='</nav></div></div>';
         echo $toc;
         echo '</div>';// close row div
         ?>
-
+    </div>
 <?php
 } // if $cache
 
