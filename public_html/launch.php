@@ -540,66 +540,67 @@ else if($cache['status'] == 'launch_params_complete') {
         }
     }
     ?>
+<div class="container main-content pt-5">
+    <h1>Launch parameters saved</h1>
 
-<h1>Launch parameters saved</h1>
+    <?php if(isset($cache['cli_launch']) && $cache['cli_launch']): ?>
+    <p>The <code>nf-core launch</code> command running in your terminal should have automatically detected your settings.
+        Follow the prompts in your command line to launch the pipeline.</p>
+    <p>If the launch command has stopped running for any reason, you can still launch by following the instructions below:</p>
+    <?php else: ?>
+    <p>Your workflow parameters are ready to go! Follow the instructions below for instructions on how to launch your pipeline:</p>
+    <?php endif; ?>
 
-<?php if(isset($cache['cli_launch']) && $cache['cli_launch']): ?>
-<p>The <code>nf-core launch</code> command running in your terminal should have automatically detected your settings.
-    Follow the prompts in your command line to launch the pipeline.</p>
-<p>If the launch command has stopped running for any reason, you can still launch by following the instructions below:</p>
-<?php else: ?>
-<p>Your workflow parameters are ready to go! Follow the instructions below for instructions on how to launch your pipeline:</p>
-<?php endif; ?>
+    <h3>If your system has an internet connection</h3>
+    <p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
+    <p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
+        simply run the following command and follow the prompts:</p>
+    <pre>nf-core launch --id <?php echo $cache_id; ?></pre>
 
-<h3>If your system has an internet connection</h3>
-<p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
-<p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
-    simply run the following command and follow the prompts:</p>
-<pre>nf-core launch --id <?php echo $cache_id; ?></pre>
+    <h3>Launch using Nextflow Tower</h3>
+    <?php if(substr($cache['pipeline'], 0, 8) == 'nf-core/'){ ?>
+    <p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
+    (requires a Nextflow Tower account).</p>
+    <form method="get" action="https://tower.nf/launch" target="_blank" class="mb-3">
+        <?php
+        foreach($tower_fields as $name => $value){
+            echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'">';
+        }
+        ?>
+        <button type="submit" class="btn btn-primary" style="background-color: #4259E0;">
+            <i class="fad fa-rocket mr-1"></i>
+            Nextflow Tower &nbsp; &#x276f; &nbsp; Launch
+        </button>
+    </form>
+    <?php } else { ?>
+    <p>Sorry, this feature is not supported for pipelines that are launched from a local directory (<code><?php echo $cache['pipeline']; ?></code>)</p>
+    <?php } ?>
 
-<h3>Launch using Nextflow Tower</h3>
-<?php if(substr($cache['pipeline'], 0, 8) == 'nf-core/'){ ?>
-<p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
-(requires a Nextflow Tower account).</p>
-<form method="get" action="https://tower.nf/launch" target="_blank" class="mb-3">
-    <?php
-    foreach($tower_fields as $name => $value){
-        echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'">';
-    }
-    ?>
-    <button type="submit" class="btn btn-primary" style="background-color: #4259E0;">
-        <i class="fad fa-rocket mr-1"></i>
-        Nextflow Tower &nbsp; &#x276f; &nbsp; Launch
-    </button>
-</form>
-<?php } else { ?>
-<p>Sorry, this feature is not supported for pipelines that are launched from a local directory (<code><?php echo $cache['pipeline']; ?></code>)</p>
-<?php } ?>
+    <h3>Launching with no internet and without nf-core/tools</h3>
 
-<h3>Launching with no internet and without nf-core/tools</h3>
+    <?php if(count($cache['input_params']) > 0): ?>
+    <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
+    <pre><?php echo json_encode($cache['input_params'], JSON_PRETTY_PRINT); ?></pre>
 
-<?php if(count($cache['input_params']) > 0): ?>
-<p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
-<pre><?php echo json_encode($cache['input_params'], JSON_PRETTY_PRINT); ?></pre>
+    <p>Then, launch Nextflow with the following command:</p>
+    <pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?>-params-file nf-params.json</pre>
 
-<p>Then, launch Nextflow with the following command:</p>
-<pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?>-params-file nf-params.json</pre>
+    <?php else: ?>
+    <p>Launch Nextflow with the following command:</p>
+    <pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?></pre>
+    <?php endif; ?>
 
-<?php else: ?>
-<p>Launch Nextflow with the following command:</p>
-<pre><?php echo $cache['nextflow_cmd']; echo $nxf_flags; ?></pre>
-<?php endif; ?>
-
-<h3>Continue editing</h3>
-<p>If you would like to continue editing your workflow parameters, click the button below:</p>
-<form action="" method="get">
-    <input type="hidden" name="id" value="<?php echo $cache_id; ?>">
-    <input type="hidden" name="return_to_editor" value="true">
-    <button type="submit" class="btn btn-outline-primary">
-        <i class="fas fa-pencil-alt mr-1"></i>
-        Return to editor
-    </button>
-</form>
+    <h3>Continue editing</h3>
+    <p>If you would like to continue editing your workflow parameters, click the button below:</p>
+    <form action="" method="get">
+        <input type="hidden" name="id" value="<?php echo $cache_id; ?>">
+        <input type="hidden" name="return_to_editor" value="true">
+        <button type="submit" class="btn btn-outline-primary">
+            <i class="fas fa-pencil-alt mr-1"></i>
+            Return to editor
+        </button>
+    </form>
+    </div>
 </div>
 <?php } else {
 
