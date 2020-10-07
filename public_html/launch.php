@@ -765,11 +765,11 @@ else if($cache['status'] == 'launch_params_complete') {
                 if(isset($group['title'])){
                     $title = $group['title'];
                 }
-                $toc_list.='<a class="list-group-item list-group-item-action font-weight-normal '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$title.'</a>';
+                $toc_list.='<a class="list-group-item list-group-item-action font-weight-normal text-smaller '.$hidden_class.' scroll_to_link" href="#'.$html_id.'">'.$fa_icon.$title.'</a>';
                 }
                 // Top-level parameters
                 if(isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0){
-                $toc_list.='<a class="list-group-item list-group-item-action font-weight-normal scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</a>';
+                $toc_list.='<a class="list-group-item list-group-item-action font-weight-normal text-smaller scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw mr-3"></i>Ungrouped parameters</a>';
                 }
                 $toc_list.='</div>';
 
