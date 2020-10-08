@@ -453,13 +453,13 @@ ob_start();
 
         function renderObject(data, type, full) {
             if (isthisdocument(s3exp_config.Bucket, data)) {
-                console.log("is this document: " + data);
+                // console.log("is this document: " + data);
                 return fullpath2filename(data);
             } else if (isfolder(data)) {
-                console.log("is folder: " + data);
+                // console.log("is folder: " + data);
                 return '<a data-s3="folder" data-prefix="' + htmlEscape(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">' + prefix2folder(data) + '</a>';
             } else {
-                console.log("not folder/this document: " + data);
+                // console.log("not folder/this document: " + data);
                 return '<a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '">' + fullpath2filename(data) + '</a>';
             }
         }
@@ -544,7 +544,8 @@ ob_start();
                 resetDepth();
                 delete s3exp_config.ContinuationToken;
                 s3exp_config.Prefix = target.dataset.prefix;
-                s3exp_config.Delimiter = $("input[name='optionsdepth']:checked").val() == "folder" ? "/" : "";
+                // s3exp_config.Delimiter = $("input[name='optionsdepth']:checked").val() == "folder" ? "/" : "";
+                s3exp_config.Delimiter = "/";
                 (s3exp_lister = s3list(s3exp_config, s3draw)).go();
                 // Else user has clicked on an object so download it in new window/tab
             } else {
