@@ -22,7 +22,7 @@ ob_start();
                         <!-- Bucket breadcrumbs -->
                         <div class="pull-right">
                             <ul id="breadcrumb" class="breadcrumb pull-right">
-                                <li class="active">
+                                <li class="breadcrumb-item active">
                                     <a href="#">&lt;bucket&gt;</a>
                                 </li>
                             </ul>
@@ -229,7 +229,7 @@ ob_start();
             // Add the bucket (the bucket is always first)
             if (ii === 0) {
                 var a1 = $('<a>').attr('href', '#').text(part);
-                ipart = $('<li>').append(a1);
+                ipart = $('<li>').addClass('breadcrumb-item').append(a1);
                 a1.click(function(e) {
                     e.preventDefault();
                     // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
@@ -245,10 +245,10 @@ ob_start();
                 buildprefix += part + '/';
 
                 if (ii == parts.length - 1) {
-                    ipart = $('<li>').addClass('active').text(part);
+                    ipart = $('<li>').addClass('breadcrumb-item active').text(part);
                 } else {
                     var a2 = $('<a>').attr('href', '#').append(part);
-                    ipart = $('<li>').append(a2);
+                    ipart = $('<li>').addClass('breadcrumb-item').append(a2);
 
                     // Closure needed to enclose the saved S3 prefix
                     (function() {
@@ -430,7 +430,7 @@ ob_start();
         // $("input:radio[name='optionsdepth']").change(function() {
         //     // console.log("Folder/Bucket option change to " + $(this).val());
         //     // console.log("Change options: " + $("input[name='optionsdepth']:checked").val());
-// 
+//
         //     // If user selected deep then we do need to do a full list
         //     if ($(this).val() == 'bucket') {
         //         console.log("Switch to bucket");
@@ -603,25 +603,25 @@ ob_start();
 //             // - bucket1.s3.amazonaws.com
 //             // - s3-us-west-2.amazonaws.com
 //             // - bucket2.s3-us-west-2.amazonaws.com
-// 
+//
 //             // If using static website hosting, the hostname will be of the form:
 //             // - bucket.s3-website.eu-central-1.amazonaws.com/
-// 
+//
 //             // The following is also a legal form, but we do not support it, so
 //             // you should use s3-eu-central-1 rather than s3.eu-central-1:
 //             // - bucket3.s3.eu-central-1.amazonaws.com
-// 
+//
 //             var bucket;
 //             var region;
 //             var hostnames = parser.hostname.split('.');
 //             var pathnames = parser.pathname.split('/');
-// 
+//
 // //             console.log("count of words in hostname=" + hostnames.length);
 // //             console.log("count of words in pathname=" + pathnames.length);
-// // 
+// //
 // //             console.log("hostnames=" + hostnames);
 // //             console.log("pathnames=" + pathnames);
-// 
+//
 //             // If bucket prefix not included in hostname
 //             if (hostnames[0].match(/^s3-/) || hostnames[0].match(/^s3$/)) {
 //                 bucket = pathnames[1];
@@ -634,7 +634,7 @@ ob_start();
 //                 // console.log("host bucket=" + bucket);
 //                 // console.log("host region=" + region);
 //             }
-// 
+//
 //             // If we found statically-hosted website prefix or explicit region, for
 //             // example s3-us-west-2, then get region else use the default of US Standard
 //             if (region !== 's3') {
@@ -646,22 +646,22 @@ ob_start();
 //                     AWS.config.region = region;
 //                 }
 //             }
-// 
+//
 //             // console.log("AWS region=" + AWS.config.region);
 //             // console.log("S3 bucket=" + bucket);
-// 
+//
 //             // Create and initialize S3 object
 //             s3 = new AWS.S3();
 //             s3exp_config = {
 //                 Bucket: bucket,
 //                 Delimiter: '/'
 //             };
-// 
+//
 //             if (window.location.hash) {
 //                 // console.log("Location hash=" + window.location.hash);
 //                 s3exp_config.Prefix = window.location.hash.substring(1);
 //             }
-// 
+//
 //             // Do initial bucket list
 //             (s3exp_lister = s3list(s3exp_config, s3draw)).go();
 //         } else {
