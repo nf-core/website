@@ -220,7 +220,7 @@ if($pipeline->archived){
     <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage">Usage</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Outputs</a>
+    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Output</a>
   </li>
   <?php if(isset($release_hash) && $release_hash): ?>
   <li class="nav-item">
@@ -255,14 +255,14 @@ if($pipeline->archived){
     </div>
   </li>
   <?php endif; ?>
-  
+
 </ul>
 
 <?php
 ########
 # Make a row with a column for content
 ########
-echo '<div class="row"><div class="col-12 col-lg-9">';
+echo '<div class="row"><div class="col-12 col-lg-10">';
 
 ########
 # Print content
@@ -273,6 +273,10 @@ if(preg_match('/<!-- params-docs -->/', $content)){
 } else {
   $content .= $schema_content;
 }
+if($pagetab=='example_output'){
+  echo '<div class="pipeline-page-content">'.$content.'</div>';
+}
+else {
 echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 
 ########
@@ -286,7 +290,7 @@ if(in_array($pagetab, ['', 'stats', 'releases'])){
   require_once('sidebar.php');
 }
 # Documentation - ToC
-else {
+else if(in_array($pagetab, ['usage', 'output'])){
   $toc = '<nav class="toc">';
   $toc .= generate_toc($content);
   # Add on the action buttons for the parameters docs
@@ -309,5 +313,5 @@ else {
 }
 echo '</div></div>'; # end of the sidebar col
 echo '</div>'; # end of the row
-
+}
 include('../includes/footer.php');
