@@ -81,6 +81,7 @@ with the `docker ps` command), so you can open an interactive shell using the fo
 
 ```bash
 docker exec -it web /bin/bash
+cd var/www/
 ```
 
 #### Update scripts
