@@ -498,3 +498,17 @@ hr {
   color: #999;
   background-color: #181a1b;
 }
+.breadcrumb {
+  background-color: #616161;
+  /* border-color: #616161; */
+  /* color: #ededed; */
+}
+.breadcrumb-item.active{
+  color: #e5e6e7;
+}
+.breadcrumb-item+.breadcrumb-item::before{
+  color: #e5e6e7;
+}
+#file-preview iframe{
+  background-color: #e5e6e7;
+}

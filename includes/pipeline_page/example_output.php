@@ -44,7 +44,7 @@ ob_start();
                     <table class="table table-bordered table-hover responsive" id="tb-s3objects">
                         <thead>
                             <tr>
-                                <th>Object</th>
+                                <th>Name</th>
                                 <th>Folder</th>
                                 <th>Last Modified</th>
                                 <th>Size</th>
