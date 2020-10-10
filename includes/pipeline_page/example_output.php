@@ -47,7 +47,6 @@ ob_start();
                                 <th>Object</th>
                                 <th>Folder</th>
                                 <th>Last Modified</th>
-                                <th>Timestamp</th>
                                 <th>Size</th>
                             </tr>
                         </thead>

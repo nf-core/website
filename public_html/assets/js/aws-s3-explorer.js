@@ -94,35 +94,33 @@ $(function () {
     }
 
     $("body").on("click",".preview-file-btn ",function(e){
-        var url = $(this).siblings('a')[0].href;
+        var url = $(this).siblings('div').children('a')[0].href;
         var extension = url.substring(url.lastIndexOf('.'),url.length);
         var filename = url.split('/').pop();
 
         fetch(url)
-                  .then(
-                    function(response) {
-                      if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' +
-                          response.status);
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' + response.status);
                         return;
-                      }
-                      // Examine the text in the response
-                      response.text().then(function(data) {
-                          if(extension !== '.html'){
-                              data = '<pre><code>'+data+'</code></pre>';
-                          }
-                          else {
-                                data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
-                          }
-
-                          var header = '<div class="card-header">'+filename+'</div>';
-                          $("#file-preview").html(header+'<div class="card-body">'+data+'</div>');
-                      });
                     }
-                  )
-                  .catch(function(err) {
-                    console.log('Fetch Error :-S', err);
-                  });
+                    // Examine the text in the response
+                    response.text().then(function(data) {
+                    if(extension !== '.html'){
+                        data = '<pre><code>'+data+'</code></pre>';
+                    }
+                    else {
+                        data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
+                    }
+                    var header = '<div class="card-header">'+filename+'</div>';
+                    $("#file-preview").html(header+'<div class="card-body">'+data+'</div>');
+                });
+            }
+         )
+         .catch(function(err) {
+            console.log('Fetch Error :-S', err);
+        });
     });
     // We are going to generate bucket/folder breadcrumbs. The resulting HTML will
     // look something like this:
@@ -170,16 +168,16 @@ $(function () {
             if (ii === 0 || ii===1) {
                 var a1 = $('<span>').text(part);
                 ipart = $('<li>').addClass('breadcrumb-item').append(a1);
-                // a1.click(function(e) {
-                //     e.preventDefault();
-                //     // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
-                //     s3exp_config = {
-                //         Bucket: data.params.Bucket,
-                //         Prefix: '',
-                //         Delimiter: data.params.Delimiter
-                //     };
-                //     (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-                // });
+                a1.click(function(e) {
+                    e.preventDefault();
+                    // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
+                    s3exp_config = {
+                        Bucket: data.params.Bucket,
+                        Prefix: '',
+                        Delimiter: data.params.Delimiter
+                    };
+                    (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+                });
                 if(ii===1){
                     buildprefix += part + '/';
                 }
@@ -218,10 +216,19 @@ $(function () {
     $('li.li-bucket').remove();
     $("#file-preview").html('');
     folder2breadcrumbs(data);
+    
+    var path = data.params.Prefix.split("/")
+    if(path.length > 3){
+        $('#tb-s3objects').DataTable().rows.add([{
+            Key: path.slice(0,path.length-2).join("/") + "/",
+            render_name: false
+        }]);
+    }
     // Add each part of current path (S3 bucket plus folder hierarchy) into the breadcrumbs
     $.each(data.CommonPrefixes, function(i, prefix) {
         $('#tb-s3objects').DataTable().rows.add([{
-            Key: prefix.Prefix
+            Key: prefix.Prefix,
+            render_name: true
         }]);
     });
 
@@ -230,7 +237,7 @@ $(function () {
     }
 
     function s3list(config, completecb) {
-    console.log('s3list config: ' + JSON.stringify(config));
+    // console.log('s3list config: ' + JSON.stringify(config));
     var params = {
         Bucket: config.Bucket,
         Prefix: config.Prefix,
@@ -400,7 +407,12 @@ $(function () {
             return fullpath2filename(data);
         } else if (isfolder(data)) {
             // console.log("is folder: " + data);
-            return '<a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"> <i class="fas fa-folder"></i> ' + prefix2folder(data) + '</a>';
+            if(full.render_name){
+                return '<i class="fad fa-folder"></i> <a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">' + prefix2folder(data) + '</a>';
+            } else {
+                return '<i class="fad fa-folder-open"></i> <a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">  ..</a>';
+            }
+            
         } else {
             var icon = '<i class="fad fa-file"></i> ';
             var preview_button = '';
@@ -408,7 +420,7 @@ $(function () {
                 var preview_button = '<button class="btn btn-outline-secondary preview-file-btn ml-3"><i class="fad fa-file-search mr-1"></i> Preview file</button>';
             }
             // console.log("not folder/this document: " + data);
-            return '<a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '">'+ icon + fullpath2filename(data) + '</a>' + preview_button;
+            return '<div class="d-flex justify-content-between align-items-center"><div>'+icon +'<a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '">'+ fullpath2filename(data) + '</a></div>' + preview_button + '</div>';
         }
     }
 
@@ -435,23 +447,20 @@ $(function () {
         }, {
             "aTargets": [1],
             "mData": "Key",
+            "width": "50%",
             "mRender": function(data, type, full) {
                 return renderFolder(data, type, full);
             }
         }, {
             "aTargets": [2],
             "mData": "LastModified",
+            "width": "25%",
             "mRender": function(data, type, full) {
                 return data ? moment(data).fromNow() : "";
             }
         }, {
             "aTargets": [3],
-            "mData": "LastModified",
-            "mRender": function(data, type, full) {
-                return data ? moment(data).local().format('YYYY-MM-DD HH:mm:ss') : "";
-            }
-        }, {
-            "aTargets": [4],
+            "width": "25%",
             "mData": function(source, type, val) {
                 return source.Size ? ((type == 'display') ? bytesToSize(source.Size) : source.Size) : "";
             }

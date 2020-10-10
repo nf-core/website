@@ -77,7 +77,6 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
     if(isset($aws) && $aws): ?>
-    <link rel="shortcut icon" href="https://aws.amazon.com/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 
