@@ -170,16 +170,16 @@ $(function () {
             if (ii === 0 || ii===1) {
                 var a1 = $('<span>').text(part);
                 ipart = $('<li>').addClass('breadcrumb-item').append(a1);
-                a1.click(function(e) {
-                    e.preventDefault();
-                    // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
-                    s3exp_config = {
-                        Bucket: data.params.Bucket,
-                        Prefix: '',
-                        Delimiter: data.params.Delimiter
-                    };
-                    (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-                });
+                // a1.click(function(e) {
+                //     e.preventDefault();
+                //     // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
+                //     s3exp_config = {
+                //         Bucket: data.params.Bucket,
+                //         Prefix: '',
+                //         Delimiter: data.params.Delimiter
+                //     };
+                //     (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+                // });
                 if(ii===1){
                     buildprefix += part + '/';
                 }
