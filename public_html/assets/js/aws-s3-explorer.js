@@ -67,9 +67,9 @@ $(function () {
     function isfolder(path) {
         return path.endsWith('/');
     }
-    function haspreview(path) {
-        var extension = path.substring(path.lastIndexOf('.'),path.length);
-        var preview = [".txt",".html"].includes(extension);
+    function haspreview(data) {
+        var extension = data.Key.substring(data.Key.lastIndexOf('.'),data.Key.length);
+        var preview = [".txt",".html"].includes(extension) && data.Size<80000000;
         return preview
     }
     // Convert cars/vw/golf.png to golf.png
@@ -168,16 +168,16 @@ $(function () {
             if (ii === 0 || ii===1) {
                 var a1 = $('<span>').text(part);
                 ipart = $('<li>').addClass('breadcrumb-item').append(a1);
-                a1.click(function(e) {
-                    e.preventDefault();
-                    // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
-                    s3exp_config = {
-                        Bucket: data.params.Bucket,
-                        Prefix: '',
-                        Delimiter: data.params.Delimiter
-                    };
-                    (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-                });
+                // a1.click(function(e) {
+                //     e.preventDefault();
+                //     // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
+                //     s3exp_config = {
+                //         Bucket: data.params.Bucket,
+                //         Prefix: '',
+                //         Delimiter: data.params.Delimiter
+                //     };
+                //     (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+                // });
                 if(ii===1){
                     buildprefix += part + '/';
                 }
@@ -416,7 +416,7 @@ $(function () {
         } else {
             var icon = '<i class="fad fa-file"></i> ';
             var preview_button = '';
-            if(haspreview(data)){
+            if(haspreview(full)){
                 var preview_button = '<button class="btn btn-outline-secondary preview-file-btn ml-3"><i class="fad fa-file-search mr-1"></i> Preview file</button>';
             }
             // console.log("not folder/this document: " + data);
@@ -454,15 +454,15 @@ $(function () {
         }, {
             "aTargets": [2],
             "mData": "LastModified",
-            "width": "25%",
+            "width": "35%",
             "mRender": function(data, type, full) {
                 return data ? moment(data).fromNow() : "";
             }
         }, {
             "aTargets": [3],
-            "width": "25%",
-            "mData": function(source, type, val) {
-                return source.Size ? ((type == 'display') ? bytesToSize(source.Size) : source.Size) : "";
+            "width": "15%",
+            "mData": function(data, type, val) {
+                return data.Size ? ((type == 'display') ? bytesToSize(data.Size) : data.Size) : "";
             }
         }, ]
     });
