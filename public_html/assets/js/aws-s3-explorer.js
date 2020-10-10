@@ -1,6 +1,6 @@
 $(function () {
     AWS.config.region = s3exp_config.Region;
-
+    $("#file-preview").hide();
     // Initialize S3 SDK and the moment library (for time formatting utilities)
     var s3 = new AWS.S3();
     moment().format();
@@ -69,7 +69,7 @@ $(function () {
     }
     function haspreview(data) {
         var extension = data.Key.substring(data.Key.lastIndexOf('.'),data.Key.length);
-        var preview = [".txt",".html"].includes(extension) && data.Size<80000000;
+        var preview = [".csv",".tsv",".out",".table",".txt",".html"].includes(extension) && data.Size<80000000;
         return preview
     }
     // Convert cars/vw/golf.png to golf.png
@@ -114,6 +114,7 @@ $(function () {
                         data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
                     }
                     var header = '<div class="card-header">'+filename+'</div>';
+                    $("#file-preview").show();
                     $("#file-preview").html(header+'<div class="card-body">'+data+'</div>');
                 });
             }
@@ -214,7 +215,7 @@ $(function () {
 
     function s3draw(data, complete) {
     $('li.li-bucket').remove();
-    $("#file-preview").html('');
+    $("#file-preview").hide();
     folder2breadcrumbs(data);
     
     var path = data.params.Prefix.split("/")
