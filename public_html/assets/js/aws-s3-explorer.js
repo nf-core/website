@@ -1,3 +1,14 @@
+// adapted from https://github.com/awslabs/aws-js-s3-explorer
+// Copyright 2014-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Licensed under the Apache License, Version 2.0 (the "License").
+// You may not use this file except in compliance with the License. A copy
+// of the License is located at
+// https://aws.amazon.com/apache2.0/
+// or in the "license" file accompanying this file. This file is distributed
+// on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing
+// permissions and limitations under the License.
+
 $(function () {
     AWS.config.region = s3exp_config.Region;
     $("#file-preview").hide();
@@ -217,7 +228,7 @@ $(function () {
     $('li.li-bucket').remove();
     $("#file-preview").hide();
     folder2breadcrumbs(data);
-    
+
     var path = data.params.Prefix.split("/")
     if(path.length > 3){
         $('#tb-s3objects').DataTable().rows.add([{
@@ -413,7 +424,7 @@ $(function () {
             } else {
                 return '<i class="fad fa-folder-open"></i> <a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">  ..</a>';
             }
-            
+
         } else {
             var icon = '<i class="fad fa-file"></i> ';
             var preview_button = '';
