@@ -134,6 +134,7 @@ else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'
   header('HTTP/1.1 404 Not Found');
   $suggestion_404_urls = [
     $protocol.$_SERVER['HTTP_HOST'].'/'.$pipeline->name,
+    'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.$url_string,
     'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.$url_string.'.md'
   ];
   include('404.php');
