@@ -262,7 +262,7 @@ if($pipeline->archived){
 ########
 # Make a row with a column for content
 ########
-echo '<div class="row"><div class="col-12 col-lg-10">';
+echo '<div class="row"><div class="col-12 col-lg-9">';
 
 ########
 # Print content
@@ -273,20 +273,17 @@ if(preg_match('/<!-- params-docs -->/', $content)){
 } else {
   $content .= $schema_content;
 }
-if($pagetab=='example_output'){
-  echo '<div class="pipeline-page-content">'.$content.'</div>';
-}
-else {
+
 echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 
 ########
 # Sidebar for everything except the stats page
 ########
-echo '</div>'; # end of the content div
+
 echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
 
 # Pipeline homepage & releases - key stats
-if(in_array($pagetab, ['', 'stats', 'releases'])){
+if(in_array($pagetab, ['', 'stats', 'releases', 'example_output'])){
   require_once('sidebar.php');
 }
 # Documentation - ToC
@@ -313,5 +310,5 @@ else if(in_array($pagetab, ['usage', 'output'])){
 }
 echo '</div></div>'; # end of the sidebar col
 echo '</div>'; # end of the row
-}
+
 include('../includes/footer.php');
