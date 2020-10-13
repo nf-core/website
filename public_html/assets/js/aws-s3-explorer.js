@@ -107,7 +107,9 @@ $(function () {
     $("body").on("click",".preview-file-btn ",function(e){
         var url = $(this).siblings('div').children('a')[0].href;
         var extension = url.substring(url.lastIndexOf('.'),url.length);
-        var filename = url.split('/').pop();
+        var split_url = url.split('/');
+        var filename = split_url.slice(-1)[0];
+        var s3_url = "s3://"+ split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
 
         fetch(url)
             .then(
@@ -124,7 +126,11 @@ $(function () {
                     else {
                         data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
                     }
-                    var header = '<div class="card-header">'+filename+'</div>';
+                    var btn_group = `<div class="btn-group" role="group">
+                      <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
+                      <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
+                    </div>`;
+                    var header = '<div class="card-header d-flex justify-content-between align-items-center">'+filename+btn_group+'</div>';
                     $("#file-preview").show();
                     $("#file-preview").html(header+'<div class="card-body">'+data+'</div>');
                 });
@@ -134,6 +140,21 @@ $(function () {
             console.log('Fetch Error :-S', err);
         });
     });
+
+    //copy text to clipboard
+    $('.toast').toast();
+
+    $("body").on("click",".copy-url",function(e){
+            var text = e.currentTarget.dataset.target;
+            var $tmp = $("<input>");
+            $("body").append($tmp);
+            $tmp.val(text).select();
+            document.execCommand("copy");
+            $tmp.remove();
+            $('#url-copied').toast('show');
+        });
+
+
     // We are going to generate bucket/folder breadcrumbs. The resulting HTML will
     // look something like this:
     //
