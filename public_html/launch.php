@@ -515,7 +515,7 @@ else if($cache['status'] == 'launch_params_complete') {
     $tower_fields = array(
         "pipeline" => "https://github.com/".$cache['pipeline'],
         "revision" => $cache['revision'],
-        "configParams" => "",
+        "paramsText" => json_encode($cache['input_params'], JSON_PRETTY_PRINT),
         "resume" => $cache['nxf_flags']['-resume'] == 'true' ? 'true' : 'false'
         // "computeEnvId" => "", // the user compute env Id (default user primary env)
     );
@@ -526,17 +526,6 @@ else if($cache['status'] == 'launch_params_complete') {
     // Only set workDir if not default
     if($cache['nxf_flags']['-work-dir'] !== $nxf_flag_schema['coreNextflow']['properties']['-work-dir']['default']){
         $tower_fields["workDir"] = $cache['nxf_flags']['-work-dir'];
-    }
-    // Convert params JSON to nextflow config syntax
-    foreach($cache['input_params'] as $param_id => $param_val){
-        // Booleans
-        if($param_val == 'true' || $param_val == 'false'){
-            $tower_fields["configParams"] .= 'params.'.$param_id.' = '.$param_val."\n";
-        }
-        // Strings, in quotes
-        else {
-            $tower_fields["configParams"] .= 'params.'.$param_id.' = "'.$param_val.'"'."\n";
-        }
     }
     ?>
 
