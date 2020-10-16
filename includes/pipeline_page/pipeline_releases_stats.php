@@ -1,6 +1,6 @@
 <?php
 // Build the HTML for a pipeline documentation page.
-// Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
+// Imported by pipeline_page/_index.php
 
 // Load pipeline stats
 $stats_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_stats.json';
