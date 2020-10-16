@@ -18,6 +18,7 @@ if(count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'outp
 ########
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
 $subtitle = $pipeline->description;
+$content = '';
 $schema_content = '';
 $import_chartjs = true;
 
@@ -108,6 +109,10 @@ if(endswith($_GET['path'], '/usage')){
   $pagetab = 'usage';
   $filename = 'docs/usage.md';
   $md_trim_before = '# Introduction';
+}
+# Usage docs
+if(endswith($_GET['path'], '/parameters')){
+  $pagetab = 'parameters';
   require_once('docs_schema.php');
 }
 # Output docs
@@ -206,8 +211,13 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage">Usage</a>
   </li>
+  <?php if(file_exists($gh_pipeline_schema_fn)): ?>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Outputs</a>
+    <a class="nav-link<?php if($pagetab=='parameters'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/parameters">Parameters</a>
+  </li>
+  <?php endif; ?>
+  <li class="nav-item">
+    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Output</a>
   </li>
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats">Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
