@@ -203,10 +203,21 @@ $(function () {
         $(target_id).blur();
         $('#pipeline_sidebar_cmd_copied').toast('show');
     })
+    if(window.location.hash & $('.schema-docs').length>0{
+        scroll_to($(window.location.hash),0);
+    }
+    // Page-scroll links
+    $('body').on('click', '.scroll_to_link', function(e){
+        e.preventDefault();
+        var current_href = $(this).attr('href')
+        history.replaceState(null, '', current_href); // add href to url
+        scroll_to($(current_href),0);
+    });
+
 });
 
-function scroll_to(target_el){
-    var el_offset = target_el.offset().top - 140;
+function scroll_to(target_el,offset){
+    var el_offset = target_el.offset().top - offset;
     var doc_offset = $(document).scrollTop();
     $([document.documentElement, document.body]).animate({
         scrollTop: el_offset

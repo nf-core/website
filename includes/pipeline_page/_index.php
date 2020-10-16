@@ -111,7 +111,7 @@ if(endswith($_GET['path'], '/usage')){
   $md_trim_before = '# Introduction';
 }
 # Usage docs
-if(endswith($_GET['path'], '/parameters')){
+else if(endswith($_GET['path'], '/parameters')){
   $pagetab = 'parameters';
   require_once('docs_schema.php');
 }
