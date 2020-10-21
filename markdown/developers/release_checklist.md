@@ -48,7 +48,7 @@ The last step is to bump up the pipeline version number in the development branc
 
 * Bump the version number again on the `dev` branch to a new `dev` version
   * For example, `1.0.0` becomes `1.1.0dev`
-  * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version 1.1.0dev`
+  * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version <path_to_cloned_pipeline> 1.1.0dev`
 * Update the `CHANGELOG.md` to include a new section for this new version
 * [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 
