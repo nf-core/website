@@ -137,7 +137,7 @@ function generate_toc($html_string){
       }
       $is_hidden = strpos($before_attrs, 'toc-hidden') !== false || strpos($after_attrs, 'toc-hidden') !== false;
       $toc_hidden = $is_hidden ? 'collapse' : '';
-      $toc .= '<a class="list-group-item list-group-item-action '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
+      $toc .= '<a class="list-group-item list-group-item-action scroll_to_link '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
   while($counter > 0){
@@ -193,9 +193,10 @@ function add_ids_to_headers($content_input, $is_hidden=false){
         $hid = $id_match.'-'.$i;
         $i += 1;
       }
+      $hid = preg_replace('/^[\s\-]+/','', $hid); // remove dashes from start of string (e.g. for parameter)
       $heading_ids[] = $hid;
       $hidden_class = $is_hidden ? 'toc-hidden' : '';
-      return '<h'.$matches[1].' id="'.$hid.'" class="'.$hidden_class.'"><a href="#'.$hid.'" class="header-link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
+      return '<h'.$matches[1].' id="'.$hid.'" class="'.$hidden_class.'"><a href="#'.$hid.'" class="header-link scroll_to_link"><span class="fas fa-link"></span></a>'.$matches[2].'</h'.$matches[3].'>';
     },
     $content_input
   );
