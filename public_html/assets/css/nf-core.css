@@ -403,6 +403,9 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
 }
+.schema-docs .header-link {
+  margin: 0 0 0 -42px;
+}
 h1:hover .header-link, h1:active .header-link, h1:focus .header-link,
 h2:hover .header-link, h2:active .header-link, h2:focus .header-link,
 h3:hover .header-link, h3:active .header-link, h3:focus .header-link,
@@ -414,17 +417,7 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   opacity: 1;
   text-decoration: none;
 }
-/* disable nav-link visibility, because the header-offset breaks it in a table-like setting: */
-.schema-docs h1:hover .header-link, .schema-docs h1:active .header-link, .schema-docs h1:focus .header-link,
-.schema-docs h2:hover .header-link, .schema-docs h2:active .header-link, .schema-docs h2:focus .header-link,
-.schema-docs h3:hover .header-link, .schema-docs h3:active .header-link, .schema-docs h3:focus .header-link,
-.schema-docs h4:hover .header-link, .schema-docs h4:active .header-link, .schema-docs h4:focus .header-link,
-.schema-docs.h1:hover .header-link, .schema-docs .h1:active .header-link, .schema-docs .h1:focus .header-link,
-.schema-docs.h2:hover .header-link, .schema-docs .h2:active .header-link, .schema-docs .h2:focus .header-link,
-.schema-docs.h3:hover .header-link, .schema-docs .h3:active .header-link, .schema-docs .h3:focus .header-link,
-.schema-docs.h4:hover .header-link, .schema-docs .h4:active .header-link, .schema-docs .h4:focus .header-link {
-  opacity: 0;
-}
+
 @media only screen and (max-width: 560px) {
   .header-link {
     margin: 0;
@@ -1082,7 +1075,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .input-group-append-invalid label, .input-group-append-invalid .btn {
   border-color: #dc3545;
 }
-
+.schema-docs h2, .schema-docs .h2,
+.schema-docs h3, .schema-docs .h3 {
+  margin-left: 1.7rem;
+}
 .schema-docs h3, .schema-docs .h3 {
   color: #6c757d;
 }
