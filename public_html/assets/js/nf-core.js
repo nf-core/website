@@ -203,7 +203,7 @@ $(function () {
         $(target_id).blur();
         $('#pipeline_sidebar_cmd_copied').toast('show');
     })
-    if(window.location.hash & $('.schema-docs').length>0{
+    if(window.location.hash & $('.schema-docs').length>0){
         scroll_to($(window.location.hash),0);
     }
     // Page-scroll links

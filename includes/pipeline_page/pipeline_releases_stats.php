@@ -13,7 +13,7 @@ $contrib_json_fn = dirname(dirname(dirname(__FILE__))).'/contributor_stats/'.$pi
 $contrib_json = json_decode(file_get_contents($contrib_json_fn), true);
 
 ob_start();
-echo '<h1>Version history</h1>';
+echo '<h1 class="mt-0">Version history</h1>';
 
 $first = true;
 foreach($pipeline->releases as $releases){ ?>
@@ -67,7 +67,7 @@ $(function(){
 });
 </script>
 
-<h1 id="stats" class="mt-5"><a href="#stats" class="header-link"><span class="fas fa-link" aria-hidden="true">Pipeline Statistics</h1>
+<h1 id="stats" class="mt-5"><a href="#stats" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a> Pipeline Statistics</h1>
 <div class="card-group text-center stats_keynumbers mt-5 pb-5">
   <div class="card bg-light">
     <div class="card-body">
