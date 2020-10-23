@@ -58,6 +58,13 @@ if(file_exists($gh_pipeline_schema_fn)){
           '.parse_md($param['help_text'])['content'].'</div>';
     }
 
+    # default value 
+    $default_val = '';
+    if(array_key_exists("default", $param) && strlen(trim($param['default'])) > 0){
+      $default_val = is_string($param['default'])? "'".$param['default']."'":$param['default'];
+      $default_val = '<code class=""><span class="text-muted">default:</span>'.$default_val.'</code>';
+    }
+    
     # Labels
     $labels = [];
     if($is_required){
@@ -92,7 +99,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     <div class="row param-docs-row border-bottom '.$row_class.'">
       <div class="'.$id_cols.' param-docs-row-id-col">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>', $is_hidden).'</div>
       <div class="col">'.$param_body.'</div>
-      <div class="col-auto text-right">'.$help_text_btn.implode(' ', $labels).'</div>
+      <div class="col-auto text-right">'.$default_val.' '.$help_text_btn.implode(' ', $labels).'</div>
       '.$help_text.'
     </div>';
   }
