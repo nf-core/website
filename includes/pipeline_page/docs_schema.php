@@ -87,7 +87,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     $h_level = 'h3';
     if($is_group){
       $row_class = 'align-items-baseline mt-5 param-docs-row-group';
-      $id_cols = 'col-auto pl-2 h2';
+      $id_cols = 'col-auto';
       $h_level = 'h2';
     }
     if($is_hidden){
