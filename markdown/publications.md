@@ -37,6 +37,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 # Pipeline publications
 
+### [nf-core/ampliseq](https://nf-co.re/ampliseq)
+
+<!-- pub-stats 10.3389/fmicb.2020.550420 -->
+> **Interpretations of Environmental Microbial Community Studies Are Biased by the Selected 16S rRNA (Gene) Amplicon Sequencing Pipeline**
+>
+> Daniel Straub, Nia Blackwell, Adrian Langarica-Fuentes, Alexander Peltzer, Sven Nahnsen and Sara Kleindienst
+>
+> [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
+> doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
+
 ### [nf-core/sarek](https://nf-co.re/sarek)
 
 <!-- pub-stats 10.12688/f1000research.16665.2 -->
