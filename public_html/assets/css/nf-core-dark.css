@@ -512,3 +512,7 @@ hr {
 #file-preview iframe{
   background-color: #e5e6e7;
 }
+#file-preview .card-body {
+  max-height: 30rem;
+  overflow-y: auto;
+}
