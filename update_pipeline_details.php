@@ -127,6 +127,11 @@ foreach($results['remote_workflows'] as $idx => $repo){
     // Save releases to results
     $results['remote_workflows'][$idx]['releases'] = [];
     foreach($gh_releases as $rel){
+
+        // Skip if a draft release or prerelease
+        if($rel->draft) continue;
+        if($rel->prerelease) continue;
+
         $results['remote_workflows'][$idx]['releases'][] = array(
             'name' => $rel->name,
             'published_at' => $rel->published_at,
