@@ -13,6 +13,8 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_pipeline_details.php
 
+echo "Updating pipeline details";
+
 // Load the twitter PHP library
 require "includes/libraries/twitteroauth/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -125,6 +127,11 @@ foreach($results['remote_workflows'] as $idx => $repo){
     // Save releases to results
     $results['remote_workflows'][$idx]['releases'] = [];
     foreach($gh_releases as $rel){
+
+        // Skip if a draft release or prerelease
+        if($rel->draft) continue;
+        if($rel->prerelease) continue;
+
         $results['remote_workflows'][$idx]['releases'][] = array(
             'name' => $rel->name,
             'published_at' => $rel->published_at,
@@ -186,14 +193,16 @@ file_put_contents($pipeline_names_fn, json_encode(array('pipeline' => $pipeline_
 ////// Tweet about new releases
 // Get old releases
 $old_rel_tags = array();
-foreach($old_json['remote_workflows'] as $old_pipeline){
-    $old_rel_tags[$old_pipeline['name']] = array();
-    // Collect releases from this pipeline
-    foreach($old_pipeline['releases'] as $rel){
-        if($rel['draft'] || $rel['prerelease']){
-            continue;
+if($old_json){
+    foreach($old_json['remote_workflows'] as $old_pipeline){
+        $old_rel_tags[$old_pipeline['name']] = array();
+        // Collect releases from this pipeline
+        foreach($old_pipeline['releases'] as $rel){
+            if($rel['draft'] || $rel['prerelease']){
+                continue;
+            }
+            $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
         }
-        $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
     }
 }
 // Go through new releases

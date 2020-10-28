@@ -18,6 +18,7 @@ if(count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'outp
 ########
 $title = 'nf-core/<br class="d-sm-none">'.$pipeline->name;
 $subtitle = $pipeline->description;
+$content = '';
 $schema_content = '';
 $import_chartjs = true;
 
@@ -111,6 +112,10 @@ if(endswith($_GET['path'], '/usage')){
   $pagetab = 'usage';
   $filename = 'docs/usage.md';
   $md_trim_before = '# Introduction';
+}
+# Usage docs
+else if(endswith($_GET['path'], '/parameters')){
+  $pagetab = 'parameters';
   require_once('docs_schema.php');
 }
 # Output docs
@@ -124,15 +129,10 @@ else if(endswith($_GET['path'], '/example_output')){
   $pagetab = 'example_output';
   require_once('example_output.php');
 }
-# Stats
-else if(endswith($_GET['path'], '/stats')){
-  $pagetab = 'stats';
-  require_once('pipeline_stats.php');
-}
-# Releases
-else if(endswith($_GET['path'], '/releases')){
-  $pagetab = 'releases';
-  require_once('releases.php');
+# Releases + Stats
+else if(endswith($_GET['path'], '/releases_stats')){
+  $pagetab = 'releases_stats';
+  require_once('pipeline_releases_stats.php');
 }
 # Some other URL pattern that we don't recognise - 404
 else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'.$release){
@@ -142,6 +142,7 @@ else if($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name.'/'
   header('HTTP/1.1 404 Not Found');
   $suggestion_404_urls = [
     $protocol.$_SERVER['HTTP_HOST'].'/'.$pipeline->name,
+    'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.$url_string,
     'https://github.com/nf-core/'.$pipeline->name.'/blob/'.$release.'/'.$url_string.'.md'
   ];
   include('404.php');
@@ -219,6 +220,11 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage">Usage</a>
   </li>
+  <?php if(file_exists($gh_pipeline_schema_fn)): ?>
+    <li class="nav-item">
+      <a class="nav-link<?php if($pagetab=='parameters'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/parameters">Parameters</a>
+    </li>
+  <?php endif; ?>
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Output</a>
   </li>
@@ -228,10 +234,7 @@ if($pipeline->archived){
   </li>
   <?php endif; ?>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/stats">Stat<span class="d-none d-sm-inline">istic</span>s</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='releases'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases">Releases</a>
+    <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats">Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
   <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'example_output'): ?>
   <li class="pt-1 pl-3">
@@ -276,14 +279,11 @@ if(preg_match('/<!-- params-docs -->/', $content)){
 
 echo '<div class="rendered-markdown pipeline-page-content">'.$content.'</div>';
 
-########
-# Sidebar for everything except the stats page
-########
-
+echo '</div>'; # end of the content div
 echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
 
 # Pipeline homepage & releases - key stats
-if(in_array($pagetab, ['', 'stats', 'releases', 'example_output'])){
+if(in_array($pagetab, ['', 'releases_stats','example_output'])){
   require_once('sidebar.php');
 }
 # Documentation - ToC

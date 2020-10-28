@@ -5,58 +5,58 @@ $mainpage_container = false;
 $aws=true;
 ob_start();
 ?>
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row ">
-                    <!-- Panel including title, breadcrumbs, and controls -->
-                    <div class="col">
-                        <!-- Title and breadcrumbs -->
-                        <div class="d-flex align-items-center title-bar">
-                            <!-- App title -->
-                            <div class="title ">
-                                <i class="fab fa-aws fa-lg mr-3 mb-3"></i>
-                            </div>
-                            <!-- Bucket breadcrumbs -->
-                            <ul id="breadcrumb" class="breadcrumb">
-                                <li class="breadcrumb-item active">
-                                    <a href="#"><i class="fas fa-circle-notch fa-spin"></i></a>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-outline-secondary copy-url ml-auto" data-target="">Copy Bucket S3 URL</button>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row ">
+                <!-- Panel including title, breadcrumbs, and controls -->
+                <div class="col">
+                    <!-- Title and breadcrumbs -->
+                    <div class="d-flex align-items-center title-bar">
+                        <!-- App title -->
+                        <div class="title ">
+                            <i class="fab fa-aws fa-lg mr-3 mb-3"></i>
                         </div>
-                        <!-- Controls -->
-                        <div id="navbuttons" class="">
-                            <div>
-                                <!-- Dual purpose: progress spinner and refresh button, plus object count -->
-                                <div class="btn-group" id="refresh">
-                                    <span id="bucket-loader" class="btn fa fa-refresh fa-2x " title="Refresh"></span>
-                                    <!-- <span id="badgecount" class="badge pull-right" title="Object count">42</span> -->
-                                </div>
+                        <!-- Bucket breadcrumbs -->
+                        <ul id="breadcrumb" class="breadcrumb">
+                            <li class="breadcrumb-item active">
+                                <a href="#"><i class="fas fa-circle-notch fa-spin"></i></a>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn btn-outline-secondary copy-url ml-auto" data-target="">Copy Bucket S3 URL</button>
+                    </div>
+                    <!-- Controls -->
+                    <div id="navbuttons" class="">
+                        <div>
+                            <!-- Dual purpose: progress spinner and refresh button, plus object count -->
+                            <div class="btn-group" id="refresh">
+                                <span id="bucket-loader" class="btn fa fa-refresh fa-2x " title="Refresh"></span>
+                                <!-- <span id="badgecount" class="badge pull-right" title="Object count">42</span> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Panel including S3 object table -->
-                <div class="panel-body">
-                    <table class="table table-bordered table-hover responsive" id="tb-s3objects">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Folder</th>
-                                <th class="text-left">Last Modified</th>
-                                <th class="text-left">Size</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-s3objects"></tbody>
-                    </table>
-                </div>
+            </div>
+            <!-- Panel including S3 object table -->
+            <div class="panel-body">
+                <table class="table table-bordered table-hover responsive" id="tb-s3objects">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Folder</th>
+                            <th class="text-left">Last Modified</th>
+                            <th class="text-left">Size</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-s3objects"></tbody>
+                </table>
             </div>
         </div>
     </div>
-    <div id="file-preview" class="card">
-    </div>
 </div>
+<div id="file-preview" class="card">
+</div>
+
 <div class="toast" id="url-copied" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
     <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="">
