@@ -296,7 +296,7 @@ $(function () {
                 console.log('Error: ' + err.stack);
                 scope.stop = true;
                 $('#bucket-loader').removeClass('fa-spin');
-                bootbox.alert("Error accessing S3 bucket " + scope.params.Bucket + ". Error: " + err);
+                alert("Error accessing S3 bucket " + scope.params.Bucket + ". Error: " + err);
             } else {
                 // console.log('Data: ' + JSON.stringify(data));
                 // console.log("Options: " + $("input[name='optionsdepth']:checked").val());
@@ -365,18 +365,6 @@ $(function () {
     };
     }
 
-    function promptForBucketInput() {
-    bootbox.prompt("Please enter the S3 bucket name", function(result) {
-        if (result !== null) {
-            resetDepth();
-            s3exp_config = {
-                Bucket: result,
-                Delimiter: '/'
-            };
-            (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-        }
-    });
-    }
 
     function resetDepth() {
     $('#tb-s3objects').DataTable().column(1).visible(false);
@@ -392,7 +380,6 @@ $(function () {
     $('#bucket-loader').click(function(e) {
         if ($('#bucket-loader').hasClass('fa-spin')) {
             // To do: We need to stop the S3 list that's going on
-            // bootbox.alert("Stop is not yet supported.");
             s3exp_lister.stop();
         } else {
             delete s3exp_config.ContinuationToken;
@@ -400,10 +387,6 @@ $(function () {
         }
     });
 
-    // // Click handler for bucket button (to allow user to change bucket)
-    // $('#bucket-chooser').click(function(e) {
-    //     promptForBucketInput();
-    // });
 
     // $('#hidefolders').click(function(e) {
     //     $('#tb-s3objects').DataTable().draw();
@@ -654,11 +637,5 @@ $(function () {
     //                 // console.log("Location hash=" + window.location.hash);
     //                 s3exp_config.Prefix = window.location.hash.substring(1);
     //             }
-    //
-    //             // Do initial bucket list
-                // (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-    //         } else {
-    //             promptForBucketInput();
-    //         }
     });
 });
