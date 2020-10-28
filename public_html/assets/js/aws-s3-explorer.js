@@ -127,6 +127,7 @@ $(function () {
                         data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
                     }
                     var btn_group = `<div class="btn-group" role="group">
+                      <a class="btn btn-outline-secondary" href="${url}" target="_blank">Open in new tab</a>
                       <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
                       <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
                     </div>`;
