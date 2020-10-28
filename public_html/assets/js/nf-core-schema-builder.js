@@ -177,8 +177,8 @@ $(function () {
         schema['properties'][new_id] = new_param;
         param_row = $( generate_param_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        scroll_to( param_row );
         schema_order_change();
+        scroll_to( param_row );
         new_param_idx += 1;
 
         // Update printed schema in page
