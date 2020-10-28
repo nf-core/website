@@ -83,6 +83,7 @@ $(function () {
         var preview = [".csv",".tsv",".out",".table",".txt",".html"].includes(extension) && data.Size<80000000;
         return preview
     }
+
     // Convert cars/vw/golf.png to golf.png
     function fullpath2filename(path) {
         return sanitize_html(path.replace(/^.*[\\\/]/, ''));
@@ -104,42 +105,14 @@ $(function () {
         history.pushState("", document.title, window.location.pathname + window.location.search);
     }
 
-    $("body").on("click",".preview-file-btn ",function(e){
-        var url = $(this).siblings('div').children('a')[0].href;
-        var extension = url.substring(url.lastIndexOf('.'),url.length);
-        var split_url = url.split('/');
-        var filename = split_url.slice(-1)[0];
-        var s3_url = "s3://"+ split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
-
-        fetch(url)
-            .then(
-                function(response) {
-                    if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' + response.status);
-                        return;
-                    }
-                    // Examine the text in the response
-                    response.text().then(function(data) {
-                    if(extension !== '.html'){
-                        data = '<pre><code>'+data+'</code></pre>';
-                    }
-                    else {
-                        data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
-                    }
-                    var btn_group = `<div class="btn-group" role="group">
-                      <a class="btn btn-outline-secondary" href="${url}" target="_blank">Open in new tab</a>
-                      <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
-                      <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
-                    </div>`;
-                    var header = '<div class="card-header d-flex justify-content-between align-items-center">'+filename+btn_group+'</div>';
-                    $("#file-preview").show();
-                    $("#file-preview").html(header+'<div class="card-body">'+data+'</div>');
-                });
-            }
-         )
-         .catch(function(err) {
-            console.log('Fetch Error :-S', err);
-        });
+    $("body").on("click",".download-file-btn ",function(){
+        
+        if($(this).attr('href') && $(this).attr('href').length>0){
+            var url = $(this).attr('href')
+        }else{
+            var url = $(this).siblings('div').children('a')[0].href;
+        }
+        window.open(url, '_blank');
     });
 
     //copy text to clipboard
@@ -155,16 +128,6 @@ $(function () {
             $('#url-copied').toast('show');
         });
 
-
-    // We are going to generate bucket/folder breadcrumbs. The resulting HTML will
-    // look something like this:
-    //
-    // <li>Home</li>
-    // <li>Library</li>
-    // <li class="active">Samples</li>
-    //
-    // Note: this code is a little complex right now so it would be good to find
-    // a simpler way to create the breadcrumbs.
     function folder2breadcrumbs(data) {
         // console.log('Bucket: ' + data.params.Bucket);
         // console.log('Prefix: ' + data.params.Prefix);
@@ -202,16 +165,6 @@ $(function () {
             if (ii === 0 || ii===1) {
                 var a1 = $('<span>').text(part);
                 ipart = $('<li>').addClass('breadcrumb-item').append(a1);
-                // a1.click(function(e) {
-                //     e.preventDefault();
-                //     // console.log('Breadcrumb click bucket: ' + data.params.Bucket);
-                //     s3exp_config = {
-                //         Bucket: data.params.Bucket,
-                //         Prefix: '',
-                //         Delimiter: data.params.Delimiter
-                //     };
-                //     (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-                // });
                 if(ii===1){
                     buildprefix += part + '/';
                 }
@@ -244,6 +197,7 @@ $(function () {
             }
             $('#breadcrumb').append(ipart);
         });
+        $('.title-bar .copy-url').data().target = "s3://"+parts.join("/");
     }
 
     function s3draw(data, complete) {
@@ -366,7 +320,6 @@ $(function () {
     };
     }
 
-
     function resetDepth() {
     $('#tb-s3objects').DataTable().column(1).visible(false);
     $('input[name="optionsdepth"]').val(['folder']);
@@ -375,7 +328,7 @@ $(function () {
     }
 
     $(document).ready(function() {
-    console.log('ready');
+    // console.log('ready');
 
     // Click handler for refresh button (to invoke manual refresh)
     $('#bucket-loader').click(function(e) {
@@ -388,36 +341,6 @@ $(function () {
         }
     });
 
-
-    // $('#hidefolders').click(function(e) {
-    //     $('#tb-s3objects').DataTable().draw();
-    // });
-
-    // // Folder/Bucket radio button handler
-    // $("input:radio[name='optionsdepth']").change(function() {
-    //     // console.log("Folder/Bucket option change to " + $(this).val());
-    //     // console.log("Change options: " + $("input[name='optionsdepth']:checked").val());
-    //
-    //     // If user selected deep then we do need to do a full list
-    //     if ($(this).val() == 'bucket') {
-    //         console.log("Switch to bucket");
-    //         var choice = $(this).val();
-    //         $('#tb-s3objects').DataTable().column(1).visible(choice === 'bucket');
-    //         delete s3exp_config.ContinuationToken;
-    //         delete s3exp_config.Prefix;
-    //         s3exp_config.Delimiter = '';
-    //         (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-    //         // Else user selected folder then can do a delimiter list
-    //     } else {
-    //         console.log("Switch to folder");
-    //         $('#tb-s3objects').DataTable().column(1).visible(false);
-    //         delete s3exp_config.ContinuationToken;
-    //         delete s3exp_config.Prefix;
-    //         s3exp_config.Delimiter = '/';
-    //         (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-    //     }
-    // });
-
     function renderObject(data, type, full) {
         if (isthisdocument(s3exp_config.Bucket, data)) {
             // console.log("is this document: " + data);
@@ -427,17 +350,15 @@ $(function () {
             if(full.render_name){
                 return '<i class="fad fa-folder"></i> <a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">' + prefix2folder(data) + '</a>';
             } else {
-                return '<i class="fad fa-folder-open"></i> <a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">  ..</a>';
+                // var download_button = '<button class="btn btn-outline-secondary download-file-btn ml-3" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '"><i class="fas fa-download mr-1"></i> Download folder</button>';
+                return '<div class="d-flex justify-content-between align-items-center"><div><i class="fad fa-folder-open"></i> <a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '">  ..</a></div></div>';
             }
 
         } else {
             var icon = '<i class="fad fa-file"></i> ';
-            var preview_button = '';
-            if(haspreview(full)){
-                var preview_button = '<button class="btn btn-outline-secondary preview-file-btn ml-3"><i class="fad fa-file-search mr-1"></i> Preview file</button>';
-            }
+            var download_button = '<button class="btn btn-outline-secondary download-file-btn ml-3"><i class="fas fa-download mr-1"></i> Download file</button>';
             // console.log("not folder/this document: " + data);
-            return '<div class="d-flex justify-content-between align-items-center"><div>'+icon +'<a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '">'+ fullpath2filename(data) + '</a></div>' + preview_button + '</div>';
+            return '<div class="d-flex justify-content-between align-items-center"><div>'+icon +'<a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '" data-size='+full.Size+'>'+ fullpath2filename(data) + '</a></div>' + download_button + '</div>';
         }
     }
 
@@ -449,6 +370,7 @@ $(function () {
     $('#tb-s3objects').DataTable({
         info: false,
         paging: false,
+        searching: false,
         iDisplayLength: 50,
         order: [
             [1, 'asc'],
@@ -464,20 +386,22 @@ $(function () {
         }, {
             "aTargets": [1],
             "mData": "Key",
-            "width": "50%",
+            "width": "68%",
             "mRender": function(data, type, full) {
                 return renderFolder(data, type, full);
             }
         }, {
             "aTargets": [2],
             "mData": "LastModified",
-            "width": "35%",
+            "width": "20%",
+            "className":"text-right",
             "mRender": function(data, type, full) {
                 return data ? moment(data).fromNow() : "";
             }
         }, {
             "aTargets": [3],
-            "width": "15%",
+            "width": "12%",
+            "className":"text-right",
             "mData": function(data, type, val) {
                 return data.Size ? ((type == 'display') ? bytesToSize(data.Size) : data.Size) : "";
             }
@@ -499,12 +423,6 @@ $(function () {
         return ((x < y) ? 1 : ((x > y) ? -1 : 0));
     };
 
-    // // Allow user to hide folders
-    // $.fn.dataTableExt.afnFiltering.push(function(oSettings, aData, iDataIndex) {
-    //     // console.log("hide folders");
-    //     return $('#hidefolders').is(':checked') ? !isfolder(aData[0]) : true;
-    // });
-
     // Delegated event handler for S3 object/folder clicks. This is delegated
     // because the object/folder rows are added dynamically and we do not want
     // to have to assign click handlers to each and every row.
@@ -522,121 +440,67 @@ $(function () {
             // s3exp_config.Delimiter = $("input[name='optionsdepth']:checked").val() == "folder" ? "/" : "";
             s3exp_config.Delimiter = "/";
             (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-            // Else user has clicked on an object so download it in new window/tab
+            // Else user has clicked on an object so preview it in new window/tab
         } else {
-            window.open(target.href, '_blank');
+            var url = target.href;
+            var extension = url.substring(url.lastIndexOf('.'),url.length);
+            var split_url = url.split('/');
+            var filename = split_url.slice(-1)[0];
+            var s3_url = "s3://"+ split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
+            var file_size = target.dataset.size
+
+            fetch(url)
+                .then(
+                    function(response) {
+                        if (response.status !== 200) {
+                            console.log('Looks like there was a problem. Status Code: ' + response.status);
+                            return;
+                        }
+                        // Examine the text in the response
+                        response.text().then(function(data) {
+                            if([".bam",".bai",".gz"].includes(extension)){
+                                data = '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>'
+                            }
+                            if(![".html",".pdf",".png",".jpg",".jpeg"].includes(extension)){
+                                if(file_size>80000000){
+                                    data = '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>'
+                                } else {
+                                    data = '<pre><code>'+data+'</code></pre>';
+                                }
+                            }
+                            else if(extension===".html"){
+                                data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
+                            }
+                            else if(extension===".pdf"){
+                                data = `<object data="${url}" type="application/pdf" style="border:none; width:100%; height:1000px;">
+                                            <embed src="${url}" type="application/pdf" />
+                                        </object>`
+                            }
+                            else if([".png",".jpg",".jpeg",".svg"].includes(extension)){
+                                data = '<img src="'+response.url+'"/>'
+                            }
+                            var btn_group = `<div class="btn-group" role="group">
+                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Open in new tab</a>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
+                            </div>`;
+                            var header = '<div class="card-header d-flex justify-content-between align-items-center">'+filename+btn_group+'</div>';
+                            $("#file-preview").show();
+                            $("#file-preview").html(header+'<div class="card-body">'+data+'</div>');
+                            var el_offset = $("#file-preview").offset().top - 140;
+                            $([document.documentElement, document.body]).animate({scrollTop: el_offset}, 500);
+                    });
+                }
+                )
+                .catch(function(err) {
+                console.log('Fetch Error :-S', err);
+            });
         }
         return false;
     });
 
-    // Document URL typically looks like this for path-style URLs:
-    // - https://s3.amazonaws.com/mybucket1/index.html
-    // - https://s3-us-west-2.amazonaws.com/mybucket2/index.html
-    //
-    // Document URL typically looks like this for virtual-hosted-style URLs:
-    // - https://mybucket1.s3.amazonaws.com/index.html
-    // - https://mybucket2.s3-us-west-2.amazonaws.com/index.html
-    //
-    // Document URL typically looks like this for S3 website hosting:
-    // - http://mybucket3.s3-website-us-east-1.amazonaws.com/
-    // - http://mybucket4.s3-website.eu-central-1.amazonaws.com/
-
-    // TODO: need to support S3 website hosting option
-    //
-    // If we're launched from a bucket then let's try to determine the bucket
-    // name so we can query it immediately, without requiring the user to
-    // supply the bucket name.
-    //
-    // If the region was anything other than US Standard then we will also need
-    // to infer the region so that we can initialize the S3 SDK properly.
-    // console.log("Document URL: " + document.URL);
-    // var urls = document.URL.split('/');
-    // console.log("URL split: " + urls);
-
-    // Using technique from https://gist.github.com/jlong/2428561
-    // to parse the document URL.
-    // var parser = document.createElement('a');
-    // parser.href = document.URL;
-
-    // URL format is scheme://[user:password@]domain:port/path?query_string#fragment_id
-    // For example: http://example.com:3000/path/?name=abc#topic
-    // console.log("protocol: " + parser.protocol); // => "http:"
-    // console.log("hostname: " + parser.hostname); // => "example.com"
-    // console.log("port    : " + parser.port); // => "3000"
-    // console.log("pathname: " + parser.pathname); // => "/path/"
-    // console.log("search  : " + parser.search); // => "?name=abc"
-    // console.log("hash    : " + parser.hash); // => "#topic"
-    // console.log("host    : " + parser.host); // => "example.com:3000"
-
-    // If initial bucket has been hard-coded above then use it, else try to
-    // derive the initial bucket from the document URL (useful if index.html was
-    // launched directly from within a bucket), else prompt the user.
     if (s3exp_config.Bucket) {
         (s3exp_lister = s3list(s3exp_config, s3draw)).go(); //initial load
             }
-    // else if (parser.hostname.endsWith('amazonaws.com')) {
-    //             // Hostname is likely to be in one of the following forms:
-    //             // - s3.amazonaws.com
-    //             // - bucket1.s3.amazonaws.com
-    //             // - s3-us-west-2.amazonaws.com
-    //             // - bucket2.s3-us-west-2.amazonaws.com
-    //
-    //             // If using static website hosting, the hostname will be of the form:
-    //             // - bucket.s3-website.eu-central-1.amazonaws.com/
-    //
-    //             // The following is also a legal form, but we do not support it, so
-    //             // you should use s3-eu-central-1 rather than s3.eu-central-1:
-    //             // - bucket3.s3.eu-central-1.amazonaws.com
-    //
-    //             var bucket;
-    //             var region;
-    //             var hostnames = parser.hostname.split('.');
-    //             var pathnames = parser.pathname.split('/');
-    //
-    // //             console.log("count of words in hostname=" + hostnames.length);
-    // //             console.log("count of words in pathname=" + pathnames.length);
-    // //
-    // //             console.log("hostnames=" + hostnames);
-    // //             console.log("pathnames=" + pathnames);
-    //
-    //             // If bucket prefix not included in hostname
-    //             if (hostnames[0].match(/^s3-/) || hostnames[0].match(/^s3$/)) {
-    //                 bucket = pathnames[1];
-    //                 region = hostnames[0];
-    //                 // console.log("path bucket=" + bucket);
-    //                 // console.log("path region=" + region);
-    //             } else {
-    //                 bucket = hostnames[0];
-    //                 region = hostnames[hostnames.length - 3];
-    //                 // console.log("host bucket=" + bucket);
-    //                 // console.log("host region=" + region);
-    //             }
-    //
-    //             // If we found statically-hosted website prefix or explicit region, for
-    //             // example s3-us-west-2, then get region else use the default of US Standard
-    //             if (region !== 's3') {
-    //                 if (region.startsWith('s3-website-')) {
-    //                     AWS.config.region = region.substring(11);
-    //                 } else if (region.startsWith('s3-') || region.startsWith('s3.')) {
-    //                     AWS.config.region = region.substring(3);
-    //                 } else {
-    //                     AWS.config.region = region;
-    //                 }
-    //             }
-    //
-    //             // console.log("AWS region=" + AWS.config.region);
-    //             // console.log("S3 bucket=" + bucket);
-    //
-    //             // Create and initialize S3 object
-    //             s3 = new AWS.S3();
-    //             s3exp_config = {
-    //                 Bucket: bucket,
-    //                 Delimiter: '/'
-    //             };
-    //
-    //             if (window.location.hash) {
-    //                 // console.log("Location hash=" + window.location.hash);
-    //                 s3exp_config.Prefix = window.location.hash.substring(1);
-    //             }
     });
 });
