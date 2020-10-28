@@ -441,8 +441,6 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   opacity: 1;
 }
 
-
-
 /*
  * Homepage
  */
@@ -1177,11 +1175,14 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .btn-show-hidden-params .collapsing {
   display: none;
 }
+.breadcrumb-item.active{
+  text-decoration: underline;
+}
 #tb-s3objects_wrapper tr i {
   color: #159957;
 }
 #file-preview .card-body {
   max-height: 60rem;
   overflow-y: auto;
-
 }
+

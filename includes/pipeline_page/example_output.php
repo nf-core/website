@@ -12,19 +12,18 @@ ob_start();
                     <!-- Panel including title, breadcrumbs, and controls -->
                     <div class="col">
                         <!-- Title and breadcrumbs -->
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center title-bar">
                             <!-- App title -->
                             <div class="title ">
                                 <i class="fab fa-aws fa-lg mr-3 mb-3"></i>
                             </div>
                             <!-- Bucket breadcrumbs -->
-                            <div class="">
-                                <ul id="breadcrumb" class="breadcrumb">
-                                    <li class="breadcrumb-item active">
-                                        <a href="#"><i class="fas fa-circle-notch fa-spin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ul id="breadcrumb" class="breadcrumb">
+                                <li class="breadcrumb-item active">
+                                    <a href="#"><i class="fas fa-circle-notch fa-spin"></i></a>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-outline-secondary copy-url ml-auto" data-target="">Copy Bucket S3 URL</button>
                         </div>
                         <!-- Controls -->
                         <div id="navbuttons" class="">
@@ -45,8 +44,8 @@ ob_start();
                             <tr>
                                 <th>Name</th>
                                 <th>Folder</th>
-                                <th>Last Modified</th>
-                                <th>Size</th>
+                                <th class="text-left">Last Modified</th>
+                                <th class="text-left">Size</th>
                             </tr>
                         </thead>
                         <tbody id="tbody-s3objects"></tbody>

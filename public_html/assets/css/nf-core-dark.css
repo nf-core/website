@@ -105,6 +105,11 @@ blockquote a {
   background-color: #616161;
   border-color: #616161;
 }
+.alert-warning{
+  color: #926d02;
+  background-color: #ffe79c;
+  border-color: #ffe79c;
+}
 .badge-light {
   color: #e5e6e7;
   background-color: #343434;
@@ -503,11 +508,14 @@ hr {
   /* border-color: #616161; */
   /* color: #ededed; */
 }
+.breadcrumb{
+  color: rgba(255,255,255,.6);
+}
 .breadcrumb-item.active{
-  color: #e5e6e7;
+  color: #ededed;
 }
 .breadcrumb-item+.breadcrumb-item::before{
-  color: #e5e6e7;
+  color: rgba(255,255,255,.6);
 }
 #file-preview iframe{
   background-color: #e5e6e7;
