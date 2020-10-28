@@ -68,7 +68,7 @@ $(function () {
     // Page-scroll links
     $('body').on('click', '.scroll_to_link', function(e){
         e.preventDefault();
-        scroll_to($($(this).attr('href')));
+        scroll_to($($(this).attr('href')),140);
     });
 
     // Validate form on submit - snippet from Bootstrap docs
