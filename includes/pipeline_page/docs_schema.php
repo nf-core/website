@@ -64,7 +64,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       $labels[] = '<span class="small badge badge-warning ml-2">required</span>';
     }
     if($is_hidden){
-      $labels[] = '<span class="small badge badge-light ml-2">hidden</span>';
+      $labels[] = '<span class="small badge badge-light border ml-2">hidden</span>';
     }
     $labels_helpbtn = '';
     if(count($labels) > 0 || strlen($help_text_btn)){
