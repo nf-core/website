@@ -66,10 +66,6 @@ if(file_exists($gh_pipeline_schema_fn)){
     if($is_hidden){
       $labels[] = '<span class="small badge badge-light border ml-2">hidden</span>';
     }
-    $labels_helpbtn = '';
-    if(count($labels) > 0 || strlen($help_text_btn)){
-      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.implode(' ', $labels).'</div>';
-    }
 
     # Body
     $param_body = '<div id="'.$param_id.'-body" class="param-docs-body small">'.$description.'</div>';
@@ -92,7 +88,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     <div class="row param-docs-row border-bottom '.$row_class.'">
       <div class="'.$id_cols.' param-docs-row-id-col">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>', $is_hidden).'</div>
       <div class="col">'.$param_body.'</div>
-      <div class="col-auto text-right">'.$help_text_btn.implode(' ', $labels).'</div>
+      <div class="col-auto text-right">'.implode(' ', $labels).$help_text_btn.'</div>
       '.$help_text.'
     </div>';
   }
