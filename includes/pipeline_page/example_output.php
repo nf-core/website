@@ -72,10 +72,11 @@ ob_start();
 
 <script type="text/javascript">
     var HIDE_INDEX = true;
+    var prefix = window.location.hash.length>0 ? window.location.hash.substr(1) : '<?php echo $pipeline->name?>/results-<?php echo $release_hash ?>/'
     var s3exp_config = {
         Region: 'eu-west-1',
         Bucket: 'nf-core-awsmegatests',
-        Prefix: '<?php echo $pipeline->name?>/results-<?php echo $release_hash ?>/',
+        Prefix: prefix,
         Delimiter: '/'
     };
     var s3exp_lister = null;
