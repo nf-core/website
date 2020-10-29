@@ -54,7 +54,7 @@ if(file_exists($gh_pipeline_schema_fn)){
           <i class="fas fa-question-circle"></i> Help
         </button>';
       $help_text = '
-        <div class="collapse bg-lightgray col-12 schema-docs-help-text p-2 mb-2 small" id="'.$param_id.'-help">
+        <div class="collapse col-12 schema-docs-help-text rounded p-2 mb-2 small" id="'.$param_id.'-help">
           '.parse_md($param['help_text'])['content'].'</div>';
     }
 
