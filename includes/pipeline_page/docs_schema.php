@@ -37,7 +37,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       $fa_icon = '<i class="fad fa-circle fa-fw text-muted"></i> ';
     }
     $h_text = $param['title'];
-    if(!$is_group){ $h_text = '<code>'.$param_id.'</code>'; }
+    if(!$is_group){ $h_text = $param_id; }
 
     # Description
     $description = '';
@@ -117,7 +117,7 @@ if(file_exists($gh_pipeline_schema_fn)){
         if(array_key_exists("required", $group) && in_array($param_id, $group["required"])){
           $is_required = true;
         }
-        $schema_content .= print_param(false, '--'.$param_id, $param, $is_required);
+        $schema_content .= print_param(false, $param_id, $param, $is_required);
       }
     }
   }
@@ -128,7 +128,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       if(array_key_exists("required", $schema) && in_array($param_id, $schema["required"])){
         $is_required = true;
       }
-      $schema_content .= print_param(false, '--'.$param_id, $param, $is_required);
+      $schema_content .= print_param(false, $param_id, $param, $is_required);
     }
   }
 
