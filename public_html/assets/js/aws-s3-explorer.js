@@ -137,7 +137,7 @@ $(function () {
         // console.log('Prefix: ' + data.params.Prefix);
 
         if (data.params.Prefix && data.params.Prefix.length > 0) {
-            // console.log('Set hash: ' + data.params.Prefix);
+            // console.log('Set hash: ' + data.params.Prefix)
             window.location.hash = data.params.Prefix;
         } else {
             // console.log('Remove hash');
@@ -204,25 +204,27 @@ $(function () {
     function s3draw(data, complete) {
         $('li.li-bucket').remove();
         $("#file-preview").hide();
+        
         folder2breadcrumbs(data);
+        if(data.Contents.length>0){    
+            var path = data.params.Prefix.split("/");
+            if (path.length > 3) {
+                $('#tb-s3objects').DataTable().rows.add([{
+                    Key: path.slice(0, path.length - 2).join("/") + "/",
+                    render_name: false
+                }]);
+            }
+            // Add each part of current path (S3 bucket plus folder hierarchy) into the breadcrumbs
+            $.each(data.CommonPrefixes, function (i, prefix) {
+                $('#tb-s3objects').DataTable().rows.add([{
+                    Key: prefix.Prefix,
+                    render_name: true
+                }]);
+            });
 
-        var path = data.params.Prefix.split("/");
-        if (path.length > 3) {
-            $('#tb-s3objects').DataTable().rows.add([{
-                Key: path.slice(0, path.length - 2).join("/") + "/",
-                render_name: false
-            }]);
+            // Add S3 objects to DataTable
+            $('#tb-s3objects').DataTable().rows.add(data.Contents).draw();
         }
-        // Add each part of current path (S3 bucket plus folder hierarchy) into the breadcrumbs
-        $.each(data.CommonPrefixes, function (i, prefix) {
-            $('#tb-s3objects').DataTable().rows.add([{
-                Key: prefix.Prefix,
-                render_name: true
-            }]);
-        });
-
-        // Add S3 objects to DataTable
-        $('#tb-s3objects').DataTable().rows.add(data.Contents).draw();
     }
 
     function s3list(config, completecb) {
@@ -231,6 +233,7 @@ $(function () {
             Bucket: config.Bucket,
             Prefix: config.Prefix,
             Delimiter: config.Delimiter
+
         };
         var scope = {
             Contents: [],
@@ -370,6 +373,7 @@ $(function () {
             paging: false,
             searching: false,
             iDisplayLength: 50,
+            language: {emptyTable:"No data available"},
             order: [[1, 'asc'], [0, 'asc']],
             aoColumnDefs: [{
                 "aTargets": [0],
@@ -425,14 +429,13 @@ $(function () {
             event.preventDefault();
             var target = event.target.href? event.target : $(event.target).parent("a")[0];
             // console.log("target href=" + target.href);
-            console.log("target dataset=" + JSON.stringify(target.dataset));
+            // console.log("target dataset=" + JSON.stringify(target.dataset));
 
             // If the user has clicked on a folder then navigate into that folder
             if (target.dataset.s3 === "folder") {
                 resetDepth();
                 delete s3exp_config.ContinuationToken;
                 s3exp_config.Prefix = target.dataset.prefix;
-                // s3exp_config.Delimiter = $("input[name='optionsdepth']:checked").val() == "folder" ? "/" : "";
                 s3exp_config.Delimiter = "/";
                 (s3exp_lister = s3list(s3exp_config, s3draw)).go();
                 // Else user has clicked on an object so preview it in new window/tab
@@ -455,7 +458,7 @@ $(function () {
                             data = '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
                         }
                         if (![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)) {
-                            if (file_size > 80000000) {
+                            if (file_size > 10000000) {
                                 data = '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
                             } else {
                                 data = '<pre><code>' + sanitize_html(data) + '</code></pre>';
