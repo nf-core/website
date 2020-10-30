@@ -276,7 +276,7 @@ else {
   $toc = '<nav class="toc">';
   $toc .= generate_toc($content);
   # Add on the action buttons for the parameters docs
-  if($pagetab == 'usage'){
+  if($pagetab == 'parameters'){
     $toc .= '
     <div class="btn-group w-100 mt-2 mb-1" role="group">
       <button class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target=".schema-docs-help-text" aria-expanded="false">
