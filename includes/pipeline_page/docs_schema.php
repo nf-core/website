@@ -61,8 +61,8 @@ if(file_exists($gh_pipeline_schema_fn)){
     # default value 
     $default_val = '';
     if(array_key_exists("default", $param) && strlen(trim($param['default'])) > 0){
-      $default_val = is_string($param['default'])? "'".$param['default']."'":$param['default'];
-      $default_val = '<code class="text-small"><span class="text-muted">default:</span>'.$default_val.'</code>';
+      $default_val = $param['type']==="string"? "'".$param['default']."'":$param['default'];
+      $default_val = '<code class="text-small"><span class="text-muted">default: </span>'.$default_val.'</code>';
     }
     
     # Labels
