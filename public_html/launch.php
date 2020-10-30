@@ -632,12 +632,6 @@ else if($cache['status'] == 'launch_params_complete') {
 
                 <div class="schema-gui-header sticky-top">
                     <div class="row">
-                        <div class="col-md-auto">
-                            <button class="btn btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 0 }'>
-                                <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
-                                <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
-                            </button>
-                        </div>
                         <div class="col d-none d-lg-block">
                             <span id="progress_section" class="text-muted">Nextflow command-line flags</span>
                             <div class="progress" style="height: 2px;">
@@ -765,6 +759,13 @@ else if($cache['status'] == 'launch_params_complete') {
             endif;
         $toc = '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top"><nav class="toc">';
         $toc .= $toc_list;
+        $toc .= '
+         <div class="btn-group w-100 mt-2 mb-1" role="group">
+           <button class="btn btn-sm btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-toggle="tooltip" data-delay="{ show: 500, hide: 0 }">
+             <span class="is_not_hidden"><i class="fas fa-eye-slash mr-1"></i> Show hidden params</span>
+             <span class="is_hidden"><i class="fas fa-eye mr-1"></i> Hide hidden params</span>
+         </button>
+         </div>';
         # Back to top link
         $toc .= '<p class="small text-right"><a href="#schema_launcher_form" class="text-muted scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
         $toc .='</nav></div></div>';
