@@ -1051,7 +1051,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .progress-bar {
     transition: none;
 }
-.radio-form-control-valid {
+.form-control.radio-form-control-valid {
   border-color: #28a745;
   padding-right: calc(1.5em + .75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
@@ -1059,7 +1059,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   background-position: center right calc(.375em + .1875rem);
   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
-.radio-form-control-invalid {
+.form-control.radio-form-control-invalid {
   border-color: #dc3545;
   padding-right: calc(1.5em + .75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
@@ -1091,11 +1091,13 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     max-height: calc(100vh - 9.1rem);
   }
 }
-
+.text-smaller{
+  font-size: 90%;
+}
 .toc > .list-group > .list-group-item {
   font-weight: bold;
 }
-.toc .list-group .list-group {
+.toc .list-group .list-group .list-group {
   display: none;
   font-size: 90%;
 }
@@ -1171,6 +1173,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .btn-show-hidden-params .collapsing {
   display: none;
 }
+
 .breadcrumb-item.active{
   text-decoration: underline;
 }
@@ -1180,5 +1183,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 #file-preview .card-body {
   max-height: 60rem;
   overflow-y: auto;
+}
+
+.text-small{
+  font-size: 0.85rem;
 }
 
