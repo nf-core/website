@@ -464,7 +464,7 @@ $(function () {
                                 data = '<pre><code>' + sanitize_html(data) + '</code></pre>';
                             }
                         } else if (extension === ".html") {
-                            data = '<iframe src="'+url+'" style="border:none; width:100%; height:1000px;"></iframe>';
+                            data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
                         } else if (extension === ".pdf") {
                             data = `<object data="${url}" type="application/pdf" style="border:none; width:100%; height:1000px;">
                                             <embed src="${url}" type="application/pdf" />
