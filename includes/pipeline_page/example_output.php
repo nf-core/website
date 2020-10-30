@@ -31,7 +31,6 @@ ob_start();
                             <!-- Dual purpose: progress spinner and refresh button, plus object count -->
                             <div class="btn-group" id="refresh">
                                 <span id="bucket-loader" class="btn fa fa-refresh fa-2x " title="Refresh"></span>
-                                <!-- <span id="badgecount" class="badge pull-right" title="Object count">42</span> -->
                             </div>
                         </div>
                     </div>
@@ -65,9 +64,6 @@ ob_start();
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <!-- <div class="toast-body">
-    Paste this command into your terminal to run the pipeline with a small test dataset.
-  </div> -->
 </div>
 
 <script type="text/javascript">
