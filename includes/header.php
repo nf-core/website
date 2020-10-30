@@ -76,6 +76,13 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
+    if(isset($aws) && $aws): ?>
+    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
+    <script src="/assets/js/aws-sdk-2.765.0.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
+    <?php endif;
     if(isset($import_schema_builder) && $import_schema_builder): ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
