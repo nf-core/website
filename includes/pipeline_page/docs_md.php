@@ -45,6 +45,7 @@ $md_github_url = 'https://github.com/'.$pipeline->full_name.'/blob/'.$release.'/
 # Markdown cleanup
 $md_content_replace[] = ['/# nf-core\/'.$pipeline->name.': /', '# '];
 $md_content_replace[] = ['/# !\[nf-core\/'.$pipeline->name.'\]\(images\/nf-core-'.$pipeline->name.'_logo.png\)/', ''];
+$md_content_replace[] = ['/(## :warning:)(.*?)( files\._)/s', ''];
 
 // Footer source link
 $md_github_url = 'https://github.com/'.$pipeline->full_name.'/blob/'.$release.'/'.$filename;
