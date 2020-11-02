@@ -125,6 +125,7 @@ $(function () {
     $("body").on("click", ".copy-url", function (e) {
         var text = e.currentTarget.dataset.target;
         var $tmp = $("<input>");
+        
         $("body").append($tmp);
         $tmp.val(text).select();
         document.execCommand("copy");
@@ -198,7 +199,7 @@ $(function () {
             }
             $('#breadcrumb').append(ipart);
         });
-        $('.title-bar .copy-url').data().target = "s3://" + parts.join("/");
+        $('.title-bar .copy-url')[0].dataset.target = "s3://" + parts.join("/");
     }
 
     function s3draw(data, complete) {
@@ -351,12 +352,12 @@ $(function () {
             } else if (isfolder(data)) {
                 // console.log("is folder: " + data);
                 if (full.render_name) {
-                    return '<a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fad fa-folder"></i> ' + prefix2folder(data) + '</a>';
+                    return '<a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fas fa-folder"></i> ' + prefix2folder(data) + '</a>';
                 } else {
                     return '<div class="d-flex justify-content-between align-items-center"><div><a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fad fa-folder-open"></i> ..</a></div></div>';
                 }
             } else {
-                var icon = '<i class="fad fa-file"></i> ';
+                var icon = '<i class="fas fa-file"></i> ';
                 
                 // console.log("not folder/this document: " + data);
                 return '<div class="d-flex justify-content-between align-items-center"><div><a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '" data-size=' + full.Size + '>' + icon + fullpath2filename(data) + '</a></div></div>';
