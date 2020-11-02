@@ -177,9 +177,9 @@ mv nextflow ~/bin/
 
 <span class="text-white-50"># Launch the RNAseq pipeline</span>
 nextflow run nf-core/rnaseq \
-    -profile docker \
+    --input samplesheet.csv \
     --genome GRCh37 \
-    --reads "data/*_{R1,R2}.fastq.gz"
+    -profile docker
 
 <span class="text-white-50"># Install nf-core tools</span>
 pip install nf-core
