@@ -49,7 +49,7 @@ All nf-core pipelines _must_ adhere to the following:
 * Stable release tags
 * Common pipeline structure and usage
   * Standard filenames as supplied in the template, such as `main.nf` and `docs/`
-  * Use the same command line option names as other pipelines for comparable options, _e.g._ `--reads` and `--genome`
+  * Use the same command line option names as other pipelines for comparable options, _e.g._ `--input` and `--genome`
 * Run in a single command
   * _i.e._ Not multiple separate workflows in a single repository
   * It is ok to have workflows that use the output of _another_ nf-core pipeline as input
