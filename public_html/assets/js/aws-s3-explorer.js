@@ -207,24 +207,32 @@ $(function () {
         $("#file-preview").hide();
         
         folder2breadcrumbs(data);
-        if(data.Contents.length>0){    
+        if (data.Contents.length > 0 || data.CommonPrefixes.length >0) {
             var path = data.params.Prefix.split("/");
             if (path.length > 3) {
-                $('#tb-s3objects').DataTable().rows.add([{
+                $("#tb-s3objects")
+                .DataTable()
+                .rows.add([
+                    {
                     Key: path.slice(0, path.length - 2).join("/") + "/",
-                    render_name: false
-                }]);
+                    render_name: false,
+                    },
+                ]);
             }
-            // Add each part of current path (S3 bucket plus folder hierarchy) into the breadcrumbs
+            // Add each part of current path (S3 bucket plus folder hierarchy) into the table
             $.each(data.CommonPrefixes, function (i, prefix) {
-                $('#tb-s3objects').DataTable().rows.add([{
+                $("#tb-s3objects")
+                .DataTable()
+                .rows.add([
+                    {
                     Key: prefix.Prefix,
-                    render_name: true
-                }]);
+                    render_name: true,
+                    },
+                ]);
             });
 
             // Add S3 objects to DataTable
-            $('#tb-s3objects').DataTable().rows.add(data.Contents).draw();
+            $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
         }
     }
 
