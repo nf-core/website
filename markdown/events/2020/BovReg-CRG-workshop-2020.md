@@ -3,16 +3,16 @@ title: BovReg Workshop and hackathon
 subtitle: Reproducible genomics workflows using Nextflow and nf-core organized by The Center for Genomic Regulation (CRG), Barcelona
 type: workshop
 start_date: "2020-11-17"
-start_time: "09:30 CEST"
+start_time: "09:30 CET"
 end_date: "2020-11-20"
-end_time: "16:30 CEST"
-location_url: https://www.bovreg.eu/crg-online-workshop-november-17-20-2020/
+end_time: "17:30 CET"
+location_url: https://github.com/BovReg/nf-workshop20
 ---
 
 ## Introduction
 
-The CRG will organize a four-day nf-core workshop and hackathon. The workshop will include a Nextflow tutorial and
-hackathon, Keynote speakers, and contributed talks selected from participants abstracts.
+The CRG will organize a four-day nf-core workshop and hackathon. The workshop will include a Nextflow training and
+hackathon, Keynote speakers, and contributed flash talks selected from participants abstracts.
 
 ## Workshop Project Repository
 
