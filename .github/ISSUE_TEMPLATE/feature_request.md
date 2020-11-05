@@ -1,10 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for the nf-cire website
-title: ''
 labels: enhancement
-assignees: ''
-
 ---
 
 **Is your feature request related to a problem? Please describe.**
