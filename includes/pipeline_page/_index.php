@@ -125,9 +125,9 @@ else if(endswith($_GET['path'], '/output')){
   $md_trim_before = '# Introduction';
 }
 # Example output
-else if(endswith($_GET['path'], '/example_output')){
-  $pagetab = 'example_output';
-  require_once('example_output.php');
+else if(endswith($_GET['path'], '/results')){
+  $pagetab = 'results';
+  require_once('results.php');
 }
 # Releases + Stats
 else if(endswith($_GET['path'], '/releases_stats')){
@@ -215,28 +215,29 @@ if($pipeline->archived){
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>">Readme</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage">Usage</a>
-  </li>
-  <?php if(file_exists($gh_pipeline_schema_fn)): ?>
-    <li class="nav-item">
-      <a class="nav-link<?php if($pagetab=='parameters'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/parameters">Parameters</a>
-    </li>
-  <?php endif; ?>
-  <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output">Output</a>
+    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>">Introduction</a>
   </li>
   <?php if(isset($release_hash) && $release_hash): ?>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='example_output'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/example_output">Example<span class="d-none d-sm-inline"> output</span></a>
+    <a class="nav-link<?php if($pagetab=='results'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fab fa-aws fa-lg mr-1"></i> Results</span></a>
   </li>
   <?php endif; ?>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats">Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
+    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage"><i class="fad fa-book mr-1"></i> Usage docs</a>
   </li>
-  <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'example_output'): ?>
+  <?php if(file_exists($gh_pipeline_schema_fn)): ?>
+    <li class="nav-item">
+      <a class="nav-link<?php if($pagetab=='parameters'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/parameters"><i class="fad fa-book mr-1"></i> Parameter docs</a>
+    </li>
+  <?php endif; ?>
+  <li class="nav-item">
+    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output"><i class="fad fa-book mr-1"></i> Output docs</a>
+  </li>
+  
+  <li class="nav-item">
+    <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fad fa-chart-area fa-swap-opacity mr-1"></i> Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
+  </li>
+  <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'results'): ?>
   <li class="pt-1 pl-3">
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
@@ -283,7 +284,7 @@ echo '</div>'; # end of the content div
 echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
 
 # Pipeline homepage & releases - key stats
-if(in_array($pagetab, ['', 'releases_stats','example_output'])){
+if(in_array($pagetab, ['', 'releases_stats','results'])){
   require_once('sidebar.php');
 }
 # Documentation - ToC
