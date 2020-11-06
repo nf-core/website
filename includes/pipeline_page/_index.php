@@ -215,7 +215,7 @@ if($pipeline->archived){
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>">Introduction</a>
+    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in mr-2"></i> Introduction</a>
   </li>
   <?php if(isset($release_hash) && $release_hash): ?>
   <li class="nav-item">
@@ -223,19 +223,19 @@ if($pipeline->archived){
   </li>
   <?php endif; ?>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage"><i class="fad fa-book mr-1"></i> Usage docs</a>
+    <a class="nav-link<?php if($pagetab=='usage'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/usage"><i class="far fa-book mr-1"></i> Usage docs</a>
   </li>
   <?php if(file_exists($gh_pipeline_schema_fn)): ?>
     <li class="nav-item">
-      <a class="nav-link<?php if($pagetab=='parameters'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/parameters"><i class="fad fa-book mr-1"></i> Parameter docs</a>
+      <a class="nav-link<?php if($pagetab=='parameters'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/parameters"><i class="far fa-book mr-1"></i> Parameter docs</a>
     </li>
   <?php endif; ?>
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output"><i class="fad fa-book mr-1"></i> Output docs</a>
+    <a class="nav-link<?php if($pagetab=='output'){ echo ' active'; } ?>" href="<?php echo $url_base; ?>/output"><i class="far fa-book mr-1"></i> Output docs</a>
   </li>
-  
+
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fad fa-chart-area fa-swap-opacity mr-1"></i> Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
+    <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line mr-1"></i> Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
   <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'results'): ?>
   <li class="pt-1 pl-3">
