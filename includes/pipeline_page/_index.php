@@ -215,7 +215,7 @@ if($pipeline->archived){
 
 <ul class="nav nav-fill nfcore-subnav">
   <li class="nav-item">
-    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in mr-2"></i> Introduction</a>
+    <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in mr-1"></i> Introduction</a>
   </li>
   <?php if(isset($release_hash) && $release_hash): ?>
   <li class="nav-item">
