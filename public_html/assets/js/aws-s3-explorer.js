@@ -133,6 +133,15 @@ $(function () {
         $('#url-copied').toast('show');
     });
 
+    //update view when url-hash changes
+    $( window ).on( 'hashchange', function( e ) {
+        prefix = window.location.hash.substr(1);
+        if (window.location.hash.split("/").length > 2 ) {
+            s3exp_config["Prefix"] = prefix;
+        }
+        (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+    } );    
+
     function folder2breadcrumbs(data) {
         // console.log('Bucket: ' + data.params.Bucket);
         // console.log('Prefix: ' + data.params.Prefix);
@@ -186,7 +195,7 @@ $(function () {
                         // console.log('Part: ' + part + ' has buildprefix: ' + saveprefix);
                         a2.click(function (e) {
                             e.preventDefault();
-                            console.log('Breadcrumb click object prefix: ' + saveprefix);
+                            // console.log('Breadcrumb click object prefix: ' + saveprefix);
                             s3exp_config = {
                                 Bucket: data.params.Bucket,
                                 Prefix: saveprefix,
