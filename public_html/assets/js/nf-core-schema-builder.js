@@ -832,8 +832,16 @@ $(function () {
         settings.maximum = $('#settings_maximum').val().trim();
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
-        $.map(settings.enum, $.trim);
+        settings.enum = $.map(settings.enum, $.trim);
         settings.enum = settings.enum.filter(function (el) { return el.length > 0; });
+
+        // convert number strings back to numbers
+        if(["integer", "number", "range"].includes(param["type"])) {
+            settings.enum = $.map(settings.enum, function (el) {
+                return parseFloat(el);
+            });
+        }
+        
 
         // Validate inputs
         if(settings.minimum.length > 0){
