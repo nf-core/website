@@ -218,7 +218,6 @@ $(function () {
 
 function scroll_to(target_el,offset){
     var el_offset = target_el.offset().top - offset;
-    var doc_offset = $(document).scrollTop();
     $([document.documentElement, document.body]).animate({
         scrollTop: el_offset
     }, 500);
