@@ -242,6 +242,16 @@ $(function () {
 
             // Add S3 objects to DataTable
             $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
+        } else {
+            $("#tb-s3objects")
+                .DataTable()
+                .rows.add([
+                    {
+                    Key: "/",
+                    render_name: false,
+                    },
+                ]);
+            $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
         }
     }
 
@@ -371,6 +381,9 @@ $(function () {
                 if (full.render_name) {
                     return '<a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fas fa-folder"></i> ' + prefix2folder(data) + '</a>';
                 } else {
+                    if(data==="/"){
+                        data = s3exp_config.Prefix.split("/").slice(0,-2).join("/")+"/";
+                        }
                     return '<div class="d-flex justify-content-between align-items-center"><div><a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fad fa-folder-open"></i> ..</a></div></div>';
                 }
             } else {
