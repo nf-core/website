@@ -92,7 +92,7 @@ This is a nextflow error, with less commonly seen terminology. What this means i
 For example:
 
 ```bash
-nextflow run nf-core/eager -r 2.1.0 --reads '/<path>/<to>/data/*_{R1,R2}_*.fq.gz' <...>
+nextflow run nf-core/eager -r 2.1.0 --input '/<path>/<to>/data/*_{R1,R2}_*.fq.gz' <...>
 ```
 
 Specifying the version of the run you are using is highly recommended, as it helps in full reproducibility. In the sense that if you explicitly record the whole command _with_ the version for your publication or internal reports, then anyone who wants to check your work can use the exact version you used (including all internal tools).

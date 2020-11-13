@@ -67,7 +67,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 6. Launch the pipeline with some real data by omitting the `test` config profile and providing the required pipeline-specific parameters. For example, if you want to run the `methylseq` pipeline, you might use the following command:
 
     ```bash
-    nextflow run nf-core/methylseq -profile docker --reads 'input_data/*.fastq.gz' --outdir myproj/results --genome GRCh38
+    nextflow run nf-core/methylseq -profile docker --input 'input_data/*.fastq.gz' --outdir myproj/results --genome GRCh38
     ```
 
 7. Once complete, check the pipeline execution and quality control reports. Each pipeline comes with documentation describing the different outputs.
