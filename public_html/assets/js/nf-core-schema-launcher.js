@@ -90,7 +90,7 @@ $(function () {
             set_validation_styles(false);
             // If form was submitted, scroll to first error
             if(e.type =='submit'){
-                scroll_to($('input:invalid, select:invalid').first());
+                scroll_to($('input:invalid, select:invalid').first(),140);
                 $('input:invalid, select:invalid').first().focus();
             }
         } else {
