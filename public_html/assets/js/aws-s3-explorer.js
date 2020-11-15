@@ -133,6 +133,15 @@ $(function () {
         $('#url-copied').toast('show');
     });
 
+    //update view when url-hash changes
+    $( window ).on( 'hashchange', function( e ) {
+        prefix = window.location.hash.substr(1);
+        if (window.location.hash.split("/").length > 2 ) {
+            s3exp_config["Prefix"] = prefix;
+        }
+        (s3exp_lister = s3list(s3exp_config, s3draw)).go();
+    } );    
+
     function folder2breadcrumbs(data) {
         // console.log('Bucket: ' + data.params.Bucket);
         // console.log('Prefix: ' + data.params.Prefix);
@@ -186,7 +195,7 @@ $(function () {
                         // console.log('Part: ' + part + ' has buildprefix: ' + saveprefix);
                         a2.click(function (e) {
                             e.preventDefault();
-                            console.log('Breadcrumb click object prefix: ' + saveprefix);
+                            // console.log('Breadcrumb click object prefix: ' + saveprefix);
                             s3exp_config = {
                                 Bucket: data.params.Bucket,
                                 Prefix: saveprefix,
@@ -232,6 +241,16 @@ $(function () {
             });
 
             // Add S3 objects to DataTable
+            $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
+        } else {
+            $("#tb-s3objects")
+                .DataTable()
+                .rows.add([
+                    {
+                    Key: "/",
+                    render_name: false,
+                    },
+                ]);
             $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
         }
     }
@@ -362,6 +381,9 @@ $(function () {
                 if (full.render_name) {
                     return '<a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fas fa-folder"></i> ' + prefix2folder(data) + '</a>';
                 } else {
+                    if(data==="/"){
+                        data = s3exp_config.Prefix.split("/").slice(0,-2).join("/")+"/";
+                        }
                     return '<div class="d-flex justify-content-between align-items-center"><div><a data-s3="folder" data-prefix="' + sanitize_html(data) + '" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"><i class="fad fa-folder-open"></i> ..</a></div></div>';
                 }
             } else {
