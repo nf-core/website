@@ -13,6 +13,8 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_pipeline_details.php
 
+echo "Updating pipeline details";
+
 // Load the twitter PHP library
 require "includes/libraries/twitteroauth/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -22,20 +24,23 @@ ini_set("allow_url_fopen", 1);
 
 // Get the twitter auth secrets
 $config = parse_ini_file("config.ini");
+$gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
 
 // HTTP header to use on API GET requests
-$api_opts = stream_context_create([
+$gh_api_opts = stream_context_create([
     'http' => [
         'method' => 'GET',
         'header' => [
             'User-Agent: PHP',
-            'Accept:application/vnd.github.mercy-preview+json' // Needed to get topics (keywords) for now
+            'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
+            "Authorization: Basic $gh_auth"
         ]
     ]
 ]);
 
-// Final filename to write JSON to
+// Final filenames to write JSON to
 $results_fn = dirname(__FILE__).'/public_html/pipelines.json';
+$pipeline_names_fn = dirname(__FILE__).'/public_html/pipeline_names.json';
 
 // Load a copy of the existing JSON file, if it exists
 $old_json = false;
@@ -65,7 +70,7 @@ $results = array(
 
 // Fetch all repositories at nf-core
 $gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
-$gh_repos = json_decode(file_get_contents($gh_api_url, false, $api_opts));
+$gh_repos = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
     var_dump($http_response_header);
     die("Could not fetch nf-core repositories! $gh_api_url");
@@ -101,10 +106,8 @@ foreach($gh_repos as $repo){
             'clone_url' => $repo->clone_url,
             'size' => $repo->size,
             'stargazers_count' => $repo->stargazers_count,
-            'watchers_count' => $repo->watchers_count,
             'forks_count' => $repo->forks_count,
             'archived' => $repo->archived,
-            'watchers' => $repo->watchers
         );
     }
 }
@@ -115,7 +118,7 @@ usort($results['remote_workflows'], 'sort_name');
 foreach($results['remote_workflows'] as $idx => $repo){
     // Fetch release information for this repo
     $gh_releases_url = "https://api.github.com/repos/{$repo['full_name']}/releases";
-    $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $api_opts));
+    $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
         die("Could not fetch nf-core release info! $gh_releases_url");
@@ -124,6 +127,11 @@ foreach($results['remote_workflows'] as $idx => $repo){
     // Save releases to results
     $results['remote_workflows'][$idx]['releases'] = [];
     foreach($gh_releases as $rel){
+
+        // Skip if a draft release or prerelease
+        if($rel->draft) continue;
+        if($rel->prerelease) continue;
+
         $results['remote_workflows'][$idx]['releases'][] = array(
             'name' => $rel->name,
             'published_at' => $rel->published_at,
@@ -131,7 +139,9 @@ foreach($results['remote_workflows'] as $idx => $repo){
             'tag_name' => $rel->tag_name,
             'tag_sha' => NULL,
             'draft' => $rel->draft,
-            'prerelease' => $rel->prerelease
+            'prerelease' => $rel->prerelease,
+            'tarball_url' => $rel->tarball_url,
+            'zipball_url' => $rel->zipball_url
         );
         if(strtotime($rel->published_at) > strtotime($results['remote_workflows'][$idx]['last_release'])){
             $results['remote_workflows'][$idx]['last_release'] = $rel->published_at;
@@ -143,7 +153,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
 
         // Get commit hash information for each release
         $gh_tags_url = "https://api.github.com/repos/{$repo['full_name']}/tags";
-        $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $api_opts));
+        $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
             die("Could not fetch nf-core tags info! $gh_tags_url");
@@ -159,14 +169,17 @@ foreach($results['remote_workflows'] as $idx => $repo){
 }
 
 // Count workflows
+$pipeline_names = [];
 foreach($results['remote_workflows'] as $repo){
     $results['pipeline_count']++;
     if($repo['archived']){
         $results['archived_count']++;
     } else if(count($repo['releases']) > 0){
         $results['published_count']++;
+        $pipeline_names[] = $repo['name'];
     } else {
         $results['devel_count']++;
+        $pipeline_names[] = $repo['name'];
     }
 }
 
@@ -174,17 +187,22 @@ foreach($results['remote_workflows'] as $repo){
 $results_json = json_encode($results, JSON_PRETTY_PRINT)."\n";
 file_put_contents($results_fn, $results_json);
 
+// Print simple list of pipelines to a file
+file_put_contents($pipeline_names_fn, json_encode(array('pipeline' => $pipeline_names)));
+
 ////// Tweet about new releases
 // Get old releases
 $old_rel_tags = array();
-foreach($old_json['remote_workflows'] as $old_pipeline){
-    $old_rel_tags[$old_pipeline['name']] = array();
-    // Collect releases from this pipeline
-    foreach($old_pipeline['releases'] as $rel){
-        if($rel['draft'] || $rel['prerelease']){
-            continue;
+if($old_json){
+    foreach($old_json['remote_workflows'] as $old_pipeline){
+        $old_rel_tags[$old_pipeline['name']] = array();
+        // Collect releases from this pipeline
+        foreach($old_pipeline['releases'] as $rel){
+            if($rel['draft'] || $rel['prerelease']){
+                continue;
+            }
+            $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
         }
-        $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
     }
 }
 // Go through new releases
@@ -195,7 +213,7 @@ foreach($results['remote_workflows'] as $new_pipeline){
             continue;
         }
         // See if this tag name was in the previous JSON
-        if(!in_array($rel['tag_name'], $old_rel_tags[$new_pipeline['name']])){
+        if(!isset($old_rel_tags[$new_pipeline['name']]) || !in_array($rel['tag_name'], $old_rel_tags[$new_pipeline['name']])){
             // Prepare the tweet content!
             $tweet = 'Pipeline release! ';
             $tweet .= $new_pipeline['full_name'].' v'.$rel['tag_name'].' ('.$new_pipeline['description'].')';
@@ -205,24 +223,33 @@ foreach($results['remote_workflows'] as $new_pipeline){
                 $tweet = substr(rtrim($tweet, '.)'), 0, -3).'..)';
             }
             $tweets[] = $tweet.$tweet_url;
+            echo("Found new release for ".$new_pipeline['full_name'].": ".$rel['tag_name']."\n");
         }
     }
 }
 
+// Only tweet if we're on the live server!
 if(count($tweets) > 0){
 
-    // Connect to twitter
-    $connection = new TwitterOAuth(
-        $config['twitter_key'],
-        $config['twitter_secret'],
-        $config['twitter_access_token'],
-        $config['twitter_access_token_secret']
-    );
+    if(isset($config['twitter_key']) && $config['twitter_key'] != 'TWITTER_KEY'){
 
-    // Post the tweets
-    foreach($tweets as $tweet){
-        $post_tweets = $connection->post("statuses/update", ["status" => $tweet]);
+        // Connect to twitter
+        $connection = new TwitterOAuth(
+            $config['twitter_key'],
+            $config['twitter_secret'],
+            $config['twitter_access_token'],
+            $config['twitter_access_token_secret']
+        );
+
+        // Post the tweets
+        foreach($tweets as $tweet){
+            $post_tweets = $connection->post("statuses/update", ["status" => $tweet]);
+            echo("Sent tweet: $tweet\n");
+        }
+
+    } else {
+        echo("Not sending tweets because config twitter_key is not set.\n");
     }
 }
 
-?>
+echo("\nupdate_pipeline_details done " . date("Y-m-d h:i:s") . "\n\n");
