@@ -1,27 +1,31 @@
-# About nf-core
+## Core team {#core}
+The core team members who administer the nf-core project are listed below:
 
-## Contributors {#contributors}
-nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many dedicated contributors. You can see a list of nf-core members on GitHub: https://github.com/orgs/nf-core/people
+* [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
+* [@drpatelh](https://github.com/drpatelh): Harshil Patel
+* [@ewels](https://github.com/ewels): Phil Ewels
+* [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
+* [@jfy133](https://github.com/jfy133): James A. Fellows Yates
+* [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
+* [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+* [@olgabot](https://github.com/olgabot): Olga Botvinnik
 
-Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.
+The following former members of the nf-core core team have earned their place in
+the nf-core alumni hall of fame:
 
-> Is your group missing? Please [submit a pull request](https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml) to add yourself!
+* [@sven1103](https://github.com/sven1103): Sven F.
+* [@alneberg](https://github.com/alneberg): Johannes Alneberg
 
-<!-- #### CONTRIBUTORS #### -->
+We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
-## History {#history}
-The nf-core project came about at the start of 2018 as the pet-project of [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)). He's the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
+All nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
-The NGI has been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems - typically Swedish research groups at first, but later on other core genomics facilities too.
+## History
+The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
 
-As the number of people interested in these common pipelines grew, it seemed silly to keep all the pipelines under the umbrella of just SciLifeLab, complete with NGI prefixes and logos. To try to open up the effort into a truly collaborative project, [nf-core](https://github.com/nf-core) was created and all relevant pipelines moved to this new GitHub Organisation.
+The NGI had been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems; typically Swedish research groups at first, but later on other groups and core genomics facilities too such as [QBIC](http://qbic.life/) in Tübingen.
 
-## Get in touch {#contact}
-To get in touch with the nf-core team, you have a few options:
+As the number of users and contributors grew, the pipelines began to outgrow the SciLifeLab and NGI branding. To try to open up the effort into a truly collaborative project, [nf-core](https://github.com/nf-core) was created and all relevant pipelines moved to this new GitHub Organisation.
 
-* Chat online with [Slack](https://nf-core-invite.herokuapp.com/)
-* Email the [Google Groups mailing list](https://groups.google.com/forum/#!forum/nf-core)
-* Create an issue on one of the [GitHub repositories](https://github.com/nf-core)
-* Message or tweet at [@nf_core on twitter](https://twitter.com/nf_core)
-
-To join the nf-core GitHub organisation, just drop us a line on [this GitHub issue](https://github.com/nf-core/nf-co.re/issues/3).
+The early days of nf-core were greatly shaped by [Alex Peltzer](https://apeltzer.github.io/) ([@apeltzer](https://github.com/apeltzer/)), [Sven Fillinger](https://uni-tuebingen.de/en/research/research-infrastructure/quantitative-biology-center-qbic/team0/sven-fillinger/) ([@sven1103](https://github.com/sven1103/)) and [Andreas Wilm](https://andreas-wilm.github.io/) ([@andreas-wilm](https://github.com/andreas-wilm/)).
+Without them, the project would not exist.

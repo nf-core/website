@@ -1,9 +1,10 @@
 ---
-title: Introduction
-subtitle: Get to grip with the key concepts used in nf-core pipelines.
+title: Getting started
+subtitle: How to run your first nf-core pipeline.
 ---
 
-# What is nf-core?
+## What is nf-core?
+
 nf-core is a community effort to collect a curated set of analysis pipelines built using [Nextflow](https://www.nextflow.io/docs/latest/index.html).
 
 nf-core has three target audiences: facilities, single users and developers.
@@ -11,7 +12,8 @@ For facilities it provides highly automated and optimized pipelines that guarant
 Single users profit from portable, documented and easy to use workflows.
 But you can also become a developer and write your own pipeline in Nextflow using already available templates and helper tools.
 
-# What is Nextflow?
+## What is Nextflow?
+
 Nextflow is a *workflow manager*.
 It has been developed specifically to ease the creation and execution of bioinformatics pipelines.
 The benefits of having your pipeline in Nextflow include:
@@ -24,82 +26,62 @@ The benefits of having your pipeline in Nextflow include:
 
 Whether your pipeline is a simple BLAST execution or a complex genome annotation pipeline, you can build it with Nextflow.
 
-**To learn more about nextflow, we have adapted a nextflow tutorial which you can try: [nextflow tutorial](/usage/nextflow_tutorial)**
+## How to run a pipeline
 
-# Software requirements
-An analysis pipeline chains the execution of multiple tools together.
-In order for this to work, each of those software tools must be installed.
-Historically, this can be a source of great frustration and a key step where reproducibility between analyses is lost.
-All nf-core pipelines fully utilise the built-in support for software packaging that Nextflow offers.
+Nextflow works best when you have an active internet connection, as it is able to fetch all pipeline requirements. If you need to run offline, please see [_Running offline_](offline.md).
 
-## Docker
-[Docker](https://www.docker.com/) is a tool to package and run software within isolated environments called containers.
-Importantly, a Docker container images can be shared. As such, all dependencies and versions required to run a specific script can be kept constant, even when a script is executed on a different machine, simply by running it in the respective Docker container.
-The usage of [Docker in Nextflow](https://www.nextflow.io/docs/latest/docker.html) and container technology enables us to:
+1. First, make sure that you have all required software installed (Nextflow + Docker / Singularity / Conda). See the [installation docs](installation.md) for more information.
 
-* Simplify the setup of complicated software, libraries and modules.
-* Make our results, analysis and graphs 100% reproducible.
-* Share our work with the world.
+    * Try running the Nextflow "hello world" example to make sure that the tools are working properly:
 
-## Singularity
-It's not always possible to run Docker - it requires special system permissions which may not be feasible in a shared computing environment.
-[Singularity](https://www.sylabs.io/guides/3.1/user-guide/) is a container engine alternative to Docker designed to run large analysis jobs on high performance compute clusters.
-The main advantage is that it can be used with unprivileged permissions: in this way you can run [Nextflow using Singularity](https://www.nextflow.io/docs/latest/singularity.html) on a server were you don't have root privileges.
+        ```bash
+        nextflow run hello
+        ```
 
-As with docker, singularity allows us to bundle all software requirements together into a single image which comes with each nf-core pipeline. This gives simplicity and reproducibility.
+2. Choose a pipeline to run. See the available pipelines at [https://nf-co.re/pipelines](https://nf-co.re/pipelines). If you have [https://nf-core/tools](https://nf-co.re/tools) installed, run `nf-core list`
 
-## Conda
-[Conda](https://conda.io/) is a software packaging system that helps to find and install packages.
-Conda can create isolated 'environments' with software installations that can be switched between.
+3. Configure Nextflow to run on your system.
 
-[Nextflow has built-in support for Conda](https://www.nextflow.io/docs/latest/conda.html) that allows us to manage dependencies using Conda recipes and environment files. The nf-core pipelines make extensive use of the bioinformatics conda channel [Bioconda](https://bioconda.github.io/) making it simple to install all required tools.
+    * The simplest way to run is with `-profile docker` (or `singularity`) which will tell Nextflow to execute jobs locally using Docker to fulfil the software requirements.
 
-Conda makes the installation and management of software dependencies far simpler than manual installations. It ensures correct version pinning and so represents good reproducibility.
-However, the software still runs in your operating system environment. As such, if it's possible to use either docker or singularity, those options are preferred.
+    * Conda is also supported with `-profile conda`. However this option is not recommended, as reproducibility of the results can't be guaranteed without containerization.
 
-# How to run a pipeline
-In order to run a Nextflow pipeline from nf-core on your local computer you need to install Nextflow and Docker on your computer.
+    * For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
 
-**System requirements:**
-* Java 7 or 8
-* _recommended:_ at least 8GB of RAM
-* _recommended:_ Docker engine 1.10.x (or higher)
+4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
 
-
-
-1. Install Nextflow
     ```bash
-    curl -s https://get.nextflow.io | bash
+    nextflow run nf-core/<pipeline_name> -profile test,docker
     ```
 
-2. Install nf-core tools
+    * Replace `<pipeline_name>` with the name of an nf-core pipeline.
+
+    * If you don't have Docker installed, replace `docker` in the command with either `singularity` or `conda`.
+
+    * There is no need to download anything first - nextflow will pull the code for you from the GitHub repository automatically and fetch the software requirements too.
+
+    * If the pipeline fails, check the [troubleshooting docs](troubleshooting.md) and ask for help on the nf-core Slack channel for that particular pipeline (see [https://nf-co.re/join](https://nf-co.re/join)).
+
+5. Read the pipeline documentation to see which command-line parameters are required. These will be specific to your data type and usage.
+
+6. Launch the pipeline with some real data by omitting the `test` config profile and providing the required pipeline-specific parameters. For example, if you want to run the `methylseq` pipeline, you might use the following command:
+
     ```bash
-    pip install nf-core
+    nextflow run nf-core/methylseq -profile docker --input 'input_data/*.fastq.gz' --outdir myproj/results --genome GRCh38
     ```
 
-3. You can check all the pipelines available by typing in your terminal
-    ```bash
-    nf-core list
-    ```
+7. Once complete, check the pipeline execution and quality control reports. Each pipeline comes with documentation describing the different outputs.
 
-4. To test that everything required is installed, try running a pipeline test in your terminal
-    ```bash
-    nextflow run nf-core/methylseq -profile test,docker
-    ```
+## Tips and tricks
 
-5. Launch the pipeline of choice. `parameters` are optional, when they are not specified they are taken from the `nextflow.config` file.
-    ```bash
-    nextflow run nf-core/<pipeline_name> -profile standard,docker [parameters]
-    ```
+* Hyphens matter! Core Nextflow command-line options use one (`-`) whereas pipeline specific parameters use two (`--`)
+* Specify `--email your@email.com` to receive emails when your pipeline completes
+* Always specify `-r <version-number>` when running to explicitly use a specific release. Then an identical command can be used in the future to give identical results.
+* Use `-resume` to restart pipelines that did not complete. This ensures that successful tasks from the previous run wont be re-executed.
+* Use `nextflow log` to find names of all previous runs in your directory. These can be used with `-resume` to restart specific runs.
+* Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
 
-    For example, if you want to run `methylseq` pipeline, just type:
-    ```bash
-    nextflow run nf-core/methylseq -profile standard,docker -reads 'path/*.fastq.gz' --outdir path/results --genome <genome>
-    ```
-
-    You will find the specific parameters required for each pipeline in the documentation of the respective pipeline.
-
-# Helper tools
+## Helper tools
 
 To help you manage your nf-core pipelines and discover updates, we have written some command-line helper tools.
 These allow you to list all available pipelines and versions, with information about what versions you're running locally.
