@@ -10,3 +10,11 @@ services:
           - .:/var/www/
         ports:
           - "8888:80"
+        command: bash -c "/usr/bin/supervisord"
+
+    npm:
+        build: .
+        container_name: npm
+        volumes:
+          - ./public_html/assets/css:/var/www/public_html/assets/css
+        command: bash -c "npm run watch-sass"
