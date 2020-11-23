@@ -128,7 +128,7 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
 
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
-$md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-events.yaml';
+$md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/events';
 include('../includes/header.php');
 
 # To get parse_md_front_matter() function
