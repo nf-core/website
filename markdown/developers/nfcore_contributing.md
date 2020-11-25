@@ -47,3 +47,27 @@ To assure that nf-core pipelines don't break after some change is made to the co
 ## JSON Schema
 
 ## DSL2 and modules
+Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. Currently, most nf-core pipelines are still entirely written in DSL1, but in the near future all n-core pipelines will be written in DSL2. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
+
+### modules
+Each pipeline has a `modules` directory which contains all the module code. A module here depicts a single process which involves - if possible - only a single tool/software. The `modules` directory is furthermore divided into `local`and `nf-core`sub-directories, which themselves each have a `process`and `subworkflow` directory. Modules contained in the `local` directory are specific to the pipeline, whereas `nf-core` modules are installed from the `nf-core/modules` repository. For instance, most pipelines that involve FastQ files will run the FastQC tool for quality control. The module needed for this can be easily reused from the `nf-core/modules` directory using the `nf-core/tools`package. The `process` directories contain modules which define single processes, which smaller workflows are contained in the `subworkflow` directories.
+
+All modules furthermore load utility functions from a `functions.nf` script that must be contained in the `modules/local/process` directory. It contains simple functions to initialize the module options, get the software version, save files and get a path from a string. For further explanations of modules and how they should be structured in DSL2 pipelines see also HERE.
+
+### The pipeline
+The actual pipeline is now divided into two scripts, the `main.nf` script and the `<pipeline_name>.nf` script (e.g. `rnaseq.nf`). As with DSL1 pipelines, the script called when running the pipeline is the `main.nf` script. However, now all pipeline logic is stored in the `<pipeline_name>.nf` script, which includes all the necessary modules and subworkflows and executes them in the correct order. The bulk of code in this script will be to parse the command line parameters, load modules along with their specific parameters and execute them in the main workflow.
+
+### Module parameters
+One thing that might not be straightforward is how module parameters are handled in nf-core DSL2 pipelines. Every module and subworkflow, when loaded into the pipeline, has to be passed a groovy map containing module options. For single processes this is typically only a single `options` map, while for subworkflows these can be several maps that are then passed down to the correct processes within the subworkflows. These `option` maps are directly loaded from the `modules.config` file (contained in the pipeline `conf` directory), which is the place where all additional and optional parameters for modules are stored. Modules should be build in a way that they are flexible with respect to the parameters, so that most command line parameters can be passed to them via the `modules.config`. This way, all command line parameters and other options can be modified within a single script, which makes it easy for users to adjust the pipeline and at the same time makes modules resuable, as they stay flexible.
+
+The `modules.config` file should contain a `params.modules` dictionary which lists every module used in the pipeline. For each module, the following fields can be specified:
+
+- `args`: additional arguments appended to command in the module
+- `args2`: Second set of arguments append to command in the module (multi-tool modules)
+- `publish_dir`: Directory to publish the results
+- `publish_by_id`: Publish results in separate folder by meta.id value
+- `publish_files`: Groovy map where key = "file_ext" and value = "directory" to publish results for that file extension. The value of "directory" is appended to the standard "publish_dir" path as defined above. If publish_files == null (unspecified) all files are published. If publish_files == false no files are published.
+- `suffix`: File name suffix for output files
+
+### lib
+Another feature of new nf-core pipelines, that is not strictly DSL2 related, is the `lib` directory. This directory simply contains several groovy-utility functions, that are used in the `main.nf` and and `<pipeline_name.nf>` scripts. 
