@@ -304,9 +304,6 @@ function build_form_param($param_id, $param, $is_required){
     if($param['type'] == 'number'){
         $step = 'step="any"';
     }
-    if($param['type'] == 'range'){
-        $input_type = 'range';
-    }
     if($param['type'] == 'integer'){
         $step = 'step="1"';
         $pattern = 'pattern="\d+"';
