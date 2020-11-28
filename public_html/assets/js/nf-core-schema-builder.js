@@ -399,7 +399,7 @@ $(function () {
                     if($(this).val() != 'string'){
                         delete param['pattern'];
                     }
-                    if($(this).val() != 'range'){
+                    if($(this).val() != 'number'){
                         delete param['minimum'];
                         delete param['maximum'];
                     }
@@ -432,7 +432,7 @@ $(function () {
                 }
 
                 // Convert number types
-                if(['number', 'int', 'range'].indexOf(param['type']) != -1){
+                if(['number', 'int'].indexOf(param['type']) != -1){
                     if(param.hasOwnProperty('default') && typeof param['default'] == "string" && param['default'].trim() != ''){
                         if(param['type'] == 'int'){
                             param['default'] = parseInt(param['default']);
@@ -797,7 +797,7 @@ $(function () {
         if(param['type'] == 'string'){
             $('.settings_pattern_group').show();
         }
-        if(param['type'] == 'range'){
+        if(param['type'] == 'number'){
             $('.settings_minmax_group').show();
         }
 
@@ -828,15 +828,15 @@ $(function () {
 
         var settings = {};
         settings.pattern = $('#settings_pattern').val().trim();
-        settings.minimum = $('#settings_minimum').val().trim();
-        settings.maximum = $('#settings_maximum').val().trim();
+        settings.minimum = parseFloat($('#settings_minimum').val().trim());
+        settings.maximum = parseFloat($('#settings_maximum').val().trim());
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
         settings.enum = $.map(settings.enum, $.trim);
         settings.enum = settings.enum.filter(function (el) { return el.length > 0; });
 
         // convert number strings back to numbers
-        if(["integer", "number", "range"].includes(param["type"])) {
+        if(["integer", "number"].includes(param["type"])) {
             settings.enum = $.map(settings.enum, function (el) {
                 return parseFloat(el);
             });
@@ -844,22 +844,18 @@ $(function () {
         
 
         // Validate inputs
-        if(settings.minimum.length > 0){
-            if(isNaN(parseFloat(settings.minimum))){
-                alert('Error: Minimum value must be numeric');
-                e.preventDefault();
-                e.stopPropagation();
-            }
+        if(isNaN(settings.minimum)){
+            alert('Error: Minimum value must be numeric');
+            e.preventDefault();
+            e.stopPropagation();
         }
-        if(settings.maximum.length > 0){
-            if(isNaN(parseFloat(settings.maximum))){
+        if(isNaN(settings.maximum)){
                 alert('Error: Maximum value must be numeric');
                 e.preventDefault();
                 e.stopPropagation();
             }
-        }
-        if(settings.minimum.length > 0 && settings.maximum.length > 0){
-            if(settings.maximum < settings.minimum){
+        if(!isNaN(settings.minimum) && !isNaN(settings.maximum)){
+            if(settings.maximum <= settings.minimum){
                 alert('Error: Maximum value must be more than minimum');
                 e.preventDefault();
                 e.stopPropagation();
@@ -867,7 +863,7 @@ $(function () {
         }
         // Update the schema
         for (var key in settings) {
-            if(settings[key].length > 0){
+            if(settings[key].length > 0 || typeof(settings[key])==="number"){
                 param[key] = settings[key];
             } else {
                 delete param[key];
@@ -1148,7 +1144,7 @@ function generate_param_row(id, param){
                 <option `+(!param['default'] ? 'selected="selected"' : '')+`>False</option>
             </select>`;
     }
-    if(['string', 'integer', 'number', 'range'].includes(param['type'])){
+    if(['string', 'integer', 'number'].includes(param['type'])){
         var attrs = '';
         if(param['type'] == 'string'){
             attrs = 'type="text"';
@@ -1235,7 +1231,6 @@ function generate_param_row(id, param){
                     <option `+(param['type'] == 'string' ? 'selected="selected"' : '')+` value="string">string</option>
                     <option `+(param['type'] == 'number' ? 'selected="selected"' : '')+` value="number">number</option>
                     <option `+(param['type'] == 'integer' ? 'selected="selected"' : '')+` value="integer">integer</option>
-                    <option `+(param['type'] == 'range' ? 'selected="selected"' : '')+` value="range">range</option>
                     <option `+(param['type'] == 'boolean' ? 'selected="selected"' : '')+` value="boolean">boolean</option>
                 </select>
             </label>
@@ -1439,7 +1434,7 @@ function validate_id(id, old_id){
 function validate_param(param){
 
     // Check that the minimum and maximum is valid
-    if(['integer', 'number', 'range'].includes(param['type'])){
+    if(['integer', 'number'].includes(param['type'])){
         if(param.hasOwnProperty('minimum') && !isNaN(parseFloat(param['minimum']))){
             if(parseFloat(param['default']) < parseFloat(param['minimum'])){
                 alert('Error: Default value "'+param['default']+'" must be greater than or equal to minimum value: '+param['minimum']);
@@ -1460,7 +1455,7 @@ function validate_param(param){
     }
 
     // Check that numbers and ranges are numbers
-    if(['number', 'range'].includes(param['type'])){
+    if(['number'].includes(param['type'])){
         var default_float = parseFloat(param['default']);
         if(String(default_float) !== String(param['default'])){
             alert('Error: Default value "'+param['default']+'" is not a number');
