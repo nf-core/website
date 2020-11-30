@@ -3,9 +3,9 @@ title: "Seminario Institucional, Universidad Nacional Autónoma de México"
 subtitle: "Open and reproducible bioinformatics with Nextflow and nf-core."
 type: talk
 start_date: "2020-12-04"
-start_time: "12:00 CDMX"
+start_time: "12:00 CST"
 end_date: "2020-12-04"
-end_time: "13:00 CDMX"
+end_time: "13:00 CST"
 location_name: Zoom
 location_url: https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09
 ---
@@ -30,7 +30,7 @@ Pipelines are well tested, well documented and are ready for anyone to use.
 The meeting will be on Zoom (<https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09>)
 and also be available on YouTube (<https://www.youtube.com/channel/UCexVPLCSwS2poahjxuewZNg>).
 
-![Poster](/assets/markdown_assets/events/2020/ifc-mexico-seminar/)
+![Poster](/assets/markdown_assets/events/2020/ifc-mexico-seminar//SInstitucional_Phil_Ewels.jpg).
 
 ### Speaker bio
 
