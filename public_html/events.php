@@ -64,19 +64,19 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   }
 
   $event = sanitise_date_meta($output["meta"]);
- 
+
   if($event){
     $header_html = '<div class="row" style="margin-bottom:-1rem;"><div class="col-md-6">';
     $header_html .= '<dl>';
     // Start time
     if($event['start_time']){
-      $header_html .= '<dt>Event starts:</dt><dd>'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+      $header_html .= '<dt>Event starts:</dt><dd>'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
     } else {
       $header_html .= '<dt>Event starts:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
     }
     // End time
     if($event['end_ts'] > $event['start_ts'] && $event['end_time']){
-      $header_html .= '<dt>Event ends:</dt><dd>'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+      $header_html .= '<dt>Event ends:</dt><dd>'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
     } else if($event['end_ts'] > $event['start_ts']){
       $header_html .= '<dt>Event ends:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
     }
