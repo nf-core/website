@@ -20,8 +20,3 @@ This event is being organised by Harshil Patel ([@drpatelh](https://github.com/d
 
 ## Hackathon project page
 [https://github.com/orgs/nf-core/projects/5](https://github.com/orgs/nf-core/projects/5)
-
-## Registration
-
-Registration is through Eventbrite:
-[https://www.eventbrite.com/e/nf-core-hackathon-march-2020-tickets-73422896861](https://www.eventbrite.com/e/nf-core-hackathon-march-2020-tickets-73422896861)

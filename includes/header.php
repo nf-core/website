@@ -17,6 +17,11 @@ if(isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 
 // Convert Markdown to HTML if a filename is given
 if(isset($markdown_fn) and $markdown_fn){
   require_once('parse_md.php');
+  $parsed_out = parse_md($markdown_fn);
+  $content = $parsed_out["content"];
+  $meta = $parsed_out["meta"];
+  $title = $parsed_out["title"];
+  $subtitle = $parsed_out["subtitle"];
 }
 
 // Page title
@@ -41,7 +46,6 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/code_highlighting/github.css" rel="stylesheet" >
-    <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
@@ -52,17 +56,34 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
-    <script src="/assets/js/leaflet.js"></script>
     <!-- Page-specific CSS and JS -->
-    <?php if(isset($import_chartjs) && $import_chartjs): ?>
+    <?php if(isset($import_leaflet) && $import_leaflet): ?>
+    <link href="/assets/css/leaflet.css" rel="stylesheet">
+    <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet">
+    <script src="/assets/js/leaflet.js"></script>
+    <script src="/assets/js/Leaflet.fullscreen.min.js"></script>
+    <?php endif;
+    if(isset($import_chartjs) && $import_chartjs): ?>
     <script src="/assets/js/moment.js"></script>
     <script src="/assets/js/Chart.min.js"></script>
     <script src="/assets/js/hammer.min.js"></script>
     <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
-    <?php endif; ?>
-    <?php if(isset($import_schema_builder) && $import_schema_builder): ?>
+    <?php endif;
+    if(isset($import_schema_launcher) && $import_schema_launcher): ?>
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/showdown.min.js"></script>
+    <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
+    <?php endif;
+    if(isset($aws) && $aws): ?>
+    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
+    <script src="/assets/js/aws-sdk-2.765.0.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
+    <?php endif;
+    if(isset($import_schema_builder) && $import_schema_builder): ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
     <script src="/assets/js/moment.js"></script>
@@ -77,8 +98,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
-  <body>
-
+  <body data-spy="scroll" data-target=".toc" data-offset="15">
     <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
       <a class="navbar-brand d-md-none" href="/">
         <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
@@ -180,7 +200,7 @@ if(isset($title) and $title): ?>
 
       <div class="triangle triangle-down"></div>
 
-      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content"> <?php endif; ?>
+      <?php if(!isset($mainpage_container) or $mainpage_container): ?> <div class="container main-content pt-5"> <?php endif; ?>
 
 <?php endif;
 if( isset($markdown_fn) and $markdown_fn){

@@ -13,6 +13,8 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_pipeline_details.php
 
+echo "Updating pipeline details";
+
 // Load the twitter PHP library
 require "includes/libraries/twitteroauth/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -36,8 +38,9 @@ $gh_api_opts = stream_context_create([
     ]
 ]);
 
-// Final filename to write JSON to
+// Final filenames to write JSON to
 $results_fn = dirname(__FILE__).'/public_html/pipelines.json';
+$pipeline_names_fn = dirname(__FILE__).'/public_html/pipeline_names.json';
 
 // Load a copy of the existing JSON file, if it exists
 $old_json = false;
@@ -124,6 +127,11 @@ foreach($results['remote_workflows'] as $idx => $repo){
     // Save releases to results
     $results['remote_workflows'][$idx]['releases'] = [];
     foreach($gh_releases as $rel){
+
+        // Skip if a draft release or prerelease
+        if($rel->draft) continue;
+        if($rel->prerelease) continue;
+
         $results['remote_workflows'][$idx]['releases'][] = array(
             'name' => $rel->name,
             'published_at' => $rel->published_at,
@@ -161,14 +169,17 @@ foreach($results['remote_workflows'] as $idx => $repo){
 }
 
 // Count workflows
+$pipeline_names = [];
 foreach($results['remote_workflows'] as $repo){
     $results['pipeline_count']++;
     if($repo['archived']){
         $results['archived_count']++;
     } else if(count($repo['releases']) > 0){
         $results['published_count']++;
+        $pipeline_names[] = $repo['name'];
     } else {
         $results['devel_count']++;
+        $pipeline_names[] = $repo['name'];
     }
 }
 
@@ -176,17 +187,22 @@ foreach($results['remote_workflows'] as $repo){
 $results_json = json_encode($results, JSON_PRETTY_PRINT)."\n";
 file_put_contents($results_fn, $results_json);
 
+// Print simple list of pipelines to a file
+file_put_contents($pipeline_names_fn, json_encode(array('pipeline' => $pipeline_names)));
+
 ////// Tweet about new releases
 // Get old releases
 $old_rel_tags = array();
-foreach($old_json['remote_workflows'] as $old_pipeline){
-    $old_rel_tags[$old_pipeline['name']] = array();
-    // Collect releases from this pipeline
-    foreach($old_pipeline['releases'] as $rel){
-        if($rel['draft'] || $rel['prerelease']){
-            continue;
+if($old_json){
+    foreach($old_json['remote_workflows'] as $old_pipeline){
+        $old_rel_tags[$old_pipeline['name']] = array();
+        // Collect releases from this pipeline
+        foreach($old_pipeline['releases'] as $rel){
+            if($rel['draft'] || $rel['prerelease']){
+                continue;
+            }
+            $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
         }
-        $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
     }
 }
 // Go through new releases

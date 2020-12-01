@@ -23,13 +23,13 @@ $path_parts = explode('/', $_GET['path']);
 $path_parts = array_filter($path_parts);
 foreach($pipelines_json->remote_workflows as $pipeline){
     if(strtolower($pipeline->name) == strtolower($path_parts[0])){
-        # If capilitilsation is wrong, redirect becuase I'm fussy
+        # If capilitilsation is wrong, redirect because I'm fussy
         if($pipeline->name != $path_parts[0]){
             header('Location: /'.str_replace($path_parts[0], $pipeline->name, $_GET['path']));
         }
 
         # Include the script that renders the pipeline page, then exit
-        include('pipeline.php');
+        include('../includes/pipeline_page/_index.php');
         exit;
     }
 }

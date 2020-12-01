@@ -5,7 +5,7 @@
 
 $(function () {
     // Enable tooltips
-    $('[data-toggle="tooltip"]').tooltip()
+    $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
 
     // Enable code highlighting
     hljs.initHighlightingOnLoad();
@@ -187,4 +187,38 @@ $(function () {
 
     // Make the stats tables sortable
     $('.pipeline-stats-table').tablesorter();
+
+    // Pipeline page version number dropdown
+    $('#version_select').on('change', function(){
+        document.location.href = $(this).val();
+    })
+
+    //copy text to clipboard
+    $('.toast').toast();
+    $('.copy-txt').on('click',function(){
+        var target = $(this).data("target");
+        var target_id = '#'+target;
+        $(target_id).select();
+        document.execCommand('copy');
+        $(target_id).blur();
+        $('#pipeline_sidebar_cmd_copied').toast('show');
+    })
+    if(window.location.hash & $('.schema-docs').length>0){
+        scroll_to($(window.location.hash),0);
+    }
+    // Page-scroll links
+    $('body').on('click', '.scroll_to_link', function(e){
+        e.preventDefault();
+        var current_href = $(this).attr('href')
+        history.replaceState(null, '', current_href); // add href to url
+        scroll_to($(current_href),0);
+    });
+
 });
+
+function scroll_to(target_el,offset){
+    var el_offset = target_el.offset().top - offset;
+    $([document.documentElement, document.body]).animate({
+        scrollTop: el_offset
+    }, 500);
+}

@@ -37,15 +37,25 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 # Pipeline publications
 
+### [nf-core/ampliseq](https://nf-co.re/ampliseq)
+
+<!-- pub-stats 10.3389/fmicb.2020.550420 -->
+> **Interpretations of Environmental Microbial Community Studies Are Biased by the Selected 16S rRNA (Gene) Amplicon Sequencing Pipeline**
+>
+> Daniel Straub, Nia Blackwell, Adrian Langarica-Fuentes, Alexander Peltzer, Sven Nahnsen and Sara Kleindienst
+>
+> [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
+> doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
+
 ### [nf-core/sarek](https://nf-co.re/sarek)
 
-<!-- pub-stats 10.12688/f1000research.16665.1 -->
-> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 1; peer review: 2 approved].
+<!-- pub-stats 10.12688/f1000research.16665.2 -->
+> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 2; peer review: 2 approved].
 >
 > Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
 >
-> [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v1)
-> doi: [10.12688/f1000research.16665.1](https://doi.org/10.12688/f1000research.16665.1)
+> [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v2)
+> doi: [10.12688/f1000research.16665.2](https://doi.org/10.12688/f1000research.16665.2)
 
 ### [nf-core/coproid](https://nf-co.re/coproid)
 
