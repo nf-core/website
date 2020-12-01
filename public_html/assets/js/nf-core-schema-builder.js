@@ -7,9 +7,11 @@
 var schema = '';
 var new_param_idx = 1;
 var new_group_idx = 1;
-var help_text_icon_template = '<i class="fas fa-comment-slash help_text_icon help_text_icon_no_text" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Does not have any help text"></i>';
-var no_help_text_icon = '<i class="fas fa-comment-dots help_text_icon" data-toggle="tooltip" data-html="true" data-placement="right" data-delay="500" title="Has help text"></i>';
+var missing_help_text_icon = '<i class="fas fa-book help_text_icon help_text_icon_no_text"></i>';
+var has_help_text_icon = '<i class="fas fa-book help_text_icon"></i>';
 var prev_focus = false;
+var last_checked_box = null;
+showdown.setFlavor('github');
 
 $(function () {
 
@@ -55,7 +57,7 @@ $(function () {
 
         // Listener for when the popover is triggered
         // Needs selector class instead of root class.
-        $('.param_fa_icon').on('show.bs.popover', function () {
+        $('body').on('show.bs.popover', '.param_fa_icon', function () {
             // Only show one popover at a time
             $('.param_fa_icon').popover('hide');
             // Reset the selected icon button classes
@@ -63,7 +65,7 @@ $(function () {
         });
 
         // Focus the search bar when triggered
-        $('.param_fa_icon').on('shown.bs.popover', function () {
+        $('body').on('shown.bs.popover', '.param_fa_icon', function () {
             var row = $(this).closest('.schema_row');
             var id = row.data('id');
             var param = find_param_in_schema(id);
@@ -102,7 +104,9 @@ $(function () {
             update_param_in_schema(id, param);
 
             // Update printed schema in page
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
+
+            autosave_schema(schema);
 
             // Update form
             $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
@@ -136,7 +140,7 @@ $(function () {
 
     // Build the schema builder
     try {
-        $('#schema-builder').html( generate_obj(schema['properties'], 1) );
+        $('#schema-builder').html( generate_obj() );
         init_group_sortable();
     } catch(e){
         alert("Error: Could not load schema JSON! Substituted for a blank schema.");
@@ -149,15 +153,21 @@ $(function () {
             "type": "object",
             "properties": { }
         };
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
     }
 
     // Add parameter button
     $('.add-param-btn').click(function(e){
         var new_id = 'new_param_'+new_param_idx;
-        while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
-            new_param_idx += 1;
-            new_id = 'new_param_'+new_param_idx;
+        if(schema.hasOwnProperty('properties')){
+            while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
+                new_param_idx += 1;
+                new_id = 'new_param_'+new_param_idx;
+            }
+        } else {
+            schema['properties'] = {};
         }
         var new_param = {
             "type": "string",
@@ -167,29 +177,37 @@ $(function () {
         schema['properties'][new_id] = new_param;
         param_row = $( generate_param_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        scroll_to( param_row );
         schema_order_change();
+        scroll_to( param_row );
         new_param_idx += 1;
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     // Add group button
     $('.add-group-btn').click(function(e){
-        var new_id = 'New Group '+new_group_idx;
-        while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
-            new_group_idx += 1;
-            new_id = 'New Group '+new_group_idx;
+        var new_id = 'new_group_'+new_group_idx;
+        var new_title = 'New Group '+new_group_idx;
+        if(!schema.hasOwnProperty('definitions')){
+            schema['definitions'] = {};
         }
-        var new_param = {
+        while (Object.keys(schema['definitions']).indexOf(new_id) != -1) {
+            new_group_idx += 1;
+            new_id = 'new_group_'+new_group_idx;
+            new_title = 'New Group '+new_group_idx;
+        }
+        var new_group = {
+            "title": new_title,
             "type": "object",
             "description": "",
             "default": "",
             "properties": {}
         };
-        schema['properties'][new_id] = new_param;
-        param_row = $( generate_group_row(new_id, new_param) );
+        schema['definitions'][new_id] = new_group;
+        param_row = $( generate_group_row(new_id, new_group) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
         scroll_to( param_row );
         init_group_sortable();
@@ -197,7 +215,21 @@ $(function () {
         new_group_idx += 1;
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
+    });
+
+    // Collapse groups button
+    $('.collapse-groups-btn').click(function(e){
+        $('.schema_group').find('.card-body').slideUp('fast');
+        $('.schema_group').find('i.fa-angle-double-down').toggleClass('fa-angle-double-down fa-angle-double-up');
+    });
+
+    // Expand groups button
+    $('.expand-groups-btn').click(function(e){
+        $('.schema_group').find('.card-body').slideDown('fast');
+        $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
     });
 
     //
@@ -218,7 +250,7 @@ $(function () {
 
         // Post the results to PHP when finished
         if($(this).data('target') == '#schema-finished'){
-            $('.add-param-btn').attr('disabled', true);
+            $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr('disabled', true);
             $('#schema-send-status').text("Saving schema..");
 
             post_data = {
@@ -229,7 +261,7 @@ $(function () {
                 'cache_id': $('#schema_cache_id').text(),
                 'schema': JSON.stringify(schema)
             };
-            $.post( "json_schema_build", post_data).done(function( returned_data ) {
+            $.post( "pipeline_schema_builder", post_data).done(function( returned_data ) {
                 console.log("Sent schema to API. Response:", returned_data);
                 if(returned_data.status == 'recieved'){
                     $('#schema-send-status').text("Ok, that's it - done!");
@@ -238,7 +270,12 @@ $(function () {
                 }
             });
         } else {
-            $('.add-param-btn').attr('disabled', false);
+            $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr('disabled', false);
+        }
+
+        // Warn about the console finishing
+        if($(this).hasClass('back-to-editor-btn')){
+            alert("nf-core schema build will have now exited. Any further change will have to be manually copied to your schema file. Note that you can run nf-core schema build as often as you like for updates.");
         }
     });
 
@@ -251,10 +288,17 @@ $(function () {
 
         // Parse data attributes
         var id = row.data('id');
+        var is_group = row.hasClass('schema_group_row');
+        var new_id = false;
 
         // Update ID if changed
         if($(this).hasClass('param_id')){
-            var new_id = $(this).val().trim();
+            new_id = $(this).val().trim();
+
+            // Check if this is a group title
+            if(is_group){
+                new_id = new_id.toLowerCase().replace(/[^a-z0-9_]+/g, '_').replace(/^_+|_+$/gm,'');
+            }
 
             // Check if it actually changed
             if(new_id != id){
@@ -266,18 +310,47 @@ $(function () {
                     // Do it in a slightly odd way to preserve key order
                     var new_schema = JSON.parse(JSON.stringify(schema));
                     new_schema['properties'] = {};
-                    for(k in schema['properties']){
-                        var new_k = k;
-                        if(k == id){ new_k =  new_id};
-                        new_schema['properties'][new_k] = schema['properties'][k];
+                    new_schema['definitions'] = {};
+                    new_schema['allOf'] = [];
+                    // Top-level params
+                    if(schema.hasOwnProperty('properties')){
+                        for(k in schema['properties']){
+                            var new_k = k;
+                            if(k == id){ new_k = new_id; console.log("FOUND 1"); };
+                            new_schema['properties'][new_k] = schema['properties'][k];
+                        }
+                    }
+                    // Groups
+                    if(schema.hasOwnProperty('definitions')){
+                        for(d in schema['definitions']){
+
+                            // Has the definition ID changed?
+                            var new_d = d;
+                            if(d == id){ new_d = new_id; };
+                            new_schema['definitions'][new_d] = schema['definitions'][d];
+                            new_schema['allOf'].push({"$ref": "#/definitions/"+new_d});
+
+                            // Grouped parameters
+                            var new_subschema = JSON.parse(JSON.stringify(schema['definitions'][d]));
+                            new_schema['definitions'][new_d]['properties'] = {};
+                            if(new_subschema.hasOwnProperty('properties')){
+                                for(k in new_subschema['properties']){
+                                    var new_k = k;
+                                    if(k == id){ new_k = new_id; };
+                                    new_schema['definitions'][new_d]['properties'][new_k] = new_subschema['properties'][k];
+                                }
+                            }
+                        }
                     }
                     schema = new_schema;
 
                     id = new_id;
                     row.data('id', id);
+                    row.attr('data-id', id); // Update DOM as well so that selectors work
                     if(row.hasClass('schema_group_row')){
                         var group = row.closest('.schema_group');
                         group.data('id', id);
+                        group.attr('data-id', id); // Update DOM as well so that selectors work
                         group.find('.card-body').data('id', id);
                     }
                 }
@@ -285,9 +358,14 @@ $(function () {
         }
 
         // Update param keys if changed
-        if($(this).hasClass('param_key')){
+        if($(this).hasClass('param_key') || (is_group && new_id)){
             var param_key = $(this).data('param_key');
             var param = find_param_in_schema(id);
+            // Changing the group title
+            if(is_group && new_id){
+                param_key = "title";
+                param = find_param_in_schema(new_id);
+            }
             var new_param = JSON.parse(JSON.stringify(param));
             if($(this).val().trim().length == 0){
                 delete new_param[param_key];
@@ -370,7 +448,9 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     //
@@ -458,45 +538,67 @@ $(function () {
         // Don't actually need to know where it landed - just rebuild schema from the DOM
         var new_schema = JSON.parse(JSON.stringify(schema));
         new_schema['properties'] = {};
+        new_schema['definitions'] = {};
+        new_schema['allOf'] = [];
         new_schema['required'] = [];
+
+        // Ensure that top-level params are at the bottom of the DOM
+        $('#schema-builder > .schema_row').appendTo('#schema-builder');
+
+        // Parse the DOM to build the new schema
         $('.schema_row').each(function(idx, row){
             var id = $(row).data('id');
             var param = JSON.parse(JSON.stringify(find_param_in_schema(id)));
 
+            // Groups
+            if ($(this).hasClass('schema_group_row')) {
+                new_schema['definitions'][id] = param;
+                new_schema['definitions'][id]['properties'] = {};
+                new_schema['definitions'][id]['required'] = [];
+                new_schema['allOf'].push({"$ref": "#/definitions/"+id});
+            }
             // Check if we are inside a group
-            if ($(this).parent('.card-body').length) {
+            else if ($(this).parent('.card-body').length) {
                 var group_id = $(this).parent().data('id');
-                new_schema['properties'][group_id]['properties'][id] = param;
+                new_schema['definitions'][group_id]['properties'][id] = param;
                 if($(this).find('.param_required').is(':checked')){
-                    new_schema['properties'][group_id]['required'].push(id);
+                    new_schema['definitions'][group_id]['required'].push(id);
                 }
-            } else {
+            }
+            // Top-level parameters
+            else {
                 new_schema['properties'][id] = param;
                 if($(this).find('.param_required').is(':checked')){
                     new_schema['required'].push(id);
                 }
-                // If a group, delete contents of that as well
-                if(new_schema['properties'][id].hasOwnProperty('properties')){
-                    new_schema['properties'][id]['properties'] = {};
-                    new_schema['properties'][id]['required'] = [];
-                }
             }
         });
-        // Clear empty required arrays
-        if(new_schema['required'].length == 0){
-            delete new_schema['required'];
-        }
-        for(k in new_schema['properties']){
-            if(new_schema['properties'][k].hasOwnProperty('required')){
-                if(new_schema['properties'][k]['required'].length == 0){
-                    delete new_schema['properties'][k]['required'];
+        for(k in new_schema['definitions']){
+            // Set group hidden flag, drag + drop helper text
+            if(new_schema['definitions'][k].hasOwnProperty('properties')){
+                $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').addClass('d-none');
+                var is_group_hidden = true;
+                var num_children = 0;
+                for (child_param_id in new_schema['definitions'][k]['properties']){
+                    var child_param = new_schema['definitions'][k]['properties'][child_param_id];
+                    if(!child_param['hidden']){
+                        is_group_hidden = false;
+                    }
+                    num_children += 1;
                 }
+                if(num_children == 0){
+                    is_group_hidden = false;
+                    $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').removeClass('d-none');
+                }
+                $('.schema_row[data-id="'+k+'"] .param_hidden').prop('checked', is_group_hidden);
             }
         }
 
         schema = new_schema;
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
     };
 
     //
@@ -513,19 +615,56 @@ $(function () {
     //
     $('#schema-builder').on('change', 'input.param_hidden', function(){
         var id = $(this).closest('.schema_row').data('id');
-        var is_required = $(this).is(':checked');
-
-        // Find and update param
+        var is_hidden = $(this).is(':checked');
         var param = find_param_in_schema(id);
-        if(is_required){
-            param['hidden'] = true;
-        } else {
-            delete param['hidden'];
+
+        // Group
+        if(param['type'] == 'object'){
+            for(child_param_id in param['properties']){
+                var child_param = param['properties'][child_param_id];
+                if(is_hidden){
+                    child_param['hidden'] = true;
+                    $('.schema_row[data-id="'+child_param_id+'"] .param_hidden').prop('checked', true);
+                } else {
+                    delete child_param['hidden'];
+                    $('.schema_row[data-id="'+child_param_id+'"] .param_hidden').prop('checked', false);
+                }
+                update_param_in_schema(child_param_id, child_param);
+            }
         }
-        update_param_in_schema(id, param);
+
+        // Single param
+        else {
+            // Find and update param
+            if(is_hidden){
+                param['hidden'] = true;
+            } else {
+                delete param['hidden'];
+            }
+            update_param_in_schema(id, param);
+
+            // Check that group hidden needs to be checked or not
+            var parent_group = find_param_group(id);
+            if(parent_group !== false){
+                var is_group_hidden = true;
+                if(!is_hidden){
+                    is_group_hidden = false;
+                } else {
+                    for (child_param_id in parent_group[1]['properties']){
+                        var child_param = parent_group[1]['properties'][child_param_id];
+                        if(!child_param['hidden']){
+                            is_group_hidden = false;
+                        }
+                    }
+                }
+                $('.schema_row[data-id="'+parent_group[0]+'"] .param_hidden').prop('checked', is_group_hidden);
+            }
+        }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
 
@@ -537,13 +676,26 @@ $(function () {
         // Populate the help text modal
         var id = $(this).closest('.schema_row').data('id');
         var param = find_param_in_schema(id);
-        $('#help_text_modal .modal-title').html('params.<span>'+id+'</span>');
-        $('.helptext-preview-title').text('--'+id);
-        if(param.description == undefined){
+        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
+        var preview_cli_title = '--'+id;
+        var preview_web_title = '<code>--'+id+'</code>';
+        if(param.hasOwnProperty('title')){
+            modal_header = param.title;
+            preview_cli_title = param.title;
+            preview_web_title = param.title;
+        }
+        if(param.hasOwnProperty('fa_icon') && param['fa_icon'].length > 3){
+            preview_web_title += '<i class="'+param['fa_icon']+' ml-3"></i>';
+        }
+        $('#help_text_modal').data('param-id', id);
+        $('#help_text_modal .modal-title').html(modal_header);
+        $('.helptext-cli-preview-title').html(preview_cli_title);
+        $('.helptext-web-preview-title').html(preview_web_title);
+        if(!param.hasOwnProperty('description')){
             param.description = '';
         }
         $('.helptext-preview-description').text(param.description);
-        if(param.help_text == undefined){
+        if(!param.hasOwnProperty('help_text')){
             param.help_text = '';
         }
         $('#help_text_input').val(param.help_text);
@@ -582,19 +734,21 @@ $(function () {
             var md_converter = new showdown.Converter();
             var help_text_html = md_converter.makeHtml( $('#help_text_input').val() );
             $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
+            $('.helptext-html-preview .helptext-preview-helptext table').addClass('table table-bordered table-striped table-sm small')
+            $('.helptext-html-preview .helptext-preview-helptext table').wrap('<div class="table-responsive"></div>')
         }
     })
 
     // Save the help text
     $('#help_text_save').click(function(){
-        var id = $('#help_text_modal .modal-title span').text();
+        var id = $('#help_text_modal').data('param-id');
         var param = find_param_in_schema(id);
         var help_text = $('#help_text_input').val();
 
         // Update the help-text icon
-        var help_text_icon = help_text_icon_template;
+        var help_text_icon = missing_help_text_icon;
         if(help_text.length > 0){
-            help_text_icon = no_help_text_icon;
+            help_text_icon = has_help_text_icon;
         }
         $(".schema_row[data-id='"+id+"'] .schema_row_help_text_icon i").replaceWith($(help_text_icon));
 
@@ -606,7 +760,9 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
     });
 
     //
@@ -623,11 +779,13 @@ $(function () {
         var param = find_param_in_schema(id);
 
         // Build modal
-        var modal_header = 'params.<span>'+id+'</span>';
-        if(param['type'] == 'object'){
-            modal_header = '<span>'+id+'</span>';
-        }
+        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
+        var delete_btn_txt = 'Delete parameter';
+        if(param.hasOwnProperty('title')){ modal_header = param.title; }
+        if(param['type'] == 'object'){ delete_btn_txt = 'Delete group'; }
+        $('#settings_modal').data('param-id', id);
         $('#settings_modal .modal-title').html(modal_header);
+        $('#settings_delete span').html(delete_btn_txt);
         $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
         $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
 
@@ -665,7 +823,7 @@ $(function () {
     //
     $('#settings_save').click(function(e){
 
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var param = find_param_in_schema(id);
 
         var settings = {};
@@ -674,8 +832,16 @@ $(function () {
         settings.maximum = $('#settings_maximum').val().trim();
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
-        $.map(settings.enum, $.trim);
+        settings.enum = $.map(settings.enum, $.trim);
         settings.enum = settings.enum.filter(function (el) { return el.length > 0; });
+
+        // convert number strings back to numbers
+        if(["integer", "number", "range"].includes(param["type"])) {
+            settings.enum = $.map(settings.enum, function (el) {
+                return parseFloat(el);
+            });
+        }
+        
 
         // Validate inputs
         if(settings.minimum.length > 0){
@@ -709,13 +875,13 @@ $(function () {
         }
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
 
-
+        autosave_schema(schema);
     });
     // Revalidate default value once modal settings changed
     $('#settings_modal').on('hidden.bs.modal', function (e) {
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var param = find_param_in_schema(id);
         // It may have been deleted
         if(param){
@@ -732,42 +898,182 @@ $(function () {
     // Settings Modal - delete button
     //
     $('#settings_delete').click(function(e){
-        var id = $('#settings_modal .modal-title span').text();
+        var id = $('#settings_modal').data('param-id');
         var row_el = $('.schema_row[data-id="'+id+'"]');
         var group_el = $('.schema_group[data-id="'+id+'"]');
 
+        // Top level properties
         for(k in schema['properties']){
-            // Check if group
-            if(schema['properties'][k].hasOwnProperty('properties')){
-                for(j in schema['properties'][k]['properties']){
+            if(k == id){
+                delete schema['properties'][k];
+            }
+        }
+        // Go through groups
+        for(k in schema['definitions']){
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                for(j in schema['definitions'][k]['properties']){
+                    // Parameter to delete is in a group
                     if(j == id){
-                        delete schema['properties'][k]['properties'][j];
+                        delete schema['definitions'][k]['properties'][j];
                     }
-                    // Move contents of the group out if we're going to delete it
+                    // Group itself is being deleted - move contents of the group
                     if(k == id){
                         // Move the HTML row out of the group
                         $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
 
                         // Move the schema param in to the top-level schema object
-                        schema['properties'][j] = schema['properties'][k]['properties'][j];
+                        if(!schema.hasOwnProperty('properties')){
+                            schema['properties'] = {};
+                        }
+                        schema['properties'][j] = schema['definitions'][k]['properties'][j];
 
                         // If it is required, set this on the top-level schema object
-                        if(schema['properties'][k].hasOwnProperty('required') && schema['properties'][k]['required'].indexOf(j) != -1){
+                        if(schema['definitions'][k].hasOwnProperty('required') && schema['definitions'][k]['required'].indexOf(j) != -1){
                             set_required(j, true);
                         }
                     }
                 }
             }
+            // Delete the group from the schema
             if(k == id){
-                delete schema['properties'][k];
+                delete schema['definitions'][k];
+                // Loop backwards from allOf and remove matching definition
+                var i = schema['allOf'].length;
+                while (i--) {
+                    if (schema['allOf'][i]["$ref"] == "#/definitions/"+k){
+                        schema['allOf'].splice(i, 1);
+                    }
+                }
             }
         }
 
+        // Delete the HTML elements - one of these won't match anything
         row_el.remove();
         group_el.remove();
 
         // Update printed schema in page
-        $('#json_schema').text(JSON.stringify(schema, null, 4));
+        update_schema_html(schema);
+
+        autosave_schema(schema);
+    });
+
+
+    //
+    // Group parameter multi-select modal
+    //
+
+    // Launch the modal
+    $('#schema-builder').on('click', '.schema_group_move_params', function () {
+        // Get row
+        var row = $(this).closest('.schema_group');
+        var id = row.data('id');
+        launch_multi_select_modal(id);
+    });
+    function launch_multi_select_modal(id) {
+        // Reset everything to initial state
+        $('#multi_select_modal #move_params').addClass("disabled");
+        $('#multi_select_modal #move_params').html("Move parameters");
+        $('#multi_select_modal .params_table').show();
+        $('#multi_select_modal #no_params_alert').hide();
+        $("#search_parameters").val("");
+        // Build modal
+        var param = find_param_in_schema(id);
+        var title = id;
+        if(param && param.hasOwnProperty('title')){ title = param.title; }
+        $('#multi_select_modal').data('param-id', id);
+        $('#multi_select_modal .modal-header h4 span').html(title)
+        update_group_params_table();
+        $('#multi_select_modal').modal('show');
+    }
+
+    // Change checkbox in modal
+    $('#multi_select_modal').on('change', '.select_param', function(){
+        var num_selected = $('#multi_select_modal').find('.select_param:checked').length;
+        if(num_selected>0){
+            $('#multi_select_modal #move_params').removeClass("disabled");
+            if(num_selected === 1){
+                $('#multi_select_modal #move_params').html("Move 1 parameter");
+            } else {
+            $('#multi_select_modal #move_params').html("Move "+num_selected+" parameters");
+            }
+        } else{
+            $('#multi_select_modal #move_params').addClass("disabled");
+            $('#multi_select_modal #move_params').html("Move parameters");
+        }
+    });
+
+    // Submit modal
+    // move selected parameters into the group, close modal if no top-level parameters are left
+    $('#move_params').click(function(){
+        var id = $('#multi_select_modal').data('param-id');
+        var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
+        $('#multi_select_modal').find('.select_param:checked').each(function(){
+            var row_el = $('.schema_row[data-id="' + $(this).data('id') + '"]');
+            group_el.append(row_el);
+        });
+        schema_order_change();
+        update_group_params_table();
+        $('#multi_select_modal').modal('hide');
+    });
+
+    // creates and updates the parameter table
+    function update_group_params_table(){
+        $("#search_parameters").val("");
+        var params = '';
+        for (k in schema['properties']) {
+            // create row for the table
+            var description = '';
+            if (schema['properties'][k].hasOwnProperty('description')){
+                description = schema['properties'][k]['description'];
+            };
+            params += `<tr data-id=`+ k + `>
+                    <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
+                    <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
+                    <td><label for="group-move-`+ k + `" class="small">` + description +`</label></td>
+                </tr>`;
+        }
+        if (params === '') {
+            // show placeholder text if no top-level parameters are available
+            $('#multi_select_modal .params_table').hide();
+            $('#multi_select_modal #no_params_alert').show();
+        } else {
+            $('#multi_select_modal tbody').html(params);
+        }
+    }
+    // select all parameter checkboxes via button
+    $('#select_all_params').click(function(){
+        $('.select_param:visible').prop('checked', true);
+        $('.select_param').trigger("change");
+
+    });
+    // select all parameter checkboxes via button
+    $('#deselect_all_params').click(function () {
+        $('.select_param:visible').prop('checked', false);
+        $('.select_param').trigger("change");
+
+    });
+    // hold shift for selecting a range of checkboxes
+    $('#multi_select_modal').on('click','.select_param',function(e) {
+        var checkboxes = $('.select_param');
+        if (e.shiftKey && last_checked_box) {
+            var start = checkboxes.index(this);
+            var end = checkboxes.index(last_checked_box);
+            checkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', last_checked_box.checked);
+        }
+        last_checked_box = this;
+    });
+    // filter parameters table
+    $('#search_parameters').keyup(function(){
+        var q = $("#search_parameters").val();
+        if(q.trim().length == 0){
+            $('#params_table tr').show();
+        } else {
+            $('#params_table tr').filter(function () {
+                if($(this).data('id')){
+                    return !$(this).data('id').includes(q);
+                }
+            }).hide();
+        }
     });
 
     //
@@ -775,7 +1081,7 @@ $(function () {
     //
     $('#schema-builder').on('click', '.schema_group_collapse', function(){
         $(this).closest('.schema_group').find('.card-body').slideToggle('fast');
-        $(this).find('i').toggleClass('fa-angle-double-down fa-angle-double-up')
+        $(this).find('i').toggleClass('fa-angle-double-down fa-angle-double-up');
     });
 
     //
@@ -805,37 +1111,24 @@ $(function () {
 
 });
 
-function scroll_to(target_el){
-    var el_offset = target_el.offset().top - 124;
-    var doc_offset = $(document).scrollTop();
-    $([document.documentElement, document.body]).animate({
-        scrollTop: el_offset
-    }, 500);
-}
-
-function generate_obj(obj, level){
+function generate_obj(){
     var results = '';
-    for (var id in obj){
-        if (obj.hasOwnProperty(id)) {
-
-            // Groups
-            if(obj[id]['type'] == 'object'){
-
-                // Generate child rows
-                var child_params = '';
-                for (var child_id in obj[id]['properties']){
-                    if (obj[id]['properties'].hasOwnProperty(child_id)) {
-                        child_params += generate_param_row(child_id, obj[id]['properties'][child_id]);
-                    }
+    // Groups
+    for (var id in schema['definitions']){
+        if (schema['definitions'][id].hasOwnProperty('properties')) {
+            // Generate child rows
+            var child_params = '';
+            for (var child_id in schema['definitions'][id]['properties']){
+                if (schema['definitions'][id]['properties'].hasOwnProperty(child_id)) {
+                    child_params += generate_param_row(child_id, schema['definitions'][id]['properties'][child_id]);
                 }
-                results += generate_group_row(id, obj[id], child_params);
             }
-
-            // Regular rows
-            else {
-                results += generate_param_row(id, obj[id]);
-            }
+            results += generate_group_row(id, schema['definitions'][id], child_params);
         }
+    }
+    // Regular rows
+    for (var id in schema['properties']){
+        results += generate_param_row(id, schema['properties'][id]);
     }
     return results;
 }
@@ -843,7 +1136,7 @@ function generate_obj(obj, level){
 function generate_param_row(id, param){
 
     var description = '';
-    if(param['description'] != undefined){
+    if(param.hasOwnProperty('description')){
         description = param['description'];
     }
 
@@ -868,8 +1161,11 @@ function generate_param_row(id, param){
         if(/^-?[\d\.]+$/.test(param['maximum'])){
             attrs += ' max="'+param['maximum']+'"';
         }
-        if(param['default'] != undefined){
-            attrs += ' value="'+param['default']+'"';
+        if (param.hasOwnProperty('default')){
+            if(param['type']==='string'){
+                param['default'] = param['default'];
+            }
+            attrs += ' value="' + param['default']+'"';
         }
         default_input = '<div class="w-100"><input '+attrs+' class="param_key param_default" data-param_key="default"></div>';
     }
@@ -881,10 +1177,10 @@ function generate_param_row(id, param){
             is_required = true;
         }
     }
-    // Lazy, just checking if it's in any group rather than specifically its own
-    for(k in schema['properties']){
-        if(schema['properties'][k].hasOwnProperty('required')){
-            if (schema['properties'][k]['required'].indexOf(id) !== -1) {
+    // Lazy, just checking if it's required in any group rather than specifically its own
+    for(k in schema['definitions']){
+        if(schema['definitions'][k].hasOwnProperty('required')){
+            if (schema['definitions'][k]['required'].indexOf(id) !== -1) {
                 is_required = true;
             }
         }
@@ -895,22 +1191,23 @@ function generate_param_row(id, param){
         is_hidden = true;
     }
 
-    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+    var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
+            autosave_schema(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
     }
 
-    var help_text_icon = help_text_icon_template;
-    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
-        help_text_icon = no_help_text_icon;
+    var help_text_icon = missing_help_text_icon;
+    if(param.hasOwnProperty('help_text') && param['help_text'].trim().length > 0){
+        help_text_icon = has_help_text_icon;
     }
 
 
@@ -919,7 +1216,7 @@ function generate_param_row(id, param){
         <div class="col-auto align-self-center schema_row_grabber border-right">
             <i class="fas fa-grip-vertical"></i>
         </div>
-        <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
+        <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
                 <input type="text" class="text-monospace param_id" value="`+id+`">
@@ -928,10 +1225,10 @@ function generate_param_row(id, param){
         <div class="d-sm-none w-100"></div>
         <div class="col">
             <label>Description
-                <input type="text" class="param_key param_description" data-param_key="description" value="`+description+`">
+                <input type="text" class="param_key param_description" data-param_key="description" value="`+ sanitize_html(description)+`">
             </label>
         </div>
-        <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
+        <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
         <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
@@ -948,20 +1245,16 @@ function generate_param_row(id, param){
             <label>Default `+default_input+`</label>
         </div>
         <div class="col-auto">
-            `+(param['type'] == 'object' ? '' : `
-            <label>R<span class="d-none d-lg-inline">equired</span>
-                <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+`" class="param_required">
+            <label class="text-center">R<span class="d-none d-lg-inline">equired</span>
+                <input type="checkbox" `+(is_required ? 'checked="checked"' : '')+` class="param_required">
             </label>
-            `)+`
         </div>
         <div class="col-auto">
-            `+(param['type'] == 'object' ? '' : `
-            <label>H<span class="d-none d-lg-inline">idden</span>
-                <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+`" class="param_hidden">
+            <label class="text-center">H<span class="d-none d-lg-inline">ide</span>
+                <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
             </label>
-            `)+`
         </div>
-        <div class="col-auto align-self-center schema_row_config border-left">
+        <div class="col-auto align-self-center schema_row_config border-left"  title="Open settings" data-toggle="tooltip">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -971,8 +1264,13 @@ function generate_param_row(id, param){
 
 function generate_group_row(id, param, child_params){
 
+    var title = id;
+    if(param.hasOwnProperty('title')){
+        title = param['title'];
+    }
+
     var description = '';
-    if(param['description'] != undefined){
+    if(param.hasOwnProperty('description')){
         description = param['description'];
     }
 
@@ -980,22 +1278,37 @@ function generate_group_row(id, param, child_params){
         child_params = '';
     }
 
-    var fa_icon = '<i class="far fa-question-circle fa-fw param_fa_icon_missing"></i>';
-    if(param['fa_icon'] != undefined && param['fa_icon'].trim().length > 0){
+    var fa_icon = '<i class="fas fa-icons fa-fw param_fa_icon_missing"></i>';
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'].trim().length > 0){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
-            $('#json_schema').text(JSON.stringify(schema, null, 4));
+            update_schema_html(schema);
+            autosave_schema(schema);
         } else {
             fa_icon = '<i class="'+param['fa_icon']+' fa-fw"></i>';
         }
     }
 
-    var help_text_icon = help_text_icon_template;
-    if(param['help_text'] != undefined && param['help_text'].trim().length > 0){
-        help_text_icon = no_help_text_icon;
+    var help_text_icon = missing_help_text_icon;
+    if(param.hasOwnProperty('help_text') && param['help_text'].trim().length > 0){
+        help_text_icon = has_help_text_icon;
+    }
+
+    var is_hidden = true;
+    var drop_help_hidden = 'd-none';
+    var num_children = 0;
+    for (child_param in param['properties']){
+        if(!param['properties'][child_param]['hidden']){
+            is_hidden = false;
+        }
+        num_children += 1;
+    }
+    if(num_children == 0){
+        is_hidden = false;
+        drop_help_hidden = '';
     }
 
     var results = `
@@ -1005,27 +1318,43 @@ function generate_group_row(id, param, child_params){
                 <div class="col-auto align-self-center schema_row_grabber border-right">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
-                <button class="col-auto align-self-center param_fa_icon ">`+fa_icon+`</button>
+                <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
-                        <input type="text" class="text-monospace param_id" value="`+id+`">
+                        <input type="text" class="text-monospace param_id" value="`+title+`">
                     </label>
                 </div>
-                <button class="col-auto align-self-center schema_row_help_text_icon">`+help_text_icon+`</button>
                 <div class="col">
                     <label>Description
-                        <input type="text" class="param_key" data-param_key="description" value="`+description+`">
+                        <input type="text" class="param_key" data-param_key="description" value="`+ sanitize_html(description)+`">
                     </label>
                 </div>
-                <div class="col-auto align-self-center schema_row_config border-left">
+                <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
+                <div class="col-auto d-none d-lg-block">
+                    <label>Type
+                        <input type="text" disabled="disabled" value="Group">
+                    </label>
+                </div>
+                <div class="col-auto">
+                    <label class="text-center">H<span class="d-none d-lg-inline">ide</span>
+                        <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
+                    </label>
+                </div>
+                <div class="col-auto align-self-center schema_row_config border-left" title="Open settings" data-toggle="tooltip">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_collapse">
+                <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-toggle="tooltip">
+                    <i class="fas fa-folder-download"></i>
+                </div>
+                <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-toggle="tooltip">
                     <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>
         </div>
-        <div class="card-body" data-id="`+id+`">`+child_params+`</div>
+        <div class="card-body" data-id="`+id+`">
+            <p class="group-drag-drop-help `+drop_help_hidden+`">Drag and drop a parameter here</p>
+            `+child_params+`
+        </div>
     </div>
     `;
 
@@ -1058,6 +1387,7 @@ function init_group_sortable(){
             ui.sender.sortable('cancel');
         }
     });
+    //
 }
 
 function validate_id(id, old_id){
@@ -1083,13 +1413,17 @@ function validate_id(id, old_id){
     // Check that the ID is not a duplicate
     var num_hits = 0;
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         num_hits += 1;
     }
     // Iterate through groups, looking for ID
-    for(k in schema['properties']){
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
+    for(k in schema['definitions']){
+        // Check that the id is not already a group id
+        if (k===id) {
+          num_hits += 1;
+        }
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
                 num_hits += 1;
             }
         }
@@ -1168,15 +1502,17 @@ function set_required(id, is_required){
     // Function to set the required flag in the JSON Schema for a given ID
     var schema_parent = null;
     // Get the parent object in the schema
-    if(schema['properties'].hasOwnProperty(id)){
+    //   top-level properties
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema_parent = schema;
-    } else {
+    }
+    //   grouped properties
+    else {
         // Iterate through groups, looking for ID
-        for(k in schema['properties']){
-            // Check if group
-            if(schema['properties'][k].hasOwnProperty('properties')){
-                if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                    schema_parent =  schema['properties'][k];
+        for(k in schema['definitions']){
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                    schema_parent =  schema['definitions'][k];
                 }
             }
         }
@@ -1193,12 +1529,10 @@ function set_required(id, is_required){
             schema_parent['required'].splice(idx, 1);
         }
     }
-    // Remove required array if empty
-    if(schema_parent['required'].length == 0){
-        delete schema_parent['required'];
-    }
     // Update printed schema in page
-    $('#json_schema').text(JSON.stringify(schema, null, 4));
+    update_schema_html(schema);
+
+    autosave_schema(schema);
 }
 
 
@@ -1207,21 +1541,48 @@ function find_param_in_schema(id){
     // Assumes max one level of nesting and unique IDs everywhere
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         return schema['properties'][id];
     }
 
-    // Iterate through groups, looking for ID
-    for(k in schema['properties']){
+    // This ID is itself a group
+    if(schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)){
+        return schema['definitions'][id];
+    }
+
+    // Iterate through groups, looking for ID in groups
+    for(k in schema['definitions']){
         // Check if group
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                return schema['properties'][k]['properties'][id];
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                return schema['definitions'][k]['properties'][id];
             }
         }
     }
 
-    console.warn("Could not find param '"+id+"'");
+    console.warn("Could not find param: '"+id+"'");
+}
+
+function find_param_group(id){
+    // Given an ID, return the object group that the param is in.
+    // If not in a group, return False
+
+    // Simple case - not in a group
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
+        return false;
+    }
+
+    // Iterate through groups, looking for ID
+    for(k in schema['definitions']){
+        // Check if group
+        if(schema['definitions'][k].hasOwnProperty('properties')){
+            if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                return [k, schema['definitions'][k]];
+            }
+        }
+    }
+
+    console.warn("Could not find param group: '"+id+"'");
 }
 
 function update_param_in_schema(id, new_param){
@@ -1229,21 +1590,105 @@ function update_param_in_schema(id, new_param){
     // Assumes max one level of nesting and unique IDs everywhere
 
     // Simple case - not in a group
-    if(schema['properties'].hasOwnProperty(id)){
+    if(schema.hasOwnProperty('properties') && schema['properties'].hasOwnProperty(id)){
         schema['properties'][id] = new_param;
         return true;
     }
 
+    // This ID is itself a group
+    if(schema.hasOwnProperty('definitions') && schema['definitions'].hasOwnProperty(id)){
+        schema['definitions'][id] = new_param;
+        return true;
+    }
+
     // Iterate through groups, looking for ID
-    for(k in schema['properties']){
-        // Check if group
-        if(schema['properties'][k].hasOwnProperty('properties')){
-            if(schema['properties'][k]['properties'].hasOwnProperty(id)){
-                schema['properties'][k]['properties'][id] = new_param;
-                return true;
+    if(schema.hasOwnProperty('definitions')){
+        for(k in schema['definitions']){
+            // Check if group
+            if(schema['definitions'][k].hasOwnProperty('properties')){
+                if(schema['definitions'][k]['properties'].hasOwnProperty(id)){
+                    schema['definitions'][k]['properties'][id] = new_param;
+                    return true;
+                }
             }
         }
     }
 
-    console.warn("Could not find param '"+id+"'");
+    console.warn("Could not find param to update: '"+id+"'");
+}
+
+function update_schema_html(schema){
+    // Clean up empty keys in schema
+    schema = clean_empty_schema_keys(schema);
+    if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
+        delete schema['definitions'];
+    }
+    if(schema.hasOwnProperty('definitions')){
+        for(k in schema['definitions']){
+            schema['definitions'][k] = clean_empty_schema_keys(schema['definitions'][k]);
+        }
+    }
+    // Update in page
+    $('#json_schema').text(JSON.stringify(schema, null, 4));
+}
+function autosave_schema(schema){
+    // autosave schema file
+    post_data = {
+        post_content: "json_schema",
+        version: "web_builder",
+        status: "waiting_for_user",
+        api: "true",
+        cache_id: $("#schema_cache_id").text(),
+        schema: JSON.stringify(schema),
+    };
+    $.post("pipeline_schema_builder", post_data).done(function (returned_data) {
+        console.log("Sent schema to API. Response:", returned_data);
+    });
+}
+function clean_empty_schema_keys(subschema){
+    if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length == 0){
+        delete subschema['properties'];
+    }
+    if(subschema.hasOwnProperty('allOf') && subschema['allOf'].length == 0){
+        delete subschema['allOf'];
+    }
+    if(subschema.hasOwnProperty('required') && subschema['required'].length == 0){
+        delete subschema['required'];
+    }
+    if(subschema.hasOwnProperty('properties')){
+        for(j in subschema['properties']){
+            subschema['properties'][j] = clean_empty_param_keys(subschema['properties'][j]);
+        }
+    }
+    return subschema;
+}
+function clean_empty_param_keys(param){
+
+    // Clean up empty strings
+    if(param.hasOwnProperty('description') && param['description'] == ''){
+        delete param['description'];
+    }
+    if(param.hasOwnProperty('default') && param['default'] == ''){
+        delete param['default'];
+    }
+    if(param.hasOwnProperty('help_text') && param['help_text'] == ''){
+        delete param['help_text'];
+    }
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'] == ''){
+        delete param['fa_icon'];
+    }
+    return param;
+}
+function sanitize_html(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "`": '&grave;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'`/]/ig;
+    return string.replace(reg, (match) => (map[match]));
 }

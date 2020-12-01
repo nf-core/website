@@ -1,10 +1,7 @@
 <?php
- 
-// Build the HTML for a pipeline documentation page.
-// Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
-$import_chartjs = true;
-
+/////////////////////
 // Sidebar for pipeline homepage with key stats
+/////////////////////
 
 // Get number of open issues and PRs
 $issues_json_fn = dirname(dirname(dirname(__FILE__))).'/nfcore_issue_stats.json';
@@ -32,28 +29,39 @@ foreach($clones_counts as $datetime => $count){
 // Get contributor avatars
 $contrib_avatars = [];
 foreach($stats_json['pipelines'][$pipeline->name]['contributors'] as $contributor){
+  $contributions = $contributor['total'];
+  if ($contributions >1){
+    $contributions .= " contributions";
+  } else{
+    $contributions .= " contribution";
+  }
   $contrib_avatars[
-    '<a href="'.$contributor['author']['html_url'].'" title="@'.$contributor['author']['login'].', '.$contributor['total'].' contributions" data-toggle="tooltip"><img src="'.$contributor['author']['avatar_url'].'"></a>'
+    '<a href="'.$contributor['author']['html_url'].'" title="@'.$contributor['author']['login'].', '.$contributions.'" data-toggle="tooltip"><img src="'.$contributor['author']['avatar_url'].'"></a>'
   ] = $contributor['total'];
 }
 arsort($contrib_avatars);
 
 // Last release and last commit
-$last_release = 'N/A';
-$release_cmd = '';
+$last_release_time = 'N/A';
+$release_cmd = ' -r '.$release;
 if(count($pipeline->releases) > 0){
-  $last_release = time_ago($pipeline->releases[0]->published_at);
-  $release_cmd = ' -r '.$pipeline->releases[0]->tag_name;
+  $last_release_time = time_ago($pipeline->releases[0]->published_at);
 }
 $last_commit = time_ago($pipeline->updated_at);
 
-ob_start();
 ?>
 
 <div class="pipeline-sidebar">
-  <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
-  <div class="border pipeline-run-cmd p-1">
-    <code class="small">&raquo; nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test</code>
+  <div class="row border-bottom pb-2">
+    <div class="col-12">
+      <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
+      <div class="input-group input-group-sm pipeline-run-cmd">
+        <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name; echo $release_cmd; ?> -profile test" aria-label="Copy run command" readonly="">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary copy-txt" data-target="pipeline-run-cmd-text" data-toggle="tooltip" title="Copy to clipboard" type="button"><i class="fad fa-clipboard px-1"></i></button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last <?php echo time_ago($clones_since, false); ?></span></h6>
@@ -98,16 +106,35 @@ ob_start();
       <p><a href="<?php echo $pipeline->html_url; ?>/pulls"><?php echo $num_prs; ?></a></p>
     </div>
   </div>
-
-  <div class="border-bottom">
-    <h6>collaborators</h6>
-    <p class="contrib-avatars"><?php echo implode(array_keys($contrib_avatars)); ?></p>
+  <div class="row border-bottom">
+    <div class="col-12">
+      <h6>collaborators</h6>
+      <p class="contrib-avatars"><?php echo implode(array_keys($contrib_avatars)); ?></p>
+    </div>
   </div>
+  <div>
+    <h6>get in touch</h6>
+    <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>"><i class="fab fa-slack mr-1"></i> Ask a question on Slack</a></p>
+    <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues"><i class="fab fa-github mr-1"></i> Open an issue on GitHub</a></p>
+  </div>
+</div>
 
-  <h6>get in touch</h6>
-  <p><a class="btn btn-sm btn-outline-info" href="https://nfcore.slack.com/channels/<?php echo $pipeline->name; ?>">ask a question on Slack</a></p>
-  <p><a class="btn btn-sm btn-outline-secondary" href="<?php echo $pipeline->html_url; ?>/issues">open an issue on GitHub</a></p>
+<?php
+// Collect this content into a variable to be inserted in to the very end of the HTML
+ob_start();
+?>
 
+<div class="toast" id="pipeline_sidebar_cmd_copied" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="">
+    <strong class="mr-auto">Command copied!</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    Paste this command into your terminal to run the pipeline with a small test dataset.
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -218,5 +245,5 @@ $(function(){
 </script>
 
 <?php
-$pipeline_stats_sidebar = ob_get_contents();
+$end_of_html = ob_get_contents();
 ob_end_clean();

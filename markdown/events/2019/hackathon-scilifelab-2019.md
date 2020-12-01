@@ -24,8 +24,3 @@ This event is being organised by Phil Ewels ([@ewels](https://github.com/ewels),
 
 ## Hackathon project page
 [https://github.com/orgs/nf-core/projects/4](https://github.com/orgs/nf-core/projects/4)
-
-## Registration
-
-Please register your interest using this Doodle poll:
-[https://doodle.com/poll/pp5ce9hsdwkw8qya](https://doodle.com/poll/pp5ce9hsdwkw8qya)

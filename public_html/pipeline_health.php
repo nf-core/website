@@ -76,14 +76,15 @@ class RepoHealth {
     'Markdown',
     'YAML',
     'nf-core',
-    'test'
+    'Run workflow tests'
     // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
     // If we really want to do this, might have to query the repo contents..??
   ];
 
   // Names of old CI tests that must not be present any more
   public $required_remove_status_check_contexts = [
-    'continuous-integration/travis-ci'
+    'continuous-integration/travis-ci',
+    'test'
   ];
   public $branch_exist_tests = ['master'];
   public $branches_protection = ['master'];

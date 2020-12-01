@@ -1,16 +1,22 @@
 ## Core team {#core}
 The core team members who administer the nf-core project are listed below:
 
-* [@alneberg](https://github.com/alneberg): Johannes Alneberg
 * [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
 * [@drpatelh](https://github.com/drpatelh): Harshil Patel
 * [@ewels](https://github.com/ewels): Phil Ewels
+* [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
+* [@jfy133](https://github.com/jfy133): James A. Fellows Yates
+* [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
 * [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik
-* [@sven1103](https://github.com/sven1103): Sven F.
-* [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 
-We regularly review members - if you'd like to be involved, drop us a message on Slack.
+The following former members of the nf-core core team have earned their place in
+the nf-core alumni hall of fame:
+
+* [@sven1103](https://github.com/sven1103): Sven F.
+* [@alneberg](https://github.com/alneberg): Johannes Alneberg
+
+We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
 All nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
