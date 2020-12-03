@@ -129,7 +129,6 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
 $md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-events.yaml';
-include('../includes/header.php');
 
 # To get parse_md_front_matter() function
 require_once('../includes/functions.php');
@@ -226,6 +225,43 @@ function print_events($events, $is_past_event){
 <?php
   endforeach;
 }
+
+
+//
+// RSS FEED
+//
+if(isset($_GET['rss'])){
+  header('Content-type: application/rss+xml');
+  echo '<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>nf-core: '.$title.'</title>
+      <link>https://www.nf-co.re/events</link>
+      <atom:link href="https://www.nf-co.re/events/rss" rel="self" type="application/rss+xml" />
+      <description>'.$subtitle.'</description>';
+  if(count($events) > 0){
+    # Sort events so that the newest is at the top
+    usort($events, function($a, $b) {
+      return $b['start_ts'] - $a['start_ts'];
+    });
+    foreach($events as $event){
+      echo '<item>
+        <title>'.htmlspecialchars(utf8_encode($event['title'])).'</title>
+        <link>https://nf-co.re'.$event['url'].'</link>
+        <guid>https://nf-co.re'.$event['url'].'</guid>
+        <description>'.htmlspecialchars(utf8_encode($event['subtitle'])).'</description>
+      </item>';
+    }
+  }
+  echo '</channel></rss>';
+  exit;
+}
+
+
+//
+// Web listing page
+//
+include('../includes/header.php');
 
 echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar-day mr-2"></i> Upcoming Events</h2>';
 if(count($future_events) > 0){
