@@ -249,7 +249,7 @@ if(isset($_GET['rss'])){
         <title>'.htmlspecialchars(utf8_encode($event['title'])).'</title>
         <link>https://nf-co.re'.$event['url'].'</link>
         <guid>https://nf-co.re'.$event['url'].'</guid>
-        <pubDate>'.date('r', $event['end_ts']).'</pubDate>
+        <pubDate>'.date('r', $event['start_ts']).'</pubDate>
         <description>'.htmlspecialchars(utf8_encode($event['subtitle'])).'</description>
       </item>
       ';
