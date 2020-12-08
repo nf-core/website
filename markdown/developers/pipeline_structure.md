@@ -6,15 +6,13 @@ Nf-core pipelines adhere to common design principles that have been crafted thro
 The best way to write a new pipeline is to start from the template (see here). After doing that, you will have a number of files in your repository with different purposes. Here's what they are for:
 
 ### Files
-* `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. When executed, this file will call the `<pipeline>.nf` script.
-
-* `<pipeline>.nf`: This is the main pipeline script - it parses all the parameters, loads the modules with options and defines the specific order in which these are called.
+* `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. It parses all parameters, loads the modules with options and defines the specific order in which these are executed. 
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and nextflow version, among others.
 
 * `README.md`: Basic information about the pipeline and usage
 
-* `nextflow_json.schema`: A JSON schema file that contains all pipeline parameters. This is mainly used by the nf-core tools package, e.g. for launching a pipeline directory with tools.
+* `nextflow_json.schema`: The JSON schema file is used for pipeline parameter specification. It can be automatically created usint the `tools` package. In the pipeline, this is used for printing out a help message to the user or validating the input parameters. The nf-core tools utility package furthermore uses the JSON Schema for launching pipelines. Furthermore, `nextflow.config` defines different profiles that can be used to run the pipeline. These include the test profiles, which load, when used, the above mentioned configuration files into the `nextflow.config` file. Additionaly, the following profiles are available by default: `debug`, `conda`, `docker`, `singularity` and `podman`‚ which are used to run the pipeline in debug mode, using a conda environment or a using a container technology (docker, singularity or podman). 
 
 * `CHANGELOG.md`: The change log contains information about, well, changes made to the pipeline.
 
@@ -29,29 +27,18 @@ The best way to write a new pipeline is to start from the template (see here). A
 ### Directories
 
 * `.github`: Other GitHub specific files, e.g. for specifying templates and GitHub actions
+
 * `assets`: Any additional files needed for the pipeline
-* `bin`: Contains scripts to be executed in the pipeline
-* `conf`: Additional configuration profiles that can be loaded in the `nextflow.config`file
+
+* `bin`: The bin directory simply contains any scripts that must be directly accessible within a pipeline process. Anything in this directory can be directly called from within Nextflow processes. 
+
+* `conf`: The `conf` directory contains a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionaly, `conf` contains a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
+
 * `docs`: Markdown files for documenting the pipeline
-* `lib`: Contains utility groovy functions
+
+* `lib`: The lib directory contains groovy utility functions. Currently, this includes the `Schema.groovy`, `Headers.groovy`, `Completion.groovy` and `Checks.groovy` files. These are called from within the nf-core pipeline to do groovy-related tasks, like formatting the header for the command line. Any larger groovy function you want to call in the code should therefore go in here.
+
 * `modules`: Contains local and nf-core modules
-
-## Pipeline
-As already mentioned, `main.nf` is the main file which is executed when running a pipipeline. It internally calls the `<pipeline>.nf` script, which is responsible for parsing command line parameters and making sure they are correct, loading modules with correct options and defining the pipeline structure, i.e. which steps are executed in which order. These scripts therefore depend on code in the `nextflow.config`file and in the `assets`, `bin`, `conf`, `lib` and `modules directories`. In the following we'll explain what should go into these different directories.
-
-### bin
-The bin directory simply contains any scripts that must be directly accessible within a pipeline process. Anything in this directory can be directly called from within Nextflow processes. 
-
-### lib
-The lib directory contains groovy utility functions. Currently, this includes the `Schema.groovy`, `Headers.groovy`, `Completion.groovy` and `Checks.groovy` files. These are called from within the nf-core pipeline to do groovy-related tasks, like formatting the header for the command line. Any larger groovy function you want to call in the code should therefore go in here.
-
-### JSON Schema
-The JSON schema file is used for pipeline parameter specification. It must contain all pipeline parameters. Ini the pipeline, this is used for printing out a help message to the user or validating the input parameters. The nf-core tools utility package furthermore uses the JSON Schema for launching pipelines.
-
-## Pipeline configuration
-Configuration of the pipeline is done via the `nextflow.config` file and any additional configuration files in `conf`. Typically, the `nextflow.config` contains all command-line parameters with their defaults, nextflow options and the manifest, which informs about authors, nextflow and pipeline version, among others. The `conf` directory contains a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionaly, `conf` contains a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
-
-The `nextflow.config` defines different profiles that can be used to run the pipeline. These include the test profiles, which load, when used, the above mentioned configuration files into the `nextflow.config` file. Additionaly, the following profiles are available by default: `debug`, `conda`, `docker`, `singularity` and `podman`‚ which are used to run the pipeline in debug mode, using a conda environment or a using a container technology (docker, singularity or podman). 
 
 ## Continuous integration testing
 To assure that nf-core pipelines don't break after some change is made to the code, we use automated continuous integration (CI) testing. This is done via GitHub actions, which are defined in the `.github/workflows` directory. Parameters and file paths are set in the `conf/test.config` and `conf/test_full.config`. Please see also [here](https://nf-co.re/developers/adding_pipelines#add-some-test-data) for how to set-up the test workflow for your pipeline.
