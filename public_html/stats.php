@@ -23,11 +23,12 @@ $issues_json_latest = false;
 foreach($issues_json['stats'] as $key => $arr){
   if(!is_numeric($key)) continue;
   if(!$issues_json_latest) $issues_json_latest = $key;
-  $issues_json_latest = min($issues_json_latest, $key);
+  $issues_json_latest = max($issues_json_latest, $key);
 }
 
 // Convenience variables
-$slack_users = $stats_json->slack->user_counts->{$stats_json->updated};
+$latest_slack_update = max(array_keys(get_object_vars($stats_json->slack->user_counts)));
+$slack_users = $stats_json->slack->user_counts->{$latest_slack_update};
 $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
 $twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)};
 
