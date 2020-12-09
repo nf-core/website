@@ -4,6 +4,7 @@ subtitle: Learn how nf-core pipelines are automatically kept up to date with com
 ---
 
 # Introduction
+
 To keep all the nf-core pipelines up-to-date with the latest version of the community standards, we have implemented a synchronisation tool.
 This ensures that updates to the community standards are propagated to all nf-core pipelines.
 
@@ -194,6 +195,7 @@ Remember to go back to your `dev` branch as above before running `nf-core sync`.
 Much of the merging process should then be the same as described above with the automated pull requests.
 
 # Setting up a pipeline for syncing retrospectively
+
 This section describes how to set up a correct TEMPLATE branch in the case your pipeline was not created with a TEMPLATE branch from the beginning. If you created a pipeline with the `nf-core create` command, you should be all ready to go and can skip this step. Otherwise proceed with caution. It is probably a good idea to make sure you have all your local changes pushed to github and you could even make a local backup clone of your repository before proceeding.
 
 You should also consider the option to restart your pipeline project by running the `nf-core create` command and simply copy in the modifications you need into the newly created pipeline.
@@ -306,6 +308,7 @@ git push --set-upstream origin TEMPLATE
 ```
 
 ### Merge TEMPLATE into main branches
+
 The only remaining step is unfortunately a rather tedious one.
 You have to merge the `TEMPLATE` branch into your main pipeline branches, manually resolving all merge conflicts.
 
@@ -358,58 +361,58 @@ That's it, you're done! **Congratulations!**
 
 # Fixing a broken TEMPLATE branch
 
-Sometimes mistakes can occur during resolving of conflicts during a template merge, typically via the GitHub interface, where the changes during the conflict
-resolution is committed to `TEMPLATE` rather than the `dev` branch itself.
+If merge conflicts are resolved via the GitHub interface instead of after pulling changes to a fork as described above, the commit history from the `dev` branch will be merged into `TEMPLATE`.
 This leads to complex problems in later `TEMPLATE` merges as the later updated `TEMPLATE` branch removes all the pipeline-specific files that were accidentality included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
 
-If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at your repository's GitHub Network Graph under the 'Insights' tab. You can look through the pipeline history to see if there exists a commit described as 'Merge branch `dev` into `TEMPLATE`'.
+If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at how many commits the `TEMPLATE` branch has (should be in the range of 5-15ish, depending on how many template updates your pipeline has had). You can also look at your repository's GitHub Network Graph under the _"Insights"_ tab or even look through the `TEMPLATE` branch commit history to see if there is a commit described as 'Merge branch `dev` into `TEMPLATE`'.
 
 If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 
-To do this, clone your repository to your local machine, ensuring you have pulled both `TEMPLATE` and `dev` branches.
+* Clone the main nf-core pipeline repository to your local machine (not your development fork)
 
-Next, retrieve the commit hash when the original cookie-cutter template was used to generate pipeline i.e. with `nf-core create`.
-Assuming you originally started with the nf-core template, you can simply look at your git log from within your repository:
+  ```bash
+  git clone <git URL>
+  cd <pipeline>
+  ```
 
-```bash
-git log --reverse
-```
+* Next, retrieve the commit hash when the original nf-core template was used to generate pipeline i.e. with `nf-core create`.
+  * Assuming you originally started with the nf-core template, you can simply look at your git log from within your repository:
 
-The first commit will then typically represent the original template.
+    ```bash
+    git log --reverse
+    ```
 
-Next we can delete the `TEMPLATE` branch with:
+  * The first commit will then typically represent the original template.
+* Reset the `TEMPLATE` branch back to this commit, discarding all changes after that
 
-```bash
-git branch -D TEMPLATE
-```
+  ```bash
+  git reset --hard <hash of first commit after nf-core create>
+  ```
 
-Now we can checkout the original pipeline setup commit:
+* Push this cleaned branch back to the repository - use `--force` to overwrite the history there:
 
-```bash
-git checkout <hash of first commit after nf-core create>
-```
+  ```bash
+  git push origin TEMPLATE --force
+  ```
 
-From this commit, we can generate a 'fresh' `TEMPLATE` branch as originally made (and without the accidently merged contents of `dev`):
+  * This will then replace the broken `TEMPLATE` branch on GitHub with a nice clean one, which can be viewable by checking the commit history.
+  * :warning: You are irreversibly overwriting git history here - make sure that you get the branch names right!
+* We can switch back to `dev`, and run `nf-core sync` to do it's magic and get the latest version of the template.
 
-```bash
-git branch TEMPLATE
-```
+  ```bash
+  git checkout dev
+  nf-core sync .
+  ```
 
-With this generated we can switch back to `dev`, and run `nf-core sync` to do it's magic and get the latest version of the template.
+* You probably want to now delete your local copy of the pipeline that you checked out from the main nf-core repository.
+* On your personal fork of the pipeline you'll want to pull in this fresh template branch:
 
-:warning: do not follow the `nf-core` instructions once `sync` is completed!
+  ```bash
+  cd <path/to/forked/pipeline>
+  git branch -D TEMPLATE # Delete the TEMPLATE branch in your fork if you have it
+  git remote add upstream <git URL of main nf-core repo> # You might already have this set up?
+  git checkout --track upstream/TEMPLATE
+  git push --force
+  ```
 
-```bash
-git checkout dev
-nf-core sync .
-```
-
-Now, the `TEMPLATE` branch should in a clean state on your local machine. To replace this on the remote, you can do a force push:
-
-```bash
-git push origin TEMPLATE --force
-```
-
-This will then replace the broken `TEMPLATE` branch on GitHub with a nice clean one, which can be viewable by checking the commit history.
-
-With this, you're now ready to re-make the pull request from `TEMPLATE` into `dev`, and locally manually resolve conflicts (if required) following the git instructions [above](#merge-template-into-main-branches) or that GitHub provides at the bottom of the PR.
+With this, you're now ready to re-make the pull request from `TEMPLATE` into `dev`, and locally manually resolve conflicts (if required) following the git instructions [above](#merge-template-into-main-branches).
