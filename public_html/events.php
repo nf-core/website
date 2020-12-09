@@ -64,19 +64,19 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   }
 
   $event = sanitise_date_meta($output["meta"]);
- 
+
   if($event){
     $header_html = '<div class="row" style="margin-bottom:-1rem;"><div class="col-md-6">';
     $header_html .= '<dl>';
     // Start time
     if($event['start_time']){
-      $header_html .= '<dt>Event starts:</dt><dd>'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+      $header_html .= '<dt>Event starts:</dt><dd>'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
     } else {
       $header_html .= '<dt>Event starts:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
     }
     // End time
     if($event['end_ts'] > $event['start_ts'] && $event['end_time']){
-      $header_html .= '<dt>Event ends:</dt><dd>'.date('H:i, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+      $header_html .= '<dt>Event ends:</dt><dd>'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
     } else if($event['end_ts'] > $event['start_ts']){
       $header_html .= '<dt>Event ends:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
     }
@@ -129,7 +129,8 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
 $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/events';
-include('../includes/header.php');
+$header_btn_url = 'https://nf-co.re/events/rss';
+$header_btn_text = '<i class="fas fa-rss mr-1"></i> RSS';
 
 # To get parse_md_front_matter() function
 require_once('../includes/functions.php');
@@ -226,6 +227,43 @@ function print_events($events, $is_past_event){
 <?php
   endforeach;
 }
+
+
+//
+// RSS FEED
+//
+if(isset($_GET['rss'])){
+  header('Content-type: application/rss+xml');
+  echo '<?xml version="1.0" encoding="UTF-8" ?>
+    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>nf-core: '.$title.'</title>
+      <link>https://www.nf-co.re/events</link>
+      <atom:link href="https://www.nf-co.re/events/rss" rel="self" type="application/rss+xml" />
+      <description>'.$subtitle.'</description>
+      ';
+  if(count($future_events) > 0){
+    foreach($future_events as $event){
+      echo '
+      <item>
+        <title>'.htmlspecialchars(utf8_encode($event['title'])).'</title>
+        <link>https://nf-co.re'.$event['url'].'</link>
+        <guid>https://nf-co.re'.$event['url'].'</guid>
+        <pubDate>'.date('r', $event['start_ts']).'</pubDate>
+        <description>'.htmlspecialchars(utf8_encode($event['subtitle'])).'</description>
+      </item>
+      ';
+    }
+  }
+  echo "\n    </channel>\n</rss>";
+  exit;
+}
+
+
+//
+// Web listing page
+//
+include('../includes/header.php');
 
 echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar-day mr-2"></i> Upcoming Events</h2>';
 if(count($future_events) > 0){
