@@ -371,7 +371,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 * Clone the main nf-core pipeline repository to your local machine (not your development fork)
 
   ```bash
-  git clone <git URL>
+  git clone git@github.com:nf-core/<PIPELINE>.git
   cd <pipeline>
   ```
 
@@ -379,13 +379,15 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   * Assuming you originally started with the nf-core template, you can simply look at your git log from within your repository:
 
     ```bash
+    git checkout TEMPLATE
     git log --reverse
     ```
 
-  * The first commit will then typically represent the original template.
+  * The first commit will then typically represent the original template, with a commit message like `initial template build from nf-core/tools, version 1.9`
 * Reset the `TEMPLATE` branch back to this commit, discarding all changes after that
 
   ```bash
+  # Make sure you're definitely have TEMPLATE checked out!
   git reset --hard <hash of first commit after nf-core create>
   ```
 
@@ -410,7 +412,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   ```bash
   cd <path/to/forked/pipeline>
   git branch -D TEMPLATE # Delete the TEMPLATE branch in your fork if you have it
-  git remote add upstream <git URL of main nf-core repo> # You might already have this set up?
+  git remote add upstream git@github.com:nf-core/<PIPELINE>.git  # You might already have this set up?
   git checkout --track upstream/TEMPLATE
   git push --force
   ```
