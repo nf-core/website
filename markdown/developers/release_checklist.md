@@ -46,7 +46,7 @@ A number of events are automatically triggered after the pipeline is released:
 
 The last step is to bump up the pipeline version number in the development branch:
 
-* Bump the version number again on the `dev` branch to a new `dev` version
+* Bump the version number again on the `dev` branch of **your fork** to a new `dev` version
   * For example, `1.0.0` becomes `1.1.0dev`
   * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version <path_to_cloned_pipeline> 1.1.0dev`
 * Update the `CHANGELOG.md` to include a new section for this new version
