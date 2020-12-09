@@ -237,7 +237,7 @@ if($pipeline->archived){
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab=='releases_stats'){ echo ' active'; } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line mr-1"></i> Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
   </li>
-  <?php if($pagetab == '' || $pagetab == 'output' || $pagetab == 'usage' || $pagetab == 'results'): ?>
+  <?php if($pagetab != 'releases_stats'): ?>
   <li class="pt-1 pl-3">
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
@@ -288,7 +288,7 @@ if(in_array($pagetab, ['', 'releases_stats','results'])){
   require_once('sidebar.php');
 }
 # Documentation - ToC
-else if(in_array($pagetab, ['usage', 'output'])){
+else if(in_array($pagetab, ['usage', 'output', 'parameters'])){
   $toc = '<nav class="toc">';
   $toc .= generate_toc($content);
   # Add on the action buttons for the parameters docs
