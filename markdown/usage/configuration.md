@@ -120,11 +120,10 @@ process {
 }
 ```
 
-> The `check_max()` function applies the thresholds set in `--max_cpus`, `--max_memory` and `--max_time`.
+- The `check_max()` function applies the thresholds set in `--max_cpus`, `--max_memory` and `--max_time`.
+- The `* task.attempt` means that these values are doubled if a process is automatically retried after failing with an exit code that corresponds to a lack of resources.
 
-> The `* task.attempt` means that these values are doubled if a process is automatically retried after failing with an exit code that corresponds to a lack of resources.
-
-**:warning: You don't need to copy all of this into your own custom config file, only overwrite the things you wish to change**
+> **:warning: You don't need to copy all of this into your own custom config file, only overwrite the things you wish to change**
 
 For example, if you want to give more memory to all large tasks across most nf-core pipelines, the following config could work:
 
