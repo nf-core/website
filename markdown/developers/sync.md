@@ -358,7 +358,7 @@ That's it, you're done! **Congratulations!**
 
 # Fixing a broken TEMPLATE branch
 
-Sometimes mistakes can occur during resolving of conflicts during a template merge, typically via the GitHub interfacte, where the changes during the conflict
+Sometimes mistakes can occur during resolving of conflicts during a template merge, typically via the GitHub interface, where the changes during the conflict
 resolution is committed to `TEMPLATE` rather than the `dev` branch itself.
 This leads to complex problems in later `TEMPLATE` merges as the later updated TEMPLATE branch removes all the pipeline-specific files that were accidently included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
 
@@ -413,4 +413,3 @@ git push origin TEMPLATE --force
 This will then replace the broken `TEMPLATE` branch on GitHub with a nice clean one, which can be viewable by checking the commit history.
 
 With this, you're now ready to re-make the pull request from `TEMPLATE` into `dev`, and locally manually resolve conflicts (if required) following the git instructions [above](#merge-template-into-main-branches) or that GitHub provides at the bottom of the PR.
-
