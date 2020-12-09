@@ -360,11 +360,11 @@ That's it, you're done! **Congratulations!**
 
 Sometimes mistakes can occur during resolving of conflicts during a template merge, typically via the GitHub interface, where the changes during the conflict
 resolution is committed to `TEMPLATE` rather than the `dev` branch itself.
-This leads to complex problems in later `TEMPLATE` merges as the later updated TEMPLATE branch removes all the pipeline-specific files that were accidently included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
+This leads to complex problems in later `TEMPLATE` merges as the later updated `TEMPLATE` branch removes all the pipeline-specific files that were accidentality included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
 
-If during one of the automated syncs you see you have an unsually high number of changed files you can check whether `dev` was accidently merged into `TEMPLATE` by looking at your repository's GitHub Network Graph under the 'Insights' tab. You can look through the pipeline history to see if there exists a commit described as 'Merge branch 'dev' into TEMPLATE.
+If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at your repository's GitHub Network Graph under the 'Insights' tab. You can look through the pipeline history to see if there exists a commit described as 'Merge branch `dev` into `TEMPLATE`'.
 
-If so, the easiest solution is to start your TEMPLATE branch from scratch.
+If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 
 To do this, clone your repository to your local machine, ensuring you have pulled both `TEMPLATE` and `dev` branches.
 
