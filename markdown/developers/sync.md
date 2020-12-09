@@ -13,6 +13,7 @@ There are three topics covered in this documentation page:
 1. [Merging automated PRs](#merging-automated-prs)
 2. [Manual synchronisation](#manual-synchronisation)
 3. [Setting up a pipeline for syncing retrospectively](#setting-up-a-pipeline-for-syncing-retrospectively)
+4. [Fixing a broken `TEMPLATE` branch](#fixing-a-broken-template-branch)
 
 ### How template synchronisation works
 
@@ -359,10 +360,10 @@ be created to merge updates in to your pipeline for you.
 
 That's it, you're done! **Congratulations!**
 
-# Fixing a broken TEMPLATE branch
+# Fixing a broken `TEMPLATE` branch
 
 If merge conflicts are resolved via the GitHub interface instead of after pulling changes to a fork as described above, the commit history from the `dev` branch will be merged into `TEMPLATE`.
-This leads to complex problems in later `TEMPLATE` merges as the later updated `TEMPLATE` branch removes all the pipeline-specific files that were accidentality included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
+This leads to complex problems in later `TEMPLATE` merges as the later updated `TEMPLATE` branch removes all the pipeline-specific files that were accidentally included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
 
 If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at how many commits the `TEMPLATE` branch has (should be in the range of 5-15ish, depending on how many template updates your pipeline has had). You can also look at your repository's GitHub Network Graph under the _"Insights"_ tab or even look through the `TEMPLATE` branch commit history to see if there is a commit described as 'Merge branch `dev` into `TEMPLATE`'.
 
