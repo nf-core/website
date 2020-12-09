@@ -128,7 +128,7 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
 
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
-$md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-events.yaml';
+$md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/events';
 $header_btn_url = 'https://nf-co.re/events/rss';
 $header_btn_text = '<i class="fas fa-rss mr-1"></i> RSS';
 
