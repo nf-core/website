@@ -19,6 +19,7 @@ function parse_md($markdown){
   global $href_url_prepend;
   global $href_url_suffix_cleanup;
   global $html_content_replace;
+  global $no_auto_toc;
   global $title;
   global $subtitle;
 
@@ -107,7 +108,24 @@ function parse_md($markdown){
   // Find and replace emojis names with images
   $content = preg_replace('/:(?!\/)([\S]+?):/','<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">',$content);
 
-  $output['content'] = $content;
+  if (!isset($no_auto_toc) & !$no_auto_toc & preg_match_all('~<h([1-6].*?)>(.*?)</h([1-6])>~Uis', $content, $matches) > 0) {
+    # main row + content
+    $content = '<div class="row"><div class="col-12 col-lg-9">
+                      <div class="rendered-markdown publication-page-content">' . $content . '</div>
+                </div>';
+    # sidebar
+    $content .= '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+    # ToC
+    $content .= '<nav class="toc">';
+    $content .= generate_toc($content);
+    $content .=  '<p class="small text-right"><a href=" #" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    $content .=  '</nav>';
+
+    $content .= '</div></div>'; # end of the sidebar col
+    $content .=  '</div>'; # end of the row
+  }
+
+  $output["content"] = $content;
   $output["meta"] = $meta;
   $output["title"] = $title;
   $output["subtitle"] = $subtitle;
