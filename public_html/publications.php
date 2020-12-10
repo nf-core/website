@@ -15,13 +15,30 @@ $altmetric_html = '
     <span data-doi="${1}" class="__dimensions_badge_embed__" data-hide-zero-citations="true" data-style="small_circle" data-legend="hover-bottom"></span>
 </div>';
 $content = preg_replace($altmetric_pattern, $altmetric_html, $content);
-echo $content;
+echo '<div class="row"><div class="col-12 col-lg-9">';
 
-echo '
-<!-- Dimensions.ai -->
-<script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
-<!-- Altmetric -->
-<script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
-';
+########
+# Print content
+########
+# Add on the rendered schema docs (empty string if we don't have it)
+if (preg_match('/<!-- params-docs -->/', $content)) {
+    $content = preg_replace('/<!-- params-docs -->/', $schema_content, $content);
+} else {
+    $content .= $schema_content;
+}
+
+echo '<div class="rendered-markdown publication-page-content">' . $content . '</div>';
+
+echo '</div>'; # end of the content div
+echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+# ToC
+$toc = '<nav class="toc">';
+$toc .= generate_toc($content);
+# Back to top link
+$toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+$toc .= '</nav>';
+echo $toc;
+echo '</div></div>'; # end of the sidebar col
+echo '</div>'; # end of the row
 
 include('../includes/footer.php');
