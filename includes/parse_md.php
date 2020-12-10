@@ -21,6 +21,7 @@ function parse_md($markdown){
   global $html_content_replace;
   global $title;
   global $subtitle;
+  global $theme;
 
   $output = array();
   // Load the docs markdown
@@ -98,6 +99,11 @@ function parse_md($markdown){
   // Add CSS classes to tables
   $content = str_replace('<table>', '<div class="table-responsive"><table class="table table-bordered table-striped table-sm small">', $content);
   $content = str_replace('</table>', '</table></div>', $content);
+
+  // Handle dark-mode sensitive images
+  if($theme == 'dark'){
+    $content = str_replace('img/contributors-colour/', 'img/contributors-white/', $content);
+  }
 
   // Find and replace HTML content if requested
   if(isset($html_content_replace)){
