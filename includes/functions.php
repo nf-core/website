@@ -106,6 +106,7 @@ function generate_toc($html_string){
   $toc = '';
   $curr_level = 0;
   $counter = 0;
+  $is_active = true;
   $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
   preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
   if($matches){
@@ -136,8 +137,10 @@ function generate_toc($html_string){
         $name = $icon_match[0].$name;
       }
       $is_hidden = strpos($before_attrs, 'toc-hidden') !== false || strpos($after_attrs, 'toc-hidden') !== false;
-      $toc_hidden = $is_hidden ? 'collapse' : '';
-      $toc .= '<a class="list-group-item list-group-item-action scroll_to_link '.$toc_hidden.'" href="#'.$id.'">'.$name.'</a>';
+      $toc_hidden = $is_hidden ? ' collapse ' : '';
+      $active = $is_active ? ' active ' : '';
+      $is_active = false;
+      $toc .= '<a class="list-group-item list-group-item-action scroll_to_link '.$toc_hidden.$active.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
   while($counter > 0){
