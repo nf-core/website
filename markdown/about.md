@@ -1,4 +1,18 @@
+## Introduction
+
+The nf-core project is a diverse project spread across many groups.
+Here you can read how we organise ourselves, how we are funded and how the nf-core project was started.
+
+- [Core team](#core)
+- [Financial Support](#financial-support)
+  - [Chan Zuckerberg Initiative](#czi-eoss)
+  - [Amazon Web Services](#amazon-web-services)
+- [History of nf-core](#history-of-nf-core)
+
+Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
+
 ## Core team {#core}
+
 The core team members who administer the nf-core project are listed below:
 
 * [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
@@ -18,9 +32,38 @@ the nf-core alumni hall of fame:
 
 We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
-All nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
+## Financial  Support
 
-## History
+Whilst much of the development work is done as a labour of love by those involved, we would specifically like to acknowledge and thank the following sponsors who help to support the project.
+
+Please note that many other projects and grants list nf-core as collaborators and contribute to our community.
+
+### Chan Zuckerberg Initiative {#czi-eoss}
+
+<img src="/assets/img/contributors-colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-right darkmode-image mr-5 mb-5 w-25">
+
+The Chan Zuckerberg Initiative runs a grant called [_Essential Open Source Software for Science_ (EOSS)](https://chanzuckerberg.com/eoss/).
+Together with Nextflow, nf-core was supported in the second round of the CZI EOSS grant in 2020.
+
+The CZI EOSS money has allowed us to hire dedicated personnel for development and community support at [QBiC](http://www.qbic.life/) and [SciLifeLab](https://www.scilifelab.se/).
+It also funds expenses for event organisation and community tools.
+
+<div class="clearfix"></div>
+
+### Amazon Web Services
+
+<img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="float-right darkmode-image mr-5 mb-5 w-25" style="max-width: 200px">
+
+Amazon Web Services (AWS) kindly awarded us cloud computing credits in 2020 through their [_AWS Credits for Open Source Projects_](https://aws.amazon.com/blogs/opensource/aws-promotional-credits-open-source-projects/) programme.
+We use these to host data and run each nf-core analysis pipeline to generate the full-size benchmark datasets that you see under the <em class="mx-2"><i class="fab fa-aws mr-2"></i> Results</em> tab on each pipeline page.
+
+AWS also hosts the [AWS-iGenomes](https://registry.opendata.aws/aws-igenomes/) resource on the [Registry of Open Data on AWS](https://registry.opendata.aws/).
+This is used by most nf-core pipelines to give free and open access to the reference genomes of over 30 species, by using a simple `--genome` key when running a pipeline.
+
+<div class="clearfix"></div>
+
+## History of nf-core
+
 The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
 
 The NGI had been developing analysis pipelines for use with it's genomics data for several years and started using a set of standards for each pipeline created. This helped other people run the pipelines on their own systems; typically Swedish research groups at first, but later on other groups and core genomics facilities too such as [QBIC](http://qbic.life/) in Tübingen.
