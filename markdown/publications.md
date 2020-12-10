@@ -6,14 +6,14 @@ Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/mar
 - [The nf-core publications](#the-nf-core-publications)
 - [The nf-core project](#the-nf-core-project)
 - [Pipeline publications](#pipeline-publications)
-    - [nf-core/ampliseq](#nf-coreampliseq)
-    - [nf-core/coproid](#nf-corecoproid)
-    - [nf-core/diaproteomics](#nf-corediaproteomics)
-    - [nf-core/eager](#nf-coreeager)
-    - [nf-core/lncpipe](#nf-corelncpipe)
-    - [nf-core/mhcquant](#nf-coremhcquant)
-    - [nf-core/sarek](#nf-coresarek)
-    
+  - [nf-core/ampliseq](#nf-coreampliseq)
+  - [nf-core/coproid](#nf-corecoproid)
+  - [nf-core/diaproteomics](#nf-corediaproteomics)
+  - [nf-core/eager](#nf-coreeager)
+  - [nf-core/lncpipe](#nf-corelncpipe)
+  - [nf-core/mhcquant](#nf-coremhcquant)
+  - [nf-core/sarek](#nf-coresarek)
+
 # The nf-core project
 
 Main publication for the main nf-core paper, describing the community and framework:
