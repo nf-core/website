@@ -47,16 +47,6 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
 > doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
 
-### [nf-core/sarek](https://nf-co.re/sarek)
-
-<!-- pub-stats 10.12688/f1000research.16665.2 -->
-> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 2; peer review: 2 approved].
->
-> Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
->
-> [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v2)
-> doi: [10.12688/f1000research.16665.2](https://doi.org/10.12688/f1000research.16665.2)
-
 ### [nf-core/coproid](https://nf-co.re/coproid)
 
 <!-- pub-stats 10.7717/peerj.9001 -->
@@ -66,6 +56,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_PeerJ_, 9001 (2020)](https://peerj.com/articles/9001);
 > doi: [10.7717/peerj.9001](https://doi.org/10.7717/peerj.9001)
+
+### [nf-core/diaproteomics](https://nf-co.re/diaproteomics)
+
+<!-- pub-stats 10.1101/2020.12.08.415844v1 -->
+> **DIAproteomics: A multi-functional data analysis pipeline for data-independent-acquisition proteomics and peptidomics**
+>
+> Leon Bichmann, Shubham Gupta, George Rosenberger, Leon Kuchenbecker, Timo Sachsenberg, Oliver Alka, Julianus Pfeuffer, Oliver Kohlbacher & Hannes Rost.
+>
+> [_BiorXiV_, 2020.12.08.415844 (2020)](https://www.biorxiv.org/content/10.1101/2020.12.08.415844v1)
+> doi: [10.1101/2020.12.08.415844](https://doi.org/10.1101/2020.12.08.415844)
 
 ### [nf-core/eager](https://nf-co.re/eager)
 
@@ -77,16 +77,6 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_BiorXiV_, 2020.06.11.145615 (2020)](https://www.biorxiv.org/content/10.1101/2020.06.11.145615v1);
 > doi: [10.1101/2020.06.11.145615](https://doi.org/10.1101/2020.06.11.145615)
 
-### [nf-core/mhcquant](https://nf-co.re/mhcquant)
-
-<!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
-> **MHCquant: Automated and Reproducible Data Analysis for Immunopeptidomics**
->
-> Leon Bichmann, Annika Nelde, Michael Ghosh, Lukas Heumos, Christopher Mohr, Alexander Peltzer, Leon Kuchenbecker, Timo Sachsenberg, Juliane S. Walz, Stefan Stevanović, Hans-Georg Rammensee, and Oliver Kohlbacher
->
-> [_Journal of Proteome Research_ **18**(11), 3876-3884 (2019)](https://pubs.acs.org/doi/10.1021/acs.jproteome.9b00313)
-> doi: [10.1021/acs.jproteome.9b00313](https://doi.org/10.1021/acs.jproteome.9b00313)
-
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
 <!-- pub-stats 10.1016/j.jgg.2018.06.005 -->
@@ -97,12 +87,22 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Journal of Genetics and Genomics_ **20**;45(7):399-401 (2018)](https://www.sciencedirect.com/science/article/pii/S1673852718301176)
 > doi: [10.1016/j.jgg.2018.06.005](https://doi.org/10.1016/j.jgg.2018.06.005)
 
-### [nf-core/diaproteomics](https://nf-co.re/diaproteomics)
+### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
-<!-- pub-stats 10.1101/2020.12.08.415844v1 -->
-> **DIAproteomics: A multi-functional data analysis pipeline for data-independent-acquisition proteomics and peptidomics**
+<!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
+> **MHCquant: Automated and Reproducible Data Analysis for Immunopeptidomics**
 >
-> Leon Bichmann, Shubham Gupta, George Rosenberger, Leon Kuchenbecker, Timo Sachsenberg, Oliver Alka, Julianus Pfeuffer, Oliver Kohlbacher & Hannes Rost.
+> Leon Bichmann, Annika Nelde, Michael Ghosh, Lukas Heumos, Christopher Mohr, Alexander Peltzer, Leon Kuchenbecker, Timo Sachsenberg, Juliane S. Walz, Stefan Stevanović, Hans-Georg Rammensee, and Oliver Kohlbacher
 >
-> [_BiorXiV_, 2020.12.08.415844 (2020)](https://www.biorxiv.org/content/10.1101/2020.12.08.415844v1)
+> [_Journal of Proteome Research_ **18**(11), 3876-3884 (2019)](https://pubs.acs.org/doi/10.1021/acs.jproteome.9b00313)
+> doi: [10.1021/acs.jproteome.9b00313](https://doi.org/10.1021/acs.jproteome.9b00313)
+
+### [nf-core/sarek](https://nf-co.re/sarek)
+
+<!-- pub-stats 10.12688/f1000research.16665.2 -->
+> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 2; peer review: 2 approved].
 >
+> Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
+>
+> [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v2)
+> doi: [10.12688/f1000research.16665.2](https://doi.org/10.12688/f1000research.16665.2)
