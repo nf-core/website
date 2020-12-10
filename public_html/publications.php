@@ -15,21 +15,12 @@ $altmetric_html = '
     <span data-doi="${1}" class="__dimensions_badge_embed__" data-hide-zero-citations="true" data-style="small_circle" data-legend="hover-bottom"></span>
 </div>';
 $content = preg_replace($altmetric_pattern, $altmetric_html, $content);
-echo '<div class="row"><div class="col-12 col-lg-9">';
 
-########
-# Print content
-########
-# Add on the rendered schema docs (empty string if we don't have it)
-if (preg_match('/<!-- params-docs -->/', $content)) {
-    $content = preg_replace('/<!-- params-docs -->/', $schema_content, $content);
-} else {
-    $content .= $schema_content;
-}
+echo '<div class="row"><div class="col-12 col-lg-9">';
 
 echo '<div class="rendered-markdown publication-page-content">' . $content . '</div>';
 
-echo '</div>'; # end of the content div
+echo '</div>'; # end of the content col
 echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
 # ToC
 $toc = '<nav class="toc">';
