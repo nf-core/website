@@ -8,10 +8,10 @@ include('../includes/header.php');
 
 $altmetric_pattern = '/<!-- pub-stats (\S+) -->/';
 $altmetric_html = '
-<div class="pub-stats-wrapper ml-2 mt-3">
+<div class="pub-stats-wrapper ml-2 mt-3 mr-1">
     <div data-doi="${1}" data-badge-popover="bottom" data-badge-type="donut" data-hide-no-mentions="true" class="altmetric-embed"></div>
 </div>
-<div class="pub-stats-wrapper ml-2 mt-3">
+<div class="pub-stats-wrapper ml-2 mt-3 mr-1">
     <span data-doi="${1}" class="__dimensions_badge_embed__" data-hide-zero-citations="true" data-style="small_circle" data-legend="hover-bottom"></span>
 </div>';
 $content = preg_replace($altmetric_pattern, $altmetric_html, $content);
