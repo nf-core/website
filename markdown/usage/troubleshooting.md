@@ -97,7 +97,7 @@ docker pull nfcore/<pipeline>:dev
 
 If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
 
-Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity Image build fails unfortunately. See below code snippet that shows such a typical failure:
+Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity image build fails unfortunately. See below code snippet that shows such a typical failure:
 
 ```bash
 Caused by:
