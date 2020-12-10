@@ -96,3 +96,13 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_Journal of Genetics and Genomics_ **20**;45(7):399-401 (2018)](https://www.sciencedirect.com/science/article/pii/S1673852718301176)
 > doi: [10.1016/j.jgg.2018.06.005](https://doi.org/10.1016/j.jgg.2018.06.005)
+
+### [nf-core/diaproteomics](https://nf-co.re/diaproteomics)
+
+<!-- pub-stats 10.1101/2020.12.08.415844v1 -->
+> **DIAproteomics: A multi-functional data analysis pipeline for data-independent-acquisition proteomics and peptidomics**
+>
+> Leon Bichmann, Shubham Gupta, George Rosenberger, Leon Kuchenbecker, Timo Sachsenberg, Oliver Alka, Julianus Pfeuffer, Oliver Kohlbacher & Hannes Rost.
+>
+> [_BiorXiV_, 2020.12.08.415844 (2020)](https://www.biorxiv.org/content/10.1101/2020.12.08.415844v1)
+>
