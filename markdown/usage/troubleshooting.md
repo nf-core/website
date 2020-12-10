@@ -3,8 +3,6 @@ title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
-<!-- TOC -->
-
 - [Input files not found](#input-files-not-found)
   - [Direct input](#direct-input)
   - [Sample sheet input](#sample-sheet-input)
@@ -22,8 +20,6 @@ subtitle: How to troubleshoot common mistakes and issues
 - [Unable to acquire lock error](#unable-to-acquire-lock-error)
 - [Extra resources and getting help](#extra-resources-and-getting-help)
 
-<!-- /TOC -->
-
 ## Input files not found
 
 If the pipeline can't find your files then you will get the following error
@@ -37,7 +33,8 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character. This is even if you are only running one paired end sample.
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_(programming)). This is even if you are only running one paired end sample.
+    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
     - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
 4. If you are running single-end data make sure to specify `--singleEnd`
@@ -152,7 +149,7 @@ If you get a warning like the following:
 Project nf-core/<pipeline> currently is sticked on revision: dev -- you need to specify explicitly a revision with the option -r to use it
 ```
 
-This is a Nextflow error, with less commonly seen terminology. What this means is that you have multiple versions of the pipeline pulled (e.g. 2.0.0, 2.1.0, 2.1.1, dev etc.). When you have multiple versions, you must always specify which one you want to use - there is no 'default'. Therefore, with every `nextflow run nf-core/<PIPELINE>` command you must always indicate which version with `-r`.
+This is a Nextflow error, with less-commonly seen Git 'terminology'. What this means is that you have multiple versions of the pipeline pulled (e.g. 2.0.0, 2.1.0, 2.1.1, dev etc.), and it is not sure which one to use. Therefore, with every `nextflow run nf-core/<PIPELINE>` command you should always indicate which version with `-r`.
 
 For example:
 
