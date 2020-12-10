@@ -22,7 +22,7 @@ If the pipeline can't find your files then you will get the following error
 ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 ```
 
-Or when you're using a input method like --input '/<path>/<to>/*_fq.gz', but only pick up one file, or only one file per pair being processed during the run, please note the following:
+Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
 2. The path must have at least one `*` wildcard character. This is even if you are only running one paired end sample.
@@ -42,13 +42,13 @@ You must specify paths to files in quotes, otherwise your _shell_ (e.g. bash) wi
 For example:
 
 ```bash
-nextflow run nf-core/eager --input /path/to/sample_*/*.fq.gz
+nextflow run nf-core/<pipeline> --input /path/to/sample_*/*.fq.gz
 ```
 
 Maybe evaluated by your shell as:
 
 ```bash
-nextflow run nf-core/eager --input /path/to/sample_1/sample_1.fq.gz /path/to/sample_1/sample_1.fq.gz /path/to/sample_1/sample_1.fq.gz
+nextflow run nf-core/<pipeline> --input /path/to/sample_1/sample_1.fq.gz /path/to/sample_1/sample_1.fq.gz /path/to/sample_1/sample_1.fq.gz
 ```
 
 And Nextflow will only take the first path after `--input`, ignoring the others.
@@ -56,7 +56,7 @@ And Nextflow will only take the first path after `--input`, ignoring the others.
 On the other hand, encapsulating the path in quotes will allow _Nextflow_ to evaluate the paths.
 
 ```bash
-nextflow run nf-core/eager --input "/path/to/sample_*/*.fq.gz"
+nextflow run nf-core/<pipeline> --input "/path/to/sample_*/*.fq.gz"
 ```
 
 ### Data organization
@@ -74,15 +74,14 @@ You may have an outdated container. This happens more often when running on the 
 To fix, just re-pull the pipeline's Docker container manually with:
 
 ```bash
-docker pull nfcore/<PIPELINE>:dev
+docker pull nfcore/<pipeline>:dev
 ```
 
 ### I am running Singularity
 
 If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths.
-
 See
-[here](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity)
+[_Cannot find input files when using Singularity_](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity)
 for more information.
 
 ## Image cannot be built
@@ -176,7 +175,7 @@ Now back on your local PC, we need to make a new file called `custom_resources.c
 
 Within this file, you will need to add the following:
 
-```txt
+```nextflow
 profiles {
     big_data {
       process {
@@ -190,17 +189,17 @@ profiles {
 
 Where we have increased the default `4.GB` to `16.GB`.
 
-> Note that with this you will _not_ have the automatic retry mechanism. If you want this, re-add the `check_max()` function on the `memory` line (as in the pipeline's `conf/base.config`) file, and add to the bottom of the entire file (outside the profiles block!). This block is the one starting with `def check_max(obj, type) {`, which is at the end of the [nextflow.config file](https://github.com/nf-core/eager/blob/master/nextflow.config)
+> Note that with this you will _not_ have the automatic retry mechanism. If you want this, re-add the `check_max()` function on the `memory` line (as in the pipeline's `conf/base.config`) file, and add to the bottom of the entire file (outside the profiles block!). This block is the one starting with `def check_max(obj, type) {`, which is at the end of the pipeline's `nextflow.config` file.
 
 Once saved, we can then modify your original Nextflow run command:
 
 ```bash
-nextflow run nf-core/<PIPELINE> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
+nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
 ```
 
 Where we have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
 
-:warning: it's important that big_data comes first, to ensure it overwrites any parameters set in the subsequent profiles!
+:warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
 
 ## Crashed pipeline with an error but Nextflow is still running
 
@@ -208,11 +207,11 @@ If this happens, you can either wait until all other already running jobs to saf
 
 > :warning: if you do this, and do not plan to fix the run make sure to delete the output folder. Otherwise you may end up a lot of large intermediate files being left! You can clean a Nextflow run of all intermediate files with `nextflow clean -f -k` or delete the `work/` directory.
 
-### I specified a step of a pipeline to run and it wasn't executed
+### A step of a pipeline wasn't executed
 
 Possible options:
 
-1. Check there if you have a typo in the parameter name. Nextflow _does not_ check for this
+1. If an optional step, check for a typo in the parameter name. Nextflow _does not_ check for this
 2. Check that an upstream step/process was turned on (if a step/process requires the output of an earlier process, it will not be activated unless it receives the output of that process)
 
 ## My pipeline update doesn't seem to do anything
