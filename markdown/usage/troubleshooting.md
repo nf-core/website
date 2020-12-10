@@ -3,16 +3,26 @@ title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
+<!-- TOC -->
+
 - [Input files not found](#input-files-not-found)
+  - [Direct input](#direct-input)
+  - [Sample sheet input](#sample-sheet-input)
+  - [Output for only a single sample although I specified multiple with wildcards](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
+  - [Data organization](#data-organization)
 - [The pipeline crashes almost immediately with an early pipeline step](#the-pipeline-crashes-almost-immediately-with-an-early-pipeline-step)
-- [Image cannot be built](#image-cannot-be-built)
+  - [Error related to Docker](#error-related-to-docker)
+  - [Error related to Singularity](#error-related-to-singularity)
 - [Cannot find input files when using Singularity](#cannot-find-input-files-when-using-singularity)
 - [Warning about sticked on revision](#warning-about-sticked-on-revision)
 - [I get a exceeded job memory limit error](#i-get-a-exceeded-job-memory-limit-error)
 - [Crashed pipeline with an error but Nextflow is still running](#crashed-pipeline-with-an-error-but-nextflow-is-still-running)
+  - [A step of a pipeline wasn't executed](#a-step-of-a-pipeline-wasnt-executed)
 - [My pipeline update doesn't seem to do anything](#my-pipeline-update-doesnt-seem-to-do-anything)
 - [Unable to acquire lock error](#unable-to-acquire-lock-error)
 - [Extra resources and getting help](#extra-resources-and-getting-help)
+
+<!-- /TOC -->
 
 ## Input files not found
 
@@ -21,6 +31,8 @@ If the pipeline can't find your files then you will get the following error
 ```bash
 ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 ```
+
+### Direct input
 
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
@@ -32,6 +44,8 @@ Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but o
 5. [Your data should be organised in a 'tidy' manner](#data-organization)
 
 Note that if your sample name is "messy" then you have to be very particular with your glob specification. A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` wont work give you what you want, whilst `*{R1,R2}*.gz` will.
+
+### Sample sheet input
 
 If you are using a sample sheet or TSV input method, check there is not a mistake or typo in the path in a given column. Common mistakes ar e a trailing space at the end of the path, which can cause problems.
 
@@ -67,7 +81,9 @@ The pipeline can't take a list of multiple input files - it takes a glob express
 
 Sometimes a newly downloaded and set up nf-core pipeline will encounter an issue where a run almost immediately crashes (e.g. at `fastqc`, `output_documentation` etc.) saying the tool could not be found or similar.
 
-### I am running Docker
+The first thing to do is always check the `.nextflow.log` to see if it reports contains specific error. Common cases are described below.
+
+### Error related to Docker
 
 You may have an outdated container. This happens more often when running on the `dev` branch of a nf-core pipeline, because Docker will _not_ update the container on each new commit, and thus may not get new tools called within the pipeline code.
 
@@ -77,14 +93,9 @@ To fix, just re-pull the pipeline's Docker container manually with:
 docker pull nfcore/<pipeline>:dev
 ```
 
-### I am running Singularity
+### Error related to Singularity
 
-If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths.
-See
-[_Cannot find input files when using Singularity_](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity)
-for more information.
-
-## Image cannot be built
+If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
 
 Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity Image build fails unfortunately. See below code snippet that shows such a typical failure:
 
@@ -138,20 +149,20 @@ Alternatively, you can also add Singularity Bind Paths to your Nextflow call, e.
 If you get a warning like the following:
 
 ```bash
-Project nf-core/eager currently is sticked on revision: dev -- you need to specify explicitly a revision with the option -r to use it
+Project nf-core/<pipeline> currently is sticked on revision: dev -- you need to specify explicitly a revision with the option -r to use it
 ```
 
-This is a nextflow error, with less commonly seen terminology. What this means is that you have multiple versions of nf-core/eager pulled (e.g. 2.0.0, 2.1.0, 2.1.1, dev etc.). When you have multiple versions, you must always specify which one you want to use - there is no 'default'. Therefore, with every `nextflow run nf-core/<PIPELINE>` command you must always indicate which version with `-r`.
+This is a Nextflow error, with less commonly seen terminology. What this means is that you have multiple versions of the pipeline pulled (e.g. 2.0.0, 2.1.0, 2.1.1, dev etc.). When you have multiple versions, you must always specify which one you want to use - there is no 'default'. Therefore, with every `nextflow run nf-core/<PIPELINE>` command you must always indicate which version with `-r`.
 
 For example:
 
 ```bash
-nextflow run nf-core/eager -r 2.1.0 --input '/<path>/<to>/data/*_{R1,R2}_*.fq.gz' <...>
+nextflow run nf-core/<pipeline> -r 2.1.0 --input '/<path>/<to>/data/*_{R1,R2}_*.fq.gz' <...>
 ```
 
 Specifying the version of the run you are using is highly recommended, as it helps in full reproducibility. In the sense that if you explicitly record the whole command _with_ the version for your publication or internal reports, then anyone who wants to check your work can use the exact version you used (including all internal tools).
 
-You can see more information on the nextflow documentation [here](https://www.nextflow.io/docs/latest/sharing.html#handling-revisions).
+You can see more information on the Nextflow documentation [here](https://www.nextflow.io/docs/latest/sharing.html#handling-revisions).
 
 ## I get a exceeded job memory limit error
 
@@ -161,51 +172,42 @@ To fix this you need to change the default memory requirements for the process t
 
 For example, lets say it's the `markduplicates` process that is running out of memory (as displayed on the Nextflow running display).
 
-First we need to check to see what default memory value we have. We can do this by going to the main code of the pipeline by going to the corresponding pipeline GitHub repository and opening the `main.nf` file. You can then use your browser's find functionality for: `process markduplicates`.
+- First we need to check to see what default memory value we have. Go to the main code of the pipeline by going to the corresponding pipeline GitHub repository and open the `main.nf` file. Use your browser's find functionality for: `process markduplicates`.
+- Once found, check the line called `label` and note down the corresponding label. In this case the label could be `process_low`.
+- Go back to the main github repository, and open `conf/base.config`. Again use the browser;s find functionality to search for: `withLabel:'process_low'`.
+- Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
+- Back on your working machine, make a new text file called `custom_resources.conf`. This should be saved somewhere centrally so you can reuse it.
+    > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
+- Within this file, add the following. Note we have increased the default `4.GB` to `16.GB`.
 
-Once found, we then need to check the line called `label`. In this case the label could be `process_low`.
-
-Next we need to go back to the main github repository, and open `conf/base.config`. Again using our find functionality, we search for: `withLabel:'process_low'`.
-
-We see that the `memory` is set to `4.GB` with a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
-
-Now back on your local PC, we need to make a new file called `custom_resources.conf`. You should save it somewhere centrally so you can reuse it.
-
-> If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
-
-Within this file, you will need to add the following:
-
-```nextflow
-profiles {
-    big_data {
-      process {
-        withName: markduplicates {
-          memory = 16.GB
+    ```nextflow
+    profiles {
+        big_data {
+          process {
+            withName: markduplicates {
+              memory = 16.GB
+            }
+          }
         }
-      }
     }
-}
-```
+    ```
 
-Where we have increased the default `4.GB` to `16.GB`.
+    > Note that with this you will _not_ have the automatic retry mechanism. If you want this, re-add the `check_max()` function on the `memory` line (as in the pipeline's `conf/base.config`) file, and add to the bottom of the entire file (outside the profiles block!). This block is the one starting with `def check_max(obj, type) {`, which is at the end of the pipeline's `nextflow.config` file.
 
-> Note that with this you will _not_ have the automatic retry mechanism. If you want this, re-add the `check_max()` function on the `memory` line (as in the pipeline's `conf/base.config`) file, and add to the bottom of the entire file (outside the profiles block!). This block is the one starting with `def check_max(obj, type) {`, which is at the end of the pipeline's `nextflow.config` file.
+- Once saved, modify the original Nextflow run command:
 
-Once saved, we can then modify your original Nextflow run command:
+    ```bash
+    nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
+    ```
 
-```bash
-nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
-```
-
-Where we have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
-
-:warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
+  - We have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
+  - :warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
 
 ## Crashed pipeline with an error but Nextflow is still running
 
 If this happens, you can either wait until all other already running jobs to safely finish, or if Nextflow _still_ does not stop press `ctrl + c` on your keyboard (or equivalent) to stop the Nextflow run.
 
-> :warning: if you do this, and do not plan to fix the run make sure to delete the output folder. Otherwise you may end up a lot of large intermediate files being left! You can clean a Nextflow run of all intermediate files with `nextflow clean -f -k` or delete the `work/` directory.
+> :warning: if you do this, and do not plan to fix the run make sure to delete the `work` folder generated that is generated at the same as `results` (or specified with the Nextflow variable `-w`). Otherwise you may end up a lot of large intermediate files being left! You can clean a Nextflow run of all intermediate files with `nextflow clean -f -k` or delete the `work/` directory.
 
 ### A step of a pipeline wasn't executed
 
@@ -216,20 +218,20 @@ Possible options:
 
 ## My pipeline update doesn't seem to do anything
 
-To download a new version of a pipeline, you can use the following, replacing `<VERSION>` to the corresponding version.
-
-For example for nf-core/eager:
+To download a new version of a pipeline, you can use the following, replacing `<version>` to the corresponding version.
 
 ```bash
-nextflow pull nf-core/eager -r <VERSION>
+nextflow pull nf-core/<pipeline> -r <version>
 ```
 
 However, in very rare cases, minor fixes to a version will be pushed out without a version number bump. This can confuse Nextflow slightly, as it thinks you already have the 'broken' version from your original pipeline download.
 
-If when running the pipeline you don't see any changes in the fixed version when running it, you can try removing your nextflow EAGER cache typically stored in your home directory with (again for eager):
+> This _shouldn't_ happen with stable versions and normally only happens on `dev` branches.
+
+If when running the pipeline you don't see any changes in the fixed version when running it, you can try removing your Nextflow's nf-core pipeline cache typically stored in your home directory with:
 
 ```bash
-rm -r ~/.nextflow/assets/nf-core/eager
+rm -r ~/.nextflow/assets/nf-core/<pipeline>
 ```
 
 And re-pull the pipeline with the command above. This will install a fresh version of the version with the fixes.
@@ -244,7 +246,7 @@ Unable to acquire lock on session with ID 84333844-66e3-4846-a664-b446d070f775
 
 Normally suggest a previous Nextflow run (on the same folder) was not cleanly killed by a user (e.g. using ctrl + z to hard kill a crashed run).
 
-To fix this, you must clean the entirety of the output directory (including output files) e.g. with `rm -r <output_dir>/* <output_dir>/.*` and re-running from scratch.
+To fix this, you must clean the entirety of the run's `work/` directory e.g. with `rm -r work/` and re-running from scratch.
 
 `ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
 
