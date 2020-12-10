@@ -27,7 +27,7 @@ Or when you're using a input method like --input '/<path>/<to>/*_fq.gz', but onl
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
 2. The path must have at least one `*` wildcard character. This is even if you are only running one paired end sample.
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
-  - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files. 
+    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
 4. If you are running single-end data make sure to specify `--singleEnd`
 5. [Your data should be organised in a 'tidy' manner](#data-organization)
 
@@ -58,6 +58,7 @@ On the other hand, encapsulating the path in quotes will allow _Nextflow_ to eva
 ```bash
 nextflow run nf-core/eager --input "/path/to/sample_*/*.fq.gz"
 ```
+
 ### Data organization
 
 The pipeline can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. If running in paired end mode please make sure that your files are sensibly named so that they can be properly paired. See the previous point.
