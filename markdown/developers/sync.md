@@ -372,7 +372,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 * Clone the main nf-core pipeline repository to your local machine (not your development fork)
 
   ```bash
-  git clone git@github.com:nf-core/<PIPELINE>.git
+  git clone https://github.com/nf-core/<PIPELINE>.git # Or git@github.com:nf-core/<PIPELINE>.git if using SHH keys
   cd <pipeline>
   ```
 
@@ -414,6 +414,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   cd <path/to/forked/pipeline>
   git branch -D TEMPLATE # Delete the TEMPLATE branch in your fork if you have it
   git remote add upstream git@github.com:nf-core/<PIPELINE>.git  # You might already have this set up?
+  git fetch upstream TEMPLATE
   git checkout --track upstream/TEMPLATE
   git push --force
   ```
