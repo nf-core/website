@@ -5,12 +5,14 @@ subtitle: How to troubleshoot common mistakes and issues
 
 - [Input files not found](#input-files-not-found)
   - [Direct input](#direct-input)
-  - [Sample sheet input](#sample-sheet-input)
   - [Output for only a single sample although I specified multiple with wildcards](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
+  - [Sample sheet input](#sample-sheet-input)
   - [Data organization](#data-organization)
 - [The pipeline crashes almost immediately with an early pipeline step](#the-pipeline-crashes-almost-immediately-with-an-early-pipeline-step)
+  - [Tool not found](#tool-not-found)
   - [Error related to Docker](#error-related-to-docker)
   - [Error related to Singularity](#error-related-to-singularity)
+  - [Error related to HPC Schedulers](#error-related-to-hpc-schedulers)
 - [Cannot find input files when using Singularity](#cannot-find-input-files-when-using-singularity)
 - [Warning about sticked on revision](#warning-about-sticked-on-revision)
 - [I get a exceeded job memory limit error](#i-get-a-exceeded-job-memory-limit-error)
@@ -40,11 +42,27 @@ Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but o
 4. If you are running single-end data make sure to specify `--singleEnd`
 5. [Your data should be organised in a 'tidy' manner](#data-organization)
 
-Note that if your sample name is "messy" then you have to be very particular with your glob specification. A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` wont work give you what you want, whilst `*{R1,R2}*.gz` will.
+A few examples are as follows:
 
-### Sample sheet input
+- Running with a single, single-end FASTQ file as input (this will produce output files for this sample only)
 
-If you are using a sample sheet or TSV input method, check there is not a mistake or typo in the path in a given column. Common mistakes ar e a trailing space at the end of the path, which can cause problems.
+    ```bash
+    nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
+    ```
+
+- Running multiple single-end FASTQ files as input using a wildcard glob pattern. This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples (and will produce output files for each of the multiple input files).
+
+    ```bash
+    nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
+    ```
+
+- Running multiple paired-end FASTQ files as input using wildcard and grouping glob patterns . This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples. However, any pair of files names that are exactly the same other than `R1` and `R2`, will be grouped together. i.e. the R1 and R2 (and the rest of the string being the same) files will be processed together as related files (you will get in most cases output files for each distinct file, but with the R1 and R2 files collapsed into one).
+
+    ```bash
+    nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
+    ```
+
+Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` wont work give you what you want, whilst `*{R1,R2}*.gz` will.
 
 ### Output for only a single sample although I specified multiple with wildcards
 
@@ -70,6 +88,10 @@ On the other hand, encapsulating the path in quotes will allow _Nextflow_ to eva
 nextflow run nf-core/<pipeline> --input "/path/to/sample_*/*.fq.gz"
 ```
 
+### Sample sheet input
+
+If you are using a sample sheet or TSV input method, check there is not a mistake or typo in the path in a given column. Common mistakes are a trailing space at the end of the path, which can cause problems.
+
 ### Data organization
 
 The pipeline can't take a list of multiple input files - it takes a glob expression. If your input files are scattered in different paths then we recommend that you generate a directory with symlinked files. If running in paired end mode please make sure that your files are sensibly named so that they can be properly paired. See the previous point.
@@ -79,6 +101,16 @@ The pipeline can't take a list of multiple input files - it takes a glob express
 Sometimes a newly downloaded and set up nf-core pipeline will encounter an issue where a run almost immediately crashes (e.g. at `fastqc`, `output_documentation` etc.) saying the tool could not be found or similar.
 
 The first thing to do is always check the `.nextflow.log` to see if it reports contains specific error. Common cases are described below.
+
+:warning: Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
+
+### Tool not found
+
+The most common case is when a user has forgotten to specify a container/environment profile.
+
+If you do not specify one with the `-profile`, Nextflow by default looks for all the required tools that will be all manually installed on your machine/cluster and specified `$PATH`.
+
+It is _not_ recommended to run without a container/environment system as then your analysis will not be reproducible by others. You should pick one of: `docker`, `singularity`, `podman` and `conda` - depending on which your system already has available. See the nf-core [Installation](https://nf-co.re/usage/installation) documentation for more information.
 
 ### Error related to Docker
 
@@ -107,6 +139,10 @@ Caused by:
 ```
 
 If this is the case, please install `mksquashfs` or ask your IT department to install the package for you.
+
+### Error related to HPC Schedulers
+
+If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile.  See [nf-core/configs](https://github.com/nf-core/configs)  and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
 
 ## Cannot find input files when using Singularity
 
