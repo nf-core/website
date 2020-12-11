@@ -142,7 +142,24 @@ If this is the case, please install `mksquashfs` or ask your IT department to in
 
 ### Error related to HPC Schedulers
 
-If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile.  See [nf-core/configs](https://github.com/nf-core/configs)  and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
+If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile.  See [nf-core/configs](https://github.com/nf-core/configs) and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
+
+These types of error can look like the following:
+
+```bash
+Caused by:
+  Failed to submit process to grid scheduler for execution
+
+Command executed:
+
+  sbatch .command.run
+
+Command exit status:
+  1
+
+Command output:
+  sbatch: error: Batch job submission failed: Invalid account or account/partition combination specified
+```
 
 ## Cannot find input files when using Singularity
 
