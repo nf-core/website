@@ -372,7 +372,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 * Clone the main nf-core pipeline repository to your local machine (not your development fork)
 
   ```bash
-  git clone https://github.com/nf-core/<PIPELINE>.git # Or git@github.com:nf-core/<PIPELINE>.git if using SHH keys
+  git clone https://github.com/nf-core/<PIPELINE>.git
   cd <pipeline>
   ```
 
