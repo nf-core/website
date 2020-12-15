@@ -56,10 +56,16 @@ include('../includes/header.php');
             <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
           </div>
         </div>
-        <p class="text-center text-white m-0 pb-3">
-          nf-core is now published in <a class="text-white link-underline" href="https://www.nature.com/articles/s41587-020-0439-x" target="_blank">Nature Biotechnology</a>!
-          <a class="text-white link-underline" href="https://rdcu.be/b1GjZ" target="_blank">Read the full text here</a>.
-        </p>
+        <div class="text-center">
+          <p class="d-inline-block text-white m-0 pb-3">
+            <a class="text-white" href="https://doi.org/10.1038/s41587-020-0439-x" target="_blank">
+              <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="50px" class="float-left mr-3">
+              nf-core is published in Nature Biotechnology!
+              <br>
+              <em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
+            </a>
+           </p>
+        </div>
       </div>
     </div>
     <div class="triangle triangle-down"></div>
