@@ -63,6 +63,7 @@ include('../includes/header.php');
               nf-core is published in Nature Biotechnology!
               <br>
               <em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
+              <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ml-3">
             </a>
            </p>
         </div>
