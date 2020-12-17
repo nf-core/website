@@ -242,8 +242,16 @@ For example, lets say it's the `markduplicates` process that is running out of m
     }
     ```
 
-    > Note that with this you will _not_ have the automatic retry mechanism. If you want this, re-add the `check_max()` function on the `memory` line (as in the pipeline's `conf/base.config`) file, and add to the bottom of the entire file (outside the profiles block!). This block is the one starting with `def check_max(obj, type) {`, which is at the end of the pipeline's `nextflow.config` file.
+  - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
+    - If you want this, use the following syntax instead:
 
+      ```nextflow
+      memory = { check_max( 16.GB * task.attempt, 'memory' ) }
+      ```
+
+    - Next, copy the `check_max()` function from the pipeline's `nextflow.config` file (e.g. [here](https://github.com/nf-core/rnaseq/blob/3643a94411b65f42bce5357c5015603099556ad9/nextflow.config#L190-L221)) to the bottom of your custom config file.
+    - `16.GB * task.attempt` multiplies the memory request by the index of the retry. So if the job failed and is being tried a second time, it requests `32.GB`.
+    - The `check_max()` function prevents Nextflow requesting excessive resources above what is available on your system. This effectively sets a ceiling on the resources and prevents the pipeline from crashing if it goes too high. Unfortunately because of the order in which pipeline code and Nextflow configs are parsed, this function needs to be defined in your custom config file.
 - Once saved, modify the original Nextflow run command:
 
     ```bash
