@@ -29,7 +29,7 @@ if(file_exists($logo_cache_fn)){
 }
 
 // Load the base image
-$template_fn = "assets/img/logo/nf-core-repologo-base.png";
+$template_fn = "assets/img/logo/nf-core-repologo-white-base.png";
 list($width, $height) = getimagesize($template_fn);
 $image = imagecreatefrompng($template_fn);
 
