@@ -14,8 +14,22 @@ if(strlen($textstring) == 0){
     die();
 }
 
+// Check if we have a cached version already
+$logo_cache_fn = dirname(dirname(__FILE__))."/api_cache/logos/{$filename}";
+# Build directories if needed
+if (!is_dir(dirname($logo_cache_fn))) {
+    mkdir(dirname($logo_cache_fn), 0777, true);
+}
+// Return the cached version if it exists
+if(file_exists($logo_cache_fn)){
+    header("Content-type: image/png");
+    header('Content-Disposition: filename="'.$filename.'"');
+    echo file_get_contents($logo_cache_fn);
+    exit;
+}
+
 // Load the base image
-$template_fn = "assets/img/logo/nf-core-repologo-base.png";
+$template_fn = "assets/img/logo/nf-core-repologo-white-base.png";
 list($width, $height) = getimagesize($template_fn);
 $image = imagecreatefrompng($template_fn);
 
@@ -74,9 +88,11 @@ if(is_numeric($new_width)){
 imageAlphaBlending($image, true);
 imageSaveAlpha($image, true);
 
-// Make and destroy image
+# Save image to cache
+imagepng($image, $logo_cache_fn);
+imagedestroy($image);
+
+// Send the image to the browser
 header("Content-type: image/png");
 header('Content-Disposition: filename="'.$filename.'"');
-imagepng($image);
-imagedestroy($image);
-imagedestroy($image);
+echo file_get_contents($logo_cache_fn);

@@ -44,6 +44,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <meta name="description" content="<?php echo $page_meta; ?>">
     <meta name="author" content="Phil Ewels">
     <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
+    <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/code_highlighting/github.css" rel="stylesheet" >
     <link href="/assets/css/Chart.min.css" rel="stylesheet">
