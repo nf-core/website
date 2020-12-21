@@ -242,12 +242,12 @@ Common exit codes and and **_potential_** solutions are as follows:
 
 | Exit Code | Possible Cause | Solution                                                                                                                     |
 |-----------|----------------|------------------------------------------------------------------------------------------------------------------------------|
-| `104`     | out of memory  | [increase memory of process or number of retries in profile](https://nf-co.re/usage/configuration#tuning-workflow-resources) |
-| `134`     | out of memory  | [increase memory of process or number of retries in profile](https://nf-co.re/usage/configuration#tuning-workflow-resources) |
-| `137`     | out of memory  | [increase memory of process or number of retries in profile](https://nf-co.re/usage/configuration#tuning-workflow-resources) |
-| `139`     | out of memory  | [increase memory of process or number of retries in profile](https://nf-co.re/usage/configuration#tuning-workflow-resources) |
-| `143`     | out of memory  | [increase memory of process or number of retries in profile](https://nf-co.re/usage/configuration#tuning-workflow-resources) |
-| `247`     | out of memory  | [increase memory of process or number of retries in profile](https://nf-co.re/usage/configuration#tuning-workflow-resources) |
+| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
 
 If in doubt, Google is your friend! Many exit codes are roughly similar across many tools; even if search results don't mention your tool exactly, you can try a solution similar to the one proposed for the other tool.
 
