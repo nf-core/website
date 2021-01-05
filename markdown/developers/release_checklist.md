@@ -22,7 +22,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
   * Please make sure to use strictly numeric release numbers
   * If in doubt, use [Semantic Versioning](https://semver.org/) as a guide
 * Run `nf-core lint --release <path_to_cloned_pipeline>` and check that there are no test failures for release.
-* Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. ['Silver Dolphin'](https://github.com/nf-core/tools/releases/tag/1.12.1))
+* Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
 * [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 * Once merged, open another PR from the nf-core `dev` branch to the nf-core `master`
   * Make sure that all of the CI tests are passing - this is a special case PR and the tests are different
