@@ -852,8 +852,8 @@ $(function () {
         // Validate min-max values
         if (
             ["integer", "number"].includes(param["type"]) &&
-            settings.minimum !== "" &&
-            settings.maximum !== ""
+            (settings.minimum !== "" ||
+            settings.maximum !== "")
         ) {
             if (isNaN(settings.minimum)) {
                 alert("Error: Minimum value must be numeric");
@@ -865,7 +865,7 @@ $(function () {
                 e.preventDefault();
                 e.stopPropagation();
             }
-            if (!isNaN(settings.minimum) && !isNaN(settings.maximum)) {
+            if (settings.minimum !== "" && settings.maximum !== "") {
                 if (settings.maximum <= settings.minimum) {
                 alert("Error: Maximum value must be more than minimum");
                 e.preventDefault();
