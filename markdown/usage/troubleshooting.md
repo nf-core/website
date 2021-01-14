@@ -15,6 +15,7 @@ subtitle: How to troubleshoot common mistakes and issues
   - [Error related to HPC Schedulers](#error-related-to-hpc-schedulers)
 - [Cannot find input files when using Singularity](#cannot-find-input-files-when-using-singularity)
 - [Warning about sticked on revision](#warning-about-sticked-on-revision)
+- [My pipeline crashes part way through a run at a certain step with a non 0 exit code](#my-pipeline-crashes-part-way-through-a-run-at-a-certain-step-with-a-non-0-exit-code)
 - [I get a exceeded job memory limit error](#i-get-a-exceeded-job-memory-limit-error)
 - [Crashed pipeline with an error but Nextflow is still running](#crashed-pipeline-with-an-error-but-nextflow-is-still-running)
   - [A step of a pipeline wasn't executed](#a-step-of-a-pipeline-wasnt-executed)
@@ -213,6 +214,44 @@ nextflow run nf-core/<pipeline> -r 2.1.0 --input '/<path>/<to>/data/*_{R1,R2}_*.
 Specifying the version of the run you are using is highly recommended, as it helps in full reproducibility. In the sense that if you explicitly record the whole command _with_ the version for your publication or internal reports, then anyone who wants to check your work can use the exact version you used (including all internal tools).
 
 You can see more information on the Nextflow documentation [here](https://www.nextflow.io/docs/latest/sharing.html#handling-revisions).
+
+## My pipeline crashes part way through a run at a certain step with a non 0 exit code
+
+Sometimes part way through a run, a particular tool or step of the pipeline will fail. While Nextflow and nf-core pipelines try to solve some of these issues for you, this is not always possible. If the particular eventually tool fails, Nextflow will report the process that failed with a non-0 error code, and print the command that failed.
+
+An example is as follows:
+
+```text
+Error executing process > 'markduplicates (DA117)'
+
+Caused by:
+  Process `markduplicates (DA117)` terminated with an error exit status (137)
+
+Command executed:
+
+  picard -Xmx16384M -Xms16384M MarkDuplicates INPUT=DA117.bam OUTPUT=DA117_rmdup.bam REMOVE_DUPLICATES=TRUE AS=TRUE METRICS_FILE="DA117_rmdup.metrics" VALIDATION_STRINGENCY=SILENT
+  samtools index DA117_rmdup.bam
+
+Command exit status:
+  137
+```
+
+> :warning: Each exit code can mean different things to different tools as well as in different environments. Therefore it is not always easy for developers to predict the exact issue and solution!
+
+Common exit codes and and **_potential_** solutions are as follows:
+
+| Exit Code | Possible Cause | Solution                                                                                                                     |
+|-----------|----------------|------------------------------------------------------------------------------------------------------------------------------|
+| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+
+If in doubt, Google is your friend! Many exit codes are roughly similar across many tools; even if search results don't mention your tool exactly, you can try a solution similar to the one proposed for the other tool.
+
+If you are still unable to resolve the issue, please make a GitHub issue on the corresponding pipeline repository.
 
 ## I get a exceeded job memory limit error
 
