@@ -6,6 +6,14 @@ if(!isset($_GET['f'])){
     $textstring = strtolower($textstring);
     $textstring = preg_replace("/[^a-z]/", '', $textstring);
 }
+
+$new_width = false;
+if(isset($_GET['w'])){
+    $new_width = $_GET['w'];
+} else if(isset($_GET['s'])){
+    $new_width = 400;
+}
+
 $filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo.png';
 
 if(strlen($textstring) == 0){
@@ -15,7 +23,11 @@ if(strlen($textstring) == 0){
 }
 
 // Check if we have a cached version already
-$logo_cache_fn = dirname(dirname(__FILE__))."/api_cache/logos/{$filename}";
+$cache_filename = $filename;
+if($new_width && is_numeric($new_width)){
+    $cache_filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo_w'.$new_width.'.png';
+}
+$logo_cache_fn = dirname(dirname(__FILE__))."/api_cache/logos/{$cache_filename}";
 # Build directories if needed
 if (!is_dir(dirname($logo_cache_fn))) {
     mkdir(dirname($logo_cache_fn), 0777, true);
@@ -58,12 +70,6 @@ $width = max($text_width, $min_width);
 $image = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => $width, 'height' => $height]);
 
 // If a width is given, scale the image
-$new_width = false;
-if(isset($_GET['w'])){
-    $new_width = $_GET['w'];
-} else if(isset($_GET['s'])){
-    $new_width = 400;
-}
 if(is_numeric($new_width)){
     #$image = imagescale($image, 400, -1, IMG_NEAREST_NEIGHBOUR);
     // Get new dimensions
