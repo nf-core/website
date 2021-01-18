@@ -158,20 +158,9 @@ if(isset($subtitle) && strlen($subtitle) > 0){
           </li>
         </ul>
         <hr class="d-md-none">
-        <ul class="navbar-nav d-md-none">
-          <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://nf-co.re/join/slack">Chat on Slack</a>
-          </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core">Join the email list</a>
-          </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://twitter.com/nf_core">Follow on twitter</a>
-          </li>
-          <li class="nav-item p-1 mb-3">
-            <a class="nav-link" target="_blank" href="https://github.com/nf-core">See nf-core on GitHub</a>
-          </li>
-        </ul>
+        <a class="d-md-none btn btn-block btn-success mb-3" href="/join">
+          Join nf-core
+        </a>
         <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
           Join nf-core
         </a>
