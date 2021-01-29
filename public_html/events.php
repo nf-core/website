@@ -98,7 +98,13 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
           }
         } else if(isset($event['location_url'])){
           $header_html .=  '<dt>Web address:</dt><dd>';
-          $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_url'].'</a>'.'<br>';
+          if(is_array($event['location_url'])){
+            foreach($event['location_url'] as $url){
+              $header_html .=  '<a class="text-white underline" href="'.$url.'">'.$url.'</a>'.'<br>';
+            }
+          } else {
+            $header_html .=  '<a class="text-white underline" href="'.$event['location_url'].'">'.$event['location_url'].'</a>'.'<br>';
+          }
         }
         if(isset($event['address'])){
           $header_html .=  $event['address'].'<br>';
