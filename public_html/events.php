@@ -70,15 +70,15 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
     $header_html .= '<dl>';
     // Start time
     if($event['start_time']){
-      $header_html .= '<dt>Event starts:</dt><dd>'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+      $header_html .= '<dt>Event starts:</dt><dd data-timestamp="'.$event['start_ts'].'">'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
     } else {
-      $header_html .= '<dt>Event starts:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
+      $header_html .= '<dt>Event starts:</dt><dd data-timestamp="'.$event['start_ts'].'">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']).'</dd>';
     }
     // End time
     if($event['end_ts'] > $event['start_ts'] && $event['end_time']){
-      $header_html .= '<dt>Event ends:</dt><dd>'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+      $header_html .= '<dt>Event ends:</dt><dd data-timestamp="'.$event['end_ts'].'">'.date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
     } else if($event['end_ts'] > $event['start_ts']){
-      $header_html .= '<dt>Event ends:</dt><dd>'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
+      $header_html .= '<dt>Event ends:</dt><dd data-timestamp="'.$event['end_ts'].'">'.date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']).'</dd>';
     }
     $header_html .= '</dl>';
     $header_html .= '</div><div class="col-md-6">';
@@ -120,7 +120,22 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/'.$_GET['event'].'.md';
 
   // header.php runs parse_md() again to produce main page content
+  $import_moment = true;
   include('../includes/header.php');
+
+  // Javascript for moment time zone support
+  if($event['start_time']){
+    echo '
+    <script type="text/javascript">
+    $("dd[data-timestamp]").each(function(){
+      var timestamp = $(this).data("timestamp");
+      var local_time = moment.tz(timestamp, "X", moment.tz.guess());
+      $(this).text(local_time.format("HH:mm z, LL"));
+    });
+    </script>
+    ';
+  }
+
   include('../includes/footer.php');
   exit;
 }
