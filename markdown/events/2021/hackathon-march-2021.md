@@ -19,7 +19,7 @@ Join us at the first nf-core hackathon for 2021!
 
 ## Registration
 
-**Please register here: <https://forms.gle/N5jZEjFSsH4tUyZv9>**
+**Please register here: <https://scilifelab.typeform.com/to/J2z5zEbx>**
 
 This isn't essential, so don't worry if you're late, but it helps us plan the event.
 
