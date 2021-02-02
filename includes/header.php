@@ -148,11 +148,13 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/developers/design_guidelines">Design Guidelines</a>
             </div>
           </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/events">Events</a>
+          </li>
           <li class="nav-item p-1 dropdown">
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
-              <a class="dropdown-item" href="/events">Events</a>
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
