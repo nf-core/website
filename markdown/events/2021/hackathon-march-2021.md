@@ -4,7 +4,7 @@ subtitle: A virtual online hackathon to build nf-core together.
 type: hackathon
 start_date: "2021-03-22"
 start_time: "09:00 CET"
-start_date: "2021-03-22"
+end_date: "2021-03-24"
 end_time: "17:00 CET"
 location_name: Zoom, Slack & YouTube.
 location_url: '#how-it-works'
@@ -15,7 +15,7 @@ location_url: '#how-it-works'
 Join us at the first nf-core hackathon for 2021!
 
 > <i class="fab fa-youtube mr-2"></i>
-> All presentations for both the training and hackathon will be live-streamed to YouTube.
+> All presentations will be live-streamed to YouTube.
 
 ## Registration
 
