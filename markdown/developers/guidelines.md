@@ -116,6 +116,5 @@ Some examples and on how you could do that to make sure they feel valued (list n
 * Send them a message via Slack and let them know that you use their work & had to change something to fit your own purpose.
 * If you use portions of pipeline code, even if its just tiny pieces:
   * Link to the original repository and/or authors
-  * Leave existing credits and acknowledgement sections intact - usually there are many more than just a single author involved, which deserve credits too!
+  * Leave existing credits and acknowledgement sections intact - usually there are many more than just a single author involved, whom deserve credits too!
 * If you find bugs / issues, report upstream in the main project
-
