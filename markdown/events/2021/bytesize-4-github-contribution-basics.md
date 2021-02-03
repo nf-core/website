@@ -1,6 +1,6 @@
 ---
 title: "Bytesize 4: GitHub contribution basics"
-subtitle: Alexander Peltzer - QBiC Tübingen, Germany
+subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
 start_date: "2021-02-23"
 start_time: "13:00 CET"
