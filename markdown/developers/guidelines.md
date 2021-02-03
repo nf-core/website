@@ -105,7 +105,7 @@ However, in general, pipelines must:
 
 ## Credits & Acknowledgements
 
-Most pipelines within the nf-core community have adopted a permissive MIT licence that permits reusing any pipeline also without an academic background. However, we want to emphasize that using prior work in nf-core pipelines from other pipelines / projects without acknowledging the original author(s) is considered a bad practice by the community.
+Most pipelines within the nf-core community have adopted a permissive MIT licence that permits reusing any pipeline also without an academic background. However, we want to emphasize that using or adopting/adapting **previous work** in nf-core pipelines from other pipelines / projects without acknowledging the original author(s) is considered a bad practice by the community.
 
 We won't change the way how nf-core pipelines are built (open, free for all, permissive licence (MIT), ...), but wanted to make sure that authors of original code (whether pipeline specific or tool specific / script specific) receive the credit and acknowledgement they deserve for their work. Always try to remember, that a large portion of the work that is available to anyone via nf-core is in many cases freelance work of enthusiastic developers around the globe. Please act accordingly - you don't "pay" for the work they did, but:
 
