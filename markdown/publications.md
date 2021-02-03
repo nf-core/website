@@ -77,6 +77,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_BiorXiV_, 2020.06.11.145615 (2020)](https://www.biorxiv.org/content/10.1101/2020.06.11.145615v1);
 > doi: [10.1101/2020.06.11.145615](https://doi.org/10.1101/2020.06.11.145615)
 
+### [nf-core/imcyto](https://nf-co.re/imcyto)
+
+<!-- pub-stats 10.1101/2021.02.02.429358 -->
+> **Characterisation of tumour immune microenvironment remodelling following oncogene inhibition in preclinical studies using an optimised imaging mass cytometry workflow.**
+>
+> Febe van Maldegem, Karishma Valand, Megan Cole, Harshil Patel, Mihaela Angelova, Sareena Rana, Emma Colliver, Katey Enfield, Nourdine Bah, Victoria Tsang, Edurne Mugarza, Christopher Moore, Philip Hobson, Dina Levi, Miriam Molina, Charles Swanton,  View ORCID ProfileJulian Downward.
+>
+> [_BiorXiV_, 10.1101/2021.02.02.429358 (2021)](https://www.biorxiv.org/content/10.1101/2021.02.02.429358v1);
+> doi: [10.1101/2021.02.02.429358](https://doi.org/10.1101/2021.02.02.429358)
+
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
 <!-- pub-stats 10.1016/j.jgg.2018.06.005 -->
