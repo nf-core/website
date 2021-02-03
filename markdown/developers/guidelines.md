@@ -105,17 +105,13 @@ However, in general, pipelines must:
 
 ## Credits & Acknowledgements
 
-Most pipelines within the nf-core community have adopted a permissive MIT licence that permits reusing any pipeline also without an academic background. However, we want to emphasize that using or adopting/adapting **previous work** in nf-core pipelines from other pipelines / projects without acknowledging the original author(s) is considered a bad practice by the community.
+Where previous work from other pipelines / projects is used within a pipeline, the original author(s) must be properly acknowledged. Some examples and on how you could do that to make sure they feel valued:
 
-We won't change the way how nf-core pipelines are built (open, free for all, permissive licence (MIT), ...), but want to make sure that authors of original code (whether pipeline specific or tool specific / script specific) receive the credit and acknowledgement they deserve for their work. Always try to remember, that a large portion of the work that is available to anyone via nf-core is in many cases freelance work of enthusiastic developers around the globe. Please act accordingly - you don't "pay" for the work they did, but:
-
-**The least you can do when using their work (or amending it to your own needs) is to credit them and their contributors properly.**
-
-Some examples and on how you could do that to make sure they feel valued (list not necessarily complete):
-
-* Send them a message via Slack and let them know that you use their work & had to change something to fit your own purpose.
-* Check the licence of their code and make sure you obey the rules that this licence imposes (e.g. CC-BY means you have to attribute the original creator)
+* Send them a message via Slack and let them know that you use their work & had to change something to fit your own purpose. If in doubt, check with them to see how they would like to be acknowledged.
+* Check the licence of their code and make sure you obey the rules that this licence imposes (e.g. `CC-BY` means you have to attribute the original creator).
 * If you use portions of pipeline code, even if its just tiny pieces:
-  * Link to the original repository and/or authors
-  * Leave existing credits and acknowledgement sections intact - usually there are many more than just a single author involved, whom deserve credits too!
-* If you find bugs / issues, report upstream in the main project
+  * Link to the original repository and/or authors.
+  * Leave existing credits and acknowledgement sections intact - there may be more than just a single author involved.
+* If you find bugs / issues, report and fix them upstream in the main project.
+
+If in doubt about what to do, ask the nf-core community about it on Slack.
