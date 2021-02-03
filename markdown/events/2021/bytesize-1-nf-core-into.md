@@ -1,5 +1,5 @@
 ---
-title: "Bytesize: Introduction to nf-core"
+title: "Bytesize 1: Introduction to nf-core"
 subtitle: "nf-core/bytesize: Bite-sized talks, (giga)byte-sized science!"
 type: talk
 start_date: "2021-02-02"
