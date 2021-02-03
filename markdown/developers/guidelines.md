@@ -114,6 +114,7 @@ We won't change the way how nf-core pipelines are built (open, free for all, per
 Some examples and on how you could do that to make sure they feel valued (list not necessarily complete):
 
 * Send them a message via Slack and let them know that you use their work & had to change something to fit your own purpose.
+* Check the licence of their code and make sure you obey the rules that this licence imposes (e.g. CC-BY means you have to attribute the original creator)
 * If you use portions of pipeline code, even if its just tiny pieces:
   * Link to the original repository and/or authors
   * Leave existing credits and acknowledgement sections intact - usually there are many more than just a single author involved, whom deserve credits too!
