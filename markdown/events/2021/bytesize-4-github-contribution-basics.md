@@ -1,6 +1,6 @@
 ---
 title: "Bytesize 4: GitHub contribution basics"
-subtitle: Phil Ewels - SciLifeLab, Sweden
+subtitle: Alexander Peltzer - QBiC Tübingen, Germany
 type: talk
 start_date: "2021-02-23"
 start_time: "13:00 CET"
@@ -20,7 +20,7 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 4: GitHub contribution basics
 
-This week, Phil Ewels ([@ewels](http://github.com/ewels/))  will present: _**GitHub contribution basics.**_
+This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**GitHub contribution basics.**_
 This will cover:
 
 * GitHub and `git` - accounts and organisations
