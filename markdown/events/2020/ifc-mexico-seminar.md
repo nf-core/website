@@ -30,7 +30,9 @@ Pipelines are well tested, well documented and are ready for anyone to use.
 The meeting will be on Zoom (<https://zoom.us/j/98115333040?pwd=bHhuOFZhSksxVndWcTNMY1VUaXlTdz09>)
 and also be available on YouTube (<https://www.youtube.com/channel/UCexVPLCSwS2poahjxuewZNg>).
 
-![Poster](/assets/markdown_assets/events/2020/ifc-mexico-seminar//SInstitucional_Phil_Ewels.jpg).
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/z9oDnOCUcQs?start=38" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ### Speaker bio
 
