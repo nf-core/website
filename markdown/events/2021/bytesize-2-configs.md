@@ -33,3 +33,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 * Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/cXBYusdjrc0>
+
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/cXBYusdjrc0?start=93" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
