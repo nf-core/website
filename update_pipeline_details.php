@@ -24,19 +24,33 @@ ini_set("allow_url_fopen", 1);
 
 // Get the twitter auth secrets
 $config = parse_ini_file("config.ini");
-$gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
 
-// HTTP header to use on API GET requests
-$gh_api_opts = stream_context_create([
-    'http' => [
-        'method' => 'GET',
-        'header' => [
-            'User-Agent: PHP',
-            'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
-            "Authorization: Basic $gh_auth"
+function get_gh_api($gh_api_url){
+    global $config;
+    $gh_auth = base64_encode($config['github_username'].':'.$config['github_access_token']);
+
+    // HTTP header to use on API GET requests
+    $gh_api_opts = stream_context_create([
+        'http' => [
+            'method' => 'GET',
+            'header' => [
+                'User-Agent: PHP',
+                'Accept:application/vnd.github.mercy-preview+json', // Needed to get topics (keywords) for now
+                "Authorization: Basic $gh_auth"
+            ]
         ]
-    ]
-]);
+    ]);
+
+    // Get API response
+    $gh_api_raw = file_get_contents($gh_api_url, false, $gh_api_opts);
+    if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
+        die("\n-------- START ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch $gh_api_url \n");
+        var_dump($http_response_header);
+        echo "\n$gh_api_raw\n";
+        die("\n-------- END ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch $gh_api_url \n");
+    }
+    return json_decode($gh_api_raw);
+}
 
 // Final filenames to write JSON to
 $results_fn = dirname(__FILE__).'/public_html/pipelines.json';
@@ -69,13 +83,7 @@ $results = array(
 );
 
 // Fetch all repositories at nf-core
-$gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
-$gh_repos = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
-if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-    var_dump($http_response_header);
-    echo file_get_contents($gh_api_url, false, $gh_api_opts);
-    die("\n-------- ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch nf-core repositories! $gh_api_url \n");
-}
+$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos?per_page=100');
 
 // Save data from non-ignored repositories
 $ignored_repos = parse_ini_file("ignored_repos.ini")['repos'];
@@ -118,13 +126,7 @@ usort($results['remote_workflows'], 'sort_name');
 // Get additional release data for each repo
 foreach($results['remote_workflows'] as $idx => $repo){
     // Fetch release information for this repo
-    $gh_releases_url = "https://api.github.com/repos/{$repo['full_name']}/releases";
-    $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $gh_api_opts));
-    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-        var_dump($http_response_header);
-        echo file_get_contents($gh_releases_url, false, $gh_api_opts);
-        die("\n-------- ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch nf-core release info! $gh_releases_url \n");
-    }
+    $gh_releases = get_gh_api("https://api.github.com/repos/{$repo['full_name']}/releases");
 
     // Save releases to results
     $results['remote_workflows'][$idx]['releases'] = [];
@@ -154,13 +156,7 @@ foreach($results['remote_workflows'] as $idx => $repo){
         usort($results['remote_workflows'][$idx]['releases'], 'sort_datestamp');
 
         // Get commit hash information for each release
-        $gh_tags_url = "https://api.github.com/repos/{$repo['full_name']}/tags";
-        $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $gh_api_opts));
-        if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
-            var_dump($http_response_header);
-            echo file_get_contents($gh_tags_url, false, $gh_api_opts);
-            die("\n-------- ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch nf-core tags info! $gh_tags_url \n\n");
-        }
+        $gh_tags = get_gh_api("https://api.github.com/repos/{$repo['full_name']}/tags");
         foreach($gh_tags as $tag){
             foreach($results['remote_workflows'][$idx]['releases'] as $relidx => $rel){
                 if($tag->name == $rel['tag_name']){
