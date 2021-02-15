@@ -13,7 +13,7 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_pipeline_details.php
 
-echo "Updating pipeline details";
+echo "\n\nUpdating pipeline details - ".date("Y-m-d h:i:s")."\n";
 
 // Load the twitter PHP library
 require "includes/libraries/twitteroauth/autoload.php";
@@ -73,7 +73,8 @@ $gh_api_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
 if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
     var_dump($http_response_header);
-    die("Could not fetch nf-core repositories! $gh_api_url");
+    echo file_get_contents($gh_api_url, false, $gh_api_opts);
+    die("\n-------- ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch nf-core repositories! $gh_api_url \n");
 }
 
 // Save data from non-ignored repositories
@@ -121,7 +122,8 @@ foreach($results['remote_workflows'] as $idx => $repo){
     $gh_releases = json_decode(file_get_contents($gh_releases_url, false, $gh_api_opts));
     if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
         var_dump($http_response_header);
-        die("Could not fetch nf-core release info! $gh_releases_url");
+        echo file_get_contents($gh_releases_url, false, $gh_api_opts);
+        die("\n-------- ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch nf-core release info! $gh_releases_url \n");
     }
 
     // Save releases to results
@@ -156,7 +158,8 @@ foreach($results['remote_workflows'] as $idx => $repo){
         $gh_tags = json_decode(file_get_contents($gh_tags_url, false, $gh_api_opts));
         if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
             var_dump($http_response_header);
-            die("Could not fetch nf-core tags info! $gh_tags_url");
+            echo file_get_contents($gh_tags_url, false, $gh_api_opts);
+            die("\n-------- ERROR ".date("Y-m-d h:i:s")." --------\nCould not fetch nf-core tags info! $gh_tags_url \n\n");
         }
         foreach($gh_tags as $tag){
             foreach($results['remote_workflows'][$idx]['releases'] as $relidx => $rel){
