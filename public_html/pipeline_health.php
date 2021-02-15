@@ -971,7 +971,7 @@ $(function(){
       e.preventDefault();
     } else {
       if($('.repos-select').val() == 'all'){
-        if(!confirm('Seriously - ALL nf-core repost. Are you super sure?')){
+        if(!confirm('Seriously - ALL nf-core repos. Are you super sure?')){
           e.preventDefault();
         } else {
           $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
