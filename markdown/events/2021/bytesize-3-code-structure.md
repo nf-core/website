@@ -8,7 +8,7 @@ end_date: "2021-02-16"
 end_time: "13:30 CET"
 location_url:
     - https://zoom.us/j/95310380847
-    - https://youtu.be/zZkG8EojZKc
+    - https://youtu.be/FFTNVbdD5pQ
 ---
 
 # nf-core/bytesize
