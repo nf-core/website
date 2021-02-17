@@ -797,7 +797,7 @@ $(function () {
         if(param['type'] == 'string'){
             $('.settings_pattern_group').show();
         }
-        if(param['type'] == 'number'){
+        if(['integer', 'number'].includes(param['type'])){
             $('.settings_minmax_group').show();
         }
 
