@@ -196,7 +196,7 @@ img.emoji{
 .btn.arrow-hover span {
   display: inline-block;
   position: relative;
-  transition: 0.3s all ease;
+  transition: 0.15s all ease-in-out;
 }
 .btn.arrow-hover span:after {
   content: '\00bb';
@@ -204,7 +204,7 @@ img.emoji{
   opacity: 0;
   top: 0;
   right: -20px;
-  transition: 0.3s all ease;
+  transition: 0.15s all ease-in-out;
   font-size: 2rem;
   line-height: 1.5rem;
 }
@@ -215,6 +215,16 @@ img.emoji{
 .btn.arrow-hover:hover span:after {
   opacity: 1;
   right: -3px;
+}
+.btn.btn-sm.arrow-hover:hover span {
+  padding-right: 18px;
+}
+.btn.btn-sm.arrow-hover span:after {
+  font-size: 1.5rem;
+  line-height: 1.1rem;
+}
+.btn.btn-outline-success.arrow-hover span:after {
+  color: #ffffff;
 }
 
 .btn.disabled .disabled btn:disabled {
