@@ -76,48 +76,6 @@ include('../includes/header.php');
       <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
     </div>
 
-    <div class="bg-light py-5 mb-5">
-      <div id="developers" class="container homepage-feature-boxes">
-        <h3 class="mb-4 text-center">Not just another registry</h3>
-        <div class="row">
-          <div class="col-lg-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Develop with the community</h5>
-                <i class="fad fa-people-carry fa-5x float-right text-secondary ml-3"></i>
-                <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
-                to find collaborators and check that your pipeline is suitable for nf-core.</p>
-                <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Start from the template</h5>
-                <i class="fas fa-magic fa-5x float-right text-secondary ml-3"></i>
-                <p class="card-text">All pipelines must be based on our template
-                and have a repo created using <code>nf-core create</code>. An automated sync
-                keeps pipelines up to date.</p>
-                <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Collaborate, don't duplicate</h5>
-                <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
-                <p class="card-text">We only allow one pipeline per data type / analysis type.
-                If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
-                <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div id="features" class="container homepage-feature-boxes pb-5">
       <h3 class="mb-4 text-center">Fully featured pipelines</h3>
       <div class="row">
@@ -157,7 +115,7 @@ include('../includes/header.php');
               <h5 class="card-title">Docker</h5>
               <img class="float-right ml-3" height="100px" src="assets/img/docker.svg" />
               <p class="card-text">Software dependencies are handled with docker containers
-              which Nextflow can automatically download, no need for software installations.</p>
+              which Nextflow downloads for you, so no need for any software installations.</p>
             </div>
           </div>
         </div>
@@ -178,6 +136,49 @@ include('../includes/header.php');
               <img class="float-right ml-3" height="100px" src="assets/img/bioconda.svg" />
               <p class="card-text">Where possible, pipelines come with built-in bioconda support,
               so if you can't use software containers the dependencies can still be handled automatically.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="bg-light py-5">
+      <div id="developers" class="container homepage-feature-boxes">
+        <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
+        <div class="row">
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Develop <u>with</u> the community</h5>
+                <i class="fad fa-people-carry fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
+                to find collaborators and check that your pipeline is suitable for nf-core.</p>
+                <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Start from the template</h5>
+                <i class="fas fa-magic fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">All pipelines must be based on our template
+                and have a repo created using <code>nf-core create</code>. An automated sync
+                keeps pipelines up to date.</p>
+                <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Collaborate, don't duplicate</h5>
+                <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">We only allow one pipeline per data type / analysis type.
+                If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
+                <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
+              </div>
             </div>
           </div>
         </div>
