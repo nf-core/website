@@ -20,11 +20,7 @@ Therefore JOBIM has a unique place in the scientific landscape.
 
 Maxime Garcia will be giving a 20-minute talk about the nf-core community.
 
-The talk will be available for anyone to watch after the conference.
-You can see the slides below.
-
-<iframe src="https://maxulysse.github.io/jobim2020" width="700" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-<div style="margin-bottom:5px"> <strong> <a href="https://maxulysse.github.io/jobim2020" title="nf-core, a community effort for collaborative, peer-reviewed analysis pipelines" target="_blank">nf-core, a community effort for collaborative, peer-reviewed analysis pipelines</a> </strong> by <strong><a href="https://maxulysse.github.io" target="_blank">Maxime Garcia</a></strong> </div>
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/afNTk2jf-ww" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 
 ### Abstract
 
