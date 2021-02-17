@@ -76,9 +76,52 @@ include('../includes/header.php');
       <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
     </div>
 
-    <div id="features" class="container homepage-feature-boxes">
+    <div class="bg-light py-5 mb-5">
+      <div id="developers" class="container homepage-feature-boxes">
+        <h3 class="mb-4 text-center">Not just another registry</h3>
+        <div class="row">
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Develop with the community</h5>
+                <i class="fad fa-people-carry fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
+                to find collaborators and check that your pipeline is suitable for nf-core.</p>
+                <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Start from the template</h5>
+                <i class="fas fa-magic fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">All pipelines must be based on our template
+                and have a repo created using <code>nf-core create</code>. An automated sync
+                keeps pipelines up to date.</p>
+                <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Collaborate, don't duplicate</h5>
+                <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">We only allow one pipeline per data type / analysis type.
+                If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
+                <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>View the guidelines</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="features" class="container homepage-feature-boxes pb-5">
+      <h3 class="mb-4 text-center">Fully featured pipelines</h3>
       <div class="row">
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Documentation</h5>
@@ -88,7 +131,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">CI Testing</h5>
@@ -98,7 +141,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Stable Releases</h5>
@@ -108,7 +151,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Docker</h5>
@@ -118,7 +161,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Singularity</h5>
@@ -128,7 +171,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Bioconda</h5>
