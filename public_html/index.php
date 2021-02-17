@@ -110,7 +110,7 @@ include('../includes/header.php');
                 <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
                 <p class="card-text">We only allow one pipeline per data type / analysis type.
                 If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
-                <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>View the guidelines</span></a>
+                <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
               </div>
             </div>
           </div>
@@ -156,8 +156,8 @@ include('../includes/header.php');
             <div class="card-body">
               <h5 class="card-title">Docker</h5>
               <img class="float-right ml-3" height="100px" src="assets/img/docker.svg" />
-              <p class="card-text">Software dependencies are always available in a bundled docker container,
-              which Nextflow can automatically download from Docker Hub.</p>
+              <p class="card-text">Software dependencies are handled with docker containers
+              which Nextflow can automatically download, no need for software installations.</p>
             </div>
           </div>
         </div>
@@ -176,8 +176,8 @@ include('../includes/header.php');
             <div class="card-body">
               <h5 class="card-title">Bioconda</h5>
               <img class="float-right ml-3" height="100px" src="assets/img/bioconda.svg" />
-              <p class="card-text">Where possible, pipelines come with a bioconda environment file,
-              allowing you to set up a new environment for the pipeline with a single command.</p>
+              <p class="card-text">Where possible, pipelines come with built-in bioconda support,
+              so if you can't use software containers the dependencies can still be handled automatically.</p>
             </div>
           </div>
         </div>
