@@ -17,6 +17,7 @@ subtitle: How to troubleshoot common mistakes and issues
 - [Warning about sticked on revision](#warning-about-sticked-on-revision)
 - [My pipeline crashes part way through a run at a certain step with a non 0 exit code](#my-pipeline-crashes-part-way-through-a-run-at-a-certain-step-with-a-non-0-exit-code)
 - [I get a exceeded job memory limit error](#i-get-a-exceeded-job-memory-limit-error)
+- [Running into weird or invalid memory values](#running-into-weird-or-invalid-memory-values)
 - [Crashed pipeline with an error but Nextflow is still running](#crashed-pipeline-with-an-error-but-nextflow-is-still-running)
   - [A step of a pipeline wasn't executed](#a-step-of-a-pipeline-wasnt-executed)
 - [My pipeline update doesn't seem to do anything](#my-pipeline-update-doesnt-seem-to-do-anything)
