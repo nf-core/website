@@ -199,7 +199,7 @@ include('../includes/header.php');
               <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"> Introduction to nf-core <em>(1:01)</em></a></li>
               <li><a href="https://youtu.be/cXBYusdjrc0" data-src="https://www.youtube.com/embed/cXBYusdjrc0"> Bytesize: How nf-core configs work <em>(15:00)</em></a></li>
               <li><a href="https://youtu.be/FFTNVbdD5pQ" data-src="https://www.youtube.com/embed/FFTNVbdD5pQ"> Bytesize: Pipeline code walkthrough <em>(20:00)</em></a></li>
-              <li><a href="https://youtu.be/OvtCc855Vek" data-src="https://www.youtube.com/embed/OvtCc855Vek"> Tutorial: running pipelines <em>(17:00)</em></a></li>
+              <li><a href="https://youtu.be/OvtCc855Vek" data-src="https://www.youtube.com/embed/OvtCc855Vek"> Tutorial: Running pipelines <em>(17:00)</em></a></li>
               <li><a href="https://youtu.be/-GcuxoIpfOc" data-src="https://www.youtube.com/embed/-GcuxoIpfOc"> BovReg: A longer introduction to nf-core <em>(45:00)</em></a></li>
               <li><a href="https://youtu.be/hCGuF9bA9ho" data-src="https://www.youtube.com/embed/hCGuF9bA9ho"> BovReg: nf-core pipelines <em>(60:00)</em></a></li>
               <li><a href="https://youtu.be/lUJ1L-qDeXM" data-src="https://www.youtube.com/embed/lUJ1L-qDeXM"> BovReg: Developing with nf-core <em>(50:00)</em></a></li>
