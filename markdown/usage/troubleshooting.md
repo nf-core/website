@@ -300,6 +300,12 @@ For example, lets say it's the `markduplicates` process that is running out of m
   - We have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
   - :warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
 
+## Running into weird or invalid memory values
+
+For example, your `MarkDuplicates` jobs are being launched with `-Xms0g -Xmx-1g` as the Java memory settings. Understandably so, Java complains about the negative memory allocation with `Invalid maximum heap size: -Xmx-1g` errors. 
+
+If you experience any weirdness surrounding memory allocations, make sure that you're specifying your memory values using the format with the period (_i.e._ `64.GB`) as opposed to using a space (_i.e._ `64 GB`). Otherwise, Nextflow/Groovy might misinterpret the value as bytes when converted to GB, which will effectively result in no memory being allocated to the processes. 
+
 ## Crashed pipeline with an error but Nextflow is still running
 
 If this happens, you can either wait until all other already running jobs to safely finish, or if Nextflow _still_ does not stop press `ctrl + c` on your keyboard (or equivalent) to stop the Nextflow run.
