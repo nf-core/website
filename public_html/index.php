@@ -76,9 +76,10 @@ include('../includes/header.php');
       <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
     </div>
 
-    <div id="features" class="container homepage-feature-boxes">
+    <div id="features" class="container homepage-feature-boxes pb-5">
+      <h3 class="mb-4 text-center">Fully featured pipelines</h3>
       <div class="row">
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Documentation</h5>
@@ -88,7 +89,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">CI Testing</h5>
@@ -98,7 +99,7 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Stable Releases</h5>
@@ -108,17 +109,17 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Docker</h5>
               <img class="float-right ml-3" height="100px" src="assets/img/docker.svg" />
-              <p class="card-text">Software dependencies are always available in a bundled docker container,
-              which Nextflow can automatically download from Docker Hub.</p>
+              <p class="card-text">Software dependencies are handled with docker containers
+              which Nextflow downloads for you, so no need for any software installations.</p>
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Singularity</h5>
@@ -128,13 +129,56 @@ include('../includes/header.php');
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-5">
+        <div class="col-lg-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Bioconda</h5>
               <img class="float-right ml-3" height="100px" src="assets/img/bioconda.svg" />
-              <p class="card-text">Where possible, pipelines come with a bioconda environment file,
-              allowing you to set up a new environment for the pipeline with a single command.</p>
+              <p class="card-text">Where possible, pipelines come with built-in bioconda support,
+              so if you can't use software containers the dependencies can still be handled automatically.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="bg-light py-5">
+      <div id="developers" class="container homepage-feature-boxes">
+        <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
+        <div class="row">
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Develop <u>with</u> the community</h5>
+                <i class="fad fa-people-carry fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
+                to find collaborators and check that your pipeline is suitable for nf-core.</p>
+                <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Start from the template</h5>
+                <i class="fas fa-magic fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">All pipelines must be based on our template
+                and have a repo created using <code>nf-core create</code>. An automated sync
+                keeps pipelines up to date.</p>
+                <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Collaborate, don't duplicate</h5>
+                <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
+                <p class="card-text">We only allow one pipeline per data type / analysis type.
+                If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
+                <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
+              </div>
             </div>
           </div>
         </div>
@@ -152,10 +196,14 @@ include('../includes/header.php');
           </div>
           <div class="col-md-6">
             <ul class="list-switch left video-chooser">
-              <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"><span class="hidden-lg hidden-md label label-default">Video:</span> Introduction to nf-core <em>(1:01)</em></a></li>
-              <!-- <li><a href="https://youtu.be/Gg5neIPuiVo" data-src="https://www.youtube.com/embed/Gg5neIPuiVo"><span class="hidden-lg hidden-md label label-default">Video:</span> Installing MultiQC <em>(4:33)</em></a></li> -->
+              <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"> Introduction to nf-core <em>(1:01)</em></a></li>
+              <li><a href="https://youtu.be/cXBYusdjrc0" data-src="https://www.youtube.com/embed/cXBYusdjrc0"> Bytesize: How nf-core configs work <em>(15:00)</em></a></li>
+              <li><a href="https://youtu.be/FFTNVbdD5pQ" data-src="https://www.youtube.com/embed/FFTNVbdD5pQ"> Bytesize: Pipeline code walkthrough <em>(20:00)</em></a></li>
+              <li><a href="https://youtu.be/OvtCc855Vek" data-src="https://www.youtube.com/embed/OvtCc855Vek"> Tutorial: Running pipelines <em>(17:00)</em></a></li>
+              <li><a href="https://youtu.be/-GcuxoIpfOc" data-src="https://www.youtube.com/embed/-GcuxoIpfOc"> BovReg: A longer introduction to nf-core <em>(45:00)</em></a></li>
+              <li><a href="https://youtu.be/hCGuF9bA9ho" data-src="https://www.youtube.com/embed/hCGuF9bA9ho"> BovReg: nf-core pipelines <em>(60:00)</em></a></li>
+              <li><a href="https://youtu.be/lUJ1L-qDeXM" data-src="https://www.youtube.com/embed/lUJ1L-qDeXM"> BovReg: Developing with nf-core <em>(50:00)</em></a></li>
             </ul>
-            <p class="mt-3 ml-md-4 text-white-50 small"><em>More videos coming soon..</em></p>
           </div>
         </div>
 
