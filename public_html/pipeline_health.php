@@ -204,11 +204,12 @@ class RepoHealth {
       } else {
         $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/'.$branch.'/protection';
         $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
-        if(in_array("HTTP/1.1 200 OK", $http_response_header) && is_object($gh_branch)){
+        if(strpos($http_response_header[0], "HTTP/1.1 200") !== false && is_object($gh_branch)){
           $this->{'gh_branch_'.$branch} = $gh_branch;
           $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_'.$branch});
         } else {
           // Write an empty cache file
+          echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>'.$this->name.'</code> - <code>'.$branch.'</code><pre>'.print_r($http_response_header, true).'</pre><pre>'.print_r($gh_branch, true).'</pre></div>';
           $this->_save_cache_data($gh_branch_cache, '');
         }
       }
@@ -456,9 +457,9 @@ class RepoHealth {
       ]
     ]);
     $result = json_decode(file_get_contents($url, false, $context));
-    if(in_array("HTTP/1.1 204 No Content", $http_response_header)){
+    if(strpos($http_response_header[0], "HTTP/1.1 204") !== false){
       return true;
-    } else if(in_array("HTTP/1.1 200 OK", $http_response_header)){
+    } else if(strpos($http_response_header[0], "HTTP/1.1 200") !== false){
       return $result;
     } else {
       echo '<div class="alert alert-danger m-3">';
