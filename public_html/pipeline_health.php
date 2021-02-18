@@ -102,6 +102,7 @@ class RepoHealth {
   public $gh_branches;
   public $gh_branch_master;
   public $gh_branch_dev;
+  public $gh_branch_TEMPLATE;
   public $gh_webpage;
   public $gh_social_preview;
 
@@ -135,6 +136,7 @@ class RepoHealth {
   public $branch_dev_code_owner_reviews;
   public $branch_dev_required_num_reviews;
   public $branch_dev_enforce_admins;
+  public $branch_template_restrict_push;
 
   public function get_data(){
     $this->get_repo_data();
@@ -193,7 +195,7 @@ class RepoHealth {
     }
 
     // Details of branch protection for master and dev
-    foreach(['master', 'dev'] as $branch){
+    foreach(['master', 'dev', 'TEMPLATE'] as $branch){
       $gh_branch_cache = $this->cache_base.'/branch_'.$this->name.'_'.$branch.'.json';
       if(file_exists($gh_branch_cache) && !$this->refresh){
         $gh_branch = json_decode(file_get_contents($gh_branch_cache));
@@ -330,6 +332,21 @@ class RepoHealth {
       if(!isset($data->enforce_admins)) $this->{'branch_'.$branch.'_enforce_admins'} = false;
       else $this->{'branch_'.$branch.'_enforce_admins'} = $data->enforce_admins->enabled == false;
 
+    }
+    // Tests specifically for the TEMPLATE branch
+    if(!$this->branch_template_exists){
+      $this->branch_template_restrict_push = -1;
+      $this->test_descriptions['branch_template_restrict_push'] = 'TEMPLATE branch does not exist';
+    } else {
+      $data = $this->gh_branch_TEMPLATE;
+      $this->branch_template_restrict_push = false;
+      if(isset($data->restrictions)){
+        if(count($data->restrictions->users) == 1){
+          if($data->restrictions->users[0]->login == 'nf-core-bot'){
+            $this->branch_template_restrict_push = true;
+          }
+        }
+      }
     }
   }
 
@@ -691,6 +708,7 @@ $base_test_names = [
   'branch_dev_code_owner_reviews' => 'dev: code owner reviews',
   'branch_dev_required_num_reviews' => 'dev: 1 review',
   'branch_dev_enforce_admins' => 'dev: enforce admins',
+  'branch_template_restrict_push' => 'T push',
 ];
 $base_test_descriptions = [
   'repo_wikis' => "Disable wikis",
@@ -720,6 +738,7 @@ $base_test_descriptions = [
   'branch_dev_code_owner_reviews' => 'dev branch: code owner reviews not required',
   'branch_dev_required_num_reviews' => 'dev branch: 1 review required',
   'branch_dev_enforce_admins' => 'dev branch: do not enforce rules for admins',
+  'branch_template_restrict_push' => 'Restrict push to TEMPLATE to @nf-core-bot',
 ];
 $base_test_urls = [
   'repo_wikis' =>                         'https://github.com/nf-core/{repo}/settings',
@@ -749,6 +768,7 @@ $base_test_urls = [
   'branch_dev_code_owner_reviews' =>      'https://github.com/nf-core/{repo}/settings/branches',
   'branch_dev_required_num_reviews' =>    'https://github.com/nf-core/{repo}/settings/branches',
   'branch_dev_enforce_admins' =>          'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_template_restrict_push' =>      'https://github.com/nf-core/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
     'Team access' => [
@@ -813,6 +833,7 @@ $core_repo_ignore_tests = [
   'branch_dev_code_owner_reviews',
   'branch_dev_required_num_reviews',
   'branch_dev_enforce_admins',
+  'branch_template_restrict_push',
 ];
 foreach($core_repo_ignore_tests as $key){
   unset($core_repo_test_names[$key]);
