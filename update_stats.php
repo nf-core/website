@@ -176,8 +176,9 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_views_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
+            echo("\n--------   Could not fetch nf-core repo views! $gh_views_url\n");
             var_dump($http_response_header);
-            echo("\nCould not fetch nf-core repo views! $gh_views_url");
+            echo ("\n--------   End of header for $gh_views_url\n\n\n");
             continue;
         }
         foreach($gh_views->views as $view){
@@ -305,7 +306,7 @@ $slack_api_opts = stream_context_create([
     ]
 ]);
 $slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
-if(strpos($http_response_header[0], "HTTP/1.1 200") === false || !isset($slack_users->ok) || !$slack_users->ok){
+if(strpos($http_response_header[0], "HTTP/1.0 200") === false || !isset($slack_users->ok) || !$slack_users->ok){
     var_dump($http_response_header);
     echo("\nCould not fetch slack user list!");
 } else {
