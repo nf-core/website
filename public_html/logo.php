@@ -33,7 +33,7 @@ if (!is_dir(dirname($logo_cache_fn))) {
     mkdir(dirname($logo_cache_fn), 0777, true);
 }
 // Return the cached version if it exists
-if(file_exists($logo_cache_fn)){
+if(file_exists($logo_cache_fn) && !isset($_GET['f'])){
     header("Content-type: image/png");
     header('Content-Disposition: filename="'.$filename.'"');
     echo file_get_contents($logo_cache_fn);
