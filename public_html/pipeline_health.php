@@ -209,7 +209,10 @@ class RepoHealth {
           $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_'.$branch});
         } else {
           // Write an empty cache file
-          echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>'.$this->name.'</code> - <code>'.$branch.'</code><pre>'.print_r($http_response_header, true).'</pre><pre>'.print_r($gh_branch, true).'</pre></div>';
+          if(strpos($http_response_header[0], "HTTP/1.1 404") === false){
+            // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
+            echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>'.$this->name.'</code> - <code>'.$branch.'</code><pre>'.print_r($http_response_header, true).'</pre><pre>'.print_r($gh_branch, true).'</pre></div>';
+          }
           $this->_save_cache_data($gh_branch_cache, '');
         }
       }
