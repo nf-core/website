@@ -88,6 +88,7 @@ class RepoHealth {
   ];
   public $branch_exist_tests = ['master'];
   public $branches_protection = ['master'];
+  public $branch_template_protection = false;
   public $branch_default = 'master';
   public $required_topics = ['nf-core'];
   public $web_url = 'https://nf-co.re';
@@ -458,6 +459,30 @@ class RepoHealth {
         }
       }
     }
+
+    // Fix TEMPLATE branch protection
+    if($this->branch_template_protection){
+      // Only run if the test failed
+      if($this->branch_template_restrict_push === false){
+        $payload = array(
+          "enforce_admins" => false,
+          "required_status_checks" => null,
+          "required_pull_request_reviews" => null,
+          'restrictions' => array(
+            'users' => array('nf-core-bot'),
+            'teams' => array()
+          )
+        );
+        // Push to GitHub API
+        $gh_template_branch_protection_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/TEMPLATE/protection';
+        $updated_data = $this->_send_gh_api_data($gh_template_branch_protection_url, $payload, 'PUT');
+        if($updated_data){
+          $this->gh_branch_TEMPLATE = $updated_data;
+          $gh_branch_cache = $this->cache_base.'/branch_'.$this->name.'_TEMPLATE.json';
+          $this->_save_cache_data($gh_branch_cache, $this->gh_branch_TEMPLATE);
+        }
+      }
+    }
   }
 
 
@@ -532,6 +557,7 @@ class PipelineHealth extends RepoHealth {
   // We need more branches in pipelines
   public $branch_exist_tests = ['template', 'dev', 'master']; // lower case
   public $branches_protection = ['dev', 'master'];
+  public $branch_template_protection = true;
   // Keywords should also include nextflow, workflow and pipeline
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
   // Variables for release tests
