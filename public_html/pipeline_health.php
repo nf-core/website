@@ -507,12 +507,14 @@ class RepoHealth {
     } else if(strpos($http_response_header[0], "HTTP/1.1 200") !== false){
       return $result;
     } else {
-      echo '<div class="alert alert-danger m-3">';
-        echo '<strong class="mr-2">Error with GitHub API</strong> ';
-        echo 'There was a problem with the following URL: <code class="mr-2">'.$url.'</code> (<code>'.$method.'</code>)';
-        echo '<br><span class="text-muted small">See the browser console for details</span>';
-        echo '<script>console.log('.$url.', '.json_encode($content).', '.json_encode($http_response_header).'); </script>';
-      echo '</div>';
+      echo '<div class="alert alert-danger m-3">
+        <strong class="mr-2">Error with GitHub API</strong>
+        There was a problem with the following URL: <code class="mr-2">'.$url.'</code> (<code>'.$method.'</code>)
+        <details>
+          <pre>'.json_encode($http_response_header, JSON_PRETTY_PRINT).'</pre>
+          <pre>'.json_encode($content, JSON_PRETTY_PRINT).'</pre>
+        </details>
+      </div>';
       return false;
     }
   }
