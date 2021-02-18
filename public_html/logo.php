@@ -102,3 +102,8 @@ imagedestroy($image);
 header("Content-type: image/png");
 header('Content-Disposition: filename="'.$filename.'"');
 echo file_get_contents($logo_cache_fn);
+
+// Kill the cache if this was forced
+if(isset($_GET['f'])){
+    unlink($logo_cache_fn);
+}
