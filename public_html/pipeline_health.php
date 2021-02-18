@@ -529,13 +529,14 @@ class RepoHealth {
   public function print_table_cell($test_name){
     $test_url = $this->test_urls[$test_name];
     $test_url = str_replace('{repo}', $this->name, $test_url);
+    $test_url = str_replace('{latest-tag}', $this->last_release->tag_name, $test_url);
     if(is_null($this->$test_name)){
       echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
       </td>';
     } else if($this->$test_name === -1){
-      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
-        <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-times text-secondary"></i></a>
+      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+        <a href="'.$test_url.'" class="d-block text-secondary text-decoration-none" target="_blank">&mdash;</a>
       </td>';
     } else if($this->$test_name){
       echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
@@ -566,6 +567,7 @@ class PipelineHealth extends RepoHealth {
   public $has_release;
   public $last_release;
   public $release_after_tools;
+  public $master_is_release;
 
   // Extra pipeline-specific tests
   public function run_tests(){
@@ -576,9 +578,23 @@ class PipelineHealth extends RepoHealth {
 
   public function test_releases(){
     global $tools_last_release;
-    if(!$this->has_release) $this->release_after_tools = -1;
-    else if($this->last_release && $tools_last_release){
-      $this->release_after_tools = strtotime($this->last_release) > strtotime($tools_last_release);
+    // No releases - set to -1 and return
+    if(!$this->has_release){
+      $this->release_after_tools = -1;
+      $this->master_is_release = -1;
+      return;
+    }
+    // Check if release is after last tools release
+    if($this->last_release && $tools_last_release){
+      $this->release_after_tools = strtotime($this->last_release->published_at) > strtotime($tools_last_release);
+    }
+    // Check if master commit hash is same as release hash
+    if($this->last_release){
+      foreach($this->gh_branches as $branch){
+        if($branch->name == 'master'){
+          $this->master_is_release = $this->last_release->tag_sha == $branch->commit->sha;
+        }
+      }
     }
   }
 
@@ -701,7 +717,7 @@ foreach($pipelines_json as $wf){
     $pipelines[$wf->name]->has_release = false;
     if(count($wf->releases) > 0){
       $pipelines[$wf->name]->has_release = true;
-      $pipelines[$wf->name]->last_release = end($wf->releases)->published_at;
+      $pipelines[$wf->name]->last_release = end($wf->releases);
     } else {
       $pipelines[$wf->name]->branch_default = 'dev';
     }
@@ -830,15 +846,18 @@ $base_merge_table_col_headings = [
 $pipeline_test_names = [
   'has_release' => 'Released',
   'release_after_tools' => 'Released after tools',
+  'master_is_release' => 'Master = release',
   ] + $base_test_names;
 $pipeline_test_descriptions = [
   'has_release' => 'Has at least one release',
   'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
+  'master_is_release' => 'Master branch is same commit as the last release',
   ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
 $pipeline_test_urls = [
   'has_release' =>         'https://github.com/nf-core/{repo}/releases',
-  'release_after_tools' => 'https://github.com/nf-core/{repo}/releases',
+  'release_after_tools' => 'https://github.com/nf-core/{repo}/releases/{latest-tag}',
+  'master_is_release' => 'https://github.com/nf-core/{repo}/compare/{latest-tag}...master',
   ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
