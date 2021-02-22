@@ -8,6 +8,7 @@ end_date: "2021-02-23"
 end_time: "13:30 CET"
 location_url:
     - https://zoom.us/j/95310380847
+    - https://youtu.be/gTEXDXWf4hE
 ---
 
 # nf-core/bytesize
@@ -31,3 +32,8 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * Zoom: <https://zoom.us/j/95310380847>
+* YouTube: <https://youtu.be/gTEXDXWf4hE>
+
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/gTEXDXWf4hE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
