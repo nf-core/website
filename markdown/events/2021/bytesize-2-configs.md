@@ -7,7 +7,7 @@ start_time: "13:00 CET"
 end_date: "2021-02-09"
 end_time: "13:30 CET"
 location_url:
-    - https://zoom.us/j/95310380847
+    - https://doi.org/10.6084/m9.figshare.14160347.v1
     - https://youtu.be/cXBYusdjrc0
 ---
 
@@ -31,7 +31,6 @@ This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will prese
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/cXBYusdjrc0>
 
 <div class="embed-responsive embed-responsive-16by9">
