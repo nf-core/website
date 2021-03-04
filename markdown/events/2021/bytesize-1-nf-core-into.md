@@ -7,7 +7,7 @@ start_time: "13:00 CET"
 end_date: "2021-02-02"
 end_time: "13:30 CET"
 location_url:
-    - https://zoom.us/j/95563936122
+    - https://figshare.com/articles/presentation/Bytesize_1_Introduction_to_nf-core/14160668/1
     - https://youtu.be/ZfxOFYXmiNw
 ---
 
