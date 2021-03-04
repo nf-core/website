@@ -7,7 +7,7 @@ start_time: "13:00 CET"
 end_date: "2021-02-16"
 end_time: "13:30 CET"
 location_url:
-    - https://zoom.us/j/95310380847
+    - https://doi.org/10.6084/m9.figshare.14160677.v1
     - https://youtu.be/FFTNVbdD5pQ
 ---
 
@@ -25,9 +25,8 @@ This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will pre
 
 She will talk through the different files found in the nf-core template and describe what they do.
 
-The talk will be presented on Zoom and live-streamed on YouTube:
+The talk will be live-streamed on YouTube:
 
-* Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/FFTNVbdD5pQ>
 
 <div class="embed-responsive embed-responsive-16by9">
