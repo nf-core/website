@@ -7,7 +7,7 @@ start_time: "13:00 CET"
 end_date: "2021-03-02"
 end_time: "13:30 CET"
 location_url:
-    - https://zoom.us/j/95310380847
+    - https://doi.org/10.6084/m9.figshare.14160116.v1
     - https://youtu.be/ggGGhTMgyHI
 ---
 
@@ -27,9 +27,8 @@ This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present
 * Writing new modules
 * Automated testing
 
-The talk will be presented on Zoom and live-streamed on YouTube:
+The talk will be live-streamed on YouTube:
 
-* Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/ggGGhTMgyHI>
 
 <div class="embed-responsive embed-responsive-16by9">
