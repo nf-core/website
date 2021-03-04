@@ -25,7 +25,8 @@ The core team members who administer the nf-core project are listed below:
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik
 
 In addition, the following member is a part of the nf-core outreach team
-* Renuka Kudva
+
+* [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
 The following former members of the nf-core core team have earned their place in
 the nf-core alumni hall of fame:
