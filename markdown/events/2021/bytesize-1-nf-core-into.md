@@ -9,6 +9,7 @@ end_time: "13:30 CET"
 location_url:
     - https://figshare.com/articles/presentation/Bytesize_1_Introduction_to_nf-core/14160668/1
     - https://youtu.be/ZfxOFYXmiNw
+    - https://www.bilibili.com/video/BV1854y1h7d9
 ---
 
 # nf-core/bytesize
