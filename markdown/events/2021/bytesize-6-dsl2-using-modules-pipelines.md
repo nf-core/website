@@ -8,6 +8,7 @@ end_date: "2021-03-09"
 end_time: "13:30 CET"
 location_url:
     - https://zoom.us/j/95310380847
+    - https://youtu.be/vJbEdV_oxNQ
 ---
 
 # nf-core/bytesize
@@ -20,13 +21,17 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 6: DSL2 - Using modules in a pipeline
 
-This week, Friederike Hanssen ([@friederikehanssen](http://github.com/friederikehanssen/)) and
+This week, Friederike Hanssen ([@friederikehanssen](http://github.com/friederikehanssen/)) will present: _**DSL2 - Using modules in a pipeline.**_
 Kevin Menden ([@KevinMenden](http://github.com/KevinMenden/))
-will present: _**DSL2 - Using modules in a pipeline.**_
+will follow with a presentation on: _**Adding modules to nf-core**_
 
-This talk will describe how to use DSL modules when writing an nf-core pipeline - both custom
-(`local`) modules, centralised from nf-core/modules and subworkflow files.
+The first talk will describe how to use DSL2 modules when writing an nf-core pipeline - both custom (`local`) modules, centralised from nf-core/modules and subworkflow files. The second talk will go to the details on how to add new modules to the nf-core/modules repository and provide module tests.
 
-The talk will be presented on Zoom and live-streamed on YouTube:
+The talks will be presented on Zoom and live-streamed on YouTube:
 
 * Zoom: <https://zoom.us/j/95310380847>
+* YouTube: <https://youtu.be/vJbEdV_oxNQ>
+
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/vJbEdV_oxNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
