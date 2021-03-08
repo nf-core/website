@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 6: DSL2 - Using modules in a pipeline"
+title: "Bytesize 6: All about modules"
 subtitle: Friederike Hanssen / Kevin Menden - QBiC Tübingen, Germany
 type: talk
 start_date: "2021-03-09"
