@@ -9,6 +9,7 @@ end_time: "13:30 CET"
 location_url:
     - https://doi.org/10.6084/m9.figshare.14160680.v1
     - https://youtu.be/gTEXDXWf4hE
+    - https://www.bilibili.com/video/BV15y4y1E7Zz
 ---
 
 # nf-core/bytesize
