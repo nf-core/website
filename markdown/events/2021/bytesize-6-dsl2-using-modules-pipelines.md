@@ -9,6 +9,8 @@ end_time: "13:30 CET"
 location_url:
     - https://zoom.us/j/95310380847
     - https://youtu.be/vJbEdV_oxNQ
+    - https://doi.org/10.6084/m9.figshare.14185736.v1
+    - https://doi.org/10.6084/m9.figshare.14185745.v1
 ---
 
 # nf-core/bytesize
