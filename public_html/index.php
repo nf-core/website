@@ -50,7 +50,7 @@ foreach ($events as $idx => $event) {
     continue;
   }
   # Update arrays
-  if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
+  if ($event['start_ts'] < time() -3600 && $event['end_ts'] > time()) {
     $current_event[$idx] = $event;
   }
 }
