@@ -821,10 +821,12 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
 
 /* Stats page */
-.stats_keynumbers .card {
+.stats_keynumbers .card,
+.event-list .card {
   overflow: hidden;
 }
-.stats_keynumbers .bg-icon {
+.stats_keynumbers .bg-icon,
+.event-list .bg-icon {
   font-size: 180px;
   color: rgba(0,0,0,0.1);
   position: absolute;
