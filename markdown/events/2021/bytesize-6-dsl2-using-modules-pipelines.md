@@ -7,8 +7,10 @@ start_time: "13:00 CET"
 end_date: "2021-03-09"
 end_time: "13:30 CET"
 location_url:
-    - https://zoom.us/j/95310380847
-    - https://youtu.be/vJbEdV_oxNQ
+    - https://youtu.be/tWvou0xj9wA
+    - https://youtu.be/Wc4A2tQ6WWY
+    - https://www.bilibili.com/video/BV1nN411Q7Ex
+    - https://www.bilibili.com/video/BV1bz4y117me
     - https://doi.org/10.6084/m9.figshare.14185736.v1
     - https://doi.org/10.6084/m9.figshare.14185745.v1
 ---
@@ -29,10 +31,6 @@ will follow with a presentation on: _**Adding modules to nf-core**_
 
 The first talk will describe how to use DSL2 modules when writing an nf-core pipeline - both custom (`local`) modules, centralised from nf-core/modules and subworkflow files. The second talk will go to the details on how to add new modules to the nf-core/modules repository and provide module tests.
 
-The talks will be presented on Zoom and live-streamed on YouTube:
-
-* Zoom: <https://zoom.us/j/95310380847>
-* YouTube: <https://youtu.be/vJbEdV_oxNQ>
 
 <div class="embed-responsive embed-responsive-16by9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/vJbEdV_oxNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
