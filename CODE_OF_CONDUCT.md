@@ -114,5 +114,8 @@ All reports will be handled with utmost discretion and confidentially.
 - The [Mozilla Community Participation Guidelines v3.1](https://www.mozilla.org/en-US/about/governance/policies/participation/) (version 3.1, CC BY-SA 3.0 Mozilla) 
 
 
-## Originally Published 
-March 12th, 2021.
+## Changelog
+
+#### v1.0 - March 12th, 2021
+
+* Complete rewrite from original [Contributor Covenant](http://contributor-covenant.org/) CoC.
