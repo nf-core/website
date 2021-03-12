@@ -127,10 +127,14 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
   if($event['start_time']){
     echo '
     <script type="text/javascript">
-    $("dd[data-timestamp]").each(function(){
+    $("[data-timestamp]").each(function(){
       var timestamp = $(this).data("timestamp");
+      var timeformat = $(this).data("timeformat") ? $(this).data("timeformat") : "HH:mm z, LL"; 
       var local_time = moment.tz(timestamp, "X", moment.tz.guess());
-      $(this).text(local_time.format("HH:mm z, LL"));
+      $(this).text(local_time.format(timeformat));
+      if(moment(timestamp,"X").diff(moment().format())<(30*60*1000)){ 
+        $(this).parent("tr").addClass("table-success"); // highlight row in schedule if current time is less than 30 minutes after time in row
+      }
     });
     </script>
     ';
