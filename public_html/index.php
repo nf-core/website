@@ -43,14 +43,17 @@ foreach ($year_dirs as $year) {
 
 # Parse dates and sort events by date
 $current_event = [];
+$time_window = 3600;
 foreach ($events as $idx => $event) {
   $event = sanitise_date_meta($event);
   if (!$event) {
     unset($events[$idx]);
     continue;
   }
-  # Update arrays
-  if ($event['start_ts'] < time() -3600 && $event['end_ts'] > time()) {
+  if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
+    $time_window = 86400*14; // show announcement 5 days ahead for full day events
+  }
+  if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
     $current_event[$idx] = $event;
   }
 }
@@ -61,10 +64,10 @@ include('../includes/header.php');
 <div class="homepage-header">
   <?php if (isset($current_event) and $current_event) : ?>
     <div class="mainpage-subheader-heading homepage-header-contents p-2">
-      <div class="container text-center font-weight-normal">
+      <div class="container text-center">
         <div class="event-list">
           <?php
-          print_events($current_event, false, true);
+          print_current_events($current_event, false, true);
           ?>
         </div>
       </div>

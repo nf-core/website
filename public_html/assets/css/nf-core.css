@@ -825,13 +825,17 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .event-list .card {
   overflow: hidden;
 }
-.stats_keynumbers .bg-icon,
-.event-list .bg-icon {
+.stats_keynumbers .bg-icon{
   font-size: 180px;
   color: rgba(0,0,0,0.1);
   position: absolute;
   bottom: -80px;
   right: -20px;
+}
+
+.event-list .fad {
+  --fa-primary-opacity: 0.5;
+  --fa-secondary-opacity: 0.2;
 }
 
 /* Publications page */
