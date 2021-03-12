@@ -75,7 +75,7 @@ nf-core's CoC and expectations of respectful behaviours for all participants (in
 - Using welcoming and inclusive language. (Participants are encouraged to display their chosen pronouns on Zoom or in communication on Slack.)
 
 
-## nf-core frowns on :frowning_face:
+## nf-core frowns on 😕
 
 The following behaviours from any participants within the nf-core community (including the organisers) will be considered unacceptable under this code of conduct. Engaging or advocating for any of the following could result in expulsion from nf-core workspaces. 
 
