@@ -46,7 +46,7 @@ function sanitise_date_meta($event)
   return $event;
 }
 
-function print_current_events($events, $is_past_event)
+function print_current_events($events,$border)
 {
   $event_type_classes = array(
     'hackathon' => 'primary',
@@ -72,8 +72,7 @@ function print_current_events($events, $is_past_event)
     }
     $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
     if (date('mY', $event['start_ts']) == date('mY', $event['end_ts'])) {
-      // $date_string = date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-      $date_string = date('H:i', $event['start_ts']) . '-' . date('H:i e', $event['end_ts']) . ',' .
+      $date_string = date('H:i', $event['start_ts']) . '-' . date('H:i e', $event['end_ts']) . ', ' .
         date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
     }
     if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
@@ -84,30 +83,56 @@ function print_current_events($events, $is_past_event)
 ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-top-0 border-right-0 border-bottom-0 border-<?php echo $colour_class ?>">
+    <div class="card mb-3 <?php echo( $border ?  'border-top-0 border-right-0 border-bottom-0 border-'.$colour_class : 'border-0');?> ">
       <div class="card-body row">
         <div><i class="col-2 <?php echo $icon_class; ?> fa-7x float-left text-<?php echo $colour_class ?> "></i></div>
-        <div class="col-10">
-          <h5 class=" my-0 py-0">
-            <small><span class="badge badge-<?php echo $colour_class ?> float-right small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
-            <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?>
-              <?php if (array_key_exists('subtitle', $event)) {
-                echo ':</a></h5><span class="mb-0"> ' . $event['subtitle'] . '</span>';
-              } else {
-                echo '</a></h5>';
-              }
-              ?>
-              <h6 class=""><?php echo $date_string; ?></h6>
+        <div class="col-10 pr-0 d-flex flex-column justify-content-between">
+          <div>
+            <h5 class=" my-0 py-0">
+              <small><span class="badge badge-<?php echo $colour_class ?> float-right small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
+              <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title'];?></a>
+            </h5>
+            <?php
+            if (array_key_exists('subtitle', $event)) {
+              echo '<span class="mb-0 text-mute"> ' . $event['subtitle'] . '</span>';
+            }
+            if (array_key_exists('description', $event)) {
+              echo '<p>' . nl2br($event['description']) . '</p>';
+            } ?>
+          </div>
+          <div class="d-flex justify-content-between align-items-end">
+            <h6 class=""><?php echo $date_string; ?></h6>
 
-              <?php if (array_key_exists('description', $event)) {
-                echo '<p>' . nl2br($event['description']) . '</p>';
-              } ?>
-              <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
-                See details
-              </a>
+
+            <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
+              See details
+            </a>
+          </div>
         </div>
       </div>
+      <?php if (array_key_exists('location_url', $event) && $event['location_url'][0] != "#") {
+        echo '<div class="btn-group mt-1" role="group" aria-label="External links">';
+        foreach ($event['location_url'] as $idx => $url) {
+          $base_url = substr($url, 8, 7);
 
+          switch ($base_url) {
+            case 'zoom.us':
+              $icon = '<i class="fas fa-video mr-1"></i>';
+              $print_url = count($event['location_url']) > 3 ? '' : $url;
+              break;
+            case "youtu.b":
+              $icon = '<i class="fab fa-youtube mr-1"></i>';
+              $print_url = count($event['location_url']) > 3 ? '' : $url;
+              break;
+            default:
+              $icon = '<i class="fas fa-external-link mr-1"></i>';
+              $print_url = $url;
+          }
+          echo '<a href="' . $url . '" class="btn btn-' . $colour_class . ' rounded-0">' . $icon . $print_url . '</a>';
+        }
+        echo '</div>';
+      }
+      ?>
     </div>
 
 <?php

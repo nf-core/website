@@ -218,9 +218,9 @@ foreach ($events as $idx => $event) {
   }
 
   # Update arrays
-  if ($event['start_ts'] > 1615896001) {
+  if ($event['start_ts'] > time()) {
     $future_events[$idx] = $event;
-  } else  if ($event['start_ts'] < 1615896001 && $event['end_ts'] > 1615896001) {
+  } else  if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
 
     $current_events[$idx] = $event;
   } else {
@@ -274,7 +274,7 @@ include('../includes/header.php');
 echo '<div class="event-list">';
 if (count($current_events) > 0) {
   echo '<h2 id="current_events"><a href="#current_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar mr-2"></i> Ongoing Events</h2>';
-  print_current_events($current_events, false);
+  print_current_events($current_events, true);
   echo '<hr>';
 }
 
