@@ -21,7 +21,7 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 ## Preamble
 
-**Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Officer and been edited after input from members of the nf-core team and others. "We", in this document, refers to the Safety Officer and members of the nf-core core team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will be amended periodically to keep it up-to-date and the in case of any dispute, the most current version.**
+> Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Officer and been edited after input from members of the nf-core team and others. "We", in this document, refers to the Safety Officer and members of the nf-core core team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
 
 An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about). Our current safety officer is Renuka Kudva. 
 
