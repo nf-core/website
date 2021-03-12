@@ -86,7 +86,7 @@ The following behaviours from any participants within the nf-core community (inc
 - Use of sexual or discriminatory imagery, comments, or jokes and unwelcome sexual attention. 
 - Verbal and text comments that reinforce social structures of domination related to gender, gender identity and expression, sexual orientation, ability, physical appearance, body size, race, age, religion or work experience.
 
-### Online Trolling: 
+### Online Trolling
 
 The majority of nf-core interactions and events are held online. Unfortunately, holding events online comes with the added issue of online trolling. This is unacceptable, reports of such behaviour will be taken very seriously, and perpetrators will be excluded from activities immediately. 
 
