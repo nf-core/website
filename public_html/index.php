@@ -42,7 +42,7 @@ foreach ($year_dirs as $year) {
 }
 
 # Parse dates and sort events by date
-$current_event = [];
+$current_events = [];
 $time_window = 3600;
 foreach ($events as $idx => $event) {
   $event = sanitise_date_meta($event);
@@ -51,23 +51,25 @@ foreach ($events as $idx => $event) {
     continue;
   }
   if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
-    $time_window = 86400*14; // show announcement 5 days ahead for full day events
+    $time_window = 86400*15; // show announcement 5 days ahead for full day events
   }
   if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
-    $current_event[$idx] = $event;
+    $current_events[$idx] = $event;
   }
 }
 
+$import_moment = true;
 include('../includes/header.php');
 ?>
 
 <div class="homepage-header">
-  <?php if (isset($current_event) and $current_event) : ?>
+  <?php if (isset($current_events) and $current_events) : ?>
     <div class="mainpage-subheader-heading homepage-header-contents p-2">
-      <div class="container text-center">
+      <div class="container text-left">
+        <h3 class="mb-1 text-left"><i class="fad fa-calendar mr-1"></i>Upcoming event<?php if (count($current_events) > 1){echo 's';} ?></h3>
         <div class="event-list">
           <?php
-          print_current_events($current_event, false, true);
+          print_current_events($current_events,false);
           ?>
         </div>
       </div>
@@ -344,4 +346,17 @@ nf-core list
   </div>
 </div>
 
+<?php // Javascript for moment time zone support
+if ($event['start_time']) {
+  echo '
+    <script type="text/javascript">
+    $("[data-timestamp]").each(function(){
+      var timestamp = $(this).data("timestamp");
+      var local_time = moment.tz(timestamp, "X", moment.tz.guess());
+      $(this).text(local_time.format("HH:mm z, LL"));
+    });
+    </script>
+    ';
+}
+?>
 <?php include('../includes/footer.php'); ?>
