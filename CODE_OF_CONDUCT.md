@@ -59,7 +59,7 @@ Participation in the nf-core community is contingent on following these guidelin
 - Representing nf-core on social media. This includes both official and personal accounts. 
 
 
-## nf-core cares 😊
+## nf-core cares :blush:
 
 nf-core's CoC and expectations of respectful behaviours for all participants (including organisers and the nf-core team) include but are not limited to the following (listed in alphabetical order): 
 
