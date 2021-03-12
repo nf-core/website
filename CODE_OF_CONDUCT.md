@@ -65,7 +65,7 @@ nf-core's CoC and expectations of respectful behaviours for all participants (in
 
 - Ask for consent before sharing another community member’s personal information (including photographs) on social media. 
 - Be respectful of differing viewpoints and experiences. We are all here to learn from one another and a difference in opinion can present a good learning opportunity. 
-- Celebrate your accomplishments at events! (Get creative with your use of emojis 🎉🥳💯🙌!) 
+- Celebrate your accomplishments at events! (Get creative with your use of emojis :tada: :partying_face: :100: :raised_hands: !) 
 - Demonstrate empathy towards other community members. (We don’t all have the same amount of time to dedicate to nf-core. If tasks are pending, don’t hesitate to gently remind members of your team. If you are leading a task, ask for help if you feel overwhelmed.)
 - Engage with and enquire after others. (This is especially important given the geographically remote nature of the nf-core community, so let’s do this the best we can)
 - Focus on what is best for the team and the community. (When in doubt, ask) 
