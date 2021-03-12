@@ -18,7 +18,6 @@ In the interest of fostering an open, collaborative, and welcoming environment, 
 Please note that the list above is alphabetised and is therefore not ranked in any order of preference or importance. 
 
 # Code of Conduct at nf-core (v1.0) 
-#### Date: March 12, 2021
 
 ## Preamble
 
