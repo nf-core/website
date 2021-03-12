@@ -83,4 +83,134 @@ More details to come, but so far our idea is to work in the following areas:
 
 ## Schedule
 
-Please check back soon for a detailed schedule.
+<div class="table-responsive">
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Monday 22, 2021</th>
+                <th>Tuesday 23, 2021</th>
+                <th>Thursday 24, 2021</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-timestamp="1616403600" data-timeformat="HH:mm z">10:00</td>
+                <td>Welcome <br><a href="https://youtu.be/cuwcgZX6Li8"><i class="fab fa-youtube mr-1"></i>https://youtu.be/cuwcgZX6Li8</a><br> See Slack for Zoom link.</td>
+                <td>Check-in <br><a href="https://youtu.be/JdnG-QzZQdg"><i class="fab fa-youtube mr-1"></i>https://youtu.be/JdnG-QzZQdg</a><br> See Slack for Zoom link.</td>
+                <td>Check-in <br><a href="https://youtu.be/awmfwmPVnVI"><i class="fab fa-youtube mr-1"></i>https://youtu.be/awmfwmPVnVI</a><br> See Slack for Zoom link.</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616405400" data-timeformat="HH:mm z">10:30</td>
+                <td>Group distribution</td>
+                <td>Hack!</td>
+                <td>Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616407200"  data-timeformat="HH:mm z">11:00</td>
+                <td>Hack!</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616409000" data-timeformat="HH:mm z">11:30</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616410800" data-timeformat="HH:mm z">12:00</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616412600" data-timeformat="HH:mm z">12:30</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616414400" data-timeformat="HH:mm z">13:00</td>
+                <td>Group catch-up <br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules"><i class="fas fa-video mr-1"></i>DSL2-modules</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines"><i class="fas fa-video mr-1"></i>Pipelines</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework"><i class="fas fa-video mr-1"></i>Framework</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation"><i class="fas fa-video mr-1"></i>Documentation</a>
+                </td>
+                <td>Group catch-up <br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules"><i class="fas fa-video mr-1"></i>DSL2-modules</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines"><i class="fas fa-video mr-1"></i>Pipelines</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework"><i class="fas fa-video mr-1"></i>Framework</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation"><i class="fas fa-video mr-1"></i>Documentation</a>
+                </td>
+                <td>Group catch-up <br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules"><i class="fas fa-video mr-1"></i>DSL2-modules</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines"><i class="fas fa-video mr-1"></i>Pipelines</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework"><i class="fas fa-video mr-1"></i>Framework</a><br>
+                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation"><i class="fas fa-video mr-1"></i>Documentation</a>
+                </td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616416200" data-timeformat="HH:mm z">13:30</td>
+                <td>Hack!</td>
+                <td>Hack!</td>
+                <td>Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616418000" data-timeformat="HH:mm z">14:00</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616419800" data-timeformat="HH:mm z">14:30</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616421600" data-timeformat="HH:mm z">15:00</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616423400" data-timeformat="HH:mm z">15:30</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616425200" data-timeformat="HH:mm z">16:00</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616427000" data-timeformat="HH:mm z">16:30</td>
+                <td>Check-out <br><a href="https://youtu.be/KN9a2_oF98c"><i class="fab fa-youtube mr-1"></i>https://youtu.be/KN9a2_oF98c</a><br> See Slack for Zoom link</td>
+                <td>Check-out <br><a href="https://youtu.be/BTGx_2XLRow"><i class="fab fa-youtube mr-1"></i>https://youtu.be/BTGx_2XLRow</a><br> See Slack for Zoom link</td>
+                <td>Wrap-up <br><a href="https://youtu.be/TxgrGlFFh_M"><i class="fab fa-youtube mr-1"></i>https://youtu.be/TxgrGlFFh_M</a><br> See Slack for Zoom link</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616428800" data-timeformat="HH:mm z">17:00</td>
+                <td></td>
+                <td></td>
+                <td>Social event</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616430600" data-timeformat="HH:mm z">17:30</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+            <tr>
+                <td data-timestamp="1616432400" data-timeformat="HH:mm z">18:00</td>
+                <!-- <td></td>
+                <td></td>
+                <td></td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
