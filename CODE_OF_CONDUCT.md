@@ -31,7 +31,6 @@ We have therefore adopted this code of conduct (CoC), which we require all membe
 
 Our CoC will be strictly enforced and the nf-core team reserve the right to exclude participants who do not comply with our guidelines from our workspaces and future nf-core activities. 
 
-**This rule also applies to members of the nf-core team and the safety officer.**
 
 We ask all members of our community to help maintain a supportive and productive workspace and to avoid behaviours that can make individuals feel unsafe or unwelcome. Please help us maintain and uphold this CoC. 
 
