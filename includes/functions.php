@@ -46,7 +46,7 @@ function sanitise_date_meta($event)
   return $event;
 }
 
-function print_current_events($events,$border)
+function print_current_events($events, $border)
 {
   $event_type_classes = array(
     'hackathon' => 'primary',
@@ -83,14 +83,14 @@ function print_current_events($events,$border)
 ?>
 
     <!-- Event Card -->
-    <div class="card mb-3 <?php echo( $border ?  'border-top-0 border-right-0 border-bottom-0 border-'.$colour_class : 'border-0');?> ">
-      <div class="card-body row">
-        <div><i class="col-2 <?php echo $icon_class; ?> fa-7x float-left text-<?php echo $colour_class ?> "></i></div>
+    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-right-0 border-bottom-0 border-' . $colour_class : 'border-0'); ?> ">
+      <div class="card-body pb-2 pt-3 pr-1 row d-flex align-items-stretch">
+        <div><i class="col-2 pt-2 <?php echo $icon_class; ?> fa-5x float-left text-<?php echo $colour_class ?> "></i></div>
         <div class="col-10 pr-0 d-flex flex-column justify-content-between">
           <div>
             <h5 class=" my-0 py-0">
               <small><span class="badge badge-<?php echo $colour_class ?> float-right small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
-              <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title'];?></a>
+              <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
             </h5>
             <?php
             if (array_key_exists('subtitle', $event)) {
@@ -102,7 +102,6 @@ function print_current_events($events,$border)
           </div>
           <div class="d-flex justify-content-between align-items-end">
             <h6 class=""><?php echo $date_string; ?></h6>
-
 
             <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
               See details
