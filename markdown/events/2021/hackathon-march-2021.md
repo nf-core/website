@@ -84,7 +84,7 @@ More details to come, but so far our idea is to work in the following areas:
 ## Schedule
 
 <div class="table-responsive">
-    <table class="table table-hover table-sm">
+    <table class="table table-hover table-sm table-bordered">
         <thead>
             <tr>
                 <th>Time</th>
@@ -96,19 +96,37 @@ More details to come, but so far our idea is to work in the following areas:
         <tbody>
             <tr>
                 <td data-timestamp="1616403600" data-timeformat="HH:mm z">10:00</td>
-                <td>Welcome <br><a href="https://youtu.be/cuwcgZX6Li8" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/cuwcgZX6Li8</a><br>See <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code> channel</a> for Zoom link..</td>
-                <td>Check-in <br><a href="https://youtu.be/JdnG-QzZQdg" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/JdnG-QzZQdg</a><br>See <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code> channel</a> for Zoom link..</td>
-                <td>Check-in <br><a href="https://youtu.be/awmfwmPVnVI" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/awmfwmPVnVI</a><br>See <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code> channel</a> for Zoom link..</td>
+                <td>
+                  Welcome
+                  <ul class="small list-unstyled">
+                    <li><a href="https://youtu.be/cuwcgZX6Li8" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/cuwcgZX6Li8</a></li>
+                    <li>Zoom link shared in  <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code></a></li>
+                  </ul>
+                </td>
+                <td>
+                  Check-in
+                  <ul class="small list-unstyled">
+                    <li><a href="https://youtu.be/JdnG-QzZQdg" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/JdnG-QzZQdg</a></li>
+                    <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code></a></li>
+                  </ul>
+                </td>
+                <td>
+                  Check-in
+                  <ul class="small list-unstyled">
+                    <li><a href="https://youtu.be/awmfwmPVnVI" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/awmfwmPVnVI</a></li>
+                    <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code></a></li>
+                  </ul>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1616405400" data-timeformat="HH:mm z">10:30</td>
                 <td>Group distribution</td>
-                <td>Hack!</td>
-                <td>Hack!</td>
+                <td rowspan="5">Hack!</td>
+                <td rowspan="5">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1616407200"  data-timeformat="HH:mm z">11:00</td>
-                <td>Hack!</td>
+                <td rowspan="4">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1616409000" data-timeformat="HH:mm z">11:30</td>
@@ -121,30 +139,38 @@ More details to come, but so far our idea is to work in the following areas:
             </tr>
             <tr>
                 <td data-timestamp="1616414400" data-timeformat="HH:mm z">13:00</td>
-                <td>Group catch-up <br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules" target="_blank"><i class="fas fa-video mr-1"></i>DSL2-modules</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines" target="_blank"><i class="fas fa-video mr-1"></i>Pipelines</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework" target="_blank"><i class="fas fa-video mr-1"></i>Framework</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation" target="_blank"><i class="fas fa-video mr-1"></i>Documentation</a>
+                <td>Group catch-up
+                  <ul class="small list-unstyled">
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules" target="_blank"><i class="fas fa-video mr-1"></i>DSL2-modules</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines" target="_blank"><i class="fas fa-video mr-1"></i>Pipelines</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework" target="_blank"><i class="fas fa-video mr-1"></i>Framework</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation" target="_blank"><i class="fas fa-video mr-1"></i>Documentation</a></li>
+                  </ul>
                 </td>
-                <td>Group catch-up <br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules" target="_blank"><i class="fas fa-video mr-1"></i>DSL2-modules</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines" target="_blank"><i class="fas fa-video mr-1"></i>Pipelines</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework" target="_blank"><i class="fas fa-video mr-1"></i>Framework</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation" target="_blank"><i class="fas fa-video mr-1"></i>Documentation</a>
+                <td>
+                  Group catch-up
+                  <ul class="small list-unstyled">
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules" target="_blank"><i class="fas fa-video mr-1"></i>DSL2-modules</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines" target="_blank"><i class="fas fa-video mr-1"></i>Pipelines</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework" target="_blank"><i class="fas fa-video mr-1"></i>Framework</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation" target="_blank"><i class="fas fa-video mr-1"></i>Documentation</a></li>
+                  </ul>
                 </td>
-                <td>Group catch-up <br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules" target="_blank"><i class="fas fa-video mr-1"></i>DSL2-modules</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines" target="_blank"><i class="fas fa-video mr-1"></i>Pipelines</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework" target="_blank"><i class="fas fa-video mr-1"></i>Framework</a><br>
-                  <a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation" target="_blank"><i class="fas fa-video mr-1"></i>Documentation</a>
+                <td>
+                  Group catch-up
+                  <ul class="small list-unstyled">
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-dsl2-modules" target="_blank"><i class="fas fa-video mr-1"></i>DSL2-modules</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-pipelines" target="_blank"><i class="fas fa-video mr-1"></i>Pipelines</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-framework" target="_blank"><i class="fas fa-video mr-1"></i>Framework</a></li>
+                    <li><a href="https://meet.jit.si/nf-core-hackathon-march-2021-documentation" target="_blank"><i class="fas fa-video mr-1"></i>Documentation</a></li>
+                  </ul>
                 </td>
             </tr>
             <tr>
                 <td data-timestamp="1616416200" data-timeformat="HH:mm z">13:30</td>
-                <td>Hack!</td>
-                <td>Hack!</td>
-                <td>Hack!</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1616418000" data-timeformat="HH:mm z">14:00</td>
@@ -163,15 +189,33 @@ More details to come, but so far our idea is to work in the following areas:
             </tr>
             <tr>
                 <td data-timestamp="1616427000" data-timeformat="HH:mm z">16:30</td>
-                <td>Check-out <br><a href="https://youtu.be/KN9a2_oF98c" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/KN9a2_oF98c</a><br>See <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code> channel</a> for Zoom link.</td>
-                <td>Check-out <br><a href="https://youtu.be/BTGx_2XLRow" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/BTGx_2XLRow</a><br>See <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code> channel</a> for Zoom link.</td>
-                <td>Wrap-up <br><a href="https://youtu.be/TxgrGlFFh_M" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/TxgrGlFFh_M</a><br>See <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code> channel</a> for Zoom link.</td>
+                <td>
+                  Check-out
+                  <ul class="small list-unstyled">
+                    <li><a href="https://youtu.be/KN9a2_oF98c" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/KN9a2_oF98c</a></li>
+                    <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code></a></li>
+                  </ul>
+                </td>
+                <td>
+                  Check-out
+                  <ul class="small list-unstyled">
+                    <li><a href="https://youtu.be/BTGx_2XLRow" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/BTGx_2XLRow</a></li>
+                    <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code></a></li>
+                  </ul>
+                </td>
+                <td>
+                  Wrap-up
+                  <ul class="small list-unstyled">
+                    <li><a href="https://youtu.be/TxgrGlFFh_M" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/TxgrGlFFh_M</a></li>
+                    <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW">Slack <code>#hackathon-march-2021</code></a></li>
+                  </ul>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1616428800" data-timeformat="HH:mm z">17:00</td>
-                <td></td>
-                <td></td>
-                <td>Social event</td>
+                <td rowspan="3"></td>
+                <td rowspan="3"></td>
+                <td rowspan="3">Social event</td>
             </tr>
             <tr>
                 <td data-timestamp="1616430600" data-timeformat="HH:mm z">17:30</td>
