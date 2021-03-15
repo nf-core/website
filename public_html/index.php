@@ -43,6 +43,7 @@ foreach ($year_dirs as $year) {
 
 # Parse dates and sort events by date
 $current_events = [];
+$ongoing_events = [];
 $time_window = 3600;
 foreach ($events as $idx => $event) {
   $event = sanitise_date_meta($event);
@@ -55,6 +56,9 @@ foreach ($events as $idx => $event) {
   }
   if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
     $current_events[$idx] = $event;
+    if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
+      $ongoing_events[$idx] = $event;
+    }
   }
 }
 
