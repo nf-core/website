@@ -121,8 +121,46 @@ if(isset($_GET['event']) && substr($_GET['event'],0,7) == 'events/'){
 
   // header.php runs parse_md() again to produce main page content
   $import_moment = true;
+  $no_print_content = true;
+  $mainpage_container = false;
   include('../includes/header.php');
 
+  $toc = generate_toc($content);
+  
+  if(substr_count($toc, "list-group-item ")>2){
+    # Make a row with a column for content
+    echo '<div class="row "><div class="col-12 col-lg-9">';
+
+    # Print content
+
+    echo '<div class="rendered-markdown container container-xl main-content ml-5 pr-5">' . $content . '</div>';
+    
+    # check if parsed markdown file has equal numbers of opening and closing divs (inline tables generate too many closing ones ¯\_(ツ)_/¯)
+    if(substr_count($content, "<div")== substr_count($content, "</div")){
+      echo '</div>'; # close column div
+    }
+    echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+
+    #add  ToC
+    $toc = '<nav class="toc">' . $toc;
+
+    # Add on the action buttons for the parameters docs
+
+    # Back to top link
+    $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    $toc .= '</nav>';
+    echo $toc;
+
+    echo '</div></div>'; # end of the sidebar col
+    echo '</div>'; # end of the row
+  } else{
+    echo '<div class="container main-content">';
+
+    # Print content
+
+    echo '<div class="rendered-markdown ">' . $content . '</div></div>';
+  }
+  
   // Javascript for moment time zone support
   if($event['start_time']){
     echo '
@@ -288,6 +326,7 @@ if(isset($_GET['rss'])){
 //
 // Web listing page
 //
+
 include('../includes/header.php');
 
 echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar-day mr-2"></i> Upcoming Events</h2>';
