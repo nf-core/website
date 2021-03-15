@@ -149,7 +149,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
             </div>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/events">Events</a>
+            <a class="nav-link" href="/events"><?php if(isset($ongoing_events) and $ongoing_events){echo '<i class="fad fa-circle text-danger mr-1"></i>';}?>Events</a>
           </li>
           <li class="nav-item p-1 dropdown">
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
