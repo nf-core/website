@@ -84,9 +84,9 @@ function print_current_events($events, $border)
 
     <!-- Event Card -->
     <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-right-0 border-bottom-0 border-' . $colour_class : 'border-0'); ?> ">
-      <div class="card-body pb-2 pt-3 pr-1 row d-flex align-items-stretch">
-        <div><i class="col-2 pt-2 <?php echo $icon_class; ?> fa-5x float-left text-<?php echo $colour_class ?> "></i></div>
-        <div class="col-10 pr-0 d-flex flex-column justify-content-between">
+      <div class="card-body py-3 d-flex">
+        <div class="pt-2"><i class="<?php echo $icon_class; ?> fa-5x text-<?php echo $colour_class ?> mr-2"></i></div>
+        <div class="px-2 flex-grow-1 d-flex flex-column justify-content-between">
           <div>
             <h5 class=" my-0 py-0">
               <small><span class="badge badge-<?php echo $colour_class ?> float-right small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
