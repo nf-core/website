@@ -88,9 +88,9 @@ function print_current_events($events, $border)
         <div class="pt-2"><i class="<?php echo $icon_class; ?> fa-5x text-<?php echo $colour_class ?> mr-2"></i></div>
         <div class="px-2 flex-grow-1 d-flex flex-column justify-content-between">
           <div>
-            <h5 class=" my-0 py-0">
-              <small><span class="badge badge-<?php echo $colour_class ?> float-right small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
-              <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
+            <h5 class=" my-0 py-0 d-flex">
+              <a class="text-success flex-grow-1" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
+              <small><span class="badge badge-<?php echo $colour_class ?> small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
             </h5>
             <?php
             if (array_key_exists('subtitle', $event)) {
@@ -100,7 +100,7 @@ function print_current_events($events, $border)
               echo '<p>' . nl2br($event['description']) . '</p>';
             } ?>
           </div>
-          <div class="d-flex justify-content-between align-items-end">
+          <div class="d-md-flex justify-content-between align-items-end">
             <h6 class=""><?php echo $date_string; ?></h6>
 
             <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
