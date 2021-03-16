@@ -155,16 +155,59 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 
   // header.php runs parse_md() again to produce main page content
   $import_moment = true;
+  $no_print_content = true;
+  $mainpage_container = false;
   include('../includes/header.php');
 
+  $toc = generate_toc($content);
+  
+  # only add ToC if there are more than two items in it
+  if(substr_count($toc, "list-group-item ")>2){
+    # Make a row with a column for content
+    echo '<div class="row "><div class="col-12 col-lg-9">';
+
+    # Print content
+
+    echo '<div class="rendered-markdown container container-xl main-content ml-5 pr-5">' . $content . '</div>';
+    
+    # check if parsed markdown file has equal numbers of opening and closing divs (inline tables generate too many closing ones ¯\_(ツ)_/¯)
+    if(substr_count($content, "<div")== substr_count($content, "</div")){
+      echo '</div>'; # close column div
+    }
+    echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+
+    #add  ToC
+    $toc = '<nav class="toc">' . $toc;
+
+    # Add on the action buttons for the parameters docs
+
+    # Back to top link
+    $toc .= '<p class="small text-right"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    $toc .= '</nav>';
+    echo $toc;
+
+    echo '</div></div>'; # end of the sidebar col
+    echo '</div>'; # end of the row
+  } else{
+    echo '<div class="container main-content">';
+
+    # Print content
+
+    echo '<div class="rendered-markdown ">' . $content . '</div></div>';
+  }
+  
   // Javascript for moment time zone support
   if ($event['start_time']) {
     echo '
     <script type="text/javascript">
-    $("dd[data-timestamp]").each(function(){
+    $("[data-timestamp]").each(function(){
       var timestamp = $(this).data("timestamp");
+      var timeformat = $(this).data("timeformat") ? $(this).data("timeformat") : "HH:mm z, LL"; 
       var local_time = moment.tz(timestamp, "X", moment.tz.guess());
-      $(this).text(local_time.format("HH:mm z, LL"));
+      $(this).text(local_time.format(timeformat));
+      if(moment(timestamp,"X").diff(moment().format())<(30*60*1000)){ 
+        $(this).parent("tr").addClass("table-success"); // highlight row in schedule if current time is less than 30 minutes after time in row
+      }
     });
     </script>
     ';
@@ -270,6 +313,7 @@ if (isset($_GET['rss'])) {
 //
 // Web listing page
 //
+
 include('../includes/header.php');
 echo '<div class="event-list">';
 if (count($current_events) > 0) {
