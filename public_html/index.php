@@ -41,10 +41,11 @@ foreach ($year_dirs as $year) {
   }
 }
 
-# Parse dates and sort events by date
-$current_events = [];
-$ongoing_events = [];
+# Look to see if we have an upcoming / ongoing event to show and pick one
+$curr_event = false;
 $time_window = 3600;
+$additional_ongoing = 0;
+$additional_upcoming = 0;
 foreach ($events as $idx => $event) {
   $event = sanitise_date_meta($event);
   if (!$event) {
@@ -56,8 +57,22 @@ foreach ($events as $idx => $event) {
   }
   if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
     $current_events[$idx] = $event;
+
+    // Ongoing event
     if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
-      $ongoing_events[$idx] = $event;
+      $event['ongoing'] = true;
+      if(!$curr_event) $curr_event = $event;
+      // If multiple events running now, take the one with latest start time
+      else if($event['start_ts'] > $curr_event['start_ts']) $curr_event = $event;
+      else $additional_ongoing++;
+    }
+    // Upcoming event
+    else {
+      $event['ongoing'] = false;
+      if(!$curr_event) $curr_event = $event;
+      // If multiple events coming up, take the one with earliest start time
+      else if($event['start_ts'] < $curr_event['start_ts']) $curr_event = $event;
+      else $additional_upcoming++;
     }
   }
 }
@@ -67,14 +82,30 @@ include('../includes/header.php');
 ?>
 
 <div class="homepage-header">
-  <?php if (isset($current_events) and $current_events) : ?>
+  <?php if($curr_event): ?>
     <div class="mainpage-subheader-heading homepage-header-contents p-2">
-      <div class="container text-left">
-        <h3 class="mb-1 text-left"><i class="fad fa-calendar mr-1"></i>Upcoming event<?php if (count($current_events) > 1){echo 's';} ?></h3>
-        <div class="event-list">
-          <?php
-          print_current_events($current_events,false);
-          ?>
+      <div class="container-fluid text-left">
+        <div class="row">
+          <div class="col-sm-4 col-lg-3" style="overflow:hidden;">
+            <?php if($curr_event['ongoing']): ?>
+              <i class="fad fa-broadcast-tower" style="position:absolute; top:10px; left:30px ; font-size: 16em; opacity:0.2;"></i>
+              <h4 class="display-4">Ongoing event</h4>
+            <?php else: ?>
+              <i class="fad fa-alarm-clock" style="position:absolute; top:10px; left:30px ; font-size: 16em; opacity:0.2;"></i>
+              <h4 class="display-4">Upcoming event</h4>
+            <?php endif; ?>
+          </div>
+          <div class="col p-3">
+            <h5><?php echo $curr_event['title']; ?></h5>
+            <p class="lead"><?php echo $curr_event['subtitle']; ?></p>
+          </div>
+          <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
+          <div class="col-sm-4 col-lg-3 pt-2">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe width="560" height="315" src="<?php echo $curr_event['youtube_embed']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+          </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>

@@ -104,7 +104,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
   <body data-spy="scroll" data-target=".toc" data-offset="15">
-    <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
+    <nav class="navbar fixed-top navbar-expand-md navbar-light shadow-sm site-nav">
       <a class="navbar-brand d-md-none" href="/">
         <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
         <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
