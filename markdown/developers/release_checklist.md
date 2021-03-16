@@ -16,13 +16,13 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 
 ## Steps to release
 
-* Bump the version number of the `dev` branch to a release version
+* On your fork, bump the version number of the `dev` branch to a release version
   * For example, `1.0.0dev` becomes `1.0.0`
   * Use the `nf-core bump-version` command to make the changes, eg: `nf-core bump-version <path_to_cloned_pipeline> 1.0.0`
   * Please make sure to use strictly numeric release numbers
   * If in doubt, use [Semantic Versioning](https://semver.org/) as a guide
 * Run `nf-core lint --release <path_to_cloned_pipeline>` and check that there are no test failures for release.
-* Check that `CHANGELOG.md` includes everything that has been added/fixed in this release
+* Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
 * [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 * Once merged, open another PR from the nf-core `dev` branch to the nf-core `master`
   * Make sure that all of the CI tests are passing - this is a special case PR and the tests are different
@@ -30,7 +30,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
   * Once approved by two reviewers, merge your PR into `master`
 * Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
   * NB: Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
-  * Optional: Use a [nice code name](http://www.codenamegenerator.com/) for your pipeline release
+  * Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
 * Celebrate! But not too much - you still have a few things left to do...
 
 ### Automated events

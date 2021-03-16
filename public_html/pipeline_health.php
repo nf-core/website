@@ -88,6 +88,7 @@ class RepoHealth {
   ];
   public $branch_exist_tests = ['master'];
   public $branches_protection = ['master'];
+  public $branch_template_protection = false;
   public $branch_default = 'master';
   public $required_topics = ['nf-core'];
   public $web_url = 'https://nf-co.re';
@@ -102,6 +103,7 @@ class RepoHealth {
   public $gh_branches;
   public $gh_branch_master;
   public $gh_branch_dev;
+  public $gh_branch_TEMPLATE;
   public $gh_webpage;
   public $gh_social_preview;
 
@@ -135,6 +137,7 @@ class RepoHealth {
   public $branch_dev_code_owner_reviews;
   public $branch_dev_required_num_reviews;
   public $branch_dev_enforce_admins;
+  public $branch_template_restrict_push;
 
   public function get_data(){
     $this->get_repo_data();
@@ -193,7 +196,7 @@ class RepoHealth {
     }
 
     // Details of branch protection for master and dev
-    foreach(['master', 'dev'] as $branch){
+    foreach(['master', 'dev', 'TEMPLATE'] as $branch){
       $gh_branch_cache = $this->cache_base.'/branch_'.$this->name.'_'.$branch.'.json';
       if(file_exists($gh_branch_cache) && !$this->refresh){
         $gh_branch = json_decode(file_get_contents($gh_branch_cache));
@@ -204,11 +207,15 @@ class RepoHealth {
       } else {
         $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/'.$branch.'/protection';
         $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
-        if(in_array("HTTP/1.1 200 OK", $http_response_header) && is_object($gh_branch)){
+        if(strpos($http_response_header[0], "HTTP/1.1 200") !== false && is_object($gh_branch)){
           $this->{'gh_branch_'.$branch} = $gh_branch;
           $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_'.$branch});
         } else {
           // Write an empty cache file
+          if(strpos($http_response_header[0], "HTTP/1.1 404") === false){
+            // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
+            echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>'.$this->name.'</code> - <code>'.$branch.'</code><pre>'.print_r($http_response_header, true).'</pre><pre>'.print_r($gh_branch, true).'</pre></div>';
+          }
           $this->_save_cache_data($gh_branch_cache, '');
         }
       }
@@ -327,6 +334,21 @@ class RepoHealth {
       else $this->{'branch_'.$branch.'_enforce_admins'} = $data->enforce_admins->enabled == false;
 
     }
+    // Tests specifically for the TEMPLATE branch
+    if(!$this->branch_template_exists){
+      $this->branch_template_restrict_push = -1;
+      $this->test_descriptions['branch_template_restrict_push'] = 'TEMPLATE branch does not exist';
+    } else {
+      $data = $this->gh_branch_TEMPLATE;
+      $this->branch_template_restrict_push = false;
+      if(isset($data->restrictions)){
+        if(count($data->restrictions->users) == 1){
+          if($data->restrictions->users[0]->login == 'nf-core-bot'){
+            $this->branch_template_restrict_push = true;
+          }
+        }
+      }
+    }
   }
 
   public function test_webpage(){
@@ -437,6 +459,30 @@ class RepoHealth {
         }
       }
     }
+
+    // Fix TEMPLATE branch protection
+    if($this->branch_template_protection){
+      // Only run if the test failed
+      if($this->branch_template_restrict_push === false){
+        $payload = array(
+          "enforce_admins" => false,
+          "required_status_checks" => null,
+          "required_pull_request_reviews" => null,
+          'restrictions' => array(
+            'users' => array('nf-core-bot'),
+            'teams' => array()
+          )
+        );
+        // Push to GitHub API
+        $gh_template_branch_protection_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches/TEMPLATE/protection';
+        $updated_data = $this->_send_gh_api_data($gh_template_branch_protection_url, $payload, 'PUT');
+        if($updated_data){
+          $this->gh_branch_TEMPLATE = $updated_data;
+          $gh_branch_cache = $this->cache_base.'/branch_'.$this->name.'_TEMPLATE.json';
+          $this->_save_cache_data($gh_branch_cache, $this->gh_branch_TEMPLATE);
+        }
+      }
+    }
   }
 
 
@@ -456,17 +502,19 @@ class RepoHealth {
       ]
     ]);
     $result = json_decode(file_get_contents($url, false, $context));
-    if(in_array("HTTP/1.1 204 No Content", $http_response_header)){
+    if(strpos($http_response_header[0], "HTTP/1.1 204") !== false){
       return true;
-    } else if(in_array("HTTP/1.1 200 OK", $http_response_header)){
+    } else if(strpos($http_response_header[0], "HTTP/1.1 200") !== false){
       return $result;
     } else {
-      echo '<div class="alert alert-danger m-3">';
-        echo '<strong class="mr-2">Error with GitHub API</strong> ';
-        echo 'There was a problem with the following URL: <code class="mr-2">'.$url.'</code> (<code>'.$method.'</code>)';
-        echo '<br><span class="text-muted small">See the browser console for details</span>';
-        echo '<script>console.log('.$url.', '.json_encode($content).', '.json_encode($http_response_header).'); </script>';
-      echo '</div>';
+      echo '<div class="alert alert-danger m-3">
+        <strong class="mr-2">Error with GitHub API</strong>
+        There was a problem with the following URL: <code class="mr-2">'.$url.'</code> (<code>'.$method.'</code>)
+        <details>
+          <pre>'.json_encode($http_response_header, JSON_PRETTY_PRINT).'</pre>
+          <pre>'.json_encode($content, JSON_PRETTY_PRINT).'</pre>
+        </details>
+      </div>';
       return false;
     }
   }
@@ -481,13 +529,14 @@ class RepoHealth {
   public function print_table_cell($test_name){
     $test_url = $this->test_urls[$test_name];
     $test_url = str_replace('{repo}', $this->name, $test_url);
+    $test_url = str_replace('{latest-tag}', $this->last_release->tag_name, $test_url);
     if(is_null($this->$test_name)){
       echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
       </td>';
     } else if($this->$test_name === -1){
-      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
-        <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-times text-secondary"></i></a>
+      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+        <a href="'.$test_url.'" class="d-block text-secondary text-decoration-none" target="_blank">&mdash;</a>
       </td>';
     } else if($this->$test_name){
       echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
@@ -511,12 +560,14 @@ class PipelineHealth extends RepoHealth {
   // We need more branches in pipelines
   public $branch_exist_tests = ['template', 'dev', 'master']; // lower case
   public $branches_protection = ['dev', 'master'];
+  public $branch_template_protection = true;
   // Keywords should also include nextflow, workflow and pipeline
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
   // Variables for release tests
   public $has_release;
   public $last_release;
   public $release_after_tools;
+  public $master_is_release;
 
   // Extra pipeline-specific tests
   public function run_tests(){
@@ -527,9 +578,23 @@ class PipelineHealth extends RepoHealth {
 
   public function test_releases(){
     global $tools_last_release;
-    if(!$this->has_release) $this->release_after_tools = -1;
-    else if($this->last_release && $tools_last_release){
-      $this->release_after_tools = strtotime($this->last_release) > strtotime($tools_last_release);
+    // No releases - set to -1 and return
+    if(!$this->has_release){
+      $this->release_after_tools = -1;
+      $this->master_is_release = -1;
+      return;
+    }
+    // Check if release is after last tools release
+    if($this->last_release && $tools_last_release){
+      $this->release_after_tools = strtotime($this->last_release->published_at) > strtotime($tools_last_release);
+    }
+    // Check if master commit hash is same as release hash
+    if($this->last_release){
+      foreach($this->gh_branches as $branch){
+        if($branch->name == 'master'){
+          $this->master_is_release = $this->last_release->tag_sha == $branch->commit->sha;
+        }
+      }
     }
   }
 
@@ -652,7 +717,7 @@ foreach($pipelines_json as $wf){
     $pipelines[$wf->name]->has_release = false;
     if(count($wf->releases) > 0){
       $pipelines[$wf->name]->has_release = true;
-      $pipelines[$wf->name]->last_release = end($wf->releases)->published_at;
+      $pipelines[$wf->name]->last_release = end($wf->releases);
     } else {
       $pipelines[$wf->name]->branch_default = 'dev';
     }
@@ -687,6 +752,7 @@ $base_test_names = [
   'branch_dev_code_owner_reviews' => 'dev: code owner reviews',
   'branch_dev_required_num_reviews' => 'dev: 1 review',
   'branch_dev_enforce_admins' => 'dev: enforce admins',
+  'branch_template_restrict_push' => 'T push',
 ];
 $base_test_descriptions = [
   'repo_wikis' => "Disable wikis",
@@ -716,6 +782,7 @@ $base_test_descriptions = [
   'branch_dev_code_owner_reviews' => 'dev branch: code owner reviews not required',
   'branch_dev_required_num_reviews' => 'dev branch: 1 review required',
   'branch_dev_enforce_admins' => 'dev branch: do not enforce rules for admins',
+  'branch_template_restrict_push' => 'Restrict push to TEMPLATE to @nf-core-bot',
 ];
 $base_test_urls = [
   'repo_wikis' =>                         'https://github.com/nf-core/{repo}/settings',
@@ -745,6 +812,7 @@ $base_test_urls = [
   'branch_dev_code_owner_reviews' =>      'https://github.com/nf-core/{repo}/settings/branches',
   'branch_dev_required_num_reviews' =>    'https://github.com/nf-core/{repo}/settings/branches',
   'branch_dev_enforce_admins' =>          'https://github.com/nf-core/{repo}/settings/branches',
+  'branch_template_restrict_push' =>      'https://github.com/nf-core/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
     'Team access' => [
@@ -778,15 +846,18 @@ $base_merge_table_col_headings = [
 $pipeline_test_names = [
   'has_release' => 'Released',
   'release_after_tools' => 'Released after tools',
+  'master_is_release' => 'Master = release',
   ] + $base_test_names;
 $pipeline_test_descriptions = [
   'has_release' => 'Has at least one release',
   'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
+  'master_is_release' => 'Master branch is same commit as the last release',
   ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
 $pipeline_test_urls = [
   'has_release' =>         'https://github.com/nf-core/{repo}/releases',
-  'release_after_tools' => 'https://github.com/nf-core/{repo}/releases',
+  'release_after_tools' => 'https://github.com/nf-core/{repo}/releases/{latest-tag}',
+  'master_is_release' => 'https://github.com/nf-core/{repo}/compare/{latest-tag}...master',
   ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
@@ -809,6 +880,7 @@ $core_repo_ignore_tests = [
   'branch_dev_code_owner_reviews',
   'branch_dev_required_num_reviews',
   'branch_dev_enforce_admins',
+  'branch_template_restrict_push',
 ];
 foreach($core_repo_ignore_tests as $key){
   unset($core_repo_test_names[$key]);
@@ -971,7 +1043,7 @@ $(function(){
       e.preventDefault();
     } else {
       if($('.repos-select').val() == 'all'){
-        if(!confirm('Seriously - ALL nf-core repost. Are you super sure?')){
+        if(!confirm('Seriously - ALL nf-core repos. Are you super sure?')){
           e.preventDefault();
         } else {
           $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');

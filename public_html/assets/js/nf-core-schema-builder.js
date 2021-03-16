@@ -797,7 +797,7 @@ $(function () {
         if(param['type'] == 'string'){
             $('.settings_pattern_group').show();
         }
-        if(param['type'] == 'number'){
+        if(['integer', 'number'].includes(param['type'])){
             $('.settings_minmax_group').show();
         }
 
@@ -828,8 +828,8 @@ $(function () {
 
         var settings = {};
         settings.pattern = $('#settings_pattern').val().trim();
-        settings.minimum = parseFloat($('#settings_minimum').val().trim());
-        settings.maximum = parseFloat($('#settings_maximum').val().trim());
+        settings.minimum = $('#settings_minimum').val().trim()===""? "": parseFloat($('#settings_minimum').val().trim());
+        settings.maximum = $('#settings_maximum').val().trim()===""? "": parseFloat($('#settings_maximum').val().trim());
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
         settings.enum = $.map(settings.enum, $.trim);
@@ -838,27 +838,39 @@ $(function () {
         // convert number strings back to numbers
         if(["integer", "number"].includes(param["type"])) {
             settings.enum = $.map(settings.enum, function (el) {
-                return parseFloat(el);
+                var number_val = parseFloat(el);
+                if(isNaN(number_val)){
+                    alert('Error: Enumerated values have to be numeric for pamater types "integer" and "number".');
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                return number_val;
             });
         }
         
 
-        // Validate inputs
-        if(isNaN(settings.minimum)){
-            alert('Error: Minimum value must be numeric');
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        if(isNaN(settings.maximum)){
-                alert('Error: Maximum value must be numeric');
+        // Validate min-max values
+        if (
+            ["integer", "number"].includes(param["type"]) &&
+            (settings.minimum !== "" ||
+            settings.maximum !== "")
+        ) {
+            if (isNaN(settings.minimum)) {
+                alert("Error: Minimum value must be numeric");
                 e.preventDefault();
                 e.stopPropagation();
             }
-        if(!isNaN(settings.minimum) && !isNaN(settings.maximum)){
-            if(settings.maximum <= settings.minimum){
-                alert('Error: Maximum value must be more than minimum');
+            if (isNaN(settings.maximum)) {
+                alert("Error: Maximum value must be numeric");
                 e.preventDefault();
                 e.stopPropagation();
+            }
+            if (settings.minimum !== "" && settings.maximum !== "") {
+                if (settings.maximum <= settings.minimum) {
+                alert("Error: Maximum value must be more than minimum");
+                e.preventDefault();
+                e.stopPropagation();
+                }
             }
         }
         // Update the schema
