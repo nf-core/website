@@ -6,6 +6,7 @@ start_date: "2021-03-09"
 start_time: "13:00 CET"
 end_date: "2021-03-09"
 end_time: "13:30 CET"
+youtube_embed: https://www.youtube.com/embed/vJbEdV_oxNQ
 location_url:
     - https://youtu.be/tWvou0xj9wA
     - https://youtu.be/Wc4A2tQ6WWY
@@ -30,7 +31,6 @@ Kevin Menden ([@KevinMenden](http://github.com/KevinMenden/))
 will follow with a presentation on: _**Adding modules to nf-core**_
 
 The first talk will describe how to use DSL2 modules when writing an nf-core pipeline - both custom (`local`) modules, centralised from nf-core/modules and subworkflow files. The second talk will go to the details on how to add new modules to the nf-core/modules repository and provide module tests.
-
 
 <div class="embed-responsive embed-responsive-16by9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/vJbEdV_oxNQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

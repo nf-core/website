@@ -76,6 +76,49 @@ foreach ($events as $idx => $event) {
     }
   }
 }
+if($curr_event){
+  // Shared function to prep nicely formatted output
+  $curr_event['meta'] = prep_current_event($curr_event);
+  // Dropdown button to visit event
+  $curr_event['meta']['location_dropdown'] = '';
+  if (array_key_exists('location_url', $curr_event) && $curr_event['location_url'][0] != "#" && $curr_event['ongoing']) {
+    $curr_event['meta']['location_dropdown'] = '
+      <div class="dropdown mr-2 mb-2">
+        <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Watch now
+        </a>
+
+        <div class="dropdown-menu">
+        ';
+    foreach ($curr_event['location_url'] as $idx => $url) {
+      $m = $curr_event['meta']['location_url_meta'][$idx];
+      $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="'.$url.'" target="_blank">'.$m['icon'].' <code>'.$url.'</code></a>'."\n";
+    }
+    $curr_event['meta']['location_dropdown'] .= '</div></div>';
+  }
+  // Countdown timer for upcoming events
+  if(!$curr_event['ongoing']){
+    $dtF = new \DateTime('@0');
+    $dtT = new \DateTime("@".(time() - $event['start_ts']));
+    $countdown_text = $dtF->diff($dtT)->format('%h:%I:%S');
+    $curr_event['meta']['countdown'] = "
+    <script type=\"text/javascript\">
+        var eventTime = ".$event['start_ts'].";
+        var currentTime = ".time().";
+        var diffTime = eventTime - currentTime;
+        var duration = moment.duration(diffTime*1000, 'milliseconds');
+        var interval = 1000;
+
+        setInterval(function(){
+          duration = moment.duration(duration - interval, 'milliseconds');
+            $('.countdown').text(duration.hours() + \":\" + (duration.minutes() < 10 ? '0':'' ) + duration.minutes() + \":\" + (duration.seconds() < 10 ? '0':'' ) + duration.seconds())
+        }, interval);
+    </script>
+    <h5>Event Countdown:</h5>
+    <p class=\"display-4 countdown\">".$countdown_text."</p>
+    ";
+  }
+}
 
 $import_moment = true;
 include('../includes/header.php');
@@ -85,6 +128,10 @@ include('../includes/header.php');
   <?php if($curr_event): ?>
     <div class="mainpage-subheader-heading homepage-header-contents p-2">
       <div class="container-fluid text-left">
+      <pre>
+      <?php
+      // print_r($curr_event);
+      ?></pre>
         <div class="row">
           <div class="col-sm-4 col-lg-3" style="overflow:hidden;">
             <?php if($curr_event['ongoing']): ?>
@@ -98,14 +145,28 @@ include('../includes/header.php');
           <div class="col p-3">
             <h5><?php echo $curr_event['title']; ?></h5>
             <p class="lead"><?php echo $curr_event['subtitle']; ?></p>
+            <p class="text-secondary"><?php echo $curr_event['meta']['date_string']; ?> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></p>
+            <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
+            <div class="btn-toolbar">
+              <?php echo $curr_event['meta']['location_dropdown']; ?>
+              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+            </div>
+            <?php endif;
+            if(!$curr_event['ongoing']): ?>
+              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+            <?php endif;?>
           </div>
-          <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
           <div class="col-sm-4 col-lg-3 pt-2">
+            <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="560" height="315" src="<?php echo $curr_event['youtube_embed']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
+            <?php else: ?>
+              <div class="pt-3">
+                <?php echo $curr_event['meta']['location_dropdown'] . $curr_event['meta']['countdown']; ?>
+              </div>
+            <?php endif; ?>
           </div>
-          <?php endif; ?>
         </div>
       </div>
     </div>
