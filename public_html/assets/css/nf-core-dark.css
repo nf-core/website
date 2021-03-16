@@ -150,6 +150,19 @@ blockquote a {
 .table-bordered th{
   border-color: #454d55;
 }
+.table tr.table-success,
+.table .table-success>td{
+  color:#e5e6e7;
+  background-color: #229b5a;
+}
+.table .table-success a{
+  color:rgb(32, 114, 182);
+}
+
+.table-hover  tr.table-success:hover,
+.table-hover .table-success:hover>td{
+  background-color:  #31aa69de;
+}
 .progress, .modal-content {
   background-color: #2d2e2f;
 }

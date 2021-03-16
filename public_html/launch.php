@@ -90,7 +90,7 @@ function launch_pipeline_web($pipeline, $release){
         $api_opts = stream_context_create([ 'http' => [ 'method' => 'GET', 'header' => [ 'User-Agent: PHP' ] ] ]);
         $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
         $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-        if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             # Remember for next time
             file_put_contents($gh_pipeline_no_schema_fn, '');
             echo '<script>console.log("Sent request to '.$gh_launch_schema_url.'"," got http response header:",'.json_encode($http_response_header, JSON_HEX_TAG).')</script>';

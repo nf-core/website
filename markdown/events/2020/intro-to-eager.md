@@ -6,7 +6,7 @@ start_date: "2020-12-11"
 start_time: "14:00 CET"
 end_date: "2020-12-11"
 end_time: "16:00 CET"
-location_name: "meet.jit.si".
+location_name: https://meet.jit.si
 location_url: '#organisational-details'
 ---
 

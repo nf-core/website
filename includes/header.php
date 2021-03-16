@@ -58,7 +58,11 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/highlight.pack.js"></script>
     <!-- Page-specific CSS and JS -->
-    <?php if(isset($import_leaflet) && $import_leaflet): ?>
+    <?php if(isset($import_moment) && $import_moment): ?>
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/moment-timezone-with-data-10-year-range.js"></script>
+    <?php endif;
+    if(isset($import_leaflet) && $import_leaflet): ?>
     <link href="/assets/css/leaflet.css" rel="stylesheet">
     <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet">
     <script src="/assets/js/leaflet.js"></script>
@@ -144,11 +148,13 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/developers/design_guidelines">Design Guidelines</a>
             </div>
           </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/events">Events</a>
+          </li>
           <li class="nav-item p-1 dropdown">
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
-              <a class="dropdown-item" href="/events">Events</a>
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
@@ -158,20 +164,9 @@ if(isset($subtitle) && strlen($subtitle) > 0){
           </li>
         </ul>
         <hr class="d-md-none">
-        <ul class="navbar-nav d-md-none">
-          <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://nf-co.re/join/slack">Chat on Slack</a>
-          </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://groups.google.com/forum/#!forum/nf-core">Join the email list</a>
-          </li>
-          <li class="nav-item p-1">
-            <a class="nav-link" target="_blank" href="https://twitter.com/nf_core">Follow on twitter</a>
-          </li>
-          <li class="nav-item p-1 mb-3">
-            <a class="nav-link" target="_blank" href="https://github.com/nf-core">See nf-core on GitHub</a>
-          </li>
-        </ul>
+        <a class="d-md-none btn btn-block btn-success mb-3" href="/join">
+          Join nf-core
+        </a>
         <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
           Join nf-core
         </a>
