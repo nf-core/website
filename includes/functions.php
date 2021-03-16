@@ -369,3 +369,62 @@ function add_ids_to_headers($content_input, $is_hidden = false)
   );
   return $content_output;
 }
+
+
+
+
+
+// Load event front-matter
+$md_base = dirname(dirname(__file__)) . "/markdown/";
+$events = [];
+$year_dirs = glob($md_base . 'events/*', GLOB_ONLYDIR);
+foreach ($year_dirs as $year) {
+  $event_mds = glob($year . '/*.md');
+  foreach ($event_mds as $event_md) {
+    // Load the file
+    $md_full = file_get_contents($event_md);
+    if ($md_full !== false) {
+      $fm = parse_md_front_matter($md_full);
+      // Add the URL
+      $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+      // Add to the events array
+      $events[] = $fm['meta'];
+    }
+  }
+}
+
+# Look to see if we have an upcoming / ongoing event to show and pick one
+$curr_event = false;
+$time_window = 3600;
+$additional_ongoing = 0;
+$additional_upcoming = 0;
+foreach ($events as $idx => $event) {
+  $event = sanitise_date_meta($event);
+  if (!$event) {
+    unset($events[$idx]);
+    continue;
+  }
+  if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
+    $time_window = 86400*5; // show announcement 5 days ahead for full day events
+  }
+  if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
+    $current_events[$idx] = $event;
+
+    // Ongoing event
+    if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
+      $event['ongoing'] = true;
+      if(!$curr_event) $curr_event = $event;
+      // If multiple events running now, take the one with latest start time
+      else if($event['start_ts'] > $curr_event['start_ts']) $curr_event = $event;
+      else $additional_ongoing++;
+    }
+    // Upcoming event
+    else {
+      $event['ongoing'] = false;
+      if(!$curr_event) $curr_event = $event;
+      // If multiple events coming up, take the one with earliest start time
+      else if($event['start_ts'] < $curr_event['start_ts']) $curr_event = $event;
+      else $additional_upcoming++;
+    }
+  }
+}
