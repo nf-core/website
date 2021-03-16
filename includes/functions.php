@@ -46,51 +46,87 @@ function sanitise_date_meta($event)
   return $event;
 }
 
-function print_current_events($events, $border)
-{
-  $event_type_classes = array(
+function prep_current_event($event){
+  $d = array();
+  $d['event_type_classes'] = array(
     'hackathon' => 'primary',
     'talk' => 'success',
     'poster' => 'secondary',
     'tutorial' => 'info',
     'workshop' => 'light'
   );
-  $event_type_icons = array(
+  $d['event_type_icons'] = array(
     'hackathon' => 'fad fa-laptop-code',
     'talk' => 'fad fa-presentation',
     'poster' => 'fad fa-image',
     'tutorial' => 'fad fa-graduation-cap',
     'workshop' => 'fad fa-chalkboard-teacher'
   );
+  # Nice date strings
+  $d['date_string'] = date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+  if (date('mY', $event['start_ts']) == date('mY', $event['end_ts'])) {
+    $d['date_string'] = date('H:i', $event['start_ts']) . '-' . date('H:i e', $event['end_ts']) . ', ' .
+      date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+  }
+  if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
+    $d['date_string'] = date('H:i', $event['start_ts']) . '-' . date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+  }
+  $d['colour_class'] = $d['event_type_classes'][strtolower($event['type'])];
+  $d['icon_class'] = $d['event_type_icons'][strtolower($event['type'])];
+  $d['event_type_badge'] = '<span class="badge badge-'.$d['colour_class'].' small"><i class="'. $d['icon_class'].' mr-1"></i>'. ucfirst($event['type']).'</span>';
+  $d['location_url_meta'] = [];
+  if (array_key_exists('location_url', $event) && $event['location_url'][0] != "#") {
+    foreach ($event['location_url'] as $idx => $url) {
+      $d['location_url_meta'][$idx]['base_url'] = substr($url, 8, 7);
+
+      switch ($d['location_url_meta'][$idx]['base_url']) {
+        case 'zoom.us':
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video mr-1"></i>';
+          $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
+          break;
+        case "youtu.b":
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube mr-1"></i>';
+          $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
+          break;
+        case "www.bil":
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fad fa-film mr-1"></i>';
+          $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
+          break;
+        case "doi.org":
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-barcode mr-1"></i>';
+          $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
+          break;
+        default:
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-external-link mr-1"></i>';
+          $d['location_url_meta'][$idx]['print_url'] = $url;
+      }
+    }
+  }
+  return $d;
+}
+
+function print_current_events($events, $border){
 
   foreach ($events as $idx => $event) :
+    $d = prep_current_event($event);
+
     # Nice date strings
     if ($event['start_time']) {
       $header_html .= '<dt>Event starts:</dt><dd data-timestamp="' . $event['start_ts'] . '">' . date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . '</dd>';
     } else {
       $header_html .= '<dt>Event starts:</dt><dd data-timestamp="' . $event['start_ts'] . '">' . date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . '</dd>';
     }
-    $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-    if (date('mY', $event['start_ts']) == date('mY', $event['end_ts'])) {
-      $date_string = date('H:i', $event['start_ts']) . '-' . date('H:i e', $event['end_ts']) . ', ' .
-        date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']) . ' - ' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-    }
-    if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
-      $date_string = date('H:i', $event['start_ts']) . '-' . date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
-    }
-    $colour_class = $event_type_classes[strtolower($event['type'])];
-    $icon_class = $event_type_icons[strtolower($event['type'])];
 ?>
 
     <!-- Event Card -->
-    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-right-0 border-bottom-0 border-' . $colour_class : 'border-0'); ?> ">
+    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-right-0 border-bottom-0 border-' . $d['colour_class'] : 'border-0'); ?> ">
       <div class="card-body py-3 d-flex">
-        <div class="pt-2"><i class="<?php echo $icon_class; ?> fa-5x text-<?php echo $colour_class ?> mr-2"></i></div>
+        <div class="pt-2"><i class="<?php echo $d['icon_class']; ?> fa-5x text-<?php echo $d['colour_class'] ?> mr-2"></i></div>
         <div class="px-2 flex-grow-1 d-flex flex-column justify-content-between">
           <div>
             <h5 class=" my-0 py-0 d-flex">
               <a class="text-success flex-grow-1" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
-              <small><span class="badge badge-<?php echo $colour_class ?> small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
+              <small><?php echo $d['event_type_badge']; ?></small>
             </h5>
             <?php
             if (array_key_exists('subtitle', $event)) {
@@ -101,7 +137,7 @@ function print_current_events($events, $border)
             } ?>
           </div>
           <div class="d-md-flex justify-content-between align-items-end">
-            <h6 class=""><?php echo $date_string; ?></h6>
+            <h6 class=""><?php echo $d['date_string']; ?></h6>
 
             <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
               See details
@@ -112,22 +148,8 @@ function print_current_events($events, $border)
       <?php if (array_key_exists('location_url', $event) && $event['location_url'][0] != "#") {
         echo '<div class="btn-group mt-1" role="group" aria-label="External links">';
         foreach ($event['location_url'] as $idx => $url) {
-          $base_url = substr($url, 8, 7);
-
-          switch ($base_url) {
-            case 'zoom.us':
-              $icon = '<i class="fas fa-video mr-1"></i>';
-              $print_url = count($event['location_url']) > 3 ? '' : $url;
-              break;
-            case "youtu.b":
-              $icon = '<i class="fab fa-youtube mr-1"></i>';
-              $print_url = count($event['location_url']) > 3 ? '' : $url;
-              break;
-            default:
-              $icon = '<i class="fas fa-external-link mr-1"></i>';
-              $print_url = $url;
-          }
-          echo '<a href="' . $url . '" class="btn btn-' . $colour_class . ' rounded-0">' . $icon . $print_url . '</a>';
+          $m = $d['location_url_meta'][$idx];
+          echo '<a href="' . $m['url'] . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
         }
         echo '</div>';
       }
