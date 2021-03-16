@@ -22,60 +22,6 @@ $header_btn_url = 'https://nf-co.re/events/rss';
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once('../includes/functions.php');
 
-// Load event front-matter
-$md_base = dirname(dirname(__file__)) . "/markdown/";
-$events = [];
-$year_dirs = glob($md_base . 'events/*', GLOB_ONLYDIR);
-foreach ($year_dirs as $year) {
-  $event_mds = glob($year . '/*.md');
-  foreach ($event_mds as $event_md) {
-    // Load the file
-    $md_full = file_get_contents($event_md);
-    if ($md_full !== false) {
-      $fm = parse_md_front_matter($md_full);
-      // Add the URL
-      $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
-      // Add to the events array
-      $events[] = $fm['meta'];
-    }
-  }
-}
-
-# Look to see if we have an upcoming / ongoing event to show and pick one
-$curr_event = false;
-$time_window = 3600;
-$additional_ongoing = 0;
-$additional_upcoming = 0;
-foreach ($events as $idx => $event) {
-  $event = sanitise_date_meta($event);
-  if (!$event) {
-    unset($events[$idx]);
-    continue;
-  }
-  if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
-    $time_window = 86400*5; // show announcement 5 days ahead for full day events
-  }
-  if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
-    $current_events[$idx] = $event;
-
-    // Ongoing event
-    if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
-      $event['ongoing'] = true;
-      if(!$curr_event) $curr_event = $event;
-      // If multiple events running now, take the one with latest start time
-      else if($event['start_ts'] > $curr_event['start_ts']) $curr_event = $event;
-      else $additional_ongoing++;
-    }
-    // Upcoming event
-    else {
-      $event['ongoing'] = false;
-      if(!$curr_event) $curr_event = $event;
-      // If multiple events coming up, take the one with earliest start time
-      else if($event['start_ts'] < $curr_event['start_ts']) $curr_event = $event;
-      else $additional_upcoming++;
-    }
-  }
-}
 if($curr_event){
   // Shared function to prep nicely formatted output
   $curr_event['meta'] = prep_current_event($curr_event);
@@ -99,20 +45,28 @@ if($curr_event){
   // Countdown timer for upcoming events
   if(!$curr_event['ongoing']){
     $dtF = new \DateTime('@0');
-    $dtT = new \DateTime("@".(time() - $event['start_ts']));
-    $countdown_text = $dtF->diff($dtT)->format('%h:%I:%S');
+    $dtT = new \DateTime("@".(time() - $curr_event['start_ts']));
+    $countdown_text = $dtF->diff($dtT)->format('%d days + %h:%I:%S');
     $curr_event['meta']['countdown'] = "
     <script type=\"text/javascript\">
-        var eventTime = ".$event['start_ts'].";
-        var currentTime = ".time().";
-        var diffTime = eventTime - currentTime;
-        var duration = moment.duration(diffTime*1000, 'milliseconds');
-        var interval = 1000;
-
         setInterval(function(){
-          duration = moment.duration(duration - interval, 'milliseconds');
-            $('.countdown').text(duration.hours() + \":\" + (duration.minutes() < 10 ? '0':'' ) + duration.minutes() + \":\" + (duration.seconds() < 10 ? '0':'' ) + duration.seconds())
-        }, interval);
+          var eventTime = ".$curr_event['start_ts']." * 1000;
+          var currentTime = Date.now();
+          var delta = Math.abs(eventTime - currentTime) / 1000;
+
+          var days = Math.floor(delta / 86400);
+          delta -= days * 86400;
+
+          var hours = Math.floor(delta / 3600) % 24;
+          delta -= hours * 3600;
+
+          var minutes = Math.floor(delta / 60) % 60;
+          delta -= minutes * 60;
+
+          var seconds = Math.floor(delta) % 60;
+
+          $('.countdown').text((days > 0 ? days + ' day' + (days > 1 ? 's':'') + ' + ' : '') + hours  + ':' + (minutes < 10 ? '0':'' ) + minutes + ':' + (seconds < 10 ? '0':'' ) + seconds)
+        }, 1000);
     </script>
     <h5>Event Countdown:</h5>
     <p class=\"display-4 countdown\">".$countdown_text."</p>
@@ -164,6 +118,7 @@ include('../includes/header.php');
             <?php else: ?>
               <div class="pt-3">
                 <?php echo $curr_event['meta']['location_dropdown'] . $curr_event['meta']['countdown']; ?>
+                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
               </div>
             <?php endif; ?>
           </div>
