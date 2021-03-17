@@ -28,19 +28,23 @@ if($curr_event){
   // Dropdown button to visit event
   $curr_event['meta']['location_dropdown'] = '';
   if (array_key_exists('location_url', $curr_event) && $curr_event['location_url'][0] != "#" && $curr_event['ongoing']) {
-    $curr_event['meta']['location_dropdown'] = '
-      <div class="dropdown mr-2 mb-2">
-        <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Watch now
-        </a>
+    if(count($curr_event['location_url']) == 1){
+      $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success" href="'.$curr_event['location_url'][0].'" target="_blank">>Watch now</a>';
+    } else {
+      $curr_event['meta']['location_dropdown'] = '
+        <div class="dropdown mr-2 mb-2">
+          <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Watch now
+          </a>
 
-        <div class="dropdown-menu">
-        ';
-    foreach ($curr_event['location_url'] as $idx => $url) {
-      $m = $curr_event['meta']['location_url_meta'][$idx];
-      $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="'.$url.'" target="_blank">'.$m['icon'].' <code>'.$url.'</code></a>'."\n";
+          <div class="dropdown-menu">
+          ';
+      foreach ($curr_event['location_url'] as $idx => $url) {
+        $m = $curr_event['meta']['location_url_meta'][$idx];
+        $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="'.$url.'" target="_blank">'.$m['icon'].' <code>'.$url.'</code></a>'."\n";
+      }
+      $curr_event['meta']['location_dropdown'] .= '</div></div>';
     }
-    $curr_event['meta']['location_dropdown'] .= '</div></div>';
   }
   // Countdown timer for upcoming events
   if(!$curr_event['ongoing']){
