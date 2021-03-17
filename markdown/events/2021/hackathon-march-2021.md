@@ -1,6 +1,6 @@
 ---
 title: Hackathon - March 2021
-subtitle: A virtual online hackathon to build nf-core together.
+subtitle: A virtual online hackathon to develop nf-core together.
 type: hackathon
 start_date: "2021-03-22"
 start_time: "09:00 CET"
