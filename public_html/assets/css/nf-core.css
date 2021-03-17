@@ -12,6 +12,12 @@ h1, h2, h3, h4, h5,
   color: #159957;
   font-weight: 700;
 }
+.text-success, a.text-success:hover {
+  color: #159957 !important;
+}
+a.text-secondary:hover {
+  color: #6c757d !important;
+}
 a {
   color: #1e6bb8;
 }
@@ -455,6 +461,13 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   margin: 3rem auto 0;
   padding: 0;
   text-align: center;
+}
+.homepage-header-fa-background {
+  position:absolute;
+  top:10px;
+  left:30px ;
+  font-size: 16em;
+  opacity:0.2;
 }
 
 /* Fancy call to action button on homepage
