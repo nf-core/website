@@ -92,21 +92,28 @@ include('../includes/header.php');
     <div class="mainpage-subheader-heading homepage-header-contents event-triangle-down">
       <div class="container-fluid text-left">
         <div class="row">
-          <div class="col-lg-3 overflow-hidden">
-            <?php if ($curr_event['ongoing']) : ?>
-              <i class="fad fa-broadcast-tower homepage-header-fa-background  d-none d-lg-block"></i>
-              <h4 class="display-4 pt-2 d-none d-lg-inline">Ongoing event</h4>
-              <h4 class="pt-2 d-lg-none">Ongoing event</h4>
-            <?php else : ?>
-              <i class="fad fa-alarm-clock homepage-header-fa-background d-none d-lg-block"></i>
-              <h4 class="display-4 pt-2 d-none d-lg-inline">Upcoming event</h4>
-              <h4 class="pt-2 d-lg-none">Upcoming event</h4>
-            <?php endif; ?>
-          </div>
+          <?php if ($curr_event['ongoing']) : ?>
+            <div class="col-lg-3 overflow-hidden d-none d-lg-block">
+              <i class="fad fa-broadcast-tower homepage-header-fa-background"></i>
+              <h4 class="display-4 pt-2">Ongoing event</h4>
+            </div>
+            <div class="col-lg-3 pt-2 pb-1 mb-2 overflow-hidden d-lg-none mainpage-subheader-heading-header">
+              <h5 class="pt-2 font-weight-light">Ongoing event</h5>
+            </div>
+          <?php else : ?>
+            <div class="col-lg-3 overflow-hidden d-none d-lg-block">
+              <i class="fad fa-alarm-clock homepage-header-fa-background"></i>
+              <h4 class="display-4 pt-2">Upcoming event</h4>
+            </div>
+            <div class="col-lg-3 pt-2 pb-1 mb-2 overflow-hidden d-lg-none mainpage-subheader-heading-header">
+              <h5 class="pt-2 font-weight-light">Upcoming event</h5>
+            </div>
+          <?php endif; ?>
           <div class="col pt-lg-3 pb-lg-3 text-center text-lg-left">
             <h5 class="pt-2 pb-0 pb-lg-1"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
-            <p class="lead"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
-            <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none"><?php echo $curr_event['meta']['date_string']; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
+            <p class="lead d-none d-sm-inline"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
+            <p class="d-sm-none"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
+            <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
             <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])) : ?>
               <div class="btn-toolbar justify-content-center justify-content-lg-start">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
