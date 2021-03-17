@@ -6,6 +6,7 @@ start_date: "2021-02-16"
 start_time: "13:00 CET"
 end_date: "2021-02-16"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/FFTNVbdD5pQ
 location_url:
     - https://doi.org/10.6084/m9.figshare.14160677.v1
     - https://youtu.be/FFTNVbdD5pQ
@@ -29,7 +30,3 @@ She will talk through the different files found in the nf-core template and desc
 The talk will be live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/FFTNVbdD5pQ>
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/FFTNVbdD5pQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>

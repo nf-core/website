@@ -159,8 +159,23 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
   $mainpage_container = false;
   include('../includes/header.php');
 
+  // Add in a YouTube embed if we have one
+  if(array_key_exists('youtube_embed', $event)){
+    if(!is_array($event['youtube_embed'])) $event['youtube_embed'] = [$event['youtube_embed']];
+    foreach($event['youtube_embed'] as $embed){
+      $video_id = get_youtube_id($embed);
+      if($video_id){
+        $content .= '
+          <div class="embed-responsive embed-responsive-16by9 mt-3">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        ';
+      }
+    }
+  }
+
   $toc = generate_toc($content);
-  
+
   # only add ToC if there are more than two items in it
   if(substr_count($toc, "list-group-item ")>2){
     # Make a row with a column for content
@@ -169,7 +184,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
     # Print content
 
     echo '<div class="rendered-markdown container container-xl main-content ml-5 pr-5">' . $content . '</div>';
-    
+
     # check if parsed markdown file has equal numbers of opening and closing divs (inline tables generate too many closing ones ¯\_(ツ)_/¯)
     if(substr_count($content, "<div")== substr_count($content, "</div")){
       echo '</div>'; # close column div
@@ -195,17 +210,17 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 
     echo '<div class="rendered-markdown ">' . $content . '</div></div>';
   }
-  
+
   // Javascript for moment time zone support
   if ($event['start_time']) {
     echo '
     <script type="text/javascript">
     $("[data-timestamp]").each(function(){
       var timestamp = $(this).data("timestamp");
-      var timeformat = $(this).data("timeformat") ? $(this).data("timeformat") : "HH:mm z, LL"; 
+      var timeformat = $(this).data("timeformat") ? $(this).data("timeformat") : "HH:mm z, LL";
       var local_time = moment.tz(timestamp, "X", moment.tz.guess());
       $(this).text(local_time.format(timeformat));
-      if(moment(timestamp,"X").diff(moment().format())<(30*60*1000)){ 
+      if(moment(timestamp,"X").diff(moment().format())<(30*60*1000)){
         $(this).parent("tr").addClass("table-success"); // highlight row in schedule if current time is less than 30 minutes after time in row
       }
     });

@@ -118,11 +118,18 @@ include('../includes/header.php');
             <?php endif;?>
           </div>
           <div class="col-lg-3">
-            <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
+            <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])):
+              if(!is_array($curr_event['youtube_embed'])) $curr_event['youtube_embed'] = [$curr_event['youtube_embed']];
+              $video_id = get_youtube_id($curr_event['youtube_embed'][0]);
+              ?>
               <div class="embed-responsive embed-responsive-16by9 mt-3 d-none d-lg-block">
-                <iframe width="560" height="315" src="<?php echo $curr_event['youtube_embed']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
-            <?php elseif($curr_event['ongoing']): ?>
+              <?php
+              if(count($curr_event['youtube_embed']) > 1): ?>
+                <p class="text-right"><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php echo count($curr_event['youtube_embed']) - 1;  d?> more</a></p>
+              <?php endif;
+            elseif($curr_event['ongoing']): ?>
               <div class="pt-lg-5">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
                 <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>

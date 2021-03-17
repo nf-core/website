@@ -371,6 +371,14 @@ function add_ids_to_headers($content_input, $is_hidden = false)
   return $content_output;
 }
 
+function get_youtube_id($url){
+  // https://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id#comment11552053_6121972
+  preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=embed/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $url, $matches);
+  if($matches){
+    return $matches[0];
+  }
+  return false;
+}
 
 
 
