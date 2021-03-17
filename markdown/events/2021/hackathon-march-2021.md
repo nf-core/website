@@ -90,7 +90,7 @@ More details to come, but so far our idea is to work in the following areas:
                 <th>Time</th>
                 <th>Monday 22, 2021</th>
                 <th>Tuesday 23, 2021</th>
-                <th>Thursday 24, 2021</th>
+                <th>Wednesday 24, 2021</th>
             </tr>
         </thead>
         <tbody>
