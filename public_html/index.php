@@ -144,7 +144,6 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="triangle subheader-triangle-down"></div>
   <?php endif; ?>
   <div class="homepage-header-contents col-md-5">
     <h1>
