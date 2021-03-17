@@ -6,6 +6,7 @@ start_date: "2021-02-09"
 start_time: "13:00 CET"
 end_date: "2021-02-09"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/cXBYusdjrc0
 location_url:
     - https://doi.org/10.6084/m9.figshare.14160347.v1
     - https://youtu.be/cXBYusdjrc0
@@ -33,7 +34,3 @@ This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will prese
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/cXBYusdjrc0>
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/cXBYusdjrc0?start=93" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
