@@ -71,6 +71,12 @@ function prep_current_event($event){
   if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
     $d['date_string'] = date('H:i', $event['start_ts']) . '-' . date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
   }
+  # Nice date strings
+  if ($event['start_time']) {
+    $d['nice_date_string'] = ['data-timestamp="'.$event['start_ts'].'"', date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts'])];
+  } else {
+    $d['nice_date_string'] = ['data-timestamp="'.$event['start_ts'].'"', date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts'])];
+  }
   $d['colour_class'] = $d['event_type_classes'][strtolower($event['type'])];
   $d['icon_class'] = $d['event_type_icons'][strtolower($event['type'])];
   $d['event_type_badge'] = '<span class="badge badge-'.$d['colour_class'].' small"><i class="'. $d['icon_class'].' mr-1"></i>'. ucfirst($event['type']).'</span>';
@@ -110,13 +116,7 @@ function print_current_events($events, $border){
 
   foreach ($events as $idx => $event) :
     $d = prep_current_event($event);
-
-    # Nice date strings
-    if ($event['start_time']) {
-      $header_html .= '<dt>Event starts:</dt><dd data-timestamp="' . $event['start_ts'] . '">' . date('H:i e, j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . '</dd>';
-    } else {
-      $header_html .= '<dt>Event starts:</dt><dd data-timestamp="' . $event['start_ts'] . '">' . date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) . '</dd>';
-    }
+    $header_html .= '<dt>Event starts:</dt><dd '.$d['nice_date_string'][0].'>' . $d['nice_date_string'][1] . '</dd>';
 ?>
 
     <!-- Event Card -->
