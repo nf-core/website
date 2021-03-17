@@ -103,12 +103,12 @@ include('../includes/header.php');
               <h4 class="pt-2 d-lg-none">Upcoming event</h4>
             <?php endif; ?>
           </div>
-          <div class="col p-3">
+          <div class="col pt-3 pb-lg-3">
             <h5 class="pt-2"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
             <p class="lead"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
             <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none"><?php echo $curr_event['meta']['date_string']; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
             <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
-            <div class="btn-toolbar">
+            <div class="btn-toolbar justify-content-center justify-content-lg-start">
               <?php echo $curr_event['meta']['location_dropdown']; ?>
               <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
             </div>
@@ -119,11 +119,11 @@ include('../includes/header.php');
           </div>
           <div class="col-lg-3">
             <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
-              <div class="embed-responsive embed-responsive-16by9 mt-3">
+              <div class="embed-responsive embed-responsive-16by9 mt-3 d-none d-lg-block">
                 <iframe width="560" height="315" src="<?php echo $curr_event['youtube_embed']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             <?php elseif($curr_event['ongoing']): ?>
-              <div class="pt-5">
+              <div class="pt-lg-5">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
                 <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
               </div>
