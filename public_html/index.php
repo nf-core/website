@@ -27,9 +27,13 @@ if($curr_event){
   $curr_event['meta'] = prep_current_event($curr_event);
   // Dropdown button to visit event
   $curr_event['meta']['location_dropdown'] = '';
-  if (array_key_exists('location_url', $curr_event) && $curr_event['location_url'][0] != "#" && $curr_event['ongoing']) {
+  if (array_key_exists('location_url', $curr_event) && $curr_event['ongoing']) {
     if(count($curr_event['location_url']) == 1){
-      $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success" href="'.$curr_event['location_url'][0].'" target="_blank">>Watch now</a>';
+      $url = $curr_event['location_url'];
+      if($url[0] == "#") $url = $curr_event['url'] . $url;
+      $m = $curr_event['meta']['location_url_meta'];
+
+      $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success mr-2 mb-2" href="'.$url.'">'.$m[0]['icon'].' Watch now</a>';
     } else {
       $curr_event['meta']['location_dropdown'] = '
         <div class="dropdown mr-2 mb-2">
@@ -41,6 +45,7 @@ if($curr_event){
           ';
       foreach ($curr_event['location_url'] as $idx => $url) {
         $m = $curr_event['meta']['location_url_meta'][$idx];
+        if($url[0] == "#") $url = $curr_event['url'] . $url;
         $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="'.$url.'" target="_blank">'.$m['icon'].' <code>'.$url.'</code></a>'."\n";
       }
       $curr_event['meta']['location_dropdown'] .= '</div></div>';
@@ -114,11 +119,11 @@ include('../includes/header.php');
           </div>
           <div class="col-lg-3">
             <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
-              <div class="embed-responsive embed-responsive-16by9 pt-2">
+              <div class="embed-responsive embed-responsive-16by9 mt-3">
                 <iframe width="560" height="315" src="<?php echo $curr_event['youtube_embed']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             <?php elseif($curr_event['ongoing']): ?>
-              <div class="pt-3">
+              <div class="pt-5">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
                 <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
               </div>
