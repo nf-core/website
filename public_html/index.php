@@ -161,7 +161,7 @@ include('../includes/header.php');
       <img src="assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
     </h1>
     <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
-    <div class="hompage-cta-flex">
+    <div class="hompage-cta-flex mb-5">
       <a class="hompage-cta" href="/pipelines">View Pipelines</a>
     </div>
   </div>
