@@ -111,7 +111,7 @@ include('../includes/header.php');
                   <h5 class="pt-2 font-weight-light">Upcoming event</h5>
                 </div>
                 <div class="col-6 text-right">
-                  <span class="badge small font-weight-light badge-secondary" style="margin-top:0.75rem;" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></span>
+                  <span class="badge small font-weight-light" style="margin-top:0.75rem;" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></span>
                 </div>
               </div>
             </div>
