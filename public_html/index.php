@@ -74,11 +74,11 @@ if($curr_event){
 
           var seconds = Math.floor(delta) % 60;
 
-          $('.countdown').text((days > 0 ? days + ' day' + (days > 1 ? 's':'') + ' + ' : '') + hours  + ':' + (minutes < 10 ? '0':'' ) + minutes + ':' + (seconds < 10 ? '0':'' ) + seconds)
+          $('.countdown').html((days > 0 ? days + ' day' + (days > 1 ? 's':'') + ',  <br>' : '') + hours  + 'h ' + minutes + 'm ' + seconds +'s')
         }, 1000);
     </script>
     <h5 class=\"pt-4\">Event Countdown:</h5>
-    <p class=\"display-4 countdown\">".$countdown_text."</p>
+    <p class=\"display-4 text-nowrap countdown\">" . $countdown_text . "</p>
     ";
   }
 }
@@ -88,53 +88,54 @@ include('../includes/header.php');
 ?>
 
 <div class="homepage-header">
-  <?php if($curr_event): ?>
-    <div class="mainpage-subheader-heading homepage-header-contents">
+  <?php if ($curr_event) : ?>
+    <div class="mainpage-subheader-heading homepage-header-contents event-triangle-down">
       <div class="container-fluid text-left">
         <div class="row">
           <div class="col-lg-3 overflow-hidden">
-            <?php if($curr_event['ongoing']): ?>
-              <i class="fad fa-broadcast-tower homepage-header-fa-background"></i>
+            <?php if ($curr_event['ongoing']) : ?>
+              <i class="fad fa-broadcast-tower homepage-header-fa-background  d-none d-lg-block"></i>
               <h4 class="display-4 pt-2 d-none d-lg-inline">Ongoing event</h4>
               <h4 class="pt-2 d-lg-none">Ongoing event</h4>
-            <?php else: ?>
-              <i class="fad fa-alarm-clock homepage-header-fa-background"></i>
+            <?php else : ?>
+              <i class="fad fa-alarm-clock homepage-header-fa-background d-none d-lg-block"></i>
               <h4 class="display-4 pt-2 d-none d-lg-inline">Upcoming event</h4>
               <h4 class="pt-2 d-lg-none">Upcoming event</h4>
             <?php endif; ?>
           </div>
-          <div class="col pt-3 pb-lg-3">
-            <h5 class="pt-2"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
+          <div class="col pt-lg-3 pb-lg-3 text-center text-lg-left">
+            <h5 class="pt-2 pb-0 pb-lg-1"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
             <p class="lead"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
             <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none"><?php echo $curr_event['meta']['date_string']; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
-            <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
-            <div class="btn-toolbar justify-content-center justify-content-lg-start">
-              <?php echo $curr_event['meta']['location_dropdown']; ?>
-              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
-            </div>
+            <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])) : ?>
+              <div class="btn-toolbar justify-content-center justify-content-lg-start">
+                <?php echo $curr_event['meta']['location_dropdown']; ?>
+                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+              </div>
             <?php endif;
-            if(!$curr_event['ongoing']): ?>
-              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
-            <?php endif;?>
+            if (!$curr_event['ongoing']) : ?>
+              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+            <?php endif; ?>
           </div>
-          <div class="col-lg-3">
-            <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])):
-              if(!is_array($curr_event['youtube_embed'])) $curr_event['youtube_embed'] = [$curr_event['youtube_embed']];
+          <div class="col-lg-4 col-xl-3">
+            <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])) :
+              if (!is_array($curr_event['youtube_embed'])) $curr_event['youtube_embed'] = [$curr_event['youtube_embed']];
               $video_id = get_youtube_id($curr_event['youtube_embed'][0]);
-              ?>
+            ?>
               <div class="embed-responsive embed-responsive-16by9 mt-3 d-none d-lg-block">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
               <?php
-              if(count($curr_event['youtube_embed']) > 1): ?>
-                <p class="text-right"><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php echo count($curr_event['youtube_embed']) - 1;  d?> more</a></p>
+              if (count($curr_event['youtube_embed']) > 1) : ?>
+                <p class="text-right"><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php echo count($curr_event['youtube_embed']) - 1;
+                                                                                                                      d ?> more</a></p>
               <?php endif;
-            elseif($curr_event['ongoing']): ?>
+            elseif ($curr_event['ongoing']) : ?>
               <div class="pt-lg-5">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
                 <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
               </div>
-            <?php else: ?>
+            <?php else : ?>
               <div class="d-none d-lg-block">
                 <?php echo $curr_event['meta']['countdown']; ?>
               </div>
