@@ -83,19 +83,21 @@ include('../includes/header.php');
     <div class="mainpage-subheader-heading homepage-header-contents">
       <div class="container-fluid text-left">
         <div class="row">
-          <div class="col-sm-4 col-lg-3" style="overflow:hidden;">
+          <div class="col-lg-3 overflow-hidden">
             <?php if($curr_event['ongoing']): ?>
-              <i class="fad fa-broadcast-tower" style="position:absolute; top:10px; left:30px ; font-size: 16em; opacity:0.2;"></i>
-              <h4 class="display-4 pt-2">Ongoing event</h4>
+              <i class="fad fa-broadcast-tower homepage-header-fa-background"></i>
+              <h4 class="display-4 pt-2 d-none d-lg-inline">Ongoing event</h4>
+              <h4 class="pt-2 d-lg-none">Ongoing event</h4>
             <?php else: ?>
-              <i class="fad fa-alarm-clock" style="position:absolute; top:10px; left:30px ; font-size: 16em; opacity:0.2;"></i>
-              <h4 class="display-4 pt-2">Upcoming event</h4>
+              <i class="fad fa-alarm-clock homepage-header-fa-background"></i>
+              <h4 class="display-4 pt-2 d-none d-lg-inline">Upcoming event</h4>
+              <h4 class="pt-2 d-lg-none">Upcoming event</h4>
             <?php endif; ?>
           </div>
           <div class="col p-3">
-            <h5 class="pt-2"><?php echo $curr_event['title']; ?></h5>
-            <p class="lead"><?php echo $curr_event['subtitle']; ?></p>
-            <p class="text-secondary"><?php echo $curr_event['meta']['date_string']; ?> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></p>
+            <h5 class="pt-2"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
+            <p class="lead"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
+            <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none"><?php echo $curr_event['meta']['date_string']; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
             <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
             <div class="btn-toolbar">
               <?php echo $curr_event['meta']['location_dropdown']; ?>
@@ -103,10 +105,10 @@ include('../includes/header.php');
             </div>
             <?php endif;
             if(!$curr_event['ongoing']): ?>
-              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
             <?php endif;?>
           </div>
-          <div class="col-sm-4 col-lg-3">
+          <div class="col-lg-3">
             <?php if($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
               <div class="embed-responsive embed-responsive-16by9 pt-2">
                 <iframe width="560" height="315" src="<?php echo $curr_event['youtube_embed']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -117,7 +119,9 @@ include('../includes/header.php');
                 <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
               </div>
             <?php else: ?>
-              <?php echo $curr_event['meta']['countdown']; ?>
+              <div class="d-none d-lg-block">
+                <?php echo $curr_event['meta']['countdown']; ?>
+              </div>
             <?php endif; ?>
           </div>
         </div>
