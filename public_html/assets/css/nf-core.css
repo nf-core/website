@@ -474,11 +474,9 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   opacity:0.2;
 }
 
-@media only screen and (min-width: 1080px) {
-  .homepage-header .event-triangle-down{
-    padding-bottom: 2rem;
-    clip-path:  polygon(100% 0%,100% 75%,50% 90%,0 75%,0% 0%);
-  }
+.homepage-header .event-triangle-down{
+  padding-bottom: 3rem;
+  clip-path:  polygon(100% 0%,100% 78%,50% 90%,0 78%,0% 0%);
 }
 
 /* Fancy call to action button on homepage

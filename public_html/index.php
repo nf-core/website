@@ -55,7 +55,7 @@ if($curr_event){
   if(!$curr_event['ongoing']){
     $dtF = new \DateTime('@0');
     $dtT = new \DateTime("@".(time() - $curr_event['start_ts']));
-    $countdown_text = $dtF->diff($dtT)->format('%d days + %h:%I:%S');
+    $countdown_text = $dtF->diff($dtT)->format('%d days,<br>%hh %Im %Ss');
     $curr_event['meta']['countdown'] = "
     <script type=\"text/javascript\">
         setInterval(function(){
@@ -74,7 +74,7 @@ if($curr_event){
 
           var seconds = Math.floor(delta) % 60;
 
-          $('.countdown').html((days > 0 ? days + ' day' + (days > 1 ? 's':'') + ',  <br>' : '') + hours  + 'h ' + minutes + 'm ' + seconds +'s')
+          $('.countdown').html((days > 0 ? days + ' day' + (days > 1 ? 's':'') + ',<br>' : '') + hours  + 'h ' + minutes + 'm ' + seconds +'s')
         }, 1000);
     </script>
     <h5 class=\"pt-4\">Event Countdown:</h5>
@@ -106,22 +106,31 @@ include('../includes/header.php');
               <h4 class="display-4 pt-2">Upcoming event</h4>
             </div>
             <div class="col-lg-3 pt-2 pb-1 mb-2 overflow-hidden d-lg-none mainpage-subheader-heading-header">
-              <h5 class="pt-2 font-weight-light">Upcoming event</h5>
+              <div class="row">
+                <div class="col-6 text-right">
+                  <h5 class="pt-2 font-weight-light">Upcoming event</h5>
+                </div>
+                <div class="col-6 text-right">
+                  <span class="badge small font-weight-light badge-secondary" style="margin-top:0.75rem;" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></span>
+                </div>
+              </div>
             </div>
           <?php endif; ?>
           <div class="col pt-lg-3 pb-lg-3 text-center text-lg-left">
             <h5 class="pt-2 pb-0 pb-lg-1"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
             <p class="lead d-none d-sm-inline"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
             <p class="d-sm-none"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
-            <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
+            <p><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none d-none d-lg-inline" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
             <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])) : ?>
               <div class="btn-toolbar justify-content-center justify-content-lg-start">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
-                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
+                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-sm btn-outline-success mb-2 d-lg-none">Event Details</a>
               </div>
             <?php endif;
             if (!$curr_event['ongoing']) : ?>
-              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
+              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
+              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-sm btn-outline-success mb-2 d-lg-none">Event Details</a>
             <?php endif; ?>
           </div>
           <div class="col-lg-4 col-xl-3">
