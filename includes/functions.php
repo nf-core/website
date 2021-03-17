@@ -75,7 +75,8 @@ function prep_current_event($event){
   $d['icon_class'] = $d['event_type_icons'][strtolower($event['type'])];
   $d['event_type_badge'] = '<span class="badge badge-'.$d['colour_class'].' small"><i class="'. $d['icon_class'].' mr-1"></i>'. ucfirst($event['type']).'</span>';
   $d['location_url_meta'] = [];
-  if (array_key_exists('location_url', $event) && $event['location_url'][0] != "#") {
+  if (array_key_exists('location_url', $event)) {
+    if(!is_array($event['location_url'])) $event['location_url'] = [$event['location_url']];
     foreach ($event['location_url'] as $idx => $url) {
       $d['location_url_meta'][$idx]['base_url'] = substr($url, 8, 7);
 
