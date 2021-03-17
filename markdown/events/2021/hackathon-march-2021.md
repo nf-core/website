@@ -69,7 +69,7 @@ In case of an immediate perceived threat at the hackathon, please reach out to a
 - Friederike Hanssen (CET)
 - Michael Heuer (PST)
 
-You can also report any CoC violations safety [at] nf-co [dot] re. Our safety officer, Renuka Kudva, will contact you to follow up on your report.  
+You can also report any CoC violations directly to safety [at] nf-co [dot] re. Our safety officer, Renuka Kudva, will contact you to follow up on your report.  
 
 In your email report, please do your best to include:
 
@@ -79,7 +79,7 @@ In your email report, please do your best to include:
 - The approximate time of the behaviour (if different than the time the report was made)
 - Other people involved in the incident if applicable.
 - If you believe the incident is ongoing, please let us know.
-- If there is a publicly available record (e.g. mailing list record, a screenshot), please include a link.
+- If there is a publicly available record (e.g. mailing list record, a screenshot - please attach if so).
 - Any additional helpful information.
 
 After you file a report, uur safety officer, Renuka Kudva, will contact you to follow up on your report. 
