@@ -390,7 +390,7 @@ This runs through a series of tests and reports failures, warnings and passed te
 The linting code is closely tied to the _nf-core_ template and both change over time.
 When we change something in the template, we often add a test to the linter to make sure that pipelines do not use the old method.
 
-Each lint test has a number and is documented on the [nf-core website](https://nf-co.re/errors).
+Each lint test has a number and is documented on the [nf-core website](https://nf-co.re/tools-docs).
 When warnings and failures are reported on the command line, a short description is printed along with a link to the documentation for that specific test on the website.
 
 Code linting is run automatically every time you push commits to GitHub, open a pull request or make a release.
