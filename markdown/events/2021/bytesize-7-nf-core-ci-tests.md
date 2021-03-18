@@ -8,8 +8,8 @@ end_date: "2021-03-16"
 end_time: "13:30 CET"
 youtube_embed: https://youtu.be/U9LG_mMQFMY
 location_url:
-    - https://zoom.us/j/95310380847
     - https://youtu.be/U9LG_mMQFMY
+    - https://www.bilibili.com/video/BV155411P7ES
 ---
 
 # nf-core/bytesize
