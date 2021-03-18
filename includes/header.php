@@ -104,7 +104,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}  gtag('js', new Date()); gtag('config', 'UA-68098153-2'); </script>
   </head>
   <body data-spy="scroll" data-target=".toc" data-offset="15">
-    <nav class="navbar fixed-top navbar-expand-md navbar-light site-nav">
+    <nav class="navbar fixed-top navbar-expand-md navbar-light shadow-sm site-nav">
       <a class="navbar-brand d-md-none" href="/">
         <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
         <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
@@ -143,13 +143,13 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
               <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
               <a class="dropdown-item" href="/developers/release_checklist">Release checklist</a>
-              <a class="dropdown-item" href="/errors">Lint error codes</a>
+              <a class="dropdown-item" href="/tools-docs">Lint error codes</a>
               <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
               <a class="dropdown-item" href="/developers/design_guidelines">Design Guidelines</a>
             </div>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/events">Events</a>
+            <a class="nav-link" href="/events"><?php if($curr_event and $curr_event['ongoing']){echo '<i class="fad fa-circle text-danger mr-1"></i>';}?>Events</a>
           </li>
           <li class="nav-item p-1 dropdown">
             <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>

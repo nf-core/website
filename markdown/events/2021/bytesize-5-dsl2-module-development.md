@@ -6,6 +6,7 @@ start_date: "2021-03-02"
 start_time: "13:00 CET"
 end_date: "2021-03-02"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/ggGGhTMgyHI
 location_url:
     - https://doi.org/10.6084/m9.figshare.14160116.v1
     - https://youtu.be/ggGGhTMgyHI
@@ -31,7 +32,3 @@ This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present
 The talk will be live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/ggGGhTMgyHI>
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ggGGhTMgyHI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
