@@ -6,8 +6,10 @@ start_date: "2021-03-16"
 start_time: "13:00 CET"
 end_date: "2021-03-16"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/U9LG_mMQFMY
 location_url:
-    - https://zoom.us/j/95310380847
+    - https://youtu.be/U9LG_mMQFMY
+    - https://www.bilibili.com/video/BV155411P7ES
 ---
 
 # nf-core/bytesize
@@ -31,3 +33,4 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * Zoom: <https://zoom.us/j/95310380847>
+* YouTube: <https://youtu.be/U9LG_mMQFMY>

@@ -6,6 +6,7 @@ start_date: "2021-02-23"
 start_time: "13:00 CET"
 end_date: "2021-02-23"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/gTEXDXWf4hE
 location_url:
     - https://doi.org/10.6084/m9.figshare.14160680.v1
     - https://youtu.be/gTEXDXWf4hE
@@ -33,7 +34,3 @@ This will cover:
 The talk will be live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/gTEXDXWf4hE>
-
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/gTEXDXWf4hE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
