@@ -184,11 +184,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
     # Print content
 
     echo '<div class="rendered-markdown container container-xl main-content ml-5 pr-5">' . $content . '</div>';
-
-    # check if parsed markdown file has equal numbers of opening and closing divs (inline tables generate too many closing ones ¯\_(ツ)_/¯)
-    if(substr_count($content, "<div")== substr_count($content, "</div")){
-      echo '</div>'; # close column div
-    }
+    echo '</div>'; # close column div
     echo '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
 
     #add  ToC
