@@ -104,26 +104,31 @@ function get_self_url($strip_query=true){
 
 function generate_toc($html_string){
   $toc = '';
-  $curr_level = 0;
-  $counter = 0;
+  
+  
   $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
   preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
-  if($matches){
-    foreach($matches as $match){
+  
+  if ($matches) {
+    $counter = $curr_level =  0;
+    $shift = min(array_column($matches, 1))-1; # get the highest heading level and shift levels to start from 1
+    foreach ($matches as $match) {
       $whole_str = $match[0];
-      $level = $match[1];
+      $level = $match[1]-$shift;
       $before_attrs = trim($match[2]);
       $id = trim($match[3]);
       $after_attrs = trim($match[4]);
       $h_content = $match[5];
-      $name = trim(str_replace('&nbsp;','', htmlentities(strip_tags($h_content) )));
-      if($level > $curr_level){
-        $toc .= "\n".'<div class="list-group">'."\n";
-        $counter +=1;
-      } else if($level == $curr_level) {
+      // $toc .= $level . "\n". $curr_level. "\n". $counter;
+      $name = trim(str_replace('&nbsp;', '', htmlentities(strip_tags($h_content))));
+      if ($level > $curr_level) {
+        $toc .= "\n" . '<div class="list-group">'. "\n";
+        $counter += 1;
+      } else if ($level == $curr_level) {
         $toc .= "\n";
       } else {
-        while($level < $counter){
+        // $toc .= $level . " counitn..."  . "\n" . $counter;
+        while ($level < $counter) {
           $toc .= "\n</div>\n\n";
           $counter -=1;
         }
