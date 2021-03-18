@@ -44,7 +44,7 @@ If you register in time we will send you some goodies in the post!
 Further instructions for participation will be sent out prior to the event.
 In the meantime, spread the word!
 
-## How it works
+### How it works
 
 To participate, all you need is a computer with an internet connection.
 Presentations will be run using Zoom and live-streamed to YouTube,
@@ -81,7 +81,7 @@ More details to come, but so far our idea is to work in the following areas:
   * Configs
   * Website docs overhaul
 
-## Schedule
+### Schedule
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -293,7 +293,7 @@ All reports, and any additional information and data included, are only shared w
 
 We will not name harassment victims beyond discussions between the safety officer and  members of the nf-core team without the explicit consent of the individuals involved.
 
-#### Enforcement
+### Enforcement
 
 Actions taken by the nf-core’s safety team may include but are not limited to:
 
