@@ -139,18 +139,11 @@ More details to come, but so far our idea is to work in the following areas:
             </tr>
             <tr>
                 <td data-timestamp="1616414400" data-timeformat="HH:mm z">13:00</td>
-                <td>Group catch-up: <br> See Jitsi links in respective Slack channels.
-                  
-                </td>
+                <td>Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
                 <td>
-                  Group catch-up: <br> 
-                  See Jitsi links in respective Slack channels.
-                  
-                </td>
+                  Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
                 <td>
-                  Group catch-up: <br> See Jitsi links in respective Slack channels.
-                  
-                </td>
+                  Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
             </tr>
             <tr>
                 <td data-timestamp="1616416200" data-timeformat="HH:mm z">13:30</td>
