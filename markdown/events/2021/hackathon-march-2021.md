@@ -139,32 +139,11 @@ More details to come, but so far our idea is to work in the following areas:
             </tr>
             <tr>
                 <td data-timestamp="1616414400" data-timeformat="HH:mm z">13:00</td>
-                <td>Group catch-up
-                  <ul class="small list-unstyled">
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QPMKBYNR" target="_blank"><code>#hackathon-march-2021-documentation</code></a> on Slack.</li>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QPMBDW21" target="_blank"> <code>#hackathon-march-2021-dsl2-modules</code></a> on Slack.</li>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QC1APZ0F" target="_blank"><code>#hackathon-march-2021-framework</code></a> on Slack.</li>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01R5D0TYUR" target="_blank"><code>#hackathon-march-2021-pipelines</code></a> on Slack.</li>
-                  </ul>
-                </td>
+                <td>Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
                 <td>
-                  Group catch-up
-                  <ul class="small list-unstyled">
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QPMKBYNR" target="_blank"><code>#hackathon-march-2021-documentation</code></a> on Slack.</li>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QPMBDW21" target="_blank"><code>#hackathon-march-2021-dsl2-modules</code></a> on Slack.</l
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QC1APZ0F" target="_blank"><code>#hackathon-march-2021-framework</code></a> on Slack.</li>i>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01R5D0TYUR" target="_blank"><code>#hackathon-march-2021-pipelines</code></a> on Slack.</li>
-                  </ul>
-                </td>
+                  Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
                 <td>
-                  Group catch-up
-                  <ul class="small list-unstyled">
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QPMKBYNR" target="_blank"><code>#hackathon-march-2021-documentation</code></a> on Slack.</li>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QPMBDW21" target="_blank"><code>#hackathon-march-2021-dsl2-modules</code></a> on Slack.</l
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01QC1APZ0F" target="_blank"><code>#hackathon-march-2021-framework</code></a> on Slack.</li>i>
-                    <li>Jitsi link shared in <a href="https://nfcore.slack.com/archives/C01R5D0TYUR" target="_blank"><code>#hackathon-march-2021-pipelines</code></a> on Slack.</li>
-                  </ul>
-                </td>
+                  Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
             </tr>
             <tr>
                 <td data-timestamp="1616416200" data-timeformat="HH:mm z">13:30</td>
