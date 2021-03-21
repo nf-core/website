@@ -92,7 +92,7 @@ If you feel lost or stuck, don't suffer in silence! Hop on to Slack and let us k
 You'll find _hackathon mentors_ there at all hours, marked with a <span style="font-size:2em;">🧙🏻</span> in their Slack status.
 These volunteers are here to help!
 
-## Schedule
+# Schedule
 
 We expect people to come and go during the hackathon due to diverse time zones.
 Please just do whatever works best for you and try to catch up with the YouTube streams if you missed them.
@@ -100,7 +100,7 @@ Please just do whatever works best for you and try to catch up with the YouTube 
 * <i class="fab fa-youtube mr-2"></i>
   _Check-ins_ and _check-outs_ will be hosted on Zoom and live-streamed to YouTube, available after the event.
 * <i class="fa fa-video mr-2"></i>
-  The social will be on zoom (without YouTube) and _Group catch-ups_ and will be held using <https://meet.jit.si/>
+  The social will be on Zoom (without YouTube) and _Group catch-ups_ and will be held using <https://meet.jit.si/>
 
 The following schedule should display times in your local time zone:
 
@@ -160,11 +160,18 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1616414400" data-timeformat="HH:mm z">13:00</td>
-                <td>Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
                 <td>
-                  Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
+                  Group catch-up:<br>
+                  <small>See Jitsi links in respective Slack channels.</small>
+                </td>
                 <td>
-                  Group catch-up: <br> See Jitsi links in respective Slack channels.</td>
+                  Group catch-up:<br>
+                  <small>See Jitsi links in respective Slack channels.</small>
+                </td>
+                <td>
+                  Group catch-up:<br>
+                  <small>See Jitsi links in respective Slack channels.</small>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1616416200" data-timeformat="HH:mm z">13:30</td>
@@ -215,7 +222,10 @@ The following schedule should display times in your local time zone:
                 <td data-timestamp="1616428800" data-timeformat="HH:mm z">17:00</td>
                 <td rowspan="3"></td>
                 <td rowspan="3"></td>
-                <td rowspan="3">Social event</td>
+                <td rowspan="3">
+                  Social event<br>
+                  <small>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</small>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1616430600" data-timeformat="HH:mm z">17:30</td>
