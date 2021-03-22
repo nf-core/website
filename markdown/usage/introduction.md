@@ -80,7 +80,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 * Use `-resume` to restart pipelines that did not complete. This ensures that successful tasks from the previous run wont be re-executed.
 * Use `nextflow log` to find names of all previous runs in your directory. These can be used with `-resume` to restart specific runs.
 * Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
-* When you use Singularity as you prefered container, specify the cache directory NXF_SINGULARITY_CACHEDIR during the installation. Purely the base directory is needed to be specified, Nexflow handles the folders and file names for you form the memory. 
+* When you use `singularity` as your preferred container, we recommend to specify a cache directory with the [nextflow environment variable](https://www.nextflow.io/docs/latest/config.html#environment-variables) `NXF_SINGULARITY_CACHEDIR` in your `~./bash_profile` or ~/.bashrc` during the installation. This will store all your container images in one place, rather repeatedly downloading it each time you run a pipeline. Purely the base directory is needed to be specified, Nextflow handles the folders and file names for you.
 
 ## Helper tools
 
