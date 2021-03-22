@@ -52,7 +52,7 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   * Does not need root access or any daemon processes - images built from files
 * [Podman](https://podman.io/)
   * Often used as an alternative to Docker on multi-user systems such as HPC systems.
-  * Is a daemonless container engine
+  * Is a daemonless container engine that can serve as a drop-in replacement for Docker.
 * [Charliecloud](https://hpc.github.io/charliecloud/)
   * Often used as an alternative to Docker on multi-user systems such as HPC systems.
   * Uses Linux user namespaces to run containers with no privileged operations or daemons
