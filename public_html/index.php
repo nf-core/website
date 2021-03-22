@@ -55,7 +55,12 @@ if($curr_event){
   if(!$curr_event['ongoing']){
     $dtF = new \DateTime('@0');
     $dtT = new \DateTime("@".(time() - $curr_event['start_ts']));
-    $countdown_text = $dtF->diff($dtT)->format('%d days,<br>%hh %Im %Ss');
+    $dtDiff = $dtF->diff($dtT);
+    if($dtDiff->format('%d') == '0'){
+      $countdown_text = $dtDiff->format('%hh %Im %Ss');
+    } else {
+      $countdown_text = $dtDiff->format('%d days,<br>%hh %Im %Ss');
+    }
     $curr_event['meta']['countdown'] = "
     <script type=\"text/javascript\">
         setInterval(function(){
