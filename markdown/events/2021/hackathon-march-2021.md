@@ -238,15 +238,17 @@ The following schedule should display times in your local time zone:
     </table>
 </div>
 
-# Social Activities
+## Social Activities
 
 During the hackathon, we will have a few light-hearted fun and games.
 
-Throughout the three days, we will be running (/trialling) a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-hackathon-2021-03-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
+Throughout the three days, we will be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-hackathon-2021-03-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
+
+> <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-hackathon-2021-03-bingo.web.app/?game=nf-core-hackathon>
 
 Furthermore, during Wednesday's social event (see schedule above), we will be running a short Quiz and escape room!
 
-All social activites are of course optional, but hope to see as many people joining in as possible!
+All social activites are of course optional, but hope to see as many people joining in as possible :tada:
 
 # Safety Information at the Hackathon
 
