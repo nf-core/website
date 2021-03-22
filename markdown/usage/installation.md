@@ -23,10 +23,20 @@ mv nextflow ~/bin/
 # sudo mv nextflow /usr/local/bin
 ```
 
-You can also install Nextflow using [Bioconda](https://bioconda.github.io/):
+You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
+
+First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/user/install.html), notably setting up channels:
 
 ```bash
-conda install -c bioconda nextflow
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+Then install the [`nf-core` package](https://bioconda.github.io/recipes/nf-core/README.html):
+
+```bash
+conda install nextflow
 ```
 
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation. This makes it easier to update.
