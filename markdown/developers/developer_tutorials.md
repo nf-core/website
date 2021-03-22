@@ -10,5 +10,3 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
 They should generally be aimed for brand-new users or developers who are not sure where to start.
 
 # Tutorials
-
-## Step-by-Step guide converting to DSL2
