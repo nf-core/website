@@ -97,8 +97,11 @@ function parse_md($markdown){
     $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
   }
   // Add CSS classes to tables
-  $content = str_replace('<table>', '<div class="table-responsive"><table class="table table-bordered table-striped table-sm small">', $content);
-  $content = str_replace('</table>', '</table></div>', $content);
+  // Still might break if we have multiple tables and some have custom HTML attrs, but should be good enough for most situations
+  if (stripos($content,   '<table>') !== false) {
+    $content = str_replace('<table>', '<div class="table-responsive"><table class="table table-bordered table-striped table-sm small">', $content);
+    $content = str_replace('</table>', '</table></div>', $content);
+  }
 
   // Handle dark-mode sensitive images
   if($theme == 'dark'){

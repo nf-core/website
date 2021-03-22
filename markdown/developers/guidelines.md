@@ -71,7 +71,7 @@ All nf-core pipelines _must_ adhere to the following:
   * This person should be responsible for basic maintenance and questions
 * The pipeline must not have any failures in the `nf-core lint` tests
   * These tests are run by the [nf-core/tools](https://github.com/nf-core/tools) package and validate the requirements listed on this page.
-  * You can see the list of tests and how to pass them on the [error codes page](https://nf-co.re/errors).
+  * You can see the list of tests and how to pass them on the [error codes page](https://nf-co.re/tools-docs).
 
 ## Recommended features
 
@@ -101,7 +101,7 @@ In documentation, please refer to your pipeline as `nf-core/yourpipeline`.
 
 The nf-core style requirements are growing and maturing over time.
 Typically, as we agree on a new standard we try to build a test for it into the `nf-core lint` command.
-As such, to get a feel for what's expected, please read the [lint test error codes](https://nf-co.re/errors).
+As such, to get a feel for what's expected, please read the [lint test error codes](https://nf-co.re/tools-docs).
 
 However, in general, pipelines must:
 

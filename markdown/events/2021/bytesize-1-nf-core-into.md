@@ -6,6 +6,7 @@ start_date: "2021-02-02"
 start_time: "13:00 CET"
 end_date: "2021-02-02"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/ZfxOFYXmiNw
 location_url:
     - https://doi.org/10.6084/m9.figshare.14160668.v1
     - https://youtu.be/ZfxOFYXmiNw
@@ -32,6 +33,3 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 Questions/Ideas? Connect with nf-core on Slack: <https://nf-co.re/join/>
 
-<div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZfxOFYXmiNw?start=38" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
