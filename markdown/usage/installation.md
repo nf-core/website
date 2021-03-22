@@ -57,7 +57,7 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   * Often used as an alternative to Docker on multi-user systems such as HPC systems.
   * Uses Linux user namespaces to run containers with no privileged operations or daemons
 * [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
-*  An experimental implementation of container system that can convert from a wide range of other images
+  * An experimental implementation of container system that can convert from a wide range of other images
 * [Conda](https://conda.io/)
   * Packaging system that manages environments instead of running analysis in containers.
   * Poorer reproducibility than Docker / Singularity
