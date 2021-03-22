@@ -1,6 +1,6 @@
 ---
 title: Developer Tutorials
-subtitle: In-depth step-by-step guides for getting started with nf-core
+subtitle: In-depth step-by-step guides for writing nf-core pipelines
 ---
 
 # Introduction
