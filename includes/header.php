@@ -130,7 +130,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/usage/installation">Installation</a>
               <a class="dropdown-item" href="/usage/configuration">Pipeline configuration</a>
               <a class="dropdown-item" href="/usage/offline">Running offline</a>
-              <a class="dropdown-item" href="/usage/nf_core_tutorial">nf-core tutorial</a>
+              <a class="dropdown-item" href="/usage/usage_tutorials">Usage tutorials</a>
               <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
               <a class="dropdown-item" href="/usage/data_management">Data Management</a>
               <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
@@ -145,6 +145,7 @@ if(isset($subtitle) && strlen($subtitle) > 0){
               <a class="dropdown-item" href="/developers/release_checklist">Release checklist</a>
               <a class="dropdown-item" href="/tools-docs">Lint error codes</a>
               <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
+              <a class="dropdown-item" href="/developers/developer_tutorials">Developer tutorials</a>
               <a class="dropdown-item" href="/developers/design_guidelines">Design Guidelines</a>
             </div>
           </li>
