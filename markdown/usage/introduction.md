@@ -44,7 +44,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * The simplest way to run is with `-profile docker` (or `singularity`) which will tell Nextflow to execute jobs locally using Docker to fulfil the software requirements.
 
-    * Conda is also supported with `-profile conda`. However this option is not recommended, as reproducibility of the results can't be guaranteed without containerization
+    * Conda is also supported with `-profile conda`. However this option is not recommended, as reproducibility of the results can't be guaranteed without containerization.
     
     * If you are a member of one of the institution listed out in the [documentation](https://github.com/nf-core/configs#documentation), pleaase use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) within your organization. 
 
