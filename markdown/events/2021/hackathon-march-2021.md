@@ -243,7 +243,7 @@ During the hackathon, we will have a few light-hearted fun and games.
 
 Throughout the three days, we will be running (/trialling) a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-hackathon-2021-03-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
 
-Furthermore, during Tuesday's social event (see schedule above), we will be running a short Quiz and escape room!
+Furthermore, during Wednesday's social event (see schedule above), we will be running a short Quiz and escape room!
 
 All social activites are of course optional, but hope to see as many people joining in as possible!
 
