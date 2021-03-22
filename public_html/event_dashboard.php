@@ -19,9 +19,9 @@ if (!$curr_event) {
     echo '<script>var theme = "' . $theme . '"</script>';
     include('../includes/header.php');
 
-    require_once '../dbconfig.php';
+    $config = parse_ini_file("../config.ini");
 
-    $conn = mysqli_connect($host, $username, $password, $dbname, $port);
+    $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
     // Attempt select query execution
     $sql = "SELECT * FROM github_org_users";
@@ -52,7 +52,6 @@ if (!$curr_event) {
         </div>
         <div class="bg-icon"><i class="fab fa-github"></i></div>
     </div>
-    
 
 <?php
 

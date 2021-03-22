@@ -9,8 +9,8 @@ $updated = time();
 $config = parse_ini_file("config.ini");
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
 
-require_once 'dbconfig.php';
-$conn = mysqli_connect('127.0.0.1', $username, $password, $dbname, $port);
+$config = parse_ini_file("config.ini");
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 if ($conn === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
