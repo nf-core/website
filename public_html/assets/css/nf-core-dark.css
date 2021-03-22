@@ -19,6 +19,12 @@ body {
 .text-info{
   color: #36646e!important;
 }
+.text-secondary {
+  color: rgba(255,250,255,.6)!important;
+}
+a.text-secondary:hover {
+  color: rgba(255,250,255,.6)!important;
+}
 .bg-secondary {
   background-color: rgba(50,50,50,.55)!important;
 }
@@ -89,12 +95,12 @@ blockquote a {
   background-color: #333;
   border-bottom-color: rgba(102, 102, 102, 0.87);
 }
-.stats_keynumbers .bg-icon {
-  font-size: 180px;
+.stats_keynumbers .bg-icon{
   color: rgba(255,255,255,0.1);
-  position: absolute;
-  bottom: -80px;
-  right: -20px;
+}
+.event-list .fad {
+  --fa-primary-opacity: 0.75;
+  --fa-secondary-opacity: 0.3;
 }
 .alert-info {
   background-color: #1c353b;
@@ -339,6 +345,9 @@ footer .btn-light:not(:disabled):not(.disabled).active,
 }
 .mainpage-subheader-heading {
   background-color: #343434;
+}
+.mainpage-subheader-heading-header {
+  background-color: #2b2a2a;
 }
 .subheader-triangle-down:before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%23343434;' /%3E%3C/svg%3E");
