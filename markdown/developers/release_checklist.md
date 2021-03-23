@@ -9,8 +9,8 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
   * Check the output of `nf-core lint` for warnings and address all that you can
   * Update any software dependencies that are out of date.
     The linting will warn about availble updates via automated API calls to (bio-)conda
-* Check that there are no outstanding issues that need to be addressed, especially bug reports
-* Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter. 
+* Check that there are no outstanding issues that need to be addressed, especially bug reports.
+* Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter.
 * If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones),
   have a look and see if all issues are closed, or can be resolved
   * It's fine to decide that some things should be postponed until the next release - just move them on to the next milestone
