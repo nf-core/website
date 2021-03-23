@@ -35,7 +35,7 @@ All of them hopefully useful and ready to go, the pipelines are great, the tools
 
 As Renuka mentioned we are getting people from all over the world contacting us now and getting involved. This comes with its own challenges especially time-zones and things but it is great to see so many of you here.
 
-The heart of this community and the communication is mostly Slack, so if you are not already, then hop onto slack and then you'll find channels for pipelines and also communicate and discuss all the different topics around <b>nf-core</b> and it's a really fun place to be. If you want more details on <b>nf-core</b> itself you can check out the publication on the website https://nf-co.re/publications.
+The heart of this community and the communication is mostly Slack, so if you are not already, then hop onto slack and then you'll find channels for pipelines and also communicate and discuss all the different topics around <b>nf-core</b> and it's a really fun place to be. If you want more details on <b>nf-core</b> itself you can check out the publication on the website <https://nf-co.re/publications>.
 
 What is this Bytesize? Bytesize is a new seminar series that we are starting off and nf-core has grown and more people were involved.
 
@@ -105,7 +105,7 @@ We are also looking for ideas for what people should work on different tasks and
 
 So hop onto the new hackathon March 2021 Slack channel and either say that you would like to be involved or suggest any ideas. I should have put the link in here but there is also a webpage on the nf-core website for this.
 
-Maybe I can share my screen window quickly just so you can see what I am talking about. Here you can see I am on the <b>nf-core</b> website. If I hop onto the 'Events' page https://nf-co.re/events, you cans ee that we have a page about today's talk. This one right now with links and everything.
+Maybe I can share my screen window quickly just so you can see what I am talking about. Here you can see I am on the <b>nf-core</b> website. If I hop onto the 'Events' page <https://nf-co.re/events>, you can see that we have a page about today's talk. This one right now with links and everything.
 
 There is also a page about the upcoming hackathon so if you click here, you will find the link to register. This is non-binding it does not cost anything to join a hackathon; it just helps us know roughly who is going to be there; also which projects people are interested in/working on, and if you want any of that cool stash then you have to put your address in so we can post it to you.
 
