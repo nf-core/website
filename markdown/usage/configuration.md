@@ -57,12 +57,8 @@ nf-core offers a range of basic profiles for configuration of container engines:
 - `conda`
   - A generic configuration profile to be used with [Conda](https://conda.io/docs/)
   - Pulls most software from [Bioconda](https://bioconda.github.io/)
+
 > NOTE: Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity.
-- `test`
-  - A profile with a complete configuration for automated testing
-  - Includes links to minimal test data so needs no other parameters
-- `test_full`
-  - Similar to `test` but includes a full-size public dataset to test the pipeline
 
 If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
 
