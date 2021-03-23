@@ -41,9 +41,7 @@ These are always loaded and overwritten as needed by subsequent layers of config
 
 In addition to this base config, pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`. Multiple profiles can be specified in a comma-separated list (e.g. `-profile test,docker`). The order of arguments is important! They are loaded in sequence, so later profiles can overwrite earlier profiles. Alternatively, you can create your own configuration profiles and supply these to the pipeline when running.
 
-
-If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
-
+Examples of available profiles:  
 * `docker`
   * A generic configuration profile to be used with [Docker](http://docker.com/)
   * Pulls software from DockerHubß
@@ -60,6 +58,7 @@ If `-profile` is not specified, the pipeline will run locally and expect all sof
 * `test_full`
   * Similar to `test` but includes a full-size public dataset to test the pipeline
 
+If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
 
 ## Shared nf-core/configs
 
