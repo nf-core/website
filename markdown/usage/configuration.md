@@ -49,11 +49,11 @@ nf-core offers a range of basic profiles for configuration of container engines:
   - A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
   - Pulls software from DockerHub
 - `podman`
-   - A generic configuration profile to be used with [Podman](https://podman.io/)
+  - A generic configuration profile to be used with [Podman](https://podman.io/)
 - `shifter`
-   - A generic configuration profile to be used with [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
+  - A generic configuration profile to be used with [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
 - `charliecloud`
-   - A generic configuration profile to be used with [Charliecloud](https://hpc.github.io/charliecloud/)
+  - A generic configuration profile to be used with [Charliecloud](https://hpc.github.io/charliecloud/)
 - `conda`
   - A generic configuration profile to be used with [Conda](https://conda.io/docs/)
   - Pulls most software from [Bioconda](https://bioconda.github.io/)
