@@ -46,7 +46,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * Conda is also supported with `-profile conda`. However this option is not recommended, as reproducibility of the results can't be guaranteed without containerization.
     
-    * If you are a member of one of the institution listed out in the [documentation](https://github.com/nf-core/configs#documentation), pleaase use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) within your organization. 
+    * If you are a member of one of the institutions listed in the [documentation](https://github.com/nf-core/configs#documentation), please use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) that has already been created for your institution.
 
     * For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
 
