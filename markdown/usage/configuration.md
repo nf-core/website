@@ -6,7 +6,7 @@ subtitle: How configure Nextflow to work on your system
 - [Introduction](#introduction)
 - [Different config locations](#different-config-locations)
   - [Basic configuration profiles](#basic-configuration-profiles)
-  - [Shared nf-core/configs](#shared-nf-core-configs)
+  - [Shared nf-core/configs](#shared-nf-coreconfigs)
   - [Custom configuration files](#custom-configuration-files)
 - [Running Nextflow on your system](#running-nextflow-on-your-system)
   - [Executor](#executor)
@@ -16,19 +16,17 @@ subtitle: How configure Nextflow to work on your system
 # Introduction
 
 One of the strongest features of Nextflow is that it can run on virtually any computational infrastructure.
-It has built-in support for HPC execution schedulers such as Slurm, SGE, PBS, LSF and more as well as cloud compute infrastructure such as AWS Batch and Google Cloud.
+It has built-in support for HPC execution schedulers such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), [PBS](https://www.openpbs.org/), [LSF](https://www.ibm.com/support/knowledgecenter/en/SSWRJV_10.1.0/lsf_welcome/lsf_welcome.html) and more as well as cloud compute infrastructure such as [AWS Batch](https://aws.amazon.com/batch/) and [Google Cloud](https://cloud.google.com/).
 
-In order to get nf-core pipelines to run properly on your system, you will need to configure Nextflow so that it knows how best to run your analysis jobs.
+Nextflow also supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), [Podman](https://podman.io/), as well as the [Conda](https://docs.conda.io/en/latest/) package management system to deploy the pipelines.
+
+In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/usage/installation) page) and configure Nextflow so that it knows how best to run your analysis jobs.
 
 # Different config locations
 
 **You do not need to edit the pipeline code to configure nf-core pipelines.**
 If you edit the pipeline defaults then you cannot update to more recent versions of the pipeline without overwriting your changes.
 You also run the risk of moving away from the canonical pipeline and losing reproducibility.
-
-Pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`.
-Multiple profiles can be specified in a comma-separated list.
-Alternatively, you can create your own configuration files and supply these to the pipeline when running.
 
 There are three main types of pipeline configuration that you can use:
 
@@ -41,9 +39,27 @@ There are three main types of pipeline configuration that you can use:
 Each nf-core pipeline comes with a set of "sensible defaults" for the resource requirements of each of the steps in the workflow, found in `config/base.config`.
 These are always loaded and overwritten as needed by subsequent layers of configuration.
 
-In addition to this base config, pipelines come with basic config profiles to enable software packaging methods: `docker`, `singularity`, `podman` and `conda`.
+In addition to this base config, pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`. Multiple profiles can be specified in a comma-separated list (e.g. `-profile test,docker`). The order of arguments is important! They are loaded in sequence, so later profiles can overwrite earlier profiles. Alternatively, you can create your own configuration profiles and supply these to the pipeline when running.
 
-Finally, each pipeline comes with a config profile called `test` and `test_full`. These are used for automated pipeline CI tests and will run the workflow with a minimal / full-size public dataset, respectively.
+
+If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
+
+* `docker`
+  * A generic configuration profile to be used with [Docker](http://docker.com/)
+  * Pulls software from DockerHubß
+* `singularity`
+  * A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
+  * Pulls software from DockerHub
+* `conda`
+  * A generic configuration profile to be used with [Conda](https://conda.io/docs/)
+  * Pulls most software from [Bioconda](https://bioconda.github.io/)
+  > NOTE: Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity. 
+* `test`
+  * A profile with a complete configuration for automated testing
+  * Includes links to minimal test data so needs no other parameters
+* `test_full`
+  * Similar to `test` but includes a full-size public dataset to test the pipeline
+
 
 ## Shared nf-core/configs
 
