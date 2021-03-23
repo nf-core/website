@@ -22,12 +22,15 @@ if (!$curr_event) {
     $config = parse_ini_file("../config.ini");
 
     $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+    if ($conn === false) {
+        echo "<script>console.log('No records matching the query " . mysqli_connect_error() . " were found.');</script>";
+    }
 
     // Attempt select query execution
-    $sql = "SELECT * FROM github_org_users";
+    $sql = "SELECT * FROM github_org_members";
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
-            $members_num = mysqli_num_rows($result);
+            $gh_members_num = mysqli_num_rows($result);
             // Free result set
             mysqli_free_result($result);
         } else {
@@ -37,6 +40,67 @@ if (!$curr_event) {
         echo "<script>console.log(`ERROR: Was not able to execute " . json_encode($sql) . json_encode(mysqli_error($conn)) . "`);</script>";
     }
 
+    // Attempt select query execution
+    $sql = "SELECT * FROM slack_users";
+    if ($result = mysqli_query($conn, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            $slack_users_num = mysqli_num_rows($result);
+            // Free result set
+            mysqli_free_result($result);
+        } else {
+            echo "<script>console.log('No records matching the query " . $sql . " were found.');</script>";
+        }
+    } else {
+        echo "<script>console.log(`ERROR: Was not able to execute " . json_encode($sql) . json_encode(mysqli_error($conn)) . "`);</script>";
+    }
+
+    function github_query($gh_query_url)
+    {
+        global $config;
+        $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
+
+        // HTTP header to use on GitHub API GET requests
+        $gh_api_opts = stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => [
+                    'User-Agent: PHP',
+                    "Authorization: Basic $gh_auth"
+                ]
+            ]
+        ]);
+
+        $first_page = true;
+        $next_page = false;
+        $res = [];
+        while ($first_page || $next_page) {
+            // reset loop vars
+            $first_page = false;
+            // Get GitHub API results
+            if ($next_page) {
+                $gh_query_url = $next_page;
+            }
+            $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
+            if (strpos($http_response_header[0], "HTTP/1.1 200") === false) {
+                var_dump($http_response_header);
+                echo ("\nCould not fetch $gh_query_url");
+                continue;
+            }
+
+            array_push($res, ...$tmp_results);
+
+            // Look for URL to next page of API results
+            $next_page = false;
+            $m_array = preg_grep('/rel="next"/', $http_response_header);
+            if (count($m_array) > 0) {
+                preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
+                if (isset($matches[1])) {
+                    $next_page = $matches[1];
+                }
+            }
+        }
+        return $res;
+    }
 ?>
 
     <h1 id="community"><a href="#community" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Community</h1>
@@ -45,15 +109,23 @@ if (!$curr_event) {
         <i class="far fa-hand-point-right"></i>
         Click a number to see how the community has grown over time
     </p>
-    <div class="card bg-light">
-        <div class="card-body">
-            <p class="card-text display-4"><a href="#gh_orgmembers" class="text-body text-decoration-none stretched-link"><?php echo $members_num; ?></a></p>
-            <p class="card-text text-muted">GitHub organisation members</p>
+    <div class="card-group text-center stats_keynumbers">
+        <div class="card bg-light">
+            <div class="card-body">
+                <p class="card-text display-4"><a href="#gh_orgmembers" class="text-body text-decoration-none stretched-link"><?php echo $gh_members_num; ?></a></p>
+                <p class="card-text text-muted">GitHub organisation members</p>
+            </div>
+            <div class="bg-icon"><i class="fab fa-github"></i></div>
         </div>
-        <div class="bg-icon"><i class="fab fa-github"></i></div>
-    </div>
-
-<?php
+        <div class="card bg-light">
+            <div class="card-body">
+                <p class="card-text display-4"><a href="#slack_users" class="text-body text-decoration-none stretched-link"><?php echo $slack_users_num; ?></a></p>
+                <p class="card-text text-muted">Slack users</p>
+            </div>
+            <div class="bg-icon"><i class="fab fa-slack"></i></div>
+        </div>
+</div>
+    <?php
 
 } // close else-statement from the very beginning
 
