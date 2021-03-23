@@ -42,22 +42,21 @@ These are always loaded and overwritten as needed by subsequent layers of config
 In addition to this base config, pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`. Multiple profiles can be specified in a comma-separated list (e.g. `-profile test,docker`). The order of arguments is important! They are loaded in sequence, so later profiles can overwrite earlier profiles. Alternatively, you can create your own configuration profiles and supply these to the pipeline when running.
 
 Examples of available profiles:  
-* `docker`
-  * A generic configuration profile to be used with [Docker](http://docker.com/)
-  * Pulls software from DockerHub
-* `singularity`
-  * A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
-  * Pulls software from DockerHub
-* `conda`
-  * A generic configuration profile to be used with [Conda](https://conda.io/docs/)
-  * Pulls most software from [Bioconda](https://bioconda.github.io/)
+- `docker`
+  - A generic configuration profile to be used with [Docker](http://docker.com/)
+  - Pulls software from DockerHub
+- `singularity`
+  - A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
+  - Pulls software from DockerHub
+- `conda`
+  - A generic configuration profile to be used with [Conda](https://conda.io/docs/)
+  - Pulls most software from [Bioconda](https://bioconda.github.io/)
 > NOTE: Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity.
-
-* `test`
-  * A profile with a complete configuration for automated testing
-  * Includes links to minimal test data so needs no other parameters
-* `test_full`
-  * Similar to `test` but includes a full-size public dataset to test the pipeline
+- `test`
+  - A profile with a complete configuration for automated testing
+  - Includes links to minimal test data so needs no other parameters
+- `test_full`
+  - Similar to `test` but includes a full-size public dataset to test the pipeline
 
 If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
 
