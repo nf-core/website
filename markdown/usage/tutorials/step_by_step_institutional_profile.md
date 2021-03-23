@@ -81,18 +81,15 @@ Furthermore, you should check if there is any walltimes (time limit) for any job
 
 Some clusters require to to specify which queue or partition to submit your job to (based on the resource requirements of the job). You should check if these exist, what they are called, and what limits they may have (e.g. walltimes).
 
-<details><summary> SLURM tips</summary>
+<details markdown="1"><summary> SLURM tips</summary>
 
-<p>
+For example, if you're using the SLURM scheduler, you can run the following command to the walltime of any queues/partitions on your cluster with
 
-> For example, if you're using the SLURM scheduler, you can run the following command to the walltime of any queues/partitions on your cluster with
->
->    ```bash
->    sinfo
->    ```
->
+```bash
+sinfo
+```
+
 > You should record the names of each `PARTITION` and the corresponding `TIMELIMIT` column. Note there may be additional resource limitations for each queue, so check your institutional cluster's documentation for any other limits.
-</p>
 
 </details>
 
