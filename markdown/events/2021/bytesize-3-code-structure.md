@@ -41,7 +41,7 @@ All the nf-core pipelines are created by using a pipeline template that contains
 
 To generate a new nf-core pipeline, you first need to install the nf-core tools with pip or Conda and then run the command nf-core create. 
 
-Doing this, automatically creates a pipeline template, and you will first be prompted for some pipeline information:  like what you would like to name your new pipeline, a short description of the pipeline, who the main authors of this pipeline are, and in less than a second, you can have a pipeline structure ready! 
+Doing this, automatically creates a pipeline template, and you will first be prompted for some pipeline information: like what you would like to name your new pipeline, a short description of the pipeline, who the main authors of this pipeline are, and in less than a second, you can have a pipeline structure ready! 
 
 However, as you might see, the first pipeline template already contains six directories and 26 files that are visible. Now this together with hidden files can be around 40 files, so it can be a bit daunting to get started with developing or contributing to nf-core pipelines. 
 
@@ -98,7 +98,7 @@ Config files can be daunting, and Maxime already introduced some of the possibil
 
 The main file next to a configuration file in a pipeline, is the nextflow.config file and this includes all of the other configurations that we also find under the config directory file. The main nextflow.config file also contains core profiles that define the different parameters that can be used to launch the pipeline with managing the dependencies with Docker or with Conda. We also have different test profiles that I will describe a bit better later, and the nextflow.config files also include all of the server profiles. 
 
-Maxime described them last week (check Bytesize Talk #2); server profiles can be used to define the hardware requirements of clusters and different servers that can be used to run nf-core pipelines at different institutions. We have them specified in an independent nf-core repository that is called nf-core/configs. So in this way, all of the pipelines can import these hardware configuration files and they can be used to run any pipeline in nf-core. 
+Maxime described them last week - check Bytesize Talk #2; server profiles can be used to define the hardware requirements of clusters and different servers that can be used to run nf-core pipelines at different institutions. We have them specified in an independent nf-core repository that is called nf-core/configs. So in this way, all of the pipelines can import these hardware configuration files and they can be used to run any pipeline in nf-core. 
 
 Additionally in this nextflow.config, the base.config and igenomes.config files are imported, but they have been added here in a different directory just for clarity. So the base.config file contains the the default memory, CPU and time requirements for all of the pipeline processes, and it can be specified for specific processes if they need more resources or less resources. 
 
@@ -122,7 +122,7 @@ So we use github actions, which are directly provided by github to trigger our c
 
 As part of the condition continuous integration tests we have in several workflows. One of the workflows is called linting.yml, and it performs a markdown linting test to make sure that all of the markdown files in the pipeline follow markdown standards and nf-core linting tests. The end of call linting tests run the nf-core lint command, and this ensures that all of the nf-core pipelines follow the template standards. 
 
-Then we also run the actual pipeline tests with a small test data that I've described before. This runs a pipeline with a minus profile test parameter. There are also two other workflows that are important for the continuous integration tests of the pipeline that are called push.hub. What these workflows do is that they build the docker container using the environment.yml file and the docker file of the pipeline and push this container to the nf-core docker hub repository.  There are two different workflows, one for building the developer development container and one for building the release container of the pipelines.
+Then we also run the actual pipeline tests with a small test data that I've described before. This runs a pipeline with a minus profile test parameter. There are also two other workflows that are important for the continuous integration tests of the pipeline that are called push.hub. What these workflows do is that they build the docker container using the environment.yml file and the docker file of the pipeline and push this container to the nf-core docker hub repository. There are two different workflows, one for building the developer development container and one for building the release container of the pipelines.
 
 Additionally, since recently we also run the full-size tests for each of the nf pipelines, and those are run on AWS (Amazon Web Services). There is also a specific Github actions workflow that is called AWS full tests, and this workflow will basically launch the pipeline full-size tests on AWS batch. One last workflow is the branch.yml workflow which ensures the branch protection restrictions that we have in the different branches of the pipeline repositories. 
 
