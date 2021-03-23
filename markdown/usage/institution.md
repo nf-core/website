@@ -31,7 +31,7 @@ Haven't you find your organization / group of contributors on the [community pag
 
     * The difference between the white and colour version of the images can be seen by looking at the examples: [white] / [colour] (!!! missing links).
     * The both images should have the same name. E.g., if you name image_fn: foobar.svg, then the both files should be named foobar.svg in the respective folders.
-    * If you have only raster images available, please search for a SVG version. 
+    * If you have only raster images available, please search for a SVG version.
     (_A tip_: wikipedia often uses the SVG format of displayed logos available for the download.)
     * If you were not successfull in this point, skip it and let us know about it in the pull request.
     * _Note:_ Please make sure that you have the permission using logos of your institution in an open source project. The organizations do not usually have any concerns, just want to be notified about it.
