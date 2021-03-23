@@ -44,14 +44,14 @@ In addition to this base config, pipelines have configuration "profiles" that ca
 Examples of available profiles:  
 * `docker`
   * A generic configuration profile to be used with [Docker](http://docker.com/)
-  * Pulls software from DockerHubß
+  * Pulls software from DockerHub
 * `singularity`
   * A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
   * Pulls software from DockerHub
 * `conda`
   * A generic configuration profile to be used with [Conda](https://conda.io/docs/)
   * Pulls most software from [Bioconda](https://bioconda.github.io/)
-  > NOTE: Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity. 
+> NOTE: Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity.
 * `test`
   * A profile with a complete configuration for automated testing
   * Includes links to minimal test data so needs no other parameters
