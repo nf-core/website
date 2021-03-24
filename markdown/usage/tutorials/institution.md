@@ -15,7 +15,7 @@ In case you couldn't find your organization / group of contributors on the [comm
     * Full Name of the Institution
     * Short Name of the Institution (e.g. an acronym)
     * Description (see YAML for the examples)
-    * Post Address
+    * Postal Address
     * URL website of the Institution
     * Affiliation: could be the subunit of your institution where you are belonging to (if Fancy University is the Institution, then Affilation would be the McFancyDepartment)
     * Affiliation URL
@@ -39,5 +39,4 @@ In case you couldn't find your organization / group of contributors on the [comm
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re).
 The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will kindly provide you a feedback if anything looks weird or hasn't been properly done.
-
 
