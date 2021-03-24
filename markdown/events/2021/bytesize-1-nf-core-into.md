@@ -156,7 +156,7 @@ Renuka:
 Thanks very much Phil and thanks everyone for listening. We have a question in the chat. Vidya wants to know whether there will be any talks on how to run <b>nf-core</b> on a grid system, like running on Slurm.
 
 Phil:
-Yeah I mean that is quite a specific question. Not so much nf-core, but that is more of a Nextflow issue we are going to talk about. One of the first talks will be about how to set up core configs.
+Yeah I mean that is quite a specific question. Not so much nf-core, but that is more of a Nextflow issue we are going to talk about. One of the first talks will be about how to set up <b>nf-core</b> configs.
 So we have a few different ways to bring in Nextflow configuration into the <b>nf-core</b> pipelines and to make that easy for you.
 
 We have plenty of people using <b>nf-core</b> pipelines on Slurm, myself included and so that would be a good place to start. There is a talk coming up about that and also head over to Slack, we have a channel called configs which is designed for questions like this.
