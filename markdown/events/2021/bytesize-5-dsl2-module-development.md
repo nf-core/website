@@ -38,9 +38,9 @@ The talk will be live-streamed on YouTube:
 **Note: This text has been edited to make it more suitable for reading.**
 
 [00:00](https://www.youtube.com/watch?v=ggGGhTMgyHI)
-Hi everyone, so this is our fifth byte-sized talk which I think have been really really useful of late, especially sort of summarizing what we're doing on nf core in small bite-sized chunks so people can get more familiar with what we're doing. It also acts as sort of a persistent archive of how to do things on nf-core and and hopefully also with Nextflow and git like Alex's talk (https://www.youtube.com/watch?v=gTEXDXWf4hE) last week and other things so thank you all for joining.
+Hi everyone, so this is our fifth byte-sized talk which I think have been really really useful of late, especially sort of summarizing what we're doing on nf core in small bite-sized chunks so people can get more familiar with what we're doing. It also acts as sort of a persistent archive of how to do things on nf-core and and hopefully also with Nextflow and git like Alex's talk [https://www.youtube.com/watch?v=gTEXDXWf4hE] last week and other things so thank you all for joining.
 
-[00:33](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=33)
+[[00:33](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=33)]
 Today i'm going to be talking to you about nf-core/modules which is our Nextflow DSL2 effort so, as some of you may know, Nextflow now (actually last year July I believe it was) released a new modular syntax called DSL2 and that allowed a lot of flexibility in terms of
 pipeline development and also it got us very interested here on nf-core because we have 40-50 pipelines that share functionality and do similar things and we try and standardize this as much as possible to help with the development of these pipelines and also other users to
 for them to be able to understand what they're doing and things like parameter names and
@@ -69,7 +69,7 @@ We're also more recently decided that we would use biocontainers for all of our 
 We have one Docker container that gets downloaded, converted to Singularity and that is what is used then by the pipeline but now, Biocontainers are also hosting singularity images
 directly so we don't have to convert anything.  We're directly downloading them over HTTPS and using those.
 
-[06:20(https://www.youtube.com/watch?v=ggGGhTMgyHI&t=380)]
+[[06:20](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=380)]
 And that's, that's amazing, because we've had a number of issues with users running out of whole space in home directories and so on and this sort of bypasses all of those issues. And obviously, supporting conda as well, which is where I guess you would imagine fundamentally these Biocontainers are built from. Biocontainers are essentially conda packages built in containers, so either Docker or Singularity.
 
 [06:42](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=402)
@@ -84,7 +84,7 @@ For simplicity and also for learning curve we wanted to stick to using the Nextf
 
 I think that's quite important so the simplicity there is incredibly important for the learning curve when it comes to figuring out what these modules are doing. I mean, me personally, I find DSLl1 modules are really great, DSL1 pipelines are really great and that you have everything in one workflow because it's more findable that way.  With DSL2, you can package things up and put them in various different places and it's not always that trivial to find them, so the way that we standardize the structure and and the way that where we're writing these Nextflow imports and so on is actually quite important.
 
-[08:35](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=515
+[08:35](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=515)
 Also, we're using certain parameters and other things and just generally standardizing how
 we're doing things across nf-core pipelines and, hopefully, this can also be reused by the Nextflow community. And the great thing also is, if you update it on nf-core/modules, where if you update the version of samtools on nf-core/modules because new releases come out, then everyone benefits from that so it becomes a bit like the way the Conda
 operates in updating builds of their packages and so on.
@@ -105,7 +105,7 @@ added this ability to use pytest workflow (which mainly was done by Edmund Mille
 
 [11:26](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=686)
 The portability is mostly taken care of by Nextflow (Nextfow is amazing as you know), it works on virtually any platform. But there is, I think, a caveat here in that these modules have to be written as simplistic as possible to adhere to Nextflow guidelines on running on multiple platforms. We can't add customization and that would violate that essentially and so we've taken a lot of care in making these modules as simple as possible so in fact that they are portable on these different platforms.
- 
+
 [11:58](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=718)
 And, of course, I made up a buzzword there because I couldn't think of one, um, but the last but not least, people have to be able to install these modules and use them themselves so they have to understand what they're doing and so again this comes back to the simplicity concept; as well as newcomers that may not have that much knowledge with Nextflow or nf-core pipelines for that matter and want to contribute to nf-core/modules. We've attempted to try and make that as simple as possible.
 
@@ -121,14 +121,14 @@ allow us to lint to make sure that the standards hat that we've set for those mo
 Some of this was already available, so the install and list commands are already available in in 1.10.2 and actually that's all I needed for the latest RNAseq DSL2 implementation but now we're adding a bunch of other stuff on top which is cool and a lot of this has actually been done by Kevin Menden.
 
 [14:04](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=844)
-Just to give you again, going a bit backwards, um, so the repos created 2019 just literally whilst I was at ISMB in Switzerland and, um, it was a moment of inspiration. And it kind of sat there for a while we didn't do much about it. I had a brief skeleton that I added. And then we’d done some at the Crick hackathon which I organized in March 2020 where Phil, Felix, Anna, a bunch of others started adding a few modules. Phil sorted out some Docker pushes for these modules and we made a bit of headway there. But I think the real dent we made was in the July hackathon, which was organized by Gisela, Enrique and that was our first remote only hackathon. 
+Just to give you again, going a bit backwards, um, so the repos created 2019 just literally whilst I was at ISMB in Switzerland and, um, it was a moment of inspiration. And it kind of sat there for a while we didn't do much about it. I had a brief skeleton that I added. And then we’d done some at the Crick hackathon which I organized in March 2020 where Phil, Felix, Anna, a bunch of others started adding a few modules. Phil sorted out some Docker pushes for these modules and we made a bit of headway there. But I think the real dent we made was in the July hackathon, which was organized by Gisela, Enrique and that was our first remote only hackathon.
 
 [14:49](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=889)
 We really sort of sat down and stripped this apart and I think that's exactly what we needed, we stripped the modules into different components, had a lot of discussion as to how we would organize things how we would pass options around and, you know, reproducibility, which containers we would use. We made quite a big dent so after that I was relatively happy with the progress we'd made and we had a plan.
 
 And, of course, a week after that Paulo released version 20.0.7.1, which was the first Nextflow release where you're enabling DSL2 and not previewing it. So, that meant we really had to do something about the modules and things that sort of made sense to me in terms of the way we attack this is that we have a proof of principle implementation in a real pipeline to see how it would work.
 
-[15:46](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=946
+[15:46](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=946)
 And, so, I went about side by side updating nf-core/modules and also completely rewriting the nf-core/rnaseq pipeline from scratch with DSL2 and so we released v2 of that
 pipeline and then there were some other issues with the alignments we were using and then the methods we were using, the pipeline even. And so, we done another release, v3 quite soon after that. But what that allowed us to do is actually gauge how flexible it would be for these modules to be used in a real pipeline, in a real end-to-end pipeline and that really sort of triggered a lot of this stuff and then after the rnaseq release, I then went and updated the nf-core/tools pipeline template with that, so eventually that will be released as I mentioned the week after, not the week after, the release after next, in the nf-core/tools as a template. Hopefully, all nf-core pipelines switch to that in the future.
 
@@ -211,11 +211,11 @@ And so, this is sort of a niggly thing, I mean there are obviously edge cases wh
 The tag, by default, uses this meta map of sample information and this is generally provided in the input section here (which i will come back to later) and so this just allows you, when Nextflow is running nicely in the terminal, to see which sample is running and it just gives it a tag as to as to what's running.
 
 [29:14](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=1754)
-This may not be always possible because in some instances, where you're indexing genomes for example, you don't need any sample information so you just tag it with whatever is appropriate. Appropriately resource labels we have in the conf/base.config of nf-core pipelines and we just have some simple process labels - process_low,  _medium, _high, maybe _retry or something like that. This just allows us again to just reuse these labels across nf-core pipelines and even in your own Nextflow pipelines if you so wish to use them.
+This may not be always possible because in some instances, where you're indexing genomes for example, you don't need any sample information so you just tag it with whatever is appropriate. Appropriately resource labels we have in the conf/base.config of nf-core pipelines and we just have some simple process labels - process low,  medium, high, maybe retry or something like that. This just allows us again to just reuse these labels across nf-core pipelines and even in your own Nextflow pipelines if you so wish to use them.
 
 And that just allows us to standardize this a little more in terms of how we're using it. If you don't have that label then nothing will happen anyway.
 
-[30:00](https://youtu.be/ggGGhTMgyHI?t=1800) 
+[30:00](https://youtu.be/ggGGhTMgyHI?t=1800)
 The saving files, this actually took me quite a while figuring out how to do this properly but I think we've got something quite simple now. So if you've seen nf-core pipelines, you don't need all of that extensive if-logic and so on it's literally just simplified to this one line which is calling that function `saveFiles` in `functions.nf`. The crux of it is that the `publish_dir`, that you provide via `$options` is just the published directory above the main output directory so it would be `outdir/fastqc`. You can also choose to publish by id, so in this case it would be sample id, for example, and in that way you would have the output generated per sample. You also have this `publish_files`, which I showed you, which is essentially just a map of the file extensions that you want to publish in your workflow and whether you want them to go in a separate directory. This has tended to work quite well; if you don't provide `publish_files`, everything will be published and if you set it to false then nothing will be published.
 
 [31:03](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=1863)
@@ -273,10 +273,10 @@ Most, in fact all, of the modules I think at the moment are using biocontainers.
 There’s the workflow package manager, so Junjun Zhang in Toronto, as part of the ICGC Argo are doing something similar. They started out at a similar time where we're just having discussions together about how to make it work and they have sort of branched out and done their own thing with that so we have had brief discussions about how to bring this together but time’s been nuts recently. It’d be nice to revisit that and see where we can compare notes on that.
 
 [38:39](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=2319)
-And obviously core Nextflow, as I mentioned before, you can use Groovy and other things to get around a few things but there are a few things that are on a parallel radar, for example dealing with optional inputs. 
+And obviously core Nextflow, as I mentioned before, you can use Groovy and other things to get around a few things but there are a few things that are on a parallel radar, for example dealing with optional inputs.
 Optional outputs are completely fine and they work beautifully but optional inputs and where tools can take one or more different inputs, publishing files and so on as I mentioned I've added that customisation to deal with that and it works beautifully but once these are added to core Nextflow we can hopefully strip out some of that stuff there.
 
-[39:11](https://youtu.be/ggGGhTMgyHI?t=2351) 
+[39:11](https://youtu.be/ggGGhTMgyHI?t=2351)
 So please come and find us on slack #modules, there's the nf-core modules repository, twitter, with amazing videos that will be going on youtube so, again, that's now a persistent resource of information and there's our publication at the bottom.
 
 Thank you to the nf-core community, and the Nextflow communities, Edmund Miller, José, Kevin Menden, Maxime and a bunch of other people that have really helped drive this recently. Thank you all, Paolo as well for his little tips and knowledge and also the Bioconda community for providing all these amazing containers.
