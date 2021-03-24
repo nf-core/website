@@ -47,7 +47,7 @@ Let’s start by understanding git. [Git](https://git-scm.com/docs) is a free an
 
 A few things that are common nomenclature in Git are commits and repositories (or short repos). So if you're talking with people in nf-core, they might refer to things like a repo; just to point you towards one, so a repository is basically a project where your code is stored. An example would be the [nf-core/rnaseq](https://github.com/nf-core/rnaseq) repository that hosts all the code for the RNA pipeline. We have many of these repositories or repos. For example each of the pipelines has a separate one, but we also have repositories that host code for our web page, some documentation or some test data sets so this is something that is a repository. A commit is a package of changes that are actually applied to a repository. A set of logical edits that are chunked together and can be committed to my repository so that they can be within this version control system.
 
-The git tree of a repository can have branches so my repository might have different separate branches, which is a kind of a way to organize code in the repository, so people can have a look at that later.
+The git tree of a repository can have branches so my repository might have different separate branches, which is kind of a way to organise code in the repository, so people can have a look at that later.
 
 That's just a very very brief intro into the basic commands here. We have git clone which means downloader; git add, which means stage changes that I have already made, like adding a new file for example; ready to comment git comment is actually then adding this to the yeah more or less adding this to the repository with a comment. So I can actually comment on that, I can say I’ve added this file which would be quite a nice commit, write a message because that means that people know what I’ve done through this comment. Then I can also git push, which means I can push these changes to the repository. If somebody else made some changes in the web for example on a repository that I actually want to integrate with my local copy of of the repository I can do a git pull, which will pull these from there. There is also some additional vocabulary here that people would like to probably see a bit about; “PR” means pull request and fork makes a derivative copy, so I can fork a repository that is present on github and make a copy for my own that can work on independently, I could continue development on that and never return to the original repository. That happens, people abandon projects quite frequently, but I could also use that to develop my own type of feature - let's say mapping methods, changes to a pipeline or something like that and send them back to the main repository via a pull request. [4:27](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=265)
 
@@ -111,7 +111,6 @@ A more general thing that I think also applies to the nf-core community, is to s
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
 
