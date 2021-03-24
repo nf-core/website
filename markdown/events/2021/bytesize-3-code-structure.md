@@ -76,7 +76,7 @@ So you can see that all the tools for running the pipeline in the containerized 
 
 Additionally, we have another directory that's called `/assets`, and this directory contains the different templates that are used to send emails at the end of the pipeline saying what the status of the execution is: why the run passed or the run failed etc.
 
-They also contain a file that is called multi-qc config and this file exists because all of the pipelines (or most of them) use the multi-qc tool to aggregate the quality control results for the pipelines and report it. This multi-qc config defines how this report should be displayed.
+They also contain a file that is called MultiQC config and this file exists because all of the pipelines (or most of them) use the multi-qc tool to aggregate the quality control results for the pipelines and report it. This MultiQC config defines how this report should be displayed.
 
 So that is most of it.
 
