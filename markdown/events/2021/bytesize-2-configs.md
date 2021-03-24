@@ -92,7 +92,7 @@ So far, the examples have been designed to run on my computer. However people us
 * Where are the reference files?
 * Where are the input files?
 
-[5:33]
+[[5:33](https://www.youtube.com/watch?v=cXBYusdjrc0&t=5m33s)]
 If we have the answers to all of these questions, we can put it in a config file.
 So for example here on this fictional server, my config will contain everything that I need to run my project.
 In the Singularity scope I have defined where the Singularity containers will be located.
@@ -107,13 +107,13 @@ This is now just a config file, but in order to enable other people to use this 
 According to the [documentation](https://github.com/nf-core/configs#adding-a-new-config) that we have on Github for nf-core configs, I should start by forking the [nf-core config repository](https://github.com/nf-core/configs).
 Then I copy the config file that I have already created and I put it here in the folder `conf/my_hpc.config`.
 
-[7:43]
+[[7:43](https://www.youtube.com/watch?v=cXBYusdjrc0&t=7m43s)]
 In the `nfcore_custom.config` file, I add a specific line that tells Nextflow to look for this specific config when I use this profile.
 Of course do not forget to also update the documentation and the CI tests.
 This is ideally done on a specific branch on my personal fork of this repository so that you can easily create a pull request on the [nf-core config repository](https://github.com/nf-core/configs).
 Other people in the community will then have a look at it and have some comments, and eventually approve it and merge it when satisfied.
 
-[8:35]
+[[8:35](https://www.youtube.com/watch?v=cXBYusdjrc0&t=8m35s)]
 Here are some tips:
 All nf-core pipelines are designed for usage on a typical HPC, with reasonable default resources for each process.
 It will actually look more or less like this for every pipeline In the `conf/base.config`.
@@ -125,12 +125,12 @@ Finally, in the `nextflow.config` of each nf-core pipeline, the maximum resource
 Another tip is that the 'max resources' is just a threshold not to go over, so changing it will change the limit but it will not change the resources that the pipeline will start with.
 If you want to change the base resources you must look at the CPU, memory, and time properties in the process scope.
 
-[9:57]
+[[9:57](https://www.youtube.com/watch?v=cXBYusdjrc0&t=9m57s)]
 Here is an example of how to change that.
 Within the process scope, you can use different process selectors.
 Specifically the ‘withName’ and ‘withLabel’ selectors are useful if you want to change the properties for one process or for multiple processes that share the same type.
 
-[10:23]
+[[10:23](https://www.youtube.com/watch?v=cXBYusdjrc0&t=10m23s)]
 You can also include a config file within a profile, it could be quite useful.
 You can also test your profile online if you made your PR (pull request) but if it is not yet merged, you can specify the config_custom_base pointing to your own fork of the nf-core config repository.
 
@@ -140,12 +140,12 @@ Some final messages to end this talk:
 * Stay tuned for more Bytesize talks.
 * Get involved: Join the nf-core Github organisation, follow us on Twitter and on Youtube.
 
-[11:33]
+[[11:33](https://www.youtube.com/watch?v=cXBYusdjrc0&t=11m33s)]
 I would like to thank everyone at my institute, sponsors and all the institutes I am collaborating with.
 Here are all the institutes that are collaborating with us on this nf-core project.
 And here are all the Github collaborators within nf-core.
 
-[11:59]
+[[11:59](https://www.youtube.com/watch?v=cXBYusdjrc0&t=11m59s)]
 Finally, some concluding important links including a link to these slides.
 If you have any questions, now is the time.
 
