@@ -25,7 +25,7 @@ These pull requests then need to be manually resolved and merged by the pipeline
 Behind the scenes, this synchronisation is done by using `git`.
 Each repository has a special `TEMPLATE` branch which contains only the "vanilla" code made by the `nf-core create` tool.
 The synchronisation tool fetches the essential variables needed to recreate the pipeline and uses this to trigger a `nf-core create --no-git` command with the latest version of the template.
-The result from this is then compared against what is stored in the `TEMPLATE` branch and committed. During an automated sync, a copy of the `TEMPLATE` branch will made called `nf-core-template-merge-<version>`, and a PR from this new branch will be opened against your `dev`.  
+The result from this is then compared against what is stored in the `TEMPLATE` branch and committed. During an automated sync, a copy of the `TEMPLATE` branch called `nf-core-template-merge-<version>` will be made, and a PR from this new branch will be opened against your `dev`.  
 When merging from the `nf-core-template-merge-<version>` branch back into the main `dev` branch of the pipeline, `git` should be clever enough to know what has changed since the template was first used, and therefore, it will only present the relevant changes.
 
 For this to work in practice, the `TEMPLATE` branch needs to have a shared `git` history with the `master` branch of the pipeline.
