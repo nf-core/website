@@ -35,7 +35,7 @@ In case you couldn't find your organization / group of contributors on the [comm
     * If you have only raster images available, please search for a SVG version.
     (_A tip_: wikipedia often uses the SVG format of displayed logos available for the download.)
     * If you were not successful at this point, skip it and let us know about it in the pull request.
-    * _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. The organizations do not usually have any concerns about it, just want to be notified.
+    * _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. Organizations often don't have any concerns about it, just want to be notified.
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re).
 The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will kindly provide you a feedback if anything looks weird or hasn't been properly done.
