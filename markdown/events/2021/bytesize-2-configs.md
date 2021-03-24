@@ -53,10 +53,10 @@ I install Nextflow with the first command.
 The second command will help me download the data that we want and with the third command I'm actually running the latest release of the [nf-core/eager](https://nf-co.re/eager) pipeline.
 The last command specifies all the necessary input for the pipeline:
 
- - The container engine I want to use, which is Docker.
- - The specific container I want to use is specified with a tag.
- - Some resources, for example `max_cpus`.
- - The path to the reference genome file, e.g fasta file.
+ * The container engine I want to use, which is Docker.
+ * The specific container I want to use is specified with a tag.
+ * Some resources, for example `max_cpus`.
+ * The path to the reference genome file, e.g fasta file.
 
 However, we can improve this if we use config files, which is the whole point of this talk:
 How do nf-core configs work?
@@ -86,11 +86,11 @@ I just have to change the command to use this profile and voila, it is working w
 This is why I like Nextflow and nf-core - it is easy.
 
 So far, the examples have been designed to run on my computer. However people usually have large datasets and it is not possible to run the pipeline on a single computer. So, assuming I want to do this on my institutional server/cluster/HPC instead, we need to ask ourselves some questions:
- - Which container/virtual environment engine is available to us?
- - What are the available resources?
- - Which scheduler or executor are we using?
- - Where are the reference files?
- - Where are the input files?
+ * Which container/virtual environment engine is available to us?
+ * What are the available resources?
+ * Which scheduler or executor are we using?
+ * Where are the reference files?
+ * Where are the input files?
 
 [5:33]
 If we have the answers to all of these questions, we can put it in a config file.
@@ -135,10 +135,10 @@ You can also include a config file within a profile, it could be quite useful.
 You can also test your profile online if you made your PR (pull request) but if it is not yet merged, you can specify the config_custom_base pointing to your own fork of the nf-core config repository.
 
 Some final messages to end this talk:
- - Read the docs. Everything is in the docs.
- - Try things out, and do not hesitate to ask questions.
- - Stay tuned for more Bytesize talks.
- - Get involved: Join the nf-core Github organisation, follow us on Twitter and on Youtube.
+ * Read the docs. Everything is in the docs.
+ * Try things out, and do not hesitate to ask questions.
+ * Stay tuned for more Bytesize talks.
+ * Get involved: Join the nf-core Github organisation, follow us on Twitter and on Youtube.
 
 [11:33]
 I would like to thank everyone at my institute, sponsors and all the institutes I am collaborating with.
