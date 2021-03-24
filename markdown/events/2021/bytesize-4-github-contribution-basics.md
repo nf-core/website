@@ -57,7 +57,7 @@ We have a master branch, this contains the stable releases only. This is what Ne
 
 The next point in this talk is Github. So Github is as you might know from the name is a hub for hosting git repositories, so it is a cloud-based git repository hosting service. Some users refer to it as a social network for developers. You can share and collaborate on code, you can interact on or with code and also add documentation, plus a lot of other things that i won't cover today. The basic functionality is very accessible and easy to work with. The basic account of github is free, a pro account is free if you're an academic user or working for some academic licensing. The basic stuff is easy to learn, but the advanced stuff like continuous integration services and integration of slack and other plugins has a steeper learning curve. This will be partially covered in an upcoming bytesize talk.
 
-For a basic overview on what github looks like, log on!
+For a basic overview on what Github looks like, log on!
 
 Here’s my login now so you'll see some recent activity in the middle, you see some recommendations like repositories that you might be interested in, notifications etc. It's quite quite easy to understand; you can even search for things - repositories, or create new ones. So it's not that difficult to actually get into, again, the account is free even if you're just using a basic github account. Most of the functionality is available only if you're logged in so you definitely need an account. The differentiation that is kind of crucial and some beginners seem to have issues with differentiating between personal and organisational accounts. apelzer is my personal account, and our organisational account is nf-core, which hosts all of the code for the nf core organization. Multiple people with the individual accounts can however, contribute to that organization and that's exactly how we structured that in the past to keep code that is developed within the scope of nf-core within nf-core and not within private accounts of individuals. [8:26](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=506)
 
@@ -111,7 +111,6 @@ A more general thing that I think also applies to the nf-core community, is to s
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
 
