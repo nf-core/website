@@ -56,7 +56,7 @@ We also have a code of conduct file that describes the expected behavior of peop
 
 We also have the license file, which describes the MIT license that all of the nf-core pipelines adhere to or apply, and a README markdown file.
 
-The readme markdown file contains the easiest pipeline recommendations, such as how to get started to launch the pipeline.
+The README markdown file contains the easiest pipeline recommendations, such as how to get started to launch the pipeline.
 
 What are pipelines actually? They enable the execution of different tools one after another, so it's pretty important for any pipeline to have proper software packaging possibilities. This is natively supported by Nextflow; Nextflow natively supports the execution of pipelines using many different container engines and also Conda.
 
@@ -70,7 +70,7 @@ However due to reproducibility issues that the conda environment can sometimes h
 
 And what is the Docker container like?
 
-So for all the pipelines, there is one Docker container available that contains all the dependencies, and I'm going to show you how this container is defined in the Docker file. We have pretty minimalistic Docker files in the nf-core pipelines, so the docker file takes a container image that is directly provided by nf-core tools. What this does is that it copies this environment.yml file there, and creates a Conda environment inside of the container that adds this environment to the path.
+So for all the pipelines, there is one Docker container available that contains all the dependencies, and I'm going to show you how this container is defined in the Docker file. We have pretty minimalistic Docker files in the nf-core pipelines, so the Docker file takes a container image that is directly provided by nf-core tools. What this does is that it copies this environment.yml file there, and creates a Conda environment inside of the container that adds this environment to the path.
 
 So you can see that all the tools for running the pipeline in the containerized fashion are also defined in this Conda environment file. This adds a pretty strict requirement of all of the nf-core pipelines; all of the software is available in Conda, so - at any of the Conda public channels. We have two main directories here as part of the pipeline template and one directory is called /bin, and this contains executable scripts that are used as part of the pipeline and can be written in any language. Here for example, it is in Python. Adding scripts to /bin provides the additional advantage of Nextflow adding all of these scripts to the path directly. So when you want to call descriptions as part of your pipeline, you can call the script directly and Nextflow will find it inside the bin.
 
@@ -84,7 +84,7 @@ The assets directory also contains the pipeline logo. The pipeline logo will als
 
 All nf-core pipelines are also required to have extensive documentation, so the docs directory contains extra documentation in addition to the main readme file of the pipeline. The two most important files are the ‘usage markdown’ file and the ‘output markdown’ file. The former describes exactly what is needed to run the pipeline and provides a description of different options that the pipeline can use. The ‘output markdown’ file describes the output that we expect from all of the nf-core pipelines. So these documentations files can not only be read on the Github repository but are also automatically displayed on the nf-core website.
 
-In the nf-core website there is a page for each individual pipeline, and you can find some tabs on display on this page containing first of all the ‘readme’ markdown, and also the usage docs and output docs of the pipeline. If you look closely, you will notice another tab called ‘parameter docs’, and that displays all of the parameter options that each of the nf-core pipelines take. Originally this parameter documentation was also included in the usage.markdown, but now we have an additional characteristic of all of the pipelines and that is the Nextflow schema defining all of the parameters that the pipelines take, accompanied by a short description.
+In the nf-core website there is a page for each individual pipeline, and you can find some tabs on display on this page containing first of all the README markdown, and also the usage docs and output docs of the pipeline. If you look closely, you will notice another tab called ‘parameter docs’, and that displays all of the parameter options that each of the nf-core pipelines take. Originally this parameter documentation was also included in the usage.markdown, but now we have an additional characteristic of all of the pipelines and that is the Nextflow schema defining all of the parameters that the pipelines take, accompanied by a short description.
 
 This schema is then parsed as I mentioned for the nf-core website. This is not only used to display the documentation for all of the parameters on the nf-core website, but will now also be used to validate the parameters that are passed to the nf pipelines, and used to launch new pipeline runs with a parameter json file.
 
