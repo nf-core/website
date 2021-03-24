@@ -24,7 +24,7 @@ In case you couldn't find your organization / group of contributors on the [comm
     * contact_email: Your E-Mail
     * contact_github: Your GitHub Shortname
     * location in geocoordinates: [longitude, latitude]
-    * Twitter: URL of the institutional twitter account if available
+    * twitter: URL of the institutional twitter account, if available
 
 4. Furthermore, submit two versions of the institutional logo in the SVG format which you have described it in the YAML file under image_fn:
     1. Upload a "white" version to the folder public_html/assets/img/contributors-white. Must be a single monochrome shape with no background colour.
