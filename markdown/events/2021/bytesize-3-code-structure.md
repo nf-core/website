@@ -54,7 +54,7 @@ Additionally we have other files, and different Github repositories for differen
 
 We also have a code of conduct file that describes the expected behavior of people that want to contribute to the community and to the pipelines.
 
-We also have the license file, which describes the MIT license that all of the nf-core pipelines adhere to or apply, and a readme markdown file.
+We also have the license file, which describes the MIT license that all of the nf-core pipelines adhere to or apply, and a README markdown file.
 
 The readme markdown file contains the easiest pipeline recommendations, such as how to get started to launch the pipeline.
 
