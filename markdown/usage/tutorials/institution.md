@@ -38,4 +38,4 @@ In case you couldn't find your organization / group of contributors on the [comm
     * _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. Organizations often don't have any concerns about it, just want to be notified.
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re).
-The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will kindly provide you a feedback if anything looks weird or hasn't been properly done.
+The changes have to be reviewed by a member of our core team. When opening the PR, specify 'nf-core/core' as a reviewer. We will provide you a feedback if anything looks weird or hasn't been properly done.
