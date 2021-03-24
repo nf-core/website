@@ -53,7 +53,7 @@ This slide shows some of the basic git commands. We have `git clone` which means
 
 All of this sounds a bit more complicated than it actually is, so basically it is something that one learns most easily by doing. Most people get along with just these five commands, but there's very excellent tutorials, even interactive ones where you can actually train, and try out more complicated things if you want. Of course we use branches quite efficiently, so we have typically at least three branches per repository per pipeline in this case so we have a dev branch, this is where all the development code is and all the pull requests usually end up.
 
-We have a master branch, this contains the stable releases only. This is what max flow typically pulls if you run a pipeline. We have a template branch template that keeps template functionality that we develop in the nf-core tools. In sync uses a special sync approach that we've been developing in the team using the nf-core bot approach. [6:43](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=403)
+We have a master branch, this contains the stable releases only. This is what Nextflow typically pulls if you run a pipeline. We have a TEMPLATE branch that keeps template functionality that we develop in the nf-core tools. In sync uses a special sync approach that we've been developing in the team using the nf-core bot approach. [6:43](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=403)
 
 The next point in this talk is Github. So Github is as you might know from the name is a hub for hosting git repositories, so it is a cloud-based git repository hosting service. Some users refer to it as a social network for developers. You can share and collaborate on code, you can interact on or with code and also add documentation, plus a lot of other things that i won't cover today. The basic functionality is very accessible and easy to work with. The basic account of github is free, a pro account is free if you're an academic user or working for some academic licensing. The basic stuff is easy to learn, but the advanced stuff like continuous integration services and integration of slack and other plugins has a steeper learning curve. This will be partially covered in an upcoming bytesize talk.
 
@@ -111,7 +111,6 @@ A more general thing that I think also applies to the nf-core community, is to s
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
 
