@@ -32,7 +32,6 @@ The talk will be live-streamed on YouTube:
 * YouTube: <https://youtu.be/FFTNVbdD5pQ>
 
 <details markdown="1"><summary>Video transcription</summary> 
-
 **This text has been edited to make it more suitable for reading**
 
 Welcome everybody, I would like to do a pipeline code walkthrough today of the DSL1 pipeline template, and also provide a preview of the DSL2 nf-core pipeline template.
