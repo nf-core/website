@@ -106,12 +106,11 @@ It is also a good idea to ask people with expertise on their pipelines. For exam
 
 There's a sweet spot, having two to three reviewers or maybe four is fine, but if you have more than five reviewers, it can get very crowded and very messy because there can be different opinions on certain topics as well. You might end up having a really hard time actually appending all the changes that the reviewers have relayed back to you. So start with two to three and if nothing happens, you can add more.
 
-A more general thing that I think also applies to the nf-core community, is to show respect and be nice to people. There might be people who have very little time to work on your review, so try to try to be nice. This also applies to beginners. Also apply some common sense when connecting with people doing both reviewing and coding. Honestly I also have to say don't do a German _gefälligkeitsgutachten_, which means you should never do a review if you're not entirely sure you can cover the entire code piece or if you don't have the time to work on it.
+A more general thing that I think also applies to the nf-core community, is to show respect and be nice to people. There might be people who have very little time to work on your review, so try to be nice. This also applies to beginners. Also apply some common sense when connecting with people doing both reviewing and coding. Honestly I also have to say don't do a German _gefälligkeitsgutachten_, which means you should never do a review if you're not entirely sure you can cover the entire code piece or if you don't have the time to work on it.
 
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
 
