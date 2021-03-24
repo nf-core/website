@@ -92,7 +92,7 @@ So for example, there is a new feature; whenever there's a pull request open you
 
 Whenever you click on the line of the code that would then open a text box, they can actually suggest a change that would make it possible later on for the person who opened the pull request to just click on accept that change. [20:17](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1217)
 
-For example for this type here it would be very easy to just type here it would be very easy to just such a suggestion fixing, and people don't have to write their own code again or go back to the editor because they can just click on this in the github interface and amend things. [20:46](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1246)
+For example for this type here it would be very easy to just type here and add such a suggestion fixing, and people don't have to write their own code again or go back to the editor because they can just click on this in the github interface and amend things. [20:46](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1246)
 
 Another good idea for effective code review is to describe the motivation and the purpose of the requested changes. For example if you have an idea or you find something particularly interesting, say you updated a mapper in an alignment pipeline, but the other person who opened the pull request might not know about then it would be a good idea to write that down in your code review and tell them about it. That's just one example but there are multiple others so you should always describe why you’re actually giving the feedback you are.
 
@@ -111,7 +111,6 @@ A more general thing that I think also applies to the nf-core community, is to s
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
 
