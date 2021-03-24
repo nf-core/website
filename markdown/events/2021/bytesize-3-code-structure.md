@@ -74,7 +74,7 @@ So for all the pipelines, there is one Docker container available that contains 
 
 So you can see that all the tools for running the pipeline in the containerized fashion are also defined in this Conda environment file. This adds a pretty strict requirement of all of the nf-core pipelines; all of the software is available in Conda, so - at any of the Conda public channels. We have two main directories here as part of the pipeline template and one directory is called /bin, and this contains executable scripts that are used as part of the pipeline and can be written in any language. Here for example, it is in Python. Adding scripts to /bin provides the additional advantage of Nextflow adding all of these scripts to the path directly. So when you want to call descriptions as part of your pipeline, you can call the script directly and Nextflow will find it inside the bin.
 
-Additionally, we have another directory that's called /assets, and this directory contains the different templates that are used to send emails at the end of the pipeline saying what the status of the execution is: why the run passed or the run failed etc.
+Additionally, we have another directory that's called `/assets`, and this directory contains the different templates that are used to send emails at the end of the pipeline saying what the status of the execution is: why the run passed or the run failed etc.
 
 They also contain a file that is called multi-qc config and this file exists because all of the pipelines (or most of them) use the multi-qc tool to aggregate the quality control results for the pipelines and report it. This multi-qc config defines how this report should be displayed.
 
