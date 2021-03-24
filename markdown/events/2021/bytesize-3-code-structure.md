@@ -64,8 +64,7 @@ We support this also of course in all of the nf-core pipelines.
 
 So how is software packaging defined?
 
-As part of the nf-core pipelines, we have mainly two files: the Dockerfile and the environment.yml. The environment.yml is a Conda environment file that lists all
-of the software dependencies of the pipeline and their versions. It can be used to just execute the pipeline by using Conda.
+As part of the nf-core pipelines, we have mainly two files: the Dockerfile and the environment.yml. The environment.yml is a Conda environment file that lists all of the software dependencies of the pipeline and their versions. It can be used to just execute the pipeline by using Conda.
 
 However due to reproducibility issues that the conda environment can sometimes have, we recommend actually running the pipeline in a containerized fashion instead. This can be done mainly with Docker containers or Singularity containers. All pipelines support this, and there are other container engines that will also be supported.
 
