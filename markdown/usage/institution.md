@@ -2,7 +2,7 @@
 ## Adding your institution to the contributor's list
 
 
-Haven't you find your organization / group of contributors on the [community pages](https://nf-co.re/community)? Please add yourself! Just few lines of a YAML file needed.
+In case you couldn't find your organization / group of contributors on the [community pages](https://nf-co.re/community), please add yourself! Just a few lines of YAML and some icon / logos needed.
 
 
 
@@ -38,7 +38,6 @@ Haven't you find your organization / group of contributors on the [community pag
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re).
 The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will provide you the feedback if anything looks weird or hasn't been properly done.
-
 
 
 
