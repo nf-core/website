@@ -84,7 +84,7 @@ Another best practice in code review, I should start with first talking about co
 
 Pull requests to the dev branch, so to the experimental code, requires one review by someone in the nf-core community, whereas the pull requests to the master branch actually require two independent reviewers. That's something a lot of people struggle with, they don't know about these rules, although these are I think written down somewhere, hidden deep within these guidelines actually. There are also some nice how-tos on how code can be reviewed effectively. [19:30](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1115)
 
-An example that I've found particularly helpful is actually listed on the [slides](https://doi.org/10.6084/m9.figshare.14160680.v1). It's free, and most of the rules that are written in there are actually also applied in the same way here in nf core when we do a code reviews. [19:34](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1174)
+An example that I've found particularly helpful is actually listed on the [slides](https://doi.org/10.6084/m9.figshare.14160680.v1). It's free, and most of the rules that are written in there are actually also applied in the same way here in nf-core when we do a code reviews. [19:34](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1174)
 
 One of the important steps in code review is that you should read things quite carefully, so for example, a lot of people write code at night, and are very happy if people catch typos and things like that. So you need to carefully read documentation, and it's very good to use certain features in Github. [20:01](https://youtu.be/gTEXDXWf4hE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1201)
 
@@ -111,6 +111,5 @@ A more general thing that I think also applies to the nf-core community, is to s
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
