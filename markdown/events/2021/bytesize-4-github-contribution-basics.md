@@ -45,7 +45,7 @@ So we're going to start with the basics of Git, then cover a bit of how we can a
 
 Let’s start by understanding git. [Git](https://git-scm.com/docs) is a free and open source version control system that most people know at least to some extent. It's quite powerful, so even long time users that have dealt with it for years still seem to learn new things. There are some very advanced features in Git that can help organize code or documentation in a version controlled manner very efficiently. The basic features are actually not too complicated to use and there are also graphical user-interfaces that help people set up git in general if they want to finally adopt it. There are also a lot of [how-to's and introductions for beginners](https://training.github.com/) available on Github to cover most of the cases and also explain things. You could also just use google for a query to learn more about Git.  
 
-A few of things that are of common nomenclature in Git and comments and repositories or short repos. So if you're talking with people in nf-core, they might refer to things like a repo; just to point you towards one, so a repository is basically a project where your code is stored. An example would be the nf-core/rna-seq repository that hosts all the code for the rna pipeline. We have many of these repositories or repos. For example each of the pipelines has a separate one, but we also have repositories that host  code for our web page or some documentation or some test data sets so this is something that is a repository. A set of logical edits are chunked together and can be committed to my repository so that they can be within this version control system.
+A few things that are common nomenclature in Git are commits and repositories (or short repos). So if you're talking with people in nf-core, they might refer to things like a repo; just to point you towards one, so a repository is basically a project where your code is stored. An example would be the [nf-core/rnaseq](https://github.com/nf-core/rnaseq) repository that hosts all the code for the RNA pipeline. We have many of these repositories or repos. For example each of the pipelines has a separate one, but we also have repositories that host code for our web page, some documentation or some test data sets so this is something that is a repository. A commit is a package of changes that are actually applied to a repository. A set of logical edits that are chunked together and can be committed to my repository so that they can be within this version control system.
 
 The git tree of a repository can have branches so my repository might have different separate branches, which is a kind of a way to organize code in the repository, so people can have a look at that later.
 
@@ -111,7 +111,6 @@ A more general thing that I think also applies to the nf-core community, is to s
 It's a good idea to either do it properly or just leave it be. I have to live up to that standard as well myself in some cases.
 
 I also wanted to point out our [code of conduct](https://nf-co.re/code_of_conduct), which also applies to the entire process.
-
 
 
 
