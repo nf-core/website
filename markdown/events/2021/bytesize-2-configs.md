@@ -69,7 +69,7 @@ So I have made a config file which I call `my_computer.config` in which I have s
 I do not need to specify the actual container for [nf-core/eager](https://nf-co.re/eager) because it is already specified in the `nextflow.config` file, which is provided by the pipeline.
 I could also have specified the genome and the input file as well, but as I am planning to run this specific command only once, I prefer to give that on the side.
 
-[3:14]
+[[3:14](https://www.youtube.com/watch?v=cXBYusdjrc0&t=3m14s)]
 Another benefit of Nextflow is that I can also use profiles to do the same thing.
 Once again, reading the [documentation](https://www.nextflow.io/docs/latest/config.html) is the recommended way to learn how profiles work, but basically profiles are like aliases for configs.
 In this new command I am using 2 profiles at once.
