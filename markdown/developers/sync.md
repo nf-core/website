@@ -39,14 +39,28 @@ When a new release of tools is created, each pipeline will get an automated pull
 
 If there are no merge conflicts on the PR, then that's great!
 If you are happy with the changes, feel free to just merge it into the `dev` branch directly.
+
 However, it is quite likely that the PR is quite big with a lot of merge conflicts.
 You're going to have to resolve and merge these manually.
-Sorry about this, but there's no way around it..
+Sorry about this, but there's no way around it...
 
-You should not be actively working on the main nf-core repository, so we need to bring these changes to your personal fork.
+You can either work on the branch created for the template sync to fix the merge conflicts (i.e., on the GitHub web interface), or pull the updates to `TEMPLATE` to your own branch.
+
+Working on your fork is recommended if the merge is not trivial (please make a comment on the automated PR to say that you are working on it though). In this case see the section [Resolving major conflicts](#resolving-major-conflicts) for guidance.
+
+## Resolving minor conflicts
+
+This is the easier route for syncing the template. You can just go to the Pull Requests tab of your repository and open the PR typically named 'Important! Template update for nf-core/tools v1.13.2', which will come from a branch named `nf-core-template-merge-<version>`. This is a modifiable copy of `TEMPLATE`.
+
+At the bottom of the page, resolve the conflicts as guided by GitHub. This should commit to the branch above, and once tests pass you can request reviews from the nf-core community as normal.
+
+## Resolving major conflicts
+
+In the case that there are large conflicts which are unresolvable by the GitHub interface, it is safer and easier to fix these locally in your normal text editor and test on your machine before committing the changes.
+
 The steps we need to do are:
 
-1. Pull the `nf-core/<pipeline>` `TEMPLATE` changes to your fork (or the `nf-core-template-merge-<version>` branch)
+1. Pull the `nf-core/<pipeline>` `TEMPLATE` changes to your fork
 2. Resolve the merge conflicts
 3. Push these updates to your fork on GitHub
 4. Make a PR from your fork to the main nf-core repo
@@ -69,7 +83,7 @@ Next, check out a new branch to make these changes in:
 git checkout -b merging-template-updates
 ```
 
-Finally, pull the `TEMPLATE` (or `nf-core-template-merge-<version>`) branch from the `upstream` repo:
+Finally, pull the `TEMPLATE` branch from the `upstream` repo:
 
 ```bash
 git pull upstream TEMPLATE
