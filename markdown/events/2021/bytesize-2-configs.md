@@ -40,7 +40,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 OK, so hello everyone, Maxime here.
 I am working for the Swedish Childhood Tumor Biobank which is located at Karolinska Institutet and I am sitting half-time at the National Genomics Infrastructure at SciLifeLab.
-Today for the second nf-core Bytesize, I am going to talk about nf-core configs and how they work.
+Today for the second nf-core/bytesize, I am going to talk about nf-core/configs and how they work.
 
 What I like about Nextflow or in fact what I actually love about Nextflow, is its portability, shareability and reusability.
 As a challenge I am going to run [nf-core/eager](https://nf-co.re/eager) - a pipeline I am not very familiar with - on the provided test data.
