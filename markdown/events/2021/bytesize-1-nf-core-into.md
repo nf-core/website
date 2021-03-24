@@ -159,7 +159,7 @@ Phil:
 Yeah I mean that is quite a specific question. Not so much nf-core, but that is more of a Nextflow issue we are going to talk about. One of the first talks will be about how to set up core configs.
 So we have a few different ways to bring in Nextflow configuration into the <b>nf-core</b> pipelines and to make that easy for you.
 
-We have plenty of people using nf-core pipelines on Slurm, myself included and so that would be a good place to start. There is a talk coming up about that and also head over to Slack, we have a channel called configs which is designed for questions like this.
+We have plenty of people using <b>nf-core</b> pipelines on Slurm, myself included and so that would be a good place to start. There is a talk coming up about that and also head over to Slack, we have a channel called configs which is designed for questions like this.
 
 Renuka:
 Okay thank you and there do not seem to be any more questions in our chat here.
