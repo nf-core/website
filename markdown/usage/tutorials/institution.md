@@ -31,7 +31,7 @@ In case you couldn't find your organization / group of contributors on the [comm
     2. Upload a "colour" version to the folder public_html/assets/img/contributors-colour.
 
     * These examples in [white](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-white) / [colour](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-colour) indicate to you the difference between the versions.
-    * The both images should have the same name. I.e., if you name them image_fn: foobar.svg, then the both files should be named foobar.svg in the respective folders.
+    * Both images should have the same name. I.e., if you name them image_fn: foobar.svg, then both files should be named foobar.svg in the respective folders.
     * If you have only raster images available, please search for a SVG version.
     (_A tip_: wikipedia often uses the SVG format of displayed logos available for the download.)
     * If you were not successfull in this point, skip it and let us know about it in the pull request.
