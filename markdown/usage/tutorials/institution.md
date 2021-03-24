@@ -20,10 +20,10 @@ In case you couldn't find your organization / group of contributors on the [comm
     * Affiliation: could be the subunit of your institution where you are belonging to (if Fancy University is the Institution, then Affilation would be the McFancyDepartment)
     * Affiliation URL
     * Image_fn: filename with the logo (see the point [4](#4).)
-    * Contact: Your Name
-    * Contact_email: Your E-Mail
-    * Contact_github: Your GitHub Shortname
-    * Location in Geocoordinates: [longitute, latitude]
+    * contact: Your Name
+    * contact_email: Your E-Mail
+    * contact_github: Your GitHub Shortname
+    * location in geocoordinates: [longitude, latitude]
     * Twitter: URL of the institutional twitter account if available
 
 4. Furthermore, submit two versions of the institutional logo in the SVG format which you have described it in the YAML file under image_fn:
