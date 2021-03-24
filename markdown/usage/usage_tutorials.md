@@ -4,7 +4,7 @@ subtitle: In-depth step-by-step guides for getting started with nf-core
 ---
 # Table of Content
   1. [Introduction](#introduction)
-  2. [Adding your institution to the community](#adding your institution to the community)
+  2. [Adding your Institution to the Community](#AddingyourInstitutiontotheCommunity)
 
 
 # Introduction
@@ -14,6 +14,7 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
 - [Walkthrough: A-Z introduction to using and creating nf-core pipelines](tutorials/nf_core_tutorial.md)
   - This walkthrough gives an A-Z overview of how to use and create nf-core pipelines. It is in a workshop format with practical exercises, and gives you all the basic information you need to get yourself up-and-running with getting involved with nf-core.
 
-# Adding your institution to the community
 
-If you haven't find your institution on the [community pages](https://nf-co.re/community), please add yourself. Just a few lines of YAML and your logos needed. You can find the step-by-step guide [here](https://github.com/nf-core/nf-co.re/edit/medulka-patch-2/markdown/usage/tutorials/institution.md). 
+# Adding your Institution to the Community
+
+If you haven't find your institution on the [community pages](https://nf-co.re/community), please add yourself. Just a few lines of YAML and your logos needed. You can find the step-by-step guide [here](https://github.com/nf-core/nf-co.re/edit/medulka-patch-2/markdown/usage/tutorials/institution.md).
