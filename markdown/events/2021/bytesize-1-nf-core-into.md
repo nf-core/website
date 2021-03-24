@@ -68,7 +68,7 @@ All of them hopefully useful and ready to go, the pipelines are great, the tools
 
 As Renuka mentioned we are getting people from all over the world contacting us now and getting involved. This comes with its own challenges especially time-zones and things but it is great to see so many of you here.
 
-The heart of this community and the communication is mostly Slack, so if you are not already, then hop onto slack and then you'll find channels for pipelines and also communicate and discuss all the different topics around <b>nf-core</b> and it's a really fun place to be. If you want more details on <b>nf-core</b> itself you can check out the publication on the website <https://nf-co.re/publications>.
+The heart of this community and the communication is mostly Slack, so if you are not already, then hop onto slack and then you'll find channels for pipelines and also communicate and discuss all the different topics around <b>nf-core</b> and it's a really fun place to be. If you want more details on <b>nf-core</b> itself you can check out the publication on the [website](https://nf-co.re/publications).
 
 What is this Bytesize? Bytesize is a new seminar series that we are starting off and nf-core has grown and more people were involved.
 
