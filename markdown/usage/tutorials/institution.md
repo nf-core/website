@@ -7,7 +7,7 @@ In case you couldn't find your organization / group of contributors on the [comm
 
 
 
-1. Fork the repository [nf-core/nf-core](https://github.com/nf-core/nf-co.re) to your own GitHub account. Look [here](https://guides.github.com/activities/forking/) for an advice how to fork a GitHub project.
+1. Fork the repository [nf-core/nf-core](https://github.com/nf-core/nf-co.re) to your own GitHub account. Look [here](https://guides.github.com/activities/forking/) for advice how to fork a GitHub project.
 
 2. In your own fork, modify the YAML file 'nf-core-contributors.yaml' in the editor of your choice.
 
@@ -39,6 +39,5 @@ In case you couldn't find your organization / group of contributors on the [comm
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re).
 The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will kindly provide you a feedback if anything looks weird or hasn't been properly done.
-
 
 
