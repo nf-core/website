@@ -64,7 +64,7 @@ How do nf-core configs work?
 Reading the [documentation](https://www.nextflow.io/docs/latest/config.html) of Nextflow config files, it says you can put all the parameters and all the properties that we need in the pipeline.
 This simplifies the command a lot.
 
-[2:18]
+[[2:18](https://www.youtube.com/watch?v=cXBYusdjrc0&t=2m18s)]
 So I have made a config file which I call `my_computer.config` in which I have specified how Docker should work and the resources that are available on my computer.
 I do not need to specify the actual container for [nf-core/eager](https://nf-co.re/eager) because it is already specified in the `nextflow.config` file, which is provided by the pipeline.
 I could also have specified the genome and the input file as well, but as I am planning to run this specific command only once, I prefer to give that on the side.
