@@ -40,7 +40,7 @@ All the nf-core pipelines are created by using a pipeline template that contains
 
 To generate a new nf-core pipeline, you first need to install the nf-core tools with pip or Conda and then run the command nf-core create.
 
-Doing this, automatically creates a pipeline template, and you will first be prompted for some pipeline information: like what you would like to name your new pipeline, a short description of the pipeline, who the main authors of this pipeline are, and in less than a second, you can have a pipeline structure ready!
+Doing this automatically creates a pipeline template, and you will first be prompted for some pipeline information: like what you would like to name your new pipeline, a short description of the pipeline, who the main authors of this pipeline are, and in less than a second, you can have a pipeline structure ready!
 
 However, as you might see, the first pipeline template already contains six directories and 26 files that are visible. Now this together with hidden files can be around 40 files, so it can be a bit daunting to get started with developing or contributing to nf-core pipelines.
 
