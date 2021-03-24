@@ -60,11 +60,11 @@ So that is Nextflow. <b>nf-core</b> is kind of a distinct project but of course 
 
 We provide a lot of helper tools which give additional functionality, both if you are running pipelines or workflow.
 
-That helps to list what is available and download those pipelines so that you can run them on your offline cluster and kind of streamline some of these common workflows. But also for pipeline developers as well, and to run automated tests or to build a pipeline from our template.
+That helps to list what is available and download those pipelines so that you can run them on your offline cluster and kind of streamline some of these common workflows. But also for pipeline developers as well: to run automated tests or to build a pipeline from our template.
 
 Finally what many people come to us for, is the resource that the pipelines themselves and so we have a large number of pipelines which are ready to go, some in development, still some some quite mature.
 
-All of them hopefully useful and ready to go, the pipelines are great, the tools are fantastic but none of that happens without the community and that's really the heart of <b>nf-core</b>. What started off as kind of a small unofficial project mostly in Europe. This has really now spread to be a fairly global and hopefully as inclusive as possible community.
+All of them hopefully useful and ready to go, the pipelines are great, the tools are fantastic but none of that happens without the community and that's really the heart of <b>nf-core</b>. What started off as kind of a small unofficial project mostly in Europe. This has really now spread to be fairly global and hopefully as inclusive as possible community.
 
 As Renuka mentioned we are getting people from all over the world contacting us now and getting involved. This comes with its own challenges especially time-zones and things but it is great to see so many of you here.
 
@@ -96,16 +96,15 @@ This is really to try and bring everybody up to the same starting point so that 
 
 So this seminar series is a good way to keep on track of everything and make sure that when you hit the hackathon you hit the ground running. We've got a lot of other ideas in addition to these listed here and this might change so we're going to be announcing these as we did today's talk. Hopefully with a bit more warning through the nf-core website.
 
-We have the ‘Events’ page, it was just suggested a moment ago that we make this a bit prominent.  It is now listed as a main button in the top navigation which you can find easily that will list all the talks, when they are and what they are about.
+We have the ‘[Events](https://nf-co.re/events)’ page, it was just suggested a moment ago that we make this a bit prominent.  It is now listed as a main button in the top navigation which you can find easily that will list all the talks, when they are and what they are about.
 
-We have a dedicated Slack channel on the nf-core Slack and you can pop in there to ask questions about any of the talks. We will try and scoop them up and of course we will be announcing them via our twitter feed as well and we are really keen to hear what you'd like to know about.
+We have a dedicated Slack channel on the nf-core Slack and you can pop in there to ask questions about any of the talks. We will try and scoop them up and of course we will be announcing them via our Twitter feed as well and we are really keen to hear what you'd like to know about.
 
 So far the topics that we have come up with, the things that are commonly asked about within the nf-core Slack which are common topics of confusion or things which we think will help people. But of course we are going to want input from the community.
 
-So jump onto that Slack channel and fire away with any ideas of things you would like to see short talks on and I will put them into the list and see if we can cover them. If you would like to give any talks we are are looking for more speakers always, so if you are if you are interested in giving a talk on any topic then please
-wave your hand okay.
+So jump onto that Slack channel and fire away with any ideas of things you would like to see short talks on and I will put them into the list and see if we can cover them. If you would like to give any talks we are are looking for more speakers always, so if you are if you are interested in giving a talk on any topic then please wave your hand, okay?
 
-So that is the talk series. Also announced today is the nf-hackathon and this is our next big event as <b>nf</b> has grown over the past couple of years. We started off with really very small very informal hackathons and then they have kind of become more formalized, bigger, and more inclusive as we have gone along.
+So that is the talk series. Also announced today is the nf-hackathon and this is our next big event as <b>nf-core</b> has grown over the past couple of years. We started off with really very small very informal hackathons and then they have kind of become more formalized, bigger, and more inclusive as we have gone along.
 
 I am hoping that this next one will be a natural growth.
 
@@ -120,7 +119,7 @@ Lots of good reasons to attend - of course we will all be there so you can come 
 
 So if we have two or more people working on the same chunk of code or the same idea, we can all hop into the same session and basically co-edit the same file live.
 
-Even if it is just one person typing it is a nice way to actually kind of feel like we are sitting next to one another even though we might be on different continents. There is going to be quite a lot of focus on dsl2 domain-specific language too - the next iteration of the Nextflow syntax.
+Even if it is just one person typing it is a nice way to actually kind of feel like we are sitting next to one another even though we might be on different continents. There is going to be quite a lot of focus on DSL2 (domain-specific language) too - the next iteration of the Nextflow syntax.
 
 So if you have been hearing about this for a while but have never quite taken the plunge the hackathon is a great place to do. Because we are going to be doing lots of focused work on it, and leading up to that with some training materials. So it is a really good way to fully immerse yourself in this new world.
 
@@ -138,14 +137,13 @@ We are also looking for ideas for what people should work on different tasks and
 
 So hop onto the new hackathon March 2021 Slack channel and either say that you would like to be involved or suggest any ideas. I should have put the link in here but there is also a webpage on the nf-core website for this.
 
-Maybe I can share my screen window quickly just so you can see what I am talking about. Here you can see I am on the <b>nf-core</b> website. If I hop onto the 'Events' page <https://nf-co.re/events>, you can see that we have a page about today's talk. This one right now with links and everything.
+Maybe I can share my screen window quickly just so you can see what I am talking about. Here you can see I am on the <b>nf-core</b> website. If I hop onto the '[Events](https://nf-co.re/events)' page , you can see that we have a page about today's talk. This one right now with links and everything.
 
 There is also a page about the upcoming hackathon so if you click here, you will find the link to register. This is non-binding it does not cost anything to join a hackathon; it just helps us know roughly who is going to be there; also which projects people are interested in/working on, and if you want any of that cool stash then you have to put your address in so we can post it to you.
 
 And then there are details about when it is going to be and how it is going to work. And this page will grow as the hackathon gets closer.  You can also see some of the ideas that we are working on for different kinds of tasks to work on the project.
 
-Great, that is my 15 minutes! So as I finish every talk, come and join our community if you are
-not already. we operate on Github, Slack, Twitter, Youtube and you can find all the details on how to join all of those on our website.
+Great, that is my 15 minutes! So as I finish every talk, come and join our community if you are not already. we operate on Github, Slack, Twitter, Youtube and you can find all the details on how to join all of those on our website.
 
 I did not introduce myself very much at the start but my name is Phil. I work at SciLifelab and I live in Sweden as well at the NGI. This lovely view I took with my new toy - it is about 70 meters above where I am sitting right now, when the sun was shining a couple of days ago
 
