@@ -1,6 +1,6 @@
 
-## Adding your institution to the contributor's list
-### How To Add Yourself to the community
+## Adding Your Institution to the Contributor's List
+### How To Add Yourself to the Community
 
 
 In case you couldn't find your organization / group of contributors on the [community pages](https://nf-co.re/community), please add yourself. Just a few lines of YAML and your logos needed.
@@ -30,15 +30,15 @@ In case you couldn't find your organization / group of contributors on the [comm
     1. Upload a "white" version to the folder public_html/assets/img/contributors-white. Must be a single monochrome shape with no background colour.
     2. Upload a "colour" version to the folder public_html/assets/img/contributors-colour.
 
-    * These examples in [white](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-white) / [colour](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-colour) indicate to you the difference between the two versions.
+    * These examples in [white](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-white) / [colour](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-colour) indicate to you the difference between the versions.
     * The both images should have the same name. I.e., if you name them image_fn: foobar.svg, then the both files should be named foobar.svg in the respective folders.
     * If you have only raster images available, please search for a SVG version.
     (_A tip_: wikipedia often uses the SVG format of displayed logos available for the download.)
     * If you were not successfull in this point, skip it and let us know about it in the pull request.
-    * _Note:_ Please make sure that you have the permission using logos of your institution in an open source project. The organizations do not usually have any concerns, just want to be notified about it.
+    * _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. The organizations do not usually have any concerns about it, just want to be notified.
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re).
-The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will provide you the feedback if anything looks weird or hasn't been properly done.
+The changes have to be reviewed by a member of our core team. Do not hesitate to open the PR. We will heartly provide you a feedback if anything looks weird or hasn't been properly done.
 
 
 
