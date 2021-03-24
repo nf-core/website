@@ -47,7 +47,7 @@ As a challenge I am going to run [nf-core/eager](https://nf-co.re/eager) - a pip
 I will be assuming I am running it on a new machine with just Docker installed and I am first going to specify everything on the command-line without using any config file or any profile.
 This is not something you should normally attempt.
 
-[1:04]
+[[1:04](https://www.youtube.com/watch?v=cXBYusdjrc0&t=1m4s)]
 It is actually quite simple.
 I install Nextflow with the first command.
 The second command will help me download the data that we want and with the third command I'm actually running the latest release of the [nf-core/eager](https://nf-co.re/eager) pipeline.
