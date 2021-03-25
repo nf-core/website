@@ -72,9 +72,9 @@ nf-core modules create -t fgbio/fastqtobam
 
 You will notice that with `-t` we indicate the name of the new module we want to create using the following syntax:
 
-- the first word indicates the tool (i.e. the software or suite)
-- we separate the keys by a forward slash ("/")
-- the second word indicates the function of the tool we are creating a module for
+- The first word indicates the tool (i.e. the software or suite)
+- We separate the keys by a forward slash (`/`)
+- The second word indicates the function of the tool we are creating a module for
 
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
