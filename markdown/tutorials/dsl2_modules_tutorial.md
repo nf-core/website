@@ -71,7 +71,7 @@ You will then sync this locally (ideally, you clone the forked repository on you
 ---
 ## Create the module template
 
-Using *nf-core tools* it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
+Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
 
 ```bash
 nf-core modules create -t fgbio/fastqtobam
