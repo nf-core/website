@@ -114,7 +114,6 @@ NF-core tools will attempt at retrieving the correct containers (for Docker and 
 
 Now you just have to write the code.
 
----
 ## Write the code
 
 FGBIO command line for the function *FastqToBam* looks like the following:
