@@ -5,20 +5,20 @@ In this tutorial we will see how to create a new module for the nf-core modules 
 ## Table of Contents
 
 - [Introduction](#introduction)
-    - [Module guidelines](#module-guidelines)
-    - [NF-core Tools](#nf-core-tools)
-    - [Test Data](#test-data)
+  - [Module guidelines](#module-guidelines)
+  - [NF-core Tools](#nf-core-tools)
+  - [Test Data](#test-data)
 - [Fork repository](#fork-the-modules-repo-and-branch)
 - [Create template](#create-the-module-template)
 - [Write the Code](#write-the-code)
-    - [Inputs and Outputs](#inputs-and-outputs)
-    - [Options args](#passing-options.args)
-    - [Lint code](#lint-your-code)
+  - [Inputs and Outputs](#inputs-and-outputs)
+  - [Options args](#passing-options.args)
+  - [Lint code](#lint-your-code)
 - [Test your code](#test-your-code)
-    - [Create test workflow](#create-a-test-workflow)
-    - [Create YAML](#create-test-yaml)
-    - [Check pytest YAML](#check-pytest-YAML)
-    - [Run tests](#run-tests-locally)
+  - [Create test workflow](#create-a-test-workflow)
+  - [Create YAML](#create-test-yaml)
+  - [Check pytest YAML](#check-pytest-YAML)
+  - [Run tests](#run-tests-locally)
 - [Pull Request](#create-a-pull-request)
 
 ## Introduction
@@ -54,9 +54,10 @@ In order to create a new module, it is best to branch the code into a recognisab
 
 - you can create a new branch locally, on the terminal, using the following command
 
-```
+```bash
 git checkout -b newmodule
 ```
+
 The branch will be syncronised with your remote once you push the first new commit.
 
 - you can use the github interface
@@ -72,9 +73,10 @@ You will then sync this locally (ideally, you clone the forked repository on you
 
 Using *nf-core tools* it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
 
-```
+```bash
 nf-core modules create -t fgbio/fastqtobam
 ```
+
 You will notice that with `-t` we indicate the name of the new module we want to create using the following syntax:
 
 - the first word indicates the tool (i.e. the software or suite)
@@ -83,7 +85,7 @@ You will notice that with `-t` we indicate the name of the new module we want to
 
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
-```
+```bash
 software/fgbio
 └── fastqtobam
     ├── functions.nf
@@ -93,7 +95,7 @@ software/fgbio
 
 And also the following for the testing of the module
 
-```
+```bash
 tests/software/fgbio
 └── fastqtobam
     ├── main.nf
@@ -117,7 +119,7 @@ Now you just have to write the code.
 
 FGBIO command line for the function *FastqToBam* looks like the following:
 
-```
+```bash
 fgbio --tmp-dir=tmpFolder \\
     FastqToBam \\
     -i read1_fastq.gz read2_fastq.gz \\
@@ -153,7 +155,7 @@ output:
     path "*.version.txt"          , emit: version
 ```
 
-### Passing options.args 
+### Passing options.args
 
 Any optional parameter should be passed within a groovy map called options, and identified as a string within *args*.
 In our specific case, we are not using any optional argument and therefore we will include the module and initialise this with an empty string in our test workflow.
@@ -161,6 +163,7 @@ In our specific case, we are not using any optional argument and therefore we wi
 ```nextflow
 include { FGBIO_FASTQTOBAM } from '../../../../software/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
 ```
+
 But we will add this into the script code, so any other user who might want to execute the function with additional arguments will be able to.
 The code of the script will therefore look like this, once we have substituted inputs and outputs as appropriate.
 
@@ -191,6 +194,7 @@ In order to avoid that, we can in general print the version as part of an echo s
 ```nextflow
 echo \$(tool --version 2>&1) >${software}.version.txt
 ```
+
 Notice the escape `\$` of the first `$` sign to distinguish between *bash* variables and *nextflow* variables.
 
 Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to output the version as a string, like this
@@ -281,6 +285,7 @@ This can also be done easily using *nf-core tools* just by changing folder into 
 ```bash
 nf-core modules lint --tool fgbio/fastqtobam .
 ```
+
 You will expect no test failed, as shown in figure below:
 
 ![lint](assets/dsl2-mod_04_lint_module.png)
@@ -297,12 +302,13 @@ This can also be done automatically, using the [pytest-worfklow](https://pytest-
 As described above, *nf-core tools* has created already the following files
 
 
-```
+```bash
 tests/software/fgbio
 └── fastqtobam
     ├── main.nf
     └── test.yml
 ```
+
 ready for you to modify.
 
 You should first open `tests/software/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
@@ -352,14 +358,16 @@ In order to carry out the test, *pytest-workflow* will search for information st
 modules/tests/config/pytest_software.yml
 modules/tests/software/fgbio/fastqtobam/test.yml
 ```
+
 We can modify these files using *nf-core tools*, moving into the parent modules directory and using a simple command:
 
 ```bash
 nf-core modules create-test-yml -t fgbio/fastqtobam
 ```
+
 The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose *yes*. We can leave defaults for entry points, test name and command.
 
-We are then prompted for the software profile, and we have to choose between *Conda*, *Docker* or *Singularity*, i.e. the three conteinerised solution included in the module `main.nf`. 
+We are then prompted for the software profile, and we have to choose between *Conda*, *Docker* or *Singularity*, i.e. the three conteinerised solution included in the module `main.nf`.
 
 In the example below we have chosen Conda.
 
@@ -402,6 +410,7 @@ cd /path/to/git/clone/of/nf-core/modules/
 PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 
 ```
+
 or if we use *singularity*
 
 ```bash
