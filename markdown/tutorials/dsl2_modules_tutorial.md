@@ -13,7 +13,7 @@ In this tutorial we will see how to create a new module for the nf-core modules 
 - [Write the Code](#write-the-code)
     - [Inputs and Outputs](#inputs-and-outputs)
     - [Options args](#passing-options.args)
-    -[Lint code](#lint-your-code)
+    - [Lint code](#lint-your-code)
 - [Test your code](#test-your-code)
     - [Create test workflow](#create-a-test-workflow)
     - [Create YAML](#create-test-yaml)
