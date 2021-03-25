@@ -13,9 +13,10 @@ In this tutorial we will see how to create a new module for the nf-core modules 
     - [Inputs and Outputs](#inputs-outputs)
     - [Options args](#passing-options.args)
     -[Lint code](#lint-your-code)
-- [Test code](#test-your-code)
-    -[Create YAML](#create-test-yaml)
-    -[Run tests](#run-tests-locally)
+- [Test your code](#test-your-code)
+    - [Create test workflow](#create-a-test-workflow)
+    - [Create YAML](#create-test-yaml)
+    - [Run tests](#run-tests-locally)
 - [Pull Request](#create-a-pull-request)
 
 ## Introduction
@@ -31,6 +32,14 @@ The nf-core community has agreed on a minimal set of [guidelines](https://github
 Using [nf-core tools](https://nf-co.re/tools) is the best way to adhere to the guidelines, without worrying too much and writing things from scratch.
 On the website you can find more details about [installation](https://nf-co.re/tools#installation), and all functionalities for [modules](https://nf-co.re/tools#modules).
 
+### Test Data
+
+Even before beginning the development of a module, you should identify a small dataset you can use to test its functionality. Ideally, the dataset is existing already and can be shared with other test workflows for other modules.
+
+> :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/modules/tree/master/tests/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
+
+
+---
 ## Fork the Modules Repo and branch
 
 The first step, to contribute a module to the community repository is to fork *nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
@@ -56,7 +65,7 @@ To do this, you can select the dropdown menu on the top-left of your repository 
 
 You will then sync this locally (ideally, you clone the forked repository on your working environment to edit code more comfortably)
 
-
+---
 ## Create the module template
 
 Using *nf-core tools* it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
@@ -91,7 +100,7 @@ tests/software/fgbio
 
 Each of the files is pre-filled according to a defined nf-core template.
 
-You fill find a number of commented section in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
+You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
 
 ![module](assets/dsl2-mod_03_create_module.png)
@@ -100,31 +109,262 @@ The above represents the main code of your module, which will need to be changed
 NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those fiels will be pre-filled for you.
 
 Now you just have to write the code.
+
+---
 ## Write the code
 
+FGBIO command line for the function *FastqToBam* looks like the following:
+
+```
+fgbio --tmp-dir=tmpFolder \\
+    FastqToBam \\
+    -i read1_fastq.gz read2_fastq.gz \\
+    -o sampleID_umi_converted.bam" \\
+    --read-structures "+T 12M11S+T" \\
+    --sample "sampleID" \\
+    --library "sampleID"
+```
+
+Here you should first identify:
+
+- the inputs you need, which are mandatory
+- the inputs / arguments, which are optional
+- the outputs
+- any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
 
 
 ### Inputs/Outputs
 
+As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called *meta*. This is part of a tuple which includes the read file(s).
+
+In our case, FGBIO also has a mandatory argument, which is not sample-specific, i.e. the read structure: this refers to the position and structure of the UMI barcode in the read. Such information will be the same for all samples and characteristics of the kit used to prepare the sequencing library. Since it is not sample specific, we will not include it in the *meta* map. Since it is a mandatory argument, we have decided to add it to the input list: in this way, it will be visible to others who wish to reuse this module, and it will be described explicitly in the metadata YAML file.
+
+Therefore, once we modify the template accordingly, our inputs and outputs will look like this:
+
+```nextflow
+input:
+    tuple val(meta), path(reads)
+    val(read_structure)
+
+output:
+    tuple val(meta), path("*_umi_converted.bam"), emit: umibam
+    path "*.version.txt"          , emit: version
+```
 
 ### Passing options.args 
 
+Any optional parameter should be passed within a groovy map called options, and identified as a string within *args*.
+In our specific case, we are not using any optional argument and therefore we will include the module and initialise this with an empty string in our test workflow.
 
+```nextflow
+include { FGBIO_FASTQTOBAM } from '../../../../software/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
+```
+But we will add this into the script code, so any other user who might want to execute the function with additional arguments will be able to.
+The code of the script will therefore look like this, once we have substituted inputs and outputs as appropriate.
+
+```bash
+mkdir tmpFolder
+
+fgbio --tmp-dir=${PWD}/tmpFolder \\
+FastqToBam \\
+-i ${reads} \\
+-o "${prefix}_umi_converted.bam" \\
+--read-structures $read_structure \\
+--sample ${meta.id} \\
+--library ${meta.id} ${options.args}
+```
+
+Before wrapping up our code, we need to add a line to output the software version.
+
+Usually a software prints their version with a code similar to this
+
+```bash
+tool --version >${software}.version.txt
+```
+
+However, in some cases the software outputs the version as *stderr* and causes an exit that is recognised by Nextflow as if the process ended with an error.
+
+In order to avoid that, we can in general print the version as part of an echo statement, like this
+
+```nextflow
+echo \$(tool --version 2>&1) >${software}.version.txt
+```
+Notice the escape `\$` of the first `$` sign to distinguish between *bash* variables and *nextflow* variables.
+
+Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to output the version as a string, like this
+
+```nextflow
+def VERSION = '1.3.0'
+```
+
+and then in the script
+
+```bash
+echo $VERSION >${software}.version.txt
+```
+
+Our final script will therefore look like this:
+
+```nextflow
+// Import generic module functions
+include { initOptions; saveFiles; getSoftwareName } from './functions'
+
+params.options = [:]
+options        = initOptions(params.options)
+
+def VERSION = '1.3.0'
+
+/*
+unfortunately need to output the version manually
+as done for module
+https://github.com/nf-core/modules/blob/master/software/homer/annotatepeaks/main.nf
+because the solution adopted in iVar, i.e.
+echo \$(fgbio --version 2>&1) >${software}.version.txt
+for FGBIO still generates an error exit in Nextflow for some reasons
+*/
+
+process FGBIO_FASTQTOBAM {
+    tag "$meta.id"
+    label 'process_low'
+    publishDir "${params.outdir}",
+        mode: params.publish_dir_mode,
+        saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
+
+    conda (params.enable_conda ? "bioconda::fgbio=1.3.0" : null)
+    if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
+        container "https://depot.galaxyproject.org/singularity/fgbio:1.3.0--0"
+    } else {
+        container "quay.io/biocontainers/fgbio:1.3.0--0"
+    }
+
+    input:
+    tuple val(meta), path(reads)
+    val(read_structure)
+
+    output:
+    tuple val(meta), path("*_umi_converted.bam"), emit: umibam
+    path "*.version.txt"          , emit: version
+
+    script:
+    def software = getSoftwareName(task.process)
+    def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
+
+    """
+    mkdir tmpFolder
+
+    fgbio --tmp-dir=${PWD}/tmpFolder \\
+    FastqToBam \\
+    -i ${reads} \\
+    -o "${prefix}_umi_converted.bam" \\
+    --read-structures $read_structure \\
+    --sample ${meta.id} \\
+    --library ${meta.id} ${options.args}
+
+    echo $VERSION >${software}.version.txt
+    """
+}
+```
+
+Note that we have commented our choice to deviate from the guidelines in order to output the software version, so any users will be aware of the reasons for this code.
+
+> :white_check_mark: It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+
+---
 ### Lint your code
 
+Now that you've completed code development, you are ready to check if your code is clean and up to standards.
 
+This can also be done easily using *nf-core tools* just by changing folder into the parent *modules* directory and typing the command
+
+```bash
+nf-core modules lint --tool fgbio/fastqtobam .
+```
+You will expect no test failed, as shown in figure below:
 
 ![lint](assets/dsl2-mod_04_lint_module.png)
 
-
+---
 
 ## Test your code
 
+Once your code is polished, following any suggestions from linting, you should test the code and make sure everything works as expected.
+This can also be done automatically, using the [pytest-worfklow](https://pytest-workflow.readthedocs.io/en/stable/) tool.
+
+### Create a test workflow
+
+As described above, *nf-core tools* has created already the following files
+
+
+```
+tests/software/fgbio
+└── fastqtobam
+    ├── main.nf
+    └── test.yml
+```
+ready for you to modify.
+
+You should first open `tests/software/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
+
+> :soon:this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/tree/master/tests/data)
+
+In our test workflow we have to define the two mandatory inputs.
+We know the test data is using QIAseq library preparation, and therefore we use the following read structure string
+
+```nextflow
+params.read_structure = "+T 12M11S+T"
+```
+
+Then we prepare our input tuple, to point to the correct test data
+
+```nextflow
+def input = []
+    input = [ [id: 'test'], //meta map
+                  [ file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_1.fastq.gz'), file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_2.fastq.gz') ] ]
+```
+
+Our test workflow will be very simple, and most of the code has been written by nf-core tools already. It will look like this
+
+```nextflow
+#!/usr/bin/env nextflow
+
+nextflow.enable.dsl = 2
+params.read_structure = "+T 12M11S+T"
+
+include { FGBIO_FASTQTOBAM } from '../../../../software/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
+
+workflow test_fgbio_fastqtobam {
+
+    def input = []
+    input = [ [id: 'test'], //meta map
+                  [ file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_1.fastq.gz'), file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_2.fastq.gz') ] ]
+
+    FGBIO_FASTQTOBAM ( input, "${params.read_structure}" )
+}
+```
+
 ### Create test YAML
+
+In order to carry out the test, *pytest-workflow* will search for information stored in 2 files.
+
+```bash
+modules/tests/config/pytest_software.yml
+modules/tests/software/fgbio/fastqtobam/test.yml
+```
+We can modify these files using *nf-core tools*, moving into the parent modules directory and using a simple command:
+
+```bash
+nf-core modules create-test-yml -t fgbio/fastqtobam
+```
+The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose *yes*. We can leave defaults for entry points, test name and command.
+
+We are then prompted for the software profile, and we have to choose between *Conda*, *Docker* or *Singularity*, i.e. the three conteinerised solution included in the module `main.nf`. 
+
+In the example below we have chosen Conda.
 
 
 ![create_yaml](assets/dsl2-mod_05_create_test_yaml.png)
 
+This process will run the test workflow, generate the outputs and update the `test.yml` file accordingly.
 
 ### Run tests locally
 
