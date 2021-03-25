@@ -288,8 +288,6 @@ You will expect no test failed, as shown in figure below:
 
 ![lint](assets/dsl2-mod_04_lint_module.png)
 
----
-
 ## Test your code
 
 Once your code is polished, following any suggestions from linting, you should test the code and make sure everything works as expected.
