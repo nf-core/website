@@ -16,6 +16,7 @@ In this tutorial we will see how to create a new module for the nf-core modules 
 - [Test your code](#test-your-code)
     - [Create test workflow](#create-a-test-workflow)
     - [Create YAML](#create-test-yaml)
+    - [Check pytest YAML](#check-pytest-YAML)
     - [Run tests](#run-tests-locally)
 - [Pull Request](#create-a-pull-request)
 
@@ -267,7 +268,7 @@ process FGBIO_FASTQTOBAM {
 
 Note that we have commented our choice to deviate from the guidelines in order to output the software version, so any users will be aware of the reasons for this code.
 
-> :white_check_mark: It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+> :white_check_mark:  It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
 
 ---
 ### Lint your code
@@ -305,7 +306,7 @@ ready for you to modify.
 
 You should first open `tests/software/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
 
-> :soon:this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/tree/master/tests/data)
+> :soon:  this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/tree/master/tests/data)
 
 In our test workflow we have to define the two mandatory inputs.
 We know the test data is using QIAseq library preparation, and therefore we use the following read structure string
@@ -366,11 +367,71 @@ In the example below we have chosen Conda.
 
 This process will run the test workflow, generate the outputs and update the `test.yml` file accordingly.
 
+
+### Check pytest YAML
+
+Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
+
+```yaml
+fgbio_fastqtobam:
+  - software/fgbio/fastqtobam/**
+  - tests/software/fgbio/fastqtobam/**
+```
+
+These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `software/fgbio/fastqtobam/**` and the test at `tests/software/fgbio/fastqtobam/**`.
+
 ### Run tests locally
+
+Now we are ready to run some tests using *pytest-workflow* in order to anticipate what will happen with :octocat: actions.
+
+We will follow the instructions on *nf-core* [modules repository](https://github.com/nf-core/modules#running-tests-manually).
+
+Pytest-workflow will be launched using the tags specified in the `tests.yml` we have just modified:
+
+```yaml
+tags:
+    - fgbio_fastqtobam
+    - fgbio
+```
+
+We will run one or more of the following, depending on the software profile available on our development environment:
+
+```bash
+cd /path/to/git/clone/of/nf-core/modules/
+PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+
+```
+or if we use *singularity*
+
+```bash
+cd /path/to/git/clone/of/nf-core/modules/
+TMPDIR=~ PROFILE=singularity pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+```
+
+or *Conda*
+
+```bash
+cd /path/to/git/clone/of/nf-core/modules/
+PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+```
+
+Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
 
 
 ## Create a Pull Request
 
+Creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
+
 ![pull](assets/dsl2-mod_06_pull-reqs.png)
 
+If you have initiated the pull request from your forked repository, the direction of the request should be indicated by the arrow, as in the picture below, i.e. from your fork to the nf-core original repository
+
 ![open_pull](assets/dsl2-mod_07_pull-reqs-open.png)
+
+You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
+
+A pull request will be created: volunteers will review your code and will use comments and requests for changes on GitHub to interact with you and suggest changes if necessary. This is a collaborative and very interesting part of your development work.
+
+Enjoy!
