@@ -1,4 +1,9 @@
-# Tutorial: Create a DSL2 Module
+---
+title: "Tutorial: Create a DSL2 Module"
+subtitle: Creating a new module for the nf-core modules repository.
+---
+
+# Introduction
 
 In this tutorial we will see how to create a new module for the nf-core modules repository. As an example, we will create a module to execute the FastqToBam function of the [FGBIO](http://fulcrumgenomics.github.io/fgbio/) suite of tools.
 
@@ -40,13 +45,13 @@ Even before beginning the development of a module, you should identify a small d
 
 > :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/modules/tree/master/tests/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
 
-
 ---
+
 ## Fork the nf-core/modules repository and branch
 
 The first step, to contribute a module to the community repository is to fork *nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
-![fork](assets/dsl2-mod_01_fork.png)
+![fork](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
 
 You then choose the account or organisation you want to fork the repository into. Once forked, you can commit all changes you need into the new repository.
 
@@ -55,14 +60,15 @@ In order to create a new module, it is best to branch the code into a recognisab
 - You can create a new branch locally, on the terminal, using the following command:
 
   - ```bash
-       git checkout -b newmodule
-       ```
+    git checkout -b newmodule
+    ```
 
   - The branch will be synchronised with your remote once you push the first new commit.
-  
+
 - You can use the GitHub interface
   - To do this, you can select the dropdown menu on the top-left of your repository code, write the name of the new branch and choose to create it as shown below:
-      ![branch](assets/dsl2-mod_02_new_branch.png)
+
+      ![branch](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
   - You will then sync this locally (ideally, you clone the forked repository on your working environment to edit code more comfortably)
 
 ## Create the module template
@@ -102,8 +108,7 @@ Each of the files is pre-filled according to a defined nf-core template.
 
 You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
-
-![module](assets/dsl2-mod_03_create_module.png)
+![module](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_03_create_module.png)
 
 The above represents the main code of your module, which will need to be changed.
 NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those fiels will be pre-filled for you.
@@ -130,7 +135,6 @@ Here you should first identify:
 - the inputs / arguments, which are optional
 - the outputs
 - any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
-
 
 ### Inputs and Outputs
 
@@ -282,7 +286,7 @@ nf-core modules lint --tool fgbio/fastqtobam .
 
 You will expect no test failed, as shown in figure below:
 
-![lint](assets/dsl2-mod_04_lint_module.png)
+![lint](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_04_lint_module.png)
 
 ## Test your code
 
@@ -292,7 +296,6 @@ This can also be done automatically, using the [pytest-worfklow](https://pytest-
 ### Create a test workflow
 
 As described above, *nf-core tools* has created already the following files
-
 
 ```bash
 tests/software/fgbio
@@ -363,11 +366,9 @@ We are then prompted for the software profile, and we have to choose between *Co
 
 In the example below we have chosen Conda.
 
-
-![create_yaml](assets/dsl2-mod_05_create_test_yaml.png)
+![create_yaml](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_05_create_test_yaml.png)
 
 This process will run the test workflow, generate the outputs and update the `test.yml` file accordingly.
-
 
 ### Check pytest YAML
 
@@ -419,16 +420,15 @@ PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
 
-
 ## Create a Pull Request
 
 Creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
 
-![pull](assets/dsl2-mod_06_pull-reqs.png)
+![pull](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_06_pull-reqs.png)
 
 If you have initiated the pull request from your forked repository, the direction of the request should be indicated by the arrow, as in the picture below, i.e. from your fork to the nf-core original repository
 
-![open_pull](assets/dsl2-mod_07_pull-reqs-open.png)
+![open_pull](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
 
 You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 
