@@ -274,7 +274,6 @@ Note that we have commented our choice to deviate from the guidelines in order t
 
 > :white_check_mark:  It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
 
----
 ### Lint your code
 
 Now that you've completed code development, you are ready to check if your code is clean and up to standards.
