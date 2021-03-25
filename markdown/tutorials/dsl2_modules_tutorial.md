@@ -34,7 +34,7 @@ The nf-core community has agreed on a minimal set of [guidelines](https://github
 Using [nf-core tools](https://nf-co.re/tools) is the best way to adhere to the guidelines, without worrying too much and writing things from scratch.
 On the website you can find more details about [installation](https://nf-co.re/tools#installation), and all functionalities for [modules](https://nf-co.re/tools#modules).
 
-### Test Data
+### Test data
 
 Even before beginning the development of a module, you should identify a small dataset you can use to test its functionality. Ideally, the dataset is existing already and can be shared with other test workflows for other modules.
 
@@ -42,7 +42,7 @@ Even before beginning the development of a module, you should identify a small d
 
 
 ---
-## Fork the Modules Repo and branch
+## Fork the nf-core/modules repository and branch
 
 The first step, to contribute a module to the community repository is to fork *nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
@@ -62,10 +62,9 @@ In order to create a new module, it is best to branch the code into a recognisab
       ![branch](assets/dsl2-mod_02_new_branch.png)
     - You will then sync this locally (ideally, you clone the forked repository on your working environment to edit code more comfortably)
 
----
 ## Create the module template
 
-Using *nf-core tools* it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
+Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
 
 ```bash
 nf-core modules create -t fgbio/fastqtobam
@@ -108,7 +107,6 @@ NF-core tools will attempt at retrieving the correct containers (for Docker and 
 
 Now you just have to write the code.
 
----
 ## Write the code
 
 FGBIO command line for the function *FastqToBam* looks like the following:
@@ -269,7 +267,6 @@ Note that we have commented our choice to deviate from the guidelines in order t
 
 > :white_check_mark:  It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
 
----
 ### Lint your code
 
 Now that you've completed code development, you are ready to check if your code is clean and up to standards.
@@ -283,8 +280,6 @@ nf-core modules lint --tool fgbio/fastqtobam .
 You will expect no test failed, as shown in figure below:
 
 ![lint](assets/dsl2-mod_04_lint_module.png)
-
----
 
 ## Test your code
 
@@ -432,7 +427,7 @@ If you have initiated the pull request from your forked repository, the directio
 
 ![open_pull](assets/dsl2-mod_07_pull-reqs-open.png)
 
-You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 
 Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
 
