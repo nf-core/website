@@ -434,7 +434,7 @@ If you have initiated the pull request from your forked repository, the directio
 
 ![open_pull](assets/dsl2-mod_07_pull-reqs-open.png)
 
-You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 
 Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
 
