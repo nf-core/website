@@ -11,7 +11,7 @@ In this tutorial we will see how to create a new module for the nf-core modules 
 - [Fork repository](#fork-the-modules-repo-and-branch)
 - [Create template](#create-the-module-template)
 - [Write the Code](#write-the-code)
-    - [Inputs and Outputs](#inputs-outputs)
+    - [Inputs and Outputs](#inputs-and-outputs)
     - [Options args](#passing-options.args)
     -[Lint code](#lint-your-code)
 - [Test your code](#test-your-code)
@@ -135,7 +135,7 @@ Here you should first identify:
 - any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
 
 
-### Inputs/Outputs
+### Inputs and Outputs
 
 As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called *meta*. This is part of a tuple which includes the read file(s).
 
