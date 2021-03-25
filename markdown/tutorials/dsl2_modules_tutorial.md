@@ -42,7 +42,7 @@ Even before beginning the development of a module, you should identify a small d
 
 
 ---
-## Fork the Modules Repo and branch
+## Fork the nf-core/modules repository and branch
 
 The first step, to contribute a module to the community repository is to fork *nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
