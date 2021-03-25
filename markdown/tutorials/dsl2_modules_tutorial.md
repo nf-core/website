@@ -7,6 +7,7 @@ In this tutorial we will see how to create a new module for the nf-core modules 
 - [Introduction](#introduction)
     - [Module guidelines](#module-guidelines)
     - [NF-core Tools](#nf-core-tools)
+    - [Test Data](#test-data)
 - [Fork repository](#fork-the-modules-repo-and-branch)
 - [Create template](#create-the-module-template)
 - [Write the Code](#write-the-code)
