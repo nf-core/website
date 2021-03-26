@@ -1,6 +1,6 @@
 ---
-title: Adding Your Institution to the Contributor's List
-subtitle: How To Add Yourself to the Community
+title: How to add yourself to the community page
+subtitle: Adding your institution to the contributor's list
 ---
 
 In case you couldn't find your organization / group of contributors on the [community pages](https://nf-co.re/community), please add yourself. All you need to add is a few lines of YAML and your organization's logo.
