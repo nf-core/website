@@ -510,6 +510,13 @@ else if($cache['status'] == 'launch_params_complete') {
                 unset($cache['input_params'][$param_id]);
             }
         }
+        // Set the correct variable type if not a string
+        if($param && $param['type'] == 'boolean' && $cache['input_params'][$param_id]){
+            $cache['input_params'][$param_id] = $cache['input_params'][$param_id] == true;
+        }
+        if($param && in_array($param['type'], ['number','integer','range']) && $cache['input_params'][$param_id]){
+            $cache['input_params'][$param_id] = floatval($cache['input_params'][$param_id]);
+        }
     }
 
     // Tower payload
