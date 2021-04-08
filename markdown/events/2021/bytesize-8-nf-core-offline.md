@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 8: Running pipeline offline"
+title: "Bytesize 8: Running pipelines offline"
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
 start_date: "2021-04-13"
@@ -9,6 +9,7 @@ end_time: "13:30 CET"
 youtube_embed: https://youtu.be/N1rRr4J0Lps
 location_url:
     - https://youtu.be/N1rRr4J0Lps
+    - https://zoom.us/j/95310380847
 ---
 
 # nf-core/bytesize
@@ -22,7 +23,7 @@ Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.co
 
 ## Bytesize 8: Running pipeline offline
 
-This week, Maxime Garcia ([@maxulysse](http://github.com/maxulysse/)) will present: _**Running pipeline offline.**_
+This week, Maxime Garcia ([@maxulysse](http://github.com/maxulysse/)) will present: _**Running pipelines offline.**_
 This will cover:
 
 * Using nf-core `tools` to download a pipeline
