@@ -21,7 +21,7 @@ These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation.
 Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 8: Running pipeline offline
+## Bytesize 8: Running pipelines offline
 
 This week, Maxime Garcia ([@maxulysse](http://github.com/maxulysse/)) will present: _**Running pipelines offline.**_
 This will cover:
