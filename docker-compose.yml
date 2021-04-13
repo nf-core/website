@@ -1,12 +1,12 @@
 version: "3.8"
 services:
-    web:
-        image: webdevops/php-apache:7.4
-        container_name: web
-        restart: always
-        environment:
-          - WEB_DOCUMENT_ROOT=/var/www/public_html
-        volumes:
-          - .:/var/www/
-        ports:
-          - "8888:80"
+  web:
+    container_name: nf-core-web
+    image: webdevops/php-apache:7.4
+    restart: always
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/public_html
+    volumes:
+      - .:/var/www/
+    ports:
+      - "8888:80"
