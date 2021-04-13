@@ -404,7 +404,6 @@ foreach ($year_dirs as $year) {
 
 # Look to see if we have an upcoming / ongoing event to show and pick one
 $curr_event = false;
-$time_window = 3600;
 $additional_ongoing = 0;
 $additional_upcoming = 0;
 foreach ($events as $idx => $event) {
@@ -415,6 +414,8 @@ foreach ($events as $idx => $event) {
   }
   if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
     $time_window = 86400*5; // show announcement 5 days ahead for full day events
+  } else {
+    $time_window = 3600;
   }
   if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
     $current_events[$idx] = $event;
