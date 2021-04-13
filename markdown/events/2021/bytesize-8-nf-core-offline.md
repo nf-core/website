@@ -9,7 +9,6 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/N1rRr4J0Lps
 location_url:
     - https://youtu.be/N1rRr4J0Lps
-    - https://zoom.us/j/95310380847
 ---
 
 # nf-core/bytesize
@@ -32,5 +31,4 @@ This will cover:
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/N1rRr4J0Lps>
