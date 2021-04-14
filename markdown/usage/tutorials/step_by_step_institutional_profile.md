@@ -7,7 +7,7 @@ subtitle: Walkthrough on what you need to set up an nf-core institutional profil
 
 nf-core offers a centralised place to store Nextflow configuration profiles that work at an _institutional_ level.
 
-What this means is that you can specify common nextflow pipeline configurations and options that can be shared across all users of your particular institutional cluster.
+What this means is that you can specify common Nextflow pipeline configurations and options that can be shared across all users of your particular institutional cluster.
 
 nf-core offers two level of profile sharing: institutional and pipeline-specific profiles via [nf-core/configs](https://github.com/nf-core/configs)
 
@@ -46,7 +46,7 @@ In some cases, system administrators of the cluster at your institution may wish
 
 Nextflow has integrated a range of scheduling systems to simplify running Nextflow pipelines on a range of HPCs. What this means is that it will write and sumbit submission scripts to your given scheduler or 'executor' (in Nextflow language) for you.
 
-You can see the range of support schedulers on the [Nextflow documentation](https://www.nextflow.io/docs/latest/executor.html). Check if your scheduler is there, and how it would be written (typically the name in all lower case).
+You can see the range of support schedulers on the [Nextflow documentation](https://www.Nextflow.io/docs/latest/executor.html). Check if your scheduler is there, and how it would be written (typically the name in all lower case).
 
 You should note down if there are any special options that your cluster's scheduler requires. This maybe special ways in which memory requirements are specified, e.g.: memory per core, types of parallelisation library is required etc., the maximum number of parallel jobs that are allowed.
 
@@ -165,34 +165,340 @@ In your branch, we will need to initialise a couple of new files, and update a c
 * **edit** and add your profile name to the GitHub actions `.yaml` file (under `.github/workflows/main.yml`)
 
 ### Writing the main config file
+
+First we will edit the main config file under `conf/<your_cluster_name>.config`.
+
 #### params scope
 
-In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In this case, 
+In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of institutional configs we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines.
 
-define descroption, contact, nf-core max_* params, common resource locations 
+The most useful first step for testing a new nf-core institutional profile is to add to the params scope the `config_profile_*` series of params. These are nf-core specific parameters that are displayed in the header summary of each run, describing what the profile is and who maintains it. Therefore, you can use this when testing the profile to check the profile was actually loaded.
+
+In the `conf/<your_cluster_name>.config` file, add to a params scope something like the following:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+}
+```
+
+Next, in the same scope, we can also specify the `max_*` series of params. These are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster. These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+}
+```
+
+Finally, if you have a common resource directory for the iGenomes collection of reference genomes, this can can also go in the `params{}` scope.
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+```
 
 #### process scope
 
-define exectuor, queues, additional stuff e.g. penv
+Next, we can use the `process` scope to define which scheduler to use and associated options. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
+
+Normally, you only need to specify which scheduler you use. For example, if using SLURM:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = slurm
+}
+
+```
+
+If you need to specify more cluster-specific information regarding your cluster, this can also go here. For example, you can specify which queue to use. If you only have a single queue, this is as simple as:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = slurm
+  queue = 'all'
+}
+
+```
+
+Alternatively, if you must specify different queues based on various resource-related specifications, this can be added with a Groovy expression.
+Lets say you have three queues that act as priority queues based on maximum runtime of jobs (short - 2 hour walltime, medium - 24 hour walltime, long - no walltime), you can specify this as follows:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = slurm
+  queue = { task.time <= 2.h ? 'short' : task.time <= 24.h ? 'medium': 'long' }
+}
+
+```
+
+Alternatively, if it's based on CPU requirements of nodes
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'slurm'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+}
+
+```
+
+As mentioned above, Nextflow has a clever automated retry system where if a particular submission exits with certain resource-limit reached exit codes, a resubmission will be made with greater resource requests. To ensure you can use this but also exploit the additional nf-core checks that prevent jobs from requesting more than available on a given node (and resulting the pipeline stalling because jobs are stuck in a queue), you should also specify a maximum number of retries with the Nextflow `maxRetries` directives.
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'slurm'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+}
+
+```
+
+In this case, after the initial submission of a job, on resource-related failures Nextflow will retry just 2 more times before the pipeline as a whole will fail.
+
+If you normally need to specify additional 'non-standard' options in the headers of scheduler batch scripts (e.g. `sbatch`  for SLURM or `qsub` for SGE), you can specify these with `clusterOptions`. Anything specified in the `clusterOptions` directive will be added in the header of the Nextflow-generated batch script for you (you can see these in the `.command.run` file in each job's `work/<hash>` directory in a Nextflow run).
+
+For example, for some SGE clusters, memory requests are specified with the `h_vmem` variable, rather than the Nextflow default `virtual_free`.
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'sge'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+}
+```
+
+Where the pipeline-defined memory specification of the each job is inserted into the batch script header using the Nextflow `${task.memory}` variable.
+
+Another commonly used directive is the `beforeScript` directive, which allows you to run a custom unix command _prior_ to running a pipeline's command of a particular job. This is often used when a UNIX software module needs to be loaded on the node the job is sent to by the scheduler. For example, you may need to explicitly load the `singularity` container software module, which can be specified like so:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'sge'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+  beforeScript = "module load singularity"
+}
+```
+
+For a full list of `process` directives, please see the [Nextflow documentation](https://www.nextflow.io/docs/latest/process.html#process-directives)
+
 #### executor scope
 
-executor limitations, e.g. maximum no. running jobs
+The executor scope allows the use of further executor _specific_ options that are inbuilt into Nextflow. You should check the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#scope-executor) to see what options are available for your respective scheduler.
+
+One sometimes useful option for smaller clusters with less sophisticated fair-use management is the `queueSize` directive. This allows you to specify the maximum number of jobs of a given Nextflow run can submit in parallel at any one time. So to prevent Nextflow from swamping a (small) cluster thousands of jobs at once and blocking the cluster for other users, you can limit this as follows:
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'sge'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+  beforeScript = "module load singularity"
+}
+
+executor {
+  queueSize = 8
+}
+```
+
+Where a given Nextflow run can only have 8 submitted jobs at once (and will wait to one job is completed before submitting the next one).
+
+A similar directive is the `submitRateLimit` which specifies how many jobs can be specified in a given time frame (as some clusters may penalise you for over-submitting)
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'sge'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+  beforeScript = "module load singularity"
+}
+
+executor {
+  queueSize = 8
+  submitRateLimit = '10 sec'
+}
+```
+
+Where a maximum of 10 jobs can be submitted per second
+
 #### <your_container> scope
 
-container scope e.g. define which one and cache dir (+ other required options)
+You can specify institutional cluster specific options for the container engine system that you will use with a variety of different container scopes. There is generally one scope per container engine (and `conda`), and the ones offered by Nextflow can be seen in the [Nextflow Documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes). To use an example of singularity, you can use the the singularity scope to specify that it should be used, that it should be automatically mounted and also (where valid) where a common cache directory of images resides.
+
+```nextflow
+params {
+  config_profile_description = '<your_cluser_name> cluster profile provided by nf-core/configs.'
+  config_profile_contact = '<your_name> (<your_github_handle>)'
+  config_profile_url = 'https://<institutional_url>.com'
+  max_memory = 2.TB
+  max_cpus = 128
+  max_time = 720.h
+  igenomes_base = "/<path>/<to>/igenomes/"
+}
+
+process {
+  executor = 'sge'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+  beforeScript = "module load singularity"
+}
+
+executor {
+  queueSize = 8
+  submitRateLimit = '10 sec'
+}
+
+singularity {
+  enabled = true
+  autoMounts = true
+  cacheDir = "/<path>/<to>/<your>/<image_cache>
+}
+```
+
+Each container engine or software environment may have different options, so be sure to check the Nextflow documentation what options you may have.
 
 #### profiles{} scope
 
 Additional profiles
+
 ### Writing the documentation file
 
 ## Testing the profile
 
-
 ## Additional tips and tricks
-### Does your cluster often have too-full harddisk space issues
 
-Some clusters often have
+### If your cluster often have too-full harddisk space issues
+
+Some clusters often have very strict user HDD-space footprint restrictions (or just is often full). You can minimise the footprint that Nextflow runs use by using the `cleanup` directive.
+
+This directive goes _outside_ any of the config scopes, and is simply defined as:
+
+```
+cleanup = true
+```
+
+This directive will, on a _successful_ completion of a Nextflow run, automatically delete all intermediate files stored in the `work/` directory. Note that none of the 'published' files in the `--outdir` results directory will be deleted if the pipeline specifies to _copy_ results files, _however_ removal of these intermediate files will mean debugging 'silent fails' more difficult.
+
+Alternatively, if your cluster utilises a scratch space to store intermediate files, this can be specified a the `process{}` scope of the profile with the [`scratch`](https://www.nextflow.io/docs/latest/process.html#scratch) directive. For example:
+
+
+
+```
+process {
+  <other_directives>
+  scratch = "/<path>/<to>/<scratch>/<my_scratch>/"
+}
+
+```
+
 
 cleanup
 savereference
