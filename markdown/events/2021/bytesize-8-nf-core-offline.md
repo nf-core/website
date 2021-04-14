@@ -8,6 +8,7 @@ end_date: "2021-04-13"
 end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/N1rRr4J0Lps
 location_url:
+    - https://doi.org/10.6084/m9.figshare.14413046.v1
     - https://youtu.be/N1rRr4J0Lps
 ---
 
