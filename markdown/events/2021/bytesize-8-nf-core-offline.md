@@ -9,6 +9,8 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/N1rRr4J0Lps
 location_url:
     - https://youtu.be/N1rRr4J0Lps
+    - https://www.bilibili.com/video/BV1AZ4y1w7hZ/
+    - https://doi.org/10.6084/m9.figshare.14413046.v1
 ---
 
 # nf-core/bytesize
@@ -32,3 +34,4 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/N1rRr4J0Lps>
+* Slides: https://doi.org/10.6084/m9.figshare.14413046.v1
