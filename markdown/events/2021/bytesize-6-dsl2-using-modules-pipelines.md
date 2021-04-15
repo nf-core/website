@@ -92,7 +92,7 @@ If you look in this box, you can see the nf-core/modules folder that we’ve alr
 
 Hopefully the to-do statements help you figure out what exactly you will need to do in each step.
 
-[5:58](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=358) So now that we have modules either local or nf-core/modules, we want to start writing actual workflows and pipelines.
+[5:58](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=358) So now that we have either local or nf-core/modules, we want to start writing actual workflows and pipelines.
 
 There are two different types; the sub-workflows that are chains of multiple modules with some sort of higher-level functionality like all the qc tools that will be run on fastqc, and then the actual workflows, which are end-to-end pipelines. Then there are the DSL1 that we’ve known as large monolithic scripts and DSL2 that is a combination of modules and sub-workflows, and this is the really taking one input and producing a final output.
 
