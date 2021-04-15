@@ -70,7 +70,7 @@ For that you run ´nf core modules remove´ and that removes this entire subfold
 
 [3:25](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=206) Then sometimes the module will get updated, maybe the software was updated and this was propagated already to the module, and you would like to use this update. So how do we ensure that first of all we have the newest version, and then how to update it?
 
-So to check this module, you can run ´nf core modules lint´ on the directory to check all modules, or on a specific module like FASTQC.
+So to check this module, you can run ´nf core modules lint´ on the directory to check all modules, or on a specific module like fastqc.
 
 It will check among other things whether or not you have missed any changes. Then to update it, you currently have to remove it and reinstall it.
 
