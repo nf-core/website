@@ -20,6 +20,7 @@ The core team members who administer the nf-core project are listed below:
 * [@ewels](https://github.com/ewels): Phil Ewels
 * [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 * [@jfy133](https://github.com/jfy133): James A. Fellows Yates
+* [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
 * [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
 * [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik

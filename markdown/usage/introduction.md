@@ -46,6 +46,8 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * Conda is also supported with `-profile conda`. However this option is not recommended, as reproducibility of the results can't be guaranteed without containerization.
 
+    * If you are a member of one of the institutions listed in the [documentation](https://github.com/nf-core/configs#documentation), please use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) that has already been created for your institution.
+
     * For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
 
 4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
@@ -80,6 +82,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 * Use `-resume` to restart pipelines that did not complete. This ensures that successful tasks from the previous run wont be re-executed.
 * Use `nextflow log` to find names of all previous runs in your directory. These can be used with `-resume` to restart specific runs.
 * Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
+* If you use Singularity, we recommend that you specify a cache directory with the [nextflow environment variable](https://www.nextflow.io/docs/latest/config.html#environment-variables) `NXF_SINGULARITY_CACHEDIR` in your `~./bash_profile` or `~/.bashrc` during the installation. This will store all your container images in one place, rather than repeatedly downloading it each time you run a pipeline. Just the base directory needs to be specified, Nextflow handles the folders and file names for you.
 
 ## Helper tools
 

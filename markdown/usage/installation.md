@@ -23,10 +23,20 @@ mv nextflow ~/bin/
 # sudo mv nextflow /usr/local/bin
 ```
 
-You can also install Nextflow using [Bioconda](https://bioconda.github.io/):
+You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
+
+First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/user/install.html), notably setting up channels:
 
 ```bash
-conda install -c bioconda nextflow
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+Then install the [`nf-core` package](https://bioconda.github.io/recipes/nf-core/README.html):
+
+```bash
+conda install nextflow
 ```
 
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation. This makes it easier to update.
@@ -50,6 +60,14 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   * Often used as an alternative to Docker on multi-user systems such as HPC systems.
   * Also runs _containers_ and can create these from Docker images
   * Does not need root access or any daemon processes - images built from files
+* [Podman](https://podman.io/)
+  * Often used as an alternative to Docker on multi-user systems such as HPC systems.
+  * Is a daemonless container engine that can serve as a drop-in replacement for Docker.
+* [Charliecloud](https://hpc.github.io/charliecloud/)
+  * Often used as an alternative to Docker on multi-user systems such as HPC systems.
+  * Uses Linux user namespaces to run containers with no privileged operations or daemons
+* [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
+  * An experimental implementation of container system that can convert from a wide range of other images
 * [Conda](https://conda.io/)
   * Packaging system that manages environments instead of running analysis in containers.
   * Poorer reproducibility than Docker / Singularity
