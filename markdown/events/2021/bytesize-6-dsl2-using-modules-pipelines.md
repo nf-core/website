@@ -126,7 +126,7 @@ For the FASTQC module, we just need to specify the parameters for fastqc, so mod
 
 [10:34](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=634) But for the sub-workflow, you need to specify all options for the tools. So here we have ´bwa_mem´ or ´samtools_sort´, and this is exactly now this field that was originally specified in ´conf/modules.config´.
 
-[10:47](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=645) OK, then in the workflow and in nf here I have just run the module ´FASTQC´ on my input reads that I got and then the sub-workflow on the reads and the index, I get the ´sorted.bams´ output, and then I can do some more steps with that.
+[10:47](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=645) OK, then in the workflow and in nf here I have just run the module FASTQC on my input reads that I got and then the sub-workflow on the reads and the index, I get the sorted.bams output, and then I can do some more steps with that.
 
 [11:04](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=664) So I want to show you what it looks like to add the workflows to the ´main.nf´ and here I’ve taken the ´viralrecon´one that I mentioned earlier.
 
