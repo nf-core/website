@@ -86,7 +86,7 @@ However, if you’re unsure about this, you can always check the issues to see i
 
 You can run ´nf core modules create´, which will create a local module for you.
 
-If you look in this box, you can see the mf-core/modules folder that we’ve already seen before, and the local subfolder in which your tools will then live. A lot of the things that Harshil and Kevin covered in their talks is relevant here, and Kevin’s talk is more tailored towards modules, but a lot of the functionality will be similar there.
+If you look in this box, you can see the nf-core/modules folder that we’ve already seen before, and the local subfolder in which your tools will then live. A lot of the things that Harshil and Kevin covered in their talks is relevant here, and Kevin’s talk is more tailored towards modules, but a lot of the functionality will be similar there.
 
 [5:36](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=336) OK, so this ´nf core modules create´ gives you this file here with many to-do statements and little help messages, and you can start filling out and try to get your tool to run here.
 
