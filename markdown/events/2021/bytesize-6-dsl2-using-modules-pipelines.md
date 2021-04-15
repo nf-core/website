@@ -68,7 +68,7 @@ In the main nf, that’s where the extra magic happens, where the fastqc is run,
 
 For that you run ´nf core modules remove´ and that removes this entire subfolder that had fastqc with the functions main and meta file in it. You don’t have to do anything else there.
 
-[3:25](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=206) Then sometimes the module will get updated, maybe the software was updated and this was propagated already to the module, and you would like to use thus update. So how do we ensure that first of all we have the newest version, and then how to update it?
+[3:25](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=206) Then sometimes the module will get updated, maybe the software was updated and this was propagated already to the module, and you would like to use this update. So how do we ensure that first of all we have the newest version, and then how to update it?
 
 So to check this module, you can run ´nf core modules lint´ on the directory to check all modules, or on a specific module like FASTQC.
 
