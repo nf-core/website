@@ -44,7 +44,7 @@ Thank you very much and welcome to the bytesize talk on how to use modules in a 
 
 I would just like to briefly recap what a module is. It is an atomic process that cannot be reduced any further and usually contains a single software tool like FastQC for example and it can be used within a pipeline and also shared between different pipelines. To make use of the sharing, there is an nf-core modules repository on GitHub where you can find many of these modules already.
 
-So to make use of this modules repository, there’s a new sub-command in nf-core/tools and for a brief recap, you can install it with ´pip install nf-core´ and ´conda install nf-core´ and if you then run ´nf-core modules´, you get a list of sub-commands that you can use to interact with this repository.
+So to make use of this modules repository, there’s a new sub-command in nf-core/tools and for a brief recap, you can install it with `pip install nf-core` and `conda install nf-core` and if you then run `nf-core modules`, you get a list of sub-commands that you can use to interact with this repository.
 
 I would just like to briefly recap what a module is. It is an atomic process that cannot be reduced any further and usually contains a single software tool like FastQC for example and it can be used within a pipeline and also shared between different pipelines. To make use of the sharing, there is an nf-core modules repository on GitHub where you can find many of these modules already.
 
