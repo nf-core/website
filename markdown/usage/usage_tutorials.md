@@ -13,4 +13,3 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
   - If you haven't found your institution on the [community pages](https://nf-co.re/community), please add yourself. Just a few lines of YAML and your logos needed.
 - [Step-by-step guide to writing an nf-core institutional profile](tutorials/step_by_step_institutional_profile.md)
   - This guide goes through step-by-step on what you need to consider, and how to write a config file, when contributing an nf-core institutional profile for your particular cluster.
- 
