@@ -46,8 +46,6 @@ I would just like to briefly recap what a module is. It is an atomic process tha
 
 So to make use of this modules repository, there’s a new sub-command in nf-core/tools and for a brief recap, you can install it with `pip install nf-core` and `conda install nf-core` and if you then run `nf-core modules`, you get a list of sub-commands that you can use to interact with this repository.
 
-I would just like to briefly recap what a module is. It is an atomic process that cannot be reduced any further and usually contains a single software tool like FastQC for example and it can be used within a pipeline and also shared between different pipelines. To make use of the sharing, there is an nf-core modules repository on GitHub where you can find many of these modules already.
-
 [0:47](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=51) With one of the sub-commands, and with --help, you get some instructions on how to use them, so over the next couple of slides, I will briefly introduce you to some of the sub-commands that could be helpful for using modules in the pipeline.
 
 [1:30](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=90) One of the first things you might want to do is to try and find a module that you could use, and you can use the `nf-core modules list` for that.
