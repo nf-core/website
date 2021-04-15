@@ -24,6 +24,11 @@ This walkthrough will guide you through making an _institutional_-level profile.
 
 We will first go through a list of questions to ask and what information to gather prior writing the profile. Not all questions will be relevant to your cluster, however it should cover a range of common set of cluster specifications.
 
+## Does an institutional profile already exist
+
+First you should check nf-core/configs an institutional config exists! If you see any issues with it, or it's not working for you - contact the person who originally made it.
+
+If no config already exists, continue with this tutorial!
 ### At what level should the institutional profile be designed
 
 Various institutions have different structures in the way clusters are accessed by different groups.
@@ -170,7 +175,7 @@ First we will edit the main config file under `conf/<your_cluster_name>.config`.
 
 #### params scope
 
-In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of institutional configs we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines.
+In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of institutional configs we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines. See the nf-core/configs README for more information how to define _pipeline specific_ institutional configs.
 
 The most useful first step for testing a new nf-core institutional profile is to add to the params scope the `config_profile_*` series of params. These are nf-core specific parameters that are displayed in the header summary of each run, describing what the profile is and who maintains it. Therefore, you can use this when testing the profile to check the profile was actually loaded.
 
@@ -467,11 +472,109 @@ Each container engine or software environment may have different options, so be 
 
 #### profiles{} scope
 
-Additional profiles
+In some cases, you may want to define multiple contexts that have different specifications - For example, your institution may have has two distinct clusters or set of nodes with slightly different specifications, while still sharing the same storage.
+
+One concise way of specifying these is via the `profiles{}` scope. These essentially act as nested configs, where you can extend or modify the base parameters set in the main config.
+
+Using our example above, maybe our institution has two clusters named red and blue, one that has larger nodes than the other. What we can do here is specify the `max_*` series of parameters in cluster-specific profiles.
+
+```nextflow
+process {
+  executor = 'sge'
+  queue = { task.cpus > 24 ? 'big' : 'small' }
+  maxRetries = 2
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+  beforeScript = "module load singularity"
+}
+
+executor {
+  queueSize = 8
+  submitRateLimit = '10 sec'
+}
+
+singularity {
+  enabled = true
+  autoMounts = true
+  cacheDir = "/<path>/<to>/<your>/<image_cache>
+}
+
+profiles {
+  red {
+    params {
+      config_profile_description = '<your_institution_name> 'red' cluster cluster profile provided by nf-core/configs.'
+      config_profile_contact = '<your_name> (<your_github_handle>)'
+      config_profile_url = 'https://<institutional_url>.com'
+      max_memory = 2.TB
+      max_cpus = 128
+      max_time = 720.h
+      igenomes_base = "/<path>/<to>/igenomes/"
+    }
+  }
+
+  blue {
+    params {
+      config_profile_description = '<your_institution_name> 'blue' cluster profile provided by nf-core/configs.'
+      config_profile_contact = '<your_name> (<your_github_handle>)'
+      config_profile_url = 'https://<institutional_url>.com`'
+      max_memory = 256.GB
+      max_cpus = 64
+      max_time = 24.h
+      igenomes_base = "/<path>/<to>/igenomes/"
+    }
+  }
+}
+```
+
+You can see here we have moved the `params{}` block into each of the _profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
+
+> :warning: Important: you should not define scopes both in the base config AND in the profile. Profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base config scope will be _ignored_ in the profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
 
 ### Writing the documentation file
 
+Once you've written your configuration file and saved it, you should briefly describe the profile in your documentation markdown file.
+
+You can look at some of the other configs to see what this describes, but typically it will say where exactly the clusters are based, how to user can use the profile (once eventually merged into the main nf-core/configs repository), and any other particular information that would be relevent for users of the profile (such as what profiles are offered, or if users have to do any other personal set-up of certain variables).
+
 ## Testing the profile
+
+Once all of your files are prepared, it's time to test your institutional config. All nf-core pipelines come with a special parameter called `--custom_config_base`. This allows you to override the pipeline run from loading the nf-core/configs from the nf-core repository, and you can instead get it to look in your fork.
+
+> Note: At this stage don't get disheartened if you hit errors and problems along the way. This often requires a lot of trial and error, as you learn about the particulars of your particular cluster. All are different, and all require TLC to get everything optimal!
+
+To test your config, pick your pipeline of choice, and run the given pipeline's integrated mini-test profile but using your config. For example:
+
+```bash
+nextflow run nf-core/eager -profile <your_cluster_name>,test_tsv --custom_config_base "https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>"
+```
+
+If you also wish to test a profile from your `profiles{}` scope, include that in the `-profile` flag. For example:
+
+```bash
+nextflow run nf-core/eager -profile <your_cluster_name>,<you_profile_name>,test_tsv --custom_config_base "https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>"
+```
+
+To know if the profile is working you can check for things like the following:
+
+* Does the pipeline run summary displayed in your terminal at the beginning of the run display the right `config_profile_*` parameters?
+  * Note in some cases the _description_ may be of the test profile. However the URL should always be of your institutional profile
+* Does the pipeline run summary display the correct `containerEngine`?
+* Does your scheduler report jobs have been submitted to it from your pipeline?
+  * You can check this with `squeue` in SLURM or `qstat` in SGE, for example
+  * You should see job names beginning with `nf_` in your submission log
+
+> Tip: If you can't see the run summary header due to a higher number process status bars, you can run `export NXF_ANSI_LOG=false` before running the test command to use a more condense report without the fancy status information.
+
+## Make a PR into nf-core configs
+
+Once your testing works without any errors, it's time to make your config file official!
+
+Simply make a PR into the nf-core/configs repository, and request a review. Once approved and merged, any user can immediately use the institutional profile for all nf-core pipelines with just the `-profile` flag!
+
+```bash
+nextflow run nf-core/<pipeline> -profile <your_cluster_name> [...other params...]
+```
+
+Now time to sit back and feel good for helping yourself and all institutional Nextflow users make their experience of running pipelines as smooth and efficient as possible 😎.
 
 ## Additional tips and tricks
 
@@ -481,24 +584,27 @@ Some clusters often have very strict user HDD-space footprint restrictions (or j
 
 This directive goes _outside_ any of the config scopes, and is simply defined as:
 
-```
+```nextflow
 cleanup = true
 ```
 
 This directive will, on a _successful_ completion of a Nextflow run, automatically delete all intermediate files stored in the `work/` directory. Note that none of the 'published' files in the `--outdir` results directory will be deleted if the pipeline specifies to _copy_ results files, _however_ removal of these intermediate files will mean debugging 'silent fails' more difficult.
 
+To get around this, we suggest that you can optionally make an additional profile called debug:
+
+```nextflow
+debug {
+  cleanup = false
+}
+```
+
+which allows you to override the default `cleanup = true` behaviour, if you've set this as so.
+
 Alternatively, if your cluster utilises a scratch space to store intermediate files, this can be specified a the `process{}` scope of the profile with the [`scratch`](https://www.nextflow.io/docs/latest/process.html#scratch) directive. For example:
 
-
-
-```
+```nextflow
 process {
   <other_directives>
   scratch = "/<path>/<to>/<scratch>/<my_scratch>/"
 }
-
 ```
-
-
-cleanup
-savereference
