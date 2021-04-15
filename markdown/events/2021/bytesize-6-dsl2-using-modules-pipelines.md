@@ -52,7 +52,7 @@ With one of the sub-commands, and with --help, you get some instructions on how 
 
 One of the first things you might want to do is to try and find a module that you could use, and you can use the ´nf-core modules list´ for that. [1:30](https://youtu.be/tWvou0xj9wA?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=90)
 
-That will just print out all the modules currently available and they are subdivided into tool and sub-tool because many tools like ´sam tools´ or ´bcf tools´ have these sub-commands that are then their own module basically.
+That will just print out all the modules currently available and they are subdivided into tool and sub-tool because many tools like ´samtools´ or ´bcftools´ have these sub-commands that are then their own module basically.
 
 There are other tools like ´fastqc´ that don’t have any sub-commands. They are just a tool.
 
