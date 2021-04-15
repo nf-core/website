@@ -29,6 +29,7 @@ We will first go through a list of questions to ask and what information to gath
 First you should check nf-core/configs an institutional config exists! If you see any issues with it, or it's not working for you - contact the person who originally made it.
 
 If no config already exists, continue with this tutorial!
+
 ### At what level should the institutional profile be designed
 
 Various institutions have different structures in the way clusters are accessed by different groups.
@@ -163,11 +164,11 @@ Next, make sure to make your own _fork_ of [nf-core/configs](https://github.com/
 
 In your branch, we will need to initialise a couple of new files, and update a couple of others.
 
-* **create** an empty file to the `conf/` directory named `<your_cluster_name>.config`
-* **create** an empty file to the `docs/` directory named `<your_cluster_name>.md`
-* **edit** and add your profile name to the `nfcore_custom.config` file in the top-level directory of the clone
-* **edit** and add your profile name to the list of clusters on the `README.md` file in the top-level directory of the clone  under the 'Documentation'
-* **edit** and add your profile name to the GitHub actions `.yaml` file (under `.github/workflows/main.yml`)
+- **create** an empty file to the `conf/` directory named `<your_cluster_name>.config`
+- **create** an empty file to the `docs/` directory named `<your_cluster_name>.md`
+- **edit** and add your profile name to the `nfcore_custom.config` file in the top-level directory of the clone
+- **edit** and add your profile name to the list of clusters on the `README.md` file in the top-level directory of the clone  under the 'Documentation'
+- **edit** and add your profile name to the GitHub actions `.yaml` file (under `.github/workflows/main.yml`)
 
 ### Writing the main config file
 
@@ -555,12 +556,12 @@ nextflow run nf-core/eager -profile <your_cluster_name>,<you_profile_name>,test_
 
 To know if the profile is working you can check for things like the following:
 
-* Does the pipeline run summary displayed in your terminal at the beginning of the run display the right `config_profile_*` parameters?
-  * Note in some cases the _description_ may be of the test profile. However the URL should always be of your institutional profile
-* Does the pipeline run summary display the correct `containerEngine`?
-* Does your scheduler report jobs have been submitted to it from your pipeline?
-  * You can check this with `squeue` in SLURM or `qstat` in SGE, for example
-  * You should see job names beginning with `nf_` in your submission log
+- Does the pipeline run summary displayed in your terminal at the beginning of the run display the right `config_profile_*` parameters?
+  - Note in some cases the _description_ may be of the test profile. However the URL should always be of your institutional profile
+- Does the pipeline run summary display the correct `containerEngine`?
+- Does your scheduler report jobs have been submitted to it from your pipeline?
+  - You can check this with `squeue` in SLURM or `qstat` in SGE, for example
+  - You should see job names beginning with `nf_` in your submission log
 
 > Tip: If you can't see the run summary header due to a higher number process status bars, you can run `export NXF_ANSI_LOG=false` before running the test command to use a more condense report without the fancy status information.
 
