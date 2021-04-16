@@ -24,11 +24,11 @@ This walkthrough will guide you through making an _institutional_-level profile.
 
 We will first go through a list of questions to ask and what information to gather prior writing the profile. Not all questions will be relevant to your cluster, however it should cover a range of common set of cluster specifications.
 
-## Does an institutional profile already exist
+### Does an institutional profile already exist
 
-First you should check nf-core/configs an institutional config exists! If you see any issues with it, or it's not working for you - contact the person who originally made it.
+First you should check nf-core/configs that an institutional profile already exists! If you see any issues with it, or it's not working for you - contact the person who originally made it.
 
-If no config already exists, continue with this tutorial!
+If no profile already exists, continue with this walkthrough!
 
 ### At what level should the institutional profile be designed
 
@@ -36,9 +36,9 @@ Various institutions have different structures in the way clusters are accessed 
 
 This is an important consideration to make before starting writing a profile because you need to select a useful and descriptive name.
 
-Sometimes one 'institution' will have multiple 'clusters' with the different names, which may share a common storage space. In this case it might make sense to have one nf-core configuration file for the whole institution, but with multiple _internal_ profiles representing each cluster.
+Sometimes one institution will have multiple clusters with the different names, which may share a common storage space. In this case it might make sense to have one nf-core configuration file for the whole institution, but with multiple _internal_ profiles representing each cluster.
 
-Alternatively, within one 'institution', you may have groups or departments with entirely different and separated clusters with dedicated IT teams. In this case it may make sense to have separate configuration files without a common institutional 'umbrella' name.
+Alternatively, within one institution, you may have groups or departments with entirely different and separated clusters with dedicated IT teams. In this case it may make sense to have separate configuration files without a common institutional 'umbrella' name.
 
 Decide what the best structure would apply to your context.
 
@@ -58,7 +58,7 @@ You should note down if there are any special options that your cluster's schedu
 
 <details markdown='1'><summary> SGE tips</summary>
 
-Some SGE configurations require the use of the `-l h_vmem=` flag _in addition_ to `-l virtual_free=` - the latter of which is the default used by default in Nextflow.
+Some SGE configurations require the use of the `-l h_vmem=` flag _in addition_ to `-l virtual_free=` - the latter of which is used by default in Nextflow.
 
 Furthermore, you normally need to specify the protocol to use for parallelisation (e.g. `OpenMP`, `smp`, `make`). You should find what is the recommended protocol to use.
 </details>
@@ -127,32 +127,32 @@ You should record the names of each `PARTITION` and the corresponding `TIMELIMIT
 
 </details>
 
-## Are there any common resource or data locations on the cluster
+### Are there any common resource or data locations on the cluster
 
-For institutions that work on common topics (e.g. genomics), you might have a centralised local copy of the Illumina `iGenome` set of reference genomes. If it exists, you can note down the paths to this directory.
+For institutions that work on common topics (e.g. genomics), you might have a centralised local copy of the AWS `iGenomes` set of reference genomes. If it exists, you can note down the paths to this directory.
 
 Furthermore, some institutions will specify a common place to store all container images (e.g. for Conda environments, Singularity images etc) in a cache directory. This helps preventing multiple users having their own copies of the same pipeline container image. You should find out if, and where this location exists and note down the path.
 
-## Should jobs be run using a local `$TMPDIR`
+### Should jobs be run using a local `$TMPDIR`
 
 Some clusters require the use of a temporary _per-node_ `scratch` directory, the location of which is specified in an environmental variable `$TMPDIR`. Check if this is the case and this is set up in `$TMPDIR`
 
-## Preparation checklist
+### Preparation checklist
 
-To summarise, before you start writing the profile have you:
+To summarise, before you start writing the profile have you checked:
 
-- Checked you know what institutional level you will make the profile at
-- Checked permission to publicly post the profile
-- Checked which scheduler the cluster uses
-- Checked which container engine you will specify
-- Checked which maximum computational resource limits exist
-- Checked for any queue/partition names and specifications
-- Checked for locations of any common resources or cache directories
-- Checked if jobs on the cluster require use of a per-node `scratch`
+- At what institutional level you will make the profile
+- The permission to publicly post the profile
+- Which scheduler the cluster uses
+- Which container engine you will specify
+- Which maximum computational resource limits exist
+- Queue/partition names and specifications
+- Locations of any common resources or cache directories
+- If jobs on the cluster require use of a per-node `scratch`
 
 ## Creating the profile
 
-Once you have all the information ready, we can begin writing the institutional profile! The tutorial will now go through each relevant Nextflow 'scope' block and explain what and when to put information in.
+Once you have all the information ready, we can begin writing the institutional profile! The walkthrough will now go through each relevant Nextflow 'scope' block and explain what and when to put information in.
 
 Before you start consider what your institutional profile should be called. The names should be as unique and recognisable as possible - however abbreviations or acronyms are fine.
 
@@ -203,7 +203,7 @@ params {
 }
 ```
 
-Finally, if you have a common resource directory for the iGenomes collection of reference genomes, this can can also go in the `params{}` scope.
+Finally, if you have a common resource directory for the iGenomes collection of reference genomes, this can can also go in the `params` scope.
 
 ```nextflow
 params {
@@ -475,7 +475,7 @@ Each container engine or software environment may have different options, so be 
 
 In some cases, you may want to define multiple contexts that have different specifications - For example, your institution may have has two distinct clusters or set of nodes with slightly different specifications, while still sharing the same storage.
 
-One concise way of specifying these is via the `profiles{}` scope. These essentially act as nested configs, where you can extend or modify the base parameters set in the main config.
+One concise way of specifying these is via the `profiles` scope. These essentially act as nested configs, where you can extend or modify the base parameters set in the main config.
 
 Using our example above, maybe our institution has two clusters named red and blue, one that has larger nodes than the other. What we can do here is specify the `max_*` series of parameters in cluster-specific profiles.
 
@@ -526,7 +526,7 @@ profiles {
 }
 ```
 
-You can see here we have moved the `params{}` block into each of the _profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
+You can see here we have moved the `params` block into each of the _profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
 
 > :warning: Important: you should **not** define scopes both in the base config AND in the profile. Profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base config scope will be _ignored_ in the profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
 
@@ -550,7 +550,7 @@ nextflow run nf-core/eager \
 --custom_config_base 'https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>'
 ```
 
-If you also wish to test a profile from your `profiles{}` scope, include that in the `-profile` flag. For example:
+If you also wish to test a profile from your `profiles` scope, include that in the `-profile` flag. For example:
 
 ```bash
 nextflow run nf-core/eager \
@@ -607,7 +607,7 @@ debug {
 
 which allows you to override the default `cleanup = true` behaviour, if you've set this as so.
 
-Alternatively, if your cluster utilises a scratch space to store intermediate files, this can be specified a the `process{}` scope of the profile with the [`scratch`](https://www.nextflow.io/docs/latest/process.html#scratch) directive. For example:
+Alternatively, if your cluster utilises a scratch space to store intermediate files, this can be specified a the `process` scope of the profile with the [`scratch`](https://www.nextflow.io/docs/latest/process.html#scratch) directive. For example:
 
 ```nextflow
 process {
