@@ -56,7 +56,7 @@ You can see the range of support schedulers on the [Nextflow documentation](http
 
 You should note down if there are any special options that your cluster's scheduler requires. This maybe special ways in which memory requirements are specified, e.g.: memory per core, types of parallelisation library is required etc., the maximum number of parallel jobs that are allowed.
 
-<details markdown="1"><summary> SGE tips</summary>
+<details markdown='1'><summary> SGE tips</summary>
 
 Some SGE configurations require the use of the `-l h_vmem=` flag _in addition_ to `-l virtual_free=` - the latter of which is the default used by default in Nextflow.
 
@@ -81,7 +81,7 @@ All computing HPCs will have some resource limits, depending on the sizes and co
 - maximum amount of memory (RAM) available
 - maximum number of CPUs (cores) available
 
-<details markdown="1"><summary> SLURM tips</summary>
+<details markdown='1'><summary> SLURM tips</summary>
 
 For example, if you're using the SLURM scheduler, you can run the following command to find specifications of all nodes on your cluster
 
@@ -97,7 +97,7 @@ Furthermore, you should check if there is any overall walltime (time limit) for 
 </br>
 </br>
 
-<details markdown="1"><summary> SLURM tips</summary>
+<details markdown='1'><summary> SLURM tips</summary>
 
 For example, if you're using the SLURM scheduler, you can run the following command to the walltime of any queue/partitions on your cluster with
 
@@ -115,7 +115,7 @@ Some clusters require your to specify which queue or partition to submit your jo
 
 You should already consider in which 'order' you would like to use these queues, to make use of the Nextflow and nf-core automated 'retry' system (i.e. if a process runs too long or uses too much memory, it can be automatically resubmitted with more time/memory)
 
-<details markdown="1"><summary> SLURM tips</summary>
+<details markdown='1'><summary> SLURM tips</summary>
 
 For example, if you're using the SLURM scheduler, you can run the following command to the walltime of any queues/partitions on your cluster with
 
@@ -213,7 +213,7 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 ```
 
@@ -231,7 +231,7 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
@@ -250,7 +250,7 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
@@ -271,7 +271,7 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
@@ -291,7 +291,7 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
@@ -311,7 +311,7 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
@@ -336,14 +336,14 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
+  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
 }
 ```
 
@@ -359,15 +359,15 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
-  beforeScript = "module load singularity"
+  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  beforeScript = 'module load singularity'
 }
 ```
 
@@ -387,15 +387,15 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
-  beforeScript = "module load singularity"
+  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  beforeScript = 'module load singularity'
 }
 
 executor {
@@ -415,15 +415,15 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
-  beforeScript = "module load singularity"
+  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  beforeScript = 'module load singularity'
 }
 
 executor {
@@ -434,7 +434,7 @@ executor {
 
 Where a maximum of 10 jobs can be submitted per second
 
-#### <your_container> scope
+#### <your_container\> scope
 
 You can specify institutional cluster specific options for the container engine system that you will use with a variety of different container scopes. There is generally one scope per container engine (and `conda`), and the ones offered by Nextflow can be seen in the [Nextflow Documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes). To use an example of singularity, you can use the the singularity scope to specify that it should be used, that it should be automatically mounted and also (where valid) where a common cache directory of images resides.
 
@@ -446,15 +446,15 @@ params {
   max_memory = 2.TB
   max_cpus = 128
   max_time = 720.h
-  igenomes_base = "/<path>/<to>/igenomes/"
+  igenomes_base = '/<path>/<to>/igenomes/'
 }
 
 process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
-  beforeScript = "module load singularity"
+  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  beforeScript = 'module load singularity'
 }
 
 executor {
@@ -465,7 +465,7 @@ executor {
 singularity {
   enabled = true
   autoMounts = true
-  cacheDir = "/<path>/<to>/<your>/<image_cache>
+  cacheDir = '/<path>/<to>/<your>/<image_cache>'
 }
 ```
 
@@ -484,8 +484,8 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G }
-  beforeScript = "module load singularity"
+  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  beforeScript = 'module load singularity'
 }
 
 executor {
@@ -496,7 +496,7 @@ executor {
 singularity {
   enabled = true
   autoMounts = true
-  cacheDir = "/<path>/<to>/<your>/<image_cache>
+  cacheDir = '/<path>/<to>/<your>/<image_cache>'
 }
 
 profiles {
@@ -508,7 +508,7 @@ profiles {
       max_memory = 2.TB
       max_cpus = 128
       max_time = 720.h
-      igenomes_base = "/<path>/<to>/igenomes/"
+      igenomes_base = '/<path>/<to>/igenomes/'
     }
   }
 
@@ -520,7 +520,7 @@ profiles {
       max_memory = 256.GB
       max_cpus = 64
       max_time = 24.h
-      igenomes_base = "/<path>/<to>/igenomes/"
+      igenomes_base = '/<path>/<to>/igenomes/'
     }
   }
 }
@@ -528,7 +528,7 @@ profiles {
 
 You can see here we have moved the `params{}` block into each of the _profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
 
-> :warning: Important: you should not define scopes both in the base config AND in the profile. Profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base config scope will be _ignored_ in the profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
+> :warning: Important: you should **not** define scopes both in the base config AND in the profile. Profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base config scope will be _ignored_ in the profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
 
 ### Writing the documentation file
 
@@ -545,13 +545,17 @@ Once all of your files are prepared, it's time to test your institutional config
 To test your config, pick your pipeline of choice, and run the given pipeline's integrated mini-test profile but using your config. For example:
 
 ```bash
-nextflow run nf-core/eager -profile <your_cluster_name>,test_tsv --custom_config_base "https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>"
+nextflow run nf-core/eager \
+-profile <your_cluster_name>,test_tsv \
+--custom_config_base 'https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>'
 ```
 
 If you also wish to test a profile from your `profiles{}` scope, include that in the `-profile` flag. For example:
 
 ```bash
-nextflow run nf-core/eager -profile <your_cluster_name>,<you_profile_name>,test_tsv --custom_config_base "https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>"
+nextflow run nf-core/eager \
+-profile <your_cluster_name>,<you_profile_name>,test_tsv \
+--custom_config_base 'https://raw.githubusercontent.com/<your_github_user>/configs/<your_branch>'
 ```
 
 To know if the profile is working you can check for things like the following:
@@ -572,7 +576,9 @@ Once your testing works without any errors, it's time to make your config file o
 Simply make a PR into the nf-core/configs repository, and request a review. Once approved and merged, any user can immediately use the institutional profile for all nf-core pipelines with just the `-profile` flag!
 
 ```bash
-nextflow run nf-core/<pipeline> -profile <your_cluster_name> [...other params...]
+nextflow run nf-core/<pipeline> \
+-profile <your_cluster_name> \
+[...other params...]
 ```
 
 Now time to sit back and feel good for helping yourself and all institutional Nextflow users make their experience of running pipelines as smooth and efficient as possible 😎.
@@ -606,6 +612,6 @@ Alternatively, if your cluster utilises a scratch space to store intermediate fi
 ```nextflow
 process {
   <other_directives>
-  scratch = "/<path>/<to>/<scratch>/<my_scratch>/"
+  scratch = '/<path>/<to>/<scratch>/<my_scratch>/'
 }
 ```
