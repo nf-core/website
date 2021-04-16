@@ -6,8 +6,10 @@ start_date: "2021-04-20"
 start_time: "13:00 Stockholm/Europe"
 end_date: "2021-04-20"
 end_time: "13:30 Stockholm/Europe"
-youtube_embed: 
-location_url:
+youtube_embed: https://youtu.be/PU6vAj_7WRM
+location_url: 
+    - https://youtu.be/PU6vAj_7WRM
+    - https://zoom.us/j/95310380847
 ---
 
 # nf-core/bytesize
@@ -31,5 +33,5 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 TODO: add zoom and youtube links
-* Zoom: :
-* YouTube:
+* Zoom: <https://zoom.us/j/95310380847>
+* YouTube: <https://youtu.be/PU6vAj_7WRM>
