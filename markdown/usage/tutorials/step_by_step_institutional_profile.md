@@ -131,7 +131,7 @@ You should record the names of each `PARTITION` and the corresponding `TIMELIMIT
 
 For institutions that work on common topics (e.g. genomics), you might have a centralised local copy of the Illumina `iGenome` set of reference genomes. If it exists, you can note down the paths to this directory.
 
-Furthermore, some institutions will specify a common place to store all container images (e.g. for Docker, Singularity etc) in a cache directory. This helps preventing multiple users having their own copies of the same pipeline container image. You should find out if, and where this location exists and note down the path.
+Furthermore, some institutions will specify a common place to store all container images (e.g. for Conda environments, Singularity images etc) in a cache directory. This helps preventing multiple users having their own copies of the same pipeline container image. You should find out if, and where this location exists and note down the path.
 
 ## Should jobs be run using a local `$TMPDIR`
 
@@ -434,9 +434,9 @@ executor {
 
 Where a maximum of 10 jobs can be submitted per second
 
-#### <your_container\> scope
+#### container scope
 
-You can specify institutional cluster specific options for the container engine system that you will use with a variety of different container scopes. There is generally one scope per container engine (and `conda`), and the ones offered by Nextflow can be seen in the [Nextflow Documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes). To use an example of singularity, you can use the the singularity scope to specify that it should be used, that it should be automatically mounted and also (where valid) where a common cache directory of images resides.
+You can specify institutional cluster specific options for the container engine system (e.g., Singularity, Docker, Podman, etc.) that you will use with a variety of different container scopes. Nextflow offers a There is generally one scope per container engine (and `conda`), and more configuration information on each engine offered by Nextflow can be seen in the [Nextflow Documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes). To use an example of singularity, you can use the singularity scope to specify that it should be used, that it should be automatically mounted and also (where valid) where a common cache directory of images resides.
 
 ```nextflow
 params {
@@ -471,7 +471,7 @@ singularity {
 
 Each container engine or software environment may have different options, so be sure to check the Nextflow documentation what options you may have.
 
-#### profiles{} scope
+#### profiles scope
 
 In some cases, you may want to define multiple contexts that have different specifications - For example, your institution may have has two distinct clusters or set of nodes with slightly different specifications, while still sharing the same storage.
 
