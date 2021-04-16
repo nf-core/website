@@ -5,14 +5,14 @@ subtitle: Walkthrough on what you need to set up an nf-core institutional profil
 
 ## Introduction
 
-nf-core offers a centralised place to store Nextflow configuration profiles that work at an _institutional_ level 🏫.
+🏫 nf-core offers a centralised place to store Nextflow configuration profiles that work at an _institutional_ level.
 
-What this means is that you can specify common Nextflow pipeline configurations and options that can be shared across all users of your particular institutional cluster 👨‍👩‍👧‍.
+👨‍👩‍👧‍ What this means is that you can specify common Nextflow pipeline configurations and options that can be shared across all users of your particular institutional cluster.
 
 nf-core offers two level of profile sharing: global institutional and pipeline institutional profiles via [nf-core/configs](https://github.com/nf-core/configs)
 
-- 👨‍👩‍👧‍  Global institutional profiles represent configuration options that apply to users of _all_ nf-core pipelines. These typically define settings regarding the cluster itself, such as the type of scheduler being used, maximum resource limits and so on.
-- 👧🏽 Pipeline institutional profiles that represent configuration options that apply to users of a _specific_ nf-core pipelines. These typically define common parameters all users of the pipeline would use, or customise resource requirements for particular processes of that specific pipeline
+- **Global** institutional profiles represent configuration options that apply to users of _all_ nf-core pipelines. These typically define settings regarding the cluster itself, such as the type of scheduler being used, maximum resource limits and so on.
+- **Pipeline** institutional profiles that represent configuration options that apply to users of a _specific_ nf-core pipelines. These typically define common parameters all users of the pipeline would use, or customise resource requirements for particular processes of that specific pipeline
 
 This walkthrough will guide you through making an _institutional_-level profile. It will:
 
@@ -30,7 +30,7 @@ First you should check nf-core/configs that a global institutional profile alrea
 
 If one exists, try it out and you can jump straight into running nf-core pipelines 😎
 
-If you see any issues with it, or it's not working for you - contact the person who originally made it 📞.
+If you see any issues with it, or it's not working for you - 📞 contact the person who originally made it.
 
 If no profile already exists, continue with this walkthrough 🚶🏿‍♀!
 
@@ -40,9 +40,9 @@ Various institutions have different structures in the way clusters are accessed 
 
 This is an important consideration to make before starting writing a profile because you need to select a useful and descriptive name.
 
-Sometimes one institution will have multiple clusters with the different names, which may share a common storage space 📁. In this case it might make sense to have one 'umbrella' nf-core global profile for the whole institution ☂, but with multiple _internal_ profiles representing each cluster.
+☂ Sometimes one institution will have multiple clusters with the different names, which may share a common storage space 📁. In this case it might make sense to have one 'umbrella' nf-core global profile for the whole institution, but with multiple _internal_ profiles representing each cluster.
 
-Alternatively, within one institution, you may have groups or departments with entirely different and separated clusters with dedicated IT teams. In this case it may make sense to have separate institutional profiles 🏫🏫 (and therefore not under common institutional 'umbrella' name).
+🏫🏫 Alternatively, within one institution, you may have groups or departments with entirely different and separated clusters with dedicated IT teams. In this case it may make sense to have separate institutional profiles (and therefore not under common institutional 'umbrella' name).
 
 Decide what the best structure would apply to your context.
 
@@ -50,11 +50,15 @@ Decide what the best structure would apply to your context.
 
 nf-core global institutional profiles are stored publicly on the [nf-core/configs](https://github.com/nf-core/configs/) repository.
 
-In some cases, system administrators of the cluster at your institution may wish to keep certain aspects of the cluster private for security reasons 🔏. We therefore recommend you check with your sysadmins that you have permission to make such a profile before submitting it to nf-core 📞. We recommend you send the link to the repository with one of the already existing profiles to show as an example of the sort of information that would be posted.
+ 🔏 In some cases, system administrators of the cluster at your institution may wish to keep certain aspects of the cluster private for security reasons.
+
+📞 We therefore recommend you check with your sysadmins that you have permission to make such a profile before submitting it to nf-core. We recommend you send the link to the repository with one of the already existing profiles to show as an example of the sort of information that would be posted.
 
 ### Does your cluster use a scheduler or executor
 
-Nextflow has integrated a range of scheduling systems to simplify running Nextflow pipelines on a range of HPCs. What this means is that it will write and submit submission scripts to your given scheduler or 'executor' (in Nextflow language) for you 🤖.
+Nextflow has integrated a range of scheduling systems to simplify running Nextflow pipelines on a range of HPCs.
+
+ 🤖 What this means is that it will write and submit submission scripts to your given scheduler or 'executor' (in Nextflow language) for you.
 
 You can see the range of support schedulers on the [Nextflow documentation](https://www.Nextflow.io/docs/latest/executor.html). Check if your scheduler is there, and how it would be written (typically the name in all lower case).
 
@@ -64,7 +68,7 @@ You should note down if there are any special options that your cluster's schedu
 
 ### What container engines does your cluster offer
 
-nf-core _highly_ recommends the use of container engines or software environment for running truly reproducible pipelines 📦 (rather than locally installed tools). This means the actual tools with compatible versions used within the pipeline are contained in a singular 'image' file.
+ 📦 nf-core _highly_ recommends the use of container engines or software environment for running truly reproducible pipelines (rather than locally installed tools). This means the actual tools with compatible versions used within the pipeline are contained in a singular 'image' file.
 
 You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/usage/installation) page.
 
@@ -98,10 +102,10 @@ Furthermore, you should check if there is any overall walltime (time limit) for 
 > and look for the TIMELIMIT column for the longest running queue that _all_ users have access to.
 
 ### Do you have to specify a queue or partition
-e
-Some clusters require your to specify which queue or partition to submit your job to 🚶🏿‍♀🚶🏼‍♀🚶🏽 (based on the resource requirements of the job). You should check if these exist, what they are called, and what limits they may have (e.g. walltimes).
 
-You should already consider in which 'order' you would like to use these queues, to make use of the Nextflow and nf-core automated 'retry' system 🔂 (i.e. if a process runs too long or uses too much memory, it can be automatically resubmitted with more time/memory)
+🚶🏿‍♀🚶🏼‍♀🚶🏽 Some clusters require your to specify which queue or partition to submit your job to (based on the resource requirements of the job). You should check if these exist, what they are called, and what limits they may have (e.g. walltimes).
+
+ 🔂 You should already consider in which 'order' you would like to use these queues, to make use of the Nextflow and nf-core automated 'retry' system (i.e. if a process runs too long or uses too much memory, it can be automatically resubmitted with more time/memory)
 
 > 🐛 For example, if you're using the SLURM scheduler, you can run the following command to the walltime of any queues/partitions on your cluster with
 >
@@ -113,9 +117,9 @@ You should already consider in which 'order' you would like to use these queues,
 
 ### Are there any common resource or data locations on the cluster
 
-For institutions that work on common topics (e.g. genomics), you might have a centralised local copy of the AWS `iGenomes` set of reference genomes 📔. If it exists, you can note down the paths to this directory.
+📔 For institutions that work on common topics (e.g. genomics), you might have a centralised local copy of the AWS [`iGenomes`](https://ewels.github.io/AWS-iGenomes/) set of reference genomes. If it exists, you can note down the paths to this directory.
 
-Furthermore, some institutions will specify a common place to store all container images 📦 (e.g. for Conda environments, Singularity images etc) in a cache directory 📁. This helps preventing multiple users having their own copies of the same pipeline container image. You should find out if, and where this location exists and note down the path.
+📁 Furthermore, some institutions will specify a common place to store all container images (e.g. for Conda environments, Singularity images etc) in a cache directory. This helps preventing multiple users having their own copies of the same pipeline container image. You should find out if, and where this location exists and note down the path.
 
 ### Should jobs be run using a local `$TMPDIR`
 
@@ -132,21 +136,21 @@ To summarise, before you start writing the profile have you checked:
 - 📊 Which maximum computational resource limits exist
 - 📛 Queue/partition names and specifications
 - 📁 Locations of any common resources or cache directories
-  📁 If jobs on the cluster require use of a per-node `scratch`
+- 📁 If jobs on the cluster require use of a per-node `scratch`
 
 ## Creating the profile
 
 Once you have all the information ready, we can begin writing the global institutional profile! The walkthrough will now go through each relevant Nextflow 'scope' block and explain what and when to put information in.
 
-Before you start consider what your global institutional profile should be called 📛. The names should be as unique and recognisable as possible - however abbreviations or acronyms are fine.
+📛 Before you start consider what your global institutional profile should be called. The names should be as unique and recognisable as possible - however abbreviations or acronyms are fine.
 
-For example, the name of the cluster can be used (e.g. [`phoenix`](https://github.com/nf-core/configs/blob/master/conf/phoenix.config) or [binac](https://github.com/nf-core/configs/blob/master/conf/binac.config)). In some cases an acronym of the cluster or the institute can be selected (e.g. [`SHH`](https://github.com/nf-core/configs/blob/master/conf/shh.config) or [`EVA`](https://github.com/nf-core/configs/blob/master/conf/eva.config)).
+For example, the name of the cluster can be used (e.g. [`phoenix`](https://github.com/nf-core/configs/blob/master/conf/phoenix.config) or [`binac`](https://github.com/nf-core/configs/blob/master/conf/binac.config)). In some cases an acronym of the cluster or the institute can be selected (e.g. [`SHH`](https://github.com/nf-core/configs/blob/master/conf/shh.config) or [`EVA`](https://github.com/nf-core/configs/blob/master/conf/eva.config)).
 
-Next, we suggest to make your own _fork_ of [nf-core/configs](https://github.com/nf-core/configs) 🍴 (although this is not required), and make a new branch to work on. It's normally best to call the branch the name of your proposed cluster name. Clone this to your machine, and open the folder.
+🍴 Next, we suggest to make your own _fork_ of [nf-core/configs](https://github.com/nf-core/configs) (although this is not required), and make a new branch to work on. It's normally best to call the branch the name of your proposed cluster name. Clone this to your machine, and open the folder.
 
 ### Required files
 
-In your branch, we will need to initialise a couple of new files, and update a couple of others 📃.
+📃 In your branch, we will need to initialise a couple of new files, and update a couple of others.
 
 - **create** an empty file to the `conf/` directory named `<your_cluster_name>.config`
 - **create** an empty file to the `docs/` directory named `<your_cluster_name>.md`
@@ -160,9 +164,11 @@ First we will edit the main profile file under `conf/<your_cluster_name>.config`
 
 #### params scope
 
-In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of global institutional profiles 🏫 we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines. See the nf-core/configs README for more information how to define _pipeline_ institutional profiles.
+ 🏫 In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of global institutional profiles we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines. See the nf-core/configs README for more information how to define _pipeline_ institutional profiles.
 
-The most useful first step for testing a new nf-core global institutional profile is to add to the params scope the `config_profile_*` series of params. These are nf-core specific parameters that are displayed in the header summary of each run, describing what the profile is and who maintains it 👩‍🏫. Therefore, you can use this when testing the profile to check the profile was actually loaded.
+The most useful first step for testing a new nf-core global institutional profile is to add to the params scope the `config_profile_*` series of params.
+
+👩‍🏫 These are nf-core specific parameters that are displayed in the header summary of each run, describing what the profile is and who maintains it. Therefore, you can use this when testing the profile to check the profile was actually loaded.
 
 In the `conf/<your_cluster_name>.config` file, add to a params scope something like the following:
 
@@ -174,7 +180,9 @@ params {
 }
 ```
 
-Next, in the same scope, we can also specify the `max_*` series of params. These are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster 🔂. These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
+Next, in the same scope, we can also specify the `max_*` series of params.
+
+🔂 These are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster. These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
 
 ```nextflow
 params {
@@ -187,7 +195,7 @@ params {
 }
 ```
 
-Finally, if you have a common resource directory for the iGenomes collection of reference genomes 📁, this can can also go in the `params` scope.
+📁 Finally, if you have a common resource directory for the AWS `iGenomes` collection of reference genomes, this can can also go in the `params` scope.
 
 ```nextflow
 params {
@@ -203,7 +211,7 @@ params {
 
 #### process scope
 
-Next, we can use the `process` scope to define which scheduler to use and associated options 🔀. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
+🔀 Next, we can use the `process` scope to define which scheduler to use and associated options. Any option specified in this scope means that all processes in a pipeline will use the settings defined here.
 
 Normally, you only need to specify which scheduler you use. For example, if using SLURM 🐛:
 
@@ -224,7 +232,9 @@ process {
 
 ```
 
-If you need to specify more cluster-specific information regarding your cluster, this can also go here. For example, you can specify which queue to use 🚶🏿‍♀🚶🏼‍♀🚶🏽. If you only have a single queue, this is as simple as:
+If you need to specify more cluster-specific information regarding your cluster, this can also go here.
+
+🚶🏿‍♀🚶🏼‍♀🚶🏽 For example, you can specify which queue to use. If you only have a single queue, this is as simple as:
 
 ```nextflow
 params {
@@ -285,7 +295,9 @@ process {
 
 ```
 
-As mentioned above, Nextflow has a clever automated retry system where if a particular submission exits with certain resource-limit reached exit codes, a resubmission will be made with greater resource requests 🔂. To ensure you can use this but also exploit the additional nf-core checks that prevent jobs from requesting more than available on a given node (and resulting the pipeline stalling because jobs are stuck in a queue) 🛑, you should also specify a maximum number of retries with the Nextflow `maxRetries` directives.
+🔂 As mentioned above, Nextflow has a clever automated retry system where if a particular submission exits with certain resource-limit reached exit codes, a resubmission will be made with greater resource requests.
+
+🛑 To ensure you can use this but also exploit the additional nf-core checks that prevent jobs from requesting more than available on a given node (and resulting the pipeline stalling because jobs are stuck in a queue), you should also specify a maximum number of retries with the Nextflow `maxRetries` directives.
 
 ```nextflow
 params {
@@ -322,18 +334,20 @@ If you normally need to specify additional 'non-standard' options in the headers
 >   max_time = 720.h
 >   igenomes_base = '/<path>/<to>/igenomes/'
 > }
-> 
+>
 > process {
 >   executor = 'sge'
 >   queue = { task.cpus > 24 ? 'big' : 'small' }
 >   maxRetries = 2
 >   clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
-> 
+>
 > ```
 
 Where the pipeline-defined memory specification of the each job is inserted into the batch script header using the Nextflow `${task.memory}` variable.
 
-Another commonly used directive is the `beforeScript` directive, which allows you to run a custom unix command _prior_ to running a pipeline's command of a particular job. This is often used when a UNIX software module needs to be loaded on the node the job is sent to by the scheduler. For example, you may need to explicitly load the `singularity` container software module 📦, which can be specified like so:
+Another commonly used directive is the `beforeScript` directive, which allows you to run a custom unix command _prior_ to running a pipeline's command of a particular job. This is often used when a UNIX software module needs to be loaded on the node the job is sent to by the scheduler.
+
+ 📦 For example, you may need to explicitly load the `singularity` container software module, which can be specified like so:
 
 ```nextflow
 params {
@@ -359,7 +373,7 @@ For a full list of `process` directives, please see the [Nextflow documentation]
 
 #### executor scope
 
-The executor scope allows the use of further executor _specific_ options that are inbuilt into Nextflow. You should check the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#scope-executor) to see what options are available for your respective scheduler 🔀.
+ 🔀 The executor scope allows the use of further executor _specific_ options that are inbuilt into Nextflow. You should check the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#scope-executor) to see what options are available for your respective scheduler.
 
 One sometimes useful option for smaller clusters with less sophisticated fair-use management is the `queueSize` directive. This allows you to specify the maximum number of jobs of a given Nextflow run can submit in parallel at any one time. So to prevent Nextflow from swamping a (small) cluster thousands of jobs at once and blocking the cluster for other users 😱, you can limit this as follows:
 
@@ -418,9 +432,11 @@ executor {
 
 Where a maximum of 10 jobs can be submitted per second.
 
-#### container scope
+#### container scopes
 
-You can specify institutional cluster specific options for the container engine system (e.g., Singularity, Docker, Podman, etc.) that you will use with a variety of different container scopes 📦. There is generally one scope per container engine (and `conda`), and more configuration information on each engine offered by Nextflow can be seen in the [Nextflow Documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes). To use the example of Singularity, you can use the singularity scope to specify that it should be used, that it should be automatically mounted and also (where valid) where a common cache directory of images resides 📁:
+📦 You can specify institutional cluster specific options for the container engine system (e.g., Singularity, Docker, Podman, etc.) that you will use with a variety of different container scopes . There is generally one scope per container engine (and `conda`), and more configuration information on each engine offered by Nextflow can be seen in the [Nextflow Documentation](https://www.nextflow.io/docs/latest/config.html#config-scopes).
+
+📁 To use the example of Singularity, you can use the singularity scope to specify that it should be used, that it should be automatically mounted and also (where valid) where a common cache directory of images resides:
 
 ```nextflow
 params {
@@ -457,9 +473,11 @@ Each container engine or software environment may have different options, so be 
 
 #### profiles scope
 
-In some cases, you may want to define multiple contexts that have different specifications - For example, your institution may have has two distinct clusters or set of nodes with slightly different specifications, while still sharing the same storage 🖧.
+🖧 In some cases, you may want to define multiple contexts that have different specifications - For example, your institution may have has two distinct clusters or set of nodes with slightly different specifications, while still sharing the same storage.
 
-One concise way of specifying these is via the `profiles` scope. These essentially act as nested or internal profiles 👨‍👧‍👦, where you can extend or modify the base parameters set in the main config.
+One concise way of specifying these is via the `profiles` scope.
+
+👨‍👧‍👦 These essentially act as nested or internal profiles, where you can extend or modify the base parameters set in the main config.
 
 Using our example above, maybe our institution has two clusters named red and blue, one that has larger nodes than the other. What we can do here is specify the `max_*` series of parameters in cluster-specific internal profiles.
 
@@ -516,9 +534,9 @@ You can see here we have moved the `params` block into each of the _internal pro
 
 ### Writing the documentation file
 
-Once you've written your configuration file and saved it, you should briefly describe your global institutional profile in your documentation markdown file ✍.
+📔 Once you've written your configuration file and saved it, you should briefly describe your global institutional profile in your documentation markdown file.
 
-You can look at some of the other configs to see what this describes, but typically it will say where exactly the clusters are based, how to user can use the global institutional profile (once eventually merged into the main nf-core/configs repository), and any other particular information that would be relevant for users of the profile (such as what internal profiles are offered, or if users have to do any other personal set-up of certain variables) 👩🏿‍🏫.
+✍ You can look at some of the other configs to see what this describes, but typically it will say where exactly the clusters are based, how to user can use the global institutional profile (once eventually merged into the main nf-core/configs repository), and any other particular information that would be relevant for users of the profile (such as what internal profiles are offered, or if users have to do any other personal set-up of certain variables).
 
 ## Testing the global institutional profile
 
@@ -557,7 +575,9 @@ To know if either the global or internal profiles is working you can check for t
 
 Once your testing works without any errors, it's time to make your global institutional profile official!
 
-Simply make a PR into the nf-core/configs repository, and request a review 📑. Once approved and merged 🎉, any user can immediately use the global institutional profile for all nf-core pipelines with just the `-profile` flag!
+📑 Simply make a PR into the nf-core/configs repository, and request a review.
+
+🎉 Once approved and merged, let your colleagues know that any user can immediately use the global institutional profile for all nf-core pipelines with just the `-profile` flag!
 
 ```bash
 nextflow run nf-core/<pipeline> \
@@ -571,7 +591,9 @@ Now time to sit back and feel good for helping yourself and all institutional Ne
 
 ### If your cluster often have too-full harddisk space issues
 
-Some clusters often have very strict user HDD-space footprint restrictions (or just is often full) 💾. You can minimise the footprint that Nextflow runs use by using the `cleanup` directive.
+💾 Some clusters often have very strict user HDD-space footprint restrictions (or just is often full).
+
+🛀 You can minimise the footprint that Nextflow runs use by using the `cleanup` directive.
 
 This directive goes _outside_ any of the dedicated scopes, and is simply defined as:
 
@@ -579,7 +601,7 @@ This directive goes _outside_ any of the dedicated scopes, and is simply defined
 cleanup = true
 ```
 
-This directive will, on a _successful_ completion of a Nextflow run, automatically delete all intermediate files stored in the `work/` directory 🛀. Note that none of the 'published' files in the `--outdir` results directory will be deleted if the pipeline specifies to _copy_ results files, _however_ removal of these intermediate files will mean debugging 'silent fails' more difficult.
+This directive will, on a _successful_ completion of a Nextflow run, automatically delete all intermediate files stored in the `work/` directory. Note that none of the 'published' files in the `--outdir` results directory will be deleted if the pipeline specifies to _copy_ results files, _however_ removal of these intermediate files will mean debugging 'silent fails' more difficult.
 
 To get around this, we suggest that you can optionally make an additional internal profile called debug:
 
