@@ -178,7 +178,7 @@ $(function () {
         param_row = $( generate_param_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
         schema_order_change();
-        scroll_to( param_row );
+        scroll_to(param_row,140);
         new_param_idx += 1;
 
         // Update printed schema in page
@@ -209,7 +209,7 @@ $(function () {
         schema['definitions'][new_id] = new_group;
         param_row = $( generate_group_row(new_id, new_group) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        scroll_to( param_row );
+        scroll_to( param_row,140);
         init_group_sortable();
         schema_order_change();
         new_group_idx += 1;
@@ -241,11 +241,11 @@ $(function () {
         if(target.is(':hidden')){
             $('.schema-panel:visible').fadeOut('fast', function(){
                 target.fadeIn('fast');
-                scroll_to(target);
+                scroll_to(target,140);
             });
         } else {
             // Already visible, just scroll to top
-            scroll_to(target);
+            scroll_to(target,140);
         }
 
         // Post the results to PHP when finished
