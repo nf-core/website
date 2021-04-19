@@ -31,7 +31,5 @@ This will cover:
 * How can you create one using `nf-core/tools`
 
 The talk will be presented on Zoom and live-streamed on YouTube:
-
-TODO: add zoom and youtube links
 * Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/PU6vAj_7WRM>
