@@ -74,11 +74,10 @@ if(file_exists($gh_pipeline_schema_fn)){
       } else {
         $param_default = is_string($param['default']) ? "'" . $param['default'] . "'" : $param['default'];
         $dropdown_label = $default_val != '' ? 'Options: <code class="text-small">'. $param_default . "</code> (default)" : 'Options';
-        $enum_val = '<div class="btn-group text-muted">
-                      <button type="button" class="btn btn-light bg_code border-0 dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
-                        . $dropdown_label.
-                      '</button>
-                    <div class="dropdown-menu">';
+        $enum_val = '<div class="btn-group bg-code">
+                      <button type="button" class="btn btn-light border-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+                        . $dropdown_label. '</button>
+                    <div class="dropdown-menu bg-code">';
         
         foreach ($param['enum'] as $key => $param_enum) {
           $enum_val .= '<a class="dropdown-item"><code class="text-small">';

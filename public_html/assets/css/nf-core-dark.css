@@ -46,9 +46,13 @@ a.text-secondary:hover {
 a, a:hover, a:focus, a:active {
   color: rgb(111, 178, 232);
 }
-code, a>code, .pipeline-run-cmd .code, .bg_code{
+code, a>code, .pipeline-run-cmd .code{
   background-color: rgba(220,220,220,0.1);
   color: #db9444;
+}
+.bg-code {
+  background-color: rgb(44, 44, 44);
+  color: #999;
 }
 .pipeline-run-cmd .btn{
   border-color: #363F48;
@@ -420,6 +424,15 @@ hr {
   background-color: #2b4764;
   border-color: #2b4764;
   color: #e5e6e7;
+}
+
+.bg-code .btn-light{
+  background-color: rgba(50,50,50,.55)!important;
+  border-color: rgba(50,50,50,.55)!important;
+  color: #999;
+}
+.bg-code .btn-light:hover,.bg-code .btn-light:focus,.bg-code .show>.btn-light.dropdown-toggle{
+  color: rgb(172, 172, 172);
 }
 .schema_row, .schema_row input, .schema_row select, .param_fa_icon {
   background-color: #333;
