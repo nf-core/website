@@ -46,7 +46,7 @@ a.text-secondary:hover {
 a, a:hover, a:focus, a:active {
   color: rgb(111, 178, 232);
 }
-code, .pipeline-run-cmd .code{
+code, a>code, .pipeline-run-cmd .code, .bg_code{
   background-color: rgba(220,220,220,0.1);
   color: #db9444;
 }
@@ -256,7 +256,7 @@ footer.subfooter a {
 }
 footer .btn-light,
 .fa_icon_picker .btn-light{
-  color: #fff;
+  color: #e5e6e7;
   background-color: #6c757d;
   border-color: #6c757d;
 }
@@ -496,7 +496,10 @@ hr {
   border-color: #999;
 }
 .text-muted{
-  color: #999;
+  color: #999 !important;
+}
+.bg-lightgray .text-muted{
+  color: #a9a9a9 !important;
 }
 .toc .list-group .list-group-item {
   color: #999;

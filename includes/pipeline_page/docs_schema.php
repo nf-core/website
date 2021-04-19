@@ -45,26 +45,66 @@ if(file_exists($gh_pipeline_schema_fn)){
       $description = parse_md($param['description'])['content'];
     }
 
-    # Help text
-    $help_text_btn = '';
-    $help_text = '';
-    if(array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0){
-      $help_text_btn = '
-        <button class="btn btn-sm btn-outline-info ml-2 mb-1 mt-1" data-toggle="collapse" href="#'.$param_id.'-help" aria-expanded="false">
-          <i class="fas fa-question-circle"></i> Help
-        </button>';
-      $help_text = '
-        <div class="collapse bg-lightgray col-12 schema-docs-help-text p-2 mb-2 small" id="'.$param_id.'-help">
-          '.parse_md($param['help_text'])['content'].'</div>';
-    }
-
     # default value 
     $default_val = '';
     if(array_key_exists("default", $param) && strlen(trim($param['default'])) > 0){
       $default_val = is_string($param['default'])? "'".$param['default']."'":$param['default'];
-      $default_val = '<code class="text-small"><span class="text-muted">default:</span>'.$default_val.'</code>';
+      $default_val = '<code class="text-small"><span class="text-muted">default: </span>'.$default_val.'</code>';
     }
-    
+
+    # pattern value 
+    $pattern_val = '';
+    if (array_key_exists("pattern", $param) && strlen(trim($param['pattern'])) > 0) {
+      $pattern_val = '<code class="text-small"><span class="text-muted">pattern: </span>' . trim($param['pattern']). '</code>';
+    }
+
+    # min/max value 
+    $minmax_val = '';
+    if (array_key_exists("min", $param) && !empty($param["min"])) {
+      $minmax_val = '<code class="text-small"><span class="text-muted">min: </span>' . $param["min"] . '</code>';
+    } elseif (array_key_exists("max", $param) && !empty($param["max"])) {
+      $minmax_val .= '<code class="text-small"><span class="text-muted"> max: </span>' . $param["max"] . '</code>';
+    }
+
+    # enum value 
+    $enum_val = '';
+    if (array_key_exists("enum", $param) && count($param['enum']) > 0) {
+      if(count($param['enum']) == 1 ){
+        $enum_val = '<code class="text-small"><span class="text-muted">Options: </span>' . implode(' ',$param['enum']) . '</code>';
+      } else {
+        $param_default = is_string($param['default']) ? "'" . $param['default'] . "'" : $param['default'];
+        $dropdown_label = $default_val != '' ? 'Options: <code class="text-small">'. $param_default . "</code> (default)" : 'Options';
+        $enum_val = '<div class="btn-group text-muted">
+                      <button type="button" class="btn btn-light bg_code border-0 dropdown-toggle text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+                        . $dropdown_label.
+                      '</button>
+                    <div class="dropdown-menu">';
+        
+        foreach ($param['enum'] as $key => $param_enum) {
+          $enum_val .= '<a class="dropdown-item"><code class="text-small">';
+          $enum_val .= is_string($param_enum) ? "'" . $param_enum . "'" : $param_enum;
+          if($param_enum==$param['default']){
+            $enum_val .= " (default)";
+            $default_val='';
+          } 
+          $enum_val .="</code></a>";
+        }
+        $enum_val.= '</div></div>';
+      }
+    }
+
+    # Help text
+    $help_text_btn = '';
+    $help_text = '';
+    if (array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0) {
+      $help_text_btn = '
+        <button class="btn btn-sm btn-outline-info ml-2 mb-1 mt-1" data-toggle="collapse" href="#' . $param_id . '-help" aria-expanded="false">
+          <i class="fas fa-question-circle"></i> Help
+        </button>';
+      $help_text = '
+        <div class="collapse bg-lightgray col-12 schema-docs-help-text p-2 mb-2 small" id="' . $param_id . '-help">
+          ' . parse_md($param['help_text'])['content'] . $pattern_val . $minmax_val . '</div>';
+    }
     # Labels
     $labels = [];
     if($is_required){
@@ -98,9 +138,10 @@ if(file_exists($gh_pipeline_schema_fn)){
     return '
     <div class="row param-docs-row border-bottom '.$row_class.'">
       <div class="'.$id_cols.' param-docs-row-id-col">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>', $is_hidden).'</div>
-      <div class="col">'.$param_body.'</div>
-      <div class="col-auto text-right">'.$default_val.' '.$help_text_btn.implode(' ', $labels).'</div>
-      '.$help_text.'
+      <div class="col">'.$param_body. '</div>
+      <div class="col-auto d-flex flex-column align-items-end my-1">' . $default_val. $enum_val . '</div>
+      <div class="col-auto text-right">'.$help_text_btn.implode(' ', $labels).'</div>
+      '.$help_text. '
     </div>';
   }
 
