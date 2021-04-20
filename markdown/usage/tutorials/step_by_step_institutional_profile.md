@@ -227,7 +227,7 @@ params {
 }
 
 process {
-  executor = slurm
+  executor = 'slurm'
 }
 
 ```
@@ -248,7 +248,7 @@ params {
 }
 
 process {
-  executor = slurm
+  executor = 'slurm'
   queue = 'all'
 }
 
@@ -269,7 +269,7 @@ params {
 }
 
 process {
-  executor = slurm
+  executor = 'slurm'
   queue = { task.time <= 2.h ? 'short' : task.time <= 24.h ? 'medium': 'long' }
 }
 
@@ -340,7 +340,7 @@ If you normally need to specify additional 'non-standard' options in the headers
 >   queue = { task.cpus > 24 ? 'big' : 'small' }
 >   maxRetries = 2
 >   clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
->
+>}
 > ```
 
 Where the pipeline-defined memory specification of the each job is inserted into the batch script header using the Nextflow `${task.memory}` variable.
