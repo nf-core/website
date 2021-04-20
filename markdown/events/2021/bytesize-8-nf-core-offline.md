@@ -34,4 +34,4 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/N1rRr4J0Lps>
-* Slides: https://doi.org/10.6084/m9.figshare.14413046.v1
+* Slides: <https://doi.org/10.6084/m9.figshare.14413046.v1>
