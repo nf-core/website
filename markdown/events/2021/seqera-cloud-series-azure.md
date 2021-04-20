@@ -18,7 +18,7 @@ This webinar will start with an overview of Nextflow and its integration with Az
 
 ## Nextflow on Azure Batch
 
-In this webinar, Evan Floden ([@evanfloden]https://twitter.com/evanfloden?lang=en) will present: _**Nextflow on Azure**_
+In this webinar, Evan Floden ([@evanfloden](https://twitter.com/evanfloden?lang=en)) will present: _**Nextflow on Azure**_
 
 He will be joined by Jer-Ming Chia from Microsoft who will provide an overview of Azure Batch.
 
