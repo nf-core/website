@@ -9,7 +9,8 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/PU6vAj_7WRM
 location_url: 
     - https://youtu.be/PU6vAj_7WRM
-    - https://zoom.us/j/95310380847
+    - https://www.bilibili.com/video/BV18h411S76E
+    - https://doi.org/10.6084/m9.figshare.14453214.v1
 ---
 
 # nf-core/bytesize
@@ -31,5 +32,5 @@ This will cover:
 * How can you create one using `nf-core/tools`
 
 The talk will be presented on Zoom and live-streamed on YouTube:
-* Zoom: <https://zoom.us/j/95310380847>
 * YouTube: <https://youtu.be/PU6vAj_7WRM>
+* Slides: <https://doi.org/10.6084/m9.figshare.14453214.v1>
