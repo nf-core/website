@@ -6,6 +6,8 @@ start_date: "2021-04-27"
 start_time: "13:00 CEST"
 end_date: "2021-04-27"
 end_time: "13:30 CEST"
+location_url:
+  - https://zoom.us/j/95310380847
 ---
 
 # nf-core/bytesize
@@ -28,5 +30,6 @@ This will cover:
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
+* Zoom: https://zoom.us/j/95310380847
 * YouTube: TBC
-* Slides: TBC
+* Slides: https://hackmd.io/@jfy133/Hyc_WvXU_
