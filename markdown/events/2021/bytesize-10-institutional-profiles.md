@@ -20,7 +20,7 @@ These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation.
 Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 8: Running pipelines offline
+## Bytesize 10: Making a new institutional profile
 
 This week, James Fellows Yates ([@jfy133](http://github.com/jfy133/)) will present: _**Making a new institutional profile**_
 This will cover:
