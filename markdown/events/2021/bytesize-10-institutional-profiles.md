@@ -30,6 +30,6 @@ This will cover:
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* Zoom: https://zoom.us/j/95310380847
+* Zoom: [https://zoom.us/j/95310380847](https://zoom.us/j/95310380847)
 * YouTube: TBC
-* Slides: https://hackmd.io/@jfy133/Hyc_WvXU_
+* Slides: [https://hackmd.io/@jfy133/Hyc_WvXU_](https://hackmd.io/@jfy133/Hyc_WvXU_)
