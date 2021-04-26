@@ -6,7 +6,8 @@ start_date: "2021-04-27"
 start_time: "13:00 CEST"
 end_date: "2021-04-27"
 end_time: "13:30 CEST"
-location_url:
+youtube_embed: 
+location_url: https://youtu.be/Ym1s6sKGzkw
   - https://zoom.us/j/95310380847
   - https://youtu.be/Ym1s6sKGzkw
 ---
