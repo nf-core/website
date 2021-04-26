@@ -48,7 +48,7 @@ foreach($logins as $login){
 
 <h1 id="organisations"><a href="#organisations" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Organisations</h1>
 <p>Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.</p>
-<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a simple YAML file..</blockquote>
+<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a href="https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml">simple YAML file.</a></blockquote>
 
 <div class="card contributors-map-card">
     <div class="card-body" id="contributors-map"></div>
