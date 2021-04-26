@@ -224,24 +224,6 @@ You can check that all of these settings are done correctly by referring to your
 in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
 This reports the status of various checks and also has the option of fixing errors for you via the GitHub API.
 
-### Social Preview Image
-
-From the [nf-core/logos repository](https://github.com/nf-core/logos), download the [social preview image template](https://github.com/nf-core/logos/blob/master/nf-core-logos/social_preview_image_template.svg), and follow these instructions:
-
-* Open the `social_preview_image_template.svg` file using [Inkscape](https://inkscape.org/) or any other vector graphics editor
-* You might need to install the google font [Maven Pro](https://fonts.google.com/specimen/Maven+Pro)
-* Update the pipeline name
-* If the pipeline name goes beyond the apple, centre the logo in the image
-* Update the pipeline description
-* Save as `assets/nf-core-<pipeline-name>_social_preview.svg`
-* Export as `assets/nf-core-<pipeline-name>_social_preview.png`
-* Upload it on the nf-core pipeline GitHub repository in the _Social Preview_ section in the _Settings_ tab
-
-Unfortunately, these steps cannot be automated, as the description of the pipeline could take one or two lines.
-Line break should look nice and be readable.
-
-If any issue with any of these steps, don't hesitate to contact us on slack [#new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
-
 ### Setting up GitHub Actions and Docker Hub
 
 Just as with your own fork, Docker Hub needs to be set up for the
