@@ -38,7 +38,6 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 <details markdown="1"><summary>Video transcription</summary>
 
 **Note: This text has been edited to make it suitable for reading**
-
 The talk today is going to be less slides and more focused on a live demonstration because it’s probably best to learn this by doing. So please bear with me.
 
 So a quick introduction. What is CI? CI stands for continuous integration, and basically that’s just another way of saying automated tests.
@@ -69,7 +68,7 @@ So lots of different inputs to trigger things and we can have lots of different 
 
 [5:13](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=312) I’ve actually just pushed my change before the talk started, so if I go to the list of commits [5:16](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=318), you will see the latest commit that I pushed here [5:21](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=321).
 
-[5:23]https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=323) If I remove a bunch of to-do things, this is pushed to GitHub [5:30](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=330), and you will see that next to each one of the commits here in this log is a little tick or a cross. These are a summary of all the different tests. I can click on this little tick [5:42](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=342) wherever I see it, and I’ll see a list of the different tests.
+[5:23](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=323) If I remove a bunch of to-do things, this is pushed to GitHub [5:30](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=330), and you will see that next to each one of the commits here in this log is a little tick or a cross. These are a summary of all the different tests. I can click on this little tick [5:42](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=342) wherever I see it, and I’ll see a list of the different tests.
 
 [5:46](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=346) You see here that I’m being told that some of the CI tests are not successful.
 
