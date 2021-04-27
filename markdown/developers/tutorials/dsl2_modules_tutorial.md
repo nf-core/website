@@ -420,7 +420,7 @@ PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
 
-If you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, try a later version of nf-core.
+To save you having to install `pytest-workflow` separately it was added as a dependency for nf-core/tools (`>= 1.13.2`). However, if you find that you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, you could try and install a later version of nf-core/tools to see if that works instead.
 
 In case there are errors, check if the Nextflow version you used was too old.
 You can see this in `log.err` in the directory where output from the test was run (recorded in the output from the command), e.g.: `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`.
