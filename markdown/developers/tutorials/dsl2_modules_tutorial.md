@@ -388,7 +388,7 @@ Now we are ready to run some tests using *pytest-workflow* in order to anticipat
 
 We will follow the instructions on *nf-core* [modules repository](https://github.com/nf-core/modules#running-tests-manually).
 
-Pytest-workflow will be launched using the tags specified in the `tests.yml` we have just modified:
+Pytest-workflow will be launched using the tags specified in the `test.yml` we have just modified:
 
 ```yaml
 tags:
@@ -419,6 +419,17 @@ PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 ```
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
+
+If you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, try a later version of nf-core.
+
+In case there are errors, check if the Nextflow version you used was too old.
+You can see this in `log.err` in the directory where output from the test was run (recorded in the output from the command), e.g.: `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`.
+To run the test with a later version of Nextflow, in this case 21.04.0-edge (see [Nextflow's release page](https://github.com/nextflow-io/nextflow/releases)):
+
+```bash
+NXF_VER="21.04.0-edge" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+```
+
 
 ## Create a Pull Request
 
