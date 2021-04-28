@@ -388,7 +388,7 @@ Now we are ready to run some tests using *pytest-workflow* in order to anticipat
 
 We will follow the instructions on *nf-core* [modules repository](https://github.com/nf-core/modules#running-tests-manually).
 
-Pytest-workflow will be launched using the tags specified in the `tests.yml` we have just modified:
+Pytest-workflow will be launched using the tags specified in the `test.yml` we have just modified:
 
 ```yaml
 tags:
@@ -419,6 +419,15 @@ PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 ```
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
+
+To save you having to install `pytest-workflow` separately it was added as a dependency for nf-core/tools (`>= 1.13.2`). However, if you find that you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, you could try and install a later version of nf-core/tools to see if that works instead.
+
+The minimum Nextflow version required to run the tests can be found in [this `nextflow.config` file](https://github.com/nf-core/modules/blob/d63ff4ba1b08cd0dc05c375efa69885297de7507/tests/config/nextflow.config#L28) in the nf-core/modules repository. If the version of Nextflow you are using is older than the version specified there you may get an error such as `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`. The error will be reported in `log.err` in the directory where the outputs from the tests were generated. See the Nextflow [releases](https://github.com/nextflow-io/nextflow/releases) and [installation](https://www.nextflow.io/docs/latest/getstarted.html#installation) pages to install a later version.
+
+```bash
+NXF_VER="21.04.0-edge" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+```
+
 
 ## Create a Pull Request
 
