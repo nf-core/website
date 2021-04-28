@@ -32,6 +32,5 @@ This will cover:
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* Zoom: [https://zoom.us/j/95310380847](https://zoom.us/j/95310380847)
 * YouTube: [https://youtu.be/Ym1s6sKGzkw](https://youtu.be/Ym1s6sKGzkw)
 * Slides: [https://hackmd.io/@jfy133/Hyc_WvXU_](https://hackmd.io/@jfy133/Hyc_WvXU_)
