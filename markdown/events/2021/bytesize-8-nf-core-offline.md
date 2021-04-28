@@ -37,7 +37,6 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 * Slides: <https://doi.org/10.6084/m9.figshare.14413046.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
-
 **Note: This transcript has been modified to make it reader-friendly**
 
 [0:32](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=32) Thank you, I will share my screen.
@@ -56,7 +55,7 @@ Then I’m going to transfer all that to an offline machine and then run the pip
 
 I’ve done the downloading already, so I’m not doing it here. This is not a live demonstration.
 
-[1:45](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=105) So my set-up is loosely based on the system I am using. 
+[1:45](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=105) So my set-up is loosely based on the system I am using.
 
 In Sweden, we have this server, which is completely offline and we can send files to the server via a shared folder that we can connect to with `sftp`.
 
@@ -168,7 +167,7 @@ Then use parallel for faster downloads, and `--compress none` because it’s muc
 
 [12:05](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=725) Apart from that, my main tips are read the docs, try things out, and don’t hesitate to ask questions.
 
-**Conversation after comment from Phil**
+> **Conversation after comment from Phil**
 
 [13:44](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=824) Just at the end of your slides Maxime, you mentioned that you needed to set the config base parameter, is that right?
 
