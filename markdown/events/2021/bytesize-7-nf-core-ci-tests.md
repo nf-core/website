@@ -62,7 +62,7 @@ So lots of different inputs to trigger things and we can have lots of different 
 
 [4:46](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=286) Then if you try and replicate what I’m doing right now with the production, with the main stable tag, it won’t work yet. But hopefully when we release this.
 
-[4:52](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=292) So anyway I’ve got my nf-core/pipeline here, and I’ve made some changes such as updating the changelog here [5:00](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=301).
+[4:52](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=292) So anyway I’ve got my nf-core/pipeline here, and I’ve made some changes such as updating the `CHANGELOG` here [5:00](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=301).
 
 [5:06](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=306) I’ve forked this pipeline, so you can see this is my Github username, and this is this pipeline that you can see is forked from the main one.
 
@@ -86,7 +86,7 @@ But it’s really helpful for us to code in a standardised way because we have s
 
 It allows us to follow some sort of common guideline, and so we make heavy use of what we call code linters or code formatters, and this is what we are running into here [6:42](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=402).
 
-If you’re new to nf-core, it’s likely that you’ll hit this if you haven’t used it before. You’ll just add something to a change log and it’ll look fine to you. Then you’ll push it and see a test failing.
+If you’re new to nf-core, it’s likely that you’ll hit this if you haven’t used it before. You’ll just add something to a `CHANGELOG` and it’ll look fine to you. Then you’ll push it and see a test failing.
 
 So what this test does is it runs a command called ´markdownlint´ [6:56](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=416), which is a package on [npm](https://www.npmjs.com/package/markdownlint) which you can install yourself.
 
@@ -94,13 +94,13 @@ So what this test does is it runs a command called ´markdownlint´ [6:56](https
 
 [7:06](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=426) So I can run this locally if I want to, and it should give me exactly the same output.
 
-[7:11](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=431) And you can see that it says on this file change log on line 6, that there’s something wrong with this rule in this linting tool where it says headings should be surrounded by blank lines.
+[7:11](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=431) And you can see that it says on this file `CHANGELOG` on line 6, that there’s something wrong with this rule in this linting tool where it says headings should be surrounded by blank lines.
 
 [7:28](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=448) You can write markdown or .yml or these other linters that we have and just see if it fails and then fix it manually, but that’s kind of dull.
 
 [7:43](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=463) So what we recommend is to set these up on the command line yourself, and all these tools have options to fix these things in place. But even better is to install plugins, which are a part of your browser.
 
-[7:52](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=473) So I have a plugin for vs code, which is what I am using here (and is fair for markdown linting).
+[7:52](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=473) So I have a plugin for vscode, which is what I am using here (and is fair for markdown linting).
 
 [7:58](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=478) In fact that is why I have this wiggly line along here because it says there’s something wrong with it. But best of all, it has automatic formatting built-in.
 
@@ -110,7 +110,7 @@ So once you have your environment set up like this [8:10](https://youtu.be/U9LG_
 
 So I recommend setting this up. We’ve recently done set this extension pack up (with included extensions), and one of them is called `markdownlint`.
 
-[8:35](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=515) So if you just type in nf-core into the vs code package, you find this [8:39](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=519).
+[8:35](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=515) So if you just type in nf-core into the vscode package, you find this [8:39](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=519).
 
 Install it and activate all the things. One of them will be markdown, and you’ll get this kind of magic behaviour.
 
@@ -122,7 +122,7 @@ You can see that this is a new action named after the commit running here [9:16]
 
 [9:30](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=570) So it’s just installed markdown lint and it has run markdown lint, and there is no output, which is a good thing.
 
-[9:35](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=575) And now I have  a green tick next to markdown, so we have solved problem number one.
+[9:35](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=575) And now I have a green tick next to markdown, so we have solved problem number one.
 
 [9:43](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=583) So the first class of continuous integration tests that we have is code linting or markdown yml, they’re all the same. Set up in your code editor and forget about it.
 
@@ -224,7 +224,7 @@ It can be quite aggressive, but if you don’t like it, you can always undo it b
 
 [17:35](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1055) I had said that tests can run on different event types, so the ones we’ve been looking at are push pull requests, and there’s also a pull request.
 
-So when you open a pull request, you will have tests running on both push and pull requests, but if you have a merge conflict, nothing will run on the port request. So you need to fix all the merge conflicts before the test will run.
+So when you open a pull request, you will have tests running on both push and pull requests, but if you have a merge conflict, nothing will run on the pull request. So you need to fix all the merge conflicts before the test will run.
 
 [17:59](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1079) So while I was talking, some magic happened and we had github actions’ automated comment pop-up.
 
@@ -244,9 +244,9 @@ So when you open a pull request, you will have tests running on both push and pu
 
 [19:13](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1153) So I can do a `git pull upstream master`, and it tells me that I have a merge conflict.
 
-[19:20](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1160) So if I hop into vs code, which is here, you can see the `merge conflicts` and `changelog`.
+[19:20](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1160) So if I hop into vscode, which is here, you can see the `merge conflicts` and `CHANGELOG`.
 
-Sure enough, there are two lines, which have been added kind of in parallel, and git does not know how to merge in both. But, it’s just a `changelog`. We want both of these [19:33](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1173).
+Sure enough, there are two lines, which have been added kind of in parallel, and git does not know how to merge in both. But, it’s just a `CHANGELOG`. We want both of these [19:33](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1173).
 
 [19:34](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1174) So I can click accept both.
 
@@ -264,11 +264,11 @@ Sure enough, there are two lines, which have been added kind of in parallel, and
 
 [20:57](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1257) So now basically, every single time you push or open a pull request, this test profile will be run.
 
-[21:05](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1265) That just run the NextFlow pipeline and checks that it doesn’t crash and picks up a bunch of kind of potential problems here.
+[21:05](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1265) That just run the Nextflow pipeline and checks that it doesn’t crash and picks up a bunch of kind of potential problems here.
 
-I’ve forgotten here that these tests are also quite intelligent. They check whether you have changed anything in the environment (the Docker file or Conda). If you have, then it will build a new docker image before running the pipeline. If you haven’t, it will just pull it from docker, which is a lot quicker.
+I’ve forgotten here that these tests are also quite intelligent. They check whether you have changed anything in the environment (the Docker file or Conda). If you have, then it will build a new Docker image before running the pipeline. If you haven’t, it will just pull it from Docker, which is a lot quicker.
 
-[21:31](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1291) So we have to wait for this now to build a new Docker image, which might take too much time. But after that, you can see it’s going to install NextFlow and will then run the pipeline and check that it exits with a successful exit code.
+[21:31](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1291) So we have to wait for this now to build a new Docker image, which might take too much time. But after that, you can see it’s going to install Nextflow and will then run the pipeline and check that it exits with a successful exit code.
 
 [21:42](https://youtu.be/U9LG_mMQFMY?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1302) So that’s something you need to make sure is passing, and that can be run locally too.
 
