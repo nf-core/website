@@ -6,11 +6,13 @@ subtitle: Installing the software requirements needed for running nf-core pipeli
 ## Nextflow
 
 All nf-core pipelines use Nextflow, so this must be present on the system where you launch your analysis.
-See [nextflow.io](https://www.nextflow.io/) for the latest installation instructions.
+See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed you will probably need to configure Nextflow to run on your system. For instructions, see [_Nextflow configuration_](configuration.md).
+
+### Typical installation
 
 Generally speaking, Nextflow runs on most POSIX systems (Linux, Mac OSX etc) and can typically be installed by running the following commands:
 
-```bash
+```console
 # Make sure that Java v8+ is installed:
 java -version
 
@@ -23,28 +25,62 @@ mv nextflow ~/bin/
 # sudo mv nextflow /usr/local/bin
 ```
 
+### Bioconda installation
+
 You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
 
 First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/user/install.html), notably setting up channels:
 
-```bash
+```console
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-Then install the [`nf-core` package](https://bioconda.github.io/recipes/nf-core/README.html):
+Then install Nextflow:
 
-```bash
+```console
 conda install nextflow
 ```
+
+### Edge releases
+
+Stable releases will be becoming more infrequent as Nextflow shifts its development model to becoming more dynamic via the usage of plugins. This will allow functionality to be added as an extension to the core codebase with a release cycle that could potentially be independent to that of Nextflow itself. As a result of the reduction in stable releases, some pipelines may be required to use Nextflow `edge` releases in order to be able to exploit cutting "edge" features e.g. version 3.0 of the nf-core/rnaseq pipeline requires Nextflow `>=20.11.0-edge` in order to be able to directly download Singularity containers over `http` (see [nf-core/rnaseq#496](https://github.com/nf-core/rnaseq/issues/496)).
+
+There are a number of ways you can install Nextflow `edge` releases, the main difference with stable releases being that you have to `export` the version you would like to install before issuing the appropriate installation/execution commands as highlighted below.
+
+* If you have Nextflow installed already, you can issue the version you would like to use on the same line as the pipeline command and it will be fetched if required before the pipeline execution.
+
+```bash
+NXF_VER="20.11.0-edge" nextflow run nf-core/rnaseq -profile test,docker -r 3.0
+```
+
+* If you have Nextflow installed already, another alternative to the option above is to `export` it as an environment variable before you run the pipeline command:
+
+```bash
+export NXF_VER="20.11.0-edge"
+nextflow run nf-core/rnaseq -profile test,docker -r 3.0
+```
+
+* If you would like to download and install a Nextflow `edge` release from scratch with minimal fuss:
+
+```bash
+export NXF_VER="20.11.0-edge"
+wget -qO- get.nextflow.io | bash
+sudo mv nextflow /usr/local/bin/
+nextflow run nf-core/rnaseq -profile test,docker -r 3.0
+```
+
+> Note if you don't have `sudo` privileges required for the last command above then you can move the `nextflow` binary to somewhere else and export that directory to `$PATH` instead. One way of doing that on Linux would be to add `export PATH=$PATH:/path/to/nextflow/binary/` to your `~/.bashrc` file so that it is available every time you login to your system.
+
+* Manually download and install Nextflow from the available [assets](https://github.com/nextflow-io/nextflow/releases) on Github. See [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation).
+
+### Updating
 
 We recommend using a personal installation of Nextflow where possible, instead of using a system-wide installation. This makes it easier to update.
 
 Updating nextflow is as simple as running `nextflow self-update`
 or `conda update nextflow`, depending on how it was installed.
-
-Once installed you will probably need to configure Nextflow to run on your system. For instructions, see [_Nextflow configuration_](configuration.md).
 
 ## Pipeline software
 
