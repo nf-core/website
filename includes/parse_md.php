@@ -116,7 +116,7 @@ function parse_md($markdown){
 
   
   // create ToC
-  if (!isset($no_auto_toc) & !$no_auto_toc & preg_match_all('~<h([1-6].*?)>(.*?)</h([1-6])>~Uis', $content, $matches) > 0) {
+  if (!isset($no_auto_toc) & !$no_auto_toc & preg_match_all("~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis", $content, $matches) > 1) {
     # main row + content
     $content = '<div class="row"><div class="col-12 col-lg-9">
                       <div class="rendered-markdown publication-page-content">' . $content . '</div>

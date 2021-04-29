@@ -267,7 +267,7 @@ function generate_toc($html_string)
       $id = trim($match[3]);
       $after_attrs = trim($match[4]);
       $h_content = $match[5];
-      $name = trim(str_replace('&nbsp;', '', htmlentities(strip_tags($h_content))));
+      $name = trim(str_replace(['&nbsp;','&amp;'], ['','&'], htmlentities(strip_tags($h_content, $allowed_tags= ['code']))));
       if ($level > $curr_level) {
         $toc .= "\n" . '<div class="list-group">' . "\n";
         $counter += 1;
@@ -280,8 +280,8 @@ function generate_toc($html_string)
         }
       }
       $curr_level = $level;
-      if (preg_match('/<code>.*?<\/code>/', $whole_str)) {
-        $name = '<code>' . $name . '</code>';
+      if (preg_match('/<code>.*?<\/code>/', $whole_str,$code_match)) {
+        $name = html_entity_decode($name);
       }
       if (preg_match('/<i.*?<\/i>/', $whole_str, $icon_match)) {
         $name = $icon_match[0] . $name;
