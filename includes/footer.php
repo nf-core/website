@@ -83,7 +83,7 @@ if(isset($subfooter) and $subfooter){
               <li><a href="/developers/guidelines">Guidelines</a></li>
               <li><a href="/developers/adding_pipelines">Adding a new pipeline</a></li>
               <li><a href="/developers/release_checklist">Release checklist</a></li>
-              <li><a href="/errors">Lint error codes</a></li>
+              <li><a href="/tools-docs">Lint error codes</a></li>
               <li><a href="/developers/sync">Template synchronisation</a></li>
               <li><a href="/developers/design_guidelines">Design Guidelines</a></li>
             </ul>

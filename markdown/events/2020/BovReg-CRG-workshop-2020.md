@@ -21,3 +21,26 @@ GitHub repository.
 
 This event is being organized by the CRG and the contact person is Jose Espinosa-Carrasco ([@joseespinosa](https://github.com/joseespinosa),
 [joseantonio.espinosa@crg.eu](mailto:joseantonio.espinosa@crg.eu)).
+
+## Recorded videos
+
+### Introduction to nf-core
+
+Phil Ewels.
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/-GcuxoIpfOc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### nf-core pipelines
+
+Harshil Patel.
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hCGuF9bA9ho" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### Developing with nf-core
+
+Phil Ewels.
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/lUJ1L-qDeXM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
