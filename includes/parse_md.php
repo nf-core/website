@@ -22,6 +22,7 @@ function parse_md($markdown){
   global $no_auto_toc;
   global $title;
   global $subtitle;
+  global $theme;
 
   $output = array();
   // Load the docs markdown
@@ -97,17 +98,24 @@ function parse_md($markdown){
     $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
   }
   // Add CSS classes to tables
-  $content = str_replace('<table>', '<div class="table-responsive"><table class="table table-bordered table-striped table-sm small">', $content);
-  $content = str_replace('</table>', '</table></div>', $content);
+  // Still might break if we have multiple tables and some have custom HTML attrs, but should be good enough for most situations
+  if (stripos($content,   '<table>') !== false) {
+    $content = str_replace('<table>', '<div class="table-responsive"><table class="table table-bordered table-striped table-sm small">', $content);
+    $content = str_replace('</table>', '</table></div>', $content);
+  }
+
+  // Handle dark-mode sensitive images
+  if($theme == 'dark'){
+    $content = str_replace('img/contributors-colour/', 'img/contributors-white/', $content);
+  }
 
   // Find and replace HTML content if requested
   if(isset($html_content_replace)){
     $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
   }
 
-  // Find and replace emojis names with images
-  $content = preg_replace('/:(?!\/)([\S]+?):/','<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">',$content);
-
+  
+  // create ToC
   if (!isset($no_auto_toc) & !$no_auto_toc & preg_match_all('~<h([1-6].*?)>(.*?)</h([1-6])>~Uis', $content, $matches) > 0) {
     # main row + content
     $content = '<div class="row"><div class="col-12 col-lg-9">
@@ -125,7 +133,19 @@ function parse_md($markdown){
     $content .=  '</div>'; # end of the row
   }
 
-  $output["content"] = $content;
+  // Find and replace emojis names with images
+  $content = preg_replace('/:(?!\/)([\S]+?):/', '<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">', $content);
+
+  $content = preg_replace_callback('/:(?!\/)([\S]+?):/',function($match){
+    # check if match is actually an emoji name
+    if (file_get_contents("https://github.githubassets.com/images/icons/emoji/$match[1].png") === false) {
+      return $match[0];
+    } else {
+      return '<img class="emoji" alt="'.$match[1].'" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/'.$match[1].'.png">';
+    }
+  },$content);
+  
+  $output['content'] = $content;
   $output["meta"] = $meta;
   $output["title"] = $title;
   $output["subtitle"] = $subtitle;

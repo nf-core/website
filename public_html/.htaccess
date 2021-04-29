@@ -6,6 +6,10 @@
     RewriteRule ^/?usage/local_installation$ /usage/installation? [L,R=301]
     RewriteRule ^/?usage/adding_own_config$ /usage/configuration? [L,R=301]
     RewriteRule ^/?usage/nextflow_tutorial$ /usage/nextflow? [L,R=301]
+    RewriteRule ^/?usage/nf_core_tutorial$ /usage/tutorials/nf_core_tutorial? [L,R=301]
+    
+    # Specific convenience URLs
+    RewriteRule ^/?bilibili/?$ https://space.bilibili.com/1280248035?spm_id_from=333.788.b_765f7570696e666f.1 [R=301,L]
 
     # Redirect https to https
     RewriteCond %{SERVER_PORT} 80

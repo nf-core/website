@@ -178,7 +178,7 @@ $(function () {
         param_row = $( generate_param_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
         schema_order_change();
-        scroll_to( param_row );
+        scroll_to(param_row,140);
         new_param_idx += 1;
 
         // Update printed schema in page
@@ -209,7 +209,7 @@ $(function () {
         schema['definitions'][new_id] = new_group;
         param_row = $( generate_group_row(new_id, new_group) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        scroll_to( param_row );
+        scroll_to( param_row,140);
         init_group_sortable();
         schema_order_change();
         new_group_idx += 1;
@@ -241,11 +241,11 @@ $(function () {
         if(target.is(':hidden')){
             $('.schema-panel:visible').fadeOut('fast', function(){
                 target.fadeIn('fast');
-                scroll_to(target);
+                scroll_to(target,140);
             });
         } else {
             // Already visible, just scroll to top
-            scroll_to(target);
+            scroll_to(target,140);
         }
 
         // Post the results to PHP when finished
@@ -797,7 +797,7 @@ $(function () {
         if(param['type'] == 'string'){
             $('.settings_pattern_group').show();
         }
-        if(param['type'] == 'number'){
+        if(['integer', 'number'].includes(param['type'])){
             $('.settings_minmax_group').show();
         }
 
@@ -828,8 +828,8 @@ $(function () {
 
         var settings = {};
         settings.pattern = $('#settings_pattern').val().trim();
-        settings.minimum = parseFloat($('#settings_minimum').val().trim());
-        settings.maximum = parseFloat($('#settings_maximum').val().trim());
+        settings.minimum = $('#settings_minimum').val().trim()===""? "": parseFloat($('#settings_minimum').val().trim());
+        settings.maximum = $('#settings_maximum').val().trim()===""? "": parseFloat($('#settings_maximum').val().trim());
         settings.enum = $('#settings_enum').val().trim().split('|');
         // Trim whitespace from each element and remove empties
         settings.enum = $.map(settings.enum, $.trim);
@@ -838,27 +838,39 @@ $(function () {
         // convert number strings back to numbers
         if(["integer", "number"].includes(param["type"])) {
             settings.enum = $.map(settings.enum, function (el) {
-                return parseFloat(el);
+                var number_val = parseFloat(el);
+                if(isNaN(number_val)){
+                    alert('Error: Enumerated values have to be numeric for pamater types "integer" and "number".');
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                return number_val;
             });
         }
         
 
-        // Validate inputs
-        if(isNaN(settings.minimum)){
-            alert('Error: Minimum value must be numeric');
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        if(isNaN(settings.maximum)){
-                alert('Error: Maximum value must be numeric');
+        // Validate min-max values
+        if (
+            ["integer", "number"].includes(param["type"]) &&
+            (settings.minimum !== "" ||
+            settings.maximum !== "")
+        ) {
+            if (isNaN(settings.minimum)) {
+                alert("Error: Minimum value must be numeric");
                 e.preventDefault();
                 e.stopPropagation();
             }
-        if(!isNaN(settings.minimum) && !isNaN(settings.maximum)){
-            if(settings.maximum <= settings.minimum){
-                alert('Error: Maximum value must be more than minimum');
+            if (isNaN(settings.maximum)) {
+                alert("Error: Maximum value must be numeric");
                 e.preventDefault();
                 e.stopPropagation();
+            }
+            if (settings.minimum !== "" && settings.maximum !== "") {
+                if (settings.maximum <= settings.minimum) {
+                alert("Error: Maximum value must be more than minimum");
+                e.preventDefault();
+                e.stopPropagation();
+                }
             }
         }
         // Update the schema
