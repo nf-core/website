@@ -93,7 +93,7 @@ Or this command to install the `dev` version:
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
-If using conda, first set up for bioconda as described in the [bioconda docs](https://bioconda.github.io/user/install.html) and then install nf-core:
+If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/user/install.html) (especially setting the channel order) and then install nf-core:
 
 ```bash
 conda install nf-core
@@ -390,7 +390,7 @@ This runs through a series of tests and reports failures, warnings and passed te
 The linting code is closely tied to the _nf-core_ template and both change over time.
 When we change something in the template, we often add a test to the linter to make sure that pipelines do not use the old method.
 
-Each lint test has a number and is documented on the [nf-core website](https://nf-co.re/errors).
+Each lint test has a number and is documented on the [nf-core website](https://nf-co.re/tools-docs).
 When warnings and failures are reported on the command line, a short description is printed along with a link to the documentation for that specific test on the website.
 
 Code linting is run automatically every time you push commits to GitHub, open a pull request or make a release.

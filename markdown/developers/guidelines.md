@@ -12,22 +12,17 @@ pipelines must adhere to.
 > If you're thinking of adding a new pipeline to nf-core, please read the documentation
 > about [adding a new pipeline](adding_pipelines.md).
 
-## General rules
+* [Workflow specificity](#workflow-specificity)
+* [Workflow size](#workflow-size)
+* [Use the template](#use-the-template)
+* [Minimum requirements](#minimum-requirements)
+* [Recommended features](#recommended-features)
+* [Workflow name](#workflow-name)
+* [Coding style](#coding-style)
+* [Credits and Acknowledgements](#credits-and-acknowledgements)
+* [Ask the community](#ask-the-community)
 
-The instructions below are subject to interpretation and specific scenarios.
-If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
-You can join the nf-core Slack [here](/join).
-
-### Workflow size
-
-We aim to have a _"not too big, not too small"_ rule with nf-core pipelines.
-This is deliberately fuzzy, but as a rule of thumb workflows should contain at
-least three processes and be simple enough to run that a new user
-can realistically run the pipeline after spending ten minutes reading the docs.
-Pipelines should be general enough to be of use to multiple groups and research
-projects, but comprehensive enough to cover most steps in a primary analysis.
-
-### Workflow specificity
+## Workflow specificity
 
 The nf-core community was founded to allow different groups to collaborate on
 pipelines instead of reinventing the same workflows in each institute.
@@ -37,6 +32,23 @@ However, if the _purpose_ of the pipeline tasks and results are different, then 
 
 If you would like to use a different set of tools to do a comparable analysis, then this should be
 added to the existing pipeline instead of creating something new.
+
+## Workflow size
+
+We aim to have a _"not too big, not too small"_ rule with nf-core pipelines.
+This is deliberately fuzzy, but as a rule of thumb workflows should contain at
+least three processes and be simple enough to run that a new user
+can realistically run the pipeline after spending ten minutes reading the docs.
+Pipelines should be general enough to be of use to multiple groups and research
+projects, but comprehensive enough to cover most steps in a primary analysis.
+
+## Use the template
+
+All nf-core pipelines must be built using the nf-core template.
+Ideally, they should be _started_ using the `nf-core create` command which
+makes a new git repository and the initial commits and branches.
+This is to ensure that the automated sync process that keeps all nf-core
+pipelines up to date can work. See the [sync docs](/developers/sync) for details.
 
 ## Minimum requirements
 
@@ -59,7 +71,7 @@ All nf-core pipelines _must_ adhere to the following:
   * This person should be responsible for basic maintenance and questions
 * The pipeline must not have any failures in the `nf-core lint` tests
   * These tests are run by the [nf-core/tools](https://github.com/nf-core/tools) package and validate the requirements listed on this page.
-  * You can see the list of tests and how to pass them on the [error codes page](https://nf-co.re/errors).
+  * You can see the list of tests and how to pass them on the [error codes page](https://nf-co.re/tools-docs).
 
 ## Recommended features
 
@@ -89,7 +101,7 @@ In documentation, please refer to your pipeline as `nf-core/yourpipeline`.
 
 The nf-core style requirements are growing and maturing over time.
 Typically, as we agree on a new standard we try to build a test for it into the `nf-core lint` command.
-As such, to get a feel for what's expected, please read the [lint test error codes](https://nf-co.re/errors).
+As such, to get a feel for what's expected, please read the [lint test error codes](https://nf-co.re/tools-docs).
 
 However, in general, pipelines must:
 
@@ -102,3 +114,22 @@ However, in general, pipelines must:
   * The nf-core `dev` branch should be set as the default branch up until the first release
 * Use GitHub releases and [keep a detailed changelog](https://keepachangelog.com/en/1.0.0/) file
 * Follow a versioning approach, e.g. [Semantic Versioning](https://semver.org/) for your pipeline releases
+
+## Credits and Acknowledgements
+
+Where previous work from other pipelines / projects is used within a pipeline, the original author(s) must be properly acknowledged. Some examples and on how you could do that to make sure they feel valued:
+
+* Send them a message via Slack and let them know that you use their work & had to change something to fit your own purpose. If in doubt, check with them to see how they would like to be acknowledged.
+* Check the licence of their code and make sure you obey the rules that this licence imposes (e.g. `CC-BY` means you have to attribute the original creator).
+* If you use portions of pipeline code, even if its just tiny pieces:
+  * Link to the original repository and/or authors.
+  * Leave existing credits and acknowledgement sections intact - there may be more than just a single author involved.
+* If you find bugs / issues, report and fix them upstream in the main project.
+
+If in doubt about what to do, ask the nf-core community about it on Slack.
+
+## Ask the community
+
+The instructions above are subject to interpretation and specific scenarios.
+If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
+You can join the nf-core Slack [here](/join).

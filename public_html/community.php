@@ -48,7 +48,7 @@ foreach($logins as $login){
 
 <h1 id="organisations"><a href="#organisations" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Organisations</h1>
 <p>Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.</p>
-<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a simple YAML file..</blockquote>
+<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a href="https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml">simple YAML file.</a></blockquote>
 
 <div class="card contributors-map-card">
     <div class="card-body" id="contributors-map"></div>
@@ -182,9 +182,10 @@ $(function(){
 has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
 large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden sites are already actively contributing to nf-core, and the other sequencing center
 in Cologne/Bonn (West German Genome Center) has committed to joining and contributing its expertise.</p>
+<div class="clearfix"></div>
 
 <h3 id="easi_genomics_testimonial"><a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/contributors-colour/EASI-Genomics.svg" class="float-right pl-4" />
+    <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark' ? 'white' : 'colour'; ?>/EASI-Genomics.svg" class="float-right pl-4 darkmode-image" />
     EASI-Genomics
 </h3>
 <p><a href="https://www.easi-genomics.eu/" target="_blank">EASI-Genomics</a>
@@ -193,6 +194,7 @@ EASI-Genomics aims to build a community of practice, which leverages advanced se
 It organizes competitive calls to get fully-funded access to state-of-the-art facilities and services, including integrative data analysis.</p>
 <p>EASI-Genomics partners are committed to working within community best-practices for the bioinformatics processing of the data that they produce.
 To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
+<div class="clearfix"></div>
 
 <h3 id="bovreg_testimonial"><a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-right pl-4" />
@@ -202,14 +204,14 @@ To this end they will use <em>nf-core</em> pipelines to process data and contrib
 <a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
 to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.</p>
 <p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
-
+<div class="clearfix"></div>
 <h3 id="dockstore"><a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="350px" src="/assets/img/contributors-colour/dockstore.svg" class="float-right pl-0" />
     Dockstore
 </h3>
 <p><a href="https://www.dockstore.org/" target="_blank">Dockstore</a> is a platform used by researchers across the world to share reproducible computational analyses and hosts hundreds of individual tools and workflows created by more than a hundred different contributors.</p>
 <p>By using lightweight containerization technology along with the essential metadata needed for combining tools into scientific analysis "recipes", Dockstore allows users to create, share, publish (using citable DOIs) and reproducibly reuse these recipes across platforms and compute environments.</p>
-
+<div class="clearfix"></div>
 
 <h3 id="workflowhub"><a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     <img width="250px" src="/assets/img/contributors-colour/workflowhub.svg" class="float-right px-4" />
@@ -217,7 +219,7 @@ to form a consortium that will provide a comprehensive map of functionally activ
 </h3>
 <p><a href="https://www.workflowhub.eu/" target="_blank">Workflow Hub</a> was created as part of the <a href="https://www.eosc-life.eu/" target="_blank">EOSC-Life</a> WP2: <em>Tools Collaboratory and Research Objects</em> to glue in federated workflow and tool descriptions across research infrastructures.</p>
 <p>It is workflow system agnostic, supports a repository of workflows in native and standardised form and the virtual aggregation of established tool, workflow and registries to support discovery over a fragmented ecosystem. The federated registry will support a common API to simplify access for tool developers.</p>
-
+<div class="clearfix"></div>
 
 <h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 
