@@ -49,7 +49,7 @@ Then I’m going to download the DSL2 pipeline using `nf-core/tools` to get the 
 
 Then we need reference data, so I’m going to download AWS iGenomes.
 
-Then I will download NextFlow as well.
+Then I will download Nextflow as well.
 
 Then I’m going to transfer all that to an offline machine and then run the pipeline.
 
@@ -61,7 +61,7 @@ In Sweden, we have this server, which is completely offline and we can send file
 
 That’s what I will be doing now.
 
-[2:11](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=132) So first on the machine that can actually with this offline machine (I am connecting to this machine) with the `ssh` command.
+[2:11](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=132) So first on the machine that can actually communicate with this offline machine (I am connecting to this machine) with the `ssh` command.
 
 Then I’m going to install the latest version of nf-core/tools.
 
@@ -109,13 +109,13 @@ I think it’s good to compress if you just have the script, but if you have you
 
 [6:12](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=372) Then let’s try and download the rest.
 
-So first I want to download NextFlow.
+So first I want to download Nextflow.
 
-If you look at the NextFlow release, you should have access to the NextFlow with the name of the release `-all`.
+If you look at the Nextflow release, you have the Nextflow download URL with the name of the release, and then `-all`.
 
-If you don’t know this one directly, you don’t need internet access for NextFlow, which is very useful in our case.
+If you don’t know this one directly, you don’t need internet access for Nextflow, which is very useful in our case.
 
-In my case, I have access to NextFlow through the cluster I work with, but in this current fictional case I don’t, so I’m going to download NextFlow myself.
+In my case, I have access to Nextflow through the cluster I work with, but in this current fictional case I don’t, so I’m going to download Nextflow myself.
 
 In real life I also have access to the AWS iGenomes set up, but again, let’s assume it’s not set up.
 
@@ -147,7 +147,7 @@ But that’s more or less easy to do.
 
 So here I’m going to show what you can do if you don’t really use a profile.
 
-So I’m specifying the Singularity cache directory with `NXF_SINGULARITY_CACHEDIR`.
+So I’m specifying the Singularity cache directory with `$NXF_SINGULARITY_CACHEDIR`.
 
 So you can do that, but I think it’s better if you specify the cache in the config file.
 
@@ -159,7 +159,7 @@ I suppose that everything has been specified in the offline profile.
 
 So here are some tips.
 
-If you have a different set up, for example if you have access to a head node that is online and the others are offline, you can set up `NXF_SINGULARITY_CACHEDIR` to use a central cache for container downloads.
+If you have a different set up, for example if you have access to a head node that is online and the others are offline, you can set up `$NXF_SINGULARITY_CACHEDIR` to specify a central cache for container downloads.
 
 The latest version of nf-core/tools is quite smart, and won’t download the same container more than once.
 
