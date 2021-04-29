@@ -12,6 +12,12 @@ h1, h2, h3, h4, h5,
   color: #159957;
   font-weight: 700;
 }
+.text-success, a.text-success:hover {
+  color: #159957 !important;
+}
+a.text-secondary:hover {
+  color: #6c757d !important;
+}
 a {
   color: #1e6bb8;
 }
@@ -161,6 +167,10 @@ img.emoji{
 .subheader-triangle-down:before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 50,100 0,0' style='fill:%23ededed;' /%3E%3C/svg%3E");
 }
+.subheader-triangle-down-under {
+  z-index: -100000;
+  margin-top: -40px;
+}
 
 .btn-outline-success:not(:disabled):not(.disabled) {
     border-color: #22ae63;
@@ -196,7 +206,7 @@ img.emoji{
 .btn.arrow-hover span {
   display: inline-block;
   position: relative;
-  transition: 0.3s all ease;
+  transition: 0.15s all ease-in-out;
 }
 .btn.arrow-hover span:after {
   content: '\00bb';
@@ -204,7 +214,7 @@ img.emoji{
   opacity: 0;
   top: 0;
   right: -20px;
-  transition: 0.3s all ease;
+  transition: 0.15s all ease-in-out;
   font-size: 2rem;
   line-height: 1.5rem;
 }
@@ -216,18 +226,30 @@ img.emoji{
   opacity: 1;
   right: -3px;
 }
+.btn.btn-sm.arrow-hover:hover span {
+  padding-right: 18px;
+}
+.btn.btn-sm.arrow-hover span:after {
+  font-size: 1.5rem;
+  line-height: 1.1rem;
+}
+.btn.btn-outline-success.arrow-hover span:after {
+  color: #ffffff;
+}
 
 .btn.disabled .disabled btn:disabled {
   cursor: not-allowed;
 }
 
-code {
+code{
   background-color: rgba(220,220,220,0.3);
   border-radius: 3px;
   padding: 2px 6px;
   color: inherit;
 }
-
+bg-code{
+  background-color: rgb(117, 117, 117);
+}
 .main-content pre {
   background-color: rgba(220,220,220,0.3);
   border-radius: 3px;
@@ -361,6 +383,10 @@ footer, footer a, footer a:hover, footer a:focus, footer a:active {
   margin-top: -30px;
   padding: 4rem 0 1rem;
 }
+.mainpage-subheader-heading-header {
+  background-color: #dddddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 .main-content {
   min-height: 300px;
   margin-top: 1rem;
@@ -439,8 +465,20 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
  */
 .homepage-header .homepage-header-contents {
   margin: 3rem auto 0;
-  padding: 3rem;
+  padding: 0;
   text-align: center;
+}
+.homepage-header-fa-background {
+  position:absolute;
+  top:10px;
+  left:30px ;
+  font-size: 16em;
+  opacity:0.2;
+}
+
+.homepage-header .event-triangle-down{
+  padding-bottom: 3rem;
+  clip-path:  polygon(100% 0%,100% 78%,50% 90%,0 78%,0% 0%);
 }
 
 /* Fancy call to action button on homepage
@@ -794,7 +832,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   margin-top: .25rem;
 }
 
-.pipeline-page-content, .side-sub-subnav {
+.pipeline-page-content,
+.side-sub-subnav {
     padding-top: 50px;
 }
 
@@ -811,15 +850,21 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
 
 /* Stats page */
-.stats_keynumbers .card {
+.stats_keynumbers .card,
+.event-list .card {
   overflow: hidden;
 }
-.stats_keynumbers .bg-icon {
+.stats_keynumbers .bg-icon{
   font-size: 180px;
   color: rgba(0,0,0,0.1);
   position: absolute;
   bottom: -80px;
   right: -20px;
+}
+
+.event-list .fad {
+  --fa-primary-opacity: 0.5;
+  --fa-secondary-opacity: 0.2;
 }
 
 /* Publications page */

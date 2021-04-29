@@ -112,7 +112,7 @@ while($first_page || $next_page){
         $gh_members_url = $next_page;
     }
     $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
-    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
         var_dump($http_response_header);
         echo("\nCould not fetch nf-core members! $gh_members_url");
         continue;
@@ -132,7 +132,7 @@ while($first_page || $next_page){
 // Fetch all repositories at nf-core
 $gh_repos_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_repos_url, false, $gh_api_opts));
-if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
     var_dump($http_response_header);
     die("Could not fetch nf-core repositories! $gh_repos_url");
 }
@@ -160,7 +160,7 @@ foreach($gh_repos as $repo){
     // Annoyingly, two values are only available if we query for just this repo
     $gh_repo_url = 'https://api.github.com/repos/nf-core/'.$repo->name;
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
-    if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+    if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
         var_dump($http_response_header);
         echo("\nCould not fetch nf-core repo! $gh_repo_url");
         continue;
@@ -175,9 +175,10 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         // Views
         $gh_views_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
-        if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
+            echo("\n--------   Could not fetch nf-core repo views! $gh_views_url\n");
             var_dump($http_response_header);
-            echo("\nCould not fetch nf-core repo views! $gh_views_url");
+            echo ("\n--------   End of header for $gh_views_url\n\n\n");
             continue;
         }
         foreach($gh_views->views as $view){
@@ -187,7 +188,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         // Clones
         $gh_clones_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/clones';
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
-        if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             var_dump($http_response_header);
             echo("\nCould not fetch nf-core repo clones! $gh_clones_url");
             continue;
@@ -204,12 +205,12 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
-        if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
+        if(strpos($http_response_header[0], "HTTP/1.1 202") !== false){
             $contribs_try_again[$repo_name] = [
                 'repo_type' => $repo_type,
                 'gh_contributors_url' => $gh_contributors_url
             ];
-        } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        } else if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             var_dump($http_response_header);
             echo("\nCould not fetch nf-core repo contributors! $gh_contributors_url");
             continue;
@@ -243,10 +244,10 @@ if(count($contribs_try_again) > 0){
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root.$repo_name.'.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
-        if(in_array("HTTP/1.1 202 Accepted", $http_response_header)){
+        if(strpos($http_response_header[0], "HTTP/1.1 202") !== false){
             echo("\nTried getting contributors after delay for $repo_name, but took too long.");
             continue;
-        } else if(!in_array("HTTP/1.1 200 OK", $http_response_header)){
+        } else if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             var_dump($http_response_header);
             echo("\nCould not fetch nf-core repo contributors! $gh_contributors_url");
             continue;
@@ -305,7 +306,7 @@ $slack_api_opts = stream_context_create([
     ]
 ]);
 $slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
-if(!in_array("HTTP/1.1 200 OK", $http_response_header) || !isset($slack_users->ok) || !$slack_users->ok){
+if(strpos($http_response_header[0], "HTTP/1.0 200") === false || !isset($slack_users->ok) || !$slack_users->ok){
     var_dump($http_response_header);
     echo("\nCould not fetch slack user list!");
 } else {
