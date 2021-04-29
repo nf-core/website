@@ -8,7 +8,7 @@ end_date: "2021-04-27"
 end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/Ym1s6sKGzkw
 location_url: https://youtu.be/Ym1s6sKGzkw
-  - https://zoom.us/j/95310380847
+  - https://www.bilibili.com/video/BV1BA411V78U
   - https://youtu.be/Ym1s6sKGzkw
 ---
 
@@ -32,6 +32,5 @@ This will cover:
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* Zoom: [https://zoom.us/j/95310380847](https://zoom.us/j/95310380847)
 * YouTube: [https://youtu.be/Ym1s6sKGzkw](https://youtu.be/Ym1s6sKGzkw)
 * Slides: [https://hackmd.io/@jfy133/Hyc_WvXU_](https://hackmd.io/@jfy133/Hyc_WvXU_)
