@@ -40,7 +40,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 [0:36](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=36) Welcome everybody, today's topic is JSON schema, what it is, why we chose to use it, and how it can be utilised.
 
-[0:53](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=53) First we need to talk about parameters. In NextFlow you either have them on the command line with -- in front of it, for example in `main.nf` and in `params.foo`.
+[0:53](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=53) First we need to talk about parameters. In Nextflow you either have them on the command line with `--` in front of it, for example in `main.nf` and in `params.foo`.
 
 [1:12](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=72) When we look through all the pipelines in nf-core, from what I could parse, I found that we have a large number of different parameters, 47 on average but it can go up to 470.
 
@@ -56,7 +56,7 @@ It is a standardised way to describe a data object, and it comes with its own va
 
 [2:32](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=154) Last summer, we added the `nextflow_schema.json` file to the template, which is a description of all the pipeline parameters in a JSON schema format.
 
-[2:47](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=167) Here you see an excerpt of it, and this is the only thing you should actually of the JSON because we are of the opinion that you should never have to need to interact with these complex files.
+[2:47](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=167) Here you see an excerpt of it, and this is the only thing you should actually see of the JSON because we are of the opinion that you should never have to need to interact with these complex files.
 
 We have tools built around them, so you don’t ever have to touch them.
 
@@ -84,9 +84,9 @@ It also shows you the rendered preview of this markdown.
 
 [5:01](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=301) There are four types of parameters: string, number, integer and a boolean.
 
-For these we have made some special features, but for now say we want a string, give it a default value and decide if it’s a required parameter, which means it always has to be failed out.
+For these we have made some special features, but for now say we want a string, give it a default value and decide if it’s a required parameter, which means it always has to be filled out.
 
-We can also say that it should be a hidden parameter, which is used for things you don’t want to have surface for every user.
+We can also say that it should be a hidden parameter, which is used for things you don’t want to be visible for every user.
 
 But it can still be good to interact with it.
 
@@ -112,7 +112,7 @@ You can also hide it and then everything is hidden.
 
 [7:09](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=429) If you now want to quickly put the newly created parameter in, just hit that box or use drag and drop.
 
-When you’re done, you hit finished.
+When you’re done, you hit finish.
 
 [7:19](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=439) Everything is done here, and on the command line you will see that it stops and wrote the parameters to the new file.
 
@@ -144,7 +144,7 @@ All nf-core pipelines require a parameter, but that was missing here and so that
 
 This is a nice way to quickly check that all the parameters are correct before starting up the whole pipeline.
 
-We also have a launch interface where you just write `nf-core launch $pipeline`, so either the name of the pipeline or a dot if you’re in the pipeline.
+We also have a launch interface where you just write `nf-core launch <pipeline>`, so either the name of the pipeline or a dot if you’re in the pipeline.
 
 [9:55](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=595) Similar to the how it was for the build, it validates the schema to ensure that everything looks good, and that the parameters match the schema.
 
@@ -166,13 +166,13 @@ All the parameters here are validated.
 
 [11:30](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=690) Again, I forgot the input parameter, if I add it, I can launch it.
 
-[11:37](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=697) Then we have three options; we can use this ID that takes the parameters we chose for this run, or we can send everything to `Nextflow Tower` to use that as an interface, or we can just copy and paste this one into `nf-params.json`.
+[11:37](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=697) Then we have three options; we can use this ID that takes the parameters we chose for this run, or we can send everything to [Nextflow Tower](https://tower.nf) to use that as an interface, or we can just copy and paste this one into `nf-params.json`.
 
 The latter is actually created if the command line interface is used.
 
-[12:08](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=727) That’s it for how and where we use the nf-core schema, the nextflow schema json file.
+[12:08](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=727) That’s it for how and where we use the nf-core schema, the Nextflow schema json file.
 
-If you want to test your renderings of the markdowns, you can use the website `Docker` image, and for more documentation, you have the link here in the tools section of the documentation.
+If you want to test your renderings of the markdowns, you can use the website Docker image, and for more documentation, you have the link here in the tools section of the documentation.
 
 If you’d like to discuss how this was implemented or have other questions, join us on the `#json-schema` Slack channel. We are happy to help.
 
