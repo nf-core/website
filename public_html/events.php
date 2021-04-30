@@ -157,22 +157,21 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
   $import_moment = true;
   $no_print_content = true;
   $mainpage_container = false;
-  include('../includes/header.php');
-
   // Add in a YouTube embed if we have one
-  if(array_key_exists('youtube_embed', $event)){
-    if(!is_array($event['youtube_embed'])) $event['youtube_embed'] = [$event['youtube_embed']];
-    foreach($event['youtube_embed'] as $embed){
+  if (array_key_exists('youtube_embed', $event)) {
+    if (!is_array($event['youtube_embed'])) $event['youtube_embed'] = [$event['youtube_embed']];
+    $youtube_embed = true;
+    foreach ($event['youtube_embed'] as $embed) {
       $video_id = get_youtube_id($embed);
-      if($video_id){
-        $content .= '
-          <div class="embed-responsive embed-responsive-16by9 mt-3">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        ';
+      if ($video_id) {
+        echo'<script>var video_id="' . $video_id . '"</script>';
       }
     }
   }
+
+  include('../includes/header.php');
+
+  
 
   $toc = generate_toc($content);
 
