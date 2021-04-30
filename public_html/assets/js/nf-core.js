@@ -225,6 +225,9 @@ $(function () {
         scroll_to($(current_href), 0);
     });
 
+    $('details>summary:contains("Video transcript")')
+      .parents("details")
+      .before("<div id='video-placeholder'></div>");
 });
 
 function scroll_to(target_el, offset) {
@@ -233,3 +236,4 @@ function scroll_to(target_el, offset) {
         scrollTop: el_offset
     }, 500);
 }
+    
