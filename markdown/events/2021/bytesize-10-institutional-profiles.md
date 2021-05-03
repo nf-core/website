@@ -33,4 +33,10 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * YouTube: [https://youtu.be/Ym1s6sKGzkw](https://youtu.be/Ym1s6sKGzkw)
-* Slides: [https://hackmd.io/@jfy133/Hyc_WvXU_](https://hackmd.io/@jfy133/Hyc_WvXU_)
+* BiliBili: [https://www.bilibili.com/video/BV1BA411V78U](https://www.bilibili.com/video/BV1BA411V78U)
+
+You can see the slides on HackMD: <https://hackmd.io/@jfy133/Hyc_WvXU_> (shown below)
+
+<div class="embed-responsive embed-responsive-16by9 border shadow">
+  <iframe class="embed-responsive-item" src="https://hackmd.io/@jfy133/Hyc_WvXU_" allowfullscreen></iframe>
+</div>
