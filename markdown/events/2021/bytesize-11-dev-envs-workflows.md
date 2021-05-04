@@ -45,3 +45,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/XB96efweCLI>
 * Zoom: <https://zoom.us/j/95310380847>
+
+You can see the slides on HackMD: <https://hackmd.io/@nf-core/bytesize-11#/> (shown below)
+
+<div class="embed-responsive embed-responsive-16by9 border shadow">
+  <iframe class="embed-responsive-item" src="https://hackmd.io/@nf-core/bytesize-11#/" allowfullscreen></iframe>
+</div>
