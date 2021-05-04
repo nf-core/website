@@ -8,7 +8,7 @@ end_date: "2021-05-04"
 end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/XB96efweCLI
 location_url:
-    - https://zoom.us/j/95563936122
+    - https://zoom.us/j/95310380847
     - https://youtu.be/XB96efweCLI
 ---
 
@@ -44,7 +44,7 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube:
 
 * YouTube: <https://youtu.be/XB96efweCLI>
-* Zoom: <https://zoom.us/j/95563936122>
+* Zoom: <https://zoom.us/j/95310380847>
 
 You can see the slides on HackMD: <https://hackmd.io/@nf-core/bytesize-11#/> (shown below)
 
