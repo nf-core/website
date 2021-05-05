@@ -107,6 +107,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Journal of Proteome Research_ **18**(11), 3876-3884 (2019)](https://pubs.acs.org/doi/10.1021/acs.jproteome.9b00313)
 > doi: [10.1021/acs.jproteome.9b00313](https://doi.org/10.1021/acs.jproteome.9b00313)
 
+### [nf-core/nanoseq](https://nf-co.re/nanoseq)
+
+<!-- pub-stats 10.1101/2021.04.21.440736 -->
+> **A systematic benchmark of Nanopore long read RNA sequencing for transcript level analysis in human cell lines**
+>
+> Ying Chen, Nadia M. Davidson, Yuk Kei Wan, Harshil Patel, Fei Yao, Hwee Meng Low, Christopher Hendra, Laura Watten, Andre Sim, Chelsea Sawyer, Viktoriia Iakovleva, Puay Leng Lee, Lixia Xin, Hui En Vanessa Ng, Jia Min Loo, Xuewen Ong, Hui Qi Amanda Ng, Jiaxu Wang, Wei Qian Casslynn Koh, Suk Yeah Polly Poon, Dominik Stanojevic, Hoang-Dai Tran, Kok Hao Edwin Lim, Shen Yon Toh, Philip Andrew Ewels, Huck-Hui Ng, N.Gopalakrishna Iyer, Alexandre Thiery, Wee Joo Chng, Leilei Chen, Ramanuj DasGupta, Mile Sikic, Yun-Shen Chan, Boon Ooi Patrick Tan, Yue Wan, Wai Leong Tam, Qiang Yu, Chiea Chuan Khor, Torsten Wüstefeld, Ploy N. Pratanwanich, Michael I. Love, Wee Siong Sho Goh, Sarah B. Ng, Alicia Oshlack, Jonathan Göke, SG-NEx consortium
+>
+> [_bioRxiv_ 610741](https://www.biorxiv.org/content/10.1101/2021.04.21.440736v1);
+> doi: [10.1101/610741](https://doi.org/10.1101/2021.04.21.440736)
+
 ### [nf-core/sarek](https://nf-co.re/sarek)
 
 <!-- pub-stats 10.12688/f1000research.16665.2 -->
