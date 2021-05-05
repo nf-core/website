@@ -1,6 +1,6 @@
 ---
 title: "Bytesize 15: Graphic design / pipeline diagrams"
-subtitle: Zandra Fagernäs - LMU Münich / MPI-EVA
+subtitle: Zandra Fagernäs - MPI-SHH
 type: talk
 start_date: "2021-05-25"
 start_time: "13:00 CEST"
