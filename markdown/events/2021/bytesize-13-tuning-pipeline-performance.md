@@ -6,6 +6,10 @@ start_date: "2021-05-18"
 start_time: "13:00 CEST"
 end_date: "2021-05-18"
 end_time: "13:30 CEST"
+youtube_embed: https://youtu.be/Qw1gLpYtMec
+location_url:
+    - https://zoom.us/j/95310380847
+    - https://youtu.be/Qw1gLpYtMec
 ---
 
 # nf-core/bytesize
@@ -23,7 +27,7 @@ This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will pre
 
 This will cover:
 
-* In-depth about analysis of computational resource usage after a pipeline run
+* In-depth analysis of computational resource usage after a pipeline run
 * How to take that back into a custom config to make it more efficient
 
 The talk will be presented on Zoom and live-streamed on YouTube.
