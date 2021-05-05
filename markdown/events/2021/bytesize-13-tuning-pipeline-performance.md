@@ -30,4 +30,7 @@ This will cover:
 * In-depth analysis of computational resource usage after a pipeline run
 * How to take that back into a custom config to make it more efficient
 
-The talk will be presented on Zoom and live-streamed on YouTube.
+The talk will be presented on Zoom and live-streamed on YouTube:
+
+* YouTube: <https://youtu.be/Qw1gLpYtMec>
+* Zoom: <https://zoom.us/j/95310380847>
