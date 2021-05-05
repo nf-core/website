@@ -225,9 +225,14 @@ $(function () {
         scroll_to($(current_href), 0);
     });
 
-    $('details>summary:contains("Video transcript")')
-      .parents("details")
-      .before("<div id='video-placeholder'></div>");
+    if($('details>summary:contains("Video transcript")').length > 0){
+        $('details>summary:contains("Video transcript")')
+            .parents("details")
+            .before("<div id='video-placeholder'></div>");
+    }else if ($(".rendered-markdown").length > 0) {
+        $(".rendered-markdown").append("<div id='video-placeholder'></div>");
+    }
+
 });
 
 function scroll_to(target_el, offset) {
