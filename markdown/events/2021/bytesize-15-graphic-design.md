@@ -1,11 +1,15 @@
 ---
-title: "Bytesize 15: Graphic design / pipeline diagrams"
+title: "Bytesize 14: Graphic design / pipeline diagrams"
 subtitle: Zandra Fagernäs - MPI-SHH
 type: talk
 start_date: "2021-05-25"
 start_time: "13:00 CEST"
 end_date: "2021-05-25"
 end_time: "13:30 CEST"
+youtube_embed: https://youtu.be/5jZPucWXnno
+location_url:
+  - https://zoom.us/j/95310380847
+  - https://youtu.be/5jZPucWXnno
 ---
 
 # nf-core/bytesize
