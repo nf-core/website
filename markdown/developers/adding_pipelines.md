@@ -337,18 +337,9 @@ This way, a review process will be very fast and we can merge the changes into t
 
 ## nf-core pipeline structure
 
-All nf-core pipelines adhere to common design principles that have been crafted through discussions and extensive real-world experiences with pipelines over time.
-We understand, however, that not all about nf-core pipelines is obvious and can be confusing to people new to nf-core.
-To help you along getting started with nf-core, writing your pipeline or contribute otherwise, we have created this documentation.
-Hopefully you will find most things that might confuse you described here, and if not, be sure to bug the nf-core Slack channel!
-
-## General
-
-To start writing a new pipeline you should use the `nf-core create` command (see [docs](/developers/adding_pipelines)).
-This will create a skeleton pipeline with a number of files, each with different purposes. Here's what they are for:
-
 ### Files
 
+You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core create`.
 * `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. It parses all parameters, loads the modules with options and defines the specific order in which these are executed.
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
