@@ -1,10 +1,10 @@
 ---
-title: "Bytesize 16: Pipeline first release"
-subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
+title: "Bytesize 14: Graphic design / pipeline diagrams"
+subtitle: Zandra Fagernäs - MPI-SHH
 type: talk
-start_date: "2021-06-01"
+start_date: "2021-05-25"
 start_time: "13:00 CEST"
-end_date: "2021-06-01"
+end_date: "2021-05-25"
 end_time: "13:30 CEST"
 ---
 
@@ -17,8 +17,8 @@ These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation.
 Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 16: Pipeline first release
+## Bytesize 14: Graphic design / pipeline diagrams
 
-This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**Pipeline first release.**_
+This week, Zandra Fagernäs ([@ZandraFagernas](http://github.com/ZandraFagernas/)) will present: _**Graphic design / pipeline diagrams.**_
 
 The talk will be presented on Zoom and live-streamed on YouTube.
