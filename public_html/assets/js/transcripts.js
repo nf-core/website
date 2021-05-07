@@ -6,14 +6,7 @@
 // Global variables
 var player;
 
-    $('a[href^="https://youtu"]').each(function(a){
-      debugger;
-      a.data('timestamp',a.attr('href').split(";t=").last())
-      
-      if(a.data('timestamp')){
-        a.addClass('timestamp-link')
-      }
-    });
+    
       function onYouTubeIframeAPIReady() {
         player = new YT.Player("video-placeholder", {
           width: 600,
@@ -30,7 +23,19 @@ var player;
       }
     function initialize() {
     //    event.target.playVideo();
-    player.seekTo(200,true);
-    player.playVideo();
+    
+    // player.playVideo();
+    $('details a[href^="https://youtu"]').each(function () {
+      $(this).data("timestamp", $(this.href.split(";t=")).last()[0]);
 
+      if ($(this).data("timestamp")) {
+        $(this).addClass("timestamp-link");
+        this.href = "javascript:void(0)";
+      }
+    });
+    $("a.timestamp-link").click(function (e) {
+      e.preventDefault();
+      debugger;
+      player.seekTo($(e).data("timestamp"), true);
+    });
     }
