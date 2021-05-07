@@ -171,7 +171,7 @@ You can make a branch to follow GitHub best practices and just name it after the
 
 Then also open a tab with an extra documentation because you will have to refer to it quite a lot.
 
-[10:03](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=603) Once you’ve made your fork and your branch, you need to create two new files. 
+[10:03](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=603) Once you’ve made your fork and your branch, you need to create two new files.
 
 One under the `configuration` directory, which is where you’re going to put in the configuration file itself, a documentation file in markdown, and docs.
 
