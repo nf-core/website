@@ -65,13 +65,13 @@ So making sure that you use only what you need and not exceed it and block other
 
 [2:25](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=145) So here’s a brief recap of what was covered in [bytesize#2](https://nf-co.re/events/2021/bytesize-2-configs).
 
-A network configuration file is a simple text file containing a set of properties, so parameters and some stuff that basically Nextflow can read and understand. This can be pipeline parameters, information on locations of files, and so on.
+A Nextflow configuration file is a simple text file containing a set of properties, so parameters and some stuff that basically Nextflow can read and understand. This can be pipeline parameters, information on locations of files, and so on.
 
 [2:49](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=169) There are different levels of these configuation files, so whenever a Nextflow run starts, it will look in the `nextflow.config` file that may be present in your run directory.
 
 It also checks your home directory for the `nextflow.config` file.
 
-You can also specify custom `config` files with `-c` parameter, and also in `nf-core/pipelines` there’s a whole other layer, which is called `nf-core/profiles`, which like I said before are sorted `nf-core/configs`.
+You can also specify custom config files with `-c` parameter, and also in nf-core pipelines there’s a whole other layer, which are nf-core profiles, which like I said before are sorted `nf-core/configs`.
 
 This is generally where we store our institutional profiles.
 
@@ -87,11 +87,11 @@ But as I said, these profiles can apply to all pipelines, so you can also switch
 
 [4:12](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=252) You can also chain multiple institutional profiles together if you need.
 
-So for example for  `nextflow run nf-core/eager -profile shh,sdag` where we have the dash profile for the MPI in Jena, we have multiple clusters.
+So for example for `nextflow run nf-core/eager -profile shh,sdag` where we have, dash, then the profile for the MPI in Jena, we have multiple clusters.
 
 So we can specify within that specific cluster the specific institution that you want to use.
 
-Something that’s very important that was mentioned in [Maximes talk](https://nf-co.re/events/2021/bytesize-8-nf-core-offline) is that the order of the profile is very important.
+Something that’s very important that was mentioned in [Maxime's talk](https://nf-co.re/events/2021/bytesize-8-nf-core-offline) is that the _order_ of the profile is very important.
 
 So anything on the furthest right will override anything previously. So any parameters set in the `sdag` profile will override any parameter also set in the `ssh` profile in this given example.
 
@@ -105,7 +105,7 @@ This should be something that’s very recognisable and also descriptive so that
 
 But it should not be something that is too generic either such that people might confuse it with their own cluster.
 
-Short is also very good, abbreviations are OK, like the `ssh` example from earlier.
+Short is also very good, abbreviations are OK, like the `shh` example from earlier.
 
 But again, it should still be precise enough for people to understand what it is.
 
@@ -119,7 +119,7 @@ So make sure you get the right level of hierarchy there.
 
 For example, you should look for the resource limits of that particular cluster.
 
-So `nf-core/pipelines` expand on the Nextflow retry system where if a process times out because it runs out of memory or time, it makes it re-submit that job with more memory or time.
+So nf-core pipelines expand on the Nextflow retry system where if a process times out because it runs out of memory or time, it makes it re-submit that job with more memory or time.
 
 However nf-core adds to these limits to ensure that this retry system doesn’t start requesting more than is actually physically available on the system.
 
@@ -137,9 +137,9 @@ This can be based on priority, so you should look up if your scheduler has queue
 
 You should find out the names of these and what specifications you may have for those, you should also look if there are any submission limits, so for example you can only submit x number of jobs at any one moment.
 
-You should also check if there are any additional configurations that you may have when you’re writing your own custom `bash` scripts that you would feed to the scheduler.
+You should also check if there are any additional configurations that you may have when you’re writing your own custom batch scripts that you would feed to the scheduler.
 
-So something like `load certain modules`.
+So something like `module load xyz`.
 
 [8:35](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=505) Then finally, you should look into containers.
 
@@ -169,7 +169,7 @@ You don’t have to do this, but it generally makes life easier when you want to
 
 You can make a branch to follow GitHub best practices and just name it after the cluster name you’ve picked.
 
-Then also open a tab with an extra documentation because you will have to refer to it quite a lot.
+Then also open a tab with the nf-core and Nextflow documentation because you will have to refer to it quite a lot.
 
 [10:03](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=603) Once you’ve made your fork and your branch, you need to create two new files.
 
@@ -179,33 +179,33 @@ You then need to add your profile name to these three files that nf-core uses to
 
 It’s quite straightforward where to put your name there, just look in and you will find where the long lists of the other profiles are.
 
-[10:32](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=631) Now to write the profile itself. So in the configuration file, you can start by writing the `param scope`, this is basically standard Nextflow parameters, which you often specify in the command line.
+[10:32](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=631) Now to write the profile itself. So in the configuration file, you can start by writing the `params` scope, this is basically standard Nextflow parameters, which you often specify in the command line.
 
-[10:44](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=644) So for nf-core profiles, we generally suggest that you add these config profile description content in url. This is useful later on for debugging, and it also makes it easier for users to know that they’re using the right profile when they are running their parameters.
+[10:44](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=644) So for nf-core profiles, we generally suggest that you add to these the config profile description content and url. This is useful later on for debugging, and it also makes it easier for users to know that they’re using the right profile when they are running their pipelines.
 
 [10:59](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=659) Then in the `max` parameters that you see in the 4th to the 6th line, you can specify the maximum and node information that you gathered earlier. So the maximum number makes for memory that’s available, number of CPUs, and so on.
 
 [11:14](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=674) If you for example have a common directory for things like reference files, which you use in the network pipelines themselves, such as the Illumina iGenomes resource, you can also specify this here.
 
-[11:30](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=690) Once you specify that, you can then write the process scope.
+[11:30](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=690) Once you've specified that, you can then write the `process` scope.
 
 So this is actually where you define generic information about your particular scheduler.
 
-So in the example above (see Simple Example on the slide), we see that some clusters can have, and you just specify using slurm and maybe add an additional security check so that you can only retry a maximum of two times to stop runaway processes before you hit the big resource nodes.
+So in the example above (see Simple Example on the slide), we see the setup that some clusters can have, and you just specify using slurm and maybe add an additional security check so that you can only retry a maximum of two times to stop runaway processes before you hit the big resource nodes.
 
-[11:55](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=715) In a more complex example (see Complex Example on the slide), you can also specify cues and do this dynamically.
+[11:55](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=715) In a more complex example (see Complex Example on the slide), you can also specify queues and do this dynamically.
 
-So using `groovy` expression, you can say for example if the process we’re going to request is going to run for less than two hours, we go to the short queue.
+So using a `groovy` expression, you can say for example if the process we’re going to request is going to run for less than two hours, we go to the short queue.
 
 If not, for less than 24 hours it goes to the medium queue, and for everything else, it goes to the long queue.
 
-[12:24](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=744) Then also if for example your `bash` scripts for your scheduler that you normally write manually, and you have to specify extra parameters in that header block (you can also see this in the cluster options), saying that in my `sg` batch script I need to specify the `h_vmem` parameter.
+[12:24](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=744) Then also, if, for example, your batch scripts for your scheduler that you normally write manually, you have to specify extra parameters in that header block (you can also see this in the cluster options), for example saying that in my SGE batch script I need to specify the `h_vmem` parameter.
 
-Then I can take the Nextflow task memory information using the organic groovy curly brackets.
+Then I can take the Nextflow task memory information using the groovy curly brackets.
 
 [12:55](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=775) Then you can specify more information about your particular scheduler in the executor scope.
 
-This typically just limits queue size, which is maybe one you want to have, when you’re running eight processes for any given pipeline run.
+This typically just limits queue size, which is maybe what you want to have, when you’re running eight processes for any given pipeline run.
 
 Say you only want to submit ten processes per second, you can limit that there as well.
 
@@ -215,7 +215,7 @@ Again, I highly recommend checking the Nextflow documentation. There’s many mo
 
 So for example there will be one for Singularity, another for Docker, one for Podman, and all of these have their own settings.
 
-But common ones are for example, as a non-expert user for a specific container, you can enable that with the true variable there, and you can specify cache directory here.
+But common ones are for example, as a non-expert user for a specific container, you can enable that with the `true` variable there, and you can specify cache directory here.
 
 So this is if you do have that common directory where all people’s images go, and everyone can reuse the same files.
 
@@ -223,7 +223,7 @@ You can specify that in this scope.
 
 [14:04](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=844) Finally, in our configuration file.
 
-If you have multiple clusters within your particular institution, you can specify this in the profile scripts here.
+If you have multiple clusters within your particular institution, you can specify this in the `profile` scope here.
 
 So for example in my sample institution here, I’ve got the red cluster and the blue cluster, and you can see [here](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=865) that they have different max CPU parameters.
 
@@ -253,7 +253,7 @@ You can also describe what other sub-profiles or internal profiles of you partic
 
 [15:46](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=946) Once it’s all ready, we can test and submit.
 
-[15:51](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=951) So to test the profile from your fork, you can use the special nf-core flag `custom_config_base` and basically give this raw URL replacing your GitHub and then your branch.
+[15:51](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=951) So to test the profile from your fork, you can use the special nf-core flag `--custom_config_base` and basically give this raw URL replacing your GitHub and then your branch.
 
 Then just run this command `nextflow run nf-core/<fav_pipeline>`, and using the test profile we recommend to see if it runs.
 
@@ -271,19 +271,19 @@ If you see this, you’re on the right track.
 
 You should also check when you’re running the pipeline to ensure that your jobs are being submitted to the queue you’re expecting.
 
-Look to see if your jobs are being listed in your job log history, so for example in Slurm that’s with s account.
+Look to see if your jobs are being listed in your job log history, so for example in Slurm that’s with `sacct`.
 
 You can just check that they are being displayed and so on, because if they’re not, you might still be running on the head node, which is a bit scary.
 
 Finally, you can also check your cache directories to check if you have your containers in there as you specified.
 
-[17:19](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1039) So once that’s all running and you’ve tested everything, you can then submit to `nf-core/configs`, make a pull and Slack request for review.
+[17:19](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1039) So once that’s all running and you’ve tested everything, you can then submit to `nf-core/configs`, make a pull request and ask Slack for a review.
 
-Once it’s approved, you can merge it in, and spread the word on its the potential, so that users can get started.
+Once it’s approved, you can merge it in, and spread the word to your colleagues, so that users can get started.
 
-They simply have to run `nextflow run` their pipeline `-profile` and the name of their cluster with the additional parameters you may have.
+They simply have to run `nextflow run`, their pipeline, `-profile` and the name of their cluster with the additional parameters you may have.
 
-[17:49](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e) So to conclude, if you need any help, you can always ask questions, we will check the documentation.
+[17:49](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e) So to conclude, if you need any help, you can always ask questions, and check the documentation.
 
 Thank you.
 
