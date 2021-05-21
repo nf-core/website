@@ -55,7 +55,7 @@ function highlight(event) {
       let all_highlights = $("a.timestamp-link").filter(function () {
         return $(this).data("timestamp") < current_time;
       });
-      if (all_highlights.last()[0]!== current_highlight[0]){
+      if ( current_highlight === undefined || all_highlights.last()[0]!== current_highlight[0]){
         $(current_highlight).parent("p").removeClass("bg-lightgray");
         current_highlight = all_highlights.last();
         $(current_highlight).parent("p").addClass("bg-lightgray");
