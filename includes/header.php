@@ -59,41 +59,45 @@ if(isset($subtitle) && strlen($subtitle) > 0){
     <script src="/assets/js/highlight.pack.js"></script>
     <!-- Page-specific CSS and JS -->
     <?php if(isset($import_moment) && $import_moment): ?>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/moment-timezone-with-data-10-year-range.js"></script>
+      <script src="/assets/js/moment.js"></script>
+      <script src="/assets/js/moment-timezone-with-data-10-year-range.js"></script>
     <?php endif;
     if(isset($import_leaflet) && $import_leaflet): ?>
-    <link href="/assets/css/leaflet.css" rel="stylesheet">
-    <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet">
-    <script src="/assets/js/leaflet.js"></script>
-    <script src="/assets/js/Leaflet.fullscreen.min.js"></script>
+      <link href="/assets/css/leaflet.css" rel="stylesheet">
+      <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet">
+      <script src="/assets/js/leaflet.js"></script>
+      <script src="/assets/js/Leaflet.fullscreen.min.js"></script>
     <?php endif;
-    if(isset($import_chartjs) && $import_chartjs): ?>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/Chart.min.js"></script>
-    <script src="/assets/js/hammer.min.js"></script>
-    <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
-    <script src="/assets/js/canvas2svg.js"></script>
-    <script src="/assets/js/FileSaver.js"></script>
+    if (isset($import_chartjs) && $import_chartjs) : ?>
+      <script src="/assets/js/moment.js"></script>
+      <script src="/assets/js/Chart.min.js"></script>
+      <script src="/assets/js/hammer.min.js"></script>
+      <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
+      <script src="/assets/js/canvas2svg.js"></script>
+      <script src="/assets/js/FileSaver.js"></script>
     <?php endif;
-    if(isset($import_schema_launcher) && $import_schema_launcher): ?>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/showdown.min.js"></script>
-    <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
+    if (isset($import_schema_launcher) && $import_schema_launcher) : ?>
+      <script src="/assets/js/moment.js"></script>
+      <script src="/assets/js/showdown.min.js"></script>
+      <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
-    if(isset($aws) && $aws): ?>
-    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
-    <script src="/assets/js/aws-sdk-2.765.0.min.js"></script>
-    <script src="/assets/js/jquery.dataTables.min.js"></script>
-    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
+    if (isset($aws) && $aws) : ?>
+      <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
+      <script src="/assets/js/aws-sdk-2.765.0.min.js"></script>
+      <script src="/assets/js/jquery.dataTables.min.js"></script>
+      <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+      <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
-    if(isset($import_schema_builder) && $import_schema_builder): ?>
-    <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
-    <script src="/assets/js/jquery-ui.min.js"></script>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/showdown.min.js"></script>
-    <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
+    if (isset($import_schema_builder) && $import_schema_builder) : ?>
+      <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
+      <script src="/assets/js/jquery-ui.min.js"></script>
+      <script src="/assets/js/moment.js"></script>
+      <script src="/assets/js/showdown.min.js"></script>
+      <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
+    <?php endif;
+    if (isset($title) && $title== 'Publications') : ?>
+      <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+      <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
     <?php endif; ?>
     <script src="/assets/js/jquery.tablesorter.min.js"></script>
 

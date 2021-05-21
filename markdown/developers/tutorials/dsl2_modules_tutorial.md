@@ -43,7 +43,7 @@ On the website you can find more details about [installation](https://nf-co.re/t
 
 Even before beginning the development of a module, you should identify a small dataset you can use to test its functionality. Ideally, the dataset is existing already and can be shared with other test workflows for other modules.
 
-> :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/modules/tree/master/tests/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
+> :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/test-datasets/tree/modules/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
 
 ---
 
