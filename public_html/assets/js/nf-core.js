@@ -228,9 +228,11 @@ $(function () {
     if($('details>summary:contains("Video transcript")').length > 0){
         $('details>summary:contains("Video transcript")')
             .parents("details")
-            .before("<div id='video-placeholder'></div>");
+            .before(
+            '<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>'
+            );
     }else if ($(".rendered-markdown").length > 0) {
-        $(".rendered-markdown").append("<div id='video-placeholder'></div>");
+        $(".rendered-markdown").append('<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>');
     }
 
 });
