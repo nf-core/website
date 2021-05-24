@@ -124,7 +124,7 @@ function parse_md($markdown){
     # sidebar
     $content .= '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
     # ToC
-    $content .= '<nav class="toc">';
+    $content .= '<nav class="toc auto-toc">';
     $content .= generate_toc($content);
     $content .=  '<p class="small text-right"><a href=" #" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
     $content .=  '</nav>';
