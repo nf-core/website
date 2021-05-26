@@ -19,6 +19,7 @@ function parse_md($markdown){
   global $href_url_prepend;
   global $href_url_suffix_cleanup;
   global $html_content_replace;
+  global $no_auto_toc;
   global $title;
   global $subtitle;
   global $theme;
@@ -113,7 +114,28 @@ function parse_md($markdown){
     $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
   }
 
+  
+  // create ToC
+  if (!isset($no_auto_toc) & !$no_auto_toc & preg_match_all("~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis", $content, $matches) > 1) {
+    # main row + content
+    $content = '<div class="row"><div class="col-12 col-lg-9">
+                      <div class="rendered-markdown publication-page-content">' . $content . '</div>
+                </div>';
+    # sidebar
+    $content .= '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+    # ToC
+    $content .= '<nav class="toc auto-toc">';
+    $content .= generate_toc($content);
+    $content .=  '<p class="small text-right"><a href=" #" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    $content .=  '</nav>';
+
+    $content .= '</div></div>'; # end of the sidebar col
+    $content .=  '</div>'; # end of the row
+  }
+
   // Find and replace emojis names with images
+  $content = preg_replace('/:(?!\/)([\S]+?):/', '<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">', $content);
+
   $content = preg_replace_callback('/:(?!\/)([\S]+?):/',function($match){
     # check if match is actually an emoji name
     if (file_get_contents("https://github.githubassets.com/images/icons/emoji/$match[1].png") === false) {
