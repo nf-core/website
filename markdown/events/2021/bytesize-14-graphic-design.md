@@ -8,8 +8,9 @@ end_date: "2021-05-25"
 end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/5jZPucWXnno
 location_url:
-  - https://zoom.us/j/95310380847
+  - https://www.bilibili.com/video/BV1Z54y1V78h
   - https://youtu.be/5jZPucWXnno
+  - https://doi.org/10.6084/m9.figshare.14673117.v1
 ---
 
 # nf-core/bytesize
@@ -32,3 +33,4 @@ This will cover:
 
 The talk will be presented on Zoom and live-streamed on YouTube.
 * YouTube: <https://youtu.be/5jZPucWXnno>
+* Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
