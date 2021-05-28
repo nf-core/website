@@ -25,4 +25,9 @@ Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.co
 
 This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will present: _**Pipeline first release.**_
 
+This will cover:
+
+* Which steps are required to release a pipeline on nf-core
+* How to make a first release of a pipeline
+
 The talk will be presented on Zoom and live-streamed on YouTube.
