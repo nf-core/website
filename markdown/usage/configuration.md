@@ -2,17 +2,6 @@
 title: Pipeline configuration
 subtitle: How configure Nextflow to work on your system
 ---
-
-- [Introduction](#introduction)
-- [Different config locations](#different-config-locations)
-  - [Basic configuration profiles](#basic-configuration-profiles)
-  - [Shared nf-core/configs](#shared-nf-coreconfigs)
-  - [Custom configuration files](#custom-configuration-files)
-- [Running Nextflow on your system](#running-nextflow-on-your-system)
-  - [Executor](#executor)
-  - [Max resources](#max-resources)
-  - [Tuning workflow resources](#tuning-workflow-resources)
-
 # Introduction
 
 One of the strongest features of Nextflow is that it can run on virtually any computational infrastructure.
