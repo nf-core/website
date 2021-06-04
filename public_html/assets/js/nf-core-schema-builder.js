@@ -1675,7 +1675,7 @@ function clean_empty_param_keys(param){
     if(param.hasOwnProperty('description') && param['description'] === ''){
         delete param['description'];
     }
-    if(param.hasOwnProperty('default') && param['default'] === ''){
+    if(param.hasOwnProperty('default') && (param['default'] === '' || param['default'] === false)){
         delete param['default'];
     }
     if(param.hasOwnProperty('help_text') && param['help_text'] === ''){
