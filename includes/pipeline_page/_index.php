@@ -21,6 +21,7 @@ $subtitle = $pipeline->description;
 $content = '';
 $schema_content = '';
 $import_chartjs = true;
+$no_auto_toc = true;
 
 # Header - keywords
 $header_html = '<p class="mb-0">';
