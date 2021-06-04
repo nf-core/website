@@ -3,28 +3,7 @@ title: "Tutorial: Create a DSL2 Module"
 subtitle: Creating a new module for the nf-core modules repository.
 ---
 
-# Introduction
-
 In this tutorial we will see how to create a new module for the nf-core modules repository. As an example, we will create a module to execute the FastqToBam function of the [FGBIO](http://fulcrumgenomics.github.io/fgbio/) suite of tools.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-  - [Module guidelines](#module-guidelines)
-  - [NF-core Tools](#nf-core-tools)
-  - [Test Data](#test-data)
-- [Fork repository](#fork-the-modules-repo-and-branch)
-- [Create template](#create-the-module-template)
-- [Write the Code](#write-the-code)
-  - [Inputs and Outputs](#inputs-and-outputs)
-  - [Options args](#passing-options.args)
-  - [Lint code](#lint-your-code)
-- [Test your code](#test-your-code)
-  - [Create test workflow](#create-a-test-workflow)
-  - [Create YAML](#create-test-yaml)
-  - [Check pytest YAML](#check-pytest-YAML)
-  - [Run tests](#run-tests-locally)
-- [Pull Request](#create-a-pull-request)
 
 ## Introduction
 
@@ -43,7 +22,7 @@ On the website you can find more details about [installation](https://nf-co.re/t
 
 Even before beginning the development of a module, you should identify a small dataset you can use to test its functionality. Ideally, the dataset is existing already and can be shared with other test workflows for other modules.
 
-> :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/modules/tree/master/tests/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
+> :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/test-datasets/tree/modules/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
 
 ---
 
