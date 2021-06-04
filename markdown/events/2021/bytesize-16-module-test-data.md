@@ -6,6 +6,10 @@ start_date: "2021-06-08"
 start_time: "13:00 CET"
 end_date: "2021-06-08"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/QXfAerydAT0
+location_url:
+  - https://youtu.be/QXfAerydAT0
+  - https://zoom.us/j/95310380847
 ---
 
 # nf-core/bytesize
