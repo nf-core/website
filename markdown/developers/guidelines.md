@@ -12,16 +12,6 @@ pipelines must adhere to.
 > If you're thinking of adding a new pipeline to nf-core, please read the documentation
 > about [adding a new pipeline](adding_pipelines.md).
 
-* [Workflow specificity](#workflow-specificity)
-* [Workflow size](#workflow-size)
-* [Use the template](#use-the-template)
-* [Minimum requirements](#minimum-requirements)
-* [Recommended features](#recommended-features)
-* [Workflow name](#workflow-name)
-* [Coding style](#coding-style)
-* [Credits and Acknowledgements](#credits-and-acknowledgements)
-* [Ask the community](#ask-the-community)
-
 ## Workflow specificity
 
 The nf-core community was founded to allow different groups to collaborate on

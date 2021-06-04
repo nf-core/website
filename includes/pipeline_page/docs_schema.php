@@ -45,20 +45,20 @@ if(file_exists($gh_pipeline_schema_fn)){
       $description = parse_md($param['description'])['content'];
     }
 
-    # default value 
+    # default value
     $default_val = '';
     if(array_key_exists("default", $param) && strlen(trim($param['default'])) > 0){
       $default_val = is_string($param['default'])? "'".$param['default']."'":$param['default'];
       $default_val = '<code class="text-small"><span class="text-muted">default: </span>'.$default_val.'</code>';
     }
 
-    # pattern value 
+    # pattern value
     $pattern_val = '';
     if (array_key_exists("pattern", $param) && strlen(trim($param['pattern'])) > 0) {
       $pattern_val = '<code class="text-small"><span class="text-muted">pattern: </span>' . trim($param['pattern']). '</code>';
     }
 
-    # min/max value 
+    # min/max value
     $minmax_val = '';
     if (array_key_exists("min", $param) && !empty($param["min"])) {
       $minmax_val = '<code class="text-small"><span class="text-muted">min: </span>' . $param["min"] . '</code>';
@@ -66,7 +66,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       $minmax_val .= '<code class="text-small"><span class="text-muted"> max: </span>' . $param["max"] . '</code>';
     }
 
-    # enum value 
+    # enum value
     $enum_val = '';
     if (array_key_exists("enum", $param) && count($param['enum']) > 0) {
       if(count($param['enum']) == 1 ){
@@ -78,14 +78,14 @@ if(file_exists($gh_pipeline_schema_fn)){
                       <button type="button" class="btn btn-light border-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
                         . $dropdown_label. '</button>
                     <div class="dropdown-menu bg-code">';
-        
+
         foreach ($param['enum'] as $key => $param_enum) {
           $enum_val .= '<a class="dropdown-item"><code class="text-small">';
           $enum_val .= is_string($param_enum) ? "'" . $param_enum . "'" : $param_enum;
           if($param_enum==$param['default']){
             $enum_val .= " (default)";
             $default_val='';
-          } 
+          }
           $enum_val .="</code></a>";
         }
         $enum_val.= '</div></div>';
@@ -117,21 +117,23 @@ if(file_exists($gh_pipeline_schema_fn)){
       $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.implode(' ', $labels).'</div>';
     }
 
-    # Body
-    $param_body = '<div id="'.$param_id.'-body" class="param-docs-body small">'.$description.'</div>';
-
     # Extra group classes
     $row_class = 'align-items-center';
     $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 small-h';
     $h_level = 'h3';
+    $description_class = 'small';
     if($is_group){
       $row_class = 'align-items-baseline mt-5 param-docs-row-group';
-      $id_cols = 'col-auto';
+      $id_cols = 'col-12';
       $h_level = 'h2';
+      $description_class = 'lead mb-3';
     }
     if($is_hidden){
       $row_class .= ' param-docs-hidden collapse';
     }
+
+    # Body
+    $param_body = '<div id="'.$param_id.'-body" class="param-docs-body '.$description_class.'">'.$description.'</div>';
 
     # Build row
     return '
