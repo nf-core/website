@@ -2,7 +2,7 @@
 // Build the HTML for a pipeline documentation page.
 // Imported by public_html/pipeline.php - pulls a markdown file from GitHub and renders.
 $mainpage_container = false;
-$aws=true;
+$aws = true;
 ob_start();
 ?>
 <div id="page-wrapper">
@@ -57,27 +57,34 @@ ob_start();
 </div>
 
 <div class="toast" id="url-copied" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-header">
-    <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="">
-    <strong class="mr-auto">URL copied to clipboard!</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+    <div class="toast-header">
+        <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="">
+        <strong class="mr-auto">URL copied to clipboard!</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </div>
 
 <script type="text/javascript">
     var HIDE_INDEX = true;
-    var prefix =  '<?php echo $pipeline->name?>/results-<?php echo $release_hash ?>/';
-    if (window.location.hash.length>0){
-        if(window.location.hash.substr(1).split("/")[0]==="<?php echo $pipeline->name?>"){
+    var prefix = '<?php echo $pipeline->name ?>/results-<?php echo $release_hash ?>/';
+    var suffix = '';
+    if (window.location.hash.length > 0) {
+        if (window.location.hash.substr(1).split("/")[0] === "<?php echo $pipeline->name ?>") {
             prefix = window.location.hash.substr(1);
+            if (!prefix.endsWith('/')) {
+                suffix = prefix.split("/").pop();
+                prefix = prefix.substr(0, prefix.lastIndexOf("/") + 1);
+            }
+
         }
     }
     var s3exp_config = {
         Region: 'eu-west-1',
         Bucket: 'nf-core-awsmegatests',
         Prefix: prefix,
+        Suffix: suffix,
         Delimiter: '/'
     };
     var s3exp_lister = null;
@@ -86,8 +93,7 @@ ob_start();
         folder: 2,
         date: 3,
         size: 4
-};
-
+    };
 </script>
 
 <?php
