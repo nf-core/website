@@ -56,9 +56,28 @@ function highlight(event) {
         return $(this).data("timestamp") < current_time;
       });
       if ( current_highlight === undefined || all_highlights.last()[0]!== current_highlight[0]){
-        $(current_highlight).parent("p").removeClass("bg-success-light");
+        $("p.highlighted").parent("div").removeClass("bg-success-light");
+        $("p.highlighted").removeClass("highlighted");
+        
         current_highlight = all_highlights.last();
-        $(current_highlight).parent("p").addClass("bg-success-light");
+        $(current_highlight).parent("p").addClass("highlighted");
+        $("details p.highlighted")
+          .nextAll()
+          .each(function (i, element) {
+            if ($(element).has("a.timestamp-link").length > 0) {
+              return false;
+            }
+            $(element).addClass("highlighted");
+          })
+          .end();
+          $(".highlighted").wrapAll("<div class='bg-success-light' />");
+          $("#transcript").animate({
+            scrollTop:
+            $(".bg-success-light").offset().top -
+              $("#transcript").offset().top +
+              $("#transcript").scrollTop() -
+              10
+          },"slow");
       }
     }, 500);
   } else if(event.data===2) {
