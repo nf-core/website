@@ -17,7 +17,7 @@ $altmetric_html = '
 </div>';
 $content = preg_replace($altmetric_pattern, $altmetric_html, $content);
 
-echo '<div class="row"><div class="col-12 col-lg-9">';
+echo '<div class="row flex-wrap-reverse flex-lg-wrap"><div class="col-12 col-lg-9">';
 
 echo '<div class="rendered-markdown publication-page-content">' . $content . '</div>';
 
