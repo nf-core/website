@@ -1235,8 +1235,14 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .text-small{
   font-size: 0.85rem;
 }
-#transcript details[open]{
-  height:30vh;
+.embed-responsive ~ details{
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  padding: 1.25rem;
+}
+
+.embed-responsive ~ details[open]{
+  height:50vh;
   overflow-x: scroll;
 }
 
