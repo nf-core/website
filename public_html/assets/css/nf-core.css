@@ -1232,11 +1232,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   max-height: 60rem;
   overflow-y: auto;
 }
-
 .text-small{
   font-size: 0.85rem;
 }
-#transcript{
+#transcript details[open]{
   height:30vh;
   overflow-x: scroll;
 }
