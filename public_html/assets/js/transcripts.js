@@ -43,6 +43,7 @@ $('details a[href^="https://youtu"],details a[href^="https://www.youtu"]').each(
     this.href = "javascript:void(0)";
   }
 });
+$('details').prop('open',true);
 $("a.timestamp-link").click(function (e) {
   e.preventDefault();
   player.seekTo($(e.target).data("timestamp"), true);
