@@ -71,13 +71,18 @@ function highlight(event) {
           })
           .end();
           $(".highlighted").wrapAll("<div class='bg-success-light' />");
-          $("#transcript").animate({
-            scrollTop:
-            $(".bg-success-light").offset().top -
-              $("#transcript").offset().top +
-              $("#transcript").scrollTop() -
-              10
-          },"slow");
+          if ($("details[open]").length>0){
+            $("details[open]").animate(
+              {
+                scrollTop:
+                  $(".bg-success-light").offset().top -
+                  $("details[open]").offset().top +
+                  $("details[open]").scrollTop() -
+                  1.2*parseFloat(getComputedStyle(document.documentElement).fontSize), // convert rem into px
+              },
+              "slow"
+            );
+          }
       }
     }, 500);
   } else if(event.data===2) {
