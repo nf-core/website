@@ -179,7 +179,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
   # only add ToC if there are more than two items in it
   if(substr_count($toc, "list-group-item ")>2){
     # Make a row with a column for content
-    echo '<div class="row "><div class="col-12 col-lg-9">';
+    echo '<div class="row flex-wrap-reverse flex-lg-wrap"><div class="col-12 col-lg-9">';
 
     # Print content
 
