@@ -8,8 +8,9 @@ end_date: "2021-06-01"
 end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/1OwkTd-P5pQ
 location_url:
-    - https://zoom.us/j/95310380847
     - https://youtu.be/1OwkTd-P5pQ
+    - https://www.bilibili.com/video/BV185411M71d
+    - https://doi.org/10.6084/m9.figshare.14717307.v1
 ---
 
 # nf-core/bytesize
