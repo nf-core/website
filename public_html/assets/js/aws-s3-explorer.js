@@ -82,12 +82,7 @@ $(function () {
     function isfolder(path) {
         return path.endsWith('/');
     }
-    function haspreview(data) {
-        var extension = data.Key.substring(data.Key.lastIndexOf('.'), data.Key.length);
-        var preview = [".csv", ".tsv", ".out", ".table", ".txt", ".html"].includes(extension) && data.Size < 80000000;
-        return preview;
-    }
-
+    
     // Convert cars/vw/golf.png to golf.png
     function fullpath2filename(path) {
         return sanitize_html(path.replace(/^.*[\\\/]/, ''));
@@ -107,6 +102,76 @@ $(function () {
     // Remove hash from document URL
     function removeHash() {
         history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+    function fetch_file_size(url){
+        var file_size = fetch(url,{method:'HEAD'}).then(function(resp){return resp.headers.get('content-length')});
+        return file_size;
+    }
+    function fetch_preview(url,file_size){
+        var extension = url.substring(url.lastIndexOf('.'), url.length);
+        var split_url = url.split('/');
+        var filename = split_url.slice(-1)[0];
+        var s3_url = "s3://" + split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
+                
+        fetch(url).then(function (response) {
+            if (response.status !== 200) {
+                console.log(
+                "Looks like there was a problem. Status Code: " +
+                response.status
+                );
+                return;
+            }
+            // Examine the text in the response
+            response.text().then(function (data) {
+                if ([".bam", ".bai", ".gz",".zip"].includes(extension)) {
+                    data =
+                    '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
+                } else if (
+                    ![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)
+                ) {
+                    if (file_size > 10000000) {
+                    data =
+                        '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
+                    } else {
+                        data = "<pre><code>" + sanitize_html(data) + "</code></pre>";
+                    }
+                } else if (extension === ".html") {
+                    data ='<iframe srcdoc="' +
+                    sanitize_html(data) +
+                    '" style="border:none; width:100%; height:1000px;"></iframe>';
+                } else if (extension === ".pdf") {
+                    data = `<object data="${url}" type="application/pdf" style="border:none; width:100%; height:1000px;">
+                                            <embed src="${url}" type="application/pdf" />
+                                        </object>`;
+                } else if (
+                    [".png", ".jpg", ".jpeg", ".svg"].includes(extension)
+                ) {
+                    data = '<img src="' + response.url + '"/>';
+                }
+                var btn_group = `<div class="btn-group" role="group">
+                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Download file</a>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
+                            </div>`;
+                var header =
+                '<div class="card-header d-flex justify-content-between align-items-center">' +
+                filename +
+                btn_group +
+                "</div>";
+                $("#file-preview").show();
+                $("#file-preview").html(
+                    header + '<div class="card-body">' + data + "</div>"
+                );
+                var el_offset = $("#file-preview").offset().top - 140;
+                $([document.documentElement, document.body]).animate(
+                    { scrollTop: el_offset },
+                    500
+                );
+            });
+        })
+        .catch(function (err) {
+            console.log("Fetch Error :-S", err);
+        });
     }
 
     $("body").on("click", ".download-file-btn ", function () {
@@ -135,11 +200,15 @@ $(function () {
 
     //update view when url-hash changes
     $( window ).on( 'hashchange', function( e ) {
-        prefix = window.location.hash.substr(1);
-        if (window.location.hash.split("/").length > 2 ) {
-            s3exp_config["Prefix"] = prefix;
+        if (!prefix.endsWith("/")) {
+            prefix = window.location.hash.substr(1);
+            prefix = prefix.substr(0, prefix.lastIndexOf("/") + 1);
+        
+            if (window.location.hash.split("/").length > 2 ) {
+                s3exp_config["Prefix"] = prefix;
+            }
+            (s3exp_lister = s3list(s3exp_config, s3draw)).go();
         }
-        (s3exp_lister = s3list(s3exp_config, s3draw)).go();
     } );    
 
     function folder2breadcrumbs(data) {
@@ -148,7 +217,10 @@ $(function () {
 
         if (data.params.Prefix && data.params.Prefix.length > 0) {
             // console.log('Set hash: ' + data.params.Prefix)
-            window.location.hash = data.params.Prefix;
+            window.location.hash = data.params.Prefix
+            if(s3exp_config.Suffix!=='' && window.location.hash.endsWith("/")){
+                window.location.hash +=  s3exp_config.Suffix;
+            } 
         } else {
             // console.log('Remove hash');
             removeHash();
@@ -242,6 +314,9 @@ $(function () {
 
             // Add S3 objects to DataTable
             $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
+            let url = object2hrefvirt(s3exp_config.Bucket, window.location.hash.substr(1))
+            let file_size = fetch_file_size(url);
+            fetch_preview(url,file_size);
         } else {
             $("#tb-s3objects")
                 .DataTable()
@@ -471,52 +546,16 @@ $(function () {
                 (s3exp_lister = s3list(s3exp_config, s3draw)).go();
                 // Else user has clicked on an object so preview it in new window/tab
             } else {
-                var url = target.href;
-                var extension = url.substring(url.lastIndexOf('.'), url.length);
-                var split_url = url.split('/');
-                var filename = split_url.slice(-1)[0];
-                var s3_url = "s3://" + split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
-                var file_size = target.dataset.size;
-
-                fetch(url).then(function (response) {
-                    if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' + response.status);
-                        return;
-                    }
-                    // Examine the text in the response
-                    response.text().then(function (data) {
-                        if ([".bam", ".bai", ".gz"].includes(extension)) {
-                            data = '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
-                        }
-                        if (![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)) {
-                            if (file_size > 10000000) {
-                                data = '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
-                            } else {
-                                data = '<pre><code>' + sanitize_html(data) + '</code></pre>';
-                            }
-                        } else if (extension === ".html") {
-                            data = '<iframe srcdoc="'+sanitize_html(data)+'" style="border:none; width:100%; height:1000px;"></iframe>';
-                        } else if (extension === ".pdf") {
-                            data = `<object data="${url}" type="application/pdf" style="border:none; width:100%; height:1000px;">
-                                            <embed src="${url}" type="application/pdf" />
-                                        </object>`;
-                        } else if ([".png", ".jpg", ".jpeg", ".svg"].includes(extension)) {
-                            data = '<img src="' + response.url + '"/>';
-                        }
-                        var btn_group = `<div class="btn-group" role="group">
-                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Download file</a>
-                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
-                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
-                            </div>`;
-                        var header = '<div class="card-header d-flex justify-content-between align-items-center">' + filename + btn_group + '</div>';
-                        $("#file-preview").show();
-                        $("#file-preview").html(header + '<div class="card-body">' + data + '</div>');
-                        var el_offset = $("#file-preview").offset().top - 140;
-                        $([document.documentElement, document.body]).animate({ scrollTop: el_offset }, 500);
-                    });
-                }).catch(function (err) {
-                    console.log('Fetch Error :-S', err);
-                });
+                let url = target.href;
+                let file_size = target.dataset.size;
+                let hash = window.location.hash
+                if(!hash.endsWith("/")){ // check if URL already contains a filename
+                    hash = hash.substr(1,hash.lastIndexOf("/")+1) +target.download;
+                }
+                window.location.hash = hash;
+                
+                fetch_preview(url, file_size);
+                
             }
             return false;
         });
