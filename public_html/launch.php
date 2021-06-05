@@ -630,7 +630,7 @@ else if($cache['status'] == 'launch_params_complete') {
         For those running on a system with no internet connection, you can copy the parameters JSON to a file
         and use the supplied command to launch.</p>
     <?php endif; ?>
-    <div class="row">
+    <div class="row flex-wrap-reverse flex-lg-wrap">
         <div class="col-12 col-lg-9">
             <form id="schema_launcher_form" action="" method="post" class="needs-validation" novalidate>
 
