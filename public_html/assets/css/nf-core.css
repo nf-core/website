@@ -1214,6 +1214,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .bg-lightgray{
   background-color: rgba(220,220,220,0.2);
 }
+.bg-success-light{
+  background-color: #28a745a1;
+}
+
 .hidden_params_alert {
   margin: 3rem -15px;
 }
@@ -1231,8 +1235,17 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   max-height: 60rem;
   overflow-y: auto;
 }
-
 .text-small{
   font-size: 0.85rem;
+}
+.embed-responsive ~ details{
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  padding: 1.25rem;
+}
+
+.embed-responsive ~ details[open]{
+  height:50vh;
+  overflow-x: scroll;
 }
 
