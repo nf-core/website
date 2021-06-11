@@ -142,7 +142,7 @@ foreach($stats as $repo_name => $repo):
     }
     $alink = '<a href="'.$metrics->html_url.'" target="_blank">';
     if($repo_type == 'pipelines'){
-      $alink = '<a href="/'.$metrics->name.'/stats">';
+      $alink = '<a href="/'.$metrics->name.'/releases_stats">';
     }
     ?></td>
     <td><?php echo $alink.'<span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
