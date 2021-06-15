@@ -10,6 +10,7 @@ youtube_embed: https://youtu.be/pjhscKyWH74
 location_url:
   - https://youtu.be/pjhscKyWH74
   - https://zoom.us/j/95310380847
+  - https://doi.org/10.6084/m9.figshare.14784855.v1
 ---
 
 # nf-core/bytesize
