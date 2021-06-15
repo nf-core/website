@@ -49,7 +49,7 @@ git submodule update --init --recursive
 Ok, you're ready! To run the website locally, just start the apache-php server with:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).

@@ -150,7 +150,7 @@ function print_current_events($events, $border){
         echo '<div class="btn-group mt-1" role="group" aria-label="External links">';
         foreach ($event['location_url'] as $idx => $url) {
           $m = $d['location_url_meta'][$idx];
-          echo '<a href="' . $m['url'] . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
+          echo '<a href="' . $url . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
         }
         echo '</div>';
       }
