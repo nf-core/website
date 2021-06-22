@@ -9,7 +9,6 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/OF55x-FT5WE
 location_url:
   - https://youtu.be/OF55x-FT5WE
-  - https://zoom.us/j/95310380847
 ---
 
 # nf-core/bytesize
