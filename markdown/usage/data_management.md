@@ -1,5 +1,5 @@
 ---
-title: Data Management
+title: Data management
 subtitle: How to plan your project, estimate resources, and share your results.
 ---
 
