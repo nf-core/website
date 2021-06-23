@@ -1,5 +1,5 @@
 ---
-title: Design Guidelines
+title: Design guidelines
 subtitle: Templates, common images, and design-related content for nf-core.
 ---
 
