@@ -258,7 +258,7 @@ If your pipeline already has versioned releases (eg. you are not currently on `1
 then specify the version number that you are currently on:
 
 ```bash
-nf-core create --no-git --new-version 1.3dev
+nf-core create --no-git --version 1.3dev
 ```
 
 > The version you choose should match the branch that you intend to merge with.
