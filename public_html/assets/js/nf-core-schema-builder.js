@@ -85,7 +85,7 @@ $(function () {
         $('body').on('keyup', '.fa_icon_picker_input', function(e){
             var search_term = $(this).val().trim();
             var popover = $(this).closest('.fa_icon_picker');
-            if(search_term.length == 0){
+            if(search_term.length === 0){
                 popover.find(".popover-body div button").show();
             } else {
                 popover.find(".popover-body div button").hide();
@@ -178,7 +178,7 @@ $(function () {
         param_row = $( generate_param_row(new_id, new_param) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
         schema_order_change();
-        scroll_to( param_row );
+        scroll_to(param_row,140);
         new_param_idx += 1;
 
         // Update printed schema in page
@@ -209,7 +209,7 @@ $(function () {
         schema['definitions'][new_id] = new_group;
         param_row = $( generate_group_row(new_id, new_group) );
         param_row.prependTo('#schema-builder').find('.param_id').select();
-        scroll_to( param_row );
+        scroll_to( param_row,140);
         init_group_sortable();
         schema_order_change();
         new_group_idx += 1;
@@ -241,11 +241,11 @@ $(function () {
         if(target.is(':hidden')){
             $('.schema-panel:visible').fadeOut('fast', function(){
                 target.fadeIn('fast');
-                scroll_to(target);
+                scroll_to(target,140);
             });
         } else {
             // Already visible, just scroll to top
-            scroll_to(target);
+            scroll_to(target,140);
         }
 
         // Post the results to PHP when finished
@@ -263,7 +263,7 @@ $(function () {
             };
             $.post( "pipeline_schema_builder", post_data).done(function( returned_data ) {
                 console.log("Sent schema to API. Response:", returned_data);
-                if(returned_data.status == 'recieved'){
+                if(returned_data.status == 'recieved'){ // DO NOT FIX THIS TYPO. nf-core/tools will break.
                     $('#schema-send-status').text("Ok, that's it - done!");
                 } else {
                     $('#schema-send-status').text("Oops, something went wrong!");
@@ -301,7 +301,7 @@ $(function () {
             }
 
             // Check if it actually changed
-            if(new_id != id){
+            if(new_id !== id){
                 if(!validate_id(new_id, id)){
                     $(this).val(id);
                     $(this).focus();
@@ -316,7 +316,7 @@ $(function () {
                     if(schema.hasOwnProperty('properties')){
                         for(k in schema['properties']){
                             var new_k = k;
-                            if(k == id){ new_k = new_id; console.log("FOUND 1"); };
+                            if(k === id){ new_k = new_id; console.log("FOUND 1"); };
                             new_schema['properties'][new_k] = schema['properties'][k];
                         }
                     }
@@ -326,7 +326,7 @@ $(function () {
 
                             // Has the definition ID changed?
                             var new_d = d;
-                            if(d == id){ new_d = new_id; };
+                            if(d === id){ new_d = new_id; };
                             new_schema['definitions'][new_d] = schema['definitions'][d];
                             new_schema['allOf'].push({"$ref": "#/definitions/"+new_d});
 
@@ -336,7 +336,7 @@ $(function () {
                             if(new_subschema.hasOwnProperty('properties')){
                                 for(k in new_subschema['properties']){
                                     var new_k = k;
-                                    if(k == id){ new_k = new_id; };
+                                    if(k === id){ new_k = new_id; };
                                     new_schema['definitions'][new_d]['properties'][new_k] = new_subschema['properties'][k];
                                 }
                             }
@@ -367,7 +367,7 @@ $(function () {
                 param = find_param_in_schema(new_id);
             }
             var new_param = JSON.parse(JSON.stringify(param));
-            if($(this).val().trim().length == 0){
+            if($(this).val().trim().length === 0){
                 delete new_param[param_key];
             } else {
                 new_param[param_key] = $(this).val().trim();
@@ -385,10 +385,10 @@ $(function () {
                 // Type has changed - rebuild row
                 if(param_key == 'type'){
 
-                    // If now a boolean and defult is not string 'True', set to False
+                    // If now a boolean and default is not string 'True', set to False
                     if($(this).val() == 'boolean'){
                         var param_default = row.find("input[data-param_key='default']").val().trim();
-                        if(param_default.toLowerCase() == 'true'){
+                        if(param_default.toLowerCase() === 'true'){
                             param['default'] = true;
                         } else {
                             param['default'] = false;
@@ -423,7 +423,7 @@ $(function () {
                     if(!param.hasOwnProperty('default')){
                         param['default'] = false;
                     } else if(typeof param['default'] != "boolean"){
-                        if(param['default'].toLowerCase() == 'true'){
+                        if(param['default'].toLowerCase() === 'true'){
                             param['default'] = true;
                         } else {
                             param['default'] = false;
@@ -432,9 +432,9 @@ $(function () {
                 }
 
                 // Convert number types
-                if(['number', 'int'].indexOf(param['type']) != -1){
-                    if(param.hasOwnProperty('default') && typeof param['default'] == "string" && param['default'].trim() != ''){
-                        if(param['type'] == 'int'){
+                if(['number', 'integer'].indexOf(param['type']) != -1){
+                    if(param.hasOwnProperty('default') && typeof param['default'] == "string" && param['default'].trim() !== ''){
+                        if(param['type'] == 'integer'){
                             param['default'] = parseInt(param['default']);
                         } else {
                             param['default'] = parseFloat(param['default']);
@@ -479,21 +479,21 @@ $(function () {
         if(e.which == 188 && e.shiftKey && (e.ctrlKey || e.metaKey)){
             // Get row of focussed element
             var row = $(':focus').closest('.schema_row');
-            if(row.length == 1){
+            if(row.length === 1){
                 var id = row.data('id');
                 prev_focus = $(':focus');
                 launch_settings_modal(id);
             }
         }
 
-        // cmd + shif + up cursor (move row up)
+        // cmd + shift + up cursor (move row up)
         if(e.which == 38 && e.shiftKey && (e.ctrlKey || e.metaKey)){
             // Get row of focussed element
             var row = $(':focus').closest('.schema_row');
             if(row.hasClass('schema_group_row')){
                 row = $(':focus').closest('.schema_group');
             }
-            if(row.length == 1){
+            if(row.length === 1){
                 prev_focus = $(':focus');
                 var row_before = row.prev();
                 row.insertBefore(row_before);
@@ -502,14 +502,14 @@ $(function () {
             }
         }
 
-        // cmd + shif + down cursor (move row down)
+        // cmd + shift + down cursor (move row down)
         if(e.which == 40 && e.shiftKey && (e.ctrlKey || e.metaKey)){
             // Get row of focussed element
             var row = $(':focus').closest('.schema_row');
             if(row.hasClass('schema_group_row')){
                 row = $(':focus').closest('.schema_group');
             }
-            if(row.length == 1){
+            if(row.length === 1){
                 prev_focus = $(':focus');
                 var row_after = row.next();
                 row.insertAfter(row_after);
@@ -586,7 +586,7 @@ $(function () {
                     }
                     num_children += 1;
                 }
-                if(num_children == 0){
+                if(num_children === 0){
                     is_group_hidden = false;
                     $('.schema_row[data-id="'+k+'"]').closest('.schema_group').find('.group-drag-drop-help').removeClass('d-none');
                 }
@@ -847,7 +847,7 @@ $(function () {
                 return number_val;
             });
         }
-        
+
 
         // Validate min-max values
         if (
@@ -912,7 +912,7 @@ $(function () {
 
         // Top level properties
         for(k in schema['properties']){
-            if(k == id){
+            if(k === id){
                 delete schema['properties'][k];
             }
         }
@@ -921,11 +921,11 @@ $(function () {
             if(schema['definitions'][k].hasOwnProperty('properties')){
                 for(j in schema['definitions'][k]['properties']){
                     // Parameter to delete is in a group
-                    if(j == id){
+                    if(j === id){
                         delete schema['definitions'][k]['properties'][j];
                     }
                     // Group itself is being deleted - move contents of the group
-                    if(k == id){
+                    if(k === id){
                         // Move the HTML row out of the group
                         $('.schema_row[data-id="'+j+'"]').insertBefore(group_el);
 
@@ -943,7 +943,7 @@ $(function () {
                 }
             }
             // Delete the group from the schema
-            if(k == id){
+            if(k === id){
                 delete schema['definitions'][k];
                 // Loop backwards from allOf and remove matching definition
                 var i = schema['allOf'].length;
@@ -1073,7 +1073,7 @@ $(function () {
     // filter parameters table
     $('#search_parameters').keyup(function(){
         var q = $("#search_parameters").val();
-        if(q.trim().length == 0){
+        if(q.trim().length === 0){
             $('#params_table tr').show();
         } else {
             $('#params_table tr').filter(function () {
@@ -1281,7 +1281,7 @@ function generate_group_row(id, param, child_params){
         description = param['description'];
     }
 
-    if(child_params == undefined){
+    if(child_params === undefined){
         child_params = '';
     }
 
@@ -1313,7 +1313,7 @@ function generate_group_row(id, param, child_params){
         }
         num_children += 1;
     }
-    if(num_children == 0){
+    if(num_children === 0){
         is_hidden = false;
         drop_help_hidden = '';
     }
@@ -1427,7 +1427,7 @@ function validate_id(id, old_id){
     for(k in schema['definitions']){
         // Check that the id is not already a group id
         if (k===id) {
-          num_hits += 1;
+            num_hits += 1;
         }
         if(schema['definitions'][k].hasOwnProperty('properties')){
             if (schema['definitions'][k]['properties'].hasOwnProperty(id)) {
@@ -1462,7 +1462,7 @@ function validate_param(param){
     }
 
     // Empty defaults are always ok
-    if(!param.hasOwnProperty('default') || param['default'].length == 0){
+    if(!param.hasOwnProperty('default') || param['default'].length === 0){
         return true;
     }
 
@@ -1627,7 +1627,7 @@ function update_param_in_schema(id, new_param){
 function update_schema_html(schema){
     // Clean up empty keys in schema
     schema = clean_empty_schema_keys(schema);
-    if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length == 0){
+    if(schema.hasOwnProperty('definitions') && Object.keys(schema['definitions']).length === 0){
         delete schema['definitions'];
     }
     if(schema.hasOwnProperty('definitions')){
@@ -1653,13 +1653,13 @@ function autosave_schema(schema){
     });
 }
 function clean_empty_schema_keys(subschema){
-    if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length == 0){
+    if(subschema.hasOwnProperty('properties') && Object.keys(subschema['properties']).length === 0){
         delete subschema['properties'];
     }
-    if(subschema.hasOwnProperty('allOf') && subschema['allOf'].length == 0){
+    if(subschema.hasOwnProperty('allOf') && subschema['allOf'].length === 0){
         delete subschema['allOf'];
     }
-    if(subschema.hasOwnProperty('required') && subschema['required'].length == 0){
+    if(subschema.hasOwnProperty('required') && subschema['required'].length === 0){
         delete subschema['required'];
     }
     if(subschema.hasOwnProperty('properties')){
@@ -1672,16 +1672,16 @@ function clean_empty_schema_keys(subschema){
 function clean_empty_param_keys(param){
 
     // Clean up empty strings
-    if(param.hasOwnProperty('description') && param['description'] == ''){
+    if(param.hasOwnProperty('description') && param['description'] === ''){
         delete param['description'];
     }
-    if(param.hasOwnProperty('default') && param['default'] == ''){
+    if(param.hasOwnProperty('default') && (param['default'] === '' || param['default'] === false)){
         delete param['default'];
     }
-    if(param.hasOwnProperty('help_text') && param['help_text'] == ''){
+    if(param.hasOwnProperty('help_text') && param['help_text'] === ''){
         delete param['help_text'];
     }
-    if(param.hasOwnProperty('fa_icon') && param['fa_icon'] == ''){
+    if(param.hasOwnProperty('fa_icon') && param['fa_icon'] === ''){
         delete param['fa_icon'];
     }
     return param;

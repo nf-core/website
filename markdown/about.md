@@ -3,12 +3,6 @@
 The nf-core project is a diverse project spread across many groups.
 Here you can read how we organise ourselves, how we are funded and how the nf-core project was started.
 
-* [Core team](#core)
-* [Financial Support](#financial-support)
-  * [Chan Zuckerberg Initiative](#czi-eoss)
-  * [Amazon Web Services](#aws)
-* [History of nf-core](#history-of-nf-core)
-
 Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
 ## Core team {#core}
@@ -20,6 +14,7 @@ The core team members who administer the nf-core project are listed below:
 * [@ewels](https://github.com/ewels): Phil Ewels
 * [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 * [@jfy133](https://github.com/jfy133): James A. Fellows Yates
+* [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
 * [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
 * [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik

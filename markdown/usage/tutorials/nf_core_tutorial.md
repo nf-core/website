@@ -15,19 +15,6 @@ subtitle: Tutorial covering the basics of using and creating nf-core pipelines.
 
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core_tutorial.pdf)**
 
-## Table of Contents
-
-### Sections
-
-* [Abstract](#abstract)
-* [Introduction](#introduction)
-* [Installing the _nf-core_ helper tools](#installing-the-nf-core-helper-tools)
-* [Listing available _nf-core_ pipelines](#listing-available-nf-core-pipelines)
-* [Running _nf-core_ pipelines](#running-nf-core-pipelines)
-* [Creating _nf-core_ pipelines](#creating-nf-core-pipelines)
-* [Testing _nf-core_ pipelines](#testing-nf-core-pipelines)
-* [Releasing _nf-core_ pipelines](#releasing-nf-core-pipelines)
-
 #### Exercises
 
 * [1 - Installation](#exercise-1-installation)
@@ -93,7 +80,7 @@ Or this command to install the `dev` version:
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
-If using conda, first set up for bioconda as described in the [bioconda docs](https://bioconda.github.io/user/install.html) and then install nf-core:
+If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/user/install.html) (especially setting the channel order) and then install nf-core:
 
 ```bash
 conda install nf-core

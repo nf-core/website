@@ -289,7 +289,7 @@ $(function(){
       }
     ]
   };
-  chartData['repo_clones'].options.title.text = 'nf-core git clones per day';
+  chartData['repo_clones'].options.title.text = '<?php echo $pipeline->full_name; ?> git clones per day';
   chartData['repo_clones'].options.scales.yAxes[0].scaleLabel.labelString = 'Clones per day';
   chartData['repo_clones'].options.scales.yAxes[1].scaleLabel.labelString = 'Unique cloners per day';
   var ctx = document.getElementById('repo_clones_plot').getContext('2d');
@@ -345,7 +345,7 @@ $(function(){
       }
     ]
   };
-  chartData['repo_views'].options.title.text = 'nf-core repository web views per day';
+  chartData['repo_views'].options.title.text = '<?php echo $pipeline->full_name; ?> repository web views per day';
   chartData['repo_views'].options.scales.yAxes[0].scaleLabel.labelString = 'Views per day';
   chartData['repo_views'].options.scales.yAxes[1].scaleLabel.labelString = 'Unique visitors per day';
   var ctx = document.getElementById('repo_views_plot').getContext('2d');

@@ -21,6 +21,7 @@ $subtitle = $pipeline->description;
 $content = '';
 $schema_content = '';
 $import_chartjs = true;
+$no_auto_toc = true;
 
 # Header - keywords
 $header_html = '<p class="mb-0">';
@@ -213,7 +214,7 @@ if($pipeline->archived){
 
 <div class="container container-xl main-content">
 
-<ul class="nav nav-fill nfcore-subnav">
+<ul class="nav nav-fill nfcore-subnav justify-content-around">
   <li class="nav-item">
     <a class="nav-link<?php if($pagetab==''){ echo ' active'; } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in mr-1"></i> Introduction</a>
   </li>
@@ -266,7 +267,7 @@ if($pipeline->archived){
 ########
 # Make a row with a column for content
 ########
-echo '<div class="row"><div class="col-12 col-lg-9">';
+echo '<div class="row flex-wrap-reverse flex-lg-wrap"><div class="col-12 col-lg-9">';
 
 ########
 # Print content

@@ -16,14 +16,14 @@ You can find some key resources about Nextflow in the list below:
 * Tutorials and workshops
   * **Seqera Labs - Nextflow Training** - <https://seqera.io/training/>
   * Nextflow Workshop 2018: <https://nextflow-io.github.io/nf-hack18>
-  * CZ Biohub Nextflow Tutorial 2019: <https://github.com/czbiohub/nextflow-tutorial-201>
-  * Nextflow Camp 2019 DSLv2 tutorial: <https://github.com/nextflow-io/nfcamp-tutoria>
+  * CZ Biohub Nextflow Tutorial 2019: <https://github.com/czbiohub/nextflow-tutorial-2019>
+  * Nextflow Camp 2019 DSLv2 tutorial: <https://github.com/nextflow-io/nfcamp-tutorial>
 * Running Nextflow in the cloud:
   * AWS Batch tutorial: <https://docs.opendata.aws/genomics-workflows/orchestration/nextflow/nextflow-overview/>
-  * Google Cloud tutorial: <https://cloud.google.com/genomics/docs/tutorials/nextflo>
+  * Google Cloud tutorial: <https://cloud.google.com/genomics/docs/tutorials/nextflow>
 
 For questions about the main Nextflow tool, use the **Nextflow Gitter chat** community:
-<https://gitter.im/nextflow-io/nextflo>
+<https://gitter.im/nextflow-io/nextflow>
 
 Many _nf-core_ resources are to be found on this website.
 If in doubt, get in touch with the nf-core community [via Slack](https://nf-co.re/join).
