@@ -407,7 +407,6 @@ The minimum Nextflow version required to run the tests can be found in [this `ne
 NXF_VER="21.04.0-edge" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 ```
 
-
 ## Create a Pull Request
 
 Creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
