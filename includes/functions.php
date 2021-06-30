@@ -150,7 +150,7 @@ function print_current_events($events, $border){
         echo '<div class="btn-group mt-1" role="group" aria-label="External links">';
         foreach ($event['location_url'] as $idx => $url) {
           $m = $d['location_url_meta'][$idx];
-          echo '<a href="' . $m['url'] . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
+          echo '<a href="' . $url . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
         }
         echo '</div>';
       }
@@ -254,6 +254,7 @@ function get_self_url($strip_query = true)
 function generate_toc($html_string)
 {
   $toc = '';
+  $is_active = true;
   $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
   preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
   if ($matches) {
@@ -266,7 +267,7 @@ function generate_toc($html_string)
       $id = trim($match[3]);
       $after_attrs = trim($match[4]);
       $h_content = $match[5];
-      $name = trim(str_replace('&nbsp;', '', htmlentities(strip_tags($h_content))));
+      $name = trim(str_replace(['&nbsp;','&amp;'], ['','&'], htmlentities(strip_tags($h_content, $allowed_tags= ['code']))));
       if ($level > $curr_level) {
         $toc .= "\n" . '<div class="list-group">' . "\n";
         $counter += 1;
@@ -279,15 +280,17 @@ function generate_toc($html_string)
         }
       }
       $curr_level = $level;
-      if (preg_match('/<code>.*?<\/code>/', $whole_str)) {
-        $name = '<code>' . $name . '</code>';
+      if (preg_match('/<code>.*?<\/code>/', $whole_str,$code_match)) {
+        $name = html_entity_decode($name);
       }
       if (preg_match('/<i.*?<\/i>/', $whole_str, $icon_match)) {
         $name = $icon_match[0] . $name;
       }
       $is_hidden = strpos($before_attrs, 'toc-hidden') !== false || strpos($after_attrs, 'toc-hidden') !== false;
-      $toc_hidden = $is_hidden ? 'collapse' : '';
-      $toc .= '<a class="list-group-item list-group-item-action scroll_to_link ' . $toc_hidden . '" href="#' . $id . '">' . $name . '</a>';
+      $toc_hidden = $is_hidden ? ' collapse ' : '';
+      $active = $is_active ? ' active ' : '';
+      $is_active = false;
+      $toc .= '<a class="list-group-item list-group-item-action scroll_to_link '.$toc_hidden.$active.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
   while ($counter > 0) {
@@ -404,7 +407,6 @@ foreach ($year_dirs as $year) {
 
 # Look to see if we have an upcoming / ongoing event to show and pick one
 $curr_event = false;
-$time_window = 3600;
 $additional_ongoing = 0;
 $additional_upcoming = 0;
 foreach ($events as $idx => $event) {
@@ -414,7 +416,9 @@ foreach ($events as $idx => $event) {
     continue;
   }
   if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
-    $time_window = 86400*5; // show announcement 5 days ahead for full day events
+    $time_window = 86400*7; // show announcement 7 days ahead for full day events
+  } else {
+    $time_window = 86400;
   }
   if ($event['start_ts'] < time() + $time_window && $event['end_ts'] > time()) {
     $current_events[$idx] = $event;

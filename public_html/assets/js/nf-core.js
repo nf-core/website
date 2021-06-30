@@ -225,6 +225,16 @@ $(function () {
         scroll_to($(current_href), 0);
     });
 
+    if($('details>summary:contains("Video transcript")').length > 0){
+        $('details>summary:contains("Video transcript")')
+            .parents("details")
+            .before(
+            '<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>'
+            );
+    }else if ($(".rendered-markdown").length > 0) {
+        $(".rendered-markdown").append('<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>');
+    }
+
 });
 
 function scroll_to(target_el, offset) {
@@ -233,3 +243,4 @@ function scroll_to(target_el, offset) {
         scrollTop: el_offset
     }, 500);
 }
+    

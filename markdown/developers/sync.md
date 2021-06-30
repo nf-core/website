@@ -25,8 +25,8 @@ These pull requests then need to be manually resolved and merged by the pipeline
 Behind the scenes, this synchronisation is done by using `git`.
 Each repository has a special `TEMPLATE` branch which contains only the "vanilla" code made by the `nf-core create` tool.
 The synchronisation tool fetches the essential variables needed to recreate the pipeline and uses this to trigger a `nf-core create --no-git` command with the latest version of the template.
-The result from this is then compared against what is stored in the `TEMPLATE` branch and committed.
-When merging from the `TEMPLATE` branch back into the main `dev` branch of the pipeline, `git` should be clever enough to know what has changed since the template was first used, and therefore, it will only present the relevant changes.
+The result from this is then compared against what is stored in the `TEMPLATE` branch and committed. During an automated sync, a copy of the `TEMPLATE` branch called `nf-core-template-merge-<version>` will be made, and a PR from this new branch will be opened against your `dev`.  
+When merging from the `nf-core-template-merge-<version>` branch back into the main `dev` branch of the pipeline, `git` should be clever enough to know what has changed since the template was first used, and therefore, it will only present the relevant changes.
 
 For this to work in practice, the `TEMPLATE` branch needs to have a shared `git` history with the `master` branch of the pipeline.
 The `nf-core create` command initially does this by enforcing a first commit to the `master` branch before any development has taken place.
@@ -35,15 +35,29 @@ For instructions on this, see [Setting up a pipeline for syncing retrospectively
 
 # Merging automated PRs
 
-When a new release of tools is created, each pipeline will get an automated pull-request (PR) opened to merge the changes to the template into the pipeline.
+When a new release of tools is created, each pipeline will get an automated pull-request (PR) opened to merge the changes stored in the template into the pipeline.
 
 If there are no merge conflicts on the PR, then that's great!
 If you are happy with the changes, feel free to just merge it into the `dev` branch directly.
+
 However, it is quite likely that the PR is quite big with a lot of merge conflicts.
 You're going to have to resolve and merge these manually.
-Sorry about this, but there's no way around it..
+Sorry about this, but there's no way around it...
 
-You should not be actively working on the main nf-core repository, so we need to bring these changes to your personal fork.
+You can either work on the branch created for the template sync to fix the merge conflicts (i.e., on the GitHub web interface), or pull the updates to `TEMPLATE` to your own branch.
+
+Working on your fork is recommended if the merge is not trivial (please make a comment on the automated PR to say that you are working on it though). In this case see the section [Resolving major conflicts](#resolving-major-conflicts) for guidance.
+
+## Resolving minor conflicts
+
+This is the easier route for syncing the template. You can just go to the Pull Requests tab of your repository and open the PR typically named 'Important! Template update for nf-core/tools v1.13.2', which will come from a branch named `nf-core-template-merge-<version>`. This is a modifiable copy of `TEMPLATE`.
+
+At the bottom of the page, resolve the conflicts as guided by GitHub. This should commit to the branch above, and once tests pass you can request reviews from the nf-core community as normal.
+
+## Resolving major conflicts
+
+In the case that there are large conflicts which are unresolvable by the GitHub interface, it is safer and easier to fix these locally in your normal text editor and test on your machine before committing the changes.
+
 The steps we need to do are:
 
 1. Pull the `nf-core/<pipeline>` `TEMPLATE` changes to your fork
@@ -244,7 +258,7 @@ If your pipeline already has versioned releases (eg. you are not currently on `1
 then specify the version number that you are currently on:
 
 ```bash
-nf-core create --no-git --new-version 1.3dev
+nf-core create --no-git --version 1.3dev
 ```
 
 > The version you choose should match the branch that you intend to merge with.

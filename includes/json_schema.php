@@ -62,7 +62,7 @@ if(isset($_POST['post_content']) && $_POST['post_content'] == $post_content_type
     // Return with URL to check status cache if this came from the API (nf-core tools)
     if(isset($_POST['api']) && $_POST['api'] == 'true'){
         return_json(array(
-            'status' => 'recieved',
+            'status' => 'recieved', // DO NOT FIX THIS TYPO. nf-core/tools will break.
             'web_url' => $self_url.'?id='.$cache_id,
             'api_url' => $self_url.'?id='.$cache_id.'&api=true'
         ));
