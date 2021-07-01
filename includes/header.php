@@ -119,6 +119,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     }
     gtag('js', new Date());
     gtag('config', 'UA-68098153-2');
+
+    <?php if (isset($youtube_embed)) : ?>
+    youtube_embed = true;
+    <?php endif; ?>
   </script>
 </head>
 
@@ -165,7 +169,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="dropdown-item" href="/tools-docs">Lint error codes</a>
             <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
             <a class="dropdown-item" href="/developers/developer_tutorials">Developer tutorials</a>
-            <a class="dropdown-item" href="/developers/design_guidelines">Design Guidelines</a>
+            <a class="dropdown-item" href="/developers/editor_plugins">Code editor plugins</a>
+            <a class="dropdown-item" href="/developers/design_guidelines">Graphic design guidelines</a>
           </div>
         </li>
         <li class="nav-item p-1">

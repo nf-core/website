@@ -1,5 +1,5 @@
 ---
-title: Design guidelines
+title: Graphic design guidelines
 subtitle: Templates, common images, and design-related content for nf-core.
 ---
 
@@ -39,7 +39,6 @@ The nf-core green colour is as follows:
 ## Presentation Templates
 
 nf-core regularly host [community events](https://nf-co.re/events), such as hackathons, and encourage training (e.g. [nf-core tutorials](https://nf-co.re/usage/nf_core_tutorial)) the wider bioinformatics community in creating nextflow and nf-core pipelines.
-
 
 <!--
 If you wish to introduce or run training sessions to your group or network, you can access a Google Doc template **here**.
