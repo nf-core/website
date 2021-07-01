@@ -6,15 +6,19 @@ subtitle: Additions to your coding environment that can help your workflow.
 # VSCode
 
 [Visual Studio Code](https://code.visualstudio.com/), or VSCode for short, is a code editor redefined and optimized for building and debugging modern web and cloud applications.
-
 VSCode has a huge ecosystem of packages that can be installed to extend functionality.
+
+There is offical Nextflow language support for Nextflow with syntax highlighting and auto-completion code snippets.
+To use, just search for `Nextflow` in the VSCode Packages tab search bar, or visit
+<https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow> (see also the [source code](https://github.com/nextflow-io/vscode-language-nextflow)).
+
 To make it easier to get up and running with the ones that are helpful when working with nf-core pipelines, we have put together an _"extension pack"_ of community favourites.
 You can browse, pick and choose the ones you think look good, or can install them all in a single click.
 
 To use, just search for `nf-core-extensionpack` in the VSCode Packages tab search bar, or visit
 <https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack>
 
-The source code can be found on GitHub - suggestions and improvements welcome!
+The extension pack source code can be found on GitHub and is super simple syntax - suggestions and improvements welcome!
 <https://github.com/nf-core/vscode-extensionpack>
 
 # Sublime Text
