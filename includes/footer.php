@@ -85,7 +85,8 @@ if(isset($subfooter) and $subfooter){
               <li><a href="/developers/release_checklist">Release checklist</a></li>
               <li><a href="/tools-docs">Lint error codes</a></li>
               <li><a href="/developers/sync">Template synchronisation</a></li>
-              <a class="dropdown-item" href="/developers/developer_tutorials">Developer tutorials</a>
+              <li><a href="/developers/developer_tutorials">Developer tutorials</a></li>
+              <li><a href="/developers/editor_plugins">Code editor plugins</a></li>
               <li><a href="/developers/design_guidelines">Graphic design guidelines</a></li>
             </ul>
           </div>
