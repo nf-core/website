@@ -49,3 +49,12 @@ Other useful packages include:
 * `python-black`: <https://atom.io/packages/python-black>
 * `todo-show`: <https://atom.io/packages/todo-show>
 * `trailing-spaces`: <https://atom.io/packages/trailing-spaces>
+
+# Emacs
+
+An Emacs mode written by [@Emiller88](https://github.com/Emiller88) gives Nextflow syntax highlighting:
+<https://github.com/Emiller88/nextflow-mode>
+
+# Vim
+
+[@LukeGoodsell](https://github.com/Emiller88) has put together a Vim plugin that builds on groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
