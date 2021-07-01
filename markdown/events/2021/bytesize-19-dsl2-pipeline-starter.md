@@ -1,6 +1,6 @@
 ---
-title: "Bytesize 19: Where do you begin? DSL2 pipeline introduction"
-subtitle: Harshil Patel - Francis Crick Institiute, UK
+title: "Bytesize 19: Where do I start writing my own DSL2 pipeline?!"
+subtitle: Harshil Patel - Seqera Labs, Spain
 type: talk
 start_date: "2021-09-07"
 start_time: "13:00 CEST"
@@ -18,4 +18,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 19: Where do you begin? DSL2 pipeline introduction
 
-This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present and introduction to developing pipelines in Nextflow DSL2.
+This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present an introduction to developing pipelines in Nextflow DSL2 using nf-core community standards.
