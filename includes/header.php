@@ -119,6 +119,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     }
     gtag('js', new Date());
     gtag('config', 'UA-68098153-2');
+
+    <?php if (isset($youtube_embed)) : ?>
+    youtube_embed = true;
+    <?php endif; ?>
   </script>
 </head>
 
