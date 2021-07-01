@@ -9,8 +9,7 @@ end_time: "18:00 CEST"
 ---
 
 Please join us for the October 2021 nf-core hackathon!
-This event is entirely virtual and we are attempting to support people in all timezones
-:earth_americas: :earth_asia: :earth_africa:
+This event is entirely virtual and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
 
 More details will come soon, registration will open after summer 2021.
 Please check back here for details and keep an eye out on twitter and on Slack,
