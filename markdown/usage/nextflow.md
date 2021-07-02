@@ -15,6 +15,9 @@ You can find some key resources about Nextflow in the list below:
   * Common implementation patterns for developers: <http://nextflow-io.github.io/patterns/index.html>
 * Tutorials and workshops
   * **Seqera Labs - Nextflow Training** - <https://seqera.io/training/>
+  * Rinn Lab 2021 undergraduate course lectures, covering Nextflow and nf-core
+    * <https://github.com/boulderrinnlab/CLASS_2021>
+    * <https://www.youtube.com/playlist?list=PLK_W6cepCrQ2zLTUqIj6QkwtfYWrUDBbe>
   * Nextflow Workshop 2018: <https://nextflow-io.github.io/nf-hack18>
   * CZ Biohub Nextflow Tutorial 2019: <https://github.com/czbiohub/nextflow-tutorial-2019>
   * Nextflow Camp 2019 DSLv2 tutorial: <https://github.com/nextflow-io/nfcamp-tutorial>

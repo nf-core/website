@@ -231,7 +231,7 @@ $(function () {
             .before(
             '<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>'
             );
-    }else if ($(".rendered-markdown").length > 0) {
+    } else if ($(".rendered-markdown").length > 0 && youtube_embed) {
         $(".rendered-markdown").append('<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>');
     }
 
@@ -243,4 +243,3 @@ function scroll_to(target_el, offset) {
         scrollTop: el_offset
     }, 500);
 }
-    
