@@ -61,4 +61,4 @@ An Emacs mode written by [@Emiller88](https://github.com/Emiller88) gives Nextfl
 
 # Vim
 
-[@LukeGoodsell](https://github.com/Emiller88) has put together a Vim plugin that builds on Groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
+[@LukeGoodsell](https://github.com/LukeGoodsell) has put together a Vim plugin that builds on Groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
