@@ -59,6 +59,10 @@ Other useful packages include:
 An Emacs mode written by [@Emiller88](https://github.com/Emiller88) gives Nextflow syntax highlighting:
 <https://github.com/Emiller88/nextflow-mode>
 
+If you're looking to get started with Emacs check out [Doom Emacs](https://github.com/hlissner/doom-emacs). If you like modules, it's the editor for you! Check out [https://www.youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj](DoomCasts: Emacs Doom Screencasts) for some intros similar to the nf-core bytesize talks.
+
 # Vim
 
-[@LukeGoodsell](https://github.com/Emiller88) has put together a Vim plugin that builds on Groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
+[@LukeGoodsell](https://github.com/LukeGoodsell) has put together a Vim plugin that builds on Groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
+
+[@Mxrcon](https://github.com/Mxrcon) has created a fork that supports DSL2 <https://github.com/Mxrcon/nextflow-vim>
