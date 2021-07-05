@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 20: Setting up AWS metatests"
+title: "Bytesize 20: Setting up AWS megatests"
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
 start_date: "2021-09-07"
@@ -18,4 +18,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 20: Setting up AWS metatests
 
-This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will tell us all about the nf-core benchmarking _AWS megatests_ and how to set them up in your nf-core pipeline.
+This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will tell us all about the nf-core _AWS megatests_‚ and how to set them up in your nf-core pipeline.
