@@ -133,13 +133,10 @@ function parse_md($markdown){
     $content .=  '</div>'; # end of the row
   }
 
-  // Find and replace emojis names with images
-  $content = preg_replace('/:(?!\/)([\S]+?):/', '<img class="emoji" alt="${1}" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/${1}.png">', $content);
-
   $content = preg_replace_callback('/:(?!\/)([\S]+?):/',function($match){
-    # check if match is actually an emoji name
-    if (file_get_contents("https://github.githubassets.com/images/icons/emoji/$match[1].png") === false) {
-      return $match[0];
+    # check if match is actually an emoji/file name
+    if (!file_get_contents("https://github.githubassets.com/images/icons/emoji/$match[1].png")) {
+      return $match[0]; # return the whole string if the emoji/file name doesn't resolve
     } else {
       return '<img class="emoji" alt="'.$match[1].'" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/'.$match[1].'.png">';
     }
