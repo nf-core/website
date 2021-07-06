@@ -362,7 +362,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 * `docs/`: Markdown files for documenting the pipeline
 
-* `lib/`: The lib directory contains groovy utility functions. These are called from within the nf-core pipeline to do common pipeline tasks, like formatting the header for the command line. Any larger groovy function you want to call in the code should therefore go in here. Currently, the following files are included:
+* `lib/`: The lib directory contains Groovy utility functions. These are called from within the nf-core pipeline to do common pipeline tasks (e.g. parameter schema validation) and to hold Groovy functions that may be useful in the pipeline context (e.g. to validate pipeline-specific parameters). Currently, the following files are included:
 
   * `NfcoreSchema.groovy`
   * `NfcoreTemplate.groovy`
