@@ -136,7 +136,7 @@ function parse_md($markdown){
   $content = preg_replace_callback('/:(?!\/)([\S]+?):/',function($match){
     # check if match is actually an emoji/file name
     if (file_get_contents("https://github.githubassets.com/images/icons/emoji/$match[1].png")===false) {
-      return $match[0]; 
+      return $match[0];
     } else {
       return '<img class="emoji" alt="'.$match[1].'" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/'.$match[1].'.png">';
     }
