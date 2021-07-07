@@ -28,15 +28,17 @@ In addition, references of tools and data used in this pipeline are as follows:
 ## General
 
 - Replace in all places reference to the pipeline name that includes the `nf-core/` suffix.
+    - :warning: If you still wish to use the `nf-core tools` linting functionality, this may result in a lot of linting failures. You can create a `.nf-core-lint.yml` file that allows you to ignore or skip certain lint tests. You can find more information on how to do this [here](/tools/#linting-config). One example is the `pipeline_name_conventions`
 
 ### `README`
 
 To ensure users do not get confused, we suggest removing the following components of the main pipeline README
 
-1. Slack badge for help messages.
-2. Replace all references of the [https://nf-co.re](https://nf-co.re) website to the location of your own documentation
-3. Remove reference to the nf-core Slack workspace under `Contributions and Support
-4. Replace the `Citations` section with the following markdown:
+1. Remove (or replace) the nf-core logo (see [below](#docs))
+2. Slack badge for help messages.
+3. Replace all references of the [https://nf-co.re](https://nf-co.re) website to the location of your own documentation
+4. Remove reference to the nf-core Slack workspace under `Contributions and Support
+5. Replace the `Citations` section with the following markdown:
 
     ```markdown
     This pipeline uses code and infrastructure developed and maintained by the [nf-core](https://nf-co.re) initative, and reused here under the [MIT license](https://github.com/nf-core/tools/blob/master/LICENSE).
