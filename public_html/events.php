@@ -1,9 +1,8 @@
 <?php
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
-require "../vendor/autoload.php";
-use Spatie\CalendarLinks\Link;
 require_once('../includes/functions.php');
+use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__file__)) . "/markdown/";
 $event_type_classes = array(

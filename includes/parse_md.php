@@ -8,7 +8,6 @@
 require_once('functions.php');
 
 // Markdown parsing libraries
-require "../vendor/autoload.php";
 use ParsedownExtra;
 
 function parse_md($markdown){
