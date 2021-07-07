@@ -39,6 +39,8 @@ pipeline to the one you're planning.
 To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
 as possible. Ideally before you make a start on your pipeline!
 
+> In some cases you may wish to not make your workflow an official nf-core pipeline. However, as all nf-core code is under a MIT license, you may still wish to use the nf-core template and/or use components of nf-core code. If so, please see guidance on how to do so [here](/developers/tutorials/unofficial_pipelines.md).
+
 All nf-core discussion happens on the nf-core Slack, which you can join here:
 [https://nf-co.re/join](https://nf-co.re/join)
 
