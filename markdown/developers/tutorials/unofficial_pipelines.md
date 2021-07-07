@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Reusing nf-core components in non-nf-core pipelines. "
+title: "Tutorial: Using nf-core components outside nf-core"
 subtitle: Guidance on how to use nf-core code and best practices in non-nf-core pipelines.
 ---
 
@@ -85,7 +85,7 @@ Optional:
 Optional:
 
 1. `CONTRIBUTING.md`: remove references to the nf-core/tools linting tests
-2. `workflows/`: remove the nf-core linting tests under
+2. `workflows/`: remove the nf-core linting tests under (Note: you can alternatively keep linting and [configure](#general) to ignore certain tests)
     - `linting.yml`
     - `linting_comment.yml`
 3. `workflows/`: remove the AWS test GitHub action workflows
