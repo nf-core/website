@@ -2,7 +2,9 @@
 // Common PHP functions for the website
 
 // Pull out YAML front-matter from a markdown file
-require_once(dirname(__FILE__) . '/libraries/Spyc.php');
+require "../vendor/autoload.php";
+use Spyc;
+
 function parse_md_front_matter($md_full)
 {
   if (substr($md_full, 0, 3) == '---') {
