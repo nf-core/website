@@ -33,12 +33,12 @@ function create_event_download_button($event,$button_style){
 
   $event_download_button =  '<div class="dropdown btn-group" role="group">
           <button   type="button" class="btn '.$button_style.' dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="far fa-calendar-plus mr-1"></i> Add to calendar
+            <i class="far fa-calendar-plus mr-1"></i> Export event
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download event </a> 
-            <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar </a> 
-            <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook </a> 
+            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download as iCalendar</a> 
+            <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar</a> 
+            <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook</a> 
           </div>
         </div>';
   return $event_download_button;
