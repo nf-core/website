@@ -3,14 +3,14 @@ title: "Tutorial: Reusing nf-core components in non-nf-core pipelines. "
 subtitle: Guidance on how to use nf-core code and best practices in non-nf-core pipelines.
 ---
 
-While we highly recommend and promote contributing to existing nf-core pipelines, in some cases you may disagree with some of the design decisions, or only wish to follow _parts_ of nf-core best practices for your own non-nf-core pipeline. This tutorial describes how to use nf-core code without making official nf-core pipelines.
+While we highly recommend and promote contributing to existing nf-core pipelines, in some cases this may not be possible or appropriate. In this case we hope that it will be helpful to use _parts_ of nf-core best practices for your own non-nf-core pipeline. This tutorial describes how to use nf-core code without making official nf-core pipelines.
 
 ## Acknowledging nf-core
 
-If you use any form of nf-core code or infrastructure, we kindly ask that you acknowledge the nf-core initiative by adding the following markdown to your README or pipeline documentation.
+If you use any form of nf-core code or infrastructure, we kindly ask that you acknowledge the nf-core initiative by adding the following markdown to your `README.md` and pipeline documentation.
 
 ```markdown
-This pipeline uses code and infrastructure developed and maintained by the [nf-core](https://nf-co.re) initiative, and reused here under the [MIT license](https://github.com/nf-core/tools/blob/master/LICENSE).
+This pipeline uses code and infrastructure developed and maintained by the [nf-core](https://nf-co.re) community, reused here under the [MIT license](https://github.com/nf-core/tools/blob/master/LICENSE).
 
 > The nf-core framework for community-curated bioinformatics pipelines.
 >
