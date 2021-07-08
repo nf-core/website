@@ -3,7 +3,6 @@
 
 // Pull out YAML front-matter from a markdown file
 require "../vendor/autoload.php";
-use Spyc;
 
 function parse_md_front_matter($md_full)
 {
