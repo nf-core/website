@@ -69,10 +69,6 @@ Optional:
 1. Reference to nf-core/configs in `-profile`
      - Note in many cases it is still reasonable to use these configs for non-nf-core pipelines as they typically only modify generic Nextflow options
 
-### `assets/`
-
-1. `*email_template.*` - remove references to `nfcorepipelinelogo`
-
 ### `.github/`
 
 1. `PULL_REQUEST_TEMPLATE.md`: Remove reference to the nf-core/tests-datasets repository
