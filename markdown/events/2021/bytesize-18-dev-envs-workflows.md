@@ -9,6 +9,7 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/OF55x-FT5WE
 location_url:
   - https://youtu.be/OF55x-FT5WE
+  - https://www.bilibili.com/video/BV1Wh411679X
 ---
 
 # nf-core/bytesize
