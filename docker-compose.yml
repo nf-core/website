@@ -19,7 +19,7 @@ services:
       - .:/var/www/
     working_dir: /var/www/
   npm:
-    build: .
+    image: node:15.2.0-alpine3.12
     container_name: npm
     volumes:
       - .:/var/www/
