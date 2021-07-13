@@ -18,3 +18,10 @@ services:
     volumes:
       - .:/var/www/
     working_dir: /var/www/
+  npm:
+    build: .
+    container_name: npm
+    volumes:
+      - .:/var/www/
+    command: sh -c "npm install --quiet && npm run watch-sass"
+    working_dir: /var/www/
