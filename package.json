@@ -1,0 +1,32 @@
+{
+  "name": "nf-co.re",
+  "version": "1.0.0",
+  "description": "<img src=\"public_html/assets/img/logo/nf-core-logo.png\" width=\"400\">",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js:dev": "babel public_html/assets/js -d public_html/assets/js",
+    "watch-sass": "sass public_html/assets/sass:public_html/assets/css --watch",
+    "compile-sass": "sass public_html/assets/sass:public_html/assets/css",
+    "prefix-css": "postcss --use autoprefixer -b 'last 5 versions' --replace public_html/assets/css/*nf-core*.css ",
+    "compress-css": "sass public_html/assets/css/style.css public_html/assets/css/style.css --style compressed",
+    "build-css": "npm-run-all compile-sass prefix-css compress-css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mashehu/nf-co.re.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mashehu/nf-co.re/issues"
+  },
+  "homepage": "https://github.com/mashehu/nf-co.re#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.0.2",
+    "babel-cli": "^6.26.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^8.2.0",
+    "sass": "^1.29.0"
+  }
+}
