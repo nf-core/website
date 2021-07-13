@@ -47,7 +47,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="author" content="Phil Ewels">
   <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/css/code_highlighting/github.css" rel="stylesheet">
   <link href="/assets/css/Chart.min.css" rel="stylesheet">
   <!-- FontAwesome -->
@@ -56,8 +55,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
   <!-- Other JS -->
   <script src="/assets/js/jquery-3.4.1.min.js"></script>
-  <script src="/assets/js/popper.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/js/highlight.pack.js"></script>
   <!-- Page-specific CSS and JS -->
   <?php if (isset($import_moment) && $import_moment) : ?>
@@ -121,82 +119,84 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     gtag('config', 'UA-68098153-2');
 
     <?php if (isset($youtube_embed)) : ?>
-    youtube_embed = true;
+      youtube_embed = true;
     <?php endif; ?>
   </script>
 </head>
 
 <body data-spy="scroll" data-target=".toc" data-offset="15">
   <nav class="navbar fixed-top navbar-expand-md navbar-light shadow-sm site-nav">
-    <a class="navbar-brand d-md-none" href="/">
-      <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
-      <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
-      <ul class="navbar-nav">
-        <li class="nav-item p-1">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item p-1">
-          <a class="nav-link" href="/pipelines">Pipelines</a>
-        </li>
-        <li class="nav-item p-1">
-          <a class="nav-link" href="/tools">Tools</a>
-        </li>
-        <li class="nav-item p-1 dropdown">
-          <a class="nav-link" href="/usage/introduction" role="button" data-toggle="dropdown">Usage</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="/usage/introduction">Getting started</a>
-            <a class="dropdown-item" href="/usage/installation">Installation</a>
-            <a class="dropdown-item" href="/usage/configuration">Pipeline configuration</a>
-            <a class="dropdown-item" href="/usage/offline">Running offline</a>
-            <a class="dropdown-item" href="/usage/usage_tutorials">Usage tutorials</a>
-            <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
-            <a class="dropdown-item" href="/usage/data_management">Data Management</a>
-            <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
-            <a class="dropdown-item" href="/usage/nextflow">Nextflow resources</a>
-          </div>
-        </li>
-        <li class="nav-item p-1 dropdown">
-          <a class="nav-link" href="/developers/guidelines" role="button" data-toggle="dropdown">Developers</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
-            <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
-            <a class="dropdown-item" href="/developers/release_checklist">Release checklist</a>
-            <a class="dropdown-item" href="/tools-docs">Lint error codes</a>
-            <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
-            <a class="dropdown-item" href="/developers/developer_tutorials">Developer tutorials</a>
-            <a class="dropdown-item" href="/developers/editor_plugins">Code editor plugins</a>
-            <a class="dropdown-item" href="/developers/design_guidelines">Graphic design guidelines</a>
-          </div>
-        </li>
-        <li class="nav-item p-1">
-          <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
-                                                echo '<i class="fad fa-circle text-danger mr-1"></i>';
-                                              } ?>Events</a>
-        </li>
-        <li class="nav-item p-1 dropdown">
-          <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="/about">About nf-core</a>
-            <a class="dropdown-item" href="/community">Community</a>
-            <a class="dropdown-item" href="/stats">Statistics</a>
-            <a class="dropdown-item" href="/publications">Publications</a>
-            <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
-            <a class="dropdown-item" href="/join">Join nf-core</a>
-          </div>
-        </li>
-      </ul>
-      <hr class="d-md-none">
-      <a class="d-md-none btn btn-block btn-success mb-3" href="/join">
-        Join nf-core
+    <div class="container-fluid">
+      <a class="navbar-brand d-md-none" href="/">
+        <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
+        <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
       </a>
-      <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
-        Join nf-core
-      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/pipelines">Pipelines</a>
+          </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/tools">Tools</a>
+          </li>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link" href="/usage/introduction" role="button" data-toggle="dropdown">Usage</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/usage/introduction">Getting started</a>
+              <a class="dropdown-item" href="/usage/installation">Installation</a>
+              <a class="dropdown-item" href="/usage/configuration">Pipeline configuration</a>
+              <a class="dropdown-item" href="/usage/offline">Running offline</a>
+              <a class="dropdown-item" href="/usage/usage_tutorials">Usage tutorials</a>
+              <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
+              <a class="dropdown-item" href="/usage/data_management">Data Management</a>
+              <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
+              <a class="dropdown-item" href="/usage/nextflow">Nextflow resources</a>
+            </div>
+          </li>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link" href="/developers/guidelines" role="button" data-toggle="dropdown">Developers</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
+              <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
+              <a class="dropdown-item" href="/developers/release_checklist">Release checklist</a>
+              <a class="dropdown-item" href="/tools-docs">Lint error codes</a>
+              <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
+              <a class="dropdown-item" href="/developers/developer_tutorials">Developer tutorials</a>
+              <a class="dropdown-item" href="/developers/editor_plugins">Code editor plugins</a>
+              <a class="dropdown-item" href="/developers/design_guidelines">Graphic design guidelines</a>
+            </div>
+          </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
+                                                  echo '<i class="fad fa-circle text-danger me-1"></i>';
+                                                } ?>Events</a>
+          </li>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/about">About nf-core</a>
+              <a class="dropdown-item" href="/community">Community</a>
+              <a class="dropdown-item" href="/stats">Statistics</a>
+              <a class="dropdown-item" href="/publications">Publications</a>
+              <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
+              <a class="dropdown-item" href="/join">Join nf-core</a>
+            </div>
+          </li>
+        </ul>
+        <hr class="d-md-none">
+        <a class="d-md-none btn d-block btn-success mb-3" href="/join">
+          Join nf-core
+        </a>
+        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
+          Join nf-core
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -209,10 +209,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-            echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-right d-none d-md-inline-block ml-2 mt-4" title="Edit this page on GitHub" data-toggle="tooltip" data-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
+            echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ml-2 mt-4" title="Edit this page on GitHub" data-toggle="tooltip" data-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
           }
           if (isset($header_btn_url) && isset($header_btn_text)) {
-            echo '<a href="' . $header_btn_url . '" class="btn btn-sm btn-outline-light float-right d-none d-md-inline-block mt-4">' . $header_btn_text . '</a>';
+            echo '<a href="' . $header_btn_url . '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' . $header_btn_text . '</a>';
           }
           ?>
           <h1 class="display-3"><?php echo $title; ?></h1>

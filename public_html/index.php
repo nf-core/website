@@ -1,7 +1,9 @@
 <?php
 // Get a random subset of contributor institute logos
 require "../vendor/autoload.php";
+
 use Spyc;
+
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_img_list = [];
 foreach ($contributors['contributors'] as $idx => $c) {
@@ -23,21 +25,21 @@ $header_btn_url = 'https://nf-co.re/events/rss';
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once('../includes/functions.php');
 
-if($curr_event){
+if ($curr_event) {
   // Shared function to prep nicely formatted output
   $curr_event['meta'] = prep_current_event($curr_event);
   // Dropdown button to visit event
   $curr_event['meta']['location_dropdown'] = '';
   if (array_key_exists('location_url', $curr_event) && $curr_event['ongoing']) {
-    if(count($curr_event['location_url']) == 1){
+    if (count($curr_event['location_url']) == 1) {
       $url = $curr_event['location_url'];
-      if($url[0] == "#") $url = $curr_event['url'] . $url;
+      if ($url[0] == "#") $url = $curr_event['url'] . $url;
       $m = $curr_event['meta']['location_url_meta'];
 
-      $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success mr-2 mb-2" href="'.$url.'">'.$m[0]['icon'].' Watch now</a>';
+      $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success me-2 mb-2" href="' . $url . '">' . $m[0]['icon'] . ' Watch now</a>';
     } else {
       $curr_event['meta']['location_dropdown'] = '
-        <div class="dropdown mr-2 mb-2">
+        <div class="dropdown me-2 mb-2">
           <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Watch now
           </a>
@@ -46,18 +48,18 @@ if($curr_event){
           ';
       foreach ($curr_event['location_url'] as $idx => $url) {
         $m = $curr_event['meta']['location_url_meta'][$idx];
-        if($url[0] == "#") $url = $curr_event['url'] . $url;
-        $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="'.$url.'" target="_blank">'.$m['icon'].' <code>'.$url.'</code></a>'."\n";
+        if ($url[0] == "#") $url = $curr_event['url'] . $url;
+        $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="' . $url . '" target="_blank">' . $m['icon'] . ' <code>' . $url . '</code></a>' . "\n";
       }
       $curr_event['meta']['location_dropdown'] .= '</div></div>';
     }
   }
   // Countdown timer for upcoming events
-  if(!$curr_event['ongoing']){
+  if (!$curr_event['ongoing']) {
     $dtF = new \DateTime('@0');
-    $dtT = new \DateTime("@".(time() - $curr_event['start_ts']));
+    $dtT = new \DateTime("@" . (time() - $curr_event['start_ts']));
     $dtDiff = $dtF->diff($dtT);
-    if($dtDiff->format('%d') == '0'){
+    if ($dtDiff->format('%d') == '0') {
       $countdown_text = $dtDiff->format('%hh %Im %Ss');
     } else {
       $countdown_text = $dtDiff->format('%d days,<br>%hh %Im %Ss');
@@ -65,7 +67,7 @@ if($curr_event){
     $curr_event['meta']['countdown'] = "
     <script type=\"text/javascript\">
         setInterval(function(){
-          var eventTime = ".$curr_event['start_ts']." * 1000;
+          var eventTime = " . $curr_event['start_ts'] . " * 1000;
           var currentTime = Date.now();
           var delta = Math.abs(eventTime - currentTime) / 1000;
 
@@ -143,8 +145,8 @@ include('../includes/header.php');
               </div>
               <?php
               if (count($curr_event['youtube_embed']) > 1) : ?>
-                <p class="text-right"><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php echo count($curr_event['youtube_embed']) - 1;
-                                                                                                                      d ?> more</a></p>
+                <p class=""><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php echo count($curr_event['youtube_embed']) - 1;
+                                                                                                            d ?> more</a></p>
               <?php endif;
             elseif ($curr_event['ongoing']) : ?>
               <div class="pt-lg-5">
@@ -172,10 +174,14 @@ include('../includes/header.php');
     </div>
   </div>
 </div>
-<form class="form-inline searchbar_form homepage_search" action="search" method="get">
-  <input type="search" class="form-control" placeholder="Search" name="q" required>
-  <button type="submit" class="btn btn-outline-success">Search</button>
-</form>
+<div class="d-flex justify-content-center">
+  <form class="searchbar_form homepage_search" action="search" method="get">
+    <div class="input-group">
+      <input type="search" class="form-control" placeholder="Search" name="q" required>
+      <button type="submit" class="btn btn-outline-success">Search</button>
+    </div>
+  </form>
+</div>
 
 <div class="triangle triangle-up"></div>
 <div class="homepage-intro">
@@ -183,28 +189,28 @@ include('../includes/header.php');
     <div class="row">
       <div class="col-md-4 py-3 py-md-5 px-md-4">
         <i class="fad fa-industry-alt fa-3x mb-2"></i>
-        <h3 class="display-5 text-white">For facilities</h3>
+        <h3 class="text-white">For facilities</h3>
         <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
       </div>
       <div class="col-md-4 py-3 py-md-5 px-md-4">
         <i class="fad fa-users fa-3x mb-2"></i>
-        <h3 class="display-5 text-white">For users</h3>
+        <h3 class="text-white">For users</h3>
         <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
       </div>
       <div class="col-md-4 py-3 py-md-5 px-md-4">
         <i class="fad fa-laptop-code fa-3x mb-2"></i>
-        <h3 class="display-5 text-white">For developers</h3>
+        <h3 class="text-white">For developers</h3>
         <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
       </div>
     </div>
     <div class="text-center">
       <p class="d-inline-block text-white m-0 pb-3">
         <a class="text-white" href="https://doi.org/10.1038/s41587-020-0439-x" target="_blank">
-          <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="50px" class="float-left mr-3">
+          <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="50px" class="float-left me-3">
           nf-core is published in Nature Biotechnology!
           <br>
           <em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
-          <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ml-3">
+          <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ms-3">
         </a>
       </p>
     </div>
@@ -224,7 +230,7 @@ include('../includes/header.php');
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Documentation</h5>
-          <img class="float-right ml-3" height="100px" src="assets/img/docs.svg" />
+          <img class="float-end ms-3" height="100px" src="assets/img/docs.svg" />
           <p class="card-text">Extensive documentation covering installation, usage and description of output files
             ensures that you won't be left in the dark.</p>
         </div>
@@ -234,7 +240,7 @@ include('../includes/header.php');
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">CI Testing</h5>
-          <img class="float-right ml-3" height="90px" src="assets/img/github-actions.svg" />
+          <img class="float-end ms-3" height="90px" src="assets/img/github-actions.svg" />
           <p class="card-text">Every time a change is made to the pipeline code,
             nf-core pipelines use continuous-integration testing to ensure that nothing has broken.</p>
         </div>
@@ -244,7 +250,7 @@ include('../includes/header.php');
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Stable Releases</h5>
-          <img class="float-right ml-3" height="100px" src="assets/img/releases.svg" />
+          <img class="float-end ms-3" height="100px" src="assets/img/releases.svg" />
           <p class="card-text">nf-core pipelines use GitHub releases to tag stable versions of the code
             and software, making pipeline runs totally reproducible.</p>
         </div>
@@ -254,7 +260,7 @@ include('../includes/header.php');
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Docker</h5>
-          <img class="float-right ml-3" height="100px" src="assets/img/docker.svg" />
+          <img class="float-end ms-3" height="100px" src="assets/img/docker.svg" />
           <p class="card-text">Software dependencies are handled with docker containers
             which Nextflow downloads for you, so no need for any software installations.</p>
         </div>
@@ -264,7 +270,7 @@ include('../includes/header.php');
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Singularity</h5>
-          <img class="float-right ml-3" height="100px" src="assets/img/singularity.svg" />
+          <img class="float-end ms-3" height="100px" src="assets/img/singularity.svg" />
           <p class="card-text">If you're not able to use Docker, built-in support for Singularity can
             solve your HPC container problems. These are built from the docker containers.</p>
         </div>
@@ -274,7 +280,7 @@ include('../includes/header.php');
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Bioconda</h5>
-          <img class="float-right ml-3" height="100px" src="assets/img/bioconda.svg" />
+          <img class="float-end ms-3" height="100px" src="assets/img/bioconda.svg" />
           <p class="card-text">Where possible, pipelines come with built-in bioconda support,
             so if you can't use software containers the dependencies can still be handled automatically.</p>
         </div>
@@ -284,7 +290,7 @@ include('../includes/header.php');
 </div>
 
 
-<div class="bg-light py-5">
+<div class="bg-light py-4">
   <div id="developers" class="container homepage-feature-boxes">
     <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
     <div class="row">
@@ -292,9 +298,11 @@ include('../includes/header.php');
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Develop <u>with</u> the community</h5>
-            <i class="fad fa-people-carry fa-5x float-right text-secondary ml-3"></i>
-            <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
-              to find collaborators and check that your pipeline is suitable for nf-core.</p>
+            <div class='d-flex align-items-center'>
+              <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
+                to find collaborators and check that your pipeline is suitable for nf-core.</p>
+              <i class="fad fa-people-carry fa-5x text-secondary ms-3"></i>
+            </div>
             <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
           </div>
         </div>
@@ -303,10 +311,11 @@ include('../includes/header.php');
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
-            <i class="fas fa-magic fa-5x float-right text-secondary ml-3"></i>
-            <p class="card-text">All pipelines must be based on our template
-              and have a repo created using <code>nf-core create</code>. An automated sync
-              keeps pipelines up to date.</p>
+            <div class='d-flex align-items-center'>
+              <p class="card-text">All pipelines must be based on our template
+                and have a repo created using <code>nf-core create</code>. An automated sync keeps pipelines up to date.</p>
+              <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
+            </div>
             <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
           </div>
         </div>
@@ -315,9 +324,11 @@ include('../includes/header.php');
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
-            <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
-            <p class="card-text">We only allow one pipeline per data type / analysis type.
-              If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
+            <div class='d-flex align-items-center'>
+              <p class="card-text">We only allow one pipeline per data type / analysis type.
+                If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
+              <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
+            </div>
             <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
           </div>
         </div>
@@ -397,17 +408,17 @@ nf-core list
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>See what's available</h3>
       <p>Check out the available pipelines to see if we have what you need. Each comes with release details, keywords and a description.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span><i class="fas fa-toolbox mr-1"></i> Available pipelines</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"><span><i class="fas fa-toolbox me-1"></i> Available pipelines</span></a>
     </div>
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Run a pipeline</h3>
       <p>Read the quickstart tutorial to learn how to get set up with the required software and tools, and how to launch a nf-core pipeline.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"><span><i class="fad fa-graduation-cap mr-1"></i> Quickstart Tutorial</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"><span><i class="fad fa-graduation-cap me-1"></i> Quickstart Tutorial</span></a>
     </div>
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
       <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span><i class="fad fa-code mr-1"></i> Developer docs</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
 </div>
@@ -415,7 +426,7 @@ nf-core list
 <div id="community" class="homepage-usedby">
   <div class="container py-5">
     <h2>
-      <a class="btn btn-success float-right d-none d-md-inline" href="/community#organisations">See a complete list &raquo;</a>
+      <a class="btn btn-success float-end d-none d-md-inline" href="/community#organisations">See a complete list &raquo;</a>
       <a href="/community#organisations">Used by groups all over the world</a>
     </h2>
     <p>The nf-core community is spread all over the globe and includes a large
