@@ -203,14 +203,13 @@ include('../includes/header.php');
         <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
       </div>
     </div>
-    <div class="text-center">
-      <p class="d-inline-block text-white m-0 pb-3">
-        <a class="text-white" href="https://doi.org/10.1038/s41587-020-0439-x" target="_blank">
-          <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="50px" class="float-left me-3">
+    <div>
+      <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
+        <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="60px" class="float-start me-3">
+        <a class="text-white stretched-link no-underline d-flex flex-column justify-content-center" href="https://doi.org/10.1038/s41587-020-0439-x" target="_blank">
           nf-core is published in Nature Biotechnology!
-          <br>
-          <em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
-          <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ms-3">
+          <span class="underline m-auto"><em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
+            <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ms-2"></span>
         </a>
       </p>
     </div>
@@ -228,61 +227,73 @@ include('../includes/header.php');
   <div class="row">
     <div class="col-lg-4 mb-3">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+          <div>
           <h5 class="card-title">Documentation</h5>
-          <img class="float-end ms-3" height="100px" src="assets/img/docs.svg" />
           <p class="card-text">Extensive documentation covering installation, usage and description of output files
             ensures that you won't be left in the dark.</p>
+          </div>
+            <img class="ms-3" height="100px" src="assets/img/docs.svg" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 mb-3">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+          <div>
           <h5 class="card-title">CI Testing</h5>
-          <img class="float-end ms-3" height="90px" src="assets/img/github-actions.svg" />
           <p class="card-text">Every time a change is made to the pipeline code,
             nf-core pipelines use continuous-integration testing to ensure that nothing has broken.</p>
+          </div>
+            <img class="ms-3" height="90px" src="assets/img/github-actions.svg" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 mb-3">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+          <div>
           <h5 class="card-title">Stable Releases</h5>
-          <img class="float-end ms-3" height="100px" src="assets/img/releases.svg" />
           <p class="card-text">nf-core pipelines use GitHub releases to tag stable versions of the code
             and software, making pipeline runs totally reproducible.</p>
+          </div>
+            <img class="ms-3" height="100px" src="assets/img/releases.svg" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 mb-3">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+          <div>
           <h5 class="card-title">Docker</h5>
-          <img class="float-end ms-3" height="100px" src="assets/img/docker.svg" />
           <p class="card-text">Software dependencies are handled with docker containers
             which Nextflow downloads for you, so no need for any software installations.</p>
+          </div>
+            <img class="ms-3" height="100px" src="assets/img/docker.svg" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 mb-3">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+          <div>
           <h5 class="card-title">Singularity</h5>
-          <img class="float-end ms-3" height="100px" src="assets/img/singularity.svg" />
           <p class="card-text">If you're not able to use Docker, built-in support for Singularity can
             solve your HPC container problems. These are built from the docker containers.</p>
+          </div>
+            <img class="ms-3" height="100px" src="assets/img/singularity.svg" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 mb-3">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body d-flex align-items-center">
+          <div>
           <h5 class="card-title">Bioconda</h5>
-          <img class="float-end ms-3" height="100px" src="assets/img/bioconda.svg" />
           <p class="card-text">Where possible, pipelines come with built-in bioconda support,
             so if you can't use software containers the dependencies can still be handled automatically.</p>
+          </div>
+            <img class="ms-3" height="100px" src="assets/img/bioconda.svg" />
         </div>
       </div>
     </div>
