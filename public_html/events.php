@@ -2,6 +2,7 @@
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once('../includes/functions.php');
+use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__file__)) . "/markdown/";
 $event_type_classes = array(
@@ -19,10 +20,35 @@ $event_type_icons = array(
   'workshop' => 'fas fa-chalkboard-teacher'
 );
 
+function create_event_download_button($event,$button_style){
+  $start = DateTime::createFromFormat('U', $event['start_ts']);
+  $end = DateTime::createFromFormat('U', $event['end_ts']);
+  $address = $event['address'] ? $event['address'] : "";
+  $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
+  $address = is_array($address)? $address[0] : $address; # if multiple location urls are given, take the first one
+
+  $link = Link::create($event['title'], $start, $end)
+    ->description($event['subtitle'] ? $event['subtitle'] : "")
+    ->address($address);
+
+  $event_download_button =  '<div class="dropdown btn-group" role="group">
+          <button   type="button" class="btn '.$button_style.' dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-calendar-plus mr-1"></i> Export event
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download iCal Event</a> 
+            <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar</a> 
+            <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook</a> 
+          </div>
+        </div>';
+  return $event_download_button;
+}
+
 function print_events($events, $is_past_event)
 {
   global $event_type_classes;
   global $event_type_icons;
+  
 
   foreach ($events as $idx => $event) :
     # Nice date strings
@@ -39,9 +65,9 @@ function print_events($events, $is_past_event)
 
     <!-- Event Card -->
     <div class="card my-4 border-top-0 border-right-0 border-bottom-0 border-<?php echo $colour_class ?>">
-      <div class="card-body <?php if ($is_past_event) {
-                              echo 'py-2';
-                            } ?>">
+      <div class="card-body overflow-auto <?php if ($is_past_event) {
+                                            echo 'py-2';
+                                          } ?>">
         <h5 class="my-0 py-0">
           <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
           <small><span class="badge badge-<?php echo $colour_class ?> float-right small"><i class="<?php echo $icon_class ?> mr-1"></i><?php echo ucfirst($event['type']); ?></span></small>
@@ -50,15 +76,19 @@ function print_events($events, $is_past_event)
           $tm = $is_past_event ? 'text-muted' : '';
           echo '<p class="mb-0 ' . $tm . '">' . $event['subtitle'] . '</p>';
         }
+
         if (!$is_past_event) : ?>
           <h6 class="small text-muted"><?php echo $date_string; ?></h6>
 
           <?php if (array_key_exists('description', $event)) {
             echo '<p>' . nl2br($event['description']) . '</p>';
           } ?>
-          <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
-            See details
-          </a>
+          <div class="btn-group" role="group">
+            <a type="button" href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
+              See details
+            </a>
+            <?php echo create_event_download_button($event, "btn-outline-success");?>
+          </div>
         <?php else : ?>
           <h6 class="small text-muted mb-0">
             <?php echo $date_string; ?> -
@@ -115,6 +145,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
       $header_html .= '<dt>Event ends:</dt><dd data-timestamp="' . $event['end_ts'] . '">' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']) . '</dd>';
     }
     $header_html .= '</dl>';
+    $header_html .=  $event['end_ts'] > time()? create_event_download_button($event, "btn-outline-light"):"";
     $header_html .= '</div><div class="col-md-6">';
     // Location
     if (
