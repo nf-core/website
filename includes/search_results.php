@@ -1,8 +1,7 @@
 <?php
 // Find a search term - return results for HTML page or API
 
-require "../vendor/autoload.php";
-use Spyc;
+require_once(dirname(__FILE__).'/libraries/Spyc.php');
 
 // $search_term - should be availble from include
 $search_results = array(
