@@ -1,7 +1,6 @@
 <?php
 // Get a random subset of contributor institute logos
-require "../vendor/autoload.php";
-use Spyc;
+require_once("../includes/libraries/Spyc.php");
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_img_list = [];
 foreach ($contributors['contributors'] as $idx => $c) {

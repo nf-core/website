@@ -16,7 +16,7 @@
 echo "\n\nUpdating pipeline details - ".date("Y-m-d h:i:s")."\n";
 
 // Load the twitter PHP library
-require "vendor/autoload.php";
+require "includes/libraries/twitteroauth/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 // Allow PHP fopen to work with remote links
