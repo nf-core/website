@@ -119,7 +119,7 @@ function parse_md($markdown){
                       <div class="rendered-markdown publication-page-content">' . $content . '</div>
                 </div>';
     # sidebar
-    $content .= '<div class="col-12 col-lg-3 pl-2"><div class="side-sub-subnav sticky-top">';
+    $content .= '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
     # ToC
     $content .= '<nav class="toc auto-toc">';
     $content .= generate_toc($content);

@@ -80,7 +80,7 @@ function prep_current_event($event){
   }
   $d['colour_class'] = $d['event_type_classes'][strtolower($event['type'])];
   $d['icon_class'] = $d['event_type_icons'][strtolower($event['type'])];
-  $d['event_type_badge'] = '<span class="badge badge-'.$d['colour_class'].' small"><i class="'. $d['icon_class'].' mr-1"></i>'. ucfirst($event['type']).'</span>';
+  $d['event_type_badge'] = '<span class="badge badge-'.$d['colour_class'].' small"><i class="'. $d['icon_class'].' me-1"></i>'. ucfirst($event['type']).'</span>';
   $d['location_url_meta'] = [];
   if (array_key_exists('location_url', $event)) {
     if(!is_array($event['location_url'])) $event['location_url'] = [$event['location_url']];
@@ -89,23 +89,23 @@ function prep_current_event($event){
 
       switch ($d['location_url_meta'][$idx]['base_url']) {
         case 'zoom.us':
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         case "youtu.b":
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         case "www.bil":
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fad fa-film mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fad fa-film me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         case "doi.org":
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-barcode mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-barcode me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         default:
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-external-link mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-external-link me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = $url;
       }
     }
@@ -121,9 +121,9 @@ function print_current_events($events, $border){
 ?>
 
     <!-- Event Card -->
-    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-right-0 border-bottom-0 border-' . $d['colour_class'] : 'border-0'); ?> ">
+    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-end-0 border-bottom-0 border-' . $d['colour_class'] : 'border-0'); ?> ">
       <div class="card-body py-3 d-flex">
-        <div class="pt-2"><i class="<?php echo $d['icon_class']; ?> fa-5x text-<?php echo $d['colour_class'] ?> mr-2"></i></div>
+        <div class="pt-2"><i class="<?php echo $d['icon_class']; ?> fa-5x text-<?php echo $d['colour_class'] ?> me-2"></i></div>
         <div class="px-2 flex-grow-1 d-flex flex-column justify-content-between">
           <div>
             <h5 class=" my-0 py-0 d-flex">
@@ -151,7 +151,7 @@ function print_current_events($events, $border){
         echo '<div class="btn-group mt-1" role="group" aria-label="External links">';
         foreach ($event['location_url'] as $idx => $url) {
           $m = $d['location_url_meta'][$idx];
-          echo '<a href="' . $url . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
+          echo '<a href="' . $url . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-bs-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
         }
         echo '</div>';
       }
