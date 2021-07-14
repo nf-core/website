@@ -12,6 +12,7 @@
 }
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
 }
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
@@ -140,7 +141,7 @@ img.emoji{
 }
 
 .site-nav li .dropdown-menu {
-  background-color: rgba(240,240,240,.95);
+  background-color: rgb(241 241 241);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border: 0;
@@ -490,13 +491,13 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
 
 /* Fancy call to action button on homepage
 Based on https://codepen.io/wintr/pen/beBJBb */
-.hompage-cta-flex {
+.homepage-cta-flex {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top:2rem;
 }
-.hompage-cta {
+.homepage-cta {
   width: 100px;
   height: 100px;
   line-height: 20px;
@@ -510,7 +511,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   color: #22ae63;
   font-weight: bold;
 }
-.hompage-cta:after {
+.homepage-cta:after {
   transition: 0.3s all ease;
   content: '';
   position: absolute;
@@ -521,7 +522,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-radius: 3px;
   border: 2px solid #22ae63;
 }
-.hompage-cta:before {
+.homepage-cta:before {
   content: '';
   position: absolute;
   border-radius: 3px;
@@ -535,26 +536,26 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   z-index: -1;
   transition: 0.3s all ease;
 }
-.hompage-cta:hover,
-.hompage-cta:focus {
+.homepage-cta:hover,
+.homepage-cta:focus {
   color: #22ae63;
   text-decoration: none;
-  letter-spacing: 1.5px;
+  // letter-spacing: 1.5px;
 }
-.hompage-cta:hover:after,
-.hompage-cta:focus:after {
+.homepage-cta:hover:after,
+.homepage-cta:focus:after {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.hompage-cta:active {
+.homepage-cta:active {
   -webkit-transform: scale(1);
   transform: scale(1);
   color: #fff;
 }
-.hompage-cta:active:before {
+.homepage-cta:active:before {
   background-color: #22ae63;
 }
-.hompage-cta:active:after {
+.homepage-cta:active:after {
   border-color: #22ae63;
 }
 

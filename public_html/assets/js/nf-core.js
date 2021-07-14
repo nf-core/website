@@ -5,7 +5,7 @@
 
 $(function () {
     // Enable tooltips
-    $('body').tooltip({ selector: '[data-toggle="tooltip"]' });
+    $('.mainpage,.footer').tooltip({ selector: '[data-bs-toggle="tooltip"]' }); //can't use body here, because scrollspy has already an event on it and bootstrap only allows one per selector.
 
     // Enable code highlighting
     hljs.initHighlightingOnLoad();

@@ -54,7 +54,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
   <!-- Other JS -->
-  <script src="/assets/js/jquery-3.4.1.min.js"></script>
+  <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/js/highlight.pack.js"></script>
   <!-- Page-specific CSS and JS -->
@@ -124,7 +124,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   </script>
 </head>
 
-<body data-spy="scroll" data-target=".toc" data-offset="15">
+<body data-bs-spy="scroll" data-bs-target=".toc" data-bs-offset="15">
   <nav class="navbar fixed-top navbar-expand-md navbar-light shadow-sm site-nav">
     <div class="container-fluid">
       <a class="navbar-brand d-md-none" href="/">
@@ -146,7 +146,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/usage/introduction" role="button" data-toggle="dropdown">Usage</a>
+            <a class="nav-link" href="/usage/introduction" role="button" data-bs-toggle="dropdown">Usage</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installation</a>
@@ -160,7 +160,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/developers/guidelines" role="button" data-toggle="dropdown">Developers</a>
+            <a class="nav-link" href="/developers/guidelines" role="button" data-bs-toggle="dropdown">Developers</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
               <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
@@ -178,7 +178,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
                                                 } ?>Events</a>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/about" role="button" data-toggle="dropdown">About</a>
+            <a class="nav-link" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
               <a class="dropdown-item" href="/community">Community</a>
@@ -209,7 +209,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-            echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ml-2 mt-4" title="Edit this page on GitHub" data-toggle="tooltip" data-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
+            // echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
           }
           if (isset($header_btn_url) && isset($header_btn_text)) {
             echo '<a href="' . $header_btn_url . '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' . $header_btn_text . '</a>';

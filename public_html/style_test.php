@@ -21,12 +21,12 @@ include('../includes/header.php');
     <div class="bs-component">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home
                             <span class="sr-only">(current)</span>
@@ -42,7 +42,7 @@ include('../includes/header.php');
                         <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                         <div class="dropdown-menu show">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
@@ -53,7 +53,7 @@ include('../includes/header.php');
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -106,7 +106,7 @@ include('../includes/header.php');
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <button type="button" class="btn btn-primary">Primary</button>
                         <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                 <a class="dropdown-item" href="#">Dropdown link</a>
                                 <a class="dropdown-item" href="#">Dropdown link</a>
@@ -117,7 +117,7 @@ include('../includes/header.php');
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <button type="button" class="btn btn-success">Success</button>
                         <div class="btn-group" role="group">
-                            <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
                                 <a class="dropdown-item" href="#">Dropdown link</a>
                                 <a class="dropdown-item" href="#">Dropdown link</a>
@@ -128,7 +128,7 @@ include('../includes/header.php');
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <button type="button" class="btn btn-info">Info</button>
                         <div class="btn-group" role="group">
-                            <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
                                 <a class="dropdown-item" href="#">Dropdown link</a>
                                 <a class="dropdown-item" href="#">Dropdown link</a>
@@ -139,7 +139,7 @@ include('../includes/header.php');
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <button type="button" class="btn btn-danger">Danger</button>
                         <div class="btn-group" role="group">
-                            <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
                                 <a class="dropdown-item" href="#">Dropdown link</a>
                                 <a class="dropdown-item" href="#">Dropdown link</a>
@@ -160,7 +160,7 @@ include('../includes/header.php');
                 </p>
 
                 <div class="bs-component mb-3">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
                         <label class="btn btn-primary active">
                             <input type="checkbox" checked autocomplete="off"> Active
                         </label>
@@ -174,7 +174,7 @@ include('../includes/header.php');
                 </div>
 
                 <div class="bs-component mb-3">
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
                         <label class="btn btn-primary active">
                             <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
                         </label>
@@ -205,13 +205,13 @@ include('../includes/header.php');
 
                 <div class="bs-component mb-3">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <div class="btn-group me-2" role="group" aria-label="First group">
                             <button type="button" class="btn btn-secondary">1</button>
                             <button type="button" class="btn btn-secondary">2</button>
                             <button type="button" class="btn btn-secondary">3</button>
                             <button type="button" class="btn btn-secondary">4</button>
                         </div>
-                        <div class="btn-group mr-2" role="group" aria-label="Second group">
+                        <div class="btn-group me-2" role="group" aria-label="Second group">
                             <button type="button" class="btn btn-secondary">5</button>
                             <button type="button" class="btn btn-secondary">6</button>
                             <button type="button" class="btn btn-secondary">7</button>
@@ -304,7 +304,7 @@ include('../includes/header.php');
             </div>
             <div class="col-lg-4">
                 <div class="bs-component">
-                    <blockquote class="blockquote text-right">
+                    <blockquote class="blockquote ">
                         <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                         <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
                     </blockquote>
@@ -645,16 +645,16 @@ include('../includes/header.php');
                 <div class="bs-component">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+                            <a class="nav-link" data-bs-toggle="tab" href="#profile">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#">Disabled</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
@@ -689,7 +689,7 @@ include('../includes/header.php');
                             <a class="nav-link active" href="#">Active</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
@@ -713,7 +713,7 @@ include('../includes/header.php');
                             <a class="nav-link active" href="#">Active</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
@@ -797,7 +797,7 @@ include('../includes/header.php');
                 <h2>Alerts</h2>
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-warning">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <h4 class="alert-heading">Warning!</h4>
                         <p class="mb-0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>
                     </div>
@@ -808,7 +808,7 @@ include('../includes/header.php');
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-danger">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
                     </div>
                 </div>
@@ -816,7 +816,7 @@ include('../includes/header.php');
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-success">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
                     </div>
                 </div>
@@ -824,7 +824,7 @@ include('../includes/header.php');
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-info">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
                     </div>
                 </div>
@@ -834,7 +834,7 @@ include('../includes/header.php');
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-primary">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.
                     </div>
                 </div>
@@ -842,7 +842,7 @@ include('../includes/header.php');
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-secondary">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
                     </div>
                 </div>
@@ -850,7 +850,7 @@ include('../includes/header.php');
             <div class="col-lg-4">
                 <div class="bs-component">
                     <div class="alert alert-dismissible alert-light">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
                     </div>
                 </div>
@@ -1226,9 +1226,8 @@ include('../includes/header.php');
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        </button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Modal body text goes here.</p>
@@ -1245,33 +1244,31 @@ include('../includes/header.php');
             <div class="col-lg-6">
                 <h2>Popovers</h2>
                 <div class="bs-component mb-5">
-                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left</button>
+                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-bs-toggle="popover" data-bs-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Left</button>
 
-                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top</button>
+                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Top</button>
 
-                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom</button>
+                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Bottom</button>
 
-                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right</button>
+                    <button type="button" class="btn btn-secondary" title="Popover Title" data-container="body" data-bs-toggle="popover" data-bs-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">Right</button>
                 </div>
                 <h2>Tooltips</h2>
                 <div class="bs-component mb-5">
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Left</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left">Left</button>
 
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Top</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">Top</button>
 
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Bottom</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tooltip on bottom">Bottom</button>
 
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Right</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">Right</button>
                 </div>
                 <h2>Toasts</h2>
                 <div class="bs-component">
                     <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-header">
-                            <strong class="mr-auto">Bootstrap</strong>
+                            <strong class="me-auto">Bootstrap</strong>
                             <small>11 mins ago</small>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <button type="button" class="ms-2 mb-1 btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
                         <div class="toast-body">
                             Hello, world! This is a toast message.
@@ -1284,7 +1281,9 @@ include('../includes/header.php');
 </div>
 <!-- Show tooltip -->
 <script>
-    $('.btn[data-toggle="tooltip"][data-placement="bottom"]').tooltip('show')
+    document.addEventListener('DOMContentLoaded', function() {
+        $('.btn[data-bs-toggle="tooltip"][data-bs-placement="bottom"]').tooltip('show')
+    }, false);
 </script>
 
 

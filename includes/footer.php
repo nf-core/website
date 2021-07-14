@@ -31,37 +31,37 @@ if (isset($subfooter) and $subfooter) {
         </small>
         <div class="d-md-flex">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
-            <div class="theme-switcher border btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-secondary <?php if ($theme == 'auto') echo 'active'; ?>" data-toggle="tooltip" title="Auto Light / Dark">
+            <div class="theme-switcher border btn-group btn-group-sm btn-group-toggle" data-bs-toggle="buttons">
+              <label class="btn btn-secondary <?php if ($theme == 'auto') echo 'active'; ?>" data-bs-toggle="tooltip" title="Auto Light / Dark">
                 <input type="radio" class="btn-check" value="auto" autocomplete="off" checked> <i class="fas fa-adjust"></i>
               </label>
-              <label class="btn btn-secondary <?php if ($theme == 'light') echo 'active'; ?>" data-toggle="tooltip" title="Light Theme">
+              <label class="btn btn-secondary <?php if ($theme == 'light') echo 'active'; ?>" data-bs-toggle="tooltip" title="Light Theme">
                 <input type="radio" class="btn-check" value="light" autocomplete="off"> <i class="fas fa-sun"></i>
               </label>
-              <label class="btn btn-secondary <?php if ($theme == 'dark') echo 'active'; ?>" data-toggle="tooltip" title="Dark Theme">
+              <label class="btn btn-secondary <?php if ($theme == 'dark') echo 'active'; ?>" data-bs-toggle="tooltip" title="Dark Theme">
                 <input type="radio" class="btn-check" value="dark" autocomplete="off"> <i class="fas fa-moon"></i>
               </label>
             </div>
           </div>
 
           <div class="social-icons mb-3">
-            <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-toggle="tooltip">
+            <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip">
               <img src="/assets/img/slack.svg" />
             </a>
-            <a href="https://github.com/nf-core/" target="_blank" class="social-github" title="GitHub" data-toggle="tooltip">
+            <a href="https://github.com/nf-core/" target="_blank" class="social-github" title="GitHub" data-bs-toggle="tooltip">
               <img src="/assets/img/github.svg" />
             </a>
-            <a href="https://twitter.com/nf_core" target="_blank" title="twitter" data-toggle="tooltip">
+            <a href="https://twitter.com/nf_core" target="_blank" title="Twitter" data-bs-toggle="tooltip">
               <img src="/assets/img/twitter.svg" />
             </a>
-            <a href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-toggle="tooltip">
+            <a href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-bs-toggle="tooltip">
               <img src="/assets/img/youtube.svg" />
             </a>
           </div>
         </div>
 
       </div>
-      <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+      <div class="col-6 col-lg-3 offset-lg-1 mb-3">
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
           <li><a href="/pipelines">Available pipelines</a></li>
@@ -77,7 +77,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/usage/nextflow">Nextflow resources</a></li>
         </ul>
       </div>
-      <div class="col-6 col-lg-2 mb-3">
+      <div class="col-6 col-lg-3 mb-3">
         <h5>For Authors</h5>
         <ul class="list-unstyled">
           <li><a href="/developers/guidelines">Guidelines</a></li>
