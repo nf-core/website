@@ -55,10 +55,8 @@ In order to create a new module, it is best to branch the code into a recognisab
 Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
 
 ```bash
-nf-core modules create -t fgbio/fastqtobam
+nf-core modules create fgbio/fastqtobam
 ```
-
-You will notice that with `-t` we indicate the name of the new module we want to create using the following syntax:
 
 - The first word indicates the tool (i.e. the software or suite)
 - We separate the keys by a forward slash (`/`)
