@@ -67,7 +67,7 @@ You will notice that with `-t` we indicate the name of the new module we want to
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
 ```bash
-software/fgbio
+modules/fgbio
 └── fastqtobam
     ├── functions.nf
     ├── main.nf
@@ -77,7 +77,7 @@ software/fgbio
 And also the following for the testing of the module
 
 ```bash
-tests/software/fgbio
+tests/modules/fgbio
 └── fastqtobam
     ├── main.nf
     └── test.yml
@@ -90,7 +90,7 @@ You fill find a number of commented sections in the file, to help you modify the
 ![module](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_03_create_module.png)
 
 The above represents the main code of your module, which will need to be changed.
-NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those fiels will be pre-filled for you.
+NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those files will be pre-filled for you.
 
 Now you just have to write the code.
 
@@ -139,7 +139,7 @@ Any optional parameter should be passed within a groovy map called options, and 
 In our specific case, we are not using any optional argument and therefore we will include the module and initialise this with an empty string in our test workflow.
 
 ```nextflow
-include { FGBIO_FASTQTOBAM } from '../../../../software/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
+include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
 ```
 
 But we will add this into the script code, so any other user who might want to execute the function with additional arguments will be able to.
@@ -277,7 +277,7 @@ This can also be done automatically, using the [pytest-worfklow](https://pytest-
 As described above, *nf-core tools* has created already the following files
 
 ```bash
-tests/software/fgbio
+tests/modules/fgbio
 └── fastqtobam
     ├── main.nf
     └── test.yml
@@ -285,7 +285,7 @@ tests/software/fgbio
 
 ready for you to modify.
 
-You should first open `tests/software/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
+You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
 
 > :soon:  this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/tree/master/tests/data)
 
@@ -312,7 +312,7 @@ Our test workflow will be very simple, and most of the code has been written by 
 nextflow.enable.dsl = 2
 params.read_structure = "+T 12M11S+T"
 
-include { FGBIO_FASTQTOBAM } from '../../../../software/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
+include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
 
 workflow test_fgbio_fastqtobam {
 
@@ -355,11 +355,11 @@ Before running some local tests, we should make sure the `pytest_software.yml` l
 
 ```yaml
 fgbio_fastqtobam:
-  - software/fgbio/fastqtobam/**
-  - tests/software/fgbio/fastqtobam/**
+  - modules/fgbio/fastqtobam/**
+  - tests/modules/fgbio/fastqtobam/**
 ```
 
-These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `software/fgbio/fastqtobam/**` and the test at `tests/software/fgbio/fastqtobam/**`.
+These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `modules/fgbio/fastqtobam/**` and the test at `tests/modules/fgbio/fastqtobam/**`.
 
 ### Run tests locally
 
