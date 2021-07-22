@@ -6,7 +6,6 @@
 @import "variables";
 @import "bootstrap/scss/bootstrap";
 
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Open+Sans:300,400,700');
 .hide-light {
     display: none;
 }
@@ -62,12 +61,18 @@ img {
   margin-bottom: 0;
 }
 
-/* Bootstrap placeholder text is way too similar colour to real input */
-.form-control::-webkit-input-placeholder { color: #ccc; }
-.form-control::-moz-placeholder { color: #ccc; }
-.form-control:-ms-input-placeholder { color: #ccc; }
-.form-control::placeholder { color: #ccc; }
-
+.btn-nf-tower{
+    background-color: $nf-tower-color;
+    border-color: $nf-tower-color;
+  &.active,
+  &:active,
+  &.focus,
+  &:focus,
+  &:hover{
+    background-color: shade-color($nf-tower-color,5%);
+    border-color: shade-color($nf-tower-color,5%);
+  }
+}
 /* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980 */
 section:before {
     height: 54px;
@@ -247,6 +252,10 @@ img.emoji{
 
 .btn.disabled .disabled btn:disabled {
   cursor: not-allowed;
+}
+
+.btn.rocket-launch-hover:hover i::before{
+  content:"\e027",
 }
 
 code{
@@ -1104,26 +1113,26 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     transition: none;
 }
 .form-control.radio-form-control-valid {
-  border-color: #28a745;
+  border-color: $form-feedback-valid-color;
   padding-right: calc(1.5em + .75rem);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-image: $form-feedback-icon-valid;
   background-repeat: no-repeat;
   background-position: center right calc(.375em + .1875rem);
   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
 .form-control.radio-form-control-invalid {
-  border-color: #dc3545;
+  border-color: $form-feedback-invalid-color;
   padding-right: calc(1.5em + .75rem);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+  background-image: $form-feedback-icon-valid;
   background-repeat: no-repeat;
   background-position: center right calc(.375em + .1875rem);
   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
-.input-group-append-valid label, .input-group-append-valid .btn {
-  border-color: #28a745;
+.input-group-valid label, .input-group-valid .btn {
+  border-color: $form-feedback-valid-color;
 }
-.input-group-append-invalid label, .input-group-append-invalid .btn {
-  border-color: #dc3545;
+.input-group-invalid label, .input-group-invalid .btn {
+  border-color: $form-feedback-invalid-color;
 }
 .schema-docs h2, .schema-docs .h2,
 .schema-docs h3, .schema-docs .h3 {
