@@ -554,11 +554,9 @@ include('../includes/header.php');
                         <label class="control-label">Input addons</label>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
-                                </div>
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                <div class="input-group-append">
+                                <div class="input-group-text">
                                     <span class="input-group-text">.00</span>
                                 </div>
                             </div>
@@ -604,7 +602,7 @@ include('../includes/header.php');
                             </div>
                         </div>
                         <div class="form-group">
-                            <select class="custom-select">
+                            <select class="form-select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -617,7 +615,7 @@ include('../includes/header.php');
                                     <input type="file" class="custom-file-input" id="inputGroupFile02">
                                     <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
                                 </div>
-                                <div class="input-group-append">
+                                <div class="input-group-text">
                                     <span class="input-group-text">Upload</span>
                                 </div>
                             </div>

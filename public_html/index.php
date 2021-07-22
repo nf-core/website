@@ -11,7 +11,7 @@ foreach ($contributors['contributors'] as $idx => $c) {
     $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
     $img_path = 'assets/img/contributors-white/' . $c['image_fn'];
     if (file_exists($img_path)) {
-      $contributors_img_list[] = '<a href="/community#' . $card_id . '"><img src="' . $img_path . '" data-placement="bottom" data-toggle="tooltip" title="' . $c['full_name'] . '"></a>';
+      $contributors_img_list[] = '<a href="/community#' . $card_id . '"><img src="' . $img_path . '" data-bs-placement="bottom" data-bs-toggle="tooltip" title="' . $c['full_name'] . '"></a>';
     }
   }
 }
@@ -40,7 +40,7 @@ if ($curr_event) {
     } else {
       $curr_event['meta']['location_dropdown'] = '
         <div class="dropdown me-2 mb-2">
-          <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Watch now
           </a>
 
@@ -169,8 +169,8 @@ include('../includes/header.php');
       <img src="assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
     </h1>
     <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
-    <div class="hompage-cta-flex mb-5">
-      <a class="hompage-cta" href="/pipelines">View Pipelines</a>
+    <div class="homepage-cta-flex mb-5">
+      <a class="homepage-cta" href="/pipelines">View Pipelines</a>
     </div>
   </div>
 </div>
