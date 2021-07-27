@@ -130,14 +130,14 @@ foreach($stats as $repo_name => $repo):
   <tr>
     <td><?php
     if($metrics->archived){
-      echo '<small class="status-icon text-warning ml-2 fas fa-archive" data-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
+      echo '<small class="status-icon text-warning ms-2 fas fa-archive" data-bs-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
     } else if($repo_type == 'pipelines'){
       // Edge case where a new pipeline is added but stats hasn't rerun yet
       if(!isset($repo->num_releases)){ $repo->num_releases = 0; }
       if($repo->num_releases){
-        echo '<small class="status-icon text-success ml-2 fas fa-check" data-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
+        echo '<small class="status-icon text-success ms-2 fas fa-check" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
       } else {
-        echo '<small class="status-icon text-danger ml-2 fas fa-wrench" data-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
+        echo '<small class="status-icon text-danger ms-2 fas fa-wrench" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
       }
     }
     $alink = '<a href="'.$metrics->html_url.'" target="_blank">';
@@ -147,16 +147,16 @@ foreach($stats as $repo_name => $repo):
     ?></td>
     <td><?php echo $alink.'<span class="d-none d-lg-inline">nf-core/</span>'.$metrics->name.'</a>'; ?></td>
     <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago($metrics->created_at, false); ?></td>
-    <?php if($repo_type == 'pipelines'): ?><td class="text-right"><?php echo $repo->num_releases; ?></td><?php endif; ?>
-    <td class="text-right"><?php echo $repo->num_contributors; ?></td>
-    <td class="text-right"><?php echo $total_commits; ?></td>
-    <td class="text-right"><?php echo $metrics->stargazers_count; ?></td>
-    <td class="text-right"><?php echo $metrics->subscribers_count; ?></td>
-    <td class="text-right"><?php echo $metrics->network_forks_count; ?></td>
-    <td class="text-right"><?php echo $repo->clones_count_total; ?></td>
-    <td class="text-right"><?php echo $repo->clones_uniques_total; ?></td>
-    <td class="text-right"><?php echo $repo->views_count_total; ?></td>
-    <td class="text-right"><?php echo $repo->views_uniques_total; ?></td>
+    <?php if($repo_type == 'pipelines'): ?><td class=""><?php echo $repo->num_releases; ?></td><?php endif; ?>
+    <td class=""><?php echo $repo->num_contributors; ?></td>
+    <td class=""><?php echo $total_commits; ?></td>
+    <td class=""><?php echo $metrics->stargazers_count; ?></td>
+    <td class=""><?php echo $metrics->subscribers_count; ?></td>
+    <td class=""><?php echo $metrics->network_forks_count; ?></td>
+    <td class=""><?php echo $repo->clones_count_total; ?></td>
+    <td class=""><?php echo $repo->clones_uniques_total; ?></td>
+    <td class=""><?php echo $repo->views_count_total; ?></td>
+    <td class=""><?php echo $repo->views_uniques_total; ?></td>
   </tr>
 <?php
 $trows[$repo_type][] = ob_get_contents();
@@ -206,7 +206,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 <section id="caveats">
   <div class="card mb-3 mt-2">
     <div class="card-header">
-      <a href="#caveats_<?php echo $repo_type; ?>" data-toggle="collapse" data-target="#caveats_<?php echo $repo_type; ?>" class="text-muted">
+      <a href="#caveats_<?php echo $repo_type; ?>" data-bs-toggle="collapse" data-bs-target="#caveats_<?php echo $repo_type; ?>" class="text-muted">
         <u>Click to expand:</u> How these numbers are collected and what caveats should be considered
       </a>
     </div>
@@ -256,7 +256,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     <div class="bg-icon"><i class="fab fa-github"></i></div>
   </div>
   <div class="card bg-light">
-    <div class="card-body" data-toggle="tooltip" title="<?php echo count($gh_contributor_commits); ?> have committed code, <?php echo count($gh_contributor_issues); ?> have written issues">
+    <div class="card-body" data-bs-toggle="tooltip" title="<?php echo count($gh_contributor_commits); ?> have committed code, <?php echo count($gh_contributor_issues); ?> have written issues">
       <p class="card-text display-4"><a href="#gh_contribs" class="text-body text-decoration-none stretched-link"><?php echo count($gh_contributors); ?></a></p>
       <p class="card-text text-muted">GitHub contributors</p>
     </div>
@@ -284,7 +284,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
         <p class="card-text small text-muted mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-07-24 fudged by reverse-engineering billing details on the slack admin pages.</p>
         <p class="card-text small text-muted">
-          <a href="#" data-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="slack" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-bs-target="slack" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="slack" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -296,7 +296,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <div class="card-body">
         <canvas id="twitter_followers_plot" height="150"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
-        <p class="card-text small text-muted"><a href="#" data-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a>  &nbsp;/&nbsp; <a href="#" data-target="twitter" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
+        <p class="card-text small text-muted"><a href="#" data-bs-target="twitter" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a>  &nbsp;/&nbsp; <a href="#" data-bs-target="twitter" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
   </div>
@@ -316,7 +316,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <div class="card-body">
         <canvas id="gh_orgmembers_plot" height="150"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
-        <p class="card-text small text-muted"><a href="#" data-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
+        <p class="card-text small text-muted"><a href="#" data-bs-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
 
@@ -327,7 +327,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       <div class="card-body">
         <canvas id="gh_contribs_plot" height="180"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Plot truncated to start of 2018 (some pipelines moved to nf-core so have older contributions).</p>
-        <p class="card-text small text-muted"><a href="#" data-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
+        <p class="card-text small text-muted"><a href="#" data-bs-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
 
@@ -376,9 +376,9 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 
 <div class="card mt-4">
   <div class="card-header">
-    <span class="float-right small text-muted">
-      <a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
-      &nbsp;/&nbsp; <a href="#" data-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+    <span class="float-end small text-muted">
+      <a href="#" data-bs-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+      &nbsp;/&nbsp; <a href="#" data-bs-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
     </span>
     Git clones: All nf-core repositories
   </div>
@@ -387,11 +387,11 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row">
-      <div class="col-6 border-right border-secondary">
+      <div class="col-6 border-end border-secondary">
         <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total']); ?></span>
         <br>Clones since <?php echo date('F Y', min($stats_total['pipelines']['clones_count_since'], $stats_total['core_repos']['clones_count_since'])); ?>
       </div>
-      <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
+      <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
         <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total']); ?></span>
         <br>Unique cloners since <?php echo date('F Y', min($stats_total['pipelines']['clones_uniques_since'], $stats_total['core_repos']['clones_uniques_since'])); ?>
       </div>
@@ -401,9 +401,9 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 
 <div class="card mt-4">
   <div class="card-header">
-    <span class="float-right small text-muted">
-      <a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
-      &nbsp;/&nbsp; <a href="#" data-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+    <span class="float-end small text-muted">
+      <a href="#" data-bs-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+      &nbsp;/&nbsp; <a href="#" data-bs-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
     </span>
     Visitors: All nf-core repositories
   </div>
@@ -412,11 +412,11 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row align-items-center">
-      <div class="col-6 border-right border-secondary">
+      <div class="col-6 border-end border-secondary">
         <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total']); ?></span>
         <br>Views since <?php echo date('F Y', min($stats_total['pipelines']['views_count_since'], $stats_total['core_repos']['views_count_since'])); ?>
       </div>
-      <div class="col-6" data-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
+      <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
         <span class="text-body lead"><?php echo round_nicely($stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total']); ?></span>
         <br>Unique visitors since <?php echo date('F Y', min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since'])); ?>
       </div>
@@ -433,7 +433,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
       <div class="card-body">
         <canvas id="github_prs_plot" height="200"></canvas>
         <p class="card-text small text-muted">
-          <a href="#" data-target="github_prs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-bs-target="github_prs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="github_prs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -446,7 +446,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
         <canvas id="github_pr_response_time_plot" height="200"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original PR author</p>
         <p class="card-text small text-muted">
-          <a href="#" data-target="github_pr_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_pr_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-bs-target="github_pr_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="github_pr_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -460,7 +460,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
       <div class="card-body">
         <canvas id="github_issues_plot" height="200"></canvas>
         <p class="card-text small text-muted">
-          <a href="#" data-target="github_issues" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_issues" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-bs-target="github_issues" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="github_issues" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -473,7 +473,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
         <canvas id="github_issue_response_time_plot" height="200"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original issue author</p>
         <p class="card-text small text-muted">
-          <a href="#" data-target="github_issue_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="github_issue_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-bs-target="github_issue_response_time" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="github_issue_response_time" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -534,17 +534,18 @@ foreach($contribution_counts as $login => $count){
     $pct_pipeline = ($pipeline_commits / $max_count) * 100;
     $pct_core = ($core_repo_commits / $max_count) * 100;
     echo '<tr>
-      <td width="10%" class="pr-5">
-        <a style="white-space: nowrap;" href="'.$author->html_url.'" target="_blank"><img src="'.$author->avatar_url.'" class="border rounded-circle mr-1 mb-1" width="50" height="50"> @'.$author->login.'</a>
+      <td width="10%" class="pe-5">
+        <a style="white-space: nowrap;" href="'.$author->html_url.'" target="_blank"><img src="'.$author->avatar_url.'" class="border rounded-circle me-1 mb-1" width="50" height="50"> @'.$author->login.'</a>
       </td>
       <td class="align-middle">
-        <div class="progress" title="Pipelines: '.$pipeline_commits.' commits<br>Core repos: '.$core_repo_commits.' commits" data-toggle="tooltip" data-html="true">
+        <div class="progress" title="Pipelines: '.$pipeline_commits.' commits<br>Core repos: '.$core_repo_commits.' commits" data-bs-toggle="tooltip" data-html="true">
           <div class="progress-bar bg-success" role="progressbar" style="width: '.$pct_pipeline.'%">'.($pct_pipeline > 5 ? $pipeline_commits : '').'</div>
           <div class="progress-bar bg-warning" role="progressbar" style="width: '.$pct_core.'%">'.($pct_core > 5 ? $core_repo_commits : '').'</div>
         </div>
       </td>
-      <td class="align-middle pl-5 small text-right text-monospace d-none d-md-table-cell" width="10%">
-        <a href="/'.$top_repos[$login][0].'" title="Repo with most commits ('.$top_repos[$login][1].' commits)" data-toggle="tooltip">'.$top_repos[$login][0].' <span class="badge badge-pill badge-secondary">'.$top_repos[$login][1].'</span></a>
+      <td class="align-middle ps-5 small  font-monospace d-none d-md-table-cell" width="10%">
+        <a href="/'.$top_repos[$login][0].'" title="Repo with most commits ('.$top_repos[$login][1].' commits)" data-bs-toggle="tooltip">'.$top_repos[$login][0].' 
+        <span class="badge rounded-pill bg-secondary float-end">'.$top_repos[$login][1].'</span></a>
       </td>
     </tr>';
 }
@@ -561,7 +562,7 @@ foreach($contribution_counts as $login => $count){
       <div class="card-body">
         <canvas id="pipeline_numbers_plot" height="200"></canvas>
         <p class="card-text small text-muted">
-          <a href="#" data-target="pipeline_numbers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-target="pipeline_numbers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+          <a href="#" data-bs-target="pipeline_numbers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="pipeline_numbers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
         </p>
       </div>
     </div>
@@ -581,58 +582,57 @@ foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 
 <div class="table-responsive">
   <table class="table table-hover table-sm small pipeline-stats-table">
-    <thead class="thead-light">
+    <thead class="">
       <tr>
         <th>&nbsp;</th>
         <th>Name</th>
         <th>Age</th>
-        <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
-        <th class="text-right">Committers</th>
-        <th class="text-right">Commits</th>
-        <th class="text-right">Stargazers</th>
-        <th class="text-right">Watchers</th>
-        <th class="text-right">Network Forks</th>
-        <th class="text-right">Clones</th>
-        <th class="text-right">Unique cloners</th>
-        <th class="text-right">Repo views</th>
-        <th class="text-right">Unique repo visitors</th>
+        <?php if($repo_type == 'pipelines'): ?><th class="">Releases</th><?php endif; ?>
+        <th class="">Committers</th>
+        <th class="">Commits</th>
+        <th class="">Stargazers</th>
+        <th class="">Watchers</th>
+        <th class="">Network Forks</th>
+        <th class="">Clones</th>
+        <th class="">Unique cloners</th>
+        <th class="">Repo views</th>
+        <th class="">Unique repo visitors</th>
       </tr>
     </thead>
-    <thead class="thead-dark">
-      <tr>
+    
+    <tbody>
+      <tr class="text-bold">
         <th>&nbsp;</th>
         <th>Total:</th>
         <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
-        <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
-        <th class="font-weight-light text-right"><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['watchers']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['network_forks_count']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
-        <th class="font-weight-light text-right"><?php echo $stats_total[$repo_type]['views_uniques_total']; ?></th>
+        <?php if($repo_type == 'pipelines'): ?><th class="font-weight-light "><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
+        <th class="font-weight-light "><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['watchers']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['network_forks_count']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
+        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['views_uniques_total']; ?></th>
       </tr>
-    </thead>
-    <tbody>
     <?php echo implode($trows[$repo_type]); ?>
     </tbody>
-    <tfoot class="thead-light">
+    <tfoot class="">
       <tr>
         <th>&nbsp;</th>
         <th>Name</th>
         <th>Age</th>
-        <?php if($repo_type == 'pipelines'): ?><th class="text-right">Releases</th><?php endif; ?>
-        <th class="text-right">Committers</th>
-        <th class="text-right">Commits</th>
-        <th class="text-right">Stargazers</th>
-        <th class="text-right">Watchers</th>
-        <th class="text-right">Network Forks</th>
-        <th class="text-right">Clones</th>
-        <th class="text-right">Unique cloners</th>
-        <th class="text-right">Repo views</th>
-        <th class="text-right">Unique repo visitors</th>
+        <?php if($repo_type == 'pipelines'): ?><th class="">Releases</th><?php endif; ?>
+        <th class="">Committers</th>
+        <th class="">Commits</th>
+        <th class="">Stargazers</th>
+        <th class="">Watchers</th>
+        <th class="">Network Forks</th>
+        <th class="">Clones</th>
+        <th class="">Unique cloners</th>
+        <th class="">Repo views</th>
+        <th class="">Unique repo visitors</th>
       </tr>
     </tfoot>
   </table>

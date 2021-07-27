@@ -33,8 +33,8 @@ The font used in nf-core designs is _Maven Pro Bold (700)_, available at [Google
 
 The nf-core green colour is as follows:
 
-* RGB: <span class="badge badge-info" style="background-color: rgb(36,176,100);">36,176,100</span>
-* Hex: <span class="badge badge-info" style="background-color: rgb(36,176,100);">#24B064</span>
+* RGB: <span class="badge" style="background-color: rgb(36,176,100);">36,176,100</span>
+* Hex: <span class="badge" style="background-color: rgb(36,176,100);">#24B064</span>
 
 ## Presentation Templates
 
