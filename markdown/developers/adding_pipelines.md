@@ -139,7 +139,7 @@ Instead, we use the dedicated [nf-core/test-datasets](https://github.com/nf-core
 To set this up, make a fork of that repo to your personal account.
 Clone the repository and check out a new branch for your workflow:
 
-```bash
+```console
 git clone https://github.com/YOUR_USERNAME/test-datasets.git
 cd test-datasets
 git checkout -b MY_WORKFLOW
@@ -152,7 +152,7 @@ and aggressively subsampled input data.
 
 Once added, push these new files to GitHub:
 
-```bash
+```console
 git add .
 git commit -m "Added test data for MY_WORKFLOW"
 git push --set-upstream origin MY_WORKFLOW
@@ -180,7 +180,7 @@ or `conda`, so your config should not specify a hardware environment.
 
 Have a go at running the pipeline and see if it works:
 
-```bash
+```console
 nextflow run MY_WORKFLOW -profile test,docker
 ```
 
