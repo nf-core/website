@@ -68,7 +68,7 @@ function parse_md($markdown){
 
   // Format Nextflow code blocks as Groovy
   $md = preg_replace('/```nextflow/i', '```groovy', $md);
-
+  
   // Convert to HTML
   $pd = new ParsedownExtra();
   $content = $pd->text($md);
@@ -94,6 +94,8 @@ function parse_md($markdown){
   if(isset($href_url_suffix_cleanup)){
     $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
   }
+  // Prohibit breaking up `--` in option names
+  $content = preg_replace('/--/i', '&#8288;-&#8288;-&#8288;', $content);
   // Add CSS classes to tables
   // Still might break if we have multiple tables and some have custom HTML attrs, but should be good enough for most situations
   if (stripos($content,   '<table>') !== false) {
@@ -108,12 +110,11 @@ function parse_md($markdown){
 
   // Find and replace HTML content if requested
   if(isset($html_content_replace)){
-    $content = str_replace($html_content_replace[0], $html_content_replace[1], $content);
+    $content = preg_replace($html_content_replace[0], $html_content_replace[1], $content);
   }
-
   
   // create ToC
-  if (!isset($no_auto_toc) & !$no_auto_toc & preg_match_all("~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis", $content, $matches) > 1) {
+  if ((!isset($no_auto_toc) | !$no_auto_toc) & preg_match_all("~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis", $content, $matches)>1) {
     # main row + content
     $content = '<div class="row flex-wrap-reverse flex-lg-wrap"><div class="col-12 col-lg-9">
                       <div class="rendered-markdown publication-page-content">' . $content . '</div>
@@ -121,7 +122,8 @@ function parse_md($markdown){
     # sidebar
     $content .= '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
     # ToC
-    $content .= '<nav class="toc auto-toc">';
+    $content .= '<nav class="toc auto-toc pt-2 flex-column border-start">';
+    $content .= '<strong class="ms-3 text-strong">Table of Contents</strong>';
     $content .= generate_toc($content);
     $content .=  '<p class="small text-end"><a href=" #" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
     $content .=  '</nav>';
