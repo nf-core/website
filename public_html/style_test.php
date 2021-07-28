@@ -554,7 +554,7 @@ include('../includes/header.php');
                         <label class="control-label">Input addons</label>
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                    <span class="input-group-text">$</span>
+                                <span class="input-group-text">$</span>
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                 <div class="input-group-text">
                                     <span class="input-group-text">.00</span>
@@ -857,24 +857,24 @@ include('../includes/header.php');
         <div>
             <h2>Badges</h2>
             <div class="bs-component mb-4">
-                <span class="badge badge-primary">Primary</span>
-                <span class="badge badge-secondary">Secondary</span>
-                <span class="badge badge-success">Success</span>
-                <span class="badge badge-danger">Danger</span>
-                <span class="badge badge-warning">Warning</span>
-                <span class="badge badge-info">Info</span>
-                <span class="badge badge-light">Light</span>
-                <span class="badge badge-dark">Dark</span>
+                <span class="badge bg-primary">Primary</span>
+                <span class="badge bg-secondary">Secondary</span>
+                <span class="badge bg-success">Success</span>
+                <span class="badge bg-danger">Danger</span>
+                <span class="badge bg-warning text-dark">Warning</span>
+                <span class="badge bg-info text-dark">Info</span>
+                <span class="badge bg-light text-dark">Light</span>
+                <span class="badge bg-dark">Dark</span>
             </div>
             <div class="bs-component">
-                <span class="badge badge-pill badge-primary">Primary</span>
-                <span class="badge badge-pill badge-secondary">Secondary</span>
-                <span class="badge badge-pill badge-success">Success</span>
-                <span class="badge badge-pill badge-danger">Danger</span>
-                <span class="badge badge-pill badge-warning">Warning</span>
-                <span class="badge badge-pill badge-info">Info</span>
-                <span class="badge badge-pill badge-light">Light</span>
-                <span class="badge badge-pill badge-dark">Dark</span>
+                <span class="badge rounded-pill bg-primary">Primary</span>
+                <span class="badge rounded-pill bg-secondary">Secondary</span>
+                <span class="badge rounded-pill bg-success">Success</span>
+                <span class="badge rounded-pill bg-danger">Danger</span>
+                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                <span class="badge rounded-pill bg-info text-dark">Info</span>
+                <span class="badge rounded-pill bg-light text-dark">Light</span>
+                <span class="badge rounded-pill bg-dark">Dark</span>
             </div>
         </div>
     </div>
@@ -983,15 +983,15 @@ include('../includes/header.php');
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Cras justo odio
-                            <span class="badge badge-primary badge-pill">14</span>
+                            <span class="badge bg-primary rounded-pill">14</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Dapibus ac facilisis in
-                            <span class="badge badge-primary badge-pill">2</span>
+                            <span class="badge bg-primary rounded-pill">2</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Morbi leo risus
-                            <span class="badge badge-primary badge-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">1</span>
                         </li>
                     </ul>
                 </div>
@@ -1225,7 +1225,7 @@ include('../includes/header.php');
                                 <div class="modal-header">
                                     <h5 class="modal-title">Modal title</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        </button>
+                                    </button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Modal body text goes here.</p>

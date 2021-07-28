@@ -3,13 +3,20 @@
 // // $enable-gradients: true;
 // $border-radius: .2rem;
 
-$min-contrast-ratio: 2.5;
-$success: #22ae63;
-$nf-core-color: #159957;
+
+$nf-core-color: #22ae63;
 $nf-tower-color: #335eea;
 
+$success: $nf-core-color;
+$info: #17a2b8;
+
+$min-contrast-ratio: 2.5; // keeps font-color white even with new $success color
+
 $input-placeholder-color: #ccc;
+
 $list-group-color: #495057;
+
+$link-color: #1e6bb8;
 
 // $primary: #045C64;
 // $secondary: #491F53;

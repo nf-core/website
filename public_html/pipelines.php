@@ -78,7 +78,7 @@ echo $msg;
         <div class="card-body clearfix">
           <h3 class="card-title mb-0">
             <?php if ($wf->stargazers_count > 0) : ?>
-              <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers no-underline mt-2 ms-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ms-2'></small>" data-bs-toggle="tooltip" data-html="true">
+              <a href="<?php echo $wf->html_url; ?>/stargazers" target="_blank" class="stargazers text-decoration-none mt-2 ms-2" title="<?php echo $wf->stargazers_count; ?> stargazers on GitHub <small class='fas fa-external-link-alt ms-2'></small>" data-bs-toggle="tooltip" data-html="true">
                 <i class="far fa-star"></i>
                 <?php echo $wf->stargazers_count; ?>
               </a>
