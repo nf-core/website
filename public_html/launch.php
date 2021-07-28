@@ -354,7 +354,7 @@ function build_form_param($param_id, $param, $is_required)
             <label class="input-group-text font-monospace" for="' . $form_param_name . '">' . $fa_icon . $dash_param_id . $required_asterisk . '</label>
             ' . $input_el . $help_text_btn . $validation_text . '
         </div>
-        '. $description . $help_text . '
+        ' . $description . $help_text . '
     </div>';
 }
 
@@ -434,7 +434,7 @@ if (!$cache) {
 
         <p>The tool will check the pipeline's schema and create one if none exists, and then ask if you want to use this web tool or the command-line wizard:
         <p>
-        <pre>$ nf-core launch atacseq
+        <pre><span style="color:cornflowerblue;">$</span> nf-core launch .
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -442,17 +442,18 @@ if (!$cache) {
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 1.10.dev0
+    nf-core/tools version 2.1
 
 
-INFO: This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
-INFO: Using local workflow: nf-core/atacseq (dev - 00d035c)
-INFO: <span style="color:green;">[✓] Pipeline schema looks valid</span>
+<span style="color:darkblue;">INFO</span>    This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
 
-<span style="color:purple;">Would you like to enter pipeline parameters using a web-based interface or a command-line wizard?</span>
+<span style="color:darkblue;">INFO</span>    <span style="color:green;">[&#10003;] Default parameters look valid</span>
+<span style="color:darkblue;">INFO</span>    <span style="color:green;">[&#10003;] Pipeline schema looks valid</span> (found 72 params)
 
-? Choose launch method (Use arrow keys)
- <span style="color:green;">&#x276f;</span> Web based
+<span style="color:MediumVioletRed;">Would you like to enter pipeline parameters using a web-based interface or a command-line wizard?</span>
+
+<span style="color:darkblue;">?</span> Choose launch method (Use arrow keys)
+ <span class="text-warning">&#187; Web based</span>
    Command line</pre>
 
         <p>If you select <code>Web based</code>, then this web page will load with the pipeline parameters for you to fill in.
@@ -686,7 +687,7 @@ else if ($cache['status'] == 'launch_params_complete') {
                             }
                             $description = '';
                             if (isset($group['description'])) {
-                                $description = '<p class="form-text">' . $group['description'] . '</p>';
+                                $description = '<p class="">' . $group['description'] . '</p>';
                             }
                             $helptext = '';
                             if (isset($group['help_text'])) {
@@ -732,7 +733,7 @@ else if ($cache['status'] == 'launch_params_complete') {
             </div>
             <?php
             if (isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0) :
-                $toc_list = '<div class="list-group">';
+                $toc_list = '<nav class="nav flex-column flex-nowrap ms-3">';
                 // Definition groups
                 foreach ($cache['schema']['allOf'] as $allof) {
                     if (!isset($allof['$ref']) || !isset($cache['schema']['definitions'])) {
@@ -758,24 +759,25 @@ else if ($cache['status'] == 'launch_params_complete') {
                     if (isset($group['title'])) {
                         $title = $group['title'];
                     }
-                    $toc_list .= '<a class="list-group-item list-group-item-action font-weight-normal text-smaller ' . $hidden_class . ' scroll_to_link" href="#' . $html_id . '">' . $fa_icon . $title . '</a>';
+                    $toc_list .= '<a class="nav-link font-weight-normal text-smaller ' . $hidden_class . ' scroll_to_link" href="#' . $html_id . '">' . $fa_icon . $title . '</a>';
                 }
                 // Top-level parameters
                 if (isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0) {
-                    $toc_list .= '<a class="list-group-item list-group-item-action font-weight-normal text-smaller scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw me-3"></i>Ungrouped parameters</a>';
+                    $toc_list .= '<a class="nav-link font-weight-normal text-smaller scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw me-3"></i>Ungrouped parameters</a>';
                 }
-                $toc_list .= '</div>';
+                $toc_list .= '</nav>';
 
             endif;
-            $toc = '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top"><nav class="toc">';
+            $toc = '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top"><nav class="toc border-start">';
+            $toc .= '<strong class="ms-3 text-strong">Table of Contents</strong>';
             $toc .= $toc_list;
             $toc .= '
-         <div class="btn-group w-100 mt-2 mb-1" role="group">
-           <button class="btn btn-sm btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-bs-toggle="tooltip" data-bs-delay="{ show: 500, hide: 0 }">
-             <span class="is_not_hidden"><i class="fas fa-eye-slash me-1"></i> Show hidden params</span>
-             <span class="is_hidden"><i class="fas fa-eye me-1"></i> Hide hidden params</span>
-         </button>
-         </div>';
+                <div class="btn-group w-100 mt-2" role="group">
+                <button class="btn btn-sm btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-bs-toggle="tooltip" data-bs-delay="{ show: 500, hide: 0 }">
+                    <span class="is_not_hidden"><i class="fas fa-eye-slash me-1"></i> Show hidden params</span>
+                    <span class="is_hidden"><i class="fas fa-eye me-1"></i> Hide hidden params</span>
+                </button>
+                </div>';
             # Back to top link
             $toc .= '<p class="small "><a href="#schema_launcher_form" class="text-muted float-end scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
             $toc .= '</nav></div></div>';

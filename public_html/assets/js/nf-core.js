@@ -8,7 +8,7 @@ $(function () {
     $('.mainpage,.footer').tooltip({ selector: '[data-bs-toggle="tooltip"]' }); //can't use body here, because scrollspy has already an event on it and bootstrap only allows one per selector.
 
     // Enable code highlighting
-    hljs.initHighlightingOnLoad();
+    hljs.highlightAll();
     // Don't try to guess markdown language to highlight (gets it wrong most of the time)
     hljs.configure({ languages: [] });
 
@@ -113,10 +113,10 @@ $(function () {
         $(this).blur().toggleClass('active');
         var showclasses = [];
         $('.pipelines-toolbar .pipeline-filters button.active').each(function () {
-            showclasses.push($(this).data('target'));
+            showclasses.push($(this).data('bsTarget'));
         });
-        $('.pipelines-container .pipeline').filter(showclasses.join(', ')).show();
-        $('.pipelines-container .pipeline').not(showclasses.join(', ')).hide();
+        $('.pipelines-container .pipeline').filter(showclasses.join(', ')).parent('.col').show();
+        $('.pipelines-container .pipeline').not(showclasses.join(', ')).parent('.col').hide();
         if ($('.pipelines-container .pipeline:visible').length == 0) { $('.no-pipelines').show(); }
         else { $('.no-pipelines').hide(); }
     });
@@ -135,7 +135,7 @@ $(function () {
         $('.pipelines-toolbar .pipeline-sorts button').removeClass('active');
         $(this).blur().addClass('active');
         // Sort the pipeline cards
-        $pipelines = $('.pipelines-container .pipeline');
+        $pipelines = $('.pipelines-container .col')
         if ($(this).text() == 'Alphabetical') {
             $pipelines.sort(function (a, b) {
                 var an = $(a).find('.card-title .pipeline-name').text();
@@ -192,7 +192,12 @@ $(function () {
         if (dtype == 'list' || dtype == 'blocks') {
             $('.pipelines-container').
                 removeClass('pipelines-container-blocks pipelines-container-list').
-                addClass('pipelines-container-' + dtype);
+                addClass('pipelines-container-' + dtype).
+                removeClass('row-cols-md-2 g-4');
+            if(dtype=== 'blocks'){
+                $(".pipelines-container").addClass("row-cols-md-2 g-4");
+            }
+            
         }
     });
 
@@ -207,14 +212,14 @@ $(function () {
     //copy text to clipboard
     $('.toast').toast();
     $('.copy-txt').on('click', function () {
-        var target = $(this).data("target");
+        var target = $(this).data('bsTarget');
         var target_id = '#' + target;
-        $(target_id).select();
+        $(target_id).trigger( 'select' );
         document.execCommand('copy');
-        $(target_id).blur();
+        $(target_id).trigger('blur');
         $('#pipeline_sidebar_cmd_copied').toast('show');
     })
-    if (window.location.hash & $('.schema-docs').length > 0) {
+    if (window.location.hash & $('.param-docs').length > 0) {
         scroll_to($(window.location.hash), 0);
     }
     // Page-scroll links
@@ -231,10 +236,28 @@ $(function () {
             .before(
             '<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>'
             );
-    } else if ($(".rendered-markdown").length > 0 && youtube_embed) {
+    } else if ($(".rendered-markdown").length > 0 && typeof youtube_embed!=='undefined' && youtube_embed) {
         $(".rendered-markdown").append('<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>');
     }
+    
+    // Expand all details on page
+    $(".expand-details").on('click',function(){
+        // if all details are already open, close them, else open all
+        if ($("details[open]").length === $("details").length){
+            $("details[open]").removeAttr("open");
+        }else{
+            $("details:not([open])").attr("open", "");
+        }
+        // refresh scrollspy to recalculate offsets, still not working 100% of the time...
+        var dataSpyList = [].slice.call(
+            document.querySelectorAll('[data-bs-spy="scroll"]')
+        );
+        dataSpyList.forEach(function (dataSpyEl) {
+            bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
+        });
 
+        
+    })
 });
 
 function scroll_to(target_el, offset) {
