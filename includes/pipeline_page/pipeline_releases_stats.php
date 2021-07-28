@@ -20,15 +20,15 @@ foreach($pipeline->releases as $releases){ ?>
 
 <div class="row">
   <div class="col-auto">
-    <a href="#download-<?php echo $releases->tag_sha; ?>" class="text-body" data-toggle="collapse">
+    <a href="#download-<?php echo $releases->tag_sha; ?>" class="text-body" data-bs-toggle="collapse">
       <samp><?php echo $releases->tag_name; ?></samp>
     </a>
   </div>
   <div class="col">
   </div>
   <div class="col-auto">
-    <a href="#download-<?php echo $releases->tag_sha; ?>" class="text-body" data-toggle="collapse"><small class="text-muted"><?php echo time_ago($releases->published_at); ?></small></a>
-    <button class="btn btn-sm btn-link text-body" type="button" data-toggle="collapse" data-target="#download-<?php echo $releases->tag_sha; ?>">
+    <a href="#download-<?php echo $releases->tag_sha; ?>" class="text-body" data-bs-toggle="collapse"><small class="text-muted"><?php echo time_ago($releases->published_at); ?></small></a>
+    <button class="btn btn-sm btn-link text-body" type="button" data-bs-toggle="collapse" data-bs-target="#download-<?php echo $releases->tag_sha; ?>">
       <i class="fas fa-caret-<?php echo $first ? 'down' : 'left'; ?>"></i>
   </button>
   </div>
@@ -39,7 +39,7 @@ foreach($pipeline->releases as $releases){ ?>
       Released <?php echo date('j M Y', strtotime($releases->published_at)); ?> &mdash;
       <code><?php echo substr($releases->tag_sha, 0, 7); ?></code>
     </div>
-    <div class="col-sm-6 text-right">
+    <div class="col-sm-6 text-end">
       <a href="<?php echo $releases->zipball_url; ?>" class="btn btn-sm btn-outline-success">Download .zip</a>
       <a href="<?php echo $releases->tarball_url; ?>" class="btn btn-sm btn-outline-success">Download .tar.gz</a>
       <a href="<?php echo $releases->html_url; ?>" class="btn btn-sm btn-success"><i class="fab fa-github"></i> View release</a>
@@ -58,11 +58,11 @@ foreach($pipeline->releases as $releases){ ?>
 $(function(){
   $('.collapse').on('show.bs.collapse', function () {
     var target = $(this).attr('id');
-    $("button[data-target='#" + target + "']").html('<i class="fas fa-caret-down"></i>');
+    $("button[data-bs-target='#" + target + "']").html('<i class="fas fa-caret-down"></i>');
   });
   $('.collapse').on('hide.bs.collapse', function () {
     var target = $(this).attr('id');
-    $("button[data-target='#" + target + "']").html('<i class="fas fa-caret-left"></i>');
+    $("button[data-bs-target='#" + target + "']").html('<i class="fas fa-caret-left"></i>');
   });
 });
 </script>
@@ -102,9 +102,9 @@ $(function(){
 <h2 id="traffic"><a href="#traffic" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Repository traffic</h2>
 <div class="card mt-4">
   <div class="card-header">
-    <span class="float-right small text-muted">
-      <a href="#" data-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
-      &nbsp;/&nbsp; <a href="#" data-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+    <span class="float-end small text-muted">
+      <a href="#" data-bs-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+      &nbsp;/&nbsp; <a href="#" data-bs-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
     </span>
     <a class="text-body" href="https://github.com/<?php echo $pipeline->full_name; ?>/graphs/traffic">Git clones</a>
   </div>
@@ -113,7 +113,7 @@ $(function(){
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row">
-      <div class="col-6 border-right border-secondary">
+      <div class="col-6 border-end border-secondary">
         <span class="text-body lead"><?php echo round_nicely($stats['clones_count_total']); ?></span>
         <br>Clones since <?php echo date('F Y', strtotime(array_keys($stats['clones_count'])[0])); ?>
       </div>
@@ -127,9 +127,9 @@ $(function(){
 
 <div class="card mt-4 mb-5">
   <div class="card-header">
-    <span class="float-right small text-muted">
-      <a href="#" data-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
-      &nbsp;/&nbsp; <a href="#" data-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
+    <span class="float-end small text-muted">
+      <a href="#" data-bs-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
+      &nbsp;/&nbsp; <a href="#" data-bs-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
     </span>
     <a class="text-body" href="https://github.com/<?php echo $pipeline->full_name; ?>/graphs/traffic">Visitors</a>
   </div>
@@ -138,7 +138,7 @@ $(function(){
   </div>
   <div class="card-footer text-muted text-center small">
     <div class="row align-items-center">
-      <div class="col-6 border-right border-secondary">
+      <div class="col-6 border-end border-secondary">
         <span class="text-body lead"><?php echo round_nicely($stats['views_count_total']); ?></span>
         <br>Views since <?php echo date('F Y', strtotime(array_keys($stats['views_count'])[0])); ?>
       </div>
@@ -156,7 +156,7 @@ $(function(){
 <div style="height: 250px;"><canvas id="contributors_plot" height="80"></canvas></div>
 
 <div class="alert alert-info small p-2 mt-3 mb-3" role="alert">
-  <i class="far fa-hand-point-right pl-2 pr-2"></i>
+  <i class="far fa-hand-point-right ps-2 pe-2"></i>
   Hover over the plot or an author's avatar to highlight commits
 </div>
 <p class="contrib-avatars">
@@ -164,7 +164,7 @@ $(function(){
 $contrib_avatars = [];
 foreach($contrib_json as $contrib){
   $contrib_avatars[
-    '<a class="d-inline-block" href="https://github.com/'.$pipeline->full_name.'/graphs/contributors" data-author="'.$contrib['author']['login'].'" data-toggle="tooltip" title="@'.$contrib['author']['login'].'"><img src="'.$contrib['author']['avatar_url'].'"></a>'
+    '<a class="d-inline-block" href="https://github.com/'.$pipeline->full_name.'/graphs/contributors" data-author="'.$contrib['author']['login'].'" data-bs-toggle="tooltip" title="@'.$contrib['author']['login'].'"><img src="'.$contrib['author']['avatar_url'].'"></a>'
   ] = $contrib['total'];
 }
 arsort($contrib_avatars);

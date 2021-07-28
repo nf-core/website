@@ -47,7 +47,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="author" content="Phil Ewels">
   <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
-  <link href="/assets/css/code_highlighting/github.css" rel="stylesheet">
+  <link href="/assets/css/code_highlighting/github.min.css" rel="stylesheet">
   <link href="/assets/css/Chart.min.css" rel="stylesheet">
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
@@ -56,7 +56,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <!-- Other JS -->
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/highlight.pack.js"></script>
+  <script src="/assets/js/highlight.min.js"></script>
   <!-- Page-specific CSS and JS -->
   <?php if (isset($import_moment) && $import_moment) : ?>
     <script src="/assets/js/moment.js"></script>
@@ -82,10 +82,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
   if (isset($aws) && $aws) : ?>
-    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap5.min.css">
     <script src="/assets/js/aws-sdk-2.765.0.min.js"></script>
     <script src="/assets/js/jquery.dataTables.min.js"></script>
-    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/js/dataTables.bootstrap5.min.js"></script>
     <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
   if (isset($import_schema_builder) && $import_schema_builder) : ?>
@@ -124,7 +124,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   </script>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".toc" data-bs-offset="15">
+<body data-bs-spy="scroll" data-bs-target=".toc" data-bs-offset="15" tabindex="0">
   <nav class="navbar fixed-top navbar-expand-md navbar-light shadow-sm site-nav">
     <div class="container-fluid">
       <a class="navbar-brand d-md-none" href="/">
@@ -209,7 +209,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-            // echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
+            echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
           }
           if (isset($header_btn_url) && isset($header_btn_text)) {
             echo '<a href="' . $header_btn_url . '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' . $header_btn_text . '</a>';
