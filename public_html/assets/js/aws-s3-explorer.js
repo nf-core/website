@@ -112,6 +112,31 @@ $(function () {
         var split_url = url.split('/');
         var filename = split_url.slice(-1)[0];
         var s3_url = "s3://" + split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
+        var btn_group = `<div class="btn-group" role="group">
+                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Download file</a>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
+                            </div>`;
+        var header =
+                '<div class="card-header d-flex justify-content-between align-items-center">' +
+                filename +
+                btn_group +
+                "</div>";
+        if (file_size > 10000000) {
+            data =
+                '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
+            $("#file-preview").show();
+            $("#file-preview").html(
+            header + '<div class="card-body">' + data + "</div>"
+            );
+            var el_offset = $("#file-preview").offset().top - 140;
+            $([document.documentElement, document.body]).animate(
+            { scrollTop: el_offset },
+            500
+            );
+            return;
+        }
+        
                 
         fetch(url).then(function (response) {
             if (response.status !== 200) {
@@ -129,12 +154,7 @@ $(function () {
                 } else if (
                     ![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)
                 ) {
-                    if (file_size > 10000000) {
-                    data =
-                        '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
-                    } else {
                         data = "<pre><code>" + sanitize_html(data) + "</code></pre>";
-                    }
                 } else if (extension === ".html") {
                     data ='<iframe srcdoc="' +
                     sanitize_html(data) +
@@ -147,26 +167,16 @@ $(function () {
                     [".png", ".jpg", ".jpeg", ".svg"].includes(extension)
                 ) {
                     data = '<img src="' + response.url + '"/>';
+                }                
+                if(data.length>0){
+                    $("#file-preview").show();
+                    $("#file-preview").html(
+                        header + '<div class="card-body">' + data + "</div>"
+                    );
+                    var el_offset = $("#file-preview").offset().top - 140;
+                    $([document.documentElement, document.body]).animate({ scrollTop: el_offset },500);
                 }
-                var btn_group = `<div class="btn-group" role="group">
-                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Download file</a>
-                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
-                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
-                            </div>`;
-                var header =
-                '<div class="card-header d-flex justify-content-between align-items-center">' +
-                filename +
-                btn_group +
-                "</div>";
-                $("#file-preview").show();
-                $("#file-preview").html(
-                    header + '<div class="card-body">' + data + "</div>"
-                );
-                var el_offset = $("#file-preview").offset().top - 140;
-                $([document.documentElement, document.body]).animate(
-                    { scrollTop: el_offset },
-                    500
-                );
+                
             });
         })
         .catch(function (err) {

@@ -30,11 +30,10 @@ $(function () {
         // Make the popover
         var popover_template = `
             <div class="popover fa_icon_picker" role="tooltip">
-                <div class="arrow"></div>
+                <div class="popover-arrow"></div>
                 <div class="popover-header"></div>
                 <div class="popover-body"></div>
-            </div>
-        `;
+            </div>`;
         var popover_title = '<input type="text" class="form-control fa_icon_picker_input" placeholder="Search">';
         var popover_content = '<div class="d-flex flex-wrap">';
         for(icon in fa_icons){
@@ -48,7 +47,6 @@ $(function () {
             html: true,
             sanitize: false,
             placement: 'right',
-            offset: 100,
             animation: false,
             template: popover_template,
             title: popover_title,
@@ -57,9 +55,9 @@ $(function () {
 
         // Listener for when the popover is triggered
         // Needs selector class instead of root class.
-        $('body').on('show.bs.popover', '.param_fa_icon', function () {
+        $('body').on('show.bs.popover', '.param_fa_icon',function () {
             // Only show one popover at a time
-            $('.param_fa_icon').popover('hide');
+            $('.fa_icon_picker').hide('');
             // Reset the selected icon button classes
             $('.fa_icon_picker .popover-body .btn').removeClass('btn-success').addClass('btn-light');
         });
@@ -110,7 +108,7 @@ $(function () {
 
             // Update form
             $('.schema_row[data-id="'+id+'"] .param_fa_icon i').removeClass().addClass(class_name+' fa-fw');
-            $('.param_fa_icon').popover('hide');
+            $('.fa_icon_picker').hide('');
             prev_focus.focus();
         });
 
@@ -121,7 +119,7 @@ $(function () {
             if(!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length){
                 // Do we have an icon picker open?
                 if($('.fa_icon_picker:visible').length){
-                    $('.param_fa_icon').popover('hide');
+                    $('.fa_icon_picker').hide('');
                     if(prev_focus){
                         prev_focus.focus();
                     }
@@ -521,7 +519,7 @@ $(function () {
         // Escape - hide icon picker
         if(e.which == 27){
             if($('.popover:visible').length){
-                $('.param_fa_icon').popover('hide');
+                $('.fa_icon_picker').hide('');
                 prev_focus.focus();
             }
         }
@@ -676,7 +674,7 @@ $(function () {
         // Populate the help text modal
         var id = $(this).closest('.schema_row').data('id');
         var param = find_param_in_schema(id);
-        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
+        var modal_header = '<span class="font-monospace">params.'+id+'</span>';
         var preview_cli_title = '--'+id;
         var preview_web_title = '<code>--'+id+'</code>';
         if(param.hasOwnProperty('title')){
@@ -725,7 +723,7 @@ $(function () {
     });
 
     // Re-render preview on tab change
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
         if($(e.target).attr('href') == '#tab-helptext-preview'){
             // Update basic text
             $('.helptext-preview-helptext').text($('#help_text_input').val());
@@ -779,7 +777,7 @@ $(function () {
         var param = find_param_in_schema(id);
 
         // Build modal
-        var modal_header = '<span class="text-monospace">params.'+id+'</span>';
+        var modal_header = '<span class="font-monospace">params.'+id+'</span>';
         var delete_btn_txt = 'Delete parameter';
         if(param.hasOwnProperty('title')){ modal_header = param.title; }
         if(param['type'] == 'object'){ delete_btn_txt = 'Delete group'; }
@@ -840,9 +838,10 @@ $(function () {
             settings.enum = $.map(settings.enum, function (el) {
                 var number_val = parseFloat(el);
                 if(isNaN(number_val)){
-                    alert('Error: Enumerated values have to be numeric for pamater types "integer" and "number".');
+                    $('.modal-body').append('<div class="alert alert-danger">Error: Enumerated values have to be numeric for parameter types "integer" and "number".</div>');
                     e.preventDefault();
                     e.stopPropagation();
+                    return;
                 }
                 return number_val;
             });
@@ -859,17 +858,20 @@ $(function () {
                 alert("Error: Minimum value must be numeric");
                 e.preventDefault();
                 e.stopPropagation();
+                return;
             }
             if (isNaN(settings.maximum)) {
                 alert("Error: Maximum value must be numeric");
                 e.preventDefault();
                 e.stopPropagation();
+                return;
             }
             if (settings.minimum !== "" && settings.maximum !== "") {
                 if (settings.maximum <= settings.minimum) {
                 alert("Error: Maximum value must be more than minimum");
                 e.preventDefault();
                 e.stopPropagation();
+                return;
                 }
             }
         }
@@ -1036,7 +1038,7 @@ $(function () {
             };
             params += `<tr data-id=`+ k + `>
                     <td><input type="checkbox" aria-label="Move this parameter" class="select_param" data-id=`+ k + ` id="group-move-` + k + `"></td>
-                    <td><label for="group-move-`+ k + `" class="text-monospace">` + k + `</label></td>
+                    <td><label for="group-move-`+ k + `" class="font-monospace">` + k + `</label></td>
                     <td><label for="group-move-`+ k + `" class="small">` + description +`</label></td>
                 </tr>`;
         }
@@ -1095,6 +1097,7 @@ $(function () {
     //
     // Copy schema button
     //
+    $('.toast').toast()
     $('.copy-schema-btn').click(function(){
         // select the content
         var target = $('#json_schema');
@@ -1111,9 +1114,10 @@ $(function () {
             console.log(e);
         }
         // restore original focus
-        if (currentFocus && typeof currentFocus.focus === "function") {
-            currentFocus.focus();
-        }
+        // if (currentFocus && typeof currentFocus.focus === "function") {
+        //     currentFocus.focus();
+        // }
+        $('#schema_copied').toast('show');
         target.attr('disabled', true);
     });
 
@@ -1204,6 +1208,7 @@ function generate_param_row(id, param){
         var re = new RegExp('^fa[a-z -]+$');
         if(!re.test(param['fa_icon'])){
             console.error("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
+            alert("FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('"+param['fa_icon']+"') - removing from schema.");
             delete param['fa_icon'];
             update_param_in_schema(id, param);
             update_schema_html(schema);
@@ -1221,13 +1226,13 @@ function generate_param_row(id, param){
 
     var results = `
     <div class="row schema_row border" data-id="`+id+`">
-        <div class="col-auto align-self-center schema_row_grabber border-right">
+        <div class="col-auto align-self-center schema_row_grabber border-end">
             <i class="fas fa-grip-vertical"></i>
         </div>
         <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
         <div class="col schema-id">
             <label>ID
-                <input type="text" class="text-monospace param_id" value="`+id+`">
+                <input type="text" class="font-monospace param_id" value="`+id+`">
             </label>
         </div>
         <div class="d-sm-none w-100"></div>
@@ -1236,7 +1241,7 @@ function generate_param_row(id, param){
                 <input type="text" class="param_key param_description" data-param_key="description" value="`+ sanitize_html(description)+`">
             </label>
         </div>
-        <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
+        <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-bs-toggle="tooltip">`+help_text_icon+`</button>
         <div class="col-auto">
             <label>Type
                 <select class="param_key param_type" data-param_key="type">
@@ -1261,7 +1266,7 @@ function generate_param_row(id, param){
                 <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
             </label>
         </div>
-        <div class="col-auto align-self-center schema_row_config border-left"  title="Open settings" data-toggle="tooltip">
+        <div class="col-auto align-self-center schema_row_config border-start"  title="Open settings" data-bs-toggle="tooltip">
             <i class="fas fa-cog"></i>
         </div>
     </div>`;
@@ -1322,13 +1327,13 @@ function generate_group_row(id, param, child_params){
     <div class="card schema_group" data-id="`+id+`">
         <div class="card-header p-0">
             <div class="row schema_row schema_group_row mb-0" data-id="`+id+`">
-                <div class="col-auto align-self-center schema_row_grabber border-right">
+                <div class="col-auto align-self-center schema_row_grabber border-end">
                     <i class="fas fa-grip-vertical"></i>
                 </div>
                 <button class="col-auto align-self-center param_fa_icon">`+fa_icon+`</button>
                 <div class="col schema-id">
                     <label>Title
-                        <input type="text" class="text-monospace param_id" value="`+title+`">
+                        <input type="text" class="font-monospace param_id" value="`+title+`">
                     </label>
                 </div>
                 <div class="col">
@@ -1336,7 +1341,7 @@ function generate_group_row(id, param, child_params){
                         <input type="text" class="param_key" data-param_key="description" value="`+ sanitize_html(description)+`">
                     </label>
                 </div>
-                <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-toggle="tooltip">`+help_text_icon+`</button>
+                <button class="col-auto align-self-center schema_row_help_text_icon" title="Add help text" data-bs-toggle="tooltip">`+help_text_icon+`</button>
                 <div class="col-auto d-none d-lg-block">
                     <label>Type
                         <input type="text" disabled="disabled" value="Group">
@@ -1347,13 +1352,13 @@ function generate_group_row(id, param, child_params){
                         <input type="checkbox" `+(is_hidden ? 'checked="checked"' : '')+` class="param_hidden">
                     </label>
                 </div>
-                <div class="col-auto align-self-center schema_row_config border-left" title="Open settings" data-toggle="tooltip">
+                <div class="col-auto align-self-center schema_row_config border-start" title="Open settings" data-bs-toggle="tooltip">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-toggle="tooltip">
+                <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-bs-toggle="tooltip">
                     <i class="fas fa-folder-download"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-toggle="tooltip">
+                <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-bs-toggle="tooltip">
                     <i class="fas fa-angle-double-down"></i>
                 </div>
             </div>
