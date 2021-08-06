@@ -2,7 +2,6 @@
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once('../includes/functions.php');
-use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__file__)) . "/markdown/";
 $event_type_classes = array(
@@ -36,7 +35,7 @@ function create_event_download_button($event,$button_style){
             <i class="far fa-calendar-plus me-1"></i> Export event
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download as iCalendar</a> 
+            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download iCal Event</a> 
             <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar</a> 
             <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook</a> 
           </div>
@@ -48,7 +47,6 @@ function print_events($events, $is_past_event)
 {
   global $event_type_classes;
   global $event_type_icons;
-  
 
   foreach ($events as $idx => $event) :
     # Nice date strings
@@ -77,19 +75,15 @@ function print_events($events, $is_past_event)
           $tm = $is_past_event ? 'text-muted' : '';
           echo '<p class="mb-0 ' . $tm . '">' . $event['subtitle'] . '</p>';
         }
-
         if (!$is_past_event) : ?>
           <h6 class="small text-muted"><?php echo $date_string; ?></h6>
 
           <?php if (array_key_exists('description', $event)) {
             echo '<p>' . nl2br($event['description']) . '</p>';
           } ?>
-          <div class="btn-group" role="group">
-            <a type="button" href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
-              See details
-            </a>
-            <?php echo create_event_download_button($event, "btn-outline-success");?>
-          </div>
+          <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
+            See details
+          </a>
         <?php else : ?>
           <h6 class="small text-muted mb-0">
             <?php echo $date_string; ?> -
@@ -133,7 +127,6 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
       $header_html .= '<dt>Event ends:</dt><dd data-timestamp="' . $event['end_ts'] . '">' . date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']) . '</dd>';
     }
     $header_html .= '</dl>';
-    $header_html .=  $event['end_ts'] > time()? create_event_download_button($event, "btn-outline-light"):"";
     $header_html .= '</div><div class="col-md-6">';
     // Location
     if (
