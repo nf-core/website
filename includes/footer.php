@@ -31,19 +31,19 @@ if (isset($subfooter) and $subfooter) {
         </small>
         <div class="d-md-flex">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
-            <div class="theme-switcher border btn-group btn-group-sm btn-group-toggle" data-bs-toggle="buttons">
-              <label class="btn btn-secondary <?php if ($theme == 'auto') echo 'active'; ?>" data-bs-toggle="tooltip" title="Auto Light / Dark">
-                <input type="radio" class="btn-check" value="auto" autocomplete="off" checked> <i class="fas fa-adjust"></i>
-              </label>
-              <label class="btn btn-secondary <?php if ($theme == 'light') echo 'active'; ?>" data-bs-toggle="tooltip" title="Light Theme">
-                <input type="radio" class="btn-check" value="light" autocomplete="off"> <i class="fas fa-sun"></i>
-              </label>
-              <label class="btn btn-secondary <?php if ($theme == 'dark') echo 'active'; ?>" data-bs-toggle="tooltip" title="Dark Theme">
-                <input type="radio" class="btn-check" value="dark" autocomplete="off"> <i class="fas fa-moon"></i>
-              </label>
+            <div class="theme-switcher btn-group btn-group-sm" role="group">
+
+              <input type="radio" class="btn-check" id="theme-auto" name="theme-auto" value="auto" autocomplete="off" <?php if ($theme == 'auto') echo 'checked'; ?>>
+              <label class="btn btn-secondary" for="theme-auto" data-bs-toggle=" tooltip" title="Auto Light / Dark"><i class="fas fa-adjust"></i></label>
+
+              <input type="radio" class="btn-check" id="theme-light" name="theme-light" value="light" autocomplete="off" <?php if ($theme == 'light') echo 'checked'; ?>>
+              <label class="btn btn-secondary" for="theme-light" data-bs-toggle=" tooltip" title="Light Theme"><i class="fas fa-sun"></i></label>
+
+              <input type="radio" class="btn-check" id="theme-dark" name="theme-dark" value="dark" autocomplete="off" <?php if ($theme == 'dark') echo 'checked'; ?>>
+              <label class="btn btn-secondary" for="theme-dark" data-bs-toggle=" tooltip" title="Dark Theme"><i class="fas fa-moon"></i></label>
             </div>
           </div>
-
+          
           <div class="social-icons mb-3">
             <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip">
               <img src="/assets/img/slack.svg" />

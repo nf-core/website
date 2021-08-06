@@ -1,9 +1,8 @@
 <?php
+
+require "../vendor/autoload.php"; // for spyc
+
 // Get a random subset of contributor institute logos
-require "../vendor/autoload.php";
-
-use Spyc;
-
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_img_list = [];
 foreach ($contributors['contributors'] as $idx => $c) {
@@ -97,7 +96,7 @@ include('../includes/header.php');
 
 <div class="homepage-header">
   <?php if ($curr_event) : ?>
-    <div class="mainpage-subheader-heading homepage-header-contents event-triangle-down">
+    <div class="mainpage-subheader-heading homepage-header-contents triangle-down">
       <div class="container-fluid text-left">
         <div class="row">
           <?php if ($curr_event['ongoing']) : ?>
@@ -140,7 +139,7 @@ include('../includes/header.php');
               if (!is_array($curr_event['youtube_embed'])) $curr_event['youtube_embed'] = [$curr_event['youtube_embed']];
               $video_id = get_youtube_id($curr_event['youtube_embed'][0]);
             ?>
-              <div class="embed-responsive embed-responsive-16by9 mt-3 mb-5 d-none d-lg-block">
+              <div class="ratio ratio-16x9 mt-3 mb-5 d-none d-lg-block">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
               <?php
@@ -183,21 +182,20 @@ include('../includes/header.php');
   </form>
 </div>
 
-<div class="triangle triangle-up"></div>
-<div class="homepage-intro">
+<div class="homepage-intro hexagon">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 py-3 py-md-5 px-md-4">
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-industry-alt fa-3x mb-2"></i>
         <h3 class="text-white">For facilities</h3>
         <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
       </div>
-      <div class="col-md-4 py-3 py-md-5 px-md-4">
+      <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-users fa-3x mb-2"></i>
         <h3 class="text-white">For users</h3>
         <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
       </div>
-      <div class="col-md-4 py-3 py-md-5 px-md-4">
+      <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-laptop-code fa-3x mb-2"></i>
         <h3 class="text-white">For developers</h3>
         <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
@@ -215,7 +213,7 @@ include('../includes/header.php');
     </div>
   </div>
 </div>
-<div class="triangle triangle-down"></div>
+
 
 <div class="container py-5 text-center lead" id="features">
   <p>Nextflow is an incredibly powerful and flexible workflow language.</p>
@@ -225,7 +223,7 @@ include('../includes/header.php');
 <div id="features" class="container homepage-feature-boxes pb-5">
   <h3 class="mb-4 text-center">Fully featured pipelines</h3>
   <div class="row">
-    <div class="col-lg-4 mb-3">
+    <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
         <div class="card-body d-flex align-items-center">
           <div>
@@ -237,7 +235,7 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-3">
+    <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
         <div class="card-body d-flex align-items-center">
           <div>
@@ -249,7 +247,7 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-3">
+    <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
         <div class="card-body d-flex align-items-center">
           <div>
@@ -261,7 +259,7 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-3">
+    <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
         <div class="card-body d-flex align-items-center">
           <div>
@@ -273,7 +271,7 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-3">
+    <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
         <div class="card-body d-flex align-items-center">
           <div>
@@ -285,7 +283,7 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-lg-4 mb-3">
+    <div class="col-md-6 col-lg-4 mb-3">
       <div class="card">
         <div class="card-body d-flex align-items-center">
           <div>
@@ -305,7 +303,7 @@ include('../includes/header.php');
   <div id="developers" class="container homepage-feature-boxes">
     <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
     <div class="row">
-      <div class="col-lg-4 mb-3">
+      <div class="col-md-6 col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Develop <u>with</u> the community</h5>
@@ -318,7 +316,7 @@ include('../includes/header.php');
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-3">
+      <div class="col-md-6 col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
@@ -331,7 +329,7 @@ include('../includes/header.php');
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-3">
+      <div class="col-md-6 col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
@@ -352,12 +350,12 @@ include('../includes/header.php');
   <div class="container">
 
     <div class="row videos-row">
-      <div class="col-md-6">
-        <div class="embed-responsive embed-responsive-16by9 hidden-xs hidden-sm">
+      <div class="col-lg-6">
+        <div class="ratio ratio-16x9 hidden-xs hidden-sm">
           <iframe id="nf-core-video" class="embed-responsive-item" src="https://www.youtube.com/embed/gUM9acK25tQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-lg-6">
         <ul class="list-switch left video-chooser">
           <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"> Introduction to nf-core <em>(1:01)</em></a></li>
           <li><a href="https://youtu.be/cXBYusdjrc0" data-src="https://www.youtube.com/embed/cXBYusdjrc0"> Bytesize: How nf-core configs work <em>(15:00)</em></a></li>

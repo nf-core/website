@@ -5,7 +5,10 @@
 
 $(function () {
     // Enable tooltips
-    $('.mainpage,.footer').tooltip({ selector: '[data-bs-toggle="tooltip"]' }); //can't use body here, because scrollspy has already an event on it and bootstrap only allows one per selector.
+    $('.mainpage,.footer').tooltip({ //can't use body here, because scrollspy has already an event on it and bootstrap only allows one per selector.
+        selector: '[data-bs-toggle="tooltip"]', 
+        html: true
+    }); 
 
     // Enable code highlighting
     hljs.highlightAll();
@@ -14,7 +17,11 @@ $(function () {
 
     // Function to switch CSS theme file
     $('.theme-switcher label').click(function () {
-        var theme = $(this).find('input').val();
+        var theme = $(this).attr("for").split("-")[1];
+        
+        //uncheck all radio buttons and select only current one
+        $(".theme-switcher input:checked").prop("checked", false);
+        $(".theme-switcher #theme-" + theme).prop("checked", true);
 
         // Switch the stylesheet
         var newlink = '/assets/css/nf-core-' + theme + '.css';
@@ -87,8 +94,8 @@ $(function () {
 
     // Filter pipelines with text
     function filter_pipelines_text(ftext) {
-        $('.pipelines-container .pipeline:contains("' + ftext + '")').show();
-        $('.pipelines-container .pipeline:not(:contains("' + ftext + '"))').hide();
+        $('.pipelines-container .pipeline:contains("' + ftext + '")').parent('.col').show();
+        $('.pipelines-container .pipeline:not(:contains("' + ftext + '"))').parent('.col').hide();
         if ($('.pipelines-container .pipeline:visible').length == 0) { $('.no-pipelines').show(); }
         else { $('.no-pipelines').hide(); }
     }
@@ -234,10 +241,10 @@ $(function () {
         $('details>summary:contains("Video transcript")')
             .parents("details")
             .before(
-            '<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>'
+            '<div class="ratio ratio-16x9"><div id="video-placeholder"></div></div>'
             );
     } else if ($(".rendered-markdown").length > 0 && typeof youtube_embed!=='undefined' && youtube_embed) {
-        $(".rendered-markdown").append('<div class="embed-responsive embed-responsive-16by9"><div id="video-placeholder"></div></div>');
+        $(".rendered-markdown").append('<div class="ratio ratio-16x9"><div id="video-placeholder"></div></div>');
     }
     
     // Expand all details on page
