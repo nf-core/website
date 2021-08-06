@@ -36,7 +36,7 @@ function create_event_download_button($event,$button_style){
             <i class="far fa-calendar-plus me-1"></i> Export event
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download as iCalendar</a> 
+            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download iCal Event</a> 
             <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar</a> 
             <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook</a> 
           </div>
