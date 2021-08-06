@@ -154,7 +154,7 @@ $(function () {
                 } else if (
                     ![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)
                 ) {
-                        data = "<pre><code>" + sanitize_html(data) + "</code></pre>";
+                        data = '<pre><code class="hljs language-plaintext">' + sanitize_html(data) + '</code></pre>';
                 } else if (extension === ".html") {
                     data ='<iframe srcdoc="' +
                     sanitize_html(data) +
@@ -168,13 +168,19 @@ $(function () {
                 ) {
                     data = '<img src="' + response.url + '"/>';
                 }                
-                if(data.length>0){
-                    $("#file-preview").show();
-                    $("#file-preview").html(
-                        header + '<div class="card-body">' + data + "</div>"
-                    );
-                    var el_offset = $("#file-preview").offset().top - 140;
-                    $([document.documentElement, document.body]).animate({ scrollTop: el_offset },500);
+                if (
+                  data !==
+                  '<pre><code class="hljs language-plaintext"></code></pre>'
+                ) {
+                  $("#file-preview").show();
+                  $("#file-preview").html(
+                    header + '<div class="card-body">' + data + "</div>"
+                  );
+                  var el_offset = $("#file-preview").offset().top - 140;
+                  $([document.documentElement, document.body]).animate(
+                    { scrollTop: el_offset },
+                    500
+                  );
                 }
                 
             });

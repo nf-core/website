@@ -260,7 +260,7 @@ include('../includes/header.php');
                             </div>
                             <div class="tab-pane fade" id="tab-helptext-preview" role="tabpanel">
                                 <p>Command-line:</p>
-                                <pre><span class="helptext-cli-preview-title font-weight-bold"></span>
+                                <pre><span class="helptext-cli-preview-title fw-bold"></span>
 <span class="helptext-preview-description"></span>
 <span class="helptext-preview-helptext text-muted"></span></pre>
                                 <p>Website:</p>

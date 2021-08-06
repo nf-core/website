@@ -772,7 +772,7 @@ else if ($cache['status'] == 'launch_params_complete') {
             $toc .= '<strong class="ms-3 text-strong">Table of Contents</strong>';
             $toc .= $toc_list;
             $toc .= '
-                <div class="btn-group w-100 mt-2" role="group">
+                <div class="btn-group w-100 mt-2 ms-1" role="group">
                 <button class="btn btn-sm btn-outline-secondary btn-show-hidden-fields" title="Parameters that do not typically need to be altered for a normal run are hidden by default" data-bs-toggle="tooltip" data-bs-delay="{ show: 500, hide: 0 }">
                     <span class="is_not_hidden"><i class="fas fa-eye-slash me-1"></i> Show hidden params</span>
                     <span class="is_hidden"><i class="fas fa-eye me-1"></i> Hide hidden params</span>

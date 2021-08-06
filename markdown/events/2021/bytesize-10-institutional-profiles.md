@@ -38,7 +38,7 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 You can see the slides on HackMD: <https://hackmd.io/@jfy133/Hyc_WvXU_> (shown below)
 
-<div class="embed-responsive embed-responsive-16by9 border shadow">
+<div class="ratio ratio-16x9 border shadow">
   <iframe class="embed-responsive-item" src="https://hackmd.io/@jfy133/Hyc_WvXU_" allowfullscreen></iframe>
 </div>
 

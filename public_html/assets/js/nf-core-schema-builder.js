@@ -221,13 +221,13 @@ $(function () {
     // Collapse groups button
     $('.collapse-groups-btn').click(function(e){
         $('.schema_group').find('.card-body').slideUp('fast');
-        $('.schema_group').find('i.fa-angle-double-down').toggleClass('fa-angle-double-down fa-angle-double-up');
+        $('.schema_group').find('i.fa-angle-double-down').toggleClass('fa-angle-double-left fa-angle-double-down');
     });
 
     // Expand groups button
     $('.expand-groups-btn').click(function(e){
         $('.schema_group').find('.card-body').slideDown('fast');
-        $('.schema_group').find('i.fa-angle-double-up').toggleClass('fa-angle-double-down fa-angle-double-up');
+        $('.schema_group').find('i.fa-angle-double-left').toggleClass('fa-angle-double-left fa-angle-double-down');
     });
 
     //
@@ -1091,7 +1091,7 @@ $(function () {
     //
     $('#schema-builder').on('click', '.schema_group_collapse', function(){
         $(this).closest('.schema_group').find('.card-body').slideToggle('fast');
-        $(this).find('i').toggleClass('fa-angle-double-down fa-angle-double-up');
+        $(this).find('i').toggleClass('fa-angle-double-left fa-angle-double-down');
     });
 
     //
@@ -1113,10 +1113,6 @@ $(function () {
             alert('Copy action did not work - please copy schema manually')
             console.log(e);
         }
-        // restore original focus
-        // if (currentFocus && typeof currentFocus.focus === "function") {
-        //     currentFocus.focus();
-        // }
         $('#schema_copied').toast('show');
         target.attr('disabled', true);
     });

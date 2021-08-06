@@ -94,6 +94,14 @@ function parse_md($markdown){
   if(isset($href_url_suffix_cleanup)){
     $content = preg_replace('/href="(?!https?:\/\/)(?!#)([^"]+)'.$href_url_suffix_cleanup.'"/i', 'href="$1"', $content);
   }
+
+  // Find and replace HTML content if requested
+  if (isset($html_content_replace)) {
+    print_r($html_content_replace[1]);
+    $content = preg_replace($html_content_replace[0], $html_content_replace[1], $content);
+  }
+  
+  
   // Prohibit breaking up `--` in option names
   $content = preg_replace('/--/i', '&#8288;-&#8288;-&#8288;', $content);
   // Add CSS classes to tables
@@ -108,10 +116,6 @@ function parse_md($markdown){
     $content = str_replace('img/contributors-colour/', 'img/contributors-white/', $content);
   }
 
-  // Find and replace HTML content if requested
-  if(isset($html_content_replace)){
-    $content = preg_replace($html_content_replace[0], $html_content_replace[1], $content);
-  }
   
   // create ToC
   if ((!isset($no_auto_toc) | !$no_auto_toc) & preg_match_all("~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis", $content, $matches)>1) {
