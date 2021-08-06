@@ -47,7 +47,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="author" content="Phil Ewels">
   <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
-  <link href="/assets/css/code_highlighting/github.min.css" rel="stylesheet">
   <link href="/assets/css/Chart.min.css" rel="stylesheet">
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
@@ -106,7 +105,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <script src="/assets/js/jquery.tablesorter.min.js"></script>
 
   <!-- Custom nf-core CSS and JS -->
-  <link href="/assets/css/nf-core.css?c=<?php echo $git_sha; ?>" rel="stylesheet">
   <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
   <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
   <script>
@@ -125,7 +123,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".toc" data-bs-offset="15" tabindex="0">
-  <nav class="navbar fixed-top navbar-expand-md navbar-light shadow-sm site-nav">
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav">
     <div class="container-fluid">
       <a class="navbar-brand d-md-none" href="/">
         <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
@@ -205,7 +203,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   if (isset($title) and $title) : ?>
 
     <div class="mainpage">
-      <div class="mainpage-heading">
+      <div class="mainpage-heading triangle-down">
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
@@ -215,7 +213,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             echo '<a href="' . $header_btn_url . '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' . $header_btn_text . '</a>';
           }
           ?>
-          <h1 class="display-3"><?php echo $title; ?></h1>
+          <h1 class="display-2"><?php echo $title; ?></h1>
           <?php if ($subtitle) {
             echo '<p class="lead">' . $subtitle . '</p>';
           } ?>
@@ -224,8 +222,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           } ?>
         </div>
       </div>
-
-      <div class="triangle triangle-down"></div>
 
       <?php if (!isset($mainpage_container) or $mainpage_container) : ?> <div class="container main-content pt-5"> <?php endif; ?>
 

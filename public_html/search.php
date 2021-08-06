@@ -7,8 +7,8 @@ include('../includes/header.php');
 
 $search_term = $_GET['q'];
 ?>
-<div class="mainpage-subheader-heading">
-  <div class="container">
+<div class="mainpage-subheader-heading chevron-down">
+  <div class="container  my-3">
     <form class="searchbar_form" action="search" method="get">
       <div class="col-7 col-lg-3 mx-auto">
         <div class="input-group">
@@ -19,7 +19,7 @@ $search_term = $_GET['q'];
     </form>
   </div>
 </div>
-<div class="triangle subheader-triangle-down"></div>
+
 
 <div class="container main-content">
 
