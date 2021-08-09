@@ -38,7 +38,6 @@ This `params.test_data` is defined in the file [`modules/tests/config/test_data.
 If you have errors such as `input not found` or similar during testing, you can debug whether the defined nested param is correct by checking the corresponding config.
 
 ## Pipeline
-
 ### Converting existing DSL1 pipeline to DSL2
 
 When converting an existing nf-core pipeline from DSL1 to DSL2, it's important that you don't remove the previous `master` that contains the current DSL1 release, nor work on your DSL2 port on `dev`, as you may need to make patch releases to the DSL1 version in the meantime.
@@ -49,7 +48,8 @@ Once deleted, run `nf-core create` (ensuring you're using at least version 1.15,
 
 Finally, compare the `tree` for both DSL1 and DSL2 branches, and do `diff` on files individually to add in custom code from the pipeline. If in doubt, you can always check for any missing files or content by looking directly at the nf-core pipeline template
 
-### Reusing a module multiple times in one workflow
+### Using Modules in pipelines
+#### Reusing a module multiple times in one workflow
 
 To re-use a module multiple times, you can use Nextflow's [alias](https://www.nextflow.io/docs/latest/dsl2.html#module-aliases) functionality to specify different names of a different module.
 
@@ -76,6 +76,13 @@ include { SAMTOOLS_FLAGSTAT as SAMTOOLS_FLAGSTAT_POST } from '../modules/nf-core
 
 Where you then use the corresponding modules in the workflow itself using their aliases.
 
+#### Subworkflows
+
+These are used in a workflow just like a module, however includes a string of modules that always need to be run together.
+
+You can reuse a subworkflow within a subworkflow, assuming they are in the same directory.
+
+Subworkflows do not install modules for you - therefore you must install _all_ modules used by a given subworkflow first.
 ### How pipeline arguments and options are interpreted
 
 Specifying parameters to customise particular processes in nf-core DSL2 is rather more complex than DSL1, but at the same time is much more complex.
