@@ -85,7 +85,7 @@ You can reuse a subworkflow within a subworkflow, assuming they are in the same 
 Subworkflows do not install modules for you - therefore you must install _all_ modules used by a given subworkflow first.
 ### How pipeline arguments and options are interpreted
 
-Specifying parameters to customise particular processes in nf-core DSL2 is rather more complex than DSL1, but at the same time is much more complex.
+Specifying parameters to customise particular processes in nf-core DSL2 is rather more complex than DSL1, but at the same time is more powerful.
 
 The following diagram describes how various parameters and options are inherited.
 
@@ -101,3 +101,21 @@ Command line parameters are generally should be used for parameters that are _re
 The `params` block of a config is much like in DSL1, and is used to modify top-level parameters that can be modified using the equivalent command-line flag.
 
 In contrast, the modules block of a config-file is for more complex/in depth (and somewhat more risky) modifications to pipeline tool commands. Parameters in the `modules` block are not modifiable by a user on the command line. This is genereally used by a pipeline developer to hard code arguments of a given module that will always be run by the pipeline. However, users can provide a custom config with a modules block and therefore with a custom `args` parameter. With a this a user directly modifies the command-line arguments of a given tool, and therefore can include parameters that are _not_ evaluated by the pipeline itself for correctness. Importantly, by making these modifications a user can potentially 'break' the pipeline as they may add unsupported output that the pipeline does not export or send downstream. However, this does give a user a lot more freedom to do precisely what they want, if not (yet) directly supported by the pipeline.
+
+Therefore, as a pipeline developer, when wanting to give users the ability to modify a process/module via the CLI you need to do the following:
+
+1. `nexflow.config`: define the parameter default
+2. `nextflow_schema.json`: define the parameter help message and validation checks
+3. `conf/modules.conf`: add a section in the `modules` block for the specific module you want to allow customisation for (with any mandatory command line flags required for the module)
+4. `<workflow>.nf`:
+    - In the module import section, clone the `modules` block into a `<modules>_options` variable from `conf/modules.conf with
+
+        ````nextflow
+        def multiqc_options   = modules['multiqc']
+        ````
+
+    - Then add your parameters to the `args` variable of the cloned block (e.g. with a condition if necessary)
+
+        ````nextflow
+        multiqc_options.args += params.multiqc_title ? Utils.joinModuleArgs(["--title \"$params.multiqc_title\""]) : ''
+        ````
