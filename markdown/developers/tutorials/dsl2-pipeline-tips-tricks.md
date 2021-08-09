@@ -76,7 +76,7 @@ include { SAMTOOLS_FLAGSTAT as SAMTOOLS_FLAGSTAT_POST } from '../modules/nf-core
 
 Where you then use the corresponding modules in the workflow itself using their aliases.
 
-### Pipeline arguments and options
+### How pipeline arguments and options are interpreted
 
 Specifying parameters to customise particular processes in nf-core DSL2 is rather more complex than DSL1, but at the same time is much more complex.
 
