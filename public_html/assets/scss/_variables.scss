@@ -13,9 +13,9 @@ $min-contrast-ratio: 2.5; // keeps font-color white even with new $success color
 
 $link-color: #1e6bb8;
 
-$headings-font-family:        'Maven Pro', sans-serif;
-$headings-font-weight:        600;
-$headings-color:  $success;
+$headings-font-family: 'Maven Pro', sans-serif;
+$headings-font-weight: 600;
+$headings-color: $success;
 
 /*
     Dark mode specific variables 
@@ -24,6 +24,7 @@ $headings-color:  $success;
 // dark mode default colors
 $nf-core-color-alt: #1D9655;
 
+// inverted the bootstrap-dark's gray color scale.
 $gray-900-alt: #e1e1e1 !default;  //~~
 $gray-800-alt: #cfcfcf !default;  //~~
 $gray-700-alt: #b1b1b1 !default;  //~~
@@ -40,48 +41,48 @@ $success-alt: $nf-core-color-alt;
 $info-alt: #3a7683;
 $light-alt: $gray-100-alt;
 $dark-alt: $gray-200-alt;
-$white-alt:    #fafafa;
+$white-alt: #fafafa;
 
 $navbar-light-color-alt: rgba(255,255,255, .55);
-$body-color-alt:                $gray-800-alt;
-$text-muted-alt:                $gray-600-alt;
-$link-color-alt:              #6fb2e8;
-$list-group-action-color-alt:   $gray-800-alt;
-$border-color-alt:              $gray-400-alt;
-$card-bg-alt:                   $gray-200-alt;
-$modal-content-bg-alt:          mix($gray-200-alt, $gray-100-alt, 50%);
+$body-color-alt: $gray-800-alt;
+$text-muted-alt: $gray-600-alt;
+$link-color-alt: #6fb2e8;
+$list-group-action-color-alt: $gray-800-alt;
+$border-color-alt: $gray-400-alt;
+$card-bg-alt: $gray-200-alt;
+$modal-content-bg-alt: mix($gray-200-alt, $gray-100-alt, 50%);
 
-$input-bg-alt:                             $gray-200-alt;
-$input-disabled-bg-alt:                    $gray-300-alt;
-$input-border-color-alt:                   $gray-300-alt;
-$input-color-alt:                          $gray-600-alt;
-$input-group-addon-bg-alt:                 $gray-300-alt;
-$form-select-indicator-color-alt:          $gray-600-alt;
-$form-select-disabled-bg-alt:              $gray-100-alt;
-$form-select-disabled-color-alt:           $gray-300-alt;
-$input-placeholder-color-alt:              $gray-400-alt;
+$input-bg-alt: $gray-200-alt;
+$input-disabled-bg-alt: $gray-300-alt;
+$input-border-color-alt: $gray-300-alt;
+$input-color-alt: $gray-600-alt;
+$input-group-addon-bg-alt: $gray-300-alt;
+$form-select-indicator-color-alt: $gray-600-alt;
+$form-select-disabled-bg-alt: $gray-100-alt;
+$form-select-disabled-color-alt: $gray-300-alt;
+$input-placeholder-color-alt: $gray-400-alt;
 
-$nav-link-disabled-color-alt:           $gray-400-alt;
-$nav-tabs-border-color-alt:             $gray-400-alt;
-$nav-tabs-link-hover-border-color-alt:  $gray-200-alt $gray-200-alt $nav-tabs-border-color-alt;
-$nav-tabs-link-active-color-alt:        $gray-700-alt;
-$nav-tabs-link-active-bg-alt:           $gray-100-alt;
+$nav-link-disabled-color-alt: $gray-400-alt;
+$nav-tabs-border-color-alt: $gray-400-alt;
+$nav-tabs-link-hover-border-color-alt: $gray-200-alt $gray-200-alt $nav-tabs-border-color-alt;
+$nav-tabs-link-active-color-alt: $gray-700-alt;
+$nav-tabs-link-active-bg-alt: $gray-100-alt;
 $nav-tabs-link-active-border-color-alt: $gray-400-alt $gray-400-alt $nav-tabs-link-active-bg-alt;
 
-$dropdown-color-alt:               $gray-700-alt;
-$dropdown-bg-alt:                  $gray-200-alt;
-$dropdown-link-hover-color-alt:    $white-alt;
-$dropdown-link-hover-bg-alt:       rgba($white-alt, .15);
+$dropdown-color-alt: $gray-700-alt;
+$dropdown-bg-alt: $gray-200-alt;
+$dropdown-link-hover-color-alt: $white-alt;
+$dropdown-link-hover-bg-alt: rgba($white-alt, .15);
 $dropdown-link-disabled-color-alt: $gray-500-alt;
-$dropdown-header-color-alt:        $gray-500-alt;
+$dropdown-header-color-alt: $gray-500-alt;
 
-$pagination-bg-alt:                     $gray-200-alt;
-$pagination-border-color-alt:           $gray-300-alt;
-$pagination-focus-bg-alt:               $gray-300-alt;
-$pagination-hover-bg-alt:               $gray-300-alt;
-$pagination-hover-border-color-alt:     $gray-400-alt;
-$pagination-disabled-color-alt:         mix($gray-400-alt, $gray-500-alt, 50%);
-$pagination-disabled-bg-alt:            $gray-100-alt;
-$pagination-disabled-border-color-alt:  $gray-400-alt;
+$pagination-bg-alt: $gray-200-alt;
+$pagination-border-color-alt: $gray-300-alt;
+$pagination-focus-bg-alt: $gray-300-alt;
+$pagination-hover-bg-alt: $gray-300-alt;
+$pagination-hover-border-color-alt: $gray-400-alt;
+$pagination-disabled-color-alt:  ix($gray-400-alt, $gray-500-alt, 50%);
+$pagination-disabled-bg-alt: $gray-100-alt;
+$pagination-disabled-border-color-alt: $gray-400-alt;
 
-$headings-color-alt:  $success-alt; 
+$headings-color-alt: $success-alt; 
