@@ -9,6 +9,12 @@
     "compile-sass": "sass --load-path=node_modules/ public_html/assets/scss:public_html/assets/css",
     "prefix-css": "postcss --use autoprefixer -b 'last 5 versions' --replace public_html/assets/css/*nf-core*.css ",
     "compress-css": "sass --load-path=node_modules/ public_html/assets/scss:public_html/assets/css --style compressed",
+    "copy-assets": "cp node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css public_html/assets/css && 
+    cp node_modules/chart.js/dist/Chart.min.css public_html/assets/css && 
+    cp node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js public_html/assets/js && 
+    cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.* public_html/assets/js && 
+    cp node_modules/jquery/dist/jquery.min.* public_html/assets/js/ &&
+    cp node_modules/chart.js/dist/Chart.min.js public_html/assets/js/",
     "build-css": "npm-run-all compile-sass prefix-css compress-css"
   },
   "repository": {
@@ -27,6 +33,7 @@
     "backstopjs": "^5.3.4",
     "bootstrap": "^5.0.2",
     "bootstrap-dark-5": "^1.0.2",
+    "chart.js": "^2.8.0",
     "datatables.net": "^1.10.25",
     "datatables.net-bs5": "^1.10.25",
     "jquery": "^3.6.0",

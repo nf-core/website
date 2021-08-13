@@ -24,9 +24,6 @@ services:
     volumes:
       - .:/var/www/
     command: sh -c "npm install --quiet &&
-                    cp node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css /var/www/public_html/assets/css &&
-                    cp node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js /var/www/public_html/assets/js &&
-                    cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.* /var/www/public_html/assets/js &&
-                    cp node_modules/jquery/dist/jquery.min.* /var/www/public_html/assets/js/ &&
+                    npm run copy-assets &&
                     npm run watch-sass"
     working_dir: /var/www/
