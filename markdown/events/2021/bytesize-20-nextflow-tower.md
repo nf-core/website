@@ -4,7 +4,7 @@ subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
 start_date: "2021-09-21"
 start_time: "13:00 CEST"
-start_date: "2021-09-21"
+end_date: "2021-09-21"
 end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/3h82Xkv-Kd8
 location_url:
