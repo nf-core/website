@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 19: Where do I start writing my own DSL2 pipeline?!"
+title: "Bytesize 24: Where do I start writing my own DSL2 pipeline?!"
 subtitle: Harshil Patel - Seqera Labs, Spain
 type: talk
 start_date: "2021-10-19"
