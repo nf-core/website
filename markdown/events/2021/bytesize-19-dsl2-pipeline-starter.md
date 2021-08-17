@@ -4,7 +4,7 @@ subtitle: Harshil Patel - Seqera Labs, Spain
 type: talk
 start_date: "2021-10-19"
 start_time: "13:00 CEST"
-start_date: "2021-10-19"
+end_date: "2021-10-19"
 end_time: "13:30 CEST"
 ---
 
