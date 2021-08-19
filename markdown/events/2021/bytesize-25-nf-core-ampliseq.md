@@ -23,3 +23,5 @@ It is our hope that these talks / videos will build an archive of training mater
 ## Bytesize 25: nf-core/ampliseq
 
 This week, Daniel Straub ([@d4straub](https://github.com/d4straub/)) will tell us all about the nf-core/ampliseq pipeline.
+
+nfcore/ampliseq is a bioinformatics analysis pipeline used for amplicon sequencing, supporting denoising of any amplicon and, currently, taxonomic assignment of 16S, ITS and 18S amplicons. Supported is paired-end Illumina or single-end Illumina, PacBio and IonTorrent data. Default is the analysis of 16S rRNA gene amplicons sequenced paired-end with Illumina.
