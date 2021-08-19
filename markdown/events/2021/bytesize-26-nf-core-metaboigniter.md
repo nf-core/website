@@ -24,4 +24,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week, Payam Emami ([@PayamEmami](https://github.com/PayamEmami/)) will tell us all about the nf-core/metaboigniter pipeline.
 
-nfcore/metaboigniter Pre-processing of mass spectrometry-based metabolomics data with quantification and identification based on MS1 and MS2 data.
+nf-core/metaboigniter is bioinformatics pipeline for pre-processing of mass spectrometry-based metabolomics data.
