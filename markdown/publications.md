@@ -135,5 +135,5 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > Combiz Khozoie, Nurun Fancy, Mahdi M. Marjaneh, Alan E. Murphy, Paul M. Matthews, Nathan Skene
 >
-> [bioRxiv 2021.08.16.456499](https://www.biorxiv.org/content/10.1101/2021.08.16.456499v2)
+> [_bioRxiv_ 2021.08.16.456499](https://www.biorxiv.org/content/10.1101/2021.08.16.456499v2)
 > doi: [10.1101/2021.08.16.456499](https://doi.org/10.1101/2021.08.16.456499)
