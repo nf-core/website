@@ -23,11 +23,11 @@ if (isset($subfooter) and $subfooter) {
         <small class="d-block mb-3">Making awesome workflows since 2018</small>
 
         <small class="d-flex mb-3">Supported by<div class="social-icons">
-            <a href="https://chanzuckerberg.com/eoss" target="_blank">
+            <a href="/about#czi-eoss">
               <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
             </a>
             <span class="ml-1">and</span>
-            <a href="https://aws.amazon.com/" target="_blank">
+            <a href="/about#aws">
               <img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="darkmode-image" style="max-width: 50px">
             </a>
           </div>
