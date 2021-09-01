@@ -97,6 +97,9 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
+  if (isset($import_typeform) && $import_typeform) : ?>
+    <script src="https://embed.typeform.com/next/embed.js"></script>
+  <?php endif;
   if (isset($title) && $title == 'Publications') : ?>
     <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
@@ -121,7 +124,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     gtag('config', 'UA-68098153-2');
 
     <?php if (isset($youtube_embed)) : ?>
-    youtube_embed = true;
+      youtube_embed = true;
     <?php endif; ?>
   </script>
 </head>
