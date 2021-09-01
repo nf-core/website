@@ -6,6 +6,7 @@ start_date: "2021-10-27"
 start_time: "10:00 CEST"
 end_date: "2021-10-29"
 end_time: "18:00 CEST"
+import_typeform: true
 ---
 
 Mark your calendars to join us for the October 2021 nf-core hackathon!
@@ -22,4 +23,4 @@ This event is entirely virtual and we are attempting to support people in all ti
 
 Sign up below!
 
-<div data-tf-widget="LKRMqL2n" style="width:100%;height:400px;color:#FFFFFF;"></div><script src="//embed.typeform.com/next/embed.js"></script>
+<div data-tf-widget="LKRMqL2n" style="width:100%;height:700px;color:#FFFFFF;"></div>
