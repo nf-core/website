@@ -7,9 +7,6 @@
 // Common functions
 require_once('functions.php');
 
-// Markdown parsing libraries
-require_once(dirname(__FILE__).'/libraries/parsedown/Parsedown.php');
-require_once(dirname(__FILE__).'/libraries/parsedown-extra/ParsedownExtra.php');
 function parse_md($markdown){
   global $md_trim_before;
   global $md_trim_after;
