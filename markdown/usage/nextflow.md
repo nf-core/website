@@ -19,6 +19,7 @@ You can find some key resources about Nextflow in the list below:
   * Rinn Lab 2021 undergraduate course lectures, covering Nextflow and nf-core
     * <https://github.com/boulderrinnlab/CLASS_2021>
     * <https://www.youtube.com/playlist?list=PLK_W6cepCrQ2zLTUqIj6QkwtfYWrUDBbe>
+  * Learning Nextflow in 2020: <https://www.nextflow.io/blog/2020/learning-nextflow-in-2020.html>
   * Nextflow Workshop 2018: <https://nextflow-io.github.io/nf-hack18>
   * CZ Biohub Nextflow Tutorial 2019: <https://github.com/czbiohub/nextflow-tutorial-2019>
   * Nextflow Camp 2019 DSLv2 tutorial: <https://github.com/nextflow-io/nfcamp-tutorial>
