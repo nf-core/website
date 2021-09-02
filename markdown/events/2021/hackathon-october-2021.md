@@ -19,7 +19,7 @@ For more experienced developers we hope for contributions to writing subworkflow
 
 In the spirit of collaboration and knowledge sharing, we plan to pair up both novices and experienced developers in pair programming to help get newcomers up to speed on writing and contributing nf-core modules through a pair-programming session for a limited number of participants. Make sure to sign up by September 27, 2021 to participate in pair-programming!
 
-This event is entirely virtual and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:. Do get in touch with us if you'd like to help us out!
+This event is entirely virtual and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:.
 
 Sign up below!
 
