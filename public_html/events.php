@@ -352,6 +352,79 @@ if (isset($_GET['rss'])) {
 }
 
 //
+// iCal FEED
+//
+if (isset($_GET['calendar'])) {
+  header(
+    'Content-type: text/calendar');
+  $url = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//nf-core//Events //EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'X-WR-CALNAME:nf-core events',
+    'DTSTAMP:'. DateTime::createFromFormat('U', date('Y-m-d H:i:s')),
+  ];
+
+  // taken from https://github.com/spatie/calendar-links/blob/master/src/Generators/Ics.php
+  function generateEventUid(Link $link): string
+  {
+    return md5(sprintf(
+      '%s%s%s%s',
+      $link->from->format(\DateTimeInterface::ATOM),
+      $link->to->format(\DateTimeInterface::ATOM),
+      $link->title,
+      $link->address
+    ));
+  }
+  function escapeString(string $field): string
+  {
+    return addcslashes($field, "\r\n,;");
+  }
+
+  if (count($future_events) > 0) {
+    foreach ($future_events as $event) {
+      $start = DateTime::createFromFormat('U', $event['start_ts']);
+      $end = DateTime::createFromFormat('U', $event['end_ts']);
+      $address = $event['address'] ? $event['address'] : "";
+      $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
+      $address = is_array($address) ? $address[0] : $address; # if multiple location urls are given, take the first one
+
+      
+      $link = Link::create($event['title'], $start, $end)
+      ->description($event['subtitle'] ? $event['subtitle'] : "")
+      ->address($address);
+
+      $dateTimeFormat = $link->allDay ? 'Ymd' : 'U';
+      $url[] = 'BEGIN:VEVENT';
+      $url[] = 'UID:' . generateEventUid($link);
+      $url[] = 'SUMMARY:' . escapeString($link->title);
+      if ($link->allDay) {
+        $url[] = 'DTSTART:' . $link->from->format($dateTimeFormat);
+        $url[] = 'DURATION:P' . (max(1, $link->from->diff($link->to)->days)) . 'D';
+      } else {
+        $url[] = 'DTSTART;TZID=' . $link->from->format($dateTimeFormat);
+        $url[] = 'DTEND;TZID=' . $link->to->format($dateTimeFormat);
+      }
+
+      if ($link->description) {
+        $url[] = 'DESCRIPTION:' . escapeString($link->description);
+      }
+      if ($link->address) {
+        $url[] = 'LOCATION:' . escapeString($link->address);
+      }
+
+      $url[] = 'END:VEVENT';
+
+    }
+    $url[] = 'END:VCALENDAR';
+  }
+  echo implode("\r\n",$url);
+  exit;
+}
+
+//
 // Web listing page
 //
 
