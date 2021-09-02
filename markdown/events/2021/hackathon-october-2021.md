@@ -21,6 +21,6 @@ In the spirit of collaboration and knowledge sharing, we plan to pair up both no
 
 This event is entirely virtual and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:.
 
-Sign up below!
+Sign up here 👇
 
 <div data-tf-widget="LKRMqL2n" style="width:100%;height:700px;color:#FFFFFF;"></div>
