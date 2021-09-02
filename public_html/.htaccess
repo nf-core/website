@@ -31,9 +31,6 @@
     # Event RSS feed
     RewriteCond %{REQUEST_URI} ^/events/rss$
     RewriteRule ^(.*)$ /events.php?rss [L,NC,QSA]
-    # Event calendar feed
-    RewriteCond %{REQUEST_URI} ^/events/calendar$
-    RewriteRule ^(.*)$ /events.php?calendar [L,NC,QSA]
 
     # Event pages
     RewriteCond %{REQUEST_URI} ^/events/(.*)$
