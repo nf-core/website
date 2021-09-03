@@ -199,7 +199,11 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
       }
     }
   }
-
+  
+  // load the typeform javascript for embed forms, if we have one
+  if (array_key_exists('import_typeform', $event)) {
+    $import_typeform = true;
+  }
   include('../includes/header.php');
 
   
