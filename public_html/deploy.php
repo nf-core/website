@@ -14,6 +14,9 @@ if ( $_POST['payload'] ) {
   // Pull the new version of the website repo
   shell_exec("cd /home/nfcore/nf-co.re && git fetch && git reset --hard origin/master >> /home/nfcore/update.log 2>&1 &");
 
+  // Install all composer dependencies
+  shell_exec("cd /home/nfcore/nf-co.re && composer install --prefer-dist --no-progress >> /home/nfcore/update.log 2>&1 &");
+
   // Pull the new version of the tools repo
   shell_exec("cd /home/nfcore/nf-co.re/includes/nf-core/tools && git fetch && git reset --hard origin/master >> /home/nfcore/update.log 2>&1 &");
   // Get the latest version number and write to a file

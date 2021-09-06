@@ -42,7 +42,7 @@ Please note that many other projects and grants list nf-core as collaborators an
 <img src="/assets/img/contributors-colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 The Chan Zuckerberg Initiative runs a grant called [_Essential Open Source Software for Science_ (EOSS)](https://chanzuckerberg.com/eoss/).
-Together with Nextflow, nf-core was supported in the second round of the CZI EOSS grant in 2020.
+Together with Nextflow, nf-core was supported in the [second](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) and [fourth](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) round of the CZI EOSS grant in 2020 and 2021.
 
 The CZI EOSS money has allowed us to hire dedicated personnel for development and community support at [QBiC](http://www.qbic.life/) and [SciLifeLab](https://www.scilifelab.se/).
 It also funds expenses for event organisation and community tools.

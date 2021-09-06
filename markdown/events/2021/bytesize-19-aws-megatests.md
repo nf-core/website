@@ -1,11 +1,15 @@
 ---
-title: "Bytesize 19: Where do I start writing my own DSL2 pipeline?!"
-subtitle: Harshil Patel - Seqera Labs, Spain
+title: "Bytesize 19: Setting up AWS megatests"
+subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-start_date: "2021-09-07"
+start_date: "2021-09-14"
 start_time: "13:00 CEST"
-start_date: "2021-09-07"
+end_date: "2021-09-14"
 end_time: "13:30 CEST"
+youtube_embed: https://youtu.be/2-ekrRsYS00
+location_url:
+ - https://youtu.be/2-ekrRsYS00
+ - https://zoom.us/j/94352451216
 ---
 
 # nf-core/bytesize
@@ -16,6 +20,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 19: Where do you begin? DSL2 pipeline introduction
+## Bytesize 19: Setting up AWS metatests
 
-This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present an introduction to developing pipelines in Nextflow DSL2 using nf-core community standards.
+This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will tell us all about the nf-core _AWS megatests_‚ and how to set them up in your nf-core pipeline.
