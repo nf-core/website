@@ -28,3 +28,7 @@ jobs:
       run: npm run copy-assets
     - name: compile css
       run: npm run build-css
+    - name: upload dependency artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: node_modules/
