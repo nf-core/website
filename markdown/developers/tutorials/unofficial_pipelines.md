@@ -17,7 +17,6 @@ This pipeline uses code and infrastructure developed and maintained by the [nf-c
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen.
 >
 > Nat Biotechnol. 2020 Feb 13. doi: 10.1038/s41587-020-0439-x.
->
 In addition, references of tools and data used in this pipeline are as follows:
 ```
 
@@ -28,11 +27,11 @@ In addition, references of tools and data used in this pipeline are as follows:
 ## General
 
 - Replace all references to the pipeline name that include the `nf-core/` suffix.
-  - :warning: If you still wish to use the `nf-core tools` linting functionality, this may result in a lot of linting failures. You can create a `.nf-core-lint.yml` file that allows you to ignore or skip certain lint tests. You can find more information on how to do this [here](/tools/#linting-config). One example is the `pipeline_name_conventions`
+  - :warning: If you still wish to use the `nf-core tools` linting functionality, this may result in a lot of linting failures. You can create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests. You can find more information on how to do this [here](/tools/#linting-config). One example is the `pipeline_name_conventions`
 
 ### `README`
 
-To ensure users do not get confused, we suggest removing the following components of the main pipeline README
+To ensure users do not get confused, we suggest removing the following components of the main pipeline `README`:
 
 1. Remove (or replace) the nf-core logo (see [below](#docs))
 2. Slack badge for help messages.
@@ -49,6 +48,7 @@ To ensure users do not get confused, we suggest removing the following component
     >
     > Nat Biotechnol. 2020 Feb 13. doi: 10.1038/s41587-020-0439-x.
     >
+    
     In addition, references of tools and data used in this pipeline are as follows:
     ```
 
@@ -86,6 +86,4 @@ Optional:
     - `linting_comment.yml`
 3. `workflows/`: remove the AWS test GitHub action workflows
 
-## Using external module repositories
-
-<!-- TODO -->
+<!-- TODO: Using external module repositories -->
