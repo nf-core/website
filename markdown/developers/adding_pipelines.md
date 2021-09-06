@@ -364,12 +364,12 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 * `lib/`: The lib directory contains Groovy utility functions. These are called from within the nf-core pipeline to do common pipeline tasks (e.g. parameter schema validation) and to hold Groovy functions that may be useful in the pipeline context (e.g. to validate pipeline-specific parameters). Currently, the following files are included:
 
-  * `NfcoreSchema.groovy`
-  * `NfcoreTemplate.groovy`
-  * `Utils.groovy`
-  * `WorkflowMain.groovy`
-  * `WorkflowPipeline.groovy`
-  * `nfcore_external_java_deps.jar`
+  * `NfcoreSchema.groovy` - Functions to validate input parameters using the pipeline JSON schema
+  * `NfcoreTemplate.groovy` - Additional nf-core specific pipeline functions (sending emails, checking nf-core config profiles and more)
+  * `Utils.groovy` - Additional generic pipeline functions (checking conda config and more)
+  * `WorkflowMain.groovy` - Startup functions for the main pipeline (printing logs, custom params initialisation and more)
+  * `WorkflowPipeline.groovy` - Functions for pipeline subworkflows
+  * `nfcore_external_java_deps.jar` - Bundled Groovy dependencies so that pipelines work offline (mostly for JSON schema validation - see imports in `NfcoreSchema.groovy`)
 
 * `modules/`: Contains pipeline-specific and common nf-core modules
 
