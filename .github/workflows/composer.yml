@@ -22,10 +22,15 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-    - name: upload dependency artifact
-      uses: actions/upload-artifact@v2
+    - name: commit dependencies changes
+      env:
+        GITHUB_AUTH_TOKEN: ${{ secrets.nf_co_re_bot_auth_token }}
+      run: |
+        git config --global user.email "core@nf-co.re"
+        git config --global user.name "nf-co.re-bot"
+        git commit -m "add composer dependencies" -a
+    - name: push dependencies changes
+      uses: ad-m/github-push-action@master
       with:
-        path: vendor/
+        github_token: ${{ secrets.nf_co_re_bot_auth_token }}
+        branch: ${{ github.ref }}
