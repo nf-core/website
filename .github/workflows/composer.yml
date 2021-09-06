@@ -25,3 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+    - name: upload dependency artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: vendor/
