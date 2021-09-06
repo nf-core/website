@@ -28,9 +28,8 @@ jobs:
       run: |
         git config --global user.email "core@nf-co.re"
         git config --global user.name "nf-co.re-bot"
-        git commit -m "add composer dependencies" -a
+        git commit -am "add composer dependencies"
     - name: push dependencies changes
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.nf_co_re_bot_auth_token }}
-        branch: ${{ github.ref }}
