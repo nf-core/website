@@ -324,7 +324,8 @@ This way, a review process will be very fast and we can merge the changes into t
 ### Files
 
 You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core create`.
-* `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. It parses all parameters, loads the modules with options and defines the specific order in which these are executed.
+
+* `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
   The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/usage/configuration) for more information.
@@ -339,9 +340,17 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 * `CODE_OF_CONDUCT.md`: The nf-core code of conduct.
 
+* `CITATIONS.md`: All citations needed when using the pipelin
+
 * `.gitattributes`: Git settings, primarily getting the `.config` files to render with Nextflow syntax highlighting on <github.com>
 
 * `.gitignore`: Files that should be ignored by git.
+
+* `.editorconfig`: Editorconfig file that helps assuring consistent coding style
+
+* `.markdownlint.yml`: Markdown lint configuration file to assure consistent markdown files
+
+* `modules.json`: This file holds information (e.g. version) about all the modules in the pipeline that have been installed from `nf-core/modules`
 
 ### Directories
 
@@ -355,9 +364,20 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 * `docs/`: Markdown files for documenting the pipeline
 
-* `lib/`: The lib directory contains groovy utility functions. Currently, this includes the `Schema.groovy`, `Headers.groovy`, `Completion.groovy` and `Checks.groovy` files. These are called from within the nf-core pipeline to do common pipeline tasks, like formatting the header for the command line. Any larger groovy function you want to call in the code should therefore go in here.
+* `lib/`: The lib directory contains Groovy utility functions. These are called from within the nf-core pipeline to do common pipeline tasks (e.g. parameter schema validation) and to hold Groovy functions that may be useful in the pipeline context (e.g. to validate pipeline-specific parameters). Currently, the following files are included:
+
+  * `NfcoreSchema.groovy` - Functions to validate input parameters using the pipeline JSON schema
+  * `NfcoreTemplate.groovy` - Additional nf-core specific pipeline functions (sending emails, checking nf-core config profiles and more)
+  * `Utils.groovy` - Additional generic pipeline functions (checking conda config and more)
+  * `WorkflowMain.groovy` - Startup functions for the main pipeline (printing logs, custom params initialisation and more)
+  * `WorkflowPipeline.groovy` - Functions for pipeline subworkflows
+  * `nfcore_external_java_deps.jar` - Bundled Groovy dependencies so that pipelines work offline (mostly for JSON schema validation - see imports in `NfcoreSchema.groovy`)
 
 * `modules/`: Contains pipeline-specific and common nf-core modules
+
+* `workflows/`: Contains the main pipeline workflows to be executed in the `main.nf` file
+
+* `subworkflows/`: Contains smaller subworkflows that typically consist out of a few modules chained together
 
 ## Continuous integration testing
 
