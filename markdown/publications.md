@@ -126,3 +126,14 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v2)
 > doi: [10.12688/f1000research.16665.2](https://doi.org/10.12688/f1000research.16665.2)
+
+
+### [nf-core/scflow](https://nf-co.re/scflow)
+
+<!-- pub-stats 10.1101/2021.08.16.456499 -->
+> **scFlow: A Scalable and Reproducible Analysis Pipeline for Single-Cell RNA Sequencing Data**
+>
+> Combiz Khozoie, Nurun Fancy, Mahdi M. Marjaneh, Alan E. Murphy, Paul M. Matthews, Nathan Skene
+>
+> [_bioRxiv_ 2021.08.16.456499](https://www.biorxiv.org/content/10.1101/2021.08.16.456499v2)
+> doi: [10.1101/2021.08.16.456499](https://doi.org/10.1101/2021.08.16.456499)

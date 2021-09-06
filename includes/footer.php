@@ -21,6 +21,16 @@ if (isset($subfooter) and $subfooter) {
           <img height="30px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
         </a>
         <small class="d-block mb-3">Making awesome workflows since 2018</small>
+        <small class="d-flex mb-3">Supported by<div class="social-icons">
+            <a href="/about#czi-eoss">
+              <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
+            </a>
+            <span class="ms-1">and</span>
+            <a href="/about#aws">
+              <img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="darkmode-image" style="max-width: 50px">
+            </a>
+          </div>
+        </small>
         <small class="d-block mb-3">
           Website by <a href="http://phil.ewels.co.uk/">Phil Ewels</a>.
           Icons from <a href="http://www.flaticon.com/">flaticon.com</a>
