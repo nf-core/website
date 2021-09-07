@@ -13,11 +13,10 @@ jobs:
     steps:
 
     # Set up the main website repo
-    - name: Check out website repo
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
       with:
-        # Pull in nf-core/tools submodule repo
-        submodules: true
+        fetch-depth: 0 # Don't do a shallow clone
+        submodules: true # Pull in nf-core/tools submodule repo
 
     - name: Find nf-core/tools versions
       run: |
@@ -62,13 +61,12 @@ jobs:
         server-dir: ${{ secrets.ftp_server_dir }}
         protocol: ${{ secrets.ftp_protocol }}
         port: ${{ secrets.ftp_port }}
-        exclude:
+        exclude: |
           - public_html/tools/docs/*/**
           - public_html/pipelines.json
           - public_html/pipeline_names.json
           - config.ini
           - nfcore_stats.json
           - nfcore_issue_stats.json
-        dry-run: true
 
 
