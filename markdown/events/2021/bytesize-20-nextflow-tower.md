@@ -22,4 +22,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 20: Nextflow Tower
 
-This week, Evan Floden ([@evanfloden](http://github.com/evanfloden/)) will give us an overview of Nextflow Tower (<https://tower.nf>) and how you can use it with nf-core pipelines.
+This week, Evan Floden ([@evanfloden](http://github.com/evanfloden/)) will provide some updates on Nextflow Tower (<https://tower.nf>), including the new Community Showcase with nf-core pipelines, a first look at the datasets feature, the upcoming CLI, and some automations for triggering the execution of pipelines.
