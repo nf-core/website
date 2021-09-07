@@ -52,13 +52,12 @@ jobs:
         server-dir: ${{ secrets.ftp_server_dir }} # Relative, not absolute path
         protocol: ${{ secrets.ftp_protocol }}
         port: ${{ secrets.ftp_port }}
-        exclude: |
-          - **/node_modules/**
-          - **/public_html/tools/docs/*/**
-          - **/public_html/pipelines.json
-          - **/public_html/pipeline_names.json
-          - **/config.ini
-          - **/nfcore_stats.json
-          - **/nfcore_issue_stats.json
-
-
+        exclude: >
+          - .git*
+          - .git*/**
+          - **/.git*/**
+          - node_modules
+          - node_modules/**
+          - includes/nf-core/tools/!(R)*
+          - includes/nf-core/tools/*/**
+          - public_html/tools/docs/*/**
