@@ -26,14 +26,8 @@ jobs:
         cd $GITHUB_WORKSPACE
 
     # Pull PHP Composer dependencies
-    - name: Build and cache composer PHP packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+    - name: PHP Composer
+      run: composer install --prefer-dist --no-progress
 
     # Compile npm dependencies
     - name: Set up node.js
@@ -44,11 +38,8 @@ jobs:
     - name: Install npm dependencies
       run: npm install
 
-    - name: Copy npm assets
-      run: npm run copy-assets
-
-    - name: Compile css with npm
-      run: npm run build-css
+    - name: Compile and copy all CSS and JS assets
+      run: npm run build-prod
 
     # Deploy via FTP, only if this is running on a push to master (not a pull request)
     - name: Sync website files
@@ -58,15 +49,16 @@ jobs:
         server: ${{ secrets.ftp_server }}
         username: ${{ secrets.ftp_username}}
         password: ${{ secrets.ftp_password }}
-        server-dir: ${{ secrets.ftp_server_dir }}
+        server-dir: ${{ secrets.ftp_server_dir }} # Relative, not absolute path
         protocol: ${{ secrets.ftp_protocol }}
         port: ${{ secrets.ftp_port }}
         exclude: |
-          - public_html/tools/docs/*/**
-          - public_html/pipelines.json
-          - public_html/pipeline_names.json
-          - config.ini
-          - nfcore_stats.json
-          - nfcore_issue_stats.json
+          - **/node_modules/**
+          - **/public_html/tools/docs/*/**
+          - **/public_html/pipelines.json
+          - **/public_html/pipeline_names.json
+          - **/config.ini
+          - **/nfcore_stats.json
+          - **/nfcore_issue_stats.json
 
 
