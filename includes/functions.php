@@ -1,9 +1,10 @@
 <?php
 // Common PHP functions for the website
 
-// Pull out YAML front-matter from a markdown file
-require "../vendor/autoload.php";
+// Include the PHP Composer autoloader for required libraries
+require(dirname(__FILE__)."/../vendor/autoload.php");
 
+// Pull out YAML front-matter from a markdown file
 function parse_md_front_matter($md_full)
 {
   if (substr($md_full, 0, 3) == '---') {
