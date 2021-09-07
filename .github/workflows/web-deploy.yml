@@ -12,9 +12,19 @@ jobs:
 
     steps:
 
-    # Set up the repo
-    - name: Check out main website repo
+    # Set up the main website repo
+    - name: Check out website repo
       uses: actions/checkout@v2
+      with:
+        # Pull in nf-core/tools submodule repo
+        submodules: true
+
+    - name: Find nf-core/tools versions
+      run: |
+        cd $GITHUB_WORKSPACE/includes/nf-core/tools
+        git describe --tags --abbrev=0 > ../tools_version.txt
+        git tag > ../tools_all_versions.txt
+        cd $GITHUB_WORKSPACE
 
     # Pull PHP Composer dependencies
     - name: Build and cache composer PHP packages
@@ -52,5 +62,13 @@ jobs:
         server-dir: ${{ secrets.ftp_server_dir }}
         protocol: ${{ secrets.ftp_protocol }}
         port: ${{ secrets.ftp_port }}
+        exclude:
+          - public_html/tools/docs/*/**
+          - public_html/pipelines.json
+          - public_html/pipeline_names.json
+          - config.ini
+          - nfcore_stats.json
+          - nfcore_issue_stats.json
+        dry-run: true
 
 
