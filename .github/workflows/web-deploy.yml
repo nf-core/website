@@ -1,0 +1,56 @@
+name: Deploy website
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    # Set up the repo
+    - name: Check out main website repo
+      uses: actions/checkout@v2
+
+    # Pull PHP Composer dependencies
+    - name: Build and cache composer PHP packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    # Compile npm dependencies
+    - name: Set up node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - name: Install npm dependencies
+      run: npm install
+
+    - name: Copy npm assets
+      run: npm run copy-assets
+
+    - name: Compile css with npm
+      run: npm run build-css
+
+    # Deploy via FTP, only if this is running on a push to master (not a pull request)
+    - name: Sync website files
+      if: github.repository == 'nf-core/nf-co.re' && github.event_name == 'push'
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.ftp_server }}
+        username: ${{ secrets.ftp_username}}
+        password: ${{ secrets.ftp_password }}
+        server-dir: ${{ secrets.ftp_server_dir }}
+        protocol: ${{ secrets.ftp_protocol }}
+        port: ${{ secrets.ftp_port }}
+
+
