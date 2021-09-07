@@ -1,6 +1,6 @@
 <?php
 
-require_once('functions.php');
+require_once(dirname(__FILE__).'/functions.php');
 
 // Find the latest commit hash to prevent caching assets
 $git_sha = trim(shell_exec("cd " . dirname(__FILE__) . " && git rev-parse --short=7 HEAD"));
