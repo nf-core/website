@@ -314,6 +314,17 @@ include('../includes/header.php');
       <div class="col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
+            <h5 class="card-title">Start from the template</h5>
+            <i class="fas fa-magic fa-5x float-right text-secondary ml-3"></i>
+            <p class="card-text">All modules must be follow on consistency guidelines
+              and made with <code>nf-core modules create</code></p>
+            <a href="developers/adding_modules" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-3">
+        <div class="card">
+          <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
             <i class="fad fa-code-merge fa-5x float-right text-secondary ml-3"></i>
             <p class="card-text">We only allow one pipeline per data type / analysis type.
