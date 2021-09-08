@@ -147,7 +147,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/usage/introduction" role="button" data-bs-toggle="dropdown">Usage</a>
+            <a class="nav-link dropdown-toggle" href="/usage/introduction" role="button" data-bs-toggle="dropdown">Usage</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/usage/introduction">Getting started</a>
               <a class="dropdown-item" href="/usage/installation">Installation</a>
@@ -161,7 +161,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             </div>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/developers/guidelines" role="button" data-bs-toggle="dropdown">Developers</a>
+            <a class="nav-link dropdown-toggle" href="/developers/guidelines" role="button" data-bs-toggle="dropdown">Developers</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
               <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
@@ -179,7 +179,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
                                                 } ?>Events</a>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link" href="/about" role="button" data-bs-toggle="dropdown">About</a>
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About nf-core</a>
               <a class="dropdown-item" href="/community">Community</a>
