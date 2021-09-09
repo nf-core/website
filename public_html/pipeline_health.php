@@ -105,7 +105,6 @@ class RepoHealth {
   public $gh_branch_dev;
   public $gh_branch_TEMPLATE;
   public $gh_webpage;
-  public $gh_social_preview;
 
   // Test result variables
   public $repo_wikis;
@@ -117,7 +116,6 @@ class RepoHealth {
   public $repo_keywords;
   public $repo_description;
   public $repo_url;
-  public $social_preview;
   public $team_all;
   public $team_core;
 
@@ -148,7 +146,6 @@ class RepoHealth {
     $this->test_repo();
     $this->test_teams();
     $this->test_branch_exists();
-    $this->test_webpage();
   }
   public function fix_tests(){
     if(is_fix_repo($this->name)){
@@ -231,12 +228,6 @@ class RepoHealth {
       $gh_webpage_url = 'https://github.com/nf-core/'.$this->name;
       $this->gh_webpage = @file_get_contents($gh_webpage_url);
       $this->_save_cache_data($this->gh_webpage_cache, $this->gh_webpage, false);
-    }
-
-    // Pull out social image
-    preg_match('/<meta name="twitter:image:src" content="([^"]+)" \/>/', $this->gh_webpage, $social_matches);
-    if(array_key_exists(1, $social_matches)){
-      $this->gh_social_preview = $social_matches[1];
     }
 
   }
@@ -348,13 +339,6 @@ class RepoHealth {
           }
         }
       }
-    }
-  }
-
-  public function test_webpage(){
-    if(isset($this->gh_webpage)){
-      $startswith = 'https://repository-images.githubusercontent.com';
-      $this->social_preview = substr($this->gh_social_preview, 0, strlen($startswith)) == $startswith;
     }
   }
 
@@ -529,7 +513,9 @@ class RepoHealth {
   public function print_table_cell($test_name){
     $test_url = $this->test_urls[$test_name];
     $test_url = str_replace('{repo}', $this->name, $test_url);
-    $test_url = str_replace('{latest-tag}', $this->last_release->tag_name, $test_url);
+    if(property_exists($this, 'last_release') && $this->last_release){
+      $test_url = str_replace('{latest-tag}', $this->last_release->tag_name, $test_url);
+    }
     if(is_null($this->$test_name)){
       echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
@@ -734,7 +720,6 @@ $base_test_names = [
   'repo_keywords' => "Keywords",
   'repo_description' => "Description",
   'repo_url' => "Repo URL",
-  'social_preview' => "Social preview",
   'team_all' => "Team all",
   'team_core' => "Team core",
   'branch_master_exists' => 'master: exists',
@@ -764,7 +749,6 @@ $base_test_descriptions = [
   'repo_keywords' => "Minimum keywords set",
   'repo_description' => "Description must be set",
   'repo_url' => "URL should be set to https://nf-co.re",
-  'social_preview' => "Repo should have a social preview image set",
   'team_all' => "Write access for nf-core/all",
   'team_core' => "Admin access for nf-core/core",
   'branch_master_exists' => 'master branch: branch must exist',
@@ -794,7 +778,6 @@ $base_test_urls = [
   'repo_keywords' =>                      'https://github.com/nf-core/{repo}',
   'repo_description' =>                   'https://github.com/nf-core/{repo}',
   'repo_url' =>                           'https://github.com/nf-core/{repo}',
-  'social_preview' =>                     'https://github.com/nf-core/{repo}/settings',
   'team_all' =>                           'https://github.com/nf-core/{repo}/settings/collaboration',
   'team_core' =>                          'https://github.com/nf-core/{repo}/settings/collaboration',
   'branch_master_exists' =>               'https://github.com/nf-core/{repo}/branches',
