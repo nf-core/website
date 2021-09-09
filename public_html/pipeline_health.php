@@ -68,7 +68,6 @@ class RepoHealth {
     $this->gh_repo_cache = $this->cache_base.'/repo_'.$this->name.'.json';
     $this->gh_release_cache = $this->cache_base.'/release_'.$this->name.'.json';
     $this->gh_all_branches_cache = $this->cache_base.'/branches_'.$this->name.'.json';
-    $this->gh_webpage_cache = $this->cache_base.'/repo_ghpage_'.$this->name.'.html';
   }
 
   // Names of required CI checks. These are added to whatever already exists.
@@ -104,7 +103,6 @@ class RepoHealth {
   public $gh_branch_master;
   public $gh_branch_dev;
   public $gh_branch_TEMPLATE;
-  public $gh_webpage;
 
   // Test result variables
   public $repo_wikis;
@@ -140,7 +138,6 @@ class RepoHealth {
   public function get_data(){
     $this->get_repo_data();
     $this->get_branch_data();
-    $this->get_repo_webpage();
   }
   public function run_tests(){
     $this->test_repo();
@@ -217,19 +214,6 @@ class RepoHealth {
         }
       }
     }
-  }
-
-  public function get_repo_webpage(){
-
-    // List of all branches
-    if(file_exists($this->gh_webpage_cache) && !$this->refresh){
-      $this->gh_webpage = file_get_contents($this->gh_webpage_cache);
-    } else {
-      $gh_webpage_url = 'https://github.com/nf-core/'.$this->name;
-      $this->gh_webpage = @file_get_contents($gh_webpage_url);
-      $this->_save_cache_data($this->gh_webpage_cache, $this->gh_webpage, false);
-    }
-
   }
 
   public function test_topics(){
@@ -503,7 +487,7 @@ class RepoHealth {
     }
   }
 
-  private function _save_cache_data($path, $data, $encode_json=true){
+  public function _save_cache_data($path, $data, $encode_json=true){
     if (!file_exists(dirname($path))) mkdir(dirname($path), 0777, true);
     if($encode_json) $data_json = json_encode($data, JSON_PRETTY_PRINT)."\n";
     else $data_json = $data;
@@ -538,6 +522,7 @@ class RepoHealth {
 
 // Pipeline health class
 class PipelineHealth extends RepoHealth {
+
   // URL should point to pipeline page
   public function __construct($name) {
     parent::__construct($name);
@@ -549,6 +534,9 @@ class PipelineHealth extends RepoHealth {
   public $branch_template_protection = true;
   // Keywords should also include nextflow, workflow and pipeline
   public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
+  // JSON Schema / DSL2 modules directory
+  public $has_json_schema;
+  public $has_dsl2_modules_dir;
   // Variables for release tests
   public $has_release;
   public $last_release;
@@ -559,7 +547,54 @@ class PipelineHealth extends RepoHealth {
   public function run_tests(){
     parent::run_tests();
     $this->test_branch_protection();
+    $this->test_files_exist();
     $this->test_releases();
+  }
+
+  public function check_url($url){
+    $headers = get_headers($url);
+    return substr($headers[0], 9, 3) == '200';
+  }
+  public function test_files_exist(){
+
+    // No releases - always check the dev branch (no caching)
+    if(!$this->has_release){
+      $this->has_json_schema = $this->check_url('https://raw.githubusercontent.com/nf-core/'.$this->name.'/dev/nextflow_schema.json');
+      $this->has_dsl2_modules_dir = $this->check_url('https://github.com/nf-core/'.$this->name.'/tree/dev/modules');
+    }
+
+    // Check last release, with caching
+    else {
+      $check_404_cache = $this->cache_base.'/files_404_'.$this->name.'_'.$this->last_release->tag_name.'.json';
+      // Load cache
+      if(file_exists($check_404_cache) && !$this->refresh){
+        $files_404_cache = json_decode(file_get_contents($check_404_cache));
+        $this->has_json_schema = $files_404_cache->json_schema;
+        $this->has_dsl2_modules_dir = $files_404_cache->dsl2_modules_dir;
+      } else {
+        // Check if the files exist
+        $this->has_json_schema = $this->check_url('https://raw.githubusercontent.com/nf-core/'.$this->name.'/'.$this->last_release->tag_name.'/nextflow_schema.json');
+        $this->has_dsl2_modules_dir = $this->check_url('https://github.com/nf-core/'.$this->name.'/tree/'.$this->last_release->tag_name.'/modules');
+        // Save the cache
+        $files_404_cache = [
+          'json_schema' => $this->has_json_schema,
+          'dsl2_modules_dir' => $this->has_dsl2_modules_dir,
+        ];
+        $this->_save_cache_data($check_404_cache, $files_404_cache);
+      }
+
+    }
+
+    if(file_exists($this->gh_all_branches_cache) && !$this->refresh){
+      $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
+    } else {
+      $gh_branch_url = 'https://api.github.com/repos/nf-core/'.$this->name.'/branches';
+      $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
+      $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
+    }
+
+
+
   }
 
   public function test_releases(){
@@ -830,17 +865,23 @@ $pipeline_test_names = [
   'has_release' => 'Released',
   'release_after_tools' => 'Released after tools',
   'master_is_release' => 'Master = release',
+  'has_json_schema' => 'JSON Schema',
+  'has_dsl2_modules_dir' => 'DSL2',
   ] + $base_test_names;
 $pipeline_test_descriptions = [
   'has_release' => 'Has at least one release',
   'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
   'master_is_release' => 'Master branch is same commit as the last release',
+  'has_json_schema' => 'Has a nextflow_schema.json file on the dev branch',
+  'has_dsl2_modules_dir' => 'Has a /modules directory (is a DSL2 pipeline) on the dev branch',
   ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
 $pipeline_test_urls = [
   'has_release' =>         'https://github.com/nf-core/{repo}/releases',
   'release_after_tools' => 'https://github.com/nf-core/{repo}/releases/{latest-tag}',
   'master_is_release' => 'https://github.com/nf-core/{repo}/compare/{latest-tag}...master',
+  'has_json_schema' => 'https://github.com/nf-core/{repo}',
+  'has_dsl2_modules_dir' => 'https://github.com/nf-core/{repo}'
   ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
