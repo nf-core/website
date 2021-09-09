@@ -47,36 +47,36 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="author" content="Phil Ewels">
   <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
-  <link href="/assets/css/Chart.min.css" rel="stylesheet">
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
   <!-- Other JS -->
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/highlight.min.js"></script>
+  <script src="/assets/lib/jquery.min.js"></script>
+  <script src="/assets/lib/bootstrap.bundle.min.js"></script>
+  <script src="/assets/lib/highlight.min.js"></script>
   <!-- Page-specific CSS and JS -->
   <?php if (isset($import_moment) && $import_moment) : ?>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/moment-timezone-with-data-10-year-range.js"></script>
+    <script src="/assets/lib/moment.js"></script>
+    <script src="/assets/lib/moment-timezone-with-data-10-year-range.min.js"></script>
   <?php endif;
   if (isset($import_leaflet) && $import_leaflet) : ?>
-    <link href="/assets/css/leaflet.css" rel="stylesheet">
-    <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet">
-    <script src="/assets/js/leaflet.js"></script>
-    <script src="/assets/js/Leaflet.fullscreen.min.js"></script>
+    <link href="/assets/lib/leaflet.css" rel="stylesheet">
+    <script src="/assets/lib/leaflet.js"></script>
+    <!-- NOT ON NPM --> <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet"> <!-- NOT ON NPM -->
+    <!-- NOT ON NPM --> <script src="/assets/js/Leaflet.fullscreen.min.js"></script> <!-- NOT ON NPM -->
   <?php endif;
   if (isset($import_chartjs) && $import_chartjs) : ?>
-    <script src="/assets/js/moment.js"></script>
-    <script src="/assets/js/Chart.min.js"></script>
+    <script src="/assets/lib/moment.js"></script>
+    <script src="/assets/lib/Chart.min.js"></script>
+    <link href="/assets/lib/Chart.min.css" rel="stylesheet">
     <script src="/assets/js/hammer.min.js"></script>
-    <script src="/assets/js/chartjs-plugin-zoom.min.js"></script>
+    <script src="/assets/lib/chartjs-plugin-zoom.min.js"></script>
     <script src="/assets/js/canvas2svg.js"></script>
     <script src="/assets/js/FileSaver.js"></script>
   <?php endif;
   if (isset($import_schema_launcher) && $import_schema_launcher) : ?>
-    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/lib/moment.js"></script>
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
@@ -90,7 +90,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   if (isset($import_schema_builder) && $import_schema_builder) : ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
-    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/lib/moment.js"></script>
     <script src="/assets/js/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
