@@ -3,22 +3,25 @@ title: Adding a new module
 subtitle: Follow this walkthrough for adding and reviewing new nf-core modules
 ---
 
-## Adding a new module file
-
-If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](modules)
-for examples.
+If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
 ## Terminology
 
-The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components:
+The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
 
-- *Module*: A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. At present, this repository has been created to only host atomic module files that should be added to the [`modules/`](modules/) directory along with the required documentation and tests.
+### Module
 
-- *Sub-workflow*: A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. At present, this repository has been created to only host atomic module files that should be added to the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
 
-- *Workflow*: What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 individual modules and sub-workflows.
+### Sub-workflow
 
-### Before you start
+A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+
+### Workflow
+
+What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 individual modules and sub-workflows.
+
+## Before you start
 
 Please check that the module you wish to add isn't already on [`nf-core/modules`](https://github.com/nf-core/modules/tree/master/modules):
 
@@ -32,11 +35,13 @@ If the module doesn't exist on `nf-core/modules`:
 - Set an appropriate subject for the issue e.g. `new module: fastqc`
 - Add yourself to the `Assignees` so we can track who is working on the module
 
-### nf-core modules create
+## Writing a new module
+
+### New module workflow
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.0`)
+1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.1`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
 4. [Fork and clone this repo locally](#uploading-to-nf-coremodules)
@@ -133,7 +138,9 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
     > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
 
-8. Lint the module locally to check that it adheres to nf-core guidelines before submission
+8. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+
+9. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
     $ nf-core modules lint . --tool fastqc
@@ -176,7 +183,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     ╰──────────────────────╯
     ```
 
-9. Once ready, the code can be pushed and a pull request (PR) created
+10. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -256,17 +263,17 @@ Please follow the steps below to run the tests locally:
 
 ### Uploading to `nf-core/modules`
 
-[Fork](https://help.github.com/articles/fork-a-repo/) the `nf-core/modules` repository to your own GitHub account. Within the local clone of your fork add the module file to the [`modules/`](modules) directory. Please try and keep PRs as atomic as possible to aid the reviewing process - ideally, one module addition/update per PR.
+[Fork](https://help.github.com/articles/fork-a-repo/) the `nf-core/modules` repository to your own GitHub account. Within the local clone of your fork add the module file to the `modules/` directory. Please try and keep PRs as atomic as possible to aid the reviewing process - ideally, one module addition/update per PR.
 
 Commit and push these changes to your local clone on GitHub, and then [create a pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) on the `nf-core/modules` GitHub repo with the appropriate information.
 
 We will be notified automatically when you have created your pull request, and providing that everything adheres to nf-core guidelines we will endeavour to approve your pull request as soon as possible.
 
-### New module guidelines and PR review checklist
+## New module guidelines and PR review checklist
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-#### General
+### General
 
 - All non-mandatory command-line tool options MUST be provided as a string i.e. `options.args` where `options` is a Groovy Map that MUST be provided via the Nextflow `addParams` option when including the module via `include` in the parent workflow.
 
@@ -292,9 +299,9 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - The process definition MUST NOT contain a `when` statement.
 
-#### Naming conventions
+### Naming conventions
 
-- The directory structure for the module name must be all lowercase e.g. [`modules/bwa/mem/`](modules/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
+- The directory structure for the module name must be all lowercase e.g. [`modules/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
 - The process name in the module file MUST be all uppercase e.g. `process BWA_MEM {`. The name of the software (i.e. `BWA`) and tool (i.e. `MEM`) MUST be all one word separated by an underscore.
 
@@ -302,7 +309,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - All function names MUST follow the `camelCase` convention.
 
-#### Input/output options
+### Input/output options
 
 - Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
   - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel  (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
@@ -312,7 +319,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
-#### Module parameters
+### Module parameters
 
 - A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
 
@@ -322,7 +329,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - Any parameters that need to be evaluated in the context of a particular sample e.g. single-end/paired-end data MUST also be defined within the process.
 
-#### Resource requirements
+### Resource requirements
 
 - An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46) e.g. `process_low`, `process_medium` or `process_high`.
 
@@ -332,7 +339,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
   - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
   - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
 
-#### Software requirements
+### Software requirements
 
 [BioContainers](https://biocontainers.pro/#/) is a registry of Docker and Singularity containers automatically created from all of the software packages on [Bioconda](https://bioconda.github.io/). Where possible we will use BioContainers to fetch pre-built software containers and Bioconda to install software using Conda.
 
@@ -387,7 +394,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
-#### Publishing results
+### Publishing results
 
 The [Nextflow `publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) definition is currently quite limited in terms of parameter/option evaluation. To overcome this, the publishing logic we have implemented for use with DSL2 modules attempts to minimise changing the `publishDir` directive (default: `params.outdir`) in favour of constructing and appending the appropriate output directory paths via the `saveAs:` statement e.g.
 
@@ -397,7 +404,7 @@ publishDir "${params.outdir}",
     saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
 ```
 
-The `saveFiles` function can be found in the [`functions.nf`](modules/fastqc/functions.nf) file of utility functions that will be copied into all module directories. It uses the various publishing `options` specified as input to the module to construct and append the relevant output path to `params.outdir`.
+The `saveFiles` function can be found in the [`functions.nf`](https://github.com/nf-core/modules/tree/master/modules/fastqc/functions.nf) file of utility functions that will be copied into all module directories. It uses the various publishing `options` specified as input to the module to construct and append the relevant output path to `params.outdir`.
 
 We also use a standardised parameter called `params.publish_dir_mode` that can be used to alter the file publishing method (default: `copy`).
 
