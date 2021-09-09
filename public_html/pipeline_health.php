@@ -872,8 +872,8 @@ $pipeline_test_descriptions = [
   'has_release' => 'Has at least one release',
   'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
   'master_is_release' => 'Master branch is same commit as the last release',
-  'has_json_schema' => 'Has a nextflow_schema.json file on the dev branch',
-  'has_dsl2_modules_dir' => 'Has a /modules directory (is a DSL2 pipeline) on the dev branch',
+  'has_json_schema' => 'Has a nextflow_schema.json file (in last release, dev if no release)',
+  'has_dsl2_modules_dir' => 'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
   ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = "URL should be set to https://nf-co.re/[PIPELINE-NAME]";
 $pipeline_test_urls = [
