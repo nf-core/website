@@ -12,6 +12,7 @@ The core team members who administer the nf-core project are listed below:
 * [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
 * [@drpatelh](https://github.com/drpatelh): Harshil Patel
 * [@ewels](https://github.com/ewels): Phil Ewels
+* [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
 * [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 * [@jfy133](https://github.com/jfy133): James A. Fellows Yates
 * [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
