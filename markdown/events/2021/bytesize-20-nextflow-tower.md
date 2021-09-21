@@ -6,9 +6,9 @@ start_date: "2021-09-21"
 start_time: "13:00 CEST"
 end_date: "2021-09-21"
 end_time: "13:30 CEST"
-youtube_embed: https://youtu.be/3h82Xkv-Kd8
+youtube_embed: https://youtu.be/zS_hbXQmHbI
 location_url:
- - https://youtu.be/3h82Xkv-Kd8
+ - https://youtu.be/zS_hbXQmHbI
  - https://zoom.us/j/94352451216
 ---
 
