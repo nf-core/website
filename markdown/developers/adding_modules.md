@@ -306,14 +306,14 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
         fastqc: 0.11.9
         samtools: 1.12
     ```
-    
+
     We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
-    line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status 
+    line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
     of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
-    not erroneously terminate the module. 
+    not erroneously terminate the module.
 
     If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
-    
+
 - The process definition MUST NOT contain a `when` statement.
 
 ### Naming conventions
