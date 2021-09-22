@@ -408,6 +408,12 @@ The `saveFiles` function can be found in the [`functions.nf`](https://github.com
 
 We also use a standardised parameter called `params.publish_dir_mode` that can be used to alter the file publishing method (default: `copy`).
 
+### Test data config file
+
+If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
+
+For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
