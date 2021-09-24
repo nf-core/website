@@ -1531,12 +1531,12 @@ $(function(){
   }
   $('.dl_plot_svg').click(function(e){
     e.preventDefault();
-    var target = $(this).data('target');
+    var target = $(this).data('bsTarget');
     exportChartJsSVG(target);
   });
   $('.reset_chart_zoom').click(function(e){
     e.preventDefault();
-    var target = $(this).data('target');
+    var target = $(this).data('bsTarget');
     charts[target].resetZoom();
   });
 

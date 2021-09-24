@@ -70,28 +70,29 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/lib/moment.js"></script>
     <script src="/assets/lib/Chart.min.js"></script>
     <link href="/assets/lib/Chart.min.css" rel="stylesheet">
-    <script src="/assets/js/hammer.min.js"></script>
+    <script src="/assets/lib/hammer.min.js"></script>
     <script src="/assets/lib/chartjs-plugin-zoom.min.js"></script>
-    <script src="/assets/js/canvas2svg.js"></script>
-    <script src="/assets/js/FileSaver.js"></script>
+    <!-- NO CURRENT VERSION ON NPM --> <script src="/assets/js/canvas2svg.js"></script><!-- NO CURRENT VERSION ON NPM -->
+    <script src="/assets/lib/FileSaver.min.js"></script>
+    <script src="/assets/js/jquery.tablesorter.min.js"></script>
   <?php endif;
   if (isset($import_schema_launcher) && $import_schema_launcher) : ?>
     <script src="/assets/lib/moment.js"></script>
-    <script src="/assets/js/showdown.min.js"></script>
+    <script src="/assets/lib/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
   if (isset($aws) && $aws) : ?>
     <link rel="stylesheet" href="/assets/css/dataTables.bootstrap5.min.css">
-    <script src="/assets/js/aws-sdk-2.765.0.min.js"></script>
-    <script src="/assets/js/jquery.dataTables.min.js"></script>
-    <script src="/assets/js/dataTables.bootstrap5.min.js"></script>
+    <script src="/assets/lib/aws-sdk.min.js"></script>
+    <script src="/assets/lib/jquery.dataTables.min.js"></script>
+    <script src="/assets/lib/dataTables.bootstrap5.min.js"></script>
     <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
   if (isset($import_schema_builder) && $import_schema_builder) : ?>
     <link href="/assets/css/jquery-ui.min.css" rel="stylesheet">
     <script src="/assets/js/jquery-ui.min.js"></script>
     <script src="/assets/lib/moment.js"></script>
-    <script src="/assets/js/showdown.min.js"></script>
+    <script src="/assets/lib/showdown.min.js"></script>
     <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
   if (isset($import_typeform) && $import_typeform) : ?>
@@ -105,7 +106,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="/assets/js/transcripts.js"></script>
   <?php endif; ?>
-  <script src="/assets/js/jquery.tablesorter.min.js"></script>
 
   <!-- Custom nf-core CSS and JS -->
   <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
