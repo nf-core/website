@@ -100,6 +100,7 @@ up there, but that happens later.
 The GitHub Actions are automatically executed with every push, based on the scripts in `.github/workflows`.
 
 The following steps are needed to set Docker Hub
+
 1. Go to [hub.docker.com](https://hub.docker.com) and create an account
 2. Create a new repository on Docker Hub with your pipeline name
 3. Set your repository to be automatically built from a GitHub repository and link it to your pipeline
@@ -317,7 +318,6 @@ Sometimes, especially when adding new features to a pipeline, the dependencies c
 * Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 
 This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
-
 
 ## nf-core pipeline structure
 

@@ -322,14 +322,17 @@ include('../includes/header.php');
             <h5 class="card-title">Start from the template</h5>
             <div class='d-flex align-items-center'>
               <p class="card-text">All pipelines must be based on our template
-                and have a repo created using <code>nf-core create</code>. An automated sync keeps pipelines up to date.</p>
+                and have a repo created using <code>nf-core create</code>. An automated sync keeps pipelines up to date. <br>
+                Similarly, all modules must follow our consistency guidelines
+                and made with <code>nf-core modules create</code>.</p>
+              </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
             <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4 mb-3">
+      <div class="col-lg-4 mb-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
