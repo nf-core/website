@@ -240,21 +240,21 @@ Please follow the steps below to run the tests locally:
 
         ```console
         cd /path/to/git/clone/of/nf-core/modules/
-        PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd
+        NF_CORE_MODULES_TEST=1 PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd
         ```
 
     - Typical command with Singularity:
 
         ```console
         cd /path/to/git/clone/of/nf-core/modules/
-        TMPDIR=~ PROFILE=singularity pytest --tag fastqc --symlink --keep-workflow-wd
+        NF_CORE_MODULES_TEST=1 TMPDIR=~ PROFILE=singularity pytest --tag fastqc --symlink --keep-workflow-wd
         ```
 
     - Typical command with Conda:
 
         ```console
         cd /path/to/git/clone/of/nf-core/modules/
-        PROFILE=conda pytest --tag fastqc --symlink --keep-workflow-wd
+        NF_CORE_MODULES_TEST=1 PROFILE=conda pytest --tag fastqc --symlink --keep-workflow-wd
         ```
 
     - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
@@ -289,11 +289,28 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
   - `*.fastq.gz` and NOT `*.fastq`
   - `*.bam` and NOT `*.sam`
 
-- Where applicable, each module command MUST emit a file `<SOFTWARE>.version.txt` containing a single line with the software's version in the format `<VERSION_NUMBER>` or `0.7.17` e.g.
+- Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
     ```bash
-    echo \$(bwa 2>&1) | sed 's/^.*Version: //; s/Contact:.*\$//' > ${software}.version.txt
+    cat <<-END_VERSIONS > versions.yml
+    ${getProcessName(task.process)}:
+        fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
+        samtools: \$( samtools --version 2>&1 | sed 's/^.*samtools //; s/Using.*\$// )
+    END_VERSION
     ```
+
+    resulting in, for instance,
+
+    ```yaml
+    FASTQC:
+        fastqc: 0.11.9
+        samtools: 1.12
+    ```
+
+    We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
+    line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
+    of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
+    not erroneously terminate the module.
 
     If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
 
