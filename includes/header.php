@@ -63,8 +63,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   if (isset($import_leaflet) && $import_leaflet) : ?>
     <link href="/assets/lib/leaflet.css" rel="stylesheet">
     <script src="/assets/lib/leaflet.js"></script>
-    <!-- NOT ON NPM --> <link href="/assets/css/leaflet.fullscreen.css" rel="stylesheet"> <!-- NOT ON NPM -->
-    <!-- NOT ON NPM --> <script src="/assets/js/Leaflet.fullscreen.min.js"></script> <!-- NOT ON NPM -->
   <?php endif;
   if (isset($import_chartjs) && $import_chartjs) : ?>
     <script src="/assets/lib/moment.js"></script>

@@ -209,7 +209,9 @@ $(function () {
     });
 
     // Make the stats tables sortable
-    $('.pipeline-stats-table').tablesorter();
+    if ($(".pipeline-stats-table").length > 0) {
+        $(".pipeline-stats-table").tablesorter();
+    }
 
     // Pipeline page version number dropdown
     $('#version_select').on('change', function () {

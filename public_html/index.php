@@ -321,10 +321,8 @@ include('../includes/header.php');
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
             <div class='d-flex align-items-center'>
-              <p class="card-text">All pipelines must be based on our template
-                and have a repo created using <code>nf-core create</code>. An automated sync keeps pipelines up to date. <br>
-                Similarly, all modules must follow our consistency guidelines
-                and made with <code>nf-core modules create</code>.</p>
+              <p class="card-text">All pipelines and modules must be based on our template and be created using <code>nf-core</code> <a href="/tools">tools</a>.
+                An automated sync keeps pipelines up to date.</p>
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>

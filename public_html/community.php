@@ -146,7 +146,6 @@ var locations = <?php echo json_encode($locations, JSON_PRETTY_PRINT); ?>;
 
 $(function(){
     var map = L.map('contributors-map', {
-        fullscreenControl: true,
         zoom: 2
     });
     var greenIcon = new L.Icon({
