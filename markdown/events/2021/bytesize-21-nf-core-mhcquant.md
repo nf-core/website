@@ -6,10 +6,9 @@ start_date: "2021-09-28"
 start_time: "13:00 CEST"
 end_date: "2021-09-28"
 end_time: "13:30 CEST"
-youtube_embed: https://youtu.be/2Cl-ioo8UyI
+youtube_embed: https://youtu.be/NCKkSssE_4w
 location_url:
- - https://youtu.be/2Cl-ioo8UyI
- - https://zoom.us/j/94352451216
+ - https://youtu.be/NCKkSssE_4w
 ---
 
 # nf-core/bytesize
