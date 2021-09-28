@@ -307,6 +307,8 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
         samtools: 1.12
     ```
 
+    All reported versions MUST be without a leading `v` or similar, i.e. must start with a numeric character.
+    
     We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
     line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
     of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
