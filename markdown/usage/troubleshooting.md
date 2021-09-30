@@ -63,7 +63,7 @@ A few examples are as follows:
     nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
     ```
 
-Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` wont work give you what you want, whilst `*{R1,R2}*.gz` will.
+Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` will not give you what you want, whilst `*{R1,R2}*.gz` will.
 
 ### Output for only a single sample although I specified multiple with wildcards
 
