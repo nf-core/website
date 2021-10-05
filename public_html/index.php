@@ -38,7 +38,7 @@ if ($curr_event) {
       $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success me-2 mb-2" href="' . $url . '">' . $m[0]['icon'] . ' Watch now</a>';
     } else {
       $curr_event['meta']['location_dropdown'] = '
-        <div class="dropdown me-2 mb-2">
+        <div class="dropup me-2 mb-2">
           <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Watch now
           </a>
