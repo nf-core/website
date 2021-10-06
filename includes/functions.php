@@ -418,7 +418,7 @@ foreach ($events as $idx => $event) {
     continue;
   }
   if($event['end_ts'] - $event['start_ts'] > 3600 * 5){
-    $time_window = 86400*7; // show announcement 7 days ahead for full day events
+    $time_window = 86400*28; // show announcement 7 days ahead for full day events
   } else {
     $time_window = 86400;
   }
@@ -429,7 +429,7 @@ foreach ($events as $idx => $event) {
     if ($event['start_ts'] < time() && $event['end_ts'] > time()) {
       $event['ongoing'] = true;
       if(!$curr_event) $curr_event = $event;
-      // If multiple events running now, take the one with latest start time
+      // If multiple events run now, take the one with latest start time
       else if($event['start_ts'] > $curr_event['start_ts']) $curr_event = $event;
       else $additional_ongoing++;
     }
@@ -437,7 +437,7 @@ foreach ($events as $idx => $event) {
     else {
       $event['ongoing'] = false;
       if(!$curr_event) $curr_event = $event;
-      // If multiple events coming up, take the one with earliest start time
+      // If multiple events come up, take the one with earliest start time
       else if($event['start_ts'] < $curr_event['start_ts']) $curr_event = $event;
       else $additional_upcoming++;
     }
