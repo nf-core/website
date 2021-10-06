@@ -21,6 +21,6 @@ In the spirit of collaboration and knowledge sharing, we plan to pair up both no
 
 This event is entirely virtual and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:.
 
-Sign up here 👇
+Sign up by October 13, 2021!
 
 <div data-tf-widget="LKRMqL2n" style="width:100%;height:700px;color:#FFFFFF;"></div>
