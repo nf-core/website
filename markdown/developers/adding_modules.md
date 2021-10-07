@@ -269,7 +269,9 @@ Please follow the steps below to run the tests locally:
 
 Commit and push these changes to your local clone on GitHub, and then [create a pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) on the `nf-core/modules` GitHub repo with the appropriate information.
 
-When you are happy with your pull request, please label it with the `Ready for Review` label on the GitHub PR tab, and providing that everything adheres to nf-core guidelines we will endeavour to approve your pull request as soon as possible.
+When you are happy with your pull request, please label it with the `Ready for Review` label on the GitHub PR tab, and providing that everything adheres to nf-core guidelines we will endeavour to approve your pull request as soon as possible. We also recommend to request reviews from the `nf-core/modules-team`, that way a core team of volunteers will aim to get to your review as fast as possible. 
+
+Once you're familiar with the module submission process, please consider joining the team by asking on the `#modules` slack channel. 
 
 ## New module guidelines and PR review checklist
 
