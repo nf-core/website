@@ -9,7 +9,7 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/AFHaX_GRNBU
 location_url:
  - https://youtu.be/AFHaX_GRNBU
- - https://zoom.us/j/94352451216
+ - https://doi.org/10.6084/m9.figshare.16795882.v1
 ---
 
 # nf-core/bytesize
