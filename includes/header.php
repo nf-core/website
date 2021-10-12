@@ -72,7 +72,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/lib/chartjs-plugin-zoom.min.js"></script>
     <!-- NO CURRENT VERSION ON NPM --> <script src="/assets/js/canvas2svg.js"></script><!-- NO CURRENT VERSION ON NPM -->
     <script src="/assets/lib/FileSaver.min.js"></script>
-    <script src="/assets/js/jquery.tablesorter.min.js"></script>
+    <script src="/assets/lib/jquery.tablesorter.min.js"></script>
   <?php endif;
   if (isset($import_schema_launcher) && $import_schema_launcher) : ?>
     <script src="/assets/lib/moment.js"></script>
