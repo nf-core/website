@@ -79,13 +79,13 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 ### [nf-core/imcyto](https://nf-co.re/imcyto)
 
-<!-- pub-stats 10.1101/2021.02.02.429358 -->
-> **Characterisation of tumour immune microenvironment remodelling following oncogene inhibition in preclinical studies using an optimised imaging mass cytometry workflow.**
+<!-- pub-stats 10.1038/s41467-021-26214-x -->
+> **Characterisation of tumour microenvironment remodelling following oncogene inhibition in preclinical studies with imaging mass cytometry.**
 >
-> Febe van Maldegem, Karishma Valand, Megan Cole, Harshil Patel, Mihaela Angelova, Sareena Rana, Emma Colliver, Katey Enfield, Nourdine Bah, Victoria Tsang, Edurne Mugarza, Christopher Moore, Philip Hobson, Dina Levi, Miriam Molina, Charles Swanton,  View ORCID ProfileJulian Downward.
+> Febe van Maldegem, Karishma Valand, Megan Cole, Harshil Patel, Mihaela Angelova, Sareena Rana, Emma Colliver, Katey Enfield, Nourdine Bah, Gavin Kelly, Victoria Siu Kwan Tsang, Edurne Mugarza, Christopher Moore, Philip Hobson, Dina Levi, Miriam Molina, Charles Swanton & Julian Downward
 >
-> [_BiorXiV_, 10.1101/2021.02.02.429358 (2021)](https://www.biorxiv.org/content/10.1101/2021.02.02.429358v1);
-> doi: [10.1101/2021.02.02.429358](https://doi.org/10.1101/2021.02.02.429358)
+> [_Nat Commun._ 2021 Oct 8;12(1):5906](https://www.nature.com/articles/s41467-021-26214-x);
+> doi: [10.1038/s41467-021-26214-x](https://doi.org/10.1038/s41467-021-26214-x)
 
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
