@@ -6,12 +6,11 @@ start_date: "2021-10-27"
 start_time: "10:00 CEST"
 end_date: "2021-10-29"
 end_time: "18:00 CEST"
-import_typeform: true
 ---
 
 Our October hackathon is two weeks away! Registration is now closed, but if you've signed up, you will be hearing from us soon!
 
-There will be a lot of firsts at this event. We are in the process of working out details to make it as geographically accessible as we can. In addition, we will be experimenting with a group programming session on writing and contributing to nf-core modules for a limited number of participants. Our mentors, based around the world will be connecting with a small group of mentees who are also based in different countries! 
+There will be a lot of firsts at this event. We are in the process of working out details to make it as geographically accessible as we can. In addition, we will be experimenting with a group programming session on writing and contributing to nf-core modules for a limited number of participants. Our mentors, based around the world will be connecting with a small group of mentees who are also based in different countries!
 
 This is a fair amount of work, and we want to ensure that you have a productive and fun event. So stay tuned.
 
