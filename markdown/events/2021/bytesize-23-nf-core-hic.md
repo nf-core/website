@@ -10,6 +10,7 @@ youtube_embed: https://youtu.be/AFHaX_GRNBU
 location_url:
  - https://youtu.be/AFHaX_GRNBU
  - https://doi.org/10.6084/m9.figshare.16795882.v1
+ - https://www.bilibili.com/video/BV1Uh411J7BV/
 ---
 
 # nf-core/bytesize
