@@ -8,7 +8,7 @@ end_date: "2021-10-29"
 end_time: "18:00 CEST"
 ---
 
-Our October hackathon is two weeks away! Registration is now closed, but if you've signed up, you will be hearing from us soon!
+Our October hackathon is two weeks away! Registration is now closed, but keep an eye on your inbox if you've signed up, you will be hearing from us soon!
 
 There will be a lot of firsts at this event. We are in the process of working out details to make it as geographically accessible as we can. In addition, we will be experimenting with a group programming session on writing and contributing to nf-core modules for a limited number of participants. Our mentors, based around the world will be connecting with a small group of mentees who are also based in different countries!
 
