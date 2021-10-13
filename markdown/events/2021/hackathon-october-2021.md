@@ -14,6 +14,6 @@ There will be a lot of firsts at this event. We are in the process of working ou
 
 This is a fair amount of work, and we want to ensure that you have a productive and fun event. So stay tuned.
 
-Our primary focus for this hackathon will be the conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format. We are currently shortlisting the pipelines for the purpose and we will have more information for you on the project boards we share prior to the event.
+Our primary focus for this hackathon will be the conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format.
 
 Thanks for signing up and see you soon!
