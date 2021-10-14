@@ -96,8 +96,8 @@ include('../includes/header.php');
 
 <div class="homepage-header">
   <?php if ($curr_event) : ?>
-    <div class="mainpage-subheader-heading homepage-header-contents triangle-down">
-      <div class="container-fluid text-left">
+    <div class="mainpage-subheader-heading homepage-header-contents triangle-down pb-4">
+      <div class="container-fluid text-start">
         <div class="row">
           <?php if ($curr_event['ongoing']) : ?>
             <div class="col-lg-3 overflow-hidden d-none d-lg-block">
@@ -116,7 +116,7 @@ include('../includes/header.php');
               <h5 class="pt-2 font-weight-light">Upcoming event</h5>
             </div>
           <?php endif; ?>
-          <div class="col pt-lg-3 pb-lg-3 text-center text-lg-left">
+          <div class="col pt-lg-3 pb-lg-3 text-center text-lg-start">
             <h5 class="pt-2 pb-0 pb-lg-1"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
             <p class="lead d-none d-sm-block"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
             <p class="d-sm-none mb-2"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
@@ -222,9 +222,9 @@ include('../includes/header.php');
 
 <div id="features" class="container homepage-feature-boxes pb-5">
   <h3 class="mb-4 text-center">Fully featured pipelines</h3>
-  <div class="row">
-    <div class="col-md-6 col-lg-4 mb-3">
-      <div class="card">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Documentation</h5>
@@ -235,8 +235,8 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4 mb-3">
-      <div class="card">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">CI Testing</h5>
@@ -247,8 +247,8 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4 mb-3">
-      <div class="card">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
@@ -259,8 +259,8 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4 mb-3">
-      <div class="card">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Docker</h5>
@@ -271,8 +271,8 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4 mb-3">
-      <div class="card">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Singularity</h5>
@@ -283,8 +283,8 @@ include('../includes/header.php');
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4 mb-3">
-      <div class="card">
+    <div class="col">
+      <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Bioconda</h5>
@@ -299,12 +299,12 @@ include('../includes/header.php');
 </div>
 
 
-<div class="bg-light py-4">
+<div class="bg-secondary pt-4 pb-5" style="--bs-bg-opacity: .1;">
   <div id="developers" class="container homepage-feature-boxes">
     <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
-    <div class="row">
-      <div class="col-md-6 col-lg-4 mb-3">
-        <div class="card">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="cold">
+        <div class="card h-100 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">Develop <u>with</u> the community</h5>
             <div class='d-flex align-items-center'>
@@ -316,8 +316,8 @@ include('../includes/header.php');
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4 mb-3">
-        <div class="card">
+      <div class="cold">
+        <div class="card h-100 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
             <div class='d-flex align-items-center'>
@@ -330,8 +330,8 @@ include('../includes/header.php');
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-3">
-        <div class="card">
+      <div class="cold">
+        <div class="card h-100 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
             <div class='d-flex align-items-center'>
@@ -386,7 +386,7 @@ include('../includes/header.php');
           and shows which are available locally. Local versions are checked against the latest available release.</p>
       </div>
       <div class="col-sm-6">
-        <div class="card text-white bg-dark border-light">
+        <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
           <div class="card-body">
             <pre class="text-white mb-0">
 <span class="text-white-50"># Install nextflow</span>
@@ -465,4 +465,6 @@ if ($event['start_time']) {
     ';
 }
 ?>
-<?php include('../includes/footer.php'); ?>
+<?php
+$md_github_url = false;
+include('../includes/footer.php'); ?>
