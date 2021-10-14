@@ -112,7 +112,7 @@ section:before {
 }
 @include media-breakpoint-down(xl) {
   .toc > .nav  {
-    max-height: calc(100vh - 12.5rem); 
+    max-height: calc(100vh - 12.5rem);
   }
 }
 .toc .nav-link{
@@ -335,8 +335,14 @@ footer.subfooter {
   padding: 2rem 0;
   background-color: $gray-100;
 }
+footer, footer a {
+  text-decoration: none;
+}
 footer, footer a, footer a:hover, footer a:focus, footer a:active {
   color: $gray-600;
+}
+footer a:hover, footer a:focus, footer a:active {
+  text-decoration: underline;
 }
 .theme-switcher label {
   cursor: pointer;
@@ -1123,7 +1129,7 @@ nfcore-subnav {
   }
 }
 /*
-Launch Page 
+Launch Page
 */
 .launcher-help-text {
   margin-top: 0.25rem;
