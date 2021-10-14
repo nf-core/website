@@ -1,18 +1,20 @@
-# Code of Conduct at nf-core (v1.0)
+# Code of Conduct at nf-core (v1.1)
 
 ## Our Pledge
 
 In the interest of fostering an open, collaborative, and welcoming environment, we as contributors and maintainers of nf-core, pledge to making participation in our projects and community a harassment-free experience for everyone, regardless of:
 
 - Age
-- Body size
+- Ability
+- Body-size
+- Caste
 - Familial status
 - Gender identity and expression
 - Geographical location
 - Level of experience
 - Nationality and national origins
 - Native language
-- Physical and neurological ability
+- Neurodiversity
 - Race or ethnicity
 - Religion
 - Sexual identity and orientation
@@ -22,37 +24,37 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 ## Preamble
 
-> Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Officer and been edited after input from members of the nf-core team and others. "We", in this document, refers to the Safety Officer and members of the nf-core core team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
+> Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Team (Renuka Kudva, Cris Tuñí, and Michael Heuer), with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officer and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
 
-An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about). Our current safety officer is Renuka Kudva.
+An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about).
 
 nf-core is a young and growing community that welcomes contributions from anyone with a shared vision for [Open Science Policies](https://www.fosteropenscience.eu/taxonomy/term/8). Open science policies encompass inclusive behaviours and we strive to build and maintain a safe and inclusive environment for all individuals.
 
-We have therefore adopted this code of conduct (CoC), which we require all members of our community and attendees in nf-core events to adhere to in all our workspaces at all times. Workspaces include but are not limited to Slack, meetings on Zoom, Jitsi, YouTube live etc.
+We have therefore adopted this Code of Conduct (CoC), which we require all members of our community and attendees in nf-core events to adhere to in all our workspaces at all times. Workspaces include but are not limited to Slack, meetings on Zoom, gather.town, YouTube live etc.
 
 Our CoC will be strictly enforced and the nf-core team reserve the right to exclude participants who do not comply with our guidelines from our workspaces and future nf-core activities.
 
 We ask all members of our community to help maintain a supportive and productive workspace and to avoid behaviours that can make individuals feel unsafe or unwelcome. Please help us maintain and uphold this CoC.
 
-Questions, concerns or ideas on what we can include? Contact safety [at] nf-co [dot] re
+Questions, concerns or ideas on what we can include? Contact members of the Safety Team on Slack or email safety [at] nf-co [dot] re.
 
 ## Our Responsibilities
 
-The safety officer is responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behaviour.
+Members of the Safety Team - the Safety Officers, are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behaviour.
 
-The safety officer in consultation with the nf-core core team have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+The Safety Team in consultation with the nf-core core team have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this CoC, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
 
-Members of the core team or the safety officer who violate the CoC will be required to recuse themselves pending investigation. They will not have access to any reports of the violations and be subject to the same actions as others in violation of the CoC.
+Members of the core team or the Safety Team who violate the CoC will be required to recuse themselves pending investigation. They will not have access to any reports of the violations and be subject to the same actions as others in violation of the CoC.
 
 ## When are where does this Code of Conduct apply?
 
-Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events. This includes but is not limited to the following listed alphabetically and therefore in no order of preference:
+Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events such as hackathons and workshops. These guidelines include but are not limited to the following listed alphabetically and therefore in no order of preference:
 
 - Communicating with an official project email address.
 - Communicating with community members within the nf-core Slack channel.
 - Participating in hackathons organised by nf-core (both online and in-person events).
 - Participating in collaborative work on GitHub, Google Suite, community calls, mentorship meetings, email correspondence.
-- Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, Jitsi, YouTube live etc.
+- Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, gather.town, Jitsi, YouTube live etc.
 - Representing nf-core on social media. This includes both official and personal accounts.
 
 ## nf-core cares 😊
@@ -61,19 +63,19 @@ nf-core's CoC and expectations of respectful behaviours for all participants (in
 
 - Ask for consent before sharing another community member’s personal information (including photographs) on social media.
 - Be respectful of differing viewpoints and experiences. We are all here to learn from one another and a difference in opinion can present a good learning opportunity.
-- Celebrate your accomplishments at events! (Get creative with your use of emojis 🎉 🥳 💯 🙌 !)
+- Celebrate your accomplishments! (Get creative with your use of emojis 🎉 🥳 💯 🙌 !)
 - Demonstrate empathy towards other community members. (We don’t all have the same amount of time to dedicate to nf-core. If tasks are pending, don’t hesitate to gently remind members of your team. If you are leading a task, ask for help if you feel overwhelmed.)
 - Engage with and enquire after others. (This is especially important given the geographically remote nature of the nf-core community, so let’s do this the best we can)
 - Focus on what is best for the team and the community. (When in doubt, ask)
-- Graciously accept constructive criticism, yet be unafraid to question, deliberate, and learn.
+- Graciously accept feedback, yet be unafraid to question, deliberate, and learn.
 - Introduce yourself to members of the community. (We’ve all been outsiders and we know that talking to strangers can be hard for some, but remember we’re interested in getting to know you and your visions for open science!)
-- Show appreciation and **provide clear feedback**. (This is especially important because we don’t see each other in person and it can be harder to interpret subtleties. Also remember that not everyone understands a certain language to the same extent as you do, so **be clear in your communications to be kind.**)
+- Show appreciation and **provide clear feedback**. (This is especially important because we don’t see each other in person and it can be harder to interpret subtleties. Also remember that not everyone understands a certain language to the same extent as you do, so **be clear in your communication to be kind.**)
 - Take breaks when you feel like you need them.
 - Using welcoming and inclusive language. (Participants are encouraged to display their chosen pronouns on Zoom or in communication on Slack.)
 
 ## nf-core frowns on 😕
 
-The following behaviours from any participants within the nf-core community (including the organisers) will be considered unacceptable under this code of conduct. Engaging or advocating for any of the following could result in expulsion from nf-core workspaces.
+The following behaviours from any participants within the nf-core community (including the organisers) will be considered unacceptable under this CoC. Engaging or advocating for any of the following could result in expulsion from nf-core workspaces.
 
 - Deliberate intimidation, stalking or following and sustained disruption of communication among participants of the community. This includes hijacking shared screens through actions such as using the annotate tool in conferencing software such as Zoom.
 - “Doxing” i.e. posting (or threatening to post) another person’s personal identifying information online.
@@ -83,19 +85,97 @@ The following behaviours from any participants within the nf-core community (inc
 
 ### Online Trolling
 
-The majority of nf-core interactions and events are held online. Unfortunately, holding events online comes with the added issue of online trolling. This is unacceptable, reports of such behaviour will be taken very seriously, and perpetrators will be excluded from activities immediately.
+The majority of nf-core interactions and events are held online. Unfortunately, holding events online comes with the risk of online trolling. This is unacceptable, reports of such behaviour will be taken very seriously, and perpetrators will be excluded from activities immediately.
 
-All community members are required to ask members of the group they are working within for explicit consent prior to taking screenshots of individuals during video calls.
+All community members are **required** to ask members of the group they are working within for explicit consent prior to taking screenshots of individuals during video calls.
 
 ## Procedures for Reporting CoC violations
 
 If someone makes you feel uncomfortable through their behaviours or actions, report it as soon as possible.
 
-You can reach out to members of the [nf-core core team](https://nf-co.re/about) and they will forward your concerns to the safety officer(s).
+You can reach out to members of the Safety Team on Slack or by email (safety [at] nf-co [dot] re). Alternatively, contact a member of the nf-core core team [nf-core core team](https://nf-co.re/about), and they will forward your concerns to the safety officer(s).
 
-Issues directly concerning members of the core team will be dealt with by other members of the core team and the safety manager, and possible conflicts of interest will be taken into account. nf-core is also in discussions about having an ombudsperson, and details will be shared in due course.
+Issues directly concerning members of the Core Team or the Safety Team will be dealt with by other members of the core team and the safety manager, and possible conflicts of interest will be taken into account. nf-core is also in discussions about having an ombudsperson, and details will be shared in due course.
 
 All reports will be handled with utmost discretion and confidentially.
+
+## Safety at the Hackathon (October 27- 29, 2021)
+
+Please note that our Code of Conduct applies at to the Hackathon, and all participants need to abide by our guidelines to participate. We should all feel responsible for making nf-core events safe and fun for everyone. 
+
+We will be using a combination of gather.town and Slack to communicate with all participants.
+
+Please respect the following at all times during the hackathon:
+
+* Never share links for the hackathon platform on social media. We will be using gather.town. Your unique link is for you alone.
+* Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media. Not respecting the latter amounts to doxing, which is in direct violation of the nf-core Code of Conduct.
+
+### Reporting Code of Conduct violations during the hackathon
+
+In case of an immediate perceived threat at the hackathon, please reach out to any of the following individuals on Slack. Their names and the time-zones they are located in are indicated below:
+
+* Renuka Kudva (CEST)
+* Cris Tuñí (CEST)
+* Michael Heuer (CDT)
+* Zhaowei Yang (CST)
+* Bhargava Reddy Morampalli (NZST)
+* Matthias Hörtenhuber (CEST)
+* Gisela Gabernet (CEST)
+* James A. Fellows Yates (CEST)
+* Friederike Hanssen (CEST)
+* Matthias Hörtenhuber (CEST)
+* Harshil Patel (BST)
+* Maxime Garcia (CEST)
+
+You can also report any CoC violations safety [at] nf-co [dot] re. In your email report, please do your best to include:
+
+* Your contact information.
+* Identifying information (e.g. names, nicknames, pseudonyms) of the participant who has violated the Code of Conduct.
+* The behaviour that was in violation and the circumstances surrounding the incident.
+* The approximate time of the behaviour (if different than the time the report was made).
+* Other people involved in the incident if applicable.
+* If you believe the incident is ongoing.
+* If there is a publicly available record (e.g. mailing list record, a screenshot).
+* Any additional information.
+
+After you file a report, one or more of ouur safety officers, Renuka Kudva, will contact you to follow up on your report.
+
+#### Who will read and handle reports
+
+All reports will be read and handled by the members of the Safety Team at nf-core.
+
+If members of the Safety Team are deemed to have a conflict of interest with a report, they will be required to recuse themselves as per our Code of Conduct and will not have access to any follow-ups.
+
+To keep this first report confidential from any of the Safety Team members, please submit your first report by direct messaging on Slack/direct email to any of the nf-core members you are comfortable disclosing the information to, and be explicit about which member(s) you do not consent to sharing the information with.
+
+#### Reviewing reports
+
+After receiving the report, members of the Safety Team will review the incident report to determine whether immediate action is required, for example, whether there is immediate threat to participants’ safety.
+
+The Safety Team in consultation with members of the nf-core core team will assess whether there is sufficient information to determine whether the report constitutes a Code of Conduct violation for them to arrive at a decision on a course of action.
+
+In the case of insufficient information, one or more members of the safety officer may contact the reporter, the reportee, or any other attendees to obtain more information.
+
+Once additional information is gathered, the Safety Team will collectively review and decide on the best course of action to take, if any.
+The Safety Team reserves the right to not act on a report.
+
+#### Confidentiality
+
+All reports, and any additional information and data included, are only shared with the team of Safety Officers and possibly members of the core team in case the safety officer is in violation of the CoC. We will respect confidentiality requests for the purpose of protecting victims of abuse.
+
+We will not name harassment victims beyond discussions between the safety officer and members of the nf-core team without the explicit consent of the individuals involved.
+
+#### Enforcement
+
+Actions taken by the nf-core’s Safety Team may include but are not limited to:
+
+* Asking anyone to stop a behaviour.
+* Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
+* Removing access to the gather.town and Slack either temporarily or permanently.
+* Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
+* Communicating to all participants that an incident has taken place and how we will act or have acted– this may be for the purpose of letting event participants know we are aware and are dealing with the incident.
+* Banning anyone from participating in nf-core-managed spaces, future events and activities, either temporarily or permanently.
+* No action required.
 
 ## Attribution and Acknowledgements
 
@@ -106,6 +186,6 @@ All reports will be handled with utmost discretion and confidentially.
 
 ## Changelog
 
-### v1.0 - March 12th, 2021
+### v1.1 - October 14th, 2021
 
 - Complete rewrite from original [Contributor Covenant](http://contributor-covenant.org/) CoC.
