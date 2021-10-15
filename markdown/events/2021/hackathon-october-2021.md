@@ -16,4 +16,15 @@ This is a fair amount of work, and we want to ensure that you have a productive 
 
 Our primary focus for this hackathon will be the conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format.
 
+We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you  would like to learn more:
+
+* [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
+* [DSL module development](https://www.youtube.com/watch?v=ggGGhTMgyHI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=5)
+* [Adding modules to nf-core/modules](https://www.youtube.com/watch?v=Wc4A2tQ6WWY&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=7)
+* [How to use modules in a pipeline](https://www.youtube.com/watch?v=tWvou0xj9wA&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=6)
+* [Modules test data](https://www.youtube.com/watch?v=QXfAerydAT0&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=17)
+* [Test modules](https://www.youtube.com/watch?v=pjhscKyWH74&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=18)
+* [Development environments & workflows (Phil)](https://www.youtube.com/watch?v=XB96efweCLI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=12)
+* [Development environments & workflows (Maxime)](https://www.youtube.com/watch?v=OF55x-FT5WE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=19)
+
 Thanks for signing up and see you soon!
