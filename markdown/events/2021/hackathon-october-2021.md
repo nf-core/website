@@ -34,7 +34,7 @@ We have recorded bytesize talks in the past few months going over some of the de
 
 As the main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format, we have set up a few groups working on this task for different pipelines.
 
-We will coordinate our work and the issues we are working on using a single GitHub <i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/22).
+We will coordinate our work and the issues we are working on using a single GitHub [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/22).
 
 * **variant calling**
   * Working on adding modules for variant calling pipelines, mainly sarek, and raredisease.
