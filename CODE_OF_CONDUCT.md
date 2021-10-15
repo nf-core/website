@@ -186,6 +186,6 @@ Actions taken by the nf-core’s Safety Team may include but are not limited to:
 
 ## Changelog
 
-### v1.1 - October 14th, 2021
+### v1.0 - October 14th, 2021
 
-- Complete rewrite from original [Contributor Covenant](http://contributor-covenant.org/) CoC.
+- Updated with names of new Safety Officers and specific information for the hackathon in October 2021.
