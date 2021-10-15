@@ -41,7 +41,7 @@ We will coordinate our work and the issues we are working on using a single GitH
   * Group lead: Maxime Garcia, Friederike Hanssen.
   * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/)
 * **meta-omics**
-  * Working on adding modules for meta-omics pipelines, mainly ampliseq, mag, bacass.
+  * Working on adding modules for meta-omics pipelines, mainly mag, bacass.
   * Group lead: Daniel Straub.
   * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/)
 * **epigenetics**
