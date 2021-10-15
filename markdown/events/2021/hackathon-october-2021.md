@@ -48,7 +48,7 @@ We will coordinate our work and the issues we are working on using a single GitH
   * Working on adding modules for epigenetics pipelines, mainly chip-seq, methylseq, atacseq, HiC.
   * Group lead: Harshil Patel.
   * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/)
-* **ancient DNA**
+* **ancient DNA (meta)genomics**
   * Working on adding modules for ancient DNA sequencing pipelines, mainly eager, coproid.
   * Group lead: James Fellows Yates.
   * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/)
