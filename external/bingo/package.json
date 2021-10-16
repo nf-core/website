@@ -1,0 +1,43 @@
+{
+  "name": "bingo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.4",
+    "firebase": "^5.7.3",
+    "firebase-tools": "^7.16.1",
+    "firebaseui": "^3.5.1",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
+    "prop-types": "^15.6.2",
+    "query-string": "^5.1.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.6.0",
+    "react-firebaseui": "^3.1.2",
+    "react-markdown": "^4.0.6",
+    "react-router-dom": "^4.3.1",
+    "react-simple-storage": "^1.4.1",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^3.4.1",
+    "tachyons": "^4.10.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
