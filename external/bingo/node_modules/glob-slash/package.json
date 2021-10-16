@@ -1,0 +1,29 @@
+{
+  "name": "glob-slash",
+  "version": "1.0.0",
+  "description": "Prefix globs with a slash and normalize. Supports negated globs too",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottcorgan/glob-slash.git"
+  },
+  "keywords": [
+    "toxic",
+    "slasher",
+    "prefix",
+    "minimatch"
+  ],
+  "author": "Scott Corgan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scottcorgan/glob-slash/issues"
+  },
+  "homepage": "https://github.com/scottcorgan/glob-slash",
+  "devDependencies": {
+    "tap-spec": "^1.0.1",
+    "tape": "^3.0.3"
+  }
+}

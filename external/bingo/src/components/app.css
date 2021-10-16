@@ -1,0 +1,131 @@
+body {
+  background-color: #FFFFFF;
+  font-family: Maven Pro ,sans-serif;
+  padding: 2px;
+  padding-bottom: 10rem;
+}
+
+.maxw-95 {
+  max-width: 95vmin;
+}
+
+.instructions ul, .instructions p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.instructions li {
+  padding-bottom: .5rem;
+}
+
+header {
+  margin: 0 0 1rem 0;
+  min-height: 4rem;
+  font-weight: 800;
+  max-width: 95vmin;
+  border-bottom: 5px solid black;
+}
+
+header, main, aside {
+ margin: 2vmin;
+}
+
+.bb-3 {
+  border-bottom: 3px solid black;
+}
+
+.bb-5 {
+  border-bottom: 5px solid black;
+}
+
+*[role='grid'] {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 2rem;
+  outline: 4px solid #dddbda;
+}
+
+*[role='gridcell'] {
+  outline: 2px solid #dddbda;
+  position: relative;
+}
+
+*[role='gridcell']:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.cell-contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.cell-toggle {
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  overflow: auto;
+
+  background: white;
+  border: 0;
+
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.cell-toggle[aria-pressed='true'] {
+  background: #24B064;
+  color: white;
+  font-style: italic;
+}
+
+.cell-toggle[aria-disabled='true'] {
+  cursor: default;
+}
+
+.cell-toggle:focus {
+  outline: none;
+  border: .5rem solid #24B064;
+}
+
+@media only screen and (max-device-width : 480px) {
+  .cell-toggle {
+    font-size: .7rem;
+  }
+}
+
+.blue-button {
+  background-color: #24B064;
+}
+
+.refresh {
+  margin: 1rem auto;
+}
+
+.app {
+  text-align: center;
+}
+
+ol {
+  margin: 0 auto;
+  text-align: left;
+}
+
+svg {
+  fill: white;
+  width: 2rem;
+  height: 2rem;
+}
+
+.success {
+  bottom: 0;
+  right: 0;
+  left: 1px; /* midnight hack */
+  background-color: #EAEDF5;
+  outline: 4px solid #dddbda;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "as-array",
+  "version": "2.0.0",
+  "description": "Make any value an array. No dependencies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottcorgan/as-array.git"
+  },
+  "keywords": [
+    "array",
+    "convert",
+    "argument"
+  ],
+  "author": "Scott Corgan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scottcorgan/as-array/issues"
+  },
+  "devDependencies": {
+    "tap-spec": "^4.1.0",
+    "tessed": "^2.0.0"
+  }
+}
