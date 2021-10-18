@@ -66,7 +66,7 @@ if (isset($subfooter) and $subfooter) {
         </div>
 
       </div>
-      <div class="col-6 col-lg-3 offset-lg-1 mb-3">
+      <div class="col-sm-6 col-lg-3 offset-lg-1 mb-3">
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
           <li><a href="/pipelines">Available pipelines</a></li>
@@ -82,7 +82,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/usage/nextflow">Nextflow resources</a></li>
         </ul>
       </div>
-      <div class="col-6 col-lg-3 mb-3">
+      <div class="col-sm-6 col-lg-3 mb-3">
         <h5>For Authors</h5>
         <ul class="list-unstyled">
           <li><a href="/developers/guidelines">Guidelines</a></li>
@@ -96,7 +96,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/developers/design_guidelines">Graphic design guidelines</a></li>
         </ul>
       </div>
-      <div class="col-6 col-lg-2 mb-3">
+      <div class="col-sm-6 col-lg-2 mb-3">
         <h5>About nf-core</h5>
         <ul class="list-unstyled">
           <li><a href="/about">About nf-core</a></li>
