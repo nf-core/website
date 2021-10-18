@@ -324,7 +324,7 @@ if ($pipeline->archived) {
       </div>';
     }
     # Back to top link
-    $toc .= '<p class="small "><a href="#" class="text-muted float-end"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    $toc .= '<p class="small text-end mt-3"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
     $toc .= '</nav>';
     echo $toc;
   }
