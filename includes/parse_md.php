@@ -127,7 +127,7 @@ function parse_md($markdown){
     $content .= '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
     # ToC
     $content .= '<nav class="toc auto-toc pt-2 flex-column border-start">';
-    $content .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">Table of Contents</strong>';
+    $content .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
     $content .= generate_toc($content);
     $content .=  '<p class="small text-end"><a href=" #" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
     $content .=  '</nav>';
