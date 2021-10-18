@@ -779,7 +779,7 @@ else if ($cache['status'] == 'launch_params_complete') {
                 </button>
                 </div>';
             # Back to top link
-            $toc .= '<p class="small "><a href="#schema_launcher_form" class="text-muted float-end scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            $toc .= '<p class="small text-end mt-3"><a href="#schema_launcher_form" class="text-muted scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
             $toc .= '</nav></div></div>';
             echo $toc;
             echo '</div>'; // close row div
