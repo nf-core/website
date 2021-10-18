@@ -36,9 +36,9 @@ function create_event_download_button($event,$button_style){
             <i class="far fa-calendar-plus me-1"></i> Export event
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download iCal Event</a> 
-            <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar</a> 
-            <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook</a> 
+            <a class="dropdown-item" href="' . $link->ics() . '" target="_blank"> Download iCal Event</a>
+            <a class="dropdown-item" href="' . $link->google() . '" target="_blank"> Add to Google Calendar</a>
+            <a class="dropdown-item" href="' . $link->webOutlook() . '" target="_blank"> Add to Microsoft Outlook</a>
           </div>
         </div>';
   return $event_download_button;
@@ -48,7 +48,7 @@ function print_events($events, $is_past_event)
 {
   global $event_type_classes;
   global $event_type_icons;
-  
+
 
   foreach ($events as $idx => $event) :
     # Nice date strings
@@ -70,7 +70,7 @@ function print_events($events, $is_past_event)
                                             echo 'py-2';
                                           } ?>">
         <h5 class="my-0 py-0">
-          <a class="text-success" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
+          <a class="text-success text-decoration-none" href="<?php echo $event['url']; ?>"><?php echo $event['title']; ?></a>
           <small><span class="badge bg-<?php echo $colour_class.' '. $text_colour_class?> float-end small"><i class="<?php echo $icon_class ?> me-1"></i><?php echo ucfirst($event['type']); ?></span></small>
         </h5>
         <?php if (array_key_exists('subtitle', $event)) {
@@ -187,14 +187,14 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
       }
     }
   }
-  
+
   // load the typeform javascript for embed forms, if we have one
   if (array_key_exists('import_typeform', $event)) {
     $import_typeform = true;
   }
   include('../includes/header.php');
 
-  
+
 
   $toc = generate_toc($content);
 
