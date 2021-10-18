@@ -1243,13 +1243,13 @@ Launch Page
 .text-small{
   font-size: 0.85rem;
 }
-.embed-responsive ~ details{
+.ratio.ratio-16x9 ~ details{
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
   padding: 1.25rem;
 }
 
-.embed-responsive ~ details[open]{
+.ratio.ratio-16x9 ~ details[open]{
   height:50vh;
   overflow-x: scroll;
 }
