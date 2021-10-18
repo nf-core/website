@@ -278,7 +278,7 @@ function generate_toc($html_string)
       $h_content = $match[5];
       $name = trim(str_replace(['&nbsp;','&amp;'], ['','&'], htmlentities(strip_tags($h_content, $allowed_tags= ['code']))));
       if ($level > $curr_level) {
-        $toc .= "\n" . '<nav class="nav flex-column flex-nowrap ms-3">' . "\n";
+        $toc .= "\n" . '<nav class="nav flex-column flex-nowrap">' . "\n";
         $counter += 1;
       } else if ($level == $curr_level) {
         $toc .= "\n";

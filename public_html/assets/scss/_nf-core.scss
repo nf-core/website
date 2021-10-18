@@ -104,8 +104,12 @@ section:before {
 
 
 // Table of Contents
+.toc .nav {
+  margin-left: 1rem;
+}
 .toc > .nav {
   margin-top:10px;
+  margin-left: 0;
   padding-bottom:1px;
   max-height: calc(100vh - 9rem);
   overflow-y: auto;
