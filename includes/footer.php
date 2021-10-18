@@ -32,12 +32,7 @@ if (isset($subfooter) and $subfooter) {
           </div>
         </small>
         <small class="d-block mb-3">
-          Website by <a href="http://phil.ewels.co.uk/">Phil Ewels</a>.
-          Icons from <a href="http://www.flaticon.com/">flaticon.com</a>
-          and <a href="https://fontawesome.com/">fontawesome.com</a>.
-          <a href="http://getbootstrap.com/">Bootstrap</a> CSS framework,
-          <a href="http://jquery.com/">jQuery</a> JS and syntax colouring
-          with <a href="https://highlightjs.org/">highlight.js</a>.
+          See the source code for this website on GitHub: <a href="https://github.com/nf-core/nf-co.re" target="_blank">https://github.com/nf-core/nf-co.re</a>
         </small>
         <div class="d-md-flex">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
@@ -53,7 +48,7 @@ if (isset($subfooter) and $subfooter) {
               <label class="btn btn-secondary" for="theme-dark" data-bs-toggle=" tooltip" title="Dark Theme"><i class="fas fa-moon"></i></label>
             </div>
           </div>
-          
+
           <div class="social-icons mb-3">
             <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip">
               <img src="/assets/img/slack.svg" />
