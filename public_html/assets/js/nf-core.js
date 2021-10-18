@@ -6,9 +6,9 @@
 $(function () {
     // Enable tooltips
     $('.mainpage,.footer').tooltip({ //can't use body here, because scrollspy has already an event on it and bootstrap only allows one per selector.
-        selector: '[data-bs-toggle="tooltip"]', 
+        selector: '[data-bs-toggle="tooltip"]',
         html: true
-    }); 
+    });
 
     // Enable code highlighting
     hljs.highlightAll();
@@ -18,7 +18,7 @@ $(function () {
     // Function to switch CSS theme file
     $('.theme-switcher label').click(function () {
         var theme = $(this).attr("for").split("-")[1];
-        
+
         //uncheck all radio buttons and select only current one
         $(".theme-switcher input:checked").prop("checked", false);
         $(".theme-switcher #theme-" + theme).prop("checked", true);
@@ -204,7 +204,7 @@ $(function () {
             if(dtype=== 'blocks'){
                 $(".pipelines-container").addClass("row-cols-md-2 g-4");
             }
-            
+
         }
     });
 
@@ -248,7 +248,7 @@ $(function () {
     } else if ($(".rendered-markdown").length > 0 && typeof youtube_embed!=='undefined' && youtube_embed) {
         $(".rendered-markdown").append('<div class="ratio ratio-16x9"><div id="video-placeholder"></div></div>');
     }
-    
+
     // Expand all details on page
     $(".expand-details").on('click',function(){
         // if all details are already open, close them, else open all
@@ -265,7 +265,7 @@ $(function () {
             bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
         });
 
-        
+
     })
 });
 
