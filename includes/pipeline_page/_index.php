@@ -300,7 +300,7 @@ if ($pipeline->archived) {
   # Documentation - ToC
   else if (in_array($pagetab, ['usage', 'output', 'parameters'])) {
     $toc .= '<nav class="toc pt-2 auto-toc border-start">';
-    $toc .= '<strong class="ms-3 text-strong">Table of Contents</strong>';
+    $toc .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">Table of Contents</strong>';
     $toc .= generate_toc($content);
     # Add on the action buttons for the parameters docs
     if ($pagetab == 'parameters') {

@@ -68,7 +68,7 @@ function parse_md($markdown){
 
   // Format Nextflow code blocks as Groovy
   $md = preg_replace('/```nextflow/i', '```groovy', $md);
-  
+
   // Convert to HTML
   $pd = new ParsedownExtra();
   $content = $pd->text($md);
@@ -100,8 +100,8 @@ function parse_md($markdown){
     print_r($html_content_replace[1]);
     $content = preg_replace($html_content_replace[0], $html_content_replace[1], $content);
   }
-  
-  
+
+
   // Prohibit breaking up `--` in option names
   $content = preg_replace('/--/i', '&#8288;-&#8288;-&#8288;', $content);
   // Add CSS classes to tables
@@ -116,7 +116,7 @@ function parse_md($markdown){
     $content = str_replace('img/contributors-colour/', 'img/contributors-white/', $content);
   }
 
-  
+
   // create ToC
   if ((!isset($no_auto_toc) | !$no_auto_toc) & preg_match_all("~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis", $content, $matches)>1) {
     # main row + content
@@ -127,7 +127,7 @@ function parse_md($markdown){
     $content .= '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
     # ToC
     $content .= '<nav class="toc auto-toc pt-2 flex-column border-start">';
-    $content .= '<strong class="ms-3 text-strong">Table of Contents</strong>';
+    $content .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">Table of Contents</strong>';
     $content .= generate_toc($content);
     $content .=  '<p class="small text-end"><a href=" #" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
     $content .=  '</nav>';
@@ -144,7 +144,7 @@ function parse_md($markdown){
       return '<img class="emoji" alt="'.$match[1].'" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/'.$match[1].'.png">';
     }
   },$content);
-  
+
   $output['content'] = $content;
   $output["meta"] = $meta;
   $output["title"] = $title;

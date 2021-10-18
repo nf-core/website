@@ -769,7 +769,7 @@ else if ($cache['status'] == 'launch_params_complete') {
 
             endif;
             $toc = '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top"><nav class="toc border-start">';
-            $toc .= '<strong class="ms-3 text-strong">Table of Contents</strong>';
+            $toc .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">Table of Contents</strong>';
             $toc .= $toc_list;
             $toc .= '
                 <div class="btn-group w-100 mt-2 ms-1" role="group">
