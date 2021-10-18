@@ -24,7 +24,7 @@ You can find some key resources about Nextflow in the list below:
   * CZ Biohub Nextflow Tutorial 2019: <https://github.com/czbiohub/nextflow-tutorial-2019>
   * Nextflow Camp 2019 DSLv2 tutorial: <https://github.com/nextflow-io/nfcamp-tutorial>
 * Running Nextflow in the cloud:
-  * AWS Batch tutorial: <https://docs.opendata.aws/genomics-workflows/orchestration/nextflow/nextflow-overview/>
+  * AWS Batch tutorial: <https://docs.opendata.aws/genomics-workflows/orchestration/nextflow/nextflow-overview.html>
   * Google Cloud tutorial: <https://cloud.google.com/genomics/docs/tutorials/nextflow>
 
 For questions about the main Nextflow tool, use the **Nextflow Gitter chat** community:
