@@ -82,7 +82,7 @@ $(function () {
     function isfolder(path) {
         return path.endsWith('/');
     }
-    
+
     // Convert cars/vw/golf.png to golf.png
     function fullpath2filename(path) {
         return sanitize_html(path.replace(/^.*[\\\/]/, ''));
@@ -136,8 +136,8 @@ $(function () {
             );
             return;
         }
-        
-                
+
+
         fetch(url).then(function (response) {
             if (response.status !== 200) {
                 console.log(
@@ -167,7 +167,7 @@ $(function () {
                     [".png", ".jpg", ".jpeg", ".svg"].includes(extension)
                 ) {
                     data = '<img src="' + response.url + '"/>';
-                }                
+                }
                 if (
                   data !==
                   '<pre><code class="hljs language-plaintext"></code></pre>'
@@ -182,7 +182,7 @@ $(function () {
                     500
                   );
                 }
-                
+
             });
         })
         .catch(function (err) {
@@ -206,7 +206,7 @@ $(function () {
     $("body").on("click", ".copy-url", function (e) {
         var text = e.currentTarget.dataset.target;
         var $tmp = $("<input>");
-        
+
         $("body").append($tmp);
         $tmp.val(text).select();
         document.execCommand("copy");
@@ -219,13 +219,13 @@ $(function () {
         if (!prefix.endsWith("/")) {
             prefix = window.location.hash.substr(1);
             prefix = prefix.substr(0, prefix.lastIndexOf("/") + 1);
-        
+
             if (window.location.hash.split("/").length > 2 ) {
                 s3exp_config["Prefix"] = prefix;
             }
             (s3exp_lister = s3list(s3exp_config, s3draw)).go();
         }
-    } );    
+    } );
 
     function folder2breadcrumbs(data) {
         // console.log('Bucket: ' + data.params.Bucket);
@@ -236,7 +236,7 @@ $(function () {
             window.location.hash = data.params.Prefix
             if(s3exp_config.Suffix!=='' && window.location.hash.endsWith("/")){
                 window.location.hash +=  s3exp_config.Suffix;
-            } 
+            }
         } else {
             // console.log('Remove hash');
             removeHash();
@@ -302,7 +302,7 @@ $(function () {
     function s3draw(data, complete) {
         $('li.li-bucket').remove();
         $("#file-preview").hide();
-        
+
         folder2breadcrumbs(data);
         if (data.Contents.length > 0 || data.CommonPrefixes.length >0) {
             var path = data.params.Prefix.split("/");
@@ -479,7 +479,7 @@ $(function () {
                 }
             } else {
                 var icon = '<i class="fas fa-file"></i> ';
-                
+
                 // console.log("not folder/this document: " + data);
                 return '<div class="d-flex justify-content-between align-items-center"><div><a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '" data-size=' + full.Size + '>' + icon + fullpath2filename(data) + '</a></div></div>';
             }
@@ -515,14 +515,14 @@ $(function () {
                 "aTargets": [2],
                 "mData": "LastModified",
                 "width": "20%",
-                "className": "text-right",
+                "className": "text-end",
                 "mRender": function (data, type, full) {
                     return data ? moment(data).fromNow() : "";
                 }
             }, {
                 "aTargets": [3],
                 "width": "12%",
-                "className": "text-right",
+                "className": "text-end",
                 "mData": function (data, type, val) {
                     return data.Size ? type == 'display' ? bytesToSize(data.Size) : data.Size : "";
                 }
@@ -569,9 +569,9 @@ $(function () {
                     hash = hash.substr(1,hash.lastIndexOf("/")+1) +target.download;
                 }
                 window.location.hash = hash;
-                
+
                 fetch_preview(url, file_size);
-                
+
             }
             return false;
         });
