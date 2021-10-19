@@ -16,7 +16,7 @@ There will be a lot of firsts at this event. We are in the process of working ou
 This edition of the nf-core hackathon will be hosted on [gather.town](https://www.gather.town/) so please [familiarise yourself](https://support.gather.town/help/movement-and-basics) with the platform in advance. The link to the space will be sent a couple of days before the event.
 
 Please also join the [nf-core Slack workspace](https://nf-co.re/join), and find us on the #hackathon-oct2021-public channel
-# Aims and Objectives 
+# Aims and Objectives
 
 Our primary focus for this hackathon will be the conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format. To get started we added two tutorials:
 
@@ -263,12 +263,12 @@ The following schedule should display times in your local time zone:
 
 During the hackathon, we will have a few light-hearted fun and games!
 
-- Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
-- Throughout the three days, we will once again be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
+* Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
+* Throughout the three days, we will once again be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
 
     > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
 
-- In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as find!
-- Finally, during Wednesday's social event (see schedule above), we will be running a short quiz!
+* In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as find!
+* Finally, during Wednesday's social event (see schedule above), we will be running a short quiz!
 
 All social activities are of course optional, but hope to see as many people joining in as possible :tada:
