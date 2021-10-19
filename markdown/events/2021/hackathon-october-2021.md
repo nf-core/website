@@ -268,7 +268,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 
     > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
 
-* In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as find!
+* In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as you can find!
 * Finally, during Wednesday's social event (see schedule above), we will be running a short quiz!
 
 All social activities are of course optional, but hope to see as many people joining in as possible :tada:
