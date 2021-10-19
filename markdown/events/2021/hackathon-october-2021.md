@@ -30,6 +30,11 @@ Our primary focus for this hackathon will be the conversion of nf-core pipelines
 </div>
 
 
+<div class="embed-responsive embed-responsive-16by9">
+<iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
+</div>
+
+
 We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you  would like to learn more:
 
 * [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
