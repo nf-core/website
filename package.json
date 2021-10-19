@@ -4,7 +4,6 @@
   "description": "<img src=\"public_html/assets/img/logo/nf-core-logo.png\" width=\"400\">",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/backstop test",
     "watch-sass": "sass --load-path=node_modules/ --watch public_html/assets/scss:public_html/assets/css",
     "compile-sass": "sass --load-path=node_modules/ public_html/assets/scss:public_html/assets/css",
     "prefix-css": "postcss --use autoprefixer -b 'last 5 versions' --replace public_html/assets/css/*nf-core*.css ",
@@ -27,7 +26,6 @@
     "@highlightjs/cdn-assets": "^11.2.0",
     "autoprefixer": "^10.0.2",
     "aws-sdk": "^2.994.0",
-    "backstopjs": "^5.3.4",
     "bootstrap": "^5.1.1",
     "bootstrap-dark-5": "^1.1.0",
     "chart.js": "^2.9.4",
@@ -37,13 +35,13 @@
     "file-saver": "^2.0.5",
     "hammerjs": "^2.0.8",
     "jquery": "^3.6.0",
+    "jquery-ui-dist": "^1.12.1",
     "leaflet": "^1.7.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "postcss-cli": "^8.2.0",
     "sass": "^1.29.0",
     "showdown": "^1.9.1",
-    "tablesorter": "^2.31.3",
-    "jquery-ui-dist": "^1.12.1"
+    "tablesorter": "^2.31.3"
   }
 }
