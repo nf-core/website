@@ -14,5 +14,5 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
 - DSL2 template code walkthrough:
 
 <div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://youtu.be/0xjc7PkF1Bc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>

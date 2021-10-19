@@ -19,14 +19,16 @@ Our primary focus for this hackathon will be the conversion of nf-core pipelines
 * Current state of the DSL2 template:
 
 <div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://youtu.be/0xjc7PkF1Bc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
 
 * Tutorial: Adding a local module to nf-core/modules:
 
 <div class="embed-responsive embed-responsive-16by9">
-    <iframe width="560" height="315" src="https://youtu.be/xuNYATGFuw4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
 
 We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you  would like to learn more:
 
