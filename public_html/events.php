@@ -252,7 +252,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
       $(this).text(local_time.format(timeformat));
       var current_time = new Date(timestamp*1000);
       var now = new Date();
-      if(current_time.getHours()*60+current_time.getMinutes()<= now.getHours()*60+now.getMinutes() && now.getHours()*60+now.getMinutes() < current_time.getHours()*60+current_time.getMinutes()+30){
+      if(current_time.toDateString == now.toDateString && current_time.getHours()*60+current_time.getMinutes()<= now.getHours()*60+now.getMinutes() && now.getHours()*60+now.getMinutes() < current_time.getHours()*60+current_time.getMinutes()+30){
         $(this).parent("tr").addClass("table-success"); // highlight row in schedule if current time is less than 30 minutes after time in row
       }
     });
