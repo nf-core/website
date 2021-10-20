@@ -239,7 +239,7 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Location: Mentor specific rooms</li>
                   </ul></td>
-                <td rowspan="3">Social Event!<br>
+                <td rowspan="2">Social Event!<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lounge</li>
                     <li>Host: Maxime Garcia / Susanna Marquez</ul></td>
@@ -249,10 +249,20 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1616432400" data-timeformat="HH:mm z">18:30</td>
-                <td rowspan="2">Hack! <...></td>
+                <td rowspan="2">Hack!</td>
+                <td rowspan="2">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1616432400" data-timeformat="HH:mm z">19:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616432400" data-timeformat="HH:mm z">19:30</td>
+                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1616432400" data-timeformat="HH:mm z">19:45</td>
+                <td rowspan="2">Hack! <...></td>
                 <td rowspan="2">Hack! <...></td>
             </tr>
         </tbody>
