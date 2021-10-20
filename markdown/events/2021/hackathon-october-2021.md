@@ -18,14 +18,14 @@ Our primary focus for this hackathon will be the conversion of nf-core pipelines
 
 * Current state of the DSL2 template:
 
-<div class="embed-responsive embed-responsive-16by9">
+<div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 
 * Tutorial: Adding a local module to nf-core/modules:
 
-<div class="embed-responsive embed-responsive-16by9">
+<div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

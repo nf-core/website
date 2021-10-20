@@ -353,7 +353,7 @@ include('../includes/header.php');
     <div class="row videos-row">
       <div class="col-lg-6">
         <div class="ratio ratio-16x9 hidden-xs hidden-sm">
-          <iframe id="nf-core-video" class="embed-responsive-item" src="https://www.youtube.com/embed/gUM9acK25tQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="nf-core-video"  src="https://www.youtube.com/embed/gUM9acK25tQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="col-lg-6">
