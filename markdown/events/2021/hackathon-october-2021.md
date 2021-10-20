@@ -69,7 +69,7 @@ The following schedule should display times in your local time zone:
         </thead>
         <tbody>
             <tr>
-                <td data-timestamp="1616403600" data-timeformat="HH:mm z">02:00</td>
+                <td data-timestamp="1635379200" data-timeformat="HH:mm z">02:00</td>
                 <td rowspan=4></td>
                 <td>Check-out (Americas) / Check-in (Asia-Pacific)<br>
                   <ul class="small list-unstyled">
@@ -83,7 +83,7 @@ The following schedule should display times in your local time zone:
                   </ul></td>
             </tr>
             <tr>
-                <td data-timestamp="1616403600" data-timeformat="HH:mm z">02:30</td>
+                <td data-timestamp="1635381000" data-timeformat="HH:mm z">02:30</td>
                 <td rowspan=2>Pair-programming (Asia-Pacific)<br>
                     <ul class="small list-unstyled">
                         <li>Location: Mentor specific rooms</li>
@@ -92,14 +92,14 @@ The following schedule should display times in your local time zone:
                 <td rowspan="3">Hack! <...></td>
             </tr>
             <tr>
-                <td data-timestamp="1616403600" data-timeformat="HH:mm z">03:00</td>
+                <td data-timestamp="1635382800" data-timeformat="HH:mm z">03:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616403600" data-timeformat="HH:mm z">03:30</td>
+                <td data-timestamp="1635384600" data-timeformat="HH:mm z">03:30</td>
                 <td rowspan="1">Hack! <...></td>
             </tr>
             <tr>
-                <td data-timestamp="1616403600" data-timeformat="HH:mm z">10:00</td>
+                <td data-timestamp="1635321600" data-timeformat="HH:mm z">10:00</td>
                 <td>
                   Welcome
                   <ul class="small list-unstyled">
@@ -123,7 +123,7 @@ The following schedule should display times in your local time zone:
                 </td>
             </tr>
             <tr>
-                <td data-timestamp="1616405400" data-timeformat="HH:mm z">10:30</td>
+                <td data-timestamp="1635323400" data-timeformat="HH:mm z">10:30</td>
                 <td rowspan="2">Pair Programming (EMEA)<br>
                    <ul class="small list-unstyled">
                     <li>Location: Mentor specific rooms</li>
@@ -132,28 +132,28 @@ The following schedule should display times in your local time zone:
                 <td rowspan="2">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1616407200"  data-timeformat="HH:mm z">11:00</td>
+                <td data-timestamp="1635325200"  data-timeformat="HH:mm z">11:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616409000" data-timeformat="HH:mm z">11:30</td>
+                <td data-timestamp="1635327000" data-timeformat="HH:mm z">11:30</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
             </tr>
             <tr>
-                <td data-timestamp="1616409000" data-timeformat="HH:mm z">11:45</td>
+                <td data-timestamp="1635327900" data-timeformat="HH:mm z">11:45</td>
                 <td rowspan="3">Hack!</td>
                 <td rowspan="3">Hack!</td>
                 <td rowspan="3">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1616410800" data-timeformat="HH:mm z">12:00</td>
+                <td data-timestamp="1635328800" data-timeformat="HH:mm z">12:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616412600" data-timeformat="HH:mm z">12:30</td>
+                <td data-timestamp="1635330600" data-timeformat="HH:mm z">12:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1616414400" data-timeformat="HH:mm z">13:00</td>
+                <td data-timestamp="1635332400" data-timeformat="HH:mm z">13:00</td>
                 <td>
                   Group catch-up:<br>
                    <ul class="small list-unstyled">
@@ -177,40 +177,40 @@ The following schedule should display times in your local time zone:
                 </td>
             </tr>
             <tr>
-                <td data-timestamp="1616416200" data-timeformat="HH:mm z">13:30</td>
+                <td data-timestamp="1635334200" data-timeformat="HH:mm z">13:30</td>
                 <td rowspan="3">Hack!</td>
                 <td rowspan="3">Hack!</td>
                 <td rowspan="3">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1616418000" data-timeformat="HH:mm z">14:00</td>
+                <td data-timestamp="1635336000" data-timeformat="HH:mm z">14:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616419800" data-timeformat="HH:mm z">14:30</td>
+                <td data-timestamp="1635337800" data-timeformat="HH:mm z">14:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1616421600" data-timeformat="HH:mm z">15:00</td>
+                <td data-timestamp="1635339600" data-timeformat="HH:mm z">15:00</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li></ul</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li></ul</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li></ul</td>
             </tr>
             <tr>
-                <td data-timestamp="1616423400" data-timeformat="HH:mm z">15:15</td>
+                <td data-timestamp="1635340500" data-timeformat="HH:mm z">15:15</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
             </tr>
            <tr>
-                <td data-timestamp="1616425200" data-timeformat="HH:mm z">15:30</td>
+                <td data-timestamp="1635341400" data-timeformat="HH:mm z">15:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1616425200" data-timeformat="HH:mm z">16:00</td>
+                <td data-timestamp="1635343200" data-timeformat="HH:mm z">16:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616427000" data-timeformat="HH:mm z">16:30</td>
+                <td data-timestamp="1635345000" data-timeformat="HH:mm z">16:30</td>
                             </tr>
             <tr>
-                <td data-timestamp="1616428800" data-timeformat="HH:mm z">17:00</td>
+                <td data-timestamp="1635346800" data-timeformat="HH:mm z">17:00</td>
                 <td>
                   Check-in (Americas) / Check-out (EMEA)
                   <ul class="small list-unstyled">
@@ -234,7 +234,7 @@ The following schedule should display times in your local time zone:
                 </td>
             </tr>
             <tr>
-                <td data-timestamp="1616430600" data-timeformat="HH:mm z">17:30</td>
+                <td data-timestamp="1635348600" data-timeformat="HH:mm z">17:30</td>
                 <td rowspan="2">Pair Programming (Americas)<br>
                    <ul class="small list-unstyled">
                     <li>Location: Mentor specific rooms</li>
@@ -245,23 +245,23 @@ The following schedule should display times in your local time zone:
                     <li>Host: Maxime Garcia / Susanna Marquez</ul></td>
             </tr>
             <tr>
-                <td data-timestamp="1616432400" data-timeformat="HH:mm z">18:00</td>
+                <td data-timestamp="1635350400" data-timeformat="HH:mm z">18:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616432400" data-timeformat="HH:mm z">18:30</td>
+                <td data-timestamp="1635352200" data-timeformat="HH:mm z">18:30</td>
                 <td rowspan="2">Hack!</td>
                 <td rowspan="2">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1616432400" data-timeformat="HH:mm z">19:00</td>
+                <td data-timestamp="1635354000" data-timeformat="HH:mm z">19:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1616432400" data-timeformat="HH:mm z">19:30</td>
+                <td data-timestamp="1635355800" data-timeformat="HH:mm z">19:30</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
                 <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
             </tr>
             <tr>
-                <td data-timestamp="1616432400" data-timeformat="HH:mm z">19:45</td>
+                <td data-timestamp="1635356700" data-timeformat="HH:mm z">19:45</td>
                 <td rowspan="2">Hack! <...></td>
                 <td rowspan="2">Hack! <...></td>
             </tr>
@@ -279,6 +279,6 @@ During the hackathon, we will have a few light-hearted fun and games!
     > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
 
 * In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as you can find!
-* Finally, during Wednesday's social event (see schedule above), we will be running a short quiz!
+* Finally, during Thursday's social event (see schedule above), we will be running a short quiz!
 
 All social activities are of course optional, but hope to see as many people joining in as possible :tada:
