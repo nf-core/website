@@ -6,21 +6,39 @@ start_date: "2021-10-27"
 start_time: "10:00 CEST"
 end_date: "2021-10-29"
 end_time: "18:00 CEST"
-import_typeform: true
 ---
 
-Mark your calendars to join us for the October 2021 nf-core hackathon!
+Our October hackathon is two weeks away! Registration is now closed, but keep an eye on your inbox if you've signed up, you will be hearing from us soon!
 
-With the recent release of the new nf-core template for Nextflow's DSL2, in this event we will be going full-steam ahead with conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format.
+There will be a lot of firsts at this event. We are in the process of working out details to make it as geographically accessible as we can. In addition, we will be experimenting with a group programming session on writing and contributing to nf-core modules for a limited number of participants. Our mentors, based around the world will be connecting with a small group of mentees who are also based in different countries!
 
-For Nextflow novices, we will be looking for help in writing Nextflow modules of commonly used bioinformatics tools.
+This is a fair amount of work, and we want to ensure that you have a productive and fun event. So stay tuned.
 
-For more experienced developers we hope for contributions to writing subworkflows and pipeline code.
+Our primary focus for this hackathon will be the conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format. To get started we added two tutorials:
 
-In the spirit of collaboration and knowledge sharing, we plan to pair up both novices and experienced developers in pair programming to help get newcomers up to speed on writing and contributing nf-core modules through a pair-programming session for a limited number of participants. Make sure to sign up by September 27, 2021 to participate in pair-programming!
+* Current state of the DSL2 template:
 
-This event is entirely virtual and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:.
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
-Sign up by October 13, 2021!
 
-<div data-tf-widget="LKRMqL2n" style="width:100%;height:700px;color:#FFFFFF;"></div>
+* Tutorial: Adding a local module to nf-core/modules:
+
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you  would like to learn more:
+
+* [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
+* [DSL module development](https://www.youtube.com/watch?v=ggGGhTMgyHI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=5)
+* [Adding modules to nf-core/modules](https://www.youtube.com/watch?v=Wc4A2tQ6WWY&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=7)
+* [How to use modules in a pipeline](https://www.youtube.com/watch?v=tWvou0xj9wA&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=6)
+* [Modules test data](https://www.youtube.com/watch?v=QXfAerydAT0&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=17)
+* [Test modules](https://www.youtube.com/watch?v=pjhscKyWH74&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=18)
+* [Development environments & workflows (Phil)](https://www.youtube.com/watch?v=XB96efweCLI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=12)
+* [Development environments & workflows (Maxime)](https://www.youtube.com/watch?v=OF55x-FT5WE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=19)
+
+Thanks for signing up and see you soon!
