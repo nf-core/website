@@ -171,7 +171,7 @@ function save_launcher_form()
     }
     $id_check = validate_cache_id($_POST['cache_id']);
     if (!isset($id_check['status'])) {
-        return ["Problem loading cache: <pre>" . $id_check . '</pre>'];
+        return ["Problem loading cache: <pre><code>" . $id_check . '</code></pre>'];
     }
     if ($id_check['status'] == 'error') {
         return ["Problem loading cache: " . $id_check['message']];
@@ -427,14 +427,14 @@ if (!$cache) {
             This should work with any Nextflow pipeline (though the experience is best for pipelines that have a <code>nextflow_schema.json</code> file).</p>
 
         <p>For example, to launch the <a href="/atacseq">nf-core/atacseq</a> pipeline in your current directory:</p>
-        <pre>nf-core launch atacseq</pre>
+        <pre><code>nf-core launch atacseq</code></pre>
 
         <p>To launch your own custom pipeline that you have locally:</p>
-        <pre>nf-core launch ./my_pipeline/</pre>
+        <pre><code>nf-core launch ./my_pipeline/</code></pre>
 
         <p>The tool will check the pipeline's schema and create one if none exists, and then ask if you want to use this web tool or the command-line wizard:
         <p>
-        <pre><span style="color:cornflowerblue;">$</span> nf-core launch .
+        <pre class="border bg-white p-3 m-3"><span style="color:cornflowerblue;">$</span> nf-core launch .
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -552,7 +552,7 @@ else if ($cache['status'] == 'launch_params_complete') {
             <p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
             <p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
                 simply run the following command and follow the prompts:</p>
-            <pre>nf-core launch --id <?php echo $cache_id; ?></pre>
+            <pre><code>nf-core launch --id <?php echo $cache_id; ?></code></pre>
 
             <h3>Launch using Nextflow Tower</h3>
             <?php if (substr($cache['pipeline'], 0, 8) == 'nf-core/') { ?>
@@ -577,16 +577,16 @@ else if ($cache['status'] == 'launch_params_complete') {
 
             <?php if (count($cache['input_params']) > 0) : ?>
                 <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
-                <pre><?php echo json_encode($cache['input_params'], JSON_PRETTY_PRINT); ?></pre>
+                <pre><code><?php echo json_encode($cache['input_params'], JSON_PRETTY_PRINT); ?></code></pre>
 
                 <p>Then, launch Nextflow with the following command:</p>
-                <pre><?php echo $cache['nextflow_cmd'];
-                        echo $nxf_flags; ?>-params-file nf-params.json</pre>
+                <pre><code><?php echo $cache['nextflow_cmd'];
+                        echo $nxf_flags; ?>-params-file nf-params.json</code></pre>
 
             <?php else : ?>
                 <p>Launch Nextflow with the following command:</p>
-                <pre><?php echo $cache['nextflow_cmd'];
-                        echo $nxf_flags; ?></pre>
+                <pre><code><?php echo $cache['nextflow_cmd'];
+                        echo $nxf_flags; ?></code></pre>
             <?php endif; ?>
 
             <h3>Continue editing</h3>
