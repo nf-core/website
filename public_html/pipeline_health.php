@@ -476,8 +476,8 @@ class RepoHealth {
       return $result;
     } else {
       echo '<div class="alert alert-danger m-3">
-        <strong class="mr-2">Error with GitHub API</strong>
-        There was a problem with the following URL: <code class="mr-2">'.$url.'</code> (<code>'.$method.'</code>)
+        <strong class="me-2">Error with GitHub API</strong>
+        There was a problem with the following URL: <code class="me-2">'.$url.'</code> (<code>'.$method.'</code>)
         <details>
           <pre>'.json_encode($http_response_header, JSON_PRETTY_PRINT).'</pre>
           <pre>'.json_encode($content, JSON_PRETTY_PRINT).'</pre>
@@ -501,19 +501,19 @@ class RepoHealth {
       $test_url = str_replace('{latest-tag}', $this->last_release->tag_name, $test_url);
     }
     if(is_null($this->$test_name)){
-      echo '<td class="table-secondary text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+      echo '<td class="table-secondary text-center" title="'.$this->name.': '.$this->test_descriptions[$test_name].'" data-bs-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
       </td>';
     } else if($this->$test_name === -1){
-      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+      echo '<td class="table-success text-center" title="'.$this->name.': '.$this->test_descriptions[$test_name].'" data-bs-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block text-secondary text-decoration-none" target="_blank">&mdash;</a>
       </td>';
     } else if($this->$test_name){
-      echo '<td class="table-success text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+      echo '<td class="table-success text-center" title="'.$this->name.': '.$this->test_descriptions[$test_name].'" data-bs-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-check text-success"></i></a>
       </td>';
     } else {
-      echo '<td class="table-danger text-center" title="<strong>'.$this->name.':</strong> '.$this->test_descriptions[$test_name].'" data-toggle="tooltip" data-html="true">
+      echo '<td class="table-danger text-center" title="'.$this->name.': '.$this->test_descriptions[$test_name].'" data-bs-toggle="tooltip" data-html="true">
         <a href="'.$test_url.'" class="d-block" target="_blank"><i class="fas fa-times text-danger"></i></a>
       </td>';
     }
@@ -967,17 +967,17 @@ ksort($core_repos);
     <table class="table table-hover table-sm small">
       <thead>
         <tr>
-          <th class="small text-nowrap">Pipeline Name</th>
+          <th class="small fw-normal text-nowrap">Pipeline Name</th>
           <?php
           $m_names_printed = [];
           $colspan = '';
-          foreach ($pipeline_test_names as $key => $name){
+          foreach ($pipeline_test_names as $key => $name) {
             $description = $pipeline_test_descriptions[$key];
             $print = true;
-            foreach($pipeline_merge_table_col_headings as $m_name => $m_keys){
-              if(in_array($key, $m_keys)){
-                if(!in_array($m_name, $m_names_printed)){
-                  $colspan = 'colspan="'.count($m_keys).'"';
+            foreach ($pipeline_merge_table_col_headings as $m_name => $m_keys) {
+              if (in_array($key, $m_keys)) {
+                if (!in_array($m_name, $m_names_printed)) {
+                  $colspan = 'colspan="' . count($m_keys) . '"';
                   $description = $m_name;
                   $name = $m_name;
                   $m_names_printed[] = $m_name;
@@ -986,22 +986,22 @@ ksort($core_repos);
                 }
               }
             }
-            if($print) echo '<th '.$colspan.' class="small text-nowrap" title="'.$description.'" data-toggle="tooltip" data-placement="top">'.$name.'</th>';
+            if ($print) echo '<th ' . $colspan . ' class="small fw-normal text-nowrap" title="' . $description . '" data-bs-toggle="tooltip" data-bs-placement="top">' . $name . '</th>';
           }
           ?>
         </tr>
       </thead>
       <tbody>
-      <?php
-      foreach ($pipelines as $pipeline){
-        echo '<tr>';
-          echo '<td>'.$pipeline->name.'</td>';
-          foreach ($pipeline_test_names as $key => $name){
+        <?php
+        foreach ($pipelines as $pipeline) {
+          echo '<tr>';
+          echo '<td>' . $pipeline->name . '</td>';
+          foreach ($pipeline_test_names as $key => $name) {
             $pipeline->print_table_cell($key);
           }
-        echo '</tr>';
-      }
-      ?>
+          echo '</tr>';
+        }
+        ?>
       </tbody>
     </table>
   </div>
@@ -1012,76 +1012,78 @@ ksort($core_repos);
       <thead>
         <tr>
           <th class="small text-nowrap">Pipeline Name</th>
-          <?php foreach ($core_repo_test_names as $key => $name){
-            echo '<th class="small text-nowrap" title="'.$core_repo_test_descriptions[$key].'" data-toggle="tooltip" data-placement="top">'.$name.'</th>';
+          <?php foreach ($core_repo_test_names as $key => $name) {
+            echo '<th class="small text-nowrap" title="' . $core_repo_test_descriptions[$key] . '" data-bs-toggle="tooltip" data-bs-placement="top">' . $name . '</th>';
           } ?>
         </tr>
       </thead>
       <tbody>
-      <?php
-      foreach ($core_repos as $repo){
-        echo '<tr>';
-          echo '<td>'.$repo->name.'</td>';
-          foreach ($core_repo_test_names as $key => $name){
+        <?php
+        foreach ($core_repos as $repo) {
+          echo '<tr>';
+          echo '<td>' . $repo->name . '</td>';
+          foreach ($core_repo_test_names as $key => $name) {
             $repo->print_table_cell($key);
           }
-        echo '</tr>';
-      }
-      ?>
+          echo '</tr>';
+        }
+        ?>
       </tbody>
     </table>
   </div>
 
   <h2>Actions</h2>
-  <form class="form-inline" action="" method="get">
-    <select class="custom-select repos-select" name="repos">
-      <optgroup label="All repositories">
-        <option value="all" selected>All pipelines</option>
-      </optgroup>
-      <optgroup label="Pipelines">
-      <?php foreach ($pipelines as $repo){
-        echo '<option>'.$repo->name.'</option>';
-      } ?>
-      </optgroup>
-      <optgroup label="Core Repos">
-      <?php foreach ($core_repos as $repo){
-        echo '<option>'.$repo->name.'</option>';
-      } ?>
-      </optgroup>
-    </select>
-    <button type="submit" name="action" value="refresh" class="btn btn-primary my-1 ml-2 refresh-btn">Refresh data</button>
-    <button type="submit" name="action" value="fix" class="btn btn-info my-1 ml-1 fix-btn">Fix data</button>
+  <form class="row" action="" method="get">
+    <div class="col-4 my-1">
+      <select class="form-select repos-select" name="repos">
+        <optgroup label="All repositories">
+          <option value="all" selected>All pipelines</option>
+        </optgroup>
+        <optgroup label="Pipelines">
+          <?php foreach ($pipelines as $repo) {
+            echo '<option>' . $repo->name . '</option>';
+          } ?>
+        </optgroup>
+        <optgroup label="Core Repos">
+          <?php foreach ($core_repos as $repo) {
+            echo '<option>' . $repo->name . '</option>';
+          } ?>
+        </optgroup>
+      </select>
+    </div>
+    <button type="submit" name="action" value="refresh" class="btn btn-primary col-2 my-1 ms-2 refresh-btn">Refresh data</button>
+    <button type="submit" name="action" value="fix" class="btn btn-info col-2 my-1 ms-2 fix-btn">Fix data</button>
   </form>
   <p><em class="small text-muted">Warning: page will take a minute or two to load. Even when refreshing one repo, some tests will be refreshed for all repos.</em></p>
 
 </div>
 
 <script type="text/javascript">
-$(function(){
-  // Disable the buttons to prevent button mashing
-  $('.refresh-btn').click(function(){
-    $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
-  });
-  $('.fix-btn').click(function(e){
-    if(!confirm('This will attempt to change repository settings! Are you sure?')){
-      e.preventDefault();
-    } else {
-      if($('.repos-select').val() == 'all'){
-        if(!confirm('Seriously - ALL nf-core repos. Are you super sure?')){
-          e.preventDefault();
-        } else {
-          $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+  $(function() {
+    // Disable the buttons to prevent button mashing
+    $('.refresh-btn').click(function() {
+      $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+    });
+    $('.fix-btn').click(function(e) {
+      if (!confirm('This will attempt to change repository settings! Are you sure?')) {
+        e.preventDefault();
+      } else {
+        if ($('.repos-select').val() == 'all') {
+          if (!confirm('Seriously - ALL nf-core repos. Are you super sure?')) {
+            e.preventDefault();
+          } else {
+            $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+          }
         }
       }
+    });
+
+    // Remove all get data from the URL
+    if (window.location.href.includes('?')) {
+      var url_parts = window.location.href.split('?');
+      window.history.replaceState({}, "nf-core", url_parts[0]);
     }
   });
-
-  // Remove all get data from the URL
-  if(window.location.href.includes('?')){
-    var url_parts = window.location.href.split('?');
-    window.history.replaceState({}, "nf-core", url_parts[0]);
-  }
-});
 </script>
 
 

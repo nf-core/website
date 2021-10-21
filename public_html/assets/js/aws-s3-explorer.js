@@ -82,7 +82,7 @@ $(function () {
     function isfolder(path) {
         return path.endsWith('/');
     }
-    
+
     // Convert cars/vw/golf.png to golf.png
     function fullpath2filename(path) {
         return sanitize_html(path.replace(/^.*[\\\/]/, ''));
@@ -112,7 +112,32 @@ $(function () {
         var split_url = url.split('/');
         var filename = split_url.slice(-1)[0];
         var s3_url = "s3://" + split_url[2].split(".")[0] + "/" + split_url.slice(3).join("/");
-                
+        var btn_group = `<div class="btn-group" role="group">
+                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Download file</a>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
+                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
+                            </div>`;
+        var header =
+                '<div class="card-header d-flex justify-content-between align-items-center">' +
+                filename +
+                btn_group +
+                "</div>";
+        if (file_size > 10000000) {
+            data =
+                '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
+            $("#file-preview").show();
+            $("#file-preview").html(
+            header + '<div class="card-body">' + data + "</div>"
+            );
+            var el_offset = $("#file-preview").offset().top - 140;
+            $([document.documentElement, document.body]).animate(
+            { scrollTop: el_offset },
+            500
+            );
+            return;
+        }
+
+
         fetch(url).then(function (response) {
             if (response.status !== 200) {
                 console.log(
@@ -129,12 +154,7 @@ $(function () {
                 } else if (
                     ![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)
                 ) {
-                    if (file_size > 10000000) {
-                    data =
-                        '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
-                    } else {
-                        data = "<pre><code>" + sanitize_html(data) + "</code></pre>";
-                    }
+                        data = '<pre><code class="hljs language-plaintext">' + sanitize_html(data) + '</code></pre>';
                 } else if (extension === ".html") {
                     data ='<iframe srcdoc="' +
                     sanitize_html(data) +
@@ -148,25 +168,21 @@ $(function () {
                 ) {
                     data = '<img src="' + response.url + '"/>';
                 }
-                var btn_group = `<div class="btn-group" role="group">
-                                <a class="btn btn-outline-secondary download-file-btn" href="${url}" target="_blank">Download file</a>
-                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${url}>Copy URL</button>
-                                <button type="button" class="btn btn-outline-secondary copy-url" data-target=${s3_url}>Copy S3 URL</button>
-                            </div>`;
-                var header =
-                '<div class="card-header d-flex justify-content-between align-items-center">' +
-                filename +
-                btn_group +
-                "</div>";
-                $("#file-preview").show();
-                $("#file-preview").html(
+                if (
+                  data !==
+                  '<pre><code class="hljs language-plaintext"></code></pre>'
+                ) {
+                  $("#file-preview").show();
+                  $("#file-preview").html(
                     header + '<div class="card-body">' + data + "</div>"
-                );
-                var el_offset = $("#file-preview").offset().top - 140;
-                $([document.documentElement, document.body]).animate(
+                  );
+                  var el_offset = $("#file-preview").offset().top - 140;
+                  $([document.documentElement, document.body]).animate(
                     { scrollTop: el_offset },
                     500
-                );
+                  );
+                }
+
             });
         })
         .catch(function (err) {
@@ -190,7 +206,7 @@ $(function () {
     $("body").on("click", ".copy-url", function (e) {
         var text = e.currentTarget.dataset.target;
         var $tmp = $("<input>");
-        
+
         $("body").append($tmp);
         $tmp.val(text).select();
         document.execCommand("copy");
@@ -203,13 +219,13 @@ $(function () {
         if (!prefix.endsWith("/")) {
             prefix = window.location.hash.substr(1);
             prefix = prefix.substr(0, prefix.lastIndexOf("/") + 1);
-        
+
             if (window.location.hash.split("/").length > 2 ) {
                 s3exp_config["Prefix"] = prefix;
             }
             (s3exp_lister = s3list(s3exp_config, s3draw)).go();
         }
-    } );    
+    } );
 
     function folder2breadcrumbs(data) {
         // console.log('Bucket: ' + data.params.Bucket);
@@ -220,7 +236,7 @@ $(function () {
             window.location.hash = data.params.Prefix
             if(s3exp_config.Suffix!=='' && window.location.hash.endsWith("/")){
                 window.location.hash +=  s3exp_config.Suffix;
-            } 
+            }
         } else {
             // console.log('Remove hash');
             removeHash();
@@ -286,7 +302,7 @@ $(function () {
     function s3draw(data, complete) {
         $('li.li-bucket').remove();
         $("#file-preview").hide();
-        
+
         folder2breadcrumbs(data);
         if (data.Contents.length > 0 || data.CommonPrefixes.length >0) {
             var path = data.params.Prefix.split("/");
@@ -463,7 +479,7 @@ $(function () {
                 }
             } else {
                 var icon = '<i class="fas fa-file"></i> ';
-                
+
                 // console.log("not folder/this document: " + data);
                 return '<div class="d-flex justify-content-between align-items-center"><div><a data-s3="object" href="' + object2hrefvirt(s3exp_config.Bucket, data) + '"download="' + fullpath2filename(data) + '" data-size=' + full.Size + '>' + icon + fullpath2filename(data) + '</a></div></div>';
             }
@@ -499,14 +515,14 @@ $(function () {
                 "aTargets": [2],
                 "mData": "LastModified",
                 "width": "20%",
-                "className": "text-right",
+                "className": "text-end",
                 "mRender": function (data, type, full) {
                     return data ? moment(data).fromNow() : "";
                 }
             }, {
                 "aTargets": [3],
                 "width": "12%",
-                "className": "text-right",
+                "className": "text-end",
                 "mData": function (data, type, val) {
                     return data.Size ? type == 'display' ? bytesToSize(data.Size) : data.Size : "";
                 }
@@ -553,9 +569,9 @@ $(function () {
                     hash = hash.substr(1,hash.lastIndexOf("/")+1) +target.download;
                 }
                 window.location.hash = hash;
-                
+
                 fetch_preview(url, file_size);
-                
+
             }
             return false;
         });
