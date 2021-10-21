@@ -40,7 +40,7 @@ Please note that many other projects and grants list nf-core as collaborators an
 
 ### Chan Zuckerberg Initiative {#czi-eoss}
 
-<img src="/assets/img/contributors-colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-right darkmode-image mr-5 mb-5 w-25 ml-3">
+<img src="/assets/img/contributors-colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 The Chan Zuckerberg Initiative runs a grant called [_Essential Open Source Software for Science_ (EOSS)](https://chanzuckerberg.com/eoss/).
 Together with Nextflow, nf-core was supported in the [second](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) and [fourth](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) round of the CZI EOSS grant in 2020 and 2021.
@@ -52,10 +52,10 @@ It also funds expenses for event organisation and community tools.
 
 ### Amazon Web Services {#aws}
 
-<img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="float-right darkmode-image mr-5 mb-5 w-25 ml-3" style="max-width: 200px">
+<img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
 
 Amazon Web Services (AWS) kindly support nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
-You can explore and download these pipeline results under the <em class="mx-2"><i class="fab fa-aws mr-2"></i> Results</em> tab on each pipeline page.
+You can explore and download these pipeline results under the <em class="mx-2"><i class="fab fa-aws me-2"></i> Results</em> tab on each pipeline page.
 
 AWS also hosts the [AWS-iGenomes](https://registry.opendata.aws/aws-igenomes/) resource on the [Registry of Open Data on AWS](https://registry.opendata.aws/).
 This is used by most nf-core pipelines to give free and open access to the reference genomes of over 30 species, by using a simple `--genome` key when running a pipeline.

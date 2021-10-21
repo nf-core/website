@@ -15,7 +15,7 @@ ob_start();
                     <div class="d-flex align-items-center title-bar">
                         <!-- App title -->
                         <div class="title ">
-                            <i class="fab fa-aws fa-lg mr-3 mb-3"></i>
+                            <i class="fab fa-aws fa-lg me-3 mb-3"></i>
                         </div>
                         <!-- Bucket breadcrumbs -->
                         <ul id="breadcrumb" class="breadcrumb">
@@ -23,7 +23,7 @@ ob_start();
                                 <a href="#"><i class="fas fa-circle-notch fa-spin"></i></a>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-outline-secondary copy-url ml-auto" data-target="">Copy Bucket S3 URL</button>
+                        <button type="button" class="btn btn-outline-secondary copy-url ms-auto" data-bs-target="">Copy Bucket S3 URL</button>
                     </div>
                     <!-- Controls -->
                     <div id="navbuttons" class="">
@@ -56,13 +56,11 @@ ob_start();
 <div id="file-preview" class="card">
 </div>
 
-<div class="toast" id="url-copied" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="toast" id="url-copied" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
-        <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded mr-2" alt="">
-        <strong class="mr-auto">URL copied to clipboard!</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded me-2" alt="">
+        <strong class="me-auto">URL copied to clipboard!</strong>
+        <button type="button" class="ms-2 mb-1 btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
 </div>
 

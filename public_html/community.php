@@ -41,7 +41,7 @@ $logins = array_keys($contributors);
 shuffle($logins);
 foreach($logins as $login){
     $author = $contributors[$login];
-    echo '<a title="@'.$author->login.'" href="'.$author->html_url.'" target="_blank" data-toggle="tooltip"><img src="'.$author->avatar_url.'" class="border rounded-circle mr-1 mb-1" width="50" height="50"></a>';
+    echo '<a title="@'.$author->login.'" href="'.$author->html_url.'" target="_blank" data-bs-toggle="tooltip"><img src="'.$author->avatar_url.'" class="border rounded-circle me-1 mb-1" width="50" height="50"></a>';
 }
 ?>
 </p>
@@ -53,7 +53,7 @@ foreach($logins as $login){
 <div class="card contributors-map-card">
     <div class="card-body" id="contributors-map"></div>
 </div>
-<div class="card-deck">
+<div class="row row-cols-1 row-cols-md-2 g-4">
 
 <?php
 // Parse YAML contributors file
@@ -65,7 +65,7 @@ $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_html = '';
 foreach($contributors['contributors'] as $idx => $c){
     // Start card div
-    $contributors_html .= '<div class="card contributor card_deck_card"><div class="card-body">';
+    $contributors_html .= '<div class="col"><div class="card contributor h-100"><div class="card-body">';
     // Header, title
     $img_path = '';
     if(array_key_exists('image_fn', $c)){
@@ -104,11 +104,11 @@ foreach($contributors['contributors'] as $idx => $c){
     }
     // Description
     if(array_key_exists('description', $c))
-        $contributors_html .= '<p class="small text-muted">'.$c['description'].'</p> ';
+        $contributors_html .= '<p class="card-text small text-muted">'.$c['description'].'</p> ';
     // Contact person
     $contributors_html .= '<div class="contributor_contact">';
     if(array_key_exists('contact_email', $c)){
-        $contributors_html .= '<a href="mailto:'.$c['contact_email'].'" class="badge badge-light" data-toggle="tooltip" title="Primary contact: '.$c['contact_email'].'"><i class="far fa-envelope"></i> ';
+        $contributors_html .= '<a href="mailto:'.$c['contact_email'].'" class="badge bg-light text-dark fw-normal" data-bs-toggle="tooltip" title="Primary contact: '.$c['contact_email'].'"><i class="far fa-envelope"></i> ';
         if(array_key_exists('contact', $c))
             $contributors_html .= $c['contact'];
         else
@@ -116,14 +116,14 @@ foreach($contributors['contributors'] as $idx => $c){
         $contributors_html .= '</a> ';
     }
     else if(array_key_exists('contact', $c))
-        $contributors_html .= '<span class="badge badge-light">'.$c['contact'].'</span> ';
+        $contributors_html .= '<span class="badge bg-light text-dark fw-normal">'.$c['contact'].'</span> ';
     if(array_key_exists('contact_github', $c))
-        $contributors_html .= '<a href="https://github.com/'.trim($c['contact_github'], '@').'/" target="_blank" class="badge badge-light" data-toggle="tooltip" title="Primary contact: GitHub @'.trim($c['contact_github'], '@').'"><i class="fab fa-github"></i> '.trim($c['contact_github'], '@').'</a> ';
+        $contributors_html .= '<a href="https://github.com/'.trim($c['contact_github'], '@').'/" target="_blank" class="badge bg-light text-dark fw-normal" data-bs-toggle="tooltip" title="Primary contact: GitHub @'.trim($c['contact_github'], '@').'"><i class="fab fa-github"></i> '.trim($c['contact_github'], '@').'</a> ';
     if(array_key_exists('twitter', $c))
-        $contributors_html .= '<a href="https://twitter.com/'.trim($c['twitter'], '@').'/" target="_blank" class="badge badge-light" data-toggle="tooltip" title="Institutional twitter: @'.trim($c['twitter'], '@').'"><i class="fab fa-twitter"></i> @'.trim($c['twitter'], '@').'</a> ';
+        $contributors_html .= '<a href="https://twitter.com/'.trim($c['twitter'], '@').'/" target="_blank" class="badge bg-light text-dark fw-normal" data-bs-toggle="tooltip" title="Institutional twitter: @'.trim($c['twitter'], '@').'"><i class="fab fa-twitter"></i> @'.trim($c['twitter'], '@').'</a> ';
     $contributors_html .= '</div>';
     // Close card div
-    $contributors_html .= '</div></div>';
+    $contributors_html .= '</div></div></div>';
 
     // Location JSON
     if(array_key_exists('location', $c)){
@@ -146,7 +146,6 @@ var locations = <?php echo json_encode($locations, JSON_PRETTY_PRINT); ?>;
 
 $(function(){
     var map = L.map('contributors-map', {
-        fullscreenControl: true,
         zoom: 2
     });
     var greenIcon = new L.Icon({
@@ -177,7 +176,7 @@ $(function(){
 <p>A number of large projects are committing to working with the nf-core community for data analysis pipelines. You can see an overview of these below.</p>
 
 <h3 id="dfg_testimonial"><a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/contributors-colour/dfg_logo.svg" class="float-right pl-4" />
+    <img width="350px" src="/assets/img/contributors-colour/dfg_logo.svg" class="float-end ps-4" />
     German National Sequencing Initiative
 </h3>
 <p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
@@ -187,7 +186,7 @@ in Cologne/Bonn (West German Genome Center) has committed to joining and contrib
 <div class="clearfix"></div>
 
 <h3 id="easi_genomics_testimonial"><a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark' ? 'white' : 'colour'; ?>/EASI-Genomics.svg" class="float-right pl-4 darkmode-image" />
+    <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark' ? 'white' : 'colour'; ?>/EASI-Genomics.svg" class="float-end ps-4 darkmode-image" />
     EASI-Genomics
 </h3>
 <p><a href="https://www.easi-genomics.eu/" target="_blank">EASI-Genomics</a>
@@ -199,7 +198,7 @@ To this end they will use <em>nf-core</em> pipelines to process data and contrib
 <div class="clearfix"></div>
 
 <h3 id="bovreg_testimonial"><a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-right pl-4" />
+    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-end ps-4" />
     BovReg
 </h3>
 <p><a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
@@ -208,7 +207,7 @@ to form a consortium that will provide a comprehensive map of functionally activ
 <p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
 <div class="clearfix"></div>
 <h3 id="dockstore"><a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="350px" src="/assets/img/contributors-colour/dockstore.svg" class="float-right pl-0" />
+    <img width="350px" src="/assets/img/contributors-colour/dockstore.svg" class="float-end ps-0" />
     Dockstore
 </h3>
 <p><a href="https://www.dockstore.org/" target="_blank">Dockstore</a> is a platform used by researchers across the world to share reproducible computational analyses and hosts hundreds of individual tools and workflows created by more than a hundred different contributors.</p>
@@ -216,7 +215,7 @@ to form a consortium that will provide a comprehensive map of functionally activ
 <div class="clearfix"></div>
 
 <h3 id="workflowhub"><a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    <img width="250px" src="/assets/img/contributors-colour/workflowhub.svg" class="float-right px-4" />
+    <img width="250px" src="/assets/img/contributors-colour/workflowhub.svg" class="float-end px-4" />
     Workflow Hub
 </h3>
 <p><a href="https://www.workflowhub.eu/" target="_blank">Workflow Hub</a> was created as part of the <a href="https://www.eosc-life.eu/" target="_blank">EOSC-Life</a> WP2: <em>Tools Collaboratory and Research Objects</em> to glue in federated workflow and tool descriptions across research infrastructures.</p>
@@ -225,7 +224,7 @@ to form a consortium that will provide a comprehensive map of functionally activ
 
 <h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 
-<div class="card-columns">
+<div class="masonry">
 
 <div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">.<a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> are making me hate bioinformatics a bit less</p>&mdash; Hadrien Gourlé (@HGourle) <a href="https://twitter.com/HGourle/status/1158973454160465920?ref_src=twsrc%5Etfw">August 7, 2019</a></blockquote></div>
 
