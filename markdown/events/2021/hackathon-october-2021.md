@@ -27,13 +27,13 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
 - Join the [nf-core slack](https://nf-co.re/join) and the channel #hackathon-oct2021-public
 - Have installed on your computer:
   - [Nextflow](https://nextflow.io/)
-  - [nf-core/tools](https://nf-co.re/tools) 
+  - [nf-core/tools](https://nf-co.re/tools)
   - Docker/Singularity/Conda: [Google is your friend]
 - Familiarise yourself with the documentation on the nf-core website for nf-core modules:
-  - https://nf-co.re/developers/adding_modules
-  - https://www.nextflow.io/docs/latest/dsl2.html#modules
+  - [https://nf-co.re/developers/adding_modules](https://nf-co.re/developers/adding_modules)
+  - [https://www.nextflow.io/docs/latest/dsl2.html#modules](https://www.nextflow.io/docs/latest/dsl2.html#modules)
   - Relevant nf-core/bytesize talks are also listed below
-- Have a peek at the [GitHub Projects board](https://github.com/orgs/nf-core/projects/20) for the hackathon 
+- Have a peek at the [GitHub Projects board](https://github.com/orgs/nf-core/projects/20) for the hackathon
 - If you have been accepted as a mentee for the pair programming session on day 1 your mentor should be in touch via DM on Slack. If you haven’t been contacted please let us know on the #hackathon-oct2021-public Slack channel.
 
 If you have any problems with any of these just ask on the slack channel or email [outreach@nf-co.re](mailto:outreach@nf-co.re)
@@ -42,14 +42,14 @@ If you have any problems with any of these just ask on the slack channel or emai
 
 Our primary focus for this hackathon will be the conversion of nf-core pipelines from DSL1 to DSL2. The main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format. To get started we added two tutorials:
 
-* Current state of the DSL2 template:
+- Current state of the DSL2 template:
 
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 
-* Tutorial: Adding a local module to nf-core/modules:
+- Tutorial: Adding a local module to nf-core/modules:
 
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -57,15 +57,15 @@ Our primary focus for this hackathon will be the conversion of nf-core pipelines
 
 We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you  would like to learn more:
 
-* [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
-* [DSL module development](https://www.youtube.com/watch?v=ggGGhTMgyHI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=5)
-* [Adding modules to nf-core/modules](https://www.youtube.com/watch?v=Wc4A2tQ6WWY&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=7)
-* [How to use modules in a pipeline](https://www.youtube.com/watch?v=tWvou0xj9wA&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=6)
-* [Modules test data](https://www.youtube.com/watch?v=QXfAerydAT0&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=17)
-* [Test modules](https://www.youtube.com/watch?v=pjhscKyWH74&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=18)
-* [Where do I start writing my own DSL2 pipeline?!](https://youtu.be/Z_uPj7fAes8)
-* [Development environments & workflows (Phil)](https://www.youtube.com/watch?v=XB96efweCLI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=12)
-* [Development environments & workflows (Maxime)](https://www.youtube.com/watch?v=OF55x-FT5WE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=19)
+- [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
+- [DSL module development](https://www.youtube.com/watch?v=ggGGhTMgyHI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=5)
+- [Adding modules to nf-core/modules](https://www.youtube.com/watch?v=Wc4A2tQ6WWY&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=7)
+- [How to use modules in a pipeline](https://www.youtube.com/watch?v=tWvou0xj9wA&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=6)
+- [Modules test data](https://www.youtube.com/watch?v=QXfAerydAT0&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=17)
+- [Test modules](https://www.youtube.com/watch?v=pjhscKyWH74&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=18)
+- [Where do I start writing my own DSL2 pipeline?!](https://youtu.be/Z_uPj7fAes8)
+- [Development environments & workflows (Phil)](https://www.youtube.com/watch?v=XB96efweCLI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=12)
+- [Development environments & workflows (Maxime)](https://www.youtube.com/watch?v=OF55x-FT5WE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=19)
 
 Thanks for signing up and see you soon!
 
@@ -296,12 +296,12 @@ The following schedule should display times in your local time zone:
 
 During the hackathon, we will have a few light-hearted fun and games!
 
-* Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
-* Throughout the three days, we will once again be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
+- Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
+- Throughout the three days, we will once again be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
 
     > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
 
-* In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as you can find!
-* Finally, during Thursday's social event (see schedule above), we will be running a short quiz!
+- In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as you can find!
+- Finally, during Thursday's social event (see schedule above), we will be running a short quiz!
 
 All social activities are of course optional, but hope to see as many people joining in as possible :tada:
