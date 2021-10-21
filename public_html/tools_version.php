@@ -27,7 +27,7 @@ define('GH_API_OPTS',
 );
 
 // Fetch releases if file not found or older than 24 hours
-if(!file_exists($tools_version_fn) || filemtime($tools_version_fn) < (time() - 60 * 60 * 24)) {
+if(!file_exists($tools_version_fn) || filemtime($tools_version_fn) < (time() - 60 * 60 * 24) || isset($_GET['force'])) {
     $tools_versions_url = 'https://api.github.com/repos/nf-core/tools/releases';
     $tools_versions_json = json_decode(file_get_contents($tools_versions_url, false, GH_API_OPTS), true);
     if($tools_versions_json){
