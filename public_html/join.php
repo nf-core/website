@@ -38,11 +38,11 @@ include('../includes/header.php');
   </a>
 </p>
 <p class="text-info small">
-  <i class="fas fa-exclamation-triangle mr-1"></i>
+  <i class="fas fa-exclamation-triangle me-1"></i>
   All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-info link-underline">code of conduct</a>
 </p>
 <div class="alert alert-info text-center">
-  <i class="fab fa-gitter mr-1"></i>
+  <i class="fab fa-gitter me-1"></i>
   If your question is about Nextflow and not directly related to nf-core, please use the main <a class="link-underline" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
 </div>
 
@@ -51,14 +51,14 @@ include('../includes/header.php');
   Slack
 </h1>
 <p class="text-info small">
-  <i class="fas fa-question-circle mr-1"></i>
+  <i class="fas fa-question-circle me-1"></i>
   If you would like help with running nf-core pipelines, Slack is the best place to start.
 </p>
 <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.</p>
 <p>Once you have registered, you can access the nf-core slack at <a href="https://nfcore.slack.com/">https://nfcore.slack.com/</a>
   <em class="small text-muted">(NB: No hyphen!)</em></p>
-<p><a class="btn btn-success mr-2" href="https://nf-co.re/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
+<p><a class="btn btn-success me-2" href="https://nf-co.re/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
 </p>
 
 <h1 id="github" class="mt-5"><a href="#github" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
@@ -66,7 +66,7 @@ We use it to provide help to people running nf-core pipelines, as well as discus
   GitHub organisation
 </h1>
 <p class="text-info small">
-  <i class="fas fa-bug mr-1"></i>
+  <i class="fas fa-bug me-1"></i>
   If you encounter a bug or have a suggestion, please create an issue on the repository for that pipeline.
 </p>
 <p>We use GitHub to manage all of the code written for nf-core.

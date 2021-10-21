@@ -104,8 +104,8 @@ $(function () {
         $('.form-control:has(.form-check-input[type="radio"]:invalid)').addClass('radio-form-control-invalid');
 
         // Input group addons
-        $('.input-group:has(input:valid) .input-group-prepend, .input-group:has(input:valid) .input-group-append').addClass('input-group-append-valid');
-        $('.input-group:has(input:invalid, select:invalid) .input-group-prepend, .input-group:has(input:invalid, select:invalid) .input-group-append').addClass('input-group-append-invalid');
+        $('.input-group:has(input:valid)').addClass('input-group-valid');
+        $('.input-group:has(input:invalid, select:invalid)').addClass('input-group-invalid');
 
     });
 
@@ -115,7 +115,7 @@ function set_validation_styles(form_is_valid){
     // Reset
     $('#validation_fail_list').html('');
     $('.form-control:has(.form-check-input[type="radio"])').removeClass('radio-form-control-valid radio-form-control-invalid');
-    $('.input-group .input-group-prepend').removeClass('input-group-append-valid input-group-append-invalid');
+    $('.input-group .input-group-prepend').removeClass('input-group-valid input-group-invalid');
 
     // Invalid
     if(!form_is_valid){

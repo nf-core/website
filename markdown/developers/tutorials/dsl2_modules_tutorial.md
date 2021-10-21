@@ -64,8 +64,8 @@ nf-core modules create fgbio/fastqtobam
 
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
-```bash
-modules/fgbio
+```console
+software/fgbio
 └── fastqtobam
     ├── functions.nf
     ├── main.nf
@@ -74,8 +74,8 @@ modules/fgbio
 
 And also the following for the testing of the module
 
-```bash
-tests/modules/fgbio
+```console
+tests/software/fgbio
 └── fastqtobam
     ├── main.nf
     └── test.yml
@@ -100,7 +100,7 @@ FGBIO command line for the function *FastqToBam* looks like the following:
 fgbio --tmp-dir=tmpFolder \\
     FastqToBam \\
     -i read1_fastq.gz read2_fastq.gz \\
-    -o sampleID_umi_converted.bam" \\
+    -o "sampleID_umi_converted.bam" \\
     --read-structures "+T 12M11S+T" \\
     --sample "sampleID" \\
     --library "sampleID"
@@ -249,7 +249,7 @@ process FGBIO_FASTQTOBAM {
 
 Note that we have commented our choice to deviate from the guidelines in order to output the software version, so any users will be aware of the reasons for this code.
 
-> :white_check_mark:  It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+> :heavy_check_mark:  It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
 
 ### Lint your code
 
