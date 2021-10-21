@@ -49,7 +49,7 @@ if(file_exists($gh_pipeline_schema_fn)){
     $default_val = '';
     if(array_key_exists("default", $param) && strlen(trim($param['default'])) > 0){
       $default_val = is_string($param['default'])? "'".$param['default']."'":$param['default'];
-      $default_val = '<code class="text-small"><span class="text-muted">default: </span>'.$default_val.'</code>';
+      $default_val = '<code class="text-small overflow-scroll w-100"><span class="text-muted">default: </span>'.$default_val.'</code>';
     }
 
     # pattern value
@@ -74,10 +74,10 @@ if(file_exists($gh_pipeline_schema_fn)){
       } else {
         $param_default = is_string($param['default']) ? "'" . $param['default'] . "'" : $param['default'];
         $dropdown_label = $default_val != '' ? 'Options: <code class="text-small">'. $param_default . "</code> (default)" : 'Options';
-        $enum_val = '<div class="btn-group bg-code">
-                      <button type="button" class="btn btn-light border-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
+        $enum_val = '<div class="btn-group">
+                      <button type="button" class="btn btn-light border-0 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
                         . $dropdown_label. '</button>
-                    <div class="dropdown-menu bg-code">';
+                    <div class="dropdown-menu">';
 
         foreach ($param['enum'] as $key => $param_enum) {
           $enum_val .= '<a class="dropdown-item"><code class="text-small">';
@@ -97,29 +97,29 @@ if(file_exists($gh_pipeline_schema_fn)){
     $help_text = '';
     if (array_key_exists("help_text", $param) && strlen(trim($param['help_text'])) > 0) {
       $help_text_btn = '
-        <button class="btn btn-sm btn-outline-info ml-2 mb-1 mt-1" data-toggle="collapse" href="#' . $param_id . '-help" aria-expanded="false">
+        <button class="btn btn-sm btn-outline-info ms-2 mb-1 mt-1" data-bs-toggle="collapse" href="#' . $param_id . '-help" aria-expanded="false">
           <i class="fas fa-question-circle"></i> Help
         </button>';
       $help_text = '
-        <div class="collapse bg-lightgray col-12 schema-docs-help-text p-2 mb-2 small" id="' . $param_id . '-help">
+        <div class="collapse bg-lightgray col-12 param-docs-help-text p-2 mb-2 small" id="' . $param_id . '-help">
           ' . parse_md($param['help_text'])['content'] . $pattern_val . $minmax_val . '</div>';
     }
     # Labels
     $labels = [];
     if($is_required){
-      $labels[] = '<span class="small badge badge-warning ml-2">required</span>';
+      $labels[] = '<span class="badge bg-warning text-dark small ms-2">required</span>';
     }
     if($is_hidden){
-      $labels[] = '<span class="small badge badge-light ml-2">hidden</span>';
+      $labels[] = '<span class="badge bg-light text-dark small ms-2">hidden</span>';
     }
     $labels_helpbtn = '';
     if(count($labels) > 0 || strlen($help_text_btn)){
-      $labels_helpbtn = '<div class="param_labels_helpbtn">'.$help_text_btn.implode(' ', $labels).'</div>';
+      $labels_helpbtn = '<div class="param_labels_helpbtn d-flex align-items-center">'.$help_text_btn.implode(' ', $labels).'</div>';
     }
 
     # Extra group classes
     $row_class = 'align-items-center';
-    $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 small-h';
+    $id_cols = 'col-10 col-md-5 col-lg-4 col-xl-3 small-h ps-3';
     $h_level = 'h3';
     $description_class = 'small';
     if($is_group){
@@ -139,14 +139,13 @@ if(file_exists($gh_pipeline_schema_fn)){
     return '
     <div class="row param-docs-row border-bottom '.$row_class.'">
       <div class="'.$id_cols.' param-docs-row-id-col">'.add_ids_to_headers('<'.$h_level.'>'.$fa_icon.$h_text.'</'.$h_level.'>', $is_hidden).'</div>
-      <div class="col">'.$param_body. '</div>
-      <div class="col-auto d-flex flex-column align-items-end my-1">' . $default_val. $enum_val . '</div>
-      <div class="col-auto text-right">'.$help_text_btn.implode(' ', $labels).'</div>
-      '.$help_text. '
+      <div class="col me-auto">'.$param_body. '</div>
+      <div class="col-auto d-flex flex-column align-items-end my-1">' . $default_val. $enum_val . $labels_helpbtn. '</div>'
+      .$help_text. '
     </div>';
   }
 
-  $schema_content = '<div class="schema-docs">';
+  $schema_content = '<div class="param-docs">';
   $schema_content .= _h1('Parameters');
   // Definition groups
   if(isset($schema['allOf']) && count($schema['allOf']) > 0){
@@ -186,9 +185,9 @@ if(file_exists($gh_pipeline_schema_fn)){
     $schema_content .= '
     <div class="alert border bg-light small hidden_params_alert collapse show">
       <p>The following uncommon parameters have been hidden: <code>'.implode('</code>, <code>', $hidden_params).'</code></p>
-      <p><a href=".param-docs-hidden, .toc .collapse, .hidden_params_alert" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">Click here</a> to show all hidden params.</p>
+      <p><a href=".param-docs-hidden, .toc .collapse, .hidden_params_alert" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">Click here</a> to show all hidden params.</p>
     </div>';
   }
 
-  $schema_content .= '</div>'; // .schema-docs
+  $schema_content .= '</div>'; // .param-docs
 }

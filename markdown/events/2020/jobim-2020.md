@@ -20,7 +20,7 @@ Therefore JOBIM has a unique place in the scientific landscape.
 
 Maxime Garcia will be giving a 20-minute talk about the nf-core community.
 
-<div class="embed-responsive embed-responsive-16by9">
+<div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/afNTk2jf-ww" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
