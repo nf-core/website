@@ -4,7 +4,7 @@
 // ---------------------------
 // Pull the details of all nf-core pipelines from GitHub
 // and write as JSON to a file.
-// This script is called by deploy.php when the GitHub web hooks
+// This script is called by deploy_pipelines.php when the GitHub web hooks
 // trigger due to an update.
 //
 // Note that the resulting file (public_html/pipelines.json) is
