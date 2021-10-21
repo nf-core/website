@@ -72,12 +72,12 @@ The following schedule should display times in your local time zone:
             <tr>
                 <td data-timestamp="1635379200" data-timeformat="HH:mm z">02:00</td>
                 <td rowspan=4></td>
-                <td>Check-out (Americas) / Check-in (Asia-Pacific)<br>
+                <td>Check-out/in (Americas/Asia-Pacific)<br>
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Edmund Miller/Zhaowei Yang/Bhargava Morampalli</li>
                   </ul></td>
-                <td>Check-out (Americas) / Check-in (Asia-Pacific)<br>
+                <td>Check-out/in (Americas/Asia-Pacific)<br>
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Edmund Miller/Zhaowei Yang/Bhargava Morampalli</li>
@@ -109,14 +109,14 @@ The following schedule should display times in your local time zone:
                   </ul>
                 </td>
                 <td>
-                  Check-out (Asia-Pacific) / Check-in (EMEA)
+                  Check-out/in (Asia-Pacific/EMEA)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Zhaowei Yang/Bhargava Morampalli/Matthias Hörtenhuber</li>
                   </ul>
                 </td>
                 <td>
-                  Check-out (Asia Pacific) / Check-in (EMEA)
+                  Check-out/in (Asia-Pacific/EMEA)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Zhaowei Yang/Bhargava Morampalli/Matthias Hörtenhuber</li>
@@ -137,9 +137,9 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1635327000" data-timeformat="HH:mm z">11:30</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
             </tr>
             <tr>
                 <td data-timestamp="1635327900" data-timeformat="HH:mm z">11:45</td>
@@ -156,21 +156,21 @@ The following schedule should display times in your local time zone:
             <tr>
                 <td data-timestamp="1635332400" data-timeformat="HH:mm z">13:00</td>
                 <td>
-                  Group catch-up:<br>
+                  Group catch-up<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Matthias Hörtenhuber</li>
                   </ul>
                 </td>
                 <td>
-                  Group catch-up:<br>
+                  Group catch-up<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Matthias Hörtenhuber</li>
                   </ul>
                 </td>
                 <td>
-                  Group catch-up:<br>
+                  Group catch-up<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Matthias Hörtenhuber</li>
@@ -191,9 +191,9 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1635339600" data-timeformat="HH:mm z">15:00</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li></ul</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li></ul</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
             </tr>
             <tr>
                 <td data-timestamp="1635340500" data-timeformat="HH:mm z">15:15</td>
@@ -213,14 +213,14 @@ The following schedule should display times in your local time zone:
             <tr>
                 <td data-timestamp="1635346800" data-timeformat="HH:mm z">17:00</td>
                 <td>
-                  Check-in (Americas) / Check-out (EMEA)
+                  Check-out/in (EMEA/Americas)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Matthias Hörtenhuber/Edmund Miller</li>
                   </ul>
                 </td>
                 <td>
-                  Check-in (Americas) / Check-out (EMEA)
+                  Check-out/in (EMEA/Americas)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
                     <li>Host(s): Matthias Hörtenhuber/Edmund Miller</li>
@@ -240,10 +240,11 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Location: Mentor specific rooms</li>
                   </ul></td>
-                <td rowspan="2">Social Event!<br>
+                <td rowspan="2">Social Event<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lounge</li>
                     <li>Host: Maxime Garcia / Susanna Marquez</ul></td>
+                    <td rowspan="6"></td>
             </tr>
             <tr>
                 <td data-timestamp="1635350400" data-timeformat="HH:mm z">18:00</td>
@@ -258,8 +259,8 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1635355800" data-timeformat="HH:mm z">19:30</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
-                <td>Break<br><ul><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
+                <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td>
             </tr>
             <tr>
                 <td data-timestamp="1635356700" data-timeformat="HH:mm z">19:45</td>
