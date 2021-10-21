@@ -31,8 +31,8 @@ function create_event_download_button($event,$button_style){
     ->description($event['subtitle'] ? $event['subtitle'] : "")
     ->address($address);
 
-  $event_download_button =  '<div class="dropdown btn-group" role="group">
-          <button type="button" class="btn '.$button_style.' dropdown-toggle mb-3" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  $event_download_button =  '<div class="dropup btn-group" role="group">
+          <button type="button" class="btn '.$button_style.' dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="far fa-calendar-plus me-1"></i> Export event
           </button>
           <div class="dropdown-menu">
@@ -65,8 +65,8 @@ function print_events($events, $is_past_event)
 ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class ?>">
-      <div class="card-body overflow-auto <?php if ($is_past_event) {
+    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class ?> overflow-visible ">
+      <div class="card-body <?php if ($is_past_event) {
                                             echo 'py-2';
                                           } ?>">
         <h5 class="my-0 py-0">
