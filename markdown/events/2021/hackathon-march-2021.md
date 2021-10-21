@@ -98,9 +98,9 @@ These volunteers are here to help!
 We expect people to come and go during the hackathon due to diverse time zones.
 Please just do whatever works best for you and try to catch up with the YouTube streams if you missed them.
 
-* <i class="fab fa-youtube mr-2"></i>
+* <i class="fab fa-youtube me-2"></i>
   _Check-ins_ and _check-outs_ will be hosted on Zoom and live-streamed to YouTube, available after the event.
-* <i class="fa fa-video mr-2"></i>
+* <i class="fa fa-video me-2"></i>
   The social will be on Zoom (without YouTube) and _Group catch-ups_ and will be held using <https://meet.jit.si/>
 
 The following schedule should display times in your local time zone:
@@ -121,21 +121,21 @@ The following schedule should display times in your local time zone:
                 <td>
                   Welcome
                   <ul class="small list-unstyled">
-                    <li><a href="https://youtu.be/cuwcgZX6Li8" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/cuwcgZX6Li8</a></li>
+                    <li><a href="https://youtu.be/cuwcgZX6Li8" target="_blank"><i class="fab fa-youtube me-1"></i>https://youtu.be/cuwcgZX6Li8</a></li>
                     <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</li>
                   </ul>
                 </td>
                 <td>
                   Check-in
                   <ul class="small list-unstyled">
-                    <li><a href="https://youtu.be/JdnG-QzZQdg" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/JdnG-QzZQdg</a></li>
+                    <li><a href="https://youtu.be/JdnG-QzZQdg" target="_blank"><i class="fab fa-youtube me-1"></i>https://youtu.be/JdnG-QzZQdg</a></li>
                     <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</li>
                   </ul>
                 </td>
                 <td>
                   Check-in
                   <ul class="small list-unstyled">
-                    <li><a href="https://youtu.be/awmfwmPVnVI" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/awmfwmPVnVI</a></li>
+                    <li><a href="https://youtu.be/awmfwmPVnVI" target="_blank"><i class="fab fa-youtube me-1"></i>https://youtu.be/awmfwmPVnVI</a></li>
                     <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</li>
                   </ul>
                 </td>
@@ -200,21 +200,21 @@ The following schedule should display times in your local time zone:
                 <td>
                   Check-out
                   <ul class="small list-unstyled">
-                    <li><a href="https://youtu.be/KN9a2_oF98c" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/KN9a2_oF98c</a></li>
+                    <li><a href="https://youtu.be/KN9a2_oF98c" target="_blank"><i class="fab fa-youtube me-1"></i>https://youtu.be/KN9a2_oF98c</a></li>
                     <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</li>
                   </ul>
                 </td>
                 <td>
                   Check-out
                   <ul class="small list-unstyled">
-                    <li><a href="https://youtu.be/BTGx_2XLRow" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/BTGx_2XLRow</a></li>
+                    <li><a href="https://youtu.be/BTGx_2XLRow" target="_blank"><i class="fab fa-youtube me-1"></i>https://youtu.be/BTGx_2XLRow</a></li>
                     <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</li>
                   </ul>
                 </td>
                 <td>
                   Wrap-up
                   <ul class="small list-unstyled">
-                    <li><a href="https://youtu.be/TxgrGlFFh_M" target="_blank"><i class="fab fa-youtube mr-1"></i>https://youtu.be/TxgrGlFFh_M</a></li>
+                    <li><a href="https://youtu.be/TxgrGlFFh_M" target="_blank"><i class="fab fa-youtube me-1"></i>https://youtu.be/TxgrGlFFh_M</a></li>
                     <li>Zoom link shared in <a href="https://nfcore.slack.com/archives/C01LBUZCDEW"><code>#hackathon-march-2021</code></a> on Slack.</li>
                   </ul>
                 </td>

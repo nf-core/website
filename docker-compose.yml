@@ -18,3 +18,12 @@ services:
     volumes:
       - .:/var/www/
     working_dir: /var/www/
+  npm:
+    image: node:16-alpine3.12
+    container_name: npm
+    volumes:
+      - .:/var/www/
+    command: sh -c "npm install --quiet &&
+                    npm run copy-assets &&
+                    npm run watch-sass"
+    working_dir: /var/www/
