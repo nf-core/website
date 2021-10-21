@@ -31,7 +31,7 @@ function create_event_download_button($event,$button_style){
     ->description($event['subtitle'] ? $event['subtitle'] : "")
     ->address($address);
 
-  $event_download_button =  '<div class="dropdown btn-group" role="group">
+  $event_download_button =  '<div class="dropup btn-group" role="group">
           <button type="button" class="btn '.$button_style.' dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="far fa-calendar-plus me-1"></i> Export event
           </button>
