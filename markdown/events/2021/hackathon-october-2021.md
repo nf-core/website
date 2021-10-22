@@ -34,13 +34,13 @@ We have recorded bytesize talks in the past few months going over some of the de
 
 As the main objectives of this hackathon will be adding nf-core modules and rewriting existing pipelines to the new Nextflow language format, we have set up a few groups working on this task for different pipelines.
 
-We will coordinate our work and the issues we are working on using a single GitHub [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/22).
+We will coordinate our work and the issues we are working on using a single GitHub [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/20).
 
 * **variant calling**
   * Working on adding modules for variant calling pipelines, mainly sarek, and raredisease.
   * Group lead: Maxime Garcia, Friederike Hanssen.
   * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/)
-* **meta-omics**
+* **microbial genomics**
   * Working on adding modules for meta-omics pipelines, mainly ampliseq, mag, bacass.
   * Group lead: Daniel Straub.
   * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/)
@@ -61,9 +61,9 @@ We will coordinate our work and the issues we are working on using a single GitH
 
 We will be a lot of people working in parallel during this hackathon, so to stay organised we have a recommended workflow:
 
-1. :speech_balloon: Chat with your group to get an overview of what is going on
-2. <i class="fab fa-slack"></i> Join the relevant Slack channel to stay up to date and discuss with your project members
-3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board
+1. :speech_balloon: Most of the event will happen on [Gather town](gather.town). You can chat there with your group to get an overview of what is going on.
+2. <i class="fab fa-slack"></i> Join the `#hackathon-oct2021-public` Slack channel to stay up to date with the hackathon events.
+3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board]()
     * If you have something you want to do that's not there, please make an issue (e.g. in the nf-core/modules repository if you are adding a new module) and add it to the board
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time)
     * This is so that multiple people don't accidentally work on the same task
