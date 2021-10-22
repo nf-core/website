@@ -24,3 +24,9 @@ It is our hope that these talks / videos will build an archive of training mater
 ## Bytesize 24: Where do you begin? DSL2 pipeline introduction
 
 This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present an introduction to developing pipelines in Nextflow DSL2 using nf-core community standards.
+
+Slides:
+
+<div class="ratio ratio-16x9">
+    <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
+</div>
