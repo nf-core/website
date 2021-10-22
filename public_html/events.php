@@ -85,10 +85,10 @@ function print_events($events, $is_past_event)
             echo '<p>' . nl2br($event['description']) . '</p>';
           } ?>
           <div class="btn-group" role="group">
-            <a type="button" href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
+            <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
               See details
             </a>
-            <?php echo create_event_download_button($event, "btn-outline-success");?>
+            <?php echo create_event_download_button($event, "btn-outline-success"); ?>
           </div>
         <?php else : ?>
           <h6 class="small text-muted mb-0">

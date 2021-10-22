@@ -27,7 +27,8 @@ if (isset($subfooter) and $subfooter) {
             </a>
             <span class="ms-1">and</span>
             <a href="/about#aws">
-              <img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="darkmode-image" style="max-width: 50px">
+              <img src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services" class="hide-light" style="max-width: 50px">
+              <img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="hide-dark" style="max-width: 50px">
             </a>
           </div>
         </small>
