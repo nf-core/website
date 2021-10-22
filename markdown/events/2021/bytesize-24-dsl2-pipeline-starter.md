@@ -28,5 +28,5 @@ This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present
 Slides:
 
 <div class="ratio ratio-16x9">
-    <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
+    <iframe src="https://widgets.figshare.com/articles/16836616/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 </div>
