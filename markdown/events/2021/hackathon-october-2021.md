@@ -78,21 +78,21 @@ As the main objectives of this hackathon will be adding nf-core modules and rewr
 
 We will coordinate our work and the issues we are working on using a single GitHub [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/20).
 
-* **variant calling**
-  * Working on adding modules for variant calling pipelines, mainly sarek, and raredisease.
-  * Group lead: Maxime Garcia, Friederike Hanssen.
-* **microbial genomics**
-  * Working on adding modules for meta-omics pipelines, mainly ampliseq, mag, bacass.
-  * Group lead: Daniel Straub.
-* **epigenetics**
-  * Working on adding modules for epigenetics pipelines, mainly chip-seq, methylseq, atacseq, HiC.
-  * Group lead: Harshil Patel.
-* **ancient DNA**
-  * Working on adding modules for ancient DNA sequencing pipelines, mainly eager, coproid.
-  * Group lead: James Fellows Yates.
-* **single-cell**
-  * Working on adding modules for single-cell pipelines, mainly scrnaseq, scflow.
-  * Group lead: Gisela Gabernet.
+- **variant calling**
+  - Working on adding modules for variant calling pipelines, mainly sarek, and raredisease.
+  - Group lead: Maxime Garcia, Friederike Hanssen.
+- **microbial genomics**
+  - Working on adding modules for meta-omics pipelines, mainly ampliseq, mag, bacass.
+  - Group lead: Daniel Straub.
+- **epigenetics**
+  - Working on adding modules for epigenetics pipelines, mainly chip-seq, methylseq, atacseq, HiC.
+  - Group lead: Harshil Patel.
+- **ancient DNA**
+  - Working on adding modules for ancient DNA sequencing pipelines, mainly eager, coproid.
+  - Group lead: James Fellows Yates.
+- **single-cell**
+  - Working on adding modules for single-cell pipelines, mainly scrnaseq, scflow.
+  - Group lead: Gisela Gabernet.
 
 # How we will work
 
