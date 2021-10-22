@@ -1,3 +1,11 @@
+public_html/assets/lib/
+public_html/assets/css/nf-core-auto.css
+public_html/assets/css/nf-core-auto.css.map
+public_html/assets/css/nf-core-dark.css
+public_html/assets/css/nf-core-dark.css.map
+public_html/assets/css/nf-core-light.css
+public_html/assets/css/nf-core-light.css.map
+
 .DS_Store
 
 config.ini
@@ -8,11 +16,12 @@ public_html/tools/docs/
 nfcore_stats.json
 nfcore_issue_stats.json
 markdown/pipelines
+markdown/tools
 api_cache
 contributor_stats
 update.log
-includes/nf-core/tools_version.txt
-includes/nf-core/tools_all_versions.txt
+tools_version.txt
+tools_all_versions.txt
 
 access-logs
 docs
@@ -28,4 +37,6 @@ www
 .user.ini
 php.ini
 .*.sw?
+node_modules
 vendor
+backstop_data

@@ -2,7 +2,7 @@
 
 # [nf-co.re](https://github.com/nf-core/nf-co.re)
 
-This repository contains code for the nf-core website: **http://nf-co.re/**
+This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 ## Packages used
 
@@ -23,7 +23,7 @@ Here's how the website is built:
   * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
   * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
 * PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
-* SVG icons: http://www.flaticon.com, https://worldvectorlogo.com/
+* SVG icons: <http://www.flaticon.com>, <https://worldvectorlogo.com/>
 
 ## Development
 
@@ -31,17 +31,9 @@ Here's how the website is built:
 
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
-**IMPORTANT:** The repo has git submodules, so remember to use the `--recursive` flag:
-
 ```bash
-git clone --recursive git@github.com:[USERNAME]/nf-co.re.git
+git clone git@github.com:[USERNAME]/nf-co.re.git
 cd nf-co.re/
-```
-
-If you forget the recursive flag (I always do), the markdown conversion won't work. You can pull the submodules when you realise this with the following command:
-
-```bash
-git submodule update --init --recursive
 ```
 
 ### Running a local server
@@ -114,8 +106,8 @@ all also ignored in `.gitignore`.
 The web server needs the following cronjob running to scrape pipeline statistics once a week:
 
 ```
-0	0	*	*	*	/usr/local/bin/php /home/nfcore/nf-co.re/update_stats.php >> /home/nfcore/update.log 2>&1
-0	2	*	*	*	/usr/local/bin/php /home/nfcore/nf-co.re/update_issue_stats.php >> /home/nfcore/update.log 2>&1
+0 0 * * * /usr/local/bin/php /home/nfcore/nf-co.re/update_stats.php >> /home/nfcore/update.log 2>&1
+0 2 * * * /usr/local/bin/php /home/nfcore/nf-co.re/update_issue_stats.php >> /home/nfcore/update.log 2>&1
 ```
 
 The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.

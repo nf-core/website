@@ -23,6 +23,12 @@ function parse_md_front_matter($md_full)
     'md' => $md_full
   );
 }
+function get_correct_text_color($bg_color)
+{
+  $text_color = in_array($bg_color, array("warning", "light")) ? "text-dark" : "";
+  return $text_color;
+}
+
 
 // Helper function for event page
 function sanitise_date_meta($event)
@@ -55,7 +61,7 @@ function prep_current_event($event){
     'talk' => 'success',
     'poster' => 'secondary',
     'tutorial' => 'info',
-    'workshop' => 'light'
+    'workshop' => 'warning'
   );
   $d['event_type_icons'] = array(
     'hackathon' => 'fad fa-laptop-code',
@@ -80,8 +86,9 @@ function prep_current_event($event){
     $d['nice_date_string'] = ['data-timestamp="'.$event['start_ts'].'"', date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts'])];
   }
   $d['colour_class'] = $d['event_type_classes'][strtolower($event['type'])];
+  $d['text_colour_class'] = get_correct_text_color($d['colour_class']);
   $d['icon_class'] = $d['event_type_icons'][strtolower($event['type'])];
-  $d['event_type_badge'] = '<span class="badge badge-'.$d['colour_class'].' small"><i class="'. $d['icon_class'].' mr-1"></i>'. ucfirst($event['type']).'</span>';
+  $d['event_type_badge'] = '<span class="badge bg-'.$d['colour_class'].' '. $d['text_colour_class'] .' small"><i class="'. $d['icon_class'].' me-1"></i>'. ucfirst($event['type']).'</span>';
   $d['location_url_meta'] = [];
   if (array_key_exists('location_url', $event)) {
     if(!is_array($event['location_url'])) $event['location_url'] = [$event['location_url']];
@@ -90,23 +97,23 @@ function prep_current_event($event){
 
       switch ($d['location_url_meta'][$idx]['base_url']) {
         case 'zoom.us':
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         case "youtu.b":
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         case "www.bil":
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fad fa-film mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fad fa-film me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         case "doi.org":
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-barcode mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-barcode me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
           break;
         default:
-          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-external-link mr-1"></i>';
+          $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-external-link me-1"></i>';
           $d['location_url_meta'][$idx]['print_url'] = $url;
       }
     }
@@ -122,9 +129,9 @@ function print_current_events($events, $border){
 ?>
 
     <!-- Event Card -->
-    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-right-0 border-bottom-0 border-' . $d['colour_class'] : 'border-0'); ?> ">
+    <div class="card mb-3 <?php echo ($border ?  'border-top-0 border-end-0 border-bottom-0 rounded-0 border-' . $d['colour_class'] : 'border-0'); ?> ">
       <div class="card-body py-3 d-flex">
-        <div class="pt-2"><i class="<?php echo $d['icon_class']; ?> fa-5x text-<?php echo $d['colour_class'] ?> mr-2"></i></div>
+        <div class="pt-2"><i class="<?php echo $d['icon_class']; ?> fa-5x text-<?php echo $d['colour_class'] ?> me-2"></i></div>
         <div class="px-2 flex-grow-1 d-flex flex-column justify-content-between">
           <div>
             <h5 class=" my-0 py-0 d-flex">
@@ -152,7 +159,7 @@ function print_current_events($events, $border){
         echo '<div class="btn-group mt-1" role="group" aria-label="External links">';
         foreach ($event['location_url'] as $idx => $url) {
           $m = $d['location_url_meta'][$idx];
-          echo '<a href="' . $url . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
+          echo '<a href="' . $url . '" class="btn btn-' . $d['colour_class'] . ' rounded-0" data-bs-toggle="tooltip" title="'.$url.'">' . $m['icon'] . $m['print_url'] . '</a>';
         }
         echo '</div>';
       }
@@ -271,18 +278,19 @@ function generate_toc($html_string)
       $h_content = $match[5];
       $name = trim(str_replace(['&nbsp;','&amp;'], ['','&'], htmlentities(strip_tags($h_content, $allowed_tags= ['code']))));
       if ($level > $curr_level) {
-        $toc .= "\n" . '<div class="list-group">' . "\n";
+        $toc .= "\n" . '<nav class="nav flex-column flex-nowrap">' . "\n";
         $counter += 1;
       } else if ($level == $curr_level) {
         $toc .= "\n";
       } else {
         while ($level < $counter) {
-          $toc .= "\n</div>\n\n";
+          $toc .= "\n</nav>\n\n";
           $counter -= 1;
         }
       }
       $curr_level = $level;
       if (preg_match('/<code>.*?<\/code>/', $whole_str,$code_match)) {
+        $name = preg_replace('/--/', '&#8288;-&#8288;-&#8288;', $name);
         $name = html_entity_decode($name);
       }
       if (preg_match('/<i.*?<\/i>/', $whole_str, $icon_match)) {
@@ -292,11 +300,11 @@ function generate_toc($html_string)
       $toc_hidden = $is_hidden ? ' collapse ' : '';
       $active = $is_active ? ' active ' : '';
       $is_active = false;
-      $toc .= '<a class="list-group-item list-group-item-action scroll_to_link '.$toc_hidden.$active.'" href="#'.$id.'">'.$name.'</a>';
+      $toc .= '<a class="nav-link scroll_to_link py-1 '.$toc_hidden.$active.'" href="#'.$id.'">'.$name.'</a>';
     }
   }
   while ($counter > 0) {
-    $toc .= '</div>';
+    $toc .= '</nav>';
     $counter -= 1;
   }
   return $toc;
@@ -360,6 +368,7 @@ function add_ids_to_headers($content_input, $is_hidden = false)
     function ($matches) use ($heading_ids, $is_hidden) {
       $id_match = trim(strip_tags($matches[2]));
       $id_match = strtolower(preg_replace('/[^\w\-\.]+/', '', str_replace(' ', '-', $id_match)));
+      $id_match = str_replace('.', '-', $id_match);// periods break the js code, because they are not valid in selector ids
       $hid = $id_match;
       $i = 1;
       while (in_array($hid, $heading_ids)) {

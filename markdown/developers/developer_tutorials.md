@@ -11,3 +11,8 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
   - In this tutorial we will see how to create a new module for the nf-core modules repository. As an example, we will create a module to execute the FastqToBam function of the FGBIO suite of tools.
 - [Tutorial: Using nf-core components outside nf-core](tutorials/unofficial_pipelines.md)
   - In some cases you may wish to follow parts nf-core best practices for your own pipeline. This tutorial describes how to use nf-core code without making official nf-core pipelines.
+- DSL2 template code walkthrough:
+
+<div class="ratio ratio-16x9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
