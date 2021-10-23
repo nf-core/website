@@ -107,9 +107,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 5. :fast_forward: When you're done, make a pull-request with your changes. Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
     - [<i class="fas fa-file-alt"></i> Modules and Pipelines](https://hackmd.io/@nf-core/Bk42vnEHF/)
-    - [<i class="fas fa-file-alt"></i> Tools](https://hackmd.io/@nf-core/S1vAu24BK/edit)
+    - [<i class="fas fa-file-alt"></i> Tools](https://hackmd.io/@nf-core/S1vAu24BK/)
     - [<i class="fas fa-file-alt"></i> Website](https://hackmd.io/@nf-core/BkBHF2ErY)
-8. :recycle: Repeat!
+7. :recycle: Repeat!
 
 > The HackMD document is the easiest to forget, but please add something even if you think what you did was small -
 > we will use it in the group check-outs for each day, to stay tuned between time-zones and also in the reporting after the event so it's important for us :bow:
