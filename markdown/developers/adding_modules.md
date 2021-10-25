@@ -342,6 +342,10 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - All function names MUST follow the `camelCase` convention.
 
+- Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. ${prefix}.fq.gz or ${prefix}.bam)
+  - This is to allow filenames to be defined at a pipeline developers/user level for each of their contexts.
+  - In very occasional [cases](https://github.com/nf-core/modules/blob/2ad98162f355671061f457c7c79db45c13478086/modules/pbccs/main.nf#L39), customisation maybe required to ensure filename conflicts do not occur, however the solutions such as [here](https://github.com/nf-core/modules/blob/481d3c811d07c35ddf7dbf2ee528575bbfb8254c/modules/last/postmask/main.nf#L30) is preferred 
+
 ### Input/output options
 
 - Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
