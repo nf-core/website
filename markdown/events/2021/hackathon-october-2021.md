@@ -114,7 +114,7 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 > The HackMD document is the easiest to forget, but please add something even if you think what you did was small -
 > we will use it in the group check-outs for each day, to stay tuned between time-zones and also in the reporting after the event so it's important for us :bow:
 
-## Schedule
+# Schedule
 
 We expect people to come and go during the hackathon due to diverse time zones.
 Please just do whatever works best for you!
@@ -330,8 +330,8 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1635356700" data-timeformat="HH:mm z">19:45</td>
-                <td rowspan="2">Hack! <...></td>
-                <td rowspan="2">Hack! <...></td>
+                <td>Hack! <...></td>
+                <td>Hack! <...></td>
             </tr>
         </tbody>
     </table>
