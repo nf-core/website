@@ -85,7 +85,7 @@ if ($curr_event) {
         }, 1000);
     </script>
     <h5 class=\"pt-4\">Event Countdown:</h5>
-    <p class=\"display-4 text-nowrap countdown\">" . $countdown_text . "</p>
+    <p class=\"display-5 text-nowrap countdown\">" . $countdown_text . "</p>
     ";
   }
 }
