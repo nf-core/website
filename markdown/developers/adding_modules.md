@@ -342,7 +342,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - All function names MUST follow the `camelCase` convention.
 
-- Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. ${prefix}.fq.gz or ${prefix}.bam).
+- Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
   - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
   - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/2ad98162f355671061f457c7c79db45c13478086/modules/pbccs/main.nf#L39)) which will raise an error asking the developer to change the `options.suffix` variable to rename the output files so they don't clash.
   
