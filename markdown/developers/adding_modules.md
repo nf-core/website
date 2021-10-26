@@ -252,7 +252,7 @@ Please follow the steps below to run the tests locally:
 
         ```console
         cd /path/to/git/clone/of/nf-core/modules/
-        NF_CORE_MODULES_TEST=1 PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd
+        NF_CORE_MODULES_TEST=1 TMPDIR=~ PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd
         ```
 
     - Typical command with Singularity:
@@ -270,6 +270,8 @@ Please follow the steps below to run the tests locally:
         ```
 
     - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
+
+> 🛈 For docker/singularity`TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`. 
 
 > :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directry to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
 
