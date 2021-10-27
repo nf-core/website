@@ -103,7 +103,9 @@ function parse_md($markdown){
 
 
   // Prohibit breaking up `--` in option names
-  $content = preg_replace('/--/i', '&#8288;-&#8288;-&#8288;', $content);
+  $content = preg_replace_callback('/([^\w])(--\w+\S*)/i', function($match){
+      return $match[1] . '<span class="text-nowrap">' . $match[2] . '</span>';
+  }, $content);
   // Add CSS classes to tables
   // Still might break if we have multiple tables and some have custom HTML attrs, but should be good enough for most situations
   if (stripos($content,   '<table>') !== false) {
