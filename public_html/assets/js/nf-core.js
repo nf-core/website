@@ -16,21 +16,23 @@ $(function () {
   // Don't try to guess markdown language to highlight (gets it wrong most of the time)
   hljs.configure({ languages: [] });
 
-  // Set theme cookie
-  if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    document.cookie =
-      "nfcoretheme=dark; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
-    // Run the function so that dark-mode images are switched in
-    update_theme("dark");
-  } else if (
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: light)").matches
-  ) {
-    document.cookie =
-      "nfcoretheme=light; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+  // Set theme cookie if not set
+  if (document.cookie.indexOf("nfcoretheme") == -1) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      document.cookie =
+        "nfcoretheme=dark; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+      // Run the function so that dark-mode images are switched in
+      update_theme("dark");
+    } else if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: light)").matches
+    ) {
+      document.cookie =
+        "nfcoretheme=light; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+    }
   }
   // update cookie when OS theme changes
   window
