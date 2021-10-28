@@ -36,19 +36,34 @@ the nf-core alumni hall of fame:
 
 ## Financial  Support
 
-Whilst much of the development work is done as a labour of love by those involved, we would specifically like to acknowledge and thank the following sponsors who help to support the project.
+The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
+Most of all, we would like to thank all contributors (and their employers!).
+You form the lifeblood of nf-core and we are eternally greatful for your time and efforts.
 
-Please note that many other projects and grants list nf-core as collaborators and contribute to our community.
+A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/community#initiatives)).
+If you work with a project that would benefit from an explicit link with nf-core, please let us know.
+
+Finally, we would specifically like to acknowledge and thank the following sponsors who help to support the project:
 
 ### Chan Zuckerberg Initiative {#czi-eoss}
 
 <img src="/assets/img/contributors-colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
-The Chan Zuckerberg Initiative runs a grant called [_Essential Open Source Software for Science_ (EOSS)](https://chanzuckerberg.com/eoss/).
-Together with Nextflow, nf-core was supported in the [second](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) and [fourth](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) round of the CZI EOSS grant in 2020 and 2021.
+The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
+We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
 
-The CZI EOSS money has allowed us to hire dedicated personnel for development and community support at [QBiC](http://www.qbic.life/) and [SciLifeLab](https://www.scilifelab.se/).
-It also funds expenses for event organisation and community tools.
+* [EOSS - second round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/)
+* [EOSS - fourth round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/)
+* [EOSS - Diversity & Inclusion](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b)
+
+Amongst other things, the CZI EOSS grant money has the nf-core community to:
+
+* Hire a dedicated coordinator / safety officer (50%)
+* Hire a dedicated developer for nf-core (50%)
+* Cover operational costs, such as our Slack subscription fees
+* Organise events, such as hackathons
+* Run organised mentorship programmes _(coming soon)_
+* Hiring local community advocates from geographical areas where we currently lack representation _(coming soon)_
 
 <div class="clearfix"></div>
 
