@@ -207,7 +207,7 @@ if ($pipeline->archived) {
   <div class="container text-center">
     <?php echo $pipeline_warning; ?>
     <p><?php echo $cta_btn; ?></p>
-    <p class="mb-0"><a href="<?php echo $pipeline->html_url; ?>" class="text-dark"><i class="fab fa-github"></i> <?php echo $pipeline->html_url; ?></a></p>
+    <p><a href="<?php echo $pipeline->html_url; ?>" class="subheader-link"><i class="fab fa-github"></i> <?php echo $pipeline->html_url; ?></a></p>
   </div>
 </div>
 
