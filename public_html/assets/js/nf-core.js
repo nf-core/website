@@ -18,51 +18,54 @@ $(function () {
 
   // Set theme cookie
   if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
   ) {
-      document.cookie =
-          "nfcoretheme=dark; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+    document.cookie =
+      "nfcoretheme=dark; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+    // Run the function so that dark-mode images are switched in
+    update_theme("dark");
   } else if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: light)").matches
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: light)").matches
   ) {
-      document.cookie =
-          "nfcoretheme=light; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+    document.cookie =
+      "nfcoretheme=light; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
   }
   // update cookie when OS theme changes
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-        var new_theme = e.matches ? "dark" : "light";
-        update_theme(new_theme);
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      var new_theme = e.matches ? "dark" : "light";
+      update_theme(new_theme);
     });
 
-  $(".theme-switcher label").on('click',function () {
-      var theme = $(this).attr("for").split("-")[1];
+  $(".theme-switcher label").on("click", function () {
+    var theme = $(this).attr("for").split("-")[1];
 
-      //uncheck all radio buttons and select only current one
-      $(".theme-switcher input:checked").prop("checked", false);
-      $(".theme-switcher #theme-" + theme).prop("checked", true);
-      update_theme(theme);
+    //uncheck all radio buttons and select only current one
+    $(".theme-switcher input:checked").prop("checked", false);
+    $(".theme-switcher #theme-" + theme).prop("checked", true);
+    update_theme(theme);
   });
   // Function to switch CSS theme
   function update_theme(theme) {
-
     // Switch the stylesheet
     var newlink = "/assets/css/nf-core-" + theme + ".css";
     $("#theme-stylesheet").attr("href", newlink);
 
     // Switch any images
     $(".darkmode-image").each(function () {
-        var old_imgdir =
-            theme == "dark" ? "contributors-colour" : "contributors-white";
-        var new_imgdir =
-            theme == "dark" ? "contributors-white" : "contributors-colour";
-        $(this).attr("src", $(this).attr("src").replace(old_imgdir, new_imgdir));
+      var old_imgdir =
+        theme == "dark" ? "contributors-colour" : "contributors-white";
+      var new_imgdir =
+        theme == "dark" ? "contributors-white" : "contributors-colour";
+      $(this).attr("src", $(this).attr("src").replace(old_imgdir, new_imgdir));
     });
 
     // Set a cookie to remember
     document.cookie =
-        "nfcoretheme=" + theme + "; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+      "nfcoretheme=" + theme + "; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
   }
   // Override the .contains() filter to be case insenstive
   $.expr[":"].contains = $.expr.createPseudo(function (arg) {
@@ -72,14 +75,14 @@ $(function () {
   });
 
   // Homepage video switcher
-    $(".video-chooser a").click(function (e) {
-        if ($("#nf-core-video").is(":visible")) {
-            e.preventDefault();
-            $(".video-chooser a").removeClass("active");
-            $(this).addClass("active");
-            $("#nf-core-video").attr("src", $(this).data("src"));
-        }
-    });
+  $(".video-chooser a").click(function (e) {
+    if ($("#nf-core-video").is(":visible")) {
+      e.preventDefault();
+      $(".video-chooser a").removeClass("active");
+      $(this).addClass("active");
+      $("#nf-core-video").attr("src", $(this).data("src"));
+    }
+  });
 
   // Homepage contributor images fading in and out
   var h_contrib_imgs = $(".homepage_contrib_logos a");
@@ -91,8 +94,8 @@ $(function () {
   function switch_contrib_img() {
     // Reset if all images have been shown
     if ($(".homepage_contrib_logos a:hidden:not(.contrib_shown)").length == 0) {
-        $(".homepage_contrib_logos a").removeClass("contrib_shown");
-        $(".homepage_contrib_logos a:visible").addClass("contrib_shown");
+      $(".homepage_contrib_logos a").removeClass("contrib_shown");
+      $(".homepage_contrib_logos a:visible").addClass("contrib_shown");
     }
 
     // Get random seeds for images to fade in and out
@@ -361,8 +364,11 @@ $(function () {
 });
 
 function scroll_to(target_el, offset) {
-    var el_offset = target_el.offset().top - offset;
-    $([document.documentElement, document.body]).animate({
-        scrollTop: el_offset
-    }, 500);
+  var el_offset = target_el.offset().top - offset;
+  $([document.documentElement, document.body]).animate(
+    {
+      scrollTop: el_offset,
+    },
+    500
+  );
 }
