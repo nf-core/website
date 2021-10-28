@@ -84,8 +84,8 @@ if ($curr_event) {
           $('.countdown').html((days > 0 ? days + ' day' + (days > 1 ? 's':'') + ',<br>' : '') + hours  + 'h ' + minutes + 'm ' + seconds +'s')
         }, 1000);
     </script>
-    <h5 class=\"pt-4\">Event Countdown:</h5>
-    <p class=\"display-4 text-nowrap countdown\">" . $countdown_text . "</p>
+    <h5 class=\"pt-4\">Event countdown:</h5>
+    <p class=\"display-5 text-nowrap countdown\">" . $countdown_text . "</p>
     ";
   }
 }
