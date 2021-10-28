@@ -15,22 +15,24 @@ The core team members who administer the nf-core project are listed below:
 * [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
 * [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 * [@jfy133](https://github.com/jfy133): James A. Fellows Yates
-* [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
 * [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
 * [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
-* [@olgabot](https://github.com/olgabot): Olga Botvinnik
+
+We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
 In addition, the following member is a part of the nf-core outreach team
 
 * [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
+### Alumni
+
 The following former members of the nf-core core team have earned their place in
 the nf-core alumni hall of fame:
 
-* [@sven1103](https://github.com/sven1103): Sven F.
 * [@alneberg](https://github.com/alneberg): Johannes Alneberg
-
-We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
+* [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
+* [@olgabot](https://github.com/olgabot): Olga Botvinnik
+* [@sven1103](https://github.com/sven1103): Sven F.
 
 ## Financial  Support
 
