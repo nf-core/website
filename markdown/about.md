@@ -56,7 +56,7 @@ We are very grateful to them for supporting nf-core and [Nextflow](https://nextf
 * [EOSS - fourth round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/)
 * [EOSS - Diversity & Inclusion](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b)
 
-Amongst other things, the CZI EOSS grant money has the nf-core community to:
+Amongst other things, the CZI EOSS grant money has enabled the nf-core community to:
 
 * Hire a dedicated coordinator / safety officer (50%)
 * Hire a dedicated developer for nf-core (50%)
