@@ -49,10 +49,6 @@ $(function () {
   // Function to switch CSS theme
   function update_theme(theme) {
 
-    if(theme == "auto" && window.matchMedia("(prefers-color-scheme: dark)")){
-      theme = "dark";
-    }
-
     // Switch the stylesheet
     var newlink = "/assets/css/nf-core-" + theme + ".css";
     $("#theme-stylesheet").attr("href", newlink);
