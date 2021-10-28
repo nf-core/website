@@ -23,6 +23,8 @@ $(function () {
   ) {
       document.cookie =
           "nfcoretheme=dark; expires=Thu, 2 Dec 2032 12:00:00 UTC; path=/";
+      // Run the function so that dark-mode images are switched in
+      update_theme('dark')
   } else if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: light)").matches
@@ -32,9 +34,9 @@ $(function () {
   }
   // update cookie when OS theme changes
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-        var new_theme = e.matches ? "dark" : "light";
-        update_theme(new_theme);
-    });
+      var new_theme = e.matches ? "dark" : "light";
+      update_theme(new_theme);
+  });
 
   $(".theme-switcher label").on('click',function () {
       var theme = $(this).attr("for").split("-")[1];
@@ -46,6 +48,10 @@ $(function () {
   });
   // Function to switch CSS theme
   function update_theme(theme) {
+
+    if(theme == "auto" && window.matchMedia("(prefers-color-scheme: dark)")){
+      theme = "dark";
+    }
 
     // Switch the stylesheet
     var newlink = "/assets/css/nf-core-" + theme + ".css";
