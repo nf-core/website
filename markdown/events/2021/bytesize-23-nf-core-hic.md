@@ -26,7 +26,6 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Nicolas Servant ([@nservant](https://github.com/nservant/)) will tell us all about the nf-core/hic pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-
 **Note: The content has been modified for reader-friendliness**
 
 [0:42](https://youtu.be/AFHaX_GRNBU?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=42) Thank you very much.
