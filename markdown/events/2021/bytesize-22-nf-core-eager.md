@@ -51,7 +51,7 @@ nf-core/eager is one of the largest and/or most complex nf-core pipelines. It is
 
 [8:59](https://youtu.be/fObuLeGhQRo?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=539) I’m going to briefly go through this. If you have more detailed questions, get in touch with me on Slack. We have the basic genomics pipeline steps, and we’ve extended this with statistical analyses and a metagenomics screen for pathogen detection and authenticating reads.
 
-[10:40](https://youtu.be/fObuLeGhQRo?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=640) This is another representation of the graph before showing just how complex the pipeline is. We have three different main routes: eukaryotic nuclear genome, microbial and smaller organellar genomes, and the metagenomic component where we do the taxonomic profile. So it’s a very complex pipeline.
+[10:40](https://youtu.be/fObuLeGhQRo?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=640) This is another representation of the graph showing just how complex the pipeline is. We have three different main routes: eukaryotic nuclear genome, microbial and smaller organellar genomes, and the metagenomic component where we do the taxonomic profiling. So it’s a very complex pipeline.
 
 [11:33](https://www.youtube.com/watch?v=fObuLeGhQRo&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=23) And this is why I want to talk a little bit about the main development challenges for the DSL1 version. I am hoping that some of these will be alleviated for DSL2, but that remains to be seen.
 
