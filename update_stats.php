@@ -163,13 +163,8 @@ foreach($gh_repos as $repo){
     $gh_repo_url = 'https://api.github.com/repos/nf-core/'.$repo->name;
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
-        if($repo_type == 'core_repos' && strpos($http_response_header[0], "HTTP/1.1 404")){
-            echo("Removing ".$repo->name." from the cached results as it appears to have been deleted.\n");
-            unset($results['core_repos'][$repo->name]);
-        } else {
-            var_dump($http_response_header);
-            echo("Could not fetch nf-core repo! $gh_repo_url");
-        }
+        var_dump($http_response_header);
+        echo("Could not fetch nf-core repo! $gh_repo_url");
         continue;
     }
     $results[$repo_type][$repo->name]['repo_metrics'][$updated]['network_forks_count'] = $gh_repo->network_count;
@@ -183,9 +178,15 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_views_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
-            echo("--------   Could not fetch nf-core repo views! $gh_views_url\n");
-            var_dump($http_response_header);
-            echo ("\n--------   End of header for $gh_views_url\n\n\n");
+            // Pipelines are removed from the cache earlier as we know their names
+            if($repo_type == 'core_repos' && strpos($http_response_header[0], "HTTP/1.1 404")){
+                echo("Removing ".$repo->name." from the cached results as it appears to have been deleted.\n");
+                unset($results['core_repos'][$repo->name]);
+            } else {
+                echo("--------   Could not fetch nf-core repo views! $gh_views_url\n");
+                var_dump($http_response_header);
+                echo ("\n--------   End of header for $gh_views_url\n\n\n");
+            }
             continue;
         }
         foreach($gh_views->views as $view){
