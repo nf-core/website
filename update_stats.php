@@ -180,8 +180,8 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             // Pipelines are removed from the cache earlier as we know their names
             if($repo_type == 'core_repos' && strpos($http_response_header[0], "HTTP/1.1 404") !== false){
-                echo("Removing ".$repo->name." from the cached results as it appears to have been deleted.\n");
-                unset($results['core_repos'][$repo->name]);
+                echo("Removing ".$repo_name." from the cached results as it appears to have been deleted.\n");
+                unset($results['core_repos'][$repo_name]);
             } else {
                 echo("--------   Could not fetch nf-core repo views! $gh_views_url\n");
                 var_dump($http_response_header);
