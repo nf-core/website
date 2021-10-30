@@ -179,7 +179,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             // Pipelines are removed from the cache earlier as we know their names
-            if($repo_type == 'core_repos' && strpos($http_response_header[0], "HTTP/1.1 404")){
+            if($repo_type == 'core_repos' && strpos($http_response_header[0], "HTTP/1.1 404") !== false){
                 echo("Removing ".$repo->name." from the cached results as it appears to have been deleted.\n");
                 unset($results['core_repos'][$repo->name]);
             } else {
