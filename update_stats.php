@@ -25,6 +25,8 @@ $updated = time();
 $results_fn = dirname(__FILE__).'/nfcore_stats.json';
 $contribs_fn_root = dirname(__FILE__).'/contributor_stats/';
 
+echo("\nRunning update_stats to $results_fn - " . date("Y-m-d h:i:s") . "\n\n");
+
 // Initialise the results array with the current time and placeholders
 $results = array(
     'updated' => $updated,
@@ -294,6 +296,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
 // SLACK USERS
 //
 //
+echo("\nupdate_stats - Slack updates - " . date("Y-m-d h:i:s") . "\n\n");
 
 $slack_api_url = 'https://slack.com/api/team.billableInfo?token='.$config['slack_access_token'].'&pretty=1';
 $slack_api_opts = stream_context_create([
@@ -330,6 +333,7 @@ if(strpos($http_response_header[0], "HTTP/1.0 200") === false || !isset($slack_u
 // Twitter - get number of followers
 //
 //
+echo("\nupdate_stats - twitter updates - " . date("Y-m-d h:i:s") . "\n\n");
 require "includes/libraries/twitteroauth/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 // Connect to twitter
