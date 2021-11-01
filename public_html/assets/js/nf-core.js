@@ -94,34 +94,19 @@ $(function () {
     }, 2000);
   }
   function switch_contrib_img() {
-    // Reset if all images have been shown
-    if ($(".homepage_contrib_logos a:hidden:not(.contrib_shown)").length == 0) {
-      $(".homepage_contrib_logos a").removeClass("contrib_shown");
-      $(".homepage_contrib_logos a:visible").addClass("contrib_shown");
-    }
 
-    // Get random seeds for images to fade in and out
-    var vis_imgs = $(".homepage_contrib_logos a:visible");
-    var img_out_idx = Math.floor(Math.random() * vis_imgs.length);
+    // Add image that will be removed to the end of the list
+    contributors_imgs.push($(".homepage_contrib_logos a:first-child").html());
 
-    var hidden_imgs = $(".homepage_contrib_logos a:hidden:not(.contrib_shown)");
-    var img_in_idx = Math.floor(Math.random() * hidden_imgs.length);
+    // Animate the first image off the screen and then remove
+    var margin_left = $(".homepage_contrib_logos a:first-child").width() *- 1;
+    $(".homepage_contrib_logos a:first-child").animate({"margin-left": margin_left}, function(){
+      $(this).remove();
+    });
 
-    // Label with a class
-    hidden_imgs.eq(img_in_idx).addClass("contrib_fade_in contrib_shown");
-    vis_imgs.eq(img_out_idx).addClass("contrib_fade_out");
-
-    // Move image to be faded in next to the one to be faded out
-    hidden_imgs.eq(img_in_idx).detach().insertAfter(vis_imgs.eq(img_out_idx));
-
-    // Fade images in and out
-    $(".contrib_fade_in").fadeIn();
-    $(".contrib_fade_out").hide();
-
-    // Clear labels
-    $(".homepage_contrib_logos a").removeClass(
-      "contrib_fade_in contrib_fade_out"
-    );
+    // Add a new image to the end of the list (should be off the screen to the right)
+    var next_img = contributors_imgs.shift();
+    $(".homepage_contrib_logos").append($(next_img));
 
     // Run this again in 2 seconds
     setTimeout(function () {
