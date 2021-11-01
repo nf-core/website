@@ -52,127 +52,93 @@ include('../includes/header.php');
 
     <?php foreach ($modules as $idx => $wf) : ?>
         <div class="col">
-            <div class="card h-100 pipeline">
+            <div class="card 100 pipeline">
                 <div class="card-body clearfix">
                     <h3 class="card-title mb-0">
                         <a href="https://github.com/nf-core/modules/tree/master/<?php echo $wf['github_path']; ?>" class="pipeline-name">
                             <span class="d-none d-lg-inline"></span><?php echo $wf['name']; ?>
-                        </a>
+                        </a> 
+                        <button class="btn btn-sm btn-outline-info float-end" data-bs-toggle="collapse" href=".<?php echo $wf['name']; ?>-description" aria-expanded="false">
+                            <i class="fas fa-question-circle"></i> descriptions
+                        </button>
                     </h3>
-                    <p class="card-text mb-0 mt-2">
+                    <p class="card-text mb-1">
                         <?php echo $wf['description']; ?>
                     </p>
-                    <div class="accordion accordion-flush" id="accordion-<?php echo $wf['name']; ?>">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header text-white" id="heading_tools">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<?php echo $idx; ?>_tools" aria-expanded="true" aria-controls="collapse_<?php echo $idx; ?>_tools">
-                                    tools
-                                </button>
-                            </h2>
-                            <div id="collapse_<?php echo $idx; ?>_tools" class="accordion-collapse collapse" aria-labelledby="heading_tools" data-bs-parent="#accordion-<?php echo $wf['name']; ?>">
-                                <div class="accordion-body">
-                                    <?php foreach ($wf['tools'] as $tool) {
-                                        foreach ($tool as $name => $tool_value) {
-                                            if (!is_array($tool_value)) {
-                                                $tool_text .= "<dt>" . $name . "</dt>";
-                                                $tool_text .= "<dd>" . $tool_value . "</dd>";
-                                            }
-                                            $tool_text = "<h3>" . $name . "</h3>";
-                                            $tool_text .= "<dl>";
-
-                                            foreach ($tool_value as $key => $value) {
-                                                if (is_array($value)) {
-                                                    $value = implode("; ", $value);
-                                                } else if ($value == "None") {
-                                                    continue;
-                                                }
-                                                $tool_text .= "<dt>" . $key . "</dt>";
-                                                $tool_text .= "<dd>" . $value . "</dd>";
-                                            }
-                                            $tool_text .= "</dl>";
-                                        }
+                        <?php 
+                        $tool_text = "";
+                        foreach ($wf['tools'] as $tool) {
+                            foreach ($tool as $name => $tool_value) {
+                                if($wf['name']!=$name){
+                                    $documentation =  $tool_value["documentation"] ? $tool_value["documentation"] : $tool_value["homepage"];
+                                    $tool_text .= "<a class=\"ms-2\" data-bs-toggle=\"tooltip\" title=\"documentation\" href=". $documentation ."><i class=\"fas fa-book\"></i></a>";
+                                    $tool_text = "<h4 class=\"mb-0\">" . $name . $tool_text. "</h4>";
+                                    $description = $tool_value["description"];
+                                    $tool_text .= "<span class=\"text-small\" >" .  $description . "</span>";
+                                }
+                                
+                            }
+                        }
+                        echo $tool_text;
+                        ?>
+                    <div class="row pt-3">
+                        <div class="col-6 border-end border-1">
+                            <h4>Input</h4>
+                            
+                            <?php
+                                $input_text = "";
+                                foreach ($wf['input'] as $input) {
+                                    $input_text .= "<ul class=\"list-switch\">";
+                                    foreach ($input as $name => $input_value) {
+                                        $input_text .= "<li>";
+                                        $input_text .= "<strong>" . $name . " </strong>";
+                                        $input_text .= "<span class=\"text-secondary\"> (" . $input_value["type"]. ") </span>";
+                                        $description = $input_value["description"];
+                                        $description = str_replace("[","<code class=\"px-0\">[",$description);
+                                        $description = str_replace("]","]</code>",$description);
+                                        $input_text .= "<p class=\"text-small collapse mb-1 " . $wf['name']."-description\" >" .  $description . "</p>";
+                                        $input_text .= "</li>";
                                     }
-                                    echo $tool_text;
-                                    ?>
-                                </div>
-                            </div>
+                                    $input_text .= "</ul>";
+                                }
+                                echo $input_text;
+                            ?>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header text-white" id="heading_input">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<?php echo $idx; ?>_input" aria-expanded="true" aria-controls="collapse_<?php echo $idx; ?>_input">
-                                    input
-                                </button>
-                            </h2>
-                            <div id="collapse_<?php echo $idx; ?>_input" class="accordion-collapse collapse" aria-labelledby="heading_input" data-bs-parent="#accordion-<?php echo $wf['name']; ?>">
-                                <div class="accordion-body">
-                                    <?php
-                                    $input_text = "";
-                                    foreach ($wf['input'] as $input) {
-                                        foreach ($input as $name => $input_value) {
-                                            $input_text .= "<h4>" . $name . "</h4>";
-                                            $input_text .= "<dl>";
-                                            foreach ($input_value as $key => $value) {
-                                                if (is_array($value)) {
-                                                    $value = implode("; ", $value);
-                                                } elseif ($key == "pattern") {
-                                                    $value = "<code>" . $value . "</code>";
-                                                }
-                                                $input_text .= "<dt>" . $key . "</dt>";
-                                                $input_text .= "<dd>" . $value . "</dd>";
-                                            }
-                                            $input_text .= "</dl>";
-                                        }
+                        <div class="col-6 ">
+                            <h4>Output</h4>
+                            <?php
+                                $output_text = "";
+                                foreach ($wf['output'] as $output) {
+                                    $output_text .= "<ul class=\"list-switch\">";
+                                    foreach ($output as $name => $output_value) {
+                                        $output_text .= "<li>";
+                                        $output_text .= "<strong>" . $name . " </strong>";
+                                        $output_text .= "<span class=\"text-secondary\"> (" . $output_value["type"]. ") </span>";
+                                        $description = $output_value["description"];
+                                        $description = str_replace("[","<code class=\"px-0\">[",$description);
+                                        $description = str_replace("]","]</code>",$description);
+                                        $output_text .= "<p class=\"text-small collapse mb-1 " . $wf['name']."-description\" >" .  $description . "</p>";
+                                        $output_text .= "</li>";
                                     }
-                                    echo $input_text;
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header text-white" id="heading_output">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_<?php echo $idx; ?>_output" aria-expanded="true" aria-controls="collapse_<?php echo $idx; ?>_output">
-                                    output
-                                </button>
-                            </h2>
-                            <div id="collapse_<?php echo $idx; ?>_output" class="accordion-collapse collapse" aria-labelledby="heading_output" data-bs-parent="#accordion-<?php echo $wf['name']; ?>">
-                                <div class="accordion-body">
-                                    <?php
-                                    $output_text = "";
-                                    foreach ($wf['output'] as $output) {
-                                        foreach ($output as $name => $output_value) {
-                                            $output_text .= "<h4>" . $name . "</h4>";
-                                            $output_text .= "<dl>";
-                                            foreach ($output_value as $key => $value) {
-                                                if (is_array($value)) {
-                                                    $value = implode("; ", $value);
-                                                } elseif ($key == "pattern") {
-                                                    $value = "<code>" . $value . "</code>";
-                                                }
-                                                $output_text .= "<dt>" . $key . "</dt>";
-                                                $output_text .= "<dd>" . $value . "</dd>";
-                                            }
-                                            $output_text .= "</dl>";
-                                        }
-                                    }
-                                    echo $output_text;
-                                    ?>
-                                </div>
-                            </div>
+                                    $output_text .= "</ul>";
+                                }
+                                echo $output_text;
+                            ?>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer text-muted">
-                    <?php if (count($wf['keywords']) > 0) : ?>
-                        <p class="topics mb-0">
-                            <?php foreach ($wf['keywords'] as $keyword) : ?>
-                                <a href="/modules?q=<?php echo $keyword; ?>" class="badge pipeline-topic"><?php echo $keyword; ?></a>
-                            <?php endforeach; ?>
-                            <?php foreach ($wf['authors'] as $author) : ?>
-                                <img class="float-end contrib-avatars" src="https://github.com/<?php echo str_replace("@", "", $author); ?>.png">
-                            <?php endforeach; ?>
-                        </p>
-                    <?php endif; ?>
-                </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <?php if (count($wf['keywords']) > 0) : ?>
+                            <p class="topics mb-0">
+                                <?php foreach ($wf['keywords'] as $keyword) : ?>
+                                    <a href="/modules?q=<?php echo $keyword; ?>" class="badge pipeline-topic"><?php echo $keyword; ?></a>
+                                <?php endforeach; ?>
+                                <?php foreach ($wf['authors'] as $author) : ?>
+                                    <img class="float-end contrib-avatars" src="https://github.com/<?php echo str_replace("@", "", $author); ?>.png">
+                                <?php endforeach; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
             </div>
         </div>
     <?php endforeach; ?>
