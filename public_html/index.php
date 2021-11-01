@@ -443,28 +443,28 @@ nf-core list
       number of contributing users.</p>
     <p><a class="btn btn-success d-inline d-md-none" href="/community#organisations">See a complete list &raquo;</a></p>
     <div class="homepage_contrib_logos">
-      <?php foreach ($contributors_img_list as $idx => $img) {
-        // Hide images after 18 shown
-        if ($idx > 16) echo str_replace('<a href', '<a style="display:none;" href', $img);
-        else echo str_replace('<a href', '<a class="contrib_shown" href', $img);
-      } ?>
+      <?php foreach (array_slice($contributors_img_list, 0, 8) as $img) { echo $img; } ?>
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
+// List of remaining contributor logos which have not yet been shown
+var contributors_imgs = <?php echo json_encode(array_slice($contributors_img_list, 8)); ?>;
+
 <?php // Javascript for moment time zone support
 if ($event['start_time']) {
   echo '
-    <script type="text/javascript">
     $("[data-timestamp]").each(function(){
       var timestamp = $(this).data("timestamp");
       var local_time = moment.tz(timestamp, "X", moment.tz.guess());
       $(this).text(local_time.format("HH:mm z, LL"));
     });
-    </script>
     ';
 }
 ?>
+</script>
+
 <?php
 $md_github_url = false;
 include('../includes/footer.php'); ?>
