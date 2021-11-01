@@ -167,6 +167,9 @@ include('../includes/header.php');
                             <?php foreach ($wf['keywords'] as $keyword) : ?>
                                 <a href="/modules?q=<?php echo $keyword; ?>" class="badge pipeline-topic"><?php echo $keyword; ?></a>
                             <?php endforeach; ?>
+                            <?php foreach ($wf['authors'] as $author) : ?>
+                                <img class="float-end contrib-avatars" src="https://github.com/<?php echo str_replace("@", "", $author); ?>.png">
+                            <?php endforeach; ?>
                         </p>
                     <?php endif; ?>
                 </div>
