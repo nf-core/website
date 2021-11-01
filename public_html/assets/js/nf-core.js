@@ -5,7 +5,7 @@
 
 $(function () {
   // Enable tooltips
-  $(".mainpage,.footer").tooltip({
+  $(".container").tooltip({
     //can't use body here, because scrollspy has already an event on it and bootstrap only allows one per selector.
     selector: '[data-bs-toggle="tooltip"]',
     html: true,
