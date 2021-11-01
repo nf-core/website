@@ -64,9 +64,9 @@ First you'll need a `config.ini` text file with values for `github_username` and
 See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 This file is ignored in `.gitignore` for security reasons.
 
-For the MySQL database you should also add, the following values:
+For the MySQL database you should also add the following values:
 ```
-host = '127.0.0.1' #or whatever the IP address of your localhost is
+host = 'db'
 port = '3306';
 dbname = 'nfcore';
 username = 'nfcore_admin';
@@ -91,6 +91,11 @@ The following command will create `public_html/pipelines.json`, which is used by
 
 ```bash
 php update_pipeline_details.php
+```
+
+To update the modules database (from within the docker container) run
+``` bash
+docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
 ```
 
 Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
