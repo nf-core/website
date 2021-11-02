@@ -91,6 +91,7 @@ if ($curr_event) {
 }
 
 $import_moment = true;
+$import_asciicinema = true;
 include('../includes/header.php');
 ?>
 
@@ -379,43 +380,71 @@ include('../includes/header.php');
   </div>
 </div>
 
-<div class="bg-dark py-5">
+<div class="bg-dark text-white-50 py-5">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <h2 id="get-started" class="text-white">Get started in minutes</h2>
-        <p class="text-white-50">Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
-        <p class="text-white-50">Most nf-core genomics pipelines come with built-in support for
-          <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;">AWS-iGenomes</a>,
-          with genome references for over 30 common species.
-        </p>
-        <p class="text-white-50">The nf-core companion tool makes it easy to list all available nf-core pipelines
-          and shows which are available locally. Local versions are checked against the latest available release.</p>
-      </div>
-      <div class="col-sm-6">
-        <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
-          <div class="card-body">
-            <pre class="text-white mb-0">
-<span class="text-white-50"># Install nextflow</span>
-curl -s https://get.nextflow.io | bash
-mv nextflow ~/bin/
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="demo-run-nextflow-tab" data-bs-toggle="tab" data-bs-target="#demo-run-nextflow" type="button" role="tab" aria-controls="home" aria-selected="true">Run with Nextflow</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="demo-launch-tab" data-bs-toggle="tab" data-bs-target="#demo-launch"" type="button" role="tab" aria-controls="profile" aria-selected="false">Interactive launch</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="demo-download-tab" data-bs-toggle="tab" data-bs-target="#demo-download"" type="button" role="tab" aria-controls="messages" aria-selected="false">Download for offline use</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="demo-developers-tab" data-bs-toggle="tab" data-bs-target="#demo-developers"" type="button" role="tab" aria-controls="settings" aria-selected="false">Developer tools</button>
+      </li>
+    </ul>
 
-<span class="text-white-50"># Launch the RNAseq pipeline</span>
-nextflow run nf-core/rnaseq \
-    --input samplesheet.csv \
-    --genome GRCh37 \
-    -profile docker
+    <!-- Tab panes -->
+    <div class="tab-content">
 
-<span class="text-white-50"># Install nf-core tools</span>
-pip install nf-core
-
-<span class="text-white-50"># List all nf-core pipelines and show available updates</span>
-nf-core list
-</pre>
+      <!-- Launch with Nextflow -->
+      <div class="tab-pane active" id="demo-run-nextflow" role="tabpanel" aria-labelledby="demo-run-nextflow-tab">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2 id="get-started" class="text-white">Get started in minutes</h2>
+            <p>Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
+            <p>Most nf-core genomics pipelines come with built-in support for
+              <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;">AWS-iGenomes</a>,
+              with genome references for over 30 common species.
+            </p>
+          </div>
+          <div class="col-sm-7">
+            <div class="border border-secondary">
+              <asciinema-player src="assets/homepage_demos/nextflow-run.cast" cols="110" rows="32"></asciinema-player>
+            </div>
           </div>
         </div>
       </div>
+
+
+      <div class="tab-pane" id="demo-launch"" role="tabpanel" aria-labelledby="demo-launch-tab">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2 class="text-white">User friendly walkthrough</h2>
+            <p>
+              The nf-core companion tool makes it easy to work with nf-core pipelines.
+              It is a command-line helper and can be installed from PyPI or Bioconda.
+            </p>
+            <ul>
+              <li><code>nf-core list</code> shows all nf-core pipelines, including which are available locally. Local versions are checked against the latest available release.</li>
+              <li>The nf-core helper tools can walk you through launching a pipeline.</li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+          <asciinema-player src="assets/homepage_demos/nf-core-list.cast" cols="110" rows="32"></asciinema-player>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="tab-pane" id="demo-download"" role="tabpanel" aria-labelledby="demo-download-tab">Download for offline use</div>
+      <div class="tab-pane" id="demo-developers"" role="tabpanel" aria-labelledby="demo-developers-tab">Developer tools</div>
     </div>
+
   </div>
 </div>
 

@@ -62,6 +62,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/lib/moment.js"></script>
     <script src="/assets/lib/moment-timezone-with-data-10-year-range.min.js"></script>
   <?php endif;
+  if (isset($import_asciicinema) && $import_asciicinema) : ?>
+    <script src="/assets/lib/asciinema-player.js"></script>
+    <link href="/assets/lib/asciinema-player.css" rel="stylesheet">
+  <?php endif;
   if (isset($import_leaflet) && $import_leaflet) : ?>
     <link href="/assets/lib/leaflet.css" rel="stylesheet">
     <script src="/assets/lib/leaflet.js"></script>
