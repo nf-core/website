@@ -52,8 +52,9 @@ include('../includes/header.php');
 
     <?php foreach ($modules as $idx => $wf) : ?>
         <div class="col">
-            <div class="card 100 pipeline">
+            <div class="card 100 module">
                 <div class="card-body clearfix">
+                <div class="module-name d-flex">    
                     <h3 class="card-title mb-0">
                         <a href="https://github.com/nf-core/modules/tree/master/<?php echo $wf['github_path']; ?>" class="pipeline-name">
                             <span class="d-none d-lg-inline"></span><?php echo $wf['name']; ?>
@@ -65,6 +66,9 @@ include('../includes/header.php');
                     <p class="card-text mb-1">
                         <?php echo $wf['description']; ?>
                     </p>
+                    </div>
+                    <div class="modules-params">
+                    <div class="module-tools">
                         <?php 
                         $tool_text = "";
                         foreach ($wf['tools'] as $tool) {
@@ -81,6 +85,7 @@ include('../includes/header.php');
                         }
                         echo $tool_text;
                         ?>
+                    </div>
                     <div class="row pt-3">
                         <div class="col-6 border-end border-1">
                             <h4>Input</h4>
@@ -125,6 +130,7 @@ include('../includes/header.php');
                                 echo $output_text;
                             ?>
                         </div>
+                    </div>
                     </div>
                     </div>
                     <div class="card-footer text-muted">

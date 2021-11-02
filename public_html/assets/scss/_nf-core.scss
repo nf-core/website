@@ -766,12 +766,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   color: rgba($white, 0.9);
   font-weight: 400;
 }
-.pipelines-container-list .pipeline.card {
-  min-width: 100%;
-  margin-bottom: 0;
-  border-bottom: none;
-  border-radius: 0;
-}
 .pipelines-container-list .col:first-child .pipeline.card {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
@@ -781,33 +775,60 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-bottom-right-radius: 0.25rem;
   border-bottom: 1px solid rgba($black,.125);
 }
-.pipelines-container-list .pipeline .card-body {
-  padding: 0.8rem;
+.pipelines-container-list .pipeline {
+  & .card {
+    min-width: 100%;
+    margin-bottom: 0;
+    border-bottom: none;
+    border-radius: 0;
+  }
+  & .card-body {
+    padding: 0.8rem;
+  }
+  & .card-title {
+    font-size: 1.2rem;
+    width: 30%;
+  }
+  & .card-text {
+      width: 70%;
+      margin-top: 0 !important;
+      margin-bottom: 1rem;
+  }
+  & .card-title,
+  & .card-text {
+    float: left;
+  }
+  & h3 .status-icon {
+    float: left;
+    margin: 0.3rem 0.5rem 0 0;
+    margin-left: 0 !important;
+  }
+  & .dl-btn-row,
+  & .topics,
+  & .stargazers {
+      display: none;
+  }
 }
-.pipelines-container-list .pipeline .card-title {
-  font-size: 1.2rem;
-  width: 30%;
-}
-.pipelines-container-list .card-text {
-    width: 70%;
-    margin-top: 0 !important;
-    margin-bottom: 1rem;
-}
-.pipelines-container-list .card-title,
-.pipelines-container-list .card-text {
-  float: left;
-}
-.pipelines-container-list h3 .status-icon {
-  float: left;
-  margin: 0.3rem 0.5rem 0 0;
-  margin-left: 0 !important;
-}
-.pipelines-container-list .dl-btn-row,
-.pipelines-container-list .topics,
-.pipelines-container-list .stargazers {
-    display: none;
-}
+.pipelines-container-list .modules {
+  & .card {
+    min-width: 100%;
+    margin-bottom: 0;
+    border-bottom: none;
+    border-radius: 0;
 
+  }
+  & .card-body {
+    padding: 0.8rem;
+  }
+  & .card-title {
+    font-size: 1.2rem;
+    width: 30%;
+  }
+  & .module-name {
+    display: flex; 
+    flex-direction: column;
+  }
+}
 /*
   About Page
 */
