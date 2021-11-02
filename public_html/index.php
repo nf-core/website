@@ -423,7 +423,7 @@ include('../includes/header.php');
 
       <div class="tab-pane" id="demo-launch"" role="tabpanel" aria-labelledby="demo-launch-tab">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <h2 class="text-white">User friendly walkthrough</h2>
             <p>
               The nf-core companion tool makes it easy to work with nf-core pipelines.
@@ -434,8 +434,10 @@ include('../includes/header.php');
               <li>The nf-core helper tools can walk you through launching a pipeline.</li>
             </ul>
           </div>
-          <div class="col-sm-6">
-          <asciinema-player src="assets/homepage_demos/nf-core-list.cast" cols="110" rows="32"></asciinema-player>
+          <div class="col-sm-7">
+            <div class="border border-secondary">
+              <asciinema-player src="assets/homepage_demos/nf-core-list.cast" cols="110" rows="32"></asciinema-player>
+            </div>
           </div>
         </div>
       </div>
