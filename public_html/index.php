@@ -263,11 +263,12 @@ include('../includes/header.php');
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Docker</h5>
-            <p class="card-text">Software dependencies are handled with docker containers
-              which Nextflow downloads for you, so no need for any software installations.</p>
+            <h5 class="card-title">Packaged software</h5>
+            <p class="card-text">Pipeline dependencies are automatically downloaded and
+              handled using Docker, Singularity, Conda or others.
+              No need for any software installations.</p>
           </div>
-          <img class="ms-3" height="100px" src="assets/img/docker.svg" />
+          <i class="fad fa-box-alt fa-5x text-info ms-3"></i>
         </div>
       </div>
     </div>
@@ -275,11 +276,15 @@ include('../includes/header.php');
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Singularity</h5>
-            <p class="card-text">If you're not able to use Docker, built-in support for Singularity can
-              solve your HPC container problems. These are built from the docker containers.</p>
+            <h5 class="card-title">Portable and reproducible</h5>
+            <p class="card-text">
+              Pipelines follow best-practices to ensure maximum
+              portability and reproducibility.
+              The large community makes the pipelines exceptionally
+              well tested and easy to run.
+            </p>
           </div>
-          <img class="ms-3" height="100px" src="assets/img/singularity.svg" />
+          <i class="fas fa-server fa-5x text-success ms-3"></i>
         </div>
       </div>
     </div>
@@ -287,11 +292,13 @@ include('../includes/header.php');
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Bioconda</h5>
-            <p class="card-text">Where possible, pipelines come with built-in bioconda support,
-              so if you can't use software containers the dependencies can still be handled automatically.</p>
+            <h5 class="card-title">Cloud-ready</h5>
+            <p class="card-text">Pipelines are tested on AWS after every release.
+              You can even browse results live on the website and use outputs for your own benchmarking.
+            </p>
           </div>
-          <img class="ms-3" height="100px" src="assets/img/bioconda.svg" />
+          <img class="ms-3 hide-light" width="100px" src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services">
+          <img class="ms-3 hide-dark" width="100px" src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services">
         </div>
       </div>
     </div>
