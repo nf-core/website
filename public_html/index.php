@@ -414,7 +414,12 @@ include('../includes/header.php');
           </div>
           <div class="col-sm-7">
             <div class="border border-secondary">
-              <asciinema-player src="assets/homepage_demos/nextflow-run.cast" cols="110" rows="32"></asciinema-player>
+              <asciinema-player
+                src="assets/homepage_demos/nextflow-run.cast"
+                cols="110" rows="32"
+                idle-time-limit="1" speed="1.2"
+                title="Running an nf-core pipeline with Nextflow"
+                poster="data:text/plain,Demo: Running an nf-core pipeline with Nextflow"></asciinema-player>
             </div>
           </div>
         </div>
@@ -436,7 +441,12 @@ include('../includes/header.php');
           </div>
           <div class="col-sm-7">
             <div class="border border-secondary">
-              <asciinema-player src="assets/homepage_demos/nf-core-list.cast" cols="110" rows="32"></asciinema-player>
+              <asciinema-player
+                src="assets/homepage_demos/nf-core-list.cast"
+                cols="110" rows="32"
+                idle-time-limit="1" speed="1.2"
+                title="Using the nf-core helper tools to find and interactively launch a workflow"
+                poster="data:text/plain,Demo: Using the nf-core helper tools to find and interactively launch a workflow"></asciinema-player>
             </div>
           </div>
         </div>
