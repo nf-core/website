@@ -416,8 +416,9 @@ include('../includes/header.php');
             <div class="border border-secondary">
               <asciinema-player
                 src="assets/homepage_demos/nextflow-run.cast"
-                cols="110" rows="32"
+                cols="110" rows="18"
                 idle-time-limit="1" speed="1.2"
+                font-size="16px"
                 title="Running an nf-core pipeline with Nextflow"
                 poster="data:text/plain,Demo: Running an nf-core pipeline with Nextflow"></asciinema-player>
             </div>
@@ -443,8 +444,9 @@ include('../includes/header.php');
             <div class="border border-secondary">
               <asciinema-player
                 src="assets/homepage_demos/nf-core-list.cast"
-                cols="110" rows="32"
+                cols="110" rows="18"
                 idle-time-limit="1" speed="1.2"
+                font-size="16px"
                 title="Using the nf-core helper tools to find and interactively launch a workflow"
                 poster="data:text/plain,Demo: Using the nf-core helper tools to find and interactively launch a workflow"></asciinema-player>
             </div>
