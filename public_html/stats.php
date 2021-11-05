@@ -233,7 +233,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
 </section>
 
-<h1 id="community"><a href="#community" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Community</h1>
+<?php echo _h2('Community'); ?>
 <p>The numbers below track our growth over the various channels that the nf-core community operates in.</p>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
@@ -273,8 +273,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 
 <div class="row">
   <div class="col-lg-6">
-
-    <h2 class="mt-0" id="slack"><a href="#slack" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Slack</h2>
+    <?php echo _h2('Slack'); ?>
     <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
     We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
     You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
@@ -289,7 +288,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       </div>
     </div>
 
-    <h2 class="mt-0" id="twitter"><a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Twitter followers</h2>
+    <h2 class="mt-0" id="twitter"></a>Twitter followers<a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></h2>
     <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
     Follower counts give some indication to the level of interest in the nf-core project.</p>
     <div class="card bg-light mt-4">
@@ -303,7 +302,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 
   <div class="col-lg-6">
 
-    <h2 class="mt-0" id="gh_orgmembers"><a href="#gh_orgmembers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>GitHub organisation members</h2>
+    <h2 class="mt-0" id="gh_orgmembers">GitHub organisation members<a href="#gh_orgmembers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>We use GitHub to manage all of the code written for nf-core.
     It's a fantastic platform and provides a huge number of tools.
     We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
@@ -320,7 +319,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
       </div>
     </div>
 
-    <h2 class="mt-0" id="gh_contribs"><a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>GitHub contributors</h2>
+    <h2 class="mt-0" id="gh_contribs">GitHub contributors<a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>Anybody can fork nf-core repositories and open a pull-request.
     Here we count how many different people have contributed at least one commit to an nf-core repository, or created or commented on an issue or pull-request.</p>
     <div class="card bg-light mt-4">
@@ -335,7 +334,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 </div>
 
 
-<h1 id="code"><a href="#code" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Code stats</h1>
+<h1 id="code">Code stats<a href="#code" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h1>
 <p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.</p>
 
 <div class="card-group text-center stats_keynumbers">
@@ -369,7 +368,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
   </div>
 </div>
 
-<h2 class="mt-0" id="repo_traffic"><a href="#repo_traffic" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Repository traffic</h2>
+<h2 class="mt-0" id="repo_traffic">Repository traffic<a href="#repo_traffic" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
 <p>Every time a nextflow user pulls an nf-core pipeline, the repository is cloned. Here we can track how much that happens across all nf-core repositories.
 Please note that these numbers come with some caveats <a href="#caveats">[ see more ]</a>.</p>
 <p>Additionally, GitHub tracks how many times people view repository web pages on github.com.</p>
@@ -427,7 +426,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 <div class="row">
   <div class="col-lg-6">
 
-    <h2 class="mt-0" id="github_prs"><a href="#github_prs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pull Requests</h2>
+    <h2 class="mt-0" id="github_prs">Pull Requests<a href="#github_prs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.</p>
     <div class="card bg-light mt-4">
       <div class="card-body">
@@ -438,7 +437,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
       </div>
     </div>
 
-    <h2 class="mt-0" id="github_pr_response_time"><a href="#github_pr_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pull Request response times</h2>
+    <h2 class="mt-0" id="github_pr_response_time">Pull Request response times<a href="#github_pr_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>Pull-requests are reviewed by the nf-core community - they can contain discussion on the code and can be merged and closed.
     We aim to be prompt with reviews and merging. Note that some PRs can be a simple type and so very fast to merge, others can be major pipeline updates.</p>
     <div class="card bg-light mt-4">
@@ -454,7 +453,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   </div>
   <div class="col-lg-6">
 
-    <h2 class="mt-0" id="github_issues"><a href="#github_issues" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Issues</h2>
+    <h2 class="mt-0" id="github_issues">Issues<a href="#github_issues" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>GitHub issues can be created to log feature requests, bug reports or questions.</p>
     <div class="card bg-light mt-4">
       <div class="card-body">
@@ -466,7 +465,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     </div>
 
 
-    <h2 class="mt-0" id="github_issue_response_time"><a href="#github_issue_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Issue response times</h2>
+    <h2 class="mt-0" id="github_issue_response_time">Issue response times<a href="#github_issue_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>A sign of an active community is a quick response time to issues. Here we see a frequency histogram of how long it takes to respond to and close issues.</p>
     <div class="card bg-light mt-4">
       <div class="card-body">
@@ -481,7 +480,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   </div>
 </div>
 
-<h2 class="mt-0" id="contributor_leaderboard"><a href="#contributor_leaderboard" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Contributor Leaderboard</h2>
+<h2 class="mt-0" id="contributor_leaderboard">Contributor Leaderboard<a href="#contributor_leaderboard" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
 <p>We value each and every contribution to nf-core, no matter how small.
 However, that doesn't mean that we can't get competitive!</p>
 <p>Here are the latest stats of who has contributed the greatest number of commits.
@@ -553,7 +552,7 @@ foreach($contribution_counts as $login => $count){
 </tbody>
 </table>
 
-<h2 class="mt-0" id="pipeline_numbers"><a href="#pipeline_numbers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Pipeline numbers</h2>
+<h2 class="mt-0" id="pipeline_numbers">Pipeline numbers<a href="#pipeline_numbers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
 <p>All nf-core pipelines are only considered stable when they have at least one release. Until then, they are classed as "in development".</p>
 
 <div class="row">
@@ -573,7 +572,7 @@ foreach($contribution_counts as $login => $count){
 // The pipeline and core repo tables are the same
 foreach(['pipelines', 'core_repos'] as $repo_type): ?>
 
-<h2 class="mt-0" id="<?php echo $repo_type; ?>"><a href="#<?php echo $repo_type; ?>" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?></h2>
+<h2 class="mt-0" id="<?php echo $repo_type; ?>"><?php echo ucfirst(str_replace('_', ' ', $repo_type)); ?><a href="#<?php echo $repo_type; ?>" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
   Click a row to see detailed statistics for that repository.
