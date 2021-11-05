@@ -352,12 +352,11 @@ if (isset($_GET['rss'])) {
 include('../includes/header.php');
 echo '<div class="event-list">';
 if (count($current_events) > 0) {
-  echo '<h2 id="current_events"><a href="#current_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar me-2"></i> Ongoing Events</h2>';
+  echo _h2('<i class="fad fa-calendar me-2"></i> Ongoing Events');
   print_current_events($current_events, true);
   echo '<hr>';
 }
-
-echo '<h2 id="future_events"><a href="#future_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar-day me-2"></i> Upcoming Events</h2>';
+echo _h2('<i class="fad fa-calendar-day me-2"></i> Upcoming Events');
 if (count($future_events) > 0) {
   print_events($future_events, false);
 } else {
@@ -365,7 +364,7 @@ if (count($future_events) > 0) {
 }
 
 echo '<hr>';
-echo '<h2 id="past_events"><a href="#past_events" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a><i class="fad fa-calendar-check me-2"></i> Past Events</h2>';
+echo _h2('<i class="fad fa-calendar-check me-2"></i> Past Events');
 if (count($past_events) > 0) {
   print_events($past_events, true);
 } else {
