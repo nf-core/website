@@ -331,8 +331,8 @@ function _h($level, $html, $toc_hidden = false)
   $toc_hidden_class = $toc_hidden ? 'toc-hidden' : '';
   return '
     <h' . $level . ' id="' . $hid . '" class="' . $toc_hidden_class . '">
-      <a href="#' . $hid . '" class="header-link"><span class="fas fa-link"></span></a>
       ' . $html . '
+      <a href="#' . $hid . '" class="header-link"><span class="fas fa-link"></span></a>
     </h' . $level . '>';
 };
 function _h1($html)
@@ -378,7 +378,7 @@ function add_ids_to_headers($content_input, $is_hidden = false)
       $hid = preg_replace('/^[\s\-]+/', '', $hid); // remove dashes from start of string (e.g. for parameter)
       $heading_ids[] = $hid;
       $hidden_class = $is_hidden ? 'toc-hidden' : '';
-      return '<h' . $matches[1] . ' id="' . $hid . '" class="' . $hidden_class . '"><a href="#' . $hid . '" class="header-link scroll_to_link"><span class="fas fa-link"></span></a>' . $matches[2] . '</h' . $matches[3] . '>';
+      return '<h' . $matches[1] . ' id="' . $hid . '" class="' . $hidden_class . '">' . $matches[2] . '<a href="#' . $hid . '" class="header-link scroll_to_link"><span class="fas fa-link"></span></a></h' . $matches[3] . '>';
     },
     $content_input
   );
