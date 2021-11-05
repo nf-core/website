@@ -446,7 +446,7 @@ footer a:hover, footer a:focus, footer a:active {
 .header-link {
   color: $gray-600;
   font-size: 30px;
-  margin: 0 10px 0 -42px;
+  margin: 0px 0px 0 10px;
   opacity: 0;
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
@@ -463,7 +463,6 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   opacity: 1;
   text-decoration: none;
 }
-
 @include media-breakpoint-down(sm) {
   .header-link {
     margin: 0;
@@ -809,25 +808,15 @@ Based on https://codepen.io/wintr/pen/beBJBb */
       display: none;
   }
 }
-.pipelines-container-list .modules {
-  & .card {
-    min-width: 100%;
-    margin-bottom: 0;
-    border-bottom: none;
-    border-radius: 0;
 
-  }
-  & .card-body {
-    padding: 0.8rem;
-  }
-  & .card-title {
-    font-size: 1.2rem;
-    width: 30%;
-  }
-  & .module-name {
-    display: flex; 
-    flex-direction: column;
-  }
+/*
+ * Modules
+ */
+.modules-container-list .contrib-avatars{
+  width: 42px;
+}
+.card-text:not(.collapse) .hide-collapse{
+  display: none;
 }
 /*
   About Page
@@ -906,8 +895,7 @@ nfcore-subnav {
 .pipeline-run-cmd .btn-outline-secondary{
   border-color: $gray-400;
 }
-.pipeline-sidebar .contrib-avatars img,
-.pipelines-container img.contrib-avatars{
+.pipeline-sidebar .contrib-avatars img{
   width: 42px;
   padding: 0 0.5rem 0.5rem 0;
 }
@@ -993,7 +981,8 @@ nfcore-subnav {
 .schema_group_move_params:hover {
   background-color: $gray-200;
 }
-.schema_row label {
+.schema_row label,
+.modules-container-list label {
   color: $gray-500;
   margin: 0.2rem 0 0;
   font-size: 0.7rem;
@@ -1210,14 +1199,11 @@ Launch Page
 }
 .param-docs h2, .param-docs .h2,
 .param-docs h3, .param-docs .h3 {
-  margin-left: 1.7rem;
+  margin-right: 1.7rem;
 }
 
 
 // parameter docs
-.param-docs .header-link {
-  margin: 0 0 0 -42px;
-}
 .param-docs-row-id-col, .param-docs-row-id-col code, .hidden_params_alert code {
   white-space: nowrap;
 }
