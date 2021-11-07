@@ -99,6 +99,9 @@ $nf-core-color:$nf-core-color-alt;
 code{
   color: $warning;
 }
+.card code{
+  background-color: rgba($gray-300-alt,.75);
+}
 .text-black-50 {
   color: rgba($white,.5)!important;
 }

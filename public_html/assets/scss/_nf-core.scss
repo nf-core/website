@@ -812,11 +812,28 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
  * Modules
  */
-.modules-container-list .contrib-avatars{
-  width: 42px;
+.module .contrib-avatars{
+  width: 30px;
 }
-.card-text:not(.collapse) .hide-collapse{
+.module .module-params .module-input{
+  min-width: 30%;
+}
+.module .card-text.show ~ .module-params .d-flex.flex-wrap{
+  flex-direction: column;
+}
+.module .show ~ .hide-collapse{
   display: none;
+}
+.facet-bar .facet-item{
+  cursor: pointer;
+  &.active {
+    & .facet-name{
+      color: $success;
+    }
+    & .facet-value{
+      background-color:$success !important;
+    }
+  }
 }
 /*
   About Page
