@@ -315,6 +315,10 @@ $(function () {
   }
   // Filter modules with facets
   function filter_modules_facet(ftext) {
+    // undo filtering if repeated click or no text
+    if(ftext===''){
+      $('.modules-container .card').show();
+    } else {
     $('.modules-container .module .keywords').each(function () {
       $('.badge', this).each(function () {
         if ($(this).text() == ftext) {
@@ -325,6 +329,7 @@ $(function () {
         );
       });
     });
+  }
     update_facet_bar();
     return true;
   }
@@ -366,9 +371,16 @@ $(function () {
   // on facet click
   $(".facet-bar .facet-item").on('click', function (e) {
     var ftext = $(e.currentTarget).children('.facet-name').text();
+    // undo selection on click on active items
+    if ($(e.currentTarget).hasClass('active')){
+      ftext='';
+    }
     filter_modules_facet(ftext);
     $(".facet-bar .facet-item").removeClass("active");
-    $(e.currentTarget).addClass("active");
+    // undo selection
+    if (ftext!==''){
+      $(e.currentTarget).addClass("active");
+    }
     
   });
   // Make the stats tables sortable
