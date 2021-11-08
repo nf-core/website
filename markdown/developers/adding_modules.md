@@ -305,6 +305,28 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
   - `*.fastq.gz` and NOT `*.fastq`
   - `*.bam` and NOT `*.sam`
 
+  If a tool does not support compressed input natively, we RECOMMEND passing the
+  uncompressed data via unix pipes, such that it never gets written to disk, .e.g
+
+  ```bash
+  zcat -f $input | tool > $output
+  ```
+
+  The `-f` option makes `zcat` auto-detect if the input is compressed or not.
+
+  If a tool cannot read from STDIN, or has multiple input files, it is possible to use
+  named pipes:
+
+  ```bash
+  mkfifo input1_uncompressed input2_uncompressed
+  zcat -f $input1 > input1_uncompressed &
+  zcat -f $input2 > input2_uncompressed & 
+  tool input1_uncompressed input2_uncompressed > $output
+  ```
+
+  Only if a tool reads the input multiple times, it is required to uncompress the
+  file before running the tool.
+
 - Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
     ```bash
