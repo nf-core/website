@@ -224,30 +224,73 @@ to form a consortium that will provide a comprehensive map of functionally activ
 
 <h1 id="testimonials"><a href="#testimonials" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>Testimonials</h1>
 
-<div class="masonry">
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">.<a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> are making me hate bioinformatics a bit less</p>&mdash; Hadrien Gourlé (@HGourle) <a href="https://twitter.com/HGourle/status/1158973454160465920?ref_src=twsrc%5Etfw">August 7, 2019</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just tested <a href="https://t.co/wERtIS7xPp">https://t.co/wERtIS7xPp</a> with bacterial WGS data. It was very easy to work with. I am very impressed by nf-core! Great community and very important project to promote <a href="https://twitter.com/hashtag/reproducibility?src=hash&amp;ref_src=twsrc%5Etfw">#reproducibility</a> in <a href="https://twitter.com/hashtag/bioinformatics?src=hash&amp;ref_src=twsrc%5Etfw">#bioinformatics</a> analyses. <a href="https://twitter.com/alex_peltzer?ref_src=twsrc%5Etfw">@alex_peltzer</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a></p>&mdash; Rodrigo O. Polo (@ropolo) <a href="https://twitter.com/ropolo/status/1158860737516675073?ref_src=twsrc%5Etfw">August 6, 2019</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Literally everyone should know about that! <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> Harshil Patel from Francis Crick Institute pitches good practice, hydrating and having these cool stickers on his laptop <a href="https://twitter.com/hashtag/bioinfocore?src=hash&amp;ref_src=twsrc%5Etfw">#bioinfocore</a> <a href="https://twitter.com/hashtag/ISMBECCB?src=hash&amp;ref_src=twsrc%5Etfw">#ISMBECCB</a> <a href="https://t.co/tkIgAWfeYZ">https://t.co/tkIgAWfeYZ</a> <a href="https://t.co/pOHNcFh3Yp">pic.twitter.com/pOHNcFh3Yp</a></p>&mdash; Daniel Stekhoven (@DanStekhoven) <a href="https://twitter.com/DanStekhoven/status/1153250437904130048?ref_src=twsrc%5Etfw">July 22, 2019</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">High throughput sequencing data processing keeps getting easier than ever thanks to <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>! <a href="https://t.co/BsaYCOSq3I">https://t.co/BsaYCOSq3I</a></p>&mdash; Ignacio Tripodi (@ignaciot) <a href="https://twitter.com/ignaciot/status/1136688546251542528?ref_src=twsrc%5Etfw">June 6, 2019</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Many useful and well-documented bioinformatics pipelines by the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> team, from RNA-seq, methylation, to this differential ATAC-seq. More in development, <a href="https://t.co/SvAJjIJqHD">https://t.co/SvAJjIJqHD</a> <a href="https://t.co/TCsBWlJyeC">https://t.co/TCsBWlJyeC</a></p>&mdash; Mikhail Dozmorov (@mikhaildozmorov) <a href="https://twitter.com/mikhaildozmorov/status/1116154350026489857?ref_src=twsrc%5Etfw">April 11, 2019</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Alex from <a href="https://twitter.com/QBIC_tue?ref_src=twsrc%5Etfw">@QBIC_tue</a> talking about how <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> enable his genomics pipelines, built on <a href="https://twitter.com/awscloud?ref_src=twsrc%5Etfw">@AWScloud</a> Batch. Really cool. <a href="https://t.co/FDuXdmem1n">pic.twitter.com/FDuXdmem1n</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1100764282617253888?ref_src=twsrc%5Etfw">February 27, 2019</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">My definition of joy: <br>1) Pick a random <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> pipeline <br>2) Launch `nextflow run &lt;name&gt; -profile docker,test`<br>3) Feel proud of that.</p>&mdash; Paolo Di Tommaso (@PaoloDiTommaso) <a href="https://twitter.com/PaoloDiTommaso/status/1073568446238068736?ref_src=twsrc%5Etfw">December 14, 2018</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Just managed to get <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> on <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> working on my machines. Really cool. Thanks for all your hard work</p>&mdash; Alastair Kerr (@alastair_kerr) <a href="https://twitter.com/alastair_kerr/status/1068491249315926016?ref_src=twsrc%5Etfw">November 30, 2018</a></blockquote></div>
-
-<div class="card border-0"><blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/tallphil?ref_src=twsrc%5Etfw">@tallphil</a> talking at the <a href="https://twitter.com/nextflow?ref_src=twsrc%5Etfw">@nextflow</a> delelopers’ hackathon about the incredible work he and his team have done to build <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>. <a href="https://t.co/SbWQIh2Q5r">pic.twitter.com/SbWQIh2Q5r</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1065614143061991424?ref_src=twsrc%5Etfw">November 22, 2018</a></blockquote></div>
-
+<div class="row row-cols-md-3">
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">.<a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> are making me hate bioinformatics a bit less</p>&mdash; Hadrien Gourlé (@HGourle) <a href="https://twitter.com/HGourle/status/1158973454160465920?ref_src=twsrc%5Etfw">August 7, 2019</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Just tested <a href="https://t.co/wERtIS7xPp">https://t.co/wERtIS7xPp</a> with bacterial WGS data. It was very easy to work with. I am very impressed by nf-core! Great community and very important project to promote <a href="https://twitter.com/hashtag/reproducibility?src=hash&amp;ref_src=twsrc%5Etfw">#reproducibility</a> in <a href="https://twitter.com/hashtag/bioinformatics?src=hash&amp;ref_src=twsrc%5Etfw">#bioinformatics</a> analyses. <a href="https://twitter.com/alex_peltzer?ref_src=twsrc%5Etfw">@alex_peltzer</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a></p>&mdash; Rodrigo O. Polo (@ropolo) <a href="https://twitter.com/ropolo/status/1158860737516675073?ref_src=twsrc%5Etfw">August 6, 2019</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Literally everyone should know about that! <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> Harshil Patel from Francis Crick Institute pitches good practice, hydrating and having these cool stickers on his laptop <a href="https://twitter.com/hashtag/bioinfocore?src=hash&amp;ref_src=twsrc%5Etfw">#bioinfocore</a> <a href="https://twitter.com/hashtag/ISMBECCB?src=hash&amp;ref_src=twsrc%5Etfw">#ISMBECCB</a> <a href="https://t.co/tkIgAWfeYZ">https://t.co/tkIgAWfeYZ</a> <a href="https://t.co/pOHNcFh3Yp">pic.twitter.com/pOHNcFh3Yp</a></p>&mdash; Daniel Stekhoven (@DanStekhoven) <a href="https://twitter.com/DanStekhoven/status/1153250437904130048?ref_src=twsrc%5Etfw">July 22, 2019</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">High throughput sequencing data processing keeps getting easier than ever thanks to <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>! <a href="https://t.co/BsaYCOSq3I">https://t.co/BsaYCOSq3I</a></p>&mdash; Ignacio Tripodi (@ignaciot) <a href="https://twitter.com/ignaciot/status/1136688546251542528?ref_src=twsrc%5Etfw">June 6, 2019</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Many useful and well-documented bioinformatics pipelines by the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> team, from RNA-seq, methylation, to this differential ATAC-seq. More in development, <a href="https://t.co/SvAJjIJqHD">https://t.co/SvAJjIJqHD</a> <a href="https://t.co/TCsBWlJyeC">https://t.co/TCsBWlJyeC</a></p>&mdash; Mikhail Dozmorov (@mikhaildozmorov) <a href="https://twitter.com/mikhaildozmorov/status/1116154350026489857?ref_src=twsrc%5Etfw">April 11, 2019</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Alex from <a href="https://twitter.com/QBIC_tue?ref_src=twsrc%5Etfw">@QBIC_tue</a> talking about how <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> enable his genomics pipelines, built on <a href="https://twitter.com/awscloud?ref_src=twsrc%5Etfw">@AWScloud</a> Batch. Really cool. <a href="https://t.co/FDuXdmem1n">pic.twitter.com/FDuXdmem1n</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1100764282617253888?ref_src=twsrc%5Etfw">February 27, 2019</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">My definition of joy: <br>1) Pick a random <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> pipeline <br>2) Launch `nextflow run &lt;name&gt; -profile docker,test`<br>3) Feel proud of that.</p>&mdash; Paolo Di Tommaso (@PaoloDiTommaso) <a href="https://twitter.com/PaoloDiTommaso/status/1073568446238068736?ref_src=twsrc%5Etfw">December 14, 2018</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Just managed to get <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> on <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> working on my machines. Really cool. Thanks for all your hard work</p>&mdash; Alastair Kerr (@alastair_kerr) <a href="https://twitter.com/alastair_kerr/status/1068491249315926016?ref_src=twsrc%5Etfw">November 30, 2018</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr"><a href="https://twitter.com/tallphil?ref_src=twsrc%5Etfw">@tallphil</a> talking at the <a href="https://twitter.com/nextflow?ref_src=twsrc%5Etfw">@nextflow</a> delelopers’ hackathon about the incredible work he and his team have done to build <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>. <a href="https://t.co/SbWQIh2Q5r">pic.twitter.com/SbWQIh2Q5r</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1065614143061991424?ref_src=twsrc%5Etfw">November 22, 2018</a>
+            </blockquote>
+        </div>
+    </div>
 </div>
 
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 <?php include('../includes/footer.php');
