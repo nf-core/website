@@ -125,7 +125,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   </script>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".toc" data-bs-offset="15" tabindex="0">
+<body tabindex="0">
   <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav">
     <div class="container-fluid">
       <a class="navbar-brand d-md-none" href="/">
