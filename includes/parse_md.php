@@ -103,8 +103,13 @@ function parse_md($markdown){
 
 
   // Prohibit breaking up `--` in option names
-  $content = preg_replace_callback('/([^\w])(--\w+\S*)/i', function($match){
+  $content = preg_replace_callback('/([^\w])(--\w+\S*)|<pre>(?:(?!<pre\s?>).)*/i', function($match){
+    if($match[1]!=">"){
+      // only handle cases where the match is inside a code tags, so highlightjs doesn't complain
+      return $match[0];
+    } else {
       return $match[1] . '<span class="text-nowrap">' . $match[2] . '</span>';
+    }
   }, $content);
   // Add CSS classes to tables
   // Still might break if we have multiple tables and some have custom HTML attrs, but should be good enough for most situations
