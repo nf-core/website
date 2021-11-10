@@ -442,7 +442,7 @@ footer a:hover, footer a:focus, footer a:active {
 .header-link {
   color: $gray-600;
   font-size: 30px;
-  margin: 0 10px 0 -42px;
+  margin: 0px 0px 0 10px;
   opacity: 0;
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
@@ -459,7 +459,6 @@ h4:hover .header-link, h4:active .header-link, h4:focus .header-link,
   opacity: 1;
   text-decoration: none;
 }
-
 @include media-breakpoint-down(sm) {
   .header-link {
     margin: 0;
@@ -1188,14 +1187,11 @@ Launch Page
 }
 .param-docs h2, .param-docs .h2,
 .param-docs h3, .param-docs .h3 {
-  margin-left: 1.7rem;
+  margin-right: 1.7rem;
 }
 
 
 // parameter docs
-.param-docs .header-link {
-  margin: 0 0 0 -42px;
-}
 .param-docs-row-id-col, .param-docs-row-id-col code, .hidden_params_alert code {
   white-space: nowrap;
 }
