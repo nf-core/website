@@ -10,7 +10,11 @@ $(function () {
     selector: '[data-bs-toggle="tooltip"]',
     html: true,
   });
-
+  if (document.querySelector(".toc")) {
+    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+      target: '.toc'
+    })
+  }
   // Enable code highlighting
   hljs.highlightAll();
   // Don't try to guess markdown language to highlight (gets it wrong most of the time)

@@ -1,16 +1,15 @@
 ---
-title: "Bytesize 27: nf-core/smrnaseq"
-subtitle: Lorena Pantano - NextRNA Therapeutics, USA
+title: "Bytesize 30: nf-core/coproid"
+subtitle: Maxime Borry - MPI-SHH, Germany
 type: talk
-start_date: "2021-11-09"
+start_date: "2021-11-30"
 start_time: "13:00 CET"
-end_date: "2021-11-09"
+end_date: "2021-11-30"
 end_time: "13:30 CET"
-youtube_embed: https://youtu.be/4YLQ2VwpCJE
+youtube_embed: https://youtu.be/gU4jx1pb8Tw
 location_url:
- - https://youtu.be/4YLQ2VwpCJE
- - https://www.bilibili.com/video/BV17U4y1M7bQ
- - https://doi.org/10.6084/m9.figshare.16964392.v1
+ - https://youtu.be/gU4jx1pb8Tw
+ - https://zoom.us/j/94352451216
 ---
 
 # nf-core/bytesize
@@ -21,8 +20,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 25: nf-core/smrnaseq
+## Bytesize 30: nf-core/coproid
 
-This week, Lorena Pantano ([@lpantano](https://github.com/lpantano/)) will tell us all about the nf-core/smrnaseq pipeline.
-
-nf-core/smrnaseq is a bioinformatics best-practice analysis pipeline used for small RNA sequencing data.
+This week, Maxime Borry ([@maxibor](https://github.com/maxibor)) will tell us all about the nf-core/coproid pipeline.

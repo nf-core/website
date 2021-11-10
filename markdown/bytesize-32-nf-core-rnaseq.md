@@ -1,14 +1,14 @@
 ---
-title: "Bytesize 29: nf-core/sarek"
-subtitle: José Fernández Navarro - BioLizard, Spain
+title: "Bytesize 32: nf-core/rnaseq"
+subtitle: Harshil Patel - Seqera Labs, Spain
 type: talk
-start_date: "2021-11-23"
+start_date: "2021-12-14"
 start_time: "13:00 CET"
-end_date: "2021-11-23"
+end_date: "2021-12-14"
 end_time: "13:30 CET"
-youtube_embed: https://youtu.be/6EIGUe5sjNo
+youtube_embed: https://youtu.be/CgGaAVzxl4I
 location_url:
- - https://youtu.be/6EIGUe5sjNo
+ - https://youtu.be/CgGaAVzxl4I
  - https://zoom.us/j/94352451216
 ---
 
@@ -20,8 +20,8 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 29: nf-core/ampliseq
+## Bytesize 28: nf-core/rnaseq
 
-This week, José Fernández Navarro ([@jfnavarro](https://github.com/jfnavarro)) will tell us all about the nf-core/sarek pipeline.
+This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell us all about the nf-core/rnaseq pipeline.
 
-nfcore/sarek is a workflow designed to detect variants on whole genome or targeted sequencing data. Initially designed for Human, and Mouse, it can work on any species with a reference genome. Sarek can also handle tumour / normal pairs and could include additional relapses.
+nf-core/rnaseq is a bioinformatics pipeline that can be used to analyse RNA sequencing data obtained from organisms with a reference genome and annotation.
