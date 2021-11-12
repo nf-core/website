@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 32: nf-core/rnaseq"
+title: "Bytesize 31: nf-core/rnaseq"
 subtitle: Harshil Patel - Seqera Labs, Spain
 type: talk
 start_date: "2021-12-14"
@@ -20,7 +20,7 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 28: nf-core/rnaseq
+## Bytesize 31: nf-core/rnaseq
 
 This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell us all about the nf-core/rnaseq pipeline.
 
