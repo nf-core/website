@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 31: nf-core/pgdb"
+title: "Bytesize 30: nf-core/pgdb"
 subtitle: Yasset Perez-Riverol - EMBL-EBI, United Kingdom
 type: talk
 start_date: "2021-12-07"
@@ -20,7 +20,7 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 28: nf-core/dualrnaseq
+## Bytesize 30: nf-core/dualrnaseq
 
 This week, Yasset Perez-Riverol ([@ypriverol](https://github.com/ypriverol/)) will tell us all about the nf-core/pgdb pipeline.
 
