@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 30: nf-core/coproid"
+title: "Bytesize 29: nf-core/coproid"
 subtitle: Maxime Borry - MPI-SHH, Germany
 type: talk
 start_date: "2021-11-30"
@@ -20,6 +20,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 30: nf-core/coproid
+## Bytesize 29: nf-core/coproid
 
 This week, Maxime Borry ([@maxibor](https://github.com/maxibor)) will tell us all about the nf-core/coproid pipeline.
