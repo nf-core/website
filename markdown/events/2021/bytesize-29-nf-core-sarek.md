@@ -20,7 +20,7 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 29: nf-core/sarek
+## Bytesize 28: nf-core/sarek
 
 This week, José Fernández Navarro ([@jfnavarro](https://github.com/jfnavarro)) will tell us all about the nf-core/sarek pipeline.
 
