@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 29: nf-core/sarek"
+title: "Bytesize 28: nf-core/sarek"
 subtitle: José Fernández Navarro - BioLizard, Spain
 type: talk
 start_date: "2021-11-23"
