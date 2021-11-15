@@ -25,6 +25,8 @@ $updated = time();
 $results_fn = dirname(__FILE__).'/nfcore_stats.json';
 $contribs_fn_root = dirname(__FILE__).'/contributor_stats/';
 
+echo("\nRunning update_stats - " . date("Y-m-d h:i:s") . "\n");
+
 // Initialise the results array with the current time and placeholders
 $results = array(
     'updated' => $updated,
@@ -91,7 +93,7 @@ foreach($ignored_repos as $name){
 // Delete cached pipelines stats for pipelines that have been deleted
 foreach(array_keys($results['pipelines']) as $wfname) {
     if(!in_array($wfname, $pipelines_json_names)){
-        echo("\nRemoving $wfname from the cached results as it appears to have been deleted.\n");
+        echo("Removing $wfname from the cached results as it appears to have been deleted.\n");
         unset($results['pipelines'][$wfname]);
     }
 }
@@ -114,7 +116,7 @@ while($first_page || $next_page){
     $gh_members = json_decode(file_get_contents($gh_members_url, false, $gh_api_opts));
     if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
         var_dump($http_response_header);
-        echo("\nCould not fetch nf-core members! $gh_members_url");
+        echo("Could not fetch nf-core members! $gh_members_url");
         continue;
     }
     $results['gh_org_members'][$updated] += count($gh_members);
@@ -162,7 +164,7 @@ foreach($gh_repos as $repo){
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
         var_dump($http_response_header);
-        echo("\nCould not fetch nf-core repo! $gh_repo_url");
+        echo("Could not fetch nf-core repo! $gh_repo_url");
         continue;
     }
     $results[$repo_type][$repo->name]['repo_metrics'][$updated]['network_forks_count'] = $gh_repo->network_count;
@@ -176,9 +178,15 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_views_url = 'https://api.github.com/repos/nf-core/'.$repo_name.'/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
-            echo("\n--------   Could not fetch nf-core repo views! $gh_views_url\n");
-            var_dump($http_response_header);
-            echo ("\n--------   End of header for $gh_views_url\n\n\n");
+            // Pipelines are removed from the cache earlier as we know their names
+            if($repo_type == 'core_repos' && strpos($http_response_header[0], "HTTP/1.1 404") !== false){
+                echo("Removing ".$repo_name." from the cached results as it appears to have been deleted.\n");
+                unset($results['core_repos'][$repo_name]);
+            } else {
+                echo("--------   Could not fetch nf-core repo views! $gh_views_url\n");
+                var_dump($http_response_header);
+                echo ("\n--------   End of header for $gh_views_url\n\n\n");
+            }
             continue;
         }
         foreach($gh_views->views as $view){
@@ -190,7 +198,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
         if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             var_dump($http_response_header);
-            echo("\nCould not fetch nf-core repo clones! $gh_clones_url");
+            echo("Could not fetch nf-core repo clones! $gh_clones_url");
             continue;
         }
         foreach($gh_clones->clones as $clone){
@@ -212,7 +220,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
             ];
         } else if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             var_dump($http_response_header);
-            echo("\nCould not fetch nf-core repo contributors! $gh_contributors_url");
+            echo("Could not fetch nf-core repo contributors! $gh_contributors_url");
             continue;
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
@@ -245,11 +253,11 @@ if(count($contribs_try_again) > 0){
         file_put_contents($contribs_fn_root.$repo_name.'.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
         if(strpos($http_response_header[0], "HTTP/1.1 202") !== false){
-            echo("\nTried getting contributors after delay for $repo_name, but took too long.");
+            echo("Tried getting contributors after delay for $repo_name, but took too long.");
             continue;
         } else if(strpos($http_response_header[0], "HTTP/1.1 200") === false){
             var_dump($http_response_header);
-            echo("\nCould not fetch nf-core repo contributors! $gh_contributors_url");
+            echo("Could not fetch nf-core repo contributors! $gh_contributors_url");
             continue;
         }
         $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
@@ -294,6 +302,7 @@ foreach(['pipelines', 'core_repos'] as $repo_type){
 // SLACK USERS
 //
 //
+echo("update_stats - Slack updates - " . date("Y-m-d h:i:s") . "\n");
 
 $slack_api_url = 'https://slack.com/api/team.billableInfo?token='.$config['slack_access_token'].'&pretty=1';
 $slack_api_opts = stream_context_create([
@@ -308,7 +317,7 @@ $slack_api_opts = stream_context_create([
 $slack_users = json_decode(file_get_contents($slack_api_url, false, $slack_api_opts));
 if(strpos($http_response_header[0], "HTTP/1.0 200") === false || !isset($slack_users->ok) || !$slack_users->ok){
     var_dump($http_response_header);
-    echo("\nCould not fetch slack user list!");
+    echo("Could not fetch slack user list!");
 } else {
     $results['slack']['user_counts'][$updated] = [
         'total' => 0,
@@ -330,7 +339,8 @@ if(strpos($http_response_header[0], "HTTP/1.0 200") === false || !isset($slack_u
 // Twitter - get number of followers
 //
 //
-require "includes/libraries/twitteroauth/autoload.php";
+echo("update_stats - twitter updates - " . date("Y-m-d h:i:s") . "\n");
+require "vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 // Connect to twitter
 $connection = new TwitterOAuth(
@@ -352,7 +362,8 @@ if(isset($twitter_stats->followers_count)){
 //
 
 // Print results to a file
+echo("update_stats - Saving to $results_fn - " . date("Y-m-d h:i:s") . "\n");
 $results_json = json_encode($results, JSON_PRETTY_PRINT)."\n";
 file_put_contents($results_fn, $results_json);
 
-echo("\nupdate_stats done " . date("Y-m-d h:i:s") . "\n\n");
+echo("update_stats done " . date("Y-m-d h:i:s") . "\n\n");
