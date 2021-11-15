@@ -5,12 +5,12 @@ services:
       ports:
         - 3306:3306
       environment: 
-        - MYSQL_ROOT_PASSWORD=typist0tulip7console-PIMENTO4cosmic
-        - MYSQL_DATABASE=nfcore
-        - MYSQL_USER=nfcore_admin
-        - MYSQL_PASSWORD=PEBBLY8exhibit_mead1cilium6despise
+        MYSQL_ROOT_PASSWORD: typist0tulip7console-PIMENTO4cosmic
+        MYSQL_DATABASE: nfcore
+        MYSQL_USER: nfcore_admin
+        MYSQL_PASSWORD: PEBBLY8exhibit_mead1cilium6despise
       volumes:
-        - "/var/lib/mysql:/var/lib/mysql"
+        - ./.mysql-data/db:/var/lib/mysql
   web:
     container_name: nf-core-web
     image: webdevops/php-apache:7.4
@@ -24,6 +24,7 @@ services:
     depends_on: 
       - composer
       - db
+      - npm
   composer:
     image: composer:2.1
     command: ["composer", "install"]
