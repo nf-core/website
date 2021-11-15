@@ -9,6 +9,7 @@ end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/a0VOEeAvETs
 location_url:
  - https://youtu.be/a0VOEeAvETs
+ - https://www.bilibili.com/video/BV1B44y1e7MM
  - https://doi.org/10.6084/m9.figshare.16871008.v1
 ---
 

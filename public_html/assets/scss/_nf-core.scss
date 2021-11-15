@@ -65,10 +65,6 @@ img {
 .card p:last-child {
   margin-bottom: 0;
 }
-.masonry {
-  columns: 2 40vw;
-  column-gap: 1rem;
-}
 
 /* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980 */
 section:before {
@@ -686,7 +682,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .homepage-usedby img {
   height: 80px;
-  max-width: 100%;
+  max-width: 30%;
   margin: 1rem 2rem 1rem 0;
 }
 @media (max-width: 576px) {
@@ -695,6 +691,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     max-width: 120px;
     margin: 0.5rem 1rem 0.5rem 0;
   }
+}
+.homepage_contrib_logos {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /*

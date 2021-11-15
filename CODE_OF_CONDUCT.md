@@ -1,4 +1,4 @@
-# Code of Conduct at nf-core (v1.1)
+# Code of Conduct at nf-core (v1.2)
 
 ## Our Pledge
 
@@ -93,39 +93,11 @@ All community members are **required** to ask members of the group they are work
 
 If someone makes you feel uncomfortable through their behaviours or actions, report it as soon as possible.
 
-You can reach out to members of the Safety Team on Slack or by email (safety [at] nf-co [dot] re). Alternatively, contact a member of the nf-core core team [nf-core core team](https://nf-co.re/about), and they will forward your concerns to the safety officer(s).
+You can reach out to members of the Safety Team (Renuka Kudva, Cris Tuñí, and Michael Heuer) on Slack. Alternatively, contact a member of the nf-core core team [nf-core core team](https://nf-co.re/about), and they will forward your concerns to the Safety Team.
 
 Issues directly concerning members of the Core Team or the Safety Team will be dealt with by other members of the core team and the safety manager, and possible conflicts of interest will be taken into account. nf-core is also in discussions about having an ombudsperson, and details will be shared in due course.
 
 All reports will be handled with utmost discretion and confidentially.
-
-## Safety at the Hackathon (October 27- 29, 2021)
-
-Please note that our Code of Conduct applies at to the Hackathon, and all participants need to abide by our guidelines to participate. We should all feel responsible for making nf-core events safe and fun for everyone. 
-
-We will be using a combination of gather.town and Slack to communicate with all participants.
-
-Please respect the following at all times during the hackathon:
-
-* Never share links for the hackathon platform on social media. We will be using gather.town. Your unique link is for you alone.
-* Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media. Not respecting the latter amounts to doxing, which is in direct violation of the nf-core Code of Conduct.
-
-### Reporting Code of Conduct violations during the hackathon
-
-In case of an immediate perceived threat at the hackathon, please reach out to any of the following individuals on Slack. Their names and the time-zones they are located in are indicated below:
-
-* Renuka Kudva (CEST)
-* Cris Tuñí (CEST)
-* Michael Heuer (CDT)
-* Zhaowei Yang (CST)
-* Bhargava Reddy Morampalli (NZST)
-* Matthias Hörtenhuber (CEST)
-* Gisela Gabernet (CEST)
-* James A. Fellows Yates (CEST)
-* Friederike Hanssen (CEST)
-* Matthias Hörtenhuber (CEST)
-* Harshil Patel (BST)
-* Maxime Garcia (CEST)
 
 You can also report any CoC violations safety [at] nf-co [dot] re. In your email report, please do your best to include:
 
@@ -138,9 +110,9 @@ You can also report any CoC violations safety [at] nf-co [dot] re. In your email
 * If there is a publicly available record (e.g. mailing list record, a screenshot).
 * Any additional information.
 
-After you file a report, one or more of ouur safety officers, Renuka Kudva, will contact you to follow up on your report.
+After you file a report, one or more of ouur safety officers, will contact you to follow up on your report.
 
-#### Who will read and handle reports
+## Who will read and handle reports
 
 All reports will be read and handled by the members of the Safety Team at nf-core.
 
@@ -148,7 +120,7 @@ If members of the Safety Team are deemed to have a conflict of interest with a r
 
 To keep this first report confidential from any of the Safety Team members, please submit your first report by direct messaging on Slack/direct email to any of the nf-core members you are comfortable disclosing the information to, and be explicit about which member(s) you do not consent to sharing the information with.
 
-#### Reviewing reports
+## Reviewing reports
 
 After receiving the report, members of the Safety Team will review the incident report to determine whether immediate action is required, for example, whether there is immediate threat to participants’ safety.
 
@@ -159,13 +131,13 @@ In the case of insufficient information, one or more members of the safety offic
 Once additional information is gathered, the Safety Team will collectively review and decide on the best course of action to take, if any.
 The Safety Team reserves the right to not act on a report.
 
-#### Confidentiality
+## Confidentiality
 
 All reports, and any additional information and data included, are only shared with the team of Safety Officers and possibly members of the core team in case the safety officer is in violation of the CoC. We will respect confidentiality requests for the purpose of protecting victims of abuse.
 
 We will not name harassment victims beyond discussions between the safety officer and members of the nf-core team without the explicit consent of the individuals involved.
 
-#### Enforcement
+## Enforcement
 
 Actions taken by the nf-core’s Safety Team may include but are not limited to:
 
@@ -185,6 +157,10 @@ Actions taken by the nf-core’s Safety Team may include but are not limited to:
 - The [Mozilla Community Participation Guidelines v3.1](https://www.mozilla.org/en-US/about/governance/policies/participation/) (version 3.1, CC BY-SA 3.0 Mozilla)
 
 ## Changelog
+
+### v1.2 - November 12th, 2021
+
+- Removed information specific to reporting CoC violations at the Hackathon in October 2021.
 
 ### v1.1 - October 14th, 2021
 

@@ -115,21 +115,35 @@ all also ignored in `.gitignore`.
 
 ## Production Server Setup
 
-### Stats cronjob
+### Deployment
 
-The web server needs the following cronjob running to scrape pipeline statistics once a week:
-
-```
-0 0 * * * /usr/local/bin/php /home/nfcore/nf-co.re/update_stats.php >> /home/nfcore/update.log 2>&1
-0 2 * * * /usr/local/bin/php /home/nfcore/nf-co.re/update_issue_stats.php >> /home/nfcore/update.log 2>&1
-```
-
-The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
-This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour.
+The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/nf-core/nf-co.re/blob/master/.github/workflows/web-deploy.yml)).
+This script runs PHP composer and npm, then syncs the required files to the web server via FTP.
 
 ### Tools API docs
 
-The repo has a softlink for `/tools-docs` which is intended for use on the server and corresponds to the path used in `public_html/deploy.php`. This script pulls the built API docs from the tools repo onto the server so that it can be served at that URL.
+Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
+[These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
+
+### GitHub web hooks
+
+There is a GitHub web hook at the nf-core organisation level which triggers the pipeline update script whenever a repo is created, or has a release etc.
+This pings the `deploy_pipelines.php` script.
+
+### Stats cronjob
+
+The web server needs the following cronjobs running to scrape statistics and udates:
+
+```cron
+0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/nfcore/update.log 2>&1
+0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/nfcore/update.log 2>&1
+0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/nfcore/update.log 2>&
+```
+
+Remember to replace `/path/to/deployment/` with your actual deployment directory.
+
+The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
+This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour.
 
 ## Contribution guidelines
 
