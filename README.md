@@ -65,7 +65,7 @@ See [instructions on how to get a GitHub OAuth token](https://help.github.com/en
 This file is ignored in `.gitignore` for security reasons.
 
 For the MySQL database you should also add the following values:
-```
+```ini
 host = 'db'
 port = '3306';
 dbname = 'nfcore';
