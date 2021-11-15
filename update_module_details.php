@@ -1,4 +1,5 @@
 <?php
+echo "\n\nUpdating pipeline details - " . date("Y-m-d h:i:s") . "\n";
 
 // Allow PHP fopen to work with remote links
 ini_set("allow_url_fopen", 1);
@@ -150,3 +151,4 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
 mysqli_close($conn);
+echo ("\nupdate_pipeline_details done " . date("Y-m-d h:i:s") . "\n\n");
