@@ -218,7 +218,7 @@ nf-core sync \
    --from-branch dev \
    --pull-request \
    --username [GitHub_username] \
-   --github-repository [GitHuB_pipeline_URL]
+   --github-repository [GitHub_pipeline_URL]
 ```
 
 # Setting up a pipeline for syncing retrospectively
