@@ -190,7 +190,7 @@ Once your fork is merged, the automated PR will also show as merged and will clo
 There are rare cases, when the synchronisation needs to be triggered manually,
 i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync.
 
-Note that automated PR system is only applicable to proper nf-core pipelines, homemade pipelines based on nf-core standards/modules created with ```nf-core create``` have to be updated following this manual synchronisation procedure.
+Note that automated PR system is only applicable to official nf-core pipelines, homemade pipelines based on nf-core standards/modules created with ```nf-core create``` have to be updated following this manual synchronisation procedure.
 
 You can do so by running the `nf-core sync` command:
 
