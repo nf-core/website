@@ -212,6 +212,7 @@ Remember to go back to your `dev` branch as above before running `nf-core sync`.
 Much of the merging process should then be the same as described above with the automated pull requests.
 
 In case of manual synchronisation of a homemade pipeline and if you want to have a PR opened to your `dev` branch, you can use this `nf-core sync` template command:
+
 ```bash
 nf-core sync \
    --dir [pipeline_dir]
