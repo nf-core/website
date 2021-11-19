@@ -431,7 +431,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 
   ```bash
   git checkout dev
-  nf-core sync -d .
+  nf-core sync
   ```
 
 * You probably want to now delete your local copy of the pipeline that you checked out from the main nf-core repository.
