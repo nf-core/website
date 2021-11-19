@@ -197,7 +197,7 @@ You can do so by running the `nf-core sync` command:
 ```bash
 cd my_pipeline
 git checkout dev # or your most up to date branch
-nf-core sync .
+nf-core sync -d .
 ```
 
 Note that the `sync` command assumes that you have a branch called `TEMPLATE`, so you may need to pull this from the upstream nf-core repository if you are working on a fork:
@@ -431,7 +431,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 
   ```bash
   git checkout dev
-  nf-core sync .
+  nf-core sync
   ```
 
 * You probably want to now delete your local copy of the pipeline that you checked out from the main nf-core repository.
