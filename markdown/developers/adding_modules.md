@@ -70,7 +70,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
     ```console
-    $ nf-core modules create . --tool fastqc --author @joebloggs --label process_low --meta
+    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -78,7 +78,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.0
+    nf-core/tools version 2.1
 
     INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                      create.py:130
     INFO     Using Docker / Singularity container with tag: 'fastqc:0.11.9--0'      create.py:140
@@ -153,7 +153,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 9. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
-    $ nf-core modules lint . --tool fastqc
+    $ nf-core modules lint fastqc --dir .
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
