@@ -76,7 +76,6 @@ function github_query($gh_query_url)
 //  nf-core modules table
 //
 
-
 $gh_modules = github_query('https://api.github.com/repos/nf-core/modules/git/trees/master?recursive=1');
 $modules = [];
 foreach($gh_modules['tree'] as $f){
@@ -146,6 +145,80 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 
             mysqli_stmt_execute($stmt);
         }
+    }
+} else {
+    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+}
+
+//
+//  nf-core pipelines table
+//
+
+$gh_pipelines = github_query('https://api.github.com/orgs/nf-core/repos?per_page=100');
+$ignored_repos = parse_ini_file("ignored_repos.ini")['repos'];
+
+// Drop existing table if query was successful
+if (count($gh_pipelines) > 1) {
+    $sql = "DROP TABLE IF EXISTS nfcore_pipelines";
+    if (!mysqli_query($conn, $sql)) {
+        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+    }
+    $sql = "CREATE TABLE nfcore_pipelines (
+                id          INT             AUTO_INCREMENT PRIMARY KEY,
+                github_id  VARCHAR (400)   NOT NULL,
+                html_url     VARCHAR (400)   NOT NULL,
+                name	    VARCHAR (400)   NOT NULL,
+                description	VARCHAR (4000)  DEFAULT NULL,
+                gh_created_at datetime       NOT NULL,
+                gh_updated_at datetime       NOT NULL,
+                gh_pushed_at datetime       NOT NULL,
+                stargazers_count INT         NOT NULL,
+                watchers_count INT           NOT NULL,
+                forks_count INT             NOT NULL,
+                open_issues_count INT       NOT NULL,
+                topics       VARCHAR (4000)  DEFAULT NULL,
+                watchers     INT             NOT NULL,
+                default_branch VARCHAR (400) NOT NULL,
+                pipeline_type VARCHAR (400)  NOT NULL,
+                date_added  datetime        DEFAULT current_timestamp
+                )";
+    if (mysqli_query($conn, $sql)) {
+        echo "`nfcore_pipelines` table created successfully.\n";
+    } else {
+        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+    }
+}
+// Prepare an insert statement
+$sql = "INSERT INTO nfcore_pipelines (github_id,html_url,name,description,gh_created_at,gh_updated_at,gh_pushed_at,stargazers_count,watchers_count,forks_count,open_issues_count,topics,watchers,default_branch,pipeline_type) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+if ($stmt = mysqli_prepare($conn, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "sssssssiiiisiss",$github_id,$html_url,$name,$description,$gh_created_at,$gh_updated_at,$gh_pushed_at,$stargazers_count,$watchers_count,$forks_count,$open_issues_count,$topics,$watchers,$default_branch,$pipeline_type);
+    foreach ($gh_pipelines as $pipeline) {
+        // check if user already exists
+        
+        
+            $github_id = $pipeline['id'];
+            $html_url = $pipeline['html_url'];
+            $name = $pipeline['name'];
+            $description = $pipeline['description'];
+            $gh_created_at = date('Y-m-d H:i:s',$pipeline['created_at']);
+            $gh_updated_at = date('Y-m-d H:i:s',$pipeline['updated_at']);
+            $gh_pushed_at = date('Y-m-d H:i:s',$pipeline['pushed_at']);
+            $stargazers_count = $pipeline['stargazers_count'];
+            $watchers_count = $pipeline['watchers_count'];
+            $forks_count = $pipeline['forks_count'];
+            $open_issues_count = $pipeline['open_issues_count'];
+            $topics = is_array($pipeline['topics']) ? implode(';', $pipeline['topics']) : $pipeline['topics'];
+            $watchers = $pipeline['watchers'];
+            $default_branch = $pipeline['default_branch'];
+
+            if (in_array($pipeline['name'], $ignored_repos)) {
+                $pipeline_type = 'core_repos';
+            } else {
+                $pipeline_type = 'pipelines';
+            }
+            mysqli_stmt_execute($stmt);
     }
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
