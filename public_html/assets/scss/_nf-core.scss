@@ -870,6 +870,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   Pipeline Page
 */
 .pipeline-page-content,
+.module-page-content,
 .side-sub-subnav {
     padding-top: $navbar-height;
 }
@@ -912,7 +913,8 @@ nfcore-subnav {
 .pipeline-run-cmd .btn-outline-secondary{
   border-color: $gray-400;
 }
-.pipeline-sidebar .contrib-avatars img{
+.pipeline-sidebar .contrib-avatars img,
+.module-sidebar .contrib-avatars img{
   width: 42px;
   padding: 0 0.5rem 0.5rem 0;
 }
