@@ -153,7 +153,7 @@ Now add your test data files - note that they must be **very small**.
 GitHub has quite a low file size limit, and the GitHub Actions will time out with anything
 that's not tiny. We typically use PhiX / Yeast / part of a chromosome as a reference
 and aggressively subsampled input data. I.e., as small as possible, as large as necessary.
-We highly recommend that you ask on the [nf-core slack](https://nf-co.re/join) for advice 
+We highly recommend that you ask on the [nf-core slack](https://nf-co.re/join) for advice
 before adding any test data!
 
 Once added, push these new files to GitHub:
