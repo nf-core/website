@@ -43,6 +43,24 @@ $keywords = $keywords_tmp;
 // Close connection
 mysqli_close($conn);
 
+
+// Pagination
+$num_elements = 30;
+$total_pages = ceil(count($modules) / $num_elements);
+if (!isset($_GET['page'])) {
+    $current_page = 1;
+} else {
+    $current_page = $_GET['page'];
+}
+$current_element = ($current_page - 1) * $num_elements;
+$current_modules = array_slice($modules, $current_element, $num_elements);
+
+function add_update_url_param($param_key, $param_value)
+{
+    $params = array_merge($_GET, array($param_key => $param_value));
+    return http_build_query($params);
+}
+
 $title = 'Modules';
 $subtitle = 'Browse the <strong>' . count($modules) . '</strong> modules that are currently available as part of nf-core.';
 include('../includes/header.php');
@@ -59,7 +77,6 @@ include('../includes/header.php');
 <div class="row flex-wrap-reverse flex-lg-wrap me-lg-5">
     <div class="col-12 col-lg-3 pe-2">
         <div class="facet-bar">
-
             <?php $keywords_value = array_count_values($keywords);
             arsort($keywords_value);
             ?>
@@ -77,14 +94,13 @@ include('../includes/header.php');
     </div>
     <div class="col-12 col-lg-9">
         <p class="no-modules text-muted mt-5" style="display: none;">No modules found..</p>
-
         <div class="modules-container modules-container-list">
-            <?php foreach ($modules as $idx => $module) : ?>
+            <?php foreach ($current_modules as $idx => $module) : ?>
                 <div class="card module mb-2">
                     <div class="card-body">
                         <div class="module-name">
                             <h4 class="card-title mb-0" id="<?php echo $module['name']; ?>">
-                                <a href="https://github.com/nf-core/modules/tree/master/<?php echo str_replace("/meta.yml", "", $module['github_path']); ?>" data-bs-toggle="tooltip" title="<?php echo $module['description']; ?>"  class="pipeline-name">
+                                <a href="modules/<?php echo $module['name']; ?>" data-bs-toggle="tooltip" title="<?php echo $module['description']; ?>" class="pipeline-name">
                                     <?php echo $module['name']; ?>
                                     <a href="#<?php echo $module['name']; ?>" class="header-link"><span class=" fas fa-link"></span></a>
                                 </a>
@@ -109,7 +125,7 @@ include('../includes/header.php');
                                         $description = str_replace('[', '<code class="px-0">[', $description);
                                         $description = str_replace(']', ']</code>', $description);
                                         $input_text .= '<div >';
-                                        $input_text .= '<span data-bs-toggle="tooltip" title="'. $input_value['description'] .'">' . $name . ' </span>';
+                                        $input_text .= '<span data-bs-toggle="tooltip" title="' . $input_value['description'] . '">' . $name . ' </span>';
                                         $input_text .= '<span class="text-muted"> (' . $input_value['type'] . ')</span>';
                                         $input_text .= '<p class="text-small collapse mb-1  ms-3 description ' . $module['name'] . '-description" >' .  $description . '</p>';
                                         if (key(end($module['input'])) != $name) { //don't add a comma after the last element
@@ -196,5 +212,23 @@ include('../includes/header.php');
         </div>
     <?php endforeach; ?>
     </div>
+    <nav aria-label="Module page navigation ">
+        <ul class="pagination">
+            <?php
+            $disable = $current_page - 1 == 0 ? 'disabled' : '';
+            $params = add_update_url_param('page', $current_page - 1);
+            echo '<li class="page-item ' . $disable . '"><a class="page-link" href= "/modules?' . $params . '">Previous</a></li>';
+            for ($page_number = 1; $page_number <= $total_pages; $page_number++) {
+                $params = add_update_url_param('page', $page_number);
+                $active = $current_page == $page_number ? 'active' : '';
+                echo '<li class="page-item ' . $active . '"><a class="page-link" href= "/modules?' . $params . '">' . $page_number . ' </a></li>';
+            }
+            $params = add_update_url_param('page', $current_page + 1);
+            $disable = $current_page - $total_pages == 0 ? 'disabled' : '';
+            echo '<li class="page-item ' . $disable . '"><a class="page-link" href= "/modules?' . $params . '">Next</a></li>';
+            ?>
+        </ul>
+    </nav>
 </div>
+
 <?php include('../includes/footer.php'); ?>
