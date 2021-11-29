@@ -314,23 +314,6 @@ A few points to remember are:
 * PRs must not be against the `master` branch (typically you want `dev`)
 * PRs should be reviewed by someone else before being merged (help can be asked on the [#request-review](https://nfcore.slack.com/channels/request-review) Slack channel)
 
-<!-- TODO: remove
-### Setting up Docker Hub
-
-When you fork your pipeline repository to the _nf-core_ organisation, one of the core team will set up Docker Hub (automated Docker image creation) for you.
-However, it can be helpful to set it up on your personal fork as well.
-That way, you can be confident that everything will work when you fork or open a PR on the _nf-core_ organisation.
-
-This service is free to use.
-To set it up, visit [https://hub.docker.com](https://hub.docker.com) and link your personal GitHub repository.
-
-To set up an automated docker container build for the master and the dev branches, as well as for all releases, go to the builds tab of your docker hub repository. There, select build configurations. The source repository should be set to your GitHub repository. Three build rules should be set:
-
-* Master branch build rule (comes by default). Set the "Source Type" to "branch", "Source" to "master" and "Docker tag" to "latest".
-* dev branch build rule. Set _Source Type_ to `branch`, _Source_ to `dev` and _Docker tag_ to `dev`.
-* Tag build rule: this will build a container for your pipeline releases, and is similar to the scenario _"Match versions"_. Set the _Source Type_ to `Tag`, _Source_ to `/^[0-9.]+$/` and _Docker Tag_ to `{sourceref}`.
-* For all build rules, the _Dockerfile location_ should be set to `Dockerfile` and the _Build context_ set to `/`. _Autobuild_ and _Build Caching_ should be on.
--->
 ### Exercise 4 (creating pipelines)
 
 * Make a new pipeline using the template
