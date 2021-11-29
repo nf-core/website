@@ -437,11 +437,12 @@ Do not try to add a run for every possible combination of parameters, as this wo
 
 ## nf-core modules
 
-The Nextflow DSL2 new syntax allows the modularizing of Nextflow pipelines, so workflows, subworkflows and modules can be defined and imported into a pipeline.
-This allows to share pipeline processes (modules) among nf-core pipelines.
+The Nextflow DSL2 syntax allows the modularizing of Nextflow pipelines, so workflows, subworkflows and modules can be defined and imported into a pipeline.
+This allows sharing pipeline processes (modules) among nf-core pipelines.
+
 Shared modules are stored in the [nf-core/modules](https://github.com/nf-core/modules) repository.
-Shared modules on this repository are as atomic as possible, in general calling one analysis tool only.
-If a tool can call several subtools, these will be stored in individual modules with the naming convention `tool/subtool`.
+Modules on this repository are as atomic as possible, in general calling each one tool only.
+If a tool consists of several subtools (e.g. `bwa index` and `bwa mem`), these will be stored in individual modules with the naming convention `tool/subtool`.
 Each module defines the input and output channels, the process script, as well as the software packaging for a specific process. Conda environments, docker or singularity containers are defined within each module. We mostly rely on the [biocontainers](https://biocontainers.pro/) project for providing single-tool containers for each module.
 
 The nf-core/modules repository also includes defined tests for each module which run on tiny test data on the nf-core/test-datasets repository (modules branch). The modules tests run in a similar way as pipeline tests on GitHub actions and ensure that modules are always functional and produce the desired results.
