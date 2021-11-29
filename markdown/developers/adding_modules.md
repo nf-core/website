@@ -37,6 +37,8 @@ If the module doesn't exist on `nf-core/modules`:
 
 ## Writing a new module
 
+> ⚠️ these may include references to an older syntax, however the general idea remains the same
+
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -69,6 +71,8 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
+    > ⚠️ [2021-11-26] please use `dev` version of tools
+
     ```console
     $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
 
@@ -78,16 +82,16 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.1
+    nf-core/tools version 2.2.dev0
 
     INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                      create.py:130
     INFO     Using Docker / Singularity container with tag: 'fastqc:0.11.9--0'      create.py:140
     INFO     Created / edited following files:                                      create.py:218
-                ./modules/fastqc/functions.nf
                 ./modules/fastqc/main.nf
                 ./modules/fastqc/meta.yml
                 ./tests/modules/fastqc/main.nf
                 ./tests/modules/fastqc/test.yml
+                ./tests/modules/fastqc/nextflow.config                            
                 ./tests/config/pytest_modules.yml
     ```
 
@@ -126,7 +130,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.0
+    nf-core/tools version 2.2.dev0
 
 
     INFO     Press enter to use default values (shown in brackets) or type your own responses                                             test_yml_builder.py:51
@@ -291,7 +295,19 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-- All non-mandatory command-line tool options MUST be provided as a string i.e. `options.args` where `options` is a Groovy Map that MUST be provided via the Nextflow `addParams` option when including the module via `include` in the parent workflow.
+- All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, where `args` is a Groovy Map that MUST be provided via the Nextflow `task.ext.args` variable.
+
+   
+   ```nextflow
+   script:
+      def args = task.ext.args ?: ''
+      def prefix = task.ext.suffix ? "${meta.id}${task.ext.suffix}" : "${meta.id}"
+   """
+   fastqc \\
+     $args \\
+     <...>
+   """
+   ```
 
 - Software that can be piped together SHOULD be added to separate module files
 unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -412,12 +428,10 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 - Software requirements SHOULD be declared within the module file using the Nextflow `container` directive. For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
     ```nextflow
-    conda (params.enable_conda ? "bioconda::bwa=0.7.17" : null)                         // Conda package
-    if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
-        container "https://depot.galaxyproject.org/singularity/bwa:0.7.17--hed695b0_7"  // Singularity image
-    } else {
-        container "quay.io/biocontainers/bwa:0.7.17--hed695b0_7"                        // Docker image
-    }
+    conda (params.enable_conda ? "bioconda::fastqc=0.11.9" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
+        'quay.io/biocontainers/fastqc:0.11.9--0' }"
     ```
 
 - If the software is available on Conda it MUST also be defined using the Nextflow `conda` directive. Using `bioconda::bwa=0.7.17` as an example, software MUST be pinned to the channel (i.e. `bioconda`) and version (i.e. `0.7.17`). Conda packages MUST not be pinned to a build because they can vary on different platforms.
@@ -459,20 +473,6 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
       The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
 - If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
-
-### Publishing results
-
-The [Nextflow `publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) definition is currently quite limited in terms of parameter/option evaluation. To overcome this, the publishing logic we have implemented for use with DSL2 modules attempts to minimise changing the `publishDir` directive (default: `params.outdir`) in favour of constructing and appending the appropriate output directory paths via the `saveAs:` statement e.g.
-
-```nextflow
-publishDir "${params.outdir}",
-    mode: params.publish_dir_mode,
-    saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
-```
-
-The `saveFiles` function can be found in the [`functions.nf`](https://github.com/nf-core/modules/tree/master/modules/fastqc/functions.nf) file of utility functions that will be copied into all module directories. It uses the various publishing `options` specified as input to the module to construct and append the relevant output path to `params.outdir`.
-
-We also use a standardised parameter called `params.publish_dir_mode` that can be used to alter the file publishing method (default: `copy`).
 
 ### Test data config file
 
