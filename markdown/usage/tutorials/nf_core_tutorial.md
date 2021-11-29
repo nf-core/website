@@ -273,7 +273,7 @@ This launches an interactive prompt on the command line which asks for things su
 These values are then propagated throughout the template files automatically.
 
 > Contribution guidelines: one of the main ideas of nf-core is to develop with the community to build together best-practise analysis pipelines.
-We encourage cooperation rather than duplication, and contributing to and extending existing pipelines that might be performing similar tasks, rather than duplicating.
+We encourage cooperation rather than duplication, and contributing to and extending existing pipelines that might be performing similar tasks.
 For more details about this, please check out the [contribution guidelines](https://nf-co.re/developers/guidelines).
 
 ### TODO statements
