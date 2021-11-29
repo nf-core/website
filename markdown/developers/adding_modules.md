@@ -297,7 +297,6 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 - All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, where `args` is a Groovy Map that MUST be provided via the Nextflow `task.ext.args` variable.
 
-   
    ```nextflow
    script:
       def args = task.ext.args ?: ''
