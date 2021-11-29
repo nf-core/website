@@ -285,51 +285,6 @@ These comment lines can be deleted once the required change has been made.
 Most code editors have tools to automatically discover such `TODO` lines and the `nf-core lint` command will flag these.
 This makes it simple to systematically work through the new pipeline, editing all files where required.
 
-<!-- TODO: remove
-### How nf-core software packaging works
-
-The only hard requirement for all _nf-core_ pipelines is that software must be available in Docker images. However, it is recommended that pipelines use the following methodology where possible:
-
-1. Software requirements are defined for Conda in `environment.yml`
-2. Docker images are automatically built on Docker Hub, using Conda
-3. Singularity images are generated from Docker Hub at run time for end users
-
-This approach has the following merits:
-
-* A single file contains a list of all required software, making it easy to maintain
-* Identical (or as close as is possible) software is available for users using Conda, Docker or Singularity
-* Having a single container image for the pipeline uses disk space efficiently for Singularity images, and is simple to manage and transfer.
-
-The reason that the above approach is not a hard requirement is that some issues can prevent it from working, such as:
-
-* It may not be possible to package software on conda due to software licensing limitations
-* Different packages may have dependency conflicts which are impossible to resolve
-
-Alternative approaches are then decided upon on a case-by-case basis.
-We encourage you to discuss this on Slack early on as we have been able to resolve some such issues in the past.
-
-### Building environment.yml
-
-The _nf-core_ template will create a simple `environment.yml` file for you with an environment name, conda channels and one or two dependencies.
-You can then add additional required software to this file.
-Note that all software packages must have a specific version number pinned - the format is a single equals sign, _e.g_ `package=version`.
-
-Where software packages are not already available on Bioconda or Conda-forge, we encourage developers to add them.
-This benefits the wider community, as well as just users of the _nf-core_  pipeline.
-
-### Running with Docker locally
-
-You can use Docker for testing by building the image locally.
-The pipeline expects a container with a specific name, so you must _tag_ the Docker image with this.
-You can build and tag an image in a single step with the following command:
-
-```bash
-docker build -t nfcore/PIPELINE:dev .
-```
-
-Note that it is `nfcore` without a hyphen (Docker Hub doesn't allow any punctuation).
-The `.` refers to the current working directory - if run in the root pipeline folder this will tell Docker to use the `Dockerfile` recipe found there.
--->
 ### Forks, branches and pull-requests
 
 All _nf-core_ pipelines use GitHub as their code repository, and git as their version control system.
@@ -586,7 +541,7 @@ This is committed to the `TEMPLATE` branch and a pull-request created to incorpo
 
 Note that these PRs can sometimes create git _merge conflicts_ which will need to be resolved manually.
 There are plugins for most code editors to help with this process.
- Once resolved and checked this PR can be merged and a new pipeline release created.
+Once resolved and checked, this PR can be merged and a new pipeline release created.
 
 ### Exercise 7 (releasing pipelines)
 
