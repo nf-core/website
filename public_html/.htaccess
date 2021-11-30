@@ -3,6 +3,7 @@
     RewriteBase /
 
     # Specific deleted pages
+    RewriteRule ^/?tools-docs/lint_tests /tools/docs/latest/pipeline_lint_tests? [L,R=301]
     RewriteRule ^/?tools-docs /tools/docs? [L,R=301]
     RewriteRule ^/?usage/local_installation$ /usage/installation? [L,R=301]
     RewriteRule ^/?usage/adding_own_config$ /usage/configuration? [L,R=301]
