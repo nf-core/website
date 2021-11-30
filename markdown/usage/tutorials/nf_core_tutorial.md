@@ -420,7 +420,7 @@ Do not try to add a run for every possible combination of parameters, as this wo
 ## nf-core modules
 
 The Nextflow DSL2 syntax allows the modularizing of Nextflow pipelines, so workflows, subworkflows and modules can be defined and imported into a pipeline.
-This allows sharing pipeline processes (modules) among nf-core pipelines.
+This allows for the sharing of pipeline processes (modules, and also routine subworkflows) among nf-core pipelines.
 
 Shared modules are stored in the [nf-core/modules](https://github.com/nf-core/modules) repository.
 Modules on this repository are as atomic as possible, in general calling each one tool only.
@@ -429,7 +429,7 @@ Each module defines the input and output channels, the process script, as well a
 
 The nf-core/modules repository also includes defined tests for each module which run on tiny test data on the nf-core/test-datasets repository (modules branch). The modules tests run in a similar way as pipeline tests on GitHub actions and ensure that modules are always functional and produce the desired results.
 
-The nf-core tools have a series of subcommands to work with nf-core modules.
+nf-core tools have a series of subcommands to work with nf-core modules.
 You can list all the modules that are available in the nf-core/modules repository with the following command:
 
 ```bash
@@ -440,13 +440,13 @@ You can filter the search by typing the name of a tool or part of it.
 
 ### Adding nf-core modules to a pipeline
 
-Adding nf-core modules to a pipeline, if the modules already exist in the nf-core modules repository can be done with the following command (executing it in the main pipeline directory):
+Adding nf-core modules to a pipeline, if the modules already exist in the nf-core modules repository, can be done with the following command (executing it in the main pipeline directory):
 
 ```bash
 nf-core modules install <module name>
 ```
 
-The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow or a sub-workflow, an include statement needs to be added in that Nextflow file:
+The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as `workflows/<pipeline-name>.nf`) or a sub-workflow, an include statement needs to be added in the corresponding Nextflow file:
 
 ```bash
 include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
@@ -454,7 +454,7 @@ include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
 
 Tool options or other options that should be passed to the module can be defined in the `modules.config` configuration file.
 
-If the module defines additional parameters, these parameters are directly available to the module, and their default should be specified in the `nextflow.config` file (a warning `Access to undefined parameter` will otherwise be thrown). These parameters should also be included in the `nextflow_schema.json` parameter definition file, which can be done interactively by using the nf-core tool:
+If the module defines additional parameters, these parameters are directly available to the module, and their default should be specified in the `conf/modules.config` file (a warning `Access to undefined parameter` will otherwise be thrown). These parameters should also be included in the `nextflow_schema.json` parameter definition file, which can be done interactively by using the nf-core tool:
 
 ```bash
 nf-core schema build
