@@ -441,7 +441,7 @@ You can filter the search by typing the name of a tool or part of it.
 
 ### Adding nf-core modules to a pipeline
 
-Adding nf-core modules to a pipeline, if the modules already exist in the nf-core modules repository can be done with the following command (executing it in the main pipeline directory):
+Adding nf-core modules to a pipeline, if the modules already exist in the nf-core modules repository, can be done with the following command (executing it in the main pipeline directory):
 
 ```bash
 nf-core modules install <module name>
