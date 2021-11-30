@@ -430,7 +430,7 @@ Each module defines the input and output channels, the process script, as well a
 
 The nf-core/modules repository also includes defined tests for each module which run on tiny test data on the nf-core/test-datasets repository (modules branch). The modules tests run in a similar way as pipeline tests on GitHub actions and ensure that modules are always functional and produce the desired results.
 
-The nf-core tools have a series of subcommands to work with nf-core modules.
+nf-core tools have a series of subcommands to work with nf-core modules.
 You can list all the modules that are available in the nf-core/modules repository with the following command:
 
 ```bash
