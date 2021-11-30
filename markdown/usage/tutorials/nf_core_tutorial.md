@@ -421,7 +421,7 @@ Do not try to add a run for every possible combination of parameters, as this wo
 ## nf-core modules
 
 The Nextflow DSL2 syntax allows the modularizing of Nextflow pipelines, so workflows, subworkflows and modules can be defined and imported into a pipeline.
-This allows sharing pipeline processes (modules) among nf-core pipelines.
+This allows for the sharing of pipeline processes (modules, and also routine subworkflows) among nf-core pipelines.
 
 Shared modules are stored in the [nf-core/modules](https://github.com/nf-core/modules) repository.
 Modules on this repository are as atomic as possible, in general calling each one tool only.
