@@ -455,7 +455,7 @@ include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
 
 Tool options or other options that should be passed to the module can be defined in the `modules.config` configuration file.
 
-If the module defines additional parameters, these parameters are directly available to the module, and their default should be specified in the `nextflow.config` file (a warning `Access to undefined parameter` will otherwise be thrown). These parameters should also be included in the `nextflow_schema.json` parameter definition file, which can be done interactively by using the nf-core tool:
+If the module defines additional parameters, these parameters are directly available to the module, and their default should be specified in the `conf/modules.config` file (a warning `Access to undefined parameter` will otherwise be thrown). These parameters should also be included in the `nextflow_schema.json` parameter definition file, which can be done interactively by using the nf-core tool:
 
 ```bash
 nf-core schema build
