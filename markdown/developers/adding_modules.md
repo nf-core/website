@@ -53,7 +53,11 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
+
 1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.1`)
+
+    > ⚠️ [2021-11-26] please use `dev` version of tools
+
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
 4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
