@@ -223,5 +223,89 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
+
+
+//
+//  pipelines modules link table
+//
+
+$sql = "SELECT * FROM nfcore_pipelines WHERE pipeline_type = 'pipelines' ORDER BY LOWER(name) ";
+$pipelines = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $pipelines = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    } else {
+        echo "Oops! Something went wrong. Please try again later.";
+    }
+}
+// Drop existing table if query was successful
+if (count($pipelines) > 1) {
+    $sql = "DROP TABLE IF EXISTS pipelines_modules";
+    if (!mysqli_query($conn, $sql)) {
+        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+    }
+    $sql = "CREATE TABLE nfcore_pipelines (
+                id          INT             AUTO_INCREMENT PRIMARY KEY,
+                github_id  VARCHAR (400)   NOT NULL,
+                html_url     VARCHAR (400)   NOT NULL,
+                name	    VARCHAR (400)   NOT NULL,
+                description	VARCHAR (4000)  DEFAULT NULL,
+                gh_created_at datetime       NOT NULL,
+                gh_updated_at datetime       NOT NULL,
+                gh_pushed_at datetime       NOT NULL,
+                stargazers_count INT         NOT NULL,
+                watchers_count INT           NOT NULL,
+                forks_count INT             NOT NULL,
+                open_issues_count INT       NOT NULL,
+                topics       VARCHAR (4000)  DEFAULT NULL,
+                watchers     INT             NOT NULL,
+                default_branch VARCHAR (400) NOT NULL,
+                pipeline_type VARCHAR (400)  NOT NULL,
+                date_added  datetime        DEFAULT current_timestamp
+                )";
+    if (mysqli_query($conn, $sql)) {
+        echo "`nfcore_pipelines` table created successfully.\n";
+    } else {
+        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+    }
+}
+// Prepare an insert statement
+$sql = "INSERT INTO nfcore_pipelines (github_id,html_url,name,description,gh_created_at,gh_updated_at,gh_pushed_at,stargazers_count,watchers_count,forks_count,open_issues_count,topics,watchers,default_branch,pipeline_type) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+if ($stmt = mysqli_prepare($conn, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "sssssssiiiisiss", $github_id, $html_url, $name, $description, $gh_created_at, $gh_updated_at, $gh_pushed_at, $stargazers_count, $watchers_count, $forks_count, $open_issues_count, $topics, $watchers, $default_branch, $pipeline_type);
+    foreach ($gh_pipelines as $pipeline) {
+        // check if user already exists
+
+
+        $github_id = $pipeline['id'];
+        $html_url = $pipeline['html_url'];
+        $name = $pipeline['name'];
+        $description = $pipeline['description'];
+        $gh_created_at = date('Y-m-d H:i:s', $pipeline['created_at']);
+        $gh_updated_at = date('Y-m-d H:i:s', $pipeline['updated_at']);
+        $gh_pushed_at = date('Y-m-d H:i:s', $pipeline['pushed_at']);
+        $stargazers_count = $pipeline['stargazers_count'];
+        $watchers_count = $pipeline['watchers_count'];
+        $forks_count = $pipeline['forks_count'];
+        $open_issues_count = $pipeline['open_issues_count'];
+        $topics = is_array($pipeline['topics']) ? implode(';', $pipeline['topics']) : $pipeline['topics'];
+        $watchers = $pipeline['watchers'];
+        $default_branch = $pipeline['default_branch'];
+
+        if (in_array($pipeline['name'], $ignored_repos)) {
+            $pipeline_type = 'core_repos';
+        } else {
+            $pipeline_type = 'pipelines';
+        }
+        mysqli_stmt_execute($stmt);
+    }
+} else {
+    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+}
+
 mysqli_close($conn);
 echo ("\nupdate_pipeline_details done " . date("Y-m-d h:i:s") . "\n\n");

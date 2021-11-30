@@ -75,10 +75,10 @@ include('../includes/header.php');
         <div class="">
             <div class="module-params ">
                 <div class="module-input">
-                    <h3 class="text-success">Input</h3>
+                    <h2 class="text-success">Input</h2>
 
                     <?php
-                    $input_text = '<div class="d-flex  flex-column">';
+                    $input_text = '<div class="d-flex flex-column mb-3">';
                     foreach ($module['input'] as $input) {
                         foreach ($input as $name => $input_value) {
                             $description = $input_value['description'];
@@ -99,9 +99,9 @@ include('../includes/header.php');
                     ?>
                 </div>
                 <div class="module-output">
-                    <h3 class="text-success">Output</h3>
+                    <h2 class="text-success">Output</h2>
                     <?php
-                    $output_text = '<div class="d-flex  flex-column">';
+                    $output_text = '<div class="d-flex flex-column mb-3">';
                     foreach ($module['output'] as $output) {
                         foreach ($output as $name => $output_value) {
                             $description = $output_value['description'];
@@ -125,7 +125,7 @@ include('../includes/header.php');
             <div class="module-tools">
                 <?php
                 $tool_text = '<div class="d-flex flex-wrap">';
-                $tool_text .= '<h3 class="text-success">Tools</h3>';
+                $tool_text .= '<h2 class="text-success">Tools</h2>';
                 foreach ($module['tools'] as $tool) {
                     // catch incorrectly formatted yamls
                     if (isset($tool['documentation'])) {
@@ -165,7 +165,7 @@ if (in_array($pagetab, [''])) {
             <div class="col-12">
                 <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
                 <div class="input-group input-group-sm module-install-cmd">
-                    <input type="text" class="form-control input-sm code" id="module-install-cmd-text" data-autoselect="" value="module install <?php echo $module['name']; ?>" aria-h3="Copy install command" readonly="">
+                    <input type="text" class="form-control input-sm code" id="module-install-cmd-text" data-autoselect="" value="nf-core modules install <?php echo $module['name']; ?>" aria-h3="Copy install command" readonly="">
                     <button class="btn btn-outline-secondary copy-txt" data-bs-target="module-install-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
                 </div>
             </div>
