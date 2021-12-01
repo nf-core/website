@@ -99,7 +99,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
                 ./tests/config/pytest_modules.yml
     ```
 
-    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. The 4 files you will need to change are:
+    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. The 5 files you will need to or possibly change are:
 
     1. [`./modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/fastqc/main.nf)
 
@@ -114,8 +114,12 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
         Every module MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the module. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the module works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
         Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
+        
+    4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
 
-    4. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
+        Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with a `ext.args` variable within a process scope of the `nextflow.config`. file that exists alongside the test files themselves (and are automatically loaded when `main.nf` is executed. 
+
+    5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
 
         This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
 
@@ -302,6 +306,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 - All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
     `<module>.nf`:
+    
     ```nextflow
     script:
     def args = task.ext.args ?: ''
@@ -312,7 +317,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
          <...>
     """
     ```
+    
     `modules.config`:
+    
     ```nextflow
     process {
         withName: <module> {
@@ -489,6 +496,10 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
       The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
 - If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
+
+### Publishing results
+
+Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This has been system has been replaced with using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
 
 ### Test data config file
 
