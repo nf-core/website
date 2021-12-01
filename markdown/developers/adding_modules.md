@@ -320,11 +320,11 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     ```nextflow
     process {
         withName: <module> {
-            ext.args = [                                                                                                // Assign either a string, closure which returns a string
+            ext.args = [                                                          // Assign either a string, closure which returns a string
                 '--quiet',
-                params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''     // parameter dependent values can be provided like so
-            ].join(' ')                                                                                                    // join converts the list here to a string.
-            ext.suffix = { "${meta.id}" }                                                     // A closure can be used to access variables defined in the script
+                params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+            ].join(' ')                                                           // Join converts the list here to a string.
+            ext.suffix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
         }
     }
     ```
