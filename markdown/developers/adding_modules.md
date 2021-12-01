@@ -96,7 +96,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
                 ./tests/config/pytest_modules.yml
     ```
 
-    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. The 5 files you will need to or possibly change are:
+    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
     1. [`./modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/fastqc/main.nf)
 
@@ -114,7 +114,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
     4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
 
-        Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with a `ext.args` variable within a process scope of the `nextflow.config`. file that exists alongside the test files themselves (and are automatically loaded when `main.nf` is executed.
+        Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
     5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
 
@@ -496,7 +496,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 ### Publishing results
 
-Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This has been system has been replaced with using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
+Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This system has been replaced using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
 
 ### Test data config file
 
