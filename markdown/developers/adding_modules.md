@@ -43,16 +43,13 @@ If the module doesn't exist on `nf-core/modules`:
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-
 <div class="ratio ratio-16x9">
      <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 </div>
 
-
 ### New module workflow
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
-
 
 1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.1`)
 
@@ -95,7 +92,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
                 ./modules/fastqc/meta.yml
                 ./tests/modules/fastqc/main.nf
                 ./tests/modules/fastqc/test.yml
-                ./tests/modules/fastqc/nextflow.config                            
+                ./tests/modules/fastqc/nextflow.config
                 ./tests/config/pytest_modules.yml
     ```
 
@@ -114,10 +111,10 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
         Every module MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the module. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the module works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
         Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
-        
+
     4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
 
-        Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with a `ext.args` variable within a process scope of the `nextflow.config`. file that exists alongside the test files themselves (and are automatically loaded when `main.nf` is executed. 
+        Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with a `ext.args` variable within a process scope of the `nextflow.config`. file that exists alongside the test files themselves (and are automatically loaded when `main.nf` is executed.
 
     5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
 
@@ -306,7 +303,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 - All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
     `<module>.nf`:
-    
+
     ```nextflow
     script:
     def args = task.ext.args ?: ''
@@ -317,9 +314,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
          <...>
     """
     ```
-    
+
     `modules.config`:
-    
+
     ```nextflow
     process {
         withName: <module> {
@@ -359,7 +356,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
   ```bash
   mkfifo input1_uncompressed input2_uncompressed
   gzip -cdf $input1 > input1_uncompressed &
-  gzip -cdf $input2 > input2_uncompressed & 
+  gzip -cdf $input2 > input2_uncompressed &
   tool input1_uncompressed input2_uncompressed > $output
   ```
 
