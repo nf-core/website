@@ -299,18 +299,31 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-- All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, where `args` is a Groovy Map that MUST be provided via the Nextflow `task.ext.args` variable.
+- All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
-   ```nextflow
-   script:
-      def args = task.ext.args ?: ''
-      def prefix = task.ext.suffix ? "${meta.id}${task.ext.suffix}" : "${meta.id}"
-   """
-   fastqc \\
-     $args \\
-     <...>
-   """
-   ```
+    `<module>.nf`:
+    ```nextflow
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.suffix ? "${meta.id}${task.ext.suffix}" : "${meta.id}"
+    """
+    fastqc \\
+        $args \\
+         <...>
+    """
+    ```
+    `modules.config`:
+    ```nextflow
+    process {
+        withName: <module> {
+            ext.args = [                                                                                                // Assign either a string, closure which returns a string
+                '--quiet',
+                params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''     // parameter dependent values can be provided like so
+            ].join(' ')                                                                                                    // join converts the list here to a string.
+            ext.suffix = { "${meta.id}" }                                                     // A closure can be used to access variables defined in the script
+        }
+    }
+    ```
 
 - Software that can be piped together SHOULD be added to separate module files
 unless there is a run-time, storage advantage in implementing in this way. For example,
