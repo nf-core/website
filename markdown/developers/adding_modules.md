@@ -429,6 +429,9 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`.
 
+- If the tool supports specifying memory then you SHOULD provide the appropriate parameter using the Nextflow `task` variable e.g. `--mem ${task.memory.giga}`. 
+    - Java tools can often partly support this with the `-xmx` flag. 
+
 - Any parameters that need to be evaluated in the context of a particular sample e.g. single-end/paired-end data MUST also be defined within the process.
 
 ### Resource requirements
