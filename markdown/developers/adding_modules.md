@@ -37,21 +37,24 @@ If the module doesn't exist on `nf-core/modules`:
 
 ## Writing a new module
 
+> ⚠️ these may include references to an older syntax, however the general idea remains the same
+
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-
 <div class="ratio ratio-16x9">
      <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 </div>
-
 
 ### New module workflow
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
 1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.1`)
+
+    > ⚠️ [2021-11-26] please use `dev` version of tools
+
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
 4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
@@ -69,6 +72,8 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
+    > ⚠️ [2021-11-26] please use `dev` version of tools
+
     ```console
     $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
 
@@ -78,20 +83,20 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.1
+    nf-core/tools version 2.2.dev0
 
     INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                      create.py:130
     INFO     Using Docker / Singularity container with tag: 'fastqc:0.11.9--0'      create.py:140
     INFO     Created / edited following files:                                      create.py:218
-                ./modules/fastqc/functions.nf
                 ./modules/fastqc/main.nf
                 ./modules/fastqc/meta.yml
                 ./tests/modules/fastqc/main.nf
                 ./tests/modules/fastqc/test.yml
+                ./tests/modules/fastqc/nextflow.config
                 ./tests/config/pytest_modules.yml
     ```
 
-    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. The 4 files you will need to change are:
+    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
     1. [`./modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/fastqc/main.nf)
 
@@ -107,7 +112,11 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
         Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-    4. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
+    4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
+
+        Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+
+    5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
 
         This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
 
@@ -126,7 +135,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.0
+    nf-core/tools version 2.2.dev0
 
 
     INFO     Press enter to use default values (shown in brackets) or type your own responses                                             test_yml_builder.py:51
@@ -291,7 +300,34 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-- All non-mandatory command-line tool options MUST be provided as a string i.e. `options.args` where `options` is a Groovy Map that MUST be provided via the Nextflow `addParams` option when including the module via `include` in the parent workflow.
+- All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+
+    `<module>.nf`:
+
+    ```nextflow
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.suffix ? "${meta.id}${task.ext.suffix}" : "${meta.id}"
+    """
+    fastqc \\
+        $args \\
+         <...>
+    """
+    ```
+
+    `modules.config`:
+
+    ```nextflow
+    process {
+        withName: <module> {
+            ext.args = [                                                          // Assign either a string, closure which returns a string
+                '--quiet',
+                params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+            ].join(' ')                                                           // Join converts the list here to a string.
+            ext.suffix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+        }
+    }
+    ```
 
 - Software that can be piped together SHOULD be added to separate module files
 unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -320,7 +356,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
   ```bash
   mkfifo input1_uncompressed input2_uncompressed
   gzip -cdf $input1 > input1_uncompressed &
-  gzip -cdf $input2 > input2_uncompressed & 
+  gzip -cdf $input2 > input2_uncompressed &
   tool input1_uncompressed input2_uncompressed > $output
   ```
 
@@ -412,12 +448,10 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 - Software requirements SHOULD be declared within the module file using the Nextflow `container` directive. For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
     ```nextflow
-    conda (params.enable_conda ? "bioconda::bwa=0.7.17" : null)                         // Conda package
-    if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
-        container "https://depot.galaxyproject.org/singularity/bwa:0.7.17--hed695b0_7"  // Singularity image
-    } else {
-        container "quay.io/biocontainers/bwa:0.7.17--hed695b0_7"                        // Docker image
-    }
+    conda (params.enable_conda ? "bioconda::fastqc=0.11.9" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
+        'quay.io/biocontainers/fastqc:0.11.9--0' }"
     ```
 
 - If the software is available on Conda it MUST also be defined using the Nextflow `conda` directive. Using `bioconda::bwa=0.7.17` as an example, software MUST be pinned to the channel (i.e. `bioconda`) and version (i.e. `0.7.17`). Conda packages MUST not be pinned to a build because they can vary on different platforms.
@@ -462,17 +496,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 ### Publishing results
 
-The [Nextflow `publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) definition is currently quite limited in terms of parameter/option evaluation. To overcome this, the publishing logic we have implemented for use with DSL2 modules attempts to minimise changing the `publishDir` directive (default: `params.outdir`) in favour of constructing and appending the appropriate output directory paths via the `saveAs:` statement e.g.
-
-```nextflow
-publishDir "${params.outdir}",
-    mode: params.publish_dir_mode,
-    saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
-```
-
-The `saveFiles` function can be found in the [`functions.nf`](https://github.com/nf-core/modules/tree/master/modules/fastqc/functions.nf) file of utility functions that will be copied into all module directories. It uses the various publishing `options` specified as input to the module to construct and append the relevant output path to `params.outdir`.
-
-We also use a standardised parameter called `params.publish_dir_mode` that can be used to alter the file publishing method (default: `copy`).
+Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This system has been replaced using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
 
 ### Test data config file
 
