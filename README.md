@@ -1,4 +1,5 @@
-<img src="public_html/assets/img/logo/nf-core-logo.png" width="400">
+<img src="public_html/assets/img/logo/nf-core-logo.png#gh-light-mode-only" width="400">
+<img src="public_html/assets/img/logo/nf-core-logo-darkbg.png#gh-dark-mode-only" width="400">
 
 # [nf-co.re](https://github.com/nf-core/nf-co.re)
 
@@ -9,7 +10,7 @@ This repository contains code for the nf-core website: **<http://nf-co.re/>**
 Here's how the website is built:
 
 * Language: PHP
-* HTML / CSS / JS framework: [Bootstrap v4](http://getbootstrap.com/)
+* HTML / CSS / JS framework: [Bootstrap v5](http://getbootstrap.com/)
 * JavaScript libraries:
   * [jQuery](https://jquery.com/)
   * [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
