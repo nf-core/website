@@ -14,7 +14,12 @@ if(isset($_GET['w'])){
     $new_width = 400;
 }
 
-$filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo.png';
+$theme = 'light';
+if (isset($_GET['theme'])) {
+    $theme = $_GET['theme'];
+};
+
+$filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring). '_logo_' . $theme . '.png';
 
 if(strlen($textstring) == 0){
     header('HTTP/1.1 404 Not Found');
@@ -41,12 +46,13 @@ if(file_exists($logo_cache_fn) && !isset($_GET['f'])){
 }
 
 // Load the base image
-$template_fn = "assets/img/logo/nf-core-repologo-white-base.png";
+$template_fn = "assets/img/logo/nf-core-repo-logo-base-".$theme."bg.png";
 list($width, $height) = getimagesize($template_fn);
 $image = imagecreatefrompng($template_fn);
 
 // Create some colors
 $black = imagecolorallocate($image, 0, 0, 0);
+$color = $theme=='light'?imagecolorallocate($image, 5, 5, 5): imagecolorallocate($image, 250, 250, 250);
 $font_size = 300;
 $font_path = "../includes/Maven_Pro/MavenPro-Bold.ttf";
 
@@ -57,7 +63,7 @@ imagettftext(
     0,           // angle
     110,         // x
     850,         // y
-    $black,      // colour
+    $color,      // colour
     $font_path,  // font
     $textstring  // text
 );
