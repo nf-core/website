@@ -15,8 +15,8 @@ if(isset($_GET['w'])){
 }
 
 $theme = 'light';
-if (isset($_GET['theme'])) {
-    $theme = $_GET['theme'];
+if (isset($_GET['theme']) && $_GET['theme'] == 'dark') {
+    $theme = 'dark';
 };
 
 $filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring). '_logo_' . $theme . '.png';
