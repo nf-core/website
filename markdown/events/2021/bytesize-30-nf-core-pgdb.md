@@ -9,7 +9,8 @@ end_time: "13:30 CET"
 youtube_embed: https://youtu.be/vbyX3xmTT38
 location_url:
  - https://youtu.be/vbyX3xmTT38
- - https://zoom.us/j/94352451216
+ - https://www.bilibili.com/video/BV1db4y1i7GM
+ - https://doi.org/10.6084/m9.figshare.17136131.v1
 ---
 
 # nf-core/bytesize
