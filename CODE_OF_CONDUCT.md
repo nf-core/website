@@ -24,7 +24,7 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 ## Preamble
 
-> Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Team (Renuka Kudva, Cris Tuñí, and Michael Heuer), with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officer and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
+> Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Team (Renuka Kudva, Cris Tuñí, and Michael Heuer), with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officers and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
 
 An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about).
 
@@ -34,7 +34,7 @@ We have therefore adopted this Code of Conduct (CoC), which we require all membe
 
 Our CoC will be strictly enforced and the nf-core team reserve the right to exclude participants who do not comply with our guidelines from our workspaces and future nf-core activities.
 
-We ask all members of our community to help maintain a supportive and productive workspace and to avoid behaviours that can make individuals feel unsafe or unwelcome. Please help us maintain and uphold this CoC.
+We ask all members of our community to help maintain a supportive and productive workspaces and to avoid behaviours that can make individuals feel unsafe or unwelcome. Please help us maintain and uphold this CoC.
 
 Questions, concerns or ideas on what we can include? Contact members of the Safety Team on Slack or email safety [at] nf-co [dot] re.
 
@@ -48,12 +48,12 @@ Members of the core team or the Safety Team who violate the CoC will be required
 
 ## When are where does this Code of Conduct apply?
 
-Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events such as hackathons and workshops. These guidelines include but are not limited to the following listed alphabetically and therefore in no order of preference:
+Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events such as hackathons, workshops, bytesize, and collaborative workspaces on gather.town. These guidelines include but are not limited to the following listed alphabetically and therefore in no order of preference:
 
 - Communicating with an official project email address.
 - Communicating with community members within the nf-core Slack channel.
 - Participating in hackathons organised by nf-core (both online and in-person events).
-- Participating in collaborative work on GitHub, Google Suite, community calls, mentorship meetings, email correspondence.
+- Participating in collaborative work on GitHub, Google Suite, community calls, mentorship meetings, email correspondence, and on the nf-core gather.town workspace.
 - Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, gather.town, Jitsi, YouTube live etc.
 - Representing nf-core on social media. This includes both official and personal accounts.
 
@@ -157,6 +157,10 @@ Actions taken by the nf-core’s Safety Team may include but are not limited to:
 - The [Mozilla Community Participation Guidelines v3.1](https://www.mozilla.org/en-US/about/governance/policies/participation/) (version 3.1, CC BY-SA 3.0 Mozilla)
 
 ## Changelog
+
+### v1.3 - December 10th, 2021
+
+- Added a statement that the CoC applies to nf-core gather.town workspaces. Corrected typographical errors in the text.
 
 ### v1.2 - November 12th, 2021
 
