@@ -217,9 +217,8 @@ $(function () {
     //update view when url-hash changes
     $( window ).on( 'hashchange', function( e ) {
         if (!prefix.endsWith("/")) {
-            prefix = window.location.hash.substr(1);
-            prefix = prefix.substr(0, prefix.lastIndexOf("/") + 1);
-
+            prefix = window.location.hash.substrring(1);
+            prefix = prefix.substring(0, prefix.lastIndexOf("/") + 1);
             if (window.location.hash.split("/").length > 2 ) {
                 s3exp_config["Prefix"] = prefix;
             }
@@ -330,7 +329,7 @@ $(function () {
 
             // Add S3 objects to DataTable
             $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
-            let url = object2hrefvirt(s3exp_config.Bucket, window.location.hash.substr(1))
+            let url = object2hrefvirt(s3exp_config.Bucket, window.location.hash.substring(1))
             let file_size = fetch_file_size(url);
             fetch_preview(url,file_size);
         } else {
@@ -550,6 +549,10 @@ $(function () {
         $('#tb-s3objects').on('click', 'a', function (event) {
             event.preventDefault();
             var target = event.target.href? event.target : $(event.target).parent("a")[0];
+            let hash = window.location.hash
+            hash = hash.substring(1, hash.lastIndexOf("/") + 1) + target.download;
+            window.location.hash = hash;
+
             // console.log("target href=" + target.href);
             // console.log("target dataset=" + JSON.stringify(target.dataset));
 
