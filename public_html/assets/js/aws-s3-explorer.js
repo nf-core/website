@@ -152,9 +152,10 @@ $(function () {
                     data =
                     '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
                 } else if (
-                    ![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)
-                ) {
-                        data = '<pre><code class="hljs language-plaintext">' + sanitize_html(data) + '</code></pre>';
+                    ![".html", ".pdf", ".png", ".jpg", ".jpeg", ".svg"].includes(extension)
+                ) {     
+                    var lang = [".json",".yaml",".yml"].includes(extension)? extension.slice(1): 'plaintext';
+                        data = '<pre><code class="language-' + lang + '">' + sanitize_html(data) + '</code></pre>';
                 } else if (extension === ".html") {
                     data ='<iframe srcdoc="' +
                     sanitize_html(data) +
@@ -169,18 +170,20 @@ $(function () {
                     data = '<img src="' + response.url + '"/>';
                 }
                 if (
-                  data !==
-                  '<pre><code class="hljs language-plaintext"></code></pre>'
+                    data !==
+                    '<pre><code class="hljs language-'+lang+'"></code></pre>'
                 ) {
-                  $("#file-preview").show();
-                  $("#file-preview").html(
+                    
+                    $("#file-preview").show();
+                    $("#file-preview").html(
                     header + '<div class="card-body">' + data + "</div>"
-                  );
-                  var el_offset = $("#file-preview").offset().top - 140;
-                  $([document.documentElement, document.body]).animate(
+                    );
+                    hljs.highlightAll();
+                    var el_offset = $("#file-preview").offset().top - 140;
+                    $([document.documentElement, document.body]).animate(
                     { scrollTop: el_offset },
                     500
-                  );
+                    );
                 }
 
             });
