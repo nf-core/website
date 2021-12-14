@@ -219,7 +219,7 @@ $(function () {
     //update view when url-hash changes
     $( window ).on( 'hashchange', function( e ) {
         if (!prefix.endsWith("/")) {
-            prefix = window.location.hash.substrring(1);
+            prefix = window.location.hash.substring(1);
             prefix = prefix.substring(0, prefix.lastIndexOf("/") + 1);
             if (window.location.hash.split("/").length > 2 ) {
                 s3exp_config["Prefix"] = prefix;
