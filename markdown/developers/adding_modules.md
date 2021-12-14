@@ -307,7 +307,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     ```nextflow
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.suffix ? "${meta.id}${task.ext.suffix}" : "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     fastqc \\
         $args \\
@@ -324,7 +324,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
                 '--quiet',
                 params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
             ].join(' ')                                                           // Join converts the list here to a string.
-            ext.suffix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+            ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
         }
     }
     ```
@@ -367,7 +367,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
     ```bash
     cat <<-END_VERSIONS > versions.yml
-    ${getProcessName(task.process)}:
+    "${task.process}":
         fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
         samtools: \$( samtools --version 2>&1 | sed 's/^.*samtools //; s/Using.*\$// )
     END_VERSION
@@ -376,7 +376,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     resulting in, for instance,
 
     ```yaml
-    FASTQC:
+    "FASTQC":
         fastqc: 0.11.9
         samtools: 1.12
     ```
