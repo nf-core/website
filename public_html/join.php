@@ -37,10 +37,6 @@ include('../includes/header.php');
     <i class="fab fa-youtube"></i> nf-core on YouTube
   </a>
 </p>
-<p class="text-info small">
-  <i class="fas fa-handshake-alt me-1"></i>
-  We also have a dedicated gather.town space for nf-core members. Please ask for details and access on the nf-core slack under <a href= "https://nfcore.slack.com/channels/gather-town"><code>#gather-town</code></a>.
-</p>
 
 <p class="text-info small">
   <i class="fas fa-exclamation-triangle me-1"></i>
