@@ -107,12 +107,12 @@ collaborators for editing and reviewing code.</p>
 <script src="https://apis.google.com/js/platform.js"></script>
 <div class="g-ytsubscribe" data-channelid="UCfdY8g6eA6IuYZ8oyyNsabQ" data-layout="full" data-count="default"></div>
 
-<h1 id="Gather-town" class="mt-5">
+<h1 id="gather-town" class="mt-5">
   <span class="join-pull-img"><img width="120px" src="/assets/img/gather-town.svg" /></span>
   Gather Town
-  <a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+  <a href="#gather-town" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h1>
-<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for face-to-face collaboration. 
+<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for collaboration. 
   You can request access from the nf-core Slack under the
   <a href="https://nfcore.slack.com/channels/gather-town"><code>#gather-town</code></a> channel
 </p>
