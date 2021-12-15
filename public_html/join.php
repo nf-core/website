@@ -36,10 +36,9 @@ include('../includes/header.php');
   <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
     <i class="fab fa-youtube"></i> nf-core on YouTube
   </a>
-</p>
-<p class="text-info small">
-  <i class="fas fa-handshake-alt me-1"></i>
-  We also have a dedicated gather.town space for nf-core members. Please ask for details and access on the nf-core slack under <a href= "https://nfcore.slack.com/channels/gather-town"><code>#gather-town</code></a>.
+  <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office" class="mb-2 btn btn-lg btn-info" style="background-color: #4358D8;">
+  <i class="fa-duotone fa-video"></i> nf-core on gather.town
+  </a>
 </p>
 
 <p class="text-info small">
@@ -107,5 +106,18 @@ collaborators for editing and reviewing code.</p>
 </p>
 <script src="https://apis.google.com/js/platform.js"></script>
 <div class="g-ytsubscribe" data-channelid="UCfdY8g6eA6IuYZ8oyyNsabQ" data-layout="full" data-count="default"></div>
+
+<h1 id="Gather-town" class="mt-5">
+  Gather Town
+  <a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+</h1>
+<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for face-to-face collaboration. 
+  You can request access from the nf-core slack under the
+  <a href="https://nfcore.slack.com/channels/gather-town"><code>#gather-town</code></a> channel
+</p>
+<em class="small text-muted">(NB: No hyphen!)</em></p>
+<p><a class="btn btn-success me-2" href="https://nfcore.slack.com/channels/gather-town"><i class="fab fa-slack"></i> Request access to gather on the slack channel</a>
+</p>
+
 
 <?php include('../includes/footer.php');
