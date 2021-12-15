@@ -37,7 +37,6 @@ include('../includes/header.php');
     <i class="fab fa-youtube"></i> nf-core on YouTube
   </a>
 </p>
-
 <p class="text-info small">
   <i class="fas fa-exclamation-triangle me-1"></i>
   All nf-core community members are expected to adhere to the nf-core <a href="/code_of_conduct" class="text-info link-underline">code of conduct</a>
