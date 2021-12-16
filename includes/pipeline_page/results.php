@@ -11,28 +11,22 @@ ob_start();
             <div class="row ">
                 <!-- Panel including title, breadcrumbs, and controls -->
                 <div class="col">
-                    <!-- Title and breadcrumbs -->
-                    <div class="d-flex align-items-center title-bar">
+                    <!-- Title and breadcrumbs, wrap them on small displays and reshuffle order to put breadcrumb last -->
+                    <div class="d-flex align-items-center title-bar flex-wrap flex-md-nowrap">
                         <!-- App title -->
-                        <div class="title ">
-                            <i class="fab fa-aws fa-lg me-3 mb-3"></i>
+                        <div class="title order-0 order-md-0">
+                            <i class="fab fa-aws fa-lg me-md-3"></i>
                         </div>
                         <!-- Bucket breadcrumbs -->
-                        <ul id="breadcrumb" class="breadcrumb">
+                        <ul id="breadcrumb" class="breadcrumb order-1 order-md-0 mb-0">
                             <li class="breadcrumb-item active">
                                 <a href="#"><i class="fas fa-circle-notch fa-spin"></i></a>
                             </li>
                         </ul>
-                        <button type="button" class="btn btn-outline-secondary copy-url ms-auto" data-bs-target="">Copy Bucket S3 URL</button>
-                    </div>
-                    <!-- Controls -->
-                    <div id="navbuttons" class="">
-                        <div>
-                            <!-- Dual purpose: progress spinner and refresh button, plus object count -->
-                            <div class="btn-group" id="refresh">
-                                <span id="bucket-loader" class="btn fa fa-refresh fa-2x " title="Refresh"></span>
-                            </div>
+                        <div class="ms-auto order-0 order-md-0">
+                            <button type="button" class="btn btn-outline-secondary copy-url ms-3" data-bs-target="">Copy Bucket S3 URL</button>
                         </div>
+
                     </div>
                 </div>
             </div>
