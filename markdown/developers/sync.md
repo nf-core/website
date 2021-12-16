@@ -302,22 +302,28 @@ No commits yet
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
+  .editorconfig
   .gitattributes
   .github/
   .gitignore
-  .travis.yml
+  .markdownlint.yml
   CHANGELOG.md
+  CITATIONS.md
   CODE_OF_CONDUCT.md
-  Dockerfile
   LICENSE
   README.md
   assets/
   bin/
   conf/
   docs/
-  environment.yml
+  lib/
   main.nf
+  modules.json
+  modules/
   nextflow.config
+  nextflow_schema.json
+  subworkflows/
+  workflows/
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
