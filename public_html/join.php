@@ -35,10 +35,6 @@ include('../includes/header.php');
   </a>
   <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
     <i class="fab fa-youtube"></i> nf-core on YouTube
-  </a>
-  <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office" class="mb-2 btn btn-lg btn-info" style="background-color: #4358D8;">
-  <i class="fa-duotone fa-video"></i> nf-core on gather.town
-  </a>
 </p>
 
 <p class="text-info small">
