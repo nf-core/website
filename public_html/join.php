@@ -35,6 +35,7 @@ include('../includes/header.php');
   </a>
   <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
     <i class="fab fa-youtube"></i> nf-core on YouTube
+  </a>
 </p>
 
 <p class="text-info small">
