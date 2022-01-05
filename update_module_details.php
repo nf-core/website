@@ -99,17 +99,17 @@ if (count($modules)>1){
         echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
     }
     $sql = "CREATE TABLE nfcore_modules (
-                id                          INT AUTO_INCREMENT PRIMARY KEY,
+                id          INT             AUTO_INCREMENT PRIMARY KEY,
                 github_sha  VARCHAR (400)   NOT NULL,
                 github_path VARCHAR (400)   NOT NULL,
                 api_url     VARCHAR (400)   NOT NULL,
                 name	    VARCHAR (400)   NOT NULL,
                 description	VARCHAR (4000)  DEFAULT NULL,
-                keywords	VARCHAR (2000)   DEFAULT NULL,
+                keywords	VARCHAR (2000)  DEFAULT NULL,
                 tools	    JSON            NOT NULL,
                 input	    JSON            NOT NULL,
                 output	    JSON            NOT NULL,
-                authors	    VARCHAR (2000)   NOT NULL,
+                authors	    VARCHAR (2000)  NOT NULL,
                 date_added  datetime        DEFAULT current_timestamp
                 )";
     if (mysqli_query($conn, $sql)) {
@@ -126,7 +126,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     mysqli_stmt_bind_param($stmt, "ssssssssss", $github_sha, $github_path, $api_url, $name, $description, $keywords, $tools, $input, $output, $authors);
 
     foreach ($modules as $idx => $module) {
-        // check if user already exists
+        // check if module already exists
         $check = "SELECT * FROM nfcore_modules WHERE name = '$module[name]'";
         $res = mysqli_query($conn, $check);
         if ($res->num_rows) {
@@ -164,23 +164,23 @@ if (count($gh_pipelines) > 1) {
         echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
     }
     $sql = "CREATE TABLE nfcore_pipelines (
-                id          INT             AUTO_INCREMENT PRIMARY KEY,
-                github_id  VARCHAR (400)   NOT NULL,
-                html_url     VARCHAR (400)   NOT NULL,
-                name	    VARCHAR (400)   NOT NULL,
-                description	VARCHAR (4000)  DEFAULT NULL,
-                gh_created_at datetime       NOT NULL,
-                gh_updated_at datetime       NOT NULL,
-                gh_pushed_at datetime       NOT NULL,
-                stargazers_count INT         NOT NULL,
-                watchers_count INT           NOT NULL,
-                forks_count INT             NOT NULL,
-                open_issues_count INT       NOT NULL,
-                topics       VARCHAR (4000)  DEFAULT NULL,
-                watchers     INT             NOT NULL,
-                default_branch VARCHAR (400) NOT NULL,
-                pipeline_type VARCHAR (400)  NOT NULL,
-                date_added  datetime        DEFAULT current_timestamp
+                id                INT             AUTO_INCREMENT PRIMARY KEY,
+                github_id         VARCHAR (400)   NOT NULL,
+                html_url          VARCHAR (400)   NOT NULL,
+                name	          VARCHAR (400)   NOT NULL,
+                description	      VARCHAR (4000)  DEFAULT NULL,
+                gh_created_at     datetime        NOT NULL,
+                gh_updated_at     datetime        NOT NULL,
+                gh_pushed_at      datetime        NOT NULL,
+                stargazers_count  INT             NOT NULL,
+                watchers_count    INT             NOT NULL,
+                forks_count       INT             NOT NULL,
+                open_issues_count INT             NOT NULL,
+                topics            VARCHAR (4000)  DEFAULT NULL,
+                watchers          INT             NOT NULL,
+                default_branch    VARCHAR (400)   NOT NULL,
+                pipeline_type     VARCHAR (400)   NOT NULL,
+                date_added        datetime        DEFAULT current_timestamp
                 )";
     if (mysqli_query($conn, $sql)) {
         echo "`nfcore_pipelines` table created successfully.\n";
@@ -195,9 +195,12 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
     mysqli_stmt_bind_param($stmt, "sssssssiiiisiss",$github_id,$html_url,$name,$description,$gh_created_at,$gh_updated_at,$gh_pushed_at,$stargazers_count,$watchers_count,$forks_count,$open_issues_count,$topics,$watchers,$default_branch,$pipeline_type);
     foreach ($gh_pipelines as $pipeline) {
-        // check if user already exists
-        
-        
+        // check if module already exists
+        $check = "SELECT * FROM nfcore_pipelines WHERE name = '$pipeline[name]'";
+        $res = mysqli_query($conn, $check);
+        if ($res->num_rows) {
+            continue;
+        } else {
             $github_id = $pipeline['id'];
             $html_url = $pipeline['html_url'];
             $name = $pipeline['name'];
@@ -212,13 +215,13 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             $topics = is_array($pipeline['topics']) ? implode(';', $pipeline['topics']) : $pipeline['topics'];
             $watchers = $pipeline['watchers'];
             $default_branch = $pipeline['default_branch'];
-
             if (in_array($pipeline['name'], $ignored_repos)) {
                 $pipeline_type = 'core_repos';
             } else {
                 $pipeline_type = 'pipelines';
             }
             mysqli_stmt_execute($stmt);
+        }
     }
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
@@ -246,65 +249,56 @@ if (count($pipelines) > 1) {
     if (!mysqli_query($conn, $sql)) {
         echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
     }
-    $sql = "CREATE TABLE nfcore_pipelines (
+    // create pipelines_modules table with foreign keys to pipelines and modules
+    $sql = "CREATE TABLE pipelines_modules (
                 id          INT             AUTO_INCREMENT PRIMARY KEY,
-                github_id  VARCHAR (400)   NOT NULL,
-                html_url     VARCHAR (400)   NOT NULL,
-                name	    VARCHAR (400)   NOT NULL,
-                description	VARCHAR (4000)  DEFAULT NULL,
-                gh_created_at datetime       NOT NULL,
-                gh_updated_at datetime       NOT NULL,
-                gh_pushed_at datetime       NOT NULL,
-                stargazers_count INT         NOT NULL,
-                watchers_count INT           NOT NULL,
-                forks_count INT             NOT NULL,
-                open_issues_count INT       NOT NULL,
-                topics       VARCHAR (4000)  DEFAULT NULL,
-                watchers     INT             NOT NULL,
-                default_branch VARCHAR (400) NOT NULL,
-                pipeline_type VARCHAR (400)  NOT NULL,
-                date_added  datetime        DEFAULT current_timestamp
+                pipeline_id INT             NOT NULL,
+                module_id   INT             NOT NULL,
+                FOREIGN KEY (pipeline_id)   REFERENCES nfcore_pipelines(id),
+                FOREIGN KEY (module_id)     REFERENCES nfcore_modules(id)
                 )";
     if (mysqli_query($conn, $sql)) {
-        echo "`nfcore_pipelines` table created successfully.\n";
+        echo "`pipelines_modules` table created successfully.\n";
     } else {
         echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
     }
 }
 // Prepare an insert statement
-$sql = "INSERT INTO nfcore_pipelines (github_id,html_url,name,description,gh_created_at,gh_updated_at,gh_pushed_at,stargazers_count,watchers_count,forks_count,open_issues_count,topics,watchers,default_branch,pipeline_type) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO pipelines_modules (pipeline_id,module_id) VALUES (?,?)";
 
-if ($stmt = mysqli_prepare($conn, $sql)) {
-    // Bind variables to the prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "sssssssiiiisiss", $github_id, $html_url, $name, $description, $gh_created_at, $gh_updated_at, $gh_pushed_at, $stargazers_count, $watchers_count, $forks_count, $open_issues_count, $topics, $watchers, $default_branch, $pipeline_type);
-    foreach ($gh_pipelines as $pipeline) {
-        // check if user already exists
-
-
-        $github_id = $pipeline['id'];
-        $html_url = $pipeline['html_url'];
-        $name = $pipeline['name'];
-        $description = $pipeline['description'];
-        $gh_created_at = date('Y-m-d H:i:s', $pipeline['created_at']);
-        $gh_updated_at = date('Y-m-d H:i:s', $pipeline['updated_at']);
-        $gh_pushed_at = date('Y-m-d H:i:s', $pipeline['pushed_at']);
-        $stargazers_count = $pipeline['stargazers_count'];
-        $watchers_count = $pipeline['watchers_count'];
-        $forks_count = $pipeline['forks_count'];
-        $open_issues_count = $pipeline['open_issues_count'];
-        $topics = is_array($pipeline['topics']) ? implode(';', $pipeline['topics']) : $pipeline['topics'];
-        $watchers = $pipeline['watchers'];
-        $default_branch = $pipeline['default_branch'];
-
-        if (in_array($pipeline['name'], $ignored_repos)) {
-            $pipeline_type = 'core_repos';
-        } else {
-            $pipeline_type = 'pipelines';
-        }
-        mysqli_stmt_execute($stmt);
+foreach ($pipelines as $pipeline) {
+    $modules_json = github_query('https://api.github.com/repos/nf-core/'.$pipeline["name"].'/contents/modules.json');
+    $modules_json = json_decode(base64_decode($modules_json['content']),true);
+    $modules = $modules_json['repos']['nf-core/modules'];
+    
+    // catch repos with no modules.json
+    if($modules == null){
+        continue;
     }
-} else {
-    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+    foreach ($modules as $name=>$content) {
+        $stmt = mysqli_prepare($conn, $sql);
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ii", $pipeline_id, $module_id);
+
+            $name = str_replace('/','_',$name);
+            // pepare a select statment for nfcore_modules based on name
+            $get_module = "SELECT * FROM nfcore_modules WHERE name = '$name'";
+
+            if ($result = mysqli_query($conn, $get_module)) {
+                if (mysqli_num_rows($result) > 0) {
+                    $repo_module = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    $pipeline_id = $pipeline['id'];
+                    $module_id = $repo_module[0]['id'];
+                    mysqli_stmt_execute($stmt);
+                    print_r($stmt->error);
+                    // Free result set
+                    mysqli_free_result($result);
+                } else {
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+                
+            }
+    }
 }
 
 mysqli_close($conn);
