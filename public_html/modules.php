@@ -2,7 +2,7 @@
 $config = parse_ini_file("../config.ini");
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
-// Attempt select query execution
+// get all modules
 $sql = "SELECT * FROM nfcore_modules ORDER BY LOWER(name)";
 $modules = [];
 if ($result = mysqli_query($conn, $sql)) {
@@ -21,6 +21,7 @@ if ($result = mysqli_query($conn, $sql)) {
         echo "Oops! Something went wrong. Please try again later.";
     }
 }
+// get all keywords
 $sql = "SELECT keywords FROM nfcore_modules ";
 $keywords = [];
 if ($result = mysqli_query($conn, $sql)) {
@@ -35,6 +36,7 @@ if ($result = mysqli_query($conn, $sql)) {
     }
 }
 $keywords_tmp = [];
+// flatten keywords array
 array_walk_recursive($keywords, function ($v) use (&$keywords_tmp) {
     $keywords_tmp[] = $v;
 });
@@ -71,8 +73,8 @@ include('../includes/header.php');
 <h1>Available Modules</h1>
 
 <div class="btn-toolbar mb-4 modules-toolbar" role="toolbar">
-    <div class="module-filters input-group input-group-sm ms-2 mt-2">
-        <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>">
+    <div class="module-filters input-group input-group-sm w-25">
+        <input type="search" class="form-control" placeholder="Search modules" value="<?php echo isset($_GET['q']) ? $_GET['q'] : ''; ?>">
     </div>
 </div>
 <div class="row flex-wrap-reverse flex-lg-wrap me-lg-5">
@@ -83,6 +85,18 @@ include('../includes/header.php');
             ?>
             <ul class="list-unstyled">
                 <?php foreach ($keywords_value as $idx => $keyword) : ?>
+                    <li class="facet-item" id="<?php echo 'keyword-' . preg_replace('/\s+/', '__', trim($idx)); ?>">
+                        <span class=" facet-name"><?php echo trim($idx); ?></span>
+                        <span class="facet-value badge rounded-pill bg-secondary float-end">
+                            <?php echo $keyword; ?>
+                        </span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="pipeline_list">
+            <ul class="list-unstyled">
+                <?php foreach ($pipelines as $pipeline) : ?>
                     <li class="facet-item">
                         <span class="facet-name"><?php echo trim($idx); ?></span>
                         <span class="facet-value badge rounded-pill bg-secondary float-end">
@@ -103,7 +117,6 @@ include('../includes/header.php');
                             <h4 class="card-title mb-0" id="<?php echo $module['name']; ?>">
                                 <a href="modules/<?php echo $module['name']; ?>" data-bs-toggle="tooltip" title="<?php echo $module['description']; ?>" class="pipeline-name">
                                     <?php echo $module['name']; ?>
-                                    <a href="#<?php echo $module['name']; ?>" class="header-link"><span class=" fas fa-link"></span></a>
                                 </a>
                                 <button class="btn btn-sm btn-outline-info float-end" data-bs-toggle="collapse" href=".<?php echo $module['name']; ?>-description" aria-expanded="false">
                                     <i class="fas fa-question-circle"></i> Show descriptions
@@ -200,15 +213,15 @@ include('../includes/header.php');
                     <?php if (count($module['keywords']) > 0) : ?>
                         <div class="keywords mb-0">
                             <?php foreach ($module['keywords'] as $keyword) : ?>
-                                <a href="/modules?q=<?php echo trim($keyword); ?>" class="badge text-secondary moduletrim(-keyword) px-1"><?php echo $keyword; ?></a>
+                                <a class="badge bg-secondary px-1" data-keyword="<?php echo 'keyword-' . preg_replace('/\s+/', '__', trim($keyword)); ?>"><?php echo $keyword; ?></a>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
                     <div>
                         <?php foreach ($module['authors'] as $author) : ?>
-                            <img class="float-end contrib-avatars" src="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>.png">
-                        <?php endforeach; ?>
-                    </div>
+                            <img class=" float-end contrib-avatars" src="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>.png">
+                                <?php endforeach; ?>
+                        </div>
                 </div>
         </div>
     <?php endforeach; ?>

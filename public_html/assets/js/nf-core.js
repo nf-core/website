@@ -305,12 +305,12 @@ $(function () {
   // Filter modules with facets
   function filter_modules_facet(ftext) {
     // undo filtering if repeated click or no text
-    if(ftext===''){
+    if (ftext.length == 0) {
       $('.modules-container .card').show();
     } else {
     $('.modules-container .module .keywords').each(function () {
       $('.badge', this).each(function () {
-        if ($(this).text() == ftext) {
+        if (ftext.includes($(this).text())) {
           $(this).parents('.card').show();
           return false;
         } else (
@@ -322,6 +322,7 @@ $(function () {
     update_facet_bar();
     return true;
   }
+  
   function update_facet_bar(){
     var facets = [];
     $('.modules-container .module:visible .keywords .badge').each(function(){
@@ -359,19 +360,27 @@ $(function () {
   });
   // on facet click
   $(".facet-bar .facet-item").on('click', function (e) {
-    var ftext = $(e.currentTarget).children('.facet-name').text();
     // undo selection on click on active items
     if ($(e.currentTarget).hasClass('active')){
-      ftext='';
-    }
-    filter_modules_facet(ftext);
-    $(".facet-bar .facet-item").removeClass("active");
-    // undo selection
-    if (ftext!==''){
+      $(e.currentTarget).removeClass("active");
+    } else {
       $(e.currentTarget).addClass("active");
     }
+    // join text from active facets with semi-colon
+    var ftext = $(".facet-bar .facet-item.active .facet-name").map(function () { 
+      return $(this).text();
+    }).get();
+    
+    filter_modules_facet(ftext);
     
   });
+
+  // on badge click
+  $(".card-footer .badge").on('click', function (e) {
+    var keyword = $(e.currentTarget).data('keyword');
+    $(".facet-bar #" + keyword).trigger('click');    
+  });
+
   // Make the stats tables sortable
   if ($(".pipeline-stats-table").length > 0) {
     $(".pipeline-stats-table").tablesorter();
