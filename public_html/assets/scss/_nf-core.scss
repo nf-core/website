@@ -429,7 +429,10 @@ footer a:hover, footer a:focus, footer a:active {
 .main-content h1 {
   border-bottom: 1px solid $nf-core-color;
 }
-
+.main-content .module h4::before{
+  padding-top: 0px;
+  margin-top:  0px;
+}
 .main-content pre{
   border-radius: 3px;
   padding: 12px 15px;
@@ -888,16 +891,19 @@ nfcore-subnav {
   background-color: rgba($nf-core-color, 0.05);
   color: $gray-800;
 }
-.pipeline-sidebar {
+.pipeline-sidebar,
+.module-sidebar {
   font-size: 75%;
 }
-.mainpage .pipeline-sidebar h6 {
+.mainpage .pipeline-sidebar h6,
+.mainpage .module-sidebar h6 {
   padding-top: 0;
   margin-top: 5px;
   color: $gray-500;
   font-size: 12px;
 }
-.mainpage .pipeline-sidebar p {
+.mainpage .pipeline-sidebar p,
+.mainpage .module-sidebar p {
   margin-bottom: 5px;
   a {
   text-decoration: none;

@@ -24,15 +24,12 @@ $path_parts = array_filter($path_parts);
 if(strtolower($path_parts[0])=="modules"){
     require_once('../includes/functions.php');
     $modules = get_modules();
-    $module_name = strtolower(str_replace(".php","",$path_parts[1]));
+    $module_name = str_replace(".php", "", $path_parts[1]);
+    
     foreach ($modules as $idx => $module) {
-        var_dump($module['name']);
-        var_dump($module_name);
-        print_r("===========\n\n");
-        if($module['name'] == $module_name){
-            print_r("===========\n\n");
-            # If capilitilsation is wrong, redirect because I'm fussy
-            if ($module['name'] != $path_parts[1]) {
+        if(strtolower($module['name']) == strtolower($module_name)){
+            # If capitalization is wrong, redirect because I'm fussy
+            if ($module['name'] != $module_name) {
                 header('Location: /' . str_replace($path_parts[1], $module['name'], $_GET['path']));
             }
             # Include the script that renders the pipeline page, then exit
@@ -42,7 +39,7 @@ if(strtolower($path_parts[0])=="modules"){
     }
 }
 
-# Wasn't docs - is it a pipeline name?
+# Wasn't docs nor modules - is it a pipeline name?
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 
 foreach($pipelines_json->remote_workflows as $pipeline){
