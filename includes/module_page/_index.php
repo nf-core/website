@@ -207,5 +207,16 @@ include('../includes/header.php');
     }
     echo '</div></div>'; # end of the sidebar col
     echo '</div>'; # end of the row
-
-include('../includes/footer.php');
+    ?>
+    <div class="toast cmd_copied" id="module_sidebar_cmd_copied" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded me-2" alt="">
+            <strong class="me-auto">Command copied!</strong>
+            <button type="button" class="ms-2 mb-1 btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Paste this command into your terminal to download this module.
+        </div>
+    </div>
+    <?php
+    include('../includes/footer.php');

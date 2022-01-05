@@ -399,7 +399,7 @@ $(function () {
     $(target_id).trigger("select");
     document.execCommand("copy");
     $(target_id).trigger("blur");
-    $("#pipeline_sidebar_cmd_copied").toast("show");
+    $(".cmd_copied").toast("show");
   });
   if (window.location.hash & ($(".param-docs").length > 0)) {
     scroll_to($(window.location.hash), 0);
