@@ -45,7 +45,8 @@ mysqli_close($conn);
 
 
 // Pagination
-$num_elements = 30;
+// $num_elements = 30;
+$num_elements = 3000; // TODO: remove after we have decided on a pagination strategy
 $total_pages = ceil(count($modules) / $num_elements);
 if (!isset($_GET['page'])) {
     $current_page = 1;
