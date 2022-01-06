@@ -1,24 +1,24 @@
 <?php
 
 require_once('../includes/functions.php');
-var_dump($module['name']);
 
 $config = parse_ini_file("../config.ini");
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
-// get number of pipelines with this module
-$sql = "SELECT DISTINCT pipeline_id FROM pipelines_modules 
+// get pipelines which use this module
+$sql = "SELECT DISTINCT nfcore_pipelines.name,nfcore_pipelines.html_url FROM pipelines_modules 
         INNER JOIN nfcore_modules ON pipelines_modules.module_id = nfcore_modules.id 
-        WHERE nfcore_modules.name = '" . $module['name'] . "'";
-$num_pipelines = 0;
-print_r("===========");
-print_r($sql);
-
+        INNER JOIN nfcore_pipelines ON pipelines_modules.pipeline_id = nfcore_pipelines.id 
+        WHERE nfcore_modules.name = '" . $module['name'] . "' ORDER BY LOWER(nfcore_pipelines.name)";
+$pipelines = [];
 if ($result = mysqli_query($conn, $sql)) {
-
-
-    $num_pipelines = mysqli_num_rows($result);
+    if (mysqli_num_rows($result) > 0) {
+        $pipelines = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
 }
+mysqli_close($conn);
 
 ########
 ## Configure page header
@@ -182,18 +182,23 @@ include('../includes/header.php');
                     </div>
                 </div>
             </div>
-            <div class="row border-bottom">
-                <div class="col-12">
-                    <h6># pipelines with this module</h6>
-                    <p><?php echo $num_pipelines; ?></p>
+            <?php if (count($pipelines) > 0) : ?>
+                <div class="row border-bottom">
+                    <div class="col-12">
+                        <h6>nf-core pipelines with this module</h6>
+                        <?php foreach ($pipelines as $pipeline) {
+                            echo '<a class="badge bg-light text-dark me-1 mb-1" href="' . $pipeline['html_url'] . '">' . $pipeline['name'] . '</a>';
+                        } ?>
+                    </div>
                 </div>
-            </div>
-
+            <?php endif; ?>
             <div class="row border-bottom">
                 <div class="col-12 contrib-avatars">
                     <h6>collaborators</h6>
                     <?php foreach ($module['authors'] as $author) : ?>
-                        <img src="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>.png">
+                        <a href="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>">
+                            <img src="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>.png">
+                        </a>
                     <?php endforeach; ?>
                 </div>
             </div>
