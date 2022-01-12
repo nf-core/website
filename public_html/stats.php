@@ -241,28 +241,28 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 </p>
 
 <div class="card-group text-center stats_keynumbers">
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#slack" class="text-body text-decoration-none stretched-link"><?php echo $slack_users->total; ?></a></p>
       <p class="card-text text-muted">Slack users</p>
     </div>
     <div class="bg-icon"><i class="fab fa-slack"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#gh_orgmembers" class="text-body text-decoration-none stretched-link"><?php echo $stats_json->gh_org_members->{$stats_json->updated}; ?></a></p>
       <p class="card-text text-muted">GitHub organisation members</p>
     </div>
     <div class="bg-icon"><i class="fab fa-github"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body" data-bs-toggle="tooltip" title="<?php echo count($gh_contributor_commits); ?> have committed code, <?php echo count($gh_contributor_issues); ?> have written issues">
       <p class="card-text display-4"><a href="#gh_contribs" class="text-body text-decoration-none stretched-link"><?php echo count($gh_contributors); ?></a></p>
       <p class="card-text text-muted">GitHub contributors</p>
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#twitter" class="text-body text-decoration-none stretched-link"><?php echo $twitter_users; ?></a></p>
       <p class="card-text text-muted">Twitter followers</p>
@@ -277,7 +277,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
     We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
     You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="slack_users_plot" height="200"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Slack considers users to be inactive when they haven't used slack for the previous 14 days.</p>
@@ -291,7 +291,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     <h2 class="mt-0" id="twitter"></a>Twitter followers<a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></h2>
     <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
     Follower counts give some indication to the level of interest in the nf-core project.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="twitter_followers_plot" height="150"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> Data from before 2019-06-26 fudged by reverse-engineering a tiny sparkline plot on the twitter analytics website.</p>
@@ -311,7 +311,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     <p>It's not required to be a member of the nf-core GitHub organisation to contribute.
     However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
     </p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="gh_orgmembers_plot" height="150"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
@@ -322,7 +322,7 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
     <h2 class="mt-0" id="gh_contribs">GitHub contributors<a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>Anybody can fork nf-core repositories and open a pull-request.
     Here we count how many different people have contributed at least one commit to an nf-core repository, or created or commented on an issue or pull-request.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="gh_contribs_plot" height="180"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Plot truncated to start of 2018 (some pipelines moved to nf-core so have older contributions).</p>
@@ -338,28 +338,28 @@ foreach(array_keys($stats_total['pipelines']) as $akey){
 <p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.</p>
 
 <div class="card-group text-center stats_keynumbers">
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines)) + count(get_object_vars($stats_json->core_repos)); ?></p>
       <p class="card-text text-muted">Repositories</p>
     </div>
     <div class="bg-icon"><i class="far fa-folder"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo round_nicely($issues_json['stats'][$issues_json_latest]['prs']['count']); ?></a></p>
       <p class="card-text text-muted">Pull Requests</p>
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch fa-flip-vertical"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><?php echo round_nicely($stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits']); ?></p>
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo round_nicely($issues_json['stats'][$issues_json_latest]['issues']['count']); ?></a></p>
       <p class="card-text text-muted">Issues</p>
@@ -428,7 +428,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 
     <h2 class="mt-0" id="github_prs">Pull Requests<a href="#github_prs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="github_prs_plot" height="200"></canvas>
         <p class="card-text small text-muted">
@@ -440,7 +440,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     <h2 class="mt-0" id="github_pr_response_time">Pull Request response times<a href="#github_pr_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>Pull-requests are reviewed by the nf-core community - they can contain discussion on the code and can be merged and closed.
     We aim to be prompt with reviews and merging. Note that some PRs can be a simple type and so very fast to merge, others can be major pipeline updates.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="github_pr_response_time_plot" height="200"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original PR author</p>
@@ -455,7 +455,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 
     <h2 class="mt-0" id="github_issues">Issues<a href="#github_issues" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>GitHub issues can be created to log feature requests, bug reports or questions.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="github_issues_plot" height="200"></canvas>
         <p class="card-text small text-muted">
@@ -467,7 +467,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 
     <h2 class="mt-0" id="github_issue_response_time">Issue response times<a href="#github_issue_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>A sign of an active community is a quick response time to issues. Here we see a frequency histogram of how long it takes to respond to and close issues.</p>
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="github_issue_response_time_plot" height="200"></canvas>
         <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> First response is when a comment is made by a GitHub user <em>other than</em> the original issue author</p>
@@ -557,7 +557,7 @@ foreach($contribution_counts as $login => $count){
 
 <div class="row">
   <div class="col-lg-6 offset-lg-3">
-    <div class="card bg-light mt-4">
+    <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="pipeline_numbers_plot" height="200"></canvas>
         <p class="card-text small text-muted">
