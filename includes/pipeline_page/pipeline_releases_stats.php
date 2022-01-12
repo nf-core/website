@@ -69,28 +69,28 @@ $(function(){
 
 <h1 id="stats" class="mt-5"><a href="#stats" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a> Pipeline Statistics</h1>
 <div class="card-group text-center stats_keynumbers mt-5 pb-5">
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><?php echo $metrics['stargazers_count']; ?></p>
       <p class="card-text text-muted">Stars</p>
     </div>
     <div class="bg-icon"><i class="far fa-star"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo $metrics['network_forks_count']; ?></a></p>
       <p class="card-text text-muted">Forks</p>
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><?php echo $stats['commits']; ?></p>
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
   </div>
-  <div class="card bg-light">
+  <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo $stats['num_contributors']; ?></a></p>
       <p class="card-text text-muted">Code contributors</p>
