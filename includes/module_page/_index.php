@@ -20,6 +20,37 @@ if ($result = mysqli_query($conn, $sql)) {
 }
 mysqli_close($conn);
 
+// function to create bootstrap row with the first column for the name and type and the second for the descritption
+function create_row($name, $type, $description, $pattern)
+{
+    $row = '<div class="row border-bottom">';
+    $row .= '<div class="col-12 col-md-4">';
+    if ($type == 'map') {
+        $name = '<i class="far fa-map fa-fw text-success"></i> <code>' . $name;
+    } elseif ($type == 'file'){
+        $name = '<i class="far fa-file fa-fw text-success"></i> <code>' . $name;
+    } elseif ($type == 'directory') {
+        $name = '<i class="far fa-folder fa-fw text-success"></i> <code>' . $name;
+    } else {
+        $name = '<code>' . $name;
+    }
+    $row .= '<span>' . $name . '</span>';
+    $row .= '<span class="text-muted"> (' . $type . ')</span>';
+    $row .= '</code></div>';
+    $row .= '<div class=" col-12 col-md-6">';
+    $row .= '<span>' . $description . '</span>';
+    $row .= '</div>';
+    if($pattern != '')
+    {
+        $row .= '<div class="col-12 col-md">';
+        $row .= '<code class="float-end">' . $pattern . '</code>';
+        $row .= '</div>';
+    }
+    
+    $row .= '</div>';
+    return $row;
+}
+
 ########
 ## Configure page header
 ########
@@ -89,33 +120,26 @@ include('../includes/header.php');
     ?>
     <div class="module module-page-content mb-2">
         <h2><i class="far fa-book fa-fw"></i> Description</h2>
-        <p class="ps-3"><?php echo $module['description']; ?></p>
+        <p class="ps-2"><?php echo $module['description']; ?></p>
         <div class="module-params ">
-            <div class="module-input">
+            <div class="module mt-5-input">
                 <h2 class="text-success"><i class="fad fa-sign-in fa-fw"></i> Input</h2>
 
                 <?php
-                $input_text = '<div class="d-flex flex-column mb-3">';
+                $input_text = '<div class="">';
                 foreach ($module['input'] as $input) {
                     foreach ($input as $name => $input_value) {
                         $description = $input_value['description'];
                         $description = str_replace('[', '<code class="px-0">[', $description);
                         $description = str_replace(']', ']</code>', $description);
-                        $input_text .= '<div class="ps-3">';
-                        $input_text .= '<span data-bs-toggle="tooltip" title="' . $input_value['description'] . '">' . $name . ' </span>';
-                        $input_text .= '<span class="text-muted"> (' . $input_value['type'] . ')</span>';
-                        $input_text .= '<p class="text-small collapse show mb-1  ms-3 description ' . $module['name'] . '-description" >' .  $description . '</p>';
-                        if (key(end($module['input'])) != $name) { //don't add a comma after the last element
-                            $input_text .= '<span class="hide-collapse">,&nbsp;</span>';
-                        }
-                        $input_text .= '</div>';
+                        $input_text .= create_row($name, $input_value['type'], $description,$input_value['pattern']);
                     }
                 }
                 $input_text .= '</div>';
                 echo $input_text;
                 ?>
             </div>
-            <div class="module-output">
+            <div class="module-output mt-5">
                 <h2 class="text-success"><i class="fad fa-sign-out fa-fw"></i> Output</h2>
                 <?php
                 $output_text = '<div class="d-flex flex-column mb-3">';
@@ -124,14 +148,7 @@ include('../includes/header.php');
                         $description = $output_value['description'];
                         $description = str_replace('[', '<code class="px-0">[', $description);
                         $description = str_replace(']', ']</code>', $description);
-                        $output_text .= '<div class="ps-3">';
-                        $output_text .= '<span data-bs-toggle="tooltip" title="' . $output_value['description'] . '">' . $name . ' </span>';
-                        $output_text .= '<span class="text-muted"> (' . $output_value['type'] . ')</span>';
-                        $output_text .= '<p class="text-small collapse show mb-1 ms-3 description ' . $module['name'] . '-description" >' .  $description . '</p>';
-                        if (key(end($module['output'])) != $name) { //don't add a comma after the last element
-                            $output_text .= '<span class="hide-collapse">,&nbsp;</span>';
-                        }
-                        $output_text .= '</div>';
+                        $output_text .= create_row($name, $output_value['type'], $description,$output_value['pattern']);
                     }
                 }
                 $output_text .= '</div>';
