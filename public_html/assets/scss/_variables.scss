@@ -5,6 +5,7 @@ $nf-tower-color: #335eea;
 // overwrite standard bootstrap colors
 $success: $nf-core-color;
 $info: #17a2b8; // old info color is not so harsh
+$light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value 
 
 $input-placeholder-color: #ced4da; // $gray-400
 $list-group-color: #495057; // $gray-700
@@ -36,7 +37,7 @@ $gray-500-alt: #7e7e7e !default;  //~~
 $gray-400-alt: #626262 !default;  //~~
 $gray-300-alt: #515151 !default;  //~~
 $gray-200-alt: #3b3b3b !default;  //~~
-$gray-100-alt: #222 !default;  //~~
+$gray-100-alt: #222222 !default;  //~~
 
 $primary-alt: #2b4764;
 $secondary-alt: $gray-400-alt;

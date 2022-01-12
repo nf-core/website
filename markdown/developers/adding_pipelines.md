@@ -126,10 +126,11 @@ to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
 notification from GitHub if something breaks.
 
-## Add some test data
+## Running with test data
 
 Whilst the linting tests are good, they're not sufficient by themselves.
-It's also good to get GitHub Actions to actually run your pipeline on a minimal dataset.
+It's also good actually run your pipeline on a minimal dataset.
+We also automatically run tests with GitHub Actions anytime someone updates the pipeline code (see below).
 Currently, we don't usually check the results that are produced, but it often catches
 syntax errors and other serious problems that cause nextflow to exit with an error.
 
@@ -151,7 +152,9 @@ git checkout -b MY_WORKFLOW
 Now add your test data files - note that they must be **very small**.
 GitHub has quite a low file size limit, and the GitHub Actions will time out with anything
 that's not tiny. We typically use PhiX / Yeast / part of a chromosome as a reference
-and aggressively subsampled input data.
+and aggressively subsampled input data. I.e., as small as possible, as large as necessary.
+We highly recommend that you ask in the [#test-data channel](https://nfcore.slack.com/channels/test-data) on the [nf-core slack](https://nf-co.re/join) for advice
+before adding any test data!
 
 Once added, push these new files to GitHub:
 

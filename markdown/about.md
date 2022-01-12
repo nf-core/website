@@ -20,10 +20,6 @@ The core team members who administer the nf-core project are listed below:
 
 We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
-In addition, the following member is a part of the nf-core outreach team
-
-* [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
-
 ### Alumni
 
 The following former members of the nf-core core team have earned their place in
@@ -33,6 +29,13 @@ the nf-core alumni hall of fame:
 * [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
 * [@olgabot](https://github.com/olgabot): Olga Botvinnik
 * [@sven1103](https://github.com/sven1103): Sven F.
+
+## Outreach team {#outreach}
+
+The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
+This team includes all of the `@core-team` mentioned above and also:
+
+* [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
 ## Financial  Support
 

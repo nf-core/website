@@ -14,7 +14,17 @@ if(isset($_GET['w'])){
     $new_width = 400;
 }
 
-$filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo.png';
+$theme = '';
+if (isset($_GET['theme'])) {
+    if ($_GET['theme'] == 'dark') {
+        $theme = 'dark';
+    } elseif ($_GET['theme'] == 'light') {
+        $theme = 'light';
+    }
+};
+
+$filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring). '_logo_' . $theme . '.png';
+$filename = str_replace('_.', '.', $filename);
 
 if(strlen($textstring) == 0){
     header('HTTP/1.1 404 Not Found');
@@ -25,7 +35,8 @@ if(strlen($textstring) == 0){
 // Check if we have a cached version already
 $cache_filename = $filename;
 if($new_width && is_numeric($new_width)){
-    $cache_filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo_w'.$new_width.'.png';
+    $cache_filename = 'nfcore-'.preg_replace("/[^a-z]/", '', $textstring).'_logo_w'.$new_width. '_'. $theme .'.png';
+    $cache_filename = str_replace('_.', '.', $cache_filename);
 }
 $logo_cache_fn = dirname(dirname(__FILE__))."/api_cache/logos/{$cache_filename}";
 # Build directories if needed
@@ -41,12 +52,17 @@ if(file_exists($logo_cache_fn) && !isset($_GET['f'])){
 }
 
 // Load the base image
-$template_fn = "assets/img/logo/nf-core-repologo-white-base.png";
+if ($theme=='dark'){
+    $template_fn = "assets/img/logo/nf-core-repo-logo-base-darkbg.png";
+} else {
+    $template_fn = "assets/img/logo/nf-core-repo-logo-base-lightbg.png";
+}
 list($width, $height) = getimagesize($template_fn);
 $image = imagecreatefrompng($template_fn);
 
 // Create some colors
 $black = imagecolorallocate($image, 0, 0, 0);
+$color = $theme=='dark'? imagecolorallocate($image, 250, 250, 250): imagecolorallocate($image, 5, 5, 5);
 $font_size = 300;
 $font_path = "../includes/Maven_Pro/MavenPro-Bold.ttf";
 
@@ -57,7 +73,7 @@ imagettftext(
     0,           // angle
     110,         // x
     850,         // y
-    $black,      // colour
+    $color,      // colour
     $font_path,  // font
     $textstring  // text
 );
