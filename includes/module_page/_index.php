@@ -24,7 +24,7 @@ mysqli_close($conn);
 ## Configure page header
 ########
 $title = 'modules/<br class="d-sm-none">' . $module['name'];
-$subtitle = $module['description'];
+$subtitle = '';
 $content = '';
 $schema_content = '';
 $import_chartjs = true;
@@ -68,13 +68,13 @@ include('../includes/header.php');
 
 <div class="container-xxl main-content">
 
-    <ul class="nav nav-fill nfcore-subnav justify-content-around">
-        <li class="nav-item">
+    <!-- <ul class="nav nav-fill nfcore-subnav justify-content-around"> -->
+        <!-- <li class="nav-item"> -->
             <!-- <a class="nav-link<?php if ($pagetab == '') {
                                         echo ' active';
                                     } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> Introduction</a>
         </li> -->
-    </ul>
+    <!-- </ul> -->
 
     <?php
     ########
@@ -88,9 +88,11 @@ include('../includes/header.php');
 
     ?>
     <div class="module module-page-content mb-2">
+        <h2><i class="far fa-book fa-fw"></i> Description</h2>
+        <p class="ps-3"><?php echo $module['description']; ?></p>
         <div class="module-params ">
             <div class="module-input">
-                <h2 class="text-success">Input</h2>
+                <h2 class="text-success"><i class="fad fa-sign-in fa-fw"></i> Input</h2>
 
                 <?php
                 $input_text = '<div class="d-flex flex-column mb-3">';
@@ -99,7 +101,7 @@ include('../includes/header.php');
                         $description = $input_value['description'];
                         $description = str_replace('[', '<code class="px-0">[', $description);
                         $description = str_replace(']', ']</code>', $description);
-                        $input_text .= '<div >';
+                        $input_text .= '<div class="ps-3">';
                         $input_text .= '<span data-bs-toggle="tooltip" title="' . $input_value['description'] . '">' . $name . ' </span>';
                         $input_text .= '<span class="text-muted"> (' . $input_value['type'] . ')</span>';
                         $input_text .= '<p class="text-small collapse show mb-1  ms-3 description ' . $module['name'] . '-description" >' .  $description . '</p>';
@@ -114,7 +116,7 @@ include('../includes/header.php');
                 ?>
             </div>
             <div class="module-output">
-                <h2 class="text-success">Output</h2>
+                <h2 class="text-success"><i class="fad fa-sign-out fa-fw"></i> Output</h2>
                 <?php
                 $output_text = '<div class="d-flex flex-column mb-3">';
                 foreach ($module['output'] as $output) {
@@ -122,7 +124,7 @@ include('../includes/header.php');
                         $description = $output_value['description'];
                         $description = str_replace('[', '<code class="px-0">[', $description);
                         $description = str_replace(']', ']</code>', $description);
-                        $output_text .= '<div >';
+                        $output_text .= '<div class="ps-3">';
                         $output_text .= '<span data-bs-toggle="tooltip" title="' . $output_value['description'] . '">' . $name . ' </span>';
                         $output_text .= '<span class="text-muted"> (' . $output_value['type'] . ')</span>';
                         $output_text .= '<p class="text-small collapse show mb-1 ms-3 description ' . $module['name'] . '-description" >' .  $description . '</p>';
@@ -139,7 +141,7 @@ include('../includes/header.php');
             <div class="module-tools">
                 <?php
                 $tool_text = '<div class="">';
-                $tool_text .= '<h2 class="text-success">Tools</h2>';
+                $tool_text .= '<h2 class="text-success"><i class="far fa-wrench fa-fw"></i> Tools</h2>';
                 foreach ($module['tools'] as $tool) {
                     // catch incorrectly formatted yamls
                     if (isset($tool['documentation'])) {
@@ -150,7 +152,7 @@ include('../includes/header.php');
                     foreach ($tool as $name => $tool_value) {
                         $tool_text .= '<div>';
                         $documentation =  $tool_value['documentation'] ? $tool_value['documentation'] : $tool_value['homepage'];
-                        $documentation = '<a class="ms-2" data-bs-toggle="tooltip" title="documentation" href=' . $documentation . '><i class="fas fa-book"></i></a>';
+                        $documentation = '<a class="btn btn-outline-secondary float-end" data-bs-toggle="tooltip" title="documentation" href=' . $documentation . '><i class="far fa-books"></i> Documentation</a>';
                         $tool_text .= '<h4>' . $name . $documentation . ' </h4>';
                         $description = $tool_value['description'];
                         $tool_text .= '<span class="text-small collapse show description ' . $module['name'] . '-description" >' .  $description . '</span>';
