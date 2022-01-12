@@ -20,4 +20,6 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize 33: nf-core/dualrnaseq
 
-This week, Regan Hayward ([@reganhayward](https://github.com/reganhayward/)) will update us on the new DSL2 syntax.
+This week, Regan Hayward ([@reganhayward](https://github.com/reganhayward/)) will tell us all about the nf-core/dualrnaseq pipeline.
+
+nf-core/dualrnaseq is specifically used for the analysis of Dual RNA-seq data, interrogating host-pathogen interactions through simultaneous RNA-seq.
