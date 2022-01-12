@@ -81,7 +81,10 @@ $nf-core-color:$nf-core-color-alt;
 
 .bg-secondary{
   background-color: $gray-400-alt;
-} 
+  &.badge{
+    color: $gray-800-alt;
+  }
+}
 
 .bg-dark .text-white,.bg-dark.text-white{
   color: $gray-800-alt !important;  
@@ -90,10 +93,14 @@ $nf-core-color:$nf-core-color-alt;
   }
 }
 .bg-light{
-  background-color: mix($black,$gray-100-alt,25%) !important;  ;
+  background-color: $gray-200-alt!important; 
   &.text-dark{
-    color: $white !important;
+    color: $gray-900-alt !important;
   }
+}
+
+.card.bg-body{
+  background-color: $gray-100-alt!important; 
 }
 
 code{
@@ -137,13 +144,13 @@ blockquote a{
     background-color: $gray-800;
   }
   img{
-    background-color: $white;
+    background-color: $gray-900-alt;
   }
 }
 
 // Schema builder
 .schema_row {
-    &, & input, & select, .param_fa_icon{
+    &, & input, & select, & .param_fa_icon, & button .param_fa_icon{
     color: $body-color-alt;
   }
 }
