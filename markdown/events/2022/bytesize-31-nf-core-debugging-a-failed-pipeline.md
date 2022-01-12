@@ -2,9 +2,9 @@
 title: "Bytesize 31: Debugging a failed pipeline"
 subtitle: Phil Ewels - National Genomics Infrastructure- SciLifeLab, Sweden
 type: talk
-start_date: "2022-02-18"
+start_date: "2022-01-18"
 start_time: "13:00 CET"
-end_date: "2022-02-18"
+end_date: "2022-01-18"
 end_time: "13:30 CET"
 location_url:
  - https://kth-se.zoom.us/j/61097190426
