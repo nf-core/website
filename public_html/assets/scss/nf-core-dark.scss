@@ -144,13 +144,13 @@ blockquote a{
     background-color: $gray-800;
   }
   img{
-    background-color: $white;
+    background-color: $gray-900-alt;
   }
 }
 
 // Schema builder
 .schema_row {
-    &, & input, & select, .param_fa_icon{
+    &, & input, & select, & .param_fa_icon, & button .param_fa_icon{
     color: $body-color-alt;
   }
 }
