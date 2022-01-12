@@ -946,7 +946,7 @@ nfcore-subnav {
 }
 .stats_keynumbers .bg-icon{
   font-size: 180px;
-  color: rgba($black,0.1);
+  color: rgba($gray-900,0.1);
   position: absolute;
   bottom: -80px;
   right: -20px;
@@ -972,7 +972,7 @@ nfcore-subnav {
 .join-pull-img {
   float: right;
   padding-left: 1.5rem;
-  background-color: $white;
+  background-color: $gray-100;
 }
 .link-underline {
   text-decoration: underline;
@@ -1265,6 +1265,7 @@ Launch Page
 
 .breadcrumb-item.active{
   text-decoration: underline;
+  color: $gray-700;
 }
 #tb-s3objects_wrapper tr i {
   color: $success;

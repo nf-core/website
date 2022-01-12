@@ -152,9 +152,10 @@ $(function () {
                     data =
                     '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
                 } else if (
-                    ![".html", ".pdf", ".png", ".jpg", ".jpeg"].includes(extension)
-                ) {
-                        data = '<pre><code class="hljs language-plaintext">' + sanitize_html(data) + '</code></pre>';
+                    ![".html", ".pdf", ".png", ".jpg", ".jpeg", ".svg"].includes(extension)
+                ) {     
+                    var lang = [".json",".yaml",".yml"].includes(extension)? extension.slice(1): 'plaintext';
+                        data = '<pre><code class="language-' + lang + '">' + sanitize_html(data) + '</code></pre>';
                 } else if (extension === ".html") {
                     data ='<iframe srcdoc="' +
                     sanitize_html(data) +
@@ -169,18 +170,20 @@ $(function () {
                     data = '<img src="' + response.url + '"/>';
                 }
                 if (
-                  data !==
-                  '<pre><code class="hljs language-plaintext"></code></pre>'
+                    data !==
+                    '<pre><code class="hljs language-'+lang+'"></code></pre>'
                 ) {
-                  $("#file-preview").show();
-                  $("#file-preview").html(
+                    
+                    $("#file-preview").show();
+                    $("#file-preview").html(
                     header + '<div class="card-body">' + data + "</div>"
-                  );
-                  var el_offset = $("#file-preview").offset().top - 140;
-                  $([document.documentElement, document.body]).animate(
+                    );
+                    hljs.highlightAll();
+                    var el_offset = $("#file-preview").offset().top - 140;
+                    $([document.documentElement, document.body]).animate(
                     { scrollTop: el_offset },
                     500
-                  );
+                    );
                 }
 
             });
@@ -191,7 +194,6 @@ $(function () {
     }
 
     $("body").on("click", ".download-file-btn ", function () {
-
         if ($(this).attr('href') && $(this).attr('href').length > 0) {
             var url = $(this).attr('href');
         } else {
@@ -217,9 +219,8 @@ $(function () {
     //update view when url-hash changes
     $( window ).on( 'hashchange', function( e ) {
         if (!prefix.endsWith("/")) {
-            prefix = window.location.hash.substr(1);
-            prefix = prefix.substr(0, prefix.lastIndexOf("/") + 1);
-
+            prefix = window.location.hash.substring(1);
+            prefix = prefix.substring(0, prefix.lastIndexOf("/") + 1);
             if (window.location.hash.split("/").length > 2 ) {
                 s3exp_config["Prefix"] = prefix;
             }
@@ -234,7 +235,7 @@ $(function () {
         if (data.params.Prefix && data.params.Prefix.length > 0) {
             // console.log('Set hash: ' + data.params.Prefix)
             window.location.hash = data.params.Prefix
-            if(s3exp_config.Suffix!=='' && window.location.hash.endsWith("/")){
+            if (s3exp_config.Suffix!== undefined && s3exp_config.Suffix !== '' && window.location.hash.endsWith("/")){
                 window.location.hash +=  s3exp_config.Suffix;
             }
         } else {
@@ -272,10 +273,10 @@ $(function () {
                 buildprefix += part + '/';
 
                 if (ii == parts.length - 1) {
-                    ipart = $('<li>').addClass('breadcrumb-item active').text(part);
+                    ipart = $('<li>').addClass('breadcrumb-item text-break active').text(part);
                 } else {
                     var a2 = $('<a>').attr('href', '#').append(part);
-                    ipart = $('<li>').addClass('breadcrumb-item').append(a2);
+                    ipart = $('<li>').addClass('breadcrumb-item text-break').append(a2);
 
                     // Closure needed to enclose the saved S3 prefix
                     (function () {
@@ -330,9 +331,6 @@ $(function () {
 
             // Add S3 objects to DataTable
             $("#tb-s3objects").DataTable().rows.add(data.Contents).draw();
-            let url = object2hrefvirt(s3exp_config.Bucket, window.location.hash.substr(1))
-            let file_size = fetch_file_size(url);
-            fetch_preview(url,file_size);
         } else {
             $("#tb-s3objects")
                 .DataTable()
@@ -452,17 +450,7 @@ $(function () {
     $(document).ready(function () {
         // console.log('ready');
 
-        // Click handler for refresh button (to invoke manual refresh)
-        $('#bucket-loader').click(function (e) {
-            if ($('#bucket-loader').hasClass('fa-spin')) {
-                // To do: We need to stop the S3 list that's going on
-                s3exp_lister.stop();
-            } else {
-                delete s3exp_config.ContinuationToken;
-                (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-            }
-        });
-
+        
         function renderObject(data, type, full) {
             if (isthisdocument(s3exp_config.Bucket, data)) {
                 // console.log("is this document: " + data);
@@ -529,8 +517,8 @@ $(function () {
             }]
         });
         $('#tb-s3objects').DataTable().column(s3exp_columns.key).visible(false);
-        // console.log("jQuery version=" + $.fn.jquery);
-
+        $('#tb-s3objects').wrap('<div class="table-responsive-md"></div>'); // Make table responsive
+        
         // Custom sort for the Key column so that folders appear before objects
         $.fn.dataTableExt.oSort['key-asc'] = function (a, b) {
             var x = (isfolder(a) ? "0-" + a : "1-" + a).toLowerCase();
@@ -550,6 +538,10 @@ $(function () {
         $('#tb-s3objects').on('click', 'a', function (event) {
             event.preventDefault();
             var target = event.target.href? event.target : $(event.target).parent("a")[0];
+            let hash = window.location.hash
+            hash = hash.substring(1, hash.lastIndexOf("/") + 1) + target.download;
+            window.location.hash = hash;
+
             // console.log("target href=" + target.href);
             // console.log("target dataset=" + JSON.stringify(target.dataset));
 
@@ -560,16 +552,12 @@ $(function () {
                 s3exp_config.Prefix = target.dataset.prefix;
                 s3exp_config.Delimiter = "/";
                 (s3exp_lister = s3list(s3exp_config, s3draw)).go();
-                // Else user has clicked on an object so preview it in new window/tab
+                // Else user has clicked on an object so preview it underneath
             } else {
                 let url = target.href;
                 let file_size = target.dataset.size;
-                let hash = window.location.hash
-                if(!hash.endsWith("/")){ // check if URL already contains a filename
-                    hash = hash.substr(1,hash.lastIndexOf("/")+1) +target.download;
-                }
-                window.location.hash = hash;
-
+                $('tr.table-active').removeClass('table-active');
+                $(this).parents('tr').addClass('table-active');
                 fetch_preview(url, file_size);
 
             }

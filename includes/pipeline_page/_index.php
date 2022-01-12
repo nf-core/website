@@ -276,7 +276,12 @@ if ($pipeline->archived) {
   ########
   # Make a row with a column for content
   ########
-  echo '<div class="row flex-wrap-reverse flex-lg-wrap ms-lg-5"><div class="col-12 col-lg-9">';
+  if (in_array($pagetab, ['results'])) {
+    echo '<div class="row flex-wrap-reverse flex-lg-wrap ms-lg-5"><div class="col-12">';
+  } else {
+    echo '<div class="row flex-wrap-reverse flex-lg-wrap ms-lg-5"><div class="col-12 col-lg-9">';
+  }
+
 
   ########
   # Print content
@@ -291,10 +296,14 @@ if ($pipeline->archived) {
   echo '<div class="rendered-markdown pipeline-page-content">' . $content . '</div>';
 
   echo '</div>'; # end of the content div
-  echo '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
+  if (in_array($pagetab, ['results'])) {
+    echo '<div><div">';
+  } else {
+    echo '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
+  }
 
   # Pipeline homepage & releases - key stats
-  if (in_array($pagetab, ['', 'releases_stats', 'results'])) {
+  if (in_array($pagetab, ['', 'releases_stats'])) {
     require_once('sidebar.php');
   }
   # Documentation - ToC

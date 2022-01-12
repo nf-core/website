@@ -25,7 +25,7 @@ These pull requests then need to be manually resolved and merged by the pipeline
 Behind the scenes, this synchronisation is done by using `git`.
 Each repository has a special `TEMPLATE` branch which contains only the "vanilla" code made by the `nf-core create` tool.
 The synchronisation tool fetches the essential variables needed to recreate the pipeline and uses this to trigger a `nf-core create --no-git` command with the latest version of the template.
-The result from this is then compared against what is stored in the `TEMPLATE` branch and committed. During an automated sync, a copy of the `TEMPLATE` branch called `nf-core-template-merge-<version>` will be made, and a PR from this new branch will be opened against your `dev`.  
+The result from this is then compared against what is stored in the `TEMPLATE` branch and committed. During an automated sync, a copy of the `TEMPLATE` branch called `nf-core-template-merge-<version>` will be made (to avoid `dev` history to end up in `TEMPLATE` branch after solving merge conflicts), and a PR from this new branch will be opened against your `dev`.
 When merging from the `nf-core-template-merge-<version>` branch back into the main `dev` branch of the pipeline, `git` should be clever enough to know what has changed since the template was first used, and therefore, it will only present the relevant changes.
 
 For this to work in practice, the `TEMPLATE` branch needs to have a shared `git` history with the `master` branch of the pipeline.
@@ -190,12 +190,14 @@ Once your fork is merged, the automated PR will also show as merged and will clo
 There are rare cases, when the synchronisation needs to be triggered manually,
 i.e. it was not executed during an `nf-core/tools` release on Github, or when you want to perform a targeted sync.
 
+Note that automated PR system is only applicable to official nf-core pipelines, homemade pipelines based on nf-core standards/modules created with ```nf-core create``` have to be updated following this manual synchronisation procedure.
+
 You can do so by running the `nf-core sync` command:
 
 ```bash
 cd my_pipeline
 git checkout dev # or your most up to date branch
-nf-core sync .
+nf-core sync -d .
 ```
 
 Note that the `sync` command assumes that you have a branch called `TEMPLATE`, so you may need to pull this from the upstream nf-core repository if you are working on a fork:
@@ -208,6 +210,17 @@ git checkout --track upstream/TEMPLATE
 Remember to go back to your `dev` branch as above before running `nf-core sync`.
 
 Much of the merging process should then be the same as described above with the automated pull requests.
+
+In case of manual synchronisation of a homemade pipeline and if you want to have a PR opened to your `dev` branch, you can use this `nf-core sync` template command:
+
+```bash
+nf-core sync \
+   --dir [pipeline_dir]
+   --from-branch dev \
+   --pull-request \
+   --username [GitHub_username] \
+   --github-repository [GitHub_pipeline_URL]
+```
 
 # Setting up a pipeline for syncing retrospectively
 
@@ -289,22 +302,28 @@ No commits yet
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
+  .editorconfig
   .gitattributes
   .github/
   .gitignore
-  .travis.yml
+  .markdownlint.yml
   CHANGELOG.md
+  CITATIONS.md
   CODE_OF_CONDUCT.md
-  Dockerfile
   LICENSE
   README.md
   assets/
   bin/
   conf/
   docs/
-  environment.yml
+  lib/
   main.nf
+  modules.json
+  modules/
   nextflow.config
+  nextflow_schema.json
+  subworkflows/
+  workflows/
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -418,7 +437,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 
   ```bash
   git checkout dev
-  nf-core sync .
+  nf-core sync
   ```
 
 * You probably want to now delete your local copy of the pipeline that you checked out from the main nf-core repository.
