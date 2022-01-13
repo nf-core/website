@@ -25,18 +25,9 @@ function create_row($name, $type, $description, $pattern)
 {
     $row = '<div class="row border-bottom">';
     $row .= '<div class="col-12 col-md-4">';
-    if ($type == 'map') {
-        $name = '<i class="far fa-map fa-fw text-success"></i> <code>' . $name;
-    } elseif ($type == 'file'){
-        $name = '<i class="far fa-file fa-fw text-success"></i> <code>' . $name;
-    } elseif ($type == 'directory') {
-        $name = '<i class="far fa-folder fa-fw text-success"></i> <code>' . $name;
-    } else {
-        $name = '<code>' . $name;
-    }
-    $row .= '<span>' . $name . '</span>';
+    $row .= '<code>' . $name . '</code>';
     $row .= '<span class="text-muted"> (' . $type . ')</span>';
-    $row .= '</code></div>';
+    $row .= '</div>';
     $row .= '<div class=" col-12 col-md-6">';
     $row .= '<span>' . $description . '</span>';
     $row .= '</div>';
@@ -50,6 +41,18 @@ function create_row($name, $type, $description, $pattern)
     $row .= '</div>';
     return $row;
 }
+
+$header = '<div class="row border-bottom border-3">';
+$header .= '<div class="col-12 col-md-4">';
+$header .= '<span class="text-muted">Name</span>';
+$header .= '</div>';
+$header .= '<div class=" col-12 col-md-6">';
+$header .= '<span class="text-muted">Description</span>';
+$header .= '</div>';
+$header .= '<div class="col-12 col-md">';
+$header .= '<span class="text-muted float-end">Pattern</span>';
+$header .= '</div>';
+$header .= '</div>';
 
 ########
 ## Configure page header
@@ -127,6 +130,7 @@ include('../includes/header.php');
 
                 <?php
                 $input_text = '<div class="">';
+                $input_text .= $header;
                 foreach ($module['input'] as $input) {
                     foreach ($input as $name => $input_value) {
                         $description = $input_value['description'];
@@ -142,7 +146,8 @@ include('../includes/header.php');
             <div class="module-output mt-5">
                 <h2 class="text-success"><i class="fad fa-sign-out fa-fw"></i> Output</h2>
                 <?php
-                $output_text = '<div class="d-flex flex-column mb-3">';
+                $output_text = '<div class="">';
+                $output_text .= $header;
                 foreach ($module['output'] as $output) {
                     foreach ($output as $name => $output_value) {
                         $description = $output_value['description'];
@@ -155,7 +160,7 @@ include('../includes/header.php');
                 echo $output_text;
                 ?>
             </div>
-            <div class="module-tools">
+            <div class="module-tools mt-5">
                 <?php
                 $tool_text = '<div class="">';
                 $tool_text .= '<h2 class="text-success"><i class="far fa-wrench fa-fw"></i> Tools</h2>';
@@ -187,7 +192,7 @@ include('../includes/header.php');
 
     <?php
     echo '</div>'; # end of the content div
-    echo '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
+    echo '<div class="col-12 col-lg-3 ps-3"><div class="side-sub-subnav sticky-top">';
     # module homepage & releases - key stats
     if (in_array($pagetab, [''])) {
     ?>
