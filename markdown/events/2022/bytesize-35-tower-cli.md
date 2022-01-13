@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 35: Tower CLI"
+title: "Bytesize 35: Nextflow Tower CLI"
 subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
 start_date: "2022-02-15"
@@ -18,6 +18,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 35: Tower CLI
+## Bytesize 35: Nextflow Tower CLI
 
-This week, Evan Floden ([@evanfloden](https://github.com/evanfloden/)) will tell us all about the new Tower command line client.
+This week, Evan Floden ([@evanfloden](https://github.com/evanfloden/)) will tell us all about the new [Nextflow Tower command line client](https://github.com/seqeralabs/tower-cli).
