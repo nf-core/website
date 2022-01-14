@@ -29,15 +29,14 @@ function create_row($name, $type, $description, $pattern)
     $row .= '<span class="text-muted"> (' . $type . ')</span>';
     $row .= '</div>';
     $row .= '<div class=" col-12 col-md-6">';
-    $row .= '<span>' . $description . '</span>';
+    $row .= '<span class="small">' . $description . '</span>';
     $row .= '</div>';
-    if($pattern != '')
-    {
+    if ($pattern != '') {
         $row .= '<div class="col-12 col-md">';
         $row .= '<code class="float-end">' . $pattern . '</code>';
         $row .= '</div>';
     }
-    
+
     $row .= '</div>';
     return $row;
 }
@@ -58,7 +57,7 @@ $header .= '</div>';
 ## Configure page header
 ########
 $title = 'modules/<br class="d-sm-none">' . $module['name'];
-$subtitle = '';
+$subtitle = $module['description'];
 $content = '';
 $schema_content = '';
 $import_chartjs = true;
@@ -93,22 +92,29 @@ include('../includes/header.php');
 ?>
 
 <div class="container-fluid mainpage-subheader-heading chevron-down pt-5">
-    <div class="container text-center">
+    <div class="container d-flex flex-column align-items-center">
+        <p>
+        <div class="input-group input-group module-install-cmd w-50">
+            <span class="input-group-text"><i class="fas fa-terminal"></i></span>
+            <input type="text" class="form-control input code" id="module-install-cmd-text" data-autoselect="" value="nf-core modules install <?php echo $module['name']; ?>" aria-h3="Copy install command" readonly="">
+            <button class="btn btn-outline-secondary copy-txt" data-bs-target="module-install-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+        </div>
+        </p>
         <p><a href="<?php echo $gh_url; ?>" class="subheader-link">
-                <i class="fab fa-github"></i><?php echo $gh_url; ?>
+                <i class="fab fa-github"></i> <?php echo $gh_url; ?>
             </a></p>
     </div>
 </div>
 
 <div class="container-xxl main-content">
 
-    <!-- <ul class="nav nav-fill nfcore-subnav justify-content-around"> -->
-        <!-- <li class="nav-item"> -->
-            <!-- <a class="nav-link<?php if ($pagetab == '') {
-                                        echo ' active';
-                                    } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> Introduction</a>
-        </li> -->
-    <!-- </ul> -->
+    <!-- <ul class="nav nav-fill nfcore-subnav justify-content-around">
+        <li class="nav-item">
+            <a class="nav-link<?php if ($pagetab == '') {
+                                echo ' active';
+                            } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> Introduction</a>
+        </li>
+    </ul> -->
 
     <?php
     ########
@@ -136,7 +142,7 @@ include('../includes/header.php');
                         $description = $input_value['description'];
                         $description = str_replace('[', '<code class="px-0">[', $description);
                         $description = str_replace(']', ']</code>', $description);
-                        $input_text .= create_row($name, $input_value['type'], $description,$input_value['pattern']);
+                        $input_text .= create_row($name, $input_value['type'], $description, $input_value['pattern']);
                     }
                 }
                 $input_text .= '</div>';
@@ -153,7 +159,7 @@ include('../includes/header.php');
                         $description = $output_value['description'];
                         $description = str_replace('[', '<code class="px-0">[', $description);
                         $description = str_replace(']', ']</code>', $description);
-                        $output_text .= create_row($name, $output_value['type'], $description,$output_value['pattern']);
+                        $output_text .= create_row($name, $output_value['type'], $description, $output_value['pattern']);
                     }
                 }
                 $output_text .= '</div>';
@@ -173,13 +179,27 @@ include('../includes/header.php');
                     }
                     foreach ($tool as $name => $tool_value) {
                         $tool_text .= '<div>';
-                        $documentation =  $tool_value['documentation'] ? $tool_value['documentation'] : $tool_value['homepage'];
-                        $documentation = '<a class="btn btn-outline-secondary float-end" data-bs-toggle="tooltip" title="documentation" href=' . $documentation . '><i class="far fa-books"></i> Documentation</a>';
+                        $documentation_url =  $tool_value['documentation'] ? $tool_value['documentation'] : $tool_value['homepage'];
+                        $documentation = '<a class="btn btn-outline-secondary float-end" data-bs-toggle="tooltip" title="documentation" href=' . $documentation_url . '><i class="far fa-books"></i> Documentation</a>';
                         $tool_text .= '<h4>' . $name . $documentation . ' </h4>';
                         $description = $tool_value['description'];
-                        $tool_text .= '<span class="text-small collapse show description ' . $module['name'] . '-description" >' .  $description . '</span>';
+                        $tool_text .= '<span class="small collapse show description ' . $module['name'] . '-description" >' .  $description . '</span>';
+                        $tool_text .= '<div class="d-flex mt-3">';
+                        if ($tool_value['tool_dev_url'] != $documentation_url & $tool_value['tool_dev_url'] != '' & trim(strtolower($tool_value['tool_dev_url'])) != "none") {
+                            $tool_dev_url = $tool_value['tool_dev_url'];
+                            $tool_dev_icon = preg_match('/github.com/', $tool_dev_url) ? 'fab fa-github' : 'far fa-file-code';
+                            $tool_dev_icon = '<i class="' . $tool_dev_icon  . ' me-1"></i>';
+                            $tool_text .= '<span class="badge bg-secondary me-3">' . $tool_dev_icon . '<a class="text-white" href="' . $tool_dev_url . '">' .  $tool_dev_url . '</a></span>';
+                        }
+                        
+                        if ($tool_value['doi'] != '') {
+                            $tool_text .= '<a class="badge bg-secondary text-white me-3" href="https://doi.org/' . $tool_value['doi'] . '">doi: ' .   $tool_value['doi'] . '</a>';
+                        }
+                        if ($tool_value['licence'] != '') {
+                            $tool_text .= '<span class="badge bg-secondary text-white">Licence: ' .   implode(', ', $tool_value['licence']) . '</span>';
+                        }
                         $tool_text .= '</div>';
-
+                        $tool_text .= '</div>';
                         $tool_text .= '</ul>';
                     }
                 }
@@ -197,21 +217,12 @@ include('../includes/header.php');
     if (in_array($pagetab, [''])) {
     ?>
         <div class="module-sidebar">
-            <div class="row border-bottom pb-2">
-                <div class="col-12">
-                    <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
-                    <div class="input-group input-group-sm module-install-cmd">
-                        <input type="text" class="form-control input-sm code" id="module-install-cmd-text" data-autoselect="" value="nf-core modules install <?php echo $module['name']; ?>" aria-h3="Copy install command" readonly="">
-                        <button class="btn btn-outline-secondary copy-txt" data-bs-target="module-install-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
-                    </div>
-                </div>
-            </div>
             <?php if (count($pipelines) > 0) : ?>
                 <div class="row border-bottom">
                     <div class="col-12">
                         <h6>nf-core pipelines with this module</h6>
                         <?php foreach ($pipelines as $pipeline) {
-                            echo '<a class="badge bg-light text-dark me-1 mb-1" href="' . $pipeline['html_url'] . '">' . $pipeline['name'] . '</a>';
+                            echo '<a class="badge bg-light text-dark me-1 mb-1" href="/' . $pipeline['name'] . '">' . $pipeline['name'] . '</a>';
                         } ?>
                     </div>
                 </div>
