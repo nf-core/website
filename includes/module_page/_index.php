@@ -229,7 +229,7 @@ include('../includes/header.php');
             <?php endif; ?>
             <div class="row border-bottom">
                 <div class="col-12 contrib-avatars">
-                    <h6>collaborators</h6>
+                    <h6>Authors</h6>
                     <?php foreach ($module['authors'] as $author) : ?>
                         <a href="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>">
                             <img src="https://github.com/<?php echo trim(str_replace("@", "", $author)); ?>.png">
