@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 32: Updates on the new DSL2 syntax"
+title: "Bytesize 31: Updates on the new DSL2 syntax"
 subtitle: Maxime Garcia - Karolinska Institutet/SciLifeLab, Sweden
 type: talk
 start_date: "2022-01-25"
@@ -18,6 +18,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 32: Updates on the new DSL2 syntax
+## Bytesize 31: Updates on the new DSL2 syntax
 
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse/)) will update us on the new DSL2 syntax.
