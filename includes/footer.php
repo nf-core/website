@@ -35,7 +35,7 @@ if (isset($subfooter) and $subfooter) {
         <small class="d-block mb-3">
           See the source code for this website on GitHub: <a href="https://github.com/nf-core/nf-co.re" target="_blank">https://github.com/nf-core/nf-co.re</a>
         </small>
-        <div class="d-md-flex">
+        <div class="d-md-flex d-print-none">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
             <div class="theme-switcher btn-group btn-group-sm" role="group">
 
@@ -50,7 +50,7 @@ if (isset($subfooter) and $subfooter) {
             </div>
           </div>
 
-          <div class="social-icons mb-3">
+          <div class="social-icons mb-3 d-print-none">
             <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip">
               <img src="/assets/img/slack.svg" />
             </a>
@@ -67,7 +67,7 @@ if (isset($subfooter) and $subfooter) {
         </div>
 
       </div>
-      <div class="col-sm-6 col-lg-3 offset-lg-1 mb-3">
+      <div class="col-sm-6 col-lg-3 offset-lg-1 mb-3 d-print-none">
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
           <li><a href="/pipelines">Available pipelines</a></li>
@@ -83,7 +83,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/usage/nextflow">Nextflow resources</a></li>
         </ul>
       </div>
-      <div class="col-sm-6 col-lg-3 mb-3">
+      <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
         <h5>For Authors</h5>
         <ul class="list-unstyled">
           <li><a href="/developers/guidelines">Guidelines</a></li>
@@ -97,7 +97,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/developers/design_guidelines">Graphic design guidelines</a></li>
         </ul>
       </div>
-      <div class="col-sm-6 col-lg-2 mb-3">
+      <div class="col-sm-6 col-lg-2 mb-3 d-print-none">
         <h5>About nf-core</h5>
         <ul class="list-unstyled">
           <li><a href="/about">About nf-core</a></li>
