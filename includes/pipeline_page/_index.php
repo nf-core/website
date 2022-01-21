@@ -180,7 +180,7 @@ if (file_exists($gh_pipeline_schema_fn)) {
   $cta_icon = '<i class="fad fa-rocket-launch me-1"></i> ';
 }
 # Build button
-$cta_btn = '<a href="' . $cta_url . '" class="btn btn-success btn-lg">' . $cta_icon . $cta_txt . '</a>';
+$cta_btn = '<a href="' . $cta_url . '" class="btn btn-success btn-lg d-print-none">' . $cta_icon . $cta_txt . '</a>';
 
 ########
 # Warning alert box
@@ -213,7 +213,7 @@ if ($pipeline->archived) {
 
 <div class="container-xxl main-content">
 
-  <ul class="nav nav-fill nfcore-subnav justify-content-around">
+  <ul class="nav nav-fill nfcore-subnav justify-content-around d-print-none">
     <li class="nav-item">
       <a class="nav-link<?php if ($pagetab == '') {
                           echo ' active';
@@ -308,7 +308,7 @@ if ($pipeline->archived) {
   }
   # Documentation - ToC
   else if (in_array($pagetab, ['usage', 'output', 'parameters'])) {
-    $toc .= '<nav class="toc pt-2 auto-toc border-start">';
+    $toc .= '<nav class="toc pt-2 auto-toc border-start d-print-none">';
     $toc .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
     $toc .= generate_toc($content);
     # Add on the action buttons for the parameters docs

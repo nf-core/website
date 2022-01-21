@@ -126,7 +126,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
 </head>
 
 <body tabindex="0">
-  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav">
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav d-print-none">
     <div class="container-fluid">
       <a class="navbar-brand d-md-none" href="/">
         <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
@@ -211,7 +211,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-            echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
+            echo '<a href="' . $md_github_url . '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
           }
           if (isset($header_btn_url) && isset($header_btn_text)) {
             echo '<a href="' . $header_btn_url . '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' . $header_btn_text . '</a>';
