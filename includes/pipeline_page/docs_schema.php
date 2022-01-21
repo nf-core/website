@@ -101,7 +101,7 @@ if(file_exists($gh_pipeline_schema_fn)){
           <i class="fas fa-question-circle"></i> Help
         </button>';
       $help_text = '
-        <div class="collapse bg-lightgray col-12 param-docs-help-text p-2 mb-2 small" id="' . $param_id . '-help">
+        <div class="collapse bg-lightgray col-12 param-docs-help-text p-2 mb-2 small d-print-block" id="' . $param_id . '-help">
           ' . parse_md($param['help_text'])['content'] . $pattern_val . $minmax_val . '</div>';
     }
     # Labels
@@ -129,7 +129,7 @@ if(file_exists($gh_pipeline_schema_fn)){
       $description_class = 'lead mb-3';
     }
     if($is_hidden){
-      $row_class .= ' param-docs-hidden collapse';
+      $row_class .= ' param-docs-hidden collapse d-print-block';
     }
 
     # Body
