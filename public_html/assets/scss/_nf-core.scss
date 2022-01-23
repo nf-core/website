@@ -1,6 +1,25 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,600|Open+Sans:300,400,500,600");
 
+@import "bootstrap-print-css/css/bootstrap-print.min";
+
+@media print {
+  .pipeline-page-content,
+  .main-content h1[id]::before{
+    padding-top: 0 !important;
+  }
+  .mainpage-subheader-heading{
+    padding-top: 0.25rem !important;
+  }
+  .param-docs-row-id-col{
+    overflow-x: visible;
+  }
+  .param-docs .dropdown-menu{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+}
 
 // additional variables
 $navbar-height: $navbar-brand-height+2*$navbar-brand-padding-y+2*$navbar-padding-y;
