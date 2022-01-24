@@ -37,7 +37,7 @@ and also be available on YouTube (<https://www.youtube.com/channel/UCexVPLCSwS2p
 ### Speaker bio
 
 Phil Ewels ([@ewels](http://github.com/ewels/)) is the Team Leader for Bioinformatics development at the
-[National Genomics Infrastructure](https://ngisweden.se) (NGI) at [SciLifeLab](https://www.scilifelab.se) in Stockholm, Sweden.
+[National Genomics Infrastructure](https://ngisweden.scilifelab.se/) (NGI) at [SciLifeLab](https://www.scilifelab.se) in Stockholm, Sweden.
 SciLifeLab is a national centre for molecular biosciences. The NGI offers genomic library preparation, sequencing and bioinformatics analysis support for research groups across the country.
 
 Phil did his PhD and postdoc in epigenetics at the University of Cambridge and [Babraham Institute](https://babraham.ac.uk/) in Cambridge, UK and has now been in Sweden for six years.

@@ -98,7 +98,7 @@ We will coordinate our work and the issues we are working on using a single GitH
 
 We will be a lot of people working in parallel during this hackathon, so to stay organised we have a recommended workflow:
 
-1. :speech_balloon: Most of the event will happen on [Gather town](gather.town). You can chat there with your group to get an overview of what is going on.
+1. :speech_balloon: Most of the event will happen on [Gather town](https://www.gather.town/). You can chat there with your group to get an overview of what is going on.
 2. <i class="fab fa-slack"></i> Join the `#hackathon-oct2021-public` Slack channel to stay up to date with the hackathon events.
 3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/20).
     - If you have something you want to do that's not there, please make an issue (e.g. in the nf-core/modules repository if you are adding a new module) and add it to the board
