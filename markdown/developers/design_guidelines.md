@@ -49,7 +49,7 @@ If you wish to introduce or run training sessions to your group or network, you 
 It is often useful to have simplified diagrams that outline the main functionality and steps of a pipeline.
 This helps new users get an overview of a workflow when visiting a pipeline webpage or repository for the first time.
 
-Most workflow diagrams are made by hand using vector image editors such as the open-source [Inkscape](https://inkscape.org/) or commercial suites such as [Adobe Illustrator](https://www.adobe.com/products/illustrator.html). Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) or [LucidChart](www.lucidchart.com/pages). All examples and components below can be opened in these editors, and various parts borrowed and/or modified as necessary.
+Most workflow diagrams are made by hand using vector image editors such as the open-source [Inkscape](https://inkscape.org/) or commercial suites such as [Adobe Illustrator](https://www.adobe.com/products/illustrator.html). Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) or [LucidChart](https://www.lucidchart.com/pages/). All examples and components below can be opened in these editors, and various parts borrowed and/or modified as necessary.
 
 ### Examples
 
