@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@master
       with:
         fetch-depth: 1
-    - uses: gaurav-nelson/github-action-markdown-link-check@0.6.0
+    - uses: gaurav-nelson/github-action-markdown-link-check@v1
       with:
         use-quiet-mode: 'yes'
         config-file: '.github/mlc_config.json'
