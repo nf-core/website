@@ -1,8 +1,25 @@
 {
-    "replacementPatterns": [
-      {
-        "pattern": "^\/(.*)",
-        "replacement": "https://nf-co.re/$1"
-      }
-    ]
+  "replacementPatterns": [
+    {
+      "pattern": "^\/(.*)",
+      "replacement": "https://nf-co.re/$1"
+    }
+  ],
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost:"
+    },
+    {
+      "pattern": "zoom.us"
+    },
+    {
+      "pattern": "bingo.web.app"
+    }
+  ],
+  "aliveStatusCodes": [
+    200,
+    301,
+    403,
+    429
+  ]
 }
