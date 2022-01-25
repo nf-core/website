@@ -255,7 +255,7 @@ Please follow the steps below to run the tests locally:
 
 3. Install [`pytest-workflow`](https://pytest-workflow.readthedocs.io/en/stable/#installation)
 
-4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml#L3-L4) defined in the `test.yml`:
+4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/20d8250d9f39ddb05dfb437603aaf99b5c0b2b41/tests/modules/fastqc/test.yml) defined in the `test.yml`:
 
     - Typical command with Docker:
 
