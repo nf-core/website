@@ -16,7 +16,7 @@ location_url: https://pages.awscloud.com/Nordics_InSpotlight_WebinarSeries.html
 > the cost-effective, scalable, and secure compute, storage, and database capabilities needed to accelerate time-to-science.
 
 Phil Ewels ([@ewels](http://github.com/ewels/)) will give a talk about how the cloud is used at the
-[National Genomics Infrastructure](https://ngisweden.se), part of [SciLifeLab](https://www.scilifelab.se) in Sweden.
+[National Genomics Infrastructure](https://ngisweden.scilifelab.se/), part of [SciLifeLab](https://www.scilifelab.se) in Sweden.
 This will cover some of the nitty-gritty of the how and why we are making the transition to the cloud.
 The talk will go on to describe how nf-core workflows make the most of cloud computing with open-data hosting,
 large-scale benchmark automation and integration with user-friendly launch interfaces.
