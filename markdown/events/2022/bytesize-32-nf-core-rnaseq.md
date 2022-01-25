@@ -1,10 +1,10 @@
 ---
-title: "Bytesize 32: nf-core/dualrnaseq"
-subtitle: Regan Hayward - Helmholtz Institute for RNA-based Infection Research , Germany
+title: "Bytesize 32: nf-core/rnaseq"
+subtitle: Harshil Patel - Seqera Labs, Spain/UK
 type: talk
-start_date: "2022-02-01"
+start_date: "2022-02-08"
 start_time: "13:00 CET"
-end_date: "2022-02-01"
+end_date: "2022-02-08"
 end_time: "13:30 CET"
 location_url:
  - https://kth-se.zoom.us/j/61097190426
@@ -18,8 +18,8 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 32: nf-core/dualrnaseq
+## Bytesize 32: nf-core/rnaseq
 
-This week, Regan Hayward ([@reganhayward](https://github.com/reganhayward/)) will tell us all about the nf-core/dualrnaseq pipeline.
+This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell us all about the nf-core/rnaseq pipeline.
 
-nf-core/dualrnaseq is specifically used for the analysis of Dual RNA-seq data, interrogating host-pathogen interactions through simultaneous RNA-seq.
+nf-core/rnaseq is a bioinformatics analysis pipeline used for RNA sequencing data.
