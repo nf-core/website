@@ -1,10 +1,10 @@
 ---
-title: "Bytesize 33: nf-core/rnaseq"
-subtitle: Harshil Patel - Seqera Labs, Spain/UK
+title: "Bytesize 33: Nextflow Tower CLI"
+subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
-start_date: "2022-02-08"
+start_date: "2022-02-15"
 start_time: "13:00 CET"
-end_date: "2022-02-08"
+end_date: "2022-02-15"
 end_time: "13:30 CET"
 location_url:
  - https://kth-se.zoom.us/j/61097190426
@@ -18,8 +18,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 33: nf-core/rnaseq
+## Bytesize 33: Nextflow Tower CLI
 
-This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell us all about the nf-core/rnaseq pipeline.
-
-nf-core/rnaseq is a bioinformatics analysis pipeline used for RNA sequencing data.
+This week, Evan Floden ([@evanfloden](https://github.com/evanfloden/)) will tell us all about the new [Nextflow Tower command line client](https://github.com/seqeralabs/tower-cli).
