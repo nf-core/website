@@ -11,7 +11,7 @@ location_name: Gather town and Slack.
 
 
 Please join us for the March 2022 nf-core hackathon!
-This event is entirely virtual (we will be back in gather.town!) and we are attempting to support people in all timezones.
+This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones.
 :earth_americas: :earth_asia: :earth_africa:
 
 More details will come soon, registration will open February 2022.
@@ -23,7 +23,7 @@ but in the mean time - book the dates in your calendar!
 We expect people to come and go during the hackathon due to diverse time zones.
 Please just do whatever works best for you!
 
-All locations described in the table below refer to places in the Hackathon gather.town
+All locations described in the table below refer to places in the Hackathon [gather.town](https://gather.town/)
 space.
 
 The following schedule should display times in your local time zone:
@@ -246,11 +246,6 @@ The following schedule should display times in your local time zone:
 During the hackathon, we will have a few light-hearted fun and games!
 
 - Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
-<!-- - Throughout the three days, we will once again be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
-
-    > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
-
-- In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as you can find! -->
 - Finally, during Thursday's social event (see schedule above), we will be running a short quiz!
 
 All social activities are of course optional, but hope to see as many people joining in as possible :tada:
