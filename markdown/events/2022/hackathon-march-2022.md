@@ -39,7 +39,7 @@ The following schedule should display times in your local time zone:
         </thead>
         <tbody>
             <tr>
-                <td data-timestamp="1635379200" data-timeformat="HH:mm z">02:00</td>
+                <td data-timestamp="1647392400" data-timeformat="HH:mm z">02:00</td>
                 <td rowspan=3></td>
                 <td>Check-out/in (Americas/Asia-Pacific)<br>
                   <ul class="small list-unstyled">
@@ -53,7 +53,7 @@ The following schedule should display times in your local time zone:
                   </ul></td>
             </tr>
             <tr>
-                <td data-timestamp="1635381000" data-timeformat="HH:mm z">02:30</td>
+                <td data-timestamp="1647394200" data-timeformat="HH:mm z">02:30</td>
                 <td rowspan="1">Group distribution (Asia-Pacific)<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Hall</li>
@@ -61,7 +61,7 @@ The following schedule should display times in your local time zone:
                 <td rowspan="2">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1635382800" data-timeformat="HH:mm z">03:00</td>
+                <td data-timestamp="1647396000" data-timeformat="HH:mm z">03:00</td>
                 <td rowspan="1">Hack!</td>
             </tr>
             <!-- <tr>
@@ -69,7 +69,7 @@ The following schedule should display times in your local time zone:
                 <td rowspan="1">Hack! <...></td>
             </tr> -->
             <tr>
-                <td data-timestamp="1635321600" data-timeformat="HH:mm z">10:00</td>
+                <td data-timestamp="1647421200" data-timeformat="HH:mm z">10:00</td>
                 <td>
                   Welcome
                   <ul class="small list-unstyled">
@@ -93,7 +93,7 @@ The following schedule should display times in your local time zone:
                 </td>
             </tr>
             <tr>
-                <td data-timestamp="1635323400" data-timeformat="HH:mm z">10:30</td>
+                <td data-timestamp="1647423000" data-timeformat="HH:mm z">10:30</td>
                 <td rowspan="1">Group distribution (EMEA)<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Hall</li>
@@ -102,11 +102,11 @@ The following schedule should display times in your local time zone:
                 <td rowspan="3">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1635325200"  data-timeformat="HH:mm z">11:00</td>
+                <td data-timestamp="1647424800"  data-timeformat="HH:mm z">11:00</td>
                 <td rowspan="2">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1635327000" data-timeformat="HH:mm z">11:30</td>
+                <td data-timestamp="1647426600" data-timeformat="HH:mm z">11:30</td>
                 <!-- <td rowspan="2">Hack!</td>
                 <td rowspan="2">Hack!</td> -->
                 <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
@@ -117,7 +117,7 @@ The following schedule should display times in your local time zone:
                 <td data-timestamp="1635327900" data-timeformat="HH:mm z">11:45</td>
             </tr> -->
             <tr>
-                <td data-timestamp="1635328800" data-timeformat="HH:mm z">12:00</td>
+                <td data-timestamp="1647428400" data-timeformat="HH:mm z">12:00</td>
                 <td  rowspan="2">Break<br>
                 <ul class="small list-unstyled">
                 <li>Location: Cafeteria</li>
@@ -138,10 +138,10 @@ The following schedule should display times in your local time zone:
                 </td>
             </tr>
             <tr>
-                <td data-timestamp="1635330600" data-timeformat="HH:mm z">12:30</td>
+                <td data-timestamp="1647430200" data-timeformat="HH:mm z">12:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1635332400" data-timeformat="HH:mm z">13:00</td>
+                <td data-timestamp="1647432000" data-timeformat="HH:mm z">13:00</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
@@ -168,37 +168,37 @@ The following schedule should display times in your local time zone:
                 </td> -->
             </tr>
             <tr>
-                <td data-timestamp="1635334200" data-timeformat="HH:mm z">13:30</td>
+                <td data-timestamp="1647433800" data-timeformat="HH:mm z">13:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1635336000" data-timeformat="HH:mm z">14:00</td>
+                <td data-timestamp="1647435600" data-timeformat="HH:mm z">14:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1635337800" data-timeformat="HH:mm z">14:30</td>
+                <td data-timestamp="1647437400" data-timeformat="HH:mm z">14:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1635339600" data-timeformat="HH:mm z">15:00</td>
+                <td data-timestamp="1647439200" data-timeformat="HH:mm z">15:00</td>
                 <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
                 <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
                 <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
             </tr>
             <tr>
-                <td data-timestamp="1635340500" data-timeformat="HH:mm z">15:15</td>
+                <td data-timestamp="1647440100" data-timeformat="HH:mm z">15:15</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
             </tr>
            <tr>
-                <td data-timestamp="1635341400" data-timeformat="HH:mm z">15:30</td>
+                <td data-timestamp="1647441000" data-timeformat="HH:mm z">15:30</td>
             </tr>
             <tr>
-                <td data-timestamp="1635343200" data-timeformat="HH:mm z">16:00</td>
+                <td data-timestamp="1647442800" data-timeformat="HH:mm z">16:00</td>
             </tr>
             <tr>
-                <td data-timestamp="1635345000" data-timeformat="HH:mm z">16:30</td>
+                <td data-timestamp="1647444600" data-timeformat="HH:mm z">16:30</td>
                             </tr>
             <tr>
-                <td data-timestamp="1635346800" data-timeformat="HH:mm z">17:00</td>
+                <td data-timestamp="1647446400" data-timeformat="HH:mm z">17:00</td>
                 <td>
                   Check-out/in (EMEA/Americas)
                   <ul class="small list-unstyled">
@@ -222,7 +222,7 @@ The following schedule should display times in your local time zone:
                 </td>
             </tr>
             <tr>
-                <td data-timestamp="1635348600" data-timeformat="HH:mm z">17:30</td>
+                <td data-timestamp="1647448200" data-timeformat="HH:mm z">17:30</td>
                 <td rowspan="1">Group distribution (Americas)<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Hall</li>
@@ -234,15 +234,15 @@ The following schedule should display times in your local time zone:
                     <td rowspan="6"></td>
             </tr>
             <tr>
-                <td data-timestamp="1635350400" data-timeformat="HH:mm z">18:00</td>
+                <td data-timestamp="1647450000" data-timeformat="HH:mm z">18:00</td>
                 <td rowspan="3">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1635352200" data-timeformat="HH:mm z">18:30</td>
+                <td data-timestamp="1647451800" data-timeformat="HH:mm z">18:30</td>
                 <td rowspan="2">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1635354000" data-timeformat="HH:mm z">19:00</td>
+                <td data-timestamp="1647453600" data-timeformat="HH:mm z">19:00</td>
             </tr>
             <!-- <tr> -->
                 <!-- <td data-timestamp="1635355800" data-timeformat="HH:mm z">19:30</td> -->
