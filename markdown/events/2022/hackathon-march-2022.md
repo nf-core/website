@@ -33,7 +33,7 @@ The following schedule should display times in your local time zone:
         <thead>
             <tr>
                 <th>Time</th>
-                <th>Weds. 16 Mar., 2022</th>
+                <th>Wed. 16 Mar., 2022</th>
                 <th>Thu. 17 Mar., 2022</th>
                 <th>Fri. 18 Mar., 2022</th>
             </tr>
@@ -206,15 +206,15 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1635348600" data-timeformat="HH:mm z">17:30</td>
-                <!-- <td rowspan="2">Pair Programming (Americas)<br>
+                <td rowspan="2">Group distribution (EMEA)<br>
                    <ul class="small list-unstyled">
-                    <li>Location: Mentor specific rooms</li>
-                  </ul></td> -->
-                <td rowspan="2">Social Event<br>
+                    <li>Location: Lecture Hall</li>
+                  </ul></td>
+                <!-- <td rowspan="2">Social Event<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lounge</li>
                     <li>Host: Maxime Garcia / Susanna Marquez</ul></td>
-                    <td rowspan="6"></td>
+                    <td rowspan="6"></td> -->
             </tr>
             <tr>
                 <td data-timestamp="1635350400" data-timeformat="HH:mm z">18:00</td>
