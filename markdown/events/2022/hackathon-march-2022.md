@@ -248,7 +248,7 @@ The following schedule should display times in your local time zone:
                 <!-- <td data-timestamp="1635355800" data-timeformat="HH:mm z">19:30</td> -->
                 <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
                 <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
-            <!-- </tr> --> 
+            <!-- </tr> -->
             <!-- <tr>
                 <td data-timestamp="1635356700" data-timeformat="HH:mm z">19:45</td>
                 <td>Hack! <...></td>
