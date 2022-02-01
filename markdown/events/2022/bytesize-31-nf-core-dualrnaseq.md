@@ -6,8 +6,9 @@ start_date: "2022-02-01"
 start_time: "13:00 CET"
 end_date: "2022-02-01"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/-J3Cbetk8Pk
 location_url:
- - https://kth-se.zoom.us/j/61097190426
+ - https://youtu.be/-J3Cbetk8Pk
 ---
 
 # nf-core/bytesize
