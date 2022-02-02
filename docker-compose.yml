@@ -6,6 +6,7 @@ services:
     restart: always
     environment:
       - WEB_DOCUMENT_ROOT=/var/www/public_html
+      - USERID=$UID
     volumes:
       - .:/var/www/
     ports:
