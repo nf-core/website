@@ -6,6 +6,10 @@ tasks:
   - command: |
       docker-compose up
 
+ports:
+  - port: 8080
+    onOpen: open-preview
+
 vscode:
   extensions:
     - ms-azuretools.vscode-docker
