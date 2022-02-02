@@ -4,7 +4,7 @@ tasks:
   - init: |
       docker-compose pull
   - command: |
-      export UID && docker-compose up
+      chmod a+x /workspace/nf-co.re && docker-compose up
 
 ports:
   - port: 8888
