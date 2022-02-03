@@ -91,3 +91,6 @@ These allow you to list all available pipelines and versions, with information a
 There are also commands to help downloading pipelines for use offline.
 
 To find out more about these tools, read the [Tools](/tools) page.
+
+## New section
+
