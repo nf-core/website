@@ -13,7 +13,9 @@ location_name: Gather town and Slack.
 Please join us for the March 2022 nf-core hackathon!
 This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
 
-Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022). Note: registration deadline for swag (🕺) is  Feburary 20th!
+Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022). 
+
+> Registration deadline for swag (🕺) is  Feburary 20th, however the registration form for attending until remain open until the event itself.
 
 Please check back here for more details about the event and keep an eye out on twitter and on Slack,
 but in the mean time - book the dates in your calendar!
