@@ -7,14 +7,20 @@ start_time: "10:00 CET"
 end_date: "2022-03-18"
 end_time: "18:00 CET"
 location_name: Gather town and Slack.
+import_typeform: true
 ---
 
 
 Please join us for the March 2022 nf-core hackathon!
 This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
 
-More details will come soon, registration will open February 2022.
-Please check back here for details and keep an eye out on twitter and on Slack,
+Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022) or in the widget below.
+
+> Registration deadline for swag (🕺) is  Feburary 20th, however the registration form for attending until remain open until the event itself.
+
+<div data-tf-widget="lZIzguMP" style="width:100%;height:700px;color:#FFFFFF;"></div>
+
+Please check back here for more details about the event and keep an eye out on twitter and on Slack,
 but in the mean time - book the dates in your calendar!
 
 # Schedule
