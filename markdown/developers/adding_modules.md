@@ -390,7 +390,17 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
     If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
 
-- The process definition MUST NOT contain a `when` statement.
+- The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
+    ```groovy
+    process {
+        withName: 'FOO' {
+            ext.when = !params.skip_module
+        }
+        withName: 'BAR' {
+            ext.when = { meta.single_end }
+        }
+    }
+    ```
 
 ### Naming conventions
 
