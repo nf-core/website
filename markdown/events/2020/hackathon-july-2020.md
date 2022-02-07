@@ -26,7 +26,7 @@ Please note that there are two separate events running in parallel:
 
 * Nextflow training
   * Mornings - organised through [DKFZ](https://dkfz.de)
-  * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/)
+  <!-- * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/) -->
   * Free to attend!
   * Places are limited to 30 external people
   * Live streams on YouTube
@@ -86,30 +86,30 @@ Just remember to check back in with the main group periodically.
 
 * <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
 * <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
-* <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv) ]
+<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv) ] -->
 
 ##### Existing nf-core pipeline development
 
 * <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
 * <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
-* <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD) ]
+<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD) ] -->
 
 ##### Improving nf-core framework tools (written in Python)
 
 * <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-tools`](https://nfcore.slack.com/channels/hackathon-july-2020-tools)
 * <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement](https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement)
-* <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP) ]
+<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP) ] -->
 
 ##### Nextflow DSL2 modules
 
 * <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-modules-dsl2`](https://nfcore.slack.com/channels/hackathon-july-2020-modules-dsl2)
 * <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2](https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2)
-* <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD) ]
+<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD) ] -->
 
 ## Schedule
 
-The Hackathon will be held on the same dates as a
-[parallel Nextflow workshop](https://indico.dkfz.de/event/225/timetable/#all.detailed).
+The Hackathon will be held on the same dates as a parallel Nextflow workshop
+<!-- [parallel Nextflow workshop](https://indico.dkfz.de/event/225/timetable/#all.detailed). -->
 
 Every day at 13:00 CEST there will be a webinar followed by a Q+A session.
 After this, a catch-up of the hackathon progress will be held.

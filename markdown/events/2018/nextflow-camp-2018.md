@@ -24,7 +24,7 @@ There has been fantastic feedback from the user community about nf-core. The fir
 
 ## Links and slides
 
-* Event page: [https://www.nextflow.io/nfhack/2018/phil.html](https://www.nextflow.io/nfcamp/2018/phil.html)
+<!-- * Event page: [https://www.nextflow.io/nfhack/2018/phil.html](https://www.nextflow.io/nfcamp/2018/phil.html) -->
 * Slides: [https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines](https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines)
 * Video: [https://youtu.be/AdTzvWV2Lwk](https://youtu.be/AdTzvWV2Lwk)
 

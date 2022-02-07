@@ -255,7 +255,7 @@ Please follow the steps below to run the tests locally:
 
 3. Install [`pytest-workflow`](https://pytest-workflow.readthedocs.io/en/stable/#installation)
 
-4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/3d720a24fd3c766ba56edf3d4e108a1c45d353b2/tests/modules/fastqc/test.yml#L3-L5) defined in the `test.yml`:
+4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/20d8250d9f39ddb05dfb437603aaf99b5c0b2b41/tests/modules/fastqc/test.yml) defined in the `test.yml`:
 
     - Typical command with Docker:
 
@@ -390,7 +390,18 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
     If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
 
-- The process definition MUST NOT contain a `when` statement.
+- The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
+
+    ```groovy
+    process {
+        withName: 'FOO' {
+            ext.when = !params.skip_module
+        }
+        withName: 'BAR' {
+            ext.when = { meta.single_end }
+        }
+    }
+    ```
 
 ### Naming conventions
 
