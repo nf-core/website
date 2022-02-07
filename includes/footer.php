@@ -71,6 +71,7 @@ if (isset($subfooter) and $subfooter) {
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
           <li><a href="/pipelines">Available pipelines</a></li>
+          <li><a href="/modules">Available modules</a></li>
           <li><a href="/tools">Helper tools</a></li>
           <li><a href="/usage/introduction">Getting started</a></li>
           <li><a href="/usage/installation">Installation</a></li>

@@ -23,16 +23,22 @@ mysqli_close($conn);
 // function to create bootstrap row with the first column for the name and type and the second for the descritption
 function create_row($name, $type, $description, $pattern)
 {
-    $row = '<div class="row border-bottom">';
-    $row .= '<div class="col-12 col-md-4">';
+    $id = strtolower(preg_replace('/[^\w\-\.]+/', '', str_replace(' ', '-', $name)));
+    $id = str_replace('.', '-', $id); // periods break the js code, because they are not valid in selector ids
+
+    $row = '<div class="row border-bottom align-items-center">';
+    $row .= '<div class="col-12 col-md-4 small-h">';
+    $row .= '<h4 id="' . $id . '" class="me-3">';
     $row .= '<code>' . $name . '</code>';
     $row .= '<span class="text-muted"> (' . $type . ')</span>';
+    $row .= '<a href=#' . $id . ' class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>';
+    $row .= '</h4>';
     $row .= '</div>';
-    $row .= '<div class=" col-12 col-md-6">';
+    $row .= '<div class=" col-12 col-md-auto">';
     $row .= '<span class="small">' . $description . '</span>';
     $row .= '</div>';
     if ($pattern != '') {
-        $row .= '<div class="col-12 col-md">';
+        $row .= '<div class="col-12 col-md-auto ms-auto">';
         $row .= '<code class="float-end">' . $pattern . '</code>';
         $row .= '</div>';
     }
@@ -111,8 +117,8 @@ include('../includes/header.php');
     <!-- <ul class="nav nav-fill nfcore-subnav justify-content-around">
         <li class="nav-item">
             <a class="nav-link<?php if ($pagetab == '') {
-                                echo ' active';
-                            } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> Introduction</a>
+                                    echo ' active';
+                                } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> Introduction</a>
         </li>
     </ul> -->
 
@@ -128,11 +134,16 @@ include('../includes/header.php');
 
     ?>
     <div class="module module-page-content mb-2">
-        <h2><i class="far fa-book fa-fw"></i> Description</h2>
+        <h2 id="description" class="ms-n3"><i class=" far fa-book fa-fw"></i> Description
+            <a href="#description" class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>
+        </h2>
         <p class="ps-2"><?php echo $module['description']; ?></p>
         <div class="module-params ">
             <div class="module mt-5-input">
-                <h2 class="text-success"><i class="fad fa-sign-in fa-fw"></i> Input</h2>
+                <h2 id="input" class="text-success ms-n3"><i class="fad fa-sign-in fa-fw"></i> Input
+                    <a href="#input" class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>
+                </h2>
+
 
                 <?php
                 $input_text = '<div class="">';
@@ -150,7 +161,10 @@ include('../includes/header.php');
                 ?>
             </div>
             <div class="module-output mt-5">
-                <h2 class="text-success"><i class="fad fa-sign-out fa-fw"></i> Output</h2>
+                <h2 id="output" class="text-success ms-n3"><i class="fad fa-sign-out fa-fw"></i> Output
+                    <a href="#output" class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>
+                </h2>
+
                 <?php
                 $output_text = '<div class="">';
                 $output_text .= $header;
@@ -169,7 +183,9 @@ include('../includes/header.php');
             <div class="module-tools mt-5">
                 <?php
                 $tool_text = '<div class="">';
-                $tool_text .= '<h2 class="text-success"><i class="far fa-wrench fa-fw"></i> Tools</h2>';
+                $tool_text .= '<h2 id="tools" class="text-success ms-n3"><i class="far fa-wrench fa-fw"></i> Tools';
+                $tool_text .= '<a href="#tools" class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>';
+                $tool_text .= '</h2>';
                 foreach ($module['tools'] as $tool) {
                     // catch incorrectly formatted yamls
                     if (isset($tool['documentation'])) {
@@ -191,7 +207,7 @@ include('../includes/header.php');
                             $tool_dev_icon = '<i class="' . $tool_dev_icon  . ' me-1"></i>';
                             $tool_text .= '<span class="badge bg-secondary me-3">' . $tool_dev_icon . '<a class="text-white" href="' . $tool_dev_url . '">' .  $tool_dev_url . '</a></span>';
                         }
-                        
+
                         if ($tool_value['doi'] != '') {
                             $tool_text .= '<a class="badge bg-secondary text-white me-3" href="https://doi.org/' . $tool_value['doi'] . '">doi: ' .   $tool_value['doi'] . '</a>';
                         }
