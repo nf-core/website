@@ -290,6 +290,7 @@ section:before {
 // code
 code,
 .code{
+  font-family: $font-family-monospace;
   background-color: rgba($gray-200,.75);
   border-radius: 3px;
   padding: 2px 6px;
@@ -744,7 +745,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba($nf-core-color,.25);
 }
-.pipeline .card-title {
+.pipeline .card-title,
+.module .card-title{
   margin-top: 0;
   padding-top: 0;
   font-family: 'Maven Pro', sans-serif;
@@ -860,6 +862,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     }
   }
 }
+.module .topics{
+  cursor: pointer;
+}
+
 /*
   About Page
 */
@@ -936,12 +942,13 @@ nfcore-subnav {
 }
 }
 .pipeline-run-cmd input{
-  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-family: $font-family-monospace;
   background-color: $gray-400;
   overflow-x: auto;
   cursor: text;
 }
 .module-install-cmd #module-install-cmd-text{
+  font-family: $font-family-monospace;
   cursor: text;
   overflow-x: auto;
 }
@@ -1274,7 +1281,7 @@ Launch Page
 .param-docs-row-group.param-docs-hidden {
   background-color: inherit;
 }
-.small-h h3{
+.small-h h3, .small-h h4{
   font-size:1rem;
   & .fa-link{
     font-size:1.1rem;
