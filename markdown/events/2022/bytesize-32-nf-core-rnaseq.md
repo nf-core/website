@@ -7,7 +7,7 @@ start_time: "13:00 CET"
 end_date: "2022-02-08"
 end_time: "13:30 CET"
 location_url:
- - https://kth-se.zoom.us/j/61097190426
+ - https://zoom.us/j/94352451216
 ---
 
 # nf-core/bytesize
