@@ -66,6 +66,7 @@ See [instructions on how to get a GitHub OAuth token](https://help.github.com/en
 This file is ignored in `.gitignore` for security reasons.
 
 For the MySQL database you should also add the following values:
+
 ```ini
 host = 'db'
 port = '3306';
@@ -94,7 +95,8 @@ The following command will create `public_html/pipelines.json`, which is used by
 php update_pipeline_details.php
 ```
 
-To update the modules database (from within the docker container) run
+To update the modules database (from within the docker container) run:
+
 ``` bash
 docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
 ```
