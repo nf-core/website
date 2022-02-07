@@ -120,7 +120,7 @@ $last_commit = time_ago($pipeline->updated_at);
 ob_start();
 ?>
 
-<div class="toast" id="pipeline_sidebar_cmd_copied" role="alert" aria-live="assertive" aria-atomic="true">
+<div class="toast cmd_copied" id="pipeline_sidebar_cmd_copied" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
     <img src="/assets/img/logo/nf-core-logo-square.png" class="rounded me-2" alt="">
     <strong class="me-auto">Command copied!</strong>

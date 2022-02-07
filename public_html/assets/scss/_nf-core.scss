@@ -288,7 +288,8 @@ section:before {
 }
 
 // code
-code{
+code,
+.code{
   background-color: rgba($gray-200,.75);
   border-radius: 3px;
   padding: 2px 6px;
@@ -448,7 +449,10 @@ footer a:hover, footer a:focus, footer a:active {
 .main-content h1 {
   border-bottom: 1px solid $nf-core-color;
 }
-
+.main-content .module h4::before{
+  padding-top: 0px;
+  margin-top:  0px;
+}
 .main-content pre{
   border-radius: 3px;
   padding: 12px 15px;
@@ -774,21 +778,17 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   font-size: 0.9rem;
 }
 .pipeline .pipeline-topic,
+.module .module-topic,
 .search-page-result .pipeline-topic {
   background-color: $gray-100;
   color: $success;
   font-weight: 400;
 }
-.mainpage-heading .pipeline-topic {
+.mainpage-heading .pipeline-topic,
+.mainpage-heading .module-topic, {
   background-color: rgba($white, 0.1);
   color: rgba($white, 0.9);
   font-weight: 400;
-}
-.pipelines-container-list .pipeline.card {
-  min-width: 100%;
-  margin-bottom: 0;
-  border-bottom: none;
-  border-radius: 0;
 }
 .pipelines-container-list .col:first-child .pipeline.card {
   border-top-left-radius: 0.25rem;
@@ -799,33 +799,67 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border-bottom-right-radius: 0.25rem;
   border-bottom: 1px solid rgba($black,.125);
 }
-.pipelines-container-list .pipeline .card-body {
-  padding: 0.8rem;
-}
-.pipelines-container-list .pipeline .card-title {
-  font-size: 1.2rem;
-  width: 30%;
-}
-.pipelines-container-list .card-text {
-    width: 70%;
-    margin-top: 0 !important;
-    margin-bottom: 1rem;
-}
-.pipelines-container-list .card-title,
-.pipelines-container-list .card-text {
-  float: left;
-}
-.pipelines-container-list h3 .status-icon {
-  float: left;
-  margin: 0.3rem 0.5rem 0 0;
-  margin-left: 0 !important;
-}
-.pipelines-container-list .dl-btn-row,
-.pipelines-container-list .topics,
-.pipelines-container-list .stargazers {
-    display: none;
+.pipelines-container-list .pipeline {
+  & .card {
+    min-width: 100%;
+    margin-bottom: 0;
+    border-bottom: none;
+    border-radius: 0;
+  }
+  & .card-body {
+    padding: 0.8rem;
+  }
+  & .card-title {
+    font-size: 1.2rem;
+    width: 30%;
+  }
+  & .card-text {
+      width: 70%;
+      margin-top: 0 !important;
+      margin-bottom: 1rem;
+  }
+  & .card-title,
+  & .card-text {
+    float: left;
+  }
+  & h3 .status-icon {
+    float: left;
+    margin: 0.3rem 0.5rem 0 0;
+    margin-left: 0 !important;
+  }
+  & .dl-btn-row,
+  & .topics,
+  & .stargazers {
+      display: none;
+  }
 }
 
+/*
+ * Modules
+ */
+.module .contrib-avatars{
+  width: 30px;
+}
+.module .module-params .module-input{
+  min-width: 30%;
+}
+.module .card-text.show ~ .module-params .d-flex.flex-wrap{
+  flex-direction: column;
+}
+.module .show ~ .hide-collapse{
+  display: none;
+}
+.facet-bar .facet-item{
+  cursor: pointer;
+  &.active {
+    & .facet-name{
+      color: $success;
+    }
+    & .facet-value{
+      background-color:$success !important;
+    }
+  }
+}
 /*
   About Page
 */
@@ -861,6 +895,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   Pipeline Page
 */
 .pipeline-page-content,
+.module-page-content,
 .side-sub-subnav {
     padding-top: $navbar-height;
 }
@@ -878,16 +913,22 @@ nfcore-subnav {
   background-color: rgba($nf-core-color, 0.05);
   color: $gray-800;
 }
-.pipeline-sidebar {
+.pipeline-sidebar{
   font-size: 75%;
 }
-.mainpage .pipeline-sidebar h6 {
+.mainpage .pipeline-sidebar h6,
+.mainpage .module-sidebar h6 {
   padding-top: 0;
   margin-top: 5px;
   color: $gray-500;
   font-size: 12px;
 }
-.mainpage .pipeline-sidebar p {
+.mainpage .module-sidebar h6 {
+  font-size: 14px;
+}
+
+.mainpage .pipeline-sidebar p,
+.mainpage .module-sidebar p {
   margin-bottom: 5px;
   a {
   text-decoration: none;
@@ -900,10 +941,16 @@ nfcore-subnav {
   overflow-x: auto;
   cursor: text;
 }
-.pipeline-run-cmd .btn-outline-secondary{
+.module-install-cmd #module-install-cmd-text{
+  cursor: text;
+  overflow-x: auto;
+}
+.pipeline-run-cmd .btn-outline-secondary,
+.module-run-cmd .btn-outline-secondary{
   border-color: $gray-400;
 }
-.pipeline-sidebar .contrib-avatars img {
+.pipeline-sidebar .contrib-avatars img,
+.module-sidebar .contrib-avatars img{
   width: 42px;
   padding: 0 0.5rem 0.5rem 0;
 }
@@ -989,7 +1036,8 @@ nfcore-subnav {
 .schema_group_move_params:hover {
   background-color: $gray-200;
 }
-.schema_row label {
+.schema_row label,
+.modules-container-list label {
   color: $gray-500;
   margin: 0.2rem 0 0;
   font-size: 0.7rem;
