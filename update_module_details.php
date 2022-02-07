@@ -54,7 +54,7 @@ function github_query($gh_query_url)
             echo ("\nCould not fetch $gh_query_url");
             continue;
         }
-        if(substr($gh_query_url,0,29)== "https://api.github.com/repos/" ){
+        if(substr($gh_query_url,0,29) == "https://api.github.com/repos/" ){
             $res = $tmp_results;
         } else{
             array_push($res, ...$tmp_results);
