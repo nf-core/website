@@ -24,7 +24,7 @@ Archiving is often the responsibility of your host institution, contact them for
 
 ## Data sharing
 
-In the era of [FAIR](https://www.force11.org/group/fairgroup/fairprinciples) (Findable, Accessible, Interoperable and Reusable) and [Open science](https://ec.europa.eu/research/openscience/index.cfm), datasets should be made available to the public, for example by submitting your data to a public repository.
+In the era of [FAIR](https://www.nature.com/articles/sdata201618) (Findable, Accessible, Interoperable and Reusable) and [Open science](https://ec.europa.eu/research/openscience/index.cfm), datasets should be made available to the public, for example by submitting your data to a public repository.
 
 ### Choosing a repository
 

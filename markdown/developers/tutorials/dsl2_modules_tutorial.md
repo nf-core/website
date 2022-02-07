@@ -285,7 +285,7 @@ ready for you to modify.
 
 You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
 
-> :soon:  this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/tree/master/tests/data)
+> :soon:  this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
 
 In our test workflow we have to define the two mandatory inputs.
 We know the test data is using QIAseq library preparation, and therefore we use the following read structure string

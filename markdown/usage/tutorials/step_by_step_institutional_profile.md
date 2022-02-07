@@ -144,7 +144,7 @@ Once you have all the information ready, we can begin writing the global institu
 
 Before you start consider what your global institutional profile should be called. The names should be as unique and recognisable as possible - however abbreviations or acronyms are fine.
 
-For example, the name of the cluster can be used (e.g. [`phoenix`](https://github.com/nf-core/configs/blob/master/conf/phoenix.config) or [`binac`](https://github.com/nf-core/configs/blob/master/conf/binac.config)). In some cases an acronym of the cluster or the institute can be selected (e.g. [`SHH`](https://github.com/nf-core/configs/blob/master/conf/shh.config) or [`EVA`](https://github.com/nf-core/configs/blob/master/conf/eva.config)).
+For example, the name of the cluster can be used (e.g. [`phoenix`](https://github.com/nf-core/configs/blob/master/conf/phoenix.config) or [`binac`](https://github.com/nf-core/configs/blob/master/conf/binac.config)). In some cases an acronym of the cluster or the institute can be selected (e.g. [`EVA`](https://github.com/nf-core/configs/blob/master/conf/eva.config)).
 
 Next, we suggest to make your own _fork_ of [nf-core/configs](https://github.com/nf-core/configs) (although this is not required), and make a new branch to work on. It's normally best to call the branch the name of your proposed cluster name. Clone this to your machine, and open the folder.
 
