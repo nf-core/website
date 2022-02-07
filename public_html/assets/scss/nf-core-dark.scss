@@ -86,7 +86,8 @@ $nf-core-color:$nf-core-color-alt;
   }
 }
 
-.bg-dark .text-white,.bg-dark.text-white{
+.bg-dark .text-white,.bg-dark.text-white, 
+.bg-secondary .text-white,.bg-secondary.text-white, {
   color: $gray-800-alt !important;  
   &.card{
     background-color: $gray-100-alt !important;
@@ -103,8 +104,11 @@ $nf-core-color:$nf-core-color-alt;
   background-color: $gray-100-alt!important; 
 }
 
-code{
+code,.code{
   color: $warning;
+}
+.card code{
+  background-color: rgba($gray-300-alt,.75);
 }
 .text-black-50 {
   color: rgba($white,.5)!important;
@@ -137,6 +141,10 @@ blockquote a{
 
 .pipeline-run-cmd .btn{
   border-color: $gray-300;
+}
+
+.pipeline .pipeline-topic, .search-page-result .pipeline-topic{
+  background-color: $gray-300-alt;
 }
 
 #file-preview {

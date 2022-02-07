@@ -148,6 +148,7 @@ $(function () {
       $(".pipelines-toolbar .pipeline-filters input").removeClass("active");
     }
   });
+  
   // Filter pipelines with buttons
   $(".pipelines-toolbar .pipeline-filters button").click(function () {
     $(this).blur().toggleClass("active");
@@ -288,6 +289,97 @@ $(function () {
       }
     }
   });
+  // Filter modules with text
+  function filter_modules_text(ftext) {
+    $('.modules-container .module:contains("' + ftext + '")')
+      .show();
+    $('.modules-container .module:not(:contains("' + ftext + '"))')
+      .hide();
+    if ($(".modules-container .module:visible").length == 0) {
+      $(".no-modules").show();
+    } else {
+      $(".no-modules").hide();
+    }
+    update_facet_bar();
+  }
+  // Filter modules with facets
+  function filter_modules_facet(ftext) {
+    // undo filtering if repeated click or no text
+    if (ftext.length == 0) {
+      $('.modules-container .card').show();
+    } else {
+    $('.modules-container .module .keywords').each(function () {
+      $('.badge', this).each(function () {
+        if (ftext.includes($(this).text())) {
+          $(this).parents('.card').show();
+          return false;
+        } else (
+          $(this).parents('.card').hide()
+        );
+      });
+    });
+  }
+    update_facet_bar();
+    return true;
+  }
+  
+  function update_facet_bar(){
+    var facets = [];
+    $('.modules-container .module:visible .keywords .badge').each(function(){
+      var facet = $(this).text();
+      facets.push(facet);
+    })
+    var facet_occurrences = facets.reduce((fac, cur) => {
+      fac[cur] ??= 0;
+      fac[cur]++;
+      return fac;
+    }, {});
+    $('.facet-bar .facet-item').each(function () {
+      if (Object.keys(facet_occurrences).includes($('.facet-name',this).text())) {
+        $('.facet-value', this).text(facet_occurrences[$('.facet-name', this).text()]);
+      } else {
+        $('.facet-value', this).text("0");
+      }
+    })
+    //sort facets by count
+    $('.facet-bar .facet-item').sort(function(a, b) {
+      return $('.facet-value', b).text() - $('.facet-value', a).text();
+    }).appendTo('.facet-bar ul');
+    return true;
+  }
+  // page load
+  if ($(".modules-toolbar .module-filters input").val()) {
+    var ftext = $(".modules-toolbar .module-filters input").val();
+    filter_modules_text(ftext);
+    $(".modules-toolbar .module-filters input").addClass("active");
+  }
+  // onchange
+  $(".modules-toolbar .module-filters input").on('keyup',function () {
+    var ftext = $(".modules-toolbar .module-filters input").val();
+    filter_modules_text(ftext);
+  });
+  // on facet click
+  $(".facet-bar .facet-item").on('click', function (e) {
+    // undo selection on click on active items
+    if ($(e.currentTarget).hasClass('active')){
+      $(e.currentTarget).removeClass("active");
+    } else {
+      $(e.currentTarget).addClass("active");
+    }
+    // join text from active facets with semi-colon
+    var ftext = $(".facet-bar .facet-item.active .facet-name").map(function () { 
+      return $(this).text();
+    }).get();
+    
+    filter_modules_facet(ftext);
+    
+  });
+
+  // on badge click
+  $(".card-footer .badge").on('click', function (e) {
+    var keyword = $(e.currentTarget).data('keyword');
+    $(".facet-bar #" + keyword).trigger('click');    
+  });
 
   // Make the stats tables sortable
   if ($(".pipeline-stats-table").length > 0) {
@@ -307,7 +399,7 @@ $(function () {
     $(target_id).trigger("select");
     document.execCommand("copy");
     $(target_id).trigger("blur");
-    $("#pipeline_sidebar_cmd_copied").toast("show");
+    $(".cmd_copied").toast("show");
   });
   if (window.location.hash & ($(".param-docs").length > 0)) {
     scroll_to($(window.location.hash), 0);

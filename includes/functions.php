@@ -452,3 +452,28 @@ foreach ($events as $idx => $event) {
     }
   }
 }
+
+// get all modules from database 
+function get_modules(){
+  $config = parse_ini_file("../config.ini");
+  $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+  $sql = "SELECT * FROM nfcore_modules ORDER BY LOWER(name)";
+  $modules = [];
+  if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_array($result)) {
+        $row['keywords'] = explode(';', $row['keywords']);
+        $row['authors'] = explode(';', $row['authors']);
+        $row['tools'] = json_decode($row['tools'], true);
+        $row['input'] = json_decode($row['input'], true);
+        $row['output'] = json_decode($row['output'], true);
+        $modules[] = $row;
+      }
+      // Free result set
+      mysqli_free_result($result);
+    } else {
+      echo "Oops! Something went wrong. Please try again later.";
+    }
+  }
+  return $modules;
+}
