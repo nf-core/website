@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__).'/functions.php');
+require_once(dirname(__FILE__) . '/functions.php');
 
 // Find the latest commit hash to prevent caching assets
 $git_sha = trim(shell_exec("cd " . dirname(__FILE__) . " && git rev-parse --short=7 HEAD"));
@@ -72,7 +72,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <link href="/assets/lib/Chart.min.css" rel="stylesheet">
     <script src="/assets/lib/hammer.min.js"></script>
     <script src="/assets/lib/chartjs-plugin-zoom.min.js"></script>
-    <!-- NO CURRENT VERSION ON NPM --> <script src="/assets/js/canvas2svg.js"></script><!-- NO CURRENT VERSION ON NPM -->
+    <!-- NO CURRENT VERSION ON NPM -->
+    <script src="/assets/js/canvas2svg.js"></script><!-- NO CURRENT VERSION ON NPM -->
     <script src="/assets/lib/FileSaver.min.js"></script>
     <script src="/assets/lib/jquery.tablesorter.min.js"></script>
   <?php endif;
@@ -142,6 +143,9 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
+          </li>
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/modules">Modules</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/tools">Tools</a>

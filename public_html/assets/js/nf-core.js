@@ -308,7 +308,7 @@ $(function () {
     if (ftext.length == 0) {
       $('.modules-container .card').show();
     } else {
-    $('.modules-container .module .keywords').each(function () {
+    $('.modules-container .module .topics').each(function () {
       $('.badge', this).each(function () {
         if (ftext.includes($(this).text())) {
           $(this).parents('.card').show();
@@ -325,7 +325,7 @@ $(function () {
   
   function update_facet_bar(){
     var facets = [];
-    $('.modules-container .module:visible .keywords .badge').each(function(){
+    $('.modules-container .module:visible .topics .badge').each(function(){
       var facet = $(this).text();
       facets.push(facet);
     })
@@ -376,7 +376,7 @@ $(function () {
   });
 
   // on badge click
-  $(".card-footer .badge").on('click', function (e) {
+  $(".topics .badge").on('click', function (e) {
     var keyword = $(e.currentTarget).data('keyword');
     $(".facet-bar #" + keyword).trigger('click');    
   });
