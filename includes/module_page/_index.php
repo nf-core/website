@@ -28,7 +28,7 @@ function create_row($name, $type, $description, $pattern)
 
     $row = '<div class="row border-bottom align-items-center">';
     $row .= '<div class="col-12 col-md-3 small-h">';
-    $row .= '<h4 id="' . $id . '" class="text-nowrap module-row-name-id">';
+    $row .= '<h4 id="' . $id . '" class="module-row-name-id">';
     $row .= '<code>' . $name . '</code>';
     $row .= '<span class="text-muted"> (' . $type . ')</span>';
     $row .= '<a href=#' . $id . ' class="header-link scroll_to_link me-2"><span class="fas fa-link" aria-hidden="true"></span></a>';
