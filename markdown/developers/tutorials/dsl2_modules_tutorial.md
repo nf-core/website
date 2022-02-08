@@ -405,7 +405,6 @@ The minimum Nextflow version required to run the tests can be found in [this `ne
 NXF_VER="21.04.0-edge" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 ```
 
-
 ## Create a Pull Request
 
 Creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
@@ -416,7 +415,7 @@ If you have initiated the pull request from your forked repository, the directio
 
 ![open_pull](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
 
-You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
+You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [*Bytesize 4: GitHub contribution basics*](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 
 Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
 

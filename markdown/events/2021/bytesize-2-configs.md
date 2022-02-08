@@ -82,10 +82,11 @@ On the contrary to the previous example, the input file and the fasta file is sp
 One can easily realise the benefit with profiles in Nextflow with an example.
 If I want to run for example, the same command but with Singularity instead of Docker, I just need to specify the Singularity profile instead of the Docker profile.
 For nf-core pipelines, the Singularity profile is available by default.
-I just have to change the command to use this profile and *voilà*, it is working well!
+I just have to change the command to use this profile and _voilà_, it is working well!
 This is why I like Nextflow and nf-core - it is easy.
 
 So far, the examples have been designed to run on my computer. However people usually have large datasets and it is not possible to run the pipeline on a single computer. So, assuming I want to do this on my institutional server/cluster/HPC instead, we need to ask ourselves some questions:
+
 * Which container/virtual environment engine is available to us?
 * What are the available resources?
 * Which scheduler or executor are we using?
@@ -135,6 +136,7 @@ You can also include a config file within a profile, it could be quite useful.
 You can also test your profile online if you made your PR (pull request) but if it is not yet merged, you can specify the config_custom_base pointing to your own fork of the nf-core config repository.
 
 Some final messages to end this talk:
+
 * Read the docs. Everything is in the docs.
 * Try things out, and do not hesitate to ask questions.
 * Stay tuned for more Bytesize talks.
