@@ -11,7 +11,12 @@ import_typeform: true
 ---
 
 
-Please join us for the March 2022 nf-core hackathon!
+Please join us for the March 2022 nf-core hackathon! 
+
+### Topic: Documentation
+
+As a result of the fun changes introduced to pipelines with Nexflow DSL2, the focus of this hackathon will be all things documentation. This will include documentation for pipelines and modules, training, tutorials, nf-core tools etc.
+
 This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
 
 Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022) or in the widget below.
