@@ -33,11 +33,11 @@ but in the mean time - book the dates in your calendar!
 # Topic: Documentation
 
 The past twelve months have brought some major changes to the nf-core community, with the migration to Nextflow DSL2.
-The nf-core website and documentation is a cruicial part of the community.
+The nf-core website and documentation is a crucial part of the community.
 In this hackathon, the focus will be _all things documentation_.
 
 Generally speaking, tasks during the hackathon will typically involve going through tutorials,
-testing each command making srue they work, checking phrasing and descriptions to ensure they are clear.
+testing each command making sure they work, checking phrasing and descriptions to ensure they are clear.
 
 > Most nf-core documentation is written in _Markdown_.
 > If you're not yet familiar with Markdown, please take a few minutes to work through this tutorial: <https://www.markdowntutorial.com/>
