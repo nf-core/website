@@ -71,7 +71,7 @@ You will not need to touch it.
 ### Pull the changes to your fork
 
 On the command line, go to the directory where you have checked out your fork of the pipeline repository.
-Add the nf-core fork as a _git remote_ called `upstream`:
+Add the nf-core fork as a *git remote* called `upstream`:
 
 ```bash
 git remote add upstream https://github.com/nf-core/<pipeline>.git
@@ -113,7 +113,7 @@ CONFLICT (content): Merge conflict in environment.yml
 ...
 ```
 
-If you look at the current status, you will see the files that have merge conflicts that need resolving _(Unmerged paths)_:
+If you look at the current status, you will see the files that have merge conflicts that need resolving *(Unmerged paths)*:
 
 ```console
 $ git status
@@ -357,7 +357,7 @@ git merge TEMPLATE --allow-unrelated-histories
 
 You can try extra flags such as `-Xignore-space-at-eol` if you find that the merge command shows entire files as being new.
 
-You'll probably see a _lot_ of merge conflicts:
+You'll probably see a *lot* of merge conflicts:
 
 ```git
 Auto-merging nextflow.config
@@ -398,7 +398,7 @@ That's it, you're done! **Congratulations!**
 If merge conflicts are resolved via the GitHub interface instead of after pulling changes to a fork as described above, the commit history from the `dev` branch will be merged into `TEMPLATE`.
 This leads to complex problems in later `TEMPLATE` merges as the later updated `TEMPLATE` branch removes all the pipeline-specific files that were accidentally included in problematic merge, resulting in many (in some cases >100!) of files to resolve conflicts in.
 
-If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at how many commits the `TEMPLATE` branch has (should be in the range of 5-15ish, depending on how many template updates your pipeline has had). You can also look at your repository's GitHub Network Graph under the _"Insights"_ tab or even look through the `TEMPLATE` branch commit history to see if there is a commit described as 'Merge branch `dev` into `TEMPLATE`'.
+If during one of the automated syncs you see you have an usually high number of changed files you can check whether `dev` was accidentally merged into `TEMPLATE` by looking at how many commits the `TEMPLATE` branch has (should be in the range of 5-15ish, depending on how many template updates your pipeline has had). You can also look at your repository's GitHub Network Graph under the *"Insights"* tab or even look through the `TEMPLATE` branch commit history to see if there is a commit described as 'Merge branch `dev` into `TEMPLATE`'.
 
 If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
 
