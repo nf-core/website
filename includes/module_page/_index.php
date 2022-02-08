@@ -27,28 +27,28 @@ function create_row($name, $type, $description, $pattern)
     $id = str_replace('.', '-', $id); // periods break the js code, because they are not valid in selector ids
 
     $row = '<div class="row border-bottom align-items-center">';
-    $row .= '<div class="col-12 col-md-4 small-h">';
-    $row .= '<h4 id="' . $id . '" class="me-3">';
+    $row .= '<div class="col-12 col-md-3 small-h">';
+    $row .= '<h4 id="' . $id . '" class="module-row-name-id">';
     $row .= '<code>' . $name . '</code>';
     $row .= '<span class="text-muted"> (' . $type . ')</span>';
-    $row .= '<a href=#' . $id . ' class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>';
+    $row .= '<a href=#' . $id . ' class="header-link scroll_to_link me-2"><span class="fas fa-link" aria-hidden="true"></span></a>';
     $row .= '</h4>';
     $row .= '</div>';
-    $row .= '<div class=" col-12 col-md-auto">';
+    $row .= '<div class=" col-12 col-md'.($pattern != ''? '-5' : '-7').'">';
     $row .= '<span class="small">' . $description . '</span>';
     $row .= '</div>';
+    $row .= '<div class="col-12 col-md' . ($pattern != '' ? '-4' : '-1') . ' ms-auto">';
     if ($pattern != '') {
-        $row .= '<div class="col-12 col-md-auto ms-auto">';
         $row .= '<code class="float-end">' . $pattern . '</code>';
-        $row .= '</div>';
     }
+    $row .= '</div>';
 
     $row .= '</div>';
     return $row;
 }
 
 $header = '<div class="row border-bottom border-3">';
-$header .= '<div class="col-12 col-md-4">';
+$header .= '<div class="col-12 col-md-3">';
 $header .= '<span class="text-muted">Name</span>';
 $header .= '</div>';
 $header .= '<div class=" col-12 col-md-6">';
