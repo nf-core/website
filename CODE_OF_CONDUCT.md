@@ -1,4 +1,4 @@
-# Code of Conduct at nf-core (v1.2)
+# Code of Conduct at nf-core (v1.4)
 
 ## Our Pledge
 
@@ -24,13 +24,15 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 ## Preamble
 
-> Note: This Code of Conduct (CoC) has been drafted by the nf-core Safety Team (Renuka Kudva, Cris Tuñí, and Michael Heuer), with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officers and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
+> Note: This Code of Conduct (CoC) has been drafted by Renuka Kudva, Cris Tuñí, and Michael Heuer, with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officers and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will amended periodically to keep it up-to-date, and in case of any dispute, the most current version will apply.
 
 An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about).
 
+Our Safety Officers are Saba Nafees, Cris Tuñí, and Michael Heuer.
+
 nf-core is a young and growing community that welcomes contributions from anyone with a shared vision for [Open Science Policies](https://www.fosteropenscience.eu/taxonomy/term/8). Open science policies encompass inclusive behaviours and we strive to build and maintain a safe and inclusive environment for all individuals.
 
-We have therefore adopted this Code of Conduct (CoC), which we require all members of our community and attendees in nf-core events to adhere to in all our workspaces at all times. Workspaces include but are not limited to Slack, meetings on Zoom, gather.town, YouTube live etc.
+We have therefore adopted this CoC, which we require all members of our community and attendees in nf-core events to adhere to in all our workspaces at all times. Workspaces include but are not limited to Slack, meetings on Zoom, gather.town, YouTube live etc.
 
 Our CoC will be strictly enforced and the nf-core team reserve the right to exclude participants who do not comply with our guidelines from our workspaces and future nf-core activities.
 
@@ -67,7 +69,7 @@ nf-core's CoC and expectations of respectful behaviours for all participants (in
 - Demonstrate empathy towards other community members. (We don’t all have the same amount of time to dedicate to nf-core. If tasks are pending, don’t hesitate to gently remind members of your team. If you are leading a task, ask for help if you feel overwhelmed.)
 - Engage with and enquire after others. (This is especially important given the geographically remote nature of the nf-core community, so let’s do this the best we can)
 - Focus on what is best for the team and the community. (When in doubt, ask)
-- Graciously accept feedback, yet be unafraid to question, deliberate, and learn.
+- Accept feedback, yet be unafraid to question, deliberate, and learn.
 - Introduce yourself to members of the community. (We’ve all been outsiders and we know that talking to strangers can be hard for some, but remember we’re interested in getting to know you and your visions for open science!)
 - Show appreciation and **provide clear feedback**. (This is especially important because we don’t see each other in person and it can be harder to interpret subtleties. Also remember that not everyone understands a certain language to the same extent as you do, so **be clear in your communication to be kind.**)
 - Take breaks when you feel like you need them.
@@ -93,7 +95,7 @@ All community members are **required** to ask members of the group they are work
 
 If someone makes you feel uncomfortable through their behaviours or actions, report it as soon as possible.
 
-You can reach out to members of the Safety Team (Renuka Kudva, Cris Tuñí, and Michael Heuer) on Slack. Alternatively, contact a member of the nf-core core team [nf-core core team](https://nf-co.re/about), and they will forward your concerns to the Safety Team.
+You can reach out to members of the Safety Team (Saba Nafees, Cris Tuñí, and Michael Heuer) on Slack. Alternatively, contact a member of the nf-core core team [nf-core core team](https://nf-co.re/about), and they will forward your concerns to the Safety Team.
 
 Issues directly concerning members of the Core Team or the Safety Team will be dealt with by other members of the core team and the safety manager, and possible conflicts of interest will be taken into account. nf-core is also in discussions about having an ombudsperson, and details will be shared in due course.
 
@@ -110,7 +112,7 @@ You can also report any CoC violations safety [at] nf-co [dot] re. In your email
 * If there is a publicly available record (e.g. mailing list record, a screenshot).
 * Any additional information.
 
-After you file a report, one or more of ouur safety officers, will contact you to follow up on your report.
+After you file a report, one or more members of our Safety Team, will contact you to follow up on your report.
 
 ## Who will read and handle reports
 
@@ -128,8 +130,7 @@ The Safety Team in consultation with members of the nf-core core team will asses
 
 In the case of insufficient information, one or more members of the safety officer may contact the reporter, the reportee, or any other attendees to obtain more information.
 
-Once additional information is gathered, the Safety Team will collectively review and decide on the best course of action to take, if any.
-The Safety Team reserves the right to not act on a report.
+Once additional information is gathered, the Safety Team will collectively review and decide on the best course of action to take, if any. The Safety Team reserves the right to not act on a report.
 
 ## Confidentiality
 
@@ -157,6 +158,10 @@ Actions taken by the nf-core’s Safety Team may include but are not limited to:
 - The [Mozilla Community Participation Guidelines v3.1](https://www.mozilla.org/en-US/about/governance/policies/participation/) (version 3.1, CC BY-SA 3.0 Mozilla)
 
 ## Changelog
+
+### v1.4 - February 8th, 2022
+
+- Included a new member of the Safety Team. Corrected a typographical error in the text.
 
 ### v1.3 - December 10th, 2021
 
