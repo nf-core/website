@@ -316,7 +316,7 @@ Basic rules for such contributions:
 
 Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the GitHub Actions tests run through when testing your updated code. To achieve that, please follow these steps:
 
-* Add *only* the newly required dependencies to the `environment.yml` in the pipeline code
+* Add _only_ the newly required dependencies to the `environment.yml` in the pipeline code
 * List this new dependency as something new in the `CHANGELOG`
 * Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 

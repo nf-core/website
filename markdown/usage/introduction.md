@@ -28,7 +28,7 @@ Whether your pipeline is a simple BLAST execution or a complex genome annotation
 
 ## How to run a pipeline
 
-Nextflow works best when you have an active internet connection, as it is able to fetch all pipeline requirements. If you need to run offline, please see [_Running offline_](offline.md).
+Nextflow works best when you have an active internet connection, as it is able to fetch all pipeline requirements. If you need to run offline, please see [*Running offline*](offline.md).
 
 1. First, make sure that you have all required software installed (Nextflow + Docker / Singularity / Conda). See the [installation docs](installation.md) for more information.
 
@@ -48,7 +48,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
     * If you are a member of one of the institutions listed in the [documentation](https://github.com/nf-core/configs#documentation), please use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) that has already been created for your institution.
 
-    * For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
+    * For more complex configuration of Nextflow for your system, please see the [*Nextflow configuration*](https://nf-co.re/usage/configuration) documentation.
 
 4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
 
