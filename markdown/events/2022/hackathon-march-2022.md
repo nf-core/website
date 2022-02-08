@@ -47,7 +47,7 @@ You are free to change groups as you wish during the hackathon.
 
 ## Group 1 - Pipeline documentation
 
-💬 Slack group: [`hackathon-march2022-pipelines`](https://nfcore.slack.com/archives/C0321U2D16Z)<br>
+💬 Slack group: [`hackathon-march2022-pipelines`](https://nfcore.slack.com/channels/hackathon-march2022-pipelines)<br>
 😊 Group Leads: [James Fellows Yates](https://github.com/jfy133), [Maxime Garcia](https://github.com/maxulysse)
 
 This group will focus on nf-core pipelines themselves.
@@ -61,7 +61,7 @@ This is perfect for anyone already familiar with specific pipelines.
 
 ## Group 2 - DSL2 / modules documentation
 
-💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/archives/C0324RC5B42)<br>
+💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/channels/hackathon-march2022-modules)<br>
 😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst)
 
 The pace of development with DSL2 and nf-core/modules has been a little crazy over the past months.
@@ -72,7 +72,7 @@ Now things are settling down, we need to bring the website documentation up to d
 
 ## Group 3 - Training documentation: carpentries, tutorials
 
-💬 Slack group: [`hackathon-march2022-training`](https://nfcore.slack.com/archives/C0324RDFTJ6)<br>
+💬 Slack group: [`hackathon-march2022-training`](https://nfcore.slack.com/channels/hackathon-march2022-training)<br>
 😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)
 
 There is an increasing amount of Nextflow and nf-core training material available.
@@ -87,7 +87,7 @@ whilst keeping an eye out for things that are not clear or can be improved.
 
 ## Group 4 - Website tasks, nf-core/tools package documentation
 
-💬 Slack group: [`hackathon-march2022-tools`](https://nfcore.slack.com/archives/C0324S5KY1Z)<br>
+💬 Slack group: [`hackathon-march2022-tools`](https://nfcore.slack.com/channels/hackathon-march2022-tools)<br>
 😊 Group Leads: [Matthias Hörtenhuber](https://github.com/mashehu/), [Phil Ewels](https://github.com/ewels/)
 
 All that documentation has to go somewhere!
