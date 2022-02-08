@@ -11,13 +11,15 @@ import_typeform: true
 ---
 
 
-Please join us for the March 2022 nf-core hackathon! 
+# Welcome
 
-### Topic: Documentation
-
-As a result of the fun changes introduced to pipelines with Nexflow DSL2, the focus of this hackathon will be all things documentation. This will include documentation for pipelines and modules, training, tutorials, nf-core tools etc.
+Please join us for the March 2022 nf-core hackathon!
+The theme for this hackathon will be _Documentation_.
+See [below](#topic-documentation) for details.
 
 This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
+
+# Registration
 
 Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022) or in the widget below.
 
@@ -27,6 +29,75 @@ Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/
 
 Please check back here for more details about the event and keep an eye out on twitter and on Slack,
 but in the mean time - book the dates in your calendar!
+
+# Topic: Documentation
+
+The past twelve months have brought some major changes to the nf-core community, with the migration to Nextflow DSL2.
+The nf-core website and documentation is a cruicial part of the community.
+In this hackathon, the focus will be _all things documentation_.
+
+Generally speaking, tasks during the hackathon will typically involve going through tutorials,
+testing each command making srue they work, checking phrasing and descriptions to ensure they are clear.
+
+> Most nf-core documentation is written in _Markdown_.
+> If you're not yet familiar with Markdown, please take a few minutes to work through this tutorial: <https://www.markdowntutorial.com/>
+
+To keep things manageable, we will organise into the groups.
+You are free to change groups as you wish during the hackathon.
+
+## Group 1 - Pipeline documentation
+
+💬 Slack group: [`hackathon-march2022-pipelines`](https://nfcore.slack.com/archives/C0321U2D16Z)<br>
+😊 Group Leads: [James Fellows Yates](https://github.com/jfy133), [Maxime Garcia](https://github.com/maxulysse)
+
+This group will focus on nf-core pipelines themselves.
+This is perfect for anyone already familiar with specific pipelines.
+
+- Writing, updating and reviewing documentation for specific pipelines
+- Improving descriptions of the output files generated and how to use them
+- Adding more detailed parameter help
+- Writing usage tutorials
+- Constructing figures and diagrams (eg. pipeline overviews, output documentation)
+
+## Group 2 - DSL2 / modules documentation
+
+💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/archives/C0324RC5B42)<br>
+😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst)
+
+The pace of development with DSL2 and nf-core/modules has been a little crazy over the past months.
+Now things are settling down, we need to bring the website documentation up to date with the current state of the tools.
+
+- Reviewing and updating all general nf-core documentation to DSL2
+- Writing new tutorials how to write DSL2 modules and pipelines
+
+## Group 3 - Training documentation: carpentries, tutorials
+
+💬 Slack group: [`hackathon-march2022-training`](https://nfcore.slack.com/archives/C0324RDFTJ6)<br>
+😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)
+
+There is an increasing amount of Nextflow and nf-core training material available.
+Tutorials and walkthroughs are perhaps some of the most important docs to keep up to date,
+as they are often the first thing that newcomers to the community are exposed to.
+
+This is a good topic for newcomers to the community - you can run through tutorials and learn about Nextflow and nf-core,
+whilst keeping an eye out for things that are not clear or can be improved.
+
+- Reviewing and updating existing Nextflow and nf-core training documentation
+- Search and find more latest nextflow tutorials online
+
+## Group 4 - Website tasks, nf-core/tools package documentation
+
+💬 Slack group: [`hackathon-march2022-tools`](https://nfcore.slack.com/archives/C0324S5KY1Z)<br>
+😊 Group Leads: [Matthias Hörtenhuber](https://github.com/mashehu/), [Phil Ewels](https://github.com/ewels/)
+
+All that documentation has to go somewhere!
+This group will focus on restructuring and organising the documentation on the website to improve naviation and user-experience.
+
+- Review and update documentation for nf-core/tools, configs and the website itself.
+- Reviewing and updating how the nf-core/tools documentation is built and rendered.
+- Build a better search mechanism for the website.
+- Restructure website navigation and improve the user experience.
+- Act in a support role for technical help to others in the hackathon.
 
 # Schedule
 
@@ -269,7 +340,7 @@ The following schedule should display times in your local time zone:
     </table>
 </div>
 
-## Social Activities
+# Social Activities
 
 During the hackathon, we will have a few light-hearted fun and games!
 
