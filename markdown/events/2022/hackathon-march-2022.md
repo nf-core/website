@@ -11,7 +11,9 @@ import_typeform: true
 ---
 
 
-Please join us for the March 2022 nf-core hackathon! After all the fun changes introduced with the DSL2, the focus of this hackathon will be all things documentation. This will include documentation for pipelines and modules, trainings and tutorials, nf-core tools etc.
+Please join us for the March 2022 nf-core hackathon! 
+
+After all the fun changes introduced with the DSL2, the focus of this hackathon will be all things documentation. This will include documentation for pipelines and modules, trainings and tutorials, nf-core tools etc.
 
 This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
 
