@@ -1,14 +1,13 @@
 ---
-title: "Bytesize 32: nf-core/rnaseq"
-subtitle: Harshil Patel - Seqera Labs, Spain/UK
+title: "Bytesize 34: Updates on the new DSL2 syntax"
+subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-start_date: "2022-02-08"
+start_date: "2022-02-22"
 start_time: "13:00 CET"
-end_date: "2022-02-08"
+end_date: "2022-02-22"
 end_time: "13:30 CET"
-youtube_embed: https://youtu.be/qMuUt8oVhHw
 location_url:
- - https://youtu.be/qMuUt8oVhHw
+ - https://zoom.us/j/94352451216
 ---
 
 # nf-core/bytesize
@@ -19,8 +18,6 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 32: nf-core/rnaseq
+## Bytesize 34: Updates on the new DSL2 syntax
 
-This week, Harshil Patel ([@drpatelh](https://github.com/drpatelh/)) will tell us all about the nf-core/rnaseq pipeline.
-
-nf-core/rnaseq is a bioinformatics analysis pipeline used for RNA sequencing data.
+This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will tell us all about the latest changes to the DSL2 template.
