@@ -109,6 +109,8 @@ space. EMEA stands for the time zones in Europe, Middle East, and Africa.
 
 The following schedule should display times in your local time zone:
 
+
+<!-- Calculate value for data-timestamp with '(new Date("2022-03-16T21:00")).getTime()/1000' in console -->
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
         <thead>
@@ -122,16 +124,14 @@ The following schedule should display times in your local time zone:
         <tbody>
             <tr>
                 <td data-timestamp="1647392400" data-timeformat="HH:mm z">02:00</td>
-                <td rowspan=3></td>
+                <td rowspan=5></td>
                 <td>Check-out/in (Americas/Asia-Pacific)<br>
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Edmund Miller/Zhaowei Yang/Bhargava Morampalli</li> -->
                   </ul></td>
                 <td>Check-out/in (Americas/Asia-Pacific)<br>
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Edmund Miller/Zhaowei Yang/Bhargava Morampalli</li> -->
                   </ul></td>
             </tr>
             <tr>
@@ -140,37 +140,41 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Hall</li>
                   </ul></td>
-                <td rowspan="2">Hack!</td>
+                <td rowspan="4">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1647396000" data-timeformat="HH:mm z">03:00</td>
                 <td rowspan="1">Hack!</td>
             </tr>
-            <!-- <tr>
-                <td data-timestamp="1635384600" data-timeformat="HH:mm z">03:30</td>
-                <td rowspan="1">Hack! <...></td>
-            </tr> -->
+            <tr>
+                <td data-timestamp="1647414000" data-timeformat="HH:mm z">08:00</td>
+                <td rowspan="1">Social event (Asia-Pacific)<br>
+                   <ul class="small list-unstyled">
+                    <li>Location: Lounge</li>
+                  </ul></td>
+            </tr>
+            <tr>
+                <td data-timestamp="1647417600" data-timeformat="HH:mm z">09:00</td>
+                <td rowspan="1">Hack! </td>
+            </tr>
             <tr>
                 <td data-timestamp="1647421200" data-timeformat="HH:mm z">10:00</td>
                 <td>
                   Welcome
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Harshil Patel/Matthias Hörtenhuber</li> -->
                   </ul>
                 </td>
                 <td>
                   Check-out/in (Asia-Pacific/EMEA)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Zhaowei Yang/Bhargava Morampalli/Matthias Hörtenhuber</li> -->
                   </ul>
                 </td>
                 <td>
                   Check-out/in (Asia-Pacific/EMEA)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Zhaowei Yang/Bhargava Morampalli/Matthias Hörtenhuber</li> -->
                   </ul>
                 </td>
             </tr>
@@ -189,33 +193,22 @@ The following schedule should display times in your local time zone:
             </tr>
             <tr>
                 <td data-timestamp="1647426600" data-timeformat="HH:mm z">11:30</td>
-                <!-- <td rowspan="2">Hack!</td>
-                <td rowspan="2">Hack!</td> -->
-                <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
-                <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
-                <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
             </tr>
-            <!-- <tr>
-                <td data-timestamp="1635327900" data-timeformat="HH:mm z">11:45</td>
-            </tr> -->
             <tr>
                 <td data-timestamp="1647428400" data-timeformat="HH:mm z">12:00</td>
                 <td  rowspan="2">Break<br>
                 <ul class="small list-unstyled">
                 <li>Location: Cafeteria</li>
-                <!-- <li>Host(s): Susanna Marquez</li> -->
                 </ul>
                 </td>
                 <td  rowspan="2">Break<br>
                 <ul class="small list-unstyled">
                 <li>Location: Cafeteria</li>
-                <!-- <li>Host(s): Susanna Marquez</li> -->
                 </ul>
                 </td>
                 <td  rowspan="2">Break<br>
                 <ul class="small list-unstyled">
                 <li>Location: Cafeteria</li>
-                <!-- <li>Host(s): Susanna Marquez</li> -->
                 </ul>
                 </td>
             </tr>
@@ -225,35 +218,17 @@ The following schedule should display times in your local time zone:
             <tr>
                 <td data-timestamp="1647432000" data-timeformat="HH:mm z">13:00</td>
                 <td rowspan="4">Hack!</td>
+                <td rowspan="2">Social Event (EMEA)<br>
+                   <ul class="small list-unstyled">
+                    <li>Location: Lounge</li>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="4">Hack!</td>
-                <!-- <td>
-                  Group catch-up<br>
-                   <ul class="small list-unstyled">
-                    <li>Location: Lecture Theatre</li>
-                    <li>Host(s): Matthias Hörtenhuber</li>
-                  </ul>
-                </td>
-                <td>
-                  Group catch-up<br>
-                   <ul class="small list-unstyled">
-                    <li>Location: Lecture Theatre</li>
-                    <li>Host(s): Matthias Hörtenhuber</li>
-                  </ul>
-                </td>
-                <td>
-                  Group catch-up<br>
-                   <ul class="small list-unstyled">
-                    <li>Location: Lecture Theatre</li>
-                    <li>Host(s): Matthias Hörtenhuber</li>
-                  </ul>
-                </td> -->
             </tr>
             <tr>
                 <td data-timestamp="1647433800" data-timeformat="HH:mm z">13:30</td>
             </tr>
             <tr>
                 <td data-timestamp="1647435600" data-timeformat="HH:mm z">14:00</td>
+                <td rowspan="2">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1647437400" data-timeformat="HH:mm z">14:30</td>
@@ -268,38 +243,36 @@ The following schedule should display times in your local time zone:
                 <td data-timestamp="1647440100" data-timeformat="HH:mm z">15:15</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="4">Hack!</td>
+                <td rowspan="2">Hack!</td>
             </tr>
            <tr>
                 <td data-timestamp="1647441000" data-timeformat="HH:mm z">15:30</td>
             </tr>
             <tr>
                 <td data-timestamp="1647442800" data-timeformat="HH:mm z">16:00</td>
+                <td>
+                  Wrap Up
+                  <ul class="small list-unstyled">
+                    <li>Location: Lecture Theatre</li>
+                  </ul>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1647444600" data-timeformat="HH:mm z">16:30</td>
-                            </tr>
+                <td rowspan="7"></td>
+            </tr>
             <tr>
                 <td data-timestamp="1647446400" data-timeformat="HH:mm z">17:00</td>
                 <td>
                   Check-out/in (EMEA/Americas)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Matthias Hörtenhuber/Edmund Miller</li> -->
                   </ul>
                 </td>
                 <td>
                   Check-out/in (EMEA/Americas)
                   <ul class="small list-unstyled">
                     <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Matthias Hörtenhuber/Edmund Miller</li> -->
-                  </ul>
-                </td>
-                <td>
-                  Wrap Up
-                  <ul class="small list-unstyled">
-                    <li>Location: Lecture Theatre</li>
-                    <!-- <li>Host(s): Harshil Patel, Matthias Hörtenhuber </li> -->
                   </ul>
                 </td>
             </tr>
@@ -309,33 +282,28 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Location: Lecture Hall</li>
                   </ul></td>
-                <td rowspan="2">Social Event<br>
-                   <ul class="small list-unstyled">
-                    <li>Location: Lounge</li>
-                    <li>Host: Matthias Hörtenhuber</ul></td>
-                    <td rowspan="6"></td>
-            </tr>
-            <tr>
-                <td data-timestamp="1647450000" data-timeformat="HH:mm z">18:00</td>
                 <td rowspan="3">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1647451800" data-timeformat="HH:mm z">18:30</td>
-                <td rowspan="2">Hack!</td>
+                <td data-timestamp="1647450000" data-timeformat="HH:mm z">18:00</td>
+                <td rowspan="4">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1647453600" data-timeformat="HH:mm z">19:00</td>
+                <td data-timestamp="1647451800" data-timeformat="HH:mm z">18:30</td>
+                <!-- <td rowspan="1">Hack!</td> -->
             </tr>
-            <!-- <tr> -->
-                <!-- <td data-timestamp="1635355800" data-timeformat="HH:mm z">19:30</td> -->
-                <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
-                <!-- <td>Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li><li>Host(s): Susanna Marquez</li></ul</td> -->
-            <!-- </tr> -->
-            <!-- <tr>
-                <td data-timestamp="1635356700" data-timeformat="HH:mm z">19:45</td>
-                <td>Hack! <...></td>
-                <td>Hack! <...></td>
-            </tr> -->
+            <tr>
+                <td data-timestamp="1647460800" data-timeformat="HH:mm z">21:00</td>
+                <td rowspan="1">Social event (Americas)<br>
+                   <ul class="small list-unstyled">
+                    <li>Location: Lounge</li>
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td data-timestamp="1647464400" data-timeformat="HH:mm z">22:00</td>
+                <td rowspan="1">Hack!</td>
+            </tr>
         </tbody>
     </table>
 </div>
