@@ -31,7 +31,7 @@ if ($result = mysqli_query($conn, $sql)) {
         echo "Oops! Something went wrong. Please try again later.";
     }
 }
-$targetWord = $pipelines[7];
+$targetWord = $pipelines[rand(0, count($pipelines) - 1)];
 $WORD_LENGTH = strlen($targetWord);
 ?>
 <style>
