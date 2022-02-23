@@ -31,7 +31,7 @@ if ($result = mysqli_query($conn, $sql)) {
         echo "Oops! Something went wrong. Please try again later.";
     }
 }
-$targetWord = $pipelines[23];
+$targetWord = $pipelines[7];
 $WORD_LENGTH = strlen($targetWord);
 ?>
 <style>
@@ -98,7 +98,7 @@ $WORD_LENGTH = strlen($targetWord);
         align-content: center;
         flex-grow: 1;
         grid-template-columns: repeat(<?php echo $WORD_LENGTH; ?>, 4em);
-        grid-template-rows: repeat(calc(<?php echo $WORD_LENGTH+1; ?>), 4em);
+        grid-template-rows: repeat(calc(<?php echo $WORD_LENGTH + 1; ?>), 4em);
         gap: .25em;
         margin-bottom: 1em;
     }
@@ -308,12 +308,7 @@ $WORD_LENGTH = strlen($targetWord);
 
     function submitGuess() {
         const activeTiles = [...getActiveTiles()]
-        // if (activeTiles.length !== WORD_LENGTH) {
-        //     showAlert("Not enough letters")
-        //     shakeTiles(activeTiles)
-        //     return
-        // }
-
+        const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])");
         const guess = activeTiles.reduce((word, tile) => {
             return word + tile.dataset.letter
         }, "")
@@ -324,6 +319,12 @@ $WORD_LENGTH = strlen($targetWord);
             return
         }
 
+
+        for (i = 0; i < WORD_LENGTH - activeTiles.length; i++) {
+            remainingTiles[i].dataset.state = "wrong"
+            remainingTiles[i].dataset.letter = ""
+        }
+        
         stopInteraction()
         activeTiles.forEach((...params) => flipTile(...params, guess))
     }
@@ -343,7 +344,7 @@ $WORD_LENGTH = strlen($targetWord);
                     tile.dataset.state = "correct"
                     key.classList.add("correct")
                 } else if (targetWord.includes(letter)) {
-                    tile.dataset.state = "wrong-location"
+                    tile.dataset.state = "wrong-location" // bug: marks as wrong-location when the same letter, which only appears once in the correct solution, is entered twice, independent if one of the letters is already in the correct position
                     key.classList.add("wrong-location")
                 } else {
                     tile.dataset.state = "wrong"
