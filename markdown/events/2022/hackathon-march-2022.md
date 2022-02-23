@@ -23,7 +23,7 @@ This event is entirely virtual (we will be back in [gather.town](https://gather.
 
 Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022) or in the widget below.
 
-> Registration deadline for swag (🕺) is  Feburary 20th, however the registration form for attending until remain open until the event itself.
+> ~~Registration deadline for swag (🕺) is  Feburary 20th~~, the swag deadline has now passed. However the registration form for attending remains open until the event itself.
 
 <div data-tf-widget="lZIzguMP" style="width:100%;height:700px;color:#FFFFFF;"></div>
 
