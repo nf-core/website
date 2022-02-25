@@ -45,8 +45,9 @@ testing each command making sure they work, checking phrasing and descriptions t
 To keep things manageable, we will organise into the groups.
 You are free to change groups as you wish during the hackathon.
 
-For the first time, we will also have talks and presentations during the hackathon.
+We will also have talks and presentations during the hackathon.
 These will be focused on making pipeline-related graphics and customising MultiQC reports. Please see [below](#talks) for more information.
+
 ## Group 1 - Pipeline documentation
 
 💬 Slack group: [`hackathon-march2022-pipelines`](https://nfcore.slack.com/channels/hackathon-march2022-pipelines)<br>
