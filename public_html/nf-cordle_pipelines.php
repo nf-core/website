@@ -314,7 +314,7 @@ $WORD_LENGTH = strlen($targetWord);
         }, "")
 
         if (!targetWords.includes(guess)) {
-            showAlert("Not in word list")
+            showAlert("Not a name of an nf-core pipeline")
             shakeTiles(activeTiles)
             return
         }
