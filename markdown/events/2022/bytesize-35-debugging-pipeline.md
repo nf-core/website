@@ -1,5 +1,5 @@
 ---
-title: "Bytesize 35: Debugging a failed pipeline"
+title: "Bytesize 35: Troubleshooting a failed pipeline"
 subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
 type: talk
 start_date: "2022-03-01"
@@ -18,6 +18,7 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 33: Nextflow Tower CLI
+## Bytesize 33: Troubleshooting a failed pipeline
 
-This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to debug a failing pipeline.
+This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to troubleshoot a failing pipeline.
+He'll cover common problems, where to start looking for issues and how to ask for help in the most effective way.
