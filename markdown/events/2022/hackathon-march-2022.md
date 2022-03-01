@@ -107,9 +107,9 @@ This group will focus on restructuring and organising the documentation on the w
 We will also be offering three different talks throughout the event at 14:30 each day.
 These focus on useful 'soft skills' for developers that can enhance their documentation.
 
-* 🖊 "Draw stuff good: how to use Inkscape" by [Zandra Fagernäs](https://twitter.com/ZandraSelina)
-* 🚇 "Creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" by [James Fellows Yates](https://github.com/jfy133)
-* 📊 "Pimp your MultiQC report" by [Phil Ewels](https://github.com/ewels)
+- 🖊 "Draw stuff good: how to use Inkscape" by [Zandra Fagernäs](https://twitter.com/ZandraSelina)
+- 🚇 "Creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" by [James Fellows Yates](https://github.com/jfy133)
+- 📊 "Pimp your MultiQC report" by [Phil Ewels](https://github.com/ewels)
 
 # Schedule
 
