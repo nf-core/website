@@ -107,6 +107,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Journal of Genetics and Genomics_ **20**;45(7):399-401 (2018)](https://www.sciencedirect.com/science/article/pii/S1673852718301176)
 > doi: [10.1016/j.jgg.2018.06.005](https://doi.org/10.1016/j.jgg.2018.06.005)
 
+### [nf-core/mag](https://nf-co.re/mag)
+
+<!-- pub-stats 10.1093/nargab/lqac007 -->
+> **nf-core/mag: a best-practice pipeline for metagenome hybrid assembly and binning**
+>
+> Sabrina Krakau, Daniel Straub, Hadrien Gourlé, Gisela Gabernet, Sven Nahnsen
+>
+> [_NAR Genomics and Bioinformatics_, Vol 4, Issue 1 (2022)](https://academic.oup.com/nargab/article/4/1/lqac007/6520104);
+> doi: [10.1093/nargab/lqac007](https://doi.org/10.1093/nargab/lqac007)
+
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
 <!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
