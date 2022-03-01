@@ -64,10 +64,16 @@ Some typical aims could be:
 
 Dates are subject to change:
 
-- _Applications open:_ March 1st 2022
-- _Applications close:_ April 1st 2022
-- _Mentorships start:_ May 1st 2022
-- _Mentorships finish:_ end of October 2022
+<dl class="row">
+  <dt class="col-md-3 text-md-end">Applications open:</dt>
+  <dd class="col-md-9">March 1st 2022</dd>
+  <dt class="col-md-3 text-md-end">Applications close:</dt>
+  <dd class="col-md-9">April 1st 2022</dd>
+  <dt class="col-md-3 text-md-end">Mentorships start:</dt>
+  <dd class="col-md-9">May 1st 2022</dd>
+  <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
+  <dd class="col-md-9">End of October 2022</dd>
+</dl>
 
 ### Application process
 
