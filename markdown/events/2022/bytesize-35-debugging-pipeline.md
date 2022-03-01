@@ -6,6 +6,7 @@ start_date: "2022-03-01"
 start_time: "13:00 CET"
 end_date: "2022-03-01"
 end_time: "13:30 CET"
+youtube_embed: https://youtu.be/z9n2F4ByIkY
 location_url:
  - https://zoom.us/j/94352451216
 ---
