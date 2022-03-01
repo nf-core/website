@@ -77,6 +77,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_PeerJ_, 9:e10947 (2021)](https://peerj.com/articles/10947/);
 > doi: [10.7717/peerj.10947](https://doi.org/10.7717/peerj.10947)
 
+### [nf-core/hicar](https://nf-co.re/hicar)
+
+<!-- pub-stats 10.1016/j.molcel.2022.01.023 -->
+> **HiCAR is a robust and sensitive method to analyze open-chromatin-associated genome organization.**
+>
+> Xiaolin Wei, Yu Xiang, Derek T. Peters, Choiselle Marius, Tongyu Sun, Ruocheng Shan, Jianhong Ou, Xin Lin, Feng Yue, Wei Li, Kevin W. Southerland, Yarui Diao
+>
+> [Molecular Cell (2022)](https://www.sciencedirect.com/science/article/pii/S1097276522000983);
+> doi: [10.1016/j.molcel.2022.01.023](https://doi.org/10.1016/j.molcel.2022.01.023)
+
 ### [nf-core/imcyto](https://nf-co.re/imcyto)
 
 <!-- pub-stats 10.1038/s41467-021-26214-x -->
@@ -96,6 +106,16 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_Journal of Genetics and Genomics_ **20**;45(7):399-401 (2018)](https://www.sciencedirect.com/science/article/pii/S1673852718301176)
 > doi: [10.1016/j.jgg.2018.06.005](https://doi.org/10.1016/j.jgg.2018.06.005)
+
+### [nf-core/mag](https://nf-co.re/mag)
+
+<!-- pub-stats 10.1093/nargab/lqac007 -->
+> **nf-core/mag: a best-practice pipeline for metagenome hybrid assembly and binning**
+>
+> Sabrina Krakau, Daniel Straub, Hadrien Gourlé, Gisela Gabernet, Sven Nahnsen
+>
+> [_NAR Genomics and Bioinformatics_, Vol 4, Issue 1 (2022)](https://academic.oup.com/nargab/article/4/1/lqac007/6520104);
+> doi: [10.1093/nargab/lqac007](https://doi.org/10.1093/nargab/lqac007)
 
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
@@ -126,7 +146,6 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v2)
 > doi: [10.12688/f1000research.16665.2](https://doi.org/10.12688/f1000research.16665.2)
-
 
 ### [nf-core/scflow](https://nf-co.re/scflow)
 
