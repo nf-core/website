@@ -50,7 +50,7 @@ Some typical aims could be:
 - Learning how to make a contribution to nf-core
   - Developing new and / or contributing to existing pipeline(s)
   - Working with nf-core/tools or the website
-  - Presenting at a nf-core/bytesize talk about a chosen topic
+  - Presenting a nf-core/bytesize talk about a chosen topic
 
 ### Prerequisites
 
