@@ -2,7 +2,7 @@
 
 In 2022, Nextflow and nf-core are starting a joint program of mentorships.
 We hope to organise a small number of mentoring pairs to improve outreach and training in underrepresented groups and areas.
-Mentors will recieve a small stipend in return for helping their mentee.
+Mentors will receive a small stipend in return for helping their mentee.
 
 ### CZI Grants
 
@@ -51,15 +51,16 @@ Some typical aims could be:
   - Developing new and / or contributing to existing pipeline(s)
   - Working with nf-core/tools or the website
   - Presenting a nf-core/bytesize talk about a chosen topic
+  - Writing an extensive tutorial about some aspect of nf-core 
 
 ### Prerequisites
 
 - Mentees
-  - Required: Some familiarity with the linux command line
+  - Required: Familiarity with the linux command line, Git and GitHub
   - Suggested: Basic bioinformatics experience
 - Mentors
-  - Required: Good experience with running Nextflow pipelines
-  - Suggested: Experience with developing Nextflow pipelines
+  - Required: Good experience with running and developing Nextflow pipelines
+  - Required: Experience with container engines (docker, singularity, ...)
   - Suggested: Experience of contributing to the nf-core project
 
 ## Round 1
