@@ -36,8 +36,8 @@ In summary (all points subject to change):
 - Mentees will get free tutoring from an experienced developer about using Nextflow and nf-core
 - Mentors will be paid with a voucher equivalent to $800 USD upon completion of the mentorship round (subject to completion of certain milestones)
 - A commitment of at least 2 hours a week is expected from both mentor and mentee
-- Mentors may participate in multiple rounds of the mentorship program,
-- Mentees may only join for one rond (though are welcome back as a mentor!)
+- Mentors may participate in multiple rounds of the mentorship program
+- Mentees may only join for one round (though are welcome back as a mentor!)
 
 There will be a set of milestones and aims for each partnership and a short written report upon completion.
 
@@ -49,7 +49,7 @@ There will be a set of milestones and aims for each partnership and a short writ
 - Mentors
   - Required: Good experience with running and developing Nextflow pipelines
   - Required: Experience with container engines (docker, singularity, ...)
-  - Suggested: Experience of contributing to the nf-core project
+  - Suggested: Previous contributions to the nf-core project
 
 ### CZI Grants
 
