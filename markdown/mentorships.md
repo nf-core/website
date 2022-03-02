@@ -1,5 +1,9 @@
 ## Introduction
 
+In 2022, Nextflow and nf-core are starting a joint program of mentorships.
+We hope to organise a small number of mentoring pairs to improve outreach and training in underrepresented groups and areas.
+Mentors will recieve a small stipend in return for helping their mentee.
+
 ### CZI Grants
 
 In 2021, nf-core together with Nextflow successfully applied for grants from the
