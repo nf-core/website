@@ -63,7 +63,7 @@ Within our D&I application, we proposed the following:
 
 > _"We propose a mentorship programme, aimed at levelling the playing field of entry of new nf-core pipeline developers and tool contributors, and empowering them to be integrated into the active developer community. We would specifically like to bolster participation of women, LGBTQ+ and underrepresented minority groups. Ten mentor-mentee pairs will be established each year and be assigned a programming project ranging from a core tool functionality extension, adding specific features to existing pipelines or reviewing new pipeline code. Each mentor will work with the mentee to guide them through the tasks and review the mentee’s code. Regular networking events will be organised during the programme duration to foster integration of the mentees into the community."_
 
-Note that there have been some minor adjustments to the plan since we wrote this. In line with our diversity and inclusion efforts, we're aiming to promote this opportunity to a wide array of organizations that facilitate the inclusion of underrepresented minorities in STEM so that we can ensure the selection of a diverse cohort. If you have suggestions regarding this, please reach out to us. 
+Note that there have been some minor adjustments to the plan since we wrote this. In line with our diversity and inclusion efforts, we're aiming to promote this opportunity to a wide array of organizations that facilitate the inclusion of underrepresented minorities in STEM so that we can ensure the selection of a diverse cohort. If you have suggestions regarding this, please reach out to us.
 
 ## Round 1
 
