@@ -23,7 +23,7 @@ Some typical aims could be:
   - Presenting a nf-core/bytesize talk about a chosen topic
   - Writing an extensive tutorial about some aspect of nf-core
 
-The exact scope and aims of each mentoring partnership can vary according to your needs and situation.
+The exact scope and aims of each mentoring partnership can vary according to the participants' needs and situation.
 These will be judged on a case-by-case basis as part of the application process.
 
 ### Organisation
@@ -47,7 +47,7 @@ There will be a set of milestones and aims for each partnership and a short writ
   - Required: Familiarity with the linux command line, Git and GitHub
   - Suggested: Basic bioinformatics experience
 - Mentors
-  - Required: Good experience with running and developing Nextflow pipelines
+  - Required: Substantial experience with running and developing Nextflow pipelines
   - Required: Experience with container engines (docker, singularity, ...)
   - Suggested: Previous contributions to the nf-core project
 
@@ -55,15 +55,15 @@ There will be a set of milestones and aims for each partnership and a short writ
 
 The funding for this program comes from the [Chan Zuckerberg Initiative](https://chanzuckerberg.com/).
 
-In 2021, nf-core together with Nextflow successfully applied for grants from the CZI and we recieved funding for both the [EOSS Cycle 4](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) grant and also the EOSS [Diversity & Inclusion](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) program.
+In 2021, nf-core together with Nextflow successfully applied for grants from CZI and we recieved funding for both the [EOSS Cycle 4](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) grant and also the EOSS [Diversity & Inclusion](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) program.
 
 You can read a [CZI blog post](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b) about the motivations and aims of the Diversity & Inclusion program.
 
-Within our D&I application, we said proposed:
+Within our D&I application, we proposed the following:
 
 > _"We propose a mentorship programme, aimed at levelling the playing field of entry of new nf-core pipeline developers and tool contributors, and empowering them to be integrated into the active developer community. We would specifically like to bolster participation of women, LGBTQ+ and underrepresented minority groups. Ten mentor-mentee pairs will be established each year and be assigned a programming project ranging from a core tool functionality extension, adding specific features to existing pipelines or reviewing new pipeline code. Each mentor will work with the mentee to guide them through the tasks and review the mentee’s code. Regular networking events will be organised during the programme duration to foster integration of the mentees into the community."_
 
-Note that there have been some minor adjustments to the plan since we wrote this.
+Note that there have been some minor adjustments to the plan since we wrote this. In line with our diversity and inclusion efforts, we're aiming to promote this opportunity to a wide array of organizations that facilitate the inclusion of underrepresented minorities in STEM so that we can ensure the selection of a diverse cohort. If you have suggestions regarding this, please reach out to us. 
 
 ## Round 1
 
