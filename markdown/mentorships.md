@@ -47,7 +47,7 @@ There will be a set of milestones and aims for each partnership and a short writ
   - Required: Familiarity with the linux command line, Git and GitHub
   - Suggested: Basic bioinformatics experience
 - Mentors
-  - Required: Good experience with running and developing Nextflow pipelines
+  - Required: Substantial experience with running and developing Nextflow pipelines
   - Required: Experience with container engines (docker, singularity, ...)
   - Suggested: Previous contributions to the nf-core project
 
