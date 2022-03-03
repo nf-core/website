@@ -87,6 +87,6 @@ Dates are subject to change:
 Please submit an application using the forms below.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<a href="https://forms.gle/aa5CHkR6YARf92kb6" class="btn btn-success btn-large text-center" target="_blank">Apply here</a>
+<a href="https://forms.gle/aa5CHkR6YARf92kb6" class="btn btn-success btn-large text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a>
 
 > _Button opens a Google Forms application form in a new window_
