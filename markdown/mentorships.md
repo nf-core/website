@@ -7,7 +7,7 @@ Mentors will receive a small stipend in return for helping their mentee.
 In this page, we use the following terminology:
 
 - Mentor: The senior advisor in a mentorship pair
-- Mentee: A person recieving training from the mentor
+- Mentee: A person receiving training from the mentor
 
 ### Scope
 
@@ -87,5 +87,6 @@ Dates are subject to change:
 Please submit an application using the forms below.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-- Application form: Mentee _[coming soon]_
-- Application form: Mentor _[coming soon]_
+<p class="text-center"><a href="https://forms.gle/aa5CHkR6YARf92kb6" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
+
+> _Button opens a Google Forms application form in a new window_
