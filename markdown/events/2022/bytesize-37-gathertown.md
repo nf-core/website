@@ -1,12 +1,11 @@
 ---
-title: "Bytesize 35: Troubleshooting a failed pipeline"
-subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
+title: "Bytesize 37: Gather Town"
+subtitle: James A. Fellows Yates - LMU Munich / MPI-EVA
 type: talk
-start_date: "2022-03-01"
+start_date: "2022-03-15"
 start_time: "13:00 CET"
 end_date: "2022-03-01"
 end_time: "13:30 CET"
-youtube_embed: https://youtu.be/z9n2F4ByIkY
 location_url:
  - https://zoom.us/j/94352451216
 ---
@@ -19,7 +18,10 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 35: Troubleshooting a failed pipeline
+## Bytesize 37: Gather Town
 
-This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to troubleshoot a failing pipeline.
-He'll cover common problems, where to start looking for issues and how to ask for help in the most effective way.
+This week, James Fellows Yates ([@jfy133](http://github.com/jfy133/)) will present: _**Gather Town**_
+
+This is the platform that we have used for recent online events, and that we will use again for the upcoming hackathon.
+
+He'll do a full walk through of how to sign up, and, well - walk through the event!
