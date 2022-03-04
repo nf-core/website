@@ -4,7 +4,7 @@ subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
 type: talk
 start_date: "2022-03-08"
 start_time: "13:00 CET"
-end_date: "2022-03-01"
+end_date: "2022-03-08"
 end_time: "13:30 CET"
 location_url:
  - https://zoom.us/j/94352451216

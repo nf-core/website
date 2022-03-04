@@ -4,7 +4,7 @@ subtitle: James A. Fellows Yates - LMU Munich / MPI-EVA
 type: talk
 start_date: "2022-03-15"
 start_time: "13:00 CET"
-end_date: "2022-03-01"
+end_date: "2022-03-15"
 end_time: "13:30 CET"
 location_url:
  - https://zoom.us/j/94352451216
