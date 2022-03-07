@@ -300,7 +300,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-- All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+- All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
     `<module>.nf`:
 
@@ -415,11 +415,11 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
   - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
-  - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/2ad98162f355671061f457c7c79db45c13478086/modules/pbccs/main.nf#L39)) which will raise an error asking the developer to change the `options.suffix` variable to rename the output files so they don't clash.
+  - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
   
     ```nextflow
     script:
-    if ("$bam" == "${prefix}.bam") error "Input and output names are the same, use the suffix option to disambiguate!"
+    if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
     ```
 
 ### Input/output options
