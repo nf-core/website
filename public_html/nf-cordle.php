@@ -24,8 +24,10 @@ if ($result = mysqli_query($conn, $sql)) {
     }
 }
 // generate a new number every twelve hours
-$offset_date = date_create("2022-01-01 09:00", timezone_open("Europe/Stockholm"));
-$offset = date_offset_get($offset_date) / 60 / 60 / 12;
+$date1 = date_create("2022-03-08T03:00:00");
+$date2 = date_create("now");
+
+$offset = floor(($date2->getTimestamp() - $date1->getTimestamp())/(60*60*12));
 
 srand($offset); // set random number seed changing every 12 hours
 
@@ -204,7 +206,6 @@ include('../includes/header.php');
 
     function checkWinLose(guess, tiles) {
         if (guess === targetWord) {
-            // showAlert("You Win", 5000)
             danceTiles(tiles)
             document.querySelector("[data-guess-grid]").classList.add("bg-confetti-animated")
             create_share_text()
@@ -215,12 +216,13 @@ include('../includes/header.php');
         const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])")
         if (remainingTiles.length === 0) {
             showAlert(targetWord.toUpperCase(), null)
+            create_share_text()
             stopInteraction()
         }
     }
 
     function create_share_text() {
-        var sharetext = "nf-cordle <?php echo $offset ?>;\n";
+        var sharetext = "nf-cordle <?php echo $offset ;?>\n";
         const tiles = document.querySelectorAll("[data-guess-grid] [data-state]");
         const tilemap = Array.from(tiles).map(tile => {
             switch (tile.dataset.state) {
