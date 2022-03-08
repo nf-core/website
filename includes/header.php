@@ -100,11 +100,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="https://embed.typeform.com/next/embed.js"></script>
 
   <?php endif;
-  if (isset($title) && $title == 'nf-cordle') : ?>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="/assets/js/nf-cordle.js?c=<?php echo $git_sha; ?>"></script>
-  <?php endif;
   if (isset($title) && $title == 'Publications') : ?>
     <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
