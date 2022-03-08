@@ -1,4 +1,6 @@
 <?php
+require_once('../includes/parse_md.php');
+
 $config = parse_ini_file("../config.ini");
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
@@ -95,18 +97,6 @@ include('../includes/header.php');
                         <?php endforeach; ?>
                     </ul>
                 </div>
-                <div class="pipeline_list">
-                    <ul class="list-unstyled">
-                        <?php foreach ($pipelines as $pipeline) : ?>
-                            <li class="facet-item">
-                                <span class="facet-name"><?php echo trim($idx); ?></span>
-                                <span class="facet-value badge rounded-pill bg-secondary float-end">
-                                    <?php echo $keyword; ?>
-                                </span>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
             </div>
             <div class="col-12 col-lg-9">
                 <p class="no-modules text-muted mt-5" style="display: none;">No modules found..</p>
@@ -130,7 +120,7 @@ include('../includes/header.php');
                                     </div>
                                 <?php endif; ?>
                                 <p class="card-text mb-0 mt-2 description <?php echo $module['name']; ?>-description">
-                                    <?php echo $module['description']; ?>
+                                    <?php echo parse_md($module['description'])['content']; ?>
                                 </p>
                                 <div class="module-params d-flex">
                                     <div class="module-input flex-fill">
@@ -141,9 +131,7 @@ include('../includes/header.php');
                                         foreach ($module['input'] as $input) {
                                             foreach ($input as $name => $input_value) {
                                                 $description = $input_value['description'];
-                                                $description = str_replace('[', '<code class="px-0">[', $description);
-                                                $description = str_replace(']', ']</code>', $description);
-                                                $input_text .= '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' . $input_value['description'] . '">' . $name . '</code>';
+                                                $input_text .= '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' . $description . '">' . $name . '</code>';
                                             }
                                         }
                                         $input_text .= '</p>';
@@ -157,9 +145,7 @@ include('../includes/header.php');
                                         foreach ($module['output'] as $output) {
                                             foreach ($output as $name => $output_value) {
                                                 $description = $output_value['description'];
-                                                $description = str_replace('[', '<code class="px-0">[', $description);
-                                                $description = str_replace(']', ']</code>', $description);
-                                                $output_text .= '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' . $output_value['description'] . '">' . $name . ' </code>';
+                                                $output_text .= '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' . $description . '">' . $name . ' </code>';
                                             }
                                         }
                                         $output_text .= '</p>';
@@ -183,6 +169,7 @@ include('../includes/header.php');
                                                     $tool_text .= '<div>';
                                                     $tool_text .= '<span>' . $name . ': </span>';
                                                     $description = $tool_value['description'];
+                                                    $description = parse_md($description)['content'];
                                                     $tool_text .= '<span class="text-small description ' . $module['name'] . '-description" >' .  $description . '</span>';
                                                     $tool_text .= '</div>';
                                                 }
