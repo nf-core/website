@@ -53,8 +53,6 @@ include('../includes/header.php');
         background-color: hsl(var(--hue, 200),
                 var(--saturation, 1%),
                 calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
-        color: white;
-        fill: white;
         text-transform: uppercase;
         border-radius: .25em;
         cursor: pointer;
