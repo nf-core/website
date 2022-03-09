@@ -1,6 +1,6 @@
 ---
 title: "Bytesize 37: Gather Town"
-subtitle: James A. Fellows Yates - LMU Munich / MPI-EVA
+subtitle: James A. Fellows Yates - Leibniz-HKI / MPI-EVA
 type: talk
 start_date: "2022-03-15"
 start_time: "13:00 CET"
@@ -14,7 +14,7 @@ location_url:
 
 Join us for our **weekly series** of short talks: **“nf-core/bytesize”**.
 
-Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines.
+Just **15 minutes** + questions, we will be focussing on topics about using and developing nf-core pipelines as well as other general topics related to nf-core.
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
