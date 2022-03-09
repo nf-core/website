@@ -1,6 +1,4 @@
 <?php
-
-
 $title = 'nf-cordle';
 $subtitle = 'Guess the nf-core pipeline';
 $config = parse_ini_file("../config.ini");
@@ -27,7 +25,7 @@ if ($result = mysqli_query($conn, $sql)) {
 $date1 = date_create("2022-03-08T03:00:00");
 $date2 = date_create("now");
 
-$offset = floor(($date2->getTimestamp() - $date1->getTimestamp())/(60*60*12));
+$offset = floor(($date2->getTimestamp() - $date1->getTimestamp()) / (60 * 60 * 12));
 
 srand($offset); // set random number seed changing every 12 hours
 
@@ -35,228 +33,6 @@ $target_word = $pipelines[rand(0, count($pipelines))];
 $word_length = strlen($target_word);
 include('../includes/header.php');
 ?>
-<script type="text/javascript">
-    const targetWords = <?php echo json_encode($pipelines); ?>;
-    const FLIP_ANIMATION_DURATION = 500;
-    const DANCE_ANIMATION_DURATION = 500;
-    const offsetFromDate = new Date(2022, 0, 1);
-    const msOffset = Date.now() - offsetFromDate;
-    const dayOffset = msOffset / 1000 / 60 / 60 / 12;
-    const targetWord = <?php echo json_encode($target_word); ?>;
-    const WORD_LENGTH = targetWord.length;
-
-    startInteraction()
-
-    function startInteraction() {
-        document.addEventListener("click", handleMouseClick)
-        document.addEventListener("keydown", handleKeyPress)
-    }
-
-    function stopInteraction() {
-        document.removeEventListener("click", handleMouseClick)
-        document.removeEventListener("keydown", handleKeyPress)
-    }
-
-    function handleMouseClick(e) {
-        if (e.target.matches("[data-key]")) {
-            pressKey(e.target.dataset.key)
-            return
-        }
-
-        if (e.target.matches("[data-enter]")) {
-            submitGuess()
-            return
-        }
-
-        if (e.target.matches("[data-delete]")) {
-            deleteKey()
-            return
-        }
-    }
-
-    function handleKeyPress(e) {
-        if (e.key === "Enter") {
-            submitGuess()
-            return
-        }
-
-        if (e.key === "Backspace" || e.key === "Delete") {
-            deleteKey()
-            return
-        }
-
-        if (e.key.match(/^[a-z]$/)) {
-            pressKey(e.key)
-            return
-        }
-    }
-
-    function pressKey(key) {
-        const activeTiles = getActiveTiles()
-        if (activeTiles.length >= WORD_LENGTH) return
-        const nextTile = document.querySelector("[data-guess-grid]").querySelector(":not([data-letter])")
-        nextTile.dataset.letter = key.toLowerCase()
-        nextTile.textContent = key
-        nextTile.dataset.state = "active"
-    }
-
-    function deleteKey() {
-        const activeTiles = getActiveTiles()
-        const lastTile = activeTiles[activeTiles.length - 1]
-        if (lastTile == null) return
-        lastTile.textContent = ""
-        delete lastTile.dataset.state
-        delete lastTile.dataset.letter
-    }
-
-    function submitGuess() {
-        const activeTiles = [...getActiveTiles()]
-        const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])");
-        const guess = activeTiles.reduce((word, tile) => {
-            return word + tile.dataset.letter
-        }, "")
-
-        if (!targetWords.includes(guess)) {
-            showAlert("Not a name of an nf-core pipeline")
-            shakeTiles(activeTiles)
-            return
-        }
-
-
-        for (i = 0; i < WORD_LENGTH - activeTiles.length; i++) {
-            remainingTiles[i].dataset.state = "wrong"
-            remainingTiles[i].dataset.letter = ""
-        }
-
-        stopInteraction()
-        activeTiles.forEach((...params) => flipTile(...params, guess))
-    }
-
-    function flipTile(tile, index, array, guess) {
-        const letter = tile.dataset.letter
-        const key = document.querySelector("[data-keyboard]").querySelector(`[data-key="${letter}"i]`)
-        setTimeout(() => {
-            tile.classList.add("flip")
-        }, (index * FLIP_ANIMATION_DURATION) / 2)
-
-        tile.addEventListener(
-            "transitionend",
-            () => {
-                tile.classList.remove("flip")
-                if (targetWord[index] === letter) {
-                    tile.dataset.state = "correct"
-                    key.classList.add("correct")
-                } else if (targetWord.includes(letter)) {
-                    tile.dataset.state = "wrong-location" // bug: marks as wrong-location when the same letter, which only appears once in the correct solution, is entered twice, independent if one of the letters is already in the correct position
-                    key.classList.add("wrong-location")
-                } else {
-                    tile.dataset.state = "wrong"
-                    key.classList.add("wrong")
-                }
-
-                if (index === array.length - 1) {
-                    tile.addEventListener(
-                        "transitionend",
-                        () => {
-                            startInteraction()
-                            checkWinLose(guess, array)
-                        }, {
-                            once: true
-                        }
-                    )
-                }
-            }, {
-                once: true
-            }
-        )
-    }
-
-    function getActiveTiles() {
-        return document.querySelector("[data-guess-grid]").querySelectorAll('[data-state="active"]')
-    }
-
-    function showAlert(message, duration = 1000) {
-        const alert = document.createElement("div")
-        alert.textContent = message
-        alert.classList.add("alert")
-        document.querySelector("[data-alert-container]").prepend(alert)
-        if (duration == null) return
-
-        setTimeout(() => {
-            alert.classList.add("hide")
-            alert.addEventListener("transitionend", () => {
-                alert.remove()
-            })
-        }, duration)
-    }
-
-    function shakeTiles(tiles) {
-        tiles.forEach(tile => {
-            tile.classList.add("shake")
-            tile.addEventListener(
-                "animationend",
-                () => {
-                    tile.classList.remove("shake")
-                }, {
-                    once: true
-                }
-            )
-        })
-    }
-
-    function checkWinLose(guess, tiles) {
-        if (guess === targetWord) {
-            danceTiles(tiles)
-            document.querySelector("[data-guess-grid]").classList.add("bg-confetti-animated")
-            create_share_text()
-            stopInteraction()
-            return
-        }
-
-        const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])")
-        if (remainingTiles.length === 0) {
-            showAlert(targetWord.toUpperCase(), null)
-            create_share_text()
-            stopInteraction()
-        }
-    }
-
-    function create_share_text() {
-        var sharetext = "nf-cordle <?php echo $offset ;?>\n";
-        const tiles = document.querySelectorAll("[data-guess-grid] [data-state]");
-        const tilemap = Array.from(tiles).map(tile => {
-            switch (tile.dataset.state) {
-                case "correct":
-                    return "🟩";
-                case "wrong":
-                    return "⬛️";
-                case "wrong-location":
-                    return "🟨";
-                default:
-                    return " ";
-            }
-        });
-        sharetext += tilemap.join('').replace(new RegExp(`.{${WORD_LENGTH*2}}`, 'g'), '$&\n');
-        navigator.clipboard.writeText(sharetext);
-        $(".congrats").toast("show");
-    }
-
-    function danceTiles(tiles) {
-        tiles.forEach((tile, index) => {
-            setTimeout(() => {
-                tile.classList.add("dance")
-                tile.addEventListener(
-                    "animationend",
-                    () => {
-                        tile.classList.remove("dance")
-                    }, {
-                        once: true
-                    }
-                )
-            }, (index * DANCE_ANIMATION_DURATION) / 5)
-        })
-    }
-</script>
 <style>
     .keyboard {
         display: grid;
@@ -513,5 +289,263 @@ include('../includes/header.php');
         Results copied to your clipboard. Don't be shy and humblebrag with them!
     </div>
 </div>
+<script type="text/javascript">
+    const targetWords = <?php echo json_encode($pipelines); ?>;
+    const FLIP_ANIMATION_DURATION = 500;
+    const DANCE_ANIMATION_DURATION = 500;
+    const offsetFromDate = new Date(2022, 0, 1);
+    const msOffset = Date.now() - offsetFromDate;
+    const dayOffset = msOffset / 1000 / 60 / 60 / 12;
+    const targetWord = <?php echo json_encode($target_word); ?>;
+    const WORD_LENGTH = targetWord.length;
+
+    loadCookie();
+    startInteraction()
+
+    function startInteraction() {
+        document.addEventListener("click", handleMouseClick)
+        document.addEventListener("keydown", handleKeyPress)
+    }
+
+    function stopInteraction() {
+        document.removeEventListener("click", handleMouseClick)
+        document.removeEventListener("keydown", handleKeyPress)
+    }
+
+    function handleMouseClick(e) {
+        if (e.target.matches("[data-key]")) {
+            pressKey(e.target.dataset.key)
+            return
+        }
+
+        if (e.target.matches("[data-enter]")) {
+            submitGuess()
+            return
+        }
+
+        if (e.target.matches("[data-delete]")) {
+            deleteKey()
+            return
+        }
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === "Enter") {
+            submitGuess()
+            return
+        }
+
+        if (e.key === "Backspace" || e.key === "Delete") {
+            deleteKey()
+            return
+        }
+
+        if (e.key.match(/^[a-z]$/)) {
+            pressKey(e.key)
+            return
+        }
+    }
+
+    function pressKey(key) {
+        const activeTiles = getActiveTiles()
+        if (activeTiles.length >= WORD_LENGTH) return
+        const nextTile = document.querySelector("[data-guess-grid]").querySelector(":not([data-letter])")
+        nextTile.dataset.letter = key.toLowerCase()
+        nextTile.textContent = key
+        nextTile.dataset.state = "active"
+    }
+
+    function deleteKey() {
+        const activeTiles = getActiveTiles()
+        const lastTile = activeTiles[activeTiles.length - 1]
+        if (lastTile == null) return
+        lastTile.textContent = ""
+        delete lastTile.dataset.state
+        delete lastTile.dataset.letter
+    }
+
+    function submitGuess() {
+        const activeTiles = [...getActiveTiles()]
+        const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])");
+        const guess = activeTiles.reduce((word, tile) => {
+            return word + tile.dataset.letter
+        }, "")
+
+        // if (!targetWords.includes(guess)) {
+        //     showAlert("Not a name of an nf-core pipeline")
+        //     shakeTiles(activeTiles)
+        //     return
+        // }
+
+
+        for (i = 0; i < WORD_LENGTH - activeTiles.length; i++) {
+            remainingTiles[i].dataset.state = "wrong"
+            remainingTiles[i].dataset.letter = ""
+        }
+
+        stopInteraction()
+        activeTiles.forEach((...params) => flipTile(...params, guess))
+
+    }
+
+    function flipTile(tile, index, array, guess) {
+        const letter = tile.dataset.letter
+        const key = document.querySelector("[data-keyboard]").querySelector(`[data-key="${letter}"i]`)
+        setTimeout(() => {
+            tile.classList.add("flip")
+        }, (index * FLIP_ANIMATION_DURATION) / 2)
+
+        tile.addEventListener(
+            "transitionend",
+            () => {
+                tile.classList.remove("flip")
+                if (targetWord[index] === letter) {
+                    tile.dataset.state = "correct"
+                    key.classList.add("correct")
+                } else if (targetWord.includes(letter)) {
+                    tile.dataset.state = "wrong-location" // bug: marks as wrong-location when the same letter, which only appears once in the correct solution, is entered twice, independent if one of the letters is already in the correct position
+                    key.classList.add("wrong-location")
+                } else {
+                    tile.dataset.state = "wrong"
+                    key.classList.add("wrong")
+                }
+
+                if (index === array.length - 1) {
+                    tile.addEventListener(
+                        "transitionend",
+                        () => {
+                            startInteraction()
+                            checkWinLose(guess, array)
+                            updateCookie()
+                        }, {
+                            once: true
+                        }
+                    )
+                }
+            }, {
+                once: true
+            }
+        )
+    }
+
+    function getActiveTiles() {
+        return document.querySelector("[data-guess-grid]").querySelectorAll('[data-state="active"]')
+    }
+
+    function showAlert(message, duration = 1000) {
+        const alert = document.createElement("div")
+        alert.textContent = message
+        alert.classList.add("alert")
+        document.querySelector("[data-alert-container]").prepend(alert)
+        if (duration == null) return
+
+        setTimeout(() => {
+            alert.classList.add("hide")
+            alert.addEventListener("transitionend", () => {
+                alert.remove()
+            })
+        }, duration)
+    }
+
+    function shakeTiles(tiles) {
+        tiles.forEach(tile => {
+            tile.classList.add("shake")
+            tile.addEventListener(
+                "animationend",
+                () => {
+                    tile.classList.remove("shake")
+                }, {
+                    once: true
+                }
+            )
+        })
+    }
+
+    function checkWinLose(guess, tiles) {
+        if (guess === targetWord) {
+            danceTiles(tiles)
+            document.querySelector("[data-guess-grid]").classList.add("bg-confetti-animated")
+            create_share_text()
+            stopInteraction()
+            return
+        }
+
+        const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])")
+        if (remainingTiles.length === 0) {
+            showAlert(targetWord.toUpperCase(), null)
+            create_share_text()
+            stopInteraction()
+        }
+    }
+
+    function create_share_text() {
+        var sharetext = "nf-cordle <?php echo $offset; ?>\n";
+        const tiles = document.querySelectorAll("[data-guess-grid] [data-state]");
+        const tilemap = Array.from(tiles).map(tile => {
+            switch (tile.dataset.state) {
+                case "correct":
+                    return "🟩";
+                case "wrong":
+                    return "⬛️";
+                case "wrong-location":
+                    return "🟨";
+                default:
+                    return " ";
+            }
+        });
+        sharetext += tilemap.join('').replace(new RegExp(`.{${WORD_LENGTH*2}}`, 'g'), '$&\n');
+        navigator.clipboard.writeText(sharetext);
+        $(".congrats").toast("show");
+    }
+
+    function updateCookie() {
+        var cookie_state = [];
+        var cookie_letter = [];
+        for (let tiles of document.querySelectorAll("[data-guess-grid] [data-state]")) {
+            const letter = tiles.dataset.letter
+            const state = tiles.dataset.state
+            if (letter == null) continue
+            if (state == null) continue
+            cookie_state.push(state)
+            cookie_letter.push(letter)
+        };
+        // write to cookie
+        document.cookie = "nf-cordle-state=" + JSON.stringify(cookie_state) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        document.cookie = "nf-cordle-letter=" + JSON.stringify(cookie_letter) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+    }
+
+    function loadCookie() {
+        var cookie_state = [];
+        var cookie_letter = [];
+        if (document.cookie.indexOf("nf-cordle-state") != -1) {
+            cookie_state = JSON.parse(document.cookie.split("nf-cordle-state=")[1].split(";")[0]);
+        }
+        if (document.cookie.indexOf("nf-cordle-letter") != -1) {
+            cookie_letter = JSON.parse(document.cookie.split("nf-cordle-letter=")[1].split(";")[0]);
+        }
+        for (let i = 0; i < cookie_state.length; i++) {
+            const tile = document.querySelectorAll("[data-guess-grid] .tile")[i]
+            tile.dataset.state = cookie_state[i]
+            tile.dataset.letter = cookie_letter[i]
+            tile.textContent = cookie_letter[i]
+        }
+    }
+
+    function danceTiles(tiles) {
+        tiles.forEach((tile, index) => {
+            setTimeout(() => {
+                tile.classList.add("dance")
+                tile.addEventListener(
+                    "animationend",
+                    () => {
+                        tile.classList.remove("dance")
+                    }, {
+                        once: true
+                    }
+                )
+            }, (index * DANCE_ANIMATION_DURATION) / 5)
+        })
+    }
+</script>
 <?php
 include('../includes/footer.php');
