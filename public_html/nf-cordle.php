@@ -25,6 +25,7 @@ if ($result = mysqli_query($conn, $sql)) {
 $date1 = date_create("2022-03-08T03:00:00");
 $date2 = date_create("now");
 
+
 $offset = floor(($date2->getTimestamp() - $date1->getTimestamp()) / (60 * 60 * 12));
 
 srand($offset); // set random number seed changing every 12 hours
@@ -53,8 +54,6 @@ include('../includes/header.php');
         background-color: hsl(var(--hue, 200),
                 var(--saturation, 1%),
                 calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
-        color: white;
-        fill: white;
         text-transform: uppercase;
         border-radius: .25em;
         cursor: pointer;
@@ -102,9 +101,19 @@ include('../includes/header.php');
         margin-bottom: 1em;
     }
 
+    .modal-grid {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        flex-grow: 1;
+        grid-template-columns: repeat(5, 4em);
+        grid-template-rows: repeat(1, 4em);
+        gap: .25em;
+        margin-bottom: 1em;
+    }
+
     .tile {
         font-size: 2em;
-        color: white;
         border: .05em solid hsl(240, 2%, 23%);
         text-transform: uppercase;
         font-weight: bold;
@@ -232,7 +241,9 @@ include('../includes/header.php');
         }
     }
 </style>
-<h1>nf-cordle/pipelines</h1>
+<h1>nf-cordle/pipelines <button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#modal-help">
+        <i class="fas fa-question-circle"></i> Instructions
+    </button></h1>
 <div class="alert-container m-auto text-center" data-alert-container></div>
 <div data-guess-grid class="guess-grid ">
     <?php foreach (range(0, $word_length) as $rowindex) : ?>
@@ -289,6 +300,39 @@ include('../includes/header.php');
         Results copied to your clipboard. Don't be shy and humblebrag with them!
     </div>
 </div>
+<div class="modal" id="modal-help" tabindex=" -1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Instructions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Guess the name of the nf-core pipeline in <?php echo $word_length + 1; ?> tries.</p>
+                <p>Contrary to the original game <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>, your guesses can be shorter than the final word.</p>
+                <p>Each guess has to be a name of an nf-core pipeline (see <a href="https://nf-co.re/pipelines">nf-co.re/pipelines</a>).</p>
+                <p> Just hit enter to submit.</p>
+                <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+                <hr>
+                <h2>Examples</h2>
+                <div class="modal-grid">
+                    <div class=" tile" data-state="wrong" data-letter="s">s</div>
+                    <div class="tile" data-state="correct" data-letter="a">a</div>
+                    <div class="tile" data-state="wrong-location" data-letter="r">r</div>
+                    <div class=" tile" data-state="correct" data-letter="e">e</div>
+                    <div class=" tile" data-state="wrong" data-letter="k">k</div>
+                </div>
+                <p>The letters <strong>A</strong> and <strong>E</strong> is in the pipeline name and in the right spot.</p>
+                <p>The letter <strong>R</strong> is in the pipeline name but in the wrong spot.</p>
+                <p>The letters <strong>S</strong> and <strong>K</strong> is not in the pipeline name in any spot.</p>
+                <hr>
+                A new nf-cordle will be available at 3:00 AM CET and 15:00PM CET.
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     const targetWords = <?php echo json_encode($pipelines); ?>;
     const FLIP_ANIMATION_DURATION = 500;
@@ -371,11 +415,11 @@ include('../includes/header.php');
             return word + tile.dataset.letter
         }, "")
 
-        // if (!targetWords.includes(guess)) {
-        //     showAlert("Not a name of an nf-core pipeline")
-        //     shakeTiles(activeTiles)
-        //     return
-        // }
+        if (!targetWords.includes(guess)) {
+            showAlert("Not a name of an nf-core pipeline")
+            shakeTiles(activeTiles)
+            return
+        }
 
 
         for (i = 0; i < WORD_LENGTH - activeTiles.length; i++) {
@@ -465,7 +509,7 @@ include('../includes/header.php');
         if (guess === targetWord) {
             danceTiles(tiles)
             document.querySelector("[data-guess-grid]").classList.add("bg-confetti-animated")
-            create_share_text()
+            createShareText()
             stopInteraction()
             return
         }
@@ -473,12 +517,12 @@ include('../includes/header.php');
         const remainingTiles = document.querySelector("[data-guess-grid]").querySelectorAll(":not([data-letter])")
         if (remainingTiles.length === 0) {
             showAlert(targetWord.toUpperCase(), null)
-            create_share_text()
+            createShareText()
             stopInteraction()
         }
     }
 
-    function create_share_text() {
+    function createShareText() {
         var sharetext = "nf-cordle <?php echo $offset; ?>\n";
         const tiles = document.querySelectorAll("[data-guess-grid] [data-state]");
         const tilemap = Array.from(tiles).map(tile => {
@@ -509,14 +553,36 @@ include('../includes/header.php');
             cookie_state.push(state)
             cookie_letter.push(letter)
         };
-        // write to cookie
-        document.cookie = "nf-cordle-state=" + JSON.stringify(cookie_state) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
-        document.cookie = "nf-cordle-letter=" + JSON.stringify(cookie_letter) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        //cookie should expire at 3 am or pm each day (when new word is available)
+        var d = new Date();
+        var reset_time = 0;
+        var morning_offset = 2 - d.toISOString().split("T")[1].split(":")[0];
+        var afternoon_offset = 14 - d.toISOString().split("T")[1].split(":")[0];
+        if(morning_offset > 0){
+            reset_time = morning_offset;
+        } else if (afternoon_offset > 0){
+            reset_time = afternoon_offset;
+        } else {
+            reset_time = Math.abs(afternoon_offset) + 12;
+        }
+        d.setHours(d.getHours()+reset_time-1);
+        d.setMinutes(59);
+        d.setSeconds(59);
+        d.setMilliseconds(0);
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = "nf-cordle-state=" + JSON.stringify(cookie_state) + ";" + expires + "; path=/";
+        document.cookie = "nf-cordle-letter=" + JSON.stringify(cookie_letter) + ";" + expires + "; path=/";
     }
 
     function loadCookie() {
         var cookie_state = [];
         var cookie_letter = [];
+        if (document.cookie.indexOf("nf-cordle-state") == -1) {
+            // show modal
+            $(document).ready(function() {
+                $("#modal-help").modal("show");
+            });
+        }
         if (document.cookie.indexOf("nf-cordle-state") != -1) {
             cookie_state = JSON.parse(document.cookie.split("nf-cordle-state=")[1].split(";")[0]);
         }
@@ -528,6 +594,7 @@ include('../includes/header.php');
             tile.dataset.state = cookie_state[i]
             tile.dataset.letter = cookie_letter[i]
             tile.textContent = cookie_letter[i]
+
         }
     }
 
