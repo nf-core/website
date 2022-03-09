@@ -1,6 +1,6 @@
 ---
 title: "Bytesize 37: Gather Town"
-subtitle: James A. Fellows Yates - HKI-Jena / MPI-EVA
+subtitle: James A. Fellows Yates - Leibniz-HKI / MPI-EVA
 type: talk
 start_date: "2022-03-15"
 start_time: "13:00 CET"

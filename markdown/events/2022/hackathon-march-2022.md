@@ -107,8 +107,7 @@ This group will focus on restructuring and organising the documentation on the w
 We will also be offering three different talks throughout the event at 14:30 each day.
 These focus on useful 'soft skills' for developers that can enhance their documentation.
 
-- 🖊 "Draw stuff good: how to use Inkscape" by [James Fellows Yates](https://github.com/jfy133)
-- 🚇 "Creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" by [James Fellows Yates](https://github.com/jfy133)
+- 🖊 "Draw stuff good: how to use Inkscape & creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" by [James Fellows Yates](https://github.com/jfy133)
 - 📊 "Pimp your MultiQC report" by [Phil Ewels](https://github.com/ewels)
 
 # Schedule
@@ -233,7 +232,7 @@ The following schedule should display times in your local time zone:
                 <td rowspan="2">Social Event (EMEA)<br>
                    <ul class="small list-unstyled">
                     <li>Location: Lounge</li>
-                <td rowspan="3">Hack!</td>
+                <td rowspan="6">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1647433800" data-timeformat="HH:mm z">13:30</td>
@@ -246,13 +245,13 @@ The following schedule should display times in your local time zone:
                 <td data-timestamp="1647437400" data-timeformat="HH:mm z">14:30</td>
                 <td rowspan="3">Presentation (Optional)<br>
                    <ul class="small list-unstyled">
+                    <li>Topic: Intro to Inkscape</li>
                     <li>Location: Lecture Theatre</li>
                 <td rowspan="3">Presentation (Optional)<br>
                    <ul class="small list-unstyled">
+                    <li>Topic: Custom MultiQC</li>
                     <li>Location: Lecture Theatre</li>
-                <td rowspan="3">Presentation (Optional)<br>
-                   <ul class="small list-unstyled">
-                    <li>Location: Lecture Theatre</li>
+
             </tr>
             <tr>
                 <td data-timestamp="1647439200" data-timeformat="HH:mm z">15:00</td>
@@ -332,6 +331,7 @@ The following schedule should display times in your local time zone:
 
 During the hackathon, we will have a few light-hearted fun and games!
 
+- Once again we are running our nf-core bingo throughout the three days! See instructions how to play [here](https://nfcore-bingo.web.app/).
 - Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
 - Finally, during Thursday's social event (see schedule above), we will be running a short quiz!
 
