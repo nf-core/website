@@ -98,6 +98,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <?php endif;
   if (isset($import_typeform) && $import_typeform) : ?>
     <script src="https://embed.typeform.com/next/embed.js"></script>
+
   <?php endif;
   if (isset($title) && $title == 'Publications') : ?>
     <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
