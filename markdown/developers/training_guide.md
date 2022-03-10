@@ -97,9 +97,10 @@ Markdown must be formatted according to the rules set by a linting tool called _
 We recommend using an extension for your code editor to fix markdown for you automatically when you save a file - there are Prettier plugins [for most editors](https://prettier.io/docs/en/editors.html), including [VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 Alternatively you can install and run the Prettier command line tool: `prettier -w .`
 
-#### Add your guide to the website navigation
+#### Adding your guide to the website navigation
 
 For now, new guides need to be added to the website navigation manually.
+A member of the core team will do that for you.
 
 ## Key points
 
