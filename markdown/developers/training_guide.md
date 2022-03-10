@@ -45,7 +45,7 @@ Thank you for helping us write a guide to using an aspect of nf-core.
 
 A checklist of what you need to begin.
 
-- Ask on #training about the guide you'd like to contribute.
+- Ask on the nf-core Slack [`#training` channel](https://nfcore.slack.com/channels/training) about the guide you'd like to contribute.
 - Make an issue on [nf-core website issues](https://github.com/nf-core/nf-co.re/issues) describing what you want to do, and assign yourself.
 - GitHub account.
 
@@ -53,7 +53,7 @@ A checklist of what you need to begin.
 
 ### Bytesize talk
 
-There is no bytesize talk at present, but if you'd like present one, please make a suggestion on the [Slack #bytesize channel](https://nfcore.slack.com/channels/bytesize).
+There is no bytesize talk about how to create training materials at present, but if you'd like present one, please make a suggestion on the Slack [`#bytesize` channel](https://nfcore.slack.com/channels/bytesize).
 
 ### Walkthrough
 
@@ -61,13 +61,14 @@ There is no bytesize talk at present, but if you'd like present one, please make
 
 Use this file `https://github.com/nf-core/nf-co.re/markdown/developers/training_guide.md` as a template to guide you.
 
-1. If you've not done so, make a fork of the [nf-core website repository](https://github.com/nf-core/nf-co.re/).
-2. Make a new branch from the `master` branch in your fork named after the guide you indend to submit e.g., `gitpod_training_guide`.
-3. Make a copy of the `training_guide.md` with an appropriate name to use as your skeleton.
+1. Make a fork of the [nf-core website repository](https://github.com/nf-core/nf-co.re/).
+2. Make a new branch from the `master` branch in your fork and check it out. Name it after the guide you intend to submit. For example: `git checkout -b gitpod_training_guide`
+3. Make a copy of the `markdown/developers/training_guide.md` with an appropriate name to use as your skeleton.
 
 #### Add questions.
 
 Include between 1-3 questions your guide is intended to answer.
+Use the _Questions_ header at the top of this page.
 
 #### Add objectives.
 
@@ -105,7 +106,9 @@ Provide links to where the reader can get additional support, or useful further 
 
 #### Format your document.
 
-Format your document using the `prettier` VS code extension. This can be performed either in VS code, or in Gitpod.
+Markdown must be formatted according to the rules set by a linting tool called _Prettier_ (<https://prettier.io/>).
+We recommend using an extension for your code editor to fix markdown for you automatically when you save a file - there are Prettier plugins [for most editors](https://prettier.io/docs/en/editors.html), including [VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
+Alternatively you can install and run the Prettier command line tool: `prettier -w .`
 
 ## Key points
 
