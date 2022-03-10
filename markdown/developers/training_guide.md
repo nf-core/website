@@ -37,16 +37,16 @@ Thank you for helping us write a guide to using an aspect of nf-core.
     - **Learning Objective:** A predictive statement describing the specific outcomes that a training session is intended to achieve.
     - **Key point:** An important take home message.
     - **Cognitive load:** This relates to the amount of information that working memory can hold at one time.
-    - **Fork a repository:** This makes a copy of the repository to your personal GitHub workspace. 
+    - **Fork a repository:** This makes a copy of the repository to your personal GitHub workspace.
     - **Make a branch:** A branch is another version of the files in your repository, including a history of how files were changed from the start of the branch to the current state of files.
 </details>
 
-## Before I begin
+## Before I begin
 
 A checklist of what you need to begin.
 
 - Ask on #training about the guide you'd like to contribute.
-- Make an issue on https://github.com/nf-core/nf-co.re/issues describing what you want to do, and assign yourself.
+- Make an issue on [nf-core website issues](https://github.com/nf-core/nf-co.re/issues) describing what you want to do, and assign yourself.
 - GitHub account.
 
 ## How to
@@ -89,7 +89,7 @@ Under the `### Guide` section, add a step by step walkthrough of what you intend
 Initially it is unlikely there will be a bytesize talk to link to, so leave a message that one can be contributed.
 If a bytesize talk exists, then provide a link using this html under the `### Bytesize talk` section. Update the `src` URL to the correct youtube link.
 
-```
+```html
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
