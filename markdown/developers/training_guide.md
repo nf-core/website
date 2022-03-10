@@ -7,18 +7,6 @@ subtitle: A guide to writing instructions for training material.
 
 Thank you for helping us write a guide to using an aspect of nf-core.
 
-## Links
-
-- [Questions](#questions)
-- [Objectives](#objectives)
-- [Glossary](#glossary)
-- [Before I begin](#before-i-begin)
-- [How to](#how-to)
-  - [Bytesize](#bytesize-talk)
-  - [Walkthrough](#walkthrough)
-- [Key points](#key-points)
-- [References](#references)
-
 ## Questions
 
 - How can I contribute a training guide to nf-core?
@@ -45,9 +33,9 @@ Thank you for helping us write a guide to using an aspect of nf-core.
 
 A checklist of what you need to begin.
 
+- Be familiar with Markdown. If you're new to markdown, have a go a this [Markdown tutorial](https://www.markdowntutorial.com/).
 - Ask on the nf-core Slack [`#training` channel](https://nfcore.slack.com/channels/training) about the guide you'd like to contribute.
 - Make an issue on [nf-core website issues](https://github.com/nf-core/nf-co.re/issues) describing what you want to do, and assign yourself.
-- GitHub account.
 
 ## How to
 
@@ -67,8 +55,7 @@ Use this file `https://github.com/nf-core/nf-co.re/markdown/developers/training_
 
 #### Add questions.
 
-Include between 1-3 questions your guide is intended to answer.
-Use the _Questions_ header at the top of this page.
+Include between 1-3 questions your guide is intended to answer under the `##Questions` header above.
 
 #### Add objectives.
 
@@ -109,6 +96,10 @@ Provide links to where the reader can get additional support, or useful further 
 Markdown must be formatted according to the rules set by a linting tool called _Prettier_ (<https://prettier.io/>).
 We recommend using an extension for your code editor to fix markdown for you automatically when you save a file - there are Prettier plugins [for most editors](https://prettier.io/docs/en/editors.html), including [VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 Alternatively you can install and run the Prettier command line tool: `prettier -w .`
+
+#### Add your guide to the website navigation
+
+For now, new guides need to be added to the website navigation manually.
 
 ## Key points
 
