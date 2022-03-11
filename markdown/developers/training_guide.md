@@ -102,6 +102,11 @@ Alternatively you can install and run the Prettier command line tool: `prettier 
 For now, new guides need to be added to the website navigation manually.
 A member of the core team will do that for you.
 
+#### Submit a pull request.
+
+Follow the instructions on the Github Documentation for [making a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+Link the issue created for the guide you wanted to submit, by adding it under the developers box on the right side (below the milestone box, and above the notifications box)
+
 ## Key points
 
 - Fork the nf-core website repository, and use the `training_guide.md` as a template.
