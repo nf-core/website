@@ -245,11 +245,11 @@ The following schedule should display times in your local time zone:
                 <td data-timestamp="1647437400" data-timeformat="HH:mm z">14:30</td>
                 <td rowspan="3">Presentation (Optional)<br>
                    <ul class="small list-unstyled">
-                    <li>Topic: Intro to Inkscape</li>
+                    <li>Topic: Custom MultiQC</li>
                     <li>Location: Lecture Theatre</li>
                 <td rowspan="3">Presentation (Optional)<br>
                    <ul class="small list-unstyled">
-                    <li>Topic: Custom MultiQC</li>
+                    <li>Topic: Intro to Inkscape</li>
                     <li>Location: Lecture Theatre</li>
 
             </tr>
