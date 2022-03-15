@@ -19,6 +19,8 @@ See [below](#topic-documentation) for details.
 
 This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
 
+<!--
+
 # Registration
 
 Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/march-2022) or in the widget below.
@@ -29,6 +31,8 @@ Registration is now OPEN! Please sign up [here](https://scilifelab.typeform.com/
 
 Please check back here for more details about the event and keep an eye out on twitter and on Slack,
 but in the mean time - book the dates in your calendar!
+
+-->
 
 # Topic: Documentation
 
