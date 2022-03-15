@@ -49,8 +49,8 @@ testing each command making sure they work, checking phrasing and descriptions t
 To keep things manageable, we will organise into the groups.
 You are free to change groups as you wish during the hackathon.
 
-We will also have talks and presentations during the hackathon.
-These will be focused on making pipeline-related graphics and customising MultiQC reports. Please see [below](#talks) for more information.
+We will also have additional events during the hackathon.
+These will be a presentation on making pipeline-related graphics and a helpdesk for customising MultiQC reports. Please see [below](#talks) for more information.
 
 ## Group 1 - Pipeline documentation
 
@@ -108,11 +108,11 @@ This group will focus on restructuring and organising the documentation on the w
 
 ## Talks
 
-We will also be offering three different talks throughout the event at 14:30 each day.
+We will also be offering two different additional events throughout the hackathon at 14:30 each day.
 These focus on useful 'soft skills' for developers that can enhance their documentation.
 
-- 🖊 "Draw stuff good: how to use Inkscape & creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" by [James Fellows Yates](https://github.com/jfy133)
-- 📊 "Pimp your MultiQC report" by [Phil Ewels](https://github.com/ewels)
+- 🖊 "Draw stuff good: how to use Inkscape & creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" presentation by [James Fellows Yates](https://github.com/jfy133)
+- 📊 "Pimp your MultiQC report" helpdesk hosted by [Phil Ewels](https://github.com/ewels)
 
 # Schedule
 
@@ -249,11 +249,11 @@ The following schedule should display times in your local time zone:
                 <td data-timestamp="1647437400" data-timeformat="HH:mm z">14:30</td>
                 <td rowspan="3">Presentation (Optional)<br>
                    <ul class="small list-unstyled">
-                    <li>Topic: Custom MultiQC</li>
-                    <li>Location: Lecture Theatre</li>
-                <td rowspan="3">Presentation (Optional)<br>
-                   <ul class="small list-unstyled">
                     <li>Topic: Intro to Inkscape</li>
+                    <li>Location: Lecture Theatre</li>
+                <td rowspan="3">Helpdesk (Optional)<br>
+                   <ul class="small list-unstyled">
+                    <li>Topic: Custom MultiQC</li>
                     <li>Location: Lecture Theatre</li>
 
             </tr>
