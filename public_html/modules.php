@@ -1,4 +1,6 @@
 <?php
+require_once('../includes/parse_md.php');
+
 $config = parse_ini_file("../config.ini");
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
@@ -137,7 +139,7 @@ echo $msg;
                             </div>
                         <?php endif; ?>
                         <p class="card-text mb-0 mt-2 description <?php echo $module['name']; ?>-description">
-                            <?php echo $module['description']; ?>
+                            <?php echo parse_md($module['description'])['content']; ?>
                         </p>
                         <div class="module-params d-flex">
                             <div class="module-input flex-fill">
@@ -164,8 +166,6 @@ echo $msg;
                                 foreach ($module['output'] as $output) {
                                     foreach ($output as $name => $output_value) {
                                         $description = $output_value['description'];
-                                        $description = str_replace('[', '<code class="px-0">[', $description);
-                                        $description = str_replace(']', ']</code>', $description);
                                         $output_text .= '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' . $output_value['description'] . '">' . $name . ' </code>';
                                     }
                                 }
@@ -190,6 +190,7 @@ echo $msg;
                                             $tool_text .= '<div>';
                                             $tool_text .= '<span>' . $name . ': </span>';
                                             $description = $tool_value['description'];
+                                            $description = parse_md($description)['content'];
                                             $tool_text .= '<span class="text-small description ' . $module['name'] . '-description" >' .  $description . '</span>';
                                             $tool_text .= '</div>';
                                         }
