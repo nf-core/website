@@ -1,5 +1,5 @@
 <?php
-echo "\n\nUpdating pipeline details - " . date("Y-m-d h:i:s") . "\n";
+echo "\n\nUpdating module details - " . date("Y-m-d h:i:s") . "\n";
 
 // Allow PHP fopen to work with remote links
 ini_set("allow_url_fopen", 1);
@@ -302,4 +302,4 @@ foreach ($pipelines as $pipeline) {
 }
 
 mysqli_close($conn);
-echo ("\nupdate_pipeline_details done " . date("Y-m-d h:i:s") . "\n\n");
+echo ("\nupdate_module_details done " . date("Y-m-d h:i:s") . "\n\n");
