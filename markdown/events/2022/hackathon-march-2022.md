@@ -50,7 +50,7 @@ To keep things manageable, we will organise into the groups.
 You are free to change groups as you wish during the hackathon.
 
 We will also have additional events during the hackathon.
-These will be a presentation on making pipeline-related graphics and a helpdesk for customising MultiQC reports. Please see [below](#talks) for more information.
+These will be a presentation on making pipeline-related graphics and a drop-in help desk for customising MultiQC reports. Please see [below](#talks) for more information.
 
 ## Group 1 - Pipeline documentation
 
@@ -112,7 +112,7 @@ We will also be offering two different additional events throughout the hackatho
 These focus on useful 'soft skills' for developers that can enhance their documentation.
 
 - 🖊 "Draw stuff good: how to use Inkscape & creating pipeline diagrams in Inkscape (like that [fancy metro-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png) one)" presentation by [James Fellows Yates](https://github.com/jfy133)
-- 📊 "Pimp your MultiQC report" helpdesk hosted by [Phil Ewels](https://github.com/ewels)
+- 📊 "Pimp your MultiQC report" drop-in help desk hosted by [Phil Ewels](https://github.com/ewels)
 
 # Schedule
 
@@ -251,9 +251,9 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Topic: Intro to Inkscape</li>
                     <li>Location: Lecture Theatre</li>
-                <td rowspan="3">Helpdesk (Optional)<br>
+                <td rowspan="3">Drop in (Optional)<br>
                    <ul class="small list-unstyled">
-                    <li>Topic: Custom MultiQC</li>
+                    <li>Topic: Customise MultiQC reports</li>
                     <li>Location: Lecture Theatre</li>
 
             </tr>
