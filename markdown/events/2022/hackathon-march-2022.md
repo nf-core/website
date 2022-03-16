@@ -337,6 +337,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 
 - Once again we are running our nf-core bingo throughout the three days! See instructions how to play [here](https://nfcore-bingo.web.app/).
 - Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
+- Every day, at 3am and 3pm CET, there will be a new pipeline name to guess in our wordle-clone [nf-cordle](https://nf-co.re/nf-cordle).
 - Finally, during Thursday's social event (see schedule above), we will be running a short quiz!
 
 All social activities are of course optional, but we hope to see as many people joining in as possible :tada:
