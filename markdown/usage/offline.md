@@ -59,3 +59,11 @@ For more information, see the [documentation for `nf-core download`](https://nf-
 Some pipelines require reference genomes and have built-in integration of AWS-iGenomes.
 If you wish to use these references you must download them and transfer to your offline cluster.
 Once transferred, follow the [reference genomes documentation](reference_genomes.md) to configure the base path for the references.
+
+## Bytesize talk
+
+Here is a bytesize talk explaining the necessary steps to run pipelines offline.
+
+<!-- markdownlint-disable -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N1rRr4J0Lps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- markdownlint-restore -->
