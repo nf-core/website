@@ -388,7 +388,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
     not erroneously terminate the module.
 
-    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
+    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf). If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
 
 - The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
