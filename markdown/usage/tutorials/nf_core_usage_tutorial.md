@@ -33,7 +33,7 @@ Companion tools can create a bare-bones pipeline from a template scattered with 
 Guidelines and documentation help to get Nextflow newbies on their feet in no time.
 Best of all, the *nf-core* community is always on hand to help.
 
-In this tutorial we discuss the best-practice guidelines developed by the *nf-core* community, why they're important and give insight into the best tips and tricks for budding Nextflow pipeline developers. ✨
+In this tutorial we discuss the best-practice guidelines developed by the *nf-core* community, why they're important and give insight into the best tips and tricks for budding Nextflow pipeline users. ✨
 
 ## Introduction
 
