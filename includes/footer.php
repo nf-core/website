@@ -87,15 +87,15 @@ if (isset($subfooter) and $subfooter) {
       <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
         <h5>For Authors</h5>
         <ul class="list-unstyled">
-          <li><a href="/developers/guidelines">Guidelines</a></li>
-          <li><a href="/developers/adding_pipelines">Adding a new pipeline</a></li>
-          <li><a href="/developers/adding_modules">Adding a new module</a></li>
-          <li><a href="/developers/release_checklist">Release checklist</a></li>
+          <li><a href="/contributing/guidelines">Guidelines</a></li>
+          <li><a href="/contributing/adding_pipelines">Adding a new pipeline</a></li>
+          <li><a href="/contributing/adding_modules">Adding a new module</a></li>
+          <li><a href="/contributing/release_checklist">Release checklist</a></li>
           <li><a href="/tools-docs">Lint error codes</a></li>
-          <li><a href="/developers/sync">Template synchronisation</a></li>
-          <li><a href="/developers/developer_tutorials">Developer tutorials</a></li>
-          <li><a href="/developers/editor_plugins">Code editor plugins</a></li>
-          <li><a href="/developers/design_guidelines">Graphic design guidelines</a></li>
+          <li><a href="/contributing/sync">Template synchronisation</a></li>
+          <li><a href="/contributing/developer_tutorials">Developer tutorials</a></li>
+          <li><a href="/contributing/editor_plugins">Code editor plugins</a></li>
+          <li><a href="/contributing/design_guidelines">Graphic design guidelines</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">

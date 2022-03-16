@@ -152,31 +152,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/usage/introduction" role="button" data-bs-toggle="dropdown">Usage</a>
+            <a class="nav-link dropdown-toggle" href="/usage/introduction" role="button" data-bs-toggle="dropdown">Docs</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/usage/introduction">Getting started</a>
-              <a class="dropdown-item" href="/usage/installation">Installation</a>
-              <a class="dropdown-item" href="/usage/configuration">Pipeline configuration</a>
-              <a class="dropdown-item" href="/usage/offline">Running offline</a>
-              <a class="dropdown-item" href="/usage/usage_tutorials">Usage tutorials</a>
-              <a class="dropdown-item" href="/usage/reference_genomes">Reference genomes</a>
-              <a class="dropdown-item" href="/usage/data_management">Data Management</a>
-              <a class="dropdown-item" href="/usage/troubleshooting">Troubleshooting</a>
-              <a class="dropdown-item" href="/usage/nextflow">Nextflow resources</a>
-            </div>
-          </li>
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/developers/guidelines" role="button" data-bs-toggle="dropdown">Developers</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/developers/guidelines">Guidelines</a>
-              <a class="dropdown-item" href="/developers/adding_pipelines">Adding a new pipeline</a>
-              <a class="dropdown-item" href="/developers/adding_modules">Adding a new module</a>
-              <a class="dropdown-item" href="/developers/release_checklist">Release checklist</a>
-              <a class="dropdown-item" href="/tools/docs/latest/pipeline_lint_tests/">Lint error codes</a>
-              <a class="dropdown-item" href="/developers/sync">Template synchronisation</a>
-              <a class="dropdown-item" href="/developers/developer_tutorials">Developer tutorials</a>
-              <a class="dropdown-item" href="/developers/editor_plugins">Code editor plugins</a>
-              <a class="dropdown-item" href="/developers/design_guidelines">Graphic design guidelines</a>
+              <a class="dropdown-item" href="/usage">Usage</a>
+              <a class="dropdown-item" href="/contributing">Contributing</a>
             </div>
           </li>
           <li class="nav-item p-1">

@@ -333,7 +333,7 @@ include('../includes/header.php');
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+            <a href="contributing/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
           </div>
         </div>
       </div>
@@ -346,7 +346,7 @@ include('../includes/header.php');
                 If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
               <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
+            <a href="contributing/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
           </div>
         </div>
       </div>
@@ -435,7 +435,7 @@ nf-core list
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
       <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="contributing/guidelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
 </div>
