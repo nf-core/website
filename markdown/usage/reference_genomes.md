@@ -3,28 +3,22 @@ title: Reference Genomes
 subtitle: How reference genomes are handled in nf-core
 ---
 
-Many nf-core pipelines need a reference genome for alignment, annotation or similar purposes.
+Many nf-core pipelines need a reference genome for alignment, annotation, or similar purposes.
 
 ## Illumina iGenomes
 
 To make the use of reference genomes easier, Illumina has developed a centralised resource called [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
-The most commonly used reference files are organised in a consistent structure for multiple genomes.
+The most commonly used reference genome files are organised in a consistent structure for multiple genomes.
 
 We have uploaded a copy of iGenomes onto AWS S3 and nf-core pipelines are configured to use this by default.
 AWS-iGenomes is hosted by Amazon as part of the [Registry of Open Data](https://registry.opendata.aws/aws-igenomes/) and are free to use. For more information about the AWS iGenomes, see [https://ewels.github.io/AWS-iGenomes](https://ewels.github.io/AWS-iGenomes/).
 
 All AWS-iGenome paths are specified in pipelines that support them.
-By default, the pipeline will automatically download the required reference files when you run the pipeline if you give an appropriate genome key (eg. `--genome GRCh38`).
+By default, the pipeline will automatically download the required reference files when you run the pipeline and an appropriate genome key is supplied (eg. `--genome GRCh38`).
 
-Downloading the files takes time and bandwidth, so we recommend making a local copy of the iGenomes resource if possible.
-Once downloaded, you can customise the variable `params.igenomes_base` in your custom configuration file to point to the reference location.
-For example:
+Downloading reference genome files takes time and bandwidth so, if possible, we recommend making a local copy of the iGenomes resource.
 
-```nextflow
-params.igenomes_base = '/path/to/data/igenomes/'
-```
-
-Using `--genome <id>` will then look to your local system for the reference instead of AWS S3.
+To use a local version of iGenomes, the variable `params.igenomes_base` must be set to the local igenome folder using either a configuration profile or by using `--igenomes_base` in your execution command. Setting the `params.igenomes_base` path in a custom config file will **not** work. More detailed information on this can be found [here](troubleshooting.md#using-a-local-version-of-igenomes).
 
 ## Adding paths to a config file
 
@@ -39,7 +33,7 @@ To use this system, add paths to your config file using the following template:
 params {
   genomes {
     'YOUR-ID' {
-      fasta  = '<PATH TO FASTA FILE>/genome.fa'
+      fasta  = '/path/to/data/genome.fa'
     }
     'OTHER-GENOME' {
       // [..]

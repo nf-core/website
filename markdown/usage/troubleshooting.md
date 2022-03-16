@@ -21,6 +21,7 @@ subtitle: How to troubleshoot common mistakes and issues
   - [A step of a pipeline wasn't executed](#a-step-of-a-pipeline-wasnt-executed)
 - [My pipeline update doesn't seem to do anything](#my-pipeline-update-doesnt-seem-to-do-anything)
 - [Unable to acquire lock error](#unable-to-acquire-lock-error)
+- [Using a local version of iGenomes](#using-a-local-version-of-igenomes)
 - [Extra resources and getting help](#extra-resources-and-getting-help)
 
 ## Input files not found
@@ -346,6 +347,24 @@ Normally suggest a previous Nextflow run (on the same folder) was not cleanly ki
 To fix this, you must clean the entirety of the run's `work/` directory e.g. with `rm -r work/` and re-running from scratch.
 
 `ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
+
+## Using a local version of iGenomes 
+
+The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.conf` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default.
+
+There are two seperate strategies for avoiding this problem:
+
+1. Setting the igenomes_base using a configuration profile 
+```nextflow
+params {
+  igenomes_base = '/<path>/<to>/<data>/igenomes'
+}
+```
+
+2. Specifying the  `--igenomes_base` in your executation command
+```bash
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
+```
 
 ## Extra resources and getting help
 
