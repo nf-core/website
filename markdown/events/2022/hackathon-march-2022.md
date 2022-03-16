@@ -59,6 +59,7 @@ We will coordinate our work and the issues we are working on using a single GitH
 
 💬 Slack group: [`hackathon-march2022-pipelines`](https://nfcore.slack.com/channels/hackathon-march2022-pipelines)<br>
 😊 Group Leads: [James Fellows Yates](https://github.com/jfy133), [Maxime Garcia](https://github.com/maxulysse)
+💻 [HackMD](https://hackmd.io/mnAm84mOQLKO0BqGBVuvUg)
 
 This group will focus on nf-core pipelines themselves.
 This is perfect for anyone already familiar with specific pipelines.
@@ -73,6 +74,7 @@ This is perfect for anyone already familiar with specific pipelines.
 
 💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/channels/hackathon-march2022-modules)<br>
 😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst), [Friederike Hanssen](https://github.com/FriederikeHanssen)
+💻 [HackMD](https://hackmd.io/bdEPR9COS72hj74EmUMyJQ)
 
 The pace of development with DSL2 and nf-core/modules has been a little crazy over the past months.
 Now things are settling down, we need to bring the website documentation up to date with the current state of the tools.
@@ -84,6 +86,7 @@ Now things are settling down, we need to bring the website documentation up to d
 
 💬 Slack group: [`hackathon-march2022-training`](https://nfcore.slack.com/channels/hackathon-march2022-training)<br>
 😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)
+💻 [HackMD](https://hackmd.io/qLpnWT1OTYWiqSMcQ3gSZA)
 
 There is an increasing amount of Nextflow and nf-core training material available.
 Tutorials and walkthroughs are perhaps some of the most important docs to keep up to date,
@@ -99,6 +102,7 @@ whilst keeping an eye out for things that are not clear or can be improved.
 
 💬 Slack group: [`hackathon-march2022-tools`](https://nfcore.slack.com/channels/hackathon-march2022-tools)<br>
 😊 Group Leads: [Matthias Hörtenhuber](https://github.com/mashehu/), [Phil Ewels](https://github.com/ewels/)
+💻 [HackMD](https://hackmd.io/9aqPL29_R1ScXO3EvJJvrQ)
 
 All that documentation has to go somewhere!
 This group will focus on restructuring and organising the documentation on the website to improve naviation and user-experience.
