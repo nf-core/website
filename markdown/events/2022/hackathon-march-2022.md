@@ -72,7 +72,7 @@ This is perfect for anyone already familiar with specific pipelines.
 ## Group 2 - DSL2 / modules documentation
 
 💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/channels/hackathon-march2022-modules)<br>
-😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst)
+😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst), [Friederike Hanssen](https://github.com/FriederikeHanssen)
 
 The pace of development with DSL2 and nf-core/modules has been a little crazy over the past months.
 Now things are settling down, we need to bring the website documentation up to date with the current state of the tools.
@@ -83,7 +83,7 @@ Now things are settling down, we need to bring the website documentation up to d
 ## Group 3 - Training documentation: carpentries, tutorials
 
 💬 Slack group: [`hackathon-march2022-training`](https://nfcore.slack.com/channels/hackathon-march2022-training)<br>
-😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)
+😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)
 
 There is an increasing amount of Nextflow and nf-core training material available.
 Tutorials and walkthroughs are perhaps some of the most important docs to keep up to date,
