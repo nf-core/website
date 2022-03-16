@@ -16,7 +16,7 @@ There are several topics covered in this documentation page:
 3. Making changes to a repository and commiting to git
 4. How to do code review (TBC)
 5. How to develop the tools package (TBC)
-6. How to develop markdown for the website (TBC)
+6. How to develop markdown for the website
 7. Other Nextflow tutorials using Gitpod
 
 
@@ -28,7 +28,8 @@ Now go to an nfcore repository (e.g. https://github.com/nf-core/rnaseq; all repo
 
 Once you have signed in, you should see the following:
 
-[PNG](https://github.com/nf-core/public_html/assets/img/nf-core-gitpod.png)
+![PNG](/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
+
 
 1. **The terminal** allows you to run all the programs in the repository, for example Nextflow and nf-core are installed in the nf-core RNAseq repository.
 
@@ -46,7 +47,7 @@ For example, for nf-core/rnaseq pipeline we can type:
 		--outdir my_result
     ```
 
-This should run the test data through nf-core rnaseq, using docker with your results in the folder: "my_result". This may take some time to complete.
+This should run the test data through nf-core rnaseq, using docker with your results in the folder: "my_result". This will take some time to complete.
 
 
 ## Configuration of Gitpod
@@ -71,14 +72,11 @@ Gitpod environments are a handy place to try out Nextflow and nf-core tools, tes
 Once you have made changes, you can push these to a new branch for review by the nf core team. First, make sure your edited files are saved. Then, click on the source control button (on the left hand panel), then choose create new branch and give an informative name. Then click the tick button to commit the code changes to your new git branch.
 
 
-
 ## How to do code review
 
 
 
-
 ## How to develop the tools package
-
 
 
 
