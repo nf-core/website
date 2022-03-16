@@ -22,9 +22,8 @@ if ($result = mysqli_query($conn, $sql)) {
     }
 }
 // generate a new number every twelve hours
-$date1 = date_create("2022-03-08T03:00:00");
+$date1 = date_create("2022-03-08T03:00:00",new DateTimeZone('Europe/Stockholm'));
 $date2 = date_create("now");
-
 
 $offset = floor(($date2->getTimestamp() - $date1->getTimestamp()) / (60 * 60 * 12));
 
