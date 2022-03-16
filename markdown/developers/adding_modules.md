@@ -517,7 +517,12 @@ For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fas
 
 ### Using a stub test when required test data is too big
 
-If the module absolute cannot run using tiny test data, there is a possibility to add `-stub-run` to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must `touch` all expected output files and the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/73aaecbc3ae62a124e1148b68b1a69dcfd9db0ed/modules/ascat/main.nf#L137-L152). In the `test.yml` the `-stub-run` argument and the md5sum are manually entered as empty-file md5sums (`d41d8cd98f00b204e9800998ecf8427e`) for each of the files that are added in the stub-block. This causes the stub-code block to be activated ([example](https://github.com/nf-core/modules/blob/73aaecbc3ae62a124e1148b68b1a69dcfd9db0ed/tests/modules/ascat/test.yml)).
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/modules/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/tests/modules/ascat/test.yml)):
+
+```
+nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
+```
+
 
 ## Help
 
