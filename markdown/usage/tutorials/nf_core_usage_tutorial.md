@@ -5,7 +5,7 @@ subtitle: Tutorial covering the basics of using nf-core pipelines.
 
 > Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: ***"Getting started with nf-core"*** *(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html)).*
 >
-> Duration: **1hr 45**
+> Duration: **1hr**
 >
 > Updated for the nf-core Hackathon 2020, London 2020-03 *(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))*.
 >
@@ -191,7 +191,7 @@ To make it easy to apply a group of options on the command line, Nextflow uses t
     * Always loaded. Contains pipeline-specific parameters and "sensible defaults" for things like computational requirements
     * Does *not* specify any method for software packaging. If nothing else is specified, Nextflow will expect all software to be available on the command line.
 2. Pipeline: Core config profiles
-    * All *nf-core* pipelines come with some generic config profiles. The most commonly used ones are for software packaging: `docker`, `singularity` and `conda`
+    * All *nf-core* pipelines come with some generic config profiles. The most commonly used ones are for software packaging: `docker`, `singularity` and `conda`. To ensure reproducibility across different compute infrastructures, it is recommended to use containers instead of conda environments.
     * Other core profiles are `debug` and `test`
 3. [nf-core/configs](https://github.com/nf-core/configs): Server profiles
     * At run time, *nf-core* pipelines fetch configuration profiles from the [configs](https://github.com/nf-core/configs) remote repository. The profiles here are specific to clusters at different institutions.
