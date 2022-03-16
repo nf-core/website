@@ -531,6 +531,71 @@ If the module absolute cannot run using tiny test data, there is a possibility t
 nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
 ```
 
+## Into the `meta` map
+
+As you've noticed most modules take an input of
+
+```nextflow
+input:
+tuple val(meta), path(reads)
+```
+
+You have probably also noticed, this pattern doesn't work out of the box with [fromFilePairs](https://www.nextflow.io/docs/edge/channel.html#fromfilepairs)
+
+The difference between the two:
+
+```nextflow
+// fromFilePairs
+filepairs = [SRR493366, [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
+
+// meta map
+meta_map = [[id: 'test', single_end: false], // meta map
+            [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
+```
+
+As you can see the difference, they are both [groovy lists](https://www.tutorialspoint.com/groovy/groovy_lists.htm).
+However, the filepairs just has a `val` that is a string, where as the `meta_map` the first value in the list, is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
+The only required value is `id` for most of the modules, however they occasionally need things like `single_end`.
+
+### Common patterns
+
+The `meta map` is generated from [create_fastq_channel function in the input_check subworkflow](https://github.com/nf-core/rnaseq/blob/587c61b441c5e00bd3201317d48b95a82afe6aaa/subworkflows/local/input_check.nf#L23-L45) of most nf-core pipelines.
+
+#### Generating a `meta map` from file pairs
+
+Sometimes you want to use nf-core modules in small scripts. You don't want to make a samplesheet, or maintain a bunch of validation.
+For example here's an example script to run fastqc
+
+```nextflow
+nextflow.enable.dsl = 2
+
+params.input = "*.fastq.gz"
+
+include { FASTQC } from "./modules/nf-core/modules/fastqc/main"
+
+workflow {
+    ch_fastq = Channel.fromFilePairs(params.input, size: -1)
+        .map {
+            meta, fastq ->
+            def fmeta = [:]
+            // Set meta.id
+            fmeta.id = meta
+            // Set meta.single_end
+            if (fastq.size() == 1) {
+                fmeta.single_end = true
+            } else {
+                fmeta.single_end = false
+            }
+            [ fmeta, fastq ]
+        }
+
+    FASTQC ( ch_fastq )
+}
+```
+
+### Conclusion
+
+As you can see the `meta map` is a quite flexible way for storing meta data in channels. Feel free to add whatever other key-value pairs your pipeline may need to it. We're looking to add [Custom objects](https://github.com/nf-core/modules/issues/1338) which will lock down the usage a bit more.
 
 ## Help
 
