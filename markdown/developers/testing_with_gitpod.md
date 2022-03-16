@@ -5,55 +5,91 @@ subtitle: Testing, Code review and Website dev.
 
 # Introduction
 
-Gitpod is an open-source developer platform that can be spun up in one click from a Git repository. It has many purposes, including: running practise pipelines (e.g. training sessions), editing code and live review of html documentation. We can then push changes to git branches for review. Use of Gitpod is free for use up to 50hours/month (currently). 
+Gitpod is an open-source developer platform that can be spun up quickly from a Git repository, containing all the programs needed to run your pipelines. It has many purposes, including: testing pipelines, learning Nextflow, reviewing/editing code and live views of edited markdown and HTML for webpage development. In addition, within Gitpod, any change can be pushed to branches for review. 
+
+Gitpod is free for use up to 50hours/month (currently). You can find their extensive documentation [here](https://gitpod.io/). 
 
 There are several topics covered in this documentation page:
 
-1. Downloading and running Gitpod with the nf core repo
+1. Downloading and running Gitpod on an nf-core repo
 2. Configuration of Gitpod
-3. Testing nextflow and nf core tools in Gitpod
-4. How to do code review
-5. How to develop the tools package
-6. How to develop for the website
-7. How to update the Gitpod environment
+3. Making changes to a repository and commiting to git
+4. How to do code review (TBC)
+5. How to develop the tools package (TBC)
+6. How to develop for the website (TBC)
+7. Other Nextflow tutorials using Gitpod
 
-### Downloading and running Gitpod with the nf core reposistory
 
-The first step is to install the browser extension: https://www.gitpod.io/docs/browser-extension
+### Downloading and running Gitpod with on an nf-core repo
 
-Now go to the nfcore repository (https://github.com/nf-core/nf-co.re) and you should find a green Gitpod button in upper right of the screen. If you click on this it will link to an appended URL (https://gitpod.io/#https://github.com/nf-core/nf-co.re), which will open Gitpod and ask you to sign in with either Github,GitLab or Bitbucket. 
+First install the browser extension: https://www.gitpod.io/docs/browser-extension
+
+Now go to an nfcore repository (e.g. https://github.com/nf-core/rnaseq; all repos should have working gitpod instances) and you should find a green Gitpod button toward the upper right of the screen. If you click on this, it will link to an appended URL (https://gitpod.io/#https://github.com/nf-core/rnaseq), which will open Gitpod and ask you to sign in with either Github,GitLab or Bitbucket. 
 
 Once you have signed in, you should see the following:
 
-<Layout_to_be_completed.img>
+[PNG](https://github.com/nf-core/public_html/assets/img/nf-core-gitpod.png)
 
-The terminal can be used ...
-The left hand panel allows you to adjust settings ...
-The ...
+**The terminal** allows you to run all the programs in the repository, for example Nextflow and nf-core are installed in the nf-core RNAseq repository.
 
-If you have made changes and want to push these changes to a new branch for review by the nf core team. You next need to click on the source control button (left panel), then choose create new branch and give an informative name. Then click the tick button to commit the code changes to git.
+**The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, etc.)
+
+**The main window** allows you to view and edit files.
+
+Now you can try to run Nextflow with the chosen nf-core repository. 
+
+For example, for nf-core/rnaseq pipeline we can type:
+
+    ```console
+		nextflow run nf-core/rnaseq \
+		-profile test,docker \
+		--outdir my_result
+    ```
+
+This should run the test data through nf-core rnaseq, using docker with your results in the folder: "my_result". This may take some time to complete.
+
 
 ### Configuration of Gitpod
 
-Within a git repository, the main file that controls the gitpod environment is the `.gitpod.yml` file, that contains the instructions on which environment to build and which tools to install. 
+Within each git repository, the main file that controls the gitpod environment is the `.gitpod.yml` file, that contains the instructions on which environment to build and which tools to install. 
 
-Check out the nf core `.gitpod.yml` file https://github.com/nf-core/nf-co.re/blob/master/.gitpod.yml[here]. You can see four main sections:
+Check out the nf core `.gitpod.yml` file [here](https://github.com/nf-core/nf-co.re/blob/master/.gitpod.yml). You will often see five main sections:
 
-1. github - allows you to set prebuild gitpod environments for the master or branches. It also allows checks, comments and pull requests.
-2. vscode - allows vscode extensions within your environment.
-3. ports - opens a port to serve traffic to your on an authenticated URL
-4. tasks - this tells gitpod to run particular jobs. In this case we pull a docker container so that we have all of the tools needed in this environment. We can also include lines to download nextflow, nfcore and any other tool you need (which we will explore in a later section).
+1. **github** - allows you to set prebuild gitpod environments for the master or branches. It also allows checks, comments and pull requests.
+2. **vscode** - allows vscode extensions within your environment.
+3. **ports**  - opens a port to serve traffic to a public URL
+4. **tasks**  - this tells gitpod to run particular jobs. In this case we pull a docker container so that we have all of the tools needed in this environment. We can also include lines to download nextflow, nfcore and any other tool you need (which we will explore in a later section).
+5. **image** - a container image to pull into Gitpod. Many nf-core pipelines use the image `nfcore/gitpod:latest`. This allows the gitpod environment to contain working nextflow and nf-core scripts and other essential tools such as docker.
 
-For more detailed information about these settings, check out the extensive docs at Gitpod (https://www.gitpod.io/docs/config-gitpod-file[here])
+For more detailed information about these settings, check out the extensive docs at Gitpod [here](https://www.gitpod.io/docs/config-gitpod-file).
 
-### Testing nextflow and nf core tools in Gitpod
 
-To configure a Gitpod environment to test nextflow/nfcore scripts or for use in training events. 
+### Making changes to a repository and commiting to git.
+
+Gitpod environments are a handy place to try out Nextflow and nf-core tools, test new features and make suggested changes to the underlying code. 
+
+Once you have made changes, you can push these to a new branch for review by the nf core team. Next, you need to click on the source control button (on the left hand panel), then choose create new branch and give an informative name. Then click the tick button to commit the code changes to git.
+
+
+### Other Nextflow tutorials using Gitpod
+
+1. Official Seqera (Nextflow) Training  (Paolo di Tommaso, Evan Floden). -> Link Pending
+
+2. Variant Calling Nextflow Tutorial (Sateesh Peri and Michael Cipriano)  https://sateeshperi.github.io/nextflow_varcal/nextflow/. With a gipod environment at this link:https://gitpod.io/#https://github.com/sateeshperi/nextflow_tutorial.git . This one comes with instructions for running a tutorial completely within Gitpod.
+
+
+
 
 ### How to do code review
 
+
+
+
 ### How to develop the tools package
+
+
+
 
 ### How to develop for the website
 
-### How to update the Gitpod environment
+To develop code for the nfcore website (https://github.com/nf-core/nf-co.re) click the green Gitpod button in upper right of the screen of the repo (once you have downloaded the browser extension). Or click the following link (https://gitpod.io/#https://github.com/nf-core/nf-co.re), which will open Gitpod and ask you to sign in with either Github,GitLab or Bitbucket. 
