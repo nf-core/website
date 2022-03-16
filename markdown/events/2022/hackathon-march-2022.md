@@ -53,7 +53,7 @@ You are free to change groups as you wish during the hackathon.
 We will also have additional events during the hackathon.
 These will be a presentation on making pipeline-related graphics and a drop-in help desk for customising MultiQC reports. Please see [below](#talks) for more information.
 
-We will coordinate our work and the issues we are working on using a single GitHub [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/27). There will be a separate tab for each Group where we have collated a list of relevant issues. 
+We will coordinate our work and the issues we are working on using a single GitHub [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/27). There will be a separate tab for each Group where we have collated a list of relevant issues.
 
 ## Group 1 - Pipeline documentation
 
