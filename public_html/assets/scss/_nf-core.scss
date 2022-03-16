@@ -1329,4 +1329,10 @@ Launch Page
   height:50vh;
   overflow-x: scroll;
 }
-
+// nf-cordle
+.tile {
+  color: $gray-100;
+}
+.tile[data-state="active"] {
+  color: inherit;
+}

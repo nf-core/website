@@ -300,7 +300,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-- All non-mandatory command-line tool options MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+- All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
     `<module>.nf`:
 
@@ -388,7 +388,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
     not erroneously terminate the module.
 
-    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
+    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf). If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
 
 - The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
@@ -415,11 +415,11 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
   - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
-  - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/2ad98162f355671061f457c7c79db45c13478086/modules/pbccs/main.nf#L39)) which will raise an error asking the developer to change the `options.suffix` variable to rename the output files so they don't clash.
+  - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
   
     ```nextflow
     script:
-    if ("$bam" == "${prefix}.bam") error "Input and output names are the same, use the suffix option to disambiguate!"
+    if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
     ```
 
 ### Input/output options
@@ -514,6 +514,15 @@ Fomerly, results were published using a custom `publishDir` definition, customis
 If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
 
 For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
+
+### Using a stub test when required test data is too big
+
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/ascat/test.yml)):
+
+```console
+nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
+```
+
 
 ## Help
 

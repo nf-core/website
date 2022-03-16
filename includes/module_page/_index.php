@@ -1,6 +1,6 @@
 <?php
-
 require_once('../includes/functions.php');
+require_once('../includes/parse_md.php');
 
 $config = parse_ini_file("../config.ini");
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
@@ -19,7 +19,6 @@ if ($result = mysqli_query($conn, $sql)) {
     }
 }
 mysqli_close($conn);
-
 // function to create bootstrap row with the first column for the name and type and the second for the descritption
 function create_row($name, $type, $description, $pattern)
 {
@@ -34,8 +33,8 @@ function create_row($name, $type, $description, $pattern)
     $row .= '<a href=#' . $id . ' class="header-link scroll_to_link me-2"><span class="fas fa-link" aria-hidden="true"></span></a>';
     $row .= '</h4>';
     $row .= '</div>';
-    $row .= '<div class=" col-12 col-md'.($pattern != ''? '-5' : '-7').'">';
-    $row .= '<span class="small">' . $description . '</span>';
+    $row .= '<div class=" col-12 col-md' . ($pattern != '' ? '-5' : '-7') . '">';
+    $row .= '<span class="small">' . parse_md($description)['content'] . '</span>';
     $row .= '</div>';
     $row .= '<div class="col-12 col-md' . ($pattern != '' ? '-4' : '-1') . ' ms-auto">';
     if ($pattern != '') {
@@ -46,7 +45,6 @@ function create_row($name, $type, $description, $pattern)
     $row .= '</div>';
     return $row;
 }
-
 $header = '<div class="row border-bottom border-3">';
 $header .= '<div class="col-12 col-md-3">';
 $header .= '<span class="text-muted">Name</span>';
@@ -63,7 +61,7 @@ $header .= '</div>';
 ## Configure page header
 ########
 $title = 'modules/<br class="d-sm-none">' . $module['name'];
-$subtitle = $module['description'];
+$subtitle = parse_md($module['description'])['content'];
 $content = '';
 $schema_content = '';
 $import_chartjs = true;
@@ -137,7 +135,7 @@ include('../includes/header.php');
         <h2 id="description" class="ms-n3"><i class=" far fa-book fa-fw"></i> Description
             <a href="#description" class="header-link scroll_to_link"><span class="fas fa-link" aria-hidden="true"></span></a>
         </h2>
-        <p class="ps-2"><?php echo $module['description']; ?></p>
+        <p class="ps-2"><?php echo parse_md($module['description'])['content']; ?></p>
         <div class="module-params ">
             <div class="module mt-5-input">
                 <h2 id="input" class="text-success ms-n3"><i class="fad fa-sign-in fa-fw"></i> Input
@@ -151,9 +149,7 @@ include('../includes/header.php');
                 foreach ($module['input'] as $input) {
                     foreach ($input as $name => $input_value) {
                         $description = $input_value['description'];
-                        $description = str_replace('[', '<code class="px-0">[', $description);
-                        $description = str_replace(']', ']</code>', $description);
-                        $input_text .= create_row($name, $input_value['type'], $description, $input_value['pattern']);
+                        $input_text .= create_row($name, $input_value['type'], $description, $input_value['pattern']) ;
                     }
                 }
                 $input_text .= '</div>';
@@ -171,8 +167,6 @@ include('../includes/header.php');
                 foreach ($module['output'] as $output) {
                     foreach ($output as $name => $output_value) {
                         $description = $output_value['description'];
-                        $description = str_replace('[', '<code class="px-0">[', $description);
-                        $description = str_replace(']', ']</code>', $description);
                         $output_text .= create_row($name, $output_value['type'], $description, $output_value['pattern']);
                     }
                 }
@@ -199,6 +193,7 @@ include('../includes/header.php');
                         $documentation = '<a class="btn btn-outline-secondary float-end" data-bs-toggle="tooltip" title="documentation" href=' . $documentation_url . '><i class="far fa-books"></i> Documentation</a>';
                         $tool_text .= '<h4>' . $name . $documentation . ' </h4>';
                         $description = $tool_value['description'];
+                        $description = parse_md($description)['content'];
                         $tool_text .= '<span class="small collapse show description ' . $module['name'] . '-description" >' .  $description . '</span>';
                         $tool_text .= '<div class="d-flex mt-3">';
                         if ($tool_value['tool_dev_url'] != $documentation_url & $tool_value['tool_dev_url'] != '' & trim(strtolower($tool_value['tool_dev_url'])) != "none") {
