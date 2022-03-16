@@ -515,6 +515,10 @@ If a new test dataset is added to [`tests/config/test_data.config`](https://gith
 
 For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
 
+### Using a stub test when required test data is too big
+
+If the module absolute cannot run using tiny test data, there is a possibility to add `-stub-run` to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must `touch` all expected output files and the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/73aaecbc3ae62a124e1148b68b1a69dcfd9db0ed/modules/ascat/main.nf#L137-L152). In the `test.yml` the `-stub-run` argument and the md5sum are manually entered as empty-file md5sums (`d41d8cd98f00b204e9800998ecf8427e`) for each of the files that are added in the stub-block. This causes the stub-code block to be activated ([example](https://github.com/nf-core/modules/blob/73aaecbc3ae62a124e1148b68b1a69dcfd9db0ed/tests/modules/ascat/test.yml)).
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
