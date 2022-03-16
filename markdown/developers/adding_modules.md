@@ -388,7 +388,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
     not erroneously terminate the module.
 
-    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
+    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf). If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
 
 - The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
@@ -514,6 +514,15 @@ Fomerly, results were published using a custom `publishDir` definition, customis
 If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
 
 For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
+
+### Using a stub test when required test data is too big
+
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/ascat/test.yml)):
+
+```console
+nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
+```
+
 
 ## Help
 
