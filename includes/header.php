@@ -98,6 +98,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <?php endif;
   if (isset($import_typeform) && $import_typeform) : ?>
     <script src="https://embed.typeform.com/next/embed.js"></script>
+
   <?php endif;
   if (isset($title) && $title == 'Publications') : ?>
     <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
@@ -190,6 +191,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
+              <a class="dropdown-item" href="/mentorships">Mentorships</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>

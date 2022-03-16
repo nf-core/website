@@ -1,12 +1,12 @@
 ---
-title: "Bytesize 35: Troubleshooting a failed pipeline"
+title: "Bytesize 36: Customising your MultiQC reports"
 subtitle: Phil Ewels - National Genomics Infrastructure / SciLifeLab, Sweden
 type: talk
-start_date: "2022-03-01"
+start_date: "2022-03-08"
 start_time: "13:00 CET"
-end_date: "2022-03-01"
+end_date: "2022-03-08"
 end_time: "13:30 CET"
-youtube_embed: https://youtu.be/z9n2F4ByIkY
+youtube_embed: https://www.youtube.com/watch?v=a3_IYSMrKAk
 location_url:
  - https://zoom.us/j/94352451216
 ---
@@ -19,7 +19,7 @@ Just **15 minutes** + questions, we will be focussing on topics about using and 
 These will be recorded and made available at <https://nf-co.re>
 It is our hope that these talks / videos will build an archive of training material that can complement our documentation. Got an idea for a talk? Let us know on the [`#bytesize`](https://nfcore.slack.com/channels/bytesize) Slack channel!
 
-## Bytesize 35: Troubleshooting a failed pipeline
+## Bytesize 36: Customising your MultiQC reports
 
-This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to troubleshoot a failing pipeline.
-He'll cover common problems, where to start looking for issues and how to ask for help in the most effective way.
+This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will talk about MultiQC (of which he is the author).
+He'll cover customising reports to have consistent branding, additional rich content and more.
