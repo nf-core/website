@@ -64,7 +64,7 @@
     # Send everything else to our dynamic content loader
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /docs.php?path=$1 [L,NC,QSA]
+    RewriteRule ^(.*)$ /_routes.php?path=$1 [L,NC,QSA]
 
     # Nicer error pages
     ErrorDocument 404 /404.php
