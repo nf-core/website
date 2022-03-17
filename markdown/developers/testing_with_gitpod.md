@@ -42,7 +42,7 @@ This should run the test data through nf-core rnaseq, using docker with your res
 See the following guides for Gitpod use in different scenarios:
 
 1. [Configuration of a Gitpod environment](gitpod/config.md)
-2. [Running git through Gitpod](gitpod/git_in_gitpod.md)
+2. [Using git within Gitpod](gitpod/git_in_gitpod.md)
 3. [How to test a module with pytest in Gitpod](gitpod/pytest.md)
 4. [How to develop Markdown for the nf-core website](gitpod/webdev.md)
 5. [Other Gitpod tutorials](gitpod/other.md)

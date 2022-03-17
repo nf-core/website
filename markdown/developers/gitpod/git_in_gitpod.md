@@ -8,4 +8,4 @@ First, make sure your edited files are saved in your Gitpod IDE. Then click the 
 
 To stage files to this new branch, click on the **Source Control** button (on the left hand panel).This shows all the changes to files and you can stage all changes by clicking the + button when you hover over the file name.
 
-Finally, type in a commit message and click the tick button at the top of the source window. You should have now pushed the new files to your new branch.
+Finally, type in a commit message and click the tick button at the top of the source window. You should have now pushed the new files to your new branch. 
