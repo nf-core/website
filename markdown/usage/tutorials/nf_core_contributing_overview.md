@@ -43,8 +43,9 @@ In this tutorial we discuss the best-practice guidelines developed by the *nf-co
 *nf-core* is a community-led project to develop a set of best-practice pipelines built using Nextflow.
 
 The aim of *nf-core* is to develop with the community over GitHub and other communication channels to build a pipeline to solve a particular analysis task.
-We therefore encourage cooperation and adding features to existing pipelines.
-Before considering starting a new pipeline, have a look if a pipeline already exists performing a similar task and consider contributing to that one instead!
+We therefore encourage cooperation and adding new features to existing pipelines.
+Before considering starting a new pipeline, have a look if a pipeline already exists performing a similar task and consider contributing to that one instead.
+If there is no pipeline for the analysis task at hand, let us know about your new pipeline plans on Slack in the [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines) channel.
 
 Pipelines are governed by a set of guidelines, enforced by community code reviews and automatic linting (code testing).
 A suite of helper tools aim to help people run and develop pipelines.
@@ -399,4 +400,4 @@ If in doubt, please ask for help on Slack.
 
 If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re).
 
-> [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet) for *nf-core*, November 2021
+> [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen) for *nf-core*, March 2022
