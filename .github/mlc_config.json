@@ -1,7 +1,7 @@
 {
   "replacementPatterns": [
     {
-      "pattern": "^\/(.*)",
+      "pattern": "^/(.*)",
       "replacement": "https://nf-co.re/$1"
     }
   ],
@@ -16,12 +16,7 @@
       "pattern": "bingo.web.app"
     }
   ],
-  "aliveStatusCodes": [
-    200,
-    301,
-    403,
-    429
-  ],
+  "aliveStatusCodes": [200, 301, 403, 429],
   "timeout": "20s",
   "retryOn429": true,
   "retryCount": 5,

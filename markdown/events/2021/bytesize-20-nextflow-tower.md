@@ -1,15 +1,15 @@
 ---
-title: "Bytesize 20: Nextflow Tower"
+title: 'Bytesize 20: Nextflow Tower'
 subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
-start_date: "2021-09-21"
-start_time: "13:00 CEST"
-end_date: "2021-09-21"
-end_time: "13:30 CEST"
+start_date: '2021-09-21'
+start_time: '13:00 CEST'
+end_date: '2021-09-21'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/zS_hbXQmHbI
 location_url:
- - https://youtu.be/zS_hbXQmHbI
- - https://zoom.us/j/94352451216
+  - https://youtu.be/zS_hbXQmHbI
+  - https://zoom.us/j/94352451216
 ---
 
 # nf-core/bytesize
@@ -51,7 +51,7 @@ This week, Evan Floden ([@evanfloden](http://github.com/evanfloden/)) will provi
 
 [8:13](https://youtu.be/zS_hbXQmHbI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=493) So you have an interaction very much similar to what you would use if you have used `nextflow run` with Tower. You essentially specify a workspace ID, specify a token that you’re going to be using, and then that submits into that workspace that you’re going to use. There are a few more things here about how you can set this up, and there’s a tutorial as well. For the purposes of this talk, I am going to give you a short demo of what it looks like.
 
-[8:39](https://youtu.be/zS_hbXQmHbI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=519) So if I was here in the command line interface, I could then interact with my Tower server. Maybe I’d like to list the credentials that are available to me in Tower. If I list them here, I can see I have some AWS credentials set up. When I set them up, they’ve got some ID associated with them, and then very much like `nextflow run`, we wanted to have `/towr launch`. This is  for those who want to interact with the command line. I can use this to launch any Nextflow repository. If it’s set to run, I can check in Tower in the workspace to see if it has triggered the execution of the pipeline. So this is another kind of quick way to do this. We also see cases where people want to automate the creation of computer environments; one for every user or parameterise that somehow. It also allows you to do that with the CLI.
+[8:39](https://youtu.be/zS_hbXQmHbI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=519) So if I was here in the command line interface, I could then interact with my Tower server. Maybe I’d like to list the credentials that are available to me in Tower. If I list them here, I can see I have some AWS credentials set up. When I set them up, they’ve got some ID associated with them, and then very much like `nextflow run`, we wanted to have `/towr launch`. This is for those who want to interact with the command line. I can use this to launch any Nextflow repository. If it’s set to run, I can check in Tower in the workspace to see if it has triggered the execution of the pipeline. So this is another kind of quick way to do this. We also see cases where people want to automate the creation of computer environments; one for every user or parameterise that somehow. It also allows you to do that with the CLI.
 
 [10:08](https://youtu.be/zS_hbXQmHbI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=608) OK, next thing is small but maybe quite useful for people who might not have outputs that are straightforward to visualise. Those could be in an S3 bucket for example. What we have come up with is a way to manage outputs, essentially to view and share results from a Nextflow pipeline. So what you can do here is define any given output (a classic example is MultiQC) in the workflow definition. Once the pipeline run is complete, you can then visualise those reports in PDF, HTML etc. formats. This keeps a kind of centralised place for those results and it allows visualisation of the different processes during the run.
 

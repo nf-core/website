@@ -83,7 +83,15 @@ If a bytesize talk exists, then provide a link using this html under the `### By
 
 ```html
 <div class="ratio ratio-16x9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/xuNYATGFuw4"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
 </div>
 ```
 
@@ -108,7 +116,6 @@ Your question here.
   <summary>Click to expand the solution.</summary>
 
   Text of your solution here.
-
 </details>
 ```
 

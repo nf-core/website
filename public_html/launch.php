@@ -1,14 +1,16 @@
 <?php
 
-require_once('../includes/functions.php');
-require_once('../includes/parse_md.php');
+require_once '../includes/functions.php';
+require_once '../includes/parse_md.php';
 $mainpage_container = false;
-$error_msgs = array();
+$error_msgs = [];
 // Get available pipelines / releases
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
-$pipelines = array();
+$pipelines = [];
 foreach ($pipelines_json->remote_workflows as $wf) {
-    if ($wf->archived) continue;
+    if ($wf->archived) {
+        continue;
+    }
     $releases = [];
     if (count($wf->releases) > 0) {
         usort($wf->releases, 'rsort_releases');
@@ -21,21 +23,22 @@ foreach ($pipelines_json->remote_workflows as $wf) {
 }
 
 // Loading launch page for a pipeline from the website
-$nxf_flag_schema = array(
+$nxf_flag_schema = [
     'coreNextflow' => [
         'title' => 'Nextflow command-line flags',
         'type' => 'object',
         'description' => 'General Nextflow flags to control how the pipeline runs.',
-        'help_text' => "These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.",
+        'help_text' =>
+            'These are not specific to the pipeline and will not be saved in any parameter file. They are just used when building the `nextflow run` launch command.',
         'properties' => [
             '-name' => [
                 'type' => 'string',
                 'description' => 'Unique name for this nextflow run',
-                'pattern' => '^[a-zA-Z0-9-_]+$'
+                'pattern' => '^[a-zA-Z0-9-_]+$',
             ],
             '-profile' => [
                 'type' => 'string',
-                'description' => 'Configuration profile'
+                'description' => 'Configuration profile',
             ],
             '-work-dir' => [
                 'type' => 'string',
@@ -45,12 +48,13 @@ $nxf_flag_schema = array(
             '-resume' => [
                 'type' => 'boolean',
                 'description' => 'Resume previous run, if found',
-                'help_text' => "Execute the script using the cached results, useful to continue executions that was stopped by an error",
-                'default' => False
-            ]
-        ]
-    ]
-);
+                'help_text' =>
+                    'Execute the script using the cached results, useful to continue executions that was stopped by an error',
+                'default' => false,
+            ],
+        ],
+    ],
+];
 $release = isset($_GET['release']) ? $_GET['release'] : false;
 if (isset($_GET['pipeline'])) {
     $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
@@ -69,7 +73,12 @@ function launch_pipeline_web($pipeline, $release)
     }
     // Check that we recognise the release / branch name
     if (!in_array($release, $pipelines[$pipeline])) {
-        return ["Error - Pipeline release <code>$release</code> not recognised.", "Available <code>$pipeline</code> releases: <ul><li>" . implode("</li><li>", $pipelines[$pipeline]) . "</li></ul>"];
+        return [
+            "Error - Pipeline release <code>$release</code> not recognised.",
+            "Available <code>$pipeline</code> releases: <ul><li>" .
+            implode('</li><li>', $pipelines[$pipeline]) .
+            '</li></ul>',
+        ];
     }
     // Make cache file names
     $gh_pipeline_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$release}.json";
@@ -83,22 +92,26 @@ function launch_pipeline_web($pipeline, $release)
         return [
             "Error - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>",
             "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
-            "<!-- URL attempted: $gh_launch_schema_url -->"
+            "<!-- URL attempted: $gh_launch_schema_url -->",
         ];
-    } else if (file_exists($gh_pipeline_schema_fn) && $release != 'dev') {
+    } elseif (file_exists($gh_pipeline_schema_fn) && $release != 'dev') {
         $gh_launch_schema_json = file_get_contents($gh_pipeline_schema_fn);
     } else {
         $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
         $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
         $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
-        if (strpos($http_response_header[0], "HTTP/1.1 200") === false) {
+        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             # Remember for next time
             file_put_contents($gh_pipeline_no_schema_fn, '');
-            echo '<script>console.log("Sent request to ' . $gh_launch_schema_url . '"," got http response header:",' . json_encode($http_response_header, JSON_HEX_TAG) . ')</script>';
+            echo '<script>console.log("Sent request to ' .
+                $gh_launch_schema_url .
+                '"," got http response header:",' .
+                json_encode($http_response_header, JSON_HEX_TAG) .
+                ')</script>';
             return [
                 "Error  - Could not find a pipeline schema for <code>$pipeline</code> - <code>$release</code>.",
                 "Please launch using the command line tool instead: <code>nf-core launch $pipeline -r $release</code>",
-                "<!-- URL attempted: $gh_launch_schema_url -->"
+                "<!-- URL attempted: $gh_launch_schema_url -->",
             ];
         } else {
             # Save cache
@@ -110,21 +123,21 @@ function launch_pipeline_web($pipeline, $release)
     $gh_launch_schema = json_decode(base64_decode($gh_launch_schema_response['content']), true);
     // Add in the core nextflow options to the schema
     if (!isset($gh_launch_schema['definitions'])) {
-        $gh_launch_schema['definitions'] = array();
+        $gh_launch_schema['definitions'] = [];
     }
     $gh_launch_schema['definitions'] = $nxf_flag_schema + $gh_launch_schema['definitions'];
     if (!isset($gh_launch_schema['allOf'])) {
-        $gh_launch_schema['allOf'] = array();
+        $gh_launch_schema['allOf'] = [];
     }
-    array_unshift($gh_launch_schema['allOf'], array('$ref' => '#/definitions/coreNextflow'));
+    array_unshift($gh_launch_schema['allOf'], ['$ref' => '#/definitions/coreNextflow']);
     // Set the remaining POST keys
     $_POST['post_content'] = 'json_schema_launcher';
     $_POST['api'] = 'false';
     $_POST['version'] = 'web_launcher';
     $_POST['status'] = 'waiting_for_user';
     $_POST['cli_launch'] = false;
-    $_POST['nxf_flags'] = "{}";
-    $_POST['input_params'] = "{}";
+    $_POST['nxf_flags'] = '{}';
+    $_POST['input_params'] = '{}';
     $_POST['pipeline'] = 'nf-core/' . $pipeline;
     $_POST['revision'] = $release;
     $_POST['nextflow_cmd'] = "nextflow run nf-core/$pipeline -r $release";
@@ -135,8 +148,18 @@ function launch_pipeline_web($pipeline, $release)
 // Share code to go through POST data and handle cache
 $cache_dir = dirname(dirname(__FILE__)) . '/api_cache/json_launch';
 $post_content_type = 'json_schema_launcher';
-$post_keys = ['version', 'schema', 'nxf_flags', 'input_params', 'status', 'cli_launch', 'nextflow_cmd', 'pipeline', 'revision'];
-require_once('../includes/json_schema.php');
+$post_keys = [
+    'version',
+    'schema',
+    'nxf_flags',
+    'input_params',
+    'status',
+    'cli_launch',
+    'nextflow_cmd',
+    'pipeline',
+    'revision',
+];
+require_once '../includes/json_schema.php';
 
 // Return to editor
 if (isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true') {
@@ -152,11 +175,11 @@ if (isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true') {
     file_put_contents($cache_fn, $cache_json);
     // Redirect to web URL
     header('Location: ' . $self_url . '?id=' . $cache_id);
-    exit;
+    exit();
 }
 
 // Save form output
-if (isset($_POST['post_content']) && $_POST['post_content'] == "json_schema_launcher_webform") {
+if (isset($_POST['post_content']) && $_POST['post_content'] == 'json_schema_launcher_webform') {
     $error_msgs = save_launcher_form();
 }
 function save_launcher_form()
@@ -167,24 +190,24 @@ function save_launcher_form()
     global $self_url;
     // Check cache ID
     if (!isset($_POST['cache_id'])) {
-        return ["No cache ID supplied"];
+        return ['No cache ID supplied'];
     }
     $id_check = validate_cache_id($_POST['cache_id']);
     if (!isset($id_check['status'])) {
-        return ["Problem loading cache: <pre><code>" . $id_check . '</code></pre>'];
+        return ['Problem loading cache: <pre><code>' . $id_check . '</code></pre>'];
     }
     if ($id_check['status'] == 'error') {
-        return ["Problem loading cache: " . $id_check['message']];
+        return ['Problem loading cache: ' . $id_check['message']];
     }
     // Load cache
     $cache_id = $_POST['cache_id'];
     $cache_fn = $cache_dir . '/' . $cache_id . '.json';
     if (!file_exists($cache_fn)) {
-        return ["Cache file not found: <code>" . $cache_fn . '</code>'];
+        return ['Cache file not found: <code>' . $cache_fn . '</code>'];
     }
     $cache = json_decode(file_get_contents($cache_fn), true);
     if (!isset($cache['schema'])) {
-        return ["Cache had no schema: <code>" . $cache_fn . '</code>'];
+        return ['Cache had no schema: <code>' . $cache_fn . '</code>'];
     }
     $cache['schema'] = json_decode($cache['schema'], true);
     $num_params = 0;
@@ -199,14 +222,16 @@ function save_launcher_form()
         }
     }
     if ($num_params == 0) {
-        return ["Cache schema was empty: <code>" . $cache_fn . '</code><pre>' . print_r($cache['schema'], true) . '</pre>'];
+        return [
+            'Cache schema was empty: <code>' . $cache_fn . '</code><pre>' . print_r($cache['schema'], true) . '</pre>',
+        ];
     }
 
     // Overwrite some keys (not schema)
     $cache['version'] = 'web_launcher';
     $cache['status'] = 'launch_params_complete';
-    $cache['nxf_flags'] = array();
-    $cache['input_params'] = array();
+    $cache['nxf_flags'] = [];
+    $cache['input_params'] = [];
 
     // Loop through POST vars and set params
     foreach ($_POST as $k => $v) {
@@ -225,12 +250,11 @@ function save_launcher_form()
     file_put_contents($cache_fn, $cache_json);
     // Redirect to web URL
     header('Location: ' . $self_url . '?id=' . $cache_id);
-    exit;
+    exit();
 }
 
 function build_form_param($param_id, $param, $is_required)
 {
-
     global $cache;
 
     $dash_param_id = substr($param_id, 0, 1) == '-' ? $param_id : '--' . $param_id;
@@ -261,12 +285,20 @@ function build_form_param($param_id, $param, $is_required)
     $help_text_btn = '';
     $help_text = '';
     if (isset($param['help_text']) && strlen(trim($param['help_text'])) > 0) {
-        $help_text_btn = '<button class="btn btn-outline-secondary rounded-end" type="button" data-bs-toggle="collapse" href="#help-text-' . $param_id . '" aria-expanded="false">
+        $help_text_btn =
+            '<button class="btn btn-outline-secondary rounded-end" type="button" data-bs-toggle="collapse" href="#help-text-' .
+            $param_id .
+            '" aria-expanded="false">
                 <i class="fas fa-question-circle" title="Show help text" data-bs-toggle="tooltip"></i>
             </button>';
-        $help_text = '<div class="collapse" id="help-text-' . $param_id . '">
+        $help_text =
+            '<div class="collapse" id="help-text-' .
+            $param_id .
+            '">
             <div class="card card-body small text-muted launcher-help-text">
-                ' . parse_md($param['help_text'])['content'] . '
+                ' .
+            parse_md($param['help_text'])['content'] .
+            '
             </div>
         </div>';
     }
@@ -318,43 +350,117 @@ function build_form_param($param_id, $param, $is_required)
     }
     if (array_key_exists('pattern', $param) && strlen($param['pattern']) > 0) {
         $pattern = 'pattern="' . $param['pattern'] . '"';
-        $validation_text = '<div class="invalid-feedback">Must match pattern <code>' . $param['pattern'] . '</code></div>';
+        $validation_text =
+            '<div class="invalid-feedback">Must match pattern <code>' . $param['pattern'] . '</code></div>';
     }
-    $input_el = '<input type="' . $input_type . '" ' . $step . ' ' . $minimum . ' ' . $maximum . ' ' . $pattern . ' class="form-control font-monospace" id="' . $form_param_name . '" name="' . $form_param_name . '" ' . $placeholder . ' value="' . $value . '" ' . $required . '>';
+    $input_el =
+        '<input type="' .
+        $input_type .
+        '" ' .
+        $step .
+        ' ' .
+        $minimum .
+        ' ' .
+        $maximum .
+        ' ' .
+        $pattern .
+        ' class="form-control font-monospace" id="' .
+        $form_param_name .
+        '" name="' .
+        $form_param_name .
+        '" ' .
+        $placeholder .
+        ' value="' .
+        $value .
+        '" ' .
+        $required .
+        '>';
 
     // Boolean input
     if ($param['type'] == 'boolean') {
-        $input_el = '
+        $input_el =
+            '
         <div class="form-control ps-4">
             <div class="form-check form-check-inline me-4">
-                <input ' . ($value == true || strtolower($value) == 'true' ? 'checked' : '') . ' class="form-check-input" type="radio" id="' . $form_param_name . '_true" name="' . $form_param_name . '" ' . $required . ' value="true">
-                <label class="form-check-label" for="' . $form_param_name . '_true">True</label>
+                <input ' .
+            ($value == true || strtolower($value) == 'true' ? 'checked' : '') .
+            ' class="form-check-input" type="radio" id="' .
+            $form_param_name .
+            '_true" name="' .
+            $form_param_name .
+            '" ' .
+            $required .
+            ' value="true">
+                <label class="form-check-label" for="' .
+            $form_param_name .
+            '_true">True</label>
             </div>
             <div class="form-check form-check-inline">
-                <input ' . ($value == false || strtolower($value) == 'false' ? 'checked' : '') . ' class="form-check-input" type="radio" id="' . $form_param_name . '_false" name="' . $form_param_name . '" ' . $required . ' value="false">
-                <label class="form-check-label" for="' . $form_param_name . '_false">False</label>
+                <input ' .
+            ($value == false || strtolower($value) == 'false' ? 'checked' : '') .
+            ' class="form-check-input" type="radio" id="' .
+            $form_param_name .
+            '_false" name="' .
+            $form_param_name .
+            '" ' .
+            $required .
+            ' value="false">
+                <label class="form-check-label" for="' .
+            $form_param_name .
+            '_false">False</label>
             </div>
         </div>';
     }
 
     // enum input
     if (array_key_exists('enum', $param) && count($param['enum']) > 0) {
-        $input_el = '<select class="form-select" id="' . $form_param_name . '" name="' . $form_param_name . '" ' . $required . '>';
+        $input_el =
+            '<select class="form-select" id="' .
+            $form_param_name .
+            '" name="' .
+            $form_param_name .
+            '" ' .
+            $required .
+            '>';
         $input_el .= '<option value="">[ Select an option ]</option>';
         foreach ($param['enum'] as $option) {
-            $input_el .= '<option ' . ($value == $option ? 'selected' : '') . ' value="' . $option . '">' . $option . '</option>';
+            $input_el .=
+                '<option ' .
+                ($value == $option ? 'selected' : '') .
+                ' value="' .
+                $option .
+                '">' .
+                $option .
+                '</option>';
         }
         $input_el .= '</select>';
     }
 
     // Build HTML
     return '
-    <div class="form-group param-form-group ' . $hide_class . '" id="' . $param_id . '_group">
+    <div class="form-group param-form-group ' .
+        $hide_class .
+        '" id="' .
+        $param_id .
+        '_group">
         <div class="input-group">
-            <label class="input-group-text font-monospace" for="' . $form_param_name . '">' . $fa_icon . $dash_param_id . $required_asterisk . '</label>
-            ' . $input_el . $help_text_btn . $validation_text . '
+            <label class="input-group-text font-monospace" for="' .
+        $form_param_name .
+        '">' .
+        $fa_icon .
+        $dash_param_id .
+        $required_asterisk .
+        '</label>
+            ' .
+        $input_el .
+        $help_text_btn .
+        $validation_text .
+        '
         </div>
-        ' . $description . $help_text . '
+        ' .
+        $description .
+        $help_text .
+        '
     </div>';
 }
 
@@ -362,18 +468,18 @@ function build_form_param($param_id, $param, $is_required)
 $title = 'Launch pipeline';
 $subtitle = 'Configure workflow parameters for a pipeline run.';
 $import_schema_launcher = true;
-include('../includes/header.php');
+include '../includes/header.php';
 
 if (count($error_msgs) > 0) {
     echo '<div class="alert alert-danger">' . implode('<br>', $error_msgs) . '</div>';
 }
 
 if (!$cache) {
-
+<?php
     /////////////////////////////////////////////////////////////
     // EMPTY - NO CACHE ID
     /////////////////////////////////////////////////////////////
-?>
+    ?>
 
     <div class="container main-content pt-5">
         <p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
@@ -394,11 +500,13 @@ if (!$cache) {
                         <select class="form-select" name="pipeline" id="launch-pipeline-name">
                             <option value="">Select a pipeline</option>
                             <option value="">--</option>
-                            <?php
-                            foreach ($pipelines as $wf_name => $releases_json) {
-                                echo '<option data-releases=\'' . json_encode($releases_json) . '\'>' . $wf_name . '</option>';
-                            }
-                            ?>
+                            <?php foreach ($pipelines as $wf_name => $releases_json) {
+                                echo '<option data-releases=\'' .
+                                    json_encode($releases_json) .
+                                    '\'>' .
+                                    $wf_name .
+                                    '</option>';
+                            } ?>
                         </select>
                     </div>
                 </div>
@@ -469,8 +577,7 @@ if (!$cache) {
 /////////////////////////////////////////////////////////////
 // COMPLETE - PARAMETERS ENTERED
 /////////////////////////////////////////////////////////////
-
-else if ($cache['status'] == 'launch_params_complete') {
+elseif ($cache['status'] == 'launch_params_complete') {
 
     $nxf_flags = ' ';
     foreach ($cache['nxf_flags'] as $param_id => $param_value) {
@@ -480,7 +587,11 @@ else if ($cache['status'] == 'launch_params_complete') {
         $param = $nxf_flag_schema['coreNextflow']['properties'][$param_id];
         if ($param['default'] == $param_value) {
             continue;
-        } elseif ($param['type'] == 'boolean' && (!isset($param['default']) || $param['default'] == '') && $param_value == 'false') {
+        } elseif (
+            $param['type'] == 'boolean' &&
+            (!isset($param['default']) || $param['default'] == '') &&
+            $param_value == 'false'
+        ) {
             continue;
         }
         if ($param['type'] == 'boolean' && $param_value == 'true') {
@@ -521,30 +632,30 @@ else if ($cache['status'] == 'launch_params_complete') {
     }
 
     // Tower payload
-    $tower_fields = array(
-        "pipeline" => "https://github.com/" . $cache['pipeline'],
-        "revision" => $cache['revision'],
-        "paramsText" => json_encode($cache['input_params'], JSON_PRETTY_PRINT),
-        "resume" => $cache['nxf_flags']['-resume'] == 'true' ? 'true' : 'false'
+    $tower_fields = [
+        'pipeline' => 'https://github.com/' . $cache['pipeline'],
+        'revision' => $cache['revision'],
+        'paramsText' => json_encode($cache['input_params'], JSON_PRETTY_PRINT),
+        'resume' => $cache['nxf_flags']['-resume'] == 'true' ? 'true' : 'false',
         // "computeEnvId" => "", // the user compute env Id (default user primary env)
-    );
+    ];
     // Only set configProfiles if set
     if (trim($cache['nxf_flags']['-profile']) !== '') {
-        $tower_fields["configProfiles"] = $cache['nxf_flags']['-profile'];
+        $tower_fields['configProfiles'] = $cache['nxf_flags']['-profile'];
     }
     // Only set workDir if not default
     if ($cache['nxf_flags']['-work-dir'] !== $nxf_flag_schema['coreNextflow']['properties']['-work-dir']['default']) {
-        $tower_fields["workDir"] = $cache['nxf_flags']['-work-dir'];
+        $tower_fields['workDir'] = $cache['nxf_flags']['-work-dir'];
     }
     ?>
         <div class="container main-content pt-5">
             <h1>Launch parameters saved</h1>
 
-            <?php if (isset($cache['cli_launch']) && $cache['cli_launch']) : ?>
+            <?php if (isset($cache['cli_launch']) && $cache['cli_launch']): ?>
                 <p>The <code>nf-core launch</code> command running in your terminal should have automatically detected your settings.
                     Follow the prompts in your command line to launch the pipeline.</p>
                 <p>If the launch command has stopped running for any reason, you can still launch by following the instructions below:</p>
-            <?php else : ?>
+            <?php else: ?>
                 <p>Your workflow parameters are ready to go! Follow the instructions below for instructions on how to launch your pipeline:</p>
             <?php endif; ?>
 
@@ -559,34 +670,38 @@ else if ($cache['status'] == 'launch_params_complete') {
                 <p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
                     (requires a Nextflow Tower account).</p>
                 <form method="get" action="https://tower.nf/launch" target="_blank" class="mb-3">
-                    <?php
-                    foreach ($tower_fields as $name => $value) {
+                    <?php foreach ($tower_fields as $name => $value) {
                         echo '<input type="hidden" name="' . $name . '" value="' . htmlspecialchars($value) . '">';
-                    }
-                    ?>
+                    } ?>
                     <button type="submit" class="btn btn-primary btn-nf-tower rocket-launch-hover">
                         <i class="fad fa-rocket me-1"></i>
                         Nextflow Tower &nbsp; &#x276f; &nbsp; Launch
                     </button>
                 </form>
             <?php } else { ?>
-                <p>Sorry, this feature is not supported for pipelines that are launched from a local directory (<code><?php echo $cache['pipeline']; ?></code>)</p>
+                <p>Sorry, this feature is not supported for pipelines that are launched from a local directory (<code><?php echo $cache[
+                    'pipeline'
+                ]; ?></code>)</p>
             <?php } ?>
 
             <h3>Launching with no internet and without nf-core/tools</h3>
 
-            <?php if (count($cache['input_params']) > 0) : ?>
+            <?php if (count($cache['input_params']) > 0): ?>
                 <p>You can run this pipeline with just Nextflow installed by copying the JSON below to a file called <code>nf-params.json</code>:</p>
                 <pre><code><?php echo json_encode($cache['input_params'], JSON_PRETTY_PRINT); ?></code></pre>
 
                 <p>Then, launch Nextflow with the following command:</p>
-                <pre><code><?php echo $cache['nextflow_cmd'];
-                        echo $nxf_flags; ?>-params-file nf-params.json</code></pre>
+                <pre><code><?php
+                echo $cache['nextflow_cmd'];
+                echo $nxf_flags;
+                ?>-params-file nf-params.json</code></pre>
 
-            <?php else : ?>
+            <?php else: ?>
                 <p>Launch Nextflow with the following command:</p>
-                <pre><code><?php echo $cache['nextflow_cmd'];
-                        echo $nxf_flags; ?></code></pre>
+                <pre><code><?php
+                echo $cache['nextflow_cmd'];
+                echo $nxf_flags;
+                ?></code></pre>
             <?php endif; ?>
 
             <h3>Continue editing</h3>
@@ -601,7 +716,8 @@ else if ($cache['status'] == 'launch_params_complete') {
             </form>
         </div>
     </div>
-<?php } else {
+<?php
+} else {
 
     /////////////////////////////////////////////////////////////
     // IN PROGRESS - BUILD FORM
@@ -615,7 +731,7 @@ else if ($cache['status'] == 'launch_params_complete') {
         }
         $pipeline_name_header .= '</p>';
     }
-?>
+    ?>
     <div class="container container-xl main-content">
         <div class="alert alert-info">
             <?php echo $pipeline_name_header; ?>
@@ -624,11 +740,11 @@ else if ($cache['status'] == 'launch_params_complete') {
 
         <p>Go through the pipeline inputs below, setting them to the values that you would like.
             When you're done, click <em>Launch</em> and your parameters will be saved.
-            <?php if ($cache['cli_launch']) : ?>
+            <?php if ($cache['cli_launch']): ?>
                 The <code>nf-core launch</code> command running in the background should detect your changes and give you further instructions.
             <?php endif; ?>
         </p>
-        <?php if (!$cache['cli_launch']) : ?>
+        <?php if (!$cache['cli_launch']): ?>
             <p>The page shown will show a command that you can use to directly launch the workflow.
                 For those running on a system with no internet connection, you can copy the parameters JSON to a file
                 and use the supplied command to launch.</p>
@@ -649,8 +765,13 @@ else if ($cache['status'] == 'launch_params_complete') {
                                 </div>
                             </div>
                             <div class="col-md-auto">
-                                <button type="submit" class="btn btn-primary btn-launch" title="Save parameters and <?php if ($cache['cli_launch']) echo 'return to the command line"';
-                                                                                                                    else echo 'copy command to launch' ?>" data-bs-toggle="tooltip" data-bs-delay='{ "show": 800, "hide": 0 }'>
+                                <button type="submit" class="btn btn-primary btn-launch" title="Save parameters and <?php if (
+                                    $cache['cli_launch']
+                                ) {
+                                    echo 'return to the command line"';
+                                } else {
+                                    echo 'copy command to launch';
+                                } ?>" data-bs-toggle="tooltip" data-bs-delay='{ "show": 800, "hide": 0 }'>
                                     <i class="fad fa-rocket-launch me-1"></i> Launch
                                 </button>
                             </div>
@@ -664,16 +785,30 @@ else if ($cache['status'] == 'launch_params_complete') {
                                 continue;
                             }
                             $group_id = substr($allof['$ref'], 14);
-                            $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
-                            if (!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0) {
+                            $html_id = preg_replace(
+                                '/[^a-z0-9-_]/',
+                                '_',
+                                preg_replace('/\s+/', '_', strtolower($group_id))
+                            );
+                            if (
+                                !isset($cache['schema']['definitions'][$group_id]) ||
+                                count($cache['schema']['definitions'][$group_id]) == 0
+                            ) {
                                 continue;
                             }
                             $group = $cache['schema']['definitions'][$group_id];
                             $hidden_class = 'is_hidden';
                             $child_parameters = '';
                             foreach ($group['properties'] as $child_param_id => $child_param) {
-                                $child_parameters .= build_form_param($child_param_id, $child_param, @in_array($child_param_id, $group['required']));
-                                if (!isset($child_param['hidden']) || (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)) {
+                                $child_parameters .= build_form_param(
+                                    $child_param_id,
+                                    $child_param,
+                                    @in_array($child_param_id, $group['required'])
+                                );
+                                if (
+                                    !isset($child_param['hidden']) ||
+                                    (strtolower($child_param['hidden']) == 'false' || $child_param['hidden'] === false)
+                                ) {
                                     $hidden_class = '';
                                 }
                             }
@@ -695,11 +830,22 @@ else if ($cache['status'] == 'launch_params_complete') {
                             }
                             if (strlen($child_parameters) > 0) {
                                 echo '
-                            <fieldset class="' . $hidden_class . '" id="' . $html_id . '">
+                            <fieldset class="' .
+                                    $hidden_class .
+                                    '" id="' .
+                                    $html_id .
+                                    '">
                                 <div class="card">
-                                    <legend class="h2 card-header">' . $fa_icon . $title . '</legend>
+                                    <legend class="h2 card-header">' .
+                                    $fa_icon .
+                                    $title .
+                                    '</legend>
                                     <div class="card-body">
-                                        ' . $description . $helptext . $child_parameters . '
+                                        ' .
+                                    $description .
+                                    $helptext .
+                                    $child_parameters .
+                                    '
                                     </div>
                                 </div>
                             </fieldset>';
@@ -710,14 +856,20 @@ else if ($cache['status'] == 'launch_params_complete') {
                     if (isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0) {
                         $child_parameters = '';
                         foreach ($cache['schema']['properties'] as $param_id => $param) {
-                            $child_parameters .= build_form_param($param_id, $param, @in_array($param_id, $cache['schema']['required']));
+                            $child_parameters .= build_form_param(
+                                $param_id,
+                                $param,
+                                @in_array($param_id, $cache['schema']['required'])
+                            );
                         }
                         echo '
                     <fieldset id="ungrouped-parameters">
                         <div class="card">
                             <legend class="h2 card-header"><i class="fas fa-list fa-fw me-3"></i>Ungrouped parameters</legend>
                             <div class="card-body">
-                                ' . $child_parameters . '
+                                ' .
+                            $child_parameters .
+                            '
                             </div>
                         </div>
                     </fieldset>';
@@ -732,7 +884,7 @@ else if ($cache['status'] == 'launch_params_complete') {
                 </form>
             </div>
             <?php
-            if (isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0) :
+            if (isset($cache['schema']['allOf']) && count($cache['schema']['allOf']) > 0):
                 $toc_list = '<nav class="nav flex-column flex-nowrap ms-3">';
                 // Definition groups
                 foreach ($cache['schema']['allOf'] as $allof) {
@@ -740,14 +892,20 @@ else if ($cache['status'] == 'launch_params_complete') {
                         continue;
                     }
                     $group_id = substr($allof['$ref'], 14);
-                    if (!isset($cache['schema']['definitions'][$group_id]) || count($cache['schema']['definitions'][$group_id]) == 0) {
+                    if (
+                        !isset($cache['schema']['definitions'][$group_id]) ||
+                        count($cache['schema']['definitions'][$group_id]) == 0
+                    ) {
                         continue;
                     }
                     $group = $cache['schema']['definitions'][$group_id];
                     $html_id = preg_replace('/[^a-z0-9-_]/', '_', preg_replace('/\s+/', '_', strtolower($group_id)));
                     $hidden_class = 'is_hidden';
                     foreach ($group['properties'] as $param_id => $param) {
-                        if (!isset($param['hidden']) || (strtolower($param['hidden']) == 'false' || $param['hidden'] === false)) {
+                        if (
+                            !isset($param['hidden']) ||
+                            (strtolower($param['hidden']) == 'false' || $param['hidden'] === false)
+                        ) {
                             $hidden_class = '';
                         }
                     }
@@ -759,16 +917,25 @@ else if ($cache['status'] == 'launch_params_complete') {
                     if (isset($group['title'])) {
                         $title = $group['title'];
                     }
-                    $toc_list .= '<a class="nav-link font-weight-normal text-smaller ' . $hidden_class . ' scroll_to_link" href="#' . $html_id . '">' . $fa_icon . $title . '</a>';
+                    $toc_list .=
+                        '<a class="nav-link font-weight-normal text-smaller ' .
+                        $hidden_class .
+                        ' scroll_to_link" href="#' .
+                        $html_id .
+                        '">' .
+                        $fa_icon .
+                        $title .
+                        '</a>';
                 }
                 // Top-level parameters
                 if (isset($cache['schema']['properties']) && count($cache['schema']['properties']) > 0) {
-                    $toc_list .= '<a class="nav-link font-weight-normal text-smaller scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw me-3"></i>Ungrouped parameters</a>';
+                    $toc_list .=
+                        '<a class="nav-link font-weight-normal text-smaller scroll_to_link" href="#ungrouped-parameters"><i class="fas fa-list fa-fw me-3"></i>Ungrouped parameters</a>';
                 }
                 $toc_list .= '</nav>';
-
             endif;
-            $toc = '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top"><nav class="toc border-start">';
+            $toc =
+                '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top"><nav class="toc border-start">';
             $toc .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
             $toc .= $toc_list;
             $toc .= '
@@ -779,18 +946,21 @@ else if ($cache['status'] == 'launch_params_complete') {
                 </button>
                 </div>';
             # Back to top link
-            $toc .= '<p class="small text-end mt-3"><a href="#schema_launcher_form" class="text-muted scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            $toc .=
+                '<p class="small text-end mt-3"><a href="#schema_launcher_form" class="text-muted scroll_to_link"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
             $toc .= '</nav></div></div>';
             echo $toc;
-            echo '</div>'; // close row div
-            ?>
+            echo '</div>';
+
+    // close row div
+    ?>
         </div>
     <?php
 } // if $cache
 
 // Collect this content into a variable to be inserted in to the very end of the HTML
 ob_start();
-    ?>
+?>
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="form_validation_error_toast">
         <div class="toast-header">
             <strong class="me-auto text-danger">Validation error</strong>
@@ -806,4 +976,5 @@ ob_start();
     $end_of_html = ob_get_contents();
     ob_end_clean();
 
-    include('../includes/footer.php');
+    include '../includes/footer.php';
+
