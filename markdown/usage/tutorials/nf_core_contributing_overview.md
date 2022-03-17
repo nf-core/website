@@ -54,7 +54,7 @@ A suite of helper tools aim to help people run and develop pipelines.
 This tutorial attempts to give an overview of:
 
 * creating new pipelines using the *nf-core* template.
-* what are nf-core shared modules.
+* what nf-core shared modules are.
 * adding nf-core shared modules to a pipeline.
 * creating new nf-core modules using the *nf-core* module template.
 * reviewing and releasing *nf-core* pipelines.
