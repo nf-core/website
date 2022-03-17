@@ -17,12 +17,12 @@ $fa_icons = json_decode($raw_json, true);
 # create the icons json object, to be put into iconpicker.js
 $icons = [];
 foreach ($fa_icons as $d => $icon) {
-    foreach ($icon['styles'] as $s) {
-        # create one object for each style (e.g. "brand", "solid") of an icon
-        $icon_class = 'fa' . $s[0] . ' fa-' . $d; # create 'fab' class name for brand icons, "fas" for solid, etc.
-        $search_terms = implode(' ', $icon['search']['terms']);
-        $icons[$icon_class] = $search_terms;
-    }
+  foreach ($icon['styles'] as $s) {
+    # create one object for each style (e.g. "brand", "solid") of an icon
+    $icon_class = 'fa' . $s[0] . ' fa-' . $d; # create 'fab' class name for brand icons, "fas" for solid, etc.
+    $search_terms = implode(' ', $icon['search']['terms']);
+    $icons[$icon_class] = $search_terms;
+  }
 }
 
 # Write to a JSON file for the website
