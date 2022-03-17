@@ -9,7 +9,7 @@ Gitpod is an open-source developer platform that can be spun up quickly from a G
 
 Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month (currently) and based in your browser (reconmmended with Chrome, Firefox or Edge). You can find their extensive documentation [here](https://gitpod.io/). 
 
-All nf-core repos (including the webpage) should have their own working gitpod instances, with all the code required active in each environment.
+All nf-core repos (including the webpage) should have their own working gitpod instances, with all the code required available in each environment.
 
 ## Running Gitpod on an nf-core repo
 
@@ -20,23 +20,11 @@ Once you click on the green button, you will asked to sign in with either Github
 ![PNG](/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
 
 
-1. **The terminal** allows you to run all the programs in the repository, for example Nextflow, nf-core tools and docker are installed in the nf-core RNAseq repository.
+1. **The terminal** allows you to run all the programs in the repository, for example `nextflow`, `nf-core` tools and docker are installed in the nf-core rnaseq repository.
 
-2. **The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, etc.)
+2. **The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.)
 
-3. **The main window** allows you to view and edit files.
-
-Now you can run Nextflow with the chosen nf-core repository. 
-
-For example, for nf-core/rnaseq pipeline we can type the following into the terminal:
-
-    ```console
-		nextflow run nf-core/rnaseq \
-		-profile test,docker \
-		--outdir my_result
-    ```
-
-This should run the test data through nf-core rnaseq, using docker with your results in the folder: "my_result". This will take some time to complete.
+3. **The main window** allows you to view and edit files. It includes a preview option to allow side by side text and Markdown/Html rendering.
 
 
 See the following guides for Gitpod use in different scenarios:
