@@ -210,7 +210,7 @@ nextflow run nf-core/rnaseq -profile singularity,debug
 Note that the order in which config profiles are specified matters.
 Their priority increases from left to right.
 
-> Our tip: Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `nextflow.config` file for reproducible run-specific configuration.
+> Our tip: Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `config` (e.g. `custom.config` provided to the run with `-c custom.config`) file for reproducible run-specific configuration.
 
 To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/usage/configuration).
 
@@ -293,4 +293,4 @@ If in doubt, please ask for help on Slack.
 
 If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re).
 
-> [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet) for *nf-core*, November 2021
+> [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen) for *nf-core*, March 2022
