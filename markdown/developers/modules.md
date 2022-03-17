@@ -593,6 +593,19 @@ workflow {
 }
 ```
 
+#### Sorting samples by groups
+
+```nextflow
+ch_genome_bam.map {
+    meta, bam ->
+    fmeta = meta.findAll { it.key != 'read_group' }
+    fmeta.id = fmeta.id.split('_')[0..-2].join('_')
+    [ fmeta, bam ] }
+    .groupTuple(by: [0])
+    .map { it ->  [ it[0], it[1].flatten() ] }
+    .set { ch_sort_bam }
+```
+
 ### Conclusion
 
 As you can see the `meta map` is a quite flexible way for storing meta data in channels. Feel free to add whatever other key-value pairs your pipeline may need to it. We're looking to add [Custom objects](https://github.com/nf-core/modules/issues/1338) which will lock down the usage a bit more.
