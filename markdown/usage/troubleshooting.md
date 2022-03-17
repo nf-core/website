@@ -354,14 +354,14 @@ The iGenomes config file uses `params.igenomes_base` to make it possible to use 
 
 You can specify a local iGenomes path by either:
 
-1. Setting the igenomes_base path in a configuration profile 
+1. Setting the igenomes_base path in a configuration profile. 
 ```nextflow
 params {
   igenomes_base = '/<path>/<to>/<data>/igenomes'
 }
 ```
 
-2. Specifying an  `--igenomes_base` path in your executation command
+2. Specifying an  `--igenomes_base` path in your executation command.
 ```bash
 nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
 ```
