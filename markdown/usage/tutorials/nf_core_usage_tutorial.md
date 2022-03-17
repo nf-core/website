@@ -266,6 +266,12 @@ To know more about running pipelines offline you can check the [pipeline configu
 * Try launching the RNA pipeline using the `nf-core launch` command
 * Download the *nf-core/rnaseq* pipeline for offline use using the `nf-core download` command
 
+
+To try this yourself on *GitPod* use the following button:
+
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/gitpod_exercises/markdown/usage/tutorials/gitpod_exercises/gitpod_exercise_02.sh)
+
 ## Troubleshooting nf-core pipelines
 
 Not everything always runs smoothly and you might be getting some errors when running nf-core pipelines. Here are some step-by-step tips that can help you troubleshoot your errors.
