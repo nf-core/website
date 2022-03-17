@@ -26,7 +26,7 @@ Additional information on how to set a local igenomes base can be found [here](t
 
 If you are unable to use the AWS-iGenomes references, you can still supply reference genome paths on the command line via the pipeline's parameters e.g. `--fasta` or `--gtf`.
 
-If you are using the same references repeatedly, it can be more convenient to save these paths in a nextflow config file. 
+If you are using the same references repeatedly, it can be more convenient to save these paths in a nextflow config file.
 Pipelines that support AWS-iGenomes can also be configured to support custom genome IDs and paths.
 
 To use this system, add paths to your config file using the following template:
