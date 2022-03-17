@@ -53,9 +53,10 @@ Use this file `https://github.com/nf-core/nf-co.re/markdown/developers/training_
 2. Make a new branch from the `master` branch in your fork and check it out. Name it after the guide you intend to submit. For example: `git checkout -b gitpod_training_guide`
 3. Make a copy of the `markdown/developers/training_guide.md` with an appropriate name to use as your skeleton.
 
-#### Add questions.
+#### Add framing questions.
 
-Include between 1-3 questions your guide is intended to answer under the `##Questions` header above.
+Include between 1-3 framing questions your guide is intended to answer under the `## Scope` header above.
+Framing questions are open ended questions, that set the scope for the guide.
 
 #### Add objectives.
 
