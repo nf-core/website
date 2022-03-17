@@ -20,7 +20,7 @@ subtitle: Tutorial covering the basics of using nf-core pipelines.
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core-tutorial-usage.pdf)**
 
 
-You can run the commands of this tutorial on *[GitPod]*(https://www.gitpod.io/) and skip the installation steps. In this case, use the following button:
+You can run the commands of this tutorial on [GitPod](https://www.gitpod.io/) and skip the installation steps. In this case, use the following button:
 
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/gitpod_exercises/markdown/usage/tutorials/)
