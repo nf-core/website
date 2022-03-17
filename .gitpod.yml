@@ -12,3 +12,9 @@ vscode:
     # - nextflow.nextflow                      # Nextflow syntax highlighting
     - oderwat.indent-rainbow                 # Highlight indentation level
     - streetsidesoftware.code-spell-checker  # Spelling checker for source code
+
+ports:
+- port: 8080
+  onOpen: ignore
+tasks:
+- command: gp preview nf-co.re/markdown/usage/tutorials/nf_core_usage_tutorial.md
