@@ -25,6 +25,7 @@ Thank you for helping us write a guide to using an aspect of nf-core.
     - **Learning Objective:** A predictive statement describing the specific outcomes that a training session is intended to achieve.
     - **Key point:** An important take home message.
     - **Cognitive load:** This relates to the amount of information that working memory can hold at one time.
+    - **Summative assessment:** A way of evaluating the learners progress at the end of a lesson.
     - **Fork a repository:** This makes a copy of the repository to your personal GitHub workspace.
     - **Make a branch:** A branch is another version of the files in your repository, including a history of how files were changed from the start of the branch to the current state of files.
 </details>
@@ -60,7 +61,7 @@ Framing questions are open ended questions, that set the scope for the guide.
 
 #### Add objectives.
 
-Objectives are intended to describe the outcomes someone reading your guide should be able to do once they've read through it.
+Objectives are intended to describe the intended learning outcomes someone reading your guide should be able to do once they've read through it.
 The objectives also function as a checklist of things that should be part of the guide.
 
 #### Add a glossary.
@@ -91,8 +92,10 @@ Key points serve as a summary of what to do, and are important take home message
 #### Add supporting links.
 
 Provide links to where the reader can get additional support, or useful further reading.
-#### Add How to check your progress
 
+#### Add how to check your progress
+
+Guides should provide some form of summative assessment at the end if appropriate. 
 Provide 3-4 questions you believe would help the reader to check their understanding or learning progress, after they've studied the material.
 Add either a multiple choice or a true/false type of question, and feedback in case of correct or incorrect answer.
 
@@ -115,11 +118,12 @@ Link the issue created for the guide you wanted to submit, by adding it under th
 ## Key points
 
 - Fork the nf-core website repository, and use the `training_guide.md` as a template.
-- Add questions, objectives, and glossary terms.
+- Add scope, objectives, and glossary terms.
 - Have a checklist of what is needed before one begins.
 - Provide a walkthrough, and a link to the bytesize talk if one exists.
 - Provide a summary as key points.
 - Provide links to support and documentation.
+- Provide questions to evaluate if the learner has understood the guide content if applicable.
 - Format your markdown document using the `prettier` VS code extension.
 
 ## References
