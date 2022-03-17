@@ -23,4 +23,5 @@ jobs:
         with:
           dry: true
           prettier_options: --check
+          prettier_plugins: "@prettier/plugin-php"
           only_changed: True
