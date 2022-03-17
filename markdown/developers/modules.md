@@ -531,16 +531,23 @@ If the module absolute cannot run using tiny test data, there is a possibility t
 nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
 ```
 
-## Into the `meta` map
+## What is the `meta` map?
 
-As you've noticed most modules take an input of
+In nf-core DSL2 pipelines, to add sample information and metadata, we use a meta variable. This avoids the need to create separate channels for each new characteristic. 
+The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. 
+The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
+```nextflow
+[id: 'test', single_end: false]
+```
+Thus, the information can be accessed by the key i.e. `meta.id`
 
+The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable.
 ```nextflow
 input:
 tuple val(meta), path(reads)
 ```
 
-You have probably also noticed, this pattern doesn't work out of the box with [fromFilePairs](https://www.nextflow.io/docs/edge/channel.html#fromfilepairs)
+This pattern doesn't work out of the box with [fromFilePairs](https://www.nextflow.io/docs/edge/channel.html#fromfilepairs)
 
 The difference between the two:
 
@@ -555,11 +562,11 @@ meta_map = [[id: 'test', single_end: false], // meta map
 
 As you can see the difference, they are both [groovy lists](https://www.tutorialspoint.com/groovy/groovy_lists.htm).
 However, the filepairs just has a `val` that is a string, where as the `meta_map` the first value in the list, is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
-The only required value is `id` for most of the modules, however they occasionally need things like `single_end`.
+The only required value is `meta.id` for most of the modules, however, they ususally contain fields like `meta.single_end` and `meta.strandedness`
 
 ### Common patterns
 
-The `meta map` is generated from [create_fastq_channel function in the input_check subworkflow](https://github.com/nf-core/rnaseq/blob/587c61b441c5e00bd3201317d48b95a82afe6aaa/subworkflows/local/input_check.nf#L23-L45) of most nf-core pipelines.
+The `meta map` is generated with [create_fastq_channel function in the input_check subworkflow](https://github.com/nf-core/rnaseq/blob/587c61b441c5e00bd3201317d48b95a82afe6aaa/subworkflows/local/input_check.nf#L23-L45) of most nf-core pipelines. Where the meta information is easily extracted from a samplesheet that contains the input file paths.
 
 #### Generating a `meta map` from file pairs
 
