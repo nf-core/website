@@ -2,7 +2,11 @@
 title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
-
+- [Troubleshooting basics](#troubleshooting-basics)
+  - [Start small](#start-small)
+  - [Categorize the type of error](#categorize-the-type-of-error)
+  - [Read the log and check the work directory](#read-the-log-and-check-the-work-directory)
+  - [Asking for help](#asking-for-help)
 - [Input files not found](#input-files-not-found)
   - [Direct input](#direct-input)
   - [Output for only a single sample although I specified multiple with wildcards](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
@@ -22,6 +26,81 @@ subtitle: How to troubleshoot common mistakes and issues
 - [My pipeline update doesn't seem to do anything](#my-pipeline-update-doesnt-seem-to-do-anything)
 - [Unable to acquire lock error](#unable-to-acquire-lock-error)
 - [Extra resources and getting help](#extra-resources-and-getting-help)
+
+
+## Troubleshooting basics
+
+These are the recommended steps for troubleshooting a pipeline. 
+
+### Start small
+
+Before using the pipeline with your data, make sure to run a test using: 
+
+```bash
+nextflow run nf-core/<pipeline_name> -profile test,docker
+```
+
+If Docker is not installed, you can replace `docker` with `singularity` or `conda`, see
+the [Getting Started](https://nf-co.re/usage/introduction) tutorial for further information. If a test fails, it might indicate that 
+there is an issue with installation or configuration rather than a pipeline error.
+
+You might also want to check the following:
+
+1. Nextflow is up to date. Use `nextflow self-update` to update a typical installation or `conda update nextflow` for a Bioconda installation.
+2. There is enough disk space, this will avoid running out of space while you are running the pipeline. 
+3. Docker daemon is running (if you are using Docker to manage dependencies).
+
+
+### Categorize the type of error
+
+For this step you try to identify when the error occurs:
+
+1. Before the first process.
+2. During the first process. 
+3. During run.
+4. While generating outputs.
+
+Errors that occur before the first process might be related to an outdated version of Nextflow, updating to the newest version could help solving the issue. When an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles).  This type of error might also be related to a missing command required to run the pipeline. For errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below. 
+
+### Read the log and check the work directory 
+
+Checking the log files can help you to identify where the error occurred and the type of error as well. In order to search the output related to the error we need to understand the anatomy of the work directory: 
+
+1. `command.out` STDOUT from tool.
+2. `command.err` STDERR from tool.
+3. `command.log` contains both STDOUT and STDERR from tool.
+4. `command.begin` created as soon as the job launches.
+5. `exitcode` created when the job ends, with exit code. 
+6. `command.trace` logs of compute resource usage.
+7. `command.run` wrapper script used to run the job.
+8. `command.sh` process command used for this task.
+
+If you checked the files and identified the type of error and where it occurred but were unable to solve it you can always ask for help. 
+
+
+### Asking for help
+
+If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel. Please, consider the following guidelines:  
+
+- Pick the correct Slack channel to post in. 
+- Provide as much information as you can. 
+   - As a minimum the command and configs you used. 
+   - Use a Slack thread under your message if in doubt. 
+- Use markdown code blocks.
+- Narrow the issue down as much as possible before asking. 
+- Explain the steps to reproduce if possible.
+
+You can also open an issue in the respective pipeline repository on GitHub asking for help. In order to open the issue:
+
+- Narrow the issue down as much as possible before opening the issue. 
+- Fill in the bug issue template.
+- Explain the steps to reproduce.
+- If you think you know the solution, please say so. 
+- If you think you can fix the problem, please make a pull request.
+
+If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [google group](https://groups.google.com/forum/#!forum/nextflow). 
+
+
 
 ## Input files not found
 
@@ -347,8 +426,3 @@ To fix this, you must clean the entirety of the run's `work/` directory e.g. wit
 
 `ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
 
-## Extra resources and getting help
-
-If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
-
-If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow gitter channel](https://gitter.im/nextflow-io/nextflow) or the [google group](https://groups.google.com/forum/#!forum/nextflow).
