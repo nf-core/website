@@ -90,6 +90,10 @@ Key points serve as a summary of what to do, and are important take home message
 #### Add supporting links.
 
 Provide links to where the reader can get additional support, or useful further reading.
+#### Add How to check your progress
+
+Provide 3-4 questions you believe would help the reader to check their understanding or learning progress, after they've studied the material.
+Add either a multiple choice or a true/false type of question, and feedback in case of correct or incorrect answer.
 
 #### Format your document.
 
