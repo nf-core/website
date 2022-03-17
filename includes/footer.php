@@ -1,14 +1,19 @@
 <?php
 if (isset($title) and $title) {
-  echo '</div></div>';
+    echo '</div></div>';
 }
 
 // Subfooter, if given
 if (isset($md_github_url) and $md_github_url) {
-  $subfooter = '<p class="mb-0"><i class="fab fa-github"></i> Read this page on GitHub: <code><a href="' . $md_github_url . '">' . $md_github_url . '</a></code>';
+    $subfooter =
+        '<p class="mb-0"><i class="fab fa-github"></i> Read this page on GitHub: <code><a href="' .
+        $md_github_url .
+        '">' .
+        $md_github_url .
+        '</a></code>';
 }
 if (isset($subfooter) and $subfooter) {
-  echo '<footer class="subfooter"><div class="container">' . $subfooter . '</div></footer>';
+    echo '<footer class="subfooter"><div class="container">' . $subfooter . '</div></footer>';
 }
 ?>
 
@@ -39,13 +44,25 @@ if (isset($subfooter) and $subfooter) {
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
             <div class="theme-switcher btn-group btn-group-sm" role="group">
 
-              <input type="radio" class="btn-check" id="theme-auto" name="theme-auto" value="auto" autocomplete="off" <?php if ($theme == 'auto') echo 'checked'; ?>>
+              <input type="radio" class="btn-check" id="theme-auto" name="theme-auto" value="auto" autocomplete="off" <?php if (
+                  $theme == 'auto'
+              ) {
+                  echo 'checked';
+              } ?>>
               <label class="btn btn-secondary" for="theme-auto" data-bs-toggle=" tooltip" title="Auto Light / Dark"><i class="fas fa-adjust"></i></label>
 
-              <input type="radio" class="btn-check" id="theme-light" name="theme-light" value="light" autocomplete="off" <?php if ($theme == 'light') echo 'checked'; ?>>
+              <input type="radio" class="btn-check" id="theme-light" name="theme-light" value="light" autocomplete="off" <?php if (
+                  $theme == 'light'
+              ) {
+                  echo 'checked';
+              } ?>>
               <label class="btn btn-secondary" for="theme-light" data-bs-toggle=" tooltip" title="Light Theme"><i class="fas fa-sun"></i></label>
 
-              <input type="radio" class="btn-check" id="theme-dark" name="theme-dark" value="dark" autocomplete="off" <?php if ($theme == 'dark') echo 'checked'; ?>>
+              <input type="radio" class="btn-check" id="theme-dark" name="theme-dark" value="dark" autocomplete="off" <?php if (
+                  $theme == 'dark'
+              ) {
+                  echo 'checked';
+              } ?>>
               <label class="btn btn-secondary" for="theme-dark" data-bs-toggle=" tooltip" title="Dark Theme"><i class="fas fa-moon"></i></label>
             </div>
           </div>
@@ -113,11 +130,9 @@ if (isset($subfooter) and $subfooter) {
     </div>
   </div>
 </footer>
-<?php
-if (isset($end_of_html) and $end_of_html) {
-  echo $end_of_html;
-}
-?>
+<?php if (isset($end_of_html) and $end_of_html) {
+    echo $end_of_html;
+} ?>
 </body>
 
 </html>

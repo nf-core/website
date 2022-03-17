@@ -60,10 +60,10 @@ ob_start();
 
 <script type="text/javascript">
     var HIDE_INDEX = true;
-    var prefix = '<?php echo $pipeline->name ?>/results-<?php echo $release_hash ?>/';
+    var prefix = '<?php echo $pipeline->name; ?>/results-<?php echo $release_hash; ?>/';
     var suffix = '';
     if (window.location.hash.length > 0) {
-        if (window.location.hash.substr(1).split("/")[0] === "<?php echo $pipeline->name ?>") {
+        if (window.location.hash.substr(1).split("/")[0] === "<?php echo $pipeline->name; ?>") {
             prefix = window.location.hash.substr(1);
             if (!prefix.endsWith('/')) {
                 suffix = prefix.split("/").pop();
@@ -91,4 +91,6 @@ ob_start();
 <?php
 $content = ob_get_contents();
 ob_end_clean();
+
+
 ?>

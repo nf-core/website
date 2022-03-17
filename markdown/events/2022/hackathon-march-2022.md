@@ -2,15 +2,14 @@
 title: Hackathon - March 2022
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-start_date: "2022-03-16"
-start_time: "10:00 CET"
-end_date: "2022-03-18"
-end_time: "18:00 CET"
+start_date: '2022-03-16'
+start_time: '10:00 CET'
+end_date: '2022-03-18'
+end_time: '18:00 CET'
 youtube_embed: https://www.youtube.com/watch?v=yZ8xX4Jk4zU
 location_name: Gather town and Slack.
 import_typeform: true
 ---
-
 
 # Welcome
 
@@ -130,7 +129,6 @@ All locations described in the table below refer to places in the Hackathon [gat
 space. EMEA stands for the time zones in Europe, Middle East, and Africa.
 
 The following schedule should display times in your local time zone:
-
 
 <!-- Calculate value for data-timestamp with '(new Date("2022-03-16T21:00")).getTime()/1000' in console -->
 <div class="table-responsive">
@@ -336,6 +334,7 @@ The following schedule should display times in your local time zone:
             </tr>
         </tbody>
     </table>
+
 </div>
 
 # Social Activities

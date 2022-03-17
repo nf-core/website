@@ -37,10 +37,10 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_(programming)). This is even if you are only running one paired end sample.
-    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>). This is even if you are only running one paired end sample.
+   - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
-    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
+   - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
 4. If you are running single-end data make sure to specify `--singleEnd`
 5. [Your data should be organised in a 'tidy' manner](#data-organization)
 
@@ -48,21 +48,21 @@ A few examples are as follows:
 
 - Running with a single, single-end FASTQ file as input (this will produce output files for this sample only)
 
-    ```bash
-    nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
+  ```
 
 - Running multiple single-end FASTQ files as input using a wildcard glob pattern. This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples (and will produce output files for each of the multiple input files).
 
-    ```bash
-    nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
+  ```
 
 - Running multiple paired-end FASTQ files as input using wildcard and grouping glob patterns . This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples. However, any pair of files names that are exactly the same other than `R1` and `R2`, will be grouped together. i.e. the R1 and R2 (and the rest of the string being the same) files will be processed together as related files (you will get in most cases output files for each distinct file, but with the R1 and R2 files collapsed into one).
 
-    ```bash
-    nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
+  ```
 
 Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` will not give you what you want, whilst `*{R1,R2}*.gz` will.
 
@@ -144,7 +144,7 @@ If this is the case, please install `mksquashfs` or ask your IT department to in
 
 ### Error related to HPC Schedulers
 
-If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile.  See [nf-core/configs](https://github.com/nf-core/configs) and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
+If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile. See [nf-core/configs](https://github.com/nf-core/configs) and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
 
 These types of error can look like the following:
 
@@ -241,8 +241,8 @@ Command exit status:
 
 Common exit codes and and **_potential_** solutions are as follows:
 
-| Exit Code | Possible Cause | Solution                                                                                                                     |
-|-----------|----------------|------------------------------------------------------------------------------------------------------------------------------|
+| Exit Code | Possible Cause | Solution                                                                                                                                                                                                |
+| --------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
 | `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
 | `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
@@ -267,22 +267,23 @@ For example, lets say it's the `markduplicates` process that is running out of m
 - Go back to the main github repository, and open `conf/base.config`. Again use the browser;s find functionality to search for: `withLabel:'process_low'`.
 - Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
 - Back on your working machine, make a new text file called `custom_resources.conf`. This should be saved somewhere centrally so you can reuse it.
-    > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
+  > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
 - Within this file, add the following. Note we have increased the default `4.GB` to `16.GB`.
 
-    ```nextflow
-    profiles {
-        big_data {
-          process {
-            withName: markduplicates {
-              memory = 16.GB
-            }
+  ```nextflow
+  profiles {
+      big_data {
+        process {
+          withName: markduplicates {
+            memory = 16.GB
           }
         }
-    }
-    ```
+      }
+  }
+  ```
 
   - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
+
     - If you want this, use the following syntax instead:
 
       ```nextflow
@@ -292,11 +293,12 @@ For example, lets say it's the `markduplicates` process that is running out of m
     - Next, copy the `check_max()` function from the pipeline's `nextflow.config` file (e.g. [here](https://github.com/nf-core/rnaseq/blob/3643a94411b65f42bce5357c5015603099556ad9/nextflow.config#L190-L221)) to the bottom of your custom config file.
     - `16.GB * task.attempt` multiplies the memory request by the index of the retry. So if the job failed and is being tried a second time, it requests `32.GB`.
     - The `check_max()` function prevents Nextflow requesting excessive resources above what is available on your system. This effectively sets a ceiling on the resources and prevents the pipeline from crashing if it goes too high. Unfortunately because of the order in which pipeline code and Nextflow configs are parsed, this function needs to be defined in your custom config file.
+
 - Once saved, modify the original Nextflow run command:
 
-    ```bash
-    nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
+  ```
 
   - We have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
   - :warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
@@ -356,30 +358,30 @@ You can specify a local iGenomes path by either:
 
 - Setting the igenomes_base path in a configuration profile.
 
-    ```nextflow
-    params {
-      igenomes_base = '/<path>/<to>/<data>/igenomes'
-    }
-    ```
+```nextflow
+params {
+    igenomes_base = '/<path>/<to>/<data>/igenomes'
+}
+```
 
 - Specifying an `--igenomes_base` path in your executation command.
 
-    ```bash
-    nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
-    ```
+```bash
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
+```
 
 - Specifying the `igenomes_base` parameter in a `params` file provided with `-params-file` in `yaml` or `json` format.
 
-    ```bash
-    nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
-    ```
+```bash
+nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
+```
 
-    Where the `params.yml` file contains the pipeline params:
+Where the `params.yml` file contains the pipeline params:
 
-    ```bash
-    input: '/<path>/<to>/<data>/input'
-    igenomes_base: '/<path>/<to>/<data>/igenomes'
-    ```
+```bash
+input: '/<path>/<to>/<data>/input'
+igenomes_base: '/<path>/<to>/<data>/igenomes'
+```
 
 ## Extra resources and getting help
 

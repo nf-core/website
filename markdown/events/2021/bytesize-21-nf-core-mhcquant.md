@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 21: nf-core/mhcquant"
+title: 'Bytesize 21: nf-core/mhcquant'
 subtitle: Leon Bichmann - University of Tuebingen, Germany
 type: talk
-start_date: "2021-09-28"
-start_time: "13:00 CEST"
-end_date: "2021-09-28"
-end_time: "13:30 CEST"
+start_date: '2021-09-28'
+start_time: '13:00 CEST'
+end_date: '2021-09-28'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/NCKkSssE_4w
 location_url:
- - https://youtu.be/NCKkSssE_4w
- - https://www.bilibili.com/video/BV1Lh411J732/
- - https://doi.org/10.6084/m9.figshare.16750381.v1
+  - https://youtu.be/NCKkSssE_4w
+  - https://www.bilibili.com/video/BV1Lh411J732/
+  - https://doi.org/10.6084/m9.figshare.16750381.v1
 ---
 
 # nf-core/bytesize
@@ -62,7 +62,7 @@ nfcore/mhcquant is a bioinformatics analysis pipeline used for quantitative proc
 
 [9:44](https://youtu.be/NCKkSssE_4w?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=584) So in the next step, the retention time for all the peptides is corrected because the retention time can be slightly different across different measurements. This has been corrected in the pipeline using a specific tool called MapAlignerIdentification within the [OpenMS](https://www.openms.de/) tool. This aligns all the peptides to one central reference.
 
-[10:30](https://youtu.be/NCKkSssE_4w?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=630) So finally, we get to the part that explains were MHCquant gets its second name. Every peptide is associated with a quantity. This is carried out using a targeted chromatogram extraction approach - each peptide identification is located not only on the MS2 level but also at  the MS1 level. The corresponding chromatograms are integrated and the sum of the signal intensity area under the curve represents the quantity that can be compared.
+[10:30](https://youtu.be/NCKkSssE_4w?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=630) So finally, we get to the part that explains were MHCquant gets its second name. Every peptide is associated with a quantity. This is carried out using a targeted chromatogram extraction approach - each peptide identification is located not only on the MS2 level but also at the MS1 level. The corresponding chromatograms are integrated and the sum of the signal intensity area under the curve represents the quantity that can be compared.
 
 [11:11](https://youtu.be/NCKkSssE_4w?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=671) Again, we went into the lab and also verified this so looking at the signal intensities of 57 spiked-in peptides that were diluted in a linear series, we observed a linear decay in signal intensity. So again, we validated that the quantification works reliably well.
 
