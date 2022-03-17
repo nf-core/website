@@ -352,16 +352,16 @@ To fix this, you must clean the entirety of the run's `work/` directory e.g. wit
 
 The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.conf` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default.
 
-There are two seperate strategies for avoiding this problem:
+You can specify a local iGenomes path by either:
 
-1. Setting the igenomes_base using a configuration profile 
+1. Setting the igenomes_base path in a configuration profile 
 ```nextflow
 params {
   igenomes_base = '/<path>/<to>/<data>/igenomes'
 }
 ```
 
-2. Specifying the  `--igenomes_base` in your executation command
+2. Specifying an  `--igenomes_base` path in your executation command
 ```bash
 nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
 ```
