@@ -20,6 +20,7 @@ Downloading reference genome files takes time and bandwidth so, if possible, we 
 
 To use a local version of iGenomes, the variable `params.igenomes_base` must be set to the path of the local igenome folder using either a configuration profile or by using `--igenomes_base` in your execution command.
 Setting the `params.igenomes_base` path in a custom config file will **not** work.
+Parameters should be provided within a `params` file with the option `-params-file` instead.
 Additional information on how to set a local igenomes base can be found [here](troubleshooting.md#using-a-local-version-of-igenomes).
 
 ## Adding paths to a config file
