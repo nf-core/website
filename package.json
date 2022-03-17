@@ -11,8 +11,8 @@
     "copy-assets": "cp $(cat public_html/assets/lib/to_copy.txt) public_html/assets/lib",
     "build-css": "npm run compile-sass && npm run prefix-css && npm run compress-css",
     "build-prod": "npm run copy-assets && npm run build-css",
-    "lint": "prettier --check . --ignore-path .gitignore",
-    "format": "prettier --write . --ignore-path .gitignore"
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
