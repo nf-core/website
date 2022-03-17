@@ -9,7 +9,7 @@ nextflow run nf-core/viralrecon --help
 
 mkdir -p testrun
 cd testrun
-nextflow run nf-core/viralrecon -profile test,docker
+nextflow run nf-core/viralrecon -profile test,docker --outdir .
 
 ## Try launching the Viralrecon pipeline using the *nf-core launch* command
 
