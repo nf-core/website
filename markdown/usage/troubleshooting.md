@@ -368,6 +368,18 @@ You can specify a local iGenomes path by either:
     nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
     ```
 
+- Specifying the `igenomes_base` parameter in a `params` file provided with `-params-file in `yaml` or `json` format.
+
+    ```bash
+    nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
+    ```
+
+    Where the `params.yml` file contains the pipeline params:
+
+    ```bash
+    input: '/<path>/<to>/<data>/input'
+    igenomes_base: '/<path>/<to>/<data>/igenomes'
+    ```
 ## Extra resources and getting help
 
 If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
