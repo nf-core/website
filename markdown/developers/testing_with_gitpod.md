@@ -7,7 +7,7 @@ subtitle: Testing, Code review and Website dev.
 
 Gitpod is an open-source developer platform that can be spun up quickly from a Git repository, containing all the programs needed to run your pipelines. It has many purposes, including: testing pipelines, learning Nextflow, reviewing/editing code and live views of edited markdown/HTML for webpage development. In addition, within Gitpod, any change can be pushed to branches for review. 
 
-Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month (currently) and based in your browser (reconmmended with Chrome, Firefox or Edge). You can find their extensive documentation [here](https://gitpod.io/). 
+Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month and allows 4 parellel workspaces (as of March 2022). It is based in your browser (reconmmended with Chrome, Firefox or Edge). You can find their extensive documentation [here](https://gitpod.io/). 
 
 All nf-core repos (including the webpage) should have their own working gitpod instances, with all the code required available in each environment.
 
@@ -33,6 +33,7 @@ See the following guides for Gitpod use in different scenarios:
 2. [Using git within Gitpod](gitpod/git_in_gitpod.md)
 3. [How to test a module with pytest in Gitpod](gitpod/pytest.md)
 4. [How to develop Markdown for the nf-core website](gitpod/webdev.md)
+5. [How to develop nf core pipelines with Gitpod](gitpod/nf_core_repo.md)
 5. [Other Gitpod tutorials](gitpod/other.md)
 
 
