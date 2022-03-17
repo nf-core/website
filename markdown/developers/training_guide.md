@@ -95,7 +95,7 @@ Provide links to where the reader can get additional support, or useful further 
 
 #### Add how to check your progress
 
-Guides should provide some form of summative assessment at the end if appropriate. 
+Guides should provide some form of summative assessment at the end if appropriate.
 Provide 3-4 questions you believe would help the reader to check their understanding or learning progress, after they've studied the material.
 Add either a multiple choice or a true/false type of question, and feedback in case of correct or incorrect answer.
 
