@@ -442,7 +442,7 @@ if (!$cache) {
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.3
+    nf-core/tools version 2.3 - https://nf-co.re
 
 
 <span style="color:darkblue;">INFO</span>    NOTE:This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
