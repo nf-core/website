@@ -7,7 +7,7 @@ subtitle: A guide to writing instructions for training material.
 
 Thank you for helping us write a guide to using an aspect of nf-core.
 
-## Questions
+## Scope
 
 - How can I contribute a training guide to nf-core?
 - Where do I put the guide?
