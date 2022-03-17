@@ -9,7 +9,7 @@ require_once '../includes/json_schema.php';
 $title = 'Parameter schema';
 $subtitle = 'Customise a JSON Schema for your pipeline parameters';
 if ($cache) {
-    $import_schema_builder = true;
+  $import_schema_builder = true;
 }
 $mainpage_container = false;
 include '../includes/header.php';
@@ -165,8 +165,8 @@ include '../includes/header.php';
     <h3>Pipeline JSON Schema</h3>
     <p>This is the schema for your pipeline. As you change values in the form above, it will update. When you are finished, click <em>Finished</em> in the top toolbar.</p>
     <textarea id="json_schema" class="form-control font-monospace disabled" disabled rows="30"><?php echo json_encode(
-        $cache['schema'],
-        JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+      $cache['schema'],
+      JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
     ); ?></textarea>
 
     <!-- Params schema settings modal -->

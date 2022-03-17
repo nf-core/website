@@ -28,7 +28,7 @@ foreach ($pipeline->releases as $releases) { ?>
   </div>
   <div class="col-auto">
     <a href="#download-<?php echo $releases->tag_sha; ?>" class="text-body" data-bs-toggle="collapse"><small class="text-muted"><?php echo time_ago(
-    $releases->published_at
+  $releases->published_at
 ); ?></small></a>
     <button class="btn btn-sm btn-link text-body" type="button" data-bs-toggle="collapse" data-bs-target="#download-<?php echo $releases->tag_sha; ?>">
       <i class="fas fa-caret-<?php echo $first ? 'down' : 'left'; ?>"></i>
@@ -36,7 +36,7 @@ foreach ($pipeline->releases as $releases) { ?>
   </div>
 </div>
 <div class="collapse <?php if ($first) {
-    echo 'show';
+  echo 'show';
 } ?>" id="download-<?php echo $releases->tag_sha; ?>">
   <div class="row pb-2">
     <div class="col-sm-6 small">
@@ -82,7 +82,7 @@ $(function(){
   <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo $metrics[
-          'network_forks_count'
+        'network_forks_count'
       ]; ?></a></p>
       <p class="card-text text-muted">Forks</p>
     </div>
@@ -98,7 +98,7 @@ $(function(){
   <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo $stats[
-          'num_contributors'
+        'num_contributors'
       ]; ?></a></p>
       <p class="card-text text-muted">Code contributors</p>
     </div>
@@ -170,17 +170,17 @@ $(function(){
 <?php
 $contrib_avatars = [];
 foreach ($contrib_json as $contrib) {
-    $contrib_avatars[
-        '<a class="d-inline-block" href="https://github.com/' .
-            $pipeline->full_name .
-            '/graphs/contributors" data-author="' .
-            $contrib['author']['login'] .
-            '" data-bs-toggle="tooltip" title="@' .
-            $contrib['author']['login'] .
-            '"><img src="' .
-            $contrib['author']['avatar_url'] .
-            '"></a>'
-    ] = $contrib['total'];
+  $contrib_avatars[
+    '<a class="d-inline-block" href="https://github.com/' .
+      $pipeline->full_name .
+      '/graphs/contributors" data-author="' .
+      $contrib['author']['login'] .
+      '" data-bs-toggle="tooltip" title="@' .
+      $contrib['author']['login'] .
+      '"><img src="' .
+      $contrib['author']['avatar_url'] .
+      '"></a>'
+  ] = $contrib['total'];
 }
 arsort($contrib_avatars);
 echo implode(array_keys($contrib_avatars));
@@ -271,12 +271,12 @@ $(function(){
           <?php
           $dates = [];
           foreach (array_keys($stats['clones_count']) as $date) {
-              $dates[strtotime($date)] = $date;
+            $dates[strtotime($date)] = $date;
           }
           ksort($dates);
           foreach ($dates as $ts => $date) {
-              $count = $stats['clones_count'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+            $count = $stats['clones_count'][$date];
+            echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
           }
           ?>
         ]
@@ -292,12 +292,12 @@ $(function(){
           <?php
           $dates = [];
           foreach (array_keys($stats['clones_uniques']) as $date) {
-              $dates[strtotime($date)] = $date;
+            $dates[strtotime($date)] = $date;
           }
           ksort($dates);
           foreach ($dates as $ts => $date) {
-              $count = $stats['clones_uniques'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+            $count = $stats['clones_uniques'][$date];
+            echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
           }
           ?>
         ]
@@ -327,12 +327,12 @@ $(function(){
           <?php
           $dates = [];
           foreach (array_keys($stats['views_count']) as $date) {
-              $dates[strtotime($date)] = $date;
+            $dates[strtotime($date)] = $date;
           }
           ksort($dates);
           foreach ($dates as $ts => $date) {
-              $count = $stats['views_count'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+            $count = $stats['views_count'][$date];
+            echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
           }
           ?>
         ]
@@ -348,12 +348,12 @@ $(function(){
           <?php
           $dates = [];
           foreach (array_keys($stats['views_uniques']) as $date) {
-              $dates[strtotime($date)] = $date;
+            $dates[strtotime($date)] = $date;
           }
           ksort($dates);
           foreach ($dates as $ts => $date) {
-              $count = $stats['views_uniques'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+            $count = $stats['views_uniques'][$date];
+            echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
           }
           ?>
         ]
@@ -381,12 +381,12 @@ $(function(){
           backgroundColor: 'rgba(200, 200, 200, 0.5)',
           pointRadius: 0,
           <?php if ($first) {
-              echo "fill: 'origin',";
-              $first = false;
+            echo "fill: 'origin',";
+            $first = false;
           } ?>
           data: [
             <?php foreach ($contrib['weeks'] as $week) {
-                echo '{ x: "' . date('Y-m-d', $week['w']) . '", y: ' . $week['c'] . ' },' . "\n\t\t\t";
+              echo '{ x: "' . date('Y-m-d', $week['w']) . '", y: ' . $week['c'] . ' },' . "\n\t\t\t";
             } ?>
           ]
         },

@@ -30,18 +30,18 @@ $search_term = $_GET['q'];
   # echo '<pre>'.print_r($search_results, true).'</pre>';
 
   if (count($search_results['pipelines']) == 0 && count($search_results['documentation']) == 0) {
-      echo '<h1>No results</h1>';
-      echo '<p>Sorry, no search results were found. Please try another term.</p>';
+    echo '<h1>No results</h1>';
+    echo '<p>Sorry, no search results were found. Please try another term.</p>';
   }
 
   if (count($search_results['pipelines']) > 0) {
-      echo '<h1>Pipelines</h1>';
-      foreach ($search_results['pipelines'] as $result) {
-          $wf = $result['pipeline']; ?>
+    echo '<h1>Pipelines</h1>';
+    foreach ($search_results['pipelines'] as $result) {
+      $wf = $result['pipeline']; ?>
       <div class="card search-page-result mb-2">
         <div class="card-body">
           <h5 class="card-title mb-0"><a href="<?php echo $wf->url .
-              "?q=$search_term"; ?>"><?php echo $wf->full_name; ?></a></h5>
+            "?q=$search_term"; ?>"><?php echo $wf->full_name; ?></a></h5>
           <?php if (count($wf->topics) > 0): ?>
             <p class="topics mb-0">
               <?php foreach ($wf->topics as $topic): ?>
@@ -53,16 +53,16 @@ $search_term = $_GET['q'];
         </div>
       </div>
     <?php
-      }
+    }
   }
 
   if (count($search_results['documentation']) > 0) {
-      echo '<h1>Documentation</h1>';
-      foreach ($search_results['documentation'] as $result) { ?>
+    echo '<h1>Documentation</h1>';
+    foreach ($search_results['documentation'] as $result) { ?>
       <div class="card search-page-result mb-2">
         <div class="card-body">
           <h5 class="card-title mb-0"><a href="<?php echo $result['url'] . "?q=$search_term"; ?>"><?php echo $result[
-    'title'
+  'title'
 ]; ?></a></h5>
           <h6 class="text-muted"><?php echo $result['subtitle']; ?></h6>
           <p class="card-text text-muted small"><?php echo $result['match_string']; ?></p>
