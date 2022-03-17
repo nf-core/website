@@ -9,7 +9,7 @@ Gitpod is an open-source developer platform that can be spun up quickly from a G
 
 Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month and allows 4 parellel workspaces (as of March 2022). It runs in your browser (recommended with Chrome, Firefox or Edge). You can find their extensive documentation [here](https://gitpod.io/). 
 
-All nf-core repos (including the webpage) should have their own working gitpod instances, with all the code required available in each environment.
+Each nf-core repository (including the webpage) is integrated with Gitpod. When you click on the Gitpod button (see below), this clones a copy of the repository into your Gitpod instance with all the software necessary to run tests and display files. A terminal is also available to run test and workflow debugging.
 
 ## Running Gitpod on an nf-core repo
 
