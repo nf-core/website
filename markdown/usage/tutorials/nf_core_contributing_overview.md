@@ -11,7 +11,7 @@ subtitle: Tutorial covering the basics of contributing to nf-core.
 >
 > Updated for the Elixir workshop on November 2021 *(see [event](https://nf-co.re/events/2021/elixir-workflow-training-event))*.
 >
-> Updating during the March 2022 hackathon.
+> Updated during the March 2022 hackathon.
 
 <!-- markdownlint-disable -->
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/cg1Tent4RnKznE" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
@@ -55,7 +55,7 @@ A suite of helper tools aim to help people run and develop pipelines.
 This tutorial attempts to give an overview of:
 
 * creating new pipelines using the *nf-core* template.
-* what are nf-core shared modules.
+* what nf-core shared modules are.
 * adding nf-core shared modules to a pipeline.
 * creating new nf-core modules using the *nf-core* module template.
 * reviewing and releasing *nf-core* pipelines.
