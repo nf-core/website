@@ -131,6 +131,8 @@ The nf-core pipelines currently available and under development are also listed 
 * Filter pipelines for those that work with RNA
 * Save these pipeline details to a JSON file
 
+To try this yourself on *GitPod* use the following button:
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/master/markdown/usage/tutorials/nf_core_usage_exercise_01.sh)
 ## Running nf-core pipelines
 
 ### Software requirements for nf-core pipelines
