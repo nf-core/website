@@ -134,7 +134,7 @@ The nf-core pipelines currently available and under development are also listed 
 To try this yourself on *GitPod* use the following button:
 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/gitpod_exercises/markdown/usage/tutorials/gitpod_exercises/gitpod_exercise_01.sh)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/gitpod_exercises/markdown/usage/tutorials/)
 
 ## Running nf-core pipelines
 
@@ -270,7 +270,7 @@ To know more about running pipelines offline you can check the [pipeline configu
 To try this yourself on *GitPod* use the following button:
 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/gitpod_exercises/markdown/usage/tutorials/gitpod_exercises/gitpod_exercise_02.sh)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lescai/nf-co.re/blob/gitpod_exercises/markdown/usage/tutorials/)
 
 ## Troubleshooting nf-core pipelines
 
