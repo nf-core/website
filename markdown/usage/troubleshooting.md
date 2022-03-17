@@ -348,13 +348,13 @@ To fix this, you must clean the entirety of the run's `work/` directory e.g. wit
 
 `ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
 
-## Using a local version of iGenomes 
+## Using a local version of iGenomes
 
 The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.conf` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default.
 
 You can specify a local iGenomes path by either:
 
-1. Setting the igenomes_base path in a configuration profile. 
+1. Setting the igenomes_base path in a configuration profile.
 
 ```nextflow
 params {
@@ -362,7 +362,7 @@ params {
 }
 ```
 
-2. Specifying an  `--igenomes_base` path in your executation command.
+2. Specifying an `--igenomes_base` path in your executation command.
 
 ```bash
 nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
