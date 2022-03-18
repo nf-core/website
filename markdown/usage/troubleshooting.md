@@ -79,12 +79,13 @@ For this step you try to identify when the error occurs:
       .command.sh: line 3: rsem-prepare-reference: command not found 
     Work dir: 
       /home/lfaller/nextflow/rnaseq/work/f7/b6ef5a3f12f5efbf641f19046aca74 
-    Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script 
-file named `.command.sh` 
+    Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh` 
     Unexpected error [AbortedException] 
      -- Check script '/home/lfaller/.nextflow/assets/nf-core/rnaseq/./workflows/rnaseq.nf' at line: 603 or see '.nextflow.log' file for more details
     ```
+    
 3. During run: for errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below.
+
 4. While generating outputs: if an expected process output is missing, Nextflow will fail with the message `Missing output file(s)`. Then the error message of that tool will be displayed.  Example error:
 
     ```bash
@@ -110,9 +111,7 @@ file named `.command.sh`
        at uk.ac.babraham.FastQC.Analysis.AnalysisRunner.run(AnalysisRunner.java:77) 
        at java.base/java.lang.Thread.run(Thread.java:834)
     ```
-
-Errors that occur before the first process might be related to an outdated version of Nextflow. Updating to the newest version could help solving the issue. When an error appears during the first process it might indicate an issue with software dependencies. To specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles).  This type of error might also be related to a missing command that is required to run the pipeline. For errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below. 
-
+    
 ### Read the log and check the work directory 
 
 Checking the log files can help you to identify the type of error and where the error occurred. In order to search the output related to the error we need to understand the anatomy of the work directory: 
@@ -149,7 +148,7 @@ You can also open an issue in the respective pipeline repository on GitHub askin
 - If you think you know the solution, please say so. 
 - If you think you can fix the problem, please make a pull request.
 
-If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [google group](https://groups.google.com/forum/#!forum/nextflow). 
+If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow Slack Channel](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg). 
 
 ## Troubleshooting talk
 
