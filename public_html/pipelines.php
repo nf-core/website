@@ -5,18 +5,18 @@ $pipelines = $pipelines_json->remote_workflows;
 
 $msg = '';
 if (isset($_GET['update']) && time() - $pipelines_json->updated > 60 * 10) {
-  $output = shell_exec('php ../update_pipeline_details.php 2>&1 | tee -a /home/nfcore/update.log');
-  $msg = '<div class="alert alert-success">Manual pipeline update sync triggered: <pre>' . $output . '</pre></div>';
+    $output = shell_exec('php ../update_pipeline_details.php 2>&1 | tee -a /home/nfcore/update.log');
+    $msg = '<div class="alert alert-success">Manual pipeline update sync triggered: <pre>' . $output . '</pre></div>';
 } elseif (isset($_GET['update'])) {
-  $msg =
-    '<div class="alert alert-warning">Manual pipeline update can only be triggered at least 10 minutes apart</div>';
+    $msg =
+        '<div class="alert alert-warning">Manual pipeline update can only be triggered at least 10 minutes apart</div>';
 }
 
 $title = 'Pipelines';
 $subtitle =
-  'Browse the <strong>' .
-  $pipelines_json->pipeline_count .
-  '</strong> pipelines that are currently available as part of nf-core.';
+    'Browse the <strong>' .
+    $pipelines_json->pipeline_count .
+    '</strong> pipelines that are currently available as part of nf-core.';
 include '../includes/header.php';
 
 usort($pipelines, 'rsort_pipelines');
@@ -32,8 +32,8 @@ echo $msg;
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm me-2 mt-2">
     <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo isset($_GET['q'])
-      ? $_GET['q']
-      : ''; ?>">
+        ? $_GET['q']
+        : ''; ?>">
   </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
     <button type="button" class="btn text-body">Filter:</button>
@@ -83,7 +83,7 @@ echo $msg;
   <?php foreach ($pipelines as $wf): ?>
     <div class="col">
       <div class="card h-100 pipeline <?php if ($wf->archived): ?>pipeline-archived<?php elseif (
-        count($wf->releases) == 0
+          count($wf->releases) == 0
       ): ?>pipeline-dev<?php else: ?>pipeline-released<?php endif; ?>">
         <div class="card-body clearfix">
           <h3 class="card-title mb-0">
@@ -114,17 +114,17 @@ echo $msg;
           <p class="card-text mb-0 mt-2"><?php echo $wf->description; ?></p>
           <p class="mb-0 mt-2 dl-btn-row">
             <?php if (count($wf->releases) > 0):
-              usort($wf->releases, 'rsort_releases'); ?>
+                usort($wf->releases, 'rsort_releases'); ?>
               <a href="<?php echo $wf->releases[0]
-                ->html_url; ?>" target="_blank" class="btn btn-sm btn-outline-success">
+                  ->html_url; ?>" target="_blank" class="btn btn-sm btn-outline-success">
                 Version <strong><?php echo $wf->releases[0]->tag_name; ?></strong>
               </a> &nbsp;
               <small class="text-black-50 publish-date" data-pubdate="<?php echo strtotime(
-                $wf->releases[0]->published_at
+                  $wf->releases[0]->published_at,
               ); ?>">Published <?php echo time_ago($wf->releases[0]->published_at); ?></small>
             <?php
             else:
-               ?>
+                 ?>
               <small class="text-danger">No releases yet</small>
             <?php
             endif; ?>

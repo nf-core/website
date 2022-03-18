@@ -3,17 +3,17 @@
 // Check if we have $_GET['t'] - ie, URL was /join/something
 $config = parse_ini_file('../config.ini');
 $join_redirects = [
-  'slack' => $config['slack_invite_url'],
+    'slack' => $config['slack_invite_url'],
 ];
 if (isset($_GET['t'])) {
-  $redirect = rtrim(str_replace('join/', '', $_GET['t']), '/');
-  if (array_key_exists($redirect, $join_redirects)) {
-    header('Location: ' . $join_redirects[$redirect]);
-  } else {
-    header('HTTP/1.1 404 Not Found');
-    include '404.php';
-    die();
-  }
+    $redirect = rtrim(str_replace('join/', '', $_GET['t']), '/');
+    if (array_key_exists($redirect, $join_redirects)) {
+        header('Location: ' . $join_redirects[$redirect]);
+    } else {
+        header('HTTP/1.1 404 Not Found');
+        include '404.php';
+        die();
+    }
 }
 
 $title = 'Join nf-core';

@@ -18,29 +18,29 @@ $config = parse_ini_file(dirname(__FILE__) . '/../../config.ini');
 define('GH_AUTH', base64_encode($config['github_username'] . ':' . $config['github_access_token']));
 // HTTP header to use on GitHub API GET requests
 define(
-  'GH_API_OPTS',
-  stream_context_create([
-    'http' => [
-      'method' => 'GET',
-      'header' => ['User-Agent: PHP', 'Authorization: Basic ' . GH_AUTH],
-    ],
-  ])
+    'GH_API_OPTS',
+    stream_context_create([
+        'http' => [
+            'method' => 'GET',
+            'header' => ['User-Agent: PHP', 'Authorization: Basic ' . GH_AUTH],
+        ],
+    ]),
 );
 
 // Fetch releases if file not found or older than 24 hours
 if (!file_exists($tools_version_fn) || filemtime($tools_version_fn) < time() - 60 * 60 * 24 || isset($_GET['force'])) {
-  $tools_versions_url = 'https://api.github.com/repos/nf-core/tools/releases';
-  $tools_versions_json = json_decode(file_get_contents($tools_versions_url, false, GH_API_OPTS), true);
-  if ($tools_versions_json) {
-    $versions = [];
-    foreach ($tools_versions_json as $release) {
-      $versions[] = $release['tag_name'];
+    $tools_versions_url = 'https://api.github.com/repos/nf-core/tools/releases';
+    $tools_versions_json = json_decode(file_get_contents($tools_versions_url, false, GH_API_OPTS), true);
+    if ($tools_versions_json) {
+        $versions = [];
+        foreach ($tools_versions_json as $release) {
+            $versions[] = $release['tag_name'];
+        }
+        if (count($versions) > 0) {
+            file_put_contents($tools_all_versions_fn, implode("\n", array_reverse($versions)));
+            file_put_contents($tools_version_fn, $versions[0]);
+        }
     }
-    if (count($versions) > 0) {
-      file_put_contents($tools_all_versions_fn, implode("\n", array_reverse($versions)));
-      file_put_contents($tools_version_fn, $versions[0]);
-    }
-  }
 }
 
 header('Content-type: text/plain');

@@ -11,15 +11,15 @@ $conn = mysqli_connect($config['host'], $config['username'], $config['password']
 $sql = "SELECT * FROM nfcore_pipelines WHERE pipeline_type='pipelines' ORDER BY LOWER(name)";
 $pipelines = [];
 if ($result = mysqli_query($conn, $sql)) {
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result)) {
-      $pipelines[] = $row['name'];
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            $pipelines[] = $row['name'];
+        }
+        // Free result set
+        mysqli_free_result($result);
+    } else {
+        echo 'Oops! Something went wrong. Please try again later.';
     }
-    // Free result set
-    mysqli_free_result($result);
-  } else {
-    echo 'Oops! Something went wrong. Please try again later.';
-  }
 }
 // generate a new number every twelve hours
 $date1 = date_create('2022-03-08T03:00:00', new DateTimeZone('Europe/Stockholm'));
