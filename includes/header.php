@@ -5,34 +5,34 @@ require_once dirname(__FILE__) . '/functions.php';
 // Find the latest commit hash to prevent caching assets
 $git_sha = trim(shell_exec('cd ' . dirname(__FILE__) . ' && git rev-parse --short=7 HEAD'));
 if (strlen($git_sha) != 7) {
-  $git_sha = '';
+    $git_sha = '';
 }
 
 // Theme switcher cookie
 $theme = 'auto';
 if (isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 'light', 'dark'])) {
-  $theme = $_COOKIE['nfcoretheme'];
+    $theme = $_COOKIE['nfcoretheme'];
 }
 
 // Convert Markdown to HTML if a filename is given
 if (isset($markdown_fn) and $markdown_fn) {
-  require_once 'parse_md.php';
-  $parsed_out = parse_md($markdown_fn);
-  $content = $parsed_out['content'];
-  $meta = $parsed_out['meta'];
-  $title = $parsed_out['title'];
-  $subtitle = $parsed_out['subtitle'];
+    require_once 'parse_md.php';
+    $parsed_out = parse_md($markdown_fn);
+    $content = $parsed_out['content'];
+    $meta = $parsed_out['meta'];
+    $title = $parsed_out['title'];
+    $subtitle = $parsed_out['subtitle'];
 }
 
 // Page title
 $page_title = 'nf-core';
 if (isset($title) && strlen($title) > 0) {
-  $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)) . ' &raquo; nf-core';
+    $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)) . ' &raquo; nf-core';
 }
 // Page meta description
 $page_meta = 'A collection of high quality Nextflow pipelines';
 if (isset($subtitle) && strlen($subtitle) > 0) {
-  $page_meta = strip_tags($subtitle);
+    $page_meta = strip_tags($subtitle);
 }
 ?>
 <!doctype html>
@@ -182,7 +182,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
-              echo '<i class="fad fa-circle text-danger me-1"></i>';
+                echo '<i class="fad fa-circle text-danger me-1"></i>';
             } ?>Events</a>
           </li>
           <li class="nav-item p-1 dropdown">
@@ -217,37 +217,37 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
-            echo '<a href="' .
-              $md_github_url .
-              '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
+              echo '<a href="' .
+                  $md_github_url .
+                  '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';
           }
           if (isset($header_btn_url) && isset($header_btn_text)) {
-            echo '<a href="' .
-              $header_btn_url .
-              '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' .
-              $header_btn_text .
-              '</a>';
+              echo '<a href="' .
+                  $header_btn_url .
+                  '" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">' .
+                  $header_btn_text .
+                  '</a>';
           }
           ?>
           <h1 class="display-2"><?php echo $title; ?></h1>
           <?php if ($subtitle) {
-            echo '<p class="lead">' . $subtitle . '</p>';
+              echo '<p class="lead">' . $subtitle . '</p>';
           } ?>
           <?php if (isset($header_html)) {
-            echo $header_html;
+              echo $header_html;
           } ?>
         </div>
       </div>
 
       <?php if (
-        !isset($mainpage_container) or $mainpage_container
+          !isset($mainpage_container) or $mainpage_container
       ): ?> <div class="container main-content pt-5"> <?php endif; ?>
 
       <?php endif;
   if (isset($markdown_fn) and $markdown_fn) {
-    // Print the parsed HTML
-    if (!isset($no_print_content) or !$no_print_content) {
-      echo $content;
-    }
+      // Print the parsed HTML
+      if (!isset($no_print_content) or !$no_print_content) {
+          echo $content;
+      }
   }
 
