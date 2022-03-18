@@ -100,6 +100,17 @@ Provide links to where the reader can get additional support, or useful further 
 Guides should provide some form of summative assessment at the end if appropriate.
 Provide 3-4 questions you believe would help the reader to check their understanding or learning progress, after they've studied the material.
 Add either a multiple choice or a true/false type of question, and feedback in case of correct or incorrect answer.
+You can use the HTML `<details>` and `<summary>` tags to hide answers, e.g.,
+
+```html
+Your question here.
+<details>
+  <summary>Click to expand the solution.</summary>
+
+  Text of your solution here.
+
+</details>
+```
 
 #### Format your document.
 
