@@ -32,7 +32,7 @@ subtitle: How to troubleshoot common mistakes and issues
 
 ## Troubleshooting basics
 
-These are the recommended steps for troubleshooting a pipeline. 
+These are the recommended steps for troubleshooting a pipeline.
 
 ### Start small
 
