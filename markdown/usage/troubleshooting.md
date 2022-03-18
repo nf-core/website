@@ -36,7 +36,7 @@ These are the recommended steps for troubleshooting a pipeline.
 
 ### Start small
 
-Before using the pipeline with your data, make sure to run a test using: 
+Before using the pipeline with your data, make sure to run a test using:
 
 ```bash
 nextflow run nf-core/<pipeline_name> -profile test,docker
