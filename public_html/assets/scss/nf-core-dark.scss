@@ -20,7 +20,7 @@ $nf-core-color: $nf-core-color-alt;
 @import 'bootstrap-dark-5/scss/dark/patch'; // missing from BS, unsupported patch/hack
 
 :root {
-    color-scheme: dark;
+  color-scheme: dark;
 }
 
 // Layout & components
@@ -70,105 +70,105 @@ $nf-core-color: $nf-core-color-alt;
 
 // custom dark-mode styling
 .hide-dark {
-    display: none;
+  display: none;
 }
 .hide-light {
-    display: inherit;
+  display: inherit;
 }
 
 .bg-secondary {
-    background-color: $gray-400-alt;
-    &.badge {
-        color: $gray-800-alt;
-    }
+  background-color: $gray-400-alt;
+  &.badge {
+    color: $gray-800-alt;
+  }
 }
 
 .bg-dark .text-white,
 .bg-dark.text-white,
 .bg-secondary .text-white,
 .bg-secondary.text-white {
-    color: $gray-800-alt !important;
-    &.card {
-        background-color: $gray-100-alt !important;
-    }
+  color: $gray-800-alt !important;
+  &.card {
+    background-color: $gray-100-alt !important;
+  }
 }
 .bg-light {
-    background-color: $gray-200-alt !important;
-    &.text-dark {
-        color: $gray-900-alt !important;
-    }
+  background-color: $gray-200-alt !important;
+  &.text-dark {
+    color: $gray-900-alt !important;
+  }
 }
 
 .card.bg-body {
-    background-color: $gray-100-alt !important;
+  background-color: $gray-100-alt !important;
 }
 
 code,
 .code {
-    color: $warning;
+  color: $warning;
 }
 .card code {
-    background-color: rgba($gray-300-alt, 0.75);
+  background-color: rgba($gray-300-alt, 0.75);
 }
 .text-black-50 {
-    color: rgba($white, 0.5) !important;
+  color: rgba($white, 0.5) !important;
 }
 
 blockquote a {
-    color: #6ea8fe;
+  color: #6ea8fe;
 }
 
 // Footer
 .social-icons a.social-github {
-    img {
-        filter: invert(80%) opacity(70%);
-    }
-    &:hover img,
-    &:active img,
-    &:focus img {
-        filter: invert(80%) opacity(100%);
-    }
+  img {
+    filter: invert(80%) opacity(70%);
+  }
+  &:hover img,
+  &:active img,
+  &:focus img {
+    filter: invert(80%) opacity(100%);
+  }
 }
 
 // pipeline page
 
 .nfcore-subnav .nav-link.active {
-    background-color: rgba($nf-core-color, 0.4);
+  background-color: rgba($nf-core-color, 0.4);
 }
 .nfcore-subnav .nav-link:hover,
 .nfcore-subnav .nav-link:active,
 .nfcore-subnav .nav-link:focus {
-    background-color: rgba($nf-core-color, 0.6);
+  background-color: rgba($nf-core-color, 0.6);
 }
 
 .pipeline-run-cmd .btn {
-    border-color: $gray-300;
+  border-color: $gray-300;
 }
 
 .pipeline .pipeline-topic,
 .search-page-result .pipeline-topic {
-    background-color: $gray-300-alt;
+  background-color: $gray-300-alt;
 }
 
 #file-preview {
-    iframe {
-        background-color: $gray-800;
-    }
-    img {
-        background-color: $gray-900-alt;
-    }
+  iframe {
+    background-color: $gray-800;
+  }
+  img {
+    background-color: $gray-900-alt;
+  }
 }
 
 // Schema builder
 .schema_row {
-    &,
-    & input,
-    & select,
-    & .param_fa_icon,
-    & button .param_fa_icon {
-        color: $body-color-alt;
-    }
+  &,
+  & input,
+  & select,
+  & .param_fa_icon,
+  & button .param_fa_icon {
+    color: $body-color-alt;
+  }
 }
 .tile {
-    color: $gray-900-alt;
+  color: $gray-900-alt;
 }
