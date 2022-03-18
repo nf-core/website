@@ -1,5 +1,5 @@
 ---
-title: nf-core usage overview
+title: Getting started with nf-core
 subtitle: Tutorial covering the basics of using nf-core pipelines.
 ---
 
