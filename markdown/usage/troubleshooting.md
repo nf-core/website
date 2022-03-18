@@ -61,7 +61,7 @@ For this step you try to identify when the error occurs:
 3. During run.
 4. While generating outputs.
 
-Errors that occur before the first process might be related to an outdated version of Nextflow, updating to the newest version could help solving the issue. When an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles).  This type of error might also be related to a missing command required to run the pipeline. For errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below. 
+Errors that occur before the first process might be related to an outdated version of Nextflow. Updating to the newest version could help solving the issue. When an error appears during the first process it might indicate an issue with software dependencies. To specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles).  This type of error might also be related to a missing command that is required to run the pipeline. For errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below. 
 
 ### Read the log and check the work directory 
 
