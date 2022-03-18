@@ -68,9 +68,48 @@ For this step you try to identify when the error occurs:
     ```
 
 
-2. During the first process. 
-3. During run.
-4. While generating outputs.
+2. During the first process: when an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles). This type of error might also be related to a missing command required to run the pipeline. Example error:
+
+    ```bash
+    Command exit status: 
+      127 
+    Command output: 
+      (empty) 
+    Command error: 
+      .command.sh: line 3: rsem-prepare-reference: command not found 
+    Work dir: 
+      /home/lfaller/nextflow/rnaseq/work/f7/b6ef5a3f12f5efbf641f19046aca74 
+    Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script 
+file named `.command.sh` 
+    Unexpected error [AbortedException] 
+     -- Check script '/home/lfaller/.nextflow/assets/nf-core/rnaseq/./workflows/rnaseq.nf' at line: 603 or see '.nextflow.log' file for more details
+    ```
+3. During run: for errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below.
+4. While generating outputs: if an expected process output is missing, Nextflow will fail with the message `Missing output file(s)`. Then the error message of that tool will be displayed.  Example error:
+
+    ```bash
+    [6:16 PM] Error executing process > 'FASTQC (hct116_h3k4me1_IP_R1_T1)' 
+    Caused by: 
+      Missing output file(s) `*.{zip,html}` expected by process `FASTQC (hct116_h3k4me1_IP_R1_T1)` 
+    Command executed: 
+      [ ! -f  hct116_h3k4me1_IP_R1_T1.fastq.gz ] && ln -s hct116_h3k4me1_clean.fastq.gz 
+    hct116_h3k4me1_IP_R1_T1.fastq.gz 
+      fastqc -q -t 6 hct116_h3k4me1_IP_R1_T1.fastq.gz 
+    Command exit status: 
+      0 
+    Command output: 
+      (empty) 
+    Command error: 
+      WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. 
+    Memory limited without swap. 
+      Failed to process file hct116_h3k4me1_IP_R1_T1.fastq.gz 
+      uk.ac.babraham.FastQC.Sequence.SequenceFormatException: Ran out of data in the middle of a 
+    fastq entry.  Your file is probably truncated 
+       at uk.ac.babraham.FastQC.Sequence.FastQFile.readNext(FastQFile.java:179) 
+       at uk.ac.babraham.FastQC.Sequence.FastQFile.next(FastQFile.java:125) 
+       at uk.ac.babraham.FastQC.Analysis.AnalysisRunner.run(AnalysisRunner.java:77) 
+       at java.base/java.lang.Thread.run(Thread.java:834)
+    ```
 
 Errors that occur before the first process might be related to an outdated version of Nextflow. Updating to the newest version could help solving the issue. When an error appears during the first process it might indicate an issue with software dependencies. To specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles).  This type of error might also be related to a missing command that is required to run the pipeline. For errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below. 
 
@@ -112,7 +151,15 @@ You can also open an issue in the respective pipeline repository on GitHub askin
 
 If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [google group](https://groups.google.com/forum/#!forum/nextflow). 
 
+## Troubleshooting talk
 
+For more detailed information about troubleshooting a pipeline run, you can check out the Bytesize talk by Phil Ewels.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z9n2F4ByIkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+And the accompanying slides:
+
+<iframe src="https://widgets.figshare.com/articles/19382933/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 
 ## Input files not found
 
