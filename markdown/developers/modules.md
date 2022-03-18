@@ -561,8 +561,8 @@ meta_map = [[id: 'test', single_end: false], // meta map
 ```
 
 As you can see the difference, they are both [groovy lists](https://www.tutorialspoint.com/groovy/groovy_lists.htm).
-However, the filepairs just has a `val` that is a string, where as the `meta_map` the first value in the list, is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm)
-The only required value is `meta.id` for most of the modules, however, they ususally contain fields like `meta.single_end` and `meta.strandedness`
+However, the filepairs just has a `val` that is a string, where as the `meta_map` the first value in the list, is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
+The only required value is `meta.id` for most of the modules, however, they usually contain fields like `meta.single_end` and `meta.strandedness`
 
 ### Common patterns
 
