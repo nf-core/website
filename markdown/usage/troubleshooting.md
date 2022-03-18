@@ -43,7 +43,7 @@ nextflow run nf-core/<pipeline_name> -profile test,docker
 ```
 
 If Docker is not installed, you can replace `docker` with `singularity` or `conda`, see
-the [Getting Started](https://nf-co.re/usage/introduction) tutorial for further information. If a test fails, it might indicate that 
+the [Getting Started](https://nf-co.re/usage/introduction) tutorial for further information. If a test fails, it might indicate that
 there is an issue with the installation or configuration of Nextflow or software management tool, rather than a pipeline error.
 
 You might also want to check the following:
