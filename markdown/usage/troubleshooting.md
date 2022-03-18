@@ -143,7 +143,7 @@ If you still have an issue with running the pipeline then feel free to contact u
 
 You can also open an issue in the respective pipeline repository on GitHub asking for help. In order to open the issue:
 
-- Narrow the issue down as much as possible before opening the issue. 
+- Narrow the issue down as much as possible before opening the issue.
 - Fill in the bug issue template.
 - Explain the steps to reproduce.
 - If you think you know the solution, please say so. 
