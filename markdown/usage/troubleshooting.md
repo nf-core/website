@@ -7,6 +7,7 @@ subtitle: How to troubleshoot common mistakes and issues
   - [Categorize the type of error](#categorize-the-type-of-error)
   - [Read the log and check the work directory](#read-the-log-and-check-the-work-directory)
   - [Asking for help](#asking-for-help)
+  - [Troubleshooting talk](#troubleshooting-talk)
 - [Input files not found](#input-files-not-found)
   - [Direct input](#direct-input)
   - [Output for only a single sample although I specified multiple with wildcards](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
@@ -152,13 +153,7 @@ If you have problems that are directly related to Nextflow and not our pipelines
 
 ## Troubleshooting talk
 
-For more detailed information about troubleshooting a pipeline run, you can check out the Bytesize talk by Phil Ewels.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/z9n2F4ByIkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-And the accompanying slides:
-
-<iframe src="https://widgets.figshare.com/articles/19382933/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
+For more detailed information about troubleshooting a pipeline run, you can check out the [Bytesize talk by Phil Ewels](https://www.youtube.com/embed/z9n2F4ByIkY) and the [accompanying slides](https://widgets.figshare.com/articles/19382933/embed?show_title=1).
 
 ## Input files not found
 
