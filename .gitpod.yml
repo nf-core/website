@@ -13,4 +13,6 @@ ports:
   onOpen: ignore
 tasks:
 - init: git checkout gitpod_exercises
-- command: gp preview $url
+- command: |
+        parsed=`echo $url | tr -s "[" "/" | tr -s "+" "."`
+        gp preview http://$parsed
