@@ -533,15 +533,18 @@ nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/co
 
 ## What is the `meta` map?
 
-In nf-core DSL2 pipelines, to add sample information and metadata, we use a meta variable. This avoids the need to create separate channels for each new characteristic. 
+In nf-core DSL2 pipelines, to add sample-specific information and metadata that is carried throughout the pipeline, we use a meta variable. This avoids the need to create separate channels for each new characteristic. 
 The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. 
-The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
+The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary, as shown below:
+
 ```nextflow
 [id: 'test', single_end: false]
 ```
-Thus, the information can be accessed by the key i.e. `meta.id`
+
+Thus, the information can be accessed within processes and `module.conf` files with the key i.e. `meta.id`
 
 The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable.
+
 ```nextflow
 input:
 tuple val(meta), path(reads)
@@ -571,7 +574,7 @@ The `meta map` is generated with [create_fastq_channel function in the input_che
 #### Generating a `meta map` from file pairs
 
 Sometimes you want to use nf-core modules in small scripts. You don't want to make a samplesheet, or maintain a bunch of validation.
-For example here's an example script to run fastqc
+For instance, here's an example script to run fastqc
 
 ```nextflow
 nextflow.enable.dsl = 2
