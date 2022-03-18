@@ -84,7 +84,6 @@ For this step you try to identify when the error occurs:
     Unexpected error [AbortedException] 
      -- Check script '/home/lfaller/.nextflow/assets/nf-core/rnaseq/./workflows/rnaseq.nf' at line: 603 or see '.nextflow.log' file for more details
     ```
-    
 3. During run: for errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below.
 
 4. While generating outputs: if an expected process output is missing, Nextflow will fail with the message `Missing output file(s)`. Then the error message of that tool will be displayed.  Example error:
@@ -112,33 +111,32 @@ For this step you try to identify when the error occurs:
        at uk.ac.babraham.FastQC.Analysis.AnalysisRunner.run(AnalysisRunner.java:77) 
        at java.base/java.lang.Thread.run(Thread.java:834)
     ```
-    
-### Read the log and check the work directory 
+### Read the log and check the work directory
 
-Checking the log files can help you to identify the type of error and where the error occurred. In order to search the output related to the error we need to understand the anatomy of the work directory: 
+Checking the log files can help you to identify the type of error and where the error occurred. In order to search the output related to the error we need to understand the anatomy of the work directory:
 
 1. `command.out` STDOUT from tool.
 2. `command.err` STDERR from tool.
 3. `command.log` contains both STDOUT and STDERR from tool.
 4. `command.begin` created as soon as the job launches.
-5. `exitcode` created when the job ends, with exit code. 
+5. `exitcode` created when the job ends, with exit code.
 6. `command.trace` logs of compute resource usage.
 7. `command.run` wrapper script used to run the job.
 8. `command.sh` process command used for this task.
 
-If you checked the files and identified the type of error and where it occurred but were unable to solve it you can always ask for help. 
+If you checked the files and identified the type of error and where it occurred but were unable to solve it you can always ask for help.
 
 
 ### Asking for help
 
 If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel. Please, consider the following guidelines:  
 
-- Pick the correct Slack channel to post in. 
-- Provide as much information as you can. 
-   - As a minimum the command and configs you used. 
-   - Use a Slack thread under your message if in doubt. 
+- Pick the correct Slack channel to post in.
+- Provide as much information as you can.
+    - As a minimum the command and configs you used.
+    - Use a Slack thread under your message if in doubt.
 - Use markdown code blocks.
-- Narrow the issue down as much as possible before asking. 
+- Narrow the issue down as much as possible before asking.
 - Explain the steps to reproduce if possible.
 
 You can also open an issue in the respective pipeline repository on GitHub asking for help. In order to open the issue:
