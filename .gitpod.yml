@@ -15,4 +15,5 @@ tasks:
 - init: git checkout gitpod_exercises
 - command: |
         parsed=`echo $url | tr -s "[" "/" | tr -s "+" "."`
-        gp preview "https://$parsed"
+        newurl="https://$parsed"
+        gp preview $newurl
