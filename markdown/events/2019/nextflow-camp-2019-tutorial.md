@@ -16,7 +16,7 @@ In this tutorial we discuss the best-practice guidelines developed by the nf-cor
 why they're important and give insight into the best tips and tricks for budding nextflow pipeline developers.
 
 * Event page: [https://www.nextflow.io/nfcamp/2019/phil-tutorial.html](https://www.nextflow.io/nfcamp/2019/phil-tutorial.html)
-* Tutorial material: [https://nf-co.re/usage/nf_core_tutorial](https://nf-co.re/usage/nf_core_tutorial)
+* Tutorial material: [https://nf-co.re/usage/tutorials/nf_core_usage_tutorial](https://nf-co.re/usage/tutorials/nf_core_usage_tutorial)
 * Slides: [https://www.slideshare.net/tallphil/nextflow-camp-2019-nfcore-tutorial](https://www.slideshare.net/tallphil/nextflow-camp-2019-nfcore-tutorial)
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/I9HrOeNJx1if3D" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/tallphil/nextflow-camp-2019-nfcore-tutorial" title="Nextflow Camp 2019: nf-core tutorial" target="_blank">Nextflow Camp 2019: nf-core tutorial</a> </strong> from <strong><a href="https://www.slideshare.net/tallphil" target="_blank">Phil Ewels</a></strong> </div>
