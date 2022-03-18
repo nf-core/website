@@ -146,7 +146,7 @@ You can also open an issue in the respective pipeline repository on GitHub askin
 - Narrow the issue down as much as possible before opening the issue.
 - Fill in the bug issue template.
 - Explain the steps to reproduce.
-- If you think you know the solution, please say so. 
+- If you think you know the solution, please say so.
 - If you think you can fix the problem, please make a pull request.
 
 If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow Slack Channel](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg).
