@@ -5,6 +5,8 @@ subtitle: Documentation and links for nf-core modules
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
+See [the dsl2 modules tutorial](https://nf-co.re/developers/tutorials/dsl2_modules_tutorial) for how to add a module!
+
 ## Terminology
 
 The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
