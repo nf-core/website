@@ -56,7 +56,18 @@ You might also want to check the following:
 
 For this step you try to identify when the error occurs:
 
-1. Before the first process.
+1. Before the first process: errors that occur before the first process might be related to an outdated version of Nextflow, updating to the newest version could help solving the issue. An example error is:
+
+    ```bash
+    N E X T F L O W  ~  version 0.27.3 
+    Launching `./main.nf` [prickly_snyder] - revision: bb0fa33a13 
+    ERROR ~ Unknown config attribute: projectDir -- check config file: 
+    nextflow.config 
+    null 
+    -- Check '.nextflow.log' file for details
+    ```
+
+
 2. During the first process. 
 3. During run.
 4. While generating outputs.
