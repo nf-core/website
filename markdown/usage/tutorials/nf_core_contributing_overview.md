@@ -218,7 +218,8 @@ If possible, a good approach can be to use PhiX or Yeast as a reference genome.
 Alternatively, a single small chromosome (or part of a chromosome) can be used.
 If you are struggling to get the tests to run, ask for help on Slack.
 
-When writing `conf/test.config` remember to define all required parameters so that the pipeline will run with only `-profile test`.
+When writing `conf/test.config` remember to define all required parameters so that the pipeline will run with only `-profile test`
+(with the exception of `params.outdir`).
 Note that remote URLs cannot be traversed like a regular file system - so glob file expansions such as `*.fa` will not work.
 
 ### GitHub Actions workflows
@@ -260,7 +261,7 @@ The matrix `nxf_ver` variable sets the `NXF_VER` environment variable twice.
 This tells GitHub Actions to run the tests twice in parallel - once with the latest version of Nextflow (`NXF_VER=''`) and once with the minimum version supported by the pipeline.
 Do not edit this version number manually - it appears in multiple locations through the pipeline code, so it's better to use `nf-core bump-version --nextflow` instead.
 
-The provided tests run your pipeline with the `-profile test,docker` flags. This may be sufficient for your pipeline.
+The provided tests run your pipeline with the `-profile test,docker --outdir <OUTDIR>` flags. This may be sufficient for your pipeline.
 However, if it is possible to run the pipeline with significantly different options (for example, different alignment tools), then it is good to test all of these.
 You can do this by adding additional tests in the `jobs` block.
 Do not try to add a run for every possible combination of parameters, as this would take too long to run.
