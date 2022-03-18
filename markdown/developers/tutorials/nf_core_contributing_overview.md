@@ -323,7 +323,7 @@ nf-core schema build
 
 In the same way as pipelines, nf-core modules are created from a template using the `nf-core modules create` command.
 
-A step-by-step tutorial [adding new modules](https://nf-co.re/developers/adding_modules) has been created that explains the procedure in detail.
+A step-by-step tutorial [adding new modules](https://nf-co.re/developers/tutorials/dsl2_modules_tutorial) has been created that explains the procedure in detail.
 
 ### Exercise 4 (add a module to a pipeline)
 

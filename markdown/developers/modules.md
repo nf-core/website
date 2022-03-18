@@ -1,9 +1,11 @@
 ---
-title: Adding a new module
-subtitle: Follow this walkthrough for adding and reviewing new nf-core modules
+title: DSL2 Modules
+subtitle: Guidelines and reference for DSL2 modules
 ---
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
+
+See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
 
 ## Terminology
 
@@ -21,7 +23,11 @@ A chain of multiple modules that offer a higher-level of functionality within th
 
 What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 individual modules and sub-workflows.
 
-## Before you start
+## Writing a new module reference
+
+See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
+
+### Before you start
 
 Please check that the module you wish to add isn't already on [`nf-core/modules`](https://github.com/nf-core/modules/tree/master/modules):
 
@@ -35,17 +41,6 @@ If the module doesn't exist on `nf-core/modules`:
 - Set an appropriate subject for the issue e.g. `new module: fastqc`
 - Add yourself to the `Assignees` so we can track who is working on the module
 
-## Writing a new module
-
-> ⚠️ these may include references to an older syntax, however the general idea remains the same
-
-<div class="ratio ratio-16x9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-<div class="ratio ratio-16x9">
-     <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
-</div>
 
 ### New module workflow
 
@@ -293,6 +288,19 @@ Commit and push these changes to your local clone on GitHub, and then [create a 
 When you are happy with your pull request, please <span class="x x-first x-last">select </span>the `Ready for Review` label on the GitHub PR tab, and providing that everything adheres to nf-core guidelines we will endeavour to approve your pull request as soon as possible. We also recommend to request reviews from the `nf-core/modules-team`<span class="x x-first x-last"> so </span>a core team of volunteers <span class="x x-first x-last">can try</span> to <span class="x x-first x-last">review </span>your <span class="x x-first x-last">PR</span> as fast as possible.
 
 Once you<span class="x x-first x-last"> are </span>familiar with the module submission process, please consider joining the<span class="x x-first x-last"> reviewing</span> team by asking on the `#modules` slack channel.
+
+
+### Talks
+
+> ⚠️ these may include references to an older syntax, however the general idea remains the same
+
+<div class="ratio ratio-16x9">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<div class="ratio ratio-16x9">
+     <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
+</div>
 
 ## New module guidelines and PR review checklist
 
