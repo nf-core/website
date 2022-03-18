@@ -65,7 +65,7 @@ Errors that occur before the first process might be related to an outdated versi
 
 ### Read the log and check the work directory 
 
-Checking the log files can help you to identify where the error occurred and the type of error as well. In order to search the output related to the error we need to understand the anatomy of the work directory: 
+Checking the log files can help you to identify the type of error and where the error occurred. In order to search the output related to the error we need to understand the anatomy of the work directory: 
 
 1. `command.out` STDOUT from tool.
 2. `command.err` STDERR from tool.
