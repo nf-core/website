@@ -222,7 +222,7 @@ It specifies URLs for test data and all required parameters.
 Because of this, you can test any *nf-core* pipeline with the following command:
 
 ```bash
-nextflow run nf-core/<pipeline_name> -profile test
+nextflow run nf-core/<pipeline_name> -profile test --outdir <OUTDIR>
 ```
 
 > Note that you will typically still need to combine this with a configuration profile for your system - *e.g.* `-profile test,docker`.

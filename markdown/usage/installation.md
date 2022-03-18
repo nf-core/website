@@ -52,14 +52,14 @@ There are a number of ways you can install Nextflow `edge` releases, the main di
 * If you have Nextflow installed already, you can issue the version you would like to use on the same line as the pipeline command and it will be fetched if required before the pipeline execution.
 
 ```bash
-NXF_VER="20.11.0-edge" nextflow run nf-core/rnaseq -profile test,docker -r 3.0
+NXF_VER="20.11.0-edge" nextflow run nf-core/rnaseq -profile test,docker -r 3.0 --outdir <OUTDIR>
 ```
 
 * If you have Nextflow installed already, another alternative to the option above is to `export` it as an environment variable before you run the pipeline command:
 
 ```bash
 export NXF_VER="20.11.0-edge"
-nextflow run nf-core/rnaseq -profile test,docker -r 3.0
+nextflow run nf-core/rnaseq -profile test,docker -r 3.0 --outdir <OUTDIR>
 ```
 
 * If you would like to download and install a Nextflow `edge` release from scratch with minimal fuss:
@@ -68,7 +68,7 @@ nextflow run nf-core/rnaseq -profile test,docker -r 3.0
 export NXF_VER="20.11.0-edge"
 wget -qO- get.nextflow.io | bash
 sudo mv nextflow /usr/local/bin/
-nextflow run nf-core/rnaseq -profile test,docker -r 3.0
+nextflow run nf-core/rnaseq -profile test,docker -r 3.0 --outdir <OUTDIR>
 ```
 
 > Note if you don't have `sudo` privileges required for the last command above then you can move the `nextflow` binary to somewhere else and export that directory to `$PATH` instead. One way of doing that on Linux would be to add `export PATH=$PATH:/path/to/nextflow/binary/` to your `~/.bashrc` file so that it is available every time you login to your system.
