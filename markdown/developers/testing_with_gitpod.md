@@ -15,9 +15,11 @@ Each nf-core repository (including the webpage) is integrated with Gitpod. When 
 
 First install the browser extension, follow the instructions [here](https://www.gitpod.io/docs/browser-extension). This adds the green Gitpod button to each Git repository for easy access to the environment. This button simply appends `https://gitpod.io/#` onto the git repo URL (e.g. https://gitpod.io/#https://github.com/nf-core/rnaseq).
 
+![PNG](/public_html/assets/markdown_assets/developers/gitpod/gitpodbutton.png)
+
 Once you click on the green button, you will asked to sign in with either Github, GitLab or Bitbucket. Once you have signed in, you should see the following:
 
-![PNG](/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
+![PNG](/public_html/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
 
 
 1. **The terminal** allows you to run all the programs in the repository, for example `nextflow`, `nf-core` tools and docker are installed in the nf-core rnaseq repository.
