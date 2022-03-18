@@ -17,17 +17,20 @@ First install the browser extension, follow the instructions [here](https://www.
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/gitpodbutton.png)
 
-Once you click on the green button, you will asked to sign in with either Github, GitLab or Bitbucket. Once you have signed in, you should see the following:
+Once you click on the green button, you will asked to sign in with either Github, GitLab or Bitbucket. Once you have signed in, you should see something similar to the following:
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
 
+1. **The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.) Click the Explorer button to see which files are in this repository:
+![PNG](/public_html/assets/markdown_assets/developers/gitpod/explorer.png)
 
-1. **The terminal** allows you to run all the programs in the repository, for example `nextflow`, `nf-core` tools and docker are installed in the nf-core rnaseq repository.
+2. **The terminal** allows you to run all the programs in the repository, for example `nextflow`, `nf-core` and `docker` are installed in the nf-core rnaseq repository. The terminal may not appear automatically, in which case navigate to the top icon of the sidebar, and choose Terminal/New Terminal.
 
-2. **The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.)
+3. **The main window** allows you to view and edit files. Clicking on a file in the explorer will open it within the main window. Once a file is open, Markdown or HTML can be rendered using the preview option.
 
-3. **The main window** allows you to view and edit files. It includes a preview option to allow side by side text and Markdown/Html rendering.
+![PNG](/public_html/assets/markdown_assets/developers/gitpod/preview.png)
 
+## Guides
 
 See the following guides for Gitpod use in different scenarios:
 
