@@ -23,7 +23,7 @@ subtitle: Tutorial covering the basics of using nf-core pipelines.
 You can run the commands of this tutorial on [GitPod](https://www.gitpod.io/) and skip the installation steps. In this case, use the following button:
 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/nf-core/nf-co.re/blob/gitpod_config_training/)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#url='https://nf-co.re/usage/tutorials/nf_core_usage_tutorial'/https://github.com/nf-core/nf-co.re/blob/gitpod_config_training/)
 
 
 #### Overview
