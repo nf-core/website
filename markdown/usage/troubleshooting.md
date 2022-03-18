@@ -49,7 +49,7 @@ there is an issue with the installation or configuration of Nextflow or software
 You might also want to check the following:
 
 1. Nextflow is up to date. Use `nextflow self-update` to update a typical installation or `conda update nextflow` for a Bioconda installation.
-2. There is enough disk space, this will avoid running out of space while you are running the pipeline. 
+2. There is enough disk space, this will avoid running out of space while you are running the pipeline.
 3. Docker daemon is running (if you are using Docker to manage dependencies).
 
 
