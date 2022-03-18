@@ -1,11 +1,11 @@
 ---
-title: Adding a new module
-subtitle: Follow this walkthrough for adding and reviewing new nf-core modules
+title: DSL2 Modules
+subtitle: Guidelines and reference for DSL2 modules
 ---
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
-See [the dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for how to add a module!
+See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
 
 ## Terminology
 
@@ -37,7 +37,9 @@ If the module doesn't exist on `nf-core/modules`:
 - Set an appropriate subject for the issue e.g. `new module: fastqc`
 - Add yourself to the `Assignees` so we can track who is working on the module
 
-## Writing a new module
+## Writing a new module reference
+
+See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
 
 > ⚠️ these may include references to an older syntax, however the general idea remains the same
 
