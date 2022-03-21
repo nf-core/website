@@ -1336,3 +1336,18 @@ Launch Page
 .tile[data-state="active"] {
   color: inherit;
 }
+.sidebar-nav .btn .fas {
+    transition: transform 0.3s ease;
+    
+}
+.sidebar-nav .btn[aria-expanded="true"] .fas {
+    transform: rotate(90deg);
+}
+.sidebar-nav a{
+  color: $gray-700;
+  text-decoration: none;
+  &.active{
+    color: $gray-900;
+    font-weight: 600;
+  }
+}

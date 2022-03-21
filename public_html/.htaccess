@@ -50,7 +50,6 @@
     # Run PHP without filename extension
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteCond %{REQUEST_FILENAME}.php -f
     RewriteRule ^(.*)$ $1.php
 
     # Redirect .md URLs to remove the extension
