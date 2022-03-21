@@ -2,11 +2,26 @@
 
 $docs_md_base = dirname(dirname(__file__))."/markdown/";
 
-# First - assume this is usage or developer docs and try to find the source
+$path_parts = explode('/', $_GET['path']);
+# Clear any empty array elements
+$path_parts = array_filter($path_parts);
+
+# First - assume this is usage or contributing docs and try to find the source (old docs structure)
 $md_fn = $_GET['path'];
 if(substr($md_fn, -3) !== '.md'){
     $md_fn .= '.md';
 }
+# new docs structure
+if (strtolower($path_parts[0]) == "docs") {
+    if (file_exists($docs_md_base . $md_fn)) {
+        $markdown_fn = $docs_md_base . $md_fn;
+        $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn;
+        $section = trim($path_parts[1]);
+        include('documentation.php');
+        exit;
+    }
+}
+
 if(file_exists($docs_md_base.$md_fn)){
     $markdown_fn = $docs_md_base.$md_fn;
     $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/'.$md_fn;
@@ -16,9 +31,7 @@ if(file_exists($docs_md_base.$md_fn)){
 }
 
 
-$path_parts = explode('/', $_GET['path']);
-# Clear any empty array elements
-$path_parts = array_filter($path_parts);
+# is it the new docs location
 
 # is it a module?
 if(strtolower($path_parts[0])=="modules"){
