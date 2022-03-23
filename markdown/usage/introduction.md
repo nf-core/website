@@ -1,6 +1,9 @@
 ---
 title: Getting started
 subtitle: How to run your first nf-core pipeline.
+menu:
+    main:
+        weight: 10
 ---
 
 ## What is nf-core?

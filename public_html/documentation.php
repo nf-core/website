@@ -12,67 +12,59 @@ $no_auto_toc = true;
 # Main page nav and header
 $no_print_content = true;
 $mainpage_container = false;
-$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($docs_md_base . 'docs/', RecursiveDirectoryIterator::FOLLOW_SYMLINKS | RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::LEAVES_ONLY);
 $sidebar_nav_elements = [];
-foreach ($files as $name => $object) {
-    $md_full = file_get_contents($name);
-    if ($md_full !== false) {
-        $fm = parse_md_front_matter($md_full);
-        $parent = $fm['meta']['menu']['main']['parent'] ? $fm['meta']['menu']['main']['parent'] : end(explode('/', dirname($name)));
-        $sidebar_nav_elements[$parent] = [
-            'title' => $fm['meta']['title'],
-            'parent' => $fm['meta']['menu']['main']['parent'] ? $fm['meta']['menu']['main']['parent'] : end(explode('/',dirname($name))),
-            'weight' => $fm['meta']['menu']['main']['weight'] ? $fm['meta']['menu']['main']['weight'] : 0,
-            'url' => str_replace($docs_md_base, '', $name),
-        ];
+
+# function to generate an array of the file strcuture
+function dir_tree($dir){
+    global $docs_md_base;
+    $files = array_map('basename', glob("$dir/*"));
+    foreach ($files as $file) {
+        if (is_dir("$dir/$file")) {
+            $tree[$file] = dir_tree("$dir/$file");
+        } else {
+            $fm =file_get_contents("$dir/$file");
+            $fm = parse_md_front_matter($fm);
+            $tree[] = [
+                'title' => $fm['meta']['title'],
+                'weight' => $fm['meta']['menu']['main']['weight'] ? $fm['meta']['menu']['main']['weight'] : 100,
+                'url' => str_replace($docs_md_base, '', preg_replace('/\.md$/','',"$dir/$file")),
+            ];
+        }
+        # have items with lower weight come first, rest sort by title
+        array_multisort(array_column($tree, 'weight'), SORT_ASC, array_column($tree, 'title'), SORT_ASC, $tree);
+    }
+    return $tree;
+}
+$
+$sidebar_nav_elements = dir_tree($docs_md_base . 'docs');
+krsort($sidebar_nav_elements, SORT_ASC); # sort Usage before Contributing
+
+# build html for the sidebar nav
+$sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
+function build_sidebar_nav($elements){
+    global $sidebar_nav;
+    global $md_fn;
+    foreach ($elements as $name => $element) {
+        if(!isset($element['url'])){
+            $path = explode('/', $element[0]['url']);
+            $show = strpos($md_fn, implode('/', array_slice($path, 0, -1))) !== false ? 'show' : '';
+            $is_open = $show == 'show' ? 'true' : 'false';
+            $id = str_replace(" ", "-", strtolower(implode('-',array_slice($path,-3,2))));
+            $id = str_replace(":", "", $id);
+            $sidebar_nav .= '<button class="btn d-inline-flex align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#' . $id . '" aria-expanded="' . $is_open . '" aria-current="' . $is_open . '">
+                            <i class="fas fa-angle-right me-3"></i><strong>' . ucwords($name) . '
+                        </strong></button>';
+            $sidebar_nav .= '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
+            build_sidebar_nav($element);
+            $sidebar_nav .= '</ul></nav>';
+        } else {
+            $active = $md_fn == $element['url'].'.md' ? 'active' : '';
+            $sidebar_nav .= '<li><a href="/' . $element['url'] . '"  class="d-inline-flex align-items-center rounded py-1 px-2' . $active . '">' . $element['title'] . '</a></li>';
+        }
     }
 }
 
-$sidebar_nav = '<nav class="sidebar-nav"><ul class="ps-0 d-flex flex-column">';
-$current_level = 1;
-$previous_parent = explode('/', $sidebar_nav_elements[0]['url'])[1];
-$nested = false;
-foreach($sidebar_nav_elements as $key => $nav) {
-    $level = substr_count($nav['url'], '/');
-    $path = explode('/', $nav['url']);
-    $parent = array_reverse($path)[1];
-    $active = $md_fn == $nav['url'] ? 'active' : '';
-    while ($level > $current_level) {
-        global $nested;
-        $nested = true;
-        $current_level += 1;
-        $show = strpos($md_fn, implode('/',array_slice($path,0,-1))) !== false ? 'show' : '';
-        $is_open = $show == 'show' ? 'true': 'false';
-        $id = str_replace(" ", "-", strtolower($nav['title']));
-        $id = str_replace(":", "", $id);
-        $sidebar_nav .= '<button class="display-1 btn d-inline-flex align-items-center rounded " data-bs-toggle="collapse" data-bs-target="#' . $id . '" aria-expanded="'.$is_open.'" aria-current="'.$is_open.'">
-                            <i class="fas fa-angle-right me-3"></i><strong>'. ucwords($nav['parent']) .'
-                        </strong></button>';
-        $sidebar_nav .= '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal pb-1 ps-3 small">';
-    }
-
-    if($level == $current_level && $parent != $previous_parent && !$nested) {
-        $previous_parent = $parent;
-        $sidebar_nav .= '</ul></nav>';
-        $show = strpos($md_fn, $parent) !== false ? 'show' : '';
-        $is_open = $show == 'show' ? 'true' : 'false';
-        $id = str_replace(" ", "-", strtolower($nav['title']));
-        $id = str_replace(":", "", $id);
-        $sidebar_nav .= '<button class="btn d-inline-flex align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#' . $id . '" aria-expanded="'.$is_open.'" aria-current="'.$is_open. '">
-                            <i class="fas fa-angle-right me-3"></i><strong>' . ucwords($nav['parent']) . '
-                        </strong></button>';
-        $sidebar_nav .= '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal pb-1 ps-3 small">';
-    }
-    
-    
-    $sidebar_nav .= '<li class="mb-2"><a href="/' . $nav['url'] . '" class=" '. $active . '">' . $nav['title'] . '</a></li>';
-    while ($level < $current_level && $current_level > 1) {
-        $nested = false;
-        $current_level = $level;
-        $sidebar_nav .= '</ul></nav>';
-    }
-    
-}
+$sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
 $sidebar_nav .= '</ul></nav>';
 
 include('../includes/header.php');
@@ -82,10 +74,11 @@ include('../includes/header.php');
 <?php
     $main_content = '<div class="row flex-wrap-reverse flex-lg-wrap">';
 
-    # right sidebar
+    # left sidebar
     $main_content .= '<div class="col-12 col-lg-3">';
     $main_content .=  $sidebar_nav;
     $main_content .= '</div>';
+    # main content
     $main_content .= '<div class="col-12 col-lg-6"><div class="rendered-markdown">' . $content . '</div>
                 </div>';
     # right sidebar
