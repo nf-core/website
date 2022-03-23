@@ -59,7 +59,7 @@ function build_sidebar_nav($elements){
             $sidebar_nav .= '</ul></nav>';
         } else {
             $active = $md_fn == $element['url'].'.md' ? 'active' : '';
-            $sidebar_nav .= '<li><a href="/' . $element['url'] . '"  class="d-inline-flex align-items-center rounded py-1 px-2' . $active . '">' . $element['title'] . '</a></li>';
+            $sidebar_nav .= '<li><a href="/' . $element['url'] . '"  class="d-inline-flex align-items-center rounded py-1 px-2 ' . $active . '">' . $element['title'] . '</a></li>';
         }
     }
 }
