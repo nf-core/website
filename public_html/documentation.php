@@ -35,12 +35,12 @@ function dir_tree($dir){
     }
     return $tree;
 }
-$
+
 $sidebar_nav_elements = dir_tree($docs_md_base . 'docs');
 krsort($sidebar_nav_elements, SORT_ASC); # sort Usage before Contributing
 
 # build html for the sidebar nav
-$sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
+
 function build_sidebar_nav($elements){
     global $sidebar_nav;
     global $md_fn;
@@ -63,7 +63,7 @@ function build_sidebar_nav($elements){
         }
     }
 }
-
+$sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
 $sidebar_nav .= '</ul></nav>';
 
