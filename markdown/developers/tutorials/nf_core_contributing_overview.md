@@ -131,7 +131,7 @@ These values are then propagated throughout the template files automatically.
 
 > Contribution guidelines: one of the main ideas of nf-core is to develop with the community to build together best-practise analysis pipelines.
 We encourage cooperation rather than duplication, and contributing to and extending existing pipelines that might be performing similar tasks.
-For more details about this, please check out the [contribution guidelines](https://nf-co.re/contributing/guidelines).
+For more details about this, please check out the [contribution guidelines](https://nf-co.re/docs/contributing/guidelines).
 
 ### TODO statements
 
@@ -252,7 +252,7 @@ It will check:
   * You can run this manually with the `nf-core lint` command.
   * Some of the linting tests can be fixed automatically with the `--fix` subcommand, for example any `files_unchanged` type of error: `nf-core lint --fix files_unchanged`.
 
-> Tip: when using a code editor, some code editor settings might help you solve any code linting errors by linting when saving a file and even fixing the errors directly. You can check out [this documentation](https://nf-co.re/contributing/editor_plugins) on code editor plugins.
+> Tip: when using a code editor, some code editor settings might help you solve any code linting errors by linting when saving a file and even fixing the errors directly. You can check out [this documentation](https://nf-co.re/docs/contributing/editor_plugins) on code editor plugins.
 
 #### Continuous integration tests
 
@@ -326,7 +326,7 @@ nf-core schema build
 
 In the same way as pipelines, nf-core modules are created from a template using the `nf-core modules create` command.
 
-A step-by-step tutorial [adding new modules](https://nf-co.re/contributing/tutorials/dsl2_modules_tutorial) has been created that explains the procedure in detail.
+A step-by-step tutorial [adding new modules](https://nf-co.re/docs/contributing/tutorials/dsl2_modules_tutorial) has been created that explains the procedure in detail.
 
 ### Exercise 4 (add a module to a pipeline)
 
@@ -374,7 +374,7 @@ For example, with a release version `1.4.3`, bumping to `2.0` would correspond t
 Bumping to `1.5` would be a minor release, for example adding some new features.
 Bumping to `1.4.4` would be a patch release for minor things such as fixing bugs.
 
-We have compiled a detailed [release checklist](https://nf-co.re/contributing/release_checklist) for your reference.
+We have compiled a detailed [release checklist](https://nf-co.re/docs/contributing/release_checklist) for your reference.
 
 ### Template updates
 

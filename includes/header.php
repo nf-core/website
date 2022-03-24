@@ -155,7 +155,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">Docs</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/docs/usage/introduction">Usage</a>
-              <a class="dropdown-item" href="docs/contributing/guidelines">Contributing</a>
+              <a class="dropdown-item" href="/docs/contributing/guidelines">Contributing</a>
             </div>
           </li>
           <li class="nav-item p-1">
