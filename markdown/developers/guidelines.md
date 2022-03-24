@@ -1,6 +1,9 @@
 ---
 title: Guidelines
 subtitle: Guidelines and requirements for nf-core pipelines.
+menu:
+    main:
+        weight: 10
 ---
 
 ## Requirements for nf-core pipelines

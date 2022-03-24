@@ -43,7 +43,7 @@ nextflow run nf-core/<pipeline_name> -profile test,docker
 ```
 
 If Docker is not installed, you can replace `docker` with `singularity` or `conda`, see
-the [Getting Started](https://nf-co.re/usage/introduction) tutorial for further information. If a test fails, it might indicate that
+the [Getting Started](https://nf-co.re/docs/usage/sage/introduction) tutorial for further information. If a test fails, it might indicate that
 there is an issue with the installation or configuration of Nextflow or software management tool, rather than a pipeline error.
 
 You might also want to check the following:
@@ -69,7 +69,7 @@ For this step you try to identify when the error occurs:
     ```
 
 
-2. During the first process: when an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/usage/configuration#basic-configuration-profiles). This type of error might also be related to a missing command required to run the pipeline. Example error:
+2. During the first process: when an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/docs/usage/sage/configuration#basic-configuration-profiles). This type of error might also be related to a missing command required to run the pipeline. Example error:
 
     ```bash
     Command exit status: 
@@ -243,7 +243,7 @@ The most common case is when a user has forgotten to specify a container/environ
 
 If you do not specify one with the `-profile`, Nextflow by default looks for all the required tools that will be all manually installed on your machine/cluster and specified `$PATH`.
 
-It is _not_ recommended to run without a container/environment system as then your analysis will not be reproducible by others. You should pick one of: `docker`, `singularity`, `podman` and `conda` - depending on which your system already has available. See the nf-core [Installation](https://nf-co.re/usage/installation) documentation for more information.
+It is _not_ recommended to run without a container/environment system as then your analysis will not be reproducible by others. You should pick one of: `docker`, `singularity`, `podman` and `conda` - depending on which your system already has available. See the nf-core [Installation](https://nf-co.re/docs/usage/sage/installation) documentation for more information.
 
 ### Error related to Docker
 
@@ -257,7 +257,7 @@ docker pull nfcore/<pipeline>:dev
 
 ### Error related to Singularity
 
-If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
+If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/docs/usage/sage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
 
 Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity image build fails unfortunately. See below code snippet that shows such a typical failure:
 
@@ -374,12 +374,12 @@ Common exit codes and and **_potential_** solutions are as follows:
 
 | Exit Code | Possible Cause | Solution                                                                                                                     |
 |-----------|----------------|------------------------------------------------------------------------------------------------------------------------------|
-| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
 
 If in doubt, Google is your friend! Many exit codes are roughly similar across many tools; even if search results don't mention your tool exactly, you can try a solution similar to the one proposed for the other tool.
 
@@ -387,7 +387,7 @@ If you are still unable to resolve the issue, please make a GitHub issue on the 
 
 ## I get a exceeded job memory limit error
 
-While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/usage/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
+While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/docs/usage/sage/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
 
 To fix this you need to change the default memory requirements for the process that is breaking. We can do this by making a custom profile, which we then provide to the Nextflow run command.
 

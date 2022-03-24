@@ -8,7 +8,7 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-* You're familiar with nf-core and nextflow (see our [introduction docs](../usage/introduction.md)).
+* You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/introduction.md)).
 * You're used to working with `git` and [GitHub](https://github.com)
     (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 * The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/contributing/guidelines).
@@ -331,7 +331,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 * `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
-  The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/usage/configuration) for more information.
+  The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/docs/usage/configuration) for more information.
 
 * `README.md`: Basic information about the pipeline and usage
 

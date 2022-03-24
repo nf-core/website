@@ -212,7 +212,7 @@ Their priority increases from left to right.
 
 > Our tip: Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `config` (e.g. `custom.config` provided to the run with `-c custom.config`) file for reproducible run-specific configuration.
 
-To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/usage/configuration).
+To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/docs/usage/sage/configuration).
 
 ### Running pipelines with test data
 
@@ -251,7 +251,7 @@ To help with this, the `nf-core download` command automates the fetching of requ
 The command can download a specific release of a pipeline with `-r`/`--release` and fetch the singularity container if `--singularity` is passed (this needs Singularity to be installed).
 All files are saved to a single directory, ready to be transferred to the cluster where the pipeline will be executed.
 
-To know more about running pipelines offline you can check the [pipeline configuration tutorial](https://nf-co.re/usage/offline).
+To know more about running pipelines offline you can check the [pipeline configuration tutorial](https://nf-co.re/docs/usage/offline).
 
 ### Exercise 3 (using pipelines)
 
@@ -269,7 +269,7 @@ Not everything always runs smoothly and you might be getting some errors when ru
     * Start by running the pipeline tests as described [above](#running-pipelines-with-test-data). If these tests fail, there is a good chance that you are missing some of the components needed to run Nextflow pipelines.
     * Nextflow: check that you have the latest version installed.
     * Check that you have docker/singularity/conda installed and that you are using the right docker/singularity/conda/custom profile.
-    * Check the [troubleshooting docs](https://nf-co.re/usage/troubleshooting).
+    * Check the [troubleshooting docs](https://nf-co.re/docs/usage/troubleshooting).
 2. Categorize the type of error. Check the Nextflow low to figure out if the error occurs:
     * Before the first process
     * In the first process
