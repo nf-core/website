@@ -212,7 +212,7 @@ Their priority increases from left to right.
 
 > Our tip: Be clever with multiple Nextflow configuration locations. For example, use `-profile` for your cluster configuration, `~/.nextflow/config` for your personal config such as `params.email` and a working directory `config` (e.g. `custom.config` provided to the run with `-c custom.config`) file for reproducible run-specific configuration.
 
-To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/docs/usage/sage/configuration).
+To know more about Nextflow configurations you can check the [pipeline configuration tutorial](https://nf-co.re/docs/usage/configuration).
 
 ### Running pipelines with test data
 
