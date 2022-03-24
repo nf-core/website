@@ -72,7 +72,7 @@ $sidebar_nav .= '</ul></nav>';
 include('../includes/header.php');
 
 ?>
-<div class="container-fluid main-content">
+<div class="container-xxl main-content">
     <?php
     $main_content = '<div class="row flex-wrap-reverse flex-lg-wrap">';
 
@@ -81,10 +81,10 @@ include('../includes/header.php');
     $main_content .=  $sidebar_nav;
     $main_content .= '</div>';
     # main content
-    $main_content .= '<div class="col-12 col-lg-6"><div class="rendered-markdown">' . $content . '</div>
+    $main_content .= '<div class="col-12 col-lg"><div class="rendered-markdown">' . $content . '</div>
                 </div>';
     # right sidebar
-    $main_content .= '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
+    $main_content .= '<div class="col-12 col-lg-2 ps-2"><div class="side-sub-subnav sticky-top">';
     # ToC
     $main_content .= '<nav class="toc auto-toc pt-2 flex-column border-start">';
     $main_content .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
