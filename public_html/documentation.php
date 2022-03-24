@@ -72,12 +72,12 @@ $sidebar_nav .= '</ul></nav>';
 include('../includes/header.php');
 
 ?>
-<div class="container-xxl main-content">
+<div class="container-fluid main-content">
     <?php
     $main_content = '<div class="row flex-wrap-reverse flex-lg-wrap">';
 
     # left sidebar
-    $main_content .= '<div class="col-12 col-lg-3">';
+    $main_content .= '<div class="col-12 col-lg-2">';
     $main_content .=  $sidebar_nav;
     $main_content .= '</div>';
     # main content
