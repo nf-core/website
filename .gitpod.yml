@@ -2,9 +2,7 @@
 # based on https://github.com/gitpod-io/template-docker-compose
 
 tasks:
-  - init: >
-      docker-compose pull &&
-      chmod a+x /workspace/nf-co.re
+  - init: docker-compose pull && chmod a+x /workspace/nf-co.re
     command: docker-compose up
 
 ports:
