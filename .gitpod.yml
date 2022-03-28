@@ -2,8 +2,10 @@
 # based on https://github.com/gitpod-io/template-docker-compose
 
 tasks:
-  - init: docker-compose pull
-  - command: chmod a+x /workspace/nf-co.re && docker-compose up
+  - init: >
+      docker-compose pull &&
+      chmod a+x /workspace/nf-co.re
+    command: docker-compose up
 
 ports:
   - port: 8888
