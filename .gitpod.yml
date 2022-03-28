@@ -8,6 +8,8 @@ tasks:
 ports:
   - port: 8888
     onOpen: open-preview
+  - port: 3306
+    onOpen: ignore
 
 vscode:
   extensions:
