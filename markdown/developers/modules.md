@@ -346,30 +346,30 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     ```
 
 3. Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
-  - `*.fastq.gz` and NOT `*.fastq`
-  - `*.bam` and NOT `*.sam`
+    - `*.fastq.gz` and NOT `*.fastq`
+    - `*.bam` and NOT `*.sam`
 
-  If a tool does not support compressed input or output natively, we RECOMMEND passing the
-  uncompressed data via unix pipes, such that it never gets written to disk, e.g.
+    If a tool does not support compressed input or output natively, we RECOMMEND passing the
+    uncompressed data via unix pipes, such that it never gets written to disk, e.g.
 
-  ```bash
-  gzip -cdf $input | tool | gzip > $output
-  ```
+    ```bash
+    gzip -cdf $input | tool | gzip > $output
+    ```
 
-  The `-f` option makes `gzip` auto-detect if the input is compressed or not.
+    The `-f` option makes `gzip` auto-detect if the input is compressed or not.
 
-  If a tool cannot read from STDIN, or has multiple input files, it is possible to use
-  named pipes:
+    If a tool cannot read from STDIN, or has multiple input files, it is possible to use
+    named pipes:
 
-  ```bash
-  mkfifo input1_uncompressed input2_uncompressed
-  gzip -cdf $input1 > input1_uncompressed &
-  gzip -cdf $input2 > input2_uncompressed &
-  tool input1_uncompressed input2_uncompressed > $output
-  ```
+    ```bash
+    mkfifo input1_uncompressed input2_uncompressed
+    gzip -cdf $input1 > input1_uncompressed &
+    gzip -cdf $input2 > input2_uncompressed &
+    tool input1_uncompressed input2_uncompressed > $output
+    ```
 
-  Only if a tool reads the input multiple times, it is required to uncompress the
-  file before running the tool.
+    Only if a tool reads the input multiple times, it is required to uncompress the
+    file before running the tool.
 
 4. Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
@@ -422,19 +422,19 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 4. All function names MUST follow the `camelCase` convention.
 
 5. Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
-  - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
-  - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
+    - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
+    - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
   
-    ```nextflow
-    script:
-    if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
-    ```
+      ```nextflow
+      script:
+      if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
+      ```
 
 ### Input/output options
 
 1. Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
-  - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel  (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
-  - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
+    - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel  (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
+    - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
 2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
@@ -457,8 +457,8 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`.
 
 3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32-L46)), you MUST assign cpus per tool such that the total number of used CPUs does not exceed `task.cpus`.
-  - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
-  - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
+    - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
+    - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
 
 ### Software requirements
 
@@ -484,10 +484,10 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     > NB: Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
 
 4. It is also possible for a new multi-tool container to be built and added to BioContainers by submitting a pull request on their [`multi-package-containers`](https://github.com/BioContainers/multi-package-containers) repository.
-  - Fork the [multi-package-containers repository](https://github.com/BioContainers/multi-package-containers)
-  - Make a change to the `hash.tsv` file in the `combinations` directory see [here](https://github.com/aunderwo/multi-package-containers/blob/master/combinations/hash.tsv#L124) for an example where `pysam=0.16.0.1,biopython=1.78` was added.
-  - Commit the code and then make a pull request to the original repo, for [example](https://github.com/BioContainers/multi-package-containers/pull/1661)
-  - Once the PR has been accepted a container will get built and you can find it using  a search tool in the `galaxy-tool-util conda` package
+    - Fork the [multi-package-containers repository](https://github.com/BioContainers/multi-package-containers)
+    - Make a change to the `hash.tsv` file in the `combinations` directory see [here](https://github.com/aunderwo/multi-package-containers/blob/master/combinations/hash.tsv#L124) for an example where `pysam=0.16.0.1,biopython=1.78` was added.
+    - Commit the code and then make a pull request to the original repo, for [example](https://github.com/BioContainers/multi-package-containers/pull/1661)
+    - Once the PR has been accepted a container will get built and you can find it using  a search tool in the `galaxy-tool-util conda` package
 
       ```console
       mulled-search --destination quay singularity conda  --search pysam biopython  | grep "mulled"
