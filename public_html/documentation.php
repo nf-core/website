@@ -81,7 +81,7 @@ include('../includes/header.php');
     $main_content .=  $sidebar_nav;
     $main_content .= '</div>';
     # main content
-    $main_content .= '<div class="col-12 col-lg"><div class="rendered-markdown">' . $content . '</div>
+    $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div>
                 </div>';
     # right sidebar
     $main_content .= '<div class="col-12 col-lg-2 ps-2"><div class="side-sub-subnav sticky-top">';
