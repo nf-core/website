@@ -151,12 +151,9 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           <li class="nav-item p-1">
             <a class="nav-link" href="/tools">Tools</a>
           </li>
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">Docs</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/docs/usage/introduction">Usage</a>
-              <a class="dropdown-item" href="/docs/contributing/guidelines">Contributing</a>
-            </div>
+          <li class="nav-item p-1">
+            <!-- TODO - write a new docs landing page at /docs -->
+            <a class="nav-link" href="/docs/usage/introduction">Docs</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
