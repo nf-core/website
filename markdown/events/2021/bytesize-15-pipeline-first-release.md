@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 15: Pipeline first release"
+title: 'Bytesize 15: Pipeline first release'
 subtitle: Alexander Peltzer - Boehringer Ingelheim Pharma GmbH & Co. KG, Germany
 type: talk
-start_date: "2021-06-01"
-start_time: "13:00 CEST"
-end_date: "2021-06-01"
-end_time: "13:30 CEST"
+start_date: '2021-06-01'
+start_time: '13:00 CEST'
+end_date: '2021-06-01'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/1OwkTd-P5pQ
 location_url:
-    - https://youtu.be/1OwkTd-P5pQ
-    - https://www.bilibili.com/video/BV185411M71d
-    - https://doi.org/10.6084/m9.figshare.14717307.v1
+  - https://youtu.be/1OwkTd-P5pQ
+  - https://www.bilibili.com/video/BV185411M71d
+  - https://doi.org/10.6084/m9.figshare.14717307.v1
 ---
 
 # nf-core/bytesize
@@ -28,8 +28,8 @@ This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will pre
 
 This will cover:
 
-* Which steps are required to release a pipeline on nf-core
-* How to make a first release of a pipeline
+- Which steps are required to release a pipeline on nf-core
+- How to make a first release of a pipeline
 
 The talk will be presented on Zoom and live-streamed on YouTube.
 

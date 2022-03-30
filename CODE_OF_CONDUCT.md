@@ -103,14 +103,14 @@ All reports will be handled with utmost discretion and confidentially.
 
 You can also report any CoC violations safety [at] nf-co [dot] re. In your email report, please do your best to include:
 
-* Your contact information.
-* Identifying information (e.g. names, nicknames, pseudonyms) of the participant who has violated the Code of Conduct.
-* The behaviour that was in violation and the circumstances surrounding the incident.
-* The approximate time of the behaviour (if different than the time the report was made).
-* Other people involved in the incident if applicable.
-* If you believe the incident is ongoing.
-* If there is a publicly available record (e.g. mailing list record, a screenshot).
-* Any additional information.
+- Your contact information.
+- Identifying information (e.g. names, nicknames, pseudonyms) of the participant who has violated the Code of Conduct.
+- The behaviour that was in violation and the circumstances surrounding the incident.
+- The approximate time of the behaviour (if different than the time the report was made).
+- Other people involved in the incident if applicable.
+- If you believe the incident is ongoing.
+- If there is a publicly available record (e.g. mailing list record, a screenshot).
+- Any additional information.
 
 After you file a report, one or more members of our Safety Team, will contact you to follow up on your report.
 
@@ -142,13 +142,13 @@ We will not name harassment victims beyond discussions between the safety office
 
 Actions taken by the nf-core’s Safety Team may include but are not limited to:
 
-* Asking anyone to stop a behaviour.
-* Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
-* Removing access to the gather.town and Slack either temporarily or permanently.
-* Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
-* Communicating to all participants that an incident has taken place and how we will act or have acted– this may be for the purpose of letting event participants know we are aware and are dealing with the incident.
-* Banning anyone from participating in nf-core-managed spaces, future events and activities, either temporarily or permanently.
-* No action required.
+- Asking anyone to stop a behaviour.
+- Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
+- Removing access to the gather.town and Slack either temporarily or permanently.
+- Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
+- Communicating to all participants that an incident has taken place and how we will act or have acted– this may be for the purpose of letting event participants know we are aware and are dealing with the incident.
+- Banning anyone from participating in nf-core-managed spaces, future events and activities, either temporarily or permanently.
+- No action required.
 
 ## Attribution and Acknowledgements
 
