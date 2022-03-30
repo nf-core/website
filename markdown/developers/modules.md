@@ -306,7 +306,7 @@ Once you<span class="x x-first x-last"> are </span>familiar with the module subm
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-### 1. General
+### General
 
 1. All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
@@ -411,7 +411,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     }
     ```
 
-### 2. Naming conventions
+### Naming conventions
 
 1. The directory structure for the module name must be all lowercase e.g. [`modules/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
@@ -430,7 +430,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
     if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
     ```
 
-### 3. Input/output options
+### Input/output options
 
 1. Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
   - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel  (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
@@ -440,7 +440,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
-### 4. Module parameters
+### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
 
@@ -450,7 +450,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 4. Any parameters that need to be evaluated in the context of a particular sample e.g. single-end/paired-end data MUST also be defined within the process.
 
-### 5. Resource requirements
+### Resource requirements
 
 1. An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46) e.g. `process_low`, `process_medium` or `process_high`.
 
@@ -460,7 +460,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
   - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
   - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
 
-### 6. Software requirements
+### Software requirements
 
 [BioContainers](https://biocontainers.pro/#/) is a registry of Docker and Singularity containers automatically created from all of the software packages on [Bioconda](https://bioconda.github.io/). Where possible we will use BioContainers to fetch pre-built software containers and Bioconda to install software using Conda.
 
@@ -513,11 +513,11 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 5. If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
-### 7. Publishing results
+### Publishing results
 
 Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This system has been replaced using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
 
-### 8. Test data config file
+### Test data config file
 
 If a new test dataset is added to [`tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), check that the config name of the added file(s) follows the scheme of the entire file name with dots replaced with underscores.
 
