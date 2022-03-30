@@ -1350,10 +1350,12 @@ Launch Page
 .sidebar-nav a{
   color: $gray-700;
   text-decoration: none;
+  border-left: 1px solid transparent; // For alignment
   &.active{
     color: $gray-900;
     font-size: 0.9rem;
     font-weight: 700;
+    border-left: 1px solid $success; // For alignment
   }
   &:hover{
     color:$success;

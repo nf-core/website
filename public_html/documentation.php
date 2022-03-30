@@ -53,7 +53,7 @@ function build_sidebar_nav($elements)
             $is_open = $show == 'show' ? 'true' : 'false';
             $id = str_replace(" ", "-", strtolower(implode('-', array_slice($path, -3, 2))));
             $id = str_replace(":", "", $id);
-            $sidebar_nav .= '<button class="btn d-inline-flex align-items-center rounded" data-bs-toggle="collapse" data-bs-target="#' . $id . '" aria-expanded="' . $is_open . '" aria-current="' . $is_open . '">
+            $sidebar_nav .= '<button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#' . $id . '" aria-expanded="' . $is_open . '" aria-current="' . $is_open . '">
                             <i class="fas fa-angle-right me-3"></i><strong>' . ucwords($name) . '
                         </strong></button>';
             $sidebar_nav .= '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
@@ -61,7 +61,7 @@ function build_sidebar_nav($elements)
             $sidebar_nav .= '</ul></nav>';
         } else {
             $active = $md_fn == $element['url'] . '.md' ? 'active' : '';
-            $sidebar_nav .= '<li><a href="/' . $element['url'] . '"  class="d-inline-flex align-items-center rounded py-1 px-2 ' . $active . '">' . $element['title'] . '</a></li>';
+            $sidebar_nav .= '<li><a href="/' . $element['url'] . '"  class="d-inline-flex align-items-center py-1 px-2 ' . $active . '">' . $element['title'] . '</a></li>';
         }
     }
 }
