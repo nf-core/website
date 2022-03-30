@@ -31,10 +31,12 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
   - [nf-core/tools](https://nf-co.re/tools)
   - Docker/Singularity/Conda: [Google is your friend]
 - Familiarise yourself with the documentation on the nf-core website for nf-core modules:
+
   - [https://nf-co.re/docs/contributing/modules](https://nf-co.re/docs/contributing/modules)
 
   - [https://www.nextflow.io/docs/latest/dsl2.html#modules](https://www.nextflow.io/docs/latest/dsl2.html#modules)
   - Relevant nf-core/bytesize talks are also listed below
+
 - Have a peek at the [GitHub Projects board](https://github.com/orgs/nf-core/projects/20) for the hackathon
 - If you have been accepted as a mentee for the pair programming session on day 1 your mentor should be in touch via DM on Slack. If you haven’t been contacted please let us know on the #hackathon-oct2021-public Slack channel.
 
