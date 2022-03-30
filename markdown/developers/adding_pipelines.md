@@ -8,10 +8,10 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-* You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/introduction.md)).
-* You're used to working with `git` and [GitHub](https://github.com)
-    (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
-* The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
+- You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/introduction.md)).
+- You're used to working with `git` and [GitHub](https://github.com)
+  (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
+- The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
 
 The main steps involved in adding a new nf-core pipeline covered below are:
 
@@ -187,7 +187,7 @@ or `conda`, so your config should not specify a hardware environment.
 Have a go at running the pipeline and see if it works:
 
 ```console
-nextflow run MY_WORKFLOW -profile test,docker
+nextflow run MY_WORKFLOW -profile test,docker --outdir <OUTDIR>
 ```
 
 Note that if you do need to adjust this `nextflow run` command, you'll need to update it
@@ -221,10 +221,10 @@ In the repository settings, set `dev` to be the default branch.
 
 Remember to configure the repository on the GitHub website with the following:
 
-* A description, the [https://nf-co.re](https://nf-co.re) URL and lots of keywords!
-* Issues enabled, disable Wiki and Projects
-* A protected `master` branch that requires review and passing tests
-* Write permissions for `nf-core/all` and admin permissions for `nf-core/admin`
+- A description, the [https://nf-co.re](https://nf-co.re) URL and lots of keywords!
+- Issues enabled, disable Wiki and Projects
+- A protected `master` branch that requires review and passing tests
+- Write permissions for `nf-core/all` and admin permissions for `nf-core/admin`
 
 You can check that all of these settings are done correctly by referring to your pipeline
 in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
@@ -273,9 +273,9 @@ necessary until you're good to go.
 
 Common things that are flagged at this point are:
 
-* A clear, short but descriptive readme
-* Good documentation, especially describing the output files and all parameters
-* Pipeline code
+- A clear, short but descriptive readme
+- Good documentation, especially describing the output files and all parameters
+- Pipeline code
 
 We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipelin release. You can also ping people from the nf-core core team to review your pipelin code by `@`ing them.
 
@@ -307,18 +307,18 @@ We are an open and inclusive community, welcoming any contributions to pipelines
 
 Basic rules for such contributions:
 
-* Ask in the [Slack](https://nf-co.re/join/slack) channel for the specific pipeline whether there is an open issue on the respective pipeline's issue tracker for the feature you're planning to
-* If not, create a new issue there, describing the purpose and ideas you have and wait for someone to comment/discuss
-* If everyone is happy or there is some consensus in the community, start implementing the feature in your [fork](https://help.github.com/en/articles/fork-a-repo) of the respective pipeline
-* Please do not write to multiple channels in the Slack community, rather collect all of the information in a single GitHub issue, which makes it also much easier to follow up on your proposal
+- Ask in the [Slack](https://nf-co.re/join/slack) channel for the specific pipeline whether there is an open issue on the respective pipeline's issue tracker for the feature you're planning to
+- If not, create a new issue there, describing the purpose and ideas you have and wait for someone to comment/discuss
+- If everyone is happy or there is some consensus in the community, start implementing the feature in your [fork](https://help.github.com/en/articles/fork-a-repo) of the respective pipeline
+- Please do not write to multiple channels in the Slack community, rather collect all of the information in a single GitHub issue, which makes it also much easier to follow up on your proposal
 
 ### Adding new dependencies to an existing pipeline
 
 Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the GitHub Actions tests run through when testing your updated code. To achieve that, please follow these steps:
 
-* Add _only_ the newly required dependencies to the `environment.yml` in the pipeline code
-* List this new dependency as something new in the `CHANGELOG`
-* Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
+- Add _only_ the newly required dependencies to the `environment.yml` in the pipeline code
+- List this new dependency as something new in the `CHANGELOG`
+- Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 
 This way, a review process will be very fast and we can merge the changes into the `dev` branch, updating the Docker Image for that pipeline automatically. After ~30 Minutes, the Docker Image for that pipeline is then updated, and you can open your Pull Request containing your actual pipeline code changes.
 
@@ -328,59 +328,59 @@ This way, a review process will be very fast and we can merge the changes into t
 
 You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core create`.
 
-* `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
+- `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
   The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/docs/usage/configuration) for more information.
 
-* `README.md`: Basic information about the pipeline and usage
+- `README.md`: Basic information about the pipeline and usage
 
-* `nextflow_json.schema`: The JSON schema file is used for pipeline parameter specification. This is automatically created using the `nf-core schema build` command. It is used for printing command-line help, validating input parameters, building the website docs and for building pipeline launch interfaces (web and cli).
+- `nextflow_json.schema`: The JSON schema file is used for pipeline parameter specification. This is automatically created using the `nf-core schema build` command. It is used for printing command-line help, validating input parameters, building the website docs and for building pipeline launch interfaces (web and cli).
 
-* `CHANGELOG.md`: Information about the changes made to the pipeline for each release.
+- `CHANGELOG.md`: Information about the changes made to the pipeline for each release.
 
-* `LICENSE`: The license - should be MIT
+- `LICENSE`: The license - should be MIT
 
-* `CODE_OF_CONDUCT.md`: The nf-core code of conduct.
+- `CODE_OF_CONDUCT.md`: The nf-core code of conduct.
 
-* `CITATIONS.md`: All citations needed when using the pipelin
+- `CITATIONS.md`: All citations needed when using the pipelin
 
-* `.gitattributes`: Git settings, primarily getting the `.config` files to render with Nextflow syntax highlighting on <github.com>
+- `.gitattributes`: Git settings, primarily getting the `.config` files to render with Nextflow syntax highlighting on <github.com>
 
-* `.gitignore`: Files that should be ignored by git.
+- `.gitignore`: Files that should be ignored by git.
 
-* `.editorconfig`: Editorconfig file that helps assuring consistent coding style
+- `.editorconfig`: Editorconfig file that helps assuring consistent coding style
 
-* `.markdownlint.yml`: Markdown lint configuration file to assure consistent markdown files
+- `.markdownlint.yml`: Markdown lint configuration file to assure consistent markdown files
 
-* `modules.json`: This file holds information (e.g. version) about all the modules in the pipeline that have been installed from `nf-core/modules`
+- `modules.json`: This file holds information (e.g. version) about all the modules in the pipeline that have been installed from `nf-core/modules`
 
 ### Directories
 
-* `.github/`: Other GitHub specific files, e.g. for specifying templates and GitHub actions
+- `.github/`: Other GitHub specific files, e.g. for specifying templates and GitHub actions
 
-* `assets/`: Any additional files needed for the pipeline
+- `assets/`: Any additional files needed for the pipeline
 
-* `bin/`: Directory for scripts that must be directly accessible within a pipeline process. Anything in this directory can be directly called from within Nextflow processes.
+- `bin/`: Directory for scripts that must be directly accessible within a pipeline process. Anything in this directory can be directly called from within Nextflow processes.
 
-* `conf/`: Configuration files, including a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionaly, most pipelines also have a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
+- `conf/`: Configuration files, including a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionaly, most pipelines also have a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
 
-* `docs/`: Markdown files for documenting the pipeline
+- `docs/`: Markdown files for documenting the pipeline
 
-* `lib/`: The lib directory contains Groovy utility functions. These are called from within the nf-core pipeline to do common pipeline tasks (e.g. parameter schema validation) and to hold Groovy functions that may be useful in the pipeline context (e.g. to validate pipeline-specific parameters). Currently, the following files are included:
+- `lib/`: The lib directory contains Groovy utility functions. These are called from within the nf-core pipeline to do common pipeline tasks (e.g. parameter schema validation) and to hold Groovy functions that may be useful in the pipeline context (e.g. to validate pipeline-specific parameters). Currently, the following files are included:
 
-  * `NfcoreSchema.groovy` - Functions to validate input parameters using the pipeline JSON schema
-  * `NfcoreTemplate.groovy` - Additional nf-core specific pipeline functions (sending emails, checking nf-core config profiles and more)
-  * `Utils.groovy` - Additional generic pipeline functions (checking conda config and more)
-  * `WorkflowMain.groovy` - Startup functions for the main pipeline (printing logs, custom params initialisation and more)
-  * `WorkflowPipeline.groovy` - Functions for pipeline subworkflows
-  * `nfcore_external_java_deps.jar` - Bundled Groovy dependencies so that pipelines work offline (mostly for JSON schema validation - see imports in `NfcoreSchema.groovy`)
+  - `NfcoreSchema.groovy` - Functions to validate input parameters using the pipeline JSON schema
+  - `NfcoreTemplate.groovy` - Additional nf-core specific pipeline functions (sending emails, checking nf-core config profiles and more)
+  - `Utils.groovy` - Additional generic pipeline functions (checking conda config and more)
+  - `WorkflowMain.groovy` - Startup functions for the main pipeline (printing logs, custom params initialisation and more)
+  - `WorkflowPipeline.groovy` - Functions for pipeline subworkflows
+  - `nfcore_external_java_deps.jar` - Bundled Groovy dependencies so that pipelines work offline (mostly for JSON schema validation - see imports in `NfcoreSchema.groovy`)
 
-* `modules/`: Contains pipeline-specific and common nf-core modules
+- `modules/`: Contains pipeline-specific and common nf-core modules
 
-* `workflows/`: Contains the main pipeline workflows to be executed in the `main.nf` file
+- `workflows/`: Contains the main pipeline workflows to be executed in the `main.nf` file
 
-* `subworkflows/`: Contains smaller subworkflows that typically consist out of a few modules chained together
+- `subworkflows/`: Contains smaller subworkflows that typically consist out of a few modules chained together
 
 ## Continuous integration testing
 
@@ -402,12 +402,12 @@ One thing that might not be straightforward is how module parameters are handled
 
 The `modules.config` file should contain a `params.modules` dictionary which lists every module used in the pipeline. For each module, the following fields can be specified:
 
-* `args`: additional arguments appended to command in the module
-* `args2`: Second set of arguments append to command in the module (multi-tool modules)
-* `publish_dir`: Directory to publish the results
-* `publish_by_id`: Publish results in separate folder by meta.id value
-* `publish_files`: Groovy map where key = "file_ext" and value = "directory" to publish results for that file extension. The value of "directory" is appended to the standard "publish_dir" path as defined above. If publish_files == null (unspecified) all files are published. If publish_files == false no files are published.
-* `suffix`: File name suffix for output files
+- `args`: additional arguments appended to command in the module
+- `args2`: Second set of arguments append to command in the module (multi-tool modules)
+- `publish_dir`: Directory to publish the results
+- `publish_by_id`: Publish results in separate folder by meta.id value
+- `publish_files`: Groovy map where key = "file_ext" and value = "directory" to publish results for that file extension. The value of "directory" is appended to the standard "publish_dir" path as defined above. If publish_files == null (unspecified) all files are published. If publish_files == false no files are published.
+- `suffix`: File name suffix for output files
 
 ### Sample meta information
 

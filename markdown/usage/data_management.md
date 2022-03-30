@@ -4,6 +4,7 @@ subtitle: How to plan your project, estimate resources, and share your results.
 ---
 
 ## Data management
+
 Funding agencies are recognizing the importance of research data management and some now request detailed Data Management Plans (DMP) as part of the grant application. Research data management concerns the organization, storage, preservation, and sharing of data that is collected or analyzed during a research project. Proper planning and data management facilitates sharing and allows others to validate and reuse the data. Guidance is provided below to aid the creation of DMPs, estimate resources needed by nf-core workflows, and how to share the resulting data.
 
 ### Data Management Plan
@@ -11,7 +12,7 @@ Funding agencies are recognizing the importance of research data management and 
 A Data Management Plan (DMP) is a revisable document explaining how you intend to handle new and existing data, during and following the conclusion of your research project.
 It is wise to write a DMP as early as possible, using either a tool provided by your host institution or for example
 [DS Wizard](https://ds-wizard.org/) or [DMP Online](https://dmponline.dcc.ac.uk/).
-Ethical and legal considerations regarding the data will depend on where the research is conducted, this is especially true for projects including sensitive human data. For more  information about the Swedish context, please review this page on [Sensitive personal data](https://scilifelab-data-guidelines.readthedocs.io/en/latest/docs/general/sensitive_data.html).
+Ethical and legal considerations regarding the data will depend on where the research is conducted, this is especially true for projects including sensitive human data. For more information about the Swedish context, please review this page on [Sensitive personal data](https://scilifelab-data-guidelines.readthedocs.io/en/latest/docs/general/sensitive_data.html).
 
 ### Data storage and computational resources
 
@@ -48,4 +49,4 @@ If you are using a Linux system, you can generate md5 checksums using the `md5su
 #### Choosing a license
 
 To ascertain re-usability data should be released with a clear and accessible data usage license. We suggest making your data available under licences that permit free reuse of data, e.g. a Creative Commons licence, such as CC0 or CC-BY. The [EUDAT licence selector wizard](https://ufal.github.io/public-license-selector/) can help you select suitable licences for your data.
-Note that sequence data submitted to [ENA](https://www.ebi.ac.uk/ena)/[GenBank](https://www.ncbi.nlm.nih.gov/genbank/)/[DDBJ](https://www.ddbj.nig.ac.jp/index-e.html) are implicitly free to reuse by others as specified in the [INCD Standards and policies]( https://www.ebi.ac.uk/ena/standards-and-policies).
+Note that sequence data submitted to [ENA](https://www.ebi.ac.uk/ena)/[GenBank](https://www.ncbi.nlm.nih.gov/genbank/)/[DDBJ](https://www.ddbj.nig.ac.jp/index-e.html) are implicitly free to reuse by others as specified in the [INCD Standards and policies](https://www.ebi.ac.uk/ena/standards-and-policies).

@@ -13,5 +13,5 @@ $altmetric_html = '
     <span data-doi="${1}" class="__dimensions_badge_embed__" data-hide-zero-citations="true" data-style="small_circle" data-legend="hover-bottom"></span>
 </div>';
 $html_content_replace = [$altmetric_pattern, $altmetric_html];
-include('../includes/header.php');
-include('../includes/footer.php');
+include '../includes/header.php';
+include '../includes/footer.php';

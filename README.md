@@ -9,22 +9,22 @@ This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 Here's how the website is built:
 
-* Language: PHP
-* HTML / CSS / JS framework: [Bootstrap v5](http://getbootstrap.com/)
-* JavaScript libraries:
-  * [jQuery](https://jquery.com/)
-  * [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
-  * [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
-  * [Leaflet](https://leafletjs.com/) _(contributor map)_
-  * [Moment.js](https://momentjs.com/) _(time and date parsing)_
-  * [Chart.js](https://www.chartjs.org/) _(statistics plots)_
-  * [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
-  * [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
-  * [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
-  * [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
-  * [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
-* PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
-* SVG icons: <http://www.flaticon.com>, <https://worldvectorlogo.com/>
+- Language: PHP
+- HTML / CSS / JS framework: [Bootstrap v5](http://getbootstrap.com/)
+- JavaScript libraries:
+  - [jQuery](https://jquery.com/)
+  - [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
+  - [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
+  - [Leaflet](https://leafletjs.com/) _(contributor map)_
+  - [Moment.js](https://momentjs.com/) _(time and date parsing)_
+  - [Chart.js](https://www.chartjs.org/) _(statistics plots)_
+  - [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
+  - [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
+  - [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
+  - [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
+  - [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
+- PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
+- SVG icons: <http://www.flaticon.com>, <https://worldvectorlogo.com/>
 
 ## Development
 
@@ -97,7 +97,7 @@ php update_pipeline_details.php
 
 To update the modules database (from within the docker container) run:
 
-``` bash
+```bash
 docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
 ```
 

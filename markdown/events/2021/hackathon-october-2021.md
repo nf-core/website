@@ -2,10 +2,10 @@
 title: Hackathon - October 2021
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-start_date: "2021-10-27"
-start_time: "10:00 CEST"
-end_date: "2021-10-29"
-end_time: "18:00 CEST"
+start_date: '2021-10-27'
+start_time: '10:00 CEST'
+end_date: '2021-10-29'
+end_time: '18:00 CEST'
 location_name: Gather town and Slack.
 ---
 
@@ -50,7 +50,6 @@ Our primary focus for this hackathon will be the conversion of nf-core pipelines
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-
 - Tutorial: Adding a local module to nf-core/modules:
 
 <div class="ratio ratio-16x9">
@@ -61,7 +60,7 @@ Our primary focus for this hackathon will be the conversion of nf-core pipelines
     <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 </div>
 
-We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you  would like to learn more:
+We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you would like to learn more:
 
 - [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
 - [DSL module development](https://www.youtube.com/watch?v=ggGGhTMgyHI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=5)
@@ -102,14 +101,14 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 1. :speech_balloon: Most of the event will happen on [Gather town](https://www.gather.town/). You can chat there with your group to get an overview of what is going on.
 2. <i class="fab fa-slack"></i> Join the `#hackathon-oct2021-public` Slack channel to stay up to date with the hackathon events.
 3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/20).
-    - If you have something you want to do that's not there, please make an issue (e.g. in the nf-core/modules repository if you are adding a new module) and add it to the board
+   - If you have something you want to do that's not there, please make an issue (e.g. in the nf-core/modules repository if you are adding a new module) and add it to the board
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time)
-    - This is so that multiple people don't accidentally work on the same task
+   - This is so that multiple people don't accidentally work on the same task
 5. :fast_forward: When you're done, make a pull-request with your changes. Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
-    - [<i class="fas fa-file-alt"></i> Modules and Pipelines](https://hackmd.io/@nf-core/Bk42vnEHF/)
-    - [<i class="fas fa-file-alt"></i> Tools](https://hackmd.io/@nf-core/S1vAu24BK/)
-    - [<i class="fas fa-file-alt"></i> Website](https://hackmd.io/@nf-core/BkBHF2ErY)
+   - [<i class="fas fa-file-alt"></i> Modules and Pipelines](https://hackmd.io/@nf-core/Bk42vnEHF/)
+   - [<i class="fas fa-file-alt"></i> Tools](https://hackmd.io/@nf-core/S1vAu24BK/)
+   - [<i class="fas fa-file-alt"></i> Website](https://hackmd.io/@nf-core/BkBHF2ErY)
 7. :recycle: Repeat!
 
 > The HackMD document is the easiest to forget, but please add something even if you think what you did was small -
@@ -345,7 +344,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 - Breaks will happen in the dedicated Cafeteria room, for informal chatting and getting to know each other.
 - Throughout the three days, we will once again be running a nf-core hackathon **bingo**! To join the game, you can go the following [link](https://nfcore-bingo.web.app/?game=nf-core-hackathon). Check the instructions at the bottom of the page.
 
-    > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
+  > <i class="fas fa-hand-paper"></i> Bingo! <https://nfcore-bingo.web.app/?game=nf-core-hackathon>
 
 - In addition, we will be running an easter-egg (sock? 😉) hunt! There are 11 socks distributed around the gather.town world. Take screenshots of as many as you can find!
 - Finally, during Thursday's social event (see schedule above), we will be running a short quiz!

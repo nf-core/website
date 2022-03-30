@@ -6,6 +6,7 @@ Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/mar
 Main publication for the main nf-core paper, describing the community and framework:
 
 <!-- pub-stats 10.1038/s41587-020-0439-x -->
+
 > **The nf-core framework for community-curated bioinformatics pipelines**
 >
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen
@@ -18,6 +19,7 @@ Main publication for the main nf-core paper, describing the community and framew
 Preprint for the main nf-core paper (significantly different from the final Nature Biotech paper):
 
 <!-- pub-stats 10.1101/610741 -->
+
 > **_nf-core:_ Community curated bioinformatics pipelines**
 >
 > Philip Ewels, Alexander Peltzer, Sven Fillinger, Johannes Alneberg, Harshil Patel, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso, Sven Nahnsen
@@ -28,6 +30,7 @@ Preprint for the main nf-core paper (significantly different from the final Natu
 Article in _Nature_ describing scientific workflows (including nf-core):
 
 <!-- pub-stats 10.1038/d41586-019-02619-z -->
+
 > **Workflow systems turn raw data into scientific knowledge**
 >
 > Jeffrey M. Perkel
@@ -40,6 +43,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/ampliseq](https://nf-co.re/ampliseq)
 
 <!-- pub-stats 10.3389/fmicb.2020.550420 -->
+
 > **Interpretations of Environmental Microbial Community Studies Are Biased by the Selected 16S rRNA (Gene) Amplicon Sequencing Pipeline**
 >
 > Daniel Straub, Nia Blackwell, Adrian Langarica-Fuentes, Alexander Peltzer, Sven Nahnsen and Sara Kleindienst
@@ -50,6 +54,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/coproid](https://nf-co.re/coproid)
 
 <!-- pub-stats 10.7717/peerj.9001 -->
+
 > **CoproID predicts the source of coprolites and paleofeces using microbiome composition and host DNA content**
 >
 > Maxime Borry, Bryan Cordova, Angela Perri, Marsha Wibowo, Tanvi Prasad Honap, Jada Ko, Jie Yu, Kate Britton, Linus Girdland-Flink, Robert C. Power, Ingelise Stuijts, Domingo C. Salazar-Garcia, Courtney Hofman, Richard Hagan, Thérèse Samdapawindé Kagoné, Nicolas Meda, Hélène Carabin, David Jacobson, Karl Reinhard, Cecil Lewis, Aleksandar Kostic, Choongwon Jeong, Alexander Herbig, Alexander Hübner, Christina Warinner
@@ -60,6 +65,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/diaproteomics](https://nf-co.re/diaproteomics)
 
 <!-- pub-stats 10.1021/acs.jproteome.1c00123 -->
+
 > **DIAproteomics: A Multifunctional Data Analysis Pipeline for Data-Independent Acquisition Proteomics and Peptidomics**
 >
 > Leon Bichmann, Shubham Gupta, George Rosenberger, Leon Kuchenbecker, Timo Sachsenberg, Phil Ewels, Oliver Alka, Julianus Pfeuffer, Oliver Kohlbacher, and Hannes Röst
@@ -70,6 +76,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/eager](https://nf-co.re/eager)
 
 <!-- pub-stats 10.7717/peerj.10947 -->
+
 > **Reproducible, portable, and efficient ancient genome reconstruction with nf-core/eager**
 >
 > James A. Fellows Yates, Thiseas C. Lamnidis, Maxime Borry, Aida Andrades Valtueña, Zandra Fagernäs, Stephen Clayton, Maxime U. Garcia, Judith Neukamm, Alexander Peltzer
@@ -80,6 +87,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/hicar](https://nf-co.re/hicar)
 
 <!-- pub-stats 10.1016/j.molcel.2022.01.023 -->
+
 > **HiCAR is a robust and sensitive method to analyze open-chromatin-associated genome organization.**
 >
 > Xiaolin Wei, Yu Xiang, Derek T. Peters, Choiselle Marius, Tongyu Sun, Ruocheng Shan, Jianhong Ou, Xin Lin, Feng Yue, Wei Li, Kevin W. Southerland, Yarui Diao
@@ -90,6 +98,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/imcyto](https://nf-co.re/imcyto)
 
 <!-- pub-stats 10.1038/s41467-021-26214-x -->
+
 > **Characterisation of tumour microenvironment remodelling following oncogene inhibition in preclinical studies with imaging mass cytometry.**
 >
 > Febe van Maldegem, Karishma Valand, Megan Cole, Harshil Patel, Mihaela Angelova, Sareena Rana, Emma Colliver, Katey Enfield, Nourdine Bah, Gavin Kelly, Victoria Siu Kwan Tsang, Edurne Mugarza, Christopher Moore, Philip Hobson, Dina Levi, Miriam Molina, Charles Swanton & Julian Downward
@@ -100,6 +109,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
 <!-- pub-stats 10.1016/j.jgg.2018.06.005 -->
+
 > **LncPipe: A Nextflow-based pipeline for identification and analysis of long non-coding RNAs from RNA-Seq data.**
 >
 > Qi Zhao, Yu Sun, Dawei Wang, Hongwan Zhang, Kai Yu, Jian Zheng, Zhixiang Zuo.
@@ -110,6 +120,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/mag](https://nf-co.re/mag)
 
 <!-- pub-stats 10.1093/nargab/lqac007 -->
+
 > **nf-core/mag: a best-practice pipeline for metagenome hybrid assembly and binning**
 >
 > Sabrina Krakau, Daniel Straub, Hadrien Gourlé, Gisela Gabernet, Sven Nahnsen
@@ -120,6 +131,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
 <!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
+
 > **MHCquant: Automated and Reproducible Data Analysis for Immunopeptidomics**
 >
 > Leon Bichmann, Annika Nelde, Michael Ghosh, Lukas Heumos, Christopher Mohr, Alexander Peltzer, Leon Kuchenbecker, Timo Sachsenberg, Juliane S. Walz, Stefan Stevanović, Hans-Georg Rammensee, and Oliver Kohlbacher
@@ -130,6 +142,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/nanoseq](https://nf-co.re/nanoseq)
 
 <!-- pub-stats 10.1101/2021.04.21.440736 -->
+
 > **A systematic benchmark of Nanopore long read RNA sequencing for transcript level analysis in human cell lines**
 >
 > Ying Chen, Nadia M. Davidson, Yuk Kei Wan, Harshil Patel, Fei Yao, Hwee Meng Low, Christopher Hendra, Laura Watten, Andre Sim, Chelsea Sawyer, Viktoriia Iakovleva, Puay Leng Lee, Lixia Xin, Hui En Vanessa Ng, Jia Min Loo, Xuewen Ong, Hui Qi Amanda Ng, Jiaxu Wang, Wei Qian Casslynn Koh, Suk Yeah Polly Poon, Dominik Stanojevic, Hoang-Dai Tran, Kok Hao Edwin Lim, Shen Yon Toh, Philip Andrew Ewels, Huck-Hui Ng, N.Gopalakrishna Iyer, Alexandre Thiery, Wee Joo Chng, Leilei Chen, Ramanuj DasGupta, Mile Sikic, Yun-Shen Chan, Boon Ooi Patrick Tan, Yue Wan, Wai Leong Tam, Qiang Yu, Chiea Chuan Khor, Torsten Wüstefeld, Ploy N. Pratanwanich, Michael I. Love, Wee Siong Sho Goh, Sarah B. Ng, Alicia Oshlack, Jonathan Göke, SG-NEx consortium
@@ -140,6 +153,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/sarek](https://nf-co.re/sarek)
 
 <!-- pub-stats 10.12688/f1000research.16665.2 -->
+
 > **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 2; peer review: 2 approved].
 >
 > Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
@@ -150,6 +164,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 ### [nf-core/scflow](https://nf-co.re/scflow)
 
 <!-- pub-stats 10.1101/2021.08.16.456499 -->
+
 > **scFlow: A Scalable and Reproducible Analysis Pipeline for Single-Cell RNA Sequencing Data**
 >
 > Combiz Khozoie, Nurun Fancy, Mahdi M. Marjaneh, Alan E. Murphy, Paul M. Matthews, Nathan Skene
