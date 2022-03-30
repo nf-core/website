@@ -23,7 +23,7 @@ function parse_md($markdown){
 
   $output = array();
   // Load the docs markdown
-  if(substr($markdown, -3) == '.md'){
+  if (substr($markdown, -3) == '.md' && (filter_var($markdown, FILTER_VALIDATE_URL) || file_exists($markdown))) {
     $md_full = file_get_contents($markdown);
     if ($md_full === false) {
       header('HTTP/1.1 404 Not Found');
