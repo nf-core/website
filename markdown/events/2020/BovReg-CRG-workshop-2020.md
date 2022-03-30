@@ -2,10 +2,10 @@
 title: BovReg Workshop and hackathon
 subtitle: Reproducible genomics workflows using Nextflow and nf-core organized by The Center for Genomic Regulation (CRG), Barcelona
 type: tutorial
-start_date: "2020-11-17"
-start_time: "09:30"
-end_date: "2020-11-20"
-end_time: "17:30"
+start_date: '2020-11-17'
+start_time: '09:30'
+end_date: '2020-11-20'
+end_time: '17:30'
 location_url: https://github.com/BovReg/nf-workshop20
 ---
 
@@ -27,6 +27,7 @@ This event is being organized by the CRG and the contact person is Jose Espinosa
 ### Introduction to nf-core
 
 Phil Ewels.
+
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/-GcuxoIpfOc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -34,6 +35,7 @@ Phil Ewels.
 ### nf-core pipelines
 
 Harshil Patel.
+
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/hCGuF9bA9ho" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -41,6 +43,7 @@ Harshil Patel.
 ### Developing with nf-core
 
 Phil Ewels.
+
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/lUJ1L-qDeXM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>

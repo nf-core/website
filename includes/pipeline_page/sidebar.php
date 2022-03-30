@@ -8,7 +8,7 @@ $issues_json_fn = dirname(dirname(dirname(__FILE__))) . '/nfcore_issue_stats.jso
 $issues_json = json_decode(file_get_contents($issues_json_fn), true);
 $num_issues = 0;
 foreach ($issues_json['repos'][$pipeline->name]['issues'] as $issue) {
-  $num_issues += (int)($issue['state'] == 'open');
+    $num_issues += (int) ($issue['state'] == 'open');
 }
 
 $num_prs = count($issues_json['repos'][$pipeline->name]['prs']);
@@ -21,21 +21,33 @@ $clones_counts = $stats_json['pipelines'][$pipeline->name]['clones_count'];
 $total_clones = 0;
 $clones_since = false;
 foreach ($clones_counts as $datetime => $count) {
-  $total_clones += $count;
-  if (!$clones_since) $clones_since = strtotime($datetime);
-  $clones_since = min($clones_since, strtotime($datetime));
+    $total_clones += $count;
+    if (!$clones_since) {
+        $clones_since = strtotime($datetime);
+    }
+    $clones_since = min($clones_since, strtotime($datetime));
 }
 
 // Get contributor avatars
 $contrib_avatars = [];
 foreach ($stats_json['pipelines'][$pipeline->name]['contributors'] as $contributor) {
-  $contributions = $contributor['total'];
-  if ($contributions > 1) {
-    $contributions .= " contributions";
-  } else {
-    $contributions .= " contribution";
-  }
-  $contrib_avatars['<a href="' . $contributor['author']['html_url'] . '" title="@' . $contributor['author']['login'] . ', ' . $contributions . '" data-bs-toggle="tooltip"><img src="' . $contributor['author']['avatar_url'] . '"></a>'] = $contributor['total'];
+    $contributions = $contributor['total'];
+    if ($contributions > 1) {
+        $contributions .= ' contributions';
+    } else {
+        $contributions .= ' contribution';
+    }
+    $contrib_avatars[
+        '<a href="' .
+            $contributor['author']['html_url'] .
+            '" title="@' .
+            $contributor['author']['login'] .
+            ', ' .
+            $contributions .
+            '" data-bs-toggle="tooltip"><img src="' .
+            $contributor['author']['avatar_url'] .
+            '"></a>'
+    ] = $contributor['total'];
 }
 arsort($contrib_avatars);
 
@@ -43,10 +55,9 @@ arsort($contrib_avatars);
 $last_release_time = 'N/A';
 $release_cmd = ' -r ' . $release;
 if (count($pipeline->releases) > 0) {
-  $last_release_time = time_ago($pipeline->releases[0]->published_at);
+    $last_release_time = time_ago($pipeline->releases[0]->published_at);
 }
 $last_commit = time_ago($pipeline->updated_at);
-
 ?>
 
 <div class="pipeline-sidebar">
@@ -54,13 +65,17 @@ $last_commit = time_ago($pipeline->updated_at);
     <div class="col-12">
       <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
       <div class="input-group input-group-sm pipeline-run-cmd">
-        <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name . $release_cmd; ?> -profile test" aria-label="Copy run command" readonly="">
+        <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name .
+            $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
         <button class="btn btn-outline-secondary copy-txt" data-bs-target="pipeline-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
       </div>
     </div>
   </div>
 
-  <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last <?php echo time_ago($clones_since, false); ?></span></h6>
+  <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last <?php echo time_ago(
+      $clones_since,
+      false,
+  ); ?></span></h6>
   <div class="row border-bottom">
     <div class="col-6">
       <p id="clones_count"><?php echo $total_clones; ?></p>
@@ -115,10 +130,9 @@ $last_commit = time_ago($pipeline->updated_at);
   </div>
 </div>
 
-<?php
-// Collect this content into a variable to be inserted in to the very end of the HTML
-ob_start();
-?>
+<?php // Collect this content into a variable to be inserted in to the very end of the HTML
+
+ob_start(); ?>
 
 <div class="toast cmd_copied" id="pipeline_sidebar_cmd_copied" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header">
@@ -177,12 +191,12 @@ ob_start();
             <?php
             $dates = [];
             foreach (array_keys($clones_counts) as $date) {
-              $dates[strtotime($date)] = $date;
+                $dates[strtotime($date)] = $date;
             }
             ksort($dates);
             foreach ($dates as $ts => $date) {
-              $count = $clones_counts[$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                $count = $clones_counts[$date];
+                echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
             }
             ?>
           ]
@@ -239,3 +253,4 @@ ob_start();
 <?php
 $end_of_html = ob_get_contents();
 ob_end_clean();
+

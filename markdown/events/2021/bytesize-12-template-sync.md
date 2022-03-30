@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 12: Template sync - how to merge automated PRs"
+title: 'Bytesize 12: Template sync - how to merge automated PRs'
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
-start_date: "2021-05-11"
-start_time: "13:00 CEST"
-end_date: "2021-05-11"
-end_time: "13:30 CEST"
+start_date: '2021-05-11'
+start_time: '13:00 CEST'
+end_date: '2021-05-11'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/-CZKoo5Y_08
 location_url:
-    - https://youtu.be/-CZKoo5Y_08
-    - https://www.bilibili.com/video/BV1D64y127yJ/
-    - https://doi.org/10.6084/m9.figshare.14572866.v1
+  - https://youtu.be/-CZKoo5Y_08
+  - https://www.bilibili.com/video/BV1D64y127yJ/
+  - https://doi.org/10.6084/m9.figshare.14572866.v1
 ---
 
 # nf-core/bytesize
@@ -28,16 +28,16 @@ This week, Phil Ewels ([@ewels](http://github.com/ewels/)) will present: _**Temp
 
 This will cover:
 
-* Introduction to the nf-core pipeline template
-* Overview of the `TEMPLATE` branch and sync theory
-* What the automated `nf-core sync` does
-* How to merge sync PRs
+- Introduction to the nf-core pipeline template
+- Overview of the `TEMPLATE` branch and sync theory
+- What the automated `nf-core sync` does
+- How to merge sync PRs
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* YouTube: <https://youtu.be/-CZKoo5Y_08>
-* Bilibili: <https://www.bilibili.com/video/BV1D64y127yJ/>
-* FigShare: <https://doi.org/10.6084/m9.figshare.14572866.v1>
+- YouTube: <https://youtu.be/-CZKoo5Y_08>
+- Bilibili: <https://www.bilibili.com/video/BV1D64y127yJ/>
+- FigShare: <https://doi.org/10.6084/m9.figshare.14572866.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited to make it reader-friendly**

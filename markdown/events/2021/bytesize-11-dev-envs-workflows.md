@@ -1,14 +1,14 @@
 ---
-title: "Bytesize 11: Development environments & workflows"
+title: 'Bytesize 11: Development environments & workflows'
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
-start_date: "2021-05-04"
-start_time: "13:00 CEST"
-end_date: "2021-05-04"
-end_time: "13:30 CEST"
+start_date: '2021-05-04'
+start_time: '13:00 CEST'
+end_date: '2021-05-04'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/XB96efweCLI
 location_url:
-    - https://youtu.be/XB96efweCLI
+  - https://youtu.be/XB96efweCLI
 ---
 
 # nf-core/bytesize
@@ -26,23 +26,23 @@ This week, Phil Ewels ([@ewels](http://github.com/ewels/)) will present: _**Deve
 
 This will cover:
 
-* Git + GitHub configuration
-  * Workflow for forking main repos
-  * Configuring git (remotes / pulling upstream updates)
-  * Convenience command line aliases + functions
-* VSCode configuration
-  * Code linting (Black / Prettier / EditorConfig / Markdownlint)
-  * Handling merge conflicts in VSCode
-  * Other useful VSCode plugins
-* Pipeline testing
-  * Running tests locally / reading the CI test logs
-  * Ignoring `nf-core lint` tests
-  * Troubleshooting software builds (conda / building Docker images locally)
-  * Troubleshooting inside containers
+- Git + GitHub configuration
+  - Workflow for forking main repos
+  - Configuring git (remotes / pulling upstream updates)
+  - Convenience command line aliases + functions
+- VSCode configuration
+  - Code linting (Black / Prettier / EditorConfig / Markdownlint)
+  - Handling merge conflicts in VSCode
+  - Other useful VSCode plugins
+- Pipeline testing
+  - Running tests locally / reading the CI test logs
+  - Ignoring `nf-core lint` tests
+  - Troubleshooting software builds (conda / building Docker images locally)
+  - Troubleshooting inside containers
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* YouTube: <https://youtu.be/XB96efweCLI>
+- YouTube: <https://youtu.be/XB96efweCLI>
 
 You can see the slides on HackMD: <https://hackmd.io/@nf-core/bytesize-11#/> (shown below)
 
@@ -112,4 +112,5 @@ You can see the slides on HackMD: <https://hackmd.io/@nf-core/bytesize-11#/> (sh
 [19:51](https://youtu.be/XB96efweCLI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1191) Now when I’m done I just go `git checkout master`, and if I want to I can `git branch -D` because it’s not yet merged. I can get ride of that branch which was pulled up.
 
 [20:09](https://youtu.be/XB96efweCLI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1209) So that was the main part of the talk. I’ve covered Git, GitHub, how I work with other people’s code, remote code, VSCode configuration, merge conflicts etc.
+
 </details>

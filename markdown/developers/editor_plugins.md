@@ -28,10 +28,10 @@ The extension pack source code can be found on GitHub and is written in super si
 Much like VSCode and other code editors, Sublime Text can make use of plugins that extend the native functionality.
 [@peterk87](https://github.com/peterk87) has gone the extra mile and built an incredible plugin for Sublime Text users, complete with:
 
-* Nextflow syntax highlighting (DSL2 compliant)
-* Custom commands with integration with external services (nf-core, Bioconda, Biocontainers)
-* Auto-completion and rich information panels
-* Common code snippets
+- Nextflow syntax highlighting (DSL2 compliant)
+- Custom commands with integration with external services (nf-core, Bioconda, Biocontainers)
+- Auto-completion and rich information panels
+- Common code snippets
 
 You can get this plugin here: <https://packagecontrol.io/packages/nextflow>
 
@@ -47,12 +47,12 @@ The `language-nextflow` Atom package provides syntax highlighting for Nextflow c
 
 Other useful packages include:
 
-* `editorconfig`: <https://atom.io/packages/editorconfig>
-* `file-icons`: <https://atom.io/packages/file-icons>
-* `linter-markdownlint`: <https://atom.io/packages/linter-markdownlint>
-* `python-black`: <https://atom.io/packages/python-black>
-* `todo-show`: <https://atom.io/packages/todo-show>
-* `trailing-spaces`: <https://atom.io/packages/trailing-spaces>
+- `editorconfig`: <https://atom.io/packages/editorconfig>
+- `file-icons`: <https://atom.io/packages/file-icons>
+- `linter-markdownlint`: <https://atom.io/packages/linter-markdownlint>
+- `python-black`: <https://atom.io/packages/python-black>
+- `todo-show`: <https://atom.io/packages/todo-show>
+- `trailing-spaces`: <https://atom.io/packages/trailing-spaces>
 
 # Emacs
 
