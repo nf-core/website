@@ -5,31 +5,35 @@
 //
 
 // Common functions
-require_once('functions.php');
+require_once 'functions.php';
 
-function parse_md($markdown){
-  global $md_trim_before;
-  global $md_trim_after;
-  global $md_content_replace;
-  global $_GET;
-  global $src_url_prepend;
-  global $href_url_prepend;
-  global $href_url_suffix_cleanup;
-  global $html_content_replace;
-  global $no_auto_toc;
-  global $title;
-  global $subtitle;
-  global $theme;
+function parse_md($markdown) {
+    global $md_trim_before;
+    global $md_trim_after;
+    global $md_content_replace;
+    global $_GET;
+    global $src_url_prepend;
+    global $href_url_prepend;
+    global $href_url_suffix_cleanup;
+    global $html_content_replace;
+    global $no_auto_toc;
+    global $title;
+    global $subtitle;
+    global $theme;
 
-  $output = array();
-  // Load the docs markdown
-  if (substr($markdown, -3) == '.md' && (filter_var($markdown, FILTER_VALIDATE_URL) || file_exists($markdown))) {
-    $md_full = file_get_contents($markdown);
-    if ($md_full === false) {
-      header('HTTP/1.1 404 Not Found');
-      include('404.php');
-      die();
+    $output = [];
+    // Load the docs markdown
+    if (substr($markdown, -3) == '.md' && (filter_var($markdown, FILTER_VALIDATE_URL) || file_exists($markdown))) {
+        $md_full = file_get_contents($markdown);
+        if ($md_full === false) {
+            header('HTTP/1.1 404 Not Found');
+            include '404.php';
+            die();
+        }
+    } else {
+        $md_full = $markdown;
     }
+
     // Get the meta
     $meta = [];
     $md = $md_full;
