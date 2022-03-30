@@ -187,7 +187,7 @@ or `conda`, so your config should not specify a hardware environment.
 Have a go at running the pipeline and see if it works:
 
 ```console
-nextflow run MY_WORKFLOW -profile test,docker
+nextflow run MY_WORKFLOW -profile test,docker --outdir <OUTDIR>
 ```
 
 Note that if you do need to adjust this `nextflow run` command, you'll need to update it
