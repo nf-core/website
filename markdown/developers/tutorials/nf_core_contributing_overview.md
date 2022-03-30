@@ -14,7 +14,7 @@ subtitle: Tutorial covering the basics of contributing to nf-core.
 > Updated during the March 2022 hackathon.
 
 <!-- markdownlint-disable -->
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/cg1Tent4RnKznE" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 <!-- markdownlint-restore -->
 
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core-tutorial-contributing.pdf)**
@@ -324,7 +324,7 @@ nf-core schema build
 
 In the same way as pipelines, nf-core modules are created from a template using the `nf-core modules create` command.
 
-A step-by-step tutorial [adding new modules](https://nf-co.re/developers/adding_modules) has been created that explains the procedure in detail.
+A step-by-step tutorial [adding new modules](https://nf-co.re/developers/tutorials/dsl2_modules_tutorial) has been created that explains the procedure in detail.
 
 ### Exercise 4 (add a module to a pipeline)
 
