@@ -1,11 +1,11 @@
 ---
-title: "Bytesize 14: Graphic design / pipeline diagrams"
+title: 'Bytesize 14: Graphic design / pipeline diagrams'
 subtitle: Zandra Fagernäs - MPI-SHH
 type: talk
-start_date: "2021-05-25"
-start_time: "13:00 CEST"
-end_date: "2021-05-25"
-end_time: "13:30 CEST"
+start_date: '2021-05-25'
+start_time: '13:00 CEST'
+end_date: '2021-05-25'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/5jZPucWXnno
 location_url:
   - https://www.bilibili.com/video/BV1Z54y1V78h
@@ -28,12 +28,13 @@ This week, Zandra Fagernäs ([@ZandraFagernas](http://github.com/ZandraFagernas/
 
 This will cover:
 
-* How the graphics of nf-core/eager were created.
-* Tips and tricks for how someone with no experience in illustration can make graphics.
+- How the graphics of nf-core/eager were created.
+- Tips and tricks for how someone with no experience in illustration can make graphics.
 
 The talk will be presented on Zoom and live-streamed on YouTube.
-* YouTube: <https://youtu.be/5jZPucWXnno>
-* Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
+
+- YouTube: <https://youtu.be/5jZPucWXnno>
+- Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited to make it reader-friendly**

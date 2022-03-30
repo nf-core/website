@@ -1,13 +1,13 @@
 ---
-title: "GenomeWeb Webinar"
+title: 'GenomeWeb Webinar'
 subtitle: Managing Bioinformatics Pipelines in the Cloud to Do More Science
 type: talk
-start_date: "2021-12-01"
-start_time: "17:00 CET"
-end_date: "2021-12-01"
-end_time: "18:00 CET"
+start_date: '2021-12-01'
+start_time: '17:00 CET'
+end_date: '2021-12-01'
+end_time: '18:00 CET'
 location_url:
-    - https://www.genomeweb.com/events/managing-bioinformatics-pipelines-cloud-do-more-science
+  - https://www.genomeweb.com/events/managing-bioinformatics-pipelines-cloud-do-more-science
 ---
 
 Online webinar. Register for free at <https://www.genomeweb.com/events/managing-bioinformatics-pipelines-cloud-do-more-science>

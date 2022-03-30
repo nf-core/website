@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Create a DSL2 Module"
+title: 'Tutorial: Create a DSL2 Module'
 subtitle: Creating a new module for the nf-core modules repository.
 ---
 
@@ -7,7 +7,7 @@ In this tutorial we will see how to create a new module for the nf-core modules 
 
 ## Introduction
 
-If you create a new module with the goal of contributing the code to *nf-core*, we recommend to familiarise with the community guidelines and use *nf-core tools* as explained below.
+If you create a new module with the goal of contributing the code to _nf-core_, we recommend to familiarise with the community guidelines and use _nf-core tools_ as explained below.
 
 ### Module guidelines
 
@@ -28,7 +28,7 @@ Even before beginning the development of a module, you should identify a small d
 
 ## Fork the nf-core/modules repository and branch
 
-The first step, to contribute a module to the community repository is to fork *nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
+The first step, to contribute a module to the community repository is to fork \*nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
 ![fork](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
 
@@ -45,14 +45,16 @@ In order to create a new module, it is best to branch the code into a recognisab
   - The branch will be synchronised with your remote once you push the first new commit.
 
 - You can use the GitHub interface
+
   - To do this, you can select the dropdown menu on the top-left of your repository code, write the name of the new branch and choose to create it as shown below:
 
-      ![branch](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
+    ![branch](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
+
   - You will then sync this locally (ideally, you clone the forked repository on your working environment to edit code more comfortably)
 
 ## Create the module template
 
-Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (*modules*) and we type
+Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (_modules_) and we type
 
 ```bash
 nf-core modules create fgbio/fastqtobam
@@ -94,7 +96,7 @@ Now you just have to write the code.
 
 ## Write the code
 
-FGBIO command line for the function *FastqToBam* looks like the following:
+FGBIO command line for the function _FastqToBam_ looks like the following:
 
 ```bash
 fgbio --tmp-dir=tmpFolder \\
@@ -115,9 +117,9 @@ Here you should first identify:
 
 ### Inputs and Outputs
 
-As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called *meta*. This is part of a tuple which includes the read file(s).
+As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called _meta_. This is part of a tuple which includes the read file(s).
 
-In our case, FGBIO also has a mandatory argument, which is not sample-specific, i.e. the read structure: this refers to the position and structure of the UMI barcode in the read. Such information will be the same for all samples and characteristics of the kit used to prepare the sequencing library. Since it is not sample specific, we will not include it in the *meta* map. Since it is a mandatory argument, we have decided to add it to the input list: in this way, it will be visible to others who wish to reuse this module, and it will be described explicitly in the metadata YAML file.
+In our case, FGBIO also has a mandatory argument, which is not sample-specific, i.e. the read structure: this refers to the position and structure of the UMI barcode in the read. Such information will be the same for all samples and characteristics of the kit used to prepare the sequencing library. Since it is not sample specific, we will not include it in the _meta_ map. Since it is a mandatory argument, we have decided to add it to the input list: in this way, it will be visible to others who wish to reuse this module, and it will be described explicitly in the metadata YAML file.
 
 Therefore, once we modify the template accordingly, our inputs and outputs will look like this:
 
@@ -133,7 +135,7 @@ output:
 
 ### Passing options.args
 
-Any optional parameter should be passed within a groovy map called options, and identified as a string within *args*.
+Any optional parameter should be passed within a groovy map called options, and identified as a string within _args_.
 In our specific case, we are not using any optional argument and therefore we will include the module and initialise this with an empty string in our test workflow.
 
 ```nextflow
@@ -163,7 +165,7 @@ Usually a software prints their version with a code similar to this
 tool --version >${software}.version.txt
 ```
 
-However, in some cases the software outputs the version as *stderr* and causes an exit that is recognised by Nextflow as if the process ended with an error.
+However, in some cases the software outputs the version as _stderr_ and causes an exit that is recognised by Nextflow as if the process ended with an error.
 
 In order to avoid that, we can in general print the version as part of an echo statement, like this
 
@@ -171,7 +173,7 @@ In order to avoid that, we can in general print the version as part of an echo s
 echo \$(tool --version 2>&1) >${software}.version.txt
 ```
 
-Notice the escape `\$` of the first `$` sign to distinguish between *bash* variables and *nextflow* variables.
+Notice the escape `\$` of the first `$` sign to distinguish between _bash_ variables and _nextflow_ variables.
 
 Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to output the version as a string, like this
 
@@ -249,13 +251,13 @@ process FGBIO_FASTQTOBAM {
 
 Note that we have commented our choice to deviate from the guidelines in order to output the software version, so any users will be aware of the reasons for this code.
 
-> :heavy_check_mark:  It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+> :heavy_check_mark: It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
 
 ### Lint your code
 
 Now that you've completed code development, you are ready to check if your code is clean and up to standards.
 
-This can also be done easily using *nf-core tools* just by changing folder into the parent *modules* directory and typing the command
+This can also be done easily using _nf-core tools_ just by changing folder into the parent _modules_ directory and typing the command
 
 ```bash
 nf-core modules lint --tool fgbio/fastqtobam .
@@ -272,7 +274,7 @@ This can also be done automatically, using the [pytest-worfklow](https://pytest-
 
 ### Create a test workflow
 
-As described above, *nf-core tools* has created already the following files
+As described above, _nf-core tools_ has created already the following files
 
 ```bash
 tests/modules/fgbio
@@ -285,7 +287,7 @@ ready for you to modify.
 
 You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
 
-> :soon:  this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
+> :soon: this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
 
 In our test workflow we have to define the two mandatory inputs.
 We know the test data is using QIAseq library preparation, and therefore we use the following read structure string
@@ -324,22 +326,22 @@ workflow test_fgbio_fastqtobam {
 
 ### Create test YAML
 
-In order to carry out the test, *pytest-workflow* will search for information stored in 2 files.
+In order to carry out the test, _pytest-workflow_ will search for information stored in 2 files.
 
 ```bash
 modules/tests/config/pytest_software.yml
 modules/tests/software/fgbio/fastqtobam/test.yml
 ```
 
-We can modify these files using *nf-core tools*, moving into the parent modules directory and using a simple command:
+We can modify these files using _nf-core tools_, moving into the parent modules directory and using a simple command:
 
 ```bash
 nf-core modules create-test-yml -t fgbio/fastqtobam
 ```
 
-The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose *yes*. We can leave defaults for entry points, test name and command.
+The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose _yes_. We can leave defaults for entry points, test name and command.
 
-We are then prompted for the software profile, and we have to choose between *Conda*, *Docker* or *Singularity*, i.e. the three conteinerised solution included in the module `main.nf`.
+We are then prompted for the software profile, and we have to choose between _Conda_, _Docker_ or _Singularity_, i.e. the three conteinerised solution included in the module `main.nf`.
 
 In the example below we have chosen Conda.
 
@@ -361,16 +363,16 @@ These lines will instruct the pre-configure GitHub Action workflow to run a pyte
 
 ### Run tests locally
 
-Now we are ready to run some tests using *pytest-workflow* in order to anticipate what will happen with :octocat: actions.
+Now we are ready to run some tests using _pytest-workflow_ in order to anticipate what will happen with :octocat: actions.
 
-We will follow the instructions on *nf-core* [modules repository](https://github.com/nf-core/modules#running-tests-manually).
+We will follow the instructions on _nf-core_ [modules repository](https://github.com/nf-core/modules#running-tests-manually).
 
 Pytest-workflow will be launched using the tags specified in the `test.yml` we have just modified:
 
 ```yaml
 tags:
-    - fgbio_fastqtobam
-    - fgbio
+  - fgbio_fastqtobam
+  - fgbio
 ```
 
 We will run one or more of the following, depending on the software profile available on our development environment:
@@ -381,14 +383,14 @@ PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 
 ```
 
-or if we use *singularity*
+or if we use _singularity_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
 TMPDIR=~ PROFILE=singularity pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 ```
 
-or *Conda*
+or _Conda_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
@@ -415,7 +417,7 @@ If you have initiated the pull request from your forked repository, the directio
 
 ![open_pull](/assets/markdown_assets/developers/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
 
-You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [*Bytesize 4: GitHub contribution basics*](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
+You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 
 Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
 
