@@ -53,7 +53,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
 
    ```bash
-   nextflow run nf-core/<pipeline_name> -profile test,docker
+   nextflow run nf-core/<pipeline_name> -profile test,docker --outdir <OUTDIR>
    ```
 
    - Replace `<pipeline_name>` with the name of an nf-core pipeline.
