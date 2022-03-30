@@ -69,6 +69,13 @@ $sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="p
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
 $sidebar_nav .= '</ul></nav>';
 
+# ToC
+$toc_nav = '<nav class="toc auto-toc pt-2 flex-column border-start">';
+$toc_nav .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
+$toc_nav .= generate_toc($content);
+$toc_nav .=  '<p class="small text-end mt-3"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+$toc_nav .=  '</nav>';
+
 include('../includes/header.php');
 
 ?>
@@ -83,13 +90,7 @@ include('../includes/header.php');
 
     # right sidebar
     $main_content .= '<div class="col-12 col-lg-2 order-lg-last ps-2"><div class="side-sub-subnav sticky-top">';
-    # ToC
-    $main_content .= '<nav class="toc auto-toc pt-2 flex-column border-start">';
-    $main_content .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
-    $main_content .= generate_toc($content);
-    $main_content .=  '<p class="small text-end mt-3"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
-    $main_content .=  '</nav>';
-
+    $main_content .= $toc_nav;
     $main_content .= '</div></div>'; # end of the sidebar col
 
     # main content
