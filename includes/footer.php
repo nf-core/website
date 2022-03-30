@@ -89,7 +89,7 @@ if (isset($subfooter) and $subfooter) {
         <ul class="list-unstyled">
           <li><a href="/developers/guidelines">Guidelines</a></li>
           <li><a href="/developers/adding_pipelines">Adding a new pipeline</a></li>
-          <li><a href="/developers/adding_modules">Adding a new module</a></li>
+          <li><a href="/developers/modules">Adding a new module</a></li>
           <li><a href="/developers/release_checklist">Release checklist</a></li>
           <li><a href="/tools-docs">Lint error codes</a></li>
           <li><a href="/developers/sync">Template synchronisation</a></li>
