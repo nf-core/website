@@ -471,11 +471,10 @@ if (count($error_msgs) > 0) {
     echo '<div class="alert alert-danger">' . implode('<br>', $error_msgs) . '</div>';
 }
 
-if (!$cache) {<?php
-    /////////////////////////////////////////////////////////////
-    // EMPTY - NO CACHE ID
-    /////////////////////////////////////////////////////////////
-    ?>
+/////////////////////////////////////////////////////////////
+// EMPTY - NO CACHE ID
+/////////////////////////////////////////////////////////////
+if (!$cache) { ?>
 
     <div class="container main-content pt-5">
         <p class="lead mt-5">This tool shows the available parameters for a pipeline in form for you to fill in.
