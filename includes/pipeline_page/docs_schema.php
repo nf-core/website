@@ -45,7 +45,15 @@ if (file_exists($gh_pipeline_schema_fn)) {
         if (array_key_exists('description', $param)) {
             $description = parse_md($param['description'])['content'];
         }
-
+        # parameter type
+        $type = '';
+        if (array_key_exists('type', $param) && strlen(trim($param['type'])) > 0 && $param['type'] != 'object') {
+            $type = is_string($param['type']) ? "'" . $param['type'] . "'" : $param['type'];
+            $type =
+                '<span class="text-small overflow-scroll w-100"><span class="text-muted">type: </span>' .
+                $type .
+                '</span>';
+        }
         # default value
         $default_val = '';
         if (array_key_exists('default', $param) && strlen(trim($param['default'])) > 0) {
@@ -162,16 +170,6 @@ if (file_exists($gh_pipeline_schema_fn)) {
             $row_class .= ' param-docs-hidden collapse d-print-block';
         }
 
-        # Body
-        $param_body =
-            '<div id="' .
-            $param_id .
-            '-body" class="param-docs-body ' .
-            $description_class .
-            '">' .
-            $description .
-            '</div>';
-
         # Build row
         return '
     <div class="row param-docs-row border-bottom ' .
@@ -179,8 +177,9 @@ if (file_exists($gh_pipeline_schema_fn)) {
             '">
       <div class="' .
             $id_cols .
-            ' param-docs-row-id-col">' .
+            ' param-docs-row-id-col align-items-start">' .
             add_ids_to_headers('<' . $h_level . '>' . $fa_icon . $h_text . '</' . $h_level . '>', $is_hidden) .
+            $type .
             '</div>
       <div class="col me-auto">' .
             $param_body .

@@ -14,7 +14,7 @@ subtitle: Tutorial covering the basics of contributing to nf-core.
 > Updated during the March 2022 hackathon.
 
 <!-- markdownlint-disable -->
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/cg1Tent4RnKznE" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 <!-- markdownlint-restore -->
 
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core-tutorial-contributing.pdf)**
@@ -218,7 +218,8 @@ If possible, a good approach can be to use PhiX or Yeast as a reference genome.
 Alternatively, a single small chromosome (or part of a chromosome) can be used.
 If you are struggling to get the tests to run, ask for help on Slack.
 
-When writing `conf/test.config` remember to define all required parameters so that the pipeline will run with only `-profile test`.
+When writing `conf/test.config` remember to define all required parameters so that the pipeline will run with only `-profile test`
+(with the exception of `params.outdir`).
 Note that remote URLs cannot be traversed like a regular file system - so glob file expansions such as `*.fa` will not work.
 
 ### GitHub Actions workflows
@@ -260,7 +261,7 @@ The matrix `nxf_ver` variable sets the `NXF_VER` environment variable twice.
 This tells GitHub Actions to run the tests twice in parallel - once with the latest version of Nextflow (`NXF_VER=''`) and once with the minimum version supported by the pipeline.
 Do not edit this version number manually - it appears in multiple locations through the pipeline code, so it's better to use `nf-core bump-version --nextflow` instead.
 
-The provided tests run your pipeline with the `-profile test,docker` flags. This may be sufficient for your pipeline.
+The provided tests run your pipeline with the `-profile test,docker --outdir <OUTDIR>` flags. This may be sufficient for your pipeline.
 However, if it is possible to run the pipeline with significantly different options (for example, different alignment tools), then it is good to test all of these.
 You can do this by adding additional tests in the `jobs` block.
 Do not try to add a run for every possible combination of parameters, as this would take too long to run.
@@ -323,7 +324,7 @@ nf-core schema build
 
 In the same way as pipelines, nf-core modules are created from a template using the `nf-core modules create` command.
 
-A step-by-step tutorial [adding new modules](https://nf-co.re/developers/adding_modules) has been created that explains the procedure in detail.
+A step-by-step tutorial [adding new modules](https://nf-co.re/developers/tutorials/dsl2_modules_tutorial) has been created that explains the procedure in detail.
 
 ### Exercise 4 (add a module to a pipeline)
 
