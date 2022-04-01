@@ -345,7 +345,6 @@ function generate_toc($html_string) {
             $is_hidden = strpos($before_attrs, 'toc-hidden') !== false || strpos($after_attrs, 'toc-hidden') !== false;
             $toc_hidden = $is_hidden ? ' collapse ' : '';
             $active = $is_active ? ' active ' : '';
-            $selected = $is_active ? ' selected ' : '';
             $is_active = false;
             if ($level == 1) {
                 $toc_md .=

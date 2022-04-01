@@ -163,6 +163,11 @@ section:before {
   opacity: 0.8;
 }
 
+.toc_md{
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
