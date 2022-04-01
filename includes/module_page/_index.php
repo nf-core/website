@@ -7,9 +7,9 @@ $conn = mysqli_connect($config['host'], $config['username'], $config['password']
 
 // get pipelines which use this module
 $sql =
-    "SELECT DISTINCT nfcore_pipelines.name,nfcore_pipelines.html_url FROM pipelines_modules 
-        INNER JOIN nfcore_modules ON pipelines_modules.module_id = nfcore_modules.id 
-        INNER JOIN nfcore_pipelines ON pipelines_modules.pipeline_id = nfcore_pipelines.id 
+    "SELECT DISTINCT nfcore_pipelines.name,nfcore_pipelines.html_url FROM pipelines_modules
+        INNER JOIN nfcore_modules ON pipelines_modules.module_id = nfcore_modules.id
+        INNER JOIN nfcore_pipelines ON pipelines_modules.pipeline_id = nfcore_pipelines.id
         WHERE nfcore_modules.name = '" .
     $module['name'] .
     "' ORDER BY LOWER(nfcore_pipelines.name)";
@@ -264,7 +264,7 @@ include '../includes/header.php';
 
     <?php
     echo '</div>'; # end of the content div
-    echo '<div class="col-12 col-lg-3 ps-3"><div class="side-sub-subnav sticky-top">';
+    echo '<div class="col-12 col-lg-3 ps-3 h-100 sticky-top"><div class="side-sub-subnav">';
     # module homepage & releases - key stats
     if (in_array($pagetab, [''])) { ?>
         <div class="module-sidebar">
