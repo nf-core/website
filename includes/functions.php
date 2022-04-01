@@ -298,7 +298,8 @@ function get_self_url($strip_query = true) {
 }
 
 function generate_toc($html_string) {
-    $toc = '<div class="d-none d-md-block "><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
+    $toc =
+        '<div class="d-none d-md-block "><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
     $toc_md = '<div class="dropdown d-block d-md-none">
                 <a href="#" class="btn btn-secondary-outline dropdown-toggle float-end" data-bs-toggle="dropdown">On this page</a>
                 <div class="dropdown-menu">';
@@ -347,7 +348,8 @@ function generate_toc($html_string) {
             $selected = $is_active ? ' selected ' : '';
             $is_active = false;
             if ($level == 1) {
-                $toc_md .= '<a class="dropdown-item' . $active . $toc_hidden . '" href="#' . $id . '">' . $name . '</a>';
+                $toc_md .=
+                    '<a class="dropdown-item' . $active . $toc_hidden . '" href="#' . $id . '">' . $name . '</a>';
             }
 
             $toc .=
@@ -365,8 +367,8 @@ function generate_toc($html_string) {
         $toc .= '</nav>';
         $counter -= 1;
     }
-    $toc_md .='</div>';
-    $toc .='</div>';
+    $toc_md .= '</div>';
+    $toc .= '</div>';
     $toc = $toc_md . $toc;
     return $toc;
 }
