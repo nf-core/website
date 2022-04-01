@@ -271,7 +271,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 
         # Back to top link
         $toc .=
-            '<p class="small text-end mt-3"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
         $toc .= '</nav>';
         echo $toc;
 
