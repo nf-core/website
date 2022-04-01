@@ -24,7 +24,7 @@ $import_chartjs = true;
 $no_auto_toc = true;
 
 # Header - keywords
-$header_html = '<p class="mb-0">';
+$header_html = '<p class="mb-5">';
 foreach ($pipeline->topics as $keyword) {
     $header_html .= '<a href="/pipelines?q=' . $keyword . '" class="badge pipeline-topic">' . $keyword . '</a> ';
 }

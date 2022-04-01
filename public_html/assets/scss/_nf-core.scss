@@ -405,6 +405,9 @@ footer a:active {
   text-decoration: none;
 }
 @include media-breakpoint-down(md) {
+  .mainpage-heading {
+    padding: 1.5rem 0 1.5rem 0;
+  }
   .mainpage-heading h1 {
     font-size: 3rem;
   }
@@ -969,6 +972,11 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .module-page-content,
 .side-sub-subnav {
   padding-top: $navbar-height;
+}
+@include media-breakpoint-down(md) {
+  .side-sub-subnav {
+    padding-top: 0;
+  }
 }
 nfcore-subnav {
   font-size: 75%;
