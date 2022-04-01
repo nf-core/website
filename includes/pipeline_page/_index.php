@@ -329,7 +329,7 @@ if ($pipeline->archived) {
   if (in_array($pagetab, ['results'])) {
       echo '<div><div">';
   } else {
-      echo '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
+      echo '<div class="col-12 col-lg-3 ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
   }
 
   # Pipeline homepage & releases - key stats

@@ -978,11 +978,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .side-sub-subnav {
   padding-top: $navbar-height;
 }
-@include media-breakpoint-down(md) {
-  .side-sub-subnav {
-    padding-top: 0;
-  }
-}
 nfcore-subnav {
   font-size: 75%;
 }

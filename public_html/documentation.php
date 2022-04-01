@@ -102,7 +102,7 @@ include '../includes/header.php';
     $main_content .= '</div>';
 
     # right sidebar
-    $main_content .= '<div class="col-12 col-lg-2 order-lg-last ps-2"><div class="side-sub-subnav sticky-top">';
+    $main_content .= '<div class="col-12 col-lg-2 order-lg-last ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
     $main_content .= $toc_nav;
     $main_content .= '</div></div>'; # end of the sidebar col
     # main content
