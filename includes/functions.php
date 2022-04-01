@@ -368,7 +368,6 @@ function generate_toc($html_string) {
     }
     $toc_md .= '<a class="dropdown-item" href="#"><i class="fas fa-arrow-to-top"></i> Back to top</a>';
 
-
     $toc_md .= '</div>';
     $toc .= '</div>';
     $toc = $toc_md . $toc;
