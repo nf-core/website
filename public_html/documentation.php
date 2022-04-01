@@ -85,10 +85,9 @@ $sidebar_nav .= '</ul></nav>';
 
 # ToC
 $toc_nav = '<nav class="toc auto-toc pt-2 flex-column border-start">';
-$toc_nav .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
 $toc_nav .= generate_toc($content);
 $toc_nav .=
-    '<p class="small text-end mt-3"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 $toc_nav .= '</nav>';
 
 include '../includes/header.php';
