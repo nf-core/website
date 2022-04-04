@@ -12,8 +12,9 @@ ports:
 - port: 8080
   onOpen: ignore
 tasks:
-- init: git checkout gitpod_exercises
+- init: |
+      git checkout gitpod_exercises
+      parsed=`echo $url | tr -s "[" "/" | tr -s "+" "."`
+      newurl="https://$parsed"
 - command: |
-        parsed=`echo $url | tr -s "[" "/" | tr -s "+" "."`
-        newurl="https://$parsed"
         gp preview $newurl
