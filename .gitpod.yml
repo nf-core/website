@@ -16,4 +16,5 @@ tasks:
 - command: |
         parsed=`echo $url | tr -s "[" "/" | tr -s "+" "."`
         newurl="https://$parsed"
+        sleep 10
         gp preview $newurl
