@@ -104,7 +104,9 @@ $nf-core-color: $nf-core-color-alt;
 }
 
 code,
-.code {
+.code,
+pre code,
+pre .code {
   color: $warning;
 }
 .card code {
