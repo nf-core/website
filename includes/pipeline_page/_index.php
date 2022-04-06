@@ -338,7 +338,7 @@ if ($pipeline->archived) {
   }
   # Documentation - ToC
   elseif (in_array($pagetab, ['usage', 'output', 'parameters'])) {
-      $toc .= '<nav class="toc pt-2 auto-toc border-start d-print-none">';
+      $toc .= '<nav class="toc mt-2 auto-toc border-start d-print-none">';
       $toc .= generate_toc($content);
       # Add on the action buttons for the parameters docs
       if ($pagetab == 'parameters') {
