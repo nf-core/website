@@ -298,7 +298,11 @@ function get_self_url($strip_query = true) {
 }
 
 function generate_toc($html_string) {
-    $toc = '';
+    $toc =
+        '<div class="d-none d-md-block "><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
+    $toc_md = '<div class="dropdown d-block d-md-none">
+                <a href="#" class="btn btn-secondary-outline bg-body dropdown-toggle float-end border" data-bs-toggle="dropdown">On this page</a>
+                <div class="dropdown-menu">';
     $is_active = true;
     $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
     preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
@@ -342,6 +346,11 @@ function generate_toc($html_string) {
             $toc_hidden = $is_hidden ? ' collapse ' : '';
             $active = $is_active ? ' active ' : '';
             $is_active = false;
+            if ($level == 1) {
+                $toc_md .=
+                    '<a class="dropdown-item' . $active . $toc_hidden . '" href="#' . $id . '">' . $name . '</a>';
+            }
+
             $toc .=
                 '<a class="nav-link scroll_to_link py-1 ' .
                 $toc_hidden .
@@ -357,6 +366,11 @@ function generate_toc($html_string) {
         $toc .= '</nav>';
         $counter -= 1;
     }
+    $toc_md .= '<a class="dropdown-item" href="#"><i class="fas fa-arrow-to-top"></i> Back to top</a>';
+
+    $toc_md .= '</div></div>';
+    $toc .= '</div>';
+    $toc = $toc_md . $toc;
     return $toc;
 }
 

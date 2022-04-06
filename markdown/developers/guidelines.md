@@ -1,6 +1,9 @@
 ---
 title: Guidelines
 subtitle: Guidelines and requirements for nf-core pipelines.
+menu:
+  main:
+    weight: 10
 ---
 
 ## Requirements for nf-core pipelines
@@ -38,7 +41,7 @@ All nf-core pipelines must be built using the nf-core template.
 Ideally, they should be _started_ using the `nf-core create` command which
 makes a new git repository and the initial commits and branches.
 This is to ensure that the automated sync process that keeps all nf-core
-pipelines up to date can work. See the [sync docs](/developers/sync) for details.
+pipelines up to date can work. See the [sync docs](/docs/contributing/sync) for details.
 
 ## Minimum requirements
 

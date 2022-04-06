@@ -8,10 +8,10 @@ subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-- You're familiar with nf-core and nextflow (see our [introduction docs](../usage/introduction.md)).
+- You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/introduction.md)).
 - You're used to working with `git` and [GitHub](https://github.com)
   (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
-- The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/developers/guidelines).
+- The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
 
 The main steps involved in adding a new nf-core pipeline covered below are:
 
@@ -31,7 +31,7 @@ and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
 
 **It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.**
 
-The [nf-core guidelines](/developers/guidelines) state that no two pipelines should overlap too much
+The [nf-core guidelines](/docs/contributing/guidelines) state that no two pipelines should overlap too much
 in their purpose and results. There may be an existing pipeline that can be extended to give the
 functionality that you are looking for, or there could be another group working on a similar to the
 pipeline to the one you're planning.
@@ -39,7 +39,7 @@ pipeline to the one you're planning.
 To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
 as possible. Ideally before you make a start on your pipeline!
 
-> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines tutorial](/developers/tutorials/unofficial_pipelines.md) for more details.
+> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
 
 All nf-core discussion happens on the nf-core Slack, which you can join here:
 [https://nf-co.re/join](https://nf-co.re/join)
@@ -330,8 +330,8 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
 
-- `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
-  The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/usage/configuration) for more information.
+* `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
+  The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/docs/usage/configuration) for more information.
 
 - `README.md`: Basic information about the pipeline and usage
 
@@ -384,7 +384,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 ## Continuous integration testing
 
-To assure that nf-core pipelines don't break after some change is made to the code, we use automated continuous integration (CI) testing. This is done via GitHub actions, which are defined in the `.github/workflows` directory. Parameters and file paths are set in the `conf/test.config` and `conf/test_full.config`. Please see also [here](/developers/adding_pipelines#add-some-test-data) for how to set-up the test workflow for your pipeline.
+To assure that nf-core pipelines don't break after some change is made to the code, we use automated continuous integration (CI) testing. This is done via GitHub actions, which are defined in the `.github/workflows` directory. Parameters and file paths are set in the `conf/test.config` and `conf/test_full.config`. Please see also [here](/docs/contributing/adding_pipelines#add-some-test-data) for how to set-up the test workflow for your pipeline.
 
 ## DSL2 and modules
 

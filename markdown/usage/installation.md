@@ -1,6 +1,9 @@
 ---
 title: Installation
 subtitle: Installing the software requirements needed for running nf-core pipelines.
+menu:
+  main:
+    weight: 20
 ---
 
 ## Nextflow

@@ -5,10 +5,11 @@
     # Specific deleted pages
     RewriteRule ^/?tools-docs/lint_tests /tools/docs/latest/pipeline_lint_tests? [L,R=301]
     RewriteRule ^/?tools-docs /tools/docs? [L,R=301]
-    RewriteRule ^/?usage/local_installation$ /usage/installation? [L,R=301]
-    RewriteRule ^/?usage/adding_own_config$ /usage/configuration? [L,R=301]
-    RewriteRule ^/?usage/nextflow_tutorial$ /usage/nextflow? [L,R=301]
-    RewriteRule ^/?usage/nf_core_tutorial$ /usage/tutorials/nf_core_tutorial? [L,R=301]
+    RewriteRule ^/?usage/local_installation$ /docs/usage/installation? [L,R=301]
+    RewriteRule ^/?usage/adding_own_config$ /docs/usage/configuration? [L,R=301]
+    RewriteRule ^/?usage/adding_modules$ /docs/usage/modules? [L,R=301]
+    RewriteRule ^/?usage/nextflow_tutorial$ /docs/usage/nextflow? [L,R=301]
+    RewriteRule ^/?usage/nf_core_tutorial$ /docs/usage/tutorials/nf_core_tutorial? [L,R=301]
     RewriteRule ^/?fetchfastq(.*)$ /fetchngs$1? [L,R=301]
 
     # Specific convenience URLs
@@ -50,7 +51,6 @@
     # Run PHP without filename extension
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteCond %{REQUEST_FILENAME}.php -f
     RewriteRule ^(.*)$ $1.php
 
     # Redirect .md URLs to remove the extension
@@ -64,7 +64,7 @@
     # Send everything else to our dynamic content loader
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /docs.php?path=$1 [L,NC,QSA]
+    RewriteRule ^(.*)$ /_routes.php?path=$1 [L,NC,QSA]
 
     # Nicer error pages
     ErrorDocument 404 /404.php

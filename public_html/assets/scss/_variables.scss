@@ -24,6 +24,16 @@ $headings-color: $success;
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
 
+// extra-wide breakpoints
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1380px,
+  xxxl: 1560px,
+);
+
 /*
     Dark mode specific variables 
 */
