@@ -1,6 +1,9 @@
 ---
 title: Getting started
 subtitle: How to run your first nf-core pipeline.
+menu:
+  main:
+    weight: 10
 ---
 
 ## What is nf-core?
@@ -48,7 +51,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
    - If you are a member of one of the institutions listed in the [documentation](https://github.com/nf-core/configs#documentation), please use the custom config file [nf-core/configs/conf](https://github.com/nf-core/configs/tree/master/conf) that has already been created for your institution.
 
-   - For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/usage/configuration) documentation.
+   - For more complex configuration of Nextflow for your system, please see the [_Nextflow configuration_](https://nf-co.re/docs/usage/configuration) documentation.
 
 4. To test that everything is working properly, try running the tests for your pipeline of interest in the terminal:
 

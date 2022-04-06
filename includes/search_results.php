@@ -87,7 +87,7 @@ usort($search_results['pipelines'], function ($a, $b) {
 // Search markdown files
 //
 $md_base = dirname(dirname(__FILE__)) . '/markdown';
-foreach (['usage', 'developers'] as $docs_type) {
+foreach (['usage', 'contributing'] as $docs_type) {
     foreach (glob("$md_base/$docs_type/*.md") as $file) {
         $content = file_get_contents("$file");
         $match_pos = stripos($content, $search_term);

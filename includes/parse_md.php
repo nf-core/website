@@ -153,13 +153,13 @@ function parse_md($markdown) {
             '</div>
                 </div>';
         # sidebar
-        $content .= '<div class="col-12 col-lg-3 ps-2"><div class="side-sub-subnav sticky-top">';
+        $content .= '<div class="col-12 col-lg-3 ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
         # ToC
-        $content .= '<nav class="toc auto-toc pt-2 flex-column border-start">';
-        $content .= '<strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
+        $content .= '<nav class="toc auto-toc mt-2 flex-column border-start">';
         $content .= generate_toc($content);
         $content .=
-            '<p class="small text-end mt-3"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+
         $content .= '</nav>';
 
         $content .= '</div></div>'; # end of the sidebar col

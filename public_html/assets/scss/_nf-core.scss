@@ -163,6 +163,11 @@ section:before {
   opacity: 0.8;
 }
 
+.toc_md {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
@@ -405,6 +410,9 @@ footer a:active {
   text-decoration: none;
 }
 @include media-breakpoint-down(md) {
+  .mainpage-heading {
+    padding: 1.5rem 0 1.5rem 0;
+  }
   .mainpage-heading h1 {
     font-size: 3rem;
   }
@@ -965,10 +973,18 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
   Pipeline Page
 */
-.pipeline-page-content,
-.module-page-content,
-.side-sub-subnav {
-  padding-top: $navbar-height;
+@include media-breakpoint-up(md) {
+  .pipeline-page-content,
+  .module-page-content,
+  .rendered-markdown,
+  .side-sub-subnav {
+    padding-top: $navbar-height;
+  }
+}
+@include media-breakpoint-down(md) {
+  .side-sub-subnav .dropdown {
+    margin-top: $navbar-height;
+  }
 }
 nfcore-subnav {
   font-size: 75%;
@@ -1429,4 +1445,29 @@ Launch Page
 }
 .tile[data-state='active'] {
   color: inherit;
+}
+.sidebar-nav .btn {
+  .fas {
+    transition: transform 0.3s ease;
+  }
+  &:hover {
+    color: $success;
+  }
+}
+.sidebar-nav .btn[aria-expanded='true'] .fas {
+  transform: rotate(90deg);
+}
+.sidebar-nav a {
+  color: $gray-700;
+  text-decoration: none;
+  border-left: 1px solid transparent; // For alignment
+  &.active {
+    color: $gray-900;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-left: 1px solid $success; // For alignment
+  }
+  &:hover {
+    color: $success;
+  }
 }
