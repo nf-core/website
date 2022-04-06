@@ -264,7 +264,7 @@ include '../includes/header.php';
 
     <?php
     echo '</div>'; # end of the content div
-    echo '<div class="col-12 col-lg-3 ps-3 h-100 sticky-top"><div class="side-sub-subnav">';
+    echo '<div class="col-12 col-lg-3 ps-3 h-100"><div class="side-sub-subnav">';
     # module homepage & releases - key stats
     if (in_array($pagetab, [''])) { ?>
         <div class="module-sidebar">
