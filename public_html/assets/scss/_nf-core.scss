@@ -307,7 +307,9 @@ bg-code {
   border-radius: 3px;
   padding: 12px 15px;
   font-size: 14px;
-  border: 1px solid $gray-300;
+  code {
+    border: 1px solid $gray-300;
+  }
 }
 
 // nav
