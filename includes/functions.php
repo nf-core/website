@@ -302,7 +302,7 @@ function generate_toc($html_string) {
         '<div class="d-none d-md-block "><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
     $toc_md = '<div class="dropdown d-block d-md-none">
                 <a href="#" class="btn btn-secondary-outline bg-body dropdown-toggle float-end border" data-bs-toggle="dropdown">On this page</a>
-                <div class="dropdown-menu">';
+                <div class="dropdown-menu toc-md">';
     $is_active = true;
     $id_regex = "~<h([1-3])([^>]*)id\s*=\s*['\"]([^'\"]*)['\"]([^>]*)>(.*)</h[1-3]>~Uis";
     preg_match_all($id_regex, $html_string, $matches, PREG_SET_ORDER);
