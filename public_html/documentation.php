@@ -84,7 +84,7 @@ $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
 $sidebar_nav .= '</ul></nav>';
 
 # ToC
-$toc_nav = '<nav class="toc auto-toc pt-2 flex-column border-start">';
+$toc_nav = '<nav class="toc auto-toc mt-2 flex-column border-start">';
 $toc_nav .= generate_toc($content);
 $toc_nav .=
     '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';

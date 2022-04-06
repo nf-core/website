@@ -973,10 +973,18 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
   Pipeline Page
 */
-.pipeline-page-content,
-.module-page-content,
-.side-sub-subnav {
-  padding-top: $navbar-height;
+@include media-breakpoint-up(md) {
+  .pipeline-page-content,
+  .module-page-content,
+  .rendered-markdown,
+  .side-sub-subnav {
+    padding-top: $navbar-height;
+  }
+}
+@include media-breakpoint-down(md) {
+  .side-sub-subnav .dropdown {
+    margin-top: $navbar-height;
+  }
 }
 nfcore-subnav {
   font-size: 75%;
