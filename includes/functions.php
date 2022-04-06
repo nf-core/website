@@ -346,7 +346,7 @@ function generate_toc($html_string) {
             $toc_hidden = $is_hidden ? ' collapse ' : '';
             $active = $is_active ? ' active ' : '';
             $is_active = false;
-            if ($level == 1) {
+            if ($level <= 2) {
                 $toc_md .=
                     '<a class="dropdown-item' . $active . $toc_hidden . '" href="#' . $id . '">' . $name . '</a>';
             }
