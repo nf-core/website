@@ -45,6 +45,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="description" content="<?php echo $page_meta; ?>">
   <meta name="author" content="Phil Ewels">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#1d9655">
   <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
   <!-- FontAwesome -->
