@@ -2,9 +2,9 @@
 title: 'EuroFAANG Training Workshop'
 subtitle: 'Best practice for preparing pipelines in nf-core and recording pipeline usage in FAANG submissions'
 type: talk
-start_date: '2022-04-06'
+start_date: '2022-04-07'
 start_time: '14:50'
-end_date: '2022-04-06'
+end_date: '2022-04-07'
 end_time: '15:50'
 location_name: Registration
 location_url: https://embl-org.zoom.us/meeting/register/tJAtfuuhrDMjGdORfl_Wu72X2f9HsR9zOmt2
