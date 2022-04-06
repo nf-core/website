@@ -309,6 +309,9 @@ bg-code {
   font-size: 14px;
   code {
     border: 1px solid $gray-300;
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
   }
 }
 
