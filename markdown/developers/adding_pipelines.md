@@ -66,7 +66,7 @@ If you really don't want to use the template it should possible to work without 
 Please see the [manual synchronisation](sync.md) documentation.
 
 > Note that workflow names should be all lower-case and contain no punctuation.
-> This is to allow consistent names between platforms (eg. GitHub + Docker Hub).
+> This is to allow consistent names between platforms.
 
 ### Push to GitHub
 
@@ -87,35 +87,6 @@ git commit -m "Starting to build my pipeline"
 ## Push to GitHub
 git push
 ```
-
-### Set up GitHub Actions and Docker Hub
-
-The nf-core pipelines use GitHub Actions for automated testing. Additionally,
-by linking the GitHub repository to Docker Hub, Docker image builds are automated as well.
-
-Just like with GitHub, you can run these on your personal fork for testing purposes.
-Once you've merged your pipeline in to the nf-core organisation, we will also set them
-up there, but that happens later.
-
-The GitHub Actions are automatically executed with every push, based on the scripts in `.github/workflows`.
-
-The following steps are needed to set Docker Hub
-
-1. Go to [hub.docker.com](https://hub.docker.com) and create an account
-2. Create a new repository on Docker Hub with your pipeline name
-3. Set your repository to be automatically built from a GitHub repository and link it to your pipeline
-4. Configure the repo to automatically build whenever you push a new commit to your GitHub repository
-
-Whilst developing your pipeline on your local fork you will need to create automated builds for two docker images
-with source set to `master` - one with the `dev` tag and the other with the `latest` tag.
-The former will be required for GitHub Actions and the latter will be pulled when executing the pipeline locally.
-
-Note: The template assumes that your Docker image is hosted on the nf-core Docker Hub organisation.
-To make the pipeline work with your testing image, switch out `nfcore/<PIPELINE_NAME>` for your address
-(`username/<PIPELINE_NAME>`). You'll find this in the `container` variable in `nextflow.config` and
-the `docker` commands in `.github/workflows/.ci.yml`.
-
-These will need to be changed back to the defaults before you fork the pipeline to `nf-core`.
 
 ### Work on your pipeline
 
@@ -229,12 +200,6 @@ Remember to configure the repository on the GitHub website with the following:
 You can check that all of these settings are done correctly by referring to your pipeline
 in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
 This reports the status of various checks and also has the option of fixing errors for you via the GitHub API.
-
-### Setting up GitHub Actions and Docker Hub
-
-Just as with your own fork, Docker Hub needs to be set up for the
-main nf-core fork. You'll need to ask one of the core nf-core team to help you with this.
-The GitHub Actions should run without any additional adjustments.
 
 ### Differences to your own fork
 
