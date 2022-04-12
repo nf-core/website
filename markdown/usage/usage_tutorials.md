@@ -3,7 +3,7 @@ title: Usage Tutorials
 subtitle: In-depth step-by-step guides for getting started with nf-core
 ---
 
-# Introduction
+## Introduction
 
 This page includes step-by-step guides, walkthroughs, and general long-form introductions to various aspects of nf-core, aimed for brand-new users or developers who are not sure where to start.
 
@@ -14,4 +14,4 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
 - [Step-by-step guide to writing an nf-core institutional profile](tutorials/step_by_step_institutional_profile.md)
   - This guide goes through step-by-step on what you need to consider, and how to write a config file, when contributing an nf-core institutional profile for your particular cluster.
 
-Also see the [Nextflow resources](/usage/nextflow) page for a list of excellent training materials created by other groups.
+Also see the [Nextflow resources](/docs/usage/nextflow) page for a list of excellent training materials created by other groups.

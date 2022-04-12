@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 1: Introduction to nf-core"
-subtitle: "nf-core/bytesize: Bite-sized talks, (giga)byte-sized science!"
+title: 'Bytesize 1: Introduction to nf-core'
+subtitle: 'nf-core/bytesize: Bite-sized talks, (giga)byte-sized science!'
 type: talk
-start_date: "2021-02-02"
-start_time: "13:00 CET"
-end_date: "2021-02-02"
-end_time: "13:30 CET"
+start_date: '2021-02-02'
+start_time: '13:00 CET'
+end_date: '2021-02-02'
+end_time: '13:30 CET'
 youtube_embed: https://youtu.be/ZfxOFYXmiNw
 location_url:
-    - https://doi.org/10.6084/m9.figshare.14160668.v1
-    - https://youtu.be/ZfxOFYXmiNw
-    - https://www.bilibili.com/video/BV1854y1h7d9
+  - https://doi.org/10.6084/m9.figshare.14160668.v1
+  - https://youtu.be/ZfxOFYXmiNw
+  - https://www.bilibili.com/video/BV1854y1h7d9
 ---
 
 # nf-core/bytesize
@@ -28,8 +28,8 @@ and describe some upcoming events.
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* Zoom: <https://zoom.us/j/95563936122>
-* YouTube: <https://youtu.be/ZfxOFYXmiNw>
+- Zoom: <https://zoom.us/j/95563936122>
+- YouTube: <https://youtu.be/ZfxOFYXmiNw>
 
 Questions/Ideas? Connect with nf-core on Slack: <https://nf-co.re/join/>
 
@@ -48,7 +48,7 @@ And also talk a little bit about the upcoming hackathon. If you have any questio
 
 <b>nf-core</b> is a community effort to collect a curated set of analysis pipelines using Nextflow, the focus being very much on the community, really high quality workflows and working together to make that happen.
 
-Nextflow is a workflow manager, a pipelining tool and the beauty of Nextflow is that it works on almost any computational infrastructure. The pipeline code is portable across all these different systems so you write one pipeline and it can run anywhere -  on a cloud, or locally on your HPC.  
+Nextflow is a workflow manager, a pipelining tool and the beauty of Nextflow is that it works on almost any computational infrastructure. The pipeline code is portable across all these different systems so you write one pipeline and it can run anywhere - on a cloud, or locally on your HPC.
 
 It is this functionality which really allows a community like <b>nf-core</b> to work where we can build a single work together on a single pipeline and run it in very heterogeneous compute environments.
 
@@ -96,7 +96,7 @@ This is really to try and bring everybody up to the same starting point so that 
 
 So this seminar series is a good way to keep on track of everything and make sure that when you hit the hackathon you hit the ground running. We've got a lot of other ideas in addition to these listed here and this might change so we're going to be announcing these as we did today's talk. Hopefully with a bit more warning through the nf-core website.
 
-We have the ‘[Events](https://nf-co.re/events)’ page, it was just suggested a moment ago that we make this a bit prominent.  It is now listed as a main button in the top navigation which you can find easily that will list all the talks, when they are and what they are about.
+We have the ‘[Events](https://nf-co.re/events)’ page, it was just suggested a moment ago that we make this a bit prominent. It is now listed as a main button in the top navigation which you can find easily that will list all the talks, when they are and what they are about.
 
 We have a dedicated Slack channel on the nf-core Slack and you can pop in there to ask questions about any of the talks. We will try and scoop them up and of course we will be announcing them via our Twitter feed as well and we are really keen to hear what you'd like to know about.
 
@@ -125,9 +125,9 @@ So if you have been hearing about this for a while but have never quite taken th
 
 Speaking for myself as well there is also important stuff like Maxime has already started working on the collaborative playlist on spotify. So we can all get a groove on and of course um we are hoping to send out like we did for the last online hackathon.
 
-If you sign up in time  we are hoping to send out some little goodie bags with some <b>nf-core</b> stash, so that is reason alone. To be honest i'm not sure if it is 100% confirmed yet, but maybe a little something like this might be coming through your letterbox - some very fancy socks. Again thank you Renuka for this as we will see. No promises!
+If you sign up in time we are hoping to send out some little goodie bags with some <b>nf-core</b> stash, so that is reason alone. To be honest i'm not sure if it is 100% confirmed yet, but maybe a little something like this might be coming through your letterbox - some very fancy socks. Again thank you Renuka for this as we will see. No promises!
 
-Just like the Bytesize we would love your help with the hackathon as well. The organization is a big job and it started already but there are some key things that we would really like extra people on board for. As this is online and we are becoming more global, it would be great if we could try to spread the hackathon out across different time zones and get more people outside of Europe involved -  in the Americas or in Asia.
+Just like the Bytesize we would love your help with the hackathon as well. The organization is a big job and it started already but there are some key things that we would really like extra people on board for. As this is online and we are becoming more global, it would be great if we could try to spread the hackathon out across different time zones and get more people outside of Europe involved - in the Americas or in Asia.
 
 One of the ideas we had for that is just to have a handful of people who are in those different time zones or potentially willing to stay up late, so we know for certain that there is going to be at least one person around at any given time. Then we can try and keep the hackathon kind of rolling 24 hours which should be brilliant. Then if new people are hopping on and they do not know where to start or where to look, at least they know there is going to be someone responding to the messages and Slack.
 
@@ -141,7 +141,7 @@ Maybe I can share my screen window quickly just so you can see what I am talking
 
 There is also a page about the upcoming hackathon so if you click here, you will find the link to register. This is non-binding it does not cost anything to join a hackathon; it just helps us know roughly who is going to be there; also which projects people are interested in/working on, and if you want any of that cool stash then you have to put your address in so we can post it to you.
 
-And then there are details about when it is going to be and how it is going to work. And this page will grow as the hackathon gets closer.  You can also see some of the ideas that we are working on for different kinds of tasks to work on the project.
+And then there are details about when it is going to be and how it is going to work. And this page will grow as the hackathon gets closer. You can also see some of the ideas that we are working on for different kinds of tasks to work on the project.
 
 Great, that is my 15 minutes! So as I finish every talk, come and join our community if you are not already. we operate on Github, Slack, Twitter, Youtube and you can find all the details on how to join all of those on our website.
 
@@ -150,6 +150,7 @@ I did not introduce myself very much at the start but my name is Phil. I work at
 With that I am happy to take any questions. Please pop them into the Zoom chat or Slack, and Renuka can relay to me.
 
 ### Q&A
+
 Renuka:
 Thanks very much Phil and thanks everyone for listening. We have a question in the chat. Vidya wants to know whether there will be any talks on how to run <b>nf-core</b> on a grid system, like running on Slurm.
 
@@ -169,14 +170,15 @@ We need to put a big hands up and thank you to the Chan Zuckerberg Initiative (C
 These hackathons and these Bytesize talks are supported through a grant that was received from the CZI, the EOS programme (Essential Open Source for Science) project.
 
 So Renuka who is organizing all these behind the scenes, she is partly funded by this and also
-a lot of the backend stuff is helped through that.  So it would be very difficult to do this without their help and we are very grateful. Remember to put that logo into the next talk!
+a lot of the backend stuff is helped through that. So it would be very difficult to do this without their help and we are very grateful. Remember to put that logo into the next talk!
 
 There is also a question now about whether there is an agenda somewhere for the <b>nf-core</b> talks.
 Yes, there will be so this will come up on the nf website under the ‘Events’ page.
 
 We are just finalizing who is going to give which talks on which days.
 
-As soon as we have  settled on those, we are going to start adding them to the <b>nf-core</b> website, so check them out.  I think when they are added to the <b>nf-core</b> website they automatically pop into Slack in a channel called #events so if you join that channel,  you will see them appear there.
+As soon as we have settled on those, we are going to start adding them to the <b>nf-core</b> website, so check them out. I think when they are added to the <b>nf-core</b> website they automatically pop into Slack in a channel called #events so if you join that channel, you will see them appear there.
 
 And we are also going to announce them on #Bytesize as they are coming up.
+
 </details>

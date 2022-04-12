@@ -2,10 +2,10 @@
 title: Hackathon July 2020
 subtitle: The first online-only nf-core hackathon
 type: hackathon
-start_date: "2020-07-13"
-start_time: "13:00"
-end_date: "2020-07-17"
-end_time: "17:00"
+start_date: '2020-07-13'
+start_time: '13:00'
+end_date: '2020-07-17'
+end_time: '17:00'
 location_name: Zoom, Slack & YouTube.
 location_url: '#how-it-works'
 ---
@@ -24,18 +24,18 @@ sharing ideas and solving issues intensively.
 
 Please note that there are two separate events running in parallel:
 
-* Nextflow training
-  * Mornings - organised through [DKFZ](https://dkfz.de)
+- Nextflow training
+  - Mornings - organised through [DKFZ](https://dkfz.de)
   <!-- * Read more on the [DKFZ event portal](https://indico.dkfz.de/event/225/) -->
-  * Free to attend!
-  * Places are limited to 30 external people
-  * Live streams on YouTube
-    * Monday: [https://youtu.be/8_i8Tn335X0](https://youtu.be/8_i8Tn335X0)
-* nf-core hackathon
-  * [**Register here**](https://forms.gle/qo3USZuK2LDJAqHS9)
-  * Afternoons (mornings too if you want) - organised by nf-core community
-  * Free to attend!
-  * No limit on attendance, everyone welcome
+  - Free to attend!
+  - Places are limited to 30 external people
+  - Live streams on YouTube
+    - Monday: [https://youtu.be/8_i8Tn335X0](https://youtu.be/8_i8Tn335X0)
+- nf-core hackathon
+  - [**Register here**](https://forms.gle/qo3USZuK2LDJAqHS9)
+  - Afternoons (mornings too if you want) - organised by nf-core community
+  - Free to attend!
+  - No limit on attendance, everyone welcome
 
 > <i class="fab fa-youtube me-2"></i>
 > All presentations for both the training and hackathon will be live-streamed to YouTube.
@@ -84,31 +84,32 @@ Just remember to check back in with the main group periodically.
 
 ##### New pipeline development
 
-* <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
-* <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
+- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
+- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
 <!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv) ] -->
 
 ##### Existing nf-core pipeline development
 
-* <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
-* <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
+- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
+- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
 <!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD) ] -->
 
 ##### Improving nf-core framework tools (written in Python)
 
-* <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-tools`](https://nfcore.slack.com/channels/hackathon-july-2020-tools)
-* <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement](https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement)
+- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-tools`](https://nfcore.slack.com/channels/hackathon-july-2020-tools)
+- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement](https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement)
 <!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP) ] -->
 
 ##### Nextflow DSL2 modules
 
-* <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-modules-dsl2`](https://nfcore.slack.com/channels/hackathon-july-2020-modules-dsl2)
-* <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2](https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2)
+- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-modules-dsl2`](https://nfcore.slack.com/channels/hackathon-july-2020-modules-dsl2)
+- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2](https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2)
 <!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD) ] -->
 
 ## Schedule
 
 The Hackathon will be held on the same dates as a parallel Nextflow workshop
+
 <!-- [parallel Nextflow workshop](https://indico.dkfz.de/event/225/timetable/#all.detailed). -->
 
 Every day at 13:00 CEST there will be a webinar followed by a Q+A session.
@@ -116,58 +117,58 @@ After this, a catch-up of the hackathon progress will be held.
 
 The presentations held each day will be as follows:
 
-* **Monday** - Introduction to nf-core, tutorial on how to run pipelines
-* **Tuesday** - Future directions: Nextflow DSL2 and nf-core modules
-* **Wednesday** - Data management solutions by Elin Kronander
-* **Thursday** - Tutorial on nf-core tools and guidelines
-* **Friday** - Feature: nf-core pipelines for common data types & Biocontainers
+- **Monday** - Introduction to nf-core, tutorial on how to run pipelines
+- **Tuesday** - Future directions: Nextflow DSL2 and nf-core modules
+- **Wednesday** - Data management solutions by Elin Kronander
+- **Thursday** - Tutorial on nf-core tools and guidelines
+- **Friday** - Feature: nf-core pipelines for common data types & Biocontainers
 
-A remote Pub Quiz  will be held on Thursday 17:00-19:00 CEST.
+A remote Pub Quiz will be held on Thursday 17:00-19:00 CEST.
 
 All times are indicated in CEST (Central European Summer Time, UTC+2).
 If you're in a different time zone, [this time-zone converter tool](https://savvytime.com/converter/cest) may be useful.
 
 #### Monday 13th
 
-* 13:00 - [**Hackathon Introduction**](#hackathon-introduction)
-  * 13:00 - [Welcome talk](#welcome-talk)
-  * 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
-  * 13:40 - [Tutorial: running pipelines](#tutorial-running-pipelines)
-* 14:00 - 17:00 - Hack!
+- 13:00 - [**Hackathon Introduction**](#hackathon-introduction)
+  - 13:00 - [Welcome talk](#welcome-talk)
+  - 13:20 - [Introduction to nf-core](#introduction-to-nf-core)
+  - 13:40 - [Tutorial: running pipelines](#tutorial-running-pipelines)
+- 14:00 - 17:00 - Hack!
 
 #### Tuesday 14th
 
-* 09:00 - 12:00 - Hack!
-* 13:00 - [**DSL2 & modules in nf-core**](#dsl2-amp-modules-in-nf-core)
-  * 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
-  * 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
-* 14:30 - Daily wrap-up
-* 14:50 - 17:00 - Hack!
+- 09:00 - 12:00 - Hack!
+- 13:00 - [**DSL2 & modules in nf-core**](#dsl2-amp-modules-in-nf-core)
+  - 13:00 - [Introduction to DSL2 in Nextflow](#introduction-to-dsl2-in-nextflow)
+  - 13:30 - [DSL2 in nf-core](#dsl2-in-nf-core)
+- 14:30 - Daily wrap-up
+- 14:50 - 17:00 - Hack!
 
 #### Wednesday 15th
 
-* 09:00 - 12:00 - Hack!
-* 13:00 - [**Data management solutions**](#data-management-solutions)
-* 13:30 - Daily wrap-up
-* 13:50 - 17:00 - Hack!
+- 09:00 - 12:00 - Hack!
+- 13:00 - [**Data management solutions**](#data-management-solutions)
+- 13:30 - Daily wrap-up
+- 13:50 - 17:00 - Hack!
 
 #### Thursday 16th
 
-* 09:00 - 12:00 - Hack!
-* 13:00 - [**nf-core tools & guidelines**](#nf-core-tools-amp-guidelines)
-* 13:30 - Daily wrap-up
-* 13:50 - 17:00 - Hack!
-* 17:00 - 19:00 - [**Virtual social event**](#virtual-social-event)
+- 09:00 - 12:00 - Hack!
+- 13:00 - [**nf-core tools & guidelines**](#nf-core-tools-amp-guidelines)
+- 13:30 - Daily wrap-up
+- 13:50 - 17:00 - Hack!
+- 17:00 - 19:00 - [**Virtual social event**](#virtual-social-event)
 
 #### Friday 17th
 
-* 09:00 - 12:00 - Hack!
-* 13:00 - [**Featured nf-core pipelines & Biocontainers**](#featured-nf-core-pipelines)
-  * 13:00 - [nf-core/sarek](#nf-coresarek)
-  * 13:20 - [nf-core/rnaseq](#nf-corernaseq)
-  * 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
-  * 14:00 - [Biocontainers](#Biocontainers)
-* 16:30 - [**Final wrap-up and closing remarks**](#final-wrap-up-and-closing-remarks)
+- 09:00 - 12:00 - Hack!
+- 13:00 - [**Featured nf-core pipelines & Biocontainers**](#featured-nf-core-pipelines)
+  - 13:00 - [nf-core/sarek](#nf-coresarek)
+  - 13:20 - [nf-core/rnaseq](#nf-corernaseq)
+  - 13:40 - [nf-core/viralrecon](#nf-coreviralrecon)
+  - 14:00 - [Biocontainers](#Biocontainers)
+- 16:30 - [**Final wrap-up and closing remarks**](#final-wrap-up-and-closing-remarks)
 
 ---
 

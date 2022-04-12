@@ -1,10 +1,10 @@
 <?php
 $title = 'nf-cordle';
 $subtitle = 'Guess the nf-core pipeline';
-$config = parse_ini_file("../config.ini");
+$config = parse_ini_file('../config.ini');
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
-$config = parse_ini_file("../config.ini");
+$config = parse_ini_file('../config.ini');
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 // get all pipelines
@@ -18,12 +18,12 @@ if ($result = mysqli_query($conn, $sql)) {
         // Free result set
         mysqli_free_result($result);
     } else {
-        echo "Oops! Something went wrong. Please try again later.";
+        echo 'Oops! Something went wrong. Please try again later.';
     }
 }
 // generate a new number every twelve hours
-$date1 = date_create("2022-03-08T03:00:00",new DateTimeZone('Europe/Stockholm'));
-$date2 = date_create("now");
+$date1 = date_create('2022-03-08T03:00:00', new DateTimeZone('Europe/Stockholm'));
+$date2 = date_create('now');
 
 $offset = floor(($date2->getTimestamp() - $date1->getTimestamp()) / (60 * 60 * 12));
 
@@ -31,7 +31,7 @@ srand($offset); // set random number seed changing every 12 hours
 
 $target_word = $pipelines[rand(0, count($pipelines))];
 $word_length = strlen($target_word);
-include('../includes/header.php');
+include '../includes/header.php';
 ?>
 <style>
     .keyboard {
@@ -245,9 +245,9 @@ include('../includes/header.php');
     </button></h1>
 <div class="alert-container m-auto text-center" data-alert-container></div>
 <div data-guess-grid class="guess-grid ">
-    <?php foreach (range(0, $word_length) as $rowindex) : ?>
+    <?php foreach (range(0, $word_length) as $rowindex): ?>
         <!-- <div class=" d-flex flex-row"> -->
-        <?php foreach (range(0, $word_length - 1) as $index) : ?>
+        <?php foreach (range(0, $word_length - 1) as $index): ?>
             <div class="tile"></div>
         <?php endforeach; ?>
         <!-- </div> -->
@@ -613,5 +613,4 @@ include('../includes/header.php');
         })
     }
 </script>
-<?php
-include('../includes/footer.php');
+<?php include '../includes/footer.php';

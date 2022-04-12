@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 3: Pipeline code structure walkthrough"
+title: 'Bytesize 3: Pipeline code structure walkthrough'
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-start_date: "2021-02-16"
-start_time: "13:00 CET"
-end_date: "2021-02-16"
-end_time: "13:30 CET"
+start_date: '2021-02-16'
+start_time: '13:00 CET'
+end_date: '2021-02-16'
+end_time: '13:30 CET'
 youtube_embed: https://youtu.be/FFTNVbdD5pQ
 location_url:
-    - https://doi.org/10.6084/m9.figshare.14160677.v1
-    - https://youtu.be/FFTNVbdD5pQ
-    - https://www.bilibili.com/video/BV1gp4y1h7G8
+  - https://doi.org/10.6084/m9.figshare.14160677.v1
+  - https://youtu.be/FFTNVbdD5pQ
+  - https://www.bilibili.com/video/BV1gp4y1h7G8
 ---
 
 # nf-core/bytesize
@@ -29,7 +29,7 @@ She will talk through the different files found in the nf-core template and desc
 
 The talk will be live-streamed on YouTube:
 
-* YouTube: <https://youtu.be/FFTNVbdD5pQ>
+- YouTube: <https://youtu.be/FFTNVbdD5pQ>
 
 <details markdown="1"><summary>Video transcription</summary>
 **This text has been edited to make it more suitable for reading**

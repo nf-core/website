@@ -1,0 +1,52 @@
+name: Fix linting from a comment
+on:
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  deploy:
+    # Only run if comment is on a PR and if it contains the magic keywords
+    if: >
+      contains(github.event.comment.html_url, '/pull/') &&
+      contains(github.event.comment.body, '@nf-core-bot fix linting')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # Action runs on the issue comment, so we don't get the PR by default
+      - name: Checkout Pull Request
+        run: hub pr checkout ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v2
+
+      - name: Install Prettier
+        run: npm install -g prettier @prettier/plugin-php
+
+      - name: Run 'prettier --check'
+        id: prettier_status
+        run: |
+          if prettier --check ${GITHUB_WORKSPACE}; then
+            echo "::set-output name=result::pass"
+          else
+            echo "::set-output name=result::fail"
+          fi
+
+      - name: Run 'prettier --write'
+        if: steps.prettier_status.outputs.result == 'fail'
+        run: prettier --write ${GITHUB_WORKSPACE}
+
+      - name: Commit & push changes
+        if: steps.prettier_status.outputs.result == 'fail'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.email "core@nf-co.re"
+          git config --global user.name "nf-core-bot"
+          git add .
+          git status
+          git commit -m "[automated] Fix linting with Prettier"
+          git push

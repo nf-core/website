@@ -3,14 +3,16 @@
 $cache_dir = dirname(dirname(__FILE__)) . '/api_cache/json_builder';
 $post_content_type = 'json_schema';
 $post_keys = ['version', 'schema', 'status'];
-require_once('../includes/json_schema.php');
+require_once '../includes/json_schema.php';
 
 // Got this far without printing JSON - build web GUI
 $title = 'Parameter schema';
 $subtitle = 'Customise a JSON Schema for your pipeline parameters';
-if ($cache) $import_schema_builder = true;
+if ($cache) {
+    $import_schema_builder = true;
+}
 $mainpage_container = false;
-include('../includes/header.php');
+include '../includes/header.php';
 ?>
 <div class="container container-xl">
 
@@ -72,7 +74,8 @@ include('../includes/header.php');
         </div>
     </div>
 
-    <?php if (!$cache) { ?>
+    <?php
+    if (!$cache) { ?>
 
         <h3>Load Schema</h3>
 
@@ -161,7 +164,10 @@ include('../includes/header.php');
 
     <h3>Pipeline JSON Schema</h3>
     <p>This is the schema for your pipeline. As you change values in the form above, it will update. When you are finished, click <em>Finished</em> in the top toolbar.</p>
-    <textarea id="json_schema" class="form-control font-monospace disabled" disabled rows="30"><?php echo json_encode($cache['schema'], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?></textarea>
+    <textarea id="json_schema" class="form-control font-monospace disabled" disabled rows="30"><?php echo json_encode(
+        $cache['schema'],
+        JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT,
+    ); ?></textarea>
 
     <!-- Params schema settings modal -->
     <div class="modal fade" id="settings_modal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
@@ -340,4 +346,5 @@ include('../includes/header.php');
 
 <?php } // if $cache
 
-    include('../includes/footer.php');
+    include '../includes/footer.php';
+
