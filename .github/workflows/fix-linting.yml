@@ -42,7 +42,7 @@ jobs:
       - name: Commit & push changes
         if: steps.prettier_status.outputs.result == 'fail'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
