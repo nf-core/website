@@ -43,9 +43,13 @@ jobs:
         if: steps.prettier_status.outputs.result == 'fail'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # push.default stuff is because branch names can vary
+        # See https://github.com/github/hub/issues/821#issuecomment-255531557
         run: |
-          git config --global user.email "core@nf-co.re"
-          git config --global user.name "nf-core-bot"
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git config push.default upstream
+          git config url.git@github.com:.pushInsteadOf git://github.com/
           git add .
           git status
           git commit -m "[automated] Fix linting with Prettier"
