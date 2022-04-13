@@ -1,8 +1,7 @@
 <?php
 $title = 'nf-core/tools - Documentation';
 $subtitle = 'The nf-core companion tool, to help with common tasks.';
-include('../../../includes/header.php');
-
+include '../../../includes/header.php';
 ?>
 <p class="lead">This page shows the available documentation for the "back-end" of the nf-core/tools package.</p>
 <p>It's primarily for two audiences: pipeline developers wanting to know more about how the pipeline lint tests function,
@@ -16,10 +15,12 @@ include('../../../includes/header.php');
 $dirs = array_filter(glob('[0-9]*'), 'is_dir');
 usort($dirs, 'version_compare');
 echo '<ul>';
-foreach(array_merge(['latest', 'dev'], array_reverse($dirs)) as $dir){
-    echo '<li><a href="'.$dir.'">'.$dir."</a></li>\n";
+foreach (array_merge(['latest', 'dev'], array_reverse($dirs)) as $dir) {
+    echo '<li><a href="' . $dir . '">' . $dir . "</a></li>\n";
 }
 echo '</ul>';
 
-include('../../../includes/footer.php');
+include '../../../includes/footer.php';
+
+
 ?>

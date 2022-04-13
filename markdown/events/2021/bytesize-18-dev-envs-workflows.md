@@ -1,11 +1,11 @@
 ---
-title: "Bytesize 18: Development environments & workflows II"
+title: 'Bytesize 18: Development environments & workflows II'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-start_date: "2021-06-22"
-start_time: "13:00 CEST"
-end_date: "2021-06-22"
-end_time: "13:30 CEST"
+start_date: '2021-06-22'
+start_time: '13:00 CEST'
+end_date: '2021-06-22'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/OF55x-FT5WE
 location_url:
   - https://youtu.be/OF55x-FT5WE
@@ -26,9 +26,9 @@ This week, Maxime U. Garcia ([@maxulysse](http://github.com/maxulysse/)) will pr
 
 This will cover:
 
-* Git + GitHub configuration
-* VSCode configuration
-* Pipeline testing
+- Git + GitHub configuration
+- VSCode configuration
+- Pipeline testing
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited for reader-friendliness**
@@ -55,7 +55,7 @@ This will cover:
 
 [15:06](https://youtu.be/OF55x-FT5WE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=906) I organise VSCode is by having a big workspace folder, and if I want to work on several different things in multiple repositories, I have it all in the same workspace. But if I want to work with just one specific folder, then I open that workspace. For example the Sarek workspace which just has the code for Sarek. This allows me to focus.
 
-[16:27](https://youtu.be/OF55x-FT5WE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=987)  So that covers how I work with VSCode. I try to do things one project at a time. But you should do what works best for you.
+[16:27](https://youtu.be/OF55x-FT5WE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=987) So that covers how I work with VSCode. I try to do things one project at a time. But you should do what works best for you.
 
 [16:52](https://youtu.be/OF55x-FT5WE?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=1012) I don’t really have any specific recommendations for a plugin.
 

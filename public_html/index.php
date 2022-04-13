@@ -1,18 +1,25 @@
 <?php
 
-require "../vendor/autoload.php"; // for spyc
+require '../vendor/autoload.php'; // for spyc
 
 // Get a random subset of contributor institute logos
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_img_list = [];
 foreach ($contributors['contributors'] as $idx => $c) {
-  if (isset($c['image_fn']) and $c['image_fn'] and isset($c['full_name']) and $c['full_name']) {
-    $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
-    $img_path = 'assets/img/contributors-white/' . $c['image_fn'];
-    if (file_exists($img_path)) {
-      $contributors_img_list[] = '<a href="/community#' . $card_id . '"><img src="' . $img_path . '" data-bs-placement="bottom" data-bs-toggle="tooltip" title="' . $c['full_name'] . '"></a>';
+    if (isset($c['image_fn']) and $c['image_fn'] and isset($c['full_name']) and $c['full_name']) {
+        $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
+        $img_path = 'assets/img/contributors-white/' . $c['image_fn'];
+        if (file_exists($img_path)) {
+            $contributors_img_list[] =
+                '<a href="/community#' .
+                $card_id .
+                '"><img src="' .
+                $img_path .
+                '" data-bs-placement="bottom" data-bs-toggle="tooltip" title="' .
+                $c['full_name'] .
+                '"></a>';
+        }
     }
-  }
 }
 // Shuffle and truncate the list
 shuffle($contributors_img_list);
@@ -22,22 +29,25 @@ $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/event
 $header_btn_url = 'https://nf-co.re/events/rss';
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
-require_once('../includes/functions.php');
+require_once '../includes/functions.php';
 
 if ($curr_event) {
-  // Shared function to prep nicely formatted output
-  $curr_event['meta'] = prep_current_event($curr_event);
-  // Dropdown button to visit event
-  $curr_event['meta']['location_dropdown'] = '';
-  if (array_key_exists('location_url', $curr_event) && $curr_event['ongoing']) {
-    if (count($curr_event['location_url']) == 1) {
-      $url = $curr_event['location_url'];
-      if ($url[0] == "#") $url = $curr_event['url'] . $url;
-      $m = $curr_event['meta']['location_url_meta'];
+    // Shared function to prep nicely formatted output
+    $curr_event['meta'] = prep_current_event($curr_event);
+    // Dropdown button to visit event
+    $curr_event['meta']['location_dropdown'] = '';
+    if (array_key_exists('location_url', $curr_event) && $curr_event['ongoing']) {
+        if (count($curr_event['location_url']) == 1) {
+            $url = $curr_event['location_url'];
+            if ($url[0] == '#') {
+                $url = $curr_event['url'] . $url;
+            }
+            $m = $curr_event['meta']['location_url_meta'];
 
-      $curr_event['meta']['location_dropdown'] = '<a class="btn btn-success me-2 mb-2" href="' . $url . '">' . $m[0]['icon'] . ' Watch now</a>';
-    } else {
-      $curr_event['meta']['location_dropdown'] = '
+            $curr_event['meta']['location_dropdown'] =
+                '<a class="btn btn-success me-2 mb-2" href="' . $url . '">' . $m[0]['icon'] . ' Watch now</a>';
+        } else {
+            $curr_event['meta']['location_dropdown'] = '
         <div class="dropup me-2 mb-2">
           <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Watch now
@@ -45,28 +55,41 @@ if ($curr_event) {
 
           <div class="dropdown-menu">
           ';
-      foreach ($curr_event['location_url'] as $idx => $url) {
-        $m = $curr_event['meta']['location_url_meta'][$idx];
-        if ($url[0] == "#") $url = $curr_event['url'] . $url;
-        $curr_event['meta']['location_dropdown'] .= '<a class="dropdown-item" href="' . $url . '" target="_blank">' . $m['icon'] . ' <code>' . $url . '</code></a>' . "\n";
-      }
-      $curr_event['meta']['location_dropdown'] .= '</div></div>';
+            foreach ($curr_event['location_url'] as $idx => $url) {
+                $m = $curr_event['meta']['location_url_meta'][$idx];
+                if ($url[0] == '#') {
+                    $url = $curr_event['url'] . $url;
+                }
+                $curr_event['meta']['location_dropdown'] .=
+                    '<a class="dropdown-item" href="' .
+                    $url .
+                    '" target="_blank">' .
+                    $m['icon'] .
+                    ' <code>' .
+                    $url .
+                    '</code></a>' .
+                    "\n";
+            }
+            $curr_event['meta']['location_dropdown'] .= '</div></div>';
+        }
     }
-  }
-  // Countdown timer for upcoming events
-  if (!$curr_event['ongoing']) {
-    $dtF = new \DateTime('@0');
-    $dtT = new \DateTime("@" . (time() - $curr_event['start_ts']));
-    $dtDiff = $dtF->diff($dtT);
-    if ($dtDiff->format('%d') == '0') {
-      $countdown_text = $dtDiff->format('%hh %Im %Ss');
-    } else {
-      $countdown_text = $dtDiff->format('%d days,<br>%hh %Im %Ss');
-    }
-    $curr_event['meta']['countdown'] = "
+    // Countdown timer for upcoming events
+    if (!$curr_event['ongoing']) {
+        $dtF = new \DateTime('@0');
+        $dtT = new \DateTime('@' . (time() - $curr_event['start_ts']));
+        $dtDiff = $dtF->diff($dtT);
+        if ($dtDiff->format('%d') == '0') {
+            $countdown_text = $dtDiff->format('%hh %Im %Ss');
+        } else {
+            $countdown_text = $dtDiff->format('%d days,<br>%hh %Im %Ss');
+        }
+        $curr_event['meta']['countdown'] =
+            "
     <script type=\"text/javascript\">
         setInterval(function(){
-          var eventTime = " . $curr_event['start_ts'] . " * 1000;
+          var eventTime = " .
+            $curr_event['start_ts'] .
+            " * 1000;
           var currentTime = Date.now();
           var delta = Math.abs(eventTime - currentTime) / 1000;
 
@@ -85,21 +108,23 @@ if ($curr_event) {
         }, 1000);
     </script>
     <h5 class=\"pt-4\">Event countdown:</h5>
-    <p class=\"display-5 text-nowrap countdown\">" . $countdown_text . "</p>
+    <p class=\"display-5 text-nowrap countdown\">" .
+            $countdown_text .
+            "</p>
     ";
-  }
+    }
 }
 
 $import_moment = true;
-include('../includes/header.php');
+include '../includes/header.php';
 ?>
 
 <div class="homepage-header">
-  <?php if ($curr_event) : ?>
+  <?php if ($curr_event): ?>
     <div class="mainpage-subheader-heading homepage-header-contents triangle-down pb-4">
       <div class="container-fluid text-start">
         <div class="row">
-          <?php if ($curr_event['ongoing']) : ?>
+          <?php if ($curr_event['ongoing']): ?>
             <div class="col-lg-3 overflow-hidden d-none d-lg-block">
               <i class="fad fa-broadcast-tower homepage-header-fa-background"></i>
               <h4 class="display-4 pt-2">Ongoing event</h4>
@@ -107,7 +132,7 @@ include('../includes/header.php');
             <div class="col-lg-3 pt-2 pb-1 mb-2 overflow-hidden d-lg-none mainpage-subheader-heading-header">
               <h5 class="pt-2 font-weight-light">Ongoing event</h5>
             </div>
-          <?php else : ?>
+          <?php else: ?>
             <div class="col-lg-3 overflow-hidden d-none d-lg-block">
               <i class="fad fa-alarm-clock homepage-header-fa-background"></i>
               <h4 class="display-4 pt-2">Upcoming event</h4>
@@ -117,42 +142,73 @@ include('../includes/header.php');
             </div>
           <?php endif; ?>
           <div class="col pt-lg-3 pb-lg-3 text-center text-lg-start">
-            <h5 class="pt-2 pb-0 pb-lg-1"><a href="<?php echo $curr_event['url']; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
-            <p class="lead d-none d-sm-block"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
-            <p class="d-sm-none mb-2"><a href="<?php echo $curr_event['url']; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
-            <p class="d-none d-lg-block"><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
-            <p class="d-lg-none small mb-2"><a href="<?php echo $curr_event['url']; ?>" class="text-secondary text-decoration-none" <?php echo $curr_event['meta']['nice_date_string'][0]; ?>><?php echo $curr_event['meta']['nice_date_string'][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
-            <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])) : ?>
+            <h5 class="pt-2 pb-0 pb-lg-1"><a href="<?php echo $curr_event[
+                'url'
+            ]; ?>" class="text-success text-decoration-none"><?php echo $curr_event['title']; ?></a></h5>
+            <p class="lead d-none d-sm-block"><a href="<?php echo $curr_event[
+                'url'
+            ]; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
+            <p class="d-sm-none mb-2"><a href="<?php echo $curr_event[
+                'url'
+            ]; ?>" class="text-body text-decoration-none"><?php echo $curr_event['subtitle']; ?></a></p>
+            <p class="d-none d-lg-block"><a href="<?php echo $curr_event[
+                'url'
+            ]; ?>" class="text-secondary text-decoration-none" <?php echo $curr_event['meta'][
+    'nice_date_string'
+][0]; ?>><?php echo $curr_event['meta'][
+    'nice_date_string'
+][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
+            <p class="d-lg-none small mb-2"><a href="<?php echo $curr_event[
+                'url'
+            ]; ?>" class="text-secondary text-decoration-none" <?php echo $curr_event['meta'][
+    'nice_date_string'
+][0]; ?>><?php echo $curr_event['meta'][
+    'nice_date_string'
+][1]; ?></a><span class="d-none d-lg-inline"> &nbsp; <?php echo $curr_event['meta']['event_type_badge']; ?></span></p>
+            <?php
+            if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])): ?>
               <div class="btn-toolbar justify-content-center justify-content-lg-start">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
-                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
-                <a href="<?php echo $curr_event['url']; ?>" class="btn btn-sm btn-outline-success mb-2 d-lg-none">Event Details</a>
+                <a href="<?php echo $curr_event[
+                    'url'
+                ]; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
+                <a href="<?php echo $curr_event[
+                    'url'
+                ]; ?>" class="btn btn-sm btn-outline-success mb-2 d-lg-none">Event Details</a>
               </div>
             <?php endif;
-            if (!$curr_event['ongoing']) : ?>
-              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
-              <a href="<?php echo $curr_event['url']; ?>" class="btn btn-sm btn-outline-success mb-2 d-lg-none">Event Details</a>
-            <?php endif; ?>
+            if (!$curr_event['ongoing']): ?>
+              <a href="<?php echo $curr_event[
+                  'url'
+              ]; ?>" class="btn btn-outline-success mb-2 d-none d-lg-inline-block">Event Details</a>
+              <a href="<?php echo $curr_event[
+                  'url'
+              ]; ?>" class="btn btn-sm btn-outline-success mb-2 d-lg-none">Event Details</a>
+            <?php endif;
+            ?>
           </div>
           <div class="col-lg-4 col-xl-3">
-            <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])) :
-              if (!is_array($curr_event['youtube_embed'])) $curr_event['youtube_embed'] = [$curr_event['youtube_embed']];
-              $video_id = get_youtube_id($curr_event['youtube_embed'][0]);
-            ?>
+            <?php if ($curr_event['ongoing'] && isset($curr_event['youtube_embed'])):
+
+                if (!is_array($curr_event['youtube_embed'])) {
+                    $curr_event['youtube_embed'] = [$curr_event['youtube_embed']];
+                }
+                $video_id = get_youtube_id($curr_event['youtube_embed'][0]);
+                ?>
               <div class="ratio ratio-16x9 mt-3 mb-5 d-none d-lg-block">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
-              <?php
-              if (count($curr_event['youtube_embed']) > 1) : ?>
-                <p class=""><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php echo count($curr_event['youtube_embed']) - 1;
-                                                                                                            d ?> more</a></p>
-              <?php endif;
-            elseif ($curr_event['ongoing']) : ?>
+              <?php if (count($curr_event['youtube_embed']) > 1): ?>
+                <p class=""><a href="<?php echo $curr_event['url']; ?>" class="btn btn-success my-2">Watch <?php
+echo count($curr_event['youtube_embed']) - 1;
+d;
+endif;
+            elseif ($curr_event['ongoing']): ?>
               <div class="pt-lg-5">
                 <?php echo $curr_event['meta']['location_dropdown']; ?>
                 <a href="<?php echo $curr_event['url']; ?>" class="btn btn-outline-success mb-2">Event Details</a>
               </div>
-            <?php else : ?>
+            <?php else: ?>
               <div class="d-none d-lg-block">
                 <?php echo $curr_event['meta']['countdown']; ?>
               </div>
@@ -333,7 +389,7 @@ include('../includes/header.php');
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="developers/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+            <a href="contributing/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
           </div>
         </div>
       </div>
@@ -346,7 +402,7 @@ include('../includes/header.php');
                 If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
               <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="developers/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
+            <a href="contributing/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
           </div>
         </div>
       </div>
@@ -435,7 +491,7 @@ nf-core list
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
       <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="developers/guidelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="contributing/guidelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
 </div>
@@ -450,7 +506,9 @@ nf-core list
       number of contributing users.</p>
     <p><a class="btn btn-success d-inline d-md-none" href="/community#organisations">See a complete list &raquo;</a></p>
     <div class="homepage_contrib_logos">
-      <?php foreach (array_slice($contributors_img_list, 0, 8) as $img) { echo $img; } ?>
+      <?php foreach (array_slice($contributors_img_list, 0, 8) as $img) {
+          echo $img;
+      } ?>
     </div>
   </div>
 </div>
@@ -460,18 +518,21 @@ nf-core list
 var contributors_imgs = <?php echo json_encode(array_slice($contributors_img_list, 8)); ?>;
 
 <?php // Javascript for moment time zone support
+
 if ($event['start_time']) {
-  echo '
+    echo '
     $("[data-timestamp]").each(function(){
       var timestamp = $(this).data("timestamp");
       var local_time = moment.tz(timestamp, "X", moment.tz.guess());
       $(this).text(local_time.format("HH:mm z, LL"));
     });
     ';
-}
-?>
+} ?>
 </script>
 
 <?php
 $md_github_url = false;
-include('../includes/footer.php'); ?>
+include '../includes/footer.php';
+
+
+?>

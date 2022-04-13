@@ -1,11 +1,11 @@
 ---
-title: "Bytesize 16: Modules test data"
+title: 'Bytesize 16: Modules test data'
 subtitle: Kevin Menden - QBiC Tübingen, Germany
 type: talk
-start_date: "2021-06-08"
-start_time: "13:00 CEST"
-end_date: "2021-06-08"
-end_time: "13:30 CEST"
+start_date: '2021-06-08'
+start_time: '13:00 CEST'
+end_date: '2021-06-08'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/QXfAerydAT0
 location_url:
   - https://youtu.be/QXfAerydAT0
@@ -27,7 +27,7 @@ This week, Kevin Menden ([@KevinMenden](http://github.com/KevinMenden/)) will pr
 
 This will cover:
 
-* How to use existing and add new test data for nf-core/modules
+- How to use existing and add new test data for nf-core/modules
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited to make it reader-friendly**

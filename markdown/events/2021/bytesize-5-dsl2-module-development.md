@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 5: DSL2 module development"
+title: 'Bytesize 5: DSL2 module development'
 subtitle: Harshil Patel - Francis Crick Institiute, UK
 type: talk
-start_date: "2021-03-02"
-start_time: "13:00 CET"
-end_date: "2021-03-02"
-end_time: "13:30 CET"
+start_date: '2021-03-02'
+start_time: '13:00 CET'
+end_date: '2021-03-02'
+end_time: '13:30 CET'
 youtube_embed: https://youtu.be/ggGGhTMgyHI
 location_url:
-    - https://doi.org/10.6084/m9.figshare.14160116.v1
-    - https://youtu.be/ggGGhTMgyHI
-    - https://www.bilibili.com/video/BV1aK4y1D7z3
+  - https://doi.org/10.6084/m9.figshare.14160116.v1
+  - https://youtu.be/ggGGhTMgyHI
+  - https://www.bilibili.com/video/BV1aK4y1D7z3
 ---
 
 # nf-core/bytesize
@@ -25,13 +25,13 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week, Harshil Patel ([@drpatelh](http://github.com/drpatelh/)) will present: _**DSL2 module development.**_ This will cover:
 
-* Module file structure
-* Writing new modules
-* Automated testing
+- Module file structure
+- Writing new modules
+- Automated testing
 
 The talk will be live-streamed on YouTube:
 
-* YouTube: <https://youtu.be/ggGGhTMgyHI>
+- YouTube: <https://youtu.be/ggGGhTMgyHI>
 
 <details markdown="1"><summary>Video transcription</summary>
 
@@ -63,7 +63,7 @@ So, a number of key things that we don't compromise on nf-core, if you know nf-c
 [05:16](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=316)
 We're also more recently decided that we would use Biocontainers for all of our software packaging. We initially started off by using or building docker containers for using environment YAMLs and so on, like similar to what we're doing with DSL1 and the nf-core pipelines, but in the end, we decided that reusing Biocontainers is much more advantageous. We don't have to have an infrastructure to deal with that, we don't have to build Docker containers and the great thing now also is that with recent updates in one of the Nextflow edge releases you can also directly download Singularity containers. So, you don't need to convert the Docker to Singularity containers, which again, is another thing that we've traditionally been doing with DSL1 pipelines.
 
-We have one Docker container that gets downloaded, converted to Singularity and that is what is used then by the pipeline but now, Biocontainers are also hosting singularity images directly so we don't have to convert anything.  We're directly downloading them over HTTPS and using those.
+We have one Docker container that gets downloaded, converted to Singularity and that is what is used then by the pipeline but now, Biocontainers are also hosting singularity images directly so we don't have to convert anything. We're directly downloading them over HTTPS and using those.
 
 [[06:20](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=380)]
 And that's, that's amazing, because we've had a number of issues with users running out of whole space in home directories and so on and this sort of bypasses all of those issues. And obviously, supporting conda as well, which is where I guess you would imagine fundamentally these Biocontainers are built from. Biocontainers are essentially conda packages built in containers, so either Docker or Singularity.
@@ -78,7 +78,7 @@ initially created this back in, sort of, July 2019 and, again, documentation is 
 [07:40](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=460)
 For simplicity and also for learning curve we wanted to stick to using the Nextflow coding style or the coding pattern that is familiar to most people writing Nextflow workflows in order to make it easier for them to contribute to not only nf-core modules but also to install the modules themselves and to figure out what's going on.
 
-I think that's quite important so the simplicity there is incredibly important for the learning curve when it comes to figuring out what these modules are doing. I mean, me personally, I find DSL1 modules are really great, DSL1 pipelines are really great and that you have everything in one workflow because it's more findable that way.  With DSL2, you can package things up and put them in various different places and it's not always that trivial to find them, so the way that we standardize the structure and and the way that where we're writing these Nextflow imports and so on is actually quite important.
+I think that's quite important so the simplicity there is incredibly important for the learning curve when it comes to figuring out what these modules are doing. I mean, me personally, I find DSL1 modules are really great, DSL1 pipelines are really great and that you have everything in one workflow because it's more findable that way. With DSL2, you can package things up and put them in various different places and it's not always that trivial to find them, so the way that we standardize the structure and and the way that where we're writing these Nextflow imports and so on is actually quite important.
 
 [08:35](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=515)
 Also, we're using certain parameters and other things and just generally standardizing how we're doing things across nf-core pipelines and, hopefully, this can also be reused by the Nextflow community. And the great thing also is, if you update it on nf-core/modules, where if you update the version of samtools on nf-core/modules because new releases come out, then everyone benefits from that so it becomes a bit like the way the Conda operates in updating builds of their packages and so on.
@@ -136,7 +136,7 @@ So this is what a typical module will look like on nf-core/modules. You have (ge
 You have the main script which is doing the crux of the work. It's just an excellent process, a single Nextflow process and you have a meta YAML as I mentioned earlier that documents them.
 
 [18:29](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=1109)
-A brief description of what fastqc is, what the inputs are, the formats, the file extensions and also the author list.  You also have a tests directory there, which, again, is sort of structured in a similar way where you've got software, fastqc; you have a main script here which is essentially just a workflow that is calling this main script in order for it to be tested and then you have this test YAML which is just a YAML5 file containing, for example, md5sums for the output files generated by fastqc and so, for any given tool these are the files, generally, that you would need to change.
+A brief description of what fastqc is, what the inputs are, the formats, the file extensions and also the author list. You also have a tests directory there, which, again, is sort of structured in a similar way where you've got software, fastqc; you have a main script here which is essentially just a workflow that is calling this main script in order for it to be tested and then you have this test YAML which is just a YAML5 file containing, for example, md5sums for the output files generated by fastqc and so, for any given tool these are the files, generally, that you would need to change.
 
 [19:05](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=1145)
 There's one or two more if you were to submit a pull request to nf-core/modules but it's literally as simple as that and once these have been added (I think that’s the tricky bit) once you add this module to nf-core/modules, it's there and that in the worst-case scenario we may have to change a few md5 sums because things have been updated across releases of it all; but once that tool is there, then we can work with that and that's why I think it's really important to, sort of, fill this out.
@@ -242,7 +242,7 @@ If this is sort of dealt out and propagated to the module file itself, then we d
 [35:39](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=2139)
 So, only define input and output files as command line parameters, as I mentioned before, so you you don't define optional arguments. These must come in via this optional $options.args. Similarly, anything that requires (or can use) the Nextflow $task.cpus memory or time has to be, actually time maybe not, but cpus and memory, hopefully in cases where you actually really have to do it because memory gets tricky.
 
-But cpus definitely have to be defined if the tool supports multithreading, for example, and then you have the option to  customize the name (output names), we're using this prefix logic here, so you can call your bam file whatever you want if that options.suffix argument instead said .sorted or .mark_duplicates, that will get propagated from your original modules.config to the module here.
+But cpus definitely have to be defined if the tool supports multithreading, for example, and then you have the option to customize the name (output names), we're using this prefix logic here, so you can call your bam file whatever you want if that options.suffix argument instead said .sorted or .mark_duplicates, that will get propagated from your original modules.config to the module here.
 
 [36:36](https://www.youtube.com/watch?v=ggGGhTMgyHI&t=2196)
 And so, there's a bunch of stuff to do (sorry, I've been babbling on for quite a while). It's a lot to cover and I was scared this is going to go over, but there's a lot to do, we've added some functionality to nf-core tools for listing, for installing these modules. As I mentioned, Kevin is now doing the linting and md5.
@@ -256,7 +256,7 @@ It'd be nice to have some sort of more automation set up to update the module fi
 I mean we're pretty much there but it'll be nice to have sort of a syncing type functionality that we have with pipelines. This has been brought up quite a bit, so the fact that we have to have a `functions.nf` file shipped with every single module file and the fact that that has to be duplicated everywhere; this mainly is that for the module itself to be self-contained. So we can have different versions of the module, the `functions.nf` file itself within the same repository and it won't break things, but we are definitely trying to find a better solution to that.
 
 [37:51](https://youtu.be/ggGGhTMgyHI?t=2270)
-More CI  - we love CI: reporting linting tests on PR's for reviewers to make it easier; standardize the test data which we're doing already; differences in md5 sums just to help with debugging.
+More CI - we love CI: reporting linting tests on PR's for reviewers to make it easier; standardize the test data which we're doing already; differences in md5 sums just to help with debugging.
 
 Most, in fact all, of the modules I think at the moment are using biocontainers. It'd be nice to have some that aren't and maybe figure out a way to deal with that.
 There’s the workflow package manager, so Junjun Zhang in Toronto, as part of the ICGC Argo are doing something similar. They started out at a similar time where we're just having discussions together about how to make it work and they have sort of branched out and done their own thing with that so we have had brief discussions about how to bring this together but time’s been nuts recently. It’d be nice to revisit that and see where we can compare notes on that.
