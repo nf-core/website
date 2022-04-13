@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 22: nf-core/eager"
+title: 'Bytesize 22: nf-core/eager'
 subtitle: James Fellows Yates - MPI-EVA, Germany
 type: talk
-start_date: "2021-10-05"
-start_time: "13:00 CEST"
-end_date: "2021-10-05"
-end_time: "13:30 CEST"
+start_date: '2021-10-05'
+start_time: '13:00 CEST'
+end_date: '2021-10-05'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/fObuLeGhQRo
 location_url:
- - https://youtu.be/fObuLeGhQRo
- - https://www.bilibili.com/video/BV1q34y1U7Ak/
- - https://doi.org/10.6084/m9.figshare.16750387.v1
+  - https://youtu.be/fObuLeGhQRo
+  - https://www.bilibili.com/video/BV1q34y1U7Ak/
+  - https://doi.org/10.6084/m9.figshare.16750387.v1
 ---
 
 # nf-core/bytesize
@@ -26,9 +26,10 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, James Fellows Yates ([@jfy133](https://github.com/jfy133/)) will tell us all about the nf-core/eager pipeline.
 
 nf-core/eager is one of the largest and/or most complex nf-core pipelines. It is a best practise (meta)genomics primarily aimed at (but not limited to) processing ancient DNA. This talk will:
-* Give an overview of the pipeline.
-* Discuss the impact of the particularlities of ancient DNA.
-* Cover some of the challenges and solutions encountered when writing this pipeline.
+
+- Give an overview of the pipeline.
+- Discuss the impact of the particularlities of ancient DNA.
+- Cover some of the challenges and solutions encountered when writing this pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited for reader-friendliness**

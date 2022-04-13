@@ -50,11 +50,11 @@ There is no bytesize talk about how to create training materials at present, but
 
 #### Use this as a template.
 
-Use this file `https://github.com/nf-core/nf-co.re/markdown/developers/training_guide.md` as a template to guide you.
+Use this file `https://github.com/nf-core/nf-co.re/markdown/docs/contributing/training_guide.md` as a template to guide you.
 
 1. Make a fork of the [nf-core website repository](https://github.com/nf-core/nf-co.re/).
 2. Make a new branch from the `master` branch in your fork and check it out. Name it after the guide you intend to submit. For example: `git checkout -b gitpod_training_guide`
-3. Make a copy of the `markdown/developers/training_guide.md` with an appropriate name to use as your skeleton.
+3. Make a copy of the `markdown/docs/contributing/training_guide.md` with an appropriate name to use as your skeleton.
 
 #### Add framing questions.
 
@@ -83,7 +83,15 @@ If a bytesize talk exists, then provide a link using this html under the `### By
 
 ```html
 <div class="ratio ratio-16x9">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/xuNYATGFuw4"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
 </div>
 ```
 
@@ -108,7 +116,6 @@ Your question here.
   <summary>Click to expand the solution.</summary>
 
   Text of your solution here.
-
 </details>
 ```
 

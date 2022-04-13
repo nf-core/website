@@ -1,11 +1,11 @@
 ---
-title: "Bytesize 14: Graphic design / pipeline diagrams"
+title: 'Bytesize 14: Graphic design / pipeline diagrams'
 subtitle: Zandra Fagernäs - MPI-SHH
 type: talk
-start_date: "2021-05-25"
-start_time: "13:00 CEST"
-end_date: "2021-05-25"
-end_time: "13:30 CEST"
+start_date: '2021-05-25'
+start_time: '13:00 CEST'
+end_date: '2021-05-25'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/5jZPucWXnno
 location_url:
   - https://www.bilibili.com/video/BV1Z54y1V78h
@@ -28,12 +28,13 @@ This week, Zandra Fagernäs ([@ZandraFagernas](http://github.com/ZandraFagernas/
 
 This will cover:
 
-* How the graphics of nf-core/eager were created.
-* Tips and tricks for how someone with no experience in illustration can make graphics.
+- How the graphics of nf-core/eager were created.
+- Tips and tricks for how someone with no experience in illustration can make graphics.
 
 The talk will be presented on Zoom and live-streamed on YouTube.
-* YouTube: <https://youtu.be/5jZPucWXnno>
-* Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
+
+- YouTube: <https://youtu.be/5jZPucWXnno>
+- Bilibili: <https://www.bilibili.com/video/BV1Z54y1V78h>
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited to make it reader-friendly**
@@ -72,7 +73,7 @@ The talk will be presented on Zoom and live-streamed on YouTube.
 
 [9:58](https://youtu.be/5jZPucWXnno?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=598) If you’re wondering how to figure out if colours work well together, try and search for different colour schemes on the internet - there are tons of them - and pick out ones that are also accessible for users with colour-blindness.
 
-[10:31](https://youtu.be/5jZPucWXnno?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=631) Finally, I want to mention that you are not alone in this. We have definitely relied a lot on the community to get feedback and inspiration for our figures. So at the [link](https://nf-co.re/developers/design_guidelines), you can find the nf-core logo, so you don’t need to cut it out from elsewhere, you can find the font-type that is used, and even the colours that are generally used. You can also find examples of previous pipelines and previous figures, icons for the different components such as fastq and psv icons that I used earlier. You can also always ask questions in `#graphics` on Slack. It is full of people who are happy to provide feedback on figures.
+[10:31](https://youtu.be/5jZPucWXnno?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=631) Finally, I want to mention that you are not alone in this. We have definitely relied a lot on the community to get feedback and inspiration for our figures. So at the [link](https://nf-co.re/docs/contributing/design_guidelines), you can find the nf-core logo, so you don’t need to cut it out from elsewhere, you can find the font-type that is used, and even the colours that are generally used. You can also find examples of previous pipelines and previous figures, icons for the different components such as fastq and psv icons that I used earlier. You can also always ask questions in `#graphics` on Slack. It is full of people who are happy to provide feedback on figures.
 
 [11:19](https://youtu.be/5jZPucWXnno?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=679) Thanks everyone. I have hopefully showed you that anyone can get started with illustrating and that one needn’t be a professional designer or an illustrator to make these sorts of diagrams.
 

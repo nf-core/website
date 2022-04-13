@@ -84,9 +84,15 @@ Dates are subject to change:
 
 ### Application process
 
+_Applications are now closed. Those who have applied will hear from us soon. Thank you!_
+
+<!--
+
 Please submit an application using the forms below.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
 <p class="text-center"><a href="https://forms.gle/aa5CHkR6YARf92kb6" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
 
 > _Button opens a Google Forms application form in a new window_
+
+-->
