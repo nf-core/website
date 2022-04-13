@@ -5,17 +5,20 @@ on:
 
 jobs:
   deploy:
-    # Only run if comment is on a PR and if it contains the magic keywords
+    # Only run if comment is on a PR with the main repo, and if it contains the magic keywords
     if: >
       contains(github.event.comment.html_url, '/pull/') &&
-      contains(github.event.comment.body, '@nf-core-bot fix linting')
+      contains(github.event.comment.body, '@nf-core-bot fix linting') &&
+      github.repository == 'nf-core/nf-co.re'
     runs-on: ubuntu-latest
     steps:
+      # Use the @nf-core-bot token to check out so we can push later
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.nf_core_bot_auth_token }}
 
       # Action runs on the issue comment, so we don't get the PR by default
+      # Use the gh cli to check out the PR
       - name: Checkout Pull Request
         run: gh pr checkout ${{ github.event.issue.number }}
         env:
@@ -26,6 +29,7 @@ jobs:
       - name: Install Prettier
         run: npm install -g prettier @prettier/plugin-php
 
+      # Check that we actually need to fix something
       - name: Run 'prettier --check'
         id: prettier_status
         run: |
