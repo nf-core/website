@@ -13,13 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          token: ${{ secrets.nf_core_bot_auth_token }}
 
       # Action runs on the issue comment, so we don't get the PR by default
       - name: Checkout Pull Request
         run: hub pr checkout ${{ github.event.issue.number }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v2
 
@@ -41,8 +39,6 @@ jobs:
 
       - name: Commit & push changes
         if: steps.prettier_status.outputs.result == 'fail'
-        env:
-          GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
