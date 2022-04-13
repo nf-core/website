@@ -89,8 +89,8 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
              ./tests/modules/fastqc/test.yml
              ./tests/modules/fastqc/nextflow.config
              ./tests/config/pytest_modules.yml
-            
-    ```
+
+   ```
 
    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
