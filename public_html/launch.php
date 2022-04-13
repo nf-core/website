@@ -545,12 +545,12 @@ if (!$cache) { ?>
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.1
+    nf-core/tools version 2.3 - https://nf-co.re
 
 
-<span style="color:darkblue;">INFO</span>    This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
+<span style="color:darkblue;">INFO</span>    NOTE:This tool ignores any pipeline parameter defaults overwritten by Nextflow config files or profiles
 
-<span style="color:darkblue;">INFO</span>    <span style="color:green;">[&#10003;] Default parameters look valid</span>
+<span style="color:darkblue;">INFO</span>    <span style="color:green;">[&#10003;] Default parameters look match schema validation</span>
 <span style="color:darkblue;">INFO</span>    <span style="color:green;">[&#10003;] Pipeline schema looks valid</span> (found 72 params)
 
 <span style="color:MediumVioletRed;">Would you like to enter pipeline parameters using a web-based interface or a command-line wizard?</span>

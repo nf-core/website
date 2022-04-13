@@ -77,17 +77,19 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                          `._,._,'
 
-   nf-core/tools version 2.2.dev0
+    nf-core/tools version 2.3dev0 - https://nf-co.re
 
-   INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                      create.py:130
-   INFO     Using Docker / Singularity container with tag: 'fastqc:0.11.9--0'      create.py:140
-   INFO     Created / edited following files:                                      create.py:218
-               ./modules/fastqc/main.nf
-               ./modules/fastqc/meta.yml
-               ./tests/modules/fastqc/main.nf
-               ./tests/modules/fastqc/test.yml
-               ./tests/modules/fastqc/nextflow.config
-               ./tests/config/pytest_modules.yml
+    INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                                                                                                           create.py:130
+    INFO     Using Docker container: 'quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1'                                                                                   create.py:190
+    INFO     Using Singularity container: 'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--hdfd78af_1'                                                        create.py:191
+    INFO     Created / edited following files:                                                                                                                           create.py:269
+            ./modules/fastqc/main.nf
+             ./modules/fastqc/meta.yml
+             ./tests/modules/fastqc/main.nf
+             ./tests/modules/fastqc/test.yml
+             ./tests/modules/fastqc/nextflow.config
+             ./tests/config/pytest_modules.yml
+
    ```
 
    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
@@ -129,7 +131,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                          `._,._,'
 
-   nf-core/tools version 2.2.dev0
+    nf-core/tools version 2.3dev0 - https://nf-co.re
 
 
    INFO     Press enter to use default values (shown in brackets) or type your own responses                                             test_yml_builder.py:51
@@ -164,10 +166,10 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                          `._,._,'
 
-   nf-core/tools version 2.0
+    nf-core/tools version 2.3dev0 - https://nf-co.re
 
-   INFO     Linting modules repo: .                                                lint.py:102
-   INFO     Linting module: fastqc                                                 lint.py:106
+    INFO     Linting modules repo: .                                                __init__.py:15
+    INFO     Linting module: fastqc                                                 __init__.py:163
 
    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
    │ [!] 3 Test Warnings                                                                                            │
