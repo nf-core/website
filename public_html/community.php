@@ -234,8 +234,9 @@ include '../includes/header.php';
 
 <h3 id="dfg_testimonial">
     <img width="350px" src="/assets/img/contributors-colour/dfg_logo.svg" class="float-end ps-4" />
-    German National Seque
-    <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>ncing Initiative
+
+    German National Sequencing Initiative
+    <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h3>
 <p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
     has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
