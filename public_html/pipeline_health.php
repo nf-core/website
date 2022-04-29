@@ -87,7 +87,7 @@ class RepoHealth {
     ];
 
     // Names of old CI tests that must not be present any more
-    public $required_remove_status_check_contexts = ['continuous-integration/travis-ci', 'test'];
+    public $required_remove_status_check_contexts = ['continuous-integration/travis-ci', 'test', 'YAML', 'Markdown', 'Run workflow tests'];
     public $branch_exist_tests = ['master'];
     public $branches_protection = ['master'];
     public $branch_template_protection = false;
