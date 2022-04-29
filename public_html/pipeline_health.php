@@ -78,10 +78,9 @@ class RepoHealth {
 
     // Names of required CI checks. These are added to whatever already exists.
     public $required_status_check_contexts = [
-        'Markdown',
-        'YAML',
+        'Prettier',
         'nf-core',
-        'Run workflow tests',
+        'Run pipeline with test data',
         // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
         // If we really want to do this, might have to query the repo contents..??
     ];
