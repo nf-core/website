@@ -45,6 +45,7 @@ if (file_exists($gh_pipeline_schema_fn)) {
         if (array_key_exists('description', $param)) {
             $description = parse_md($param['description'])['content'];
         }
+
         # parameter type
         $type = '';
         if (array_key_exists('type', $param) && strlen(trim($param['type'])) > 0 && $param['type'] != 'object') {
@@ -169,6 +170,16 @@ if (file_exists($gh_pipeline_schema_fn)) {
         if ($is_hidden) {
             $row_class .= ' param-docs-hidden collapse d-print-block';
         }
+
+        # Body
+        $param_body =
+            '<div id="' .
+            $param_id .
+            '-body" class="param-docs-body ' .
+            $description_class .
+            '">' .
+            $description .
+            '</div>';
 
         # Build row
         return '
