@@ -486,7 +486,7 @@ class RepoHealth {
                     'enforce_admins' => false,
                     'required_status_checks' => [
                         'strict' => false,
-                        'contexts' => $contexts,
+                        'contexts' => array_values($contexts),
                     ],
                     'required_pull_request_reviews' => [
                         'dismiss_stale_reviews' => false,
