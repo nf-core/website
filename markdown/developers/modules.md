@@ -45,10 +45,7 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.1`)
-
-   > ⚠️ [2021-11-26] please use `dev` version of tools
-
+1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.3`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
 4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
@@ -65,8 +62,6 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    ```
 
 6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
-
-   > ⚠️ [2021-11-26] please use `dev` version of tools
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -257,28 +252,28 @@ Please follow the steps below to run the tests locally:
 
      ```console
      cd /path/to/git/clone/of/nf-core/modules/
-     NF_CORE_MODULES_TEST=1 TMPDIR=~ PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd
+     TMPDIR=~ PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd --git-aware
      ```
 
    - Typical command with Singularity:
 
      ```console
      cd /path/to/git/clone/of/nf-core/modules/
-     NF_CORE_MODULES_TEST=1 TMPDIR=~ PROFILE=singularity pytest --tag fastqc --symlink --keep-workflow-wd
+     TMPDIR=~ PROFILE=singularity pytest --tag fastqc --symlink --keep-workflow-wd --git-aware
      ```
 
    - Typical command with Conda:
 
      ```console
      cd /path/to/git/clone/of/nf-core/modules/
-     NF_CORE_MODULES_TEST=1 PROFILE=conda pytest --tag fastqc --symlink --keep-workflow-wd
+     PROFILE=conda pytest --tag fastqc --symlink --keep-workflow-wd --git-aware
      ```
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
 
 > 🛈 For docker/singularity`TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directry to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
 
 ### Uploading to `nf-core/modules`
 
@@ -328,7 +323,7 @@ fastqc \\
 ```nextflow
 process {
     withName: <module> {
-        ext.args = [                                                          // Assign either a string, closure which returns a string
+        ext.args = [                                                          // Assign either a string, or closure which returns a string
             '--quiet',
             params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
         ].join(' ')                                                           // Join converts the list here to a string.
@@ -560,11 +555,16 @@ The difference between the two:
 
 ```nextflow
 // fromFilePairs
-filepairs = [SRR493366, [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
+filepairs = [
+    SRR493366,
+    [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]
+]
 
 // meta map
-meta_map = [[id: 'test', single_end: false], // meta map
-            [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
+meta_map = [
+    [id: 'test', single_end: false], // meta map
+    [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]
+]
 ```
 
 As you can see the difference, they are both [groovy lists](https://www.tutorialspoint.com/groovy/groovy_lists.htm).
