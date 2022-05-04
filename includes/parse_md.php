@@ -74,9 +74,9 @@ function parse_md($markdown) {
     $pd = new ParsedownExtra();
     $content = $pd->text($md);
 
-    // Highlight any search terms if we have them
+    // Highlight any search terms if we have them (except if they are inside html tags)
     if (isset($_GET['q']) && strlen($_GET['q'])) {
-        $content = preg_replace('/(' . $_GET['q'] . ')/i', "<mark>$1</mark>", $content);
+        $content = preg_replace('/<.*?' . $_GET['q'] . '.*?>(*SKIP)(*FAIL)|' . $_GET['q'] . '/i', "<mark>$0</mark>", $content);
     }
 
     // Automatically add HTML IDs to headers
