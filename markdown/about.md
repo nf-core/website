@@ -30,13 +30,15 @@ the nf-core alumni hall of fame:
 - [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
 - [@olgabot](https://github.com/olgabot): Olga Botvinnik
 - [@sven1103](https://github.com/sven1103): Sven F.
+- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
 This team includes all of the `@core-team` mentioned above and also:
 
-- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
+- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
+- Xesús M. Abalo
 
 ## Financial Support
 
