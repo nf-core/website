@@ -9,17 +9,17 @@
 // This script runs on a cron job to update a JSON file describing the available
 // FA icons so that the icon-picker has the full selection.
 
-
 # parse the JSON file from Font Awesome
-$json_url = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json";
+$json_url = 'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/metadata/icons.json';
 $raw_json = file_get_contents($json_url);
-$fa_icons = json_decode($raw_json, TRUE);
+$fa_icons = json_decode($raw_json, true);
 
 # create the icons json object, to be put into iconpicker.js
-$icons = array();
-foreach ($fa_icons as $d => $icon){
-    foreach($icon['styles'] as $s){ # create one object for each style (e.g. "brand", "solid") of an icon
-        $icon_class = 'fa'.$s[0].' fa-'.$d; # create 'fab' class name for brand icons, "fas" for solid, etc.
+$icons = [];
+foreach ($fa_icons as $d => $icon) {
+    foreach ($icon['styles'] as $s) {
+        # create one object for each style (e.g. "brand", "solid") of an icon
+        $icon_class = 'fa' . $s[0] . ' fa-' . $d; # create 'fab' class name for brand icons, "fas" for solid, etc.
         $search_terms = implode(' ', $icon['search']['terms']);
         $icons[$icon_class] = $search_terms;
     }
@@ -27,5 +27,5 @@ foreach ($fa_icons as $d => $icon){
 
 # Write to a JSON file for the website
 $results_fn = 'public_html/assets/js/fa-icons.json';
-$results_json = json_encode($icons, JSON_PRETTY_PRINT)."\n";
+$results_json = json_encode($icons, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);

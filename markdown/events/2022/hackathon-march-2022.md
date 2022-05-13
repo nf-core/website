@@ -2,15 +2,14 @@
 title: Hackathon - March 2022
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-start_date: "2022-03-16"
-start_time: "10:00 CET"
-end_date: "2022-03-18"
-end_time: "18:00 CET"
+start_date: '2022-03-16'
+start_time: '10:00 CET'
+end_date: '2022-03-18'
+end_time: '18:00 CET'
 youtube_embed: https://www.youtube.com/watch?v=yZ8xX4Jk4zU
 location_name: Gather town and Slack.
 import_typeform: true
 ---
-
 
 # Welcome
 
@@ -58,7 +57,7 @@ We will coordinate our work and the issues we are working on using a single GitH
 ## Group 1 - Pipeline documentation
 
 💬 Slack group: [`hackathon-march2022-pipelines`](https://nfcore.slack.com/channels/hackathon-march2022-pipelines)<br>
-😊 Group Leads: [James Fellows Yates](https://github.com/jfy133), [Maxime Garcia](https://github.com/maxulysse)
+😊 Group Leads: [James Fellows Yates](https://github.com/jfy133), [Maxime Garcia](https://github.com/maxulysse)<br>
 💻 [HackMD](https://hackmd.io/mnAm84mOQLKO0BqGBVuvUg)
 
 This group will focus on nf-core pipelines themselves.
@@ -73,7 +72,7 @@ This is perfect for anyone already familiar with specific pipelines.
 ## Group 2 - DSL2 / modules documentation
 
 💬 Slack group:[`hackathon-march2022-modules`](https://nfcore.slack.com/channels/hackathon-march2022-modules)<br>
-😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst), [Friederike Hanssen](https://github.com/FriederikeHanssen)
+😊 Group Leads: [Harshil Patel](https://github.com/drpatelh), [Edmund Miller](https://github.com/Emiller88), [Gregor Sturm](https://github.com/grst), [Friederike Hanssen](https://github.com/FriederikeHanssen)<br>
 💻 [HackMD](https://hackmd.io/bdEPR9COS72hj74EmUMyJQ)
 
 The pace of development with DSL2 and nf-core/modules has been a little crazy over the past months.
@@ -85,7 +84,7 @@ Now things are settling down, we need to bring the website documentation up to d
 ## Group 3 - Training documentation: carpentries, tutorials
 
 💬 Slack group: [`hackathon-march2022-training`](https://nfcore.slack.com/channels/hackathon-march2022-training)<br>
-😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)
+😊 Group Leads: [Gisela Gabernet](https://github.com/ggabernet), [Mahesh Binzer-Panchal](https://github.com/mahesh-panchal)<br>
 💻 [HackMD](https://hackmd.io/qLpnWT1OTYWiqSMcQ3gSZA)
 
 There is an increasing amount of Nextflow and nf-core training material available.
@@ -101,7 +100,7 @@ whilst keeping an eye out for things that are not clear or can be improved.
 ## Group 4 - Website tasks, nf-core/tools package documentation
 
 💬 Slack group: [`hackathon-march2022-tools`](https://nfcore.slack.com/channels/hackathon-march2022-tools)<br>
-😊 Group Leads: [Matthias Hörtenhuber](https://github.com/mashehu/), [Phil Ewels](https://github.com/ewels/)
+😊 Group Leads: [Matthias Hörtenhuber](https://github.com/mashehu/), [Phil Ewels](https://github.com/ewels/)<br>
 💻 [HackMD](https://hackmd.io/9aqPL29_R1ScXO3EvJJvrQ)
 
 All that documentation has to go somewhere!
@@ -130,7 +129,6 @@ All locations described in the table below refer to places in the Hackathon [gat
 space. EMEA stands for the time zones in Europe, Middle East, and Africa.
 
 The following schedule should display times in your local time zone:
-
 
 <!-- Calculate value for data-timestamp with '(new Date("2022-03-16T21:00")).getTime()/1000' in console -->
 <div class="table-responsive">
@@ -336,6 +334,7 @@ The following schedule should display times in your local time zone:
             </tr>
         </tbody>
     </table>
+
 </div>
 
 # Social Activities

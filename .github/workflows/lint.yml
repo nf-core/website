@@ -1,0 +1,23 @@
+name: Code Linting
+
+# This action works with pull requests and pushes
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v2
+
+      - name: Install Prettier
+        run: npm install -g prettier @prettier/plugin-php
+
+      - name: Run Prettier --check
+        run: prettier --check ${GITHUB_WORKSPACE}
