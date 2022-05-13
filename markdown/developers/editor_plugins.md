@@ -61,6 +61,11 @@ An Emacs mode written by [@Emiller88](https://github.com/Emiller88) gives Nextfl
 
 If you're looking to get started with Emacs check out [Doom Emacs](https://github.com/hlissner/doom-emacs). If you like modules, it's the editor for you! Check out [DoomCasts: Emacs Doom Screencasts](https://www.youtube.com/playlist?list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj) for some intros similar to the nf-core bytesize talks.
 
+Other useful packages:
+
+- [Doom Emacs](https://github.com/doomemacs/doomemacs): An Emacs framework for the stubborn martian hacker.
+- [`Magit`](https://magit.vc/): A Git Porcelain inside Emacs. [`Forge`](https://magit.vc/manual/forge/) allows you to work with Git forges, such as Github and Gitlab, from the comfort of Magit and the rest of Emacs.
+
 # Vim
 
 [@LukeGoodsell](https://github.com/LukeGoodsell) has put together a Vim plugin that builds on Groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
