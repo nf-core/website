@@ -12,7 +12,7 @@
 
 horizontal rule
 
-----
+---
 
 this is some example text under a header one.
 This is some more text
@@ -20,38 +20,39 @@ And some lorum ipsum:
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem; Quod autem meum munus dicis non equidem recuso, sed te adiungo socium. Utilitatis causa amicitia est quaesita. Color egregius, integra valitudo, summa gratia, vita denique conferta voluptatum omnium varietate. Quid, quod res alia tota est? Que Manilium, ab iisque M. Duo Reges: constructio interrete. Sapiens autem semper beatus est et est aliquando in dolore; Aliter homines, aliter philosophos loqui putas oportere? Quare attende, quaeso.
 
-
-
 ## header two
 
-*this will be italic*
+_this will be italic_
 
 **this will be bold**
 
 ~~this will be strike through~~
 
-__this will be underlined__
-
+**this will be underlined**
 
 ## Lists
+
 ### Unordered
-* item one
-* item two
-    * item a
-    * item b
+
+- item one
+- item two
+  - item a
+  - item b
 
 ### Ordered
+
 1. Item 1
 1. Item 2
 1. Item 3
-    1. item 3a
-    1. item 3b
+   1. item 3a
+   1. item 3b
 
 ## Images
 
 ![Logo](https://user-images.githubusercontent.com/1651212/46570190-b8147200-c9a3-11e8-9c1f-d0a50d0540b6.jpg)
 
 ## Links
+
 http://github.com - automatic!
 (external links will open in new window)
 
@@ -61,11 +62,12 @@ http://github.com - automatic!
 ## Blockquotes
 
 > We're living the future so
-> the present is our past. 
-> 
+> the present is our past.
+>
 > Now with `inline code` to test the contrast.
 
 ## Code
+
 This is a `inline` code
 
 ```bash
@@ -74,27 +76,24 @@ Error executing process > 'RNASEQ:ALIGN_STAR:STAR_ALIGN (WT_REP1)'
 
 for syntax_higlight in test; do
     echo TRUE;
-    "string"; 
+    "string";
     ${variable};
     function();
 done
 ```
-
-
 
 ## Tasks
 
 - [x] done
 - [ ] not done
 
-
 ## Tables
 
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
-Content in the first column | Content in the second column
+| First Header                | Second Header                |
+| --------------------------- | ---------------------------- |
+| Content from cell 1         | Content from cell 2          |
+| Content in the first column | Content in the second column |
+| Content in the first column | Content in the second column |
 
 ## Emojis
 

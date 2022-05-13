@@ -1,11 +1,11 @@
 ---
-title: "BOSC 2020: nf-core poster / demo"
+title: 'BOSC 2020: nf-core poster / demo'
 subtitle: Live poster / demo showing off some new nf-core features
 type: poster
-start_date: "2020-07-21"
-start_time: "17:30"
-end_date: "2020-07-21"
-end_time: "18:15"
+start_date: '2020-07-21'
+start_time: '17:30'
+end_date: '2020-07-21'
+end_time: '18:15'
 location_url: https://bcc2020.github.io/
 ---
 
@@ -30,7 +30,7 @@ Details of what this will include and how it will be work will be posted here so
 **Please note that the poster / demo session will be held _twice_**, in both hemispheres.
 In the European `CET` time zone:
 
-* [July 21: 17:30 - 18:15](https://bcc2020.sched.com/event/cXmk/west-poster-demo-session-3)
-* [July 22: 05:30 - 06:15](https://bcc2020.sched.com/event/cXnB/east-poster-demo-session-3)
+- [July 21: 17:30 - 18:15](https://bcc2020.sched.com/event/cXmk/west-poster-demo-session-3)
+- [July 22: 05:30 - 06:15](https://bcc2020.sched.com/event/cXnB/east-poster-demo-session-3)
 
 See the schedule at the above links to customise for your time zone.

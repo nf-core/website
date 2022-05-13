@@ -1,14 +1,19 @@
 <?php
 if (isset($title) and $title) {
-  echo '</div></div>';
+    echo '</div></div>';
 }
 
 // Subfooter, if given
 if (isset($md_github_url) and $md_github_url) {
-  $subfooter = '<p class="mb-0"><i class="fab fa-github"></i> Read this page on GitHub: <code><a href="' . $md_github_url . '">' . $md_github_url . '</a></code>';
+    $subfooter =
+        '<p class="mb-0"><i class="fab fa-github"></i> Read this page on GitHub: <code><a href="' .
+        $md_github_url .
+        '">' .
+        $md_github_url .
+        '</a></code>';
 }
 if (isset($subfooter) and $subfooter) {
-  echo '<footer class="subfooter"><div class="container">' . $subfooter . '</div></footer>';
+    echo '<footer class="subfooter"><div class="container">' . $subfooter . '</div></footer>';
 }
 ?>
 
@@ -39,13 +44,25 @@ if (isset($subfooter) and $subfooter) {
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
             <div class="theme-switcher btn-group btn-group-sm" role="group">
 
-              <input type="radio" class="btn-check" id="theme-auto" name="theme-auto" value="auto" autocomplete="off" <?php if ($theme == 'auto') echo 'checked'; ?>>
+              <input type="radio" class="btn-check" id="theme-auto" name="theme-auto" value="auto" autocomplete="off" <?php if (
+                  $theme == 'auto'
+              ) {
+                  echo 'checked';
+              } ?>>
               <label class="btn btn-secondary" for="theme-auto" data-bs-toggle=" tooltip" title="Auto Light / Dark"><i class="fas fa-adjust"></i></label>
 
-              <input type="radio" class="btn-check" id="theme-light" name="theme-light" value="light" autocomplete="off" <?php if ($theme == 'light') echo 'checked'; ?>>
+              <input type="radio" class="btn-check" id="theme-light" name="theme-light" value="light" autocomplete="off" <?php if (
+                  $theme == 'light'
+              ) {
+                  echo 'checked';
+              } ?>>
               <label class="btn btn-secondary" for="theme-light" data-bs-toggle=" tooltip" title="Light Theme"><i class="fas fa-sun"></i></label>
 
-              <input type="radio" class="btn-check" id="theme-dark" name="theme-dark" value="dark" autocomplete="off" <?php if ($theme == 'dark') echo 'checked'; ?>>
+              <input type="radio" class="btn-check" id="theme-dark" name="theme-dark" value="dark" autocomplete="off" <?php if (
+                  $theme == 'dark'
+              ) {
+                  echo 'checked';
+              } ?>>
               <label class="btn btn-secondary" for="theme-dark" data-bs-toggle=" tooltip" title="Dark Theme"><i class="fas fa-moon"></i></label>
             </div>
           </div>
@@ -73,29 +90,30 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/pipelines">Available pipelines</a></li>
           <li><a href="/modules">Available modules</a></li>
           <li><a href="/tools">Helper tools</a></li>
-          <li><a href="/usage/introduction">Getting started</a></li>
-          <li><a href="/usage/installation">Installation</a></li>
-          <li><a href="/usage/configuration">Pipeline configuration</a></li>
-          <li><a href="/usage/offline">Running offline</a></li>
-          <li><a href="/usage/usage_tutorials">Usage tutorials</a></li>
-          <li><a href="/usage/reference_genomes">Reference genomes</a></li>
-          <li><a href="/usage/data_management">Data Management</a></li>
-          <li><a href="/usage/troubleshooting">Troubleshooting</a></li>
-          <li><a href="/usage/nextflow">Nextflow resources</a></li>
+          <li><a href="/docs/usage/introduction">Getting started</a></li>
+          <li><a href="/docs/usage/installation">Installation</a></li>
+          <li><a href="/docs/usage/configuration">Pipeline configuration</a></li>
+          <li><a href="/docs/usage/offline">Running offline</a></li>
+          <li><a href="/docs/usage/usage_tutorials">Usage tutorials</a></li>
+          <li><a href="/docs/usage/reference_genomes">Reference genomes</a></li>
+          <li><a href="/docs/usage/data_management">Data Management</a></li>
+          <li><a href="/docs/usage/troubleshooting">Troubleshooting</a></li>
+          <li><a href="/docs/usage/nextflow">Nextflow resources</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
         <h5>For Authors</h5>
         <ul class="list-unstyled">
-          <li><a href="/developers/guidelines">Guidelines</a></li>
-          <li><a href="/developers/adding_pipelines">Adding a new pipeline</a></li>
-          <li><a href="/developers/adding_modules">Adding a new module</a></li>
-          <li><a href="/developers/release_checklist">Release checklist</a></li>
+          <li><a href="/docs/contributing/guidelines">Guidelines</a></li>
+          <li><a href="/docs/contributing/adding_pipelines">Adding a new pipeline</a></li>
+          <li><a href="/docs/contributing/modules">DSL2 modules</a></li>
+          <li><a href="/docs/contributing/release_checklist">Release checklist</a></li>
+          <li><a href="/docs/contributing/training_guide">Training guide</a></li>
           <li><a href="/tools-docs">Lint error codes</a></li>
-          <li><a href="/developers/sync">Template synchronisation</a></li>
-          <li><a href="/developers/developer_tutorials">Developer tutorials</a></li>
-          <li><a href="/developers/editor_plugins">Code editor plugins</a></li>
-          <li><a href="/developers/design_guidelines">Graphic design guidelines</a></li>
+          <li><a href="/docs/contributing/sync">Template synchronisation</a></li>
+          <li><a href="/docs/contributing/developer_tutorials">Developer tutorials</a></li>
+          <li><a href="/docs/contributing/editor_plugins">Code editor plugins</a></li>
+          <li><a href="/docs/contributing/design_guidelines">Graphic design guidelines</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">
@@ -113,11 +131,9 @@ if (isset($subfooter) and $subfooter) {
     </div>
   </div>
 </footer>
-<?php
-if (isset($end_of_html) and $end_of_html) {
-  echo $end_of_html;
-}
-?>
+<?php if (isset($end_of_html) and $end_of_html) {
+    echo $end_of_html;
+} ?>
 </body>
 
 </html>

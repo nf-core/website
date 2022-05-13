@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 2: How nf-core configs work"
+title: 'Bytesize 2: How nf-core configs work'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
-start_date: "2021-02-09"
-start_time: "13:00 CET"
-end_date: "2021-02-09"
-end_time: "13:30 CET"
+start_date: '2021-02-09'
+start_time: '13:00 CET'
+end_date: '2021-02-09'
+end_time: '13:30 CET'
 youtube_embed: https://youtu.be/cXBYusdjrc0
 location_url:
-    - https://doi.org/10.6084/m9.figshare.14160347.v1
-    - https://youtu.be/cXBYusdjrc0
-    - https://www.bilibili.com/video/BV1M54y1a7Uy
+  - https://doi.org/10.6084/m9.figshare.14160347.v1
+  - https://youtu.be/cXBYusdjrc0
+  - https://www.bilibili.com/video/BV1M54y1a7Uy
 ---
 
 # nf-core/bytesize
@@ -25,15 +25,15 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week, Maxime Garcia ([@MaxUlysse](http://github.com/MaxUlysse/)) will present: _**How nf-core configs work.**_ This talk will cover:
 
-* Making your own Nextflow config file
-* Changing resource requirements for a process
-* Using config profiles
-* How the nf-core `--max_memory` options work
-* Adding a new institutional config profile
+- Making your own Nextflow config file
+- Changing resource requirements for a process
+- Using config profiles
+- How the nf-core `--max_memory` options work
+- Adding a new institutional config profile
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* YouTube: <https://youtu.be/cXBYusdjrc0>
+- YouTube: <https://youtu.be/cXBYusdjrc0>
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: This text has been edited to make it more suitable for readers.**
@@ -53,10 +53,10 @@ I install Nextflow with the first command.
 The second command will help me download the data that we want and with the third command I'm actually running the latest release of the [nf-core/eager](https://nf-co.re/eager) pipeline.
 The last command specifies all the necessary input for the pipeline:
 
-* The container engine I want to use, which is Docker.
-* The specific container I want to use is specified with a tag.
-* Some resources, for example `max_cpus`.
-* The path to the reference genome file, e.g fasta file.
+- The container engine I want to use, which is Docker.
+- The specific container I want to use is specified with a tag.
+- Some resources, for example `max_cpus`.
+- The path to the reference genome file, e.g fasta file.
 
 However, we can improve this if we use config files, which is the whole point of this talk:
 How do nf-core configs work?
@@ -87,11 +87,11 @@ This is why I like Nextflow and nf-core - it is easy.
 
 So far, the examples have been designed to run on my computer. However people usually have large datasets and it is not possible to run the pipeline on a single computer. So, assuming I want to do this on my institutional server/cluster/HPC instead, we need to ask ourselves some questions:
 
-* Which container/virtual environment engine is available to us?
-* What are the available resources?
-* Which scheduler or executor are we using?
-* Where are the reference files?
-* Where are the input files?
+- Which container/virtual environment engine is available to us?
+- What are the available resources?
+- Which scheduler or executor are we using?
+- Where are the reference files?
+- Where are the input files?
 
 [[5:33](https://www.youtube.com/watch?v=cXBYusdjrc0&t=5m33s)]
 If we have the answers to all of these questions, we can put it in a config file.
@@ -137,10 +137,10 @@ You can also test your profile online if you made your PR (pull request) but if 
 
 Some final messages to end this talk:
 
-* Read the docs. Everything is in the docs.
-* Try things out, and do not hesitate to ask questions.
-* Stay tuned for more Bytesize talks.
-* Get involved: Join the nf-core Github organisation, follow us on Twitter and on Youtube.
+- Read the docs. Everything is in the docs.
+- Try things out, and do not hesitate to ask questions.
+- Stay tuned for more Bytesize talks.
+- Get involved: Join the nf-core Github organisation, follow us on Twitter and on Youtube.
 
 [[11:33](https://www.youtube.com/watch?v=cXBYusdjrc0&t=11m33s)]
 I would like to thank everyone at my institute, sponsors and all the institutes I am collaborating with.

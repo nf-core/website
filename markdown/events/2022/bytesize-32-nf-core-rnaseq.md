@@ -1,14 +1,14 @@
 ---
-title: "Bytesize 32: nf-core/rnaseq"
+title: 'Bytesize 32: nf-core/rnaseq'
 subtitle: Harshil Patel - Seqera Labs, Spain/UK
 type: talk
-start_date: "2022-02-08"
-start_time: "13:00 CET"
-end_date: "2022-02-08"
-end_time: "13:30 CET"
+start_date: '2022-02-08'
+start_time: '13:00 CET'
+end_date: '2022-02-08'
+end_time: '13:30 CET'
 youtube_embed: https://youtu.be/qMuUt8oVhHw
 location_url:
- - https://youtu.be/qMuUt8oVhHw
+  - https://youtu.be/qMuUt8oVhHw
 ---
 
 # nf-core/bytesize
