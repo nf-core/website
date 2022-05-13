@@ -250,51 +250,51 @@ Please follow the steps below to run the tests locally:
 
    - Run the test with the helper tool `nf-core modules test` from the modules directory.
 
-      ```console
-      $ cd /path/to/git/clone/of/nf-core/modules/
-      $ nf-core modules test fastqc
-                                                ,--./,-.
-                ___     __   __   __   ___     /,-._.--~\
-          |\ | |__  __ /  ` /  \ |__) |__         }  {
-          | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                                `._,._,'
+     ```console
+     $ cd /path/to/git/clone/of/nf-core/modules/
+     $ nf-core modules test fastqc
+                                               ,--./,-.
+               ___     __   __   __   ___     /,-._.--~\
+         |\ | |__  __ /  ` /  \ |__) |__         }  {
+         | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                               `._,._,'
 
-          nf-core/tools version 2.4
+         nf-core/tools version 2.4
 
-      ? Choose software profile Docker
-      INFO     Setting environment variable '$PROFILE' to 'docker'
-      INFO     Running pytest for module 'fastqc'
+     ? Choose software profile Docker
+     INFO     Setting environment variable '$PROFILE' to 'docker'
+     INFO     Running pytest for module 'fastqc'
 
-      ========================================== test session starts ==========================================
-      platform darwin -- Python 3.9.12, pytest-7.1.2, pluggy-1.0.0
-      rootdir: ~/modules, configfile: pytest.ini
-      plugins: workflow-1.6.0
-      collecting ...
-      collected 761 items
+     ========================================== test session starts ==========================================
+     platform darwin -- Python 3.9.12, pytest-7.1.2, pluggy-1.0.0
+     rootdir: ~/modules, configfile: pytest.ini
+     plugins: workflow-1.6.0
+     collecting ...
+     collected 761 items
 
-      fastqc single-end:
-              command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-              directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
-              stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
-              stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
-      'fastqc single-end' done.
+     fastqc single-end:
+             command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+             directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
+             stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
+             stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
+     'fastqc single-end' done.
 
-      fastqc paired-end:
-              command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-              directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
-              stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
-              stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
-      'fastqc paired-end' done.
+     fastqc paired-end:
+             command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+             directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
+             stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
+             stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
+     'fastqc paired-end' done.
 
-      tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
-      ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
-      ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
-      sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
-      ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss     [ 98%]
-      tests/modules/fastqc/test.yml ........
-      Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
-      ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
-      ```
+     tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
+     ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
+     ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
+     sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
+     ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss     [ 98%]
+     tests/modules/fastqc/test.yml ........
+     Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
+     ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
+     ```
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
 
