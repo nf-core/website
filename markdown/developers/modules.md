@@ -248,30 +248,57 @@ Please follow the steps below to run the tests locally:
 
 4. Start running your own tests using the appropriate [`tag`](https://github.com/nf-core/modules/blob/20d8250d9f39ddb05dfb437603aaf99b5c0b2b41/tests/modules/fastqc/test.yml) defined in the `test.yml`:
 
-   - Typical command with Docker:
+   - Run the test with the helper tool `nf-core modules test` from the modules directory.
 
-     ```console
-     cd /path/to/git/clone/of/nf-core/modules/
-     TMPDIR=~ PROFILE=docker pytest --tag fastqc --symlink --keep-workflow-wd --git-aware
-     ```
+      ```console
+      $ cd /path/to/git/clone/of/nf-core/modules/
+      $ nf-core modules test fastqc
+                                                ,--./,-.
+                ___     __   __   __   ___     /,-._.--~\
+          |\ | |__  __ /  ` /  \ |__) |__         }  {
+          | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                                `._,._,'
 
-   - Typical command with Singularity:
+          nf-core/tools version 2.4
 
-     ```console
-     cd /path/to/git/clone/of/nf-core/modules/
-     TMPDIR=~ PROFILE=singularity pytest --tag fastqc --symlink --keep-workflow-wd --git-aware
-     ```
+      ? Choose software profile Docker
+      INFO     Setting environment variable '$PROFILE' to 'docker'
+      INFO     Running pytest for module 'fastqc'
 
-   - Typical command with Conda:
+      ========================================== test session starts ==========================================
+      platform darwin -- Python 3.9.12, pytest-7.1.2, pluggy-1.0.0
+      rootdir: ~/modules, configfile: pytest.ini
+      plugins: workflow-1.6.0
+      collecting ...
+      collected 761 items
 
-     ```console
-     cd /path/to/git/clone/of/nf-core/modules/
-     PROFILE=conda pytest --tag fastqc --symlink --keep-workflow-wd --git-aware
-     ```
+      fastqc single-end:
+              command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+              directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
+              stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
+              stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
+      'fastqc single-end' done.
+
+      fastqc paired-end:
+              command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+              directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
+              stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
+              stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
+      'fastqc paired-end' done.
+
+      tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
+      ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
+      ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
+      sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
+      ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss     [ 98%]
+      tests/modules/fastqc/test.yml ........
+      Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
+      ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
+      ```
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
 
-> 🛈 For docker/singularity`TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
+> 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
 > :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
 
