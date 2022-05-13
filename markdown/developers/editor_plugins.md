@@ -66,3 +66,8 @@ If you're looking to get started with Emacs check out [Doom Emacs](https://githu
 [@LukeGoodsell](https://github.com/LukeGoodsell) has put together a Vim plugin that builds on Groovy syntax highlighting to give support for Nextflow `.nf` files: <https://github.com/LukeGoodsell/nextflow-vim>
 
 [@Mxrcon](https://github.com/Mxrcon) has created a fork that supports DSL2 <https://github.com/Mxrcon/nextflow-vim>
+
+Other useful packages:
+
+- [`octo.nvim`](https://github.com/pwntester/octo.nvim): Edit and review GitHub issues and pull requests from the comfort of your favorite editor
+- [`kickstart.nvim`](https://github.com/nvim-lua/kickstart.nvim): A small, documented, and featureful neovim starter config
