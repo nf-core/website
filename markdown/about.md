@@ -38,7 +38,7 @@ The outreach team is responsible for organising hackathons, the `#bytesize` semi
 This team includes all of the `@core-team` mentioned above and also:
 
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
-- Xesús M. Abalo
+- [@Xesus-Abalo](https://github.com/Xesus-Abalo) Xesús M. Abalo
 
 ## Financial Support
 
