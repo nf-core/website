@@ -1,36 +1,19 @@
 <?php
 
-$docs_md_base = dirname(dirname(__FILE__)) . '/markdown/';
-
 $path_parts = explode('/', $_GET['path']);
-# Clear any empty array elements
-$path_parts = array_filter($path_parts);
-
-# First - assume this is usage or contributing docs and try to find the source (old docs structure)
+$path_parts = array_filter($path_parts); # Clear any empty array elements
 $md_fn = $_GET['path'];
 if (substr($md_fn, -3) !== '.md') {
     $md_fn .= '.md';
 }
-# new docs structure
-if (strtolower($path_parts[0]) == 'docs') {
-    if (file_exists($docs_md_base . $md_fn)) {
-        $markdown_fn = $docs_md_base . $md_fn;
-        $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn;
-        $section = trim($path_parts[1]);
-        include 'documentation.php';
-        exit();
-    }
-}
 
+# Check for old docs URL structure and redirect
+$docs_md_base = dirname(dirname(__FILE__)) . '/markdown/';
 if (file_exists($docs_md_base . $md_fn)) {
-    $markdown_fn = $docs_md_base . $md_fn;
-    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn;
-    include '../includes/header.php';
-    include '../includes/footer.php';
+    header('HTTP/1.1 301 Moved Permanently');
+    header("Location: /docs/$md_fn");
     exit();
 }
-
-# is it the new docs location
 
 # is it a module?
 if (strtolower($path_parts[0]) == 'modules') {

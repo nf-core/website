@@ -40,6 +40,11 @@
     RewriteCond %{REQUEST_URI} ^/events/(.*)$
     RewriteRule ^(.*)$ /events.php?event=$1 [L,NC,QSA]
 
+    # Docs
+    RewriteCond %{REQUEST_URI} ^/docs/(.*)$
+    RewriteRule !^404 - [R=404,L]
+    # RewriteRule ^(.*)$ /docs.php?path=$1 [L,NC,QSA]
+
     # Nicer URL for logos
     RewriteCond %{REQUEST_URI} ^/logo/(.*)$
     RewriteRule ^(.*)$ /logo.php?t=$1 [L,NC,QSA]
@@ -51,7 +56,7 @@
     # Run PHP without filename extension
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^(.*)$ $1.php
+    RewriteRule ^(.*)$ $1.php [L]
 
     # Redirect .md URLs to remove the extension
     RewriteCond %{REQUEST_URI} ^(.*)\.md$
@@ -62,9 +67,9 @@
     RewriteRule !^404 - [R=404,L]
 
     # Send everything else to our dynamic content loader
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ /_routes.php?path=$1 [L,NC,QSA]
+    # RewriteCond %{REQUEST_FILENAME} !-f
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ^(.*)$ /_routes.php?path=$1 [L,NC,QSA]
 
     # Nicer error pages
     ErrorDocument 404 /404.php
