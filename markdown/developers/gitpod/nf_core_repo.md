@@ -1,9 +1,8 @@
-
 ## Trying your first Gitpod environment
 
-You can run Gitpod with the any nf-core pipeline repository. 
+You can run Gitpod with the any nf-core pipeline repository.
 
-For example, for nf-core RNA-seq pipeline, simply click the green gitpod button or add the Gitpod prefix before the git URL (of https://gitpod.io/# ; to become: https://gitpod.io/#https://github.com/nf-core/rnaseq, 
+For example, for nf-core RNA-seq pipeline, simply click the green gitpod button or add the Gitpod prefix before the git URL (of https://gitpod.io/# ; to become: https://gitpod.io/#https://github.com/nf-core/rnaseq,
 
 Once Gitpod has loaded, including the container with all the tools we need, we can go to the terminal and type the following to start the nf-core workflow:
 
