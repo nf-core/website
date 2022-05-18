@@ -6,7 +6,7 @@ Each page of the nf-core webpage is written in markdown. You can navigate to the
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/explorer.png)
 
-Then follow NF-CO.RE/markdown/developers to open indivudal markdown files. Then simply click on a name of the file you want to edit.
+Then follow `nf-co.re/markdown/developers` to open individual markdown files. Then simply click on a name of the file you want to edit.
 
 Gitpod convinienty can render the markdown within the window. In the nf-core website repo (linked earlier), open one of the markdown pages.
 
