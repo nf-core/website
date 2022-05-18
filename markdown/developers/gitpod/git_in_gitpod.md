@@ -4,10 +4,9 @@ Gitpod environments are a handy place to try out Nextflow and nf-core tools, tes
 
 Once you have made changes within the Gitpod environment, you can push these to a new branch for review by the nf-core team.
 
-First, make sure your edited files are saved in your Gitpod IDE (on MAC, Command-S). Then click the Git checkout branch option at the bottom left of the window. 
+First, make sure your edited files are saved in your Gitpod IDE (on MAC, Command-S). Then click the Git checkout branch option at the bottom left of the window.
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/git.1.png)
-
 
 Here will pop up an option to "Create a new branch...". Name a new branch and now you are operating on a branch of the main repository.
 
