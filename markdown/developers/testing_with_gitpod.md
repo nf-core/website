@@ -5,9 +5,9 @@ subtitle: Testing, Code review and Website dev.
 
 # Introduction
 
-Gitpod is an open-source developer platform that can be spun up quickly from a Git repository, containing all the programs needed to run your pipelines. It has many purposes, including: testing pipelines, learning Nextflow, reviewing/editing code and live views of edited markdown/HTML for webpage development. In addition, within Gitpod, any change can be pushed to branches for review.
+Gitpod is an open-source developer platform that can be spin up a little virtual machine quickly from a Git repository, containing all the programs needed to run your pipelines. It has many purposes, including: testing pipelines, learning Nextflow, reviewing/editing code and live views of edited markdown/HTML for webpage development. In addition, within Gitpod, any change can be pushed to branches for review.
 
-Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month and allows 4 parellel workspaces (as of March 2022). It runs in your browser (recommended with Chrome, Firefox or Edge). You can find their extensive documentation [here](https://gitpod.io/).
+Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month, with 30GB temporary storage and allows up to 4 parellel workspaces (as of March 2022). It runs in your browser (recommended with Chrome, Firefox or Edge). You can find their extensive documentation [here](https://gitpod.io/). nf-core members are eligible for professional source plans with unlimited hours.
 
 Each nf-core repository (including the nf-core webpage) should have a ready-to-go Gitpod environment waiting to be started. Since this is a new nf-core feature, check for the `.gitpod.yml` file in the root of the repository. If it's there, you're ready to start using Gitpod. If the file is absent, then make a fork of the repository, start a new branch, and then in your new branch copy the `.gitpod.yml` file from the [nf-core tools repository](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/.gitpod.yml). Then start Gitpod from this branch.
 
@@ -19,7 +19,9 @@ First install the browser extension, follow the instructions [here](https://www.
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/gitpodbutton.png)
 
-Once you click on the green button, you will asked to sign in with either Github, GitLab or Bitbucket. Once you have signed in, you should see something similar to the following:
+Once you click on the green button, you will asked to sign in with either Github.
+
+Once you have signed in, you should see something similar to the following:
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
 
