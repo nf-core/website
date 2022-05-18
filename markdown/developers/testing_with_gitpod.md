@@ -19,7 +19,7 @@ First install the browser extension, follow the instructions [here](https://www.
 
 ![PNG](/public_html/assets/markdown_assets/developers/gitpod/gitpodbutton.png)
 
-Once you click on the green button, you will asked to sign in with either Github.
+Once you click on the green button, you will asked to sign in with Github.
 
 Once you have signed in, you should see something similar to the following:
 
