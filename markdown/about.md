@@ -24,20 +24,22 @@ We regularly review core team members - if you'd like to be involved, drop us a 
 
 ### Alumni
 
-The following former members of the nf-core core team have earned their place in
+The following former members of the nf-core team have earned their place in
 the nf-core alumni hall of fame:
 
 - [@alneberg](https://github.com/alneberg): Johannes Alneberg
 - [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
 - [@olgabot](https://github.com/olgabot): Olga Botvinnik
 - [@sven1103](https://github.com/sven1103): Sven F.
+- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
 This team includes all of the `@core-team` mentioned above and also:
 
-- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
+- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
+- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
 ## Financial Support
 
