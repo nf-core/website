@@ -2,7 +2,7 @@
 
 Within each git repository, the main file that controls the gitpod environment is the `.gitpod.yml` file, which contains the instructions on which environment to build and which tools to install.
 
-For example, check out the nf core modules `.gitpod.yml` file [here](https://github.com/nf-core/modules/blob/master/.gitpod.yml). You majority of nf-core gitpod ymls look like this, with two sections:
+For example, check out the nf-core modules `.gitpod.yml` file [here](https://github.com/nf-core/modules/blob/master/.gitpod.yml). You majority of nf-core gitpod ymls look like this, with two sections:
 
 1. **image**: which pulls the nfcore image `nfcore/gitpod:latest` into Gitpod., which contains `nextflow` and nf-core scripts and other essential tools such as docker. 
 
