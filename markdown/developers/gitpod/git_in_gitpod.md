@@ -2,7 +2,7 @@
 
 Gitpod environments are a handy place to try out Nextflow and nf-core tools, test new features and make suggested changes to the underlying code.
 
-Once you have made changes within the Gitpod environment, you can push these to a new branch for review by the nf core team.
+Once you have made changes within the Gitpod environment, you can push these to a new branch for review by the nf-core team.
 
 First, make sure your edited files are saved in your Gitpod IDE (on MAC, Command-S). Then click the Git checkout branch option at the bottom left of the window. 
 
