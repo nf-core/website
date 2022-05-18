@@ -8,9 +8,9 @@ For example, for nf-core RNA-seq pipeline, simply click the green gitpod button 
 Once Gitpod has loaded, including the container with all the tools we need, we can go to the terminal and type the following to start the nf-core workflow:
 
 ```console
-	nextflow run nf-core/rnaseq \
-	-profile test,docker \
-    --outdir my_result
+nextflow run nf-core/rnaseq \
+-profile test,docker \
+--outdir my_result
 ```
 
 This should run the test data through nf-core rnaseq, using docker with your results in the folder: "my_result". This will take some time to complete.
