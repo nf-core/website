@@ -1,3 +1,7 @@
+---
+title: 3 - Configuration
+---
+
 ## Configuration of Gitpod
 
 Within each git repository, the main file that controls the gitpod environment is the `.gitpod.yml` file, which contains the instructions on which environment to build and which tools to install.
