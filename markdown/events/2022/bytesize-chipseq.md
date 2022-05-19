@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/chipseq'
-subtitle: Jose Espinosa-Carrasco - Center for Genomic Regulation, Barcelona
+subtitle: Phil Ewels - Sequera labs
 type: talk
 start_date: '2022-05-24'
 start_time: '13:00 CET'
@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/chipseq
 
-This week, Jose Espinosa-Carrasco ([@JoseEspinosa](https://github.com/joseespinosa/)) will talk about the newest developments in the nf-core/chipseq pipeline.
+This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will talk about the newest developments in the nf-core/chipseq pipeline.
