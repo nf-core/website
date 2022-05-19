@@ -21,3 +21,5 @@ It is our hope that these talks / videos will build an archive of training mater
 ## Bytesize: nf-core/inkscape and tube map diagrams
 
 This week, James Fellows Yates ([@jfy133](https://github.com/jfy133)) will give a basic introduction to the vector-based graphic design tool [Inkscape](https://inkscape.org/), and then how to use the tool to create the popular 'tube map'-style pipeline diagrams.
+
+![nf-core/eager pipeline diagram in the style of a tube-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png)
