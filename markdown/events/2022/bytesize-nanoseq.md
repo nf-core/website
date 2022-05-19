@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/nanoseq'
-subtitle: Yuk Kei Wan - National University of Singapore
+subtitle: Yuk Kei Wan - Genome Institute of Singapore and National University of Singapore
 type: talk
 start_date: '2022-06-21'
 start_time: '13:00 CET'
