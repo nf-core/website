@@ -20,4 +20,6 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: Bactopia & using nf-core components in non-nf-core pipelines
 
-This week, Robert A. Petit III ([@rpetit3](https://github.com/rpetit3)) will introduce us to bactopia and how he is using nf-core components in this pipeline outside the scope of nf-core.
+This week, Robert A. Petit III ([@rpetit3](https://github.com/rpetit3)) will introduce us to his pipeline [Bactopia](https://github.com/bactopia/bactopia). A first for bytesize, bactopia is not an nf-core pipeline but is rather [influenced by nf-core](https://bactopia.github.io/acknowledgements/#nf-core).
+
+Robert will show us the pipeline and explain how he is using nf-core components (such as [modules](https://nf-co.re/modules)) in this pipeline, despite it being outside the main nf-core organisation.
