@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/nascent
 
-This week, Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will  talk about the newest developments in the nf-core/nascent pipeline.
+This week, Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will talk about the newest developments in the nf-core/nascent pipeline.

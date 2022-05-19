@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/inkscape and tube map diagrams
 
-This week, James Fellow Yates ([@jfy133](https://github.com/jfy133)) will introduce us to inkscape and tube map diagrams for (nf-core) pipelines. 
+This week, James Fellow Yates ([@jfy133](https://github.com/jfy133)) will introduce us to inkscape and tube map diagrams for (nf-core) pipelines.

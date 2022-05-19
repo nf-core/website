@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/proteinfold'
-subtitle: Athanasios Baltzis - Centre for Genomic Regulation, Barcelona 
+subtitle: Athanasios Baltzis - Centre for Genomic Regulation, Barcelona
 type: talk
 start_date: '2022-09-20'
 start_time: '13:00 CET'
@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/proteinfold
 
-This week, Athanasios Baltzis ([@athbaltzis](https://github.com/athbaltzis)) will  talk about the newest developments in the nf-core/proteinfold pipeline.
+This week, Athanasios Baltzis ([@athbaltzis](https://github.com/athbaltzis)) will talk about the newest developments in the nf-core/proteinfold pipeline.
