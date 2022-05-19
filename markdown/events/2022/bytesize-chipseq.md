@@ -5,7 +5,7 @@ type: talk
 start_date: '2022-07-26'
 start_time: '13:00 CET'
 end_date: '2022-07-26'
-end_time: '13:45 CET'
+end_time: '13:30 CET'
 location_url:
   - https://kth-se.zoom.us/j/68390542812
 ---
