@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: resources to learn Nextflow'
-subtitle: Sateesh Peri - The University of Arizona, USA
+subtitle: Sateesh Peri - Bioinformatics Pipeline Engineer, Bluestar Genomics
 type: talk
 start_date: '2022-05-31'
 start_time: '13:00 CET'
