@@ -6,8 +6,8 @@ start_date: '2022-05-17'
 start_time: '13:00 CEST'
 end_date: '2022-05-17'
 end_time: '13:30 CEST'
-location_url:
-  - https://kth-se.zoom.us/j/68390542812
+web address:
+  - https://www.youtube.com/watch?v=rj5i9deNPHA
 ---
 
 # nf-core/bytesize
