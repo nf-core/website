@@ -20,4 +20,6 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: gitpod.io
 
-This week, Chris Wyatt ([@chriswyatt1](https://github.com/chriswyatt1)) will show us the functionality that comes with the addition of and how to use the .gitpod.yml as part of the pipeline template.
+This week, Chris Wyatt ([@chriswyatt1](https://github.com/chriswyatt1)) will show us how to use GitPod (<https://gitpod.io>) for testing, development and training.  GitPod gives you a complete cloud-based environment to work in for free, with VSCode editor integration (in your browser or locally).
+
+Chris will show us how it works, how you can use the environments on offer and how to use the `.gitpod.yml` configuration that now comes as part of the nf-core pipeline template.
