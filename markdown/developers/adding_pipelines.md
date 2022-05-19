@@ -29,7 +29,7 @@ Please request to join the [nf-core GitHub organisation](https://github.com/nf-c
 and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
 [mailing list](https://groups.google.com/forum/#!forum/nf-core).
 
-**It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.**
+**⚠️ It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding. ⚠️**
 
 The [nf-core guidelines](/docs/contributing/guidelines) state that no two pipelines should overlap too much
 in their purpose and results. There may be an existing pipeline that can be extended to give the
