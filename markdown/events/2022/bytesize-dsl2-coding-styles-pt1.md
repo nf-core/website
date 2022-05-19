@@ -22,4 +22,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week, Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse)) will explain us what he thinks the perfect DSL2 coding style should be.
 
-Come and join the ensuing discussion, it's going to be lively 😉 
+Come and join the ensuing discussion, it's going to be lively 😉

@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/nanoseq
 
-This week, Yuk Kei ([@yuukiiwa](https://github.com/yuukiiwa)) will  talk about the newest developments in the nf-core/nanoseq pipeline.
+This week, Yuk Kei ([@yuukiiwa](https://github.com/yuukiiwa)) will talk about the newest developments in the nf-core/nanoseq pipeline.
