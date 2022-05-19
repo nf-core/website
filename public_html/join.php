@@ -60,7 +60,7 @@ include '../includes/header.php';
 We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.</p>
 <p>Once you have registered, you can access the nf-core slack at <a href="https://nfcore.slack.com/">https://nfcore.slack.com/</a>
   <em class="small text-muted">(NB: No hyphen!)</em></p>
-<p><a class="btn btn-success me-2" href="https://nf-co.re/join/slack"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
+<p><a class="btn btn-success me-2" href="https://join.slack.com/t/nfcore/shared_invite/zt-19925m8f9-n87W38_MDY27DAZeken4xw"><i class="fab fa-slack"></i> Get invite to nf-core Slack</a>
 </p>
 
 <h1 id="github" class="mt-5">
@@ -109,7 +109,7 @@ collaborators for editing and reviewing code.</p>
   Gather Town
   <a href="#gather-town" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h1>
-<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for collaboration. 
+<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for collaboration.
   You can request access from the nf-core Slack under the
   <a href="https://nfcore.slack.com/channels/gather-town"><code>#gather-town</code></a> channel
 </p>
