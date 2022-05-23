@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/viralrecon'
 subtitle: Sara Monzón - Instituto de Salud Carlos III, Madrid, Spain
 type: talk
 start_date: '2022-06-07'
-start_time: '13:00 CET'
+start_time: '13:00 CEST'
 end_date: '2022-06-07'
-end_time: '13:30 CET'
+end_time: '13:30 CEST'
 location_url:
   - https://kth-se.zoom.us/j/68390542812
 ---
