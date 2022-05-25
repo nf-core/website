@@ -6,8 +6,7 @@ start_date: '2022-04-12'
 start_time: '13:00 CEST'
 end_date: '2022-04-12'
 end_time: '13:30 CEST'
-location_url:
-  - https://zoom.us/j/94352451216
+youtube_embedded: https://www.youtube.com/watch?v=ZO4lSma3OA8
 ---
 
 # nf-core/bytesize

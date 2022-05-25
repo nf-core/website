@@ -7,8 +7,6 @@ start_time: '13:00 CET'
 end_date: '2022-02-22'
 end_time: '13:30 CET'
 youtube_embed: https://youtu.be/17NqUsh73BU
-location_url:
-  - https://zoom.us/j/94352451216
 ---
 
 # nf-core/bytesize
