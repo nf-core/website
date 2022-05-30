@@ -7,6 +7,8 @@ start_time: '13:00 CEST'
 end_date: '2022-05-17'
 end_time: '13:30 CEST'
 youtube_embed: https://www.youtube.com/watch?v=rj5i9deNPHA
+location_url:
+  - https://doi.org/10.6084/m9.figshare.19923428.v1
 ---
 
 # nf-core/bytesize
