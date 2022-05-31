@@ -49,7 +49,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
   <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
   <!-- FontAwesome -->
-  <script src="https://kit.fontawesome.com/471b59d3f8.js"></script>
+  <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
   <!-- Other JS -->
