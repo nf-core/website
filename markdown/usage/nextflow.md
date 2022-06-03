@@ -29,7 +29,7 @@ You can find some key resources about Nextflow in the list below:
   - Google Cloud tutorial: <https://cloud.google.com/genomics/docs/tutorials/nextflow>
 
 For questions about the main Nextflow tool, use the **Nextflow Slack** community:
-<https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg>
+<https://nextflow.io/slack-invite.html>
 
 Many _nf-core_ resources are to be found on this website.
 If in doubt, get in touch with the nf-core community [via Slack](https://nf-co.re/join).

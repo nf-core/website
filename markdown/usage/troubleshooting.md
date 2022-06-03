@@ -146,7 +146,7 @@ You can also open an issue in the respective pipeline repository on GitHub askin
 - If you think you know the solution, please say so.
 - If you think you can fix the problem, please make a pull request.
 
-If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow Slack Channel](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg).
+If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow Slack Channel](https://nextflow.io/slack-invite.html).
 
 ## Troubleshooting talk
 
@@ -515,4 +515,4 @@ igenomes_base: '/<path>/<to>/<data>/igenomes'
 
 If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
 
-If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [discussion forum](https://github.com/nextflow-io/nextflow/discussions) on GitHub or the [Slack community chat](https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg).
+If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then checkout the [Slack community chat](https://nextflow.io/slack-invite.html) or the [discussion forum](https://github.com/nextflow-io/nextflow/discussions) on GitHub.
