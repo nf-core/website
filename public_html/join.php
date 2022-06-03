@@ -44,7 +44,7 @@ include '../includes/header.php';
 </p>
 <div class="alert alert-info text-center">
   <i class="fab fa-gitter me-1"></i>
-  If your question is about Nextflow and not directly related to nf-core, please use the main <a class="link-underline" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
+  If your question is about Nextflow and not directly related to nf-core, please use the <a class="link-underline" href="https://nextflow.io/slack-invite.html">Slack community chat</a> or the <a class="link-underline" href="https://github.com/nextflow-io/nextflow/discussions">discussion forum</a> on GitHub.
 </div>
 
 <h1 id="slack" class="mt-5">
