@@ -166,3 +166,7 @@ See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html
 Usually you would save configuration such as this to a config file [as described above](#custom-configuration-files).
 
 If you think that the defaults in the pipeline are way off, please let us know! Then we can adjust the defaults to the benefit of all pipeline users.
+
+# Debugging
+
+If you have any problems configuring your profile, please see relevant sections in the [Troubleshooting documentation](https://nf-co.re/docs/usage/troubleshooting.md)
