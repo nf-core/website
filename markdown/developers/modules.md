@@ -413,7 +413,8 @@ resulting in, for instance,
   samtools: 1.12
 ```
 
-All reported versions MUST be without a leading `v` or similar, i.e. must start with a numeric character.
+All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for
+unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
 We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
 line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
