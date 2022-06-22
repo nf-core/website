@@ -6,8 +6,10 @@ start_date: '2022-06-14'
 start_time: '13:00 CEST'
 end_date: '2022-06-14'
 end_time: '13:30 CEST'
+youtube_embed: https://www.youtube.com/watch?v=kBoC6QBU-M0
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://www.youtube.com/watch?v=kBoC6QBU-M0
+  - https://figshare.com/articles/presentation/nf-core_bytesize_gitpod_io_mp4/20109701
 ---
 
 # nf-core/bytesize

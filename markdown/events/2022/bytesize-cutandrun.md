@@ -9,6 +9,7 @@ end_time: '13:30 CEST'
 youtube_embed: https://www.youtube.com/watch?v=rj5i9deNPHA
 location_url:
   - https://doi.org/10.6084/m9.figshare.19923428.v1
+  - https://www.youtube.com/watch?v=kBoC6QBU-M0
 ---
 
 # nf-core/bytesize

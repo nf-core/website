@@ -8,6 +8,7 @@ end_date: '2022-06-07'
 end_time: '13:30 CEST'
 youtube_embedded: https://www.youtube.com/watch?v=K1ThKn4p4u0
 location_url:
+  - https://www.youtube.com/watch?v=K1ThKn4p4u0
   - https://doi.org/10.6084/m9.figshare.20020703.v1
 ---
 
