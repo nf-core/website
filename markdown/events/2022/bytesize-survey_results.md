@@ -8,6 +8,7 @@ end_date: '2022-05-24'
 end_time: '13:30 CEST'
 youtube_embedded: https://youtu.be/DYdPNPVa4wc
 location_url:
+  - https://youtu.be/DYdPNPVa4wc
   - https://doi.org/10.6084/m9.figshare.19923410.v1
 ---
 
