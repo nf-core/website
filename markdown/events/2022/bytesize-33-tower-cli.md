@@ -8,6 +8,7 @@ end_date: '2022-02-15'
 end_time: '13:30 CET'
 youtube_embed: https://youtu.be/MggFf15vGCw
 location_url:
+  - https://youtu.be/MggFf15vGCw
   - https://doi.org/10.6084/m9.figshare.19927409.v1
 ---
 
