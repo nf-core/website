@@ -37,7 +37,7 @@ You are free to change groups as you wish during the hackathon.
 
 Since the nextflow summit is going to be held just after the hackathon, we decided to keep talks to a minimum. There will however be some workshops that include talks. We keep you posted on that!
 
-We will coordinate our work and the issues we are working on using a single GitHub which we will post a link to here closer to the date. There will be a separate tab for each group where will have collated a list of relevant issues.
+We will coordinate our work and the issues we are working on using a single GitHub Project Board which we will post a link to here closer to the date. There will be a separate tab for each group where will have collated a list of relevant issues.
 
 ## Group 1 - Documentation
 
