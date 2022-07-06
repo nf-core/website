@@ -14,7 +14,7 @@ import_typeform: true
 
 Join us October 3-5 for the nf-core training event!
 
-The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. It will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon](https://nf-co.re/events/2022/hackathon-march-2022) (October 10-12, 2022) for the first time.
+The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. The training will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon (October 10-12, 2022)](https://nf-co.re/events/2022/hackathon-march-2022) for the first time.
 
 # Schedule
 
@@ -32,19 +32,19 @@ The training will be held across three consecutive days in 2.5-hour sessions (in
         </thead>
         <tbody>
             <tr>
-                <td>APAC (Asia-Pacific)</td>
+                <td>:earth_asia: APAC (Asia-Pacific)</td>
                 <td data-timestamp="1664758800" data-timeformat="DD-MMM HH:mm z"></td>
                 <td data-timestamp="1664845200" data-timeformat="DD-MMM HH:mm z"></td>
                 <td data-timestamp="1664931600" data-timeformat="DD-MMM HH:mm z"></td>
             </tr>
             <tr>
-                <td>EMEA (Europe, the Middle East, and Africa)</td>
+                <td>:earth_africa: EMEA (Europe, the Middle East, and Africa)</td>
                 <td data-timestamp="1664798400" data-timeformat="DD-MMM HH:mm z"></td>
                 <td data-timestamp="1664884800" data-timeformat="DD-MMM HH:mm z"></td>
                 <td data-timestamp="1664971200" data-timeformat="DD-MMM HH:mm z"></td>
             </tr>
             <tr>
-                <td>AMER (North, Central, and South America)</td>
+                <td>:earth_americas: AMER (North, Central, and South America)</td>
                 <td data-timestamp="1664812800" data-timeformat="DD-MMM HH:mm z"></td>
                 <td data-timestamp="1664899200" data-timeformat="DD-MMM HH:mm z"></td>
                 <td data-timestamp="1664985600" data-timeformat="DD-MMM HH:mm z"></td>
@@ -53,11 +53,11 @@ The training will be held across three consecutive days in 2.5-hour sessions (in
     </table>
 </div>
 
-Of course, if you can’t make the session in your time zone, you are welcome to attend another session at the time that works best for you.
+Of course, if you can’t make the session in your timezone, you are welcome to attend another session at the time that works best for you.
 
 # Prerequisites
 
-Prior experience with Nextflow and nf-core isn’t required to attend the training. However, to get the most out of the training, we do recommend that you are comfortable using the command line and have a basic understanding of scripting language concepts.
+Prior experience with Nextflow and nf-core isn’t required to attend. However, to get the most out of the training, we recommend that you are comfortable using the command line and have a basic understanding of scripting language concepts.
 
 The training will use a preconfigured development environment in [Gitpod](https://www.gitpod.io/). To be able to use Gitpod you will need:
 
@@ -67,4 +67,4 @@ The training will use a preconfigured development environment in [Gitpod](https:
 
 # Registration
 
-Registration is now open! Follow [this](https://giphy.com/embed/Pv3GlvjHv1T1u) link and fill out the registration form to secure your place.
+Registration is now open! Follow [this](https://nf-co.re/) link and fill out the registration form to secure your place :tada:
