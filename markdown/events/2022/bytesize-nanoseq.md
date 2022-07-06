@@ -6,8 +6,10 @@ start_date: '2022-06-21'
 start_time: '13:00 CEST'
 end_date: '2022-06-21'
 end_time: '13:30 CEST'
+youtube_embed: https://www.youtube.com/watch?v=KM1A0_GD2vQ
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://www.youtube.com/watch?v=KM1A0_GD2vQ
+  - https://doi.org/10.6084/m9.figshare.20115506.v1
 ---
 
 # nf-core/bytesize
