@@ -67,4 +67,4 @@ TBD
 
 # COVID control
 
-To iterate the same as everyone holding in-person events, the pandemic is not over. We recommend everyone to get vaccinated if possible if they intend to join the hackathon on site and ask for anyone who displays symptoms to not mingle with other participants. However, it is not feasible for us to enforce any rules, so if you are concerned about contracting Covid we ask you to consider joining remotely.
+To iterate the same as everyone holding in-person events, the pandemic is not over. We recommend everyone to get vaccinated and tested if possible if they intend to join the hackathon on site and ask for anyone who displays symptoms to not mingle with other participants. However, it is not feasible for us to enforce any rules, so if you are concerned about contracting Covid we ask you to consider joining remotely.
