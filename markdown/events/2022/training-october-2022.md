@@ -5,7 +5,7 @@ type: workshop
 start_date: '2022-10-03'
 start_time: '03:00 CEST'
 end_date: '2022-10-05'
-end_time: '20:30 CEST'
+end_time: '21:30 CEST'
 location_name: Virtual
 import_typeform: true
 ---
@@ -45,9 +45,9 @@ The training will be held across three consecutive days in 2.5-hour sessions (in
             </tr>
             <tr>
                 <td>:earth_americas: AMER (North, Central, and South America)</td>
-                <td data-timestamp="1664812800" data-timeformat="DD-MMM HH:mm z"></td>
-                <td data-timestamp="1664899200" data-timeformat="DD-MMM HH:mm z"></td>
-                <td data-timestamp="1664985600" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664816400" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664902800" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664989200" data-timeformat="DD-MMM HH:mm z"></td>
             </tr>
         </tbody>
     </table>
