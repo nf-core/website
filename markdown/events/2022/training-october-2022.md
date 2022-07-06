@@ -14,7 +14,7 @@ import_typeform: true
 
 Join us October 3-5 for the nf-core training event!
 
-The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. The training will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon (October 10-12, 2022)](https://nf-co.re/events/2022/hackathon-march-2022) for the first time.
+The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. The training will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon](https://nf-co.re/events/2022/hackathon-october-2022) (October 10-12, 2022) for the first time.
 
 # Schedule
 
@@ -67,4 +67,6 @@ The training will use a preconfigured development environment in [Gitpod](https:
 
 # Registration
 
-Registration is now open! Follow [this](https://nf-co.re/) link and fill out the registration form to secure your place :tada:
+Click on the link below and fill out the registration form to secure your place :tada:
+
+<a class="btn btn-success btn-lg" href="https://seqera.typeform.com/oct-22-training"><i aria-hidden="true"></i>Register now</a>
