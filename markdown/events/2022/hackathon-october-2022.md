@@ -61,7 +61,7 @@ This group will welcome anyone who wants to work on new modules or improve exist
 
 ## Group 5 - Central tools / Website
 
-The nf-core website needs to be improved and maintained. If this sounds like a fun task, join group 5!
+The nf-core website is in desperate need of work, and central tooling always needs to be improved and maintained. If this sounds like a fun task, join group 5!
 
 # Schedule
 
