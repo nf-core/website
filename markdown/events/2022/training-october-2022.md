@@ -18,7 +18,9 @@ The training is entirely virtual and free and will cover the fundamentals of usi
 
 # Schedule
 
-The training will be held across three consecutive days in 2.5-hour sessions (including time for a small break and questions). Because nf-core is a global community we are making the training geographically accessible and will be holding separate sessions for different timezones:
+The training will be held across three consecutive days in 2.5-hour sessions (including time for a small break and questions).
+
+Because nf-core is a global community we are making the training geographically accessible and will be holding separate sessions for different timezones:
 
 <div class="table">
     <table class="table">
