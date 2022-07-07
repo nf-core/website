@@ -56,7 +56,8 @@ Because nf-core is a global community we are making the training geographically 
 </div>
 
 _(All times shown in your local time zone)_
-Of course, if you can’t make the session in your timezone, you are welcome to attend another session at the time that works best for you.
+You are welcome to attend whichever sessions work best for you.
+Training will be held online in [Gather.town](https://gather.town) (more details closer to the time).
 
 # Prerequisites
 
