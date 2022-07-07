@@ -19,14 +19,16 @@ In addition to the in-person event, we will endeavour to run a hybrid option onl
 
 This hackathon is not meant to be a training event but aimed at people that already have a basic understanding of nextflow and/or nf-core. If you're interested in learning Nextflow & nf-core, there will be free online workshops spanning all global timezones in the week before the hackathon. For more information and the training registration link, see the [training event page](../training-october-2022.md).
 
-<!--
-
 # Registration
 
-Registration will open soon. Please check back here and keep an eye out on twitter and Slack,
-but in the mean time - book the dates in your calendar!
+Registration is now open together with the Nextflow Summit: <https://summit.nextflow.io/register> 
 
--->
+You can register for either the hackathon or the summit, or both. You're welcome to attend in-person or online.
+Attendance online is free, attending in person costs €49 (€59 incl. VAT).
+
+Registration will close September 9th, 2022.
+
+<a class="btn btn-success btn-lg" href="https://summit.nextflow.io/register/">Register now</a>
 
 # Topic: Free-hacking!
 
