@@ -17,11 +17,11 @@ This hackathon will be held in advance of the _**Nextflow Summit 2022**_ in Barc
 
 In addition to the in-person event, we will endeavour to run a hybrid option online in [gather.town](https://gather.town/).
 
-This hackathon is not meant to be a training event but aimed at people that already have a basic understanding of nextflow and/or nf-core. If you're interested in learning Nextflow & nf-core, there will be free online workshops spanning all global timezones in the week before the hackathon. For more information and the training registration link, see the [training event page](https://nf-co.re/events/2022/training-october-2022).
+This hackathon is not meant to be a training event but aimed at people that already have a basic understanding of nextflow and/or nf-core. If you're interested in learning Nextflow and nf-core, there will be free online workshops spanning all global timezones in the week before the hackathon. For more information and the training registration link, see the [Nextflow and nf-core training event page](https://nf-co.re/events/2022/training-october-2022).
 
 # Registration
 
-Registration is now open together with the Nextflow Summit: <https://summit.nextflow.io/register> 
+Registration is now open together with the Nextflow Summit: <https://summit.nextflow.io/register>
 
 You can register for either the hackathon or the summit, or both. You're welcome to attend in-person or online.
 Attendance online is free, attending in person costs €49 (€59 incl. VAT).
