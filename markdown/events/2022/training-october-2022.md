@@ -12,7 +12,7 @@ import_typeform: true
 
 # Welcome
 
-Join us October 3-5 for the nf-core training event!
+Join us from October 3-5, 2022 for the Nextflow / nf-core training event!
 
 The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. The training will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon](https://nf-co.re/events/2022/hackathon-october-2022) (October 10-12, 2022) for the first time.
 
