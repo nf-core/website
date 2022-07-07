@@ -57,7 +57,7 @@ This group will focus on any pipeline related work, this could be:
 
 ## Group 4 - Modules
 
-This group will welcome anyone who wants to work on new Modules or improve already existing ones.
+This group will welcome anyone who wants to work on new modules or improve existing ones.
 
 ## Group 5 - Central tools / Website
 
