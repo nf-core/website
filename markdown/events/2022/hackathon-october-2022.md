@@ -52,8 +52,8 @@ This group will focus on all kind of documentation, from pipelines themselves to
 This group will focus on any pipeline related work, this could be:
 
 - DSL2 conversion of a pipeline
-- new / improved features
-- new pipelines
+- New / improved features for a pipeline
+- Entirely new pipelines
 
 ## Group 4 - Modules
 
