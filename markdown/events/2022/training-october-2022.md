@@ -6,7 +6,7 @@ start_date: '2022-10-03'
 start_time: '03:00 CEST'
 end_date: '2022-10-05'
 end_time: '21:30 CEST'
-location_name: Virtual
+location_name: Virtual (Gather.town)
 ---
 
 # Welcome
