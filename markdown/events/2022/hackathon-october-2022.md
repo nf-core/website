@@ -65,7 +65,7 @@ The nf-core website is in desperate need of work, and central tooling always nee
 
 # Schedule
 
-TBD
+Coming soon..
 
 # COVID control
 
