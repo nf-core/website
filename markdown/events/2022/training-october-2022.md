@@ -25,7 +25,7 @@ Because nf-core is a global community we are making the training geographically 
     <table class="table">
         <thead>
             <tr>
-                <th>Timezone</th>
+                <th>Region</th>
                 <th>Session 1</th>
                 <th>Session 2</th>
                 <th>Session 3</th>
@@ -54,7 +54,8 @@ Because nf-core is a global community we are making the training geographically 
     </table>
 </div>
 
-_(All times shown in your local time zone)_
+_(All times shown relative to your web browser's timezone)_
+
 You are welcome to attend whichever sessions work best for you.
 Training will be held online in [Gather.town](https://gather.town) (more details closer to the time).
 
