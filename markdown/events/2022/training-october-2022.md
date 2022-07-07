@@ -55,6 +55,7 @@ Because nf-core is a global community we are making the training geographically 
     </table>
 </div>
 
+_(All times shown in your local time zone)_
 Of course, if you can’t make the session in your timezone, you are welcome to attend another session at the time that works best for you.
 
 # Prerequisites
