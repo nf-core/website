@@ -10,6 +10,7 @@ Please note that all nf-core community members are expected to adhere to our [co
 The core team members who administer the nf-core project are listed below:
 
 - [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
+- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@drpatelh](https://github.com/drpatelh): Harshil Patel
 - [@ewels](https://github.com/ewels): Phil Ewels
 - [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
@@ -19,6 +20,7 @@ The core team members who administer the nf-core project are listed below:
 - [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
 - [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro Dantas
 
 We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
