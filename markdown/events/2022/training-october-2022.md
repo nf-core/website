@@ -34,9 +34,9 @@ Because nf-core is a global community we are making the training geographically 
         <tbody>
             <tr>
                 <td>:earth_asia: APAC (Asia-Pacific)</td>
-                <td data-timestamp="1664758800" data-timeformat="DD-MMM HH:mm z"></td>
-                <td data-timestamp="1664845200" data-timeformat="DD-MMM HH:mm z"></td>
-                <td data-timestamp="1664931600" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664766000" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664766000" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664766000" data-timeformat="DD-MMM HH:mm z"></td>
             </tr>
             <tr>
                 <td>:earth_africa: EMEA (Europe, the Middle East, and Africa)</td>
