@@ -71,8 +71,8 @@ The nf-core website is in desperate need of work, and central tooling always nee
             <tr>
                 <th>Time</th>
                 <th>Mon. 10 Oct., 2022</th>
-                <th>Thu. 11 Oct., 2022</th>
-                <th>Fri. 12 Oct., 2022</th>
+                <th>Tue. 11 Oct., 2022</th>
+                <th>Wed. 12 Oct., 2022</th>
             </tr>
         </thead>
         <tbody>
