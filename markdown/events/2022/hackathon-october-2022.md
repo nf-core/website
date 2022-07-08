@@ -78,7 +78,7 @@ The nf-core website is in desperate need of work, and central tooling always nee
         <tbody>
             <tr>
                 <td data-timestamp="1665385200" data-timeformat="HH:mm z">09:00</td>
-                <td rowspan="2"Organisers Kickoff></td>
+                <td rowspan="2">Organisers Kickoff</td>
                 <td>Registration Open</td>
                 <td>Registration Open</td>
             </tr>
