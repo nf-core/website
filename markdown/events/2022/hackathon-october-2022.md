@@ -65,7 +65,73 @@ The nf-core website is in desperate need of work, and central tooling always nee
 
 # Schedule
 
-Coming soon..
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Mon. 10 Oct., 2022</th>
+                <th>Thu. 11 Oct., 2022</th>
+                <th>Fri. 12 Oct., 2022</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-timestamp="1665385200" data-timeformat="HH:mm z">09:00</td>
+                <td rowspan="2"Organisers Kickoff</td>
+                <td Registration Open</td>
+                <td>Registration Open</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665388800" data-timeformat="HH:mm z">10:00</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665392400" data-timeformat="HH:mm z">11:00</td>
+                <td>Registration Open</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665396000" data-timeformat="HH:mm z">12:00</td>
+                <td rowspan="1">Hackathon arrivals</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665399600" data-timeformat="HH:mm z">13:00</td>
+                <td rowspan="1">Lunch</td>
+                <td rowspan="1">Lunch</td>
+                <td rowspan="1">Lunch</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665403200" data-timeformat="HH:mm z">14:00</td>
+                <td rowspan="5">Hack!</td>
+                <td rowspan="5">Hack!</td>
+                <td rowspan="7"></td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665406800" data-timeformat="HH:mm z">15:00</td>
+
+            </tr>
+            <tr>
+                <td data-timestamp="1665410400"  data-timeformat="HH:mm z">16:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665414000" data-timeformat="HH:mm z">17:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665417600" data-timeformat="HH:mm z">18:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665421200" data-timeformat="HH:mm z">19:00</td>
+                <td rowspan="2">Hackathon Social</td>
+                <td rowspan="2">Hackathon Dinner</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1665424800" data-timeformat="HH:mm z">20:00</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
 
 # COVID control
 
