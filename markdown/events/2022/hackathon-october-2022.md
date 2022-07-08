@@ -109,7 +109,6 @@ The nf-core website is in desperate need of work, and central tooling always nee
             </tr>
             <tr>
                 <td data-timestamp="1665406800" data-timeformat="HH:mm z">15:00</td>
-
             </tr>
             <tr>
                 <td data-timestamp="1665410400"  data-timeformat="HH:mm z">16:00</td>
