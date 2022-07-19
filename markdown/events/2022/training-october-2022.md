@@ -69,16 +69,18 @@ The training will use a preconfigured development environment in [Gitpod](https:
 - A web browser (Google Chrome, Firefox)
 - An internet connection
 
-# Community Streaming Events
-
-Community streaming events are the best way to engage with your local community while participating in the events remotely. Book a room, gather your colleagues, and participate in the Nextflow and nf-core training, nf-core Hackathon, and Nextflow Summit together.
-
-Tell us about your event using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share. We also have also created a dedicated [community-stream-events](https://nfcore.slack.com/archives/C03Q3RE0RJQ) Slack channel where you can ask questions and share information about your events.
-
-Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
-
 # Registration
 
 Click on the link below and fill out the registration form to secure your place :tada:
 
 <a class="btn btn-success btn-lg" href="https://seqera.typeform.com/oct-22-training"><i aria-hidden="true"></i>Register now</a>
+
+# Community Streaming Events
+
+Community streaming events are a great way to engage with your local communities while participating in events remotely. By simply booking a room and gathering your colleagues you can create discussion and build your community while enjoying the training, nf-core Hackathon, and/or Nextflow Summit together.
+
+You can tell us about your event using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share. We have also created a dedicated [community-stream-events](https://nfcore.slack.com/archives/C03Q3RE0RJQ) Slack channel where you can ask questions and share information about your event.
+
+Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
+
+<a class="btn btn-success btn-lg" href="https://seqera.typeform.com/streaming-event"><i aria-hidden="true"></i>Add your comminty streaming event</a>
