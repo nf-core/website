@@ -32,7 +32,7 @@ mv nextflow ~/bin/
 
 You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
 
-First, set up Bioconda according to the [Bioconda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html), notably setting up channels:
+First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
 ```console
 conda config --add channels defaults
