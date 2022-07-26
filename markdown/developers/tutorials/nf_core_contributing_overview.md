@@ -94,7 +94,7 @@ Or this command to install the `dev` version:
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
-If using conda, first set up Bioconda as described in the [bioconda docs](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) (especially setting the channel order) and then install nf-core:
+If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/#usage) (especially setting the channel order) and then install nf-core:
 
 ```bash
 conda install nf-core
