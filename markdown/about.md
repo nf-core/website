@@ -20,7 +20,7 @@ The core team members who administer the nf-core project are listed below:
 - [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
 - [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
-- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro Dantas
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
 We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
@@ -71,8 +71,8 @@ Amongst other things, the CZI EOSS grant money has enabled the nf-core community
 - Hire a dedicated developer for nf-core (50%)
 - Cover operational costs, such as our Slack subscription fees
 - Organise events, such as hackathons
-- Run organised mentorship programmes _(coming soon)_
-- Hiring local community advocates from geographical areas where we currently lack representation _(coming soon)_
+- Run organised mentorship programmes
+- Hiring local community advocates from geographical areas where we currently lack representation
 
 <div class="clearfix"></div>
 

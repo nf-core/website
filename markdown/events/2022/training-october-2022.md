@@ -3,7 +3,7 @@ title: nf-core Training - October 2022
 subtitle: A set of global online Nextflow and nf-core training events
 type: workshop
 start_date: '2022-10-03'
-start_time: '03:00 CEST'
+start_time: '05:00 CEST'
 end_date: '2022-10-05'
 end_time: '21:30 CEST'
 location_name: Virtual (Gather.town)
@@ -35,8 +35,8 @@ Because nf-core is a global community we are making the training geographically 
             <tr>
                 <td>:earth_asia: APAC (Asia-Pacific)</td>
                 <td data-timestamp="1664766000" data-timeformat="DD-MMM HH:mm z"></td>
-                <td data-timestamp="1664766000" data-timeformat="DD-MMM HH:mm z"></td>
-                <td data-timestamp="1664766000" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664852400" data-timeformat="DD-MMM HH:mm z"></td>
+                <td data-timestamp="1664938800" data-timeformat="DD-MMM HH:mm z"></td>
             </tr>
             <tr>
                 <td>:earth_africa: EMEA (Europe, the Middle East, and Africa)</td>
@@ -74,3 +74,13 @@ The training will use a preconfigured development environment in [Gitpod](https:
 Click on the link below and fill out the registration form to secure your place :tada:
 
 <a class="btn btn-success btn-lg" href="https://seqera.typeform.com/oct-22-training"><i aria-hidden="true"></i>Register now</a>
+
+# Community Streaming Events
+
+Community streaming events are a great way to engage with your local communities while participating in events remotely. By simply booking a room and gathering your colleagues you can create discussion and build your community while enjoying the training, nf-core Hackathon, and/or Nextflow Summit together.
+
+If this is something you are interested in you can tell us about your plans using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share. We have also created a dedicated [`#community-stream-events`](https://nfcore.slack.com/archives/C03Q3RE0RJQ) Slack channel where you can ask questions and share information about your event.
+
+Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
+
+You can add your community event using [this link](https://seqera.typeform.com/streaming-event).
