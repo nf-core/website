@@ -104,9 +104,9 @@ include '../includes/header.php';
         <p>
         <div class="input-group input-group module-install-cmd w-50">
             <span class="input-group-text"><i class="fas fa-terminal"></i></span>
-            <input type="text" class="form-control input code" id="module-install-cmd-text" data-autoselect="" value="nf-core modules install <?php echo $module[
-                'name'
-            ]; ?>" aria-h3="Copy install command" readonly="">
+            <input type="text" class="form-control input code" id="module-install-cmd-text" data-autoselect=""
+            value="nf-core modules install <?php echo str_replace('_', '/', $module['name']); ?>"
+            aria-h3="Copy install command" readonly="">
             <button class="btn btn-outline-secondary copy-txt" data-bs-target="module-install-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
         </div>
         </p>
