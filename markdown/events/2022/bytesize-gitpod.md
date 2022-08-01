@@ -9,7 +9,7 @@ end_time: '13:30 CEST'
 youtube_embed: https://www.youtube.com/watch?v=kBoC6QBU-M0
 location_url:
   - https://www.youtube.com/watch?v=kBoC6QBU-M0
-  - https://figshare.com/articles/presentation/nf-core_bytesize_gitpod_io_mp4/20109701
+  - https://doi.org/10.6084/m9.figshare.20109701.v1
 ---
 
 # nf-core/bytesize
