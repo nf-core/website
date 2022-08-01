@@ -1,16 +1,16 @@
 ---
-title: "Bytesize 13: Tuning pipeline performance"
+title: 'Bytesize 13: Tuning pipeline performance'
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-start_date: "2021-05-18"
-start_time: "13:00 CEST"
-end_date: "2021-05-18"
-end_time: "13:30 CEST"
+start_date: '2021-05-18'
+start_time: '13:00 CEST'
+end_date: '2021-05-18'
+end_time: '13:30 CEST'
 youtube_embed: https://youtu.be/Qw1gLpYtMec
 location_url:
-    - https://www.bilibili.com/video/BV1z64y1k7a3
-    - https://youtu.be/Qw1gLpYtMec
-    - https://doi.org/10.6084/m9.figshare.14680260.v1
+  - https://www.bilibili.com/video/BV1z64y1k7a3
+  - https://youtu.be/Qw1gLpYtMec
+  - https://doi.org/10.6084/m9.figshare.14680260.v1
 ---
 
 # nf-core/bytesize
@@ -28,13 +28,13 @@ This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will pre
 
 This will cover:
 
-* In-depth analysis of computational resource usage after a pipeline run
-* How to take that back into a custom config to make it more efficient
+- In-depth analysis of computational resource usage after a pipeline run
+- How to take that back into a custom config to make it more efficient
 
 The talk will be presented on Zoom and live-streamed on YouTube:
 
-* YouTube: <https://youtu.be/Qw1gLpYtMec>
-* Bilibili: <https://www.bilibili.com/video/BV1z64y1k7a3>
+- YouTube: <https://youtu.be/Qw1gLpYtMec>
+- Bilibili: <https://www.bilibili.com/video/BV1z64y1k7a3>
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited to make it reader-friendly**

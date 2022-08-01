@@ -36,19 +36,19 @@ To run a pipeline offline you need the pipeline code, the software requirements 
 To help with this process, we have created a helper tool as part of the _nf-core_ package to automate this for you.
 
 On a computer with an internet connection, run `nf-core download <pipeline>` to download the pipeline and config profiles.
-Add the argument `--singularity` to also fetch the singularity container(s).
+Add the argument `--container singularity` to also fetch the singularity container(s).
 
 The pipeline and requirements will be downloaded, configured with their relative paths and packaged in to a `.tar.gz` file by default.
 This can then be transferred to your offline system and unpacked.
 
-Inside you will see directories called `workflow` (the pipeline files), `config` (a copy of [nf-core/configs](https://github.com/nf-core/configs)) and if you used `--singularity` a directory called `singularity`.
+Inside you will see directories called `workflow` (the pipeline files), `config` (a copy of [nf-core/configs](https://github.com/nf-core/configs)) and if you used `--container singularity` a directory called `singularity`.
 The pipeline code is adjusted by the download tool to expect these relative paths, so as long as you keep them together it should work out of the box.
 
 To run the pipeline, simply do `nextflow run <download_directory>/workflow [pipeline flags]`
 
 ### Shared storage
 
-If you are downloading _directly_ to the offline storage (eg. a head node with internet access whilst compute nodes are offline), you can use the `--singularity-cache` option for `nf-core download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
+If you are downloading _directly_ to the offline storage (eg. a head node with internet access whilst compute nodes are offline), you can use the `--singularity-cache-only` option for `nf-core download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
 This downloads the singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder and does not copy them into the target downloaded pipeline folder.
 This reduces total disk space usage and is faster.
 
@@ -59,3 +59,11 @@ For more information, see the [documentation for `nf-core download`](https://nf-
 Some pipelines require reference genomes and have built-in integration of AWS-iGenomes.
 If you wish to use these references you must download them and transfer to your offline cluster.
 Once transferred, follow the [reference genomes documentation](reference_genomes.md) to configure the base path for the references.
+
+## Bytesize talk
+
+Here is a bytesize talk explaining the necessary steps to run pipelines offline.
+
+<!-- markdownlint-disable -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N1rRr4J0Lps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- markdownlint-restore -->

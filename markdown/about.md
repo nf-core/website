@@ -9,35 +9,41 @@ Please note that all nf-core community members are expected to adhere to our [co
 
 The core team members who administer the nf-core project are listed below:
 
-* [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
-* [@drpatelh](https://github.com/drpatelh): Harshil Patel
-* [@ewels](https://github.com/ewels): Phil Ewels
-* [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
-* [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
-* [@jfy133](https://github.com/jfy133): James A. Fellows Yates
-* [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
-* [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+- [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
+- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
+- [@drpatelh](https://github.com/drpatelh): Harshil Patel
+- [@ewels](https://github.com/ewels): Phil Ewels
+- [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
+- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
+- [@jfy133](https://github.com/jfy133): James A. Fellows Yates
+- [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
+- [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
+- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+- [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
 We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
 ### Alumni
 
-The following former members of the nf-core core team have earned their place in
+The following former members of the nf-core team have earned their place in
 the nf-core alumni hall of fame:
 
-* [@alneberg](https://github.com/alneberg): Johannes Alneberg
-* [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
-* [@olgabot](https://github.com/olgabot): Olga Botvinnik
-* [@sven1103](https://github.com/sven1103): Sven F.
+- [@alneberg](https://github.com/alneberg): Johannes Alneberg
+- [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
+- [@olgabot](https://github.com/olgabot): Olga Botvinnik
+- [@sven1103](https://github.com/sven1103): Sven F.
+- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
 This team includes all of the `@core-team` mentioned above and also:
 
-* [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
+- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
+- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
-## Financial  Support
+## Financial Support
 
 The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
 Most of all, we would like to thank all contributors (and their employers!).
@@ -55,18 +61,18 @@ Finally, we would specifically like to acknowledge and thank the following spons
 The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
 We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
 
-* [EOSS - second round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/)
-* [EOSS - fourth round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/)
-* [EOSS - Diversity & Inclusion](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b)
+- [EOSS - second round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/)
+- [EOSS - fourth round](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/)
+- [EOSS - Diversity & Inclusion](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b)
 
 Amongst other things, the CZI EOSS grant money has enabled the nf-core community to:
 
-* Hire a dedicated coordinator / safety officer (50%)
-* Hire a dedicated developer for nf-core (50%)
-* Cover operational costs, such as our Slack subscription fees
-* Organise events, such as hackathons
-* Run organised mentorship programmes _(coming soon)_
-* Hiring local community advocates from geographical areas where we currently lack representation _(coming soon)_
+- Hire a dedicated coordinator / safety officer (50%)
+- Hire a dedicated developer for nf-core (50%)
+- Cover operational costs, such as our Slack subscription fees
+- Organise events, such as hackathons
+- Run organised mentorship programmes
+- Hiring local community advocates from geographical areas where we currently lack representation
 
 <div class="clearfix"></div>
 

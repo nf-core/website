@@ -2,6 +2,7 @@
 title: Pipeline configuration
 subtitle: How configure Nextflow to work on your system
 ---
+
 # Introduction
 
 One of the strongest features of Nextflow is that it can run on virtually any computational infrastructure.
@@ -9,7 +10,7 @@ It has built-in support for HPC execution schedulers such as [Slurm](https://slu
 
 Nextflow also supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/), as well as the [Conda](https://docs.conda.io/en/latest/) package management system to deploy the pipelines.
 
-In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/usage/installation) page) and configure Nextflow so that it knows how best to run your analysis jobs.
+In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/docs/usage/installation) page) and configure Nextflow so that it knows how best to run your analysis jobs.
 
 # Different config locations
 
@@ -31,6 +32,7 @@ These are always loaded and overwritten as needed by subsequent layers of config
 In addition to this base config, pipelines have configuration "profiles" that can be enabled with the command line flag `-profile`. Multiple profiles can be specified in a comma-separated list (e.g. `-profile test,docker`). The order of arguments is important! They are loaded in sequence, so later profiles can overwrite earlier profiles. Alternatively, you can create your own configuration profiles and supply these to the pipeline when running.
 
 nf-core offers a range of basic profiles for configuration of container engines:
+
 - `docker`
   - A generic configuration profile to be used with [Docker](http://docker.com/)
   - Pulls software from DockerHub
@@ -52,6 +54,7 @@ nf-core offers a range of basic profiles for configuration of container engines:
 If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
 
 Finally, each pipeline comes with a config profile called `test` and `test_full`. These are used for automated pipeline CI tests and will run the workflow with a minimal / full-size public dataset, respectively. They can also be used for performing test(s) run of nf-core pipeline on your infrastructure, before using your own data.
+
 ## Shared nf-core/configs
 
 If you use a shared system with other people, it is best to use a configuration profile from [nf-core/configs](https://github.com/nf-core/configs).
@@ -163,3 +166,7 @@ See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html
 Usually you would save configuration such as this to a config file [as described above](#custom-configuration-files).
 
 If you think that the defaults in the pipeline are way off, please let us know! Then we can adjust the defaults to the benefit of all pipeline users.
+
+# Debugging
+
+If you have any problems configuring your profile, please see relevant sections in the [Troubleshooting documentation](https://nf-co.re/docs/usage/troubleshooting.md)
