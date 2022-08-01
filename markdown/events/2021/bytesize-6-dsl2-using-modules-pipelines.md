@@ -1,21 +1,21 @@
 ---
-title: "Bytesize 6: All about modules"
+title: 'Bytesize 6: All about modules'
 subtitle: Friederike Hanssen / Kevin Menden - QBiC Tübingen, Germany
 type: talk
-start_date: "2021-03-09"
-start_time: "13:00 CET"
-end_date: "2021-03-09"
-end_time: "13:30 CET"
+start_date: '2021-03-09'
+start_time: '13:00 CET'
+end_date: '2021-03-09'
+end_time: '13:30 CET'
 youtube_embed:
-    - https://www.youtube.com/embed/tWvou0xj9wA
-    - https://www.youtube.com/embed/Wc4A2tQ6WWY
+  - https://www.youtube.com/embed/tWvou0xj9wA
+  - https://www.youtube.com/embed/Wc4A2tQ6WWY
 location_url:
-    - https://youtu.be/tWvou0xj9wA
-    - https://youtu.be/Wc4A2tQ6WWY
-    - https://www.bilibili.com/video/BV1nN411Q7Ex
-    - https://www.bilibili.com/video/BV1bz4y117me
-    - https://doi.org/10.6084/m9.figshare.14185736.v1
-    - https://doi.org/10.6084/m9.figshare.14185745.v1
+  - https://youtu.be/tWvou0xj9wA
+  - https://youtu.be/Wc4A2tQ6WWY
+  - https://www.bilibili.com/video/BV1nN411Q7Ex
+  - https://www.bilibili.com/video/BV1bz4y117me
+  - https://doi.org/10.6084/m9.figshare.14185736.v1
+  - https://doi.org/10.6084/m9.figshare.14185745.v1
 ---
 
 # nf-core/bytesize
@@ -149,11 +149,6 @@ You can collect them all by creating an empty channel and then mixing these vers
 From the sub-workflows, you can propagate them by these named emit versions.
 
 So for the `bwa_mem_version`, you can get the version from the module and access it again in your workflow script as `TEST_SUBWORKFLOW.out.bwa_mem_version`, and then run your local module in the workflow.
-
-
-
-
-
 
 ### DSL2 - Adding modules to nf-core
 

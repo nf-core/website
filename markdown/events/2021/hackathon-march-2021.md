@@ -2,10 +2,10 @@
 title: Hackathon - March 2021
 subtitle: A virtual online hackathon to develop nf-core together.
 type: hackathon
-start_date: "2021-03-22"
-start_time: "10:00 CET"
-end_date: "2021-03-24"
-end_time: "18:00 CET"
+start_date: '2021-03-22'
+start_time: '10:00 CET'
+end_date: '2021-03-24'
+end_time: '18:00 CET'
 youtube_embed: https://youtu.be/cuwcgZX6Li8
 location_name: Zoom, Slack & YouTube.
 location_url: '#how-it-works'
@@ -38,34 +38,34 @@ This event is being organised by the nf-core [core team](https://nf-co.re/about)
 Work within the hackathon will be loosely gathered into projects.
 These are not strict and you're free to work on whatever you would like, they are just to help group together people working on similar tasks.
 
-* **DSL2 / modules**
-  * [<i class="fab fa-slack"></i> `#hackathon-march-2021-dsl2-modules`](https://nfcore.slack.com/archives/C01QPMBDW21)
-  * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/38KwcBalQb21lfwAWnbuzw?both)
-  * [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/12)
-  * _Example tasks:_
+- **DSL2 / modules**
+  - [<i class="fab fa-slack"></i> `#hackathon-march-2021-dsl2-modules`](https://nfcore.slack.com/archives/C01QPMBDW21)
+  - [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/38KwcBalQb21lfwAWnbuzw?both)
+  - [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/12)
+  - _Example tasks:_
     DSL2 pipeline conversion (specific pipelines),
     writing modules for specific tools,
     module code linting and tests
-* **Contribute to a pipeline**
-  * [<i class="fab fa-slack"></i> `#hackathon-march-2021-pipelines`](https://nfcore.slack.com/archives/C01R5D0TYUR)
-  * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/Aw3d57wWRH6s5n4tHMBlag?both)
-  * [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/13)
-  * _Example tasks:_
+- **Contribute to a pipeline**
+  - [<i class="fab fa-slack"></i> `#hackathon-march-2021-pipelines`](https://nfcore.slack.com/archives/C01R5D0TYUR)
+  - [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/Aw3d57wWRH6s5n4tHMBlag?both)
+  - [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/13)
+  - _Example tasks:_
     template updates to pipelines,
     working on specific pipelines (e.g. [sarek](/sarek), scrna)
-* **Framework tools**
-  * [<i class="fab fa-slack"></i> `#hackathon-march-2021-framework`](https://nfcore.slack.com/archives/C01QC1APZ0F)
-  * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/-L51u4vsQZOyQWYBjJ9SJg?both)
-  * [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/14)
-  * _Example tasks:_
+- **Framework tools**
+  - [<i class="fab fa-slack"></i> `#hackathon-march-2021-framework`](https://nfcore.slack.com/archives/C01QC1APZ0F)
+  - [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/-L51u4vsQZOyQWYBjJ9SJg?both)
+  - [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/14)
+  - _Example tasks:_
     [nf-core/tools](/tools), website improvements,
     input sample-sheet standardisation,
     RefGenie integration
-* **Documentation**
-  * [<i class="fab fa-slack"></i> `#hackathon-march-2021-documentation`](https://nfcore.slack.com/archives/C01QPMKBYNR)
-  * [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/mpDOQXkoROaUquAt6EEQtQ?both)
-  * [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/15)
-  * _Example tasks:_
+- **Documentation**
+  - [<i class="fab fa-slack"></i> `#hackathon-march-2021-documentation`](https://nfcore.slack.com/archives/C01QPMKBYNR)
+  - [<i class="fas fa-file-alt"></i> HackMD](https://hackmd.io/mpDOQXkoROaUquAt6EEQtQ?both)
+  - [<i class="fab fa-github"></i> Project Board](https://github.com/orgs/nf-core/projects/15)
+  - _Example tasks:_
     Make all pipelines use JSON Schema,
     improving docs about centralised configs,
     website docs overhaul
@@ -77,9 +77,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 1. :speech_balloon: Chat with your group to get an overview of what is going on
 2. <i class="fab fa-slack"></i> Join the relevant Slack channel to stay up to date and discuss with your project members
 3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board
-    * If you have something you want to do that's not there, please make an issue and add it to the board
+   - If you have something you want to do that's not there, please make an issue and add it to the board
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time)
-    * This is so that multiple people don't accidentally work on the same task
+   - This is so that multiple people don't accidentally work on the same task
 5. :fast_forward: When you're done, make a pull-request with your changes. Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
 7. :recycle: Repeat!
@@ -98,9 +98,9 @@ These volunteers are here to help!
 We expect people to come and go during the hackathon due to diverse time zones.
 Please just do whatever works best for you and try to catch up with the YouTube streams if you missed them.
 
-* <i class="fab fa-youtube me-2"></i>
+- <i class="fab fa-youtube me-2"></i>
   _Check-ins_ and _check-outs_ will be hosted on Zoom and live-streamed to YouTube, available after the event.
-* <i class="fa fa-video me-2"></i>
+- <i class="fa fa-video me-2"></i>
   The social will be on Zoom (without YouTube) and _Group catch-ups_ and will be held using <https://meet.jit.si/>
 
 The following schedule should display times in your local time zone:
@@ -256,37 +256,37 @@ Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies
 
 In addition, please respect the following at all times during the hackathon:
 
-* **Never share the jitsi and zoom links** for the hackathon on social media.
-* Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media. Not respecting the latter amounts to doxing, which is also in direct violation of the nf-core [Code of Conduct](https://nf-co.re/code_of_conduct).
+- **Never share the jitsi and zoom links** for the hackathon on social media.
+- Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media. Not respecting the latter amounts to doxing, which is also in direct violation of the nf-core [Code of Conduct](https://nf-co.re/code_of_conduct).
 
 ## Reporting CoC Violations during the hackathon
 
 In case of an immediate perceived threat at the hackathon, please reach out to any of the following individuals on Slack. Their names and the time-zones they are located in are indicated.
 
-* Alexander Peltzer (CET)
-* Harshil Patel (GMT)
-* Phil Ewels (CET)
-* Gisela Gabernet (CET)
-* James A. Fellows Yates (CET)
-* Matthias Hörtenhuber (CET)
-* Maxime Garcia (CET)
-* Renuka Kudva (CET)
-* Kevin Menden (CET)
-* Friederike Hanssen (CET)
-* Michael Heuer (PST)
+- Alexander Peltzer (CET)
+- Harshil Patel (GMT)
+- Phil Ewels (CET)
+- Gisela Gabernet (CET)
+- James A. Fellows Yates (CET)
+- Matthias Hörtenhuber (CET)
+- Maxime Garcia (CET)
+- Renuka Kudva (CET)
+- Kevin Menden (CET)
+- Friederike Hanssen (CET)
+- Michael Heuer (PST)
 
 You can also report any CoC violations directly to safety [at] nf-co [dot] re. Our safety officer, Renuka Kudva, will contact you to follow up on your report.
 
 In your email report, please do your best to include:
 
-* Your contact information.
-* Identifying information (e.g. names, nicknames, pseudonyms) of the participant who has violated the Code of Conduct.
-* The behaviour that was in violation and the circumstances surrounding the incident.
-* The approximate time of the behaviour (if different than the time the report was made)
-* Other people involved in the incident if applicable.
-* If you believe the incident is ongoing, please let us know.
-* If there is a publicly available record (e.g. mailing list record, a screenshot - please attach if so).
-* Any additional helpful information.
+- Your contact information.
+- Identifying information (e.g. names, nicknames, pseudonyms) of the participant who has violated the Code of Conduct.
+- The behaviour that was in violation and the circumstances surrounding the incident.
+- The approximate time of the behaviour (if different than the time the report was made)
+- Other people involved in the incident if applicable.
+- If you believe the incident is ongoing, please let us know.
+- If there is a publicly available record (e.g. mailing list record, a screenshot - please attach if so).
+- Any additional helpful information.
 
 After you file a report, uur safety officer, Renuka Kudva, will contact you to follow up on your report.
 
@@ -314,16 +314,16 @@ The Safety Team reserves the right to not act on a report.
 
 All reports, and any additional information and data included, are only shared with the safety officer and members of the core team in case the safety officer is in violation of the CoC. We will respect confidentiality requests for the purpose of protecting victims of abuse.
 
-We will not name harassment victims beyond discussions between the safety officer and  members of the nf-core team without the explicit consent of the individuals involved.
+We will not name harassment victims beyond discussions between the safety officer and members of the nf-core team without the explicit consent of the individuals involved.
 
 ## Enforcement
 
 Actions taken by the nf-core’s safety team may include but are not limited to:
 
-* Asking anyone to stop a behaviour.
-* Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
-* Removing access to the event spaces that we manage either temporarily or permanently.
-* Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
-* Communicating to all participants that an incident has taken place and how we will act or have acted– this may be for the purpose of letting event participants know we are aware and are dealing with the incident.
-* Banning anyone from participating in nf-core-managed spaces, future events and activities, either temporarily or permanently.
-* No action required.
+- Asking anyone to stop a behaviour.
+- Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
+- Removing access to the event spaces that we manage either temporarily or permanently.
+- Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
+- Communicating to all participants that an incident has taken place and how we will act or have acted– this may be for the purpose of letting event participants know we are aware and are dealing with the incident.
+- Banning anyone from participating in nf-core-managed spaces, future events and activities, either temporarily or permanently.
+- No action required.

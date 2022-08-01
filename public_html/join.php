@@ -1,24 +1,24 @@
 <?php
 
 // Check if we have $_GET['t'] - ie, URL was /join/something
-$config = parse_ini_file("../config.ini");
+$config = parse_ini_file('../config.ini');
 $join_redirects = [
-  'slack' => $config['slack_invite_url']
+    'slack' => $config['slack_invite_url'],
 ];
-if(isset($_GET['t'])){
-  $redirect = rtrim(str_replace('join/', '', $_GET['t']), '/');
-  if(array_key_exists($redirect, $join_redirects)){
-    header('Location: '.$join_redirects[$redirect]);
-  } else {
-    header('HTTP/1.1 404 Not Found');
-    include('404.php');
-    die();
-  }
+if (isset($_GET['t'])) {
+    $redirect = rtrim(str_replace('join/', '', $_GET['t']), '/');
+    if (array_key_exists($redirect, $join_redirects)) {
+        header('Location: ' . $join_redirects[$redirect]);
+    } else {
+        header('HTTP/1.1 404 Not Found');
+        include '404.php';
+        die();
+    }
 }
 
 $title = 'Join nf-core';
 $subtitle = 'Read about the different ways you can get involved with nf-core';
-include('../includes/header.php');
+include '../includes/header.php';
 ?>
 
 <p>We use a few different tools to organise the nf-core community -
@@ -44,7 +44,7 @@ include('../includes/header.php');
 </p>
 <div class="alert alert-info text-center">
   <i class="fab fa-gitter me-1"></i>
-  If your question is about Nextflow and not directly related to nf-core, please use the main <a class="link-underline" href="https://gitter.im/nextflow-io/nextflow">Nextflow Gitter chat</a>.
+  If your question is about Nextflow and not directly related to nf-core, please use the <a class="link-underline" href="https://nextflow.io/slack-invite.html">Slack community chat</a> or the <a class="link-underline" href="https://github.com/nextflow-io/nextflow/discussions">discussion forum</a> on GitHub.
 </div>
 
 <h1 id="slack" class="mt-5">
@@ -117,4 +117,4 @@ collaborators for editing and reviewing code.</p>
 </p>
 
 
-<?php include('../includes/footer.php');
+<?php include '../includes/footer.php';
