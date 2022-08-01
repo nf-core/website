@@ -421,7 +421,39 @@ line-by-line as we believe the latter makes it easy to accidentally overwrite th
 of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
 not erroneously terminate the module.
 
-If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to create this file e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf). If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
+If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually
+specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
+Please include the accompanying comments above the software packing directives and beside the version string.
+
+```nextflow
+process TOOL {
+    ...
+
+    // WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
+    conda (params.enable_conda ? "bioconda::tool=0.9.1:" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
+        'quay.io/biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
+
+    ...
+
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def VERSION = '0.9.1' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+    """
+    ...
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        tool: $VERSION
+    END_VERSIONS
+    """
+
+}
+```
+
+If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
 
 5. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
