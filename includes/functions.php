@@ -507,7 +507,9 @@ foreach ($events as $idx => $event) {
         unset($events[$idx]);
         continue;
     }
-    if ($event['end_ts'] - $event['start_ts'] > 3600 * 5) {
+    if (isset($event['start_announcement'])) {
+        $time_window = $event['start_ts'] - strtotime($event['start_announcement']);
+    } elseif ($event['end_ts'] - $event['start_ts'] > 3600 * 5) {
         $time_window = 86400 * 28; // show announcement 7 days ahead for full day events
     } else {
         $time_window = 86400;
