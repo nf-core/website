@@ -7,7 +7,8 @@ start_time: '13:00 CEST'
 end_date: '2022-07-26'
 end_time: '13:30 CEST'
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://www.youtube.com/watch?v=59I-4wB1z4c
+  - https://doi.org/10.6084/m9.figshare.20418171.v1
 ---
 
 # nf-core/bytesize
