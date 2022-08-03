@@ -2,6 +2,7 @@
 title: Hackathon - October 2022 (Barcelona)
 subtitle: A hybrid hackathon held in Barcelona and online
 type: hackathon
+start_announcement: '2022-08-02 12:00 CEST'
 start_date: '2022-10-10'
 start_time: '11:00 CEST'
 end_date: '2022-10-12'
@@ -130,6 +131,16 @@ The nf-core website is in desperate need of work, and central tooling always nee
         </tbody>
     </table>
 </div>
+
+# Community Streaming Events
+
+Community streaming events are a great way to engage with your local communities while participating in events remotely. By simply booking a room and gathering your colleagues you can create discussion and build your community while enjoying the training, nf-core Hackathon, and/or Nextflow Summit together.
+
+If this is something you are interested in you can tell us about your plans using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share. We have also created a dedicated [`#community-stream-events`](https://nfcore.slack.com/archives/C03Q3RE0RJQ) Slack channel where you can ask questions and share information about your event.
+
+Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
+
+You can add your community event using [this link](https://seqera.typeform.com/streaming-event).
 
 # COVID control
 

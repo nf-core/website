@@ -339,7 +339,7 @@ If you normally need to specify additional 'non-standard' options in the headers
 >   executor = 'sge'
 >   queue = { task.cpus > 24 ? 'big' : 'small' }
 >   maxRetries = 2
->   clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+>   clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
 > }
 > ```
 
@@ -364,7 +364,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 ```
@@ -392,7 +392,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
@@ -420,7 +420,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
@@ -453,7 +453,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
@@ -486,7 +486,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
