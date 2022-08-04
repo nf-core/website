@@ -16,9 +16,19 @@ $(function () {
     });
   }
   // Enable code highlighting
-  hljs.highlightAll();
+
   // Don't try to guess markdown language to highlight (gets it wrong most of the time)
-  hljs.configure({ languages: [] });
+  hljs.configure({ languages: [], ignoreUnescapedHTML: true });
+  // don't highlight certain keywords
+  const REMOVE_KEYWORDS = ['test'];
+  hljs.getLanguage('bash').keywords.built_in = hljs.getLanguage('bash').keywords.built_in.filter((element) => {
+    return !REMOVE_KEYWORDS.includes(element);
+  });
+  // do highlight custom keywords
+  const CUSTOM_KEYWORDS = ['nextflow'];
+  hljs.getLanguage('bash').keywords.built_in.push(...CUSTOM_KEYWORDS);
+
+  hljs.highlightAll();
 
   // Set theme cookie if not set
   if (document.cookie.indexOf('nfcoretheme') == -1) {
