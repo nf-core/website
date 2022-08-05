@@ -106,7 +106,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
   <?php endif;
   if (isset($youtube_embed)): ?>
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="/assets/js/transcripts.js"></script>
   <?php endif;
   ?>
