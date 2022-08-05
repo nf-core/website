@@ -6,6 +6,7 @@ start_date: '2021-09-28'
 start_time: '13:00 CEST'
 end_date: '2021-09-28'
 end_time: '13:30 CEST'
+embed_at: 'mhcquant'
 youtube_embed: https://youtu.be/NCKkSssE_4w
 location_url:
   - https://youtu.be/NCKkSssE_4w
