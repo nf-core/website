@@ -61,12 +61,14 @@ $last_commit = time_ago($pipeline->updated_at);
 
 // filter events for embed_at key and look if it is set to the this pipeline
 $embed_video = array_filter($events, function ($event) {
-    if(array_key_exists('embed_at', $event) && substr_compare($_GET['path'],$event['embed_at'],0,strlen($event['embed_at'])) == 0) {
-            return $event;
+    if (
+        array_key_exists('embed_at', $event) &&
+        substr_compare($_GET['path'], $event['embed_at'], 0, strlen($event['embed_at'])) == 0
+    ) {
+        return $event;
     }
 });
 $embed_video = array_values($embed_video)[0];
-
 ?>
 
 <div class="pipeline-sidebar">
@@ -80,7 +82,7 @@ $embed_video = array_values($embed_video)[0];
             </div>
         </div>
     </div>
-    <?php if (isset($embed_video)) : ?>
+    <?php if (isset($embed_video)): ?>
         <div class="row border-bottom">
             <div class="col-12">
                 <h6><i class="fab fa-youtube fa-xs"></i> video introduction</h6>
@@ -90,7 +92,7 @@ $embed_video = array_values($embed_video)[0];
                     preg_match(
                         '/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/',
                         $embed_video['youtube_embed'],
-                        $matches
+                        $matches,
                     );
                     $youtube_id = $matches[7];
                     ?>
