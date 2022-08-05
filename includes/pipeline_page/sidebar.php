@@ -37,15 +37,17 @@ foreach ($stats_json['pipelines'][$pipeline->name]['contributors'] as $contribut
     } else {
         $contributions .= ' contribution';
     }
-    $contrib_avatars['<a href="' .
-        $contributor['author']['html_url'] .
-        '" title="@' .
-        $contributor['author']['login'] .
-        ', ' .
-        $contributions .
-        '" data-bs-toggle="tooltip"><img src="' .
-        $contributor['author']['avatar_url'] .
-        '"></a>'] = $contributor['total'];
+    $contrib_avatars[
+        '<a href="' .
+            $contributor['author']['html_url'] .
+            '" title="@' .
+            $contributor['author']['login'] .
+            ', ' .
+            $contributions .
+            '" data-bs-toggle="tooltip"><img src="' .
+            $contributor['author']['avatar_url'] .
+            '"></a>'
+    ] = $contributor['total'];
 }
 arsort($contrib_avatars);
 
@@ -72,7 +74,8 @@ $embed_video = array_values($embed_video)[0];
         <div class="col-12">
             <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
             <div class="input-group input-group-sm pipeline-run-cmd">
-                <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name . $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
+                <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name .
+                    $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
                 <button class="btn btn-outline-secondary copy-txt" data-bs-target="pipeline-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
             </div>
         </div>
@@ -100,13 +103,9 @@ $embed_video = array_values($embed_video)[0];
                 </div>
             </div>
         </div>
-    <?php endif;
-    ?>
+    <?php endif; ?>
     <h6><i class="fas fa-arrow-down fa-xs"></i> <span id="clones_header">clones in last
-            <?php echo time_ago(
-                $clones_since,
-                false,
-            ); ?></span></h6>
+            <?php echo time_ago($clones_since, false); ?></span></h6>
     <div class="row border-bottom">
         <div class="col-6">
             <p id="clones_count"><?php echo $total_clones; ?></p>
@@ -284,3 +283,4 @@ ob_start(); ?>
 <?php
 $end_of_html = ob_get_contents();
 ob_end_clean();
+
