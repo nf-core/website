@@ -6,7 +6,7 @@ start_date: '2022-05-31'
 start_time: '13:00 CEST'
 end_date: '2022-05-31'
 end_time: '13:30 CEST'
-youtube_embedded: https://www.youtube.com/watch?v=oO7rAp-QZOk
+youtube_embed: https://www.youtube.com/watch?v=oO7rAp-QZOk
 location_url:
   - https://www.youtube.com/watch?v=oO7rAp-QZOk
   - https://doi.org/10.6084/m9.figshare.19960847.v1
