@@ -6,6 +6,7 @@ start_date: '2022-07-12'
 start_time: '13:00 CEST'
 end_date: '2022-07-12'
 end_time: '13:45 CEST'
+youtube_embed: https://www.youtube.com/watch?v=0vKhfedYKGo
 location_url:
   - https://www.youtube.com/watch?v=0vKhfedYKGo
   - https://doi.org/10.6084/m9.figshare.20296869.v1

@@ -6,7 +6,7 @@ start_date: '2022-04-05'
 start_time: '13:00 CEST'
 end_date: '2022-04-05'
 end_time: '13:30 CEST'
-youtube_embedded: https://www.youtube.com/watch?v=0ZpcYtKDZrU
+youtube_embed: https://www.youtube.com/watch?v=0ZpcYtKDZrU
 location_url:
   - https://www.youtube.com/watch?v=0ZpcYtKDZrU
   - https://doi.org/10.6084/m9.figshare.19923425.v1
