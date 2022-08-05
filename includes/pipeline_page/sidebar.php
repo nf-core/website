@@ -56,6 +56,15 @@ if (count($pipeline->releases) > 0) {
     $last_release_time = time_ago($pipeline->releases[0]->published_at);
 }
 $last_commit = time_ago($pipeline->updated_at);
+
+// filter events for embed_at key and look if it is set to the this pipeline
+$embed_video = array_filter($events, function ($event) {
+    if(array_key_exists('embed_at', $event) && substr_compare($_GET['path'],$event['embed_at'],0,strlen($event['embed_at'])) == 0) {
+            return $event;
+    }
+});
+$embed_video = array_values($embed_video)[0];
+
 ?>
 
 <div class="pipeline-sidebar">
@@ -68,7 +77,7 @@ $last_commit = time_ago($pipeline->updated_at);
             </div>
         </div>
     </div>
-    <?php if (isset($meta['youtube_embed'])) : ?>
+    <?php if (isset($embed_video)) : ?>
         <div class="row border-bottom">
             <div class="col-12">
                 <h6><i class="fab fa-youtube fa-xs"></i> video introduction</h6>
@@ -77,12 +86,12 @@ $last_commit = time_ago($pipeline->updated_at);
                     //taken from  https://stackoverflow.com/a/8260383
                     preg_match(
                         '/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/',
-                        $meta['youtube_embed'],
+                        $embed_video['youtube_embed'],
                         $matches
                     );
                     $youtube_id = $matches[7];
                     ?>
-                    <!-- Using the lazy loading trick from https://css-tricks.com/lazy-load-embedded-youtube-videos/ -->
+                    <!-- Using the lazy loading trick from https://css-tricks.com/lazy-load-embedded-youtube-videos/-->
                     <iframe src="https://www.youtube.com/embed/<?php echo $youtube_id; ?>?autoplay=1" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style>
                         <a href=https://www.youtube.com/embed/<?php echo $youtube_id; ?>?autoplay=1><img src=https://img.youtube.com/vi/<?php echo $youtube_id; ?>/hqdefault.jpg alt=''>
                             <span>▶</span>

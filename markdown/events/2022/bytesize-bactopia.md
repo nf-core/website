@@ -6,6 +6,7 @@ start_date: '2022-07-19'
 start_time: '13:00 CEST'
 end_date: '2022-07-19'
 end_time: '13:30 CEST'
+youtube_embed: https://www.youtube.com/watch?v=egjgcmeJ0wQ
 location_url:
   - https://www.youtube.com/watch?v=egjgcmeJ0wQ
   - https://doi.org/10.6084/m9.figshare.20338464.v1 (slides)

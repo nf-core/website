@@ -6,6 +6,7 @@ start_date: '2021-11-02'
 start_time: '13:00 CET'
 end_date: '2021-11-02'
 end_time: '13:30 CET'
+embed_at: 'metaboigniter'
 youtube_embed: https://youtu.be/hPBrlwbsvsk
 location_url:
   - https://youtu.be/hPBrlwbsvsk
