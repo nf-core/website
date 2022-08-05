@@ -6,7 +6,8 @@ start_date: '2021-12-07'
 start_time: '13:00 CET'
 end_date: '2021-12-07'
 end_time: '13:30 CET'
-youtube_embed: https://youtu.be/vbyX3xmTT38
+embed_at: 'pgdb'
+youtube_embed: https://www.youtube.com/watch?v=vbyX3xmTT38
 location_url:
   - https://youtu.be/vbyX3xmTT38
   - https://www.bilibili.com/video/BV1db4y1i7GM

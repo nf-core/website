@@ -6,6 +6,7 @@ start_date: '2022-06-21'
 start_time: '13:00 CEST'
 end_date: '2022-06-21'
 end_time: '13:30 CEST'
+embed_at: 'nanoseq'
 youtube_embed: https://www.youtube.com/watch?v=KM1A0_GD2vQ
 location_url:
   - https://www.youtube.com/watch?v=KM1A0_GD2vQ

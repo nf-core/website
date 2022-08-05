@@ -6,6 +6,8 @@ start_date: '2022-07-26'
 start_time: '13:00 CEST'
 end_date: '2022-07-26'
 end_time: '13:30 CEST'
+embed_at: 'chipseq'
+youtube_embed: https://www.youtube.com/watch?v=59I-4wB1z4c
 location_url:
   - https://www.youtube.com/watch?v=59I-4wB1z4c
   - https://doi.org/10.6084/m9.figshare.20418171.v1
