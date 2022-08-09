@@ -428,7 +428,7 @@ if ($pipeline->archived) {
                 </button>
             </div>
             </div>';
-            $toc_md .= '
+          $toc_md .= '
                 <a class=" dropdown-item expand-details">
                 <span class=""><i class="fas fa-arrows-v"></i> Expand all output file details</span>
                 </a>';
