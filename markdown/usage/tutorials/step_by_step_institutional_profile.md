@@ -180,6 +180,8 @@ params {
 }
 ```
 
+Note that for the contact, it is best to indicate a specific person. This will typically someone who wrote the config (via their name & github handle) or whoever will maintain it at the institution (e.g. IT Department, Institution X), i.e. someone who can be contacted if there are questions or problems.
+
 Next, in the same scope, we can also specify the `max_*` series of params.
 
 These are used by nf-core pipelines to limit automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster. These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
