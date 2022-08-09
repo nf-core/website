@@ -366,8 +366,9 @@ function generate_toc($html_string) {
         $toc .= '</nav>';
         $counter -= 1;
     }
+    $toc_md .= '<a><hr class="dropdown-divider"></a>';
+    $toc_md .= '<!-- tock_md_button_placeholder -->';
     $toc_md .= '<a class="dropdown-item" href="#"><i class="fas fa-arrow-to-top"></i> Back to top</a>';
-
     $toc_md .= '</div></div>';
     $toc .= '</div>';
     $toc = $toc_md . $toc;
@@ -456,7 +457,7 @@ function add_ids_to_headers($content_input, $is_hidden = false) {
                 $matches[2] .
                 '<a href="#' .
                 $hid .
-                '" class="header-link scroll_to_link"><span class="fas fa-link"></span></a></h' .
+                '" class="header-link scroll_to_link"><span class="fas fa-link fa-xs ms-1"></span></a></h' .
                 $matches[3] .
                 '>';
         },
