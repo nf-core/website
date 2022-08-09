@@ -180,7 +180,7 @@ params {
 }
 ```
 
-Note that for the contact, it is best to indicate a specific person. This will typically someone who wrote the config (via their name & github handle) or whoever will maintain it at the institution (e.g. IT Department, Institution X), i.e. someone who can be contacted if there are questions or problems.
+Note that for the `config_profile_contact`, it is best to indicate a specific person. This will typically be someone who wrote the config (via their name & github handle) or whoever will maintain it at the institution (e.g. email of IT Department, Institution X), i.e. someone who can be contacted if there are questions or problems and how to contact them.
 
 Next, in the same scope, we can also specify the `max_*` series of params.
 
