@@ -319,6 +319,18 @@ bg-code {
     display: block;
     overflow-x: auto;
     padding: 1em;
+    .copy-button {
+      margin-top: 0.4rem;
+      margin-right: 0.4rem;
+      display: none;
+      &:focus {
+        // color: $success;
+        box-shadow: none;
+      }
+    }
+    &:hover .copy-button {
+      display: block;
+    }
   }
 }
 
