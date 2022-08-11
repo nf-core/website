@@ -20,7 +20,7 @@ $(function () {
   // Don't try to guess markdown language to highlight (gets it wrong most of the time)
   hljs.configure({ languages: [], ignoreUnescapedHTML: true });
   // don't highlight certain keywords
-  const REMOVE_KEYWORDS = ['test'];
+  const REMOVE_KEYWORDS = ['test', 'help'];
   hljs.getLanguage('bash').keywords.built_in = hljs.getLanguage('bash').keywords.built_in.filter((element) => {
     return !REMOVE_KEYWORDS.includes(element);
   });
@@ -29,6 +29,27 @@ $(function () {
   hljs.getLanguage('bash').keywords.built_in.push(...CUSTOM_KEYWORDS);
 
   hljs.highlightAll();
+
+  // add copy-paste button to code blocks
+  $('.hljs.language-bash').each(function () {
+    let $this = $(this);
+    $this.addClass('position-relative');
+    var $copy_btn = $(
+      '<button class="btn btn-outline-secondary copy-button position-absolute top-0 end-0" data-bs-toggle="tooltip"  data-bs-placement="left" data-bs-original-title="Copy to clipboard" ><i class="fas fa-clipboard fa-swap-opacity"></i></button>'
+    );
+    $this.append($copy_btn);
+    var btn_tooltip = new bootstrap.Tooltip($copy_btn, { container: 'body' });
+    $copy_btn.on('click', function () {
+      let $text = $(this).parent('code.language-bash').text();
+      navigator.clipboard.writeText($text).then(() => {
+        // debugger;
+        btn_tooltip._element.setAttribute('data-bs-original-title', 'Copied!');
+        btn_tooltip.show();
+        // reset the tooltip title
+        btn_tooltip._element.setAttribute('data-bs-original-title', 'Copy to clipboard');
+      });
+    });
+  });
 
   // Set theme cookie if not set
   if (document.cookie.indexOf('nfcoretheme') == -1) {
