@@ -276,7 +276,6 @@ if (count($tweets) > 0) {
             if (!$already_tweeted) {
                 // $connection->post('statuses/update', ['status' => $tweet]);
                 echo "Sent tweet: $tweet\n";
-
             }
         }
     } else {
