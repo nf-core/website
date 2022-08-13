@@ -320,7 +320,7 @@ if ($pipeline->archived) {
       <a class="nav-link<?php if ($pagetab == 'releases_stats') {
           echo ' active';
       } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line me-1"></i>
-      <?php echo $subpage_names['releases_stats']; ?><span class="d-none d-sm-inline">istic</span>s</a>
+      <?php echo $subpage_names['releases_stats']; ?></a>
     </li>
 
     <?php if ($pagetab != 'releases_stats'): ?>
