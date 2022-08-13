@@ -259,7 +259,7 @@ if (count($tweets) > 0) {
                 $old_tweets = $connection->get('statuses/user_timeline', $params);
                 // Check for substring of the new tweet in old tweets
                 foreach ($old_tweets as $old_tweet) {
-                    preg_match('/.*?\(/', $tweet, $match);
+                    preg_match('/Pipeline release!.*?\(/', $tweet, $match);
                     if (strpos($old_tweet->text, $match[0]) !== false) {
                         $already_tweeted = true;
                         echo 'Already tweeted at https://twitter.com/nf_core/status/' .
@@ -274,7 +274,7 @@ if (count($tweets) > 0) {
                 }
             }
             if (!$already_tweeted) {
-                // $connection->post('statuses/update', ['status' => $tweet]);
+                $connection->post('statuses/update', ['status' => $tweet]);
                 echo "Sent tweet: $tweet\n";
             }
         }
