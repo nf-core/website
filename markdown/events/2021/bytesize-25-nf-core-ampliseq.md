@@ -6,6 +6,7 @@ start_date: '2021-10-26'
 start_time: '13:00 CEST'
 end_date: '2021-10-26'
 end_time: '13:30 CEST'
+embed_at: 'ampliseq'
 youtube_embed: https://youtu.be/a0VOEeAvETs
 location_url:
   - https://youtu.be/a0VOEeAvETs

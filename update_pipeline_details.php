@@ -242,11 +242,41 @@ if (count($tweets) > 0) {
             $config['twitter_access_token'],
             $config['twitter_access_token_secret'],
         );
+        // loop through pages of twitter api results
+        $page = 0;
+        $max_pages = 100;
 
-        // Post the tweets
+        $already_tweeted = false;
         foreach ($tweets as $tweet) {
-            $post_tweets = $connection->post('statuses/update', ['status' => $tweet]);
-            echo "Sent tweet: $tweet\n";
+            while ($page < $max_pages) {
+                $page++;
+                $params = [
+                    'count' => 200,
+                    'page' => $page,
+                    'exclude_replies' => true,
+                    'exclude_retweets' => true,
+                ];
+                $old_tweets = $connection->get('statuses/user_timeline', $params);
+                // Check for substring of the new tweet in old tweets
+                foreach ($old_tweets as $old_tweet) {
+                    preg_match('/Pipeline release!.*?\(/', $tweet, $match);
+                    if (strpos($old_tweet->text, $match[0]) !== false) {
+                        $already_tweeted = true;
+                        echo 'Already tweeted at https://twitter.com/nf_core/status/' .
+                            $old_tweet->id .
+                            "! Not sending it.\n";
+                        break;
+                    }
+                }
+
+                if (count($old_tweets) == 0 || $already_tweeted) {
+                    break;
+                }
+            }
+            if (!$already_tweeted) {
+                $connection->post('statuses/update', ['status' => $tweet]);
+                echo "Sent tweet: $tweet\n";
+            }
         }
     } else {
         echo "Not sending tweets because config twitter_key is not set.\n";
