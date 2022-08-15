@@ -50,7 +50,7 @@ Decide what the best structure would apply to your context.
 
 nf-core global institutional profiles are stored publicly on the [nf-core/configs](https://github.com/nf-core/configs/) repository.
 
- In some cases, system administrators of the cluster at your institution may wish to keep certain aspects of the cluster private for security reasons.
+In some cases, system administrators of the cluster at your institution may wish to keep certain aspects of the cluster private for security reasons.
 
 We therefore recommend you check with your sysadmins that you have permission to make such a profile before submitting it to nf-core. We recommend you send the link to the repository with one of the already existing profiles to show as an example of the sort of information that would be posted.
 
@@ -58,7 +58,7 @@ We therefore recommend you check with your sysadmins that you have permission to
 
 Nextflow has integrated a range of scheduling systems to simplify running Nextflow pipelines on a range of HPCs.
 
- What this means is that it will write and submit submission scripts to your given scheduler or 'executor' (in Nextflow language) for you 🤖.
+What this means is that it will write and submit submission scripts to your given scheduler or 'executor' (in Nextflow language) for you 🤖.
 
 You can see the range of support schedulers on the [Nextflow documentation](https://www.Nextflow.io/docs/latest/executor.html). Check if your scheduler is there, and how it would be written (typically the name in all lower case).
 
@@ -68,9 +68,9 @@ You should note down if there are any special options that your cluster's schedu
 
 ### What container engines does your cluster offer
 
- nf-core _highly_ recommends the use of container engines or software environment for running truly reproducible pipelines (rather than locally installed tools). This means the actual tools with compatible versions used within the pipeline are contained in a singular 'image' file.
+nf-core _highly_ recommends the use of container engines or software environment for running truly reproducible pipelines (rather than locally installed tools). This means the actual tools with compatible versions used within the pipeline are contained in a singular 'image' file.
 
-You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/usage/installation) page.
+You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/docs/usage/installation) page.
 
 If you need to somehow 'load' any of the software prior use (e.g. `module load <software>` on some clusters), you should also note that down.
 
@@ -155,7 +155,7 @@ In your branch, we will need to initialise a couple of new files, and update a c
 - **create** an empty file to the `conf/` directory named `<your_cluster_name>.config`
 - **create** an empty file to the `docs/` directory named `<your_cluster_name>.md`
 - **edit** and add your profile name to the `nfcore_custom.config` file in the top-level directory of the clone
-- **edit** and add your profile name to the list of clusters on the `README.md` file in the top-level directory of the clone  under the 'Documentation'
+- **edit** and add your profile name to the list of clusters on the `README.md` file in the top-level directory of the clone under the 'Documentation'
 - **edit** and add your profile name to the GitHub actions `.yaml` file (under `.github/workflows/main.yml`)
 
 ### Writing the main global institutional profile file
@@ -164,7 +164,7 @@ First we will edit the main profile file under `conf/<your_cluster_name>.config`
 
 #### params scope
 
- In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of global institutional profiles we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines. See the nf-core/configs README for more information how to define _pipeline_ institutional profiles.
+In Nextflow, the `params` block of configuration files is typically used for setting pipeline-level parameters. In the case of global institutional profiles we will very likely not specify pipeline parameters here, but rather add some useful nf-core specific parameters that apply to all pipelines. See the nf-core/configs README for more information how to define _pipeline_ institutional profiles.
 
 The most useful first step for testing a new nf-core global institutional profile is to add to the params scope the `config_profile_*` series of params.
 
@@ -179,6 +179,8 @@ params {
   config_profile_url = 'https://<institutional_url>.com'
 }
 ```
+
+Note that for the `config_profile_contact`, it is best to indicate a specific person. This will typically be someone who wrote the config (via their name & github handle) or whoever will maintain it at the institution (e.g. email of IT Department, Institution X), i.e. someone who can be contacted if there are questions or problems and how to contact them.
 
 Next, in the same scope, we can also specify the `max_*` series of params.
 
@@ -320,7 +322,7 @@ process {
 
 In this case, after the initial submission of a job, on resource-related failures Nextflow will retry just 2 more times before the pipeline as a whole will fail.
 
-If you normally need to specify additional 'non-standard' options in the headers of scheduler batch scripts (e.g. `sbatch`  for SLURM 🐛 or `qsub` for SGE 🌞), you can specify these with `clusterOptions`. Anything specified in the `clusterOptions` directive will be added in the header of the Nextflow-generated batch script for you (you can see these in the `.command.run` file in each job's `work/<hash>` directory in a Nextflow run).
+If you normally need to specify additional 'non-standard' options in the headers of scheduler batch scripts (e.g. `sbatch` for SLURM 🐛 or `qsub` for SGE 🌞), you can specify these with `clusterOptions`. Anything specified in the `clusterOptions` directive will be added in the header of the Nextflow-generated batch script for you (you can see these in the `.command.run` file in each job's `work/<hash>` directory in a Nextflow run).
 
 > 🌞 For example, for some SGE clusters, memory requests are specified with the `h_vmem` variable, rather than the Nextflow default `virtual_free`.
 >
@@ -339,15 +341,15 @@ If you normally need to specify additional 'non-standard' options in the headers
 >   executor = 'sge'
 >   queue = { task.cpus > 24 ? 'big' : 'small' }
 >   maxRetries = 2
->   clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
->}
+>   clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
+> }
 > ```
 
 Where the pipeline-defined memory specification of the each job is inserted into the batch script header using the Nextflow `${task.memory}` variable.
 
 Another commonly used directive is the `beforeScript` directive, which allows you to run a custom unix command _prior_ to running a pipeline's command of a particular job. This is often used when a UNIX software module needs to be loaded on the node the job is sent to by the scheduler.
 
- For example, you may need to explicitly load the `singularity` container software module, which can be specified like so:
+For example, you may need to explicitly load the `singularity` container software module, which can be specified like so:
 
 ```nextflow
 params {
@@ -364,7 +366,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 ```
@@ -373,7 +375,7 @@ For a full list of `process` directives, please see the [Nextflow documentation]
 
 #### executor scope
 
- The executor scope allows the use of further executor _specific_ options that are inbuilt into Nextflow. You should check the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#scope-executor) to see what options are available for your respective scheduler.
+The executor scope allows the use of further executor _specific_ options that are inbuilt into Nextflow. You should check the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#scope-executor) to see what options are available for your respective scheduler.
 
 One sometimes useful option for smaller clusters with less sophisticated fair-use management is the `queueSize` directive. This allows you to specify the maximum number of jobs of a given Nextflow run can submit in parallel at any one time. So to prevent Nextflow from swamping a (small) cluster thousands of jobs at once and blocking the cluster for other users 😱, you can limit this as follows:
 
@@ -392,7 +394,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
@@ -420,7 +422,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
@@ -453,7 +455,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 
@@ -486,7 +488,7 @@ process {
   executor = 'sge'
   queue = { task.cpus > 24 ? 'big' : 'small' }
   maxRetries = 2
-  clusterOptions = { '-l h_vmem=${task.memory.toGiga()}G' }
+  clusterOptions = { "-l h_vmem=${task.memory.toGiga()}G" }
   beforeScript = 'module load singularity'
 }
 

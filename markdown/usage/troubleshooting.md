@@ -3,6 +3,14 @@ title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
+- [Troubleshooting basics](#troubleshooting-basics)
+  - [Start small](#start-small)
+  - [Categorize the type of error](#categorize-the-type-of-error)
+  - [Read the log and check the work directory](#read-the-log-and-check-the-work-directory)
+  - [Asking for help](#asking-for-help)
+  - [Troubleshooting talk](#troubleshooting-talk)
+- [Configuration](#configuration)
+  - [Manual debugging on clusters using schedulers](#manual-debugging-on-clusters-using-schedulers)
 - [Input files not found](#input-files-not-found)
   - [Direct input](#direct-input)
   - [Output for only a single sample although I specified multiple with wildcards](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
@@ -21,7 +29,175 @@ subtitle: How to troubleshoot common mistakes and issues
   - [A step of a pipeline wasn't executed](#a-step-of-a-pipeline-wasnt-executed)
 - [My pipeline update doesn't seem to do anything](#my-pipeline-update-doesnt-seem-to-do-anything)
 - [Unable to acquire lock error](#unable-to-acquire-lock-error)
+- [Using a local version of iGenomes](#using-a-local-version-of-igenomes)
 - [Extra resources and getting help](#extra-resources-and-getting-help)
+
+## Troubleshooting basics
+
+These are the recommended steps for troubleshooting a pipeline.
+
+### Start small
+
+Before using the pipeline with your data, make sure to run a test using:
+
+```bash
+nextflow run nf-core/<pipeline_name> -profile test,docker
+```
+
+If Docker is not installed, you can replace `docker` with `singularity` or `conda`, see
+the [Getting Started](https://nf-co.re/docs/usage/introduction) tutorial for further information. If a test fails, it might indicate that
+there is an issue with the installation or configuration of Nextflow or software management tool, rather than a pipeline error.
+
+You might also want to check the following:
+
+1. Nextflow is up to date. Use `nextflow self-update` to update a typical installation or `conda update nextflow` for a Bioconda installation.
+2. There is enough disk space, this will avoid running out of space while you are running the pipeline.
+3. Docker daemon is running (if you are using Docker to manage dependencies).
+
+### Categorize the type of error
+
+For this step you try to identify when the error occurs:
+
+1. Before the first process: errors that occur before the first process might be related to an outdated version of Nextflow, updating to the newest version could help solving the issue. An example error is:
+
+   ```bash
+   N E X T F L O W  ~  version 0.27.3
+   Launching `./main.nf` [prickly_snyder] - revision: bb0fa33a13
+   ERROR ~ Unknown config attribute: projectDir -- check config file:
+   nextflow.config
+   null
+   -- Check '.nextflow.log' file for details
+   ```
+
+2. During the first process: when an error appears during the first process it might indicate an issue with software dependencies, to specify how Nextflow should handle dependencies you need to select a [configuration profile](https://nf-co.re/docs/usage/configuration#basic-configuration-profiles). This type of error might also be related to a missing command required to run the pipeline. Example error:
+
+   ```bash
+   Command exit status:
+     127
+   Command output:
+     (empty)
+   Command error:
+     .command.sh: line 3: rsem-prepare-reference: command not found
+   Work dir:
+     /home/lfaller/nextflow/rnaseq/work/f7/b6ef5a3f12f5efbf641f19046aca74
+   Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+   Unexpected error [AbortedException]
+    -- Check script '/home/lfaller/.nextflow/assets/nf-core/rnaseq/./workflows/rnaseq.nf' at line: 603 or see '.nextflow.log' file for more details
+   ```
+
+3. During run: for errors that occur while a pipeline is running or generating outputs it might be helpful to check log files as explained below.
+
+4. While generating outputs: if an expected process output is missing, Nextflow will fail with the message `Missing output file(s)`. Then the error message of that tool will be displayed. Example error:
+
+   ```bash
+   [6:16 PM] Error executing process > 'FASTQC (hct116_h3k4me1_IP_R1_T1)'
+   Caused by:
+     Missing output file(s) `*.{zip,html}` expected by process `FASTQC (hct116_h3k4me1_IP_R1_T1)`
+   Command executed:
+     [ ! -f  hct116_h3k4me1_IP_R1_T1.fastq.gz ] && ln -s hct116_h3k4me1_clean.fastq.gz
+   hct116_h3k4me1_IP_R1_T1.fastq.gz
+     fastqc -q -t 6 hct116_h3k4me1_IP_R1_T1.fastq.gz
+   Command exit status:
+     0
+   Command output:
+     (empty)
+   Command error:
+     WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted.
+   Memory limited without swap.
+     Failed to process file hct116_h3k4me1_IP_R1_T1.fastq.gz
+     uk.ac.babraham.FastQC.Sequence.SequenceFormatException: Ran out of data in the middle of a
+   fastq entry.  Your file is probably truncated
+      at uk.ac.babraham.FastQC.Sequence.FastQFile.readNext(FastQFile.java:179)
+      at uk.ac.babraham.FastQC.Sequence.FastQFile.next(FastQFile.java:125)
+      at uk.ac.babraham.FastQC.Analysis.AnalysisRunner.run(AnalysisRunner.java:77)
+      at java.base/java.lang.Thread.run(Thread.java:834)
+   ```
+
+### Read the log and check the work directory
+
+Checking the log files can help you to identify the type of error and where the error occurred. In order to search the output related to the error we need to understand the anatomy of the work directory:
+
+1. `command.out` STDOUT from tool.
+2. `command.err` STDERR from tool.
+3. `command.log` contains both STDOUT and STDERR from tool.
+4. `command.begin` created as soon as the job launches.
+5. `exitcode` created when the job ends, with exit code.
+6. `command.trace` logs of compute resource usage.
+7. `command.run` wrapper script used to run the job.
+8. `command.sh` process command used for this task.
+
+If you checked the files and identified the type of error and where it occurred but were unable to solve it you can always ask for help.
+
+### Asking for help
+
+If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel. Please, consider the following guidelines:
+
+- Pick the correct Slack channel to post in.
+- Provide as much information as you can.
+  - As a minimum the command and configs you used.
+  - Use a Slack thread under your message if in doubt.
+- Use markdown code blocks.
+- Narrow the issue down as much as possible before asking.
+- Explain the steps to reproduce if possible.
+
+You can also open an issue in the respective pipeline repository on GitHub asking for help. In order to open the issue:
+
+- Narrow the issue down as much as possible before opening the issue.
+- Fill in the bug issue template.
+- Explain the steps to reproduce.
+- If you think you know the solution, please say so.
+- If you think you can fix the problem, please make a pull request.
+
+If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow Slack Channel](https://nextflow.io/slack-invite.html).
+
+## Troubleshooting talk
+
+For more detailed information about troubleshooting a pipeline run, you can check out the [Bytesize talk by Phil Ewels](https://www.youtube.com/embed/z9n2F4ByIkY) and the [accompanying slides](https://widgets.figshare.com/articles/19382933/embed?show_title=1).
+
+## Configuration
+
+### Manual debugging on clusters using schedulers
+
+In some cases, when testing configuration files on clusters using a scheduler, you may get failed jobs with 'uninformative' errors and vague information being given for the cause.
+
+In such cases, a good way of debugging such a failed job is to change to the working directory of the failed process (which should be reported by Nextflow), and try to _manually_ submit the job.
+
+You can do this by submitting to your cluster the `.command.run` file found in the working directory using the relevent submission command.
+
+For example, lets say you get an error like this on a SLURM cluster.
+
+```console
+Caused by:
+  Failed to submit process to grid scheduler for execution
+
+Command executed:
+
+  sbatch .command.run
+
+Command exit status:
+  -
+
+Command output:
+  (empty)
+
+Work dir:
+  /<path>/<to>/work/e5/6cc8991c2b16c11a6356028228377e
+```
+
+This does not tell you _why_ the job failed to submit, but is often is due to a 'invalid' resource submission request, and the scheduler blocks it. But unfortunately, Nextflow does not pick the message reported by the cluster.
+
+Therefore, in this case I would switch to the working directory, and submit the `.command.run` file using SLURM's `sbatch` command (for submitting batch scripts).
+
+```bash
+$ cd  /<path>/<to>/work/e5/6cc8991c2b16c11a6356028228377e
+$ sbatch .command.run
+sbatch: error: job memory limit for shared nodes exceeded. Must be <= 120000 MB
+sbatch: error: Batch job submission failed: Invalid feature specification
+```
+
+In this case, SLURM has printed to my console the reason _why_, the job failed to be submitted.
+
+With this information, I can go back to my configuration file, and tweak the settings accordingly, and run the pipeline again.
 
 ## Input files not found
 
@@ -36,10 +212,10 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_(programming)). This is even if you are only running one paired end sample.
-    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>). This is even if you are only running one paired end sample.
+   - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
-    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
+   - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
 4. If you are running single-end data make sure to specify `--singleEnd`
 5. [Your data should be organised in a 'tidy' manner](#data-organization)
 
@@ -47,21 +223,21 @@ A few examples are as follows:
 
 - Running with a single, single-end FASTQ file as input (this will produce output files for this sample only)
 
-    ```bash
-    nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
+  ```
 
 - Running multiple single-end FASTQ files as input using a wildcard glob pattern. This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples (and will produce output files for each of the multiple input files).
 
-    ```bash
-    nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
+  ```
 
 - Running multiple paired-end FASTQ files as input using wildcard and grouping glob patterns . This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples. However, any pair of files names that are exactly the same other than `R1` and `R2`, will be grouped together. i.e. the R1 and R2 (and the rest of the string being the same) files will be processed together as related files (you will get in most cases output files for each distinct file, but with the R1 and R2 files collapsed into one).
 
-    ```bash
-    nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
+  ```
 
 Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` will not give you what you want, whilst `*{R1,R2}*.gz` will.
 
@@ -111,7 +287,7 @@ The most common case is when a user has forgotten to specify a container/environ
 
 If you do not specify one with the `-profile`, Nextflow by default looks for all the required tools that will be all manually installed on your machine/cluster and specified `$PATH`.
 
-It is _not_ recommended to run without a container/environment system as then your analysis will not be reproducible by others. You should pick one of: `docker`, `singularity`, `podman` and `conda` - depending on which your system already has available. See the nf-core [Installation](https://nf-co.re/usage/installation) documentation for more information.
+It is _not_ recommended to run without a container/environment system as then your analysis will not be reproducible by others. You should pick one of: `docker`, `singularity`, `podman` and `conda` - depending on which your system already has available. See the nf-core [Installation](https://nf-co.re/docs/usage/installation) documentation for more information.
 
 ### Error related to Docker
 
@@ -125,7 +301,7 @@ docker pull nfcore/<pipeline>:dev
 
 ### Error related to Singularity
 
-If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/usage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
+If you're running Singularity, it could be that Nextflow cannot access your Singularity image properly - often due to missing bind paths. See [_Cannot find input files when using Singularity_](https://nf-co.re/docs/usage/troubleshooting#cannot-find-input-files-when-using-singularity) for more information.
 
 Sometimes, `mksquashfs` cannot be found on the login node or workstation that you intend to use, thus the Singularity image build fails unfortunately. See below code snippet that shows such a typical failure:
 
@@ -143,7 +319,7 @@ If this is the case, please install `mksquashfs` or ask your IT department to in
 
 ### Error related to HPC Schedulers
 
-If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile.  See [nf-core/configs](https://github.com/nf-core/configs) and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
+If working on a cluster, pipelines can crash if the profile used is not correctly configured for that environment. Typical issues can include missing cluster profile in `-profile`, incorrectly specified executor, or incompatible memory/CPU node maximums set in that institutional profile. See [nf-core/configs](https://github.com/nf-core/configs) and [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#) for more information.
 
 These types of error can look like the following:
 
@@ -240,14 +416,14 @@ Command exit status:
 
 Common exit codes and and **_potential_** solutions are as follows:
 
-| Exit Code | Possible Cause | Solution                                                                                                                     |
-|-----------|----------------|------------------------------------------------------------------------------------------------------------------------------|
-| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
-| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| Exit Code | Possible Cause | Solution                                                                                                                                                                                                     |
+| --------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `104`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `134`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `137`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `139`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `143`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
+| `247`     | out of memory  | increase memory of process or number of retries in profile: [Quick reference](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), [Step By Step](#i-get-a-exceeded-job-memory-limit-error) |
 
 If in doubt, Google is your friend! Many exit codes are roughly similar across many tools; even if search results don't mention your tool exactly, you can try a solution similar to the one proposed for the other tool.
 
@@ -255,7 +431,7 @@ If you are still unable to resolve the issue, please make a GitHub issue on the 
 
 ## I get a exceeded job memory limit error
 
-While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/usage/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
+While Nextflow tries to make your life easier by automatically retrying jobs that run out of memory with more resources (until a [specified max-limit](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources)), sometimes you may have such large data that you run out even after the default 3 retries.
 
 To fix this you need to change the default memory requirements for the process that is breaking. We can do this by making a custom profile, which we then provide to the Nextflow run command.
 
@@ -266,22 +442,23 @@ For example, lets say it's the `markduplicates` process that is running out of m
 - Go back to the main github repository, and open `conf/base.config`. Again use the browser;s find functionality to search for: `withLabel:'process_low'`.
 - Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
 - Back on your working machine, make a new text file called `custom_resources.conf`. This should be saved somewhere centrally so you can reuse it.
-    > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
+  > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
 - Within this file, add the following. Note we have increased the default `4.GB` to `16.GB`.
 
-    ```nextflow
-    profiles {
-        big_data {
-          process {
-            withName: markduplicates {
-              memory = 16.GB
-            }
+  ```nextflow
+  profiles {
+      big_data {
+        process {
+          withName: markduplicates {
+            memory = 16.GB
           }
         }
-    }
-    ```
+      }
+  }
+  ```
 
   - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
+
     - If you want this, use the following syntax instead:
 
       ```nextflow
@@ -291,11 +468,12 @@ For example, lets say it's the `markduplicates` process that is running out of m
     - Next, copy the `check_max()` function from the pipeline's `nextflow.config` file (e.g. [here](https://github.com/nf-core/rnaseq/blob/3643a94411b65f42bce5357c5015603099556ad9/nextflow.config#L190-L221)) to the bottom of your custom config file.
     - `16.GB * task.attempt` multiplies the memory request by the index of the retry. So if the job failed and is being tried a second time, it requests `32.GB`.
     - The `check_max()` function prevents Nextflow requesting excessive resources above what is available on your system. This effectively sets a ceiling on the resources and prevents the pipeline from crashing if it goes too high. Unfortunately because of the order in which pipeline code and Nextflow configs are parsed, this function needs to be defined in your custom config file.
+
 - Once saved, modify the original Nextflow run command:
 
-    ```bash
-    nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
-    ```
+  ```bash
+  nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
+  ```
 
   - We have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
   - :warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
@@ -347,8 +525,41 @@ To fix this, you must clean the entirety of the run's `work/` directory e.g. wit
 
 `ctrl +z` is **not** a recommended way of killing a Nextflow job. Runs that take a long time to fail are often still running because other job submissions are still running. Nextflow will normally wait for those processes to complete before cleaning shutting down the run (to allow rerunning of a run with `-resume`). `ctrl + c` is much safer as it will tell Nextflow to stop earlier but cleanly.
 
+## Using a local version of iGenomes
+
+The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.conf` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default.
+
+You can specify a local iGenomes path by either:
+
+- Setting the igenomes_base path in a configuration profile.
+
+```nextflow
+params {
+    igenomes_base = '/<path>/<to>/<data>/igenomes'
+}
+```
+
+- Specifying an `--igenomes_base` path in your executation command.
+
+```bash
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
+```
+
+- Specifying the `igenomes_base` parameter in a `params` file provided with `-params-file` in `yaml` or `json` format.
+
+```bash
+nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
+```
+
+Where the `params.yml` file contains the pipeline params:
+
+```bash
+input: '/<path>/<to>/<data>/input'
+igenomes_base: '/<path>/<to>/<data>/igenomes'
+```
+
 ## Extra resources and getting help
 
 If you still have an issue with running the pipeline then feel free to contact us via the [Slack](https://nf-co.re/join/slack) channel or by opening an issue in the respective pipeline repository on GitHub asking for help.
 
-If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then check out the [Nextflow gitter channel](https://gitter.im/nextflow-io/nextflow) or the [google group](https://groups.google.com/forum/#!forum/nextflow).
+If you have problems that are directly related to Nextflow and not our pipelines or the nf-core framework [tools](https://github.com/nf-core/tools) then checkout the [Slack community chat](https://nextflow.io/slack-invite.html) or the [discussion forum](https://github.com/nextflow-io/nextflow/discussions) on GitHub.

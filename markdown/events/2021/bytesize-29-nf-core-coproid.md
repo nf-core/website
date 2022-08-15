@@ -1,16 +1,17 @@
 ---
-title: "Bytesize 29: nf-core/coproid"
+title: 'Bytesize 29: nf-core/coproid'
 subtitle: Maxime Borry - MPI-SHH, Germany
 type: talk
-start_date: "2021-11-30"
-start_time: "13:00 CET"
-end_date: "2021-11-30"
-end_time: "13:30 CET"
+start_date: '2021-11-30'
+start_time: '13:00 CET'
+end_date: '2021-11-30'
+end_time: '13:30 CET'
+embed_at: 'coproid'
 youtube_embed: https://youtu.be/gU4jx1pb8Tw
 location_url:
- - https://youtu.be/gU4jx1pb8Tw
- - https://doi.org/10.6084/m9.figshare.17099534.v1
- - https://www.bilibili.com/video/BV15b4y1B7Uc
+  - https://youtu.be/gU4jx1pb8Tw
+  - https://doi.org/10.6084/m9.figshare.17099534.v1
+  - https://www.bilibili.com/video/BV15b4y1B7Uc
 ---
 
 # nf-core/bytesize

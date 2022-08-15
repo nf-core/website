@@ -2,10 +2,10 @@
 title: nf-core at Nextflow Camp 2018
 subtitle: First presentation of nf-core, at the Nextflow Camp 2018
 type: talk
-start_date: "2018-11-22"
-start_time: "15:20"
-end_date: "2018-11-22"
-end_time: "15:50"
+start_date: '2018-11-22'
+start_time: '15:20'
+end_date: '2018-11-22'
+end_time: '15:50'
 address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 location_name: Centre for Genomic Regulation, Barcelona
 location_url: https://www.crg.eu/
@@ -25,8 +25,9 @@ There has been fantastic feedback from the user community about nf-core. The fir
 ## Links and slides
 
 <!-- * Event page: [https://www.nextflow.io/nfhack/2018/phil.html](https://www.nextflow.io/nfcamp/2018/phil.html) -->
-* Slides: [https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines](https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines)
-* Video: [https://youtu.be/AdTzvWV2Lwk](https://youtu.be/AdTzvWV2Lwk)
+
+- Slides: [https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines](https://www.slideshare.net/tallphil/nfcore-a-community-effort-to-collect-curated-nextflow-pipelines)
+- Video: [https://youtu.be/AdTzvWV2Lwk](https://youtu.be/AdTzvWV2Lwk)
 
 <div class="row">
     <div class="col-md-6">

@@ -27,12 +27,12 @@ Here's the desired format
 ```
 
 3. For the purpose of displaying your institution logo, please also add the `SVG` of your institutions logo. These logos are displayed on the [main page](https://nf-co.re/) as
-well as in the [community page](https://nf-co.re/community#organisations).
+   well as in the [community page](https://nf-co.re/community#organisations).
 
 Please note that`nf-co.re` website makes use of the `light/dark` mode so it's recommended that you add the logo for both modes. You could make use of `Adobe Illustrator/Inkscape` for converting the logo in two variants.
 
-* The `colored SVG logo` needs to be added to the [contributors-colour](../public_html/assets/img/contributors-colour) directory.
-* The `white SVG logo` needs to be added to the [contributors-white](../public_html/assets/img/contributors-white/) directory.
+- The `colored SVG logo` needs to be added to the [contributors-colour](../public_html/assets/img/contributors-colour) directory.
+- The `white SVG logo` needs to be added to the [contributors-white](../public_html/assets/img/contributors-white/) directory.
 
 ## Contribution workflow
 
@@ -42,7 +42,7 @@ is as follows:
 1. Check that there isn't already an issue about your idea in the
    [nf-core/nf-co.re issues](https://github.com/nf-core/nf-co.re/issues) to avoid
    duplicating work.
-   * If there isn't one already, please create one so that others know you're working on this
+   - If there isn't one already, please create one so that others know you're working on this
 2. Fork the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re) to your GitHub account
 3. Make the necessary changes / additions within your forked repository
 4. Submit a Pull Request against the `master` branch and wait for the code to be reviewed and merged.

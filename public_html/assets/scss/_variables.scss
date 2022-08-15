@@ -8,7 +8,7 @@ $nf-tower-color: #335eea;
 // overwrite standard bootstrap colors
 $success: $nf-core-color;
 $info: #17a2b8; // old info color is not so harsh
-$light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value 
+$light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
 
 $input-placeholder-color: #ced4da; // $gray-400
 $list-group-color: #495057; // $gray-700
@@ -24,23 +24,33 @@ $headings-color: $success;
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
 
+// extra-wide breakpoints
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1380px,
+  xxxl: 1560px,
+);
+
 /*
-    Dark mode specific variables 
+    Dark mode specific variables
 */
 
 // dark mode default colors
-$nf-core-color-alt: #1D9655;
+$nf-core-color-alt: #1d9655;
 
 // inverted the bootstrap-dark's gray color scale.
-$gray-900-alt: #e1e1e1 !default;  //~~
-$gray-800-alt: #cfcfcf !default;  //~~
-$gray-700-alt: #b1b1b1 !default;  //~~
-$gray-600-alt: #9e9e9e !default;  //~~
-$gray-500-alt: #7e7e7e !default;  //~~
-$gray-400-alt: #626262 !default;  //~~
-$gray-300-alt: #515151 !default;  //~~
-$gray-200-alt: #3b3b3b !default;  //~~
-$gray-100-alt: #222222 !default;  //~~
+$gray-900-alt: #e1e1e1 !default; //~~
+$gray-800-alt: #cfcfcf !default; //~~
+$gray-700-alt: #b1b1b1 !default; //~~
+$gray-600-alt: #9e9e9e !default; //~~
+$gray-500-alt: #7e7e7e !default; //~~
+$gray-400-alt: #626262 !default; //~~
+$gray-300-alt: #515151 !default; //~~
+$gray-200-alt: #3b3b3b !default; //~~
+$gray-100-alt: #222222 !default; //~~
 
 $primary-alt: #2b4764;
 $secondary-alt: $gray-400-alt;
@@ -50,7 +60,7 @@ $light-alt: $gray-100-alt;
 $dark-alt: $gray-200-alt;
 $white-alt: #fafafa;
 
-$navbar-light-color-alt: rgba(255,255,255, .55);
+$navbar-light-color-alt: rgba(255, 255, 255, 0.55);
 $body-color-alt: $gray-800-alt;
 $text-muted-alt: $gray-600-alt;
 $link-color-alt: #6fb2e8;
@@ -79,7 +89,7 @@ $nav-tabs-link-active-border-color-alt: $gray-400-alt $gray-400-alt $nav-tabs-li
 $dropdown-color-alt: $gray-700-alt;
 $dropdown-bg-alt: $gray-200-alt;
 $dropdown-link-hover-color-alt: $white-alt;
-$dropdown-link-hover-bg-alt: rgba($white-alt, .15);
+$dropdown-link-hover-bg-alt: rgba($white-alt, 0.15);
 $dropdown-link-disabled-color-alt: $gray-500-alt;
 $dropdown-header-color-alt: $gray-500-alt;
 
@@ -88,8 +98,11 @@ $pagination-border-color-alt: $gray-300-alt;
 $pagination-focus-bg-alt: $gray-300-alt;
 $pagination-hover-bg-alt: $gray-300-alt;
 $pagination-hover-border-color-alt: $gray-400-alt;
-$pagination-disabled-color-alt:  ix($gray-400-alt, $gray-500-alt, 50%);
+$pagination-disabled-color-alt: ix($gray-400-alt, $gray-500-alt, 50%);
 $pagination-disabled-bg-alt: $gray-100-alt;
 $pagination-disabled-border-color-alt: $gray-400-alt;
 
-$headings-color-alt: $success-alt; 
+$headings-color-alt: $success-alt;
+
+$tooltip-bg-alt: $gray-300-alt;
+$tooltip-color-alt: $gray-900-alt;
