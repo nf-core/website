@@ -6,6 +6,7 @@ start_date: '2022-02-08'
 start_time: '13:00 CET'
 end_date: '2022-02-08'
 end_time: '13:30 CET'
+embed_at: 'rnaseq'
 youtube_embed: https://youtu.be/qMuUt8oVhHw
 location_url:
   - https://youtu.be/qMuUt8oVhHw

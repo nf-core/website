@@ -23,6 +23,7 @@
 
 // additional variables
 $navbar-height: $navbar-brand-height + 2 * $navbar-brand-padding-y + 2 * $navbar-padding-y;
+$navbar-height-collapsed: $navbar-brand-height;
 $blockquote-background: shift-color($info, $alert-bg-scale);
 $blockquote-border: shift-color($info, $alert-border-scale);
 $blockquote-color: shift-color($info, $alert-color-scale);
@@ -318,6 +319,18 @@ bg-code {
     display: block;
     overflow-x: auto;
     padding: 1em;
+    .copy-button {
+      margin-top: 0.4rem;
+      margin-right: 0.4rem;
+      display: none;
+      &:focus {
+        // color: $success;
+        box-shadow: none;
+      }
+    }
+    &:hover .copy-button {
+      display: block;
+    }
   }
 }
 
@@ -401,7 +414,12 @@ footer a:active {
  */
 
 .mainpage {
-  margin-top: 3.4rem;
+  margin-top: $navbar-height;
+}
+@include media-breakpoint-down(md) {
+  .mainpage {
+    margin-top: $navbar-height-collapsed;
+  }
 }
 .mainpage-heading {
   background-color: $nf-core-color;
@@ -433,6 +451,12 @@ footer a:active {
   margin-top: -3.5rem;
   padding: 4rem 0 1rem;
 }
+@include media-breakpoint-down(md) {
+  .mainpage-subheader-heading {
+    padding-top: 2rem;
+  }
+}
+
 .mainpage-subheader-heading-header {
   background-color: $gray-300;
   box-shadow: 0 0 10px rgba($black, 0.2);

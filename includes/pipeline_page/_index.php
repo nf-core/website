@@ -23,6 +23,15 @@ $schema_content = '';
 $import_chartjs = true;
 $no_auto_toc = true;
 
+$subpage_names = [
+    '' => 'Introduction',
+    'results' => 'Results',
+    'usage' => 'Usage docs',
+    'parameters' => 'Parameters',
+    'output' => 'Output docs',
+    'releases_stats' => 'Releases & Statistics',
+];
+
 # Header - keywords
 $header_html = '<p class="mb-5">';
 foreach ($pipeline->topics as $keyword) {
@@ -234,44 +243,88 @@ if ($pipeline->archived) {
 
 <div class="container-xxl main-content">
 
-  <ul class="nav nav-fill nfcore-subnav justify-content-around d-print-none">
-    <li class="nav-item">
-      <a class="nav-link<?php if ($pagetab == '') {
-          echo ' active';
-      } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> Introduction</a>
-    </li>
-    <?php if (isset($release_hash) && $release_hash): ?>
-      <li class="nav-item">
-        <a class="nav-link<?php if ($pagetab == 'results') {
+    <ul class="nav nav-fill nfcore-subnav justify-content-start justify-content-md-around d-print-none">
+    <li class="nav-item dropdown d-block d-md-none">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $subpage_names[$pagetab]; ?>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item<?php if ($pagetab == '') {
             echo ' active';
-        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fab fa-aws fa-lg me-1"></i> Results</span></a>
-      </li>
-    <?php endif; ?>
-    <li class="nav-item">
-      <a class="nav-link<?php if ($pagetab == 'usage') {
-          echo ' active';
-      } ?>" href="<?php echo $url_base; ?>/usage"><i class="far fa-book me-1"></i> Usage docs</a>
-    </li>
-    <?php if (file_exists($gh_pipeline_schema_fn)): ?>
-      <li class="nav-item">
-        <a class="nav-link<?php if ($pagetab == 'parameters') {
+        } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i>
+        <?php echo $subpage_names['']; ?></a>
+        <a class="dropdown-item<?php if ($pagetab == 'results') {
             echo ' active';
-        } ?>" href="<?php echo $url_base; ?>/parameters"><i class="far fa-book me-1"></i> Parameter docs</a>
-      </li>
-    <?php endif; ?>
-    <li class="nav-item">
-      <a class="nav-link<?php if ($pagetab == 'output') {
-          echo ' active';
-      } ?>" href="<?php echo $url_base; ?>/output"><i class="far fa-book me-1"></i> Output docs</a>
+        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fab fa-aws fa-lg me-1"></i>
+            <?php echo $subpage_names['results']; ?>
+        </a>
+        <a class="dropdown-item<?php if ($pagetab == 'usage') {
+            echo ' active';
+        } ?>" href="<?php echo $url_base; ?>/usage"><i class="far fa-book me-1"></i>
+            <?php echo $subpage_names['usage']; ?>
+        </a>
+        <?php if (file_exists($gh_pipeline_schema_fn)): ?>
+        <a class="dropdown-item<?php if ($pagetab == 'parameters') {
+            echo ' active';
+        } ?>" href="<?php echo $url_base; ?>/parameters"><i class="far fa-book me-1"></i>
+            <?php echo $subpage_names['parameters']; ?>
+        </a>
+        <?php endif; ?>
+        <a class="dropdown-item<?php if ($pagetab == 'output') {
+            echo ' active';
+        } ?>" href="<?php echo $url_base; ?>/output"><i class="far fa-book me-1"></i>
+            <?php echo $subpage_names['output']; ?>
+        </a>
+        <a class="dropdown-item<?php if ($pagetab == 'releases_stats') {
+            echo ' active';
+        } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line me-1"></i>
+        <?php echo $subpage_names['releases_stats']; ?><span class="d-none d-sm-inline">istic</span>s</a>
     </li>
 
-    <li class="nav-item">
+
+    <li class="nav-item d-none d-md-block">
+        <a class="nav-link<?php if ($pagetab == '') {
+            echo ' active';
+        } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> <?php echo $subpage_names['']; ?></a>
+    </li>
+    <?php if (isset($release_hash) && $release_hash): ?>
+        <li class="nav-item d-none d-md-block">
+        <a class="nav-link<?php if ($pagetab == 'results') {
+            echo ' active';
+        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fab fa-aws fa-lg me-1"></i>
+        <?php echo $subpage_names['results']; ?></span></a>
+        </li>
+    <?php endif; ?>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link<?php if ($pagetab == 'usage') {
+          echo ' active';
+      } ?>" href="<?php echo $url_base; ?>/usage"><i class="far fa-book me-1"></i>
+      <?php echo $subpage_names['usage']; ?></a>
+    </li>
+    <?php if (file_exists($gh_pipeline_schema_fn)): ?>
+      <li class="nav-item d-none d-md-block">
+        <a class="nav-link<?php if ($pagetab == 'parameters') {
+            echo ' active';
+        } ?>" href="<?php echo $url_base; ?>/parameters"><i class="far fa-book me-1"></i>
+        <?php echo $subpage_names['parameters']; ?></a>
+      </li>
+    <?php endif; ?>
+    <li class="nav-item d-none d-md-block">
+      <a class="nav-link<?php if ($pagetab == 'output') {
+          echo ' active';
+      } ?>" href="<?php echo $url_base; ?>/output"><i class="far fa-book me-1"></i>
+      <?php echo $subpage_names['output']; ?></a>
+    </li>
+
+    <li class="nav-item d-none d-md-block">
       <a class="nav-link<?php if ($pagetab == 'releases_stats') {
           echo ' active';
-      } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line me-1"></i> Releases & Stat<span class="d-none d-sm-inline">istic</span>s</a>
+      } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line me-1"></i>
+      <?php echo $subpage_names['releases_stats']; ?></a>
     </li>
+
     <?php if ($pagetab != 'releases_stats'): ?>
-      <li class="pt-1 ps-3">
+      <li class="nav-item pt-1 ps-3">
         <div class="input-group input-group-sm">
           <label class="input-group-text" for="version_select"><i class="fas fa-tags"></i></label>
           <select class="form-select form-select-sm" id="version_select" data-pipeline="<?php echo $pipeline->name; ?>">
@@ -308,9 +361,11 @@ if ($pipeline->archived) {
   # Make a row with a column for content
   ########
   if (in_array($pagetab, ['results'])) {
-      echo '<div class="row flex-wrap-reverse flex-lg-wrap ms-lg-5"><div class="col-12">';
+      echo '<div class="row ms-lg-5"><div class="col-12">';
+  } elseif (in_array($pagetab, ['', 'releases_stats'])) {
+      echo '<div class="row ms-lg-5"><div class="col-12 col-lg-9">';
   } else {
-      echo '<div class="row flex-wrap-reverse flex-lg-wrap ms-lg-5"><div class="col-12 col-lg-9">';
+      echo '<div class="row ms-lg-5 flex-wrap-reverse flex-lg-wrap"><div class="col-12 col-lg-9">';
   }
 
   ########
@@ -328,8 +383,10 @@ if ($pipeline->archived) {
   echo '</div>'; # end of the content div
   if (in_array($pagetab, ['results'])) {
       echo '<div><div">';
+  } elseif (in_array($pagetab, ['', 'releases_stats'])) {
+      echo '<div class="col-12 col-lg-3 ps-2 h-100 sticky-md-top"><div class="side-sub-subnav">';
   } else {
-      echo '<div class="col-12 col-lg-3 ps-2 h-100"><div class="side-sub-subnav">';
+      echo '<div class="col-12 col-lg-3 ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
   }
 
   # Pipeline homepage & releases - key stats
@@ -340,27 +397,43 @@ if ($pipeline->archived) {
   elseif (in_array($pagetab, ['usage', 'output', 'parameters'])) {
       $toc .= '<nav class="toc mt-2 auto-toc border-start d-print-none">';
       $toc .= generate_toc($content);
+      $toc_md = '';
       # Add on the action buttons for the parameters docs
       if ($pagetab == 'parameters') {
           $toc .= '
-    <div class="btn-group w-100 mt-2 mb-1 ms-1" role="group">
-      <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target=".param-docs-help-text" aria-expanded="false">
-        <i class="fas fa-question-circle me-1"></i> Show all help
-      </button>
-      <button class="btn btn-sm btn-outline-secondary btn-show-hidden-params" data-bs-toggle="collapse" data-bs-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
-        <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
-        <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
-      </button>
-    </div>';
+            <div class="btn-group w-100 mt-2 mb-1 ms-1 d-none d-md-block" role="group">
+            <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target=".param-docs-help-text" aria-expanded="false">
+                <i class="fas fa-question-circle me-1"></i> Show all help
+            </button>
+            <button class="btn btn-sm btn-outline-secondary btn-show-hidden-params" data-bs-toggle="collapse" data-bs-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
+                <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
+                <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
+            </button>
+            </div>';
+          $toc_md = '
+            <a class="dropdown-item" data-bs-toggle="collapse" data-bs-target=".param-docs-help-text" aria-expanded="false">
+                <i class="fas fa-question-circle me-1"></i> Show all help
+            </a>
+            <a class="dropdown-item btn-show-hidden-params" data-bs-toggle="collapse" data-bs-target=".param-docs-hidden, .toc .collapse, .hidden_params_alert" aria-expanded="false">
+                <span class="collapse show"><i class="fas fa-eye-slash"></i> Show hidden params</span>
+                <span class="collapse"><i class="fas fa-eye"></i> Hide hidden params</span>
+            </a>';
       }
       if ($pagetab == 'output') {
           $toc .= '
-      <div class="text-center ms-1">
-        <button class="btn btn-sm btn-outline-secondary expand-details w-100">
-          <span class=""><i class="fas fa-arrows-v"></i> Expand all output file details</span>
-        </button>
-      </div>';
+            <div class="btn-group w-100 mt-2 mb-1 ms-1 d-none d-md-block" role="group">
+            <div class="text-center ms-1">
+                <button class="btn btn-sm btn-outline-secondary expand-details w-100">
+                <span class=""><i class="fas fa-arrows-v"></i> Expand all output file details</span>
+                </button>
+            </div>
+            </div>';
+          $toc_md .= '
+                <a class=" dropdown-item expand-details">
+                <span class=""><i class="fas fa-arrows-v"></i> Expand all output file details</span>
+                </a>';
       }
+      $toc = preg_replace('/<!-- tock_md_button_placeholder -->/', $toc_md, $toc);
       # Back to top link
       $toc .=
           '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';

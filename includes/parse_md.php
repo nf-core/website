@@ -87,11 +87,11 @@ function parse_md($markdown) {
     // Add ID attributes to headers
     $content = add_ids_to_headers($content);
 
-    // Prepend to src URLs if configureds and relative
+    // Prepend to src URLs if configured and relative
     if (isset($src_url_prepend)) {
         $content = preg_replace('/src="(?!https?:\/\/)([^"]+)"/i', 'src="' . $src_url_prepend . '$1"', $content);
     }
-    // Prepend to href URLs if configureds and relative
+    // Prepend to href URLs if configured and relative
     if (isset($href_url_prepend)) {
         $content = preg_replace(
             '/href="(?!https?:\/\/)(?!#)([^"]+)"/i',
