@@ -294,6 +294,48 @@ include '../includes/header.php';
     <div class="col">
         <div class="">
             <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">3) Community support of bioinformatics-specific workflow managers. <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> stands out here. Why develop your own RNA-Seq workflow, when you can use one with over 3k commits on GitHub?</p>&mdash; Ben Siranosian, PhD (@BenSiranosian) <a href="https://twitter.com/BenSiranosian/status/1558631907566313473?ref_src=twsrc%5Etfw">August 14, 2022</a>
+                </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Wow the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> CLI is so pretty</p>&mdash; Cedar Warman 🍅🌵🌈 (@CedarWarman) <a href="https://twitter.com/CedarWarman/status/1532882942405423105?ref_src=twsrc%5Etfw">June 4, 2022</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">receiving pipeline completion report from <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> always trigger my dopamine secretion <a href="https://t.co/SResHLmtXa">pic.twitter.com/SResHLmtXa</a></p>&mdash; ChenHsieh.eth | 謝晨 🫥 (@ChenHsieh0) <a href="https://twitter.com/ChenHsieh0/status/1528415862633467908?ref_src=twsrc%5Etfw">May 22, 2022</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">The <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> pipelines gave us an extra level of confidence when analysing (and re-analysing!) all of the data we ended up generating, and made writing up the study much more straightforward. Such a great initiative and a really helpful community.</p>&mdash; Robert Blassberg (@robertblassberg) <a href="https://twitter.com/robertblassberg/status/1525131662283182082?ref_src=twsrc%5Etfw">May 13, 2022</a>
+                </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Thank you <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> 🙏 <a href="https://twitter.com/SeqeraLabs?ref_src=twsrc%5Etfw">@SeqeraLabs</a> <a href="https://twitter.com/tallphil?ref_src=twsrc%5Etfw">@tallphil</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a> <a href="https://twitter.com/GGabernet?ref_src=twsrc%5Etfw">@GGabernet</a> <a href="https://twitter.com/gau?ref_src=twsrc%5Etfw">@gau</a> Great motivation to develop more genomic data analysis pipelines on Next flow. Danke :) <a href="https://t.co/F7V5FG4FjI">pic.twitter.com/F7V5FG4FjI</a></p>&mdash; Kirtan Dave (@DaveKirtan) <a href="https://twitter.com/DaveKirtan/status/1509490252649746438?ref_src=twsrc%5Etfw">March 31, 2022</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
+                <p lang="en" dir="ltr">Really impressive to see how people all around the world 🌍 are taking part in the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> hackathon 🔝🚀 <a href="https://t.co/btuiuYk0pu">pic.twitter.com/btuiuYk0pu</a></p>&mdash; Jose Espinosa (@helicobacter1) <a href="https://twitter.com/helicobacter1/status/1504060398781308930?ref_src=twsrc%5Etfw">March 16, 2022</a>
+            </blockquote>
+        </div>
+    </div>
+    <div class="col">
+        <div class="">
+            <blockquote class="twitter-tweet">
                 <p lang="en" dir="ltr">.<a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> are making me hate bioinformatics a bit less</p>&mdash; Hadrien Gourlé (@HGourle) <a href="https://twitter.com/HGourle/status/1158973454160465920?ref_src=twsrc%5Etfw">August 7, 2019</a>
             </blockquote>
         </div>
@@ -302,20 +344,6 @@ include '../includes/header.php';
         <div class="">
             <blockquote class="twitter-tweet">
                 <p lang="en" dir="ltr">Just tested <a href="https://t.co/wERtIS7xPp">https://t.co/wERtIS7xPp</a> with bacterial WGS data. It was very easy to work with. I am very impressed by nf-core! Great community and very important project to promote <a href="https://twitter.com/hashtag/reproducibility?src=hash&amp;ref_src=twsrc%5Etfw">#reproducibility</a> in <a href="https://twitter.com/hashtag/bioinformatics?src=hash&amp;ref_src=twsrc%5Etfw">#bioinformatics</a> analyses. <a href="https://twitter.com/alex_peltzer?ref_src=twsrc%5Etfw">@alex_peltzer</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a></p>&mdash; Rodrigo O. Polo (@ropolo) <a href="https://twitter.com/ropolo/status/1158860737516675073?ref_src=twsrc%5Etfw">August 6, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Literally everyone should know about that! <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> Harshil Patel from Francis Crick Institute pitches good practice, hydrating and having these cool stickers on his laptop <a href="https://twitter.com/hashtag/bioinfocore?src=hash&amp;ref_src=twsrc%5Etfw">#bioinfocore</a> <a href="https://twitter.com/hashtag/ISMBECCB?src=hash&amp;ref_src=twsrc%5Etfw">#ISMBECCB</a> <a href="https://t.co/tkIgAWfeYZ">https://t.co/tkIgAWfeYZ</a> <a href="https://t.co/pOHNcFh3Yp">pic.twitter.com/pOHNcFh3Yp</a></p>&mdash; Daniel Stekhoven (@DanStekhoven) <a href="https://twitter.com/DanStekhoven/status/1153250437904130048?ref_src=twsrc%5Etfw">July 22, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">High throughput sequencing data processing keeps getting easier than ever thanks to <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>! <a href="https://t.co/BsaYCOSq3I">https://t.co/BsaYCOSq3I</a></p>&mdash; Ignacio Tripodi (@ignaciot) <a href="https://twitter.com/ignaciot/status/1136688546251542528?ref_src=twsrc%5Etfw">June 6, 2019</a>
             </blockquote>
         </div>
     </div>
