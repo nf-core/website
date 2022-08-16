@@ -350,20 +350,6 @@ include '../includes/header.php';
     <div class="col">
         <div class="">
             <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Literally everyone should know about that! <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> Harshil Patel from Francis Crick Institute pitches good practice, hydrating and having these cool stickers on his laptop <a href="https://twitter.com/hashtag/bioinfocore?src=hash&amp;ref_src=twsrc%5Etfw">#bioinfocore</a> <a href="https://twitter.com/hashtag/ISMBECCB?src=hash&amp;ref_src=twsrc%5Etfw">#ISMBECCB</a> <a href="https://t.co/tkIgAWfeYZ">https://t.co/tkIgAWfeYZ</a> <a href="https://t.co/pOHNcFh3Yp">pic.twitter.com/pOHNcFh3Yp</a></p>&mdash; Daniel Stekhoven (@DanStekhoven) <a href="https://twitter.com/DanStekhoven/status/1153250437904130048?ref_src=twsrc%5Etfw">July 22, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">High throughput sequencing data processing keeps getting easier than ever thanks to <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>! <a href="https://t.co/BsaYCOSq3I">https://t.co/BsaYCOSq3I</a></p>&mdash; Ignacio Tripodi (@ignaciot) <a href="https://twitter.com/ignaciot/status/1136688546251542528?ref_src=twsrc%5Etfw">June 6, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
                 <p lang="en" dir="ltr">Many useful and well-documented bioinformatics pipelines by the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> team, from RNA-seq, methylation, to this differential ATAC-seq. More in development, <a href="https://t.co/SvAJjIJqHD">https://t.co/SvAJjIJqHD</a> <a href="https://t.co/TCsBWlJyeC">https://t.co/TCsBWlJyeC</a></p>&mdash; Mikhail Dozmorov (@mikhaildozmorov) <a href="https://twitter.com/mikhaildozmorov/status/1116154350026489857?ref_src=twsrc%5Etfw">April 11, 2019</a>
             </blockquote>
         </div>
