@@ -60,11 +60,10 @@ if (count($pipeline->releases) > 0) {
 $last_commit = time_ago($pipeline->updated_at);
 
 // filter events for embed_at key and look if it is set to the this pipeline
+$pipeline_name = explode('/', $_GET['path'])[0];
 $embed_video = array_filter($events, function ($event) {
-    if (
-        array_key_exists('embed_at', $event) &&
-        substr_compare($_GET['path'], $event['embed_at'], 0, strlen($event['embed_at'])) == 0
-    ) {
+    global $pipeline_name;
+    if (array_key_exists('embed_at', $event) && $pipeline_name === $event['embed_at']) {
         return $event;
     }
 });
