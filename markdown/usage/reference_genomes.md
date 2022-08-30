@@ -51,3 +51,13 @@ You can add as many genomes as you like as long as they have unique IDs.
 References are used with the command line option `--genome YOUR-ID`.
 
 Read the [Nextflow configuration documentation](configuration.md) for more information about custom config files.
+
+## Using Refgenie for genome management
+
+You can also use the reference genome manager [Refgenie](http://refgenie.databio.org/en/latest/overview/) with nf-core pipelines.
+
+After installing and initializing Refgenie, an nf-core plugin will generate a configuration file which will contain the links to all downloaded reference genomes.
+
+This file should never be updated manually. To use a new reference genome or asset, by using `refgenie pull` the nf-core plugin will automatically update the configuration file.
+
+Please refer to [Refgenie documentation](http://refgenie.databio.org/en/latest/) for further information.
