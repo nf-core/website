@@ -7,7 +7,7 @@ start_time: '13:00 CEST'
 end_date: '2022-09-13'
 end_time: '13:30 CEST'
 location_url:
-  - TBD
+  - https://ki-se.zoom.us/j/67600613091?pwd=WHZHZ3pwaXVnb0VRZStyYTV0dkYyZz09
 ---
 
 # nf-core/bytesize
