@@ -75,6 +75,22 @@ refgenie pull t7/bowtie2_index
 
 Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
 
+The file format mimics the igenomes.config file:
+```nextflow
+// This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten
+// To make changes here, use refgenie to update the reference genome data
+params {
+  genomes {
+    't7' {
+      bowtie2_index        = "<path to refgenie genomes>/alias/t7/bowtie2_index/default/t7"
+      fasta                = "<path to refgenie genomes>/alias/t7/fasta/default/t7.fa"
+    }
+  }
+}
+```
+
+> NOTE: You can also use [custom assets](http://refgenie.databio.org/en/latest/custom_assets/).
+
 3. Run your pipeline specifying the required genome.
 
 ```bash
