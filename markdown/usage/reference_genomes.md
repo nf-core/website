@@ -59,12 +59,10 @@ You can also use the reference genome manager [Refgenie](http://refgenie.databio
 1. Install and initialize refgenie following the official [documentation](http://refgenie.databio.org/en/latest/install/).
 
 A file required by nf-core containing refgenie genome assets will be automatically created at `~/.nextflow/nf-core/refgenie_genomes.config`
-An `includeConfig` statement to this new config file will be added at `~/.nextflow/config`
+An `includeConfig` statement to this new config file will be appended to the `~/.nextflow/config` file. This file is automatically loaded by Nextflow during every pipeline run (see the [Nextflow documentation](https://nextflow.io/docs/latest/config.html)).
 
-This file should never be updated manually. To use a new reference genome or asset, by using `refgenie pull` the nf-core plugin will automatically update the configuration file.
-
-> NOTE: You can add additional refgenie servers to your refgenie configuration yaml file. Nf-core provides a [server](http://igenomes.databio.org/) with all genome files used in its pipelines.
-> Use the following command: `refgenie subscribe -s http://igenomes.databio.org/`
+To use a new reference genome or asset, fetch it via normal refgenie usage (`refgenie pull`) - the nf-core plugin will automatically update the `refgenie_genomes.config` configuration file.
+This file should never be edited manually, as it is overwritten during each refgenie command.
 
 2. Pull all the reference assets that you may need to run the pipeline.
 
@@ -73,9 +71,9 @@ refgenie pull t7/fasta
 refgenie pull t7/bowtie2_index
 ```
 
-Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
+Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`, included in `~/.nextflow/config` and available to every pipeline run.
 
-The file format mimics the igenomes.config file:
+The file format mimics the `igenomes.config` file that comes with many nf-core pipelines:
 
 ```nextflow
 // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten
@@ -90,12 +88,14 @@ params {
 }
 ```
 
+Here, the genome _key_ that you'll use to launch the pipeline is `t7`.
+
 > NOTE: You can also use [custom assets](http://refgenie.databio.org/en/latest/custom_assets/).
 
-3. Run your pipeline specifying the required genome.
+3. Run your pipeline, specifying the required genome.
 
 ```bash
-nextflow run nf-core/<PIPELINENAME> --input samplesheet.csv --outdir <OUTDIR> --genome t7 -profile <docker/singularity/podman/shifter/charliecloud/conda/institute>
+nextflow run nf-core/<PIPELINENAME> --genome t7  # ..rest of normal pipeline flags..
 ```
 
 Please refer to [Refgenie documentation](http://refgenie.databio.org/en/latest/) for further information.
