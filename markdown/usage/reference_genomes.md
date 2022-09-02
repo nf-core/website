@@ -56,8 +56,28 @@ Read the [Nextflow configuration documentation](configuration.md) for more infor
 
 You can also use the reference genome manager [Refgenie](http://refgenie.databio.org/en/latest/overview/) with nf-core pipelines.
 
-After installing and initializing Refgenie, an nf-core plugin will generate a configuration file which will contain the links to all downloaded reference genomes.
+1. Install and initialize refgenie following the official [documentation](http://refgenie.databio.org/en/latest/install/).
+
+A file required by nf-core containing refgenie genome assets will be automatically created at `~/.nextflow/nf-core/refgenie_genomes.config`
+An `includeConfig` statement to this new config file will be added at `~/.nextflow/config`
 
 This file should never be updated manually. To use a new reference genome or asset, by using `refgenie pull` the nf-core plugin will automatically update the configuration file.
+
+> NOTE: You can add additional refgenie servers to your refgenie configuration yaml file. Nf-core provides a [server](http://igenomes.databio.org/) with all genome files used in its pipelines.
+> Use the following command: `refgenie subscribe -s http://igenomes.databio.org/`
+
+2. Pull all the reference assets that you may need to run the pipeline.
+```bash
+refgenie pull t7/fasta
+refgenie pull t7/bowtie2_index
+```
+
+Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
+
+3. Run your pipeline specifying the required genome.
+
+```bash
+nextflow run nf-core/<PIPELINENAME> --input samplesheet.csv --outdir <OUTDIR> --genome t7 -profile <docker/singularity/podman/shifter/charliecloud/conda/institute>
+```
 
 Please refer to [Refgenie documentation](http://refgenie.databio.org/en/latest/) for further information.
