@@ -65,7 +65,13 @@ Within our D&I application, we proposed the following:
 
 Note that there have been some minor adjustments to the plan since we wrote this. In line with our diversity and inclusion efforts, we're aiming to promote this opportunity to a wide array of organizations that facilitate the inclusion of underrepresented minorities in STEM so that we can ensure the selection of a diverse cohort. If you have suggestions regarding this, please reach out to us.
 
-## Round 1
+## Round 1 (Closed)
+
+<!-- To add when we have the blog post
+
+Round 1 is now closed. Lots of interesting work has been done during this first edition of the mentorship program! Thank you to all participants! You can check the Nextflow blog post for a overview and testimonials of this round.
+
+-->
 
 ### Key dates
 
@@ -79,12 +85,48 @@ Dates are subject to change:
   <dt class="col-md-3 text-md-end">Mentorships start:</dt>
   <dd class="col-md-9">May 1st 2022</dd>
   <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
-  <dd class="col-md-9">End of October 2022</dd>
+  <dd class="col-md-9">End of August 2022</dd>
+</dl>
+
+## Round 2
+
+### Key dates
+
+Dates are subject to change:
+
+<dl class="row">
+  <dt class="col-md-3 text-md-end">Applications open:</dt>
+  <dd class="col-md-9">October 1st 2022</dd>
+  <dt class="col-md-3 text-md-end">Applications close:</dt>
+  <dd class="col-md-9">November 1st 2022</dd>
+  <dt class="col-md-3 text-md-end">Mentorships start:</dt>
+  <dd class="col-md-9">December 1st 2022</dd>
+  <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
+  <dd class="col-md-9">End of March 2023</dd>
+</dl>
+
+## Round 3
+
+### Key dates
+
+Dates are subject to change:
+
+<dl class="row">
+  <dt class="col-md-3 text-md-end">Applications open:</dt>
+  <dd class="col-md-9">April 1st 2023</dd>
+  <dt class="col-md-3 text-md-end">Applications close:</dt>
+  <dd class="col-md-9">May 1st 2023</dd>
+  <dt class="col-md-3 text-md-end">Mentorships start:</dt>
+  <dd class="col-md-9">June 1st 2023</dd>
+  <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
+  <dd class="col-md-9">End of September 2023</dd>
 </dl>
 
 ### Application process
 
-_Applications are now closed. Those who have applied will hear from us soon. Thank you!_
+_Applications are now closed. Applications for Round 2 will open on October 1st. Stay tunned!_
+
+<!-- Those who have applied will hear from us soon. Thank you!_ -->
 
 <!--
 
