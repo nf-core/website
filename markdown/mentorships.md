@@ -124,9 +124,9 @@ Dates are subject to change:
 
 ### Application process
 
-_Applications are now closed. Applications for Round 2 will open on October 1st. Stay tuned!_
+Applications for Round 2 will open on October 1st. Please check back soon for updates!
 
-<!-- Those who have applied will hear from us soon. Thank you!_ -->
+<!-- _Applications are now closed. Those who have applied will hear from us soon. Thank you!_ -->
 
 <!--
 
