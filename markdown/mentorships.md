@@ -69,7 +69,7 @@ Note that there have been some minor adjustments to the plan since we wrote this
 
 <!-- To add when we have the blog post
 
-Round 1 is now closed. Lots of interesting work has been done during this first edition of the mentorship program! Thank you to all participants! You can check the Nextflow blog post for a overview and testimonials of this round.
+Round 1 is now closed. Lots of interesting work has been done during this first edition of the mentorship program! Thank you to all participants! You can check the Nextflow blog post for an overview and testimonials of this round.
 
 -->
 
@@ -124,7 +124,7 @@ Dates are subject to change:
 
 ### Application process
 
-_Applications are now closed. Applications for Round 2 will open on October 1st. Stay tunned!_
+_Applications are now closed. Applications for Round 2 will open on October 1st. Stay tuned!_
 
 <!-- Those who have applied will hear from us soon. Thank you!_ -->
 
