@@ -67,6 +67,7 @@ This file should never be updated manually. To use a new reference genome or ass
 > Use the following command: `refgenie subscribe -s http://igenomes.databio.org/`
 
 2. Pull all the reference assets that you may need to run the pipeline.
+
 ```bash
 refgenie pull t7/fasta
 refgenie pull t7/bowtie2_index
