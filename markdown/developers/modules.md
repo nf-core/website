@@ -101,9 +101,16 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       Every module MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the module. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the module works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
+      When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
+
+      ```groovy
+      include { FASTQC as FASTQC_POST } from '../../.....' // Good: Output folder is still 'fastqc'
+      include { FASTQC as POST_FQC    } from '../../.....' // Bad: Generates problems with CI tests - Output folder is 'post'
+      ```
+
       Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-      > ⚠️ When creating aliases of workflow names always use the name with a prefix e.g. `FASTQ` becomes `FASTQ_PREFIX`. Otherwise some problems will occur with the tests.
+
 
    4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
 
