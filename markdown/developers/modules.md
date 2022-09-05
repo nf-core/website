@@ -103,6 +103,8 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
+      > ⚠️ When creating aliases of workflow names always use the name with a prefix e.g. `FASTQ` becomes `FASTQ_PREFIX`. Otherwise some problems will occur with the tests.
+
    4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
 
       Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
