@@ -3,6 +3,9 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
+// Please someone rewrite this page..
+set_time_limit(240);
+
 // start the clocks
 $start_time = microtime(true);
 
