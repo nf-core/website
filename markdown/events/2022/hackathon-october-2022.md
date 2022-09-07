@@ -18,7 +18,21 @@ This hackathon will be held in advance of the _**Nextflow Summit 2022**_ in Barc
 
 In addition to the in-person event, we will endeavour to run a hybrid option online in [gather.town](https://gather.town/).
 
+Presentations will be run using Zoom and live-streamed to YouTube,
+where they will be also be available afterwards. Discussion and collaboration
+will be handled in dedicated channels in the nf-core Slack organisation.
+**YouTube streams will be embedded in the page below.**
+
 This hackathon is not meant to be a training event but aimed at people that already have a basic understanding of nextflow and/or nf-core. If you're interested in learning Nextflow and nf-core, there will be free online workshops spanning all global timezones in the week before the hackathon. For more information and the training registration link, see the [Nextflow and nf-core training event page](https://nf-co.re/events/2022/training-october-2022).
+
+For details or questions, please post a message in the
+[`#hackathon-march-2021` channel](https://nfcore.slack.com/channels/hackathon-march-2021)
+in the nf-core Slack.
+See [https://nf-co.re/join](https://nf-co.re/join) for information on how to join.
+
+All nf-core code is open source with the MIT licence and available on
+GitHub ([https://github.com/nf-core](https://github.com/nf-core)).
+This event is being organised by the nf-core [core team](https://nf-co.re/about).
 
 # Registration
 
@@ -108,7 +122,7 @@ This group will focus on any pipeline related work, this could be:
 
   - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-pipelines`](https://nfcore.slack.com/archives/C0415MM9FHC)
 
-Group leaders: Maxime Garcia (in person), James Fellows Yates (in person), TBD (online)
+Group leaders: Maxime Garcia (in person), James Fellows Yates (in person), Luis Kuhn (online)
 
 ## Group 4 - Modules
 
@@ -116,7 +130,7 @@ This group will welcome anyone who wants to work on new modules or improve exist
 
   - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-modules`](https://nfcore.slack.com/archives/C0415MQNW14)
 
-Group leaders: Jose Espinosa-Carrasco (in person), Gisela Gabernet (in person), TBD (online)
+Group leaders: Jose Espinosa-Carrasco (in person), Gisela Gabernet (in person), Louisa Perelo (online)
 
 ## Group 5 - Central tools / Website
 
@@ -125,6 +139,23 @@ The nf-core website is in desperate need of work, and central tooling always nee
   - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-tools-website`](https://nfcore.slack.com/archives/C040XNUL7DM)
 
 Group leaders: Matthias Hörtenhuber (in person), Júlia Mir Pedrol (in person), TBD (online)
+
+## How we will work
+
+We will be a lot of people working in parallel during this hackathon, so to stay organised we have a recommended workflow:
+
+1. :speech_balloon: Chat with your group to get an overview of what is going on
+2. <i class="fab fa-slack"></i> Join the relevant Slack channel to stay up to date and discuss with your project members
+3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board
+   - If you have something you want to do that's not there, please make an issue and add it to the board
+4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time)
+   - This is so that multiple people don't accidentally work on the same task
+5. :fast_forward: When you're done, make a pull-request with your changes. Link it to the issue so that the issue closes when merged.
+6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
+7. :recycle: Repeat!
+
+> The HackMD document is the easiest to forget, but please add something even if you think what you did was small -
+> we will use it in the group check-outs for each day and also in the reporting after the event so it's important for us :bow:
 
 # Schedule
 
@@ -242,3 +273,81 @@ Please remember that the COVID-19 pandemic is not over.
 If you intend on joining the hackathon in person, we request that you get vaccinated and tested, if possible. We ask for anyone who displays symptoms to not mingle with other participants. Whilst it is not feasible for us to enforce any rules, we request that attendees behave responsibly.
 
 We will be monitoring the status of the pandemic as the event draws closer and reserve the right to make changes in our policies if we deem that to be necessary.
+
+# Safety Information at the Hackathon
+
+Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies to the Hackathon, and all participants need to abide by our guidelines to participate. We should all feel responsible for making nf-core events safe and fun for everyone.
+
+In addition, please respect the following at all times during the hackathon:
+
+- **Never share the jitsi and zoom links** for the hackathon on social media.
+- Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media. Not respecting the latter amounts to doxing, which is also in direct violation of the nf-core [Code of Conduct](https://nf-co.re/code_of_conduct).
+
+## Reporting CoC Violations during the hackathon
+
+In case of an immediate perceived threat at the hackathon, please reach out to any of the following individuals on Slack. Their names and the time-zones they are located in are indicated.
+
+- Alexander Peltzer (CET)
+- Harshil Patel (GMT)
+- Phil Ewels (CET)
+- Gisela Gabernet (CET)
+- James A. Fellows Yates (CET)
+- Matthias Hörtenhuber (CET)
+- Maxime Garcia (CET)
+- Renuka Kudva (CET)
+- Kevin Menden (CET)
+- Friederike Hanssen (CET)
+- Michael Heuer (PST)
+
+You can also report any CoC violations directly to safety [at] nf-co [dot] re. Our safety officer, Renuka Kudva, will contact you to follow up on your report.
+
+In your email report, please do your best to include:
+
+- Your contact information.
+- Identifying information (e.g. names, nicknames, pseudonyms) of the participant who has violated the Code of Conduct.
+- The behaviour that was in violation and the circumstances surrounding the incident.
+- The approximate time of the behaviour (if different than the time the report was made)
+- Other people involved in the incident if applicable.
+- If you believe the incident is ongoing, please let us know.
+- If there is a publicly available record (e.g. mailing list record, a screenshot - please attach if so).
+- Any additional helpful information.
+
+After you file a report, uur safety officer, Renuka Kudva, will contact you to follow up on your report.
+
+### Who will read and handle reports?
+
+All reports will be read and handled by the safety officer at nf-core.
+
+If the safety officer is deemed to have a conflict of interest with a report, they will be required to recuse themselves as per our Code of Conduct and will not have access to any follow-ups.
+
+To keep this first report confidential from any of the Safety Team members, please submit your first report by direct messaging on Slack/direct email to any of the nf-core members you are comfortable disclosing the information to, and be explicit about which member(s) you do not consent to sharing the information with.
+
+### Reviewing reports
+
+After receiving the report, the safety officer will review the incident report to determine whether immediate action is required, for example, whether there is immediate threat to participants’ safety.
+
+The safety officer in consultation with members of the nf-core core team will assess whether there is sufficient information to determine whether the report constitutes a Code of Conduct violation for them to arrive at a decision on a course of action.
+
+In the case of insufficient information, the safety officer may contact the reporter, the reportee, or any other attendees to obtain more information.
+
+Once additional information is gathered, the Safety Team will collectively review and decide on the best course of action to take, if any.
+
+The Safety Team reserves the right to not act on a report.
+
+### Confidentiality
+
+All reports, and any additional information and data included, are only shared with the safety officer and members of the core team in case the safety officer is in violation of the CoC. We will respect confidentiality requests for the purpose of protecting victims of abuse.
+
+We will not name harassment victims beyond discussions between the safety officer and members of the nf-core team without the explicit consent of the individuals involved.
+
+## Enforcement
+
+Actions taken by the nf-core’s safety team may include but are not limited to:
+
+- Asking anyone to stop a behaviour.
+- Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
+- Removing access to the event spaces that we manage either temporarily or permanently.
+- Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
+- Communicating to all participants that an incident has taken place and how we will act or have acted– this may be for the purpose of letting event participants know we are aware and are dealing with the incident.
+- Banning anyone from participating in nf-core-managed spaces, future events and activities, either temporarily or permanently.
+- No action required.
