@@ -69,7 +69,6 @@ If you have any problems with any of these just ask on the slack channel or emai
 
 # Interesting Bytesize talks
 
-
 We have recorded bytesize talks in the past few months going over some of the details of tasks we will be tackling during the hackathon. Take a look if you would like to learn more:
 
 - [GitHub contribution basics](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=4)
@@ -100,7 +99,7 @@ We will coordinate our work and the issues we are working on using a single GitH
 
 This group will focus on all kind of documentation, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. We are also planning on making introduction videos for each pipeline.
 
-  - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-documentation`](https://nfcore.slack.com/archives/C041QU9SX09)
+- [<i class="fab fa-slack"></i> `#hackathon-oct-2022-documentation`](https://nfcore.slack.com/archives/C041QU9SX09)
 
 Group leaders: Abhinav Sharma (in person), Marcel Ribeiro-Dantas (in person), Franziska Bonath (online)
 
@@ -108,7 +107,7 @@ Group leaders: Abhinav Sharma (in person), Marcel Ribeiro-Dantas (in person), Fr
 
 Why stop at sharing modules, we want to share subworkflows between pipelines too! Join this group to work on the cutting edge of nf-core development, fleshing out details about how this functionality will work and building proof of concept code to use as a model for the rest of nf-core. Recommended for relatively experienced Nextflow / nf-core contributors only.
 
-  - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-subworkflows`](https://nfcore.slack.com/archives/C0419AX2RD3)
+- [<i class="fab fa-slack"></i> `#hackathon-oct-2022-subworkflows`](https://nfcore.slack.com/archives/C0419AX2RD3)
 
 Group leaders: Edmund Miller (in person), Harshil Patel (in person), Yuk Kei Wan (online)
 
@@ -128,7 +127,7 @@ Group leaders: Maxime Garcia (in person), James Fellows Yates (in person), Luis 
 
 This group will welcome anyone who wants to work on new modules or improve existing ones.
 
-  - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-modules`](https://nfcore.slack.com/archives/C0415MQNW14)
+- [<i class="fab fa-slack"></i> `#hackathon-oct-2022-modules`](https://nfcore.slack.com/archives/C0415MQNW14)
 
 Group leaders: Jose Espinosa-Carrasco (in person), Gisela Gabernet (in person), Louisa Perelo (online)
 
@@ -136,7 +135,7 @@ Group leaders: Jose Espinosa-Carrasco (in person), Gisela Gabernet (in person), 
 
 The nf-core website is in desperate need of work, and central tooling always needs to be improved and maintained. If this sounds like a fun task, join group 5!
 
-  - [<i class="fab fa-slack"></i> `#hackathon-oct-2022-tools-website`](https://nfcore.slack.com/archives/C040XNUL7DM)
+- [<i class="fab fa-slack"></i> `#hackathon-oct-2022-tools-website`](https://nfcore.slack.com/archives/C040XNUL7DM)
 
 Group leaders: Matthias Hörtenhuber (in person), Júlia Mir Pedrol (in person), TBD (online)
 
