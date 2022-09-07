@@ -147,8 +147,8 @@ Group leaders: Matthias Hörtenhuber (in person), Júlia Mir Pedrol (in person),
             </tr>
             <tr>
                 <td data-timestamp="1665388800" data-timeformat="HH:mm z">10:00</td>
-                <td rowspan="3">Hack!</td>
-                <td rowspan="3">Hack!</td>
+                <td rowspan="4">Hack!</td>
+                <td rowspan="4">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665392400" data-timeformat="HH:mm z">11:00</td>
@@ -159,6 +159,10 @@ Group leaders: Matthias Hörtenhuber (in person), Júlia Mir Pedrol (in person),
                 <td rowspan="1">Hackathon arrivals</td>
             </tr>
             <tr>
+                <td data-timestamp="1665397800" data-timeformat="HH:mm z">12:30</td>
+                <td rowspan="1">Welkome talk</td>
+            </tr>
+            <tr>
                 <td data-timestamp="1665399600" data-timeformat="HH:mm z">13:00</td>
                 <td rowspan="1">Lunch</td>
                 <td rowspan="1">Lunch</td>
@@ -166,12 +170,13 @@ Group leaders: Matthias Hörtenhuber (in person), Júlia Mir Pedrol (in person),
             </tr>
             <tr>
                 <td data-timestamp="1665403200" data-timeformat="HH:mm z">14:00</td>
-                <td rowspan="5">Hack!</td>
-                <td rowspan="5">Hack!</td>
-                <td rowspan="7"></td>
+                <td rowspan="4">Hack!</td>
+                <td rowspan="4">Hack!</td>
+                <td rowspan="1">Wrap-up talk</td>
             </tr>
             <tr>
                 <td data-timestamp="1665406800" data-timeformat="HH:mm z">15:00</td>
+                <td rowspan="6"></td>
             </tr>
             <tr>
                 <td data-timestamp="1665410400"  data-timeformat="HH:mm z">16:00</td>
@@ -181,6 +186,8 @@ Group leaders: Matthias Hörtenhuber (in person), Júlia Mir Pedrol (in person),
             </tr>
             <tr>
                 <td data-timestamp="1665417600" data-timeformat="HH:mm z">18:00</td>
+                <td rowspan="1">Summary of the day</td>
+                <td rowspan="1">Summary of the day</td>
             </tr>
             <tr>
                 <td data-timestamp="1665421200" data-timeformat="HH:mm z">19:00</td>
