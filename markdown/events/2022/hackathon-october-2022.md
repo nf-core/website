@@ -267,7 +267,7 @@ In addition, please respect the following at all times during the hackathon:
 
 In case of an immediate perceived threat at the hackathon, please reach out to any of the following individuals on Slack. Their names and their location (online/onsite) are indicated.
 
-- Chris Hakkaart (onsite)
+- Cris Tuñí (onsite)
 - Michael Heuer (online)
 - Saba Nafees (onsite)
 
