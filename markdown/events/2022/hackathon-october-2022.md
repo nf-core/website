@@ -57,9 +57,7 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
   - [nf-core/tools](https://nf-co.re/tools)
   - Docker/Singularity/Conda: [Google is your friend]
 - Familiarise yourself with the documentation on the nf-core website for nf-core modules:
-
   - [https://nf-co.re/docs/contributing/modules](https://nf-co.re/docs/contributing/modules)
-
   - [https://www.nextflow.io/docs/latest/dsl2.html#modules](https://www.nextflow.io/docs/latest/dsl2.html#modules)
   - Relevant nf-core/bytesize talks are also listed below
 
@@ -80,7 +78,7 @@ We have recorded bytesize talks in the past few months going over some of the de
 - [Modules test data](https://www.youtube.com/watch?v=QXfAerydAT0&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=17)
 - [Test modules](https://www.youtube.com/watch?v=pjhscKyWH74&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=18)
 - [Where do I start writing my own DSL2 pipeline?!](https://youtu.be/Z_uPj7fAes8)
-- [roubleshooting a failed pipeline](https://youtu.be/z9n2F4ByIkY)
+- [Troubleshooting a failed pipeline](https://youtu.be/z9n2F4ByIkY)
 - [Development environments & workflows (Phil)](https://www.youtube.com/watch?v=XB96efweCLI&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=12)
 - [Development environments & workflows (Maxime)](https://www.youtube.com/watch?v=OF55x-FT5WE&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=19)
 - [gitpod.io](https://www.youtube.com/watch?v=kBoC6QBU-M0)
@@ -247,10 +245,8 @@ During the hackathon, we will have a few light-hearted fun and games!
 
 ### On-site
 
-- Monday evening: Beers at Seqera Office!
-
+- Monday evening: Beers and pizza (non-alcoholic options available) at the Seqera Office!
 - Tuesday evening: Dinner!
-
 - The traditional sock hunting in Gathertown will also be held in person! Take pictures of as many socks as you can find.
 
 - Finally, on Thursday, we will be running a short quiz!
@@ -280,7 +276,7 @@ Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies
 In addition, please respect the following at all times during the hackathon:
 
 - **Never share the jitsi and zoom links** for the hackathon on social media.
-- Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media. Not respecting the latter amounts to doxing, which is also in direct violation of the nf-core [Code of Conduct](https://nf-co.re/code_of_conduct).
+- Do not take screenshots of groups you are working within without asking for consent of all individuals in the group. Remember, not everyone wants their photographs shared on social media.
 
 ## Reporting CoC Violations during the hackathon
 
@@ -298,7 +294,7 @@ In case of an immediate perceived threat at the hackathon, please reach out to a
 - Friederike Hanssen (CET)
 - Michael Heuer (PST)
 
-You can also report any CoC violations directly to safety [at] nf-co [dot] re. Our safety officer, Renuka Kudva, will contact you to follow up on your report.
+You can also report any CoC violations directly to safety [at] nf-co [dot] re. Our safety officers will contact you to follow up on your report.
 
 In your email report, please do your best to include:
 
@@ -311,7 +307,6 @@ In your email report, please do your best to include:
 - If there is a publicly available record (e.g. mailing list record, a screenshot - please attach if so).
 - Any additional helpful information.
 
-After you file a report, uur safety officer, Renuka Kudva, will contact you to follow up on your report.
 
 ### Who will read and handle reports?
 
