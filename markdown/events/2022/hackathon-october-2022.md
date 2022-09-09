@@ -27,7 +27,7 @@ Registration is now open together with the Nextflow Summit: <https://summit.next
 You can register for either the hackathon or the summit, or both. You're welcome to attend in-person or online.
 Attendance online is free, attending in person costs €49 (€59 incl. VAT).
 
-Registration will close September 9th, 2022.
+Registration will close September 16th, 2022.
 
 <a class="btn btn-success btn-lg" href="https://summit.nextflow.io/register/">Register now</a>
 
