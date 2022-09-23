@@ -6,7 +6,7 @@ menu:
     weight: 100
 ---
 
-Where possible pipeliens should use the same command line option names as other pipelines for comparable options.
+Where possible pipelines should use the same command line option names as other pipelines for comparable options.
 For example, `--input` and `--genome`.
 
 In addition to the names of paramters, they should ideally work in a similar way.
