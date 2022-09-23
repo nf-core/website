@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/viralrecon
 
-Phil Ewels ([@ewels](https://github.com/ewels)) will update the nf-core community about the decisions made recently by the nf-core core team. 
+Phil Ewels ([@ewels](https://github.com/ewels)) will update the nf-core community about the decisions made recently by the nf-core core team.
