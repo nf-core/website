@@ -1,9 +1,72 @@
 ## Introduction
 
 The nf-core project is a diverse project spread across many groups.
-Here you can read how we organise ourselves, how we are funded and how the nf-core project was started.
+Here you can read how we are governed, how we are funded and how the nf-core project was started.
 
 Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
+
+## Governance
+
+The purpose of is to formalize the governance process used by the scverse project, to clarify how decisions are made and how the various groups within our community interact.
+
+As a whole, we are a... Anyone with an interest in the project can join the community and make contributions that are in line with our guidelines. This document describes how that participation takes place, how to find consensus, and how deadlocks are resolved.
+
+### Roles And Responsibilities
+
+#### Steering committee
+
+Changes that impact the project require decisions informed by extensive experience with both the project and the larger ecosystem. The steering committee include representations of the core team and outside advisors who oversea the running of the project. When the core team (including its steering committee members) fails to reach a consensus in a reasonable timeframe, the Steering committee is the entity that will resolve the issue. The steering council is not fixed in size. Members will be selected based on experience and the requirements of the community as it evolves over time.
+
+Responsibilities:
+
+- Planning and making decisions about project funds
+
+## Members:
+
+-
+
+#### Core team
+
+The core team are community members that have demonstrated a continued commitment to the project through ongoing contributions and engamgent. Members will be invited to be a part of the core team based on merit / involvement in the community, and will be selected based on experience and the requirements of the community as it evolves over time. New members will be voted into the core team. The core team is not fixed in size.
+
+Core team members will appear as organization members on the GitHub organization and have access...
+
+Decisions by committee / vote
+If there is no majority, decisions will be made by the steering committee
+
+Summary of responsibilities:
+
+- Day to day decisions for the community
+- To meet annually
+- There are sub-roles within the core team which shape their contributions and responsibilities.
+- Maintain community presence
+- To track, discuss and decide on new pipeline requests
+
+#### Safety
+
+Intro
+
+Members:
+
+- 1
+- 2
+- 3
+
+Responsibilities:
+
+- Write and maintain the nf-core code of conduct
+- Be available at nf-core events (online or in-person)
+- Monitor Slack channels for instances of misconduct
+- Respond promptly to reports of misconduct from members of the community and esculate appropiately
+- Provide recommendations to the core team or steering committee for any acute or chronic instances of misconduct by community members
+
+#### Infastructure
+
+#### Outreach
+
+#### Maintainers
+
+#### Ambassadors
 
 ## Core team {#core}
 
