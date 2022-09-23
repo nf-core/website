@@ -76,7 +76,7 @@ The sub-directories of each of these organisms are stored in a (reference) genom
 
 For genomics, generally the order of preference when extending the collections as in the order in the list above (i.e. try to use the SARS-CoV2 data first).
 
-If you _need_ to add a new species, you must discuss this with the nf-core community via the #modules slack channel prior adding it.
+If you _need_ to add a new species, you must discuss this with the nf-core community via the #modules or #test-data slack channels prior adding it.
 
 #### Pangenomics
 
