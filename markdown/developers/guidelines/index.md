@@ -1,10 +1,12 @@
 ---
-title: Guidelines
+title: Guidelines Overview
 subtitle: Guidelines and requirements for nf-core pipelines.
 menu:
   main:
     weight: 10
 ---
+
+## Introduction
 
 The aim of nf-core is to have standardised best-practice pipelines.
 To ensure this standardisation, we maintain a set of guidelines which all nf-core
@@ -12,8 +14,6 @@ pipelines must adhere to.
 
 > If you're thinking of adding a new pipeline to nf-core, please read the documentation
 > about [adding a new pipeline](adding_pipelines.md).
-
-## Overview
 
 The following lists an overview of the guidelines. Follow links to dedicated pages for more detail about a given topic.
 
@@ -63,14 +63,11 @@ If that's the case, there is still a lot of ways that you can get involved with 
 ### Non nf-core pipelines
 
 If a pipeline does not conform to nf-core guidelines, it can of course exist outside of nf-core.
-
 You are verly wecome to the helper tools and collaborate on modules / subworkflows / ideas.
-
 If doing this, please don't call your pipeline `nf-core/<yourpipeline>` and please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
-
 Remember that you can generate a pipeline with `nf-core create` that excludes nf-core branding.
 
-Even if such pipelines are not listed on the nf-core website, they can be added to [nextflow-io/awesome-nextflow](https://github.com/nextflow-io/awesome-nextflow).
+Non nf-core pipelines can be added to [nextflow-io/awesome-nextflow](https://github.com/nextflow-io/awesome-nextflow) for added visibility.
 
 ### Enforcement
 
