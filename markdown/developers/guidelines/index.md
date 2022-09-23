@@ -63,7 +63,7 @@ If that's the case, there is still a lot of ways that you can get involved with 
 ### Non nf-core pipelines
 
 If a pipeline does not conform to nf-core guidelines, it can of course exist outside of nf-core.
-You are verly wecome to the helper tools and collaborate on modules / subworkflows / ideas.
+You are very wecome to the helper tools and collaborate on modules / subworkflows / ideas.
 If doing this, please don't call your pipeline `nf-core/<yourpipeline>` and please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
 Remember that you can generate a pipeline with `nf-core create` that excludes nf-core branding.
 
