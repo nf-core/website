@@ -225,7 +225,7 @@ Note that when developing the `:dev` tag should be used for docker containers.
 
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
 when ready - this will check that everything looks correct.
-You are welcome to use any numeric version number, though we recommend using [Semantic Versioning](https://semver.org/).
+Pipeline release numbers must use [Semantic Versioning](https://semver.org/).
 
 ### Core pipeline review
 
