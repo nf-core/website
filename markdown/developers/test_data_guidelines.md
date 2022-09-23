@@ -5,7 +5,7 @@ subtitle: Guidelines for adding test data to nf-core repositories
 
 ## Overview
 
-The nf-core community currently hosts two sets of test data that are used by all nf-core pipelines and modules to execute CI tests and validate results.
+The nf-core community currently hosts two sets of test data that are used to execute CI tests and validate results: pipelines and modules
 
 For consistency and keeping the test data repositories small, we provide the following guidelines and recommendations that developers should aim to follow when adding new data.
 
@@ -24,7 +24,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 ### Adding new test data
 
-1. Always ask on the [#modules](https://nfcore.slack.com/channels/modules) channel on the [nf-core slack](https://nf-co.re/join/slack) before adding test data.
+1. Always ask on the [#modules](https://nfcore.slack.com/channels/modules) or  [#test-data](https://nfcore.slack.com/channels/modules) channels on the [nf-core slack](https://nf-co.re/join/slack) before adding test data.
 
 2. Add any new test data from a pull request from a personal fork of the nf-core/test-dataset repository.
 
@@ -39,7 +39,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 5. For non-bioinformatic specific files (like simple text files, or tables), you can place these in the `generic/` directory.
 
-6. Files must be small (less than the GitHub file-size limit as a maximum size), and can be aggressively subsampled if necessary.
+6. Files must be small (less than the GitHub file-size limit as a maximum size), and must be aggressively subsampled if necessary.
 
 7. Test data must be publically available and have licenses that allow public reuse.
 
@@ -47,32 +47,32 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 9. Any test data files should be named based on the upstream file name and with a corresponding extension. For example, if you used `genome.fasta` as the upstream file, your output file should be called `genome.<new_extension>`.
 
-10. You must update the README file under the `Data Description` section of the modules-branch of test-datasets repostiroy to describe what the file is, and how it was generated (except for files added to `delete_me/`).
+10. You must update the README file under the `Data Description` section of the modules-branch of test-datasets repository to describe what the file is, and how it was generated (except for files added to `delete_me/`).
 
 11. The test data pull request requires a review to be merged.
 
 12. Once you've had your pull request merged in into `nf-core/test-datasets`, make another PR into [nf-core/modules](https://github.com/nf-core/modules), to add your file as a new entry to the [`modules/tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config).
 
     - This only applies field-specific collections, `delete_me/` files are exclued from this, and raw github URLs should be used in tests.
-    - They 'key' for each URL should follow the style of the full file name with extensions but with underscores rather than full-stops e.g. `genome.fa.gz` would become `genome_fa_gz`.
+    - The 'key' for each URL should follow the style of the full file name with extensions but with underscores rather than full-stops e.g. `genome.fa.gz` would become `genome_fa_gz`.
 
 ### Field specific guidance
 
 #### Genomics
 
-For genomics, we aim to focus on a restrict set of reference genomes from different organisms.
+For genomics, we aim to focus on a restricted set of reference genomes from different organisms.
 These have been mostly selected for having small genome sizes.
 
-- SARS-CoV2
+- SARS‑CoV‑2
 - _Homo sapiens_ (Chr 21)
 - Prokaryotes:
   - _Bacteroides fragilis_
-  - Candidatus _portiera_aleyrodidarum_
+  -  _Candidatus portiera aleyrodidarum_
   - _Haemophilus Influenzae_
 
 All of these organisms have reference genomes, raw FASTQ files, BAM files etc.
 
-The sub-directories of each of these organisms are stored in a (reference) genome folder (e.g. fasta, gtf, ...), then technology specific raw-data files in the illumina, nanopore, pacbio and cooler subfolders whenever available. Eachh contains all typical data required for genomics modules, such as fasta, fastq and bam files.
+The sub-directories of each of these organisms are stored in a (reference) genome folder (e.g. fasta, gtf, ...), then technology specific raw-data files in the illumina, nanopore, pacbio and cooler subfolders whenever available. Each contains all typical data required for genomics modules, such as fasta, fastq, and bam files.
 
 For genomics, generally the order of preference when extending the collections as in the order in the list above (i.e. try to use the SARS-CoV2 data first).
 
@@ -82,7 +82,7 @@ If you _need_ to add a new species, you must discuss this with the nf-core commu
 
 The pangenomics folder contains subfolders for all organisms for which test data is available. At the moment, there is one organism available:
 
-- homo_sapiens
+-  _Homo sapiens_
 
 The folder is structured in the following way: Any nonspecific-pangenome file is located in `pangenome` (e.g. PAF, GFA, ...) and software specific binary files in the `odgi` subfolder. `Pangenomics` contains all typical data required for pangenomics modules, such as PAF, GFA files including the binary formats ODGI, and LAY. Every folder in `pangenomics` corresponds to a single organism. For every data file, a short description about how this file was generated is available either in this description or in the respective subfolder. All files in the `pangenomics` folder originates from a [PGGB](https://github.com/pangenome/pggb) run using the [HLA V-352962 gene FASTA](https://github.com/pangenome/pggb/blob/master/data/HLA/V-352962.fa.gz).
 
