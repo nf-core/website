@@ -146,14 +146,16 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
 
 # Prerequisites
 
-Prior experience with Nextflow and nf-core isn’t required to attend. However, to get the most out of the training, we recommend that you are comfortable using the command line and have a basic understanding of scripting language concepts.
+Prior experience with Nextflow and nf-core is not required to attend. However, to get the most out of the training, we recommend that you are comfortable using the command line and have a basic understanding of scripting language concepts.
 
-The training will use a preconfigured development environment in [Gitpod](https://www.gitpod.io/). To be able to use Gitpod you will need:
+The training material will be available in a preconfigured development environment in [Gitpod](https://www.gitpod.io/). This environment will contain all of the data and tools required to run Nextflow and participate in the training fully.
+
+To be able to use [Gitpod](https://www.gitpod.io/) for the training you will need:
 
 - An internet connection
-- An internet browser (e.g., Google Chrome or Firefox)
-- A [GitHub](https://github.com/) account (free to sign up)
-- A [Slack](https://slack.com/) account (free to sign up)
+- An internet browser (E.g., Google Chrome or Firefox)
+- GitHub account (sign up for free: https://github.com/signup)
+- Slack (sign up to the nf-core Slack for free: https://nf-co.re/join/slack)
 
 # Asking questions
 
@@ -169,7 +171,7 @@ We will do our best to answer all questions at the time they are posted. However
 
 # Registration
 
-Click on the link below and fill out the registration form to secure your place :tada:
+Click on the link below and fill out the registration form to secure your place!
 
 <a class="btn btn-success btn-lg" href="https://seqera.typeform.com/oct-22-training"><i aria-hidden="true"></i>Register now</a>
 
