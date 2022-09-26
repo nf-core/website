@@ -60,24 +60,21 @@ All nf-core pipelines _should_ follow the following guidelines, if possible / ap
 We appreciate that the above guidelines are relatively rigid and may not be for everyone.
 If that's the case, there is still a lot of ways that you can get involved with nf-core!
 
-### Non nf-core pipelines
+We hope that the nf-core best practices, tooling and community are helpful for anyone building Nextflow pipelines, even if they are not a good fit for being listed as official nf-core pipelines.
+You are very welcome to use the helper tools and collaborate on modules / subworkflows / ideas.
+Indeed, numerous pipelines outside of nf-core now extensively use and contribute back to [nf-core/modules](https://github.com/nf-core/modules).
 
-If a pipeline does not conform to nf-core guidelines, it can of course exist outside of nf-core.
-You are very welcome to the helper tools and collaborate on modules / subworkflows / ideas.
-If doing this, please don't call your pipeline `nf-core/<yourpipeline>` and please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
+If using nf-core tools and especially the template, please don't call your pipeline `nf-core/<yourpipeline>`.
+Please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
 Remember that you can generate a pipeline with `nf-core create` that excludes nf-core branding.
+Citation and acknowledgement of the work that goes into these tools and templates is welcome.
 
-Non nf-core pipelines can be added to [nextflow-io/awesome-nextflow](https://github.com/nextflow-io/awesome-nextflow) for added visibility.
+> Non nf-core pipelines can be added to [nextflow-io/awesome-nextflow](https://github.com/nextflow-io/awesome-nextflow) for added visibility.
 
-### Enforcement
+If a pipeline is found to be violating the nf-core guidelines _after_ it has been added to the community, we will try to address the problems via the following steps:
 
-If a pipeline is found to be violating the nf-core guidelines after it has been added to the community, we will try to address the problems via the following steps:
-
-First, the core team will attempt to resolve problems with the pipeline maintainers through discussion.
-Hopefully the pipeline can then be updated so that it adheres to the guidelines.
-
-If this is not possible, the core team will make a recommendation to the steering committee about what action to take.
-Such actions could include archiving the pipeline or removing it completely.
+1. First, the core team will attempt to resolve problems with the pipeline maintainers through discussion. Hopefully the pipeline can then be updated so that it adheres to the guidelines.
+2. If this is not possible, the core team will make a recommendation to the steering committee about what action to take. Such actions could include archiving the pipeline or removing it completely.
 
 All members of the nf-core community must adhere to the [nf-core code of conduct](https://nf-co.re/code_of_conduct).
 The guidelines and actions within the code of conduct take precedence over the development pipelines described in this page.
