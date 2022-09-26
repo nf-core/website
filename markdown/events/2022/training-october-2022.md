@@ -62,24 +62,33 @@ You are welcome to attend whichever sessions work best for you.
 
 Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). Streaming links will be activated prior to the training sessions and can be accessed below.
 
-<div class="table">
-    <table class="table">
+<div class="table-responsive small">
+    <table class="table table-hover table-sm table-bordered" style="vertical-align:middle;">
         <thead>
   <tr>
-    <th><span style="font-weight:bold">Session</span></th>
-    <th><span style="font-weight:bold">Topic</span></th>
-    <th><span style="font-weight:bold">APAC</span></th>
-    <th><span style="font-weight:bold">EMEA</span></th>
-    <th><span style="font-weight:bold">AMER</span></th>
+    <th>Session</th>
+    <th>Topic</th>
+    <th>APAC</th>
+    <th>EMEA</th>
+    <th>AMER</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td style="vertical-align:middle" rowspan="5">Session 1</td>
+    <td  rowspan="5">Session 1<br>3<sup>rd</sup> October</td>
     <td>Introduction to Nextflow (30 min)</td>
-    <td style="vertical-align:middle" rowspan="5">Streaming link</td>
-    <td style="vertical-align:middle" rowspan="5">Streaming link</td>
-    <td style="vertical-align:middle" rowspan="5">Streaming link</td>
+    <td rowspan="5">
+      <span data-timestamp="1664766000" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
+    <td rowspan="5">
+      <span data-timestamp="1664798400" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
+    <td rowspan="5">
+      <span data-timestamp="1664816400" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
   </tr>
   <tr>
     <td>Getting started with Nextflow (30 min)</td>
@@ -94,11 +103,20 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Managing dependencies &amp; containers (30 min)</td>
   </tr>
   <tr>
-    <td style="vertical-align:middle" rowspan="7">Session 2</td>
+    <td rowspan="7">Session 2<br>4<sup>th</sup> October</td>
     <td>Channels (20 min)</td>
-    <td style="vertical-align:middle" rowspan="7">Streaming link</td>
-    <td style="vertical-align:middle" rowspan="7">Streaming link</td>
-    <td style="vertical-align:middle" rowspan="7">Streaming link</td>
+    <td rowspan="7">
+      <span data-timestamp="1664852400" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
+    <td rowspan="7">
+      <span data-timestamp="1664884800" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
+    <td rowspan="7">
+      <span data-timestamp="1664902800" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
   </tr>
   <tr>
     <td>Processes (30 min)</td>
@@ -119,11 +137,20 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Deployment scenarios (30 min)</td>
   </tr>
   <tr>
-    <td style="vertical-align:middle" rowspan="6">Session 3</td>
+    <td rowspan="6">Session 3<br>5<sup>th</sup> October</td>
     <td>Community - Slack / GitHub (20 min)</td>
-    <td style="vertical-align:middle" rowspan="6">Streaming link</td>
-    <td style="vertical-align:middle" rowspan="6">Streaming link</td>
-    <td style="vertical-align:middle" rowspan="6">Streaming link</td>
+    <td rowspan="6">
+      <span data-timestamp="1664938800" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
+    <td rowspan="6">
+      <span data-timestamp="1664971200" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
+    <td rowspan="6">
+      <span data-timestamp="1664989200" data-timeformat="HH:mm z"></span><br>
+      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+    </td>
   </tr>
   <tr>
     <td>nf-core create pipelines (20 min)</td>
@@ -163,9 +190,9 @@ We anticipate that many of you will have questions throughout the training. To h
 
 If you are not already a part of the nf-core slack organization you can join using [this link](https://nf-co.re/join/slack). The dedicated channels for questions can be found by searching All Channels, which is at the top left corner of your Slack window. To keep noise down at different times of the day we have created separate channels for each time zone group and are linked below.
 
-- [`#training-oct22-apac`](https://nfcore.slack.com/archives/C043PN0BE1L)
-- [`#training-oct22-emea`](https://nfcore.slack.com/archives/C0448VBG30R)
-- [`#training-oct22-amer`](https://nfcore.slack.com/archives/C0449003V9P)
+- [<i class="fa-brands fa-slack me-2"></i>`#training-oct22-apac`](https://nfcore.slack.com/archives/C043PN0BE1L)
+- [<i class="fa-brands fa-slack me-2"></i>`#training-oct22-emea`](https://nfcore.slack.com/archives/C0448VBG30R)
+- [<i class="fa-brands fa-slack me-2"></i>`#training-oct22-amer`](https://nfcore.slack.com/archives/C0449003V9P)
 
 We will do our best to answer all questions at the time they are posted. However, because of the large number of attendees, we anticipate it may take some time to answer everyone. Our priority will be to keep everyone moving forward during the training, but will come back to questions that are missed during the training session.
 
