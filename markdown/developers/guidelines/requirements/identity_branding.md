@@ -23,7 +23,7 @@ It also means that any pull-requests that are created will automatically select 
 
 When new pipelines are added to nf-core, please _move_ the repository to nf-core instead of forking it.
 
-If you have already forked your pipeline to nf-core, you can email GitHub support and request that they change the head repository.
+If you have already forked your pipeline to nf-core, you can [email GitHub support](https://support.github.com/contact?subject=Reroute%20a%20Fork&tags=rr-forks) and request that they reroute the fork.
 
 ### Disable GitHub features for forks
 

@@ -11,3 +11,5 @@ As such, different pipelines should not overlap one another too much: there shou
 However, if the _purpose_ of the pipeline tasks and results are different, then this should be a separate pipeline.
 
 If you would like to use a different set of tools to do a comparable analysis, then this should be added to the existing pipeline instead of creating something new.
+
+If in doubt, you can always ask on the [`#new-pipelines`](https://nfcore.slack.com/archives/CE6SDEDAA) nf-core Slack channel, which is designed for exactly these kinds of discussions.
