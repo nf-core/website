@@ -6,7 +6,7 @@ start_date: '2022-10-03'
 start_time: '05:00 CEST'
 end_date: '2022-10-05'
 end_time: '21:30 CEST'
-location_name: Virtual (Gather.town)
+location_name: YouTube
 ---
 
 # Welcome
@@ -57,7 +57,92 @@ Because nf-core is a global community we are making the training geographically 
 _(All times shown relative to your web browser's timezone)_
 
 You are welcome to attend whichever sessions work best for you.
-Training will be held online in [Gather.town](https://gather.town) (more details closer to the time).
+
+# Streaming links
+
+Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). Streaming links will be activated prior to the training sessions and can be accessed below.
+
+<div class="table">
+    <table class="table">
+        <thead>
+  <tr>
+    <th><span style="font-weight:bold">Session</span></th>
+    <th><span style="font-weight:bold">Topic</span></th>
+    <th><span style="font-weight:bold">APAC</span></th>
+    <th><span style="font-weight:bold">EMEA</span></th>
+    <th><span style="font-weight:bold">AMER</span></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td style="vertical-align:middle" rowspan="5">Session 1</td>
+    <td>Introduction to Nextflow (30 min)</td>
+    <td style="vertical-align:middle" rowspan="5">Streaming link</td>
+    <td style="vertical-align:middle" rowspan="5">Streaming link</td>
+    <td style="vertical-align:middle" rowspan="5">Streaming link</td>
+  </tr>
+  <tr>
+    <td>Getting started with Nextflow (30 min)</td>
+  </tr>
+  <tr>
+    <td>Break (15 min)</td>
+  </tr>
+  <tr>
+    <td>Simple RNA-Seq pipeline (45 min)</td>
+  </tr>
+  <tr>
+    <td>Managing dependencies &amp; containers (30 min)</td>
+  </tr>
+  <tr>
+    <td style="vertical-align:middle" rowspan="7">Session 2</td>
+    <td>Channels (20 min)</td>
+    <td style="vertical-align:middle" rowspan="7">Streaming link</td>
+    <td style="vertical-align:middle" rowspan="7">Streaming link</td>
+    <td style="vertical-align:middle" rowspan="7">Streaming link</td>
+  </tr>
+  <tr>
+    <td>Processes (30 min)</td>
+  </tr>
+  <tr>
+    <td>Operators (10 min)</td>
+  </tr>
+  <tr>
+    <td>Break (15 min)</td>
+  </tr>
+  <tr>
+    <td>Modularization - DSL2 workflows (30 min)</td>
+  </tr>
+  <tr>
+    <td>Nextflow configuration (15 min)</td>
+  </tr>
+  <tr>
+    <td>Deployment scenarios (30 min)</td>
+  </tr>
+  <tr>
+    <td style="vertical-align:middle" rowspan="6">Session 3</td>
+    <td>Community - Slack / GitHub (20 min)</td>
+    <td style="vertical-align:middle" rowspan="6">Streaming link</td>
+    <td style="vertical-align:middle" rowspan="6">Streaming link</td>
+    <td style="vertical-align:middle" rowspan="6">Streaming link</td>
+  </tr>
+  <tr>
+    <td>nf-core create pipelines (20 min)</td>
+  </tr>
+  <tr>
+    <td>Break (10 min)</td>
+  </tr>
+  <tr>
+    <td>nf-core modules - install (30 min)</td>
+  </tr>
+  <tr>
+    <td>nf-core schema (30 min)</td>
+  </tr>
+  <tr>
+    <td>Tower (40 min)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 # Prerequisites
 
@@ -65,9 +150,22 @@ Prior experience with Nextflow and nf-core isn’t required to attend. However, 
 
 The training will use a preconfigured development environment in [Gitpod](https://www.gitpod.io/). To be able to use Gitpod you will need:
 
-- A [GitHub](https://github.com/) account
-- A web browser (Google Chrome, Firefox)
 - An internet connection
+- An internet browser (e.g., Google Chrome or Firefox)
+- A [GitHub](https://github.com/) account (free to sign up)
+- A [Slack](https://slack.com/) account (free to sign up)
+
+# Asking questions
+
+We anticipate that many of you will have questions throughout the training. To help manage these questions we have created dedicated channels on the nf-core Slack that our team members will monitor. The benefit of this is that we will be able to reply in individual threads rather than one big chain where some questions and answers may get lost.
+
+If you are not already a part of the nf-core slack organization you can join using [this link](https://nf-co.re/join/slack). The dedicated channels for questions can be found by searching All Channels, which is at the top left corner of your Slack window. To keep noise down at different times of the day we have created separate channels for each time zone group and are linked below.
+
+- [`#training-oct22-apac`](https://nfcore.slack.com/archives/C043PN0BE1L)
+- [`#training-oct22-emea`](https://nfcore.slack.com/archives/C0448VBG30R)
+- [`#training-oct22-amer`](https://nfcore.slack.com/archives/C0449003V9P)
+
+We will do our best to answer all questions at the time they are posted. However, because of the large number of attendees, we anticipate it may take some time to answer everyone. Our priority will be to keep everyone moving forward during the training, but will come back to questions that are missed during the training session.
 
 # Registration
 
