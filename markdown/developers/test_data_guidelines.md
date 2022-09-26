@@ -39,11 +39,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 5. For non-bioinformatic specific files (like simple text files, or tables), you can place these in the `generic/` directory.
 
-6. Files must be small (less than the GitHub file-size limit as a maximum size), and must be aggressively subsampled if necessary.
-
-   - Ideally less than the GitHub warning message of 50MB
-   - Absolutely less than the GitHub maximum of 100MB
-
+6. Files must have as small a file size as possible - aggressively subsample as much as you can.
 7. Test data must be publically available and have licenses that allow public reuse.
 
 8. Files should generally be organised in directories based on their file extension.
