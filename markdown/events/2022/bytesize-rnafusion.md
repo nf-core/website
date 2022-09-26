@@ -6,8 +6,11 @@ start_date: '2022-09-13'
 start_time: '13:00 CEST'
 end_date: '2022-09-13'
 end_time: '13:30 CEST'
+embed_at: 'rnafusion'
+youtube_embed: https://www.youtube.com/watch?v=iP47pokiPB4
 location_url:
-  - https://ki-se.zoom.us/j/67600613091?pwd=WHZHZ3pwaXVnb0VRZStyYTV0dkYyZz09
+  - https://www.youtube.com/watch?v=iP47pokiPB4
+  - https://doi.org/10.6084/m9.figshare.21206537.v1
 ---
 
 # nf-core/bytesize
