@@ -79,15 +79,15 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Introduction to Nextflow (30 min)</td>
     <td rowspan="5">
       <span data-timestamp="1664766000" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="5">
       <span data-timestamp="1664798400" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="5">
       <span data-timestamp="1664816400" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
   </tr>
   <tr>
@@ -107,15 +107,15 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Channels (20 min)</td>
     <td rowspan="7">
       <span data-timestamp="1664852400" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="7">
       <span data-timestamp="1664884800" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="7">
       <span data-timestamp="1664902800" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
   </tr>
   <tr>
@@ -141,15 +141,15 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Community - Slack / GitHub (20 min)</td>
     <td rowspan="6">
       <span data-timestamp="1664938800" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="6">
       <span data-timestamp="1664971200" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="6">
       <span data-timestamp="1664989200" data-timeformat="HH:mm z"></span><br>
-      <a href="#"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
   </tr>
   <tr>
