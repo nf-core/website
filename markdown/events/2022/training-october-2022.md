@@ -151,7 +151,7 @@ Prior experience with Nextflow and nf-core isn’t required to attend. However, 
 The training will use a preconfigured development environment in [Gitpod](https://www.gitpod.io/). To be able to use Gitpod you will need:
 
 - An internet connection
-- An internet browser (E.g., Google Chrome or Firefox)
+- An internet browser (e.g., Google Chrome or Firefox)
 - GitHub account (free to sign up)
 - Slack (free to sign up)
 
