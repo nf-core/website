@@ -10,6 +10,7 @@ All documentation must be bundled with the pipeline code in the main repository,
 
 Documentation must _only_ be hosted on the nf-core website and GitHub.
 Hosting the documentation at a second location (such as custom readthedocs website, or GitHub pages etc) is not allowed.
+This is to ensure that users of nf-core pipelines can always intiuitively find the documentation for all nf-core pipelines in the same way.
 
 Documentation must include at least the following files:
 
