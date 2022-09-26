@@ -152,8 +152,8 @@ The training will use a preconfigured development environment in [Gitpod](https:
 
 - An internet connection
 - An internet browser (e.g., Google Chrome or Firefox)
-- GitHub account (free to sign up)
-- Slack (free to sign up)
+- A [GitHub](https://github.com/) account (free to sign up)
+- A [Slack](https://slack.com/) account (free to sign up)
 
 # Asking questions
 
