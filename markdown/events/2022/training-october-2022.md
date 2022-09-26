@@ -184,3 +184,7 @@ If this is something you are interested in you can tell us about your plans usin
 Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
 
 You can add your community event using [this link](https://seqera.typeform.com/streaming-event).
+
+# Code of conduct
+
+Please note that by attending the training event you are agreeing to abide by our [Code of Conduct](https://nf-co.re/code_of_conduct).
