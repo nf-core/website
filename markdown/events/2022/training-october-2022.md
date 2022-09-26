@@ -57,6 +57,9 @@ Because nf-core is a global community we are making the training geographically 
 _(All times shown relative to your web browser's timezone)_
 
 You are welcome to attend whichever sessions work best for you.
+
+# Streaming links
+
 Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). Streaming links will be activated prior to the training sessions and can be accessed below.
 
 <div class="table">
@@ -72,7 +75,7 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
 </thead>
 <tbody>
   <tr>
-    <td style="vertical-align:middle" rowspan="5">Day 1</td>
+    <td style="vertical-align:middle" rowspan="5">Session 1</td>
     <td>Introduction to Nextflow (30 min)</td>
     <td style="vertical-align:middle" rowspan="5">Streaming link</td>
     <td style="vertical-align:middle" rowspan="5">Streaming link</td>
@@ -91,7 +94,7 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Managing dependencies &amp; containers (30 min)</td>
   </tr>
   <tr>
-    <td style="vertical-align:middle" rowspan="7">Day 2</td>
+    <td style="vertical-align:middle" rowspan="7">Session 2</td>
     <td>Channels (20 min)</td>
     <td style="vertical-align:middle" rowspan="7">Streaming link</td>
     <td style="vertical-align:middle" rowspan="7">Streaming link</td>
@@ -116,7 +119,7 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Deployment scenarios (30 min)</td>
   </tr>
   <tr>
-    <td style="vertical-align:middle" rowspan="6">Day 3</td>
+    <td style="vertical-align:middle" rowspan="6">Session 3</td>
     <td>Community - Slack / GitHub (20 min)</td>
     <td style="vertical-align:middle" rowspan="6">Streaming link</td>
     <td style="vertical-align:middle" rowspan="6">Streaming link</td>
