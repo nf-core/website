@@ -25,6 +25,6 @@ The nf-core core team recently met for their first ever retreat. A lot of topics
 - New organisational team structure
 - Updates to guidelines, test-data and archiving policies
 - Looking ahead:
-    - Subworkflows
-    - awesome-nextflow pipelines
-    - nf-core website updates
+  - Subworkflows
+  - awesome-nextflow pipelines
+  - nf-core website updates
