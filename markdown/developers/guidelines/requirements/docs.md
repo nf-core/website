@@ -18,4 +18,4 @@ Documentation must include at least the following files:
 - `docs/usage.md`
 - `docs/output.md`
 
-Additional pages can be added and will be automatically rendered on the nf-core website pipeline page.
+Additional pages (e.g. tutorials, FAQs) can be added and will be automatically rendered on the nf-core website pipeline page.
