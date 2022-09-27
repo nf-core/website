@@ -496,7 +496,6 @@ process {
      script:
      if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
      ```
-     
 
 ### Input/output options
 
