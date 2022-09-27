@@ -485,7 +485,7 @@ process {
 
 4. All function names MUST follow the `camelCase` convention.
 
-5. Channel names MUST follow `snake_case` convention and be all lower case. 
+5. Channel names MUST follow `snake_case` convention and be all lower case.
 
 6. Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
 
