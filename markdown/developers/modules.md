@@ -485,7 +485,9 @@ process {
 
 4. All function names MUST follow the `camelCase` convention.
 
-5. Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
+5. Channel names MUST follow `snake_case` convention and be all lower case. 
+
+6. Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
 
    - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
    - As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
@@ -494,6 +496,7 @@ process {
      script:
      if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
      ```
+     
 
 ### Input/output options
 
@@ -502,7 +505,7 @@ process {
    - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
    - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
-2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`. These should be in lower camel-case.
+2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
