@@ -833,8 +833,12 @@ $(function () {
     $('#settings_modal').data('param-id', id);
     $('#settings_modal .modal-title').html(modal_header);
     $('#settings_delete span').html(delete_btn_txt);
-    $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
-    $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+    $('#settings_enum, #settings_pattern, #settings_mimetype, #settings_minimum, #settings_maximum').val('');
+    $('.settings_nothing_special').hide();
+    $('.settings_enum_group').hide();
+    $('.settings_pattern_group').hide();
+    $('.settings_mimetype_group').hide();
+    $('.settings_minmax_group').hide();
 
     if (['boolean', 'object'].indexOf(param['type']) != -1) {
       $('.settings_nothing_special').show();
@@ -843,6 +847,7 @@ $(function () {
     }
     if (param['type'] == 'string') {
       $('.settings_pattern_group').show();
+      $('.settings_mimetype_group').show();
     }
     if (['integer', 'number'].includes(param['type'])) {
       $('.settings_minmax_group').show();
@@ -854,6 +859,9 @@ $(function () {
     }
     if (param.hasOwnProperty('pattern')) {
       $('#settings_pattern').val(param['pattern']);
+    }
+    if (param.hasOwnProperty('mimetype')) {
+      $('#settings_mimetype').val(param['mimetype']);
     }
     if (param.hasOwnProperty('minimum')) {
       $('#settings_minimum').val(param['minimum']);
@@ -874,6 +882,7 @@ $(function () {
 
     var settings = {};
     settings.pattern = $('#settings_pattern').val().trim();
+    settings.mimetype = $('#settings_mimetype').val().trim();
     settings.minimum =
       $('#settings_minimum').val().trim() === '' ? '' : parseFloat($('#settings_minimum').val().trim());
     settings.maximum =
