@@ -135,7 +135,7 @@ $(function () {
     });
 
     // Dismiss popover if click elsewhere
-    $(document).click(function (e) {
+    $(document).on('click', function (e) {
       var target = $(e.target);
       // Is a click outside the icon popover and button
       if (!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length) {
@@ -180,7 +180,7 @@ $(function () {
   }
 
   // Add parameter button
-  $('.add-param-btn').click(function (e) {
+  $('.add-param-btn').on('click', function (e) {
     var new_id = 'new_param_' + new_param_idx;
     if (schema.hasOwnProperty('properties')) {
       while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
@@ -209,7 +209,7 @@ $(function () {
   });
 
   // Add group button
-  $('.add-group-btn').click(function (e) {
+  $('.add-group-btn').on('click', function (e) {
     var new_id = 'new_group_' + new_group_idx;
     var new_title = 'New Group ' + new_group_idx;
     if (!schema.hasOwnProperty('definitions')) {
@@ -242,13 +242,13 @@ $(function () {
   });
 
   // Collapse groups button
-  $('.collapse-groups-btn').click(function (e) {
+  $('.collapse-groups-btn').on('click', function (e) {
     $('.schema_group').find('.card-body').slideUp('fast');
     $('.schema_group').find('i.fa-angle-double-down').toggleClass('fa-angle-double-left fa-angle-double-down');
   });
 
   // Expand groups button
-  $('.expand-groups-btn').click(function (e) {
+  $('.expand-groups-btn').on('click', function (e) {
     $('.schema_group').find('.card-body').slideDown('fast');
     $('.schema_group').find('i.fa-angle-double-left').toggleClass('fa-angle-double-left fa-angle-double-down');
   });
@@ -257,7 +257,7 @@ $(function () {
   // FINISHED button
   //
   // Toggle between panels
-  $('.schema-panel-btn').click(function () {
+  $('.schema-panel-btn').on('click', function () {
     var target = $($(this).data('target'));
     if (target.is(':hidden')) {
       $('.schema-panel:visible').fadeOut('fast', function () {
@@ -783,7 +783,7 @@ $(function () {
   });
 
   // Save the help text
-  $('#help_text_save').click(function () {
+  $('#help_text_save').on('click', function () {
     var id = $('#help_text_modal').data('param-id');
     var param = find_param_in_schema(id);
     var help_text = $('#help_text_input').val();
@@ -898,7 +898,7 @@ $(function () {
   //
   // Settings modal: Show / hide file-path fields
   //
-  $('#settings_format').change(function () {
+  $('#settings_format').on('change', function () {
     if ($(this).val() == 'file-path') {
       $('.settings_mimetype_group').show();
       $('.settings_schema_group').show();
@@ -911,7 +911,7 @@ $(function () {
   //
   // Settings Modal - save button
   //
-  $('#settings_save').click(function (e) {
+  $('#settings_save').on('click', function (e) {
     var id = $('#settings_modal').data('param-id');
     var param = find_param_in_schema(id);
 
@@ -1002,7 +1002,7 @@ $(function () {
   //
   // Settings Modal - delete button
   //
-  $('#settings_delete').click(function (e) {
+  $('#settings_delete').on('click', function (e) {
     var id = $('#settings_modal').data('param-id');
     var row_el = $('.schema_row[data-id="' + id + '"]');
     var group_el = $('.schema_group[data-id="' + id + '"]');
@@ -1113,7 +1113,7 @@ $(function () {
 
   // Submit modal
   // move selected parameters into the group, close modal if no top-level parameters are left
-  $('#move_params').click(function () {
+  $('#move_params').on('click', function () {
     var id = $('#multi_select_modal').data('param-id');
     var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
     $('#multi_select_modal')
@@ -1167,12 +1167,12 @@ $(function () {
     }
   }
   // select all parameter checkboxes via button
-  $('#select_all_params').click(function () {
+  $('#select_all_params').on('click', function () {
     $('.select_param:visible').prop('checked', true);
     $('.select_param').trigger('change');
   });
   // select all parameter checkboxes via button
-  $('#deselect_all_params').click(function () {
+  $('#deselect_all_params').on('click', function () {
     $('.select_param:visible').prop('checked', false);
     $('.select_param').trigger('change');
   });
@@ -1214,7 +1214,7 @@ $(function () {
   // Copy schema button
   //
   $('.toast').toast();
-  $('.copy-schema-btn').click(function () {
+  $('.copy-schema-btn').on('click', function () {
     // select the content
     var target = $('#json_schema');
     var currentFocus = document.activeElement;
