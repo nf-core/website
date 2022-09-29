@@ -45,6 +45,12 @@ Ok, you're ready! To run the website locally, just start the apache-php server w
 docker compose up
 ```
 
+> NB: If you are using a Mac with Apple silicon, you need to run:
+>
+> ```bash
+> docker compose -f m1-docker-compose.yml up
+> ```
+
 You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).
 
 If you prefer, you can also use a tool such as [MAMP](https://www.mamp.info/) - if so,
