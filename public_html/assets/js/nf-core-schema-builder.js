@@ -837,6 +837,7 @@ $(function () {
     $('#settings_pattern').val('');
     $('#settings_format').val('');
     $('#settings_mimetype').val('');
+    $('#settings_schema').val('');
     $('#settings_minimum').val('');
     $('#settings_maximum').val('');
     $('.settings_nothing_special').hide();
@@ -844,8 +845,13 @@ $(function () {
     $('.settings_pattern_group').hide();
     $('.settings_format_group').hide();
     $('.settings_mimetype_group').hide();
+    $('.settings_schema_group').hide();
     $('.settings_minmax_group').hide();
 
+    // Nicer placeholders
+    $('#settings_schema').attr('placeholder', 'assets/' + id + '_schema.json');
+
+    // Show appropriate fields based on param type
     if (['boolean', 'object'].indexOf(param['type']) != -1) {
       $('.settings_nothing_special').show();
     } else {
@@ -854,7 +860,10 @@ $(function () {
     if (param['type'] == 'string') {
       $('.settings_pattern_group').show();
       $('.settings_format_group').show();
+    }
+    if (param.hasOwnProperty('format') && param['format'] == 'file-path') {
       $('.settings_mimetype_group').show();
+      $('.settings_schema_group').show();
     }
     if (['integer', 'number'].includes(param['type'])) {
       $('.settings_minmax_group').show();
@@ -873,6 +882,9 @@ $(function () {
     if (param.hasOwnProperty('mimetype')) {
       $('#settings_mimetype').val(param['mimetype']);
     }
+    if (param.hasOwnProperty('schema')) {
+      $('#settings_schema').val(param['schema']);
+    }
     if (param.hasOwnProperty('minimum')) {
       $('#settings_minimum').val(param['minimum']);
     }
@@ -882,6 +894,19 @@ $(function () {
 
     $('#settings_modal').modal('show');
   }
+
+  //
+  // Settings modal: Show / hide file-path fields
+  //
+  $('#settings_format').change(function () {
+    if ($(this).val() == 'file-path') {
+      $('.settings_mimetype_group').show();
+      $('.settings_schema_group').show();
+    } else {
+      $('.settings_mimetype_group').hide();
+      $('.settings_schema_group').hide();
+    }
+  });
 
   //
   // Settings Modal - save button
@@ -894,6 +919,7 @@ $(function () {
     settings.pattern = $('#settings_pattern').val().trim();
     settings.format = $('#settings_format').val().trim();
     settings.mimetype = $('#settings_mimetype').val().trim();
+    settings.schema = $('#settings_schema').val().trim();
     settings.minimum =
       $('#settings_minimum').val().trim() === '' ? '' : parseFloat($('#settings_minimum').val().trim());
     settings.maximum =

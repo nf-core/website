@@ -221,6 +221,13 @@ include '../includes/header.php';
                             </a>
                         </small>
                     </div>
+                    <div class="form-group settings_schema_group">
+                        <label for="settings_schema">File schema</label>
+                        <input type="text" class="form-control" id="settings_schema" placeholder="assets/myparam_schema.json">
+                        <small class="form-text text-muted">
+                            Path to JSON schema file used to validate the supplied file.
+                        </small>
+                    </div>
                     <div class="settings_minmax_group">
                         <div class="row">
                             <div class="col-sm-6">
