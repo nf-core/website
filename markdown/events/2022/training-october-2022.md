@@ -7,6 +7,8 @@ start_time: '05:00 CEST'
 end_date: '2022-10-05'
 end_time: '21:30 CEST'
 location_name: YouTube
+location_url:
+  - https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn
 ---
 
 # Welcome
@@ -60,7 +62,7 @@ You are welcome to attend whichever sessions work best for you.
 
 # Streaming links
 
-Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). Streaming links will be activated prior to the training sessions and can be accessed below.
+Training will be live streamed on [YouTube](https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn). Streaming links can be accessed below.
 
 <div class="table-responsive small">
     <table class="table table-hover table-sm table-bordered" style="vertical-align:middle;">
@@ -79,15 +81,15 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Introduction to Nextflow (30 min)</td>
     <td rowspan="5">
       <span data-timestamp="1664766000" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/TXCKp8fP81E"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="5">
       <span data-timestamp="1664798400" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/Wo4zIhyWPNY"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="5">
       <span data-timestamp="1664816400" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/h3xtVMHHjB8"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
   </tr>
   <tr>
@@ -107,15 +109,15 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Channels (20 min)</td>
     <td rowspan="7">
       <span data-timestamp="1664852400" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/oc5Q5rzduz0"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="7">
       <span data-timestamp="1664884800" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/5lhdYZcLZF4"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="7">
       <span data-timestamp="1664902800" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/Fy7OVdXWCPE"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
   </tr>
   <tr>
@@ -141,15 +143,15 @@ Training will be live streamed on [YouTube](https://www.youtube.com/c/nf-core). 
     <td>Community - Slack / GitHub (20 min)</td>
     <td rowspan="6">
       <span data-timestamp="1664938800" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/BmWmjVTDDdA"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="6">
       <span data-timestamp="1664971200" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/5mVIRCp0qhE"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
     <td rowspan="6">
       <span data-timestamp="1664989200" data-timeformat="HH:mm z"></span><br>
-      <a href="https://www.youtube.com/c/nf-core"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
+      <a href="https://youtu.be/FtC1Efx7-zU"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
   </tr>
   <tr>
