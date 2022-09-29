@@ -199,6 +199,18 @@ include '../includes/header.php';
                             </a>
                         </small>
                     </div>
+                    <div class="form-group settings_format_group">
+                        <label for="settings_format">Format</label>
+                        <select class="form-select" id="settings_format">
+                            <option value="">-</option>
+                            <option value="file-path">File path (must be a file)</option>
+                            <option value="directory-path">Directory path (must be a directory)</option>
+                            <option value="path">Path (can be a file or directory)</option>
+                        </select>
+                        <small class="form-text text-muted">
+                            Additional type information. Specify if a string should be a file path.
+                        </small>
+                    </div>
                     <div class="form-group settings_mimetype_group">
                         <label for="settings_mimetype">Mime type</label>
                         <input type="text" class="form-control" id="settings_mimetype" placeholder="text/csv">
