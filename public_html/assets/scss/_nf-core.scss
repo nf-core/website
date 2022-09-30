@@ -1491,3 +1491,11 @@ Launch Page
     color: $success;
   }
 }
+.sidebar-nav.side-sub-subnav > ul > nav {
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid $secondary;
+  &:last-child {
+    border-bottom: none;
+  }
+}
