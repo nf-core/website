@@ -1,9 +1,8 @@
 ## Introduction
 
-In Spring 2022, Nextflow and nf-core started a joint mentorship program.
-With the first round of mentorships complete the applications for round two are now open!
-
-As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation. As with the first round of the program, we will organise a small number of mentoring pairs to improve outreach and training in underrepresented groups and areas.
+As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation.
+In Spring 2022, Nextflow and nf-core started a joint mentorship program with the aim of improving outreach and training in underrepresented groups and areas.
+With the first round of mentorships complete the applications for round two (Autumn 2022) are now open!
 
 In this page, we use the following terminology:
 
@@ -25,14 +24,13 @@ Some typical project aims could be:
   - Writing an extensive tutorial about some aspect of nf-core
 
 The exact scope and aims of each mentoring partnership can vary according to the participants' needs and situation.
-These will be judged on a case-by-case basis as part of the application process.
+These will be judged on a case-by-case basis as part of the application process. You can find out more about what mentor and mentee pairs achieved in the first round of the program [here](https://www.nextflow.io/blog/2022/czi-mentorship-round-1.html).
 
-You can find out more about what mentor + mentee pairs achieved in the first round of the program [here](https://www.nextflow.io/blog/2022/czi-mentorship-round-1.html).
 ### Organisation
 
 In summary (all points subject to change):
 
-- We will start with rounds of 5-10 mentor + mentee pairs
+- We will start with rounds of 5 - 10 mentor + mentee pairs
 - Mentorships will run for 4 months
 - There will be new rounds approximately every 6 months
 - Mentees will get free tutoring from an experienced developer about using Nextflow and nf-core
@@ -86,7 +84,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of August 2022</dd>
 </dl>
 
-## Round 2
+## Round 2 (Applications open)
 
 ### Key dates
 
@@ -122,10 +120,11 @@ Dates are subject to change:
 
 ### Application process
 
-Applications for Round 2 will open on October 1st. Please check back soon for updates!
+Applications for Round 2 are now open!
 
 <!-- _Applications are now closed. Those who have applied will hear from us soon. Thank you!_ -->
-Please submit an application using the forms below.
+
+Please submit an application using the forms below before November 1 to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
 <p class="text-center"><a href="https://forms.gle/oXgDDwGPUHV6nMYk8" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
