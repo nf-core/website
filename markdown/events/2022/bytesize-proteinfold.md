@@ -6,8 +6,11 @@ start_date: '2022-09-20'
 start_time: '13:00 CEST'
 end_date: '2022-09-20'
 end_time: '13:30 CEST'
+embed_at: 'proteinfold'
+youtube_embed: https://www.youtube.com/watch?v=441P_GzrI-o
 location_url:
-  - https://ki-se.zoom.us/j/67600613091?pwd=WHZHZ3pwaXVnb0VRZStyYTV0dkYyZz09
+  - https://www.youtube.com/watch?v=441P_GzrI-o
+  - https://doi.org/10.6084/m9.figshare.21206555.v1
 ---
 
 # nf-core/bytesize
