@@ -38,7 +38,6 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 
     foreach ($pipelines as $idx => $pipeline) {
         $gh_views = $stats_json['pipelines'][$pipeline['name']]['views_count'];
-        // print_r($gh_views['views']);
         foreach ($gh_views as $timestamp_raw=>$views_count) {
             $timestamp = date('Y-m-d H:i:s',strtotime($timestamp_raw));
             $check =

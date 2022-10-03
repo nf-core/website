@@ -72,92 +72,129 @@ function github_query($gh_query_url) {
 //  nf-core modules table
 //
 
-// $gh_modules = github_query('https://api.github.com/repos/nf-core/modules/git/trees/master?recursive=1');
-// $modules = [];
-// foreach ($gh_modules['tree'] as $f) {
-//     if (substr($f['path'], -8) == 'meta.yml' && substr($f['path'], 0, 8) == 'modules/') {
-//         $meta = github_query($f['url']);
-//         $meta_content = base64_decode($meta['content']);
-//         $meta_content = Yaml::parse($meta_content);
-//         $meta_content['keywords'] = is_array($meta_content['keywords'])
-//             ? implode(';', $meta_content['keywords'])
-//             : $meta_content['keywords'];
-//         $meta_content['authors'] = is_array($meta_content['authors'])
-//             ? implode(';', $meta_content['authors'])
-//             : $meta_content['authors'];
-//         $meta_content['sha'] = $meta['sha'];
-//         $meta_content['api_url'] = $meta['url'];
-//         $meta_content['github_path'] = $f['path'];
-//         $modules[] = $meta_content;
-//     }
-// }
+$gh_modules = github_query('https://api.github.com/repos/nf-core/modules/git/trees/master?recursive=1');
+$modules = [];
+foreach ($gh_modules['tree'] as $f) {
+    if (substr($f['path'], -8) == 'meta.yml' && substr($f['path'], 0, 8) == 'modules/') {
+        $meta = github_query($f['url']);
+        $meta_content = base64_decode($meta['content']);
+        $meta_content = Yaml::parse($meta_content);
+        $meta_content['keywords'] = is_array($meta_content['keywords'])
+            ? implode(';', $meta_content['keywords'])
+            : $meta_content['keywords'];
+        $meta_content['authors'] = is_array($meta_content['authors'])
+            ? implode(';', $meta_content['authors'])
+            : $meta_content['authors'];
+        $meta_content['sha'] = $meta['sha'];
+        $meta_content['api_url'] = $meta['url'];
+        $meta_content['github_path'] = $f['path'];
+        $modules[] = $meta_content;
+    }
+}
 
-// $sql = "CREATE TABLE IF NOT EXISTS  nfcore_modules (
-//             id          INT             AUTO_INCREMENT PRIMARY KEY,
-//             github_sha  VARCHAR (400)   NOT NULL,
-//             github_path VARCHAR (400)   NOT NULL,
-//             api_url     VARCHAR (400)   NOT NULL,
-//             name	    VARCHAR (400)   NOT NULL,
-//             description	VARCHAR (4000)  DEFAULT NULL,
-//             keywords	VARCHAR (2000)  DEFAULT NULL,
-//             tools	    JSON            NOT NULL,
-//             input	    JSON            NOT NULL,
-//             output	    JSON            NOT NULL,
-//             authors	    VARCHAR (2000)  NOT NULL,
-//             date_added  datetime        DEFAULT current_timestamp
-//             )";
-// if (mysqli_query($conn, $sql)) {
-//     echo "`nfcore_modules` table created successfully.\n";
-// } else {
-//     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-// }
-// // Prepare an insert statement
-// $sql =
-//     'INSERT INTO nfcore_modules (github_sha,github_path,api_url,name,description,keywords,tools,input,output,authors) VALUES (?,?,?,?,?,?,?,?,?,?)';
+$sql = "CREATE TABLE IF NOT EXISTS  nfcore_modules (
+            id          INT             AUTO_INCREMENT PRIMARY KEY,
+            github_sha  VARCHAR (400)   NOT NULL,
+            github_path VARCHAR (400)   NOT NULL,
+            api_url     VARCHAR (400)   NOT NULL,
+            name	    VARCHAR (400)   NOT NULL,
+            description	VARCHAR (4000)  DEFAULT NULL,
+            keywords	VARCHAR (2000)  DEFAULT NULL,
+            tools	    JSON            NOT NULL,
+            input	    JSON            NOT NULL,
+            output	    JSON            NOT NULL,
+            authors	    VARCHAR (2000)  NOT NULL,
+            date_added  datetime        DEFAULT current_timestamp
+            )";
+if (mysqli_query($conn, $sql)) {
+    echo "`nfcore_modules` table created successfully.\n";
+} else {
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+}
+// Prepare an insert statement
+$sql =
+    'INSERT INTO nfcore_modules (github_sha,github_path,api_url,name,description,keywords,tools,input,output,authors) VALUES (?,?,?,?,?,?,?,?,?,?)';
 
-// if ($stmt = mysqli_prepare($conn, $sql)) {
-//     // Bind variables to the prepared statement as parameters
-//     mysqli_stmt_bind_param(
-//         $stmt,
-//         'ssssssssss',
-//         $github_sha,
-//         $github_path,
-//         $api_url,
-//         $name,
-//         $description,
-//         $keywords,
-//         $tools,
-//         $input,
-//         $output,
-//         $authors,
-//     );
+if ($stmt = mysqli_prepare($conn, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param(
+        $stmt,
+        'ssssssssss',
+        $github_sha,
+        $github_path,
+        $api_url,
+        $name,
+        $description,
+        $keywords,
+        $tools,
+        $input,
+        $output,
+        $authors,
+    );
 
-//     foreach ($modules as $idx => $module) {
-//         // check if module already exists
-//         $check = "SELECT * FROM nfcore_modules WHERE name = '$module[name]'";
-//         $res = mysqli_query($conn, $check);
-//         if ($res->num_rows) {
-//             continue;
-//         } else {
-//             $github_sha = $module['sha'];
-//             $github_path = $module['github_path'];
-//             $api_url = $module['api_url'];
-//             $name = $module['name'];
-//             $description = $module['description'];
-//             $keywords = $module['keywords'];
-//             $tools = json_encode($module['tools']);
-//             $input = json_encode($module['input']);
-//             $output = json_encode($module['output']);
-//             $authors = $module['authors'];
+    foreach (array_slice($modules,1,5) as $idx => $module) {
+        // check if module already exists
+        $check = "SELECT * FROM nfcore_modules WHERE name = '$module[name]'";
+        $res = mysqli_query($conn, $check);
+        $github_sha = $module['sha'];
+        $github_path = $module['github_path'];
+        $api_url = $module['api_url'];
+        $name = $module['name'];
+        $description = $module['description'];
+        $keywords = $module['keywords'];
+        $tools = json_encode($module['tools']);
+        $input = json_encode($module['input']);
+        $output = json_encode($module['output']);
+        $authors = $module['authors'];
+        if ($res->num_rows) {
+            // check if entry is different
+            $row = $res->fetch_assoc();
+            $update = false;
+            $update = $update || $row['github_sha'] != $github_sha;
+            $update = $update || $row['github_path'] != $github_path;
+            $update = $update || $row['api_url'] != $api_url;
+            $update = $update || $row['description'] != $description;
+            $update = $update || $row['keywords'] != $keywords;
+            $update = $update || $row['tools'] != $tools;
+            $update = $update || $row['input'] != $input;
+            $update = $update || $row['output'] != $output;
+            $update = $update || $row['authors'] != $authors;
 
-//             if (!mysqli_stmt_execute($stmt)) {
-//                 echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-//             }
-//         }
-//     }
-// } else {
-//     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
-// }
+            if ($update) {
+
+                // update existing module
+                $update = "UPDATE nfcore_modules SET ";
+                $update .= "github_sha = '$github_sha', ";
+                $update .= "github_path = '$github_path', ";
+                $update .= "api_url = '$api_url', ";
+                $update .= "description = '$description', ";
+                $update .= "keywords = '$keywords', ";
+                $update .= "tools = '$tools', ";
+                $update .= "input = '".addslashes($input)."', ";
+                $update .= "output = '$output', ";
+                $update .= "authors = '$authors' ";
+                $update .= "WHERE name = '$name'";
+
+
+                if (mysqli_query($conn, $update)) {
+                    echo "updated $module[name]";
+                } else {
+                    echo "ERROR: Could not execute $update. " . mysqli_error($conn) ." \n";
+                }
+            } else {
+                echo "no update needed for $module[name] \n";
+            }
+        } else {
+
+
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+            }
+        }
+    }
+} else {
+    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+}
 
 //
 //  nf-core pipelines table
@@ -251,27 +288,48 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $check = "SELECT * FROM nfcore_pipelines WHERE name = '".$pipeline['name']."'";
         $res = mysqli_query($conn, $check);
         if ($res->num_rows>0) {
-            $update = "UPDATE nfcore_pipelines SET ";
-            $update .= "github_id =  '$github_id',";
-            $update .= "html_url =  '$html_url',";
-            $update .= "description =  '$description',";
-            $update .= "gh_created_at =  '$gh_created_at',";
-            $update .= "gh_updated_at =  '$gh_updated_at',";
-            $update .= "gh_pushed_at =  '$gh_pushed_at',";
-            $update .= "stargazers_count =  '$stargazers_count',";
-            $update .= "watchers_count =  '$watchers_count',";
-            $update .= "forks_count =  '$forks_count',";
-            $update .= "open_issues_count =  '$open_issues_count',";
-            $update .= "topics =  '$topics',";
-            $update .= "default_branch =  '$default_branch',";
-            $update .= "pipeline_type =  '$pipeline_type',";
-            $update .= "archived =  '$archived',";
-            $update .= "last_release_date =  '$last_release_date'";
-            $update .= " WHERE name =  '$name'";
-            if (mysqli_query($conn, $update)) {
-                echo "Updated $pipeline[name]\n";
-            } else {
-                mysqli_error($conn);
+            // test if the entry needs to be updated
+            $row = $res->fetch_assoc();
+            $update = false;
+            $update = $update || $row['github_id'] != $github_id;
+            $update = $update || $row['html_url'] != $html_url;
+            $update = $update || $row['description'] != $description;
+            $update = $update || $row['gh_created_at'] != $gh_created_at;
+            $update = $update || $row['gh_updated_at'] != $gh_updated_at;
+            $update = $update || $row['gh_pushed_at'] != $gh_pushed_at;
+            $update = $update || $row['stargazers_count'] != $stargazers_count;
+            $update = $update || $row['watchers_count'] != $watchers_count;
+            $update = $update || $row['forks_count'] != $forks_count;
+            $update = $update || $row['open_issues_count'] != $open_issues_count;
+            $update = $update || $row['topics'] != $topics;
+            $update = $update || $row['default_branch'] != $default_branch;
+            $update = $update || $row['pipeline_type'] != $pipeline_type;
+            $update = $update || $row['archived'] != $archived;
+            $update = $update || $row['last_release_date'] != $last_release_date;
+            if ($update) {
+                $update = "UPDATE nfcore_pipelines SET ";
+                $update .= "github_id =  '$github_id',";
+                $update .= "html_url =  '$html_url',";
+                $update .= "description =  '$description',";
+                $update .= "gh_created_at =  '$gh_created_at',";
+                $update .= "gh_updated_at =  '$gh_updated_at',";
+                $update .= "gh_pushed_at =  '$gh_pushed_at',";
+                $update .= "stargazers_count =  '$stargazers_count',";
+                $update .= "watchers_count =  '$watchers_count',";
+                $update .= "forks_count =  '$forks_count',";
+                $update .= "open_issues_count =  '$open_issues_count',";
+                $update .= "topics =  '$topics',";
+                $update .= "default_branch =  '$default_branch',";
+                $update .= "pipeline_type =  '$pipeline_type',";
+                $update .= "archived =  '$archived',";
+                $update .= "last_release_date =  '$last_release_date'";
+                $update .= " WHERE name = '".$pipeline['name']."'";
+
+                if (mysqli_query($conn, $update)) {
+                    echo "Updated $pipeline[name]\n";
+                } else {
+                    mysqli_error($conn);
+                }
             }
         } else {
             if (!mysqli_stmt_execute($stmt)) {
@@ -287,69 +345,69 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 //  pipelines modules link table
 //
 
-// $sql = "SELECT * FROM nfcore_pipelines WHERE pipeline_type = 'pipelines' ORDER BY LOWER(name) ";
-// $pipelines = [];
-// if ($result = mysqli_query($conn, $sql)) {
-//     if (mysqli_num_rows($result) > 0) {
-//         $pipelines = mysqli_fetch_all($result, MYSQLI_ASSOC);
-//         // Free result set
-//         mysqli_free_result($result);
-//     } else {
-//         echo 'Oops! Something went wrong. Please try again later.';
-//     }
-// }
+$sql = "SELECT * FROM nfcore_pipelines WHERE pipeline_type = 'pipelines' ORDER BY LOWER(name) ";
+$pipelines = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $pipelines = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    } else {
+        echo "No pipelines found.";
+    }
+}
 
-// // create pipelines_modules table with foreign keys to pipelines and modules
-// $sql = "CREATE TABLE IF NOT EXISTS  pipelines_modules (
-//                 id          INT             AUTO_INCREMENT PRIMARY KEY,
-//                 pipeline_id INT             NOT NULL,
-//                 module_id   INT             NOT NULL,
-//                 FOREIGN KEY (pipeline_id)   REFERENCES nfcore_pipelines(id),
-//                 FOREIGN KEY (module_id)     REFERENCES nfcore_modules(id)
-//                 )";
-// if (mysqli_query($conn, $sql)) {
-//     echo "`pipelines_modules` table created successfully.\n";
-// } else {
-//     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-// }
-// // Prepare an insert statement
-// $sql = 'INSERT INTO pipelines_modules (pipeline_id,module_id) VALUES (?,?)';
+// create pipelines_modules table with foreign keys to pipelines and modules
+$sql = "CREATE TABLE IF NOT EXISTS  pipelines_modules (
+                id          INT             AUTO_INCREMENT PRIMARY KEY,
+                pipeline_id INT             NOT NULL,
+                module_id   INT             NOT NULL,
+                FOREIGN KEY (pipeline_id)   REFERENCES nfcore_pipelines(id),
+                FOREIGN KEY (module_id)     REFERENCES nfcore_modules(id)
+                )";
+if (mysqli_query($conn, $sql)) {
+    echo "`pipelines_modules` table created successfully.\n";
+} else {
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+}
+// Prepare an insert statement
+$sql = 'INSERT INTO pipelines_modules (pipeline_id,module_id) VALUES (?,?)';
 
-// foreach ($pipelines as $pipeline) {
-//     $modules_json = github_query(
-//         'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/contents/modules.json',
-//     );
-//     $modules_json = json_decode(base64_decode($modules_json['content']), true);
-//     $modules = $modules_json['repos']['nf-core/modules'];
+foreach ($pipelines as $pipeline) {
+    $modules_json = github_query(
+        'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/contents/modules.json',
+    );
+    $modules_json = json_decode(base64_decode($modules_json['content']), true);
+    $modules = $modules_json['repos']['nf-core/modules'];
 
-//     // catch repos with no modules.json
-//     if ($modules == null) {
-//         continue;
-//     }
-//     foreach ($modules as $name => $content) {
-//         $stmt = mysqli_prepare($conn, $sql);
-//         // Bind variables to the prepared statement as parameters
-//         mysqli_stmt_bind_param($stmt, 'ii', $pipeline_id, $module_id);
+    // catch repos with no modules.json
+    if ($modules == null) {
+        continue;
+    }
+    foreach ($modules as $name => $content) {
+        $stmt = mysqli_prepare($conn, $sql);
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, 'ii', $pipeline_id, $module_id);
 
-//         $name = str_replace('/', '_', $name);
-//         // pepare a select statment for nfcore_modules based on name
-//         $get_module = "SELECT * FROM nfcore_modules WHERE name = '$name'";
+        $name = str_replace('/', '_', $name);
+        // pepare a select statment for nfcore_modules based on name
+        $get_module = "SELECT * FROM nfcore_modules WHERE name = '$name'";
 
-//         if ($result = mysqli_query($conn, $get_module)) {
-//             if (mysqli_num_rows($result) > 0) {
-//                 $repo_module = mysqli_fetch_all($result, MYSQLI_ASSOC);
-//                 $pipeline_id = $pipeline['id'];
-//                 $module_id = $repo_module[0]['id'];
-//                 mysqli_stmt_execute($stmt);
-//                 print_r($stmt->error);
-//                 // Free result set
-//                 mysqli_free_result($result);
-//             } else {
-//                 echo 'Oops! Something went wrong. Please try again later.';
-//             }
-//         }
-//     }
-// }
+        if ($result = mysqli_query($conn, $get_module)) {
+            if (mysqli_num_rows($result) > 0) {
+                $repo_module = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                $pipeline_id = $pipeline['id'];
+                $module_id = $repo_module[0]['id'];
+                mysqli_stmt_execute($stmt);
+                print_r($stmt->error);
+                // Free result set
+                mysqli_free_result($result);
+            } else {
+                echo "No modules with the name $name found.";
+            }
+        }
+    }
+}
 
 mysqli_close($conn);
 echo "\nupdate_module_details done " . date('Y-m-d h:i:s') . "\n\n";

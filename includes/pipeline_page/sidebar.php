@@ -211,6 +211,7 @@ ob_start(); ?>
                         <?php
                         $dates = [];
                         foreach ($traffic_stats as $clone) {
+                            if(!is_numeric($clone['clones'])){ continue;}
                             echo '{ x: "' . date('Y-m-d', strtotime($clone['timestamp'])) . '", y: ' . $clone['clones'] . ' },' . "\n\t\t\t";
                         }
                         ?>
