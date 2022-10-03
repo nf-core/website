@@ -186,10 +186,11 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
                 $header_html .= '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
                 if (isset($event['location_url'])) {
                     if (is_array($event['location_url'])) {
-                    foreach ($event['location_url'] as $url) {
-                        $location = count($event['location_url']) == 1 ?  $event['location_name'] : $url;
-                        $header_html .= '<a class="text-white underline" href="' . $url . '">' . $location . '</a>' . '<br>';
-                    }
+                        foreach ($event['location_url'] as $url) {
+                            $location = count($event['location_url']) == 1 ? $event['location_name'] : $url;
+                            $header_html .=
+                                '<a class="text-white underline" href="' . $url . '">' . $location . '</a>' . '<br>';
+                        }
                     } else {
                         $header_html .=
                             '<a class="text-white underline" href="' .
