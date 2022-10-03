@@ -72,23 +72,25 @@ Whether running using GitPod or locally, you can confirm that nf-core is correct
 You should get something that looks like the following output:
 
 <!-- RICH-CODEX
+command: nf-core --help
 img_paths:
-  - ../../../public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg
+  - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg
 -->
 
-![`nf-core --help`](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg)
+![nf-core --help](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg)
 
 The first set of subcommands are typically useful for running pipelines, the second are for developing pipelines.
 
 You can try out some commands, for example listing available nf-core pipelines:
 
 <!-- RICH-CODEX
+command: nf-core list
 head: 19
 img_paths:
-  - ../../../public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg
+  - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg
 -->
 
-![`nf-core list`](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg)
+![nf-core list](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg)
 
 In this tutorial we will focus on creating a pipeline, but please do look at the functionality that nf-core/tools provides to you as a user - especially `nf-core launch` and `nf-core download`.
 
