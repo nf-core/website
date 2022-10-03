@@ -11,8 +11,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.x
-          cache: pip
-          cache-dependency-path: setup.py
 
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@v1
