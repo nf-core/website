@@ -11,8 +11,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.x
-          cache: pip
-          cache-dependency-path: setup.py
 
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@v1
@@ -21,7 +19,7 @@ jobs:
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        uses: ewels/rich-codex@v1
+        uses: ewels/rich-codex@main
         env:
           COLUMNS: 100
           NFCORE_LINT_HIDE_PROGRESS: true
@@ -29,3 +27,4 @@ jobs:
         with:
           commit_changes: 'true'
           terminal_width: 100
+          skip_git_checks: 'true'
