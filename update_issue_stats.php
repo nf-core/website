@@ -11,7 +11,7 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_issue_stats.php
 
-$debug = false;
+$debug = true;
 $num_api_calls = 0;
 $max_repos = false;
 $max_comments = false;
@@ -37,16 +37,16 @@ $results['updated'] = $updated;
 
 // First check if we've pulled these in the past hour
 $skip_issue_update = false;
-if ($updated - $prev_updated < 60 * 60) {
-    $results['updated'] = $prev_updated;
-    $updated = $prev_updated;
-    $skip_issue_update = true;
-    if ($debug) {
-        echo "Skipping repo comments pull as cache is from past hour\n";
-    }
-} elseif ($debug) {
-    echo 'Issues results are ' . ($updated - $prev_updated) . " seconds old - pulling again\n";
-}
+// if ($updated - $prev_updated < 60 * 60) {
+//     $results['updated'] = $prev_updated;
+//     $updated = $prev_updated;
+//     $skip_issue_update = true;
+//     if ($debug) {
+//         echo "Skipping repo comments pull as cache is from past hour\n";
+//     }
+// } elseif ($debug) {
+//     echo 'Issues results are ' . ($updated - $prev_updated) . " seconds old - pulling again\n";
+// }
 
 if (!$skip_issue_update) {
     $base_stats = [
@@ -95,10 +95,12 @@ foreach ($pipelines as $pipeline) {
 }
 
 // Delete cached pipelines stats for pipelines that have been deleted
-foreach (array_keys($results['repos']) as $repo_name) {
-    if (!in_array($repo_name, $repos)) {
-        echo "\nRemoving $repo_name from the cached results as it appears to have been deleted.\n";
-        unset($results['repos'][$repo_name]);
+if (array_key_exists('repos', $results)) {
+    foreach (array_keys($results['repos']) as $repo_name) {
+        if (!in_array($repo_name, $repos)) {
+            echo "\nRemoving $repo_name from the cached results as it appears to have been deleted.\n";
+            unset($results['repos'][$repo_name]);
+        }
     }
 }
 
@@ -340,10 +342,12 @@ foreach ($repos as $repo) {
 
 // Count the author stats
 // NB: This will be a bit wrong if we haven't grabbed issues, as won't be counting people who created issues but haven't had a comment
-$results['stats'][$updated]['issues']['authors_count'] = count($results['stats'][$updated]['issues']['authors']);
-$results['stats'][$updated]['prs']['authors_count'] = count($results['stats'][$updated]['prs']['authors']);
-unset($results['stats'][$updated]['issues']['authors']);
-unset($results['stats'][$updated]['prs']['authors']);
+if (array_key_exists('stats', $results)) {
+    $results['stats'][$updated]['issues']['authors_count'] = count($results['stats'][$updated]['issues']['authors']);
+    $results['stats'][$updated]['prs']['authors_count'] = count($results['stats'][$updated]['prs']['authors']);
+    unset($results['stats'][$updated]['issues']['authors']);
+    unset($results['stats'][$updated]['prs']['authors']);
+
 
 // Calculate the median times
 function array_median($arr) {
@@ -357,7 +361,7 @@ $results['stats'][$updated]['issues']['median_response_time'] = array_median(
 );
 $results['stats'][$updated]['prs']['median_close_time'] = array_median($results['stats']['prs']['close_times']);
 $results['stats'][$updated]['prs']['median_response_time'] = array_median($results['stats']['prs']['response_times']);
-
+}
 //
 //
 // DONE - save results to JSON file
