@@ -93,18 +93,19 @@ foreach ($gh_modules['tree'] as $f) {
 }
 
 $sql = "CREATE TABLE IF NOT EXISTS  nfcore_modules (
-            id          INT             AUTO_INCREMENT PRIMARY KEY,
-            github_sha  VARCHAR (400)   NOT NULL,
-            github_path VARCHAR (400)   NOT NULL,
-            api_url     VARCHAR (400)   NOT NULL,
-            name	    VARCHAR (400)   NOT NULL,
-            description	VARCHAR (4000)  DEFAULT NULL,
-            keywords	VARCHAR (2000)  DEFAULT NULL,
-            tools	    JSON            NOT NULL,
-            input	    JSON            NOT NULL,
-            output	    JSON            NOT NULL,
-            authors	    VARCHAR (2000)  NOT NULL,
-            date_added  datetime        DEFAULT current_timestamp
+            id           INT             AUTO_INCREMENT PRIMARY KEY,
+            github_sha   VARCHAR (400)   NOT NULL,
+            github_path  VARCHAR (400)   NOT NULL,
+            api_url      VARCHAR (400)   NOT NULL,
+            name	     VARCHAR (400)   NOT NULL,
+            description	 VARCHAR (4000)  DEFAULT NULL,
+            keywords	 VARCHAR (2000)  DEFAULT NULL,
+            tools	     JSON            NOT NULL,
+            input	     JSON            NOT NULL,
+            output	     JSON            NOT NULL,
+            authors	     VARCHAR (2000)  NOT NULL,
+            date_added   TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
+            date_updated TIMESTAMP       DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )";
 if (mysqli_query($conn, $sql)) {
     echo "`nfcore_modules` table created successfully.\n";
@@ -132,7 +133,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $authors,
     );
 
-    foreach (array_slice($modules,1,5) as $idx => $module) {
+    foreach ($modules as $idx => $module) {
         // check if module already exists
         $check = "SELECT * FROM nfcore_modules WHERE name = '$module[name]'";
         $res = mysqli_query($conn, $check);
@@ -149,44 +150,31 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         if ($res->num_rows) {
             // check if entry is different
             $row = $res->fetch_assoc();
-            $update = false;
-            $update = $update || $row['github_sha'] != $github_sha;
-            $update = $update || $row['github_path'] != $github_path;
-            $update = $update || $row['api_url'] != $api_url;
-            $update = $update || $row['description'] != $description;
-            $update = $update || $row['keywords'] != $keywords;
-            $update = $update || $row['tools'] != $tools;
-            $update = $update || $row['input'] != $input;
-            $update = $update || $row['output'] != $output;
-            $update = $update || $row['authors'] != $authors;
-
-            if ($update) {
 
                 // update existing module
-                $update = "UPDATE nfcore_modules SET ";
-                $update .= "github_sha = '$github_sha', ";
-                $update .= "github_path = '$github_path', ";
-                $update .= "api_url = '$api_url', ";
-                $update .= "description = '$description', ";
-                $update .= "keywords = '$keywords', ";
-                $update .= "tools = '$tools', ";
-                $update .= "input = '".addslashes($input)."', ";
-                $update .= "output = '$output', ";
-                $update .= "authors = '$authors' ";
-                $update .= "WHERE name = '$name'";
-
-
-                if (mysqli_query($conn, $update)) {
-                    echo "updated $module[name]";
+                $update = "UPDATE nfcore_modules SET github_sha = ?, github_path = ?, api_url = ?, description = ?, keywords = ?, tools = ?, input = ?, output = ?, authors = ? WHERE name = '$name'";
+                if ($update_stmt = mysqli_prepare($conn, $update)) {
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param(
+                        $update_stmt,
+                        'sssssssss',
+                        $github_sha,
+                        $github_path,
+                        $api_url,
+                        $description,
+                        $keywords,
+                        $tools,
+                        $input,
+                        $output,
+                        $authors
+                    );
                 } else {
-                    echo "ERROR: Could not execute $update. " . mysqli_error($conn) ." \n";
+                    echo "ERROR: Could not prepare query: $update. " . mysqli_error($conn);
                 }
-            } else {
-                echo "no update needed for $module[name] \n";
-            }
+                if (!mysqli_stmt_execute($update_stmt)) {
+                    echo "ERROR: Could not execute $update. " . mysqli_error($conn);
+                }
         } else {
-
-
             if (!mysqli_stmt_execute($stmt)) {
                 echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
             }
