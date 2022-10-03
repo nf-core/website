@@ -524,8 +524,8 @@ foreach ($events as $idx => $event) {
             if (!$curr_event) {
                 $curr_event = $event;
             }
-            // If multiple events run now, take the one with latest start time
-            elseif ($event['start_ts'] > $curr_event['start_ts']) {
+            // If multiple events run now, take the one with most recent start time
+            elseif ($event['start_ts'] < $curr_event['start_ts']) {
                 $curr_event = $event;
             } else {
                 $additional_ongoing++;
