@@ -19,6 +19,7 @@ jobs:
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
+        # Change back to @v1 when v1.2.7 is released
         uses: ewels/rich-codex@main
         env:
           COLUMNS: 100
