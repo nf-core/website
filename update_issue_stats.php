@@ -348,19 +348,22 @@ if (array_key_exists('stats', $results)) {
     unset($results['stats'][$updated]['issues']['authors']);
     unset($results['stats'][$updated]['prs']['authors']);
 
-
-// Calculate the median times
-function array_median($arr) {
-    arsort($arr);
-    $keys = array_keys($arr);
-    return $arr[$keys[floor(count($keys) / 2)]];
-}
-$results['stats'][$updated]['issues']['median_close_time'] = array_median($results['stats']['issues']['close_times']);
-$results['stats'][$updated]['issues']['median_response_time'] = array_median(
-    $results['stats']['issues']['response_times'],
-);
-$results['stats'][$updated]['prs']['median_close_time'] = array_median($results['stats']['prs']['close_times']);
-$results['stats'][$updated]['prs']['median_response_time'] = array_median($results['stats']['prs']['response_times']);
+    // Calculate the median times
+    function array_median($arr) {
+        arsort($arr);
+        $keys = array_keys($arr);
+        return $arr[$keys[floor(count($keys) / 2)]];
+    }
+    $results['stats'][$updated]['issues']['median_close_time'] = array_median(
+        $results['stats']['issues']['close_times'],
+    );
+    $results['stats'][$updated]['issues']['median_response_time'] = array_median(
+        $results['stats']['issues']['response_times'],
+    );
+    $results['stats'][$updated]['prs']['median_close_time'] = array_median($results['stats']['prs']['close_times']);
+    $results['stats'][$updated]['prs']['median_response_time'] = array_median(
+        $results['stats']['prs']['response_times'],
+    );
 }
 //
 //

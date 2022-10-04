@@ -3,7 +3,6 @@
 
 // IMPORTANT! the corresponding tables have to exist. Be sure to run update_stats.php at least once before this script.
 
-
 echo "\nRunning import_stats_json - " . date('Y-m-d h:i:s') . "\n";
 $config = parse_ini_file('config.ini');
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
@@ -30,7 +29,8 @@ $issues_json_fn = dirname(__FILE__) . '/nfcore_issue_stats.json';
 $issues_json = json_decode(file_get_contents($issues_json_fn), true);
 
 // Prepare an insert statement
-$sql = 'INSERT INTO github_traffic_stats ( pipeline_id,views,views_uniques,clones,clones_uniques,timestamp) VALUES (?,?,?,?,?,?)';
+$sql =
+    'INSERT INTO github_traffic_stats ( pipeline_id,views,views_uniques,clones,clones_uniques,timestamp) VALUES (?,?,?,?,?,?)';
 
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
@@ -38,8 +38,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 
     foreach ($pipelines as $idx => $pipeline) {
         $gh_views = $stats_json['pipelines'][$pipeline['name']]['views_count'];
-        foreach ($gh_views as $timestamp_raw=>$views_count) {
-            $timestamp = date('Y-m-d H:i:s',strtotime($timestamp_raw));
+        foreach ($gh_views as $timestamp_raw => $views_count) {
+            $timestamp = date('Y-m-d H:i:s', strtotime($timestamp_raw));
             $check =
                 "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
                 $pipeline['id'] .
@@ -47,7 +47,11 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $timestamp;
             $res = mysqli_query($conn, $check);
             if ($res->num_rows) {
-                echo "Entry for pipeline " . $pipeline['bane'] . " and timestamp " . $timestamp . " already exists. Skipping.\n";
+                echo 'Entry for pipeline ' .
+                    $pipeline['bane'] .
+                    ' and timestamp ' .
+                    $timestamp .
+                    " already exists. Skipping.\n";
                 continue;
             } else {
                 $pipeline_id = $pipeline['id'];
@@ -65,63 +69,3 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
-
-// // Prepare an insert statement
-// $sql =
-//     'INSERT INTO github_pipeline_contrib_stats (pipeline_id, author, avatar_url, week_date, week_additions, week_deletions, week_commits) VALUES (?, ?, ?, ?, ?, ?, ?)';
-
-// if ($stmt = mysqli_prepare($conn, $sql)) {
-//     // Bind variables to the prepared statement as parameters
-//     mysqli_stmt_bind_param(
-//         $stmt,
-//         'isssiii',
-//         $pipeline_id,
-//         $author,
-//         $avatar_url,
-//         $week_date,
-//         $week_additions,
-//         $week_deletions,
-//         $week_commits,
-//     );
-//     foreach ($pipelines as $idx => $pipeline) {
-//         // get contributors
-//         echo 'working on ' . $pipeline['name'] . "\n";
-//         $contrib_stats_json_fn = dirname(__FILE__) . '/contributor_stats/' . $pipeline['name'] . '.json';
-//         if (file_exists($contrib_stats_json_fn)) {
-//             $contrib_stats = json_decode(file_get_contents($contrib_stats_json_fn), true);
-//             foreach ($contrib_stats as $contributor) {
-//                 $pipeline_id = $pipeline['id'];
-//                 $author = $contributor['author']['login'];
-//                 $avatar_url = $contributor['author']['avatar_url'];
-//                 foreach ($contributor['weeks'] as $week) {
-//                     $week_date = date('Y-m-d', $week['w']);
-//                     //check if entry for this pipeline_id and week_date already exists and skip if so
-//                     $check =
-//                         "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
-//                         $pipeline_id .
-//                         "' AND week_date = " .
-//                         $week_date;
-//                     $res = mysqli_query($conn, $check);
-//                     if ($res->num_rows) {
-//                         continue;
-//                     } else {
-//                         $week_additions = $week['a'];
-//                         $week_deletions = $week['d'];
-//                         $week_commits = $week['c'];
-//                         if (!mysqli_stmt_execute($stmt)) {
-//                             echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-//                         }
-//                     }
-//                 }
-//             }
-//         } else{
-//             echo "ERROR: Could not find $contrib_stats_json_fn. ";
-//         }
-//     }
-// } else {
-//     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
-// }
-
-// if (!mysqli_query($conn, $sql)) {
-//     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-// }
