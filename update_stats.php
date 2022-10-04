@@ -13,13 +13,19 @@
 ini_set('allow_url_fopen', 1);
 
 // // Final filename to write JSON to
-// $results_fn = dirname(__FILE__) . '/nfcore_stats.json';
-// $contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
+$results_fn = dirname(__FILE__) . '/nfcore_stats.json';
+$contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
 
 echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
-$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+$conn = mysqli_connect(
+    $config['host'],
+    $config['username'],
+    $config['password'],
+    $config['dbname'],
+    $config['port'],
+);
 
 if ($conn === false) {
     die('ERROR: Could not connect. ' . mysqli_connect_error());
@@ -241,6 +247,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
+
+echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
 
 ###########################################################################################################
 #                                                                                                         #

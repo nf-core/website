@@ -119,13 +119,13 @@ function prep_current_event($event) {
         }
         foreach ($event['location_url'] as $idx => $url) {
             $d['location_url_meta'][$idx]['base_url'] = substr($url, 8, 7);
-
             switch ($d['location_url_meta'][$idx]['base_url']) {
                 case 'zoom.us':
                     $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video me-1"></i>';
                     $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
                     break;
                 case 'youtu.b':
+                case 'youtube':
                     $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube me-1"></i>';
                     $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
                     break;
@@ -524,8 +524,8 @@ foreach ($events as $idx => $event) {
             if (!$curr_event) {
                 $curr_event = $event;
             }
-            // If multiple events run now, take the one with latest start time
-            elseif ($event['start_ts'] > $curr_event['start_ts']) {
+            // If multiple events run now, take the one with most recent start time
+            elseif ($event['start_ts'] < $curr_event['start_ts']) {
                 $curr_event = $event;
             } else {
                 $additional_ongoing++;

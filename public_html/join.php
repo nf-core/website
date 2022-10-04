@@ -76,7 +76,7 @@ We use it to provide help to people running nf-core pipelines, as well as discus
 It's a fantastic platform and provides a huge number of tools.
 We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which we use to give access to
 collaborators for editing and reviewing code.</p>
-<p>To join the GitHub organisation, please message us on the <a href="https://nfcore.slack.com/channels/github-invitations"><code>#github-invitations</code> Slack channel</a> and we'll send an invite.</p>
+<p>To join the GitHub organisation, please introduce yourself and what you want to work on in nf-core on the <a href="https://nfcore.slack.com/channels/github-invitations"><code>#github-invitations</code> Slack channel</a> and we'll send an invite.</p>
 
 <p><a href="https://github.com/nf-core" class="mb-2 btn btn-dark">
   <i class="fab fa-github"></i> nf-core on GitHub
