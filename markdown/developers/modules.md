@@ -520,9 +520,9 @@ process {
 
 ### Resource requirements
 
-1. An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46) e.g. `process_low`, `process_medium` or `process_high`.
+1. An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46) e.g. `process_single`, `process_low`, `process_medium` or `process_high`.
 
-2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`.
+2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`. If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
 3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32-L46)), you MUST assign cpus per tool such that the total number of used CPUs does not exceed `task.cpus`.
    - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
