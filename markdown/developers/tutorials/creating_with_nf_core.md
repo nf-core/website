@@ -30,6 +30,7 @@ To launch GitPod, follow the link:
 To work with a clean directory, you can do the following:
 
 - In the terminal, make a new directory to work in:
+
   ```bash
   cd ~
   mkdir training
@@ -527,7 +528,7 @@ $ nf-core modules list local
 
 
 INFO     Modules installed in '.':                                                                                                                                                  list.py:136
-                                                                                                                                                                                               
+
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
 ┃ Module Name                 ┃ Repository                             ┃ Version SHA                              ┃ Message                                  ┃ Date       ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
@@ -582,7 +583,7 @@ nf-core modules list remote
 
 
 INFO     Modules available from https://github.com/nf-core/modules.git (master):                                                                                                    list.py:131
-                                                                                                                                                                                               
+
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Module Name                              ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
@@ -618,7 +619,7 @@ INFO     Modules available from https://github.com/nf-core/modules.git (master):
 ### Install a module from nf-core/modules
 
 ```bash
-$ nf-core modules install                                                       
+$ nf-core modules install
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -739,7 +740,7 @@ Let's add the snippet below at the top of the `script` section in the `FASTP` nf
 The linting for this module will now fail because the local copy of the module doesn't match the latest version in nf-core/modules:
 
 ```bash
-$ nf-core modules lint fastp 
+$ nf-core modules lint fastp
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -786,27 +787,27 @@ $ nf-core modules patch fastp
 INFO     Changes in module 'nf-core/fastp'                                                                                                         modules_differ.py:252
 INFO     'modules/nf-core/fastp/meta.yml' is unchanged                                                                                             modules_differ.py:257
 INFO     Changes in 'fastp/main.nf':                                                                                                               modules_differ.py:266
-                                                                                                                                                                        
- --- modules/nf-core/fastp/main.nf                                                                                                                                      
- +++ modules/nf-core/fastp/main.nf                                                                                                                                      
- @@ -32,6 +32,8 @@                                                                                                                                                      
-      // Use single ended for interleaved. Add --interleaved_in in config.                                                                                              
-      if ( task.ext.args?.contains('--interleaved_in') ) {                                                                                                              
-          """                                                                                                                                                           
- +        echo "These are my changes"                                                                                                                                   
- +                                                                                                                                                                      
-          [ ! -f  ${prefix}.fastq.gz ] && ln -sf $reads ${prefix}.fastq.gz                                                                                              
-                                                                                                                                                                        
-          fastp \\                                                                                                                                                      
-                                                                                                                                                                        
-                                                                                                                                                                        
+
+ --- modules/nf-core/fastp/main.nf
+ +++ modules/nf-core/fastp/main.nf
+ @@ -32,6 +32,8 @@
+      // Use single ended for interleaved. Add --interleaved_in in config.
+      if ( task.ext.args?.contains('--interleaved_in') ) {
+          """
+ +        echo "These are my changes"
+ +
+          [ ! -f  ${prefix}.fastq.gz ] && ln -sf $reads ${prefix}.fastq.gz
+
+          fastp \\
+
+
 INFO     Patch file of 'modules/nf-core/fastp' written to 'modules/nf-core/fastp/fastp.diff'                                                                patch.py:124
 ```
 
 The `diff` is stored in a file:
 
 ```bash
-cat modules/nf-core/fastp/fastp.diff       
+cat modules/nf-core/fastp/fastp.diff
 Changes in module 'nf-core/fastp'
 --- modules/nf-core/fastp/main.nf
 +++ modules/nf-core/fastp/main.nf
@@ -817,7 +818,7 @@ Changes in module 'nf-core/fastp'
 +        echo "These are my changes"
 +
          [ ! -f  ${prefix}.fastq.gz ] && ln -sf $reads ${prefix}.fastq.gz
- 
+
          fastp \\
 
 ************************************************************
@@ -864,7 +865,7 @@ INFO     Linting module: 'fastqc'                                               
 and all modules with a single command:
 
 ```bash
-$ nf-core modules lint --all 
+$ nf-core modules lint --all
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
