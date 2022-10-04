@@ -20,7 +20,7 @@ We will use a different GitPod environment in order to get the very latest relea
 To launch GitPod, follow the link:
 
 <p class="text-center">
-  <a href="https://www.gitpod.io/#https://github.com/nf-core/tools" class="btn btn-lg btn-success">
+  <a href="https://www.gitpod.io/#https://github.com/nf-core/tools" class="btn btn-lg btn-success" target="_blank">
     Launch GitPod
   </a>
 </p>
@@ -68,27 +68,19 @@ conda install nf-core
 
 ### First run of nf-core
 
-Whether running using GitPod or locally, you can confirm that nf-core is correctly installed by running `nf-core --help`.
-You should get something that looks like the following output:
+Whether running using GitPod or locally, you can confirm that nf-core is correctly installed by viewing the command line help:
 
-<!-- RICH-CODEX
-command: nf-core --help
-img_paths:
-  - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg
--->
+```bash
+nf-core --help
+```
+
+You should get something that looks like the following output:
 
 ![nf-core --help](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg)
 
 The first set of subcommands are typically useful for running pipelines, the second are for developing pipelines.
 
 You can try out some commands, for example listing available nf-core pipelines:
-
-<!-- RICH-CODEX
-command: nf-core list
-head: 19
-img_paths:
-  - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg
--->
 
 ![nf-core list](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg)
 
@@ -103,6 +95,9 @@ nf-core create
 ```
 
 Although you can provide options on the command line, it's easiest to use the interactive prompts.
+
+![nf-core create](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_create.svg)
+
 Follow the instructions and you should see a new pipeline appear in your file explorer.
 
 Let's move into the new pipeline directory in the terminal:
@@ -117,6 +112,8 @@ cd nf-core-demo/
 The `nf-core create` command has made a fully fledged pipeline for you.
 Before getting too carried away looking at all of the files, note that it has also initiated a git repository:
 
+![git status](/assets/markdown_assets/developers/creating_with_nf_core/git_status.svg)
+
 ```console
 $ git status
 On branch master
@@ -124,6 +121,8 @@ nothing to commit, working tree clean
 ```
 
 It's actually created three branches for you:
+
+![git branch](/assets/markdown_assets/developers/creating_with_nf_core/git_branch.svg)
 
 ```console
 $ git branch
@@ -133,6 +132,8 @@ $ git branch
 ```
 
 Each have the same initial commit, with the vanilla template:
+
+![git log](/assets/markdown_assets/developers/creating_with_nf_core/git_log.svg)
 
 ```console
 $ git log --oneline
@@ -150,6 +151,13 @@ The main thing to remember with this is that:
 
 The new pipeline should run with Nextflow, right out of the box.
 Let's try:
+
+```bash
+cd ../
+nextflow run nf-core-demo/ -profile test,docker --outdir test_results
+```
+
+![nextflow run](/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_1.svg)
 
 ```console
 $ cd ../
