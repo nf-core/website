@@ -68,8 +68,12 @@ function build_sidebar_nav($elements) {
             $sidebar_nav .= '</ul></nav>';
         } else {
             $active = '';
-            if($md_fn == $element['url'] . '.md' || substr($md_fn,0,-3)."/index" == $element['url'] || substr($md_fn,0,-3)."/README"  == $element['url']){
-                $active =  'active';
+            if (
+                $md_fn == $element['url'] . '.md' ||
+                substr($md_fn, 0, -3) . '/index' == $element['url'] ||
+                substr($md_fn, 0, -3) . '/README' == $element['url']
+            ) {
+                $active = 'active';
             }
             $sidebar_nav .=
                 '<li><a href="/' .
