@@ -151,29 +151,29 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             // check if entry is different
             $row = $res->fetch_assoc();
 
-                // update existing module
-                $update = "UPDATE nfcore_modules SET github_sha = ?, github_path = ?, api_url = ?, description = ?, keywords = ?, tools = ?, input = ?, output = ?, authors = ? WHERE name = '$name'";
-                if ($update_stmt = mysqli_prepare($conn, $update)) {
-                    // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param(
-                        $update_stmt,
-                        'sssssssss',
-                        $github_sha,
-                        $github_path,
-                        $api_url,
-                        $description,
-                        $keywords,
-                        $tools,
-                        $input,
-                        $output,
-                        $authors
-                    );
-                } else {
-                    echo "ERROR: Could not prepare query: $update. " . mysqli_error($conn);
-                }
-                if (!mysqli_stmt_execute($update_stmt)) {
-                    echo "ERROR: Could not execute $update. " . mysqli_error($conn);
-                }
+            // update existing module
+            $update = "UPDATE nfcore_modules SET github_sha = ?, github_path = ?, api_url = ?, description = ?, keywords = ?, tools = ?, input = ?, output = ?, authors = ? WHERE name = '$name'";
+            if ($update_stmt = mysqli_prepare($conn, $update)) {
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param(
+                    $update_stmt,
+                    'sssssssss',
+                    $github_sha,
+                    $github_path,
+                    $api_url,
+                    $description,
+                    $keywords,
+                    $tools,
+                    $input,
+                    $output,
+                    $authors,
+                );
+            } else {
+                echo "ERROR: Could not prepare query: $update. " . mysqli_error($conn);
+            }
+            if (!mysqli_stmt_execute($update_stmt)) {
+                echo "ERROR: Could not execute $update. " . mysqli_error($conn);
+            }
         } else {
             if (!mysqli_stmt_execute($stmt)) {
                 echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
@@ -248,7 +248,6 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     foreach ($gh_pipelines as $pipeline) {
         // check where entries need to be updated and update them
 
-
         $github_id = $pipeline['id'];
         $html_url = $pipeline['html_url'];
         $name = $pipeline['name'];
@@ -257,25 +256,27 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $gh_updated_at = date('Y-m-d H:i:s', strtotime($pipeline['updated_at']));
         $gh_pushed_at = date('Y-m-d H:i:s', strtotime($pipeline['pushed_at']));
         $stargazers_count = $pipeline['stargazers_count'];
-        $watchers_count = count(github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/watchers'));
+        $watchers_count = count(
+            github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/watchers'),
+        );
         $forks_count = $pipeline['forks_count'];
         $open_issues_count = $pipeline['open_issues_count'];
-        $open_pr_count = count(github_query(str_replace("{/number}","",$pipeline['pulls_url'])));
+        $open_pr_count = count(github_query(str_replace('{/number}', '', $pipeline['pulls_url'])));
         $topics = is_array($pipeline['topics']) ? implode(';', $pipeline['topics']) : $pipeline['topics'];
         $default_branch = $pipeline['default_branch'];
         $archived = $pipeline['archived'];
         $last_release_date = github_query(str_replace('{/id}', '', $pipeline['releases_url']) . '?per_page=1')[0][
             'published_at'
         ];
-        $last_release_date = is_null($last_release_date) ? NULL : date('Y-m-d H:i:s',strtotime($last_release_date));
+        $last_release_date = is_null($last_release_date) ? null : date('Y-m-d H:i:s', strtotime($last_release_date));
         if (in_array($pipeline['name'], $ignored_repos)) {
             $pipeline_type = 'core_repos';
         } else {
             $pipeline_type = 'pipelines';
         }
-        $check = "SELECT * FROM nfcore_pipelines WHERE name = '".$pipeline['name']."'";
+        $check = "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline['name'] . "'";
         $res = mysqli_query($conn, $check);
-        if ($res->num_rows>0) {
+        if ($res->num_rows > 0) {
             // test if the entry needs to be updated
             $row = $res->fetch_assoc();
             $update = false;
@@ -295,7 +296,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             $update = $update || $row['archived'] != $archived;
             $update = $update || $row['last_release_date'] != $last_release_date;
             if ($update) {
-                $update = "UPDATE nfcore_pipelines SET ";
+                $update = 'UPDATE nfcore_pipelines SET ';
                 $update .= "github_id =  '$github_id',";
                 $update .= "html_url =  '$html_url',";
                 $update .= "description =  '$description',";
@@ -311,7 +312,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $update .= "pipeline_type =  '$pipeline_type',";
                 $update .= "archived =  '$archived',";
                 $update .= "last_release_date =  '$last_release_date'";
-                $update .= " WHERE name = '".$pipeline['name']."'";
+                $update .= " WHERE name = '" . $pipeline['name'] . "'";
 
                 if (mysqli_query($conn, $update)) {
                     echo "Updated $pipeline[name]\n";
@@ -341,7 +342,7 @@ if ($result = mysqli_query($conn, $sql)) {
         // Free result set
         mysqli_free_result($result);
     } else {
-        echo "No pipelines found.";
+        echo 'No pipelines found.';
     }
 }
 

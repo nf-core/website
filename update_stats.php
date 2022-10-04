@@ -125,7 +125,8 @@ if (mysqli_query($conn, $sql)) {
 }
 
 // Prepare an insert statement
-$sql = 'INSERT INTO github_pipeline_contrib_stats (pipeline_id, author, avatar_url, week_date, week_additions, week_deletions, week_commits) VALUES (?, ?, ?, ?, ?, ?, ?)';
+$sql =
+    'INSERT INTO github_pipeline_contrib_stats (pipeline_id, author, avatar_url, week_date, week_additions, week_deletions, week_commits) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
@@ -138,27 +139,33 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $week_date,
         $week_additions,
         $week_deletions,
-        $week_commits
+        $week_commits,
     );
     foreach ($pipelines as $idx => $pipeline) {
-            // get contributors
-            $gh_contributors = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/stats/contributors');
-            foreach ($gh_contributors as $contributor) {
-                $pipeline_id = $pipeline['id'];
-                $author = $contributor['author']['login'];
-                $avatar_url = $contributor['author']['avatar_url'];
-                foreach ($contributor['weeks'] as $week) {
-                    $week_date = date('Y-m-d', $week['w']);
-                    //check if entry for this pipeline_id and week_date already exists and skip if so
-                    $check = "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '".$pipeline_id."' AND week_date = ".$week_date;
-                    $res = mysqli_query($conn, $check);
-                    if ($res->num_rows) {
-                        continue;
-                    } else {
-                        $week_additions = $week['a'];
-                        $week_deletions = $week['d'];
-                        $week_commits = $week['c'];
-                    if(! mysqli_stmt_execute($stmt)){
+        // get contributors
+        $gh_contributors = github_query(
+            'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/stats/contributors',
+        );
+        foreach ($gh_contributors as $contributor) {
+            $pipeline_id = $pipeline['id'];
+            $author = $contributor['author']['login'];
+            $avatar_url = $contributor['author']['avatar_url'];
+            foreach ($contributor['weeks'] as $week) {
+                $week_date = date('Y-m-d', $week['w']);
+                //check if entry for this pipeline_id and week_date already exists and skip if so
+                $check =
+                    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
+                    $pipeline_id .
+                    "' AND week_date = " .
+                    $week_date;
+                $res = mysqli_query($conn, $check);
+                if ($res->num_rows) {
+                    continue;
+                } else {
+                    $week_additions = $week['a'];
+                    $week_deletions = $week['d'];
+                    $week_commits = $week['c'];
+                    if (!mysqli_stmt_execute($stmt)) {
                         echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
                     }
                 }
@@ -190,7 +197,8 @@ if (mysqli_query($conn, $sql)) {
 }
 
 // Prepare an insert statement
-$sql = 'INSERT INTO github_traffic_stats ( pipeline_id,views,views_uniques,clones,clones_uniques,timestamp) VALUES (?,?,?,?,?,?)';
+$sql =
+    'INSERT INTO github_traffic_stats ( pipeline_id,views,views_uniques,clones,clones_uniques,timestamp) VALUES (?,?,?,?,?,?)';
 
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
@@ -200,7 +208,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $gh_views = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/views');
         $gh_clones = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/clones');
         foreach ($gh_views['views'] as $gh_view) {
-            $timestamp = date('Y-m-d H:i:s',strtotime($gh_view['timestamp']));
+            $timestamp = date('Y-m-d H:i:s', strtotime($gh_view['timestamp']));
             $check =
                 "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
                 $pipeline['id'] .
@@ -210,7 +218,6 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             if ($res->num_rows) {
                 continue;
             } else {
-
                 // get gh_clones where timestamp matches
                 foreach ($gh_clones['clones'] as $gh_clone) {
                     if ($gh_clone['timestamp'] == $gh_view['timestamp']) {
@@ -235,15 +242,11 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
 
-
-
 ###########################################################################################################
 #                                                                                                         #
 #                                              🕱 OLD CODE 🕱                                              #
 #                                                                                                         #
 ###########################################################################################################
-
-
 
 //
 //
