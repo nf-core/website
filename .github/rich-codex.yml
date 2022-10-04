@@ -1,3 +1,4 @@
+timeout: 300
 outputs:
   - command: nf-core --help
     img_paths:
@@ -26,3 +27,22 @@ outputs:
     title: nextflow run
     img_paths:
       - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_1.svg
+  - command: cd nf-core-demo && nf-core lint && grep -rl TODO .
+    fake_command: nf-core lint
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_warnings.svg
+  - command: |
+      cd nf-core-demo && \
+      grep -rl TODO . | xargs sed -i 's/TODO//g' && \
+      echo "ADDED" >> CODE_OF_CONDUCT.md && \
+      nf-core lint
+    fake_command: nf-core lint
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_failure.svg
+  - command: nextflow run nf-core-demo/ --help
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_help.svg
+  - command: nextflow run nf-core-demo/ -profile test,docker
+    title: nextflow run
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_no_outdir.svg
