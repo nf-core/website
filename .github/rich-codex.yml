@@ -1,0 +1,28 @@
+outputs:
+  - command: nf-core --help
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg
+  - command: nf-core list
+    head: 19
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg
+  - command: nf-core create --name demo --description "Pipeline for training" --author "Phil" --plain
+    fake_command: nf-core create
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nfcore_create.svg
+  - command: cd nf-core-demo && git status
+    fake_command: git status
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/git_status.svg
+  - command: cd nf-core-demo && git branch
+    fake_command: git branch
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/git_branch.svg
+  - command: cd nf-core-demo && git log --oneline
+    fake_command: git log --oneline
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/git_log.svg
+  - command: nextflow run nf-core-demo/ -profile test,docker --outdir test_results
+    title: nextflow run
+    img_paths:
+      - public_html/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_1.svg
