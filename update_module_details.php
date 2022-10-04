@@ -14,7 +14,7 @@ $conn = mysqli_connect(
     $config['host'],
     $config['username'],
     $config['password'],
-    $config['devdbname'],
+    $config['dbname'],
     $config['port'],
 );
 
