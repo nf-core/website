@@ -3,14 +3,12 @@
 // Imported by pipeline_page/_index.php
 
 // Load pipeline stats
-$stats_json_fn = dirname(dirname(dirname(__FILE__))) . '/nfcore_stats.json';
-$stats_json = json_decode(file_get_contents($stats_json_fn), true);
-$stats = $stats_json['pipelines'][$pipeline->name];
-$metrics = $stats['repo_metrics'][$stats_json['updated']];
-
-// Load full contributor stats for this pipeline
-$contrib_json_fn = dirname(dirname(dirname(__FILE__))) . '/contributor_stats/' . $pipeline->name . '.json';
-$contrib_json = json_decode(file_get_contents($contrib_json_fn), true);
+$commit_sum = array_sum(array_column($contributor_stats, 'week_commits'));
+$clones_sum = array_sum(array_column($traffic_stats, 'clones'));
+$clones_uniques_sum = array_sum(array_column($traffic_stats, 'clones_uniques'));
+$views_sum = array_sum(array_column($traffic_stats, 'views'));
+$views_uniques_sum = array_sum(array_column($traffic_stats, 'views_uniques'));
+$traffic_stats_since = date('F Y', strtotime(end($traffic_stats)['timestamp']));
 
 ob_start();
 echo '<h1 class="mt-0">Version history</h1>';
@@ -51,9 +49,6 @@ foreach ($pipeline->releases as $releases) { ?>
   </div>
 </div>
 <hr class="m-0">
-
-
-
 <?php $first = false;}
 ?>
 
@@ -74,15 +69,15 @@ $(function(){
 <div class="card-group text-center stats_keynumbers mt-5 pb-5">
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $metrics['stargazers_count']; ?></p>
+      <p class="card-text display-4"><?php echo $pipeline_metrics['stargazers_count']; ?></p>
       <p class="card-text text-muted">Stars</p>
     </div>
     <div class="bg-icon"><i class="far fa-star"></i></div>
   </div>
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo $metrics[
-          'network_forks_count'
+      <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo $pipeline_metrics[
+          'forks_count'
       ]; ?></a></p>
       <p class="card-text text-muted">Forks</p>
     </div>
@@ -90,16 +85,15 @@ $(function(){
   </div>
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo $stats['commits']; ?></p>
+      <p class="card-text display-4"><?php echo $commit_sum; ?></p>
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
   </div>
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo $stats[
-          'num_contributors'
-      ]; ?></a></p>
+      <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link">
+        <?php echo count(array_unique(array_column($contributor_stats, 'author', 'avatar_url'))); ?></a></p>
       <p class="card-text text-muted">Code contributors</p>
     </div>
     <div class="bg-icon"><i class="fas fa-user"></i></div>
@@ -121,12 +115,12 @@ $(function(){
   <div class="card-footer text-muted text-center small">
     <div class="row">
       <div class="col-6 border-end border-secondary">
-        <span class="text-body lead"><?php echo round_nicely($stats['clones_count_total']); ?></span>
-        <br>Clones since <?php echo date('F Y', strtotime(array_keys($stats['clones_count'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($clones_sum); ?></span>
+        <br>Clones since <?php echo $traffic_stats_since; ?>
       </div>
       <div class="col-6">
-        <span class="text-body lead"><?php echo round_nicely($stats['clones_uniques_total']); ?></span>
-        <br>Unique cloners since <?php echo date('F Y', strtotime(array_keys($stats['clones_uniques'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($clones_uniques_sum); ?></span>
+        <br>Unique clones since <?php echo $traffic_stats_since; ?>
       </div>
     </div>
   </div>
@@ -146,12 +140,12 @@ $(function(){
   <div class="card-footer text-muted text-center small">
     <div class="row align-items-center">
       <div class="col-6 border-end border-secondary">
-        <span class="text-body lead"><?php echo round_nicely($stats['views_count_total']); ?></span>
-        <br>Views since <?php echo date('F Y', strtotime(array_keys($stats['views_count'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($views_sum); ?></span>
+        <br>Views since  <?php echo $traffic_stats_since; ?>
       </div>
       <div class="col-6">
-        <span class="text-body lead"><?php echo round_nicely($stats['views_uniques_total']); ?></span>
-        <br>Unique visitors since <?php echo date('F Y', strtotime(array_keys($stats['views_uniques'])[0])); ?>
+        <span class="text-body lead"><?php echo round_nicely($views_uniques_sum); ?></span>
+        <br>Unique visitors since <?php echo $traffic_stats_since; ?>
       </div>
     </div>
   </div>
@@ -168,19 +162,33 @@ $(function(){
 </div>
 <p class="contrib-avatars">
 <?php
+// Get contributor avatars
 $contrib_avatars = [];
-foreach ($contrib_json as $contrib) {
+foreach (array_unique(array_column($contributor_stats, 'author', 'avatar_url')) as $contributor_url => $contributor) {
+    // get all contributions for this contributor
+    $contributions = array_filter($contributor_stats, function ($c) use ($contributor) {
+        return $c['author'] === $contributor;
+    });
+    // count the contributions
+    $total_commits = array_sum(array_column($contributions, 'week_commits'));
+    if ($total_commits > 1) {
+        $total_commits .= ' contributions';
+    } else {
+        $total_commits .= ' contribution';
+    }
     $contrib_avatars[
         '<a class="d-inline-block" href="https://github.com/' .
             $pipeline->full_name .
             '/graphs/contributors" data-author="' .
-            $contrib['author']['login'] .
-            '" data-bs-toggle="tooltip" title="@' .
-            $contrib['author']['login'] .
-            '"><img src="' .
-            $contrib['author']['avatar_url'] .
+            $contributor .
+            '" title="@' .
+            $contributor .
+            ', ' .
+            $total_commits .
+            '" data-bs-toggle="tooltip"><img class="d-inline" src="' .
+            $contributor_url .
             '"></a>'
-    ] = $contrib['total'];
+    ] = $total_commits;
 }
 arsort($contrib_avatars);
 echo implode(array_keys($contrib_avatars));
@@ -212,7 +220,7 @@ $(function(){
       scales: {
         xAxes: [{
           type: 'time',
-          time: { minUnit: 'day' }
+          time: { minUnit: 'week' }
         }],
         yAxes: [
           {
@@ -231,7 +239,7 @@ $(function(){
             display: true,
             scaleLabel: {
               display: true,
-              labelString: 'Unique cloners per day',
+              labelString: 'Unique clones per day',
               fontColor: 'rgba(33, 94, 190, 1.0)',
             },
             position: 'right',
@@ -268,17 +276,17 @@ $(function(){
         pointRadius: 0,
         yAxisID: 'y-axis-count',
         data: [
-          <?php
-          $dates = [];
-          foreach (array_keys($stats['clones_count']) as $date) {
-              $dates[strtotime($date)] = $date;
-          }
-          ksort($dates);
-          foreach ($dates as $ts => $date) {
-              $count = $stats['clones_count'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
-          }
-          ?>
+          <?php foreach ($traffic_stats as $clone) {
+              if (!is_numeric($clone['clones'])) {
+                  continue;
+              }
+              echo '{ x: "' .
+                  date('Y-m-d', strtotime($clone['timestamp'])) .
+                  '", y: ' .
+                  $clone['clones'] .
+                  ' },' .
+                  "\n\t\t\t";
+          } ?>
         ]
       },
       {
@@ -289,17 +297,17 @@ $(function(){
         pointRadius: 0,
         yAxisID: 'y-axis-uniques',
         data: [
-          <?php
-          $dates = [];
-          foreach (array_keys($stats['clones_uniques']) as $date) {
-              $dates[strtotime($date)] = $date;
-          }
-          ksort($dates);
-          foreach ($dates as $ts => $date) {
-              $count = $stats['clones_uniques'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
-          }
-          ?>
+          <?php foreach ($traffic_stats as $clone) {
+              if (is_null($clone['clones_uniques'])) {
+                  continue;
+              }
+              echo '{ x: "' .
+                  date('Y-m-d', strtotime($clone['timestamp'])) .
+                  '", y: ' .
+                  $clone['clones_uniques'] .
+                  ' },' .
+                  "\n\t\t\t";
+          } ?>
         ]
       }
     ]
@@ -326,13 +334,13 @@ $(function(){
         data: [
           <?php
           $dates = [];
-          foreach (array_keys($stats['views_count']) as $date) {
-              $dates[strtotime($date)] = $date;
-          }
-          ksort($dates);
-          foreach ($dates as $ts => $date) {
-              $count = $stats['views_count'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+          foreach ($traffic_stats as $traffic_stat) {
+              echo '{ x: "' .
+                  date('Y-m-d', strtotime($traffic_stat['timestamp'])) .
+                  '", y: ' .
+                  $traffic_stat['views'] .
+                  ' },' .
+                  "\n\t\t\t";
           }
           ?>
         ]
@@ -347,13 +355,13 @@ $(function(){
         data: [
           <?php
           $dates = [];
-          foreach (array_keys($stats['views_uniques']) as $date) {
-              $dates[strtotime($date)] = $date;
-          }
-          ksort($dates);
-          foreach ($dates as $ts => $date) {
-              $count = $stats['views_uniques'][$date];
-              echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+          foreach ($traffic_stats as $traffic_stat) {
+              echo '{ x: "' .
+                  date('Y-m-d', strtotime($traffic_stat['timestamp'])) .
+                  '", y: ' .
+                  $traffic_stat['views_uniques'] .
+                  ' },' .
+                  "\n\t\t\t";
           }
           ?>
         ]
@@ -375,19 +383,30 @@ $(function(){
     datasets: [
       <?php
       $first = true;
-      foreach ($contrib_json as $contrib) { ?>
+      foreach (array_unique(array_column($contributor_stats, 'author')) as $contrib) { ?>
         {
-          label: '<?php echo $contrib['author']['login']; ?>',
+          label: '<?php echo $contrib; ?>',
           backgroundColor: 'rgba(200, 200, 200, 0.5)',
+          borderColor: 'rgba(200, 200, 200, 0)',
           pointRadius: 0,
           <?php if ($first) {
               echo "fill: 'origin',";
               $first = false;
           } ?>
           data: [
-            <?php foreach ($contrib['weeks'] as $week) {
-                echo '{ x: "' . date('Y-m-d', $week['w']) . '", y: ' . $week['c'] . ' },' . "\n\t\t\t";
-            } ?>
+            <?php
+            $contributions = array_filter($contributor_stats, function ($c) use ($contrib) {
+                return $c['author'] === $contrib;
+            });
+            foreach (array_reverse($contributions) as $contribution) {
+                echo '{ x: "' .
+                    date('Y-m-d', strtotime($contribution['week_date'])) .
+                    '", y: ' .
+                    $contribution['week_commits'] .
+                    ' },' .
+                    "\n\t\t\t";
+            }
+            ?>
           ]
         },
       <?php }
@@ -418,18 +437,18 @@ $(function(){
         var dsidx = tooltipItems[0].datasetIndex;
         var author = charts['contributors'].data.datasets[dsidx].label;
         // Highlight avatar
-        $('.contrib-avatars a').tooltip('hide');
-        $('.contrib-avatars a img').css({
+        $('.pipeline-stats .contrib-avatars a').tooltip('hide');
+        $('.pipeline-stats .contrib-avatars a img').css({
           'filter': 'grayscale(100%)',
           'opacity': '0.2',
         });
-        $(".contrib-avatars a[data-author='"+author+"']").tooltip('show');
-        $(".contrib-avatars a[data-author='"+author+"'] img").css({
+        $(".pipeline-stats .contrib-avatars a[data-author='"+author+"']").tooltip('show');
+        $(".pipeline-stats .contrib-avatars a[data-author='"+author+"'] img").css({
           'filter': 'grayscale(0%)',
           'opacity': '1',
         });
-        // Higlight plot series
-        $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
+        // Highlight plot series
+        charts['contributors'].data.datasets.forEach(function( idx, dataset ) {
           if(idx == dsidx){
             dataset.backgroundColor = '#22ae63';
           } else {
@@ -518,18 +537,20 @@ $(function(){
   });
 
 
-  $('.contrib-avatars a').hover(function(){
+  $('.pipeline-stats .contrib-avatars a').hover(function(){
     // Highlight avatar
-    $('.contrib-avatars a img').css({
+    $('.pipeline-stats .contrib-avatars a img').css({
       'filter': 'grayscale(100%)',
       'opacity': '0.2',
     });
+    $(".pipeline-stats .contrib-avatars a").tooltip('hide');
     $(this).find('img').css({
       'filter': 'grayscale(0%)',
       'opacity': '1',
     });
-    // Higlight plot series
+    // Highlight plot series
     var author = $(this).data('author');
+    $(".pipeline-stats .contrib-avatars a[data-author='"+author+"']").tooltip('show');
     $.each(charts['contributors'].data.datasets, function( idx, dataset ) {
       if(dataset.label == author){
         dataset.backgroundColor = '#22ae63';
@@ -539,8 +560,8 @@ $(function(){
     });
     charts['contributors'].update(0);
   });
-  $('.contrib-avatars').mouseout(function(){
-    $('.contrib-avatars a img').css({
+  $('.pipeline-stats .contrib-avatars').mouseout(function(){
+    $('.pipeline-stats .contrib-avatars a img').css({
       'filter': 'grayscale(0%)',
       'opacity': '1',
     });

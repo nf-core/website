@@ -11,7 +11,7 @@
 // Manual usage: on command line, simply execute this script:
 //   $ php update_issue_stats.php
 
-$debug = false;
+$debug = true;
 $num_api_calls = 0;
 $max_repos = false;
 $max_comments = false;
@@ -37,16 +37,16 @@ $results['updated'] = $updated;
 
 // First check if we've pulled these in the past hour
 $skip_issue_update = false;
-if ($updated - $prev_updated < 60 * 60) {
-    $results['updated'] = $prev_updated;
-    $updated = $prev_updated;
-    $skip_issue_update = true;
-    if ($debug) {
-        echo "Skipping repo comments pull as cache is from past hour\n";
-    }
-} elseif ($debug) {
-    echo 'Issues results are ' . ($updated - $prev_updated) . " seconds old - pulling again\n";
-}
+// if ($updated - $prev_updated < 60 * 60) {
+//     $results['updated'] = $prev_updated;
+//     $updated = $prev_updated;
+//     $skip_issue_update = true;
+//     if ($debug) {
+//         echo "Skipping repo comments pull as cache is from past hour\n";
+//     }
+// } elseif ($debug) {
+//     echo 'Issues results are ' . ($updated - $prev_updated) . " seconds old - pulling again\n";
+// }
 
 if (!$skip_issue_update) {
     $base_stats = [

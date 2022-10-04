@@ -10,13 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 // Get auth secrets
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
-$conn = mysqli_connect(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['devdbname'],
-    $config['port'],
-);
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 if ($conn === false) {
     die('ERROR: Could not connect. ' . mysqli_connect_error());
@@ -216,7 +210,6 @@ $sql = "CREATE TABLE IF NOT EXISTS nfcore_pipelines (
             default_branch    VARCHAR (400)   NOT NULL,
             pipeline_type     VARCHAR (400)   NOT NULL,
             archived          BOOLEAN         NOT NULL,
-            last_release_date datetime        DEFAULT NULL,
             last_release_date datetime        DEFAULT NULL,
             date_added        datetime        DEFAULT current_timestamp
             )";
