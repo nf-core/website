@@ -77,6 +77,50 @@ if (count($path_parts) > 1) {
     }
 }
 ########
+## Load stats from database
+########
+
+$config = parse_ini_file('../config.ini');
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+
+// get stats for current pipeline
+$sql = "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline->name . "'";
+$pipeline_metrics = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $pipeline_metrics = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+// get traffic stats for current pipeline
+$sql =
+    "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" . $pipeline_metrics['id'] . "' ORDER BY timestamp DESC";
+$traffic_stats = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $traffic_stats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+
+// get contributor stats for current pipeline
+$sql =
+    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
+    $pipeline_metrics['id'] .
+    "' ORDER BY week_date DESC";
+$contributor_stats = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $contributor_stats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+
+mysqli_close($conn);
+########
 ## Load and cache the pipeline JSON schema if we have one
 ########
 # Make cache file names
