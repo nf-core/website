@@ -30,6 +30,23 @@ if (file_exists($docs_md_base . $md_fn)) {
     exit();
 }
 
+# Directory root with an index.md
+if (file_exists($docs_md_base . substr($md_fn,0,-3) . "/index.md")) {
+    $markdown_fn = $docs_md_base . substr($md_fn,0,-3) . "/index.md";
+    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn . "/index.md";
+    include '../includes/header.php';
+    include '../includes/footer.php';
+    exit();
+}
+# Directory root with a README.md
+if (file_exists($docs_md_base . substr($md_fn,0,-3) . "/README.md")) {
+    $markdown_fn = $docs_md_base . substr($md_fn,0,-3) . "/README.md";
+    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn . "/README.md";
+    include '../includes/header.php';
+    include '../includes/footer.php';
+    exit();
+}
+
 # is it the new docs location
 
 # is it a module?
