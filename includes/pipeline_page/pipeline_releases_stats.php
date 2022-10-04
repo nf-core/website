@@ -162,7 +162,6 @@ $(function(){
 </div>
 <p class="contrib-avatars">
 <?php
-
 // Get contributor avatars
 $contrib_avatars = [];
 foreach (array_unique(array_column($contributor_stats, 'author', 'avatar_url')) as $contributor_url => $contributor) {
@@ -277,17 +276,17 @@ $(function(){
         pointRadius: 0,
         yAxisID: 'y-axis-count',
         data: [
-          <?php
-          foreach ($traffic_stats as $clone) {
-            if(!is_numeric($clone['clones'])){ continue;}
+          <?php foreach ($traffic_stats as $clone) {
+              if (!is_numeric($clone['clones'])) {
+                  continue;
+              }
               echo '{ x: "' .
                   date('Y-m-d', strtotime($clone['timestamp'])) .
                   '", y: ' .
                   $clone['clones'] .
                   ' },' .
                   "\n\t\t\t";
-          }
-          ?>
+          } ?>
         ]
       },
       {
@@ -298,17 +297,17 @@ $(function(){
         pointRadius: 0,
         yAxisID: 'y-axis-uniques',
         data: [
-          <?php
-          foreach ($traffic_stats as $clone) {
-            if(is_null($clone['clones_uniques'])){ continue;}
+          <?php foreach ($traffic_stats as $clone) {
+              if (is_null($clone['clones_uniques'])) {
+                  continue;
+              }
               echo '{ x: "' .
                   date('Y-m-d', strtotime($clone['timestamp'])) .
                   '", y: ' .
                   $clone['clones_uniques'] .
                   ' },' .
                   "\n\t\t\t";
-          }
-          ?>
+          } ?>
         ]
       }
     ]
