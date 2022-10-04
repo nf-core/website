@@ -13,14 +13,14 @@ $clones_since = end($traffic_stats)['timestamp'];
 
 // Get contributor avatars
 $contrib_avatars = [];
-foreach (array_unique(array_column($contributor_stats,'author','avatar_url')) as $contributor_url=>$contributor) {
+foreach (array_unique(array_column($contributor_stats, 'author', 'avatar_url')) as $contributor_url => $contributor) {
     // print_r($contributor."\n");
     // get all contributions for this contributor
     $contributions = array_filter($contributor_stats, function ($c) use ($contributor) {
         return $c['author'] === $contributor;
     });
     // count the contributions
-    $total_commits = array_sum(array_column($contributions,'week_commits'));
+    $total_commits = array_sum(array_column($contributions, 'week_commits'));
     if ($total_commits > 1) {
         $total_commits .= ' contributions';
     } else {
@@ -108,11 +108,15 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom">
         <div class="col-6">
             <h6>stars</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/stargazers"><?php echo $pipeline_metrics['stargazers_count']; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/stargazers"><?php echo $pipeline_metrics[
+    'stargazers_count'
+]; ?></a></p>
         </div>
         <div class="col-6">
             <h6>watchers</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/watchers"><?php echo $pipeline_metrics['watchers_count']; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/watchers"><?php echo $pipeline_metrics[
+    'watchers_count'
+]; ?></a></p>
         </div>
     </div>
 
@@ -130,11 +134,15 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom">
         <div class="col-6">
             <h6>open issues</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/issues"><?php echo $pipeline_metrics['open_issues_count']; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/issues"><?php echo $pipeline_metrics[
+    'open_issues_count'
+]; ?></a></p>
         </div>
         <div class="col-6">
             <h6>open pull requests</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/pulls"><?php echo $pipeline_metrics['open_pr_count']; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/pulls"><?php echo $pipeline_metrics[
+    'open_pr_count'
+]; ?></a></p>
         </div>
     </div>
     <div class="row border-bottom">
@@ -211,8 +219,15 @@ ob_start(); ?>
                         <?php
                         $dates = [];
                         foreach ($traffic_stats as $clone) {
-                            if(!is_numeric($clone['clones'])){ continue;}
-                            echo '{ x: "' . date('Y-m-d', strtotime($clone['timestamp'])) . '", y: ' . $clone['clones'] . ' },' . "\n\t\t\t";
+                            if (!is_numeric($clone['clones'])) {
+                                continue;
+                            }
+                            echo '{ x: "' .
+                                date('Y-m-d', strtotime($clone['timestamp'])) .
+                                '", y: ' .
+                                $clone['clones'] .
+                                ' },' .
+                                "\n\t\t\t";
                         }
                         ?>
                     ]

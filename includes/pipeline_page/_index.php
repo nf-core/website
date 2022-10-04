@@ -84,8 +84,7 @@ $config = parse_ini_file('../config.ini');
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 // get stats for current pipeline
-$sql =
-    "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline->name . "'";
+$sql = "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline->name . "'";
 $pipeline_metrics = [];
 if ($result = mysqli_query($conn, $sql)) {
     if (mysqli_num_rows($result) > 0) {
@@ -108,8 +107,10 @@ if ($result = mysqli_query($conn, $sql)) {
 
 // get contributor stats for current pipeline
 $sql =
-    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" . $pipeline_metrics['id'] . "' ORDER BY week_date DESC";
-    $contributor_stats = [];
+    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
+    $pipeline_metrics['id'] .
+    "' ORDER BY week_date DESC";
+$contributor_stats = [];
 if ($result = mysqli_query($conn, $sql)) {
     if (mysqli_num_rows($result) > 0) {
         $contributor_stats = mysqli_fetch_all($result, MYSQLI_ASSOC);
