@@ -139,17 +139,17 @@ Training will be live streamed on [YouTube](https://youtube.com/playlist?list=PL
     <td>Deployment scenarios (30 min)</td>
   </tr>
   <tr>
-    <td rowspan="6">Session 3<br>5<sup>th</sup> October</td>
+    <td rowspan="7">Session 3<br>5<sup>th</sup> October</td>
     <td>Community - Slack / GitHub (20 min)</td>
-    <td rowspan="6">
+    <td rowspan="7">
       <span data-timestamp="1664938800" data-timeformat="HH:mm z"></span><br>
       <a href="https://youtu.be/BmWmjVTDDdA"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
-    <td rowspan="6">
+    <td rowspan="7">
       <span data-timestamp="1664971200" data-timeformat="HH:mm z"></span><br>
       <a href="https://youtu.be/5mVIRCp0qhE"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
-    <td rowspan="6">
+    <td rowspan="7">
       <span data-timestamp="1664989200" data-timeformat="HH:mm z"></span><br>
       <a href="https://youtu.be/FtC1Efx7-zU"><i class="fa-brands fa-youtube me-2"></i>Live Stream</a>
     </td>
@@ -158,13 +158,16 @@ Training will be live streamed on [YouTube](https://youtube.com/playlist?list=PL
     <td>nf-core create pipelines (20 min)</td>
   </tr>
   <tr>
+    <td>nf-core schema (10 min)</td>
+  </tr>
+  <tr>
     <td>Break (10 min)</td>
   </tr>
   <tr>
-    <td>nf-core modules - install (30 min)</td>
+    <td>nf-core modules (40 min)</td>
   </tr>
   <tr>
-    <td>nf-core schema (30 min)</td>
+    <td>Break (10 min)</td>
   </tr>
   <tr>
     <td>Tower (40 min)</td>
