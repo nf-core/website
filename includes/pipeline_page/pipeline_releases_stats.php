@@ -336,6 +336,7 @@ $(function(){
           <?php
           $dates = [];
           foreach ($traffic_stats as $traffic_stat) {
+            if(!is_numeric($traffic_stat['views'] )){ continue;}
               echo '{ x: "' .
                   date('Y-m-d', strtotime($traffic_stat['timestamp'])) .
                   '", y: ' .
@@ -357,6 +358,7 @@ $(function(){
           <?php
           $dates = [];
           foreach ($traffic_stats as $traffic_stat) {
+            if(!is_numeric($traffic_stat['views_uniques'] )){ continue;}
               echo '{ x: "' .
                   date('Y-m-d', strtotime($traffic_stat['timestamp'])) .
                   '", y: ' .
