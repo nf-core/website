@@ -162,7 +162,12 @@ Customising the template is part of writing your new pipeline.
 However, not _all_ files should be edited - indeed, nf-core strives to promote standardisation amongst pipelines.
 
 To try to keep pipelines up to date and using the same code where possible, we have an automated code linting tool for nf-core pipelines.
-Running `nf-core lint` will run a comprehensive test suite against your pipeline.
+Running `nf-core lint` will run a comprehensive test suite against your pipeline:
+
+```bash
+cd nf-core-demo/
+nf-core lint
+```
 
 Linting tests can have one of four statuses: pass, ignore, warn or fail.
 For example, at first you will see a large number of _warnings_ about `TODO` comments, letting you know that you haven't finished setting up your new pipeline:
@@ -173,6 +178,11 @@ Warnings are ok at this stage, but should be cleared up before a pipeline releas
 
 Failures are more serious however, and will typically prevent pull-requests from being merged.
 For example, if you edit `CODE_OF_CONDUCT.md`, which should match the template, you'll get a pipeline lint test failure:
+
+```bash
+echo "Edited" >> CODE_OF_CONDUCT.md
+nf-core lint
+```
 
 ![nf-core lint](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_failure.svg)
 
@@ -206,6 +216,11 @@ Please see the linting documentation for specific details of how to configure di
 All nf-core pipelines can be run with `--help` to see usage instructions.
 We can try this with the demo pipeline that we just created:
 
+```bash
+cd ../
+nextflow run nf-core-demo/ --help
+```
+
 ![nextflow run --help](/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_help.svg)
 
 Here we get a rich help output, with command line parameter variable types, and help text.
@@ -221,6 +236,10 @@ By describing our workflow parameters in this file we can do a lot of new things
 - Create rich pipeline launch interfaces
 
 Indeed, if you try to run the new pipeline without the required `--outdir` parameter, you will quickly get an error:
+
+```bash
+nextflow run nf-core-demo/ -profile test,docker
+```
 
 ![nextflow run --help](/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_no_outdir.svg)
 
@@ -242,10 +261,16 @@ params {
     // rest of the config file..
 ```
 
-Then run `nf-core schema build` - it should prompt you to add each new:
+Then run `nf-core schema build`:
+
+```bash
+cd nf-core-demo/
+nf-core schema build
+```
+
+The CLI tool should then prompt you to add each new parameter:
 
 ```console
-$ nf-core schema build
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -269,11 +294,13 @@ INFO     Writing schema with 32 params: './nextflow_schema.json'
 Select `y` on the final prompt to launch a web browser to edit your schema graphically.
 
 > ⚠️ When using GitPod, a slightly odd thing can happen at this point.
+>
 > GitPod may launch the schema editor with a terminal-based web browser called `lynx`.
 > You'll see the terminal output suddenly fill with a text-based representation of the nf-core website.
-> Press <kbd>Q</kbd> followed by <kbd>Y</kbd> to confirm to exit `lyx`.
-> You should still see nf-core/tools running on the command line.
-> Copy the URL that was printed to the terminal and open this in a new browser tab (or <kbd>alt</kbd> + click it).
+>
+> - Press <kbd>Q</kbd> followed by <kbd>Y</kbd> to confirm to exit `lyx`.
+> - You should still see nf-core/tools running on the command line.
+> - Copy the URL that was printed to the terminal and open this in a new browser tab (or <kbd>alt</kbd> + click it).
 
 Here in the schema editor you can edit:
 
