@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize 30: nf-core/pgdb'
+title: "Bytesize 30: nf-core/pgdb"
 subtitle: Yasset Perez-Riverol - EMBL-EBI, United Kingdom
 type: talk
-start_date: '2021-12-07'
-start_time: '13:00 CET'
-end_date: '2021-12-07'
-end_time: '13:30 CET'
-embed_at: 'pgdb'
+start_date: "2021-12-07"
+start_time: "13:00 CET"
+end_date: "2021-12-07"
+end_time: "13:30 CET"
+embed_at: "pgdb"
 youtube_embed: https://www.youtube.com/watch?v=vbyX3xmTT38
 location_url:
   - https://youtu.be/vbyX3xmTT38

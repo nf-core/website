@@ -2,10 +2,10 @@
 title: nf-core Training - October 2022
 subtitle: A set of global online Nextflow and nf-core training events
 type: workshop
-start_date: '2022-10-03'
-start_time: '05:00 CEST'
-end_date: '2022-10-05'
-end_time: '21:30 CEST'
+start_date: "2022-10-03"
+start_time: "05:00 CEST"
+end_date: "2022-10-05"
+end_time: "21:30 CEST"
 location_name: YouTube
 location_url:
   - https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn

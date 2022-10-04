@@ -1,11 +1,11 @@
 ---
-title: 'AWS In Spotlight Webinar Series'
-subtitle: 'AWS In Spotlight: Research'
+title: "AWS In Spotlight Webinar Series"
+subtitle: "AWS In Spotlight: Research"
 type: talk
-start_date: '2020-10-14'
-start_time: '10:00 CEST'
-end_date: '2020-10-14'
-end_time: '11:00 CEST'
+start_date: "2020-10-14"
+start_time: "10:00 CEST"
+end_date: "2020-10-14"
+end_time: "11:00 CEST"
 location_name: Registration
 location_url: https://pages.awscloud.com/Nordics_InSpotlight_WebinarSeries.html
 ---

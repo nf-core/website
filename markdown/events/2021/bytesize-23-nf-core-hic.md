@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize 23: nf-core/hic'
+title: "Bytesize 23: nf-core/hic"
 subtitle: Nicolas Servant - Institut Curie, France
 type: talk
-start_date: '2021-10-12'
-start_time: '13:00 CEST'
-end_date: '2021-10-12'
-end_time: '13:30 CEST'
-embed_at: 'hic'
+start_date: "2021-10-12"
+start_time: "13:00 CEST"
+end_date: "2021-10-12"
+end_time: "13:30 CEST"
+embed_at: "hic"
 youtube_embed: https://youtu.be/AFHaX_GRNBU
 location_url:
   - https://youtu.be/AFHaX_GRNBU

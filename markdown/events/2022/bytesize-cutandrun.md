@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize 2022-05-17: nf-core/cutandrun'
+title: "Bytesize 2022-05-17: nf-core/cutandrun"
 subtitle: Chris Cheshire, The Francis Crick Institute, UK
 type: talk
-start_date: '2022-05-17'
-start_time: '13:00 CEST'
-end_date: '2022-05-17'
-end_time: '13:30 CEST'
-embed_at: 'cutandrun'
+start_date: "2022-05-17"
+start_time: "13:00 CEST"
+end_date: "2022-05-17"
+end_time: "13:30 CEST"
+embed_at: "cutandrun"
 youtube_embed: https://www.youtube.com/watch?v=rj5i9deNPHA
 location_url:
   - https://www.youtube.com/watch?v=kBoC6QBU-M0

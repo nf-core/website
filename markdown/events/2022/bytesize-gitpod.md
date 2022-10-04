@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: gitpod.io'
+title: "Bytesize: gitpod.io"
 subtitle: Chris Wyatt - Seqera Labs
 type: talk
-start_date: '2022-06-14'
-start_time: '13:00 CEST'
-end_date: '2022-06-14'
-end_time: '13:30 CEST'
+start_date: "2022-06-14"
+start_time: "13:00 CEST"
+end_date: "2022-06-14"
+end_time: "13:30 CEST"
 youtube_embed: https://www.youtube.com/watch?v=kBoC6QBU-M0
 location_url:
   - https://www.youtube.com/watch?v=kBoC6QBU-M0

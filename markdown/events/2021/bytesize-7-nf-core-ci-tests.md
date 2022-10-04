@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 7: Making the CI tests pass'
+title: "Bytesize 7: Making the CI tests pass"
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
-start_date: '2021-03-16'
-start_time: '13:00 CET'
-end_date: '2021-03-16'
-end_time: '13:30 CET'
+start_date: "2021-03-16"
+start_time: "13:00 CET"
+end_date: "2021-03-16"
+end_time: "13:30 CET"
 youtube_embed: https://youtu.be/U9LG_mMQFMY
 location_url:
   - https://youtu.be/U9LG_mMQFMY

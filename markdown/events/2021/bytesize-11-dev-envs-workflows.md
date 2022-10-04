@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 11: Development environments & workflows'
+title: "Bytesize 11: Development environments & workflows"
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
-start_date: '2021-05-04'
-start_time: '13:00 CEST'
-end_date: '2021-05-04'
-end_time: '13:30 CEST'
+start_date: "2021-05-04"
+start_time: "13:00 CEST"
+end_date: "2021-05-04"
+end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/XB96efweCLI
 location_url:
   - https://youtu.be/XB96efweCLI

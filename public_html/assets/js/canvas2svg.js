@@ -12,7 +12,7 @@
  */
 
 (function () {
-  'use strict';
+  "use strict";
 
   var STYLES, ctx, CanvasGradient, CanvasPattern, namedEntities;
 
@@ -21,7 +21,7 @@
     var keys = Object.keys(args),
       i;
     for (i = 0; i < keys.length; i++) {
-      str = str.replace(new RegExp('\\{' + keys[i] + '\\}', 'gi'), args[keys[i]]);
+      str = str.replace(new RegExp("\\{" + keys[i] + "\\}", "gi"), args[keys[i]]);
     }
     return str;
   }
@@ -30,12 +30,12 @@
   function randomString(holder) {
     var chars, randomstring, i;
     if (!holder) {
-      throw new Error('cannot create a random attribute name for an undefined object');
+      throw new Error("cannot create a random attribute name for an undefined object");
     }
-    chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-    randomstring = '';
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    randomstring = "";
     do {
-      randomstring = '';
+      randomstring = "";
       for (i = 0; i < 12; i++) {
         randomstring += chars[Math.floor(Math.random() * chars.length)];
       }
@@ -50,23 +50,23 @@
       lookup = {},
       base10,
       base16;
-    items = items.split(',');
+    items = items.split(",");
     radix = radix || 10;
     // Map from named to numbered entities.
     for (i = 0; i < items.length; i += 2) {
-      entity = '&' + items[i + 1] + ';';
+      entity = "&" + items[i + 1] + ";";
       base10 = parseInt(items[i], radix);
-      lookup[entity] = '&#' + base10 + ';';
+      lookup[entity] = "&#" + base10 + ";";
     }
     //FF and IE need to create a regex from hex values ie &nbsp; == \xa0
-    lookup['\\xa0'] = '&#160;';
+    lookup["\\xa0"] = "&#160;";
     return lookup;
   }
 
   //helper function to map canvas-textAlign to svg-textAnchor
   function getTextAnchor(textAlign) {
     //TODO: support rtl languages
-    var mapping = { left: 'start', right: 'end', center: 'middle', start: 'start', end: 'end' };
+    var mapping = { left: "start", right: "end", center: "middle", start: "start", end: "end" };
     return mapping[textAlign] || mapping.start;
   }
 
@@ -74,11 +74,11 @@
   function getDominantBaseline(textBaseline) {
     //INFO: not supported in all browsers
     var mapping = {
-      alphabetic: 'alphabetic',
-      hanging: 'hanging',
-      top: 'text-before-edge',
-      bottom: 'text-after-edge',
-      middle: 'central',
+      alphabetic: "alphabetic",
+      hanging: "hanging",
+      top: "text-before-edge",
+      bottom: "text-after-edge",
+      middle: "central",
     };
     return mapping[textBaseline] || mapping.alphabetic;
   }
@@ -86,84 +86,84 @@
   // Unpack entities lookup where the numbers are in radix 32 to reduce the size
   // entity mapping courtesy of tinymce
   namedEntities = createNamedToNumberedLookup(
-    '50,nbsp,51,iexcl,52,cent,53,pound,54,curren,55,yen,56,brvbar,57,sect,58,uml,59,copy,' +
-      '5a,ordf,5b,laquo,5c,not,5d,shy,5e,reg,5f,macr,5g,deg,5h,plusmn,5i,sup2,5j,sup3,5k,acute,' +
-      '5l,micro,5m,para,5n,middot,5o,cedil,5p,sup1,5q,ordm,5r,raquo,5s,frac14,5t,frac12,5u,frac34,' +
-      '5v,iquest,60,Agrave,61,Aacute,62,Acirc,63,Atilde,64,Auml,65,Aring,66,AElig,67,Ccedil,' +
-      '68,Egrave,69,Eacute,6a,Ecirc,6b,Euml,6c,Igrave,6d,Iacute,6e,Icirc,6f,Iuml,6g,ETH,6h,Ntilde,' +
-      '6i,Ograve,6j,Oacute,6k,Ocirc,6l,Otilde,6m,Ouml,6n,times,6o,Oslash,6p,Ugrave,6q,Uacute,' +
-      '6r,Ucirc,6s,Uuml,6t,Yacute,6u,THORN,6v,szlig,70,agrave,71,aacute,72,acirc,73,atilde,74,auml,' +
-      '75,aring,76,aelig,77,ccedil,78,egrave,79,eacute,7a,ecirc,7b,euml,7c,igrave,7d,iacute,7e,icirc,' +
-      '7f,iuml,7g,eth,7h,ntilde,7i,ograve,7j,oacute,7k,ocirc,7l,otilde,7m,ouml,7n,divide,7o,oslash,' +
-      '7p,ugrave,7q,uacute,7r,ucirc,7s,uuml,7t,yacute,7u,thorn,7v,yuml,ci,fnof,sh,Alpha,si,Beta,' +
-      'sj,Gamma,sk,Delta,sl,Epsilon,sm,Zeta,sn,Eta,so,Theta,sp,Iota,sq,Kappa,sr,Lambda,ss,Mu,' +
-      'st,Nu,su,Xi,sv,Omicron,t0,Pi,t1,Rho,t3,Sigma,t4,Tau,t5,Upsilon,t6,Phi,t7,Chi,t8,Psi,' +
-      't9,Omega,th,alpha,ti,beta,tj,gamma,tk,delta,tl,epsilon,tm,zeta,tn,eta,to,theta,tp,iota,' +
-      'tq,kappa,tr,lambda,ts,mu,tt,nu,tu,xi,tv,omicron,u0,pi,u1,rho,u2,sigmaf,u3,sigma,u4,tau,' +
-      'u5,upsilon,u6,phi,u7,chi,u8,psi,u9,omega,uh,thetasym,ui,upsih,um,piv,812,bull,816,hellip,' +
-      '81i,prime,81j,Prime,81u,oline,824,frasl,88o,weierp,88h,image,88s,real,892,trade,89l,alefsym,' +
-      '8cg,larr,8ch,uarr,8ci,rarr,8cj,darr,8ck,harr,8dl,crarr,8eg,lArr,8eh,uArr,8ei,rArr,8ej,dArr,' +
-      '8ek,hArr,8g0,forall,8g2,part,8g3,exist,8g5,empty,8g7,nabla,8g8,isin,8g9,notin,8gb,ni,8gf,prod,' +
-      '8gh,sum,8gi,minus,8gn,lowast,8gq,radic,8gt,prop,8gu,infin,8h0,ang,8h7,and,8h8,or,8h9,cap,8ha,cup,' +
-      '8hb,int,8hk,there4,8hs,sim,8i5,cong,8i8,asymp,8j0,ne,8j1,equiv,8j4,le,8j5,ge,8k2,sub,8k3,sup,8k4,' +
-      'nsub,8k6,sube,8k7,supe,8kl,oplus,8kn,otimes,8l5,perp,8m5,sdot,8o8,lceil,8o9,rceil,8oa,lfloor,8ob,' +
-      'rfloor,8p9,lang,8pa,rang,9ea,loz,9j0,spades,9j3,clubs,9j5,hearts,9j6,diams,ai,OElig,aj,oelig,b0,' +
-      'Scaron,b1,scaron,bo,Yuml,m6,circ,ms,tilde,802,ensp,803,emsp,809,thinsp,80c,zwnj,80d,zwj,80e,lrm,' +
-      '80f,rlm,80j,ndash,80k,mdash,80o,lsquo,80p,rsquo,80q,sbquo,80s,ldquo,80t,rdquo,80u,bdquo,810,dagger,' +
-      '811,Dagger,81g,permil,81p,lsaquo,81q,rsaquo,85c,euro',
+    "50,nbsp,51,iexcl,52,cent,53,pound,54,curren,55,yen,56,brvbar,57,sect,58,uml,59,copy," +
+      "5a,ordf,5b,laquo,5c,not,5d,shy,5e,reg,5f,macr,5g,deg,5h,plusmn,5i,sup2,5j,sup3,5k,acute," +
+      "5l,micro,5m,para,5n,middot,5o,cedil,5p,sup1,5q,ordm,5r,raquo,5s,frac14,5t,frac12,5u,frac34," +
+      "5v,iquest,60,Agrave,61,Aacute,62,Acirc,63,Atilde,64,Auml,65,Aring,66,AElig,67,Ccedil," +
+      "68,Egrave,69,Eacute,6a,Ecirc,6b,Euml,6c,Igrave,6d,Iacute,6e,Icirc,6f,Iuml,6g,ETH,6h,Ntilde," +
+      "6i,Ograve,6j,Oacute,6k,Ocirc,6l,Otilde,6m,Ouml,6n,times,6o,Oslash,6p,Ugrave,6q,Uacute," +
+      "6r,Ucirc,6s,Uuml,6t,Yacute,6u,THORN,6v,szlig,70,agrave,71,aacute,72,acirc,73,atilde,74,auml," +
+      "75,aring,76,aelig,77,ccedil,78,egrave,79,eacute,7a,ecirc,7b,euml,7c,igrave,7d,iacute,7e,icirc," +
+      "7f,iuml,7g,eth,7h,ntilde,7i,ograve,7j,oacute,7k,ocirc,7l,otilde,7m,ouml,7n,divide,7o,oslash," +
+      "7p,ugrave,7q,uacute,7r,ucirc,7s,uuml,7t,yacute,7u,thorn,7v,yuml,ci,fnof,sh,Alpha,si,Beta," +
+      "sj,Gamma,sk,Delta,sl,Epsilon,sm,Zeta,sn,Eta,so,Theta,sp,Iota,sq,Kappa,sr,Lambda,ss,Mu," +
+      "st,Nu,su,Xi,sv,Omicron,t0,Pi,t1,Rho,t3,Sigma,t4,Tau,t5,Upsilon,t6,Phi,t7,Chi,t8,Psi," +
+      "t9,Omega,th,alpha,ti,beta,tj,gamma,tk,delta,tl,epsilon,tm,zeta,tn,eta,to,theta,tp,iota," +
+      "tq,kappa,tr,lambda,ts,mu,tt,nu,tu,xi,tv,omicron,u0,pi,u1,rho,u2,sigmaf,u3,sigma,u4,tau," +
+      "u5,upsilon,u6,phi,u7,chi,u8,psi,u9,omega,uh,thetasym,ui,upsih,um,piv,812,bull,816,hellip," +
+      "81i,prime,81j,Prime,81u,oline,824,frasl,88o,weierp,88h,image,88s,real,892,trade,89l,alefsym," +
+      "8cg,larr,8ch,uarr,8ci,rarr,8cj,darr,8ck,harr,8dl,crarr,8eg,lArr,8eh,uArr,8ei,rArr,8ej,dArr," +
+      "8ek,hArr,8g0,forall,8g2,part,8g3,exist,8g5,empty,8g7,nabla,8g8,isin,8g9,notin,8gb,ni,8gf,prod," +
+      "8gh,sum,8gi,minus,8gn,lowast,8gq,radic,8gt,prop,8gu,infin,8h0,ang,8h7,and,8h8,or,8h9,cap,8ha,cup," +
+      "8hb,int,8hk,there4,8hs,sim,8i5,cong,8i8,asymp,8j0,ne,8j1,equiv,8j4,le,8j5,ge,8k2,sub,8k3,sup,8k4," +
+      "nsub,8k6,sube,8k7,supe,8kl,oplus,8kn,otimes,8l5,perp,8m5,sdot,8o8,lceil,8o9,rceil,8oa,lfloor,8ob," +
+      "rfloor,8p9,lang,8pa,rang,9ea,loz,9j0,spades,9j3,clubs,9j5,hearts,9j6,diams,ai,OElig,aj,oelig,b0," +
+      "Scaron,b1,scaron,bo,Yuml,m6,circ,ms,tilde,802,ensp,803,emsp,809,thinsp,80c,zwnj,80d,zwj,80e,lrm," +
+      "80f,rlm,80j,ndash,80k,mdash,80o,lsquo,80p,rsquo,80q,sbquo,80s,ldquo,80t,rdquo,80u,bdquo,810,dagger," +
+      "811,Dagger,81g,permil,81p,lsaquo,81q,rsaquo,85c,euro",
     32
   );
 
   //Some basic mappings for attributes and default values.
   STYLES = {
     strokeStyle: {
-      svgAttr: 'stroke', //corresponding svg attribute
-      canvas: '#000000', //canvas default
-      svg: 'none', //svg default
-      apply: 'stroke', //apply on stroke() or fill()
+      svgAttr: "stroke", //corresponding svg attribute
+      canvas: "#000000", //canvas default
+      svg: "none", //svg default
+      apply: "stroke", //apply on stroke() or fill()
     },
     fillStyle: {
-      svgAttr: 'fill',
-      canvas: '#000000',
+      svgAttr: "fill",
+      canvas: "#000000",
       svg: null, //svg default is black, but we need to special case this to handle canvas stroke without fill
-      apply: 'fill',
+      apply: "fill",
     },
     lineCap: {
-      svgAttr: 'stroke-linecap',
-      canvas: 'butt',
-      svg: 'butt',
-      apply: 'stroke',
+      svgAttr: "stroke-linecap",
+      canvas: "butt",
+      svg: "butt",
+      apply: "stroke",
     },
     lineJoin: {
-      svgAttr: 'stroke-linejoin',
-      canvas: 'miter',
-      svg: 'miter',
-      apply: 'stroke',
+      svgAttr: "stroke-linejoin",
+      canvas: "miter",
+      svg: "miter",
+      apply: "stroke",
     },
     miterLimit: {
-      svgAttr: 'stroke-miterlimit',
+      svgAttr: "stroke-miterlimit",
       canvas: 10,
       svg: 4,
-      apply: 'stroke',
+      apply: "stroke",
     },
     lineWidth: {
-      svgAttr: 'stroke-width',
+      svgAttr: "stroke-width",
       canvas: 1,
       svg: 1,
-      apply: 'stroke',
+      apply: "stroke",
     },
     globalAlpha: {
-      svgAttr: 'opacity',
+      svgAttr: "opacity",
       canvas: 1,
       svg: 1,
-      apply: 'fill stroke',
+      apply: "fill stroke",
     },
     font: {
       //font converts to multiple svg attributes, there is custom logic for this
-      canvas: '10px sans-serif',
+      canvas: "10px sans-serif",
     },
     shadowColor: {
-      canvas: '#000000',
+      canvas: "#000000",
     },
     shadowOffsetX: {
       canvas: 0,
@@ -175,16 +175,16 @@
       canvas: 0,
     },
     textAlign: {
-      canvas: 'start',
+      canvas: "start",
     },
     textBaseline: {
-      canvas: 'alphabetic',
+      canvas: "alphabetic",
     },
     lineDash: {
-      svgAttr: 'stroke-dasharray',
+      svgAttr: "stroke-dasharray",
       canvas: [],
       svg: null,
-      apply: 'stroke',
+      apply: "stroke",
     },
   };
 
@@ -202,18 +202,18 @@
    * Adds a color stop to the gradient root
    */
   CanvasGradient.prototype.addColorStop = function (offset, color) {
-    var stop = this.__ctx.__createElement('stop'),
+    var stop = this.__ctx.__createElement("stop"),
       regex,
       matches;
-    stop.setAttribute('offset', offset);
-    if (color.indexOf('rgba') !== -1) {
+    stop.setAttribute("offset", offset);
+    if (color.indexOf("rgba") !== -1) {
       //separate alpha value, since webkit can't handle it
       regex = /rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d?\.?\d*)\s*\)/gi;
       matches = regex.exec(color);
-      stop.setAttribute('stop-color', format('rgb({r},{g},{b})', { r: matches[1], g: matches[2], b: matches[3] }));
-      stop.setAttribute('stop-opacity', matches[4]);
+      stop.setAttribute("stop-color", format("rgb({r},{g},{b})", { r: matches[1], g: matches[2], b: matches[3] }));
+      stop.setAttribute("stop-opacity", matches[4]);
     } else {
-      stop.setAttribute('stop-color', color);
+      stop.setAttribute("stop-color", color);
     }
     this.__root.appendChild(stop);
   };
@@ -266,8 +266,8 @@
     if (options.ctx) {
       this.__ctx = options.ctx;
     } else {
-      this.__canvas = this.__document.createElement('canvas');
-      this.__ctx = this.__canvas.getContext('2d');
+      this.__canvas = this.__document.createElement("canvas");
+      this.__ctx = this.__canvas.getContext("2d");
     }
 
     this.__setDefaultStyles();
@@ -275,22 +275,22 @@
     this.__groupStack = [];
 
     //the root svg element
-    this.__root = this.__document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    this.__root.setAttribute('version', 1.1);
-    this.__root.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    this.__root.setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:xlink', 'http://www.w3.org/1999/xlink');
-    this.__root.setAttribute('width', this.width);
-    this.__root.setAttribute('height', this.height);
+    this.__root = this.__document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    this.__root.setAttribute("version", 1.1);
+    this.__root.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.__root.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+    this.__root.setAttribute("width", this.width);
+    this.__root.setAttribute("height", this.height);
 
     //make sure we don't generate the same ids in defs
     this.__ids = {};
 
     //defs tag
-    this.__defs = this.__document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    this.__defs = this.__document.createElementNS("http://www.w3.org/2000/svg", "defs");
     this.__root.appendChild(this.__defs);
 
     //also add a group child. the svg element can't use the transform attribute
-    this.__currentElement = this.__document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    this.__currentElement = this.__document.createElementNS("http://www.w3.org/2000/svg", "g");
     this.__root.appendChild(this.__currentElement);
   };
 
@@ -299,18 +299,18 @@
    * @private
    */
   ctx.prototype.__createElement = function (elementName, properties, resetFill) {
-    if (typeof properties === 'undefined') {
+    if (typeof properties === "undefined") {
       properties = {};
     }
 
-    var element = this.__document.createElementNS('http://www.w3.org/2000/svg', elementName),
+    var element = this.__document.createElementNS("http://www.w3.org/2000/svg", elementName),
       keys = Object.keys(properties),
       i,
       key;
     if (resetFill) {
       //if fill or stroke is not specified, the svg element should not display. By default SVG's fill is black.
-      element.setAttribute('fill', 'none');
-      element.setAttribute('stroke', 'none');
+      element.setAttribute("fill", "none");
+      element.setAttribute("stroke", "none");
     }
     for (i = 0; i < keys.length; i++) {
       key = keys[i];
@@ -375,10 +375,10 @@
     var currentElement = this.__currentElement;
     var currentStyleGroup = this.__currentElementsToStyle;
     if (currentStyleGroup) {
-      currentElement.setAttribute(type, '');
+      currentElement.setAttribute(type, "");
       currentElement = currentStyleGroup.element;
       currentStyleGroup.children.forEach(function (node) {
-        node.setAttribute(type, '');
+        node.setAttribute(type, "");
       });
     }
 
@@ -399,23 +399,23 @@
           if (value.__ctx) {
             //copy over defs
             while (value.__ctx.__defs.childNodes.length) {
-              id = value.__ctx.__defs.childNodes[0].getAttribute('id');
+              id = value.__ctx.__defs.childNodes[0].getAttribute("id");
               this.__ids[id] = id;
               this.__defs.appendChild(value.__ctx.__defs.childNodes[0]);
             }
           }
-          currentElement.setAttribute(style.apply, format('url(#{id})', { id: value.__root.getAttribute('id') }));
+          currentElement.setAttribute(style.apply, format("url(#{id})", { id: value.__root.getAttribute("id") }));
         } else if (value instanceof CanvasGradient) {
           //gradient
-          currentElement.setAttribute(style.apply, format('url(#{id})', { id: value.__root.getAttribute('id') }));
+          currentElement.setAttribute(style.apply, format("url(#{id})", { id: value.__root.getAttribute("id") }));
         } else if (style.apply.indexOf(type) !== -1 && style.svg !== value) {
-          if ((style.svgAttr === 'stroke' || style.svgAttr === 'fill') && value.indexOf('rgba') !== -1) {
+          if ((style.svgAttr === "stroke" || style.svgAttr === "fill") && value.indexOf("rgba") !== -1) {
             //separate alpha value, since illustrator can't handle it
             regex = /rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d?\.?\d*)\s*\)/gi;
             matches = regex.exec(value);
             currentElement.setAttribute(
               style.svgAttr,
-              format('rgb({r},{g},{b})', { r: matches[1], g: matches[2], b: matches[3] })
+              format("rgb({r},{g},{b})", { r: matches[1], g: matches[2], b: matches[3] })
             );
             //should take globalAlpha here
             var opacity = matches[4];
@@ -423,11 +423,11 @@
             if (globalAlpha != null) {
               opacity *= globalAlpha;
             }
-            currentElement.setAttribute(style.svgAttr + '-opacity', opacity);
+            currentElement.setAttribute(style.svgAttr + "-opacity", opacity);
           } else {
             var attr = style.svgAttr;
-            if (keys[i] === 'globalAlpha') {
-              attr = type + '-' + style.svgAttr;
+            if (keys[i] === "globalAlpha") {
+              attr = type + "-" + style.svgAttr;
               if (currentElement.getAttribute(attr)) {
                 //fill-opacity or stroke-opacity has already been set by stroke or fill.
                 continue;
@@ -447,7 +447,7 @@
    */
   ctx.prototype.__closestGroupOrSvg = function (node) {
     node = node || this.__currentElement;
-    if (node.nodeName === 'g' || node.nodeName === 'svg') {
+    if (node.nodeName === "g" || node.nodeName === "svg") {
       return node;
     } else {
       return this.__closestGroupOrSvg(node.parentNode);
@@ -481,7 +481,7 @@
       for (i = 0; i < keys.length; i++) {
         key = keys[i];
         value = namedEntities[key];
-        regexp = new RegExp(key, 'gi');
+        regexp = new RegExp(key, "gi");
         if (regexp.test(serialized)) {
           serialized = serialized.replace(regexp, value);
         }
@@ -502,7 +502,7 @@
    * Will generate a group tag.
    */
   ctx.prototype.save = function () {
-    var group = this.__createElement('g');
+    var group = this.__createElement("g");
     var parent = this.__closestGroupOrSvg();
     this.__groupStack.push(parent);
     parent.appendChild(group);
@@ -531,25 +531,25 @@
     //if the current element has siblings, add another group
     var parent = this.__closestGroupOrSvg();
     if (parent.childNodes.length > 0) {
-      if (this.__currentElement.nodeName === 'path') {
+      if (this.__currentElement.nodeName === "path") {
         if (!this.__currentElementsToStyle) this.__currentElementsToStyle = { element: parent, children: [] };
         this.__currentElementsToStyle.children.push(this.__currentElement);
         this.__applyCurrentDefaultPath();
       }
 
-      var group = this.__createElement('g');
+      var group = this.__createElement("g");
       parent.appendChild(group);
       this.__currentElement = group;
     }
 
-    var transform = this.__currentElement.getAttribute('transform');
+    var transform = this.__currentElement.getAttribute("transform");
     if (transform) {
-      transform += ' ';
+      transform += " ";
     } else {
-      transform = '';
+      transform = "";
     }
     transform += t;
-    this.__currentElement.setAttribute('transform', transform);
+    this.__currentElement.setAttribute("transform", transform);
   };
 
   /**
@@ -559,7 +559,7 @@
     if (y === undefined) {
       y = x;
     }
-    this.__addTransform(format('scale({x},{y})', { x: x, y: y }));
+    this.__addTransform(format("scale({x},{y})", { x: x, y: y }));
   };
 
   /**
@@ -567,21 +567,21 @@
    */
   ctx.prototype.rotate = function (angle) {
     var degrees = (angle * 180) / Math.PI;
-    this.__addTransform(format('rotate({angle},{cx},{cy})', { angle: degrees, cx: 0, cy: 0 }));
+    this.__addTransform(format("rotate({angle},{cx},{cy})", { angle: degrees, cx: 0, cy: 0 }));
   };
 
   /**
    * translates the current element
    */
   ctx.prototype.translate = function (x, y) {
-    this.__addTransform(format('translate({x},{y})', { x: x, y: y }));
+    this.__addTransform(format("translate({x},{y})", { x: x, y: y }));
   };
 
   /**
    * applies a transform to the current element
    */
   ctx.prototype.transform = function (a, b, c, d, e, f) {
-    this.__addTransform(format('matrix({a},{b},{c},{d},{e},{f})', { a: a, b: b, c: c, d: d, e: e, f: f }));
+    this.__addTransform(format("matrix({a},{b},{c},{d},{e},{f})", { a: a, b: b, c: c, d: d, e: e, f: f }));
   };
 
   /**
@@ -592,10 +592,10 @@
 
     // Note that there is only one current default path, it is not part of the drawing state.
     // See also: https://html.spec.whatwg.org/multipage/scripting.html#current-default-path
-    this.__currentDefaultPath = '';
+    this.__currentDefaultPath = "";
     this.__currentPosition = {};
 
-    path = this.__createElement('path', {}, true);
+    path = this.__createElement("path", {}, true);
     parent = this.__closestGroupOrSvg();
     parent.appendChild(path);
     this.__currentElement = path;
@@ -607,10 +607,10 @@
    */
   ctx.prototype.__applyCurrentDefaultPath = function () {
     var currentElement = this.__currentElement;
-    if (currentElement.nodeName === 'path') {
-      currentElement.setAttribute('d', this.__currentDefaultPath);
+    if (currentElement.nodeName === "path") {
+      currentElement.setAttribute("d", this.__currentDefaultPath);
     } else {
-      console.error('Attempted to apply path command to node', currentElement.nodeName);
+      console.error("Attempted to apply path command to node", currentElement.nodeName);
     }
   };
 
@@ -619,7 +619,7 @@
    * @private
    */
   ctx.prototype.__addPathCommand = function (command) {
-    this.__currentDefaultPath += ' ';
+    this.__currentDefaultPath += " ";
     this.__currentDefaultPath += command;
   };
 
@@ -628,13 +628,13 @@
    * if the currentPathElement is not empty create a new path element
    */
   ctx.prototype.moveTo = function (x, y) {
-    if (this.__currentElement.nodeName !== 'path') {
+    if (this.__currentElement.nodeName !== "path") {
       this.beginPath();
     }
 
     // creates a new subpath with the given point
     this.__currentPosition = { x: x, y: y };
-    this.__addPathCommand(format('M {x} {y}', { x: x, y: y }));
+    this.__addPathCommand(format("M {x} {y}", { x: x, y: y }));
   };
 
   /**
@@ -642,7 +642,7 @@
    */
   ctx.prototype.closePath = function () {
     if (this.__currentDefaultPath) {
-      this.__addPathCommand('Z');
+      this.__addPathCommand("Z");
     }
   };
 
@@ -651,10 +651,10 @@
    */
   ctx.prototype.lineTo = function (x, y) {
     this.__currentPosition = { x: x, y: y };
-    if (this.__currentDefaultPath.indexOf('M') > -1) {
-      this.__addPathCommand(format('L {x} {y}', { x: x, y: y }));
+    if (this.__currentDefaultPath.indexOf("M") > -1) {
+      this.__addPathCommand(format("L {x} {y}", { x: x, y: y }));
     } else {
-      this.__addPathCommand(format('M {x} {y}', { x: x, y: y }));
+      this.__addPathCommand(format("M {x} {y}", { x: x, y: y }));
     }
   };
 
@@ -664,7 +664,7 @@
   ctx.prototype.bezierCurveTo = function (cp1x, cp1y, cp2x, cp2y, x, y) {
     this.__currentPosition = { x: x, y: y };
     this.__addPathCommand(
-      format('C {cp1x} {cp1y} {cp2x} {cp2y} {x} {y}', {
+      format("C {cp1x} {cp1y} {cp2x} {cp2y} {x} {y}", {
         cp1x: cp1x,
         cp1y: cp1y,
         cp2x: cp2x,
@@ -680,7 +680,7 @@
    */
   ctx.prototype.quadraticCurveTo = function (cpx, cpy, x, y) {
     this.__currentPosition = { x: x, y: y };
-    this.__addPathCommand(format('Q {cpx} {cpy} {x} {y}', { cpx: cpx, cpy: cpy, x: x, y: y }));
+    this.__addPathCommand(format("Q {cpx} {cpy} {x} {y}", { cpx: cpx, cpy: cpy, x: x, y: y }));
   };
 
   /**
@@ -702,13 +702,13 @@
     var y0 = this.__currentPosition && this.__currentPosition.y;
 
     // First ensure there is a subpath for (x1, y1).
-    if (typeof x0 == 'undefined' || typeof y0 == 'undefined') {
+    if (typeof x0 == "undefined" || typeof y0 == "undefined") {
       return;
     }
 
     // Negative values for radius must cause the implementation to throw an IndexSizeError exception.
     if (radius < 0) {
-      throw new Error('IndexSizeError: The radius provided (' + radius + ') is negative.');
+      throw new Error("IndexSizeError: The radius provided (" + radius + ") is negative.");
     }
 
     // If the point (x0, y0) is equal to the point (x1, y1),
@@ -777,29 +777,29 @@
    * Sets the stroke property on the current element
    */
   ctx.prototype.stroke = function () {
-    if (this.__currentElement.nodeName === 'path') {
-      this.__currentElement.setAttribute('paint-order', 'fill stroke markers');
+    if (this.__currentElement.nodeName === "path") {
+      this.__currentElement.setAttribute("paint-order", "fill stroke markers");
     }
     this.__applyCurrentDefaultPath();
-    this.__applyStyleToCurrentElement('stroke');
+    this.__applyStyleToCurrentElement("stroke");
   };
 
   /**
    * Sets fill properties on the current element
    */
   ctx.prototype.fill = function () {
-    if (this.__currentElement.nodeName === 'path') {
-      this.__currentElement.setAttribute('paint-order', 'stroke fill markers');
+    if (this.__currentElement.nodeName === "path") {
+      this.__currentElement.setAttribute("paint-order", "stroke fill markers");
     }
     this.__applyCurrentDefaultPath();
-    this.__applyStyleToCurrentElement('fill');
+    this.__applyStyleToCurrentElement("fill");
   };
 
   /**
    *  Adds a rectangle to the path.
    */
   ctx.prototype.rect = function (x, y, width, height) {
-    if (this.__currentElement.nodeName !== 'path') {
+    if (this.__currentElement.nodeName !== "path") {
       this.beginPath();
     }
     this.moveTo(x, y);
@@ -816,7 +816,7 @@
   ctx.prototype.fillRect = function (x, y, width, height) {
     var rect, parent;
     rect = this.__createElement(
-      'rect',
+      "rect",
       {
         x: x,
         y: y,
@@ -828,7 +828,7 @@
     parent = this.__closestGroupOrSvg();
     parent.appendChild(rect);
     this.__currentElement = rect;
-    this.__applyStyleToCurrentElement('fill');
+    this.__applyStyleToCurrentElement("fill");
   };
 
   /**
@@ -841,7 +841,7 @@
   ctx.prototype.strokeRect = function (x, y, width, height) {
     var rect, parent;
     rect = this.__createElement(
-      'rect',
+      "rect",
       {
         x: x,
         y: y,
@@ -853,7 +853,7 @@
     parent = this.__closestGroupOrSvg();
     parent.appendChild(rect);
     this.__currentElement = rect;
-    this.__applyStyleToCurrentElement('stroke');
+    this.__applyStyleToCurrentElement("stroke");
   };
 
   /**
@@ -863,7 +863,7 @@
    */
   ctx.prototype.__clearCanvas = function () {
     var current = this.__closestGroupOrSvg(),
-      transform = current.getAttribute('transform');
+      transform = current.getAttribute("transform");
     var rootGroup = this.__root.childNodes[1];
     var childNodes = rootGroup.childNodes;
     for (var i = childNodes.length - 1; i >= 0; i--) {
@@ -891,13 +891,13 @@
     var rect,
       parent = this.__closestGroupOrSvg();
     rect = this.__createElement(
-      'rect',
+      "rect",
       {
         x: x,
         y: y,
         width: width,
         height: height,
-        fill: '#FFFFFF',
+        fill: "#FFFFFF",
       },
       true
     );
@@ -910,14 +910,14 @@
    */
   ctx.prototype.createLinearGradient = function (x1, y1, x2, y2) {
     var grad = this.__createElement(
-      'linearGradient',
+      "linearGradient",
       {
         id: randomString(this.__ids),
-        x1: x1 + 'px',
-        x2: x2 + 'px',
-        y1: y1 + 'px',
-        y2: y2 + 'px',
-        gradientUnits: 'userSpaceOnUse',
+        x1: x1 + "px",
+        x2: x2 + "px",
+        y1: y1 + "px",
+        y2: y2 + "px",
+        gradientUnits: "userSpaceOnUse",
       },
       false
     );
@@ -931,15 +931,15 @@
    */
   ctx.prototype.createRadialGradient = function (x0, y0, r0, x1, y1, r1) {
     var grad = this.__createElement(
-      'radialGradient',
+      "radialGradient",
       {
         id: randomString(this.__ids),
-        cx: x1 + 'px',
-        cy: y1 + 'px',
-        r: r1 + 'px',
-        fx: x0 + 'px',
-        fy: y0 + 'px',
-        gradientUnits: 'userSpaceOnUse',
+        cx: x1 + "px",
+        cy: y1 + "px",
+        r: r1 + "px",
+        fx: x0 + "px",
+        fy: y0 + "px",
+        gradientUnits: "userSpaceOnUse",
       },
       false
     );
@@ -956,17 +956,17 @@
       /^\s*(?=(?:(?:[-a-z]+\s*){0,2}(italic|oblique))?)(?=(?:(?:[-a-z]+\s*){0,2}(small-caps))?)(?=(?:(?:[-a-z]+\s*){0,2}(bold(?:er)?|lighter|[1-9]00))?)(?:(?:normal|\1|\2|\3)\s*){0,3}((?:xx?-)?(?:small|large)|medium|smaller|larger|[.\d]+(?:\%|in|[cem]m|ex|p[ctx]))(?:\s*\/\s*(normal|[.\d]+(?:\%|in|[cem]m|ex|p[ctx])))?\s*([-,\'\"\sa-z0-9]+?)\s*$/i;
     var fontPart = regex.exec(this.font);
     var data = {
-      style: fontPart[1] || 'normal',
-      size: fontPart[4] || '10px',
-      family: fontPart[6] || 'sans-serif',
-      weight: fontPart[3] || 'normal',
-      decoration: fontPart[2] || 'normal',
+      style: fontPart[1] || "normal",
+      size: fontPart[4] || "10px",
+      family: fontPart[6] || "sans-serif",
+      weight: fontPart[3] || "normal",
+      decoration: fontPart[2] || "normal",
       href: null,
     };
 
     //canvas doesn't support underline natively, but we can pass this attribute
-    if (this.__fontUnderline === 'underline') {
-      data.decoration = 'underline';
+    if (this.__fontUnderline === "underline") {
+      data.decoration = "underline";
     }
 
     //canvas also doesn't support linking, but we can pass this as well
@@ -986,8 +986,8 @@
    */
   ctx.prototype.__wrapTextLink = function (font, element) {
     if (font.href) {
-      var a = this.__createElement('a');
-      a.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', font.href);
+      var a = this.__createElement("a");
+      a.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", font.href);
       a.appendChild(element);
       return a;
     }
@@ -1006,17 +1006,17 @@
     var font = this.__parseFont(),
       parent = this.__closestGroupOrSvg(),
       textElement = this.__createElement(
-        'text',
+        "text",
         {
-          'font-family': font.family,
-          'font-size': font.size,
-          'font-style': font.style,
-          'font-weight': font.weight,
-          'text-decoration': font.decoration,
+          "font-family": font.family,
+          "font-size": font.size,
+          "font-style": font.style,
+          "font-weight": font.weight,
+          "text-decoration": font.decoration,
           x: x,
           y: y,
-          'text-anchor': getTextAnchor(this.textAlign),
-          'dominant-baseline': getDominantBaseline(this.textBaseline),
+          "text-anchor": getTextAnchor(this.textAlign),
+          "dominant-baseline": getDominantBaseline(this.textBaseline),
         },
         true
       );
@@ -1034,7 +1034,7 @@
    * @param y
    */
   ctx.prototype.fillText = function (text, x, y) {
-    this.__applyText(text, x, y, 'fill');
+    this.__applyText(text, x, y, "fill");
   };
 
   /**
@@ -1044,7 +1044,7 @@
    * @param y
    */
   ctx.prototype.strokeText = function (text, x, y) {
-    this.__applyText(text, x, y, 'stroke');
+    this.__applyText(text, x, y, "stroke");
   };
 
   /**
@@ -1092,7 +1092,7 @@
 
     this.lineTo(startX, startY);
     this.__addPathCommand(
-      format('A {rx} {ry} {xAxisRotation} {largeArcFlag} {sweepFlag} {endX} {endY}', {
+      format("A {rx} {ry} {xAxisRotation} {largeArcFlag} {sweepFlag} {endX} {endY}", {
         rx: radius,
         ry: radius,
         xAxisRotation: 0,
@@ -1111,19 +1111,19 @@
    */
   ctx.prototype.clip = function () {
     var group = this.__closestGroupOrSvg(),
-      clipPath = this.__createElement('clipPath'),
+      clipPath = this.__createElement("clipPath"),
       id = randomString(this.__ids),
-      newGroup = this.__createElement('g');
+      newGroup = this.__createElement("g");
 
     this.__applyCurrentDefaultPath();
     group.removeChild(this.__currentElement);
-    clipPath.setAttribute('id', id);
+    clipPath.setAttribute("id", id);
     clipPath.appendChild(this.__currentElement);
 
     this.__defs.appendChild(clipPath);
 
     //set the clip path to this group
-    group.setAttribute('clip-path', format('url(#{id})', { id: id }));
+    group.setAttribute("clip-path", format("url(#{id})", { id: id }));
 
     //clip paths can be scaled and transformed, we need to add another wrapper group to avoid later transformations
     // to this path
@@ -1183,12 +1183,12 @@
       dw = args[7];
       dh = args[8];
     } else {
-      throw new Error('Invalid number of arguments passed to drawImage: ' + arguments.length);
+      throw new Error("Invalid number of arguments passed to drawImage: " + arguments.length);
     }
 
     parent = this.__closestGroupOrSvg();
     currentElement = this.__currentElement;
-    var translateDirective = 'translate(' + dx + ', ' + dy + ')';
+    var translateDirective = "translate(" + dx + ", " + dy + ")";
     if (image instanceof ctx) {
       //canvas2svg mock canvas context. In the future we may want to clone nodes instead.
       //also I'm currently ignoring dw, dh, sw, sh, sx, sy for a mock context.
@@ -1196,45 +1196,45 @@
       if (svg.childNodes && svg.childNodes.length > 1) {
         defs = svg.childNodes[0];
         while (defs.childNodes.length) {
-          id = defs.childNodes[0].getAttribute('id');
+          id = defs.childNodes[0].getAttribute("id");
           this.__ids[id] = id;
           this.__defs.appendChild(defs.childNodes[0]);
         }
         group = svg.childNodes[1];
         if (group) {
           //save original transform
-          var originTransform = group.getAttribute('transform');
+          var originTransform = group.getAttribute("transform");
           var transformDirective;
           if (originTransform) {
-            transformDirective = originTransform + ' ' + translateDirective;
+            transformDirective = originTransform + " " + translateDirective;
           } else {
             transformDirective = translateDirective;
           }
-          group.setAttribute('transform', transformDirective);
+          group.setAttribute("transform", transformDirective);
           parent.appendChild(group);
         }
       }
-    } else if (image.nodeName === 'CANVAS' || image.nodeName === 'IMG') {
+    } else if (image.nodeName === "CANVAS" || image.nodeName === "IMG") {
       //canvas or image
-      svgImage = this.__createElement('image');
-      svgImage.setAttribute('width', dw);
-      svgImage.setAttribute('height', dh);
-      svgImage.setAttribute('preserveAspectRatio', 'none');
+      svgImage = this.__createElement("image");
+      svgImage.setAttribute("width", dw);
+      svgImage.setAttribute("height", dh);
+      svgImage.setAttribute("preserveAspectRatio", "none");
 
       if (sx || sy || sw !== image.width || sh !== image.height) {
         //crop the image using a temporary canvas
-        canvas = this.__document.createElement('canvas');
+        canvas = this.__document.createElement("canvas");
         canvas.width = dw;
         canvas.height = dh;
-        context = canvas.getContext('2d');
+        context = canvas.getContext("2d");
         context.drawImage(image, sx, sy, sw, sh, 0, 0, dw, dh);
         image = canvas;
       }
-      svgImage.setAttribute('transform', translateDirective);
+      svgImage.setAttribute("transform", translateDirective);
       svgImage.setAttributeNS(
-        'http://www.w3.org/1999/xlink',
-        'xlink:href',
-        image.nodeName === 'CANVAS' ? image.toDataURL() : image.getAttribute('src')
+        "http://www.w3.org/1999/xlink",
+        "xlink:href",
+        image.nodeName === "CANVAS" ? image.toDataURL() : image.getAttribute("src")
       );
       parent.appendChild(svgImage);
     }
@@ -1244,20 +1244,20 @@
    * Generates a pattern tag
    */
   ctx.prototype.createPattern = function (image, repetition) {
-    var pattern = this.__document.createElementNS('http://www.w3.org/2000/svg', 'pattern'),
+    var pattern = this.__document.createElementNS("http://www.w3.org/2000/svg", "pattern"),
       id = randomString(this.__ids),
       img;
-    pattern.setAttribute('id', id);
-    pattern.setAttribute('width', image.width);
-    pattern.setAttribute('height', image.height);
-    if (image.nodeName === 'CANVAS' || image.nodeName === 'IMG') {
-      img = this.__document.createElementNS('http://www.w3.org/2000/svg', 'image');
-      img.setAttribute('width', image.width);
-      img.setAttribute('height', image.height);
+    pattern.setAttribute("id", id);
+    pattern.setAttribute("width", image.width);
+    pattern.setAttribute("height", image.height);
+    if (image.nodeName === "CANVAS" || image.nodeName === "IMG") {
+      img = this.__document.createElementNS("http://www.w3.org/2000/svg", "image");
+      img.setAttribute("width", image.width);
+      img.setAttribute("height", image.height);
       img.setAttributeNS(
-        'http://www.w3.org/1999/xlink',
-        'xlink:href',
-        image.nodeName === 'CANVAS' ? image.toDataURL() : image.getAttribute('src')
+        "http://www.w3.org/1999/xlink",
+        "xlink:href",
+        image.nodeName === "CANVAS" ? image.toDataURL() : image.getAttribute("src")
       );
       pattern.appendChild(img);
       this.__defs.appendChild(pattern);
@@ -1270,7 +1270,7 @@
 
   ctx.prototype.setLineDash = function (dashArray) {
     if (dashArray && dashArray.length > 0) {
-      this.lineDash = dashArray.join(',');
+      this.lineDash = dashArray.join(",");
     } else {
       this.lineDash = null;
     }
@@ -1287,12 +1287,12 @@
   ctx.prototype.setTransform = function () {};
 
   //add options for alternative namespace
-  if (typeof window === 'object') {
+  if (typeof window === "object") {
     window.C2S = ctx;
   }
 
   // CommonJS/Browserify
-  if (typeof module === 'object' && typeof module.exports === 'object') {
+  if (typeof module === "object" && typeof module.exports === "object") {
     module.exports = ctx;
   }
 })();

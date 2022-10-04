@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   db:
     image: mariadb
@@ -20,13 +20,13 @@ services:
     volumes:
       - .:/var/www/
     ports:
-      - '8888:80'
+      - "8888:80"
     depends_on:
       - composer
       - db
   composer:
     image: composer:2.1
-    command: ['composer', 'install']
+    command: ["composer", "install"]
     volumes:
       - .:/var/www/
     working_dir: /var/www/

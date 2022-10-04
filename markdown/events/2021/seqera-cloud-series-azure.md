@@ -1,11 +1,11 @@
 ---
-title: 'Seqera Labs Cloud Webinar Series - Nextflow on Azure Batch'
+title: "Seqera Labs Cloud Webinar Series - Nextflow on Azure Batch"
 subtitle: An overview of Nextflow and its integration with Azure Batch
 type: talk
-start_date: '2021-04-22'
-start_time: '18:00 CEST'
-end_date: '2021-04-22'
-end_time: '19:00 CEST'
+start_date: "2021-04-22"
+start_time: "18:00 CEST"
+end_date: "2021-04-22"
+end_time: "19:00 CEST"
 location_url:
   - https://us02web.zoom.us/webinar/register/4216189082422/WN_51zfR1OBQmWicoc09Jgf8g
 ---

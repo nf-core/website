@@ -1,11 +1,11 @@
 ---
-title: 'ELIXIR Proteomics Community - Connection with nf-core'
+title: "ELIXIR Proteomics Community - Connection with nf-core"
 subtitle: A joint effort on the standardization of analytics workflows
 type: talk
-start_date: '2020-09-28'
-start_time: '11:00 CEST'
-end_date: '2020-09-28'
-end_time: '12:00 CEST'
+start_date: "2020-09-28"
+start_time: "11:00 CEST"
+end_date: "2020-09-28"
+end_time: "12:00 CEST"
 location_url: https://stockholmuniversity.zoom.us/j/66498969128
 ---
 

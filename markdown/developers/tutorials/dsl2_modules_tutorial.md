@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Create a DSL2 Module'
+title: "Tutorial: Create a DSL2 Module"
 subtitle: Creating a new module for the nf-core modules repository.
 ---
 

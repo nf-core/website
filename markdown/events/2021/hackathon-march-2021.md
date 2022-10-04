@@ -2,13 +2,13 @@
 title: Hackathon - March 2021
 subtitle: A virtual online hackathon to develop nf-core together.
 type: hackathon
-start_date: '2021-03-22'
-start_time: '10:00 CET'
-end_date: '2021-03-24'
-end_time: '18:00 CET'
+start_date: "2021-03-22"
+start_time: "10:00 CET"
+end_date: "2021-03-24"
+end_time: "18:00 CET"
 youtube_embed: https://youtu.be/cuwcgZX6Li8
 location_name: Zoom, Slack & YouTube.
-location_url: '#how-it-works'
+location_url: "#how-it-works"
 ---
 
 # Introduction

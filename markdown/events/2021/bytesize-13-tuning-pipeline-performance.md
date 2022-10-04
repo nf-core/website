@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 13: Tuning pipeline performance'
+title: "Bytesize 13: Tuning pipeline performance"
 subtitle: Gisela Gabernet - QBiC Tübingen, Germany
 type: talk
-start_date: '2021-05-18'
-start_time: '13:00 CEST'
-end_date: '2021-05-18'
-end_time: '13:30 CEST'
+start_date: "2021-05-18"
+start_time: "13:00 CEST"
+end_date: "2021-05-18"
+end_time: "13:30 CEST"
 youtube_embed: https://youtu.be/Qw1gLpYtMec
 location_url:
   - https://www.bilibili.com/video/BV1z64y1k7a3

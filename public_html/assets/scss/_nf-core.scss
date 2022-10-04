@@ -1,7 +1,7 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,600|Open+Sans:300,400,500,600');
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,600|Open+Sans:300,400,500,600");
 
-@import 'bootstrap-print-css/css/bootstrap-print.min';
+@import "bootstrap-print-css/css/bootstrap-print.min";
 
 @media print {
   .pipeline-page-content,
@@ -30,7 +30,7 @@ $blockquote-color: shift-color($info, $alert-color-scale);
 
 // general classes
 body {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
   background-color: $gray-100;
 }
@@ -89,7 +89,7 @@ img {
 /* Stop the nav covering the content -  https://stackoverflow.com/a/49331661/713980 */
 section:before {
   height: 54px;
-  content: '';
+  content: "";
   display: block;
 }
 
@@ -255,7 +255,7 @@ section:before {
   transition: 0.15s all ease-in-out;
 }
 .btn.arrow-hover span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -288,7 +288,7 @@ section:before {
 }
 
 .btn.rocket-launch-hover:hover i::before {
-  content: '\e027';
+  content: "\e027";
 }
 
 // code
@@ -485,7 +485,7 @@ footer a:active {
 .main-content .h4,
 .main-content .h5,
 .main-content .h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
 .main-content h1[id]::before,
@@ -501,7 +501,7 @@ footer a:active {
 .main-content .h5[id]::before,
 .main-content .h6[id]::before {
   display: block;
-  content: '';
+  content: "";
   padding-top: 50px;
   margin-top: -50px;
 }
@@ -611,7 +611,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .homepage-cta:after {
   transition: 0.3s all ease;
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -621,7 +621,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   border: 2px solid $nf-core-color;
 }
 .homepage-cta:before {
-  content: '';
+  content: "";
   position: absolute;
   border-radius: 3px;
   left: 0;
@@ -724,7 +724,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     margin-right: 21px;
   }
   .list-switch a.active:before {
-    content: '';
+    content: "";
     display: block;
     border: 21px solid transparent;
     position: absolute;
@@ -768,7 +768,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   color: rgba($white, 0.8);
 }
 .homepage-usedby::before {
-  content: '';
+  content: "";
   background: $black;
   position: absolute;
   top: 0;
@@ -778,8 +778,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   z-index: -2;
 }
 .homepage-usedby::after {
-  content: '';
-  background: url('../img/flowcell.jpg') no-repeat;
+  content: "";
+  background: url("../img/flowcell.jpg") no-repeat;
   background-attachment: fixed;
   opacity: 0.8;
   background-size: cover;
@@ -836,7 +836,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .module .card-title {
   margin-top: 0;
   padding-top: 0;
-  font-family: 'Maven Pro', sans-serif;
+  font-family: "Maven Pro", sans-serif;
   font-weight: 400;
 }
 .pipeline .stargazers {
@@ -1464,7 +1464,7 @@ Launch Page
 .tile {
   color: $gray-100;
 }
-.tile[data-state='active'] {
+.tile[data-state="active"] {
   color: inherit;
 }
 .sidebar-nav .btn {
@@ -1475,7 +1475,7 @@ Launch Page
     color: $success;
   }
 }
-.sidebar-nav .btn[aria-expanded='true'] .fas {
+.sidebar-nav .btn[aria-expanded="true"] .fas {
   transform: rotate(90deg);
 }
 .sidebar-nav a {
