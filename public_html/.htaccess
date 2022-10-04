@@ -53,6 +53,14 @@
     RewriteCond %{REQUEST_FILENAME}.php -f
     RewriteRule ^(.*)$ $1.php
 
+    # Remove trailing /index from URL
+    RewriteCond %{REQUEST_URI} ^(.*)/index$
+    RewriteRule (.*) %1 [R=301,L]
+
+    # Remove trailing /README from URL
+    RewriteCond %{REQUEST_URI} ^(.*)/README$
+    RewriteRule (.*) %1 [R=301,L]
+
     # Redirect .md URLs to remove the extension
     RewriteCond %{REQUEST_URI} ^(.*)\.md$
     RewriteRule (.*) %1 [R=301,L]
