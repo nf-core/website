@@ -35,6 +35,7 @@ To work with a clean directory, you can do the following:
   mkdir training
   cd training
   ```
+
 - In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd>)
 - Enter `/home/gitpod/training`
 - GitPod will probably reload the browser tab
@@ -286,3 +287,608 @@ Here in the schema editor you can edit:
 - Additional fields for files such as `mime-type`
 
 ## nf-core modules
+
+Using the `nf-core-demo` pipeline that we created above, let's see how we can add our own modules to the pipeline.
+
+### Add a process to the main workflow
+
+Let's add a simple Nextflow process to our pipeline:
+
+```bash
+process ECHO_READS {
+
+    debug true
+
+    input:
+    tuple val(meta), path(reads)
+
+    script:
+    """
+    echo ${reads}
+    """
+}
+```
+
+Paste the process in `workflows/demo.nf`:
+
+```bash
+<TRUNCATED>
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    RUN MAIN WORKFLOW
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+<<<<<<<<<< PASTE HERE >>>>>>>>>>
+
+// Info required for completion email and summary
+def multiqc_report = []
+
+workflow DEMO {
+
+    ch_versions = Channel.empty()
+<TRUNCATED>
+```
+
+Write some code to invoke the process above:
+
+```bash
+    //
+    // MODULE: Echo reads
+    //
+    ECHO_READS (
+        INPUT_CHECK.out.reads
+    )
+```
+
+and call it in the main `workflow` definition after `FASTQC`:
+
+```bash
+<TRUNCATED>
+    //
+    // MODULE: Run FastQC
+    //
+    FASTQC (
+        INPUT_CHECK.out.reads
+    )
+    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+
+    <<<<<<<<<< PASTE HERE >>>>>>>>>>
+
+<TRUNCATED>
+```
+
+Let's re-run the pipeline and test it. The new process will just print to screen the file names for the FastQ files that are used for the test dataset with this workflow.
+
+```bash
+$ nextflow run . -profile test,docker --outdir test_results -resume
+
+N E X T F L O W  ~  version 22.08.2-edge
+Launching `./main.nf` [voluminous_meucci] DSL2 - revision: 282d7ef11e
+
+
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/demo v1.0dev
+------------------------------------------------------
+Core Nextflow options
+  runName                   : voluminous_meucci
+  containerEngine           : docker
+  launchDir                 : nf-core/training/2022_10_04_nf_core_training/nf-core-demo
+  workDir                   : nf-core/training/2022_10_04_nf_core_training/nf-core-demo/work
+  projectDir                : nf-core/training/2022_10_04_nf_core_training/nf-core-demo
+  userName                  : harshil
+  profile                   : test,docker
+  configFiles               : nf-core/training/2022_10_04_nf_core_training/nf-core-demo/nextflow.config
+
+Input/output options
+  input                     : https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/samplesheet/samplesheet_test_illumina_amplicon.csv
+  outdir                    : test_results
+
+Reference genome options
+  genome                    : R64-1-1
+  fasta                     : s3://ngi-igenomes/igenomes/Saccharomyces_cerevisiae/Ensembl/R64-1-1/Sequence/WholeGenomeFasta/genome.fa
+
+Institutional config options
+  config_profile_name       : Test profile
+  config_profile_description: Minimal test dataset to check pipeline function
+
+Max job request options
+  max_cpus                  : 2
+  max_memory                : 6.GB
+  max_time                  : 6.h
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+If you use nf-core/demo for your analysis please cite:
+
+* The nf-core framework
+  https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+  https://github.com/nf-core/demo/blob/master/CITATIONS.md
+------------------------------------------------------
+executor >  local (6)
+[e9/3a447d] process > NFCORE_DEMO:DEMO:INPUT_CHECK:SAMPLESHEET_CHECK (samplesheet_test_illumina_amplicon.csv) [100%] 1 of 1, cached: 1 ✔
+[2e/60807c] process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE2_PE_T1)                                                 [100%] 4 of 4, cached: 4 ✔
+[4b/0c4607] process > NFCORE_DEMO:DEMO:ECHO_READS (4)                                                         [100%] 4 of 4 ✔
+[ab/a41ccf] process > NFCORE_DEMO:DEMO:CUSTOM_DUMPSOFTWAREVERSIONS (1)                                        [100%] 1 of 1 ✔
+[b6/4cea13] process > NFCORE_DEMO:DEMO:MULTIQC                                                                [100%] 1 of 1 ✔
+sample1_R1.fastq.gz sample1_R2.fastq.gz
+
+sample1_R1.fastq.gz
+
+sample2_R1.fastq.gz sample2_R2.fastq.gz
+
+sample2_R1.fastq.gz
+
+-[nf-core/demo] Pipeline completed successfully-
+```
+
+### Add a local module to the pipeline
+
+Create a new file called `echo_reads.nf` in `modules/local/`. Cut and paste the process definition into this file and save it.
+
+Now import it in `workflows/demo.nf` by pasting the snippet below with all of the other `include` statements in that file:
+
+```bash
+include { ECHO_READS } from '../modules/local/echo_reads'
+```
+
+Let's re-run the pipeline and test it again to make sure it is working:
+
+```bash
+$ nextflow run . -profile test,docker --outdir test_results -resume
+
+N E X T F L O W  ~  version 22.08.2-edge
+Launching `./main.nf` [shrivelled_visvesvaraya] DSL2 - revision: 282d7ef11e
+
+
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/demo v1.0dev
+------------------------------------------------------
+Core Nextflow options
+  runName                   : shrivelled_visvesvaraya
+  containerEngine           : docker
+  launchDir                 : nf-core/training/2022_10_04_nf_core_training/nf-core-demo
+  workDir                   : nf-core/training/2022_10_04_nf_core_training/nf-core-demo/work
+  projectDir                : nf-core/training/2022_10_04_nf_core_training/nf-core-demo
+  userName                  : harshil
+  profile                   : test,docker
+  configFiles               : nf-core/training/2022_10_04_nf_core_training/nf-core-demo/nextflow.config
+
+Input/output options
+  input                     : https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/samplesheet/samplesheet_test_illumina_amplicon.csv
+  outdir                    : test_results
+
+Reference genome options
+  genome                    : R64-1-1
+  fasta                     : s3://ngi-igenomes/igenomes/Saccharomyces_cerevisiae/Ensembl/R64-1-1/Sequence/WholeGenomeFasta/genome.fa
+
+Institutional config options
+  config_profile_name       : Test profile
+  config_profile_description: Minimal test dataset to check pipeline function
+
+Max job request options
+  max_cpus                  : 2
+  max_memory                : 6.GB
+  max_time                  : 6.h
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+If you use nf-core/demo for your analysis please cite:
+
+* The nf-core framework
+  https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+  https://github.com/nf-core/demo/blob/master/CITATIONS.md
+------------------------------------------------------
+executor >  local (2)
+[e9/3a447d] process > NFCORE_DEMO:DEMO:INPUT_CHECK:SAMPLESHEET_CHECK (samplesheet_test_illumina_amplicon.csv) [100%] 1 of 1, cached: 1 ✔
+[3f/90b51e] process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE3_SE_T2)                                                 [100%] 4 of 4, cached: 4 ✔
+[0d/d24e60] process > NFCORE_DEMO:DEMO:ECHO_READS (2)                                                         [100%] 4 of 4, cached: 4 ✔
+[fa/fe4aad] process > NFCORE_DEMO:DEMO:CUSTOM_DUMPSOFTWAREVERSIONS (1)                                        [100%] 1 of 1 ✔
+[0c/9b887d] process > NFCORE_DEMO:DEMO:MULTIQC                                                                [100%] 1 of 1 ✔
+sample1_R1.fastq.gz
+
+sample1_R1.fastq.gz sample1_R2.fastq.gz
+
+sample2_R1.fastq.gz
+
+sample2_R1.fastq.gz sample2_R2.fastq.gz
+
+-[nf-core/demo] Pipeline completed successfully-
+```
+
+### List modules in pipeline
+
+The nf-core pipeline template comes with a few nf-core/modules pre-installed. You can list these with the command below:
+
+```bash
+$ nf-core modules list local
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Modules installed in '.':                                                                                                                                                  list.py:136
+                                                                                                                                                                                               
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Module Name                 ┃ Repository                             ┃ Version SHA                              ┃ Message                                  ┃ Date       ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ custom/dumpsoftwareversions │ https://github.com/nf-core/modules.git │ 5e34754d42cd2d5d248ca8673c0a53cdf5624905 │ Restructure nf-core/modules repo (#2141) │ 2022-10-04 │
+│ fastqc                      │ https://github.com/nf-core/modules.git │ 5e34754d42cd2d5d248ca8673c0a53cdf5624905 │ Restructure nf-core/modules repo (#2141) │ 2022-10-04 │
+│ multiqc                     │ https://github.com/nf-core/modules.git │ 5e34754d42cd2d5d248ca8673c0a53cdf5624905 │ Restructure nf-core/modules repo (#2141) │ 2022-10-04 │
+└─────────────────────────────┴────────────────────────────────────────┴──────────────────────────────────────────┴──────────────────────────────────────────┴────────────┘
+```
+
+These version hashes and repository information for the source of the modules are tracked in the `modules.json` file in the root of the repo. This file will automatically be updated by nf-core/tools when you create, remove, update modules.
+
+### Update modules in pipeline
+
+Let's see if all of our modules are up-to-date:
+
+```bash
+$ nf-core modules update
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+? Update all modules or a single named module? All modules
+? Do you want to view diffs of the proposed changes? No previews, just update everything
+INFO     'modules/nf-core/custom/dumpsoftwareversions' is already up to date                                                     update.py:162
+INFO     'modules/nf-core/fastqc' is already up to date                                                                          update.py:162
+INFO     'modules/nf-core/multiqc' is already up to date                                                                         update.py:162
+INFO     Updates complete ✨
+```
+
+Nothing to see here!
+
+### List remote modules on nf-core/modules
+
+You can list all of the modules available on nf-core/modules via the command below but we have added search functionality to the [nf-core website](https://nf-co.re/modules) to do this too!
+
+```bash
+nf-core modules list remote
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Modules available from https://github.com/nf-core/modules.git (master):                                                                                                    list.py:131
+                                                                                                                                                                                               
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Module Name                              ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ abacas                                   │
+│ abricate/run                             │
+│ abricate/summary                         │
+│ adapterremoval                           │
+│ adapterremovalfixprefix                  │
+│ agrvate                                  │
+│ allelecounter                            │
+│ ampir                                    │
+│ amplify/predict                          │
+│ amps                                     │
+│ amrfinderplus/run                        │
+│ amrfinderplus/update                     │
+│ angsd/docounts                           │
+│ antismash/antismashlite                  │
+│ antismash/antismashlitedownloaddatabases │
+│ ariba/getref                             │
+│ ariba/run                                │
+│ arriba                                   │
+│ artic/guppyplex                          │
+│ artic/minion                             │
+│ ascat                                    │
+│ assemblyscan                             │
+│ ataqv/ataqv                              │
+│ ataqv/mkarv                              │
+│ atlas/call                               │
+│ atlas/pmd                                │
+<TRUNCATED>
+```
+
+### Install a module from nf-core/modules
+
+```bash
+$ nf-core modules install                                                       
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+? Tool name: fastp
+INFO     Installing 'fastp'                                                                                                                               install.py:128
+INFO     Include statement: include { FASTP } from '../modules/nf-core/fastp/main'                                                                        install.py:137
+```
+
+Let's install the `FASTP` module into the pipeline and inspect the main script. The first input channel looks exactly the same as for the `FASTQC` module which we already now is working from the tests. We can copy the `include` statement printed whilst installing the pipeline and paste it in `workflows/demo.nf`.
+
+We now just need to call the `FASTP` process in the main `workflow`. Paste the snippet below just after the call to `ECHO_READS`.
+
+```bash
+    //
+    // MODULE: Run Fastp trimming
+    //
+    FASTP (
+        INPUT_CHECK.out.reads,
+        false,
+        false
+    )
+```
+
+Let's re-run the pipeline and test it again to make sure it is working:
+
+```bash
+$ nextflow run . -profile test,docker --outdir test_results -resume
+
+N E X T F L O W  ~  version 22.08.2-edge
+Launching `./main.nf` [nice_carlsson] DSL2 - revision: 282d7ef11e
+
+
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/demo v1.0dev
+------------------------------------------------------
+Core Nextflow options
+  runName                   : nice_carlsson
+  containerEngine           : docker
+  launchDir                 : nf-core/training/2022_10_04_nf_core_training/nf-core-demo
+  workDir                   : nf-core/training/2022_10_04_nf_core_training/nf-core-demo/work
+  projectDir                : nf-core/training/2022_10_04_nf_core_training/nf-core-demo
+  userName                  : harshil
+  profile                   : test,docker
+  configFiles               : nf-core/training/2022_10_04_nf_core_training/nf-core-demo/nextflow.config
+
+Input/output options
+  input                     : https://raw.githubusercontent.com/nf-core/test-datasets/viralrecon/samplesheet/samplesheet_test_illumina_amplicon.csv
+  outdir                    : test_results
+
+Reference genome options
+  genome                    : R64-1-1
+  fasta                     : s3://ngi-igenomes/igenomes/Saccharomyces_cerevisiae/Ensembl/R64-1-1/Sequence/WholeGenomeFasta/genome.fa
+
+Institutional config options
+  config_profile_name       : Test profile
+  config_profile_description: Minimal test dataset to check pipeline function
+
+Max job request options
+  max_cpus                  : 2
+  max_memory                : 6.GB
+  max_time                  : 6.h
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+If you use nf-core/demo for your analysis please cite:
+
+* The nf-core framework
+  https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+  https://github.com/nf-core/demo/blob/master/CITATIONS.md
+------------------------------------------------------
+executor >  local (6)
+[e9/3a447d] process > NFCORE_DEMO:DEMO:INPUT_CHECK:SAMPLESHEET_CHECK (samplesheet_test_illumina_amplicon.csv) [100%] 1 of 1, cached: 1 ✔
+[2e/60807c] process > NFCORE_DEMO:DEMO:FASTQC (SAMPLE2_PE_T1)                                                 [100%] 4 of 4, cached: 4 ✔
+[0d/d24e60] process > NFCORE_DEMO:DEMO:ECHO_READS (2)                                                         [100%] 4 of 4, cached: 4 ✔
+[31/78e46a] process > NFCORE_DEMO:DEMO:FASTP (SAMPLE3_SE_T2)                                                  [100%] 4 of 4 ✔
+[5a/d1d6ba] process > NFCORE_DEMO:DEMO:CUSTOM_DUMPSOFTWAREVERSIONS (1)                                        [100%] 1 of 1 ✔
+[34/f27c22] process > NFCORE_DEMO:DEMO:MULTIQC                                                                [100%] 1 of 1 ✔
+sample1_R1.fastq.gz
+
+sample1_R1.fastq.gz sample1_R2.fastq.gz
+
+sample2_R1.fastq.gz
+
+sample2_R1.fastq.gz sample2_R2.fastq.gz
+
+-[nf-core/demo] Pipeline completed successfully-
+```
+
+### Patch a module
+
+Say we want to make a slight change to an existing nf-core/module that is custom to a particular use case, we can create a patch of the module that will be tracked by the commands in nf-core/tools.
+
+Let's add the snippet below at the top of the `script` section in the `FASTP` nf-core module:
+
+```bash
+        <TRUNCATED>
+        """
+        echo "These are my changes"
+
+        [ ! -f  ${prefix}.fastq.gz ] && ln -sf $reads ${prefix}.fastq.gz
+        <TRUNCATED>
+```
+
+The linting for this module will now fail because the local copy of the module doesn't match the latest version in nf-core/modules:
+
+```bash
+$ nf-core modules lint fastp 
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Linting pipeline: '.'                                                                                                                           __init__.py:202
+INFO     Linting module: 'fastp'                                                                                                                         __init__.py:204
+
+╭─ [✗] 1 Module Test Failed ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                           ╷                               ╷                                                                                          │
+│ Module name                               │ File path                     │ Test message                                                                             │
+│╶──────────────────────────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────╴│
+│ fastp                                     │ modules/nf-core/fastp/main.nf │ Local copy of module does not match remote                                               │
+│                                           ╵                               ╵                                                                                          │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────╮
+│ LINT RESULTS SUMMARY  │
+├───────────────────────┤
+│ [✔]  22 Tests Passed  │
+│ [!]   0 Test Warnings │
+│ [✗]   1 Test Failed   │
+╰───────────────────────╯
+```
+
+Fear not! We can just patch the module!
+
+```bash
+$ nf-core modules patch fastp
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Changes in module 'nf-core/fastp'                                                                                                         modules_differ.py:252
+INFO     'modules/nf-core/fastp/meta.yml' is unchanged                                                                                             modules_differ.py:257
+INFO     Changes in 'fastp/main.nf':                                                                                                               modules_differ.py:266
+                                                                                                                                                                        
+ --- modules/nf-core/fastp/main.nf                                                                                                                                      
+ +++ modules/nf-core/fastp/main.nf                                                                                                                                      
+ @@ -32,6 +32,8 @@                                                                                                                                                      
+      // Use single ended for interleaved. Add --interleaved_in in config.                                                                                              
+      if ( task.ext.args?.contains('--interleaved_in') ) {                                                                                                              
+          """                                                                                                                                                           
+ +        echo "These are my changes"                                                                                                                                   
+ +                                                                                                                                                                      
+          [ ! -f  ${prefix}.fastq.gz ] && ln -sf $reads ${prefix}.fastq.gz                                                                                              
+                                                                                                                                                                        
+          fastp \\                                                                                                                                                      
+                                                                                                                                                                        
+                                                                                                                                                                        
+INFO     Patch file of 'modules/nf-core/fastp' written to 'modules/nf-core/fastp/fastp.diff'                                                                patch.py:124
+```
+
+The `diff` is stored in a file:
+
+```bash
+cat modules/nf-core/fastp/fastp.diff       
+Changes in module 'nf-core/fastp'
+--- modules/nf-core/fastp/main.nf
++++ modules/nf-core/fastp/main.nf
+@@ -32,6 +32,8 @@
+     // Use single ended for interleaved. Add --interleaved_in in config.
+     if ( task.ext.args?.contains('--interleaved_in') ) {
+         """
++        echo "These are my changes"
++
+         [ ! -f  ${prefix}.fastq.gz ] && ln -sf $reads ${prefix}.fastq.gz
+ 
+         fastp \\
+
+************************************************************
+```
+
+and the path to this `patch` file is added to `modules.json`:
+
+```bash
+                    "fastp": {
+                        "branch": "master",
+                        "git_sha": "5e34754d42cd2d5d248ca8673c0a53cdf5624905",
+                        "patch": "modules/nf-core/fastp/fastp.diff"
+                    },
+```
+
+### Lint a module
+
+As well as the pipeline template you can lint individual modules:
+
+```bash
+$ nf-core modules lint fastqc
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Linting pipeline: '.'                                                                                                                           __init__.py:202
+INFO     Linting module: 'fastqc'                                                                                                                        __init__.py:204
+
+╭───────────────────────╮
+│ LINT RESULTS SUMMARY  │
+├───────────────────────┤
+│ [✔]  23 Tests Passed  │
+│ [!]   0 Test Warnings │
+│ [✗]   0 Tests Failed  │
+╰───────────────────────╯
+```
+
+and all modules with a single command:
+
+```bash
+$ nf-core modules lint --all 
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Linting pipeline: '.'                                                                                                                           __init__.py:202
+
+╭─ [!] 1 Module Test Warning ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                           ╷                                                     ╷                                                                    │
+│ Module name                               │ File path                                           │ Test message                                                       │
+│╶──────────────────────────────────────────┼─────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────╴│
+│ custom/dumpsoftwareversions               │ modules/nf-core/custom/dumpsoftwareversions/main.nf │ Process name not used for versions.yml                             │
+│                                           ╵                                                     ╵                                                                    │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────╮
+│ LINT RESULTS SUMMARY │
+├──────────────────────┤
+│ [✔]  89 Tests Passed │
+│ [!]   1 Test Warning │
+│ [✗]   0 Tests Failed │
+╰──────────────────────╯
+```
