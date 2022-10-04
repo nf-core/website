@@ -183,20 +183,49 @@ include '../includes/header.php';
                         <label for="settings_enum">Enumerated values</label>
                         <input type="text" class="form-control" id="settings_enum" placeholder="value_1|value_2|value_3">
                         <small class="form-text text-muted">
-                            Input values must be one of these. Separate with the pipe (<code>|</code>) character.
-                            <a href="https://json-schema.org/understanding-json-schema/reference/generic.html#enumerated-values" target="_blank">
+                            List of values - input must match one of these. Separate with the pipe (<code>|</code>) character.
+                            <a href="https://json-schema.org/understanding-json-schema/reference/generic.html#enumerated-values" target="_blank" data-bs-toggle="tooltip" title="See help about JSON Schema enum">
                                 <i class="fas fa-question-circle"></i>
                             </a>
                         </small>
                     </div>
                     <div class="form-group settings_pattern_group">
                         <label for="settings_pattern">Pattern</label>
-                        <input type="text" class="form-control" id="settings_pattern" placeholder="^[A-Za-z_][A-Za-z0-9_]*$">
+                        <input type="text" class="form-control" id="settings_pattern" placeholder="^\S+\.csv$">
                         <small class="form-text text-muted">
-                            Regular expression to validate the input against
-                            <a href="https://json-schema.org/understanding-json-schema/reference/string.html#regular-expressions" target="_blank">
+                            Regular expression, used to validate the input string
+                            <a href="https://json-schema.org/understanding-json-schema/reference/string.html#regular-expressions" target="_blank" data-bs-toggle="tooltip" title="See help about JSON schema regular expressions">
                                 <i class="fas fa-question-circle"></i>
                             </a>
+                        </small>
+                    </div>
+                    <div class="form-group settings_format_group">
+                        <label for="settings_format">Format</label>
+                        <select class="form-select" id="settings_format">
+                            <option value="">-</option>
+                            <option value="file-path">File path (must be a file)</option>
+                            <option value="directory-path">Directory path (must be a directory)</option>
+                            <option value="path">Path (can be a file or directory)</option>
+                        </select>
+                        <small class="form-text text-muted">
+                            Additional type information. Specify if a string should be a file path.
+                        </small>
+                    </div>
+                    <div class="form-group settings_mimetype_group">
+                        <label for="settings_mimetype">Mime type</label>
+                        <input type="text" class="form-control" id="settings_mimetype" placeholder="text/csv">
+                        <small class="form-text text-muted">
+                            MIME type for file path. Setting this value informs downstream tools that this string is a file path.
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types" target="_blank" data-bs-toggle="tooltip" title="See a list of standard file MIME types">
+                                <i class="fas fa-question-circle"></i>
+                            </a>
+                        </small>
+                    </div>
+                    <div class="form-group settings_schema_group">
+                        <label for="settings_schema">File schema</label>
+                        <input type="text" class="form-control" id="settings_schema" placeholder="assets/myparam_schema.json">
+                        <small class="form-text text-muted">
+                            Path to JSON schema file used to validate the supplied file.
                         </small>
                     </div>
                     <div class="settings_minmax_group">
