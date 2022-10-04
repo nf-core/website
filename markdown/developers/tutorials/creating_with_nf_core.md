@@ -35,7 +35,7 @@ To work with a clean directory, you can do the following:
   mkdir training
   cd training
   ```
-- In the menu top left, select File > Open Folder (<kbd>^</kbd><kbd>⇧</kbd><kbd>O</kbd>)
+- In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd>)
 - Enter `/home/gitpod/training`
 - GitPod will probably reload the browser tab
 - The file explorer on the left should now have an expandable box with the title `TRAINING`
@@ -264,6 +264,15 @@ INFO     Testing pipeline: .
 │                                                                      │
 ╰──────────────────────────────────────────────────────────────────────╯
 ```
+
+### Continuous integration testing
+
+Whilst it's helpful to be able to run the nf-core lint tests locally, their real strength is the combination with CI (continuous integration) testing.
+By default, nf-core pipelines are configured to run CI tests on GitHub every time you push to the repo or open a pull request.
+The same `nf-core lint` command runs on your code on the automated machines.
+If there are any failures, they will be reported with a ❌ and you will not be able to merge the pull-request until you push more commits that fix those failures.
+
+These automated tests allow us to maintain code quality in a scalable and standardised way across the community.
 
 ### Configuring linting
 

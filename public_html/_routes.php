@@ -20,6 +20,26 @@ if (strtolower($path_parts[0]) == 'docs') {
         include 'documentation.php';
         exit();
     }
+    # Directory root with an index.md
+    if (file_exists($docs_md_base . substr($md_fn, 0, -3) . '/index.md')) {
+        $markdown_fn = $docs_md_base . substr($md_fn, 0, -3) . '/index.md';
+        $md_github_url =
+            'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . substr($md_fn, 0, -3) . '/index.md';
+        $href_url_prepend = substr(basename($md_fn), 0, -3) . '/';
+        $section = trim($path_parts[1]);
+        include 'documentation.php';
+        exit();
+    }
+    # Directory root with a README.md
+    if (file_exists($docs_md_base . substr($md_fn, 0, -3) . '/README.md')) {
+        $markdown_fn = $docs_md_base . substr($md_fn, 0, -3) . '/README.md';
+        $md_github_url =
+            'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . substr($md_fn, 0, -3) . '/README.md';
+        $href_url_prepend = substr(basename($md_fn), 0, -3) . '/';
+        $section = trim($path_parts[1]);
+        include 'documentation.php';
+        exit();
+    }
 }
 
 if (file_exists($docs_md_base . $md_fn)) {
