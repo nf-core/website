@@ -693,45 +693,45 @@ $ nf-core modules info fastp
 │ 🔧 Tools: fastp                                                                                                         │
 │ 📖 Description: Perform adapter/quality trimming on sequencing reads                                                    │
 ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-                              ╷                                                                                   ╷        
- 📥 Inputs                    │Description                                                                        │Pattern 
+                              ╷                                                                                   ╷
+ 📥 Inputs                    │Description                                                                        │Pattern
 ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━╸
-  meta  (map)                 │Groovy Map containing sample information. Use 'single_end: true' to specify single │        
-                              │ended or interleaved FASTQs. Use 'single_end: false' for paired-end reads. e.g. [  │        
-                              │id:'test', single_end:false ]                                                      │        
+  meta  (map)                 │Groovy Map containing sample information. Use 'single_end: true' to specify single │
+                              │ended or interleaved FASTQs. Use 'single_end: false' for paired-end reads. e.g. [  │
+                              │id:'test', single_end:false ]                                                      │
 ╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼───────╴
-  reads  (file)               │List of input FastQ files of size 1 and 2 for single-end and paired-end data,      │        
-                              │respectively. If you wish to run interleaved paired-end data,  supply as single-end│        
-                              │data but with --interleaved_in in your modules.conf's ext.args for the module.     │        
+  reads  (file)               │List of input FastQ files of size 1 and 2 for single-end and paired-end data,      │
+                              │respectively. If you wish to run interleaved paired-end data,  supply as single-end│
+                              │data but with --interleaved_in in your modules.conf's ext.args for the module.     │
 ╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼───────╴
-  save_trimmed_fail  (boolean)│Specify true to save files that failed to pass trimming thresholds ending in       │        
-                              │*.fail.fastq.gz                                                                    │        
+  save_trimmed_fail  (boolean)│Specify true to save files that failed to pass trimming thresholds ending in       │
+                              │*.fail.fastq.gz                                                                    │
 ╶─────────────────────────────┼──────────────────────────────────────────────────────────────���────────────────────┼───────╴
-  save_merged  (boolean)      │Specify true to save all merged reads to the a file ending in *.merged.fastq.gz    │        
-                              ╵                                                                                   ╵        
-                      ╷                                                                               ╷                    
- 📤 Outputs           │Description                                                                    │            Pattern 
+  save_merged  (boolean)      │Specify true to save all merged reads to the a file ending in *.merged.fastq.gz    │
+                              ╵                                                                                   ╵
+                      ╷                                                                               ╷
+ 📤 Outputs           │Description                                                                    │            Pattern
 ╺━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━╸
-  meta  (map)         │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]  │                    
+  meta  (map)         │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]  │
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  reads  (file)       │The trimmed/modified/unmerged fastq reads                                      │    *fastp.fastq.gz 
+  reads  (file)       │The trimmed/modified/unmerged fastq reads                                      │    *fastp.fastq.gz
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  json  (file)        │Results in JSON format                                                         │             *.json 
+  json  (file)        │Results in JSON format                                                         │             *.json
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  html  (file)        │Results in HTML format                                                         │             *.html 
+  html  (file)        │Results in HTML format                                                         │             *.html
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  log  (file)         │fastq log file                                                                 │              *.log 
+  log  (file)         │fastq log file                                                                 │              *.log
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  versions  (file)    │File containing software versions                                              │       versions.yml 
+  versions  (file)    │File containing software versions                                              │       versions.yml
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  reads_fail  (file)  │Reads the failed the preprocessing                                             │     *fail.fastq.gz 
+  reads_fail  (file)  │Reads the failed the preprocessing                                             │     *fail.fastq.gz
 ╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
-  reads_merged  (file)│Reads that were successfully merged                                            │*.{merged.fastq.gz} 
-                      ╵                                                                               ╵                    
+  reads_merged  (file)│Reads that were successfully merged                                            │*.{merged.fastq.gz}
+                      ╵                                                                               ╵
 
  💻  Installation command: nf-core modules install fastp
 
-gitpod /workspace/nf-core-demo (master) $ 
+gitpod /workspace/nf-core-demo (master) $
 ```
 
 If we inspect the main script for the `FASTP` module the first input channel looks exactly the same as for the `FASTQC` module which we already know is working from the tests. We can copy the `include` statement printed whilst installing the pipeline and paste it in `workflows/demo.nf`.
