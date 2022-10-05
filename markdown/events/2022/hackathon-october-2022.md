@@ -30,7 +30,7 @@ Attendance online is free, attending in person costs €49 (€59 incl. VAT).
 - In-person registration is now closed.
 - Virtual registration will close October 7, 2022.
 
-<a class="btn btn-success btn-lg" href="https://summit.nextflow.io/register/">Register now</a>
+<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/"><i class="fa-solid fa-id-card me-2"></i> Register now</a>
 
 # Prerequisites
 
@@ -62,7 +62,7 @@ Only those who have registered will be able to join the hackathon in our Gather 
 3. Check your emails for a one-time code and enter it into the Gather window
 4. Enter the space and enjoy the hackathon!
 
-<a class="btn btn-success btn-lg" href="https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit"><i class="fa-solid fa-grapes fa-flip-horizontal"></i> Launch Gather</a>
+<a class="btn btn-success btn-lg mb-3" href="https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit"><i class="fa-solid fa-grapes fa-flip-horizontal me-2"></i> Launch Gather</a>
 
 # Interesting Bytesize talks
 
