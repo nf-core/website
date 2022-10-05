@@ -386,7 +386,7 @@ and call it in the main `workflow` definition after `FASTQC`:
 <TRUNCATED>
 ```
 
-Let's re-run the pipeline and test it. The new process will just print to screen the file names for the FastQ files that are used for the test dataset with this workflow.
+Let's re-run the pipeline and test it. The new process will just print to screen the file names for the FastQ files that are used for the test dataset with this workflow. Add `-resume` to the end of the command to ensure that previously run and successful tasks are cached.
 
 ```bash
 $ nextflow run . -profile test,docker --outdir test_results -resume
@@ -538,6 +538,15 @@ sample2_R1.fastq.gz sample2_R2.fastq.gz
 -[nf-core/demo] Pipeline completed successfully-
 ```
 
+You can now `include` the same process as many times as you like in the pipeline which is one of the primary strengths of the Nextflow DSL2 syntax:
+
+```
+include { ECHO_READS as ECHO_READS_ONCE } from '../modules/local/echo_reads'
+include { ECHO_READS as ECHO_READS_TWICE } from '../modules/local/echo_reads'
+```
+
+Try to change the workflow to call the processes above which should print the FastQ file names twice to screen instead of once.
+
 ### List modules in pipeline
 
 The nf-core pipeline template comes with a few nf-core/modules pre-installed. You can list these with the command below:
@@ -598,7 +607,7 @@ Nothing to see here!
 You can list all of the modules available on nf-core/modules via the command below but we have added search functionality to the [nf-core website](https://nf-co.re/modules) to do this too!
 
 ```bash
-nf-core modules list remote
+$ nf-core modules list remote
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -662,9 +671,9 @@ INFO     Installing 'fastp'                                                     
 INFO     Include statement: include { FASTP } from '../modules/nf-core/fastp/main'                                                                        install.py:137
 ```
 
-Let's install the `FASTP` module into the pipeline and inspect the main script. The first input channel looks exactly the same as for the `FASTQC` module which we already now is working from the tests. We can copy the `include` statement printed whilst installing the pipeline and paste it in `workflows/demo.nf`.
+Let's install the `FASTP` module into the pipeline and inspect the main script for the module. The first input channel looks exactly the same as for the `FASTQC` module which we already now is working from the tests. We can copy the `include` statement printed whilst installing the pipeline and paste it in `workflows/demo.nf`.
 
-We now just need to call the `FASTP` process in the main `workflow`. Paste the snippet below just after the call to `ECHO_READS`.
+We now just need to call the `FASTP` process in the main `workflow`. Paste the snippet below just after the call to `ECHO_READS_TWICE`.
 
 ```bash
     //
@@ -863,33 +872,7 @@ and the path to this `patch` file is added to `modules.json`:
 
 ### Lint a module
 
-As well as the pipeline template you can lint individual modules:
-
-```bash
-$ nf-core modules lint fastqc
-
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
-
-    nf-core/tools version 2.6 - https://nf-co.re
-
-
-INFO     Linting pipeline: '.'                                                                                                                           __init__.py:202
-INFO     Linting module: 'fastqc'                                                                                                                        __init__.py:204
-
-╭───────────────────────╮
-│ LINT RESULTS SUMMARY  │
-├───────────────────────┤
-│ [✔]  23 Tests Passed  │
-│ [!]   0 Test Warnings │
-│ [✗]   0 Tests Failed  │
-╰───────────────────────╯
-```
-
-and all modules with a single command:
+As well as the pipeline template you can lint individual or all modules with a single command:
 
 ```bash
 $ nf-core modules lint --all
