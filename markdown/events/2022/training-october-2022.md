@@ -60,6 +60,15 @@ _(All times shown relative to your web browser's timezone)_
 
 You are welcome to attend whichever sessions work best for you.
 
+# Training links
+
+- Nextflow & Nextflow Tower training:
+  - [Training material](https://training.seqera.io/)
+  - [GitPod environment](https://gitpod.io/#https://github.com/seqeralabs/nf-training-public)
+- nf-core training:
+  - [Written tutorial](https://nf-co.re/docs/contributing/tutorials/creating_with_nf_core)
+  - [GitPod environment](https://www.gitpod.io/#https://github.com/nf-core/tools)
+
 # Streaming links
 
 Training will be live streamed on [YouTube](https://youtube.com/playlist?list=PL3xpfTVZLcNiqYQ41g0fvyTQazpafFvOn). Streaming links can be accessed below.
