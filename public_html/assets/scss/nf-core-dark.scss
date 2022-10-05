@@ -55,6 +55,7 @@ $nf-core-color: $nf-core-color-alt;
 @import 'bootstrap/scss/carousel';
 @import 'bootstrap/scss/spinners';
 @import 'bootstrap/scss/offcanvas';
+@import 'bootstrap/scss/placeholders';
 
 // Helpers
 @import 'bootstrap/scss/helpers';
@@ -87,6 +88,33 @@ $nf-core-color: $nf-core-color-alt;
     color: $gray-800-alt;
   }
 }
+.bg-success {
+  background-color: $success-alt;
+  color: $gray-900-alt;
+}
+.bg-info {
+  background-color: $info-alt;
+}
+.bg-warning {
+  background-color: $warning-alt;
+}
+.bg-danger {
+  background-color: $danger-alt;
+}
+
+.text-success {
+  color: $success-alt;
+}
+.text-info {
+  color: $info-alt;
+}
+.text-warning {
+  color: $warning-alt;
+}
+.text-danger {
+  color: $danger-alt;
+}
+
 
 .bg-dark .text-white,
 .bg-dark.text-white,
