@@ -903,3 +903,39 @@ INFO     Linting pipeline: '.'                                                  
 │ [✗]   0 Tests Failed │
 ╰──────────────────────╯
 ```
+
+## Create a local module
+
+```
+nf-core modules create
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+INFO     Repository type: pipeline                                                                                        create.py:99
+INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to create.py:103
+         open links.                                                                                                                  
+Name of tool/subtool: demo/module
+WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:174
+Do you want to enter a different Bioconda package name? [y/n]: n
+WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:181
+         Building module without tool software and meta, you will need to enter this information manually.                            
+GitHub Username: (@author): @drpatelh
+INFO     Provide an appropriate resource label for the process, taken from the nf-core pipeline template.                create.py:224
+         For example: process_single, process_low, process_medium, process_high, process_long                                         
+? Process resource label: process_single
+INFO     Where applicable all sample-specific information e.g. 'id', 'single_end', 'read_group' MUST be provided as an   create.py:238
+         input via a Groovy Map called 'meta'. This information may not be required in some instances, for example                    
+         indexing reference genome files.                                                                                             
+Will the module require a meta map of sample information? [y/n] (y): y
+INFO     Created / edited following files:                                                                               create.py:276
+           ./modules/local/demo/module.nf
+```
+
+Open `./modules/local/demo/module.nf` and start customising this to your needs whilst working your way through the extensive `TODO` comments!
