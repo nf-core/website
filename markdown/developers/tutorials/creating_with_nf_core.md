@@ -37,7 +37,7 @@ To work with a clean directory, you can do the following:
   cd training
   ```
 
-- In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd>)
+- In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd> or <kbd>^</kbd> <kbd>O</kbd>)
 - Enter `/home/gitpod/training`
 - GitPod will probably reload the browser tab
 - The file explorer on the left should now have an expandable box with the title `TRAINING`
