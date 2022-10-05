@@ -575,10 +575,8 @@ A list of these repositories can be found <a href="#core_repos">below</a>.</p>
 <?php
 
 
-
-
-//loop through contributors_lead and get their contribution counts
-foreach ($contributors_db as $contributor) {
+//loop through gh_contributors_db and get their contribution counts
+foreach ($gh_contributors_db as $contributor) {
     $sql =
         "SELECT name,pipeline_type, pipeline_id, SUM(week_commits) AS sum_week_commits
     FROM github_contrib_stats
@@ -594,7 +592,7 @@ foreach ($contributors_db as $contributor) {
             mysqli_free_result($result);
         }
     } else {
-        echo 'No records for ' . $conptributor['author'] . ' found.' . mysqli_error($conn);
+        echo 'No records for ' . $contributor['author'] . ' found.' . mysqli_error($conn);
     }
     $sum_pipeline_commits = array_sum(
         array_column(
