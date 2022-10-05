@@ -23,8 +23,8 @@ jobs:
         uses: ewels/rich-codex@main
         env:
           COLUMNS: 100
-          NFCORE_LINT_HIDE_PROGRESS: true
-          NFCORE_MODULES_LINT_HIDE_PROGRESS: true
+          HIDE_PROGRESS: 'true'
+          NXF_ANSI_LOG: false
         with:
           commit_changes: 'true'
           terminal_width: 100

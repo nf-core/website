@@ -10,13 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 // Get auth secrets
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
-$conn = mysqli_connect(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['dbname'],
-    $config['port'],
-);
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 
 if ($conn === false) {
     die('ERROR: Could not connect. ' . mysqli_connect_error());
