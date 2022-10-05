@@ -38,6 +38,9 @@ To work with a clean directory, you can do the following:
   ```
 
 - In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd> or <kbd>^</kbd> <kbd>O</kbd>)
+
+    ![gitpod open folder menu](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg)
+
 - Enter `/home/gitpod/training`
 - GitPod will probably reload the browser tab
 - The file explorer on the left should now have an expandable box with the title `TRAINING`
