@@ -38,7 +38,7 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
 
 - Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event.
 - If you haven’t already, set-up a GitHub account and join the nf-core GitHub organisation.
-- Join the [nf-core slack](https://nf-co.re/join) and the [#hackathon-oct-2022](https://nfcore.slack.com/archives/C03V1KD22DT) channel
+- Join the [nf-core slack](https://nf-co.re/join) and the [`#hackathon-oct-2022` channel](https://nfcore.slack.com/archives/C03V1KD22DT)
 - Have installed on your computer:
   - [Nextflow](https://nextflow.io/)
   - [nf-core/tools](https://nf-co.re/tools)
@@ -57,12 +57,12 @@ If you have any problems with any of these just ask on the slack channel or emai
 Only those who have registered will be able to join the hackathon in our Gather space. To join the hackathon in Gather you will need to follow these steps:
 
 1. Follow the link below to find the nf-core hackathon Gather space
-   - Please note that the hackathon space will not open until registrations close on October 7
+   - Please note that the hackathon space will not open until October 7
 2. Enter the email address you used to register for the hackathon
 3. Check your emails for a one-time code and enter it into the Gather window
 4. Enter the space and enjoy the hackathon!
 
-<a class="btn btn-success btn-lg" href="https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit">Enter Gather</a>
+<a class="btn btn-success btn-lg" href="https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit"><i class="fa-solid fa-grapes fa-flip-horizontal"></i> Launch Gather</a>
 
 # Interesting Bytesize talks
 
