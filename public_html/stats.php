@@ -50,6 +50,45 @@ foreach ($issues_json['authors'] as $author => $info) {
     $gh_contributors[$author] = min($gh_contributors[$author], $info['first_contribution']);
 }
 
+$config = parse_ini_file('../config.ini');
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+// get stats for pipelines
+$sql = 'SELECT * FROM nfcore_pipelines';
+$pipeline_metrics = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $pipeline_metrics = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+// get all repos
+$sql = 'SELECT * FROM nfcore_pipelines';
+$gh_repos = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $gh_repos = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+// get unique contributor names from github_contrib_stats table from the mysql database
+$sql = 'SELECT DISTINCT author, avatar_url, SUM(week_commits) AS total_sum_commits
+FROM github_contrib_stats GROUP BY author,avatar_url  ORDER BY total_sum_commits DESC';
+$gh_contributors_db = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $gh_contributors_db = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+} else {
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+}
+// get maximum total_sum_commits from $gh_contributors_db
+$max_total_sum_commits = max(array_column($gh_contributors_db, 'total_sum_commits'));
+$total_sum_commits = array_sum(array_column($gh_contributors_db, 'total_sum_commits'));
+
 # echo '<pre>'.print_r($stats, true).'</pre>';
 
 // This is horrible, I know sorry. I'm in a rush :(
@@ -124,15 +163,6 @@ foreach (['pipelines', 'core_repos'] as $repo_type):
                 }
             }
             $stats_total[$repo_type][$key . '_total'] += $repo->{$key . '_total'};
-        }
-
-        $total_commits = 0;
-        foreach ($repo->contributors as $contributor) {
-            $gh_username = $contributor->author->login;
-            $stats_total[$repo_type]['unique_committers'][$gh_username] = 0;
-            $stats_total['total']['unique_committers'][$gh_username] = 0;
-            $stats_total[$repo_type]['total_commits'] += $contributor->total;
-            $total_commits += $contributor->total;
         }
         ob_start();
         ?>
@@ -359,8 +389,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 <div class="card-group text-center stats_keynumbers">
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines)) +
-          count(get_object_vars($stats_json->core_repos)); ?></p>
+      <p class="card-text display-4"><?php echo count($gh_repos);?></p>
       <p class="card-text text-muted">Repositories</p>
     </div>
     <div class="bg-icon"><i class="far fa-folder"></i></div>
@@ -376,9 +405,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
   </div>
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo round_nicely(
-          $stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits'],
-      ); ?></p>
+      <p class="card-text display-4"><?php echo round_nicely($total_sum_commits); ?></p>
       <p class="card-text text-muted">Commits</p>
     </div>
     <div class="bg-icon"><i class="far fa-file-code"></i></div>
@@ -546,78 +573,88 @@ A list of these repositories can be found <a href="#core_repos">below</a>.</p>
 <table class="table table-sm mt-5">
   <tbody>
 <?php
-$stats_json_fn = dirname(dirname(__FILE__)) . '/nfcore_stats.json';
-$stats_json = json_decode(file_get_contents($stats_json_fn));
-$contributors = [];
-$contribution_counts = [];
-$contribution_counts_bytype = [];
-$top_repos = [];
-foreach (['pipelines', 'core_repos'] as $repo_type) {
-    foreach ($stats_json->{$repo_type} as $repo_name => $repo) {
-        foreach ($repo->contributors as $contributor) {
-            $login = $contributor->author->login;
-            $contributors[$login] = $contributor->author;
-            if (!isset($contribution_counts[$login])) {
-                $contribution_counts[$login] = 0;
-                $contribution_counts_bytype[$login] = ['pipelines' => 0, 'core_repos' => 0];
-                $top_repos[$login] = [$repo_name, $contributor->total];
-            }
-            $contribution_counts[$login] += $contributor->total;
-            $contribution_counts_bytype[$login][$repo_type] += $contributor->total;
-            if ($top_repos[$login][1] < $contributor->total) {
-                $top_repos[$login] = [$repo_name, $contributor->total];
-            }
+
+
+
+
+//loop through contributors_lead and get their contribution counts
+foreach ($contributors_db as $contributor) {
+    $sql =
+        "SELECT name,pipeline_type, pipeline_id, SUM(week_commits) AS sum_week_commits
+    FROM github_contrib_stats
+    INNER JOIN nfcore_pipelines ON github_contrib_stats.pipeline_id = nfcore_pipelines.id
+    WHERE author = '" .
+        $contributor['author'] .
+        "'
+    GROUP BY pipeline_id ORDER BY sum_week_commits DESC";
+    if ($result = mysqli_query($conn, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            $contributor_stats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            // Free result set
+            mysqli_free_result($result);
         }
+    } else {
+        echo 'No records for ' . $conptributor['author'] . ' found.' . mysqli_error($conn);
     }
-}
-arsort($contribution_counts);
-$max_count = max($contribution_counts);
-foreach ($contribution_counts as $login => $count) {
-    $author = $contributors[$login];
-    $pipeline_commits = $contribution_counts_bytype[$login]['pipelines'];
-    $core_repo_commits = $contribution_counts_bytype[$login]['core_repos'];
-    $pct_pipeline = ($pipeline_commits / $max_count) * 100;
-    $pct_core = ($core_repo_commits / $max_count) * 100;
+    $sum_pipeline_commits = array_sum(
+        array_column(
+            array_filter($contributor_stats, function ($metric) {
+                return $metric['pipeline_type'] == 'pipelines';
+            }),
+            'sum_week_commits',
+        ),
+    );
+    $sum_core_repo_commits = array_sum(
+        array_column(
+            array_filter($contributor_stats, function ($metric) {
+                return $metric['pipeline_type'] == 'core_repos';
+            }),
+            'sum_week_commits',
+        ),
+    );
+    $pct_pipeline = ($sum_pipeline_commits / $max_total_sum_commits) * 100;
+    $pct_core = ($sum_core_repo_commits / $max_total_sum_commits) * 100;
     echo '<tr>
-      <td width="10%" class="pe-5">
-        <a style="white-space: nowrap;" href="' .
-        $author->html_url .
+        <td width="10%" class="pe-5">
+        <a style="white-space: nowrap;"href="https://github.com/' .
+        $contributor['author'] .
         '" target="_blank"><img src="' .
-        $author->avatar_url .
+        $contributor['avatar_url'] .
         '" class="border rounded-circle me-1 mb-1" width="50" height="50"> @' .
-        $author->login .
+        $contributor['author'] .
         '</a>
-      </td>
-      <td class="align-middle">
+        </td>
+        <td class="align-middle">
         <div class="progress" title="Pipelines: ' .
-        $pipeline_commits .
+        $sum_pipeline_commits .
         ' commits<br>Core repos: ' .
-        $core_repo_commits .
+        $sum_core_repo_commits .
+        ' commits<br>Overall: ' .
+        ($sum_pipeline_commits + $sum_core_repo_commits) .
         ' commits" data-bs-toggle="tooltip" data-html="true">
-          <div class="progress-bar bg-success" role="progressbar" style="width: ' .
+        <div class="progress-bar bg-success" role="progressbar" style="width: ' .
         $pct_pipeline .
         '%">' .
-        ($pct_pipeline > 5 ? $pipeline_commits : '') .
+        ($pct_pipeline > 5 ? $sum_pipeline_commits : '') .
         '</div>
-          <div class="progress-bar bg-warning" role="progressbar" style="width: ' .
+                <div class="progress-bar bg-warning" role="progressbar" style="width: ' .
         $pct_core .
         '%">' .
-        ($pct_core > 5 ? $core_repo_commits : '') .
+        ($pct_core > 5 ? $sum_core_repo_commits : '') .
         '</div>
-        </div>
-      </td>
-      <td class="align-middle ps-5 small  font-monospace d-none d-md-table-cell" width="10%">
+            </div>
+        </td>
+        <td class="align-middle ps-5 small  font-monospace d-none d-md-table-cell" width="10%">
         <a href="/' .
-        $top_repos[$login][0] .
+        $contributor_stats[0]['name'] .
         '" title="Repo with most commits (' .
-        $top_repos[$login][1] .
+        $contributor_stats[0]['sum_week_commits'] .
         ' commits)" data-bs-toggle="tooltip">' .
-        $top_repos[$login][0] .
-        ' 
-        <span class="badge rounded-pill bg-secondary float-end">' .
-        $top_repos[$login][1] .
+        $contributor_stats[0]['name'] .
+        '<span class="badge rounded-pill bg-secondary float-end">' .
+        $contributor_stats[0]['sum_week_commits'] .
         '</span></a>
-      </td>
+        </td>
     </tr>';
 }
 ?>
@@ -672,7 +709,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="">Unique repo visitors</th>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr class="text-bold">
         <th>&nbsp;</th>
