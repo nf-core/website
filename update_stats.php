@@ -36,6 +36,17 @@ if ($result = mysqli_query($conn, $sql)) {
     }
 }
 
+// get all repos
+$sql = 'SELECT * FROM nfcore_pipelines';
+$repos = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $repos = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+
 function github_query($gh_query_url) {
     global $config;
     $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
@@ -106,8 +117,8 @@ $results = [
 if (!mysqli_query($conn, $sql)) {
     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
 }
-// create github_pipeline_contrib_stats table with foreign keys to pipelines
-$sql = "CREATE TABLE IF NOT EXISTS github_pipeline_contrib_stats (
+// create github_contrib_stats table with foreign keys to pipelines
+$sql = "CREATE TABLE IF NOT EXISTS github_contrib_stats (
         id             INT             AUTO_INCREMENT PRIMARY KEY,
         pipeline_id    INT             NOT NULL,
         author         VARCHAR(255)    NOT NULL,
@@ -119,14 +130,14 @@ $sql = "CREATE TABLE IF NOT EXISTS github_pipeline_contrib_stats (
         FOREIGN KEY (pipeline_id)   REFERENCES nfcore_pipelines(id)
         )";
 if (mysqli_query($conn, $sql)) {
-    echo "`github_pipeline_contrib_stats` table created successfully.\n";
+    echo "`github_contrib_stats` table created successfully.\n";
 } else {
-    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn) . "\n";
 }
 
 // Prepare an insert statement
 $sql =
-    'INSERT INTO github_pipeline_contrib_stats (pipeline_id, author, avatar_url, week_date, week_additions, week_deletions, week_commits) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    'INSERT INTO github_contrib_stats (pipeline_id, author, avatar_url, week_date, week_additions, week_deletions, week_commits) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
@@ -141,20 +152,23 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $week_deletions,
         $week_commits,
     );
-    foreach ($pipelines as $idx => $pipeline) {
+    $non_archived_repos = array_filter($repos, function ($repo) {
+        return $repo['archived'] == 0;
+    });
+    foreach ($non_archived_repos as $idx => $repo) {
         // get contributors
         $gh_contributors = github_query(
-            'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/stats/contributors',
+            'https://api.github.com/repos/nf-core/' . $repo['name'] . '/stats/contributors',
         );
         foreach ($gh_contributors as $contributor) {
-            $pipeline_id = $pipeline['id'];
+            $pipeline_id = $repo['id'];
             $author = $contributor['author']['login'];
             $avatar_url = $contributor['author']['avatar_url'];
             foreach ($contributor['weeks'] as $week) {
                 $week_date = date('Y-m-d', $week['w']);
                 //check if entry for this pipeline_id and week_date already exists and skip if so
                 $check =
-                    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
+                    "SELECT * FROM github_contrib_stats WHERE pipeline_id = '" .
                     $pipeline_id .
                     "' AND week_date = " .
                     $week_date;
@@ -203,8 +217,11 @@ $sql =
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
     mysqli_stmt_bind_param($stmt, 'iiiiis', $pipeline_id, $views, $views_uniques, $clones, $clones_uniques, $timestamp);
+    $non_archived_pipelines = array_filter($repos, function ($repo) {
+        return $repo['pipeline_type'] == 'pipelines';
+    });
 
-    foreach ($pipelines as $idx => $pipeline) {
+    foreach ($non_archived_pipelines as $idx => $pipeline) {
         $gh_views = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/views');
         $gh_clones = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/clones');
         foreach ($gh_views['views'] as $gh_view) {
@@ -249,6 +266,55 @@ echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
 #                                              🕱 OLD CODE 🕱                                              #
 #                                                                                                         #
 ###########################################################################################################
+
+//
+// nfcore_stats.json
+// ---------------------------
+// GitHub shows traffic in the form of repo views and clones, however
+// the data is only available for two weeks.
+// We want it forever! So this script scrapes and saves the data.
+// It is intended to be run routinely using a cronjob
+//
+// Note that the resulting file (nfcore_stats.json) is
+// ignored in the .gitignore file and will not be tracked in git history.
+//
+// Manual usage: on command line, simply execute this script:
+//   $ php update_stats.php
+
+// Allow PHP fopen to work with remote links
+ini_set('allow_url_fopen', 1);
+
+// Use same updated time for everything
+$updated = time();
+
+// Final filename to write JSON to
+$results_fn = dirname(__FILE__) . '/nfcore_stats.json';
+$contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
+
+echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
+
+// Initialise the results array with the current time and placeholders
+$results = [
+    'updated' => $updated,
+    'pipelines' => [],
+    'core_repos' => [],
+    'slack' => [],
+    'gh_org_members' => [],
+    'gh_contributors' => [],
+    'gh_commits' => [],
+    'gh_additions' => [],
+    'gh_deletions' => [],
+];
+
+// Load a copy of the existing JSON file, if it exists
+if (file_exists($results_fn)) {
+    $results = json_decode(file_get_contents($results_fn), true);
+}
+$results['updated'] = $updated;
+
+// Get auth secrets
+$config = parse_ini_file('config.ini');
+$gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
 
 //
 //
@@ -566,5 +632,4 @@ echo "update_stats - Saving to $results_fn - " . date('Y-m-d h:i:s') . "\n";
 $results_json = json_encode($results, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
 
-mysqli_close($conn);
-echo "\n update_stats done " . date('Y-m-d h:i:s') . "\n\n";
+echo 'update_stats done ' . date('Y-m-d h:i:s') . "\n\n";
