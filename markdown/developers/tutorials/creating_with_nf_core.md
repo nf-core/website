@@ -37,7 +37,10 @@ To work with a clean directory, you can do the following:
   cd training
   ```
 
-- In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd>)
+- In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd> or <kbd>^</kbd> <kbd>O</kbd>)
+
+  ![gitpod open folder menu](/assets/markdown_assets/developers/creating_with_nf_core/gitpod_open_folder.png)
+
 - Enter `/home/gitpod/training`
 - GitPod will probably reload the browser tab
 - The file explorer on the left should now have an expandable box with the title `TRAINING`
@@ -920,19 +923,19 @@ $ nf-core modules create
 
 INFO     Repository type: pipeline                                                                                        create.py:99
 INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to create.py:103
-         open links.                                                                                                                  
+         open links.
 Name of tool/subtool: demo/module
 WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:174
 Do you want to enter a different Bioconda package name? [y/n]: n
 WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:181
-         Building module without tool software and meta, you will need to enter this information manually.                            
+         Building module without tool software and meta, you will need to enter this information manually.
 GitHub Username: (@author): @drpatelh
 INFO     Provide an appropriate resource label for the process, taken from the nf-core pipeline template.                create.py:224
-         For example: process_single, process_low, process_medium, process_high, process_long                                         
+         For example: process_single, process_low, process_medium, process_high, process_long
 ? Process resource label: process_single
 INFO     Where applicable all sample-specific information e.g. 'id', 'single_end', 'read_group' MUST be provided as an   create.py:238
-         input via a Groovy Map called 'meta'. This information may not be required in some instances, for example                    
-         indexing reference genome files.                                                                                             
+         input via a Groovy Map called 'meta'. This information may not be required in some instances, for example
+         indexing reference genome files.
 Will the module require a meta map of sample information? [y/n] (y): y
 INFO     Created / edited following files:                                                                               create.py:276
            ./modules/local/demo/module.nf
@@ -960,26 +963,26 @@ $ nf-core modules create
 
 INFO     Repository type: modules                                                                                         create.py:99
 INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to create.py:103
-         open links.                                                                                                                  
+         open links.
 Name of tool/subtool: demo/module
 WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:174
 Do you want to enter a different Bioconda package name? [y/n]: n
 WARNING  Could not find Conda dependency using the Anaconda API: 'demo'                                                  create.py:181
-         Building module without tool software and meta, you will need to enter this information manually.                            
+         Building module without tool software and meta, you will need to enter this information manually.
 GitHub Username: (@author): @drpatelh
 INFO     Provide an appropriate resource label for the process, taken from the nf-core pipeline template.                create.py:224
-         For example: process_single, process_low, process_medium, process_high, process_long                                         
+         For example: process_single, process_low, process_medium, process_high, process_long
 ? Process resource label: process_single
 INFO     Where applicable all sample-specific information e.g. 'id', 'single_end', 'read_group' MUST be provided as an   create.py:238
-         input via a Groovy Map called 'meta'. This information may not be required in some instances, for example                    
-         indexing reference genome files.                                                                                             
+         input via a Groovy Map called 'meta'. This information may not be required in some instances, for example
+         indexing reference genome files.
 Will the module require a meta map of sample information? [y/n] (y): y
 INFO     Created / edited following files:                                                                               create.py:276
-           ./modules/nf-core/demo/module/main.nf                                                                                      
-           ./modules/nf-core/demo/module/meta.yml                                                                                     
-           ./tests/modules/nf-core/demo/module/main.nf                                                                                
-           ./tests/modules/nf-core/demo/module/test.yml                                                                               
-           ./tests/modules/nf-core/demo/module/nextflow.config                                                                        
+           ./modules/nf-core/demo/module/main.nf
+           ./modules/nf-core/demo/module/meta.yml
+           ./tests/modules/nf-core/demo/module/main.nf
+           ./tests/modules/nf-core/demo/module/test.yml
+           ./tests/modules/nf-core/demo/module/nextflow.config
            ./tests/config/pytest_modules.yml
 ```
 
