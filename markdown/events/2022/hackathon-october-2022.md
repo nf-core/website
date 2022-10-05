@@ -27,7 +27,8 @@ Registration for the in-person hackathon event is now closed. You can still regi
 You can register for either the hackathon or the summit, or both. You're welcome to attend in-person or online.
 Attendance online is free, attending in person costs €49 (€59 incl. VAT).
 
-Registration will close September 16th, 2022.
+- In-person registration is now closed.
+- Virtual registration will close October 7, 2022.
 
 <a class="btn btn-success btn-lg" href="https://summit.nextflow.io/register/">Register now</a>
 
@@ -37,7 +38,7 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
 
 - Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event.
 - If you haven’t already, set-up a GitHub account and join the nf-core GitHub organisation.
-- Join the [nf-core slack](https://nf-co.re/join) and the channel #hackathon-oct-2022
+- Join the [nf-core slack](https://nf-co.re/join) and the [#hackathon-oct-2022](https://nfcore.slack.com/archives/C03V1KD22DT) channel
 - Have installed on your computer:
   - [Nextflow](https://nextflow.io/)
   - [nf-core/tools](https://nf-co.re/tools)
@@ -50,6 +51,18 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
 <!-- - Have a peek at the [GitHub Projects board](https://github.com/orgs/nf-core/projects/20) for the hackathon -->
 
 If you have any problems with any of these just ask on the slack channel or email [outreach@nf-co.re](mailto:outreach@nf-co.re)
+
+# Joining Gather
+
+Only those who have registered will be able to join the hackathon in our Gather space. To join the hackathon in Gather you will need to follow these steps:
+
+1. Follow the link below to find the nf-core hackathon Gather space
+   - Please note that the hackathon space will not open until registrations close on October 7
+2. Enter the email address you used to register for the hackathon
+3. Check your emails for a one-time code and enter it into the Gather window
+4. Enter the space and enjoy the hackathon!
+
+<a class="btn btn-success btn-lg" href="https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit">Enter Gather</a>
 
 # Interesting Bytesize talks
 
@@ -193,7 +206,7 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665397800" data-timeformat="HH:mm z">12:30</td>
-                <td rowspan="1">Welkome talk</td>
+                <td rowspan="1">Welcome talk</td>
             </tr>
             <tr>
                 <td data-timestamp="1665399600" data-timeformat="HH:mm z">13:00</td>
