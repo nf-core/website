@@ -395,7 +395,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 <div class="card-group text-center stats_keynumbers">
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo count($gh_repos);?></p>
+      <p class="card-text display-4"><?php echo count($gh_repos); ?></p>
       <p class="card-text text-muted">Repositories</p>
     </div>
     <div class="bg-icon"><i class="far fa-folder"></i></div>
@@ -578,10 +578,7 @@ A list of these repositories can be found <a href="#core_repos">below</a>.</p>
 
 <table class="table table-sm mt-5">
   <tbody>
-<?php
-
-
-//loop through gh_contributors_db and get their contribution counts
+<?php //loop through gh_contributors_db and get their contribution counts
 foreach ($gh_contributors_db as $contributor) {
     $sql =
         "SELECT name,pipeline_type, pipeline_id, SUM(week_commits) AS sum_week_commits
@@ -660,8 +657,7 @@ foreach ($gh_contributors_db as $contributor) {
         '</span></a>
         </td>
     </tr>';
-}
-?>
+} ?>
 </tbody>
 </table>
 
