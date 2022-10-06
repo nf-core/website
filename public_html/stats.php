@@ -53,7 +53,13 @@ foreach ($issues_json['authors'] as $author => $info) {
 $config = parse_ini_file('../config.ini');
 $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
 // get stats for pipelines
-$sql = 'SELECT * FROM nfcore_pipelines';
+$sql = 'SELECT timestamp,
+                SUM(views) AS sum_total_views,
+                SUM(views_uniques) AS sum_total_views_uniques,
+                SUM(clones) AS sum_total_clones,
+                SUM(clones_uniques) AS sum_total_clones_uniques FROM github_traffic_stats
+            INNER JOIN nfcore_pipelines ON github_traffic_stats.pipeline_id = nfcore_pipelines.id
+            WHERE nfcore_pipelines.pipeline_type = "pipelines" GROUP BY timestamp ORDER BY timestamp DESC';
 $pipeline_metrics = [];
 if ($result = mysqli_query($conn, $sql)) {
     if (mysqli_num_rows($result) > 0) {
@@ -1514,14 +1520,14 @@ $(function(){
         yAxisID: 'y-axis-count',
         data: [
           <?php
-          ksort($stats_total_allrepos['clones_count']);
-          foreach ($stats_total_allrepos['clones_count'] as $timestamp => $count) {
-              $timestamp = strtotime($timestamp);
+          foreach($pipeline_metrics as $metric){
+            $timestamp = strtotime($metric['timestamp']);
               // Skip zeros (anything before 2010)
-              if ($timestamp < 1262304000) {
+              if ($timestamp < 1262304000 || is_null($metric['sum_total_clones'])) {
                   continue;
               }
-              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $metric['sum_total_clones'] . ' },' . "\n\t\t\t";
+
           }
           ?>
         ]
@@ -1535,14 +1541,15 @@ $(function(){
         yAxisID: 'y-axis-uniques',
         data: [
           <?php
-          ksort($stats_total_allrepos['clones_uniques']);
-          foreach ($stats_total_allrepos['clones_uniques'] as $timestamp => $count) {
-              $timestamp = strtotime($timestamp);
+
+          foreach($pipeline_metrics as $metric){
+            $timestamp = strtotime($metric['timestamp']);
               // Skip zeros (anything before 2010)
-              if ($timestamp < 1262304000) {
+              if ($timestamp < 1262304000 || is_null($metric['sum_total_clones_uniques'])) {
                   continue;
               }
-              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $metric['sum_total_clones_uniques'] . ' },' . "\n\t\t\t";
+
           }
           ?>
         ]
@@ -1593,14 +1600,14 @@ $(function(){
         yAxisID: 'y-axis-count',
         data: [
           <?php
-          ksort($stats_total_allrepos['views_count']);
-          foreach ($stats_total_allrepos['views_count'] as $timestamp => $count) {
-              $timestamp = strtotime($timestamp);
+          foreach($pipeline_metrics as $metric){
+            $timestamp = strtotime($metric['timestamp']);
               // Skip zeros (anything before 2010)
-              if ($timestamp < 1262304000) {
+              if ($timestamp < 1262304000 || is_null($metric['sum_total_views'])) {
                   continue;
               }
-              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $metric['sum_total_views'] . ' },' . "\n\t\t\t";
+
           }
           ?>
         ]
@@ -1614,14 +1621,14 @@ $(function(){
         yAxisID: 'y-axis-uniques',
         data: [
           <?php
-          ksort($stats_total_allrepos['views_uniques']);
-          foreach ($stats_total_allrepos['views_uniques'] as $timestamp => $count) {
-              $timestamp = strtotime($timestamp);
+          foreach($pipeline_metrics as $metric){
+            $timestamp = strtotime($metric['timestamp']);
               // Skip zeros (anything before 2010)
-              if ($timestamp < 1262304000) {
+              if ($timestamp < 1262304000 || is_null($metric['sum_total_views_uniques'])) {
                   continue;
               }
-              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
+              echo '{ x: "' . date('Y-m-d', $timestamp) . '", y: ' . $metric['sum_total_views_uniques'] . ' },' . "\n\t\t\t";
+
           }
           ?>
         ]
