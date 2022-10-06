@@ -314,7 +314,7 @@ $gh_api_opts = stream_context_create([
 ]);
 
 // Load details of the pipelines
-$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) .'/public_html/pipelines.json'));
+$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) . '/public_html/pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 $contribs_try_again = [];
 
@@ -616,4 +616,3 @@ $results_json = json_encode($results, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
 
 echo 'update_stats done ' . date('Y-m-d h:i:s') . "\n\n";
-
