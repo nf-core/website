@@ -107,7 +107,7 @@ if ($result = mysqli_query($conn, $sql)) {
 
 // get contributor stats for current pipeline
 $sql =
-    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
+    "SELECT * FROM github_contrib_stats WHERE pipeline_id = '" .
     $pipeline_metrics['id'] .
     "' ORDER BY week_date DESC";
 $contributor_stats = [];

@@ -677,7 +677,14 @@ foreach ($gh_contributors_db as $contributor) {
 
 <?php // The pipeline and core repo tables are the same
 
-foreach (['pipelines', 'core_repos'] as $repo_type): ?>
+foreach (['pipelines', 'core_repos'] as $repo_type):
+
+$repo_stats =
+            array_filter($gh_repos, function ($metric) {
+                global $repo_type;
+                return $metric['pipeline_type'] == $repo_type;
+            });
+?>
 
 <h2 class="mt-0" id="<?php echo $repo_type; ?>"><?php echo ucfirst(
     str_replace('_', ' ', $repo_type),
@@ -686,12 +693,13 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
   <i class="far fa-hand-point-right"></i>
   Click a row to see detailed statistics for that repository.
 </p>
+<?php
 
-
+?>
 <div class="table-responsive">
-  <table class="table table-hover table-sm small pipeline-stats-table">
+<table class="table table-hover table-sm small pipeline-stats-table">
     <thead class="">
-      <tr>
+    <tr>
         <th>&nbsp;</th>
         <th>Name</th>
         <th>Age</th>
@@ -705,31 +713,101 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="">Unique cloners</th>
         <th class="">Repo views</th>
         <th class="">Unique repo visitors</th>
-      </tr>
+    </tr>
     </thead>
 
     <tbody>
-      <tr class="text-bold">
+
+    <!-- <tr class="text-bold">
         <th>&nbsp;</th>
         <th>Total:</th>
-        <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
+        <th class="font-weight-light"><?php echo count($repo_stats); ?> pipelines</th>
         <?php if ($repo_type == 'pipelines'): ?><th class="font-weight-light "><?php echo $stats_total[$repo_type][
     'releases'
 ]; ?></th><?php endif; ?>
-        <th class="font-weight-light "><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['watchers']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['network_forks_count']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['clones_count_total']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['clones_uniques_total']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['views_count_total']; ?></th>
-        <th class="font-weight-light "><?php echo $stats_total[$repo_type]['views_uniques_total']; ?></th>
-      </tr>
-    <?php echo implode($trows[$repo_type]); ?>
+            <th class="font-weight-light "><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
+            <th class="font-weight-light "><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'stargazers')); ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'watchers')); ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'network_forks_count')); ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'clones_count_total')); ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'clones_uniques_total')); ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'views_count_total')); ?></th>
+            <th class="font-weight-light "><?php echo array_sum(array_column($repo_stats,'views_uniques_total')); ?></th>
+    </tr> -->
+    <?php foreach ($repo_stats as $repo_stat):
+        // get summed up stats from github_traffic_stats table for current pipeline
+        $sql =
+            "SELECT SUM(views) AS sum_views,
+                    SUM(views_uniques) AS sum_views_uniques,
+                    SUM(clones) AS sum_clones,
+                    SUM(clones_uniques) AS sum_clones_uniques
+            FROM github_traffic_stats WHERE pipeline_id = '" . $repo_stat['id'] . "' GROUP BY pipeline_id";
+        $traffic_stats = [];
+        if ($result = mysqli_query($conn, $sql)) {
+            if (mysqli_num_rows($result) > 0) {
+                $traffic_stats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                // Free result set
+                mysqli_free_result($result);
+            }
+        }else {
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+        }
+        // get contributor stats for current pipeline
+        $sql =
+            "SELECT COUNT(author) AS num_contributors, SUM(week_commits) AS sum_week_commits FROM github_contrib_stats WHERE pipeline_id = '" .
+            $repo_stat['id'] . "' GROUP BY pipeline_id";
+        $contributor_stats = [];
+        if ($result = mysqli_query($conn, $sql)) {
+            if (mysqli_num_rows($result) > 0) {
+                $contributor_stats = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                // Free result set
+                mysqli_free_result($result);
+            }
+        }else {
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+        }
+        ?>
+        <tr>
+    <td><?php
+        if ($repo_stat['archived']) {
+            echo '<small class="status-icon text-warning ms-2 fas fa-archive" data-bs-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
+        } elseif ($repo_type == 'pipelines') {
+            // Edge case where a new pipeline is added but stats hasn't rerun yet
+            if (!isset($repo_stat['num_releases'])) {
+                $repo_stat['num_releases'] = 0;
+            }
+            if ($repo_stat['last_release_date'] != null) {
+                echo '<small class="status-icon text-success ms-2 fas fa-check" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
+            } else {
+                echo '<small class="status-icon text-danger ms-2 fas fa-wrench" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
+            }
+        }
+        $alink = '<a href="' . $repo_stat['html_url'] . '" target="_blank">';
+        if ($repo_type == 'pipelines') {
+            $alink = '<a href="/' . $repo_stat['name'] . '/releases_stats">';
+        }
+        ?></td>
+        <td><?php echo $alink . '<span class="d-none d-lg-inline">nf-core/</span>' . $repo_stat['name'] . '</a>'; ?></td>
+        <td data-text="<?php echo strtotime($repo_stat['gh_created_at']); ?>"><?php echo time_ago(
+        $repo_stat['gh_created_at'],
+        false,
+    ); ?></td>
+        <?php if ($repo_type == 'pipelines'): ?><td class=""><?php echo $repo->num_releases; ?></td><?php endif; ?>
+        <td class=""><?php echo $contributor_stats[0]['num_contributors']; ?></td>
+        <td class=""><?php echo $contributor_stats[0]['sum_week_commits']; ?></td>
+        <td class=""><?php echo $repo_stat['stargazers_count']; ?></td>
+        <td class=""><?php echo $repo_stat['watchers_count']; ?></td>
+        <td class=""><?php echo $repo_stat['forks_count']; ?></td>
+        <td class=""><?php echo $traffic_stats[0]['sum_clones']; ?></td>
+        <td class=""><?php echo $traffic_stats[0]['sum_clones_uniques']; ?></td>
+        <td class=""><?php echo $traffic_stats[0]['sum_views']; ?></td>
+        <td class=""><?php echo $traffic_stats[0]['sum_views_uniques']; ?></td>
+    </tr>
+    <?php endforeach; ?>
     </tbody>
     <tfoot class="">
-      <tr>
+    <tr>
         <th>&nbsp;</th>
         <th>Name</th>
         <th>Age</th>
@@ -743,9 +821,9 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="">Unique cloners</th>
         <th class="">Repo views</th>
         <th class="">Unique repo visitors</th>
-      </tr>
+    </tr>
     </tfoot>
-  </table>
+    </table>
 </div>
 
 <?php endforeach; ?>

@@ -193,25 +193,26 @@ $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
 
 // Drop existing table if query was successful
 $sql = "CREATE TABLE IF NOT EXISTS nfcore_pipelines (
-            id                INT             AUTO_INCREMENT PRIMARY KEY,
-            github_id         VARCHAR (400)   NOT NULL,
-            html_url          VARCHAR (400)   NOT NULL,
-            name	          VARCHAR (400)   NOT NULL,
-            description	      VARCHAR (4000)  DEFAULT NULL,
-            gh_created_at     datetime        NOT NULL,
-            gh_updated_at     datetime        NOT NULL,
-            gh_pushed_at      datetime        NOT NULL,
-            stargazers_count  INT             NOT NULL,
-            watchers_count    INT             NOT NULL,
-            forks_count       INT             NOT NULL,
-            open_issues_count INT             NOT NULL,
-            open_pr_count     INT             NOT NULL,
-            topics            VARCHAR (4000)  DEFAULT NULL,
-            default_branch    VARCHAR (400)   NOT NULL,
-            pipeline_type     VARCHAR (400)   NOT NULL,
-            archived          BOOLEAN         NOT NULL,
-            last_release_date datetime        DEFAULT NULL,
-            date_added        datetime        DEFAULT current_timestamp
+            id                 INT             AUTO_INCREMENT PRIMARY KEY,
+            github_id          VARCHAR (400)   NOT NULL,
+            html_url           VARCHAR (400)   NOT NULL,
+            name	           VARCHAR (400)   NOT NULL,
+            description	       VARCHAR (4000)  DEFAULT NULL,
+            gh_created_at      datetime        NOT NULL,
+            gh_updated_at      datetime        NOT NULL,
+            gh_pushed_at       datetime        NOT NULL,
+            stargazers_count   INT             NOT NULL,
+            watchers_count     INT             NOT NULL,
+            forks_count        INT             NOT NULL,
+            open_issues_count  INT             NOT NULL,
+            open_pr_count      INT             NOT NULL,
+            topics             VARCHAR (4000)  DEFAULT NULL,
+            default_branch     VARCHAR (400)   NOT NULL,
+            pipeline_type      VARCHAR (400)   NOT NULL,
+            archived           BOOLEAN         NOT NULL,
+            last_release_date  datetime        DEFAULT NULL,
+            first_release_date datetime        DEFAULT NULL,
+            date_added         datetime        DEFAULT current_timestamp
             )";
 if (mysqli_query($conn, $sql)) {
     echo "`nfcore_pipelines` table created successfully.\n";
@@ -220,13 +221,13 @@ if (mysqli_query($conn, $sql)) {
 }
 // Prepare an insert statement
 $sql =
-    'INSERT INTO nfcore_pipelines (github_id,html_url,name,description,gh_created_at,gh_updated_at,gh_pushed_at,stargazers_count,watchers_count,forks_count,open_issues_count,open_pr_count,topics,default_branch,pipeline_type,archived,last_release_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    'INSERT INTO nfcore_pipelines (github_id,html_url,name,description,gh_created_at,gh_updated_at,gh_pushed_at,stargazers_count,watchers_count,forks_count,open_issues_count,open_pr_count,topics,default_branch,pipeline_type,archived,last_release_date,first_release_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
     mysqli_stmt_bind_param(
         $stmt,
-        'sssssssiiiiisssis',
+        'sssssssiiiiisssiss',
         $github_id,
         $html_url,
         $name,
@@ -244,6 +245,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $pipeline_type,
         $archived,
         $last_release_date,
+        $first_release_date,
     );
     foreach ($gh_pipelines as $pipeline) {
         // check where entries need to be updated and update them
@@ -265,10 +267,14 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $topics = is_array($pipeline['topics']) ? implode(';', $pipeline['topics']) : $pipeline['topics'];
         $default_branch = $pipeline['default_branch'];
         $archived = $pipeline['archived'];
-        $last_release_date = github_query(str_replace('{/id}', '', $pipeline['releases_url']) . '?per_page=1')[0][
+        $last_release_date = github_query(str_replace('{/id}', '', $pipeline['releases_url']) . '/latest')[
             'published_at'
         ];
         $last_release_date = is_null($last_release_date) ? null : date('Y-m-d H:i:s', strtotime($last_release_date));
+        $first_release_date = end(github_query(str_replace('{/id}', '', $pipeline['releases_url'])))['published_at'];
+        print_r($first_release_date);
+        print_r("\n");
+        $first_release_date = is_null($first_release_date) ? null : date('Y-m-d H:i:s', strtotime($first_release_date));
         if (in_array($pipeline['name'], $ignored_repos)) {
             $pipeline_type = 'core_repos';
         } else {
@@ -277,25 +283,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $check = "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline['name'] . "'";
         $res = mysqli_query($conn, $check);
         if ($res->num_rows > 0) {
-            // test if the entry needs to be updated
-            $row = $res->fetch_assoc();
-            $update = false;
-            $update = $update || $row['github_id'] != $github_id;
-            $update = $update || $row['html_url'] != $html_url;
-            $update = $update || $row['description'] != $description;
-            $update = $update || $row['gh_created_at'] != $gh_created_at;
-            $update = $update || $row['gh_updated_at'] != $gh_updated_at;
-            $update = $update || $row['gh_pushed_at'] != $gh_pushed_at;
-            $update = $update || $row['stargazers_count'] != $stargazers_count;
-            $update = $update || $row['watchers_count'] != $watchers_count;
-            $update = $update || $row['forks_count'] != $forks_count;
-            $update = $update || $row['open_issues_count'] != $open_issues_count;
-            $update = $update || $row['topics'] != $topics;
-            $update = $update || $row['default_branch'] != $default_branch;
-            $update = $update || $row['pipeline_type'] != $pipeline_type;
-            $update = $update || $row['archived'] != $archived;
-            $update = $update || $row['last_release_date'] != $last_release_date;
-            if ($update) {
+
                 $update = 'UPDATE nfcore_pipelines SET ';
                 $update .= "github_id =  '$github_id',";
                 $update .= "html_url =  '$html_url',";
@@ -312,14 +300,14 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $update .= "pipeline_type =  '$pipeline_type',";
                 $update .= "archived =  '$archived',";
                 $update .= "last_release_date =  '$last_release_date'";
+                $update .= "first_release_date =  '$first_release_date'";
                 $update .= " WHERE name = '" . $pipeline['name'] . "'";
 
                 if (mysqli_query($conn, $update)) {
                     echo "Updated $pipeline[name]\n";
                 } else {
-                    mysqli_error($conn);
+                    "Could not update $pipeline[name] \n" . mysqli_error($conn);
                 }
-            }
         } else {
             if (!mysqli_stmt_execute($stmt)) {
                 echo "ERROR: Could not execute $sql. " . mysqli_error($conn);

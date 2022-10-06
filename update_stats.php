@@ -217,11 +217,7 @@ $sql =
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
     mysqli_stmt_bind_param($stmt, 'iiiiis', $pipeline_id, $views, $views_uniques, $clones, $clones_uniques, $timestamp);
-    $non_archived_pipelines = array_filter($repos, function ($repo) {
-        return $repo['pipeline_type'] == 'pipelines';
-    });
-
-    foreach ($non_archived_pipelines as $idx => $pipeline) {
+    foreach ($non_archived_repos as $idx => $pipeline) {
         $gh_views = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/views');
         $gh_clones = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/clones');
         foreach ($gh_views['views'] as $gh_view) {
