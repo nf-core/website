@@ -241,7 +241,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
-
+mysqli_close($conn);
 echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
 
 ###########################################################################################################
