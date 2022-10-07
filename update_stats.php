@@ -140,6 +140,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $check =
                     "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
                     $pipeline_id .
+                    "' AND author = '" .
+                    $author .
                     "' AND week_date = '" .
                     $week_date .
                     "'";
