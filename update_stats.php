@@ -12,10 +12,6 @@
 // Allow PHP fopen to work with remote links
 ini_set('allow_url_fopen', 1);
 
-// // Final filename to write JSON to
-$results_fn = dirname(__FILE__) . '/nfcore_stats.json';
-$contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
-
 echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
@@ -90,18 +86,6 @@ function github_query($gh_query_url) {
     }
     return $res;
 }
-// Initialise the results array with the current time and placeholders
-$results = [
-    'updated' => $updated,
-    'pipelines' => [],
-    'core_repos' => [],
-    'slack' => [],
-    'gh_org_members' => [],
-    'gh_contributors' => [],
-    'gh_commits' => [],
-    'gh_additions' => [],
-    'gh_deletions' => [],
-];
 
 if (!mysqli_query($conn, $sql)) {
     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
@@ -156,8 +140,9 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $check =
                     "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
                     $pipeline_id .
-                    "' AND week_date = " .
-                    $week_date;
+                    "' AND week_date = '" .
+                    $week_date .
+                    "'";
                 $res = mysqli_query($conn, $check);
                 if ($res->num_rows) {
                     continue;
@@ -212,10 +197,16 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             $check =
                 "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
                 $pipeline['id'] .
-                "' AND timestamp = " .
-                $timestamp;
+                "' AND timestamp = '" .
+                $timestamp .
+                "'";
             $res = mysqli_query($conn, $check);
             if ($res->num_rows) {
+                echo "\n Entry already exists for pipeline_id " .
+                    $pipeline['id'] .
+                    ' and timestamp ' .
+                    $timestamp .
+                    ' db_timestamp ';
                 continue;
             } else {
                 // get gh_clones where timestamp matches
@@ -314,7 +305,7 @@ $gh_api_opts = stream_context_create([
 ]);
 
 // Load details of the pipelines
-$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) .'/public_html/pipelines.json'));
+$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) . '/public_html/pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 $contribs_try_again = [];
 
@@ -616,4 +607,3 @@ $results_json = json_encode($results, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
 
 echo 'update_stats done ' . date('Y-m-d h:i:s') . "\n\n";
-
