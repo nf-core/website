@@ -58,8 +58,7 @@ $sql = 'SELECT timestamp,
                 SUM(views_uniques) AS sum_total_views_uniques,
                 SUM(clones) AS sum_total_clones,
                 SUM(clones_uniques) AS sum_total_clones_uniques FROM github_traffic_stats
-            INNER JOIN nfcore_pipelines ON github_traffic_stats.pipeline_id = nfcore_pipelines.id
-            WHERE nfcore_pipelines.pipeline_type = "pipelines" GROUP BY timestamp ORDER BY timestamp DESC';
+            INNER JOIN nfcore_pipelines ON github_traffic_stats.pipeline_id = nfcore_pipelines.id GROUP BY timestamp ORDER BY timestamp ASC';
 $pipeline_metrics = [];
 if ($result = mysqli_query($conn, $sql)) {
     if (mysqli_num_rows($result) > 0) {
@@ -451,8 +450,8 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
         ); ?></span>
         <br>Clones since <?php echo date(
             'F Y',
-            min($stats_total['pipelines']['clones_count_since'], $stats_total['core_repos']['clones_count_since']),
-        ); ?>
+            strtotime($pipeline_metrics[0]['timestamp'])
+        );  ?>
       </div>
       <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
         <span class="text-body lead"><?php echo round_nicely(
@@ -460,7 +459,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
         ); ?></span>
         <br>Unique cloners since <?php echo date(
             'F Y',
-            min($stats_total['pipelines']['clones_uniques_since'], $stats_total['core_repos']['clones_uniques_since']),
+            strtotime($pipeline_metrics[0]['timestamp'])
         ); ?>
       </div>
     </div>
@@ -482,20 +481,20 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     <div class="row align-items-center">
       <div class="col-6 border-end border-secondary">
         <span class="text-body lead"><?php echo round_nicely(
-            $stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total'],
+            array_sum(array_column($pipeline_metrics,'sum_total_views'))
         ); ?></span>
         <br>Views since <?php echo date(
             'F Y',
-            min($stats_total['pipelines']['views_count_since'], $stats_total['core_repos']['views_count_since']),
+            strtotime($pipeline_metrics[0]['timestamp'])
         ); ?>
       </div>
       <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
         <span class="text-body lead"><?php echo round_nicely(
-            $stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total'],
+            array_sum(array_column($pipeline_metrics,'sum_total_views_uniques'))
         ); ?></span>
         <br>Unique visitors since <?php echo date(
             'F Y',
-            min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since']),
+            strtotime($pipeline_metrics[0]['timestamp'])
         ); ?>
       </div>
     </div>
