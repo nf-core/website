@@ -114,6 +114,7 @@ Why stop at sharing modules, we want to share subworkflows between pipelines too
 
 - Edmund Miller (in person),
 - Harshil Patel (in person),
+- Maxime Garcia (in person),
 - Yuk Kei Wan (online)
 
 ## Group 3 - Pipelines
@@ -130,6 +131,7 @@ This group will focus on any pipeline related work, this could be:
 
 - Maxime Garcia (in person),
 - James Fellows Yates (in person),
+- Friederike Hanssen (in person),
 - Luis Kuhn (online)
 
 ## Group 4 - Modules
@@ -144,11 +146,11 @@ This group will welcome anyone who wants to work on new modules or improve exist
 - Gisela Gabernet (in person),
 - Louisa Perelo (online)
 
-## Group 5 - Central tools / Website
+## Group 5 - Infrastructure
 
 The nf-core website is in desperate need of work, and central tooling always needs to be improved and maintained. If this sounds like a fun task, join group 5!
 
-[<i class="fab fa-slack"></i> `#hackathon-oct-2022-tools-website`](https://nfcore.slack.com/archives/C040XNUL7DM)
+[<i class="fab fa-slack"></i> `#hackathon-oct-2022-infrastructure`](https://nfcore.slack.com/archives/C040XNUL7DM)
 
 ### Group leaders
 
