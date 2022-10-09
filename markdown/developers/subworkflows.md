@@ -67,76 +67,76 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 <!-- TODO: nf-core: Add proper output when command has been implemented -->
 
-   ```console
-   $ nf-core subworkflows create bam_sort_samtools --author @joebloggs
+```console
+$ nf-core subworkflows create bam_sort_samtools --author @joebloggs
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+                                       ,--./,-.
+       ___     __   __   __   ___     /,-._.--~\
+ |\ | |__  __ /  ` /  \ |__) |__         }  {
+ | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                       `._,._,'
 
-    nf-core/tools version 2.7.dev0 - https://nf-co.re
+ nf-core/tools version 2.7.dev0 - https://nf-co.re
 
 
-    INFO     Repository type: modules
-   ```
+ INFO     Repository type: modules
+```
 
-   All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
+All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
-   1. [`./subworkflows/nf-core/bam_sort_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_samtools/main.nf)
+1.  [`./subworkflows/nf-core/bam_sort_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_samtools/main.nf)
 
-      This is the main script containing the `workflow` definition for the subworkflow. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
+    This is the main script containing the `workflow` definition for the subworkflow. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
 
-   2. [`./subworkflows/nf-core/bam_sort_samtools/meta.yml`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_samtools/meta.yml)
+2.  [`./subworkflows/nf-core/bam_sort_samtools/meta.yml`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_samtools/meta.yml)
 
-      This file will be used to store general information about the subworkflow and author details. You will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each subworkflow.
+    This file will be used to store general information about the subworkflow and author details. You will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each subworkflow.
 
-   3. [`./tests/subworkflows/nf-core/bam_sort_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_samtools/main.nf)
+3.  [`./tests/subworkflows/nf-core/bam_sort_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_samtools/main.nf)
 
-      Every subworkflow MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the subworkflow. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the subworkflow works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
+    Every subworkflow MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the subworkflow. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the subworkflow works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
-      When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
+    When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
 
-      ```groovy
-      include { BAM_SORT_SAMTOOLS as BAM_SORT_SAMTOOLS_SINGLE_END } from '../../../../subworkflows/nf-core/bam_sort_samtools/main' // Good: Output folder is still 'fastqc'
-      include { BAM_SORT_SAMTOOLS as SINGLE_END_BAM_SORT_SAMTOOLS } from '../../../../subworkflows/nf-core/bam_sort_samtools/main' // Bad: Generates problems with CI tests - Output folder is 'post'
-      ```
+    ```groovy
+    include { BAM_SORT_SAMTOOLS as BAM_SORT_SAMTOOLS_SINGLE_END } from '../../../../subworkflows/nf-core/bam_sort_samtools/main' // Good: Output folder is still 'fastqc'
+    include { BAM_SORT_SAMTOOLS as SINGLE_END_BAM_SORT_SAMTOOLS } from '../../../../subworkflows/nf-core/bam_sort_samtools/main' // Bad: Generates problems with CI tests - Output folder is 'post'
+    ```
 
-      Minimal test data required for your subworkflow may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
+    Minimal test data required for your subworkflow may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-   4. [`./tests/subworkflows/nf-core/bam_sort_samtools/nextflow.config`](https://github.com/nf-core/modules/blob/master//tests/subworkflows/nf-core/bam_sort_samtools/nextflow.config)
+4.  [`./tests/subworkflows/nf-core/bam_sort_samtools/nextflow.config`](https://github.com/nf-core/modules/blob/master//tests/subworkflows/nf-core/bam_sort_samtools/nextflow.config)
 
-      Some subworkflows MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+    Some subworkflows MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-   5. [`./tests/subworkflows/nf-core/bam_sort_samtools/test.yml`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_samtools/test.yml)
+5.  [`./tests/subworkflows/nf-core/bam_sort_samtools/test.yml`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_samtools/test.yml)
 
-      This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
+    This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
 
-      As highlighted in the next point, we have added a command to make it much easier to test the workflow(s) defined for the subworkflow and to automatically create the `test.yml` with the md5sum hashes for all of the outputs generated by the subworkflow.
+    As highlighted in the next point, we have added a command to make it much easier to test the workflow(s) defined for the subworkflow and to automatically create the `test.yml` with the md5sum hashes for all of the outputs generated by the subworkflow.
 
-      `md5sum` checks are the preferable choice of test to determine file changes, however, this may not be possible for all outputs generated by some tools e.g. if they include time stamps or command-related headers. Please do your best to avoid just checking for the file being present e.g. it may still be possible to check that the file contains the appropriate text snippets.
+    `md5sum` checks are the preferable choice of test to determine file changes, however, this may not be possible for all outputs generated by some tools e.g. if they include time stamps or command-related headers. Please do your best to avoid just checking for the file being present e.g. it may still be possible to check that the file contains the appropriate text snippets.
 
-7. (COMMAND NOT FULLY IMPLEMETED IN NF-CORE/TOOLS YET!!) Create a yaml file containing information required for subworkflow unit testing
+6.  (COMMAND NOT FULLY IMPLEMETED IN NF-CORE/TOOLS YET!!) Create a yaml file containing information required for subworkflow unit testing
 
 <!-- TODO: nf-core: Add proper output when command has been implemented -->
 
-   ```console
-   $ nf-core subworkflows create-test-yml
+```console
+$ nf-core subworkflows create-test-yml
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+                                       ,--./,-.
+       ___     __   __   __   ___     /,-._.--~\
+ |\ | |__  __ /  ` /  \ |__) |__         }  {
+ | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                       `._,._,'
 
-    nf-core/tools version 2.7.dev0 - https://nf-co.re
+ nf-core/tools version 2.7.dev0 - https://nf-co.re
 
 
-    INFO     Repository type: modules
-   ```
+ INFO     Repository type: modules
+```
 
-   > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+> NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
 
 8. Check that the new subworkflow you've added follows the [new subworkflow guidelines](#new-subworkflow-guidelines-and-pr-review-checklist)
 
@@ -146,20 +146,20 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 <!-- TODO: nf-core: Update these guidelines as we develop them -->
 
-   ```console
-   $ nf-core subworkflows lint
+```console
+$ nf-core subworkflows lint
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+                                       ,--./,-.
+       ___     __   __   __   ___     /,-._.--~\
+ |\ | |__  __ /  ` /  \ |__) |__         }  {
+ | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                       `._,._,'
 
-    nf-core/tools version 2.7.dev0 - https://nf-co.re
+ nf-core/tools version 2.7.dev0 - https://nf-co.re
 
 
-    INFO     Repository type: modules
-   ```
+ INFO     Repository type: modules
+```
 
 10. Once ready, the code can be pushed and a pull request (PR) created
 
@@ -220,21 +220,21 @@ Please follow the steps below to run the tests locally:
 
     <!-- TODO: nf-core: Update these guidelines as we develop them -->
 
-     ```console
-     $ cd /path/to/git/clone/of/nf-core/modules/
-     $ nf-core subworkflows test bam_sort_samtools
+   ```console
+   $ cd /path/to/git/clone/of/nf-core/modules/
+   $ nf-core subworkflows test bam_sort_samtools
 
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~\
+   |\ | |__  __ /  ` /  \ |__) |__         }  {
+   | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
 
-    nf-core/tools version 2.7.dev0 - https://nf-co.re
+   nf-core/tools version 2.7.dev0 - https://nf-co.re
 
 
-    INFO     Repository type: modules
-     ```
+   INFO     Repository type: modules
+   ```
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
 
@@ -315,7 +315,7 @@ nextflow run tests/subworkflows/nf-core/<name_of_subworkflow> -entry test_<name_
 ## What is the `meta` map?
 
 In nf-core DSL2 pipelines, to add sample-specific information and metadata that is carried throughout the pipeline, we use a meta variable. This avoids the need to create separate channels for each new characteristic.
-The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary. 
+The meta variable can be passed down to processes as a tuple of the channel containing the actual samples, e.g. FastQ files, and the meta variable. The `meta map` is a [groovy map](https://www.tutorialspoint.com/groovy/groovy_maps.htm), which is like a python dictionary.
 
 <!-- TODO: nf-core: Link to DSL2 modules docs section for this instead of duplicating here -->
 
