@@ -196,7 +196,7 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             <tr>
                 <td data-timestamp="1665388800" data-timeformat="HH:mm z">10:00</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="1">Kahoot!</td>
+                <td rowspan="1">Quiz!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665392400" data-timeformat="HH:mm z">11:00</td>
