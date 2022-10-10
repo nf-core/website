@@ -54,7 +54,7 @@ Only when it's ready do we move it to the nf-core GitHub organisation.
 
 It's _highly_ recommended to use the nf-core template.
 The guidelines for nf-core pipelines are pretty strict, but if you start your pipeline by using the
-nf-core template (`nf-core create` - see [the docs](/tools#creating-a-new-workflow))
+nf-core template (`nf-core create` - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline))
 then your life will be much easier.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
