@@ -307,7 +307,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 - Monday evening: Beers and pizza (non-alcoholic options available) at the Seqera Office!
 - Tuesday evening: Dinner!
 - The traditional sock hunting in Gathertown will also be held in person! Take pictures of as many socks as you can find.
-- Finally, on Wednesday, we will be running a short quiz!
+- Finally, on Wednesday, we will be running a short quiz at 10am with Kahoot!
 
 ### Online
 
