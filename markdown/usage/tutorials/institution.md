@@ -32,8 +32,8 @@ In case you couldn't find your institution / group of contributors on the [commu
    - See the website repository for examples in [white](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-white) and [colour](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-colour).
    - Both images should have the **same name** - if you define `image_fn: foobar.svg` in the YAML file, then both files should be named `foobar.svg` in the respective folders.
    - If you have only raster images available, please search for a SVG version. Ask for help in the nf-core Slack if in doubt (please do not add SVG files with embedded raster images - vector only).
-     * _Tip_: Wikipedia often uses the SVG format of displayed logos available for the download.
-     * If you were not successful at this point, skip it and let us know about it in the pull request.
-     * _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. Organizations often don't have any concerns about it, and just want to be notified.
+     - _Tip_: Wikipedia often uses the SVG format of displayed logos available for the download.
+     - If you were not successful at this point, skip it and let us know about it in the pull request.
+     - _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. Organizations often don't have any concerns about it, and just want to be notified.
 
 5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re). We will provide you a feedback if anything looks weird or hasn't been properly done. Feel free to let us know on Slack in the [`#request-review` channel](https://nfcore.slack.com/archives/CQY2U5QU9).
