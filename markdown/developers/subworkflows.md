@@ -240,7 +240,6 @@ Please follow the steps below to run the tests locally:
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 
-
 ### Uploading to `nf-core/modules`
 
 [Fork](https://help.github.com/articles/fork-a-repo/) the `nf-core/modules` repository to your own GitHub account. Within the local clone of your fork add the subworkflow files to the `subworkflows/` directory. Please try and keep PRs as atomic as possible to aid the reviewing process - ideally, one subworkflow addition/update per PR.
@@ -273,7 +272,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 1. Subworkflows should combine tools that make up a logical unit in an analysis step. .... how many tools are appropriate?
 
-2.  Each `module` emits a channel containing `versions.yml` collecting the tool(s) versions. They MUST be collected within the workflow and added to the output as `versions` :
+2. Each `module` emits a channel containing `versions.yml` collecting the tool(s) versions. They MUST be collected within the workflow and added to the output as `versions` :
 
 ```bash
 
