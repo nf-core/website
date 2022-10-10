@@ -196,11 +196,12 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             <tr>
                 <td data-timestamp="1665388800" data-timeformat="HH:mm z">10:00</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="4">Hack!</td>
+                <td rowspan="1">Quiz!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665392400" data-timeformat="HH:mm z">11:00</td>
                 <td>Registration Open</td>
+                <td rowspan="3">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665396000" data-timeformat="HH:mm z">12:00</td>
@@ -306,7 +307,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 - Monday evening: Beers and pizza (non-alcoholic options available) at the Seqera Office!
 - Tuesday evening: Dinner!
 - The traditional sock hunting in Gathertown will also be held in person! Take pictures of as many socks as you can find.
-- Finally, on Wednesday, we will be running a short quiz!
+- Finally, on Wednesday, we will be running a short quiz at 10am with Kahoot!
 
 ### Online
 
