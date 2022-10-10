@@ -9,7 +9,7 @@ Gitpod is an open-source developer platform that can be spin up a little virtual
 It has many purposes, including: testing pipelines, learning Nextflow, reviewing/editing code and live views of edited markdown/HTML for webpage development.
 Any changes within Gitpod can be pushed to branches for review.
 
-Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month, with 30GB temporary storage and allows up to 4 parellel workspaces (as of March 2022).
+Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/month, with 30GB temporary storage and allows up to 4 parallel workspaces (as of March 2022).
 
 > Gitpod has kindly recognised nf-core as an open-source project, so if you are a member of the [nf-core GitHub organisation](https://github.com/nf-core/) (ask on Slack in the `#github-invitations` channel) then you will automatically be moved onto the _'Professional Open Source plan'_ with unlimited hours.
 
