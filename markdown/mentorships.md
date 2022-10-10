@@ -1,8 +1,8 @@
 ## Introduction
 
-In 2022, Nextflow and nf-core are starting a joint program of mentorships.
-We hope to organise a small number of mentoring pairs to improve outreach and training in underrepresented groups and areas.
-Mentors will receive a small stipend in return for helping their mentee.
+As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation.
+In Spring 2022, Nextflow and nf-core started a joint mentorship program with the aim of improving outreach and training in underrepresented groups and areas.
+With the first round of mentorships complete the applications for round two (Autumn 2022) are now open!
 
 In this page, we use the following terminology:
 
@@ -11,7 +11,7 @@ In this page, we use the following terminology:
 
 ### Scope
 
-Some typical aims could be:
+Some typical project aims could be:
 
 - Setting up Nextflow and nf-core in your institution
   - Getting requirements up and running on the local compute infrastructure
@@ -24,15 +24,15 @@ Some typical aims could be:
   - Writing an extensive tutorial about some aspect of nf-core
 
 The exact scope and aims of each mentoring partnership can vary according to the participants' needs and situation.
-These will be judged on a case-by-case basis as part of the application process.
+These will be judged on a case-by-case basis as part of the application process. You can find out more about what mentor and mentee pairs achieved in the first round of the program [in this Nextflow blog post](https://www.nextflow.io/blog/2022/czi-mentorship-round-1.html).
 
 ### Organisation
 
 In summary (all points subject to change):
 
-- We will start with rounds of 5 mentor + mentee pairs
+- We will start with rounds of 5 - 10 mentor + mentee pairs
 - Mentorships will run for 4 months
-- New rounds approximately every 6 months
+- There will be new rounds approximately every 6 months
 - Mentees will get free tutoring from an experienced developer about using Nextflow and nf-core
 - Mentors will be paid with a voucher equivalent to $800 USD upon completion of the mentorship round (subject to completion of certain milestones)
 - A commitment of at least 2 hours a week is expected from both mentor and mentee
@@ -67,11 +67,7 @@ Note that there have been some minor adjustments to the plan since we wrote this
 
 ## Round 1 (Closed)
 
-<!-- To add when we have the blog post
-
-Round 1 is now closed. Lots of interesting work has been done during this first edition of the mentorship program! Thank you to all participants! You can check the Nextflow blog post for an overview and testimonials of this round.
-
--->
+Round 1 is now closed. Lots of interesting work has been done during this first edition of the mentorship program! Thank you to all participants! You can check the [Nextflow blog post](https://www.nextflow.io/blog/2022/czi-mentorship-round-1.html) for an overview and testimonials of this round.
 
 ### Key dates
 
@@ -88,7 +84,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of August 2022</dd>
 </dl>
 
-## Round 2
+## Round 2 (Applications open)
 
 ### Key dates
 
@@ -124,17 +120,11 @@ Dates are subject to change:
 
 ### Application process
 
-Applications for Round 2 will open on October 1st. Please check back soon for updates!
+Applications for Round 2 are now open!
 
 <!-- _Applications are now closed. Those who have applied will hear from us soon. Thank you!_ -->
 
-<!--
-
-Please submit an application using the forms below.
+Please submit an application using the forms below before November 1<sup>st</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<p class="text-center"><a href="https://forms.gle/aa5CHkR6YARf92kb6" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
-
-> _Button opens a Google Forms application form in a new window_
-
--->
+<p class="text-center"><a href="https://forms.gle/oXgDDwGPUHV6nMYk8" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
