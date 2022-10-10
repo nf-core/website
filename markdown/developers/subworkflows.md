@@ -270,7 +270,26 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-<!-- TODO:  FILL THIS SECTION OUT! -->
+1. Subworkflows should combine tools that make up a logical unit in an analysis step. .... how many tools are appropriate?
+
+2. Each `module` emits a channel containing `versions.yml` collecting the tool(s) versions. They MUST be collected within the workflow and added to the output as `versions` :
+
+```bash
+
+take:
+  input
+
+main:
+
+  ch_versions = Channel.empty()
+
+  FASTQC(input)
+
+  ch_versions = ch_versions.mix(FASTQC.out.versions())
+
+emit:
+  versions = ch_versions
+```
 
 ### Naming conventions
 
