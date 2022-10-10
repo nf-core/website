@@ -275,11 +275,9 @@ Instructions for finding us:
 
 Video of walking to the hackathon rooms:
 
-<videocontrols>
+<video controls width="350">
   <source src="/assets/markdown_assets/events/2022/hackathon-october-2022/agbar_video_hackathon.mp4" type="video/mp4">
-</videocontrols>
-
-![Eixample]()
+</video>
 
 # Community Streaming Events
 
