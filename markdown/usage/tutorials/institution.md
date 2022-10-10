@@ -16,7 +16,7 @@ In case you couldn't find your organization / group of contributors on the [comm
    - `description:` (see YAML for the examples)
    - `address:` Postal Address
    - `url:` Institution URL
-   - `affiliation:` Affiliation: could be the subunit of your institution where you are belonging to (if _Fancy University_ is the Institution, then Affilation would be the _McFancyDepartment_)
+   - `affiliation:` Affiliation: could be the subunit of your institution where you are belonging to (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
    - `affiliation_url:` Affiliation URL
    - `image_fn:` filename with the logo (see below)
    - `contact`: Your Name
