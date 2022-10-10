@@ -50,7 +50,7 @@ These topics are specifically discussed in the `#new-pipelines` channel:
 ## Create a pipeline from the template
 
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
-Only when it's ready do we move ito the nf-core GitHub organisation.
+Only when it's ready do we move it to the nf-core GitHub organisation.
 
 It's _highly_ recommended to use the nf-core template.
 The guidelines for nf-core pipelines are pretty strict, but if you start your pipeline by using the
@@ -242,7 +242,7 @@ Common things that are flagged at this point are:
 - Good documentation, especially describing the output files and all parameters
 - Pipeline code
 
-We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipelin release. You can also ping people from the nf-core core team to review your pipelin code by `@`ing them.
+We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipeline release. You can also ping people from the nf-core core team to review your pipeline code by `@`ing them.
 
 ### Making the release
 
@@ -308,7 +308,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `CODE_OF_CONDUCT.md`: The nf-core code of conduct.
 
-- `CITATIONS.md`: All citations needed when using the pipelin
+- `CITATIONS.md`: All citations needed when using the pipeline
 
 - `.gitattributes`: Git settings, primarily getting the `.config` files to render with Nextflow syntax highlighting on <github.com>
 
@@ -328,7 +328,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `bin/`: Directory for scripts that must be directly accessible within a pipeline process. Anything in this directory can be directly called from within Nextflow processes.
 
-- `conf/`: Configuration files, including a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionaly, most pipelines also have a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
+- `conf/`: Configuration files, including a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionally, most pipelines also have a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
 
 - `docs/`: Markdown files for documenting the pipeline
 
