@@ -1,5 +1,249 @@
 <?php
 //
+// ---------------------------
+// GitHub shows traffic in the form of repo views and clones, however
+// the data is only available for two weeks.
+// We want it forever! So this script scrapes and saves the data.
+// It is intended to be run routinely using a cronjob
+//
+// Manual usage: on command line, simply execute this script:
+//   $ php update_stats.php
+
+// Allow PHP fopen to work with remote links
+ini_set('allow_url_fopen', 1);
+
+echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
+$config = parse_ini_file('config.ini');
+$gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
+$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+
+if ($conn === false) {
+    die('ERROR: Could not connect. ' . mysqli_connect_error());
+}
+
+// get all pipelines
+$sql = 'SELECT * FROM nfcore_pipelines WHERE pipeline_type = "pipelines"';
+$pipelines = [];
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        $pipelines = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        // Free result set
+        mysqli_free_result($result);
+    }
+}
+
+function github_query($gh_query_url) {
+    global $config;
+    $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
+
+    // HTTP header to use on GitHub API GET requests
+    $gh_api_opts = stream_context_create([
+        'http' => [
+            'method' => 'GET',
+            'header' => ['User-Agent: PHP', "Authorization: Basic $gh_auth"],
+        ],
+    ]);
+
+    $first_page = true;
+    $next_page = false;
+    $res = [];
+    while ($first_page || $next_page) {
+        // reset loop vars
+        $first_page = false;
+        // Get GitHub API results
+        if ($next_page) {
+            $gh_query_url = $next_page;
+        }
+        $tmp_results = json_decode(file_get_contents($gh_query_url, false, $gh_api_opts), true);
+        // If the data hasn't been cached when you query a repository's statistics, you'll receive a 202 response;
+        // a background job is also fired to start compiling these statistics.
+        // Give the job a few moments to complete, and then submit the request again
+        if (strpos($http_response_header[0], 'HTTP/1.1 202') !== false) {
+            echo "\nWaiting for GitHub API to return results for $gh_query_url";
+            sleep(10);
+            $first_page = true;
+            continue;
+        }
+        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
+            var_dump($http_response_header);
+            echo "\nCould not fetch $gh_query_url";
+            continue;
+        }
+        if (substr($gh_query_url, 0, 29) == 'https://api.github.com/repos/') {
+            $res = $tmp_results;
+        } else {
+            array_push($res, ...$tmp_results);
+        }
+        // Look for URL to next page of API results
+        $next_page = false;
+        $m_array = preg_grep('/rel="next"/', $http_response_header);
+        if (count($m_array) > 0) {
+            preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
+            if (isset($matches[1])) {
+                $next_page = $matches[1];
+            }
+        }
+    }
+    return $res;
+}
+
+if (!mysqli_query($conn, $sql)) {
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+}
+// create github_pipeline_contrib_stats table with foreign keys to pipelines
+$sql = "CREATE TABLE IF NOT EXISTS github_pipeline_contrib_stats (
+        id             INT             AUTO_INCREMENT PRIMARY KEY,
+        pipeline_id    INT             NOT NULL,
+        author         VARCHAR(255)    NOT NULL,
+        avatar_url     VARCHAR(255)    NOT NULL,
+        week_date      datetime        NOT NULL,
+        week_additions INT             NOT NULL,
+        week_deletions INT             NOT NULL,
+        week_commits   INT             NOT NULL,
+        FOREIGN KEY (pipeline_id)   REFERENCES nfcore_pipelines(id)
+        )";
+if (mysqli_query($conn, $sql)) {
+    echo "`github_pipeline_contrib_stats` table created successfully.\n";
+} else {
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+}
+
+// Prepare an insert statement
+$sql =
+    'INSERT INTO github_pipeline_contrib_stats (pipeline_id, author, avatar_url, week_date, week_additions, week_deletions, week_commits) VALUES (?, ?, ?, ?, ?, ?, ?)';
+
+if ($stmt = mysqli_prepare($conn, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param(
+        $stmt,
+        'isssiii',
+        $pipeline_id,
+        $author,
+        $avatar_url,
+        $week_date,
+        $week_additions,
+        $week_deletions,
+        $week_commits,
+    );
+    foreach ($pipelines as $idx => $pipeline) {
+        // get contributors
+        $gh_contributors = github_query(
+            'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/stats/contributors',
+        );
+        foreach ($gh_contributors as $contributor) {
+            $pipeline_id = $pipeline['id'];
+            $author = $contributor['author']['login'];
+            $avatar_url = $contributor['author']['avatar_url'];
+            foreach ($contributor['weeks'] as $week) {
+                $week_date = date('Y-m-d', $week['w']);
+                //check if entry for this pipeline_id and week_date already exists and skip if so
+                $check =
+                    "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
+                    $pipeline_id .
+                    "' AND author = '" .
+                    $author .
+                    "' AND week_date = '" .
+                    $week_date .
+                    "'";
+                $res = mysqli_query($conn, $check);
+                if ($res->num_rows) {
+                    continue;
+                } else {
+                    $week_additions = $week['a'];
+                    $week_deletions = $week['d'];
+                    $week_commits = $week['c'];
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+                    }
+                }
+            }
+        }
+    }
+} else {
+    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+}
+
+if (!mysqli_query($conn, $sql)) {
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+}
+// create github_traffic_stats table with foreign keys to pipelines
+$sql = "CREATE TABLE IF NOT EXISTS github_traffic_stats (
+            id             INT             AUTO_INCREMENT PRIMARY KEY,
+            pipeline_id    INT             NOT NULL,
+            views          INT             DEFAULT NULL,
+            views_uniques  INT             DEFAULT NULL,
+            clones         INT             DEFAULT NULL,
+            clones_uniques INT             DEFAULT NULL,
+            timestamp      datetime        NOT NULL,
+            FOREIGN KEY (pipeline_id)   REFERENCES nfcore_pipelines(id)
+            )";
+if (mysqli_query($conn, $sql)) {
+    echo "`github_traffic_stats` table created successfully.\n";
+} else {
+    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+}
+
+// Prepare an insert statement
+$sql =
+    'INSERT INTO github_traffic_stats ( pipeline_id,views,views_uniques,clones,clones_uniques,timestamp) VALUES (?,?,?,?,?,?)';
+
+if ($stmt = mysqli_prepare($conn, $sql)) {
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, 'iiiiis', $pipeline_id, $views, $views_uniques, $clones, $clones_uniques, $timestamp);
+
+    foreach ($pipelines as $idx => $pipeline) {
+        $gh_views = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/views');
+        $gh_clones = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/clones');
+        foreach ($gh_views['views'] as $gh_view) {
+            $timestamp = date('Y-m-d H:i:s', strtotime($gh_view['timestamp']));
+            $check =
+                "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
+                $pipeline['id'] .
+                "' AND timestamp = '" .
+                $timestamp .
+                "'";
+            $res = mysqli_query($conn, $check);
+            if ($res->num_rows) {
+                echo "\n Entry already exists for pipeline_id " .
+                    $pipeline['id'] .
+                    ' and timestamp ' .
+                    $timestamp .
+                    ' db_timestamp ';
+                continue;
+            } else {
+                // get gh_clones where timestamp matches
+                foreach ($gh_clones['clones'] as $gh_clone) {
+                    if ($gh_clone['timestamp'] == $gh_view['timestamp']) {
+                        $gh_clones_count = $gh_clone['count'];
+                        $gh_clones_unique = $gh_clone['uniques'];
+                        break;
+                    }
+                }
+                $pipeline_id = $pipeline['id'];
+                $views = $gh_view['count'];
+                $views_uniques = $gh_view['uniques'];
+                $clones = $gh_clones_count;
+                $clones_uniques = $gh_clones_unique;
+
+                if (!mysqli_stmt_execute($stmt)) {
+                    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+                }
+            }
+        }
+    }
+} else {
+    echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
+}
+mysqli_close($conn);
+echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
+
+###########################################################################################################
+#                                                                                                         #
+#                                              🕱 OLD CODE 🕱                                              #
+#                                                                                                         #
+###########################################################################################################
+
+//
 // nfcore_stats.json
 // ---------------------------
 // GitHub shows traffic in the form of repo views and clones, however
@@ -63,7 +307,7 @@ $gh_api_opts = stream_context_create([
 ]);
 
 // Load details of the pipelines
-$pipelines_json = json_decode(file_get_contents('public_html/pipelines.json'));
+$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) . '/public_html/pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 $contribs_try_again = [];
 
