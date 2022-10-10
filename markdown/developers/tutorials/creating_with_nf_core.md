@@ -543,7 +543,7 @@ sample2_R1.fastq.gz sample2_R2.fastq.gz
 
 You can now `include` the same process as many times as you like in the pipeline which is one of the primary strengths of the Nextflow DSL2 syntax:
 
-```
+```bash
 include { ECHO_READS as ECHO_READS_ONCE } from '../modules/local/echo_reads'
 include { ECHO_READS as ECHO_READS_TWICE } from '../modules/local/echo_reads'
 ```
@@ -674,7 +674,67 @@ INFO     Installing 'fastp'                                                     
 INFO     Include statement: include { FASTP } from '../modules/nf-core/fastp/main'                                                                        install.py:137
 ```
 
-Let's install the `FASTP` module into the pipeline and inspect the main script for the module. The first input channel looks exactly the same as for the `FASTQC` module which we already now is working from the tests. We can copy the `include` statement printed whilst installing the pipeline and paste it in `workflows/demo.nf`.
+Let's install the `FASTP` module into the pipeline and fetch it's key information including input and output channel definitions:
+
+```bash
+$ nf-core modules info fastp
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.6 - https://nf-co.re
+
+
+╭─ Module: fastp  ────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ 🌐 Repository: https://github.com/nf-core/modules.git                                                                   │
+│ 🔧 Tools: fastp                                                                                                         │
+│ 📖 Description: Perform adapter/quality trimming on sequencing reads                                                    │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                              ╷                                                                                   ╷
+ 📥 Inputs                    │Description                                                                        │Pattern
+╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━╸
+  meta  (map)                 │Groovy Map containing sample information. Use 'single_end: true' to specify single │
+                              │ended or interleaved FASTQs. Use 'single_end: false' for paired-end reads. e.g. [  │
+                              │id:'test', single_end:false ]                                                      │
+╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼───────╴
+  reads  (file)               │List of input FastQ files of size 1 and 2 for single-end and paired-end data,      │
+                              │respectively. If you wish to run interleaved paired-end data,  supply as single-end│
+                              │data but with --interleaved_in in your modules.conf's ext.args for the module.     │
+╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼───────╴
+  save_trimmed_fail  (boolean)│Specify true to save files that failed to pass trimming thresholds ending in       │
+                              │*.fail.fastq.gz                                                                    │
+╶─────────────────────────────┼──────────────────────────────────────────────────────────────���────────────────────┼───────╴
+  save_merged  (boolean)      │Specify true to save all merged reads to the a file ending in *.merged.fastq.gz    │
+                              ╵                                                                                   ╵
+                      ╷                                                                               ╷
+ 📤 Outputs           │Description                                                                    │            Pattern
+╺━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━╸
+  meta  (map)         │Groovy Map containing sample information e.g. [ id:'test', single_end:false ]  │
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  reads  (file)       │The trimmed/modified/unmerged fastq reads                                      │    *fastp.fastq.gz
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  json  (file)        │Results in JSON format                                                         │             *.json
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  html  (file)        │Results in HTML format                                                         │             *.html
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  log  (file)         │fastq log file                                                                 │              *.log
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  versions  (file)    │File containing software versions                                              │       versions.yml
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  reads_fail  (file)  │Reads the failed the preprocessing                                             │     *fail.fastq.gz
+╶─────────────────────┼───────────────────────────────────────────────────────────────────────────────┼───────────────────╴
+  reads_merged  (file)│Reads that were successfully merged                                            │*.{merged.fastq.gz}
+                      ╵                                                                               ╵
+
+ 💻  Installation command: nf-core modules install fastp
+
+gitpod /workspace/nf-core-demo (master) $
+```
+
+If we inspect the main script for the `FASTP` module the first input channel looks exactly the same as for the `FASTQC` module which we already know is working from the tests. We can copy the `include` statement printed whilst installing the pipeline and paste it in `workflows/demo.nf`.
 
 We now just need to call the `FASTP` process in the main `workflow`. Paste the snippet below just after the call to `ECHO_READS_TWICE`.
 
@@ -873,7 +933,7 @@ and the path to this `patch` file is added to `modules.json`:
                     },
 ```
 
-### Lint a module
+### Lint all modules
 
 As well as the pipeline template you can lint individual or all modules with a single command:
 
