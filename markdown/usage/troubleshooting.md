@@ -227,13 +227,13 @@ A few examples are as follows:
   nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
   ```
 
-- Running multiple single-end FASTQ files as input using a wildcard glob pattern. This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples (and will produce output files for each of the multiple input files).
+- Running multiple single-end FASTQ files as input using a wildcard glob pattern. This will find all files in the directory beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two strings being considered distinct samples (and will produce output files for each of the multiple input files).
 
   ```bash
   nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
   ```
 
-- Running multiple paired-end FASTQ files as input using wildcard and grouping glob patterns . This will find any file beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two string being considered distinct samples. However, any pair of files names that are exactly the same other than `R1` and `R2`, will be grouped together. i.e. the R1 and R2 (and the rest of the string being the same) files will be processed together as related files (you will get in most cases output files for each distinct file, but with the R1 and R2 files collapsed into one).
+- Running multiple paired-end FASTQ files as input using wildcard and grouping glob patterns. This will find all files in the directory beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two strings being considered distinct samples. However, any pair of file names that are exactly the same other than `R1` and `R2` will be grouped together, and processed as related files. You will in most cases get output files for each distinct file, but with the `*{R1,R2}` syntax, R1 and R2 pairs are collapsed into one.
 
   ```bash
   nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
