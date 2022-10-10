@@ -208,7 +208,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665397800" data-timeformat="HH:mm z">12:30</td>
-                <td rowspan="1">Welcome talk</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/rmlAZPS6stw"><i class="fa-brands fa-youtube me-2"></i>Welcome talk</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665399600" data-timeformat="HH:mm z">13:00</td>
@@ -220,7 +222,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
                 <td data-timestamp="1665403200" data-timeformat="HH:mm z">14:00</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="1">Wrap-up talk</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/Qf_uVuxgX_A"><i class="fa-brands fa-youtube me-2"></i>Wrap-up talk</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665406800" data-timeformat="HH:mm z">15:00</td>
@@ -234,8 +238,12 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665417600" data-timeformat="HH:mm z">18:00</td>
-                <td rowspan="1">Summary of the day</td>
-                <td rowspan="1">Summary of the day</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/JXegFdAG0uQ"><i class="fa-brands fa-youtube me-2"></i>Summary of the day</a>
+                </td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/8s1o5QxKwDo"><i class="fa-brands fa-youtube me-2"></i>Summary of the day</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665421200" data-timeformat="HH:mm z">19:00</td>
