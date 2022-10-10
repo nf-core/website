@@ -162,9 +162,9 @@ In some cases, when testing configuration files on clusters using a scheduler, y
 
 In such cases, a good way of debugging such a failed job is to change to the working directory of the failed process (which should be reported by Nextflow), and try to _manually_ submit the job.
 
-You can do this by submitting to your cluster the `.command.run` file found in the working directory using the relevent submission command.
+You can do this by submitting to your cluster the `.command.run` file found in the working directory using the relevant submission command.
 
-For example, lets say you get an error like this on a SLURM cluster.
+For example, let's say you get an error like this on a SLURM cluster.
 
 ```console
 Caused by:
@@ -435,11 +435,11 @@ While Nextflow tries to make your life easier by automatically retrying jobs tha
 
 To fix this you need to change the default memory requirements for the process that is breaking. We can do this by making a custom profile, which we then provide to the Nextflow run command.
 
-For example, lets say it's the `markduplicates` process that is running out of memory (as displayed on the Nextflow running display).
+For example, let's say it's the `markduplicates` process that is running out of memory (as displayed on the Nextflow running display).
 
-- First we need to check to see what default memory value we have. Go to the main code of the pipeline by going to the corresponding pipeline GitHub repository and open the `main.nf` file. Use your browser's find functionality for: `process markduplicates`.
+- First we need to check to see what default memory value we have. Go to the main code of the pipeline by going to the corresponding pipeline GitHub repository and open the `main.nf` file. Search in your browser for `process markduplicates`.
 - Once found, check the line called `label` and note down the corresponding label. In this case the label could be `process_low`.
-- Go back to the main github repository, and open `conf/base.config`. Again use the browser;s find functionality to search for: `withLabel:'process_low'`.
+- Go back to the main github repository, and open `conf/base.config`. Now, search in your browser for `withLabel:'process_low'`.
 - Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
 - Back on your working machine, make a new text file called `custom_resources.conf`. This should be saved somewhere centrally so you can reuse it.
   > If you think this would be useful for multiple people in your lab/institute, we highly recommend you make an institutional profile at [nf-core/configs](https://github.com/nf-core/configs). This will simplify this process in the future.
