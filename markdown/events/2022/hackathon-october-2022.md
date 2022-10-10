@@ -234,6 +234,38 @@ We will be a lot of people working in parallel during this hackathon, so to stay
     </table>
 </div>
 
+# Venue: Torre Glòries
+
+The in-person hackathon will be taking place in Torre Glòries, Barcelona.
+
+[👉🏻 Google Maps 🗺️](https://goo.gl/maps/f437pZnbeZpyYSdHA)
+
+Instructions for finding us:
+
+1. Use the entrance with the green carpet and a Summit poster
+2. Find either Lift 7 or Lift 8 _(only these lifts!)_
+3. Floor 25
+4. Turn left and follow the corridor around past the coffee machine
+5. We are in rooms:
+   - Eixample (41 people)
+   - Tibidabo (14 people)
+   - La Barceloneta (6 people)
+6. Hack!
+
+| Room name      | Door                                                                                              | Inside                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Eixample       | ![Eixample](/assets/markdown_assets/events/2022/hackathon-october-2022/eixample.jpeg)             | ![Eixample inside](/assets/markdown_assets/events/2022/hackathon-october-2022/eixample_inside.jpeg)             |
+| Tibidabo       | ![Tibidabo](/assets/markdown_assets/events/2022/hackathon-october-2022/tibidabo.jpeg)             | ![Tibidabo inside](/assets/markdown_assets/events/2022/hackathon-october-2022/tibidabo_inside.jpeg)             |
+| La Barceloneta | ![La Barceloneta](/assets/markdown_assets/events/2022/hackathon-october-2022/la_barceloneta.jpeg) | ![La Barceloneta inside](/assets/markdown_assets/events/2022/hackathon-october-2022/la_barceloneta_inside.jpeg) |
+
+Video of walking to the hackathon rooms:
+
+<videocontrols>
+  <source src="/assets/markdown_assets/events/2022/hackathon-october-2022/agbar_video_hackathon.mp4" type="video/mp4">
+</videocontrols>
+
+![Eixample]()
+
 # Community Streaming Events
 
 Community streaming events are a great way to engage with your local communities while participating in events remotely. By simply booking a room and gathering your colleagues you can create discussion and build your community while enjoying the training, nf-core Hackathon, and/or Nextflow Summit together.
