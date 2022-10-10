@@ -260,7 +260,7 @@ Once you<span class="x x-first x-last"> are </span>familiar with the subworkflow
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-<div class="ratio ratio-16x9">
+<div class="ratio ratio-16x9 pb-3">
      <iframe src="https://widgets.figshare.com/articles/16825369/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
 </div>
 
@@ -270,7 +270,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-FILL THIS SECTION OUT!
+<!-- TODO:  FILL THIS SECTION OUT! -->
 
 ### Naming conventions
 
@@ -308,7 +308,7 @@ For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fas
 
 If the subworkflow absolutely cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the `test.yml`. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/ascat/test.yml)):
 
-```console
+```bash
 nextflow run tests/subworkflows/nf-core/<name_of_subworkflow> -entry test_<name_of_subworkflow> -c tests/config/nextflow.config -stub-run
 ```
 
