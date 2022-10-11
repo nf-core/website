@@ -13,7 +13,7 @@ See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installati
 
 ### Typical installation
 
-Nextflow runs on most POSIX systems (Linux, Mac OSX, etc) and can typically be installed by running these commands:
+Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
 
 ```console
 # Make sure that Java v8+ is installed:
