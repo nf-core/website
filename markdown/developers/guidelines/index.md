@@ -33,7 +33,7 @@ All nf-core pipelines _must_ follow the following guidelines:
 - [Workflow size](requirements/workflow_size.md): Not too big, not too small.
 - [Workflow name](requirements/workflow_name.md): Names should be lower case and without punctuation.
 - [Use the template](requirements/use_the_template.md): All nf-core pipelines must be built using the nf-core template.
-- [Software license](requirements/mit_licence.md): Pipelines must open source, released with the MIT license.
+- [Software license](requirements/mit_license.md): Pipelines must open source, released with the MIT license.
 - [Bundled documentation](requirements/docs.md): Pipeline documentation must be hosted on the nf-core website.
 - [Docker support](requirements/docker.md): Software must be bundled using Docker and versioned.
 - [Continuous integration testing](requirements/ci_testing.md): Pipelines must run CI tests.
