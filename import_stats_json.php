@@ -12,7 +12,7 @@ if ($conn === false) {
 }
 
 // get all pipelines
-$sql = 'SELECT * FROM nfcore_pipelines WHERE pipeline_type = "pipelines"';
+$sql = 'SELECT * FROM nfcore_pipelines';
 $pipelines = [];
 if ($result = mysqli_query($conn, $sql)) {
     if (mysqli_num_rows($result) > 0) {
@@ -38,33 +38,35 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 
     foreach ($pipelines as $idx => $pipeline) {
         $gh_views = $stats_json['pipelines'][$pipeline['name']]['views_count'];
-        foreach ($gh_views as $timestamp_raw => $views_count) {
-            $timestamp = date('Y-m-d H:i:s', strtotime($timestamp_raw));
-            $check =
-                "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
-                $pipeline['id'] .
-                "' AND timestamp = " .
-                $timestamp;
-            $res = mysqli_query($conn, $check);
-            if ($res->num_rows) {
-                echo 'Entry for pipeline ' .
-                    $pipeline['bane'] .
-                    ' and timestamp ' .
-                    $timestamp .
-                    " already exists. Skipping.\n";
-                continue;
-            } else {
-                $pipeline_id = $pipeline['id'];
-                $views = $views_count;
-                $views_uniques = $stats_json['pipelines'][$pipeline['name']]['views_uniques'][$timestamp_raw];
-                $clones = $stats_json['pipelines'][$pipeline['name']]['clones_count'][$timestamp_raw];
-                $clones_uniques = $stats_json['pipelines'][$pipeline['name']]['clones_uniques'][$timestamp_raw];
+        if($gh_views){
+            foreach ($gh_views as $timestamp_raw => $views_count) {
+                $timestamp = date('Y-m-d H:i:s', strtotime($timestamp_raw));
+                $check =
+                    "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
+                    $pipeline['id'] .
+                    "' AND timestamp = '" .
+                    $timestamp . "'";
+                $res = mysqli_query($conn, $check);
+                if ($res->num_rows) {
+                    echo 'Entry for pipeline ' .
+                        $pipeline['bane'] .
+                        " and timestamp '" .
+                        $timestamp .
+                        "' already exists. Skipping.\n";
+                    continue;
+                } else {
+                    $pipeline_id = $pipeline['id'];
+                    $views = $views_count;
+                    $views_uniques = $stats_json['pipelines'][$pipeline['name']]['views_uniques'][$timestamp_raw];
+                    $clones = $stats_json['pipelines'][$pipeline['name']]['clones_count'][$timestamp_raw];
+                    $clones_uniques = $stats_json['pipelines'][$pipeline['name']]['clones_uniques'][$timestamp_raw];
 
-                if (!mysqli_stmt_execute($stmt)) {
-                    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+                    }
                 }
             }
-        }
+    }
     }
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
