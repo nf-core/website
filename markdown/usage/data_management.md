@@ -25,7 +25,13 @@ Archiving is often the responsibility of your host institution, contact them for
 
 ### Data compression
 
-Some tools require compressed input files, which have many advantages: they take less space for storage and sharing. The most frequent format is gzip; it is accepted by many tools which you can check in tool manuals. Sometimes gbzip format is needed, for instance for alignment files. Read a more detailed explanation on which format to choose [here](https://www.uppmax.uu.se/support/faq/resources-faq/which-compression-format-should-i-use-for-ngs-related-files/).
+Some tools require compressed input files, which have many advantages: they take less space for storage and sharing. The most frequent format is gzip; it is accepted by many tools which you can check in tool manuals. To compress a file, you can use [bzip2](https://sourceware.org/bzip2/) which creates a non-blocked compressed file. If a tool only accepts uncompressed file input, you can uncompress the file and parse it via a pipe to the tool without saving the compressed version of the input. Here is an example: 
+```# uncompressing a file on the fly to use it as input to tool
+gzip input | TOOL > output
+```
+If a tool requires a blocked compressed file (BGZP), in which the information is more easily accessible than a non-blocked compression format, you can use the [htslib/bgzip](http://www.htslib.org/doc/bgzip.html) tool. This is typically needed by SAMTOOLS during sequence alignment analyses.
+
+Read a more detailed explanation on which format to choose [here](https://www.uppmax.uu.se/support/faq/resources-faq/which-compression-format-should-i-use-for-ngs-related-files/).
 
 ## Data sharing
 
