@@ -202,7 +202,7 @@ These automated tests allow us to maintain code quality in a scalable and standa
 
 In some special cases (especially using the nf-core template outside of the nf-core community) you may find that you want to ignore certain linting failures.
 
-To do so, edit `.nf-core.yml` in the root of the repositry.
+To do so, edit `.nf-core.yml` in the root of the repository.
 For example, to ignore the tests triggering warnings in the example above, you can add:
 
 ```yml
