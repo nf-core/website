@@ -31,5 +31,5 @@ You can learn more about `pytest` in [this nf-core bytesize talk](https://nf-co.
 Once you are in the environment, try running an example pytest for an existing module:
 
 ```bash
-PROFILE=docker pytest --tag <module_name> --symlink --keep-workflow-wd --git-aware 
+PROFILE=docker pytest --tag <module_name> --symlink --keep-workflow-wd --git-aware
 ```
