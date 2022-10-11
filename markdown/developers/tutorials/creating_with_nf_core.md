@@ -105,6 +105,104 @@ Although you can provide options on the command line, it's easiest to use the in
 
 Follow the instructions and you should see a new pipeline appear in your file explorer.
 
+The nf-core create command will give you a nice template that further allows you to [develop your pipelines according to nf-core sync rules](https://nf-co.re/developers/sync).
+
+
+```
+nf-core-demo
+|
+|
+|
+|____assets
+|    |  adaptivecard.json
+|    |  email.template.html
+|    |  methods_description_template.yml
+|    |  multiqc_config.yml
+|    |  samplesheet.csv
+|    |  schema_input.json
+|    |  send_mail_template.txt
+|    
+|____bin
+|    |check_samplesheet.py
+|
+|____conf
+|    |  base.config
+|    |  igenome.config
+|    |  modules.config  
+|    |  test.config
+|    |  test_full.config
+|
+|____docs
+|    |
+|    |___images
+|    |   |  mqc_fastqc_adapter.png
+|    |   |  mqc_fastqc_count.png
+|    |   |  mqc_fastqc_quality.png
+|    |
+|    |  output.md
+|    |  README.md
+|    |  usage.md
+|
+|____lib   
+|    |  nfcore_external_java_deps.jar
+|    |  NfcoreSchema.groovy
+|    |  NfcoreTemplate.groovy
+|    |  Utils.grrovy
+|    |  WorkflowMain.groovy
+|    |  WorkflowRnaseq.groovy
+|
+|____modules
+|    |___local
+|    |   |  samplesheet_check.nf
+|    |   
+|    |___nfcore  
+|        |___custom
+|        |   |___dumpsoftwareversions
+|        |       |___templates
+|        |       |   |dumpsoftwareversions.py
+|        |       |  
+|        |       |  main.nf
+|        |       |  meta.yml
+|        |   
+|        |___fastqc
+|        |   |  main.nf
+|        |   |  meta.yml
+|        |   
+|        |___multiqc   
+|           | main.nf
+|           | meta.yml
+|  
+|____subworkflows
+|    |___local
+|        |  input_check.nf
+|        
+|____workflows
+|    |  rnaseq.nf
+|
+|____.git
+|    |  ...
+|____.github    
+|    |  ...
+|
+|____CHANGELOG.md
+|____CITATION.cff
+|____CITATIONS.md
+|____LICENSE
+|____main.nf
+|____modules.json
+|____nextflow.config
+|____nextflow_schema.json
+|____pyproject.toml
+|____README.md
+|____.editorconfig
+|____.gitattributes
+|____.gitignore
+|____.gitpod.yml
+|____.nf-core.yml
+|____.prittierignore
+|____.prettierrc.yml
+```
+
 Let's move into the new pipeline directory in the terminal:
 
 ```bash
