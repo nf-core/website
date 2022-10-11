@@ -246,7 +246,7 @@ include '../includes/header.php';
                         }
                         if ($tool_value['licence'] != '') {
                             $tool_text .=
-                                '<span class="badge bg-secondary text-white">Licence: ' .
+                                '<span class="badge bg-secondary text-white">License: ' .
                                 implode(', ', $tool_value['licence']) .
                                 '</span>';
                         }
