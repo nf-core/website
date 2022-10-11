@@ -154,6 +154,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $check =
                     "SELECT * FROM github_contrib_stats WHERE pipeline_id = '" .
                     $pipeline_id .
+                    "' AND author = '" .
+                    $author .
                     "' AND week_date = '" .
                     $week_date .
                     "'";
@@ -245,7 +247,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
-
+mysqli_close($conn);
 echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
 
 ###########################################################################################################
@@ -318,7 +320,7 @@ $gh_api_opts = stream_context_create([
 ]);
 
 // Load details of the pipelines
-$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) .'/public_html/pipelines.json'));
+$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) . '/public_html/pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 $contribs_try_again = [];
 
