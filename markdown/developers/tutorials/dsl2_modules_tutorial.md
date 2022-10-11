@@ -260,7 +260,7 @@ Now that you've completed code development, you are ready to check if your code 
 This can also be done easily using _nf-core tools_ just by changing folder into the parent _modules_ directory and typing the command
 
 ```bash
-nf-core modules lint --tool fgbio/fastqtobam .
+nf-core modules lint fgbio/fastqtobam -d modules
 ```
 
 You will expect no test failed, as shown in figure below:
