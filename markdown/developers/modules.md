@@ -584,7 +584,7 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 
 ### Publishing results
 
-Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This system has been replaced using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
+Results are published using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) directive defined in the `modules.config` of a workflow (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for an example.) Results were earlier published using a custom `publishDir` definition, using a Groovy Map defined by `params.modules`.
 
 ### Test data config file
 
