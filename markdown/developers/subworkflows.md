@@ -27,7 +27,7 @@ What DSL1 users would consider an end-to-end pipeline. For example, from one or 
 
 TODO: nf-core: This tutorial doesn't exist yet
 
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module! -->
+See the [dsl2 subworkflow tutorial](tutorials/dsl2_subworkflows_tutorial) for a step by step guide for how to add a module! -->
 
 ### Before you start
 
