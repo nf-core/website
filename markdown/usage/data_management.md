@@ -48,5 +48,5 @@ If you are using a Linux system, you can generate md5 checksums using the `md5su
 
 #### Choosing a license
 
-To ascertain re-usability data should be released with a clear and accessible data usage license. We suggest making your data available under licences that permit free reuse of data, e.g. a Creative Commons licence, such as CC0 or CC-BY. The [EUDAT licence selector wizard](https://ufal.github.io/public-license-selector/) can help you select suitable licences for your data.
+To ascertain re-usability data should be released with a clear and accessible data usage license. We suggest making your data available under licenses that permit free reuse of data, e.g. a Creative Commons license, such as CC0 or CC-BY. The [EUDAT license selector wizard](https://ufal.github.io/public-license-selector/) can help you select suitable licenses for your data.
 Note that sequence data submitted to [ENA](https://www.ebi.ac.uk/ena)/[GenBank](https://www.ncbi.nlm.nih.gov/genbank/)/[DDBJ](https://www.ddbj.nig.ac.jp/index-e.html) are implicitly free to reuse by others as specified in the [INCD Standards and policies](https://www.ebi.ac.uk/ena/standards-and-policies).
