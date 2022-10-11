@@ -30,7 +30,7 @@ Then click sync changes. You should have now pushed the new files to your new br
 
 If you don't wish to use Gitpod, you can still make changes to the website using the conventional command line git tools.
 
-Foir example, to make changes to a new branch for the nf-core website, you would use the following commands:
+For example, to make changes to a new branch for the nf-core website, you would use the following commands:
 
 ```bash
 git clone https://github.com/nf-core/nf-co.re.git

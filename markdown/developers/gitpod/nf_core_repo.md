@@ -5,7 +5,7 @@ subtitle: Creating a new module for the nf-core modules repository.
 
 ## Trying your first Gitpod environment
 
-You can run Gitpod with the any nf-core pipeline repository.
+You can run Gitpod with any nf-core pipeline repository.
 
 For example, for nf-core RNA-seq pipeline, simply click the green gitpod button or add the Gitpod prefix before the git URL (of `https://gitpod.io/#` ; to become: `https://gitpod.io/#https://github.com/nf-core/rnaseq`).
 
@@ -19,7 +19,7 @@ nextflow run nf-core/rnaseq \
 
 This should run the test data through nf-core rnaseq, using docker with your results in the folder: `my_result`. This will take some time to complete.
 
-Using this Gitpod method makes it easy to run and test nf-core pipelines quickly, but lacks the parallelization required to run real datasets.
+Using this Gitpod method makes it easy to run and test nf-core pipelines quickly, but it lacks the parallelization required to run real datasets.
 
 ## Testing your module with pytest
 
@@ -28,7 +28,7 @@ If you enter the [gitpod environment for modules](https://gitpod.io/#https://git
 
 You can learn more about `pytest` in [this nf-core bytesize talk](https://nf-co.re/events/2021/bytesize-17-pytest-workflow).
 
-Once you are in the environment, try runnning an example pytest for an exisiting module:
+Once you are in the environment, try running an example pytest for an existing module:
 
 ```bash
 PROFILE=docker pytest --tag <module_name> --symlink --keep-workflow-wd --git-aware
