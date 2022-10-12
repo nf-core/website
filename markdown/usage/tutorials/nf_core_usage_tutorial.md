@@ -33,7 +33,7 @@ Companion tools can create a bare-bones pipeline from a template scattered with 
 Guidelines and documentation help to get Nextflow newbies on their feet in no time.
 Best of all, the _nf-core_ community is always on hand to help.
 
-In this tutorial we discuss the best-practice guidelines developed by the _nf-core_ community, why they're important and give insight into the best tips and tricks for budding Nextflow pipeline users. ✨
+In this tutorial, we discuss the best-practice guidelines developed by the _nf-core_ community, why they're important and give insight into the best tips and tricks for budding Nextflow pipeline users. ✨
 
 ## Introduction
 
@@ -47,10 +47,10 @@ A suite of helper tools aim to help people run and develop pipelines.
 
 This tutorial attempts to give an overview of how _nf-core_ works:
 
-- what are the most commonly used _nf-core_ tools.
-- listing pipelines available in the _nf-core_ project.
-- how to run _nf-core_ pipelines.
-- how to troubleshoot _nf-core_ pipelines.
+- What are the most commonly used _nf-core_ tools.
+- Listing pipelines available in the _nf-core_ project.
+- How to run _nf-core_ pipelines.
+- How to troubleshoot _nf-core_ pipelines.
 
 ### Where to get help
 
@@ -117,7 +117,7 @@ If the pipeline has been pulled locally using Nextflow, it tells you when that w
 
 If you supply additional keywords after the command, the listed pipelines will be filtered.
 Note that this searches more than just the displayed output, including keywords and description text.
-The `--sort` flag allows you to sort the list (default is by most recently released) and `--json` gives JSON output for programmatic use.
+The `--sort` flag allows you to sort the list (default is by most recently released) and `--json` returns the complete list, without any filtering, in JSON output for programmatic use.
 
 The nf-core pipelines currently available and under development are also listed on the nf-core website, in the [pipelines page](https://nf-co.re/pipelines).
 
