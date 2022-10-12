@@ -37,6 +37,14 @@ conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
+A best practice with conda is to create an environment and install the tools in it.
+Therefore you will prevent version conflicts and keep everything clean.
+To do so use the following command:
+
+```console
+conda create --name env_nf
+conda activate env_nf
+```
 
 Then install Nextflow:
 
