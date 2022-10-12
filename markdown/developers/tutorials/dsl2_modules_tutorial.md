@@ -57,7 +57,7 @@ In order to create a new module, it is best to branch the code into a recognisab
 Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (_modules_) and we type
 
 ```bash
-nf-core modules create fgbio/fastqtobam
+nf-core modules create fgbio/demofastqtobam
 ```
 
 - The first word indicates the tool (i.e. the software or suite)
@@ -73,13 +73,12 @@ Nf-core tools will create a module for you. Follow the instructions on the comma
 * process_long
 * process_high_memory
 
-For now just select the default and continue. 
+For now just select the default and continue. In the next step you have the specify if you need a `meta map` with sample-specific information. Our test module will need a meta map, so select yes for the moment. If you want to now what exactly meta maps are check out the documentation [here](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map).
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
 ```console
-software/fgbio
-└── fastqtobam
-    ├── functions.nf
+modules/nf-core/fgbio
+└── demofastqtobam
     ├── main.nf
     └── meta.yml
 ```
@@ -87,10 +86,14 @@ software/fgbio
 And also the following for the testing of the module
 
 ```console
-tests/software/fgbio
-└── fastqtobam
+tests
+└── modules/fgbio/demofastqtobam
     ├── main.nf
-    └── test.yml
+    ├── test.yml
+    └── nextflow.config
+└── config
+    └── pytest_modules.yml
+
 ```
 
 Each of the files is pre-filled according to a defined nf-core template.
