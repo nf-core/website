@@ -112,6 +112,8 @@ conda install -c conda-forge prettier
 
 Or use the Visual Studio Code extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) also available in the pack of useful extension [NF-core](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack).
 
+Besides, you can also add a comment with @nf-core-bot fix linting in your Pull Request and prettier will be used to apply the required fixes to your code.
+
 ### Exercise 1 (installation)
 
 - Install nf-core/tools
