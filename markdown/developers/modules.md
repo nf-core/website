@@ -337,7 +337,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
    Mandatory command line arguments MUST be specified in long form where possible.
 
 `<module>.nf`:
@@ -584,7 +584,7 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 
 ### Publishing results
 
-Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This system has been replaced using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
+Results are published using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) directive defined in the `modules.config` of a workflow (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for an example.) Results were earlier published using a custom `publishDir` definition, using a Groovy Map defined by `params.modules`.
 
 ### Test data config file
 
