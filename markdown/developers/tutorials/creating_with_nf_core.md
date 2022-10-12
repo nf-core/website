@@ -107,7 +107,6 @@ Follow the instructions and you should see a new pipeline appear in your file ex
 
 The nf-core create command will give you a nice template that further allows you to [develop your pipelines according to nf-core sync rules](https://nf-co.re/developers/sync).
 
-
 ```
 nf-core-demo
 |
@@ -121,14 +120,14 @@ nf-core-demo
 |    |  samplesheet.csv
 |    |  schema_input.json
 |    |  send_mail_template.txt
-|    
+|
 |____bin
 |    |check_samplesheet.py
 |
 |____conf
 |    |  base.config
 |    |  igenome.config
-|    |  modules.config  
+|    |  modules.config
 |    |  test.config
 |    |  test_full.config
 |
@@ -143,7 +142,7 @@ nf-core-demo
 |    |  README.md
 |    |  usage.md
 |
-|____lib   
+|____lib
 |    |  nfcore_external_java_deps.jar
 |    |  NfcoreSchema.groovy
 |    |  NfcoreTemplate.groovy
@@ -154,34 +153,34 @@ nf-core-demo
 |____modules
 |    |___local
 |    |   |  samplesheet_check.nf
-|    |   
-|    |___nfcore  
+|    |
+|    |___nfcore
 |        |___custom
 |        |   |___dumpsoftwareversions
 |        |       |___templates
 |        |       |   |dumpsoftwareversions.py
-|        |       |  
+|        |       |
 |        |       |  main.nf
 |        |       |  meta.yml
-|        |   
+|        |
 |        |___fastqc
 |        |   |  main.nf
 |        |   |  meta.yml
-|        |   
-|        |___multiqc   
+|        |
+|        |___multiqc
 |           | main.nf
 |           | meta.yml
-|  
+|
 |____subworkflows
 |    |___local
 |        |  input_check.nf
-|        
+|
 |____workflows
 |    |  rnaseq.nf
 |
 |____.git
 |    |  ...
-|____.github    
+|____.github
 |    |  ...
 |
 |____CHANGELOG.md
