@@ -56,6 +56,11 @@ If you want to use the nf-core tools, then add the following:
 ```console
 conda install -c bioconda nf-core
 ```
+
+To exit the conda environment, run the following command:
+```console
+conda deactivate
+```
 ### Particularity for Windows system
 For Windows the installation procedure is more complex and is fully described on the [Nextflow website](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html).
 
