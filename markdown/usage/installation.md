@@ -40,11 +40,41 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
+A best practice with conda is to create an environment and install the tools in it.
+Therefore you will prevent version conflicts and keep everything clean.
+To do so use the following command:
+
+```console
+conda create --name env_nf
+conda activate env_nf
+```
+
 Then install Nextflow:
 
 ```console
-conda install nextflow
+conda install -c bioconda nextflow
 ```
+
+To deactivate the conda environment, run the following command:
+
+```console
+conda deactivate
+```
+
+If you want to develop your own pipelines or collaborate with others using the nf-core guidelines you will need the nf-core packages.
+Please follow the instructions [here](tutorials/nf_core_usage_tutorial.md)
+
+### Particularity for Windows
+
+For Windows the installation procedure is more complex and is fully described on the [Nextflow website](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html).
+
+The main steps will be the following:
+
+- Install Windows PowerShell
+- Configure the Windows Subsystem for Linux (WSL2)
+- Install a Linux distribution (on WSL2)
+
+The step to install Nextflow in itself will afterwards be the same as previously mentioned.
 
 ### Edge releases
 
