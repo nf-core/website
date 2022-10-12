@@ -64,7 +64,7 @@ conda deactivate
 If you want to develop your own pipelines or collaborate with others using the nf-core guidelines you will need the nf-core packages.
 Please follow the instructions [here](tutorials/nf_core_usage_tutorial.md)
 
-### Particularity for Windows system
+### Particularity for Windows
 
 For Windows the installation procedure is more complex and is fully described on the [Nextflow website](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html).
 
