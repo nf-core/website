@@ -70,7 +70,7 @@ Please see the [manual synchronisation](sync.md) documentation.
 
 ### Push to GitHub
 
-Create an empty repository on GitHub for your new pipeline under your personal account. 
+Create an empty repository on GitHub for your new pipeline under your personal account.
 Do this by going to the GitHub website and clicking + then _New Repository_.
 Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository. It will be populated after you push the template you created locally with all you need to start working on your pipeline.
 
