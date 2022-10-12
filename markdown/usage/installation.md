@@ -12,6 +12,7 @@ All nf-core pipelines use Nextflow, so this must be installed on the system wher
 See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
 
 ### Typical installation
+
 Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
 
 ```console
@@ -26,6 +27,7 @@ mv nextflow ~/bin/
 # OR system-wide installation:
 # sudo mv nextflow /usr/local/bin
 ```
+
 ### Bioconda installation
 
 You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
@@ -66,6 +68,7 @@ conda deactivate
 ```
 
 ### Particularity for Windows system
+
 For Windows the installation procedure is more complex and is fully described on the [Nextflow website](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html).
 
 The main steps will be the following:
@@ -75,6 +78,7 @@ The main steps will be the following:
 - Install a Linux distribution (on WSL2)
 
 The step to install Nextflow in itself will afterwards be the same as previously mentioned.
+
 ### Edge releases
 
 Stable releases will become less frequent as Nextflow shifts to a more dynamic development model with the use of plugins. This will allow functionality to be added as an extension to the core codebase with a release cycle that is potentially independent of Nextflow itself. As a result of the reduction in stable releases, some pipelines may require the use of Nextflow `edge` releases in order to exploit cutting "edge" features. For example, version 3.0 of the nf-core/rnaseq pipeline requires Nextflow `>=20.11.0-edge`, which allows Singularity containers to be downloaded over `http` (see [nf-core/rnaseq#496](https://github.com/nf-core/rnaseq/issues/496)).
