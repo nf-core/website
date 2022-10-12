@@ -13,7 +13,7 @@ Gitpod is free (with a GitHub/GitLab/Bitbucket account) for use up to 50hours/mo
 
 > Gitpod has kindly recognised nf-core as an open-source project, so if you are a member of the [nf-core GitHub organisation](https://github.com/nf-core/) (ask on Slack in the `#github-invitations` channel) then you will automatically be moved onto the _'Professional Open Source plan'_ with unlimited hours.
 
-Gitpod runs in your browser (recommended with Chrome, Firefox or Edge). Their website has [extensive documentation](https://www.gitpod.io/docs/introduction).
+Gitpod runs in your browser (recommended with Chrome, Firefox or Edge). Their website has [extensive documentation](https://www.gitpod.io/docs).
 
 Each nf-core repository (including the nf-core webpage) should have a ready-to-go Gitpod environment waiting to be started. Since this is a new nf-core feature, check for the `.gitpod.yml` file in the root of the repository.
 If it's there, you're ready to start using Gitpod.
