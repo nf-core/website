@@ -12,7 +12,7 @@ All files are released under various forms of 'open' licenses, meaning you can r
 
 ## Logo
 
-All information for the nf-core logo can be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos) and are released under the MIT licence.
+All information for the nf-core logo can be seen at the [nf-core/logos GitHub repository](https://github.com/nf-core/logos) and are released under the MIT license.
 
 | Type                         | Logo                                                                                                                                                 | Links                                                                                                                                                                                                                                                                                                                  |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
