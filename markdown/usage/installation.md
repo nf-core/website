@@ -55,7 +55,7 @@ Then install Nextflow:
 conda install -c bioconda nextflow
 ```
 
-To exit the conda environment, run the following command:
+To deactivate the conda environment, run the following command:
 
 ```console
 conda deactivate
