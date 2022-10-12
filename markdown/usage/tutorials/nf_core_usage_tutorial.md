@@ -114,6 +114,8 @@ Or use the Visual Studio Code extension [Prettier](https://marketplace.visualstu
 
 Besides, you can also add a comment with @nf-core-bot fix linting in your Pull Request and prettier will be used to apply the required fixes to your code.
 
+Besides, you can also add a comment with @nf-core-bot fix linting in your Pull Request and prettier will be used to apply the required fixes to your code.
+
 ### Exercise 1 (installation)
 
 - Install nf-core/tools
