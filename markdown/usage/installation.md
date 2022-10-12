@@ -12,7 +12,6 @@ All nf-core pipelines use Nextflow, so this must be present on the system where 
 See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed you will probably need to configure Nextflow to run on your system. For instructions, see [_Nextflow configuration_](configuration.md).
 
 ### Typical installation
-
 Generally speaking, Nextflow runs on most POSIX systems (Linux, Mac OSX etc) and can typically be installed by running the following commands:
 
 ```console
@@ -27,7 +26,6 @@ mv nextflow ~/bin/
 # OR system-wide installation:
 # sudo mv nextflow /usr/local/bin
 ```
-
 ### Bioconda installation
 
 You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
@@ -45,7 +43,16 @@ Then install Nextflow:
 ```console
 conda install nextflow
 ```
+### Particularity for Windows system
+For Windows the installation procedure is more complex and is fully described on the [Nextflow website](https://nextflow.io/blog/2021/setup-nextflow-on-windows.html).
 
+The main steps will be the following:
+
+- Install Windows PowerShell
+- Configure the Windows Subsystem for Linux (WSL2)
+- Install a Linux distribution (on WSL2)
+
+The step to install Nextflow in itself will afterwards be the same as previously mentioned.
 ### Edge releases
 
 Stable releases will be becoming more infrequent as Nextflow shifts its development model to becoming more dynamic via the usage of plugins. This will allow functionality to be added as an extension to the core codebase with a release cycle that could potentially be independent to that of Nextflow itself. As a result of the reduction in stable releases, some pipelines may be required to use Nextflow `edge` releases in order to be able to exploit cutting "edge" features e.g. version 3.0 of the nf-core/rnaseq pipeline requires Nextflow `>=20.11.0-edge` in order to be able to directly download Singularity containers over `http` (see [nf-core/rnaseq#496](https://github.com/nf-core/rnaseq/issues/496)).
