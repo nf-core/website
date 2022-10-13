@@ -340,40 +340,42 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
    Mandatory command line arguments MUST be specified in long form where possible.
 
-`<module>.nf`:
+    `<module>.nf`:
 
-```nextflow
-script:
-def args = task.ext.args ?: ''
-def prefix = task.ext.prefix ?: "${meta.id}"
-"""
-fastqc \\
-    $args \\
-     <...>
-"""
-```
+    ```nextflow
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    fastqc \\
+        $args \\
+         <...>
+    """
+    ```
 
-`modules.config`:
+    `modules.config`:
 
-```nextflow
-process {
-    withName: <module> {
-        ext.args = [                                                          // Assign either a string, or closure which returns a string
-            '--quiet',
-            params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-        ].join(' ')                                                           // Join converts the list here to a string.
-        ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+    ```nextflow
+    process {
+        withName: <module> {
+            ext.args = [                                                          // Assign either a string, or closure which returns a string
+                '--quiet',
+                params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+            ].join(' ')                                                           // Join converts the list here to a string.
+            ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+        }
     }
-}
-```
+    ```
+    
+    > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
 
 2.  Software that can be piped together SHOULD be added to separate module files
     unless there is a run-time, storage advantage in implementing in this way. For example,
     using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
-          ```bash
-          bwa mem | samtools view -B -T ref.fasta
-          ```
+    ```bash
+    bwa mem | samtools view -B -T ref.fasta
+    ```
 
 3.  Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
 
