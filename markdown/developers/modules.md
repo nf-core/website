@@ -696,6 +696,17 @@ ch_genome_bam.map {
 
 As you can see the `meta map` is a quite flexible way for storing meta data in channels. Feel free to add whatever other key-value pairs your pipeline may need to it. We're looking to add [Custom objects](https://github.com/nf-core/modules/issues/1338) which will lock down the usage a bit more.
 
+## What are the ext properties/keys?
+
+Ext properties or keys can be used to override module options. The following table lists the available keys.
+
+| Key | Description |
+|---|---|
+| ext.args | Additional arguments appended to command in module. |
+| ext.args2  | Second set of arguments appended to command in module (multi-tool modules). |
+| ext.args3  | Third set of arguments appended to command in module (multi-tool modules). |
+| ext.prefix | File name prefix for output files. |
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
