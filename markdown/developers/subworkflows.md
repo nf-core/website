@@ -40,7 +40,7 @@ Please check that the subworkflow you wish to add isn't already on [`nf-core/mod
 If the subworkflow doesn't exist on `nf-core/modules`:
 
 - Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
-- Set an appropriate subject for the issue e.g. `new subworkflow: bam_sort_samtools`
+- Set an appropriate subject for the issue e.g. `new subworkflow: bam_sort_stats_samtools`
 - Add yourself to the `Assignees` so we can track who is working on the subworkflow
 
 ### Adding a new subworkflow
@@ -60,7 +60,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    Make a new branch for your subworkflow and check it out
 
    ```bash
-   git checkout -b bam_sort_samtools
+   git checkout -b bam_sort_stats_samtools
    ```
 
 6. (COMMAND NOT FULLY IMPLEMENTED IN NF-CORE/TOOLS YET!!) Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/subworkflows/main.nf) in the root of the clone of the nf-core/modules repository:
@@ -68,7 +68,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 <!-- TODO: nf-core: Add proper output when command has been implemented -->
 
 ```console
-$ nf-core subworkflows create bam_sort_samtools --author @joebloggs
+$ nf-core subworkflows create bam_sort_stats_samtools --author @joebloggs
 
                                        ,--./,-.
        ___     __   __   __   ___     /,-._.--~\
@@ -84,32 +84,32 @@ $ nf-core subworkflows create bam_sort_samtools --author @joebloggs
 
 All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
-1.  [`./subworkflows/nf-core/bam_sort_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_samtools/main.nf)
+1.  [`./subworkflows/nf-core/bam_sort_stats_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_stats_samtools/main.nf)
 
     This is the main script containing the `workflow` definition for the subworkflow. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
 
-2.  [`./subworkflows/nf-core/bam_sort_samtools/meta.yml`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_samtools/meta.yml)
+2.  [`./subworkflows/nf-core/bam_sort_stats_samtools/meta.yml`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_stats_samtools/meta.yml)
 
     This file will be used to store general information about the subworkflow and author details. You will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each subworkflow.
 
-3.  [`./tests/subworkflows/nf-core/bam_sort_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_samtools/main.nf)
+3.  [`./tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf)
 
     Every subworkflow MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the subworkflow. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the subworkflow works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
     When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
 
     ```groovy
-    include { BAM_SORT_SAMTOOLS as BAM_SORT_SAMTOOLS_SINGLE_END } from '../../../../subworkflows/nf-core/bam_sort_samtools/main' // Good: Output folder is still 'fastqc'
-    include { BAM_SORT_SAMTOOLS as SINGLE_END_BAM_SORT_SAMTOOLS } from '../../../../subworkflows/nf-core/bam_sort_samtools/main' // Bad: Generates problems with CI tests - Output folder is 'post'
+    include { BAM_SORT_STATS_SAMTOOLS as BAM_SORT_STATS_SAMTOOLS_SINGLE_END } from '../../../../subworkflows/nf-core/bam_sort_stats_samtools/main' // Good: Output folder is still 'fastqc'
+    include { BAM_SORT_STATS_SAMTOOLS as SINGLE_END_BAM_SORT_STATS_SAMTOOLS } from '../../../../subworkflows/nf-core/bam_sort_stats_samtools/main' // Bad: Generates problems with CI tests - Output folder is 'post'
     ```
 
     Minimal test data required for your subworkflow may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-4.  [`./tests/subworkflows/nf-core/bam_sort_samtools/nextflow.config`](https://github.com/nf-core/modules/blob/master//tests/subworkflows/nf-core/bam_sort_samtools/nextflow.config)
+4.  [`./tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config`](https://github.com/nf-core/modules/blob/master//tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config)
 
     Some subworkflows MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-5.  [`./tests/subworkflows/nf-core/bam_sort_samtools/test.yml`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_samtools/test.yml)
+5.  [`./tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml`](https://github.com/nf-core/modules/blob/master/tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml)
 
     This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
 
@@ -172,20 +172,20 @@ git pull --rebase upstream master
 Once you are ready you can push the code and create a PR
 
 ```bash
-git push -u origin bam_sort_samtools
+git push -u origin bam_sort_stats_samtools
 ```
 
 Once the PR has been accepted you should delete the branch and checkout master again.
 
 ```bash
 git checkout master
-git branch -d bam_sort_samtools
+git branch -d bam_sort_stats_samtools
 ```
 
 In case there are commits on the local branch that didn't make it into the PR (usually commits made after the PR), git will warn about this and not delete the branch. If you are sure you want to delete, use the following command
 
 ```bash
-git branch -D bam_sort_samtools
+git branch -D bam_sort_stats_samtools
 ```
 
 ### Test data
@@ -222,7 +222,7 @@ Please follow the steps below to run the tests locally:
 
    ```console
    $ cd /path/to/git/clone/of/nf-core/modules/
-   $ nf-core subworkflows test bam_sort_samtools
+   $ nf-core subworkflows test bam_sort_stats_samtools
 
                                         ,--./,-.
         ___     __   __   __   ___     /,-._.--~\
@@ -293,7 +293,7 @@ emit:
 
 ### Naming conventions
 
-1. The directory structure for the subworkflow name must be all lowercase e.g. [`subworkflows/nf-core/bam_sort_samtools/`](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/bam_sort_samtools/). The naming convention should be of the format `<file_type>_<operation_1>_<operation_n>_<tool_1>_<tool_n>` e.g. `bam_sort_samtools` where `bam` = `<file_type>`, `sort` = `<operation>` and `samtools` = `<tool>`. If in doubt regarding what to name your subworkflow, please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
+1. The directory structure for the subworkflow name must be all lowercase e.g. [`subworkflows/nf-core/bam_sort_stats_samtools/`](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/bam_sort_stats_samtools/). The naming convention should be of the format `<file_type>_<operation_1>_<operation_n>_<tool_1>_<tool_n>` e.g. `bam_sort_stats_samtools` where `bam` = `<file_type>`, `sort` = `<operation>` and `samtools` = `<tool>`. If in doubt regarding what to name your subworkflow, please contact us on the [nf-core Slack `#subworkflows` channel](https://nfcore.slack.com/channels/subworkflows) (you can join with [this invite](https://nf-co.re/join/slack)) to discuss possible options.
 
 2. All parameter names MUST follow the `snake_case` convention.
 
