@@ -77,20 +77,24 @@ For now just select the default and continue. In the next step you have the spec
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
 ```console
-modules/nf-core/fgbio
-└── demofastqtobam
-    ├── main.nf
-    └── meta.yml
+modules
+    └── nf-core
+        └── fgbio
+            └── demofastqtobam
+                ├── main.nf
+                └── meta.yml
 ```
 
 And also the following for the testing of the module
 
 ```console
 tests
-└── modules/fgbio/demofastqtobam
-    ├── main.nf
-    ├── test.yml
-    └── nextflow.config
+└── modules
+    └── fgbio
+        └── demofastqtobam
+            ├── main.nf
+            ├── test.yml
+            └── nextflow.config
 └── config
     └── pytest_modules.yml
 
