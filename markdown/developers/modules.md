@@ -700,12 +700,12 @@ As you can see the `meta map` is a quite flexible way for storing meta data in c
 
 Ext properties or keys can be used to override module options. The following table lists the available keys.
 
-| Key        | Description                                                                 |
-| ---------- | --------------------------------------------------------------------------- |
-| ext.args   | Additional arguments appended to command in module.                         |
-| ext.args2  | Second set of arguments appended to command in module (multi-tool modules). |
-| ext.args3  | Third set of arguments appended to command in module (multi-tool modules).  |
-| ext.prefix | File name prefix for output files.                                          |
+| Key        | Description                                            |
+| ---------- | ------------------------------------------------------ |
+| ext.args   | Additional arguments appended to command in module.    |
+| ext.args2  | Second set of arguments appended to command in module. |
+| ext.args3  | Third set of arguments appended to command in module.  |
+| ext.prefix | File name prefix for output files.                     |
 
 ## Help
 
