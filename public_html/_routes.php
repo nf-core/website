@@ -50,6 +50,17 @@ if (file_exists($docs_md_base . $md_fn)) {
     exit();
 }
 
+# Add new landing pages
+if (strtolower($path_parts[0]) == 'usage') {
+    include 'documentation.php';
+    exit();
+}
+
+if (strtolower($path_parts[0]) == 'contributing') {
+    include 'documentation.php';
+    exit();
+}
+
 # is it the new docs location
 
 # is it a module?
