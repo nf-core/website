@@ -21,5 +21,5 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/airrflow
 
-This week, Gisela Gabernet ([@ggabernet](https://github.com/ggabernet)) will talk about the newest developments in the nf-core/airrflow pipeline. 
+This week, Gisela Gabernet ([@ggabernet](https://github.com/ggabernet)) will talk about the newest developments in the nf-core/airrflow pipeline.
 nf-core/airrflow is a bioinformatics best-practice pipeline to analyze B-cell or T-cell bulk repertoire sequencing data. It makes use of the [Immcantation](https://immcantation.readthedocs.io/) toolset and requires as input targeted amplicon sequencing data of the V, D, J and C regions of the B/T-cell receptor with multiplex PCR or 5' RACE protocol.
