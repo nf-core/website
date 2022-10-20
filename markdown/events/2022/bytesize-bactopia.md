@@ -34,7 +34,7 @@ Robert will show us the pipeline and explain how he is using nf-core components 
 (host) Hello everyone my name is Franziska Bonath, I'm the today's host for the bytesize talk and with me is Robert Petit. He is from the Wyoming public health laboratory and is going to talk about bactopia which is not part of nf-core but it's using nf-core components and nf-core pipelines, so off to you!
 
 [0:28](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=28)
-I'm so sorry I did mute you by mistake. You can unmute yourself. I'm sure...
+(host) I'm so sorry I did mute you by mistake. You can unmute yourself. I'm sure...
 There we go!
 I'm so sorry!
 No don't worry about it!
