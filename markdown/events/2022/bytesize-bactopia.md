@@ -102,6 +102,6 @@ Thank you and I will take any questions folks have.
 (host) thank you very much, are there any other questions?
 
 [20:55](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=1255)
-(host) I don't see anything pop up so, I would like to thank you again, Robert. Everyone else, there is always the chance to ask more questions, if they come later, at the bite size channel on slack. I guess you can also contact Robert directly and this video will also be uploaded to youtube. I would like to thank, apart from Robert of course, the Chan Zuckerberg Initiative, who is funding these talks, and thank you everyone for joining in. Thank you.
+(host) I don't see anything pop up so, I would like to thank you again, Robert. Everyone else, there is always the chance to ask more questions, if they come later, at the bytesize channel on Slack. I guess you can also contact Robert directly and this video will also be uploaded to Youtube. I would like to thank, apart from Robert of course, the Chan Zuckerberg Initiative, who is funding these talks, and thank you everyone for joining in. Thank you.
 
 </details>
