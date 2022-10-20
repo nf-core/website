@@ -152,10 +152,12 @@ $toc_nav .= '</nav>';
 # Add titles to landing pages and remove TOC
 if($_GET['path'] === 'usage'){
     $title = 'Usage';
+    $subtitle = 'Here you can find all documentation on how to use nf-core pipelines and nf-core tools to start processing your data. For information about how to contribute to nf-core pipelines, modules and subworkflows, please see the "contributing"- section.';
     $toc_nav = '';
 }
 if($_GET['path'] === 'contributing'){
     $title = 'Contributing';
+    $subtitle = 'Here you can find all documentation on how to contribute to nf-core pipelines, modules and subworkflows. For information about how to use nf-core pipelines and nf-core tools to start processing your data, please see the "usage"- section.';
     $toc_nav = '';
 }
 
@@ -176,21 +178,12 @@ include '../includes/header.php';
     $main_content .= '</div></div>'; # end of the sidebar col
 
     # main content
-    if($_GET['path'] === 'usage'){
+    if(in_array($_GET['path'],['usage','contributing'])){
         $main_content .= '<div class="col-12 col-lg-3"><div class="rendered-markdown">';
-        foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent){
+        foreach ($sidebar_nav_elements[$_GET['path']] as $mdfile => $mdcontent){
             if (isset($mdcontent['url'])) {
                 $main_content .= '<div class="row mb-3 h3">' . '<a href="' . $mdcontent['url'] . '" class="text-success text-decoration-none">' . $mdcontent['title'] . '</div>';
             }
-        }
-        $main_content .= '</div></div>';
-    }
-    if ($_GET['path'] === 'contributing'){
-        $main_content .= '<div class="col-12 col-lg-3"><div class="rendered-markdown">';
-        foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent){
-          if (isset($mdcontent['url'])) {
-              $main_content .= '<div class="row mb-3 h3">' . '<a href="' . $mdcontent['url'] . '" class="text-success text-decoration-none">' . $mdcontent['title'] . '</div>';
-          }
         }
         $main_content .= '</div></div>';
     }
