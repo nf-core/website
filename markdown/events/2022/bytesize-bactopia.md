@@ -36,7 +36,7 @@ Robert will show us the pipeline and explain how he is using nf-core components 
 [0:28](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=28)
 (host) I'm so sorry I did mute you by mistake. You can unmute yourself. I'm sure...
 There we go!
-I'm so sorry!
+(host) I'm so sorry!
 No don't worry about it!
 
 [0:50](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=50)
