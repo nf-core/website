@@ -7,7 +7,7 @@ menu:
 ---
 
 The nf-core community was founded to allow different groups to collaborate on pipelines.
-At its inception, the first step was to remove instututional branding from existing workflows and migrate them to the nf-core organisation and nf-core branding.
+At its inception, the first step was to remove institutional branding from existing workflows and migrate them to the nf-core organisation and nf-core branding.
 This was done to remove institutional and organisational ownership of pipelines and code, to encourage collaboration and openness.
 In this spirit, we require nf-core pipelines to be _owned_ by nf-core, and nf-core alone.
 

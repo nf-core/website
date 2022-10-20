@@ -114,6 +114,7 @@ Why stop at sharing modules, we want to share subworkflows between pipelines too
 
 - Edmund Miller (in person),
 - Harshil Patel (in person),
+- Maxime Garcia (in person),
 - Yuk Kei Wan (online)
 
 ## Group 3 - Pipelines
@@ -130,6 +131,7 @@ This group will focus on any pipeline related work, this could be:
 
 - Maxime Garcia (in person),
 - James Fellows Yates (in person),
+- Friederike Hanssen (in person),
 - Luis Kuhn (online)
 
 ## Group 4 - Modules
@@ -144,11 +146,11 @@ This group will welcome anyone who wants to work on new modules or improve exist
 - Gisela Gabernet (in person),
 - Louisa Perelo (online)
 
-## Group 5 - Central tools / Website
+## Group 5 - Infrastructure
 
 The nf-core website is in desperate need of work, and central tooling always needs to be improved and maintained. If this sounds like a fun task, join group 5!
 
-[<i class="fab fa-slack"></i> `#hackathon-oct-2022-tools-website`](https://nfcore.slack.com/archives/C040XNUL7DM)
+[<i class="fab fa-slack"></i> `#hackathon-oct-2022-infrastructure`](https://nfcore.slack.com/archives/C040XNUL7DM)
 
 ### Group leaders
 
@@ -194,11 +196,12 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             <tr>
                 <td data-timestamp="1665388800" data-timeformat="HH:mm z">10:00</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="4">Hack!</td>
+                <td rowspan="1">Quiz!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665392400" data-timeformat="HH:mm z">11:00</td>
                 <td>Registration Open</td>
+                <td rowspan="3">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665396000" data-timeformat="HH:mm z">12:00</td>
@@ -206,7 +209,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665397800" data-timeformat="HH:mm z">12:30</td>
-                <td rowspan="1">Welcome talk</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/rmlAZPS6stw"><i class="fa-brands fa-youtube me-2"></i>Welcome talk</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665399600" data-timeformat="HH:mm z">13:00</td>
@@ -218,7 +223,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
                 <td data-timestamp="1665403200" data-timeformat="HH:mm z">14:00</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="1">Wrap-up talk</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/Qf_uVuxgX_A"><i class="fa-brands fa-youtube me-2"></i>Wrap-up talk</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665406800" data-timeformat="HH:mm z">15:00</td>
@@ -232,8 +239,12 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665417600" data-timeformat="HH:mm z">18:00</td>
-                <td rowspan="1">Summary of the day</td>
-                <td rowspan="1">Summary of the day</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/JXegFdAG0uQ"><i class="fa-brands fa-youtube me-2"></i>Summary of the day</a>
+                </td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/8s1o5QxKwDo"><i class="fa-brands fa-youtube me-2"></i>Summary of the day</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665421200" data-timeformat="HH:mm z">19:00</td>
@@ -247,11 +258,41 @@ We will be a lot of people working in parallel during this hackathon, so to stay
     </table>
 </div>
 
+# Venue: Torre Glòries
+
+The in-person hackathon will be taking place in Torre Glòries, Barcelona.
+
+[👉🏻 Google Maps 🗺️](https://goo.gl/maps/f437pZnbeZpyYSdHA)
+
+Instructions for finding us:
+
+1. Use the entrance with the green carpet and a Summit poster
+2. Find either Lift 7 or Lift 8 _(only these lifts!)_
+3. Floor 25
+4. Turn left and follow the corridor around past the coffee machine
+5. We are in rooms:
+   - Eixample (41 people)
+   - Tibidabo (14 people)
+   - La Barceloneta (6 people)
+6. Hack!
+
+| Room name      | Door                                                                                              | Inside                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Eixample       | ![Eixample](/assets/markdown_assets/events/2022/hackathon-october-2022/eixample.jpeg)             | ![Eixample inside](/assets/markdown_assets/events/2022/hackathon-october-2022/eixample_inside.jpeg)             |
+| Tibidabo       | ![Tibidabo](/assets/markdown_assets/events/2022/hackathon-october-2022/tibidabo.jpeg)             | ![Tibidabo inside](/assets/markdown_assets/events/2022/hackathon-october-2022/tibidabo_inside.jpeg)             |
+| La Barceloneta | ![La Barceloneta](/assets/markdown_assets/events/2022/hackathon-october-2022/la_barceloneta.jpeg) | ![La Barceloneta inside](/assets/markdown_assets/events/2022/hackathon-october-2022/la_barceloneta_inside.jpeg) |
+
+Video of walking to the hackathon rooms:
+
+<video controls width="350">
+  <source src="/assets/markdown_assets/events/2022/hackathon-october-2022/agbar_video_hackathon.mp4" type="video/mp4">
+</video>
+
 # Community Streaming Events
 
 Community streaming events are a great way to engage with your local communities while participating in events remotely. By simply booking a room and gathering your colleagues you can create discussion and build your community while enjoying the training, nf-core Hackathon, and/or Nextflow Summit together.
 
-If this is something you are interested in you can tell us about your plans using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share. We have also created a dedicated [`#community-stream-events`](https://nfcore.slack.com/archives/C03Q3RE0RJQ) Slack channel where you can ask questions and share information about your event.
+If this is something you are interested in you can tell us about your plans using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share.
 
 Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
 
@@ -266,7 +307,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 - Monday evening: Beers and pizza (non-alcoholic options available) at the Seqera Office!
 - Tuesday evening: Dinner!
 - The traditional sock hunting in Gathertown will also be held in person! Take pictures of as many socks as you can find.
-- Finally, on Wednesday, we will be running a short quiz!
+- Finally, on Wednesday, we will be running a short quiz at 10am with Kahoot!
 
 ### Online
 
