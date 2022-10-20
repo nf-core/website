@@ -12,7 +12,7 @@ $(function () {
   });
   if (document.querySelector('.toc')) {
     var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-      target: '.toc',
+      target: '.nav',
     });
   }
   // Enable code highlighting
