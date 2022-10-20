@@ -12,10 +12,6 @@
 // Allow PHP fopen to work with remote links
 ini_set('allow_url_fopen', 1);
 
-// // Final filename to write JSON to
-$results_fn = dirname(__FILE__) . '/nfcore_stats.json';
-$contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
-
 echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
@@ -90,18 +86,6 @@ function github_query($gh_query_url) {
     }
     return $res;
 }
-// Initialise the results array with the current time and placeholders
-$results = [
-    'updated' => $updated,
-    'pipelines' => [],
-    'core_repos' => [],
-    'slack' => [],
-    'gh_org_members' => [],
-    'gh_contributors' => [],
-    'gh_commits' => [],
-    'gh_additions' => [],
-    'gh_deletions' => [],
-];
 
 if (!mysqli_query($conn, $sql)) {
     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
@@ -156,8 +140,11 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $check =
                     "SELECT * FROM github_pipeline_contrib_stats WHERE pipeline_id = '" .
                     $pipeline_id .
-                    "' AND week_date = " .
-                    $week_date;
+                    "' AND author = '" .
+                    $author .
+                    "' AND week_date = '" .
+                    $week_date .
+                    "'";
                 $res = mysqli_query($conn, $check);
                 if ($res->num_rows) {
                     continue;
@@ -212,10 +199,16 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             $check =
                 "SELECT * FROM github_traffic_stats WHERE pipeline_id = '" .
                 $pipeline['id'] .
-                "' AND timestamp = " .
-                $timestamp;
+                "' AND timestamp = '" .
+                $timestamp .
+                "'";
             $res = mysqli_query($conn, $check);
             if ($res->num_rows) {
+                echo "\n Entry already exists for pipeline_id " .
+                    $pipeline['id'] .
+                    ' and timestamp ' .
+                    $timestamp .
+                    ' db_timestamp ';
                 continue;
             } else {
                 // get gh_clones where timestamp matches
@@ -241,7 +234,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 } else {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
-
+mysqli_close($conn);
 echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
 
 ###########################################################################################################
@@ -249,6 +242,55 @@ echo "\n Finished updating the database - " . date('Y-m-d h:i:s') . "\n";
 #                                              🕱 OLD CODE 🕱                                              #
 #                                                                                                         #
 ###########################################################################################################
+
+//
+// nfcore_stats.json
+// ---------------------------
+// GitHub shows traffic in the form of repo views and clones, however
+// the data is only available for two weeks.
+// We want it forever! So this script scrapes and saves the data.
+// It is intended to be run routinely using a cronjob
+//
+// Note that the resulting file (nfcore_stats.json) is
+// ignored in the .gitignore file and will not be tracked in git history.
+//
+// Manual usage: on command line, simply execute this script:
+//   $ php update_stats.php
+
+// Allow PHP fopen to work with remote links
+ini_set('allow_url_fopen', 1);
+
+// Use same updated time for everything
+$updated = time();
+
+// Final filename to write JSON to
+$results_fn = dirname(__FILE__) . '/nfcore_stats.json';
+$contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
+
+echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
+
+// Initialise the results array with the current time and placeholders
+$results = [
+    'updated' => $updated,
+    'pipelines' => [],
+    'core_repos' => [],
+    'slack' => [],
+    'gh_org_members' => [],
+    'gh_contributors' => [],
+    'gh_commits' => [],
+    'gh_additions' => [],
+    'gh_deletions' => [],
+];
+
+// Load a copy of the existing JSON file, if it exists
+if (file_exists($results_fn)) {
+    $results = json_decode(file_get_contents($results_fn), true);
+}
+$results['updated'] = $updated;
+
+// Get auth secrets
+$config = parse_ini_file('config.ini');
+$gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
 
 //
 //
@@ -265,7 +307,7 @@ $gh_api_opts = stream_context_create([
 ]);
 
 // Load details of the pipelines
-$pipelines_json = json_decode(file_get_contents('public_html/pipelines.json'));
+$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) . '/public_html/pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
 $contribs_try_again = [];
 
@@ -566,5 +608,4 @@ echo "update_stats - Saving to $results_fn - " . date('Y-m-d h:i:s') . "\n";
 $results_json = json_encode($results, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
 
-mysqli_close($conn);
-echo "\n update_stats done " . date('Y-m-d h:i:s') . "\n\n";
+echo 'update_stats done ' . date('Y-m-d h:i:s') . "\n\n";
