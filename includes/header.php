@@ -155,8 +155,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/docs" role="button" data-bs-toggle="dropdown">Docs</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/usage">Usage</a>
-              <a class="dropdown-item" href="/contributing">Developers</a>
+              <a class="dropdown-item" href="/docs/usage">Usage</a>
+              <a class="dropdown-item" href="/docs/contributing">Contributing</a>
             </div>
           </li>
             <!-- TODO - write a new docs landing page at /docs -->
