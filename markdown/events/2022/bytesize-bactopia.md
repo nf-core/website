@@ -97,7 +97,7 @@ Thank you and I will take any questions folks have.
 
 [19:52](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=1192)
 (question) Okay thanks! My final question is, I saw you integrated this with illumina reads and I believe nanopore reads. What happened to pacbio?
-(answer) Honestly I just haven't been exposed to pacbio data much so far in my analyses and my studies. I think if I start using pacbio, then pacbio data will come in, otherwise I think I would need support from the community to add that type. Just because I don't have the opportunity to use it on a daily basis like I do illumina and nanopore. We need someone else to help out there.
+(answer) Honestly I just haven't been exposed to PacBio data much so far in my analyses and my studies. I think if I start using PacBio, then PacBio data will come in, otherwise I think I would need support from the community to add that type. Just because I don't have the opportunity to use it on a daily basis like I do Illumina and Nanopore. We need someone else to help out there.
 (from audience) cool, thanks! Great job! thank you!
 (host) thank you very much, are there any other questions?
 
