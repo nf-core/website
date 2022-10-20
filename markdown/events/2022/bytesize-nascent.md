@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/nascent'
-subtitle: Edmund Miller - University of Texas, USA
+subtitle: Edmund Miller - University of Texas at Dallas, USA
 type: talk
 start_date: '2022-11-01'
 start_time: '13:00 CEST'
