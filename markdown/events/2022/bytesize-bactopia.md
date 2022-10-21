@@ -87,7 +87,7 @@ Don't hesitate to reach out if you think I can help you get started on your non 
 [16:37](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=997)
 Thank you and I will take any questions folks have.
 (host) Thank you very much. I have enabled now for everyone to unmute themselves, if they have questions. Otherwise we can start with the one question that is already in the chat, which is from Olaitan. He is asking: "it seems like bactopia is not in the APT repository, could you work on including it?"
-(answer) I don't know much about including tools in the apt repository. It is available from bioconda, so you can "conda install" bactopia. I think there would be many components of bactopia, that aren't in the APT repository, so I don't know how that would work. It would be something you would have to add all the dependencies to the APT repository, and I think the time required for that and the learning, I don't have the bandwidth for at the moment. Definitely consider using the bioconda install and then from there you can use conda docker singularity.
+(answer) I don't know much about including tools in the APT repository. It is available from bioconda, so you can "conda install" bactopia. I think there would be many components of bactopia, that aren't in the APT repository, so I don't know how that would work. It would be something you would have to add all the dependencies to the APT repository, and I think the time required for that and the learning, I don't have the bandwidth for at the moment. Definitely consider using the bioconda install and then from there you can use conda, docker, singularity...
 
 [17:55](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=1075)
 (host) okay thank you. Are there any more questions from the audience?
