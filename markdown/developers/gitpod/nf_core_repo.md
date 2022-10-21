@@ -7,7 +7,7 @@ subtitle: Creating a new module for the nf-core modules repository.
 
 You can run Gitpod with any nf-core pipeline repository.
 
-For example, for nf-core RNA-seq pipeline, simply click the green gitpod button or add the Gitpod prefix before the git URL (of `https://gitpod.io/#` ; to become: `https://gitpod.io/#https://github.com/nf-core/rnaseq`).
+For example, for nf-core RNA-seq pipeline, simply click the green Gitpod button or add the Gitpod prefix before the git URL (instead of `https://github.com/nf-core/rnaseq`, type `https://gitpod.io/#https://github.com/nf-core/rnaseq`).
 
 Once Gitpod has loaded, including the container with all the tools we need, we can go to the terminal and type the following to start the nf-core workflow:
 
@@ -24,7 +24,7 @@ Using this Gitpod method makes it easy to run and test nf-core pipelines quickly
 ## Testing your module with pytest
 
 With DSL2, much of pipeline writing is spent writing reusable [modules](https://nf-co.re/modules).
-If you enter the [gitpod environment for modules](https://gitpod.io/#https://github.com/nf-core/modules), you can run the pytest function in order to debug a particular module.
+If you enter the [Gitpod environment for modules](https://gitpod.io/#https://github.com/nf-core/modules), you can run the pytest function in order to debug a particular module.
 
 You can learn more about `pytest` in [this nf-core bytesize talk](https://nf-co.re/events/2021/bytesize-17-pytest-workflow).
 

@@ -34,14 +34,17 @@ Robert will show us the pipeline and explain how he is using nf-core components 
 (host) Hello everyone my name is Franziska Bonath, I'm the today's host for the bytesize talk and with me is Robert Petit. He is from the Wyoming public health laboratory and is going to talk about bactopia which is not part of nf-core but it's using nf-core components and nf-core pipelines, so off to you!
 
 [0:28](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=28)
+
 (host) I'm so sorry I did mute you by mistake. You can unmute yourself. I'm sure...
+
 There we go!
+
 (host) I'm so sorry!
+
 No don't worry about it!
 
 [0:50](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=50)
-Thank you for having me. I'm super excited to be here today. I'll just be introducing you to bactopia. I'll give you a few use cases of how I'm using
-nf-core components in bactopia. But first a little motivation on how bactopia came up. Over the last 10 years we saw a a quite nice growth in the publicly available bacterial genomes. From ENA/SRA/DDBJ we went from about 7500 in 2010 to about 1.5 million. While that pales in comparison to COVID, which I think is 12 million plus now, for bacteria that is quite a lot. Over these last 10 years we've also seen the rise of containers and package managers, such as docker, singularity and bioconda. And then workflow managers and the curators behind those, such as nextflow and nf-core. At 2010 maybe we couldn't use all the data but it really starts in 2022, it really makes you wonder: can we make use of all these publicly developed genomes? In 2010 I remember, passing tar balls with binaries and then emailing the sequencing instrument groups say "can I get a binary to your assembler?" and stuff like that. There was no real... It was just "make install" and hope it installs.
+Thank you for having me. I'm super excited to be here today. I'll just be introducing you to bactopia. I'll give you a few use cases of how I'm using nf-core components in bactopia. But first a little motivation on how bactopia came up. Over the last 10 years we saw a a quite nice growth in the publicly available bacterial genomes. From ENA/SRA/DDBJ we went from about 7500 in 2010 to about 1.5 million. While that pales in comparison to COVID, which I think is 12 million plus now, for bacteria that is quite a lot. Over these last 10 years we've also seen the rise of containers and package managers, such as docker, singularity and bioconda. And then workflow managers and the curators behind those, such as nextflow and nf-core. At 2010 maybe we couldn't use all the data but it really starts in 2022, it really makes you wonder: can we make use of all these publicly developed genomes? In 2010 I remember, passing tar balls with binaries and then emailing the sequencing instrument groups say "can I get a binary to your assembler?" and stuff like that. There was no real... It was just "make install" and hope it installs.
 
 [2:28](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=148)
 Now in 2022 I think we have the tools and we have the talent to start gluing all this stuff together and start using these data in our own analyses. Once you know why would we want to use this data. A good example is, if you have a small outbreak at your local hospital, or a foodborne illness that comes out of some carnivor and you want to compare your genomes to what's already been sequenced. That's a nice use case of making use of those 1.5 million genomes that are available. To address this, Tim Read, who's at Emory University and was my master's and phd mentor, him and I develop bactopia, which is a nextflow DSL2 pipeline for the complete analysis of bacterial genomes. Because it's written in nextflow you can go from a single genome to tens of thousands of genomes with a simple parameter change.
@@ -91,7 +94,6 @@ Thank you and I will take any questions folks have.
 
 [17:55](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=1075)
 (host) okay thank you. Are there any more questions from the audience?
-
 (question) I do have a follow-up question. It's not really based on the APT repository thing, it's the workflow. In terms of the different steps, that bactopia does. I didn't get what Robert meant by the final step that he talked about. Something about the analysis. I was wondering what are the specific things, like what are you measuring at the end of the day with bactopia? Specifically in terms of the omics analysis.
 (answer) It's going to include pretty much all your standard bacterial genomics. You're going to QC the reads, how well did you sequence your sample, what's the average read length, all that fun stuff. Then it's going to characterize your sample. what MLST schema? Does it have certain antibiotic resistance genes that you may be interested in? Does it have SNPs and INDELs against a reference genome that you selected? How does it compare to publicly available genomes, does it look like what you expected? If you thought you sequenced the Staphylococcus aureus, and you know it came up as looking more like Enterococcus, that's something. Those are the type of analysis results. On the bactopia documentation there's an overview of the workflow at each step and then output overviews on all the output files that you get for both bactopia and all the bactopia tools. Those output give you a description of what's in the each of the files.
 
