@@ -83,10 +83,10 @@ Or this command to install the `dev` version:
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
-If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/#usage) (especially setting the channel order) and then install nf-core:
+If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/#usage) (especially setting the channel order), create and activate an environment and then install nf-core:
 
 ```bash
-conda install nf-core
+conda install -c bioconda nf-core
 ```
 
 The nf-core/tools source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
@@ -102,6 +102,17 @@ Once installed, you can check that everything is working by printing the help:
 ```bash
 nf-core --help
 ```
+
+You will also need to install [Prettier](https://prettier.io/) for formatting your code.
+To do so, you can either use the following command with conda:
+
+```bash
+conda install -c conda-forge prettier
+```
+
+Or use the Visual Studio Code extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) also available in the pack of useful extension [NF-core](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack).
+
+Besides, you can also add a comment with `@nf-core-bot fix linting` in your Pull Request and prettier will be used to apply the required fixes to your code.
 
 ### Exercise 1 (installation)
 
