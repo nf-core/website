@@ -11,8 +11,9 @@ $(function () {
     html: true,
   });
   if (document.querySelector('.toc')) {
+    // Enable scrollspy
     var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-      target: '.toc',
+      target: '.toc>div>div>.nav>.nav',
     });
   }
   // Enable code highlighting
