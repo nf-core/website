@@ -17,14 +17,18 @@ Governance groups are not fixed in size. Members will be selected based on exper
 
 Changes that impact the project require decisions informed by extensive experience with both the project and the larger ecosystem. The steering committee include representations of the core team and outside advisors who oversee the running of the project. When the core team (including its steering committee members) fails to reach a consensus in a reasonable timeframe, the steering committee is the entity that will resolve the issue.
 
-Responsibilities:
+##### Responsibilities
 
-- Planning and making decisions about project funds
--
+- Planning and making decisions about project funds and personnel
+- Guiding large initiatives
 
-Members
+##### Members
 
--
+- Ellen Sherwood
+- Evan Floden ([@evanfloden](https://github.com/evanfloden))
+- Phil Ewels ([@ewels](https://github.com/ewels))
+- Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))
+- Harshil Patel ([@drpatelh](https://github.com/drpatelh))
 
 #### Core team
 
@@ -42,26 +46,26 @@ Core team members will appear as organization members on the GitHub organization
 
 ##### Members
 
-- [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
-- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
-- [@drpatelh](https://github.com/drpatelh): Harshil Patel
-- [@ewels](https://github.com/ewels): Phil Ewels
-- [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
-- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
-- [@jfy133](https://github.com/jfy133): James A. Fellows Yates
-- [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
-- [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
-- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
-- [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
-- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
+- Alexander Peltzer ([@apeltzer](https://github.com/apeltzer))
+- Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart))
+- Harshil Patel ([@drpatelh](https://github.com/drpatelh))
+- Phil Ewels ([@ewels](https://github.com/ewels))
+- Friederike Hanssen ([@FriederikeHanssen](https://github.com/FriederikeHanssen))
+- Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))
+- James A. Fellows Yates ([@jfy133](https://github.com/jfy133))
+- Jose Espinosa-Carrasco ([@JoseEspinosa](https://github.com/JoseEspinosa))
+- Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu))
+- Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse))
+- Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol))
+- Marcel Ribeiro-Dantas ([@mribeirodantas](https://github.com/mribeirodantas))
 
 The following nf-core team alumni that have earned their place in the nf-core hall of fame
 
-- [@alneberg](https://github.com/alneberg): Johannes Alneberg
-- [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
-- [@olgabot](https://github.com/olgabot): Olga Botvinnik
-- [@sven1103](https://github.com/sven1103): Sven F.
-- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
+- Johannes Alneberg ([@alneberg](https://github.com/alneberg))
+- Kevin Menden ([@KevinMenden](https://github.com/KevinMenden))
+- Olga Botvinnik ([@olgabot](https://github.com/olgabot))
+- Sven F. ([@sven1103](https://github.com/sven1103))
+- Renuka Kudva ([@renbot-bio](https://github.com/renbot-bio))
 
 #### Safety
 
@@ -69,14 +73,14 @@ Safety are not a part of the core team and can report directly to the steering c
 
 ##### Members
 
-- 1
-- 2
-- 3
+- Saba Nafees ([@snafees](https://github.com/snafees))
+- Michael Heuer ([@heuermh](https://github.com/heuermh))
+- Cris Tuñí ([@ctuni](https://github.com/ctuni))
 
 ##### Responsibilities
 
 - Write and maintain the nf-core code of conduct
-- Be available at nf-core events (online or in person)
+- Be available for nf-core events (online or in person)
 - Monitor Slack channels for instances of misconduct
 - Respond promptly to reports of misconduct from members of the community and esculate appropiately
 - Provide recommendations to the core team or steering committee for any acute or chronic instances of misconduct by community members
