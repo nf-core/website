@@ -9,68 +9,38 @@ Please note that all nf-core community members are expected to adhere to our [co
 
 The purpose of is to formalize the governance process used by the scverse project, to clarify how decisions are made and how the various groups within our community interact.
 
-As a whole, we are a... Anyone with an interest in the project can join the community and make contributions that are in line with our guidelines. This document describes how that participation takes place, how to find consensus, and how deadlocks are resolved.
+Anyone with an interest in the project can join the community and make contributions that are in line with our guidelines. This document describes how that participation takes place, how to find consensus, and how deadlocks are resolved.
 
-### Roles And Responsibilities
+Governance groups are not fixed in size. Members will be selected based on experience and the requirements of the community as it evolves over time.
 
 #### Steering committee
 
-Changes that impact the project require decisions informed by extensive experience with both the project and the larger ecosystem. The steering committee include representations of the core team and outside advisors who oversea the running of the project. When the core team (including its steering committee members) fails to reach a consensus in a reasonable timeframe, the Steering committee is the entity that will resolve the issue. The steering council is not fixed in size. Members will be selected based on experience and the requirements of the community as it evolves over time.
+Changes that impact the project require decisions informed by extensive experience with both the project and the larger ecosystem. The steering committee include representations of the core team and outside advisors who oversee the running of the project. When the core team (including its steering committee members) fails to reach a consensus in a reasonable timeframe, the steering committee is the entity that will resolve the issue.
 
 Responsibilities:
 
 - Planning and making decisions about project funds
+-
 
-## Members:
+Members
 
 -
 
 #### Core team
 
-The core team are community members that have demonstrated a continued commitment to the project through ongoing contributions and engamgent. Members will be invited to be a part of the core team based on merit / involvement in the community, and will be selected based on experience and the requirements of the community as it evolves over time. New members will be voted into the core team. The core team is not fixed in size.
+The core team are community members that have demonstrated a continued commitment to the nf-core community. New members will be invited to be a part of the core team based on contributions, expereince, and engamgent with the community. New members will be voted into the core team by the current core team.
 
-Core team members will appear as organization members on the GitHub organization and have access...
+Core team members will appear as organization members on the GitHub organization and have administrator access. Significant community decisions will be made by committee vote. Any decision made by the core team without a clear majority will be passed to the steering committee.
 
-Decisions by committee / vote
-If there is no majority, decisions will be made by the steering committee
+##### Responsibilities
 
-Summary of responsibilities:
+- Day to day community decisions
+- Attendance at the core team annual meeting
+- Regular attendance at monthy core team meetings
+- Sub-roles within the nf-core governance structure
+- Community presence
 
-- Day to day decisions for the community
-- To meet annually
-- There are sub-roles within the core team which shape their contributions and responsibilities.
-- Maintain community presence
-- To track, discuss and decide on new pipeline requests
-
-#### Safety
-
-Intro
-
-Members:
-
-- 1
-- 2
-- 3
-
-Responsibilities:
-
-- Write and maintain the nf-core code of conduct
-- Be available at nf-core events (online or in-person)
-- Monitor Slack channels for instances of misconduct
-- Respond promptly to reports of misconduct from members of the community and esculate appropiately
-- Provide recommendations to the core team or steering committee for any acute or chronic instances of misconduct by community members
-
-#### Infastructure
-
-#### Outreach
-
-#### Maintainers
-
-#### Ambassadors
-
-## Core team {#core}
-
-The core team members who administer the nf-core project are listed below:
+##### Members
 
 - [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
 - [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
@@ -85,12 +55,7 @@ The core team members who administer the nf-core project are listed below:
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
-We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
-
-### Alumni
-
-The following former members of the nf-core team have earned their place in
-the nf-core alumni hall of fame:
+The following nf-core team alumni that have earned their place in the nf-core hall of fame
 
 - [@alneberg](https://github.com/alneberg): Johannes Alneberg
 - [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
@@ -98,13 +63,45 @@ the nf-core alumni hall of fame:
 - [@sven1103](https://github.com/sven1103): Sven F.
 - [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
+#### Safety
+
+Safety are not a part of the core team and can report directly to the steering committee.
+
+##### Members
+
+- 1
+- 2
+- 3
+
+##### Responsibilities
+
+- Write and maintain the nf-core code of conduct
+- Be available at nf-core events (online or in person)
+- Monitor Slack channels for instances of misconduct
+- Respond promptly to reports of misconduct from members of the community and esculate appropiately
+- Provide recommendations to the core team or steering committee for any acute or chronic instances of misconduct by community members
+
+#### Infastructure
+
+#### Outreach
+
+#### Maintainers
+
+#### Ambassadors
+
+## Core team {#core}
+
+### Alumni
+
 ## Outreach team {#outreach}
 
-The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
-This team includes all of the `@core-team` mentioned above and also:
+The outreach team is responsible for organizing and running community outreach efforts, including but not limited to the nf-core ambasador program, hackathons, and the `#bytesize` seminar series.
 
+This outreach team `@core-team` mentioned above and also:
+
+- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
-- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
 ## Financial Support
 
