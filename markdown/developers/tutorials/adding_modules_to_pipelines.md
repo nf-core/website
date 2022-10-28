@@ -15,6 +15,8 @@ Different pipelines may have different workflows, but the following steps will c
 
 2. Add `include` statement at the top of the pipeline's (sub)workflow to import module
 3. Insert module execution into the relevant place (sub)workflow script `TOOL(ch_input)`
+    - Make sure to mix in the module's version into the version channel, e.g. `ch_versions = ch_versions.mix(TOOL.out.versions)`
+    - Make sure to mix any output files for MultiQC into a relevant channel, e.g. `ch_multiqc_files = ch_multiqc.mix(TOOL.out.log)`
 4. Create a section in `conf/modules.conf` for the module (with a default results directory and output file pattern)
 5. Add any necessary parameters for the module with defaults to `nextflow.config`
 6. Insert the parameters into `ext.args` of corresponding `conf/modules.config` (and in some cases in the module reference in the workflow script)
