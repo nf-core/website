@@ -158,7 +158,10 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
-                echo '<i class="fad fa-circle text-danger me-1"></i>';
+                echo '  <span class="fa-stack small text-danger">
+                            <i class="fad fa-circle fa-stack-1x"></i>
+                            <i class="fas fa-circle-small fa-stack-1x"></i>
+                        </span>';
             } ?>Events</a>
           </li>
           <li class="nav-item p-1 dropdown">

@@ -32,16 +32,15 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
    For example, if you were adding new genomic test data, and needed to create a specific type of genotyping file format for a particular tool - you should use the SARS-CoV2 or _Homo sapiens_ BAM files as input when generating the file you will need to use your module tests. The resulting genotyping file should then be stored alongside the BAM file, or in the corresponding file format type directory.
 
-4. In the worst case scenario where you cannot (re)use the exisiting data in the field-specific collections, the `delete_me/` folder may be used.
+4. In the worst case scenario where you cannot (re)use the existing data in the field-specific collections, the `delete_me/` folder may be used.
 
    - We discourage the use of this directory as far as possible.
    - If you do use this directory, we ask you to replace anything added to this directory with proper test data based on the existing dataset as soon as possible.
 
 5. For non-bioinformatic specific files (like simple text files, or tables), you can place these in the `generic/` directory.
 
-6. Files must be small (less than the GitHub file-size limit as a maximum size), and must be aggressively subsampled if necessary.
-
-7. Test data must be publically available and have licenses that allow public reuse.
+6. Files must have as small a file size as possible - aggressively subsample as much as you can.
+7. Test data must be publicly available and have licenses that allow public reuse.
 
 8. Files should generally be organised in directories based on their file extension.
 
@@ -53,7 +52,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 12. Once you've had your pull request merged in into `nf-core/test-datasets`, make another PR into [nf-core/modules](https://github.com/nf-core/modules), to add your file as a new entry to the [`modules/tests/config/test_data.config`](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config).
 
-    - This only applies field-specific collections, `delete_me/` files are exclued from this, and raw github URLs should be used in tests.
+    - This only applies field-specific collections, `delete_me/` files are excluded from this, and raw github URLs should be used in tests.
     - The 'key' for each URL should follow the style of the full file name with extensions but with underscores rather than full-stops e.g. `genome.fa.gz` would become `genome_fa_gz`.
 
 ### Field specific guidance
@@ -96,7 +95,7 @@ Each pipeline has their own dedicated branch on the test-datasets repository.
 
 The guidance for these test-datasets are generally less strict, as each pipeline will require their own structures.
 
-These will genereally consist of
+These will generally consist of
 
 - Small raw input files (FASTQ, FASTA etc.)
 - Samplesheets

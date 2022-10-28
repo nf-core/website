@@ -1077,7 +1077,8 @@ nfcore-subnav {
 
 .pipeline-stats .contrib-avatars img {
   width: 60px;
-  padding: 0 0.5rem 0.5rem 0;
+  padding: 0 0 0.75rem 0;
+  margin: 0;
 }
 /* Stats page */
 .stats_keynumbers .card,
@@ -1134,6 +1135,10 @@ nfcore-subnav {
   padding: 0.5rem 1rem;
   box-shadow: 2px 2px 5px rgba($black, 0.3);
 }
+.schema_row input {
+  color: $gray-800;
+}
+
 .schema_row,
 .schema_row input,
 .schema_row select {
@@ -1489,5 +1494,13 @@ Launch Page
   }
   &:hover {
     color: $success;
+  }
+}
+.sidebar-nav.side-sub-subnav > ul > nav {
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid $secondary;
+  &:last-child {
+    border-bottom: none;
   }
 }

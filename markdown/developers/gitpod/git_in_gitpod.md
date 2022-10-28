@@ -1,14 +1,14 @@
 ---
 title: 2 - Git and Gitpod
-subtitle: Making changes to a repository and commiting to git.
+subtitle: Making changes to a repository and commiting to git
 ---
 
-## Making changes to a repository and commiting to git.
+## Making changes to a repository and commiting to git
 
 Gitpod environments are a handy place to try out Nextflow and nf-core tools, test new features and make suggested changes to the underlying code.
 Once you have made changes within the Gitpod environment, you can push these to a new branch for review by the nf-core team.
 
-First, make sure your edited files are saved in your Gitpod IDE (on MAC, `Command-S`).
+First, make sure your edited files are saved in your Gitpod environment (on macOS, `Command-S`).
 Then click the Git checkout branch option at the bottom left of the window.
 ![PNG](/assets/markdown_assets/developers/gitpod/git.1.png)
 
@@ -30,7 +30,7 @@ Then click sync changes. You should have now pushed the new files to your new br
 
 If you don't wish to use Gitpod, you can still make changes to the website using the conventional command line git tools.
 
-Foir example, to make changes to a new branch for the nf-core website, you would use the following commands:
+For example, to make changes to a new branch for the nf-core website, you would use the following commands:
 
 ```bash
 git clone https://github.com/nf-core/nf-co.re.git

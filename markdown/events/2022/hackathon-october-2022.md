@@ -27,9 +27,10 @@ Registration for the in-person hackathon event is now closed. You can still regi
 You can register for either the hackathon or the summit, or both. You're welcome to attend in-person or online.
 Attendance online is free, attending in person costs €49 (€59 incl. VAT).
 
-Registration will close September 16th, 2022.
+- In-person registration is now closed.
+- Virtual registration will close October 7, 2022.
 
-<a class="btn btn-success btn-lg" href="https://summit.nextflow.io/register/">Register now</a>
+<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/"><i class="fa-solid fa-id-card me-2"></i> Register now</a>
 
 # Prerequisites
 
@@ -37,7 +38,7 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
 
 - Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event.
 - If you haven’t already, set-up a GitHub account and join the nf-core GitHub organisation.
-- Join the [nf-core slack](https://nf-co.re/join) and the channel #hackathon-oct-2022
+- Join the [nf-core slack](https://nf-co.re/join) and the [`#hackathon-oct-2022` channel](https://nfcore.slack.com/archives/C03V1KD22DT)
 - Have installed on your computer:
   - [Nextflow](https://nextflow.io/)
   - [nf-core/tools](https://nf-co.re/tools)
@@ -50,6 +51,18 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
 <!-- - Have a peek at the [GitHub Projects board](https://github.com/orgs/nf-core/projects/20) for the hackathon -->
 
 If you have any problems with any of these just ask on the slack channel or email [outreach@nf-co.re](mailto:outreach@nf-co.re)
+
+# Joining Gather
+
+Only those who have registered will be able to join the hackathon in our Gather space. To join the hackathon in Gather you will need to follow these steps:
+
+1. Follow the link below to find the nf-core hackathon Gather space
+   - Please note that the hackathon space will not open until October 7
+2. Enter the email address you used to register for the hackathon
+3. Check your emails for a one-time code and enter it into the Gather window
+4. Enter the space and enjoy the hackathon!
+
+<a class="btn btn-success btn-lg mb-3" href="https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit"><i class="fa-solid fa-grapes fa-flip-horizontal me-2"></i> Launch Gather</a>
 
 # Interesting Bytesize talks
 
@@ -101,6 +114,7 @@ Why stop at sharing modules, we want to share subworkflows between pipelines too
 
 - Edmund Miller (in person),
 - Harshil Patel (in person),
+- Maxime Garcia (in person),
 - Yuk Kei Wan (online)
 
 ## Group 3 - Pipelines
@@ -117,6 +131,7 @@ This group will focus on any pipeline related work, this could be:
 
 - Maxime Garcia (in person),
 - James Fellows Yates (in person),
+- Friederike Hanssen (in person),
 - Luis Kuhn (online)
 
 ## Group 4 - Modules
@@ -131,11 +146,11 @@ This group will welcome anyone who wants to work on new modules or improve exist
 - Gisela Gabernet (in person),
 - Louisa Perelo (online)
 
-## Group 5 - Central tools / Website
+## Group 5 - Infrastructure
 
 The nf-core website is in desperate need of work, and central tooling always needs to be improved and maintained. If this sounds like a fun task, join group 5!
 
-[<i class="fab fa-slack"></i> `#hackathon-oct-2022-tools-website`](https://nfcore.slack.com/archives/C040XNUL7DM)
+[<i class="fab fa-slack"></i> `#hackathon-oct-2022-infrastructure`](https://nfcore.slack.com/archives/C040XNUL7DM)
 
 ### Group leaders
 
@@ -181,11 +196,12 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             <tr>
                 <td data-timestamp="1665388800" data-timeformat="HH:mm z">10:00</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="4">Hack!</td>
+                <td rowspan="1">Quiz!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665392400" data-timeformat="HH:mm z">11:00</td>
                 <td>Registration Open</td>
+                <td rowspan="3">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1665396000" data-timeformat="HH:mm z">12:00</td>
@@ -193,7 +209,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665397800" data-timeformat="HH:mm z">12:30</td>
-                <td rowspan="1">Welkome talk</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/rmlAZPS6stw"><i class="fa-brands fa-youtube me-2"></i>Welcome talk</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665399600" data-timeformat="HH:mm z">13:00</td>
@@ -205,7 +223,9 @@ We will be a lot of people working in parallel during this hackathon, so to stay
                 <td data-timestamp="1665403200" data-timeformat="HH:mm z">14:00</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
-                <td rowspan="1">Wrap-up talk</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/Qf_uVuxgX_A"><i class="fa-brands fa-youtube me-2"></i>Wrap-up talk</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665406800" data-timeformat="HH:mm z">15:00</td>
@@ -219,8 +239,12 @@ We will be a lot of people working in parallel during this hackathon, so to stay
             </tr>
             <tr>
                 <td data-timestamp="1665417600" data-timeformat="HH:mm z">18:00</td>
-                <td rowspan="1">Summary of the day</td>
-                <td rowspan="1">Summary of the day</td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/JXegFdAG0uQ"><i class="fa-brands fa-youtube me-2"></i>Summary of the day</a>
+                </td>
+                <td rowspan="1">
+                  <a href="https://youtu.be/8s1o5QxKwDo"><i class="fa-brands fa-youtube me-2"></i>Summary of the day</a>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1665421200" data-timeformat="HH:mm z">19:00</td>
@@ -234,11 +258,41 @@ We will be a lot of people working in parallel during this hackathon, so to stay
     </table>
 </div>
 
+# Venue: Torre Glòries
+
+The in-person hackathon will be taking place in Torre Glòries, Barcelona.
+
+[👉🏻 Google Maps 🗺️](https://goo.gl/maps/f437pZnbeZpyYSdHA)
+
+Instructions for finding us:
+
+1. Use the entrance with the green carpet and a Summit poster
+2. Find either Lift 7 or Lift 8 _(only these lifts!)_
+3. Floor 25
+4. Turn left and follow the corridor around past the coffee machine
+5. We are in rooms:
+   - Eixample (41 people)
+   - Tibidabo (14 people)
+   - La Barceloneta (6 people)
+6. Hack!
+
+| Room name      | Door                                                                                              | Inside                                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Eixample       | ![Eixample](/assets/markdown_assets/events/2022/hackathon-october-2022/eixample.jpeg)             | ![Eixample inside](/assets/markdown_assets/events/2022/hackathon-october-2022/eixample_inside.jpeg)             |
+| Tibidabo       | ![Tibidabo](/assets/markdown_assets/events/2022/hackathon-october-2022/tibidabo.jpeg)             | ![Tibidabo inside](/assets/markdown_assets/events/2022/hackathon-october-2022/tibidabo_inside.jpeg)             |
+| La Barceloneta | ![La Barceloneta](/assets/markdown_assets/events/2022/hackathon-october-2022/la_barceloneta.jpeg) | ![La Barceloneta inside](/assets/markdown_assets/events/2022/hackathon-october-2022/la_barceloneta_inside.jpeg) |
+
+Video of walking to the hackathon rooms:
+
+<video controls width="350">
+  <source src="/assets/markdown_assets/events/2022/hackathon-october-2022/agbar_video_hackathon.mp4" type="video/mp4">
+</video>
+
 # Community Streaming Events
 
 Community streaming events are a great way to engage with your local communities while participating in events remotely. By simply booking a room and gathering your colleagues you can create discussion and build your community while enjoying the training, nf-core Hackathon, and/or Nextflow Summit together.
 
-If this is something you are interested in you can tell us about your plans using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share. We have also created a dedicated [`#community-stream-events`](https://nfcore.slack.com/archives/C03Q3RE0RJQ) Slack channel where you can ask questions and share information about your event.
+If this is something you are interested in you can tell us about your plans using the link below. We will send you extra material to help you prepare and promote your local event. To get started we have a [poster](https://docs.google.com/document/d/1wQDtrVUv1Lro5lZFmeyfaPgJUI2pmGojtL9tWlQiVyQ/edit) that you can download, edit, and share.
 
 Keep an eye out for others hosting community events in your area. We will be sharing information about community events and how to get in contact with hosts on our website.
 
@@ -253,7 +307,7 @@ During the hackathon, we will have a few light-hearted fun and games!
 - Monday evening: Beers and pizza (non-alcoholic options available) at the Seqera Office!
 - Tuesday evening: Dinner!
 - The traditional sock hunting in Gathertown will also be held in person! Take pictures of as many socks as you can find.
-- Finally, on Wednesday, we will be running a short quiz!
+- Finally, on Wednesday, we will be running a short quiz at 10am with Kahoot!
 
 ### Online
 
