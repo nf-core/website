@@ -20,7 +20,7 @@ Different pipelines may have different workflows, but the following steps will c
 4. Create a section in `conf/modules.conf` for the module (with a default results directory and output file pattern)
 5. Add any necessary parameters for the module with defaults to `nextflow.config`
 6. Insert any pipeline level parameters (`params.*`) into the `ext.args` of corresponding `conf/modules.config`
-    - In some cases these may need to be passed directly to the module itself, e.g. `FASTP( reads, params.save_trimmed_fail,  params.save_merged)`
+   - In some cases these may need to be passed directly to the module itself, e.g. `FASTP( reads, params.save_trimmed_fail, params.save_merged)`
 7. Update the `nextflow_schema.json` to include new parameters with
 
    ```bash
