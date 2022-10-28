@@ -13,7 +13,7 @@ Different pipelines may have different workflows, but the following steps will c
    nf-core modules install <tool>/<subtool>
    ```
 
-2. Add `include` statement at the top of the pipeline's (sub)workflow to import module
+2. Add `include` statement at the top of the pipeline's (sub)workflow to import module (as suggested by `nf-core modules install`)
 3. Insert module execution into the relevant place (sub)workflow script `TOOL(ch_input)`
    - Make sure to mix in the module's version into the version channel, e.g. `ch_versions = ch_versions.mix(TOOL.out.versions)`
    - Make sure to mix any output files for MultiQC into a relevant channel, e.g. `ch_multiqc_files = ch_multiqc.mix(TOOL.out.log)`
