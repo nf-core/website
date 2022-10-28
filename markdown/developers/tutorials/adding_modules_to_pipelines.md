@@ -36,7 +36,7 @@ Different pipelines may have different workflows, but the following steps will c
     ```
 
     - Or run VSCode 'Format Document' function on: `citations.md`, `usage.md`, `output.md`, `README.md`, `modules.json`, `nextflow_schema.json`
-    - If you forget this step you can also post a comment on the open PR once made with `@nf-core bot fix linting`
+    - If you forget this step you can also post a comment on the open PR once made with `@nf-core-bot fix linting`
 
 14. Lint the new code with
 
