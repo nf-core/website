@@ -38,7 +38,7 @@ if ($curr_event) {
     $curr_event['meta']['location_dropdown'] = '';
     if (array_key_exists('location_url', $curr_event) && $curr_event['ongoing']) {
         if (count($curr_event['location_url']) == 1) {
-            $url = $curr_event['location_url'];
+            $url = $curr_event['location_url'][0];
             if ($url[0] == '#') {
                 $url = $curr_event['url'] . $url;
             }
@@ -491,7 +491,7 @@ nf-core list
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
       <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
-      <a class="btn btn-lg btn-success arrow-hover" href="contributing/guidelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
+      <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
 </div>

@@ -50,11 +50,11 @@ These topics are specifically discussed in the `#new-pipelines` channel:
 ## Create a pipeline from the template
 
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
-Only when it's ready do we move ito the nf-core GitHub organisation.
+Only when it's ready do we move it to the nf-core GitHub organisation.
 
 It's _highly_ recommended to use the nf-core template.
 The guidelines for nf-core pipelines are pretty strict, but if you start your pipeline by using the
-nf-core template (`nf-core create` - see [the docs](/tools#creating-a-new-workflow))
+nf-core template (`nf-core create` - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline))
 then your life will be much easier.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
@@ -70,10 +70,9 @@ Please see the [manual synchronisation](sync.md) documentation.
 
 ### Push to GitHub
 
-Create a repository on GitHub for your new pipeline under your personal account.
-
+Create an empty repository on GitHub for your new pipeline under your personal account.
 Do this by going to the GitHub website and clicking + then _New Repository_.
-Make sure _not_ to initialise it with `README` file - you just want an empty repository.
+Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository. It will be populated after you push the template you created locally with all you need to start working on your pipeline.
 
 Once created, copy the URL and add this as a remote to your local git repository
 and push your code:
@@ -225,7 +224,7 @@ Note that when developing the `:dev` tag should be used for docker containers.
 
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
 when ready - this will check that everything looks correct.
-You are welcome to use any numeric version number, though we recommend using [Semantic Versioning](https://semver.org/).
+Pipeline release numbers must use [Semantic Versioning](https://semver.org/).
 
 ### Core pipeline review
 
@@ -242,7 +241,7 @@ Common things that are flagged at this point are:
 - Good documentation, especially describing the output files and all parameters
 - Pipeline code
 
-We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipelin release. You can also ping people from the nf-core core team to review your pipelin code by `@`ing them.
+We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipeline release. You can also ping people from the nf-core core team to review your pipeline code by `@`ing them.
 
 ### Making the release
 
@@ -308,7 +307,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `CODE_OF_CONDUCT.md`: The nf-core code of conduct.
 
-- `CITATIONS.md`: All citations needed when using the pipelin
+- `CITATIONS.md`: All citations needed when using the pipeline
 
 - `.gitattributes`: Git settings, primarily getting the `.config` files to render with Nextflow syntax highlighting on <github.com>
 
@@ -328,7 +327,7 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `bin/`: Directory for scripts that must be directly accessible within a pipeline process. Anything in this directory can be directly called from within Nextflow processes.
 
-- `conf/`: Configuration files, including a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionaly, most pipelines also have a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
+- `conf/`: Configuration files, including a `base.config` file which is always loaded into `nextflow.config` and describes basic pipeline configurations, like CPU and memory usage for processes with low, medium and high requirements. Additionally, most pipelines also have a `igenomes.config` file which describes the locations of popular genomes that can be automatically downloaded for a pipeline run. Finally, the `test.config` and `test_full.config` files are test configurations that are loaded during test runs. Since DSL2, it also contains a `modules.config` file, which defines module-specific configurations and is explained further down in the "DSL2 and modules" section.
 
 - `docs/`: Markdown files for documenting the pipeline
 
