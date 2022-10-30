@@ -63,8 +63,10 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom pb-2">
         <div class="col-12">
             <h6><i class="fas fa-terminal fa-xs"></i> Run with
-            <p class="btn btn-success d-print-none" id="btn_nfcore" onclick="changeText('nf-core launch <?php echo $pipeline->full_name . $release_cmd; ?> -profile test --outdir <OUTDIR>');changeInfo('');">nf-core</p>
-            <p class="btn btn-success d-print-none" id="btn_nxf" onclick="changeText('nextflow run <?php echo $pipeline->full_name . $release_cmd; ?> -profile test --outdir <OUTDIR>');changeInfo('');">Nextflow</p>
+            <p class="btn btn-success d-print-none" id="btn_nfcore" onclick="changeText('nf-core launch <?php echo $pipeline->full_name .
+                $release_cmd; ?> -profile test --outdir <OUTDIR>');changeInfo('');">nf-core</p>
+            <p class="btn btn-success d-print-none" id="btn_nxf" onclick="changeText('nextflow run <?php echo $pipeline->full_name .
+                $release_cmd; ?> -profile test --outdir <OUTDIR>');changeInfo('');">Nextflow</p>
             <p class="btn btn-primary d-print-none" id="btn_tower" onclick="changeText('tw launch https://nf-core/sarek');changeInfo('Read how to configure the Tower CLI <u><a href=\'https://github.com/seqeralabs/tower-cli/#2-configuration\'>here</a></u>.');">Tower</p></h6>
             <div class="input-group input-group-sm pipeline-run-cmd">
                 <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name .
