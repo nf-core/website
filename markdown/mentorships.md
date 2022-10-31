@@ -2,7 +2,7 @@
 
 As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation.
 In Spring 2022, Nextflow and nf-core started a joint mentorship program with the aim of improving outreach and training in underrepresented groups and areas.
-With the first round of mentorships complete the applications for round two (Autumn 2022) are now open!
+Round two (Autumn 2022) of the program is now under way!
 
 In this page, we use the following terminology:
 
@@ -13,7 +13,7 @@ In this page, we use the following terminology:
 
 Some typical project aims could be:
 
-- Setting up Nextflow and nf-core in your institution
+- Setting up Nextflow and nf-core in your institutionS
   - Getting requirements up and running on the local compute infrastructure
   - Developing an institutional config for you and others to use
   - Testing and scaling up the use of nf-core pipelines
@@ -84,7 +84,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of August 2022</dd>
 </dl>
 
-## Round 2 (Applications open)
+## Round 2 (Applications closed)
 
 ### Key dates
 
@@ -120,11 +120,11 @@ Dates are subject to change:
 
 ### Application process
 
-Applications for Round 2 are now open!
+Applications are now closed. Those who have applied will hear from us soon. Thank you!
 
-<!-- _Applications are now closed. Those who have applied will hear from us soon. Thank you!_ -->
+<!-- _ Applications for Round 2 are now open!
 
 Please submit an application using the forms below before November 1<sup>st</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<p class="text-center"><a href="https://forms.gle/oXgDDwGPUHV6nMYk8" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
+<p class="text-center"><a href="https://forms.gle/oXgDDwGPUHV6nMYk8" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>_ -->
