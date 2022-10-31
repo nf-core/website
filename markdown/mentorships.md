@@ -13,7 +13,7 @@ In this page, we use the following terminology:
 
 Some typical project aims could be:
 
-- Setting up Nextflow and nf-core in your institutionS
+- Setting up Nextflow and nf-core in your institution
   - Getting requirements up and running on the local compute infrastructure
   - Developing an institutional config for you and others to use
   - Testing and scaling up the use of nf-core pipelines
