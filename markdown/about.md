@@ -1,158 +1,47 @@
 ## Introduction
 
 The nf-core project is a diverse project spread across many groups.
-Here you can read how we are governed, how we are funded and how the nf-core project was started.
+Here you can read how we organise ourselves, how we are funded and how the nf-core project was started.
 
 Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
-## Governance
+## Core team {#core}
 
-The purpose of is to formalize the governance process used by the scverse project, to clarify how decisions are made and how the various groups within our community interact.
+The core team members who administer the nf-core project are listed below:
 
-Anyone with an interest in the project can join the community and make contributions that are in line with our guidelines. This document describes how that participation takes place, how to find consensus, and how deadlocks are resolved.
+- [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
+- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
+- [@drpatelh](https://github.com/drpatelh): Harshil Patel
+- [@ewels](https://github.com/ewels): Phil Ewels
+- [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
+- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
+- [@jfy133](https://github.com/jfy133): James A. Fellows Yates
+- [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
+- [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
+- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+- [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
-Governance groups are not fixed in size. Members will be selected based on experience and the requirements of the community as it evolves over time.
+We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
 
-#### Steering committee {#steering}
+### Alumni
 
-Changes that impact the project require decisions informed by extensive experience with both the project and the larger ecosystem. The steering committee include representations of the core team and outside advisors who oversee the running of the project. When the core team (including its steering committee members) fails to reach a consensus in a reasonable timeframe, the steering committee is the entity that will resolve the issue.
+The following former members of the nf-core team have earned their place in
+the nf-core alumni hall of fame:
 
-##### Responsibilities
+- [@alneberg](https://github.com/alneberg): Johannes Alneberg
+- [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
+- [@olgabot](https://github.com/olgabot): Olga Botvinnik
+- [@sven1103](https://github.com/sven1103): Sven F.
+- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 
-- Planning and making decisions about project funds and personnel
-- Guiding large initiatives
+## Outreach team {#outreach}
 
-##### Members
+The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
+This team includes all of the `@core-team` mentioned above and also:
 
-- Ellen Sherwood
-- Evan Floden ([@evanfloden](https://github.com/evanfloden))
-- Phil Ewels ([@ewels](https://github.com/ewels))
-- Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))
-- Harshil Patel ([@drpatelh](https://github.com/drpatelh))
-
-#### Core team {#core}
-
-The core team are community members that have demonstrated a continued commitment to the nf-core community. New members will be invited to be a part of the core team based on contributions, expereince, and engamgent with the community. New members will be voted into the core team by the current core team. The core team will aim to have representation from different genders, geography, and employers (academia, industry and clinical).
-
-Core team members will appear as organization members on the GitHub organization and have administrator access. Significant community decisions will be made by committee vote. Any decision made by the core team without a clear majority will be passed to the steering committee.
-
-##### Responsibilities
-
-- Day to day community decisions
-- Attendance at the core team annual meeting
-- Regular attendance at monthy core team meetings
-- Sub-roles within the nf-core governance structure
-- Community presence
-
-##### Members
-
-- Alexander Peltzer ([@apeltzer](https://github.com/apeltzer))
-- Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart))
-- Harshil Patel ([@drpatelh](https://github.com/drpatelh))
-- Phil Ewels ([@ewels](https://github.com/ewels))
-- Friederike Hanssen ([@FriederikeHanssen](https://github.com/FriederikeHanssen))
-- Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))
-- James A. Fellows Yates ([@jfy133](https://github.com/jfy133))
-- Jose Espinosa-Carrasco ([@JoseEspinosa](https://github.com/JoseEspinosa))
-- Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu))
-- Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse))
-- Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol))
-- Marcel Ribeiro-Dantas ([@mribeirodantas](https://github.com/mribeirodantas))
-
-The following nf-core team alumni that have earned their place in the nf-core hall of fame
-
-- Johannes Alneberg ([@alneberg](https://github.com/alneberg))
-- Kevin Menden ([@KevinMenden](https://github.com/KevinMenden))
-- Olga Botvinnik ([@olgabot](https://github.com/olgabot))
-- Sven F. ([@sven1103](https://github.com/sven1103))
-- Renuka Kudva ([@renbot-bio](https://github.com/renbot-bio))
-
-#### Safety {#safety}
-
-The safety team will...
-
-Safety are not a part of the core team and can report directly to the steering committee.
-
-##### Members
-
-- Saba Nafees ([@snafees](https://github.com/snafees))
-- Michael Heuer ([@heuermh](https://github.com/heuermh))
-- Cris Tuñí ([@ctuni](https://github.com/ctuni))
-
-##### Responsibilities
-
-- Write and maintain the nf-core code of conduct
-- Be available for nf-core events (online or in person)
-- Monitor Slack channels for instances of misconduct
-- Promptly respond to reports of misconduct and esculate to the core team or steering committee as necessary
-
-#### Infastructure {#infastructure}
-
-Do all the hard stuff
-
-##### Responsibilities
-
-Framework development (tools, website, megatests…)
-
-##### Members
-
-- Phil Ewels ([@ewels](https://github.com/ewels)) (_lead_)
-- Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu))
-- Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol))
-
-#### Outreach {#outreach}
-
-The outreach team is responsible for organizing and running community outreach efforts, including but not limited to the nf-core ambasador program, hackathons, and the `#bytesize` seminar series.
-
-##### Responsibilities
-
-Bytesize
-Hackathons/Training
-Ambassador program
-Twitter by leads (bytesize,…)
-Youtube
-
-##### Members
-
-- Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) (_lead_)
-- Franziska Bonath ([@FranBonath](https://github.com/FranBonath)) (_lead_)
-- Marcel Ribeiro-Dantas ([@mribeirodantas](https://github.com/mribeirodantas)) (_lead_)
-- Abhinav Sharma ([@abhi18av](https://github.com/abhi18av))
-- Edmund Miller ([Miller](https://github.com/Miller))
-- Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse))
-- Paul Cantalupo([@pcantalupo](https://github.com/pcantalupo))
-- Yuk Kei ([yuukiiwa](https://github.com/yuukiiwa))
-
-#### Maintainers {#maintainers}
-
-Top list of GitHub contributors from nf-core
-Manual added by us; rotate every 6 months to people who don’t volunteer etc.
-
-Responsibilities
-Make sure the right people have access to the right repos (core)
-check #github-invitations
-Manage test data
-
-nf-core maintainers will have write access to all repositories
-
-##### Responsibilities
-
-- Check and approve #github-invitations
-- Review module and subworkflow pull requests
-- Review pipeline releases (including first release)
-- Manage repository access for community developers
-- Manage test data
-
-##### Members
-
-- Harshil Patel ([@drpatelh](https://github.com/drpatelh)) (lead)
-- Alexander Peltzer ([@apeltzer](https://github.com/apeltzer))
-- Friederike Hanssen ([@FriederikeHanssen](https://github.com/FriederikeHanssen))
-- Gisela Gabernet ([@ggabernet](https://github.com/ggabernet))
-- James A. Fellows Yates ([@jfy133](https://github.com/jfy133))
-- Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse))
-
-#### Ambassadors {#ambassadors}
+- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
+- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
 ## Financial Support
 
