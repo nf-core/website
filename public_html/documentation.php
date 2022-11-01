@@ -37,6 +37,8 @@ function dir_tree($dir) {
 }
 
 $sidebar_nav_elements = dir_tree($docs_md_base . 'docs');
+//Remove landing pages from navigation
+unset($sidebar_nav_elements['0'], $sidebar_nav_elements['1']);
 krsort($sidebar_nav_elements, SORT_ASC); # sort Usage before Contributing
 # build html for the sidebar nav
 
@@ -86,8 +88,7 @@ function build_sidebar_nav($elements) {
         }
     }
 }
-//Remove landing pages from navigation
-unset($sidebar_nav_elements['0'], $sidebar_nav_elements['1']);
+
 
 $sidebar_nav =
     '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
