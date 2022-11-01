@@ -63,38 +63,39 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom pb-2">
         <div class="col-12">
             <h6><i class="fas fa-terminal fa-xs"></i> Run with</h6>
-        <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link text-muted active" id="nfcore-tab" data-bs-toggle="tab" data-bs-target="#pipeline-nfcore-run-cmd" type="button" role="tab" aria-controls="nfcore" aria-selected="true">nf-core</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link text-muted" id="nf-tab" data-bs-toggle="tab" data-bs-target="#nf" type="button" role="tab" aria-controls="nf" aria-selected="false">Nextflow</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link text-muted" id="tw-tab" data-bs-toggle="tab" data-bs-target="#tw" type="button" role="tab" aria-controls="tw" aria-selected="false">Tower</button>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane show active" id="pipeline-nfcore-run-cmd" role="tabpanel" aria-labelledby="nfcore-tab">
-                <div class=" input-group input-group-sm pipeline-run-cmd">
-                    <input type="text" class="form-control input-sm code rounded-0" id="pipeline-nfcore-run-cmd-text"  value="nf-core launch <?php echo $pipeline->full_name .
-                        $release_cmd; ?>" aria-label="Copy run command" readonly="">
-                    <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-nfcore-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+            <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-muted active" id="nfcore-tab" data-bs-toggle="tab" data-bs-target="#pipeline-nfcore-run-cmd" type="button" role="tab" aria-controls="nfcore" aria-selected="true">nf-core</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-muted" id="nf-tab" data-bs-toggle="tab" data-bs-target="#nf" type="button" role="tab" aria-controls="nf" aria-selected="false">Nextflow</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-muted" id="tw-tab" data-bs-toggle="tab" data-bs-target="#tw" type="button" role="tab" aria-controls="tw" aria-selected="false">Tower</button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane show active" id="pipeline-nfcore-run-cmd" role="tabpanel" aria-labelledby="nfcore-tab">
+                    <div class=" input-group input-group-sm pipeline-run-cmd">
+                        <input type="text" class="form-control input-sm code rounded-0" id="pipeline-nfcore-run-cmd-text"  value="nf-core launch <?php echo $pipeline->full_name .
+                            $release_cmd; ?>" aria-label="Copy run command" readonly="">
+                        <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-nfcore-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="nf" role="tabpanel" aria-labelledby="nf-tab">
-                <div class=" input-group input-group-sm pipeline-run-cmd">
-                    <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-nf-run-cmd-text"  value="nextflow run <?php echo $pipeline->full_name .
-                        $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
-                    <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-nf-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                <div class="tab-pane" id="nf" role="tabpanel" aria-labelledby="nf-tab">
+                    <div class=" input-group input-group-sm pipeline-run-cmd">
+                        <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-nf-run-cmd-text"  value="nextflow run <?php echo $pipeline->full_name .
+                            $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
+                        <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-nf-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                    </div>
                 </div>
+                <div class="tab-pane" id="tw" role="tabpanel" aria-labelledby="tw-tab">
+                    <div class=" input-group input-group-sm pipeline-run-cmd">
+                        <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-tw-run-cmd-text" data-autoselect="" value="tw launch https://nf-co.re/<?php echo $pipeline->name .
+                            $release_cmd; ?>" aria-label="Copy run command" readonly="">
+                            <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-tw-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                </div><p class="text-muted">Read how to configure the Tower CLI <u><a href='https://github.com/seqeralabs/tower-cli/#2-configuration' target="_blank">here</a></u>.</p></div>
             </div>
-            <div class="tab-pane" id="tw" role="tabpanel" aria-labelledby="tw-tab">
-                <div class=" input-group input-group-sm pipeline-run-cmd">
-                    <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-tw-run-cmd-text" data-autoselect="" value="tw launch https://nf-co.re/<?php echo $pipeline->name .
-                        $release_cmd; ?>" aria-label="Copy run command" readonly="">
-                        <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-tw-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
-            </div><p class="text-muted">Read how to configure the Tower CLI <u><a href='https://github.com/seqeralabs/tower-cli/#2-configuration' target="_blank">here</a></u>.</p></div>
         </div>
     </div>
     <?php if (isset($embed_video)): ?>
