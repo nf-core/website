@@ -264,7 +264,7 @@ ob_start(); ?>
             type: 'LineWithLine',
             options: {
                 onClick: function(e) {
-                    window.location.href = '/<?php echo $pipeline->name; ?>/stats';
+                    window.location.href = '/<?php echo $pipeline->name; ?>/releases_stats';
                 },
                 elements: {
                     point: {
