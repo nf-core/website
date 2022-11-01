@@ -260,12 +260,14 @@ Now that you've completed code development, you are ready to check if your code 
 This can also be done easily using _nf-core tools_ just by changing folder into the parent _modules_ directory and typing the command
 
 ```bash
-nf-core modules lint --tool fgbio/fastqtobam .
+nf-core modules lint fgbio/fastqtobam -d .
 ```
 
 You will expect no test failed, as shown in figure below:
 
 ![lint](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_04_lint_module.png)
+
+For more information on fixing linting errors in your code both locally and directly in your pull request in GitHub, check at the end of this subsection [here](https://nf-co.re/docs/usage/tutorials/nf_core_usage_tutorial#installing-the-nf-core-helper-tools).
 
 ## Test your code
 
