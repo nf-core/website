@@ -60,7 +60,7 @@ $embed_video = array_values($embed_video)[0];
 ?>
 
 <div class="pipeline-sidebar">
-    <div class="row mb-4">
+    <div class="row pb-2 mb-md-4">
         <div class="col-12">
             <h6><i class="fas fa-terminal fa-xs"></i> Run with</h6>
             <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
