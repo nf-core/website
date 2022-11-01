@@ -45,98 +45,50 @@ function build_sidebar_nav($elements) {
     global $md_fn;
     foreach ($elements as $name => $element) {
         if (!isset($element['url'])) {
-            # Build landing pages
-            if($_GET['path'] === 'usage'){
-                $path = explode('/', $element[0]['url']);
-                $md_fn = '/docs/usage/introduction.md';
-                $show = strpos($md_fn, implode('/', array_slice($path, 0, -1))) !== false ? 'show' : '';
-                $is_open = $show == 'show' ? 'true' : 'false';
-                $id = str_replace(' ', '-', strtolower(implode('-', array_slice($path, -3, 2))));
-                $id = str_replace(':', '', $id);
-                $sidebar_nav .=
-                    '<button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#' .
-                    $id .
-                    '" aria-expanded="' .
-                    $is_open .
-                    '" aria-current="' .
-                    $is_open .
-                    '">
-                                <i class="fas fa-angle-right me-3"></i><strong>' .
-                    ucwords($name) .
-                    '
-                            </strong></button>';
-                $sidebar_nav .=
-                   '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
-                build_sidebar_nav($element);
-                $sidebar_nav .= '</ul></nav>';
-            }
-            elseif($_GET['path'] === 'contributing'){
-                $path = explode('/', $element[0]['url']);
-                $md_fn = '/docs/contributing/installation.md';
-                $show = strpos($md_fn, implode('/', array_slice($path, 0, -1))) !== false ? 'show' : '';
-                $is_open = $show == 'show' ? 'true' : 'false';
-                $id = str_replace(' ', '-', strtolower(implode('-', array_slice($path, -3, 2))));
-                $id = str_replace(':', '', $id);
-                $sidebar_nav .=
-                    '<button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#' .
-                    $id .
-                    '" aria-expanded="' .
-                    $is_open .
-                    '" aria-current="' .
-                    $is_open .
-                    '">
-                                <i class="fas fa-angle-right me-3"></i><strong>' .
-                    ucwords($name) .
-                    '
-                            </strong></button>';
-                $sidebar_nav .=
-                   '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
-                build_sidebar_nav($element);
-                $sidebar_nav .= '</ul></nav>';
-            }
-            else {
-                $path = explode('/', $element[0]['url']);
-                $show = strpos($md_fn, implode('/', array_slice($path, 0, -1))) !== false ? 'show' : '';
-                $is_open = $show == 'show' ? 'true' : 'false';
-                $id = str_replace(' ', '-', strtolower(implode('-', array_slice($path, -3, 2))));
-                $id = str_replace(':', '', $id);
-                $sidebar_nav .=
-                    '<button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#' .
-                    $id .
-                    '" aria-expanded="' .
-                    $is_open .
-                    '" aria-current="' .
-                    $is_open .
-                    '">
-                                <i class="fas fa-angle-right me-3"></i><strong>' .
-                    ucwords($name) .
-                    '
-                            </strong></button>';
-                $sidebar_nav .=
-                    '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
-                build_sidebar_nav($element);
-                $sidebar_nav .= '</ul></nav>';
-          }
-        } else {
-            $active = '';
-            if (
-                $md_fn == $element['url'] . '.md' ||
-                substr($md_fn, 0, -3) . '/index' == $element['url'] ||
-                substr($md_fn, 0, -3) . '/README' == $element['url']
-            ) {
-                $active = 'active';
-            }
+            $path = explode('/', $element[0]['url']);
+            $show = strpos($md_fn, implode('/', array_slice($path, 0, -1))) !== false ? 'show' : '';
+            $is_open = $show == 'show' ? 'true' : 'false';
+            $id = str_replace(' ', '-', strtolower(implode('-', array_slice($path, -3, 2))));
+            $id = str_replace(':', '', $id);
             $sidebar_nav .=
-                '<li><a href="/' .
-                $element['url'] .
-                '"  class="d-inline-flex align-items-center py-1 px-2 ' .
-                $active .
-                '">' .
-                $element['title'] .
-                '</a></li>';
-        }
-    }
+                '<button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#' .
+                $id .
+                '" aria-expanded="' .
+                $is_open .
+                '" aria-current="' .
+                $is_open .
+                '">
+                            <i class="fas fa-angle-right me-3"></i><strong>' .
+                ucwords($name) .
+                '
+                        </strong></button>';
+            $sidebar_nav .=
+                '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
+            build_sidebar_nav($element);
+            $sidebar_nav .= '</ul></nav>';
+          } else {
+              $active = '';
+              if (
+                  $md_fn == $element['url'] . '.md' ||
+                  substr($md_fn, 0, -3) . '/index' == $element['url'] ||
+                  substr($md_fn, 0, -3) . '/README' == $element['url']
+              ) {
+                  $active = 'active';
+              }
+              $sidebar_nav .=
+                  '<li><a href="/' .
+                  $element['url'] .
+                  '"  class="d-inline-flex align-items-center py-1 px-2 ' .
+                  $active .
+                  '">' .
+                  $element['title'] .
+                  '</a></li>';
+          }
+      }
 }
+//Remove landing pages from navigation
+unset($sidebar_nav_elements['0'], $sidebar_nav_elements['1']);
+
 $sidebar_nav =
     '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
@@ -148,18 +100,6 @@ $toc_nav .= generate_toc($content);
 $toc_nav .=
     '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 $toc_nav .= '</nav>';
-
-# Add titles to landing pages and remove TOC
-if($_GET['path'] === 'usage'){
-    $title = 'Usage';
-    $subtitle = 'Here you can find all documentation on how to use nf-core pipelines and nf-core tools to start processing your data. For information about how to contribute to nf-core pipelines, modules and subworkflows, please see the "contributing"- section.';
-    $toc_nav = '';
-}
-if($_GET['path'] === 'contributing'){
-    $title = 'Contributing';
-    $subtitle = 'Here you can find all documentation on how to contribute to nf-core pipelines, modules and subworkflows. For information about how to use nf-core pipelines and nf-core tools to start processing your data, please see the "usage"- section.';
-    $toc_nav = '';
-}
 
 include '../includes/header.php';
 ?>
@@ -177,19 +117,8 @@ include '../includes/header.php';
     $main_content .= $toc_nav;
     $main_content .= '</div></div>'; # end of the sidebar col
 
-    # main content
-    if(in_array($_GET['path'],['usage','contributing'])){
-        $main_content .= '<div class="col-12 col-lg-3"><div class="rendered-markdown">';
-        foreach ($sidebar_nav_elements[$_GET['path']] as $mdfile => $mdcontent){
-            if (isset($mdcontent['url'])) {
-                $main_content .= '<div class="row mb-3 h3">' . '<a href="' . $mdcontent['url'] . '" class="text-success text-decoration-none">' . $mdcontent['title'] . '</div>';
-            }
-        }
-        $main_content .= '</div></div>';
-    }
-    else {
-        $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div></div>';
-    }
+    // # main content
+    $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div></div>';
     $main_content .= '</div>'; # end of the row
     echo $main_content;
     ?>

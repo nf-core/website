@@ -11,6 +11,7 @@ $md_fn = $_GET['path'];
 if (substr($md_fn, -3) !== '.md') {
     $md_fn .= '.md';
 }
+
 # new docs structure
 if (strtolower($path_parts[0]) == 'docs') {
     if (file_exists($docs_md_base . $md_fn)) {
@@ -40,6 +41,12 @@ if (strtolower($path_parts[0]) == 'docs') {
         include 'documentation.php';
         exit();
     }
+    # New landing pages
+    if (($path_parts[1] == 'usage') or ($path_parts[1]) == 'contributing') {
+        $markdown_fn = $docs_md_base . $md_fn;
+        include 'documentation.php';
+        exit();
+    }
 }
 
 if (file_exists($docs_md_base . $md_fn)) {
@@ -47,17 +54,6 @@ if (file_exists($docs_md_base . $md_fn)) {
     $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn;
     include '../includes/header.php';
     include '../includes/footer.php';
-    exit();
-}
-
-# Add new landing pages
-if (strtolower($path_parts[0]) == 'usage') {
-    include 'documentation.php';
-    exit();
-}
-
-if (strtolower($path_parts[0]) == 'contributing') {
-    include 'documentation.php';
     exit();
 }
 
