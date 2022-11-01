@@ -89,7 +89,6 @@ function build_sidebar_nav($elements) {
     }
 }
 
-
 $sidebar_nav =
     '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
@@ -101,6 +100,25 @@ $toc_nav .= generate_toc($content);
 $toc_nav .=
     '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 $toc_nav .= '</nav>';
+
+$md_content_replace[] = ['<!-- usage_toc -->'];
+
+if (in_array($_GET['path'], ['docs/usage', 'docs/contributing'])) {
+    $inline_toc = '<div>';
+    foreach ($sidebar_nav_elements[basename($_GET['path'])] as $mdfile => $mdcontent) {
+        if (isset($mdcontent['url'])) {
+            $inline_toc .=
+                '<div class="row mb-3 h3">' .
+                '<a href="/' .
+                $mdcontent['url'] .
+                '" class="text-success text-decoration-none">' .
+                $mdcontent['title'] .
+                '</div>';
+        }
+    }
+    $inline_toc .= '</div>';
+    $md_content_replace[] = ['/<!-- inline_toc -->/', $inline_toc];
+}
 
 include '../includes/header.php';
 ?>
