@@ -103,7 +103,7 @@ Furthermore, you should check if there is any overall walltime (time limit) for 
 
 ### Do you have to specify a queue or partition
 
-Some clusters require your to specify which queue or partition to submit your job to (based on the resource requirements of the job). You should check if these exist, what they are called, and what limits they may have (e.g. walltimes).
+Some clusters require you to specify which queue or partition to submit your job to (based on the resource requirements of the job). You should check if these exist, what they are called, and what limits they may have (e.g. walltimes).
 
 You should already consider in which 'order' you would like to use these queues, to make use of the Nextflow and nf-core automated 'retry' system (i.e. if a process runs too long or uses too much memory, it can be automatically resubmitted with more time/memory)
 

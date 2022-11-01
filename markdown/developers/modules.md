@@ -337,72 +337,74 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$args` variable, which is assigned to using the `task.ext.args` variable. The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
    Mandatory command line arguments MUST be specified in long form where possible.
 
-`<module>.nf`:
+   `<module>.nf`:
 
-```nextflow
-script:
-def args = task.ext.args ?: ''
-def prefix = task.ext.prefix ?: "${meta.id}"
-"""
-fastqc \\
-    $args \\
-     <...>
-"""
-```
+   ```nextflow
+   script:
+   def args = task.ext.args ?: ''
+   def prefix = task.ext.prefix ?: "${meta.id}"
+   """
+   fastqc \\
+       $args \\
+        <...>
+   """
+   ```
 
-`modules.config`:
+   `modules.config`:
 
-```nextflow
-process {
-    withName: <module> {
-        ext.args = [                                                          // Assign either a string, or closure which returns a string
-            '--quiet',
-            params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-        ].join(' ')                                                           // Join converts the list here to a string.
-        ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
-    }
-}
-```
+   ```nextflow
+   process {
+       withName: <module> {
+           ext.args = [                                                          // Assign either a string, or closure which returns a string
+               '--quiet',
+               params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+           ].join(' ')                                                           // Join converts the list here to a string.
+           ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+       }
+   }
+   ```
 
-2.  Software that can be piped together SHOULD be added to separate module files
-    unless there is a run-time, storage advantage in implementing in this way. For example,
-    using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
+   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
 
-          ```bash
-          bwa mem | samtools view -B -T ref.fasta
-          ```
+2. Software that can be piped together SHOULD be added to separate module files
+   unless there is a run-time, storage advantage in implementing in this way. For example,
+   using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
-3.  Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
+   ```bash
+   bwa mem | samtools view -B -T ref.fasta
+   ```
 
-    - `*.fastq.gz` and NOT `*.fastq`
-    - `*.bam` and NOT `*.sam`
+3. Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
 
-    If a tool does not support compressed input or output natively, we RECOMMEND passing the
-    uncompressed data via unix pipes, such that it never gets written to disk, e.g.
+   - `*.fastq.gz` and NOT `*.fastq`
+   - `*.bam` and NOT `*.sam`
 
-    ```bash
-    gzip -cdf $input | tool | gzip > $output
-    ```
+   If a tool does not support compressed input or output natively, we RECOMMEND passing the
+   uncompressed data via unix pipes, such that it never gets written to disk, e.g.
 
-    The `-f` option makes `gzip` auto-detect if the input is compressed or not.
+   ```bash
+   gzip -cdf $input | tool | gzip > $output
+   ```
 
-    If a tool cannot read from STDIN, or has multiple input files, it is possible to use
-    named pipes:
+   The `-f` option makes `gzip` auto-detect if the input is compressed or not.
 
-    ```bash
-    mkfifo input1_uncompressed input2_uncompressed
-    gzip -cdf $input1 > input1_uncompressed &
-    gzip -cdf $input2 > input2_uncompressed &
-    tool input1_uncompressed input2_uncompressed > $output
-    ```
+   If a tool cannot read from STDIN, or has multiple input files, it is possible to use
+   named pipes:
 
-    Only if a tool reads the input multiple times, it is required to uncompress the
-    file before running the tool.
+   ```bash
+   mkfifo input1_uncompressed input2_uncompressed
+   gzip -cdf $input1 > input1_uncompressed &
+   gzip -cdf $input2 > input2_uncompressed &
+   tool input1_uncompressed input2_uncompressed > $output
+   ```
 
-4.  Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
+   Only if a tool reads the input multiple times, it is required to uncompress the
+   file before running the tool.
+
+4. Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
 ```bash
 cat <<-END_VERSIONS > versions.yml
@@ -429,7 +431,7 @@ of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a to
 not erroneously terminate the module.
 
 If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually
-specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
+specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
 Please include the accompanying comments above the software packing directives and beside the version string.
 
 ```nextflow
@@ -460,7 +462,7 @@ process TOOL {
 }
 ```
 
-If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
+If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
 5. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
@@ -477,7 +479,7 @@ process {
 
 ### Naming conventions
 
-1. The directory structure for the module name must be all lowercase e.g. [`modules/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
+1. The directory structure for the module name must be all lowercase e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
 2. The process name in the module file MUST be all uppercase e.g. `process BWA_MEM {`. The name of the software (i.e. `BWA`) and tool (i.e. `MEM`) MUST be all one word separated by an underscore.
 
@@ -584,7 +586,7 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 
 ### Publishing results
 
-Fomerly, results were published using a custom `publishDir` definition, customised using a Groovy Map defined by `params.modules`. This system has been replaced using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) defined directly in a pipeline workflow's `modules.config` (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for a simple example)
+Results are published using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) directive defined in the `modules.config` of a workflow (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for an example.) Results were earlier published using a custom `publishDir` definition, using a Groovy Map defined by `params.modules`.
 
 ### Test data config file
 
@@ -594,7 +596,7 @@ For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fas
 
 ### Using a stub test when required test data is too big
 
-If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/ascat/test.yml)):
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
 
 ```console
 nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
@@ -693,6 +695,64 @@ ch_genome_bam.map {
 ### Conclusion
 
 As you can see the `meta map` is a quite flexible way for storing meta data in channels. Feel free to add whatever other key-value pairs your pipeline may need to it. We're looking to add [Custom objects](https://github.com/nf-core/modules/issues/1338) which will lock down the usage a bit more.
+
+## What are the ext properties/keys?
+
+Ext properties or keys are special process directives (See: [ext directive](https://www.nextflow.io/docs/latest/process.html#ext) ) that insert strings into the module scripts. For example, an nf-core module uses the string assigned to `ext.args` ( or `ext.args2`, `ext.args3`, ... ) to insert tool specific options in a module script:
+
+Example:
+
+The configuration
+
+```nextflow
+process {
+  withName: 'TOOL_SUBTOOL' {
+    ext.args = '-T -K'
+  }
+}
+```
+
+inserts the string `-T -K` as options to the module script:
+
+```nextflow
+process TOOL_SUBTOOL {
+  input:
+  tuple val(meta), path(bam)
+
+  ouput:
+  tuple val(meta), path("*.log"), emit: log
+  path "versions.yml",            emit: versions
+
+  script:
+  def args   = task.ext.args ?: ''          // If ext.args is defined assign it to args
+  def prefix = task.ext.prefix ?: meta.id   // If ext.prefix is defined assign it to prefix, otherwise assign meta.id value
+  """
+  tool subtool $args $bam > ${prefix}.log
+  """
+}
+```
+
+so the script becomes:
+
+```bash
+#! /usr/env/bin bash
+tool subtool -T -K test.bam > test.log
+```
+
+The following table lists the available keys commonly used in nf-core modules.
+
+| Key        | Description                                            |
+| ---------- | ------------------------------------------------------ |
+| ext.args   | Additional arguments appended to command in module.    |
+| ext.args2  | Second set of arguments appended to command in module. |
+| ext.args3  | Third set of arguments appended to command in module.  |
+| ext.prefix | File name prefix for output files.                     |
+
+To see some more advanced examples of these keys in use see:
+
+- [Set ext.args based on parameter settings](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L222-L226)
+- [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
+- [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
 
 ## Help
 
