@@ -115,7 +115,8 @@ include '../includes/header.php';
 
     # right sidebar
     $main_content .= '<div class="col-12 col-lg-2 order-lg-last ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
-    $main_content .= $toc_nav;
+    $main_content .= substr_count($toc_nav, 'nav-link') > 1 ? $toc_nav : '';
+    // $main_content .= $toc_nav ;
     $main_content .= '</div></div>'; # end of the sidebar col
     // # main content
     $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div></div>';
