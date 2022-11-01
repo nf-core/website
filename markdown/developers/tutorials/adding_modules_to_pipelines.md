@@ -31,7 +31,7 @@ Different pipelines may have different workflows, but the following steps will c
 9. Add a citation for the new tool/module to `citations.md`
 10. Update `docs/USAGE.md` to describe any important information about running of the module (this can be optional in some cases)
 11. Update `docs/OUTPUT.md` to describe the directories output files of the module
-12. Update `README.md` mentioning the tool is used (optional)
+12. Update `README.md` mentioning the tool is used and any pipeline diagrams (optional)
 13. Run prettier formatting on the whole repository (if installed)
 
     ```bash
