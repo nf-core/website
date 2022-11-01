@@ -58,10 +58,10 @@ function build_sidebar_nav($elements) {
                 '" aria-current="' .
                 $is_open .
                 '">
-                                <i class="fas fa-angle-right me-3"></i><strong>' .
+                            <i class="fas fa-angle-right me-3"></i><strong>' .
                 ucwords($name) .
                 '
-                            </strong></button>';
+                        </strong></button>';
             $sidebar_nav .=
                 '<nav class="collapse ' . $show . '" id="' . $id . '"><ul class="list-unstyled fw-normal ps-3 small">';
             build_sidebar_nav($element);
@@ -86,6 +86,9 @@ function build_sidebar_nav($elements) {
         }
     }
 }
+//Remove landing pages from navigation
+unset($sidebar_nav_elements['0'], $sidebar_nav_elements['1']);
+
 $sidebar_nav =
     '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
@@ -97,15 +100,6 @@ $toc_nav .= generate_toc($content);
 $toc_nav .=
     '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 $toc_nav .= '</nav>';
-
-# Add titles to landing pages and remove TOC
-if ($_GET['path'] === 'docs/usage') {
-    $title = 'Usage Documentation';
-    $toc_nav = '';
-} elseif ($_GET['path'] === 'docs/contributing') {
-    $title = 'Contributing Documentation';
-    $toc_nav = '';
-}
 
 include '../includes/header.php';
 ?>
@@ -122,31 +116,8 @@ include '../includes/header.php';
     $main_content .= '<div class="col-12 col-lg-2 order-lg-last ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
     $main_content .= $toc_nav;
     $main_content .= '</div></div>'; # end of the sidebar col
-    # main content
-    if (in_array($_GET['path'], ['docs/usage', 'docs/contributing'])) {
-        $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">';
-        if ($_GET['path'] === 'docs/usage') {
-            $main_content .=
-                '<p>Here you can find all documentation on how to use nf-core pipelines and nf-core tools to start processing your data. For information about how to contribute to nf-core pipelines, modules and subworkflows, please see the <a href="docs/contributing">contributing</a> section.</p>';
-        } elseif ($_GET['path'] === 'docs/contributing') {
-            $main_content .=
-                '<p>Here you can find all documentation on how to contribute to nf-core pipelines, modules and subworkflows. For information about how to use nf-core pipelines and nf-core tools to start processing your data, please see the <a href="docs/usage">usage</a> section.</p>';
-        }
-        foreach ($sidebar_nav_elements[str_replace('docs/', '', $_GET['path'])] as $mdfile => $mdcontent) {
-            if (isset($mdcontent['url'])) {
-                $main_content .=
-                    '<ul>' .
-                    '<li> <a href="/' .
-                    $mdcontent['url'] .
-                    '" class=" text-decoration-none">' .
-                    $mdcontent['title'] .
-                    '</a></li></ul>';
-            }
-        }
-        $main_content .= '</div></div>';
-    } else {
-        $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div></div>';
-    }
+    // # main content
+    $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div></div>';
     $main_content .= '</div>'; # end of the row
     echo $main_content;
     ?>
