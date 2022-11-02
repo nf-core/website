@@ -33,7 +33,7 @@ Hello everyone, my name is Franziska Bonath and I'm very happy that Gisela is wi
 
 [0:13](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=13)
 Thanks Franziska for the nice introduction.
-I'll present nf-core/airrflow. First of all I will start with defining what's the air in airrflow. Air stands for adaptive immune receptor repertoire and that's the collection of membrane proteins that are found on the surface of B-cells, in which case they are called BCR, and on the surface of T-cells, in which case they are called TCRs or T-cell receptors. BCRs or B-cell receptors in their secreted form are also called antibodies, which is a term that we are all more familiar with.
+I'll present nf-core/airrflow. First of all I will start with defining what's the airr in airrflow. Airr stands for adaptive immune receptor repertoire and that's the collection of membrane proteins that are found on the surface of B-cells, in which case they are called BCR, and on the surface of T-cells, in which case they are called TCRs or T-cell receptors. BCRs or B-cell receptors in their secreted form are also called antibodies, which is a term that we are all more familiar with.
 
 [0:52](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=52)
 The main function of these receptors is to be able to recognize foreign antigens that are inside the human body, which can come for example from pathogens such as viruses or bacteria, and to elicit an immune response against them. To be able to recognize so many different antigens from different pathogens, these receptors have to have a variety of different sequences. It's estimated that in the human body at any time point, there's 10 billion to 100 billion different receptor sequences of BCRs and TCRs.
