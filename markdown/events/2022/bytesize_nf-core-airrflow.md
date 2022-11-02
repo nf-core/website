@@ -53,7 +53,7 @@ You've seen that there's many different processes that contribute to the diversi
 
 [4:42](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=282)
 How are they sequenced? Most protocols use what's called amplicon sequencing, which is the targeted amplification of this gene locus and that can be done via different protocols including multiplex PCR, where one is providing primers for all the kinds of different sequences that can be there. Another technique is five prime race amplification protocols, which are pretty common. This sequencing protocols can incorporate what's called unique molecular identifiers which allow correcting for sequencing errors down the line and errors introduced by the PCR amplification process.
-Typically for sequencing, Miseq sequencers are used, because they allow for longer read lengths, that covers the complete BDJ and beginning of the C region.
+Typically for sequencing, MiSeq sequencers are used, because they allow for longer read lengths, that covers the complete VDJ and beginning of the C region.
 
 [5:39](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=339)
 How is the bioinformatic analysis done for these kind of sequences? This typically does not happen like a traditional RNA-Seq analysis and that's because mapping to a reference genome is challenging in this case, due to the high diversity of these BCR and TCR sequences. Also, it's a highly repetitive genome region with all of these BD and J gene segments there. For this kind of analysis, specific tools are used and the reads are aligned to specific reference data, also for these BCR and TCR receptors.
