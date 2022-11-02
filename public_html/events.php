@@ -57,7 +57,7 @@ function create_event_download_button($event, $button_style) {
 function print_events($events, $is_past_event) {
     global $event_type_classes;
     global $event_type_icons;
-
+    $current_year = date('Y');
     foreach ($events as $idx => $event):
 
         # Nice date strings
@@ -77,6 +77,11 @@ function print_events($events, $is_past_event) {
         # if event title starts with bytesize change event type
         if (strpos($event['title'], 'Bytesize') === 0) {
             $event['type'] = 'bytesize';
+        }
+
+        if (($current_year != date('Y', $event['start_ts'])) & $is_past_event) {
+            $current_year = date('Y', $event['start_ts']);
+            echo _h4($current_year);
         }
         $colour_class = $event_type_classes[strtolower($event['type'])];
         $text_colour_class = get_correct_text_color($colour_class);
@@ -433,7 +438,7 @@ if (isset($_GET['rss'])) {
 include '../includes/header.php';
 
 // add a row of buttons
-echo '<div class="btn-toolbar events-toolbar "><button type="button" class="btn txt-body">Filter:</button>';
+echo '<div class="btn-toolbar events-toolbar mb-4"><button type="button" class="btn txt-body">Filter:</button>';
 echo '<div class="event-filters input-group input-group-sm me-2">
         <input type="search" class="form-control w-25" placeholder="Search events">
         </div>';
