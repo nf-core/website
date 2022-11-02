@@ -445,6 +445,21 @@ $(function () {
       bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
     });
   });
+
+  // Filter events with buttons
+  $('.events-toolbar .events-filters button').click(function () {
+    $(this).blur().toggleClass('active');
+    var showclasses = [];
+    $('.events-toolbar .events-filters button.active').each(function () {
+      showclasses.push($(this).data('bsTarget'));
+    });
+    if (showclasses.length > 0) {
+      $('.event-list .card').filter(showclasses.join(', ')).show();
+      $('.event-list .card').not(showclasses.join(', ')).hide();
+    } else {
+      $('.event-list .card').show();
+    }
+  });
 });
 
 function scroll_to(target_el, offset) {
