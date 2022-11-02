@@ -8,7 +8,7 @@ $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $event_type_classes = [
     'bytesize' => 'success',
     'hackathon' => 'primary',
-    'poster' => 'secondary',
+    'poster' => 'danger',
     'talk' => 'success',
     'tutorial' => 'info',
     'workshop' => 'warning',
@@ -81,7 +81,7 @@ function print_events($events, $is_past_event) {
 
         if (($current_year != date('Y', $event['start_ts'])) & $is_past_event) {
             $current_year = date('Y', $event['start_ts']);
-            echo _h4($current_year);
+            echo _h3($current_year);
         }
         $colour_class = $event_type_classes[strtolower($event['type'])];
         $text_colour_class = get_correct_text_color($colour_class);
@@ -442,18 +442,26 @@ echo '<div class="btn-toolbar events-toolbar mb-4"><button type="button" class="
 echo '<div class="event-filters input-group input-group-sm me-2">
         <input type="search" class="form-control w-25" placeholder="Search events">
         </div>';
-echo '<div class="btn-group events-filters w-50 align-items-center">';
+echo '<div class="btn-group events-filters w-50 align-items-center"  role="group" >';
+echo '<input type="radio" class="btn-check" name="filter" id="filter-all" autocomplete="off" checked>
+  <label class="btn btn-outline-secondary" for="filter-all">All</label>';
+
 foreach ($event_type_classes as $class => $color) {
-    echo '<button type="button" class="btn btn-outline-' .
+    echo '<input type="radio" class="btn-check " name="filter" data-bs-target=".' .
+        $class .
+        '" id="filter-' .
+        $class .
+        '" autocomplete="off">
+  <label class="text-nowrap btn btn-outline-' .
         $color .
-        '" data-bs-target=".' .
+        '" for="filter-' .
         $class .
         '">' .
-        '<i class="' .
+        '<i class=" ' .
         $event_type_icons[$class] .
         ' me-1"></i> ' .
         $class .
-        '</button>';
+        '</label>';
 }
 
 echo '</div>';
