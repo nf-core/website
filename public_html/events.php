@@ -433,8 +433,11 @@ if (isset($_GET['rss'])) {
 include '../includes/header.php';
 
 // add a row of buttons
-echo '<div class="p-3 events-toolbar ">Filter: ';
-echo '<div class="btn-group events-filters">';
+echo '<div class="btn-toolbar events-toolbar "><button type="button" class="btn txt-body">Filter:</button>';
+echo '<div class="event-filters input-group input-group-sm me-2">
+        <input type="search" class="form-control w-25" placeholder="Search events">
+        </div>';
+echo '<div class="btn-group events-filters w-50 align-items-center">';
 foreach ($event_type_classes as $class => $color) {
     echo '<button type="button" class="btn btn-outline-' .
         $color .
@@ -450,30 +453,30 @@ foreach ($event_type_classes as $class => $color) {
 
 echo '</div>';
 echo '</div>';
-
-echo '<div class="event-list row">';
+echo '<div class="event-list">';
 if (count($current_events) > 0) {
-    echo '<div class="col-12">';
+    echo '<div class="mb-5">';
     echo _h2('<i class="fad fa-calendar me-2"></i> Ongoing Events');
     print_current_events($current_events, true);
     echo '</div>';
     echo '<hr>';
 }
-echo '<div class="col-12 col-md-6">';
+echo '<div class="mb-5">';
 echo _h2('<i class="fad fa-calendar-day me-2"></i> Upcoming Events');
 
 if (count($future_events) > 0) {
     print_events($future_events, false);
 } else {
-    print '<p class="text-muted">No events found</p>';
+    print '<p class="text-muted no-events">No events found</p>';
 }
 echo '</div>';
-echo '<div class="col-12 col-md-6 ">';
+echo '<hr>';
+echo '<div class="mb-5">';
 echo _h2('<i class="fad fa-calendar-check me-2"></i> Past Events');
 if (count($past_events) > 0) {
     print_events($past_events, true);
 } else {
-    print '<p class="text-muted">No events found</p>';
+    print '<p class="text-muted no-events">No events found</p>';
 }
 echo '</div>';
 echo '</div>';
