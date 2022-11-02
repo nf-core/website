@@ -92,7 +92,7 @@ Here we will see an example of this repertoire analysis report. First there is a
 As you know, all documentation for nf-core/airrflow can be found on the nf-core website, so check it out if you want to use it. There are also some example results of the pipeline when the full tests are run on AWS.
 
 [15:30](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=930)
-What's next for this pipeline? Stay tuned for a new release that comes really soon - we hope this week or the next. It will includes more quality control and reporting as part of the Enchanter tool, as I have mentioned, by Susanna Marquez, as well as and code refactoring using subworkflows.
+What's next for this pipeline? Stay tuned for a new release that comes really soon - we hope this week or the next. It will includes more quality control and reporting as part of the EnchantR tool, as I have mentioned, by Susanna Marquez, as well as and code refactoring using subworkflows.
 
 [15:50](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=950)
 At this point I would like to thank all the contributors to the pipeline: Simon Heumos and myself at QBiC, Alex Peltzer who was initially at QBiC but now is at Böhringer Ingelheim, Susanna Marquez at the Kleinstein Lab in Yale, David Ladd at Monash University and some collaborations also at the University of Tübingen, Christophe Rochel and Marcus Kovaric.
