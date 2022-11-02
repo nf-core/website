@@ -118,7 +118,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of September 2023</dd>
 </dl>
 
-### Application process
+## Application process
 
 Applications are now closed. Those who have applied will hear from us soon. Thank you!
 
