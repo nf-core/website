@@ -60,7 +60,7 @@ How is the bioinformatic analysis done for these kind of sequences? This typical
 
 [6:15](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=375)
 I always say luckily for us, when wanting to write a pipeline to do this kind of analysis, there's already plenty of tools out there that can analyze this data. One of the better well-known ones is the Immcantation framework that is developed by the Kleinstein lab in Yale. It's an open-source toolset to analyze AIRRseq data from beginning to end. There's a whole community of users already using this framework and here you can also get the details, in case you want to have more information.
-Thanks to developing this pipeline as part of the nf-core community, we gained visibility and we quickly found quite some collaborators to develop the pipeline. I want to mention that this is really a community-based development effort! Susanna Marquez from the immcantation lab joined early in the beginning and also David Ladd from Monash University helped by adding some features. Whereas initially, Alex Peltzer,
+Thanks to developing this pipeline as part of the nf-core community, we gained visibility and we quickly found quite some collaborators to develop the pipeline. I want to mention that this is really a community-based development effort! Susanna Marquez from the Immcantation lab joined early in the beginning and also David Ladd from Monash University helped by adding some features. Whereas initially, Alex Peltzer,
 when he was still at QBiC with us, Simon Heumos and myself were developing the airrflow pipeline.
 
 [7:26](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=446)
