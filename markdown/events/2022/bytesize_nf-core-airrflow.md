@@ -29,7 +29,7 @@ nf-core/airrflow is a bioinformatics best-practice pipeline to analyze B-cell or
 **Note: The content has been edited for reader-friendliness**
 
 [0:01](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=1)
-Hello everyone, my name is Franziska Bonath and I'm very happy that Gisela is with us today from the University of Tübing and she is giving us an overview of what nf-core/airrflow can do.
+Hello everyone, my name is Franziska Bonath and I'm very happy that Gisela is with us today from the University of Tübingen and she is giving us an overview of what nf-core/airrflow can do.
 
 [0:13](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=13)
 Thanks Franziska for the nice introduction.
