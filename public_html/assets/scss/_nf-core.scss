@@ -223,7 +223,7 @@ section:before {
   color: $nf-core-color;
 }
 .btn-outline-success:not(:disabled):not(.disabled):hover,
-.btn-check:checked+.btn-outline-success:not(:disabled):not(.disabled) {
+.btn-check:checked + .btn-outline-success:not(:disabled):not(.disabled) {
   background-color: $nf-core-color;
   color: $white;
 }
