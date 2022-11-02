@@ -120,7 +120,7 @@ Dates are subject to change:
 
 ## Application process
 
-Applications are now closed. Those who have applied will hear from us soon. Thank you!
+Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you!
 
 <!-- _ Applications for Round 2 are now open!
 
