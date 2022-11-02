@@ -84,7 +84,9 @@ function print_events($events, $is_past_event) {
         ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible <?php echo $event['type']; ?>">
+    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible <?php echo $event[
+     'type'
+ ]; ?>">
       <div class="card-body <?php if ($is_past_event) {
           echo 'py-2';
       } ?>">
@@ -434,15 +436,20 @@ include '../includes/header.php';
 echo '<div class="p-3 events-toolbar ">Filter: ';
 echo '<div class="btn-group events-filters">';
 foreach ($event_type_classes as $class => $color) {
-    echo '<button type="button" class="btn btn-outline-'.$color.'" data-bs-target=".'. $class .'">' .
-    '<i class="'.$event_type_icons[$class].' me-1"></i> ' .
-    $class.'</button>';
+    echo '<button type="button" class="btn btn-outline-' .
+        $color .
+        '" data-bs-target=".' .
+        $class .
+        '">' .
+        '<i class="' .
+        $event_type_icons[$class] .
+        ' me-1"></i> ' .
+        $class .
+        '</button>';
 }
 
 echo '</div>';
 echo '</div>';
-
-
 
 echo '<div class="event-list row">';
 if (count($current_events) > 0) {
@@ -456,9 +463,7 @@ echo '<div class="col-12 col-md-6">';
 echo _h2('<i class="fad fa-calendar-day me-2"></i> Upcoming Events');
 
 if (count($future_events) > 0) {
-
     print_events($future_events, false);
-
 } else {
     print '<p class="text-muted">No events found</p>';
 }
