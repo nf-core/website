@@ -6,16 +6,18 @@ use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $event_type_classes = [
+    'bytesize' => 'success',
     'hackathon' => 'primary',
-    'talk' => 'success',
     'poster' => 'secondary',
+    'talk' => 'success',
     'tutorial' => 'info',
-    'workshop' => 'light',
+    'workshop' => 'warning',
 ];
 $event_type_icons = [
+    'bytesize' => 'fas fa-apple-core',
     'hackathon' => 'fas fa-laptop-code',
-    'talk' => 'fas fa-presentation',
     'poster' => 'far fa-image',
+    'talk' => 'fas fa-presentation',
     'tutorial' => 'fas fa-graduation-cap',
     'workshop' => 'fas fa-chalkboard-teacher',
 ];
@@ -72,13 +74,17 @@ function print_events($events, $is_past_event) {
         if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
             $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
         }
+        # if event title starts with bytesize change event type
+        if (strpos($event['title'], 'Bytesize') === 0) {
+            $event['type'] = 'bytesize';
+        }
         $colour_class = $event_type_classes[strtolower($event['type'])];
         $text_colour_class = get_correct_text_color($colour_class);
         $icon_class = $event_type_icons[strtolower($event['type'])];
         ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible ">
+    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible <?php echo $event['type']; ?>">
       <div class="card-body <?php if ($is_past_event) {
           echo 'py-2';
       } ?>">
@@ -423,25 +429,48 @@ if (isset($_GET['rss'])) {
 //
 
 include '../includes/header.php';
-echo '<div class="event-list">';
+
+// add a row of buttons
+echo '<div class="p-3 events-toolbar ">Filter: ';
+echo '<div class="btn-group events-filters">';
+foreach ($event_type_classes as $class => $color) {
+    echo '<button type="button" class="btn btn-outline-'.$color.'" data-bs-target=".'. $class .'">' .
+    '<i class="'.$event_type_icons[$class].' me-1"></i> ' .
+    $class.'</button>';
+}
+
+echo '</div>';
+echo '</div>';
+
+
+
+echo '<div class="event-list row">';
 if (count($current_events) > 0) {
+    echo '<div class="col-12">';
     echo _h2('<i class="fad fa-calendar me-2"></i> Ongoing Events');
     print_current_events($current_events, true);
+    echo '</div>';
     echo '<hr>';
 }
+echo '<div class="col-12 col-md-6">';
 echo _h2('<i class="fad fa-calendar-day me-2"></i> Upcoming Events');
+
 if (count($future_events) > 0) {
+
     print_events($future_events, false);
+
 } else {
     print '<p class="text-muted">No events found</p>';
 }
-
-echo '<hr>';
+echo '</div>';
+echo '<div class="col-12 col-md-6 ">';
 echo _h2('<i class="fad fa-calendar-check me-2"></i> Past Events');
 if (count($past_events) > 0) {
     print_events($past_events, true);
 } else {
     print '<p class="text-muted">No events found</p>';
 }
+echo '</div>';
+echo '</div>';
 echo '</div>';
 include '../includes/footer.php';
