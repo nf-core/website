@@ -6,8 +6,10 @@ start_date: '2022-11-01'
 start_time: '13:00 CET'
 end_date: '2022-11-01'
 end_time: '13:30 CET'
+youtube_embed: https://www.youtube.com/watch?v=chayGGPTnfM
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://doi.org/10.6084/m9.figshare.21444867.v1
+  - https://www.youtube.com/watch?v=chayGGPTnfM
 ---
 
 # nf-core/bytesize
