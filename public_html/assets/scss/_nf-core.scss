@@ -27,12 +27,13 @@ $navbar-height-collapsed: $navbar-brand-height;
 $blockquote-background: shift-color($info, $alert-bg-scale);
 $blockquote-border: shift-color($info, $alert-border-scale);
 $blockquote-color: shift-color($info, $alert-color-scale);
+$body-bg: $gray-100;
 
 // general classes
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: relative;
-  background-color: $gray-100;
+  background-color: $body-bg;
 }
 
 strong {
@@ -1042,6 +1043,16 @@ nfcore-subnav {
   a {
     text-decoration: none;
     color: $gray-900;
+  }
+}
+.mainpage .pipeline-sidebar .nav-link {
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.active {
+    background-color: $body-bg;
+    text-decoration: underline;
   }
 }
 .pipeline-run-cmd input {
