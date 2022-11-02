@@ -74,7 +74,7 @@ $embed_video = array_values($embed_video)[0];
                     <button class="nav-link text-muted" id="tw-tab" data-bs-toggle="tab" data-bs-target="#tw" type="button" role="tab" aria-controls="tw" aria-selected="false">Tower</button>
                 </li>
             </ul>
-            <div class="tab-content">
+            <div class="tab-content mt-2">
                 <div class="tab-pane show active" id="pipeline-nfcore-run-cmd" role="tabpanel" aria-labelledby="nfcore-tab">
                     <div class=" input-group input-group-sm pipeline-run-cmd">
                         <input type="text" class="form-control input-sm code rounded-0" id="pipeline-nfcore-run-cmd-text"  value="nf-core launch <?php echo $pipeline->full_name .
