@@ -96,7 +96,7 @@ What's next for this pipeline? Stay tuned for a new release that comes really so
 
 [15:50](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=950)
 At this point I would like to thank all the contributors to the pipeline: Simon Heumos and myself at QBiC, Alex Peltzer who was initially at QBiC but now is at Böhringer Ingelheim, Susanna Marquez at the Kleinstein Lab in Yale, David Ladd at Monash University and some collaborations also at the University of Tübingen, Christoph Ruschil and Markus Kowaric.
-If you have any questions don't hesitate to join us, join the airrflow channel on nf-core Slack and if you have any questions related to the immcantation tools, you also have the contact emails to contact them directly.
+If you have any questions don't hesitate to join us, join the airrflow channel on nf-core Slack and if you have any questions related to the Immcantation tools, you also have the contact emails to contact them directly.
 
 [16:26](https://www.youtube.com/watch?v=CrJgxVRVlqY&t=986)
 (host) Thank you very much. Everyone can now unmute themselves if there are any questions. Maybe I start with one, I'm curious. In what format does airrflow expect UMIs to be provided? Does it have to be in a separate file or should it be in read one or in read two?
