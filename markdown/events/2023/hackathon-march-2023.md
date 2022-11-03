@@ -14,7 +14,9 @@ import_typeform: true
 
 Save the date and join us for the March 2023 nf-core hackathon!
 
-This event is entirely virtual (we will be back in [gather.town](https://gather.town/)!) and we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:
+This event is virtual (we will be back in [gather.town](https://gather.town/)!) and as the last times we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:.
+
+For this hackathon, we will try something new 🚀 Hacking in-person is a lot of fun. So to get the best of both worlds, we are encouraging everyone to create small local groups, be it with your friends, colleagues, institute, or geographical region. Once sat together, join the global gathering online, on gather.town together.
 
 Watch this space for more details in the coming weeks!
 
