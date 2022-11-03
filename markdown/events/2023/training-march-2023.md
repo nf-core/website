@@ -5,7 +5,7 @@ type: workshop
 start_date: '2023-03-13'
 start_time: '05:00 CEST'
 end_date: '2023-03-16'
-end_time: '21:30 CEST'
+end_time: '21:30 CET'
 location_name: YouTube
 ---
 
