@@ -28,18 +28,17 @@ Watch this space for more details in the coming weeks!
 ### Germany
 
 - QBiC, Tübingen
-    - _Details to be confirmed_
+  - _Details to be confirmed_
 
 ### Sweden
 
 - SciLifeLab, Stockholm
-    - _Details to be confirmed_
+  - _Details to be confirmed_
 
 ### United Kingdom
 
 - London
-    - _Details to be confirmed_
-
+  - _Details to be confirmed_
 
 ## Hosting an event
 
