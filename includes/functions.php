@@ -61,14 +61,14 @@ function prep_current_event($event) {
         'talk' => 'success',
         'poster' => 'secondary',
         'tutorial' => 'info',
-        'workshop' => 'warning',
+        'training' => 'warning',
     ];
     $d['event_type_icons'] = [
         'hackathon' => 'fad fa-laptop-code',
         'talk' => 'fad fa-presentation',
         'poster' => 'fad fa-image',
         'tutorial' => 'fad fa-graduation-cap',
-        'workshop' => 'fad fa-chalkboard-teacher',
+        'training' => 'fad fa-chalkboard-teacher',
     ];
     # Nice date strings
     $d['date_string'] =

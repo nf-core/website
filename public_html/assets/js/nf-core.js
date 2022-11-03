@@ -447,15 +447,12 @@ $(function () {
   });
 
   // Filter events with buttons
-  $('.events-toolbar .events-filters button').click(function () {
+  $('.events-toolbar .events-filters input[type="radio"]').click(function () {
     $(this).blur().toggleClass('active');
-    var showclasses = [];
-    $('.events-toolbar .events-filters button.active').each(function () {
-      showclasses.push($(this).data('bsTarget'));
-    });
+    var showclasses = $(this).data('bsTarget') ? $(this).data('bsTarget') : [];
     if (showclasses.length > 0) {
-      $('.event-list .card').filter(showclasses.join(', ')).show();
-      $('.event-list .card').not(showclasses.join(', ')).hide();
+      $('.event-list .card').filter(showclasses).show();
+      $('.event-list .card').not(showclasses).hide();
     } else {
       // reset filtering
       $('.event-list .card').show();
