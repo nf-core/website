@@ -11,7 +11,7 @@ $event_type_classes = [
     'poster' => 'danger',
     'talk' => 'success',
     'tutorial' => 'info',
-    'workshop' => 'warning',
+    'training' => 'warning',
 ];
 $event_type_icons = [
     'bytesize' => 'fas fa-apple-core',
@@ -19,7 +19,7 @@ $event_type_icons = [
     'poster' => 'far fa-image',
     'talk' => 'fas fa-presentation',
     'tutorial' => 'fas fa-graduation-cap',
-    'workshop' => 'fas fa-chalkboard-teacher',
+    'training' => 'fas fa-chalkboard-teacher',
 ];
 
 function create_event_download_button($event, $button_style) {
