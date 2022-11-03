@@ -40,6 +40,11 @@ Watch this space for more details in the coming weeks!
 - London
   - _Details to be confirmed_
 
+### United States
+
+- University of Texas at Dallas, Texas
+  - _Details to be confirmed_
+
 ## Hosting an event
 
 Would you be interested in hosting a local event? All you need to do is book a room and tell some people!
