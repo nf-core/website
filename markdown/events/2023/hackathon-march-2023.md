@@ -14,11 +14,45 @@ import_typeform: true
 
 Save the date and join us for the March 2023 nf-core hackathon!
 
-This event is virtual (we will be back in [gather.town](https://gather.town/)!) and as the last times we are attempting to support people in all timezones :earth_americas: :earth_asia: :earth_africa:.
+This event is virtual (we will be back in [gather.town](https://gather.town/)!).
+We will do our best to support people in all timezones. :earth_americas: :earth_asia: :earth_africa:
 
-For this hackathon, we will try something new 🚀 Hacking in-person is a lot of fun. So to get the best of both worlds, we are encouraging everyone to create small local groups, be it with your friends, colleagues, institute, or geographical region. Once sat together, join the global gathering online, on gather.town together.
+## Local events
+
+For this hackathon, we will try something new 🚀
+Hacking in-person is a lot of fun. So to get the best of both worlds, we are encouraging everyone to create small local groups, be it with your friends, colleagues, institute, or geographical region.
+Once sat together, join the global gathering online, on gather.town together.
 
 Watch this space for more details in the coming weeks!
+
+### Germany
+
+- QBiC, Tübingen
+    - _Details to be confirmed_
+
+### Sweden
+
+- SciLifeLab, Stockholm
+    - _Details to be confirmed_
+
+### United Kingdom
+
+- London
+    - _Details to be confirmed_
+
+
+## Hosting an event
+
+Would you be interested in hosting a local event? All you need to do is book a room and tell some people!
+Please put in a pull request to edit this file to add the details of your event so that others can find you.
+
+Let the nf-core outreach team know as soon as possible so that we can post some goodies to you and help with the organisation:
+
+- Stickers & swag
+- Registration form template
+- Poster design template to advertise
+- Invitation email template
+- _ideas for anything else?_
 
 <!--
 
