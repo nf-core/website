@@ -57,6 +57,9 @@ Watch this space for more details in the coming weeks!
 - London
   - Contact: [<i class="fab fa-slack"></i> Harshil Patel](https://nfcore.slack.com/team/UEB97FBN3)
   - _Details to be confirmed_
+- Wellcome Trust Genome Campus, Cambridge
+  - Contact: [@priyanka-surana](https://github.com/priyanka-surana)
+  - _Details to be confirmed_
 
 ### United States
 
