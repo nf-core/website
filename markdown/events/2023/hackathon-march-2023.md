@@ -40,6 +40,13 @@ Watch this space for more details in the coming weeks!
   - Contact: [<i class="fab fa-slack"></i> James Fellows Yates](https://nfcore.slack.com/team/UEM37TBAR)
   - _Details to be confirmed_
 
+### South Africa
+
+- Stellenbosch University, Cape Town
+  - Contact: [<i class="fab fa-slack"></i> Abhinav Sharma](https://nfcore.slack.com/team/U01E6QW86R1)
+  - _Details to be confirmed_
+
+
 ### Spain
 
 - Centre for Genomic Regulation (CRG), Barcelona
