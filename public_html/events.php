@@ -144,15 +144,14 @@ function print_events($events, $is_past_event) {
 // SINGLE EVENT
 //
 if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
-
     // Parse the markdown before header.php, so that we can override subtitle etc
     $markdown_fn = $md_base . $_GET['event'];
-    if(is_file($markdown_fn.'.md')){
+    if (is_file($markdown_fn . '.md')) {
         // Regular single-page event
         $markdown_fn .= '.md';
-    } else if(is_dir($markdown_fn) && file_exists($markdown_fn.'/index.md')){
+    } elseif (is_dir($markdown_fn) && file_exists($markdown_fn . '/index.md')) {
         // Nested event index page
-        $markdown_fn = $markdown_fn.'/index.md';
+        $markdown_fn = $markdown_fn . '/index.md';
     }
 
     require_once '../includes/parse_md.php';
@@ -355,11 +354,11 @@ foreach ($year_dirs as $year) {
     // Single page events
     $event_mds = glob($year . '/*');
     foreach ($event_mds as $fpath) {
-        if(is_file($fpath) && substr($event_md, -3) == '.md'){
+        if (is_file($fpath) && substr($event_md, -3) == '.md') {
             $event_md = $fpath;
             $url = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
-        } else if(is_dir($fpath) && file_exists($fpath.'/index.md')){
-            $event_md = $fpath.'/index.md';
+        } elseif (is_dir($fpath) && file_exists($fpath . '/index.md')) {
+            $event_md = $fpath . '/index.md';
             $url = '/events/' . basename($year) . '/' . basename($fpath);
         }
         // Load the file
