@@ -28,43 +28,43 @@ Watch this space for more details in the coming weeks!
 ### Denmark
 
 - Unseen Bio ApS, Copenhagen
-  - Contact: Moritz Beber [<i class="fab fa-slack"></i> @moritz](https://nfcore.slack.com/team/U015PB15C5U)
+  - Contact: [<i class="fab fa-slack"></i> Moritz Beber](https://nfcore.slack.com/team/U015PB15C5U)
   - _Details to be confirmed; based on interest_
 
 ### Germany
 
 - QBiC, Tübingen
-  - Contact: [<i class="fab fa-slack"></i> @Gisela Gabernet](https://nfcore.slack.com/team/UG3J99VUK)
+  - Contact: [<i class="fab fa-slack"></i> Gisela Gabernet](https://nfcore.slack.com/team/UG3J99VUK)
   - _Details to be confirmed_
 - MPI-EVA, Leipzig
-  - Contact: [<i class="fab fa-slack"></i> @James Fellows Yates](https://nfcore.slack.com/team/UEM37TBAR)
+  - Contact: [<i class="fab fa-slack"></i> James Fellows Yates](https://nfcore.slack.com/team/UEM37TBAR)
   - _Details to be confirmed_
 
 ### Spain
 
 - Centre for Genomic Regulation (CRG), Barcelona
-  - Contact: [<i class="fab fa-slack"></i> @Jose Espinosa-Carrasco](https://nfcore.slack.com/team/UT94DM516)
+  - Contact: [<i class="fab fa-slack"></i> Jose Espinosa-Carrasco](https://nfcore.slack.com/team/UT94DM516)
   - _Details to be confirmed_
 
 ### Sweden
 
 - SciLifeLab, Stockholm
-  - Contact: [<i class="fab fa-slack"></i> @Franziska Bonath](https://nfcore.slack.com/team/UGP9YUCKD)
+  - Contact: [<i class="fab fa-slack"></i> Franziska Bonath](https://nfcore.slack.com/team/UGP9YUCKD)
   - _Details to be confirmed_
 
 ### United Kingdom
 
 - London
-  - Contact: [<i class="fab fa-slack"></i> @hpatel](https://nfcore.slack.com/team/UEB97FBN3)
+  - Contact: [<i class="fab fa-slack"></i> Harshil Patel](https://nfcore.slack.com/team/UEB97FBN3)
   - _Details to be confirmed_
 
 ### United States
 
 - University of Texas at Dallas, Texas
-  - Contact: [<i class="fab fa-slack"></i> @Edmund Miller](https://nfcore.slack.com/team/UV41DBFAT)
+  - Contact: [<i class="fab fa-slack"></i> Edmund Miller](https://nfcore.slack.com/team/UV41DBFAT)
   - _Details to be confirmed_
 - The University of Wyoming
-  - Contact: [<i class="fab fa-slack"></i> @Robert A. Petit III](https://nfcore.slack.com/team/U01PGBF4P0R)
+  - Contact: [<i class="fab fa-slack"></i> Robert A. Petit III](https://nfcore.slack.com/team/U01PGBF4P0R)
   - _Details to be confirmed_
 
 ## Hosting an event
