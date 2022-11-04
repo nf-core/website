@@ -57,6 +57,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <script src="/assets/lib/bootstrap.bundle.min.js"></script>
   <script src="/assets/lib/highlight.min.js"></script>
   <script src="/assets/lib/groovy.min.js"></script>
+  <script src="/assets/lib/mermaid.js"></script>
   <!-- Page-specific CSS and JS -->
   <?php
   if (isset($import_moment) && $import_moment): ?>

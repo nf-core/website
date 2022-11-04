@@ -1,11 +1,11 @@
 ## Governance
 
-The purpose of the nf-core governance page is to formalize the governance process for the nf-core project and community.
+nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow.
 
 As a whole, nf-core is a community project. Anyone with an interest in the project can join the community and contribute.
 To help manage the project, nf-core has teams that are made up of community members that oversee core activities.
 
-```mermaid
+<div class="mermaid">
 flowchart BT
     core --> steering
     infrastructure --> core
@@ -13,9 +13,13 @@ flowchart BT
     ambassadors --> outreach
     maintainers --> core
     safety --> steering
-```
+</div>
+
+The purpose of this page is to formalize the governance for the nf-core project and community.
 
 This page describes the governance structure of the nf-core community, how governance teams are elected, their responsibilities, and how decisions are made.
+
+This page outlines the roles of the project teams, along with the responsibilities and privileges that come with them. It also outlines how team members are elected/chosen.
 
 #### Steering committee {#steering}
 
@@ -25,12 +29,12 @@ The steering committee includes representatives from the core team and outside a
 The steering committee is not a fixed size with its members being elected by the current steering committee based on need.
 The steering committee will meet regularly to discuss the overall direction of the project, funds, and personnel.
 
-##### Responsibilities
+**Responsibilities**
 
 - Making decisions about project funds and personnel
 - Guiding large initiatives
 
-##### Members
+**Members**
 
 <a class="btn btn-light rounded-pill"><i aria-hidden="true"></i>Ellen Sherwood</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/evanfloden"><i aria-hidden="true"></i>Evan Floden</a>
@@ -51,7 +55,7 @@ Significant community decisions will be made by vote with any decision without a
 
 Core team members will appear as organization members on the GitHub organization and have administrator access to repositories.
 
-##### Responsibilities
+**Responsibilities**
 
 - Day-to-day community decisions
 - Attendance at the core team annual meeting
@@ -59,7 +63,7 @@ Core team members will appear as organization members on the GitHub organization
 - Sub-roles within the nf-core governance structure
 - A strong community presence
 
-##### Members
+**Members**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/christopher-hakkaart"><i aria-hidden="true"></i>Chris Hakkaart</a>
@@ -74,7 +78,7 @@ Core team members will appear as organization members on the GitHub organization
 <a class="btn btn-light rounded-pill" href="https://github.com/MaxUlysse"><i aria-hidden="true"></i>Maxime Garcia</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
 
-##### Core team alumni
+**Core team alumni**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/alneberg"><i aria-hidden="true"></i>Johannes Alneberg </a>
 <a class="btn btn-light rounded-pill" href="https://github.com/KevinMenden"><i aria-hidden="true"></i>Kevin Menden</a>
@@ -91,13 +95,13 @@ The safety team is community members who have displayed integrity, strong commun
 The safety team is not a fixed size and will scale as the community grows.
 The safety team is not a part of the core team and can report directly to the steering committee.
 
-##### Members
+**Members**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/ctuni"><i aria-hidden="true"></i>Cris Tuñí</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/heuermh"><i aria-hidden="true"></i>Michael Heuer </a>
 <a class="btn btn-light rounded-pill" href="https://github.com/snafees"><i aria-hidden="true"></i>Saba Nafees</a>
 
-##### Responsibilities
+**Responsibilities**
 
 - Write and maintain the nf-core code of conduct
 - Be available for nf-core events (online or in person)
@@ -112,14 +116,14 @@ The infrastructure team will have one or more leads who are responsible for over
 Infrastructure team members are elected by the core team.
 The infrastructure team is not a fixed size and will scale as the community grows.
 
-##### Responsibilities
+**Responsibilities**
 
 - Development and maintenance of nf-core tools
 - Development and maintenance of the nf-core website
 - Development and maintenance of nf-core megatests
 - Regular attendance at maintenance team meetings
 
-##### Members
+**Members**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/mirpedrol"><i aria-hidden="true"></i>Júlia Mir Pedrol</a>
@@ -136,7 +140,7 @@ The outreach team is not a fixed size and will scale as the community grows.
 
 The outreach leads will have access to community social media and YouTube accounts (e.g., Twitter and YouTube).
 
-##### Responsibilities
+**Responsibilities**
 
 - Organizing and running the `#bytesize` seminar series
 - Leading the organizing hackathons and training
@@ -144,7 +148,7 @@ The outreach leads will have access to community social media and YouTube accoun
 - Creating and sharing community content
 - Regular attendance at outreach team meetings
 
-##### Members
+**Members**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/christopher-hakkaart"><i aria-hidden="true"></i>Chris Hakkaart</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/FranBonath"><i aria-hidden="true"></i>Franziska Bonath</a>
@@ -164,7 +168,7 @@ New members are invited to be a part maintainers team by current maintainers bas
 
 nf-core maintainers will have write access to repositories.
 
-##### Responsibilities
+**Responsibilities**
 
 - Respond to `#github-invitations`
 - Review module and subworkflow pull requests
@@ -173,7 +177,7 @@ nf-core maintainers will have write access to repositories.
 - Manage test data
 - Enable and promote Flux community values
 
-##### Members
+**Members**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/FriederikeHanssen"><i aria-hidden="true"></i>Friederike Hanssen</a>
@@ -182,5 +186,7 @@ nf-core maintainers will have write access to repositories.
 <a class="btn btn-light rounded-pill" href="https://github.com/jfy133"><i aria-hidden="true"></i>James A. Fellows Yates</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/JoseEspinosa"><i aria-hidden="true"></i>Jose Espinosa-Carrasco</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/MaxUlysse"><i aria-hidden="true"></i>Maxime Garcia</a>
+
+<a class="btn btn-light rounded-pill" href="https://github.com/Emiller88"><i aria-hidden="true"></i>Edmund Miller</a>
 
 #### Ambassadors {#ambassadors}
