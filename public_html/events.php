@@ -145,7 +145,15 @@ function print_events($events, $is_past_event) {
 //
 if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
     // Parse the markdown before header.php, so that we can override subtitle etc
-    $markdown_fn = $md_base . $_GET['event'] . '.md';
+    $markdown_fn = $md_base . $_GET['event'];
+    if (is_file($markdown_fn . '.md')) {
+        // Regular single-page event
+        $markdown_fn .= '.md';
+    } elseif (is_dir($markdown_fn) && file_exists($markdown_fn . '/index.md')) {
+        // Nested event index page
+        $markdown_fn = $markdown_fn . '/index.md';
+    }
+
     require_once '../includes/parse_md.php';
 
     $output = parse_md($markdown_fn);
@@ -343,14 +351,23 @@ $header_btn_text = '<i class="fas fa-rss me-1"></i> RSS';
 $events = [];
 $year_dirs = glob($md_base . 'events/*', GLOB_ONLYDIR);
 foreach ($year_dirs as $year) {
-    $event_mds = glob($year . '/*.md');
-    foreach ($event_mds as $event_md) {
+    // Single page events
+    $event_mds = glob($year . '/*');
+    foreach ($event_mds as $fpath) {
+        if (is_file($fpath) && substr($event_md, -3) == '.md') {
+            $event_md = $fpath;
+            $url = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+        } elseif (is_dir($fpath) && file_exists($fpath . '/index.md')) {
+            $href_url_prepend = basename($markdown_fn) . '/';
+            $event_md = $fpath . '/index.md';
+            $url = '/events/' . basename($year) . '/' . basename($fpath);
+        }
         // Load the file
         $md_full = file_get_contents($event_md);
         if ($md_full !== false) {
             $fm = parse_md_front_matter($md_full);
             // Add the URL
-            $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            $fm['meta']['url'] = $url;
             // Add to the events array
             $events[] = $fm['meta'];
         }
