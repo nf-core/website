@@ -67,8 +67,6 @@ Watch this space for more details in the coming weeks!
   - Contact: [<i class="fab fa-slack"></i> @Robert A. Petit III](https://nfcore.slack.com/team/U01PGBF4P0R)
   - _Details to be confirmed_
 
-
-
 ## Hosting an event
 
 Would you be interested in hosting a local event? All you need to do is book a room and tell some people!
