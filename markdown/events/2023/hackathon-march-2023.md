@@ -50,7 +50,7 @@ Watch this space for more details in the coming weeks!
 Would you be interested in hosting a local event? All you need to do is book a room and tell some people!
 Please put in a pull request to edit this file to add the details of your event so that others can find you.
 
-Let the nf-core outreach team know as soon as possible so that we can post some goodies to you and help with the organisation:
+Let the nf-core outreach team know as soon as possible so that we can mail some goodies to you and help with the organisation:
 
 - Stickers & swag
 - Registration form template
