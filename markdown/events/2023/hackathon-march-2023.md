@@ -51,7 +51,7 @@ Watch this space for more details in the coming weeks!
 - London
   - Contact: [@drpatelh](https://github.com/drpatelh/)
   - _Details to be confirmed_
-- Cambridge
+- Wellcome Trust Genome Campus, Cambridge
   - Contact: [@priyanka-surana](https://github.com/priyanka-surana)
   - _Details to be confirmed_
 
