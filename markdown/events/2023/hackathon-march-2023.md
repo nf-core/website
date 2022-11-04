@@ -64,7 +64,7 @@ Watch this space for more details in the coming weeks!
 ### Denmark
 
 - Unseen Bio ApS, Copenhagen
-  - Contact: [Moritz Beber](mailto:moritz@unseenbio.com)
+  - Contact: Moritz Beber [@moritz](https://nfcore.slack.com/team/U015PB15C5U)
   - _Details to be confirmed; based on interest_
 
 ## Hosting an event
