@@ -358,6 +358,7 @@ foreach ($year_dirs as $year) {
             $event_md = $fpath;
             $url = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
         } elseif (is_dir($fpath) && file_exists($fpath . '/index.md')) {
+            $href_url_prepend = basename($markdown_fn) . '/';
             $event_md = $fpath . '/index.md';
             $url = '/events/' . basename($year) . '/' . basename($fpath);
         }
