@@ -29,6 +29,13 @@ Watch this space for more details in the coming weeks!
 
 - QBiC, Tübingen
   - _Details to be confirmed_
+- MPI-EVA, Leipzig
+  - _Details to be confirmed_
+  
+### Spain
+
+- Centre for Genomic Regulation (CRG), Barcelona
+  - _Details to be confirmed_
 
 ### Sweden
 
@@ -43,6 +50,8 @@ Watch this space for more details in the coming weeks!
 ### United States
 
 - University of Texas at Dallas, Texas
+  - _Details to be confirmed_
+- The University of Wyoming
   - _Details to be confirmed_
 
 ## Hosting an event
