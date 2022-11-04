@@ -61,6 +61,12 @@ Watch this space for more details in the coming weeks!
   - Contact: [@rpetit3](https://github.com/rpetit3/)
   - _Details to be confirmed_
 
+### Denmark
+
+- Unseen Bio ApS, Copenhagen
+  - Contact: [Moritz Beber](mailto:moritz@unseenbio.com)
+  - _Details to be confirmed; based on interest_
+
 ## Hosting an event
 
 Would you be interested in hosting a local event? All you need to do is book a room and tell some people!
