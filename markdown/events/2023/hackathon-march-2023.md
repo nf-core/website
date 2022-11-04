@@ -28,30 +28,37 @@ Watch this space for more details in the coming weeks!
 ### Germany
 
 - QBiC, Tübingen
+  - Contact: [@ggabernet](https://github.com/ggabernet/)
   - _Details to be confirmed_
 - MPI-EVA, Leipzig
+  - Contact: [@jfy133](https://github.com/jfy133/)
   - _Details to be confirmed_
-  
+
 ### Spain
 
 - Centre for Genomic Regulation (CRG), Barcelona
+  - Contact: [@joseespinosa](https://github.com/joseespinosa/)
   - _Details to be confirmed_
 
 ### Sweden
 
 - SciLifeLab, Stockholm
+  - Contact: [@FranBonath](https://github.com/FranBonath/)
   - _Details to be confirmed_
 
 ### United Kingdom
 
 - London
+  - Contact: [@drpatelh](https://github.com/drpatelh/)
   - _Details to be confirmed_
 
 ### United States
 
 - University of Texas at Dallas, Texas
+  - Contact: [@Emiller88](https://github.com/Emiller88/)
   - _Details to be confirmed_
 - The University of Wyoming
+  - Contact: [@rpetit3](https://github.com/rpetit3/)
   - _Details to be confirmed_
 
 ## Hosting an event
