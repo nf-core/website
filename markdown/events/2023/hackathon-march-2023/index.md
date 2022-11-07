@@ -58,4 +58,3 @@ Let the nf-core outreach team know as soon as possible so that we can mail some 
 # Code of conduct
 
 Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](https://nf-co.re/code_of_conduct).
-
