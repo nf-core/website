@@ -28,7 +28,7 @@ Watch this space for more details in the coming weeks!
 | Country         | City       |  Location                     | Event page                                |
 | --------------- | ---------- | ----------------------------- | ----------------------------------------- |
 | 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS                | [Read more](denmark-unseen-bio.md)        |
-| 🇫🇷 France       | Rennes     | IGDR                          | [Read more](france-igdr.md)                |
+| 🇫🇷 France       | Rennes     | IGDR                          | [Read more](france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                          | [Read more](germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                       | [Read more](germany-mpi-eva.md)           |
 | 🇿🇦 South Africa | Cape Town  | Stellenbosch University       | [Read more](south-africa-stellenbosch.md) |
@@ -37,7 +37,6 @@ Watch this space for more details in the coming weeks!
 | 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus  | [Read more](uk-wellcome-campus.md)        |
 | 🇺🇸 USA          | Dallas     | University of Texas at Dallas | [Read more](usa-university-texas.md)      |
 | 🇺🇸 USA          | Wyoming    | The University of Wyoming     | [Read more](usa-university-wyoming.md)    |
-
 
 Please view the event page for a specific location if you're interested in attending.
 
