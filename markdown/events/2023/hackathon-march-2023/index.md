@@ -28,6 +28,7 @@ Watch this space for more details in the coming weeks!
 | Country         | City       |  Location                     | Event page                                                                  |
 | --------------- | ---------- | ----------------------------- | --------------------------------------------------------------------------- |
 | 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS                | [Read more](/events/2023/hackathon-march-2023/denmark-unseen-bio.md)        |
+| 🇫🇷 France       | Rennes     | IGDR                          | [Read more](/events/2023/hackathon-march-2023/france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                          | [Read more](/events/2023/hackathon-march-2023/germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                       | [Read more](/events/2023/hackathon-march-2023/germany-mpi-eva.md)           |
 | 🇿🇦 South Africa | Cape Town  | Stellenbosch University       | [Read more](/events/2023/hackathon-march-2023/south-africa-stellenbosch.md) |
@@ -36,8 +37,6 @@ Watch this space for more details in the coming weeks!
 | 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus  | [Read more](/events/2023/hackathon-march-2023/uk-wellcome-campus.md)        |
 | 🇺🇸 USA          | Dallas     | University of Texas at Dallas | [Read more](/events/2023/hackathon-march-2023/usa-university-texas.md)      |
 | 🇺🇸 USA          | Wyoming    | The University of Wyoming     | [Read more](/events/2023/hackathon-march-2023/usa-university-wyoming.md)    |
-| 🇫🇷 France       | Rennes     | IGDR                          | [Read more](/events/2023/hackathon-march-2023/france-igdr.md)               |
-
 Please view the event page for a specific location if you're interested in attending.
 
 If there is no event nearby, do not worry - everyone is welcome to join online!
