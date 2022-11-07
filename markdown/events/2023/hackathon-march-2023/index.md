@@ -28,6 +28,7 @@ Watch this space for more details in the coming weeks!
 | Country         | City       |  Location                     | Event page                                                                  |
 | --------------- | ---------- | ----------------------------- | --------------------------------------------------------------------------- |
 | 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS                | [Read more](/events/2023/hackathon-march-2023/denmark-unseen-bio.md)        |
+| 🇫🇷 France       | Rennes     | IGDR                          | [Read more](/events/2023/hackathon-march-2023/france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                          | [Read more](/events/2023/hackathon-march-2023/germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                       | [Read more](/events/2023/hackathon-march-2023/germany-mpi-eva.md)           |
 | 🇿🇦 South Africa | Cape Town  | Stellenbosch University       | [Read more](/events/2023/hackathon-march-2023/south-africa-stellenbosch.md) |
