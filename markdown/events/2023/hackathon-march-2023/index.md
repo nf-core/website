@@ -37,6 +37,7 @@ Watch this space for more details in the coming weeks!
 | 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus  | [Read more](/events/2023/hackathon-march-2023/uk-wellcome-campus.md)        |
 | 🇺🇸 USA          | Dallas     | University of Texas at Dallas | [Read more](/events/2023/hackathon-march-2023/usa-university-texas.md)      |
 | 🇺🇸 USA          | Wyoming    | The University of Wyoming     | [Read more](/events/2023/hackathon-march-2023/usa-university-wyoming.md)    |
+
 Please view the event page for a specific location if you're interested in attending.
 
 If there is no event nearby, do not worry - everyone is welcome to join online!
