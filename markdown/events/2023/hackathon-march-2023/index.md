@@ -25,17 +25,17 @@ Once sat together, join the global gathering online, on gather.town together.
 
 Watch this space for more details in the coming weeks!
 
-| Country         | City       |  Location                     | Event page                                                                  |
-| --------------- | ---------- | ----------------------------- | --------------------------------------------------------------------------- |
-| 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS, Copenhagen    | [Read more](/events/2023/hackathon-march-2023/denmark-unseen-bio.md)        |
-| 🇩🇪 Germany      | Tübingen   | QBiC                          | [Read more](/events/2023/hackathon-march-2023/germany-qbic.md)              |
-| 🇩🇪 Germany      | Leipzig    | MPI-EVA                       | [Read more](/events/2023/hackathon-march-2023/germany-mpi-eva.md)           |
-| 🇿🇦 South Africa | Cape Town  | Stellenbosch University       | [Read more](/events/2023/hackathon-march-2023/south-africa-stellenbosch.md) |
-| 🇪🇸 Spain        | Barcelona  | CRG                           | [Read more](/events/2023/hackathon-march-2023/spain-crg.md)                 |
-| 🇸🇪 Sweden       | Stockholm  | SciLifeLab                    | [Read more](/events/2023/hackathon-march-2023/sweden-scilifelab.md)         |
-| 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus  | [Read more](/events/2023/hackathon-march-2023/uk-wellcome-campus.md)        |
-| 🇺🇸 USA          | Dallas     | University of Texas at Dallas | [Read more](/events/2023/hackathon-march-2023/usa-university-texas.md)      |
-| 🇺🇸 USA          | Wyoming    | The University of Wyoming     | [Read more](/events/2023/hackathon-march-2023/usa-university-wyoming.md)    |
+| Country         | City       |  Location                     | Event page                                |
+| --------------- | ---------- | ----------------------------- | ----------------------------------------- |
+| 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS, Copenhagen    | [Read more](denmark-unseen-bio.md)        |
+| 🇩🇪 Germany      | Tübingen   | QBiC                          | [Read more](germany-qbic.md)              |
+| 🇩🇪 Germany      | Leipzig    | MPI-EVA                       | [Read more](germany-mpi-eva.md)           |
+| 🇿🇦 South Africa | Cape Town  | Stellenbosch University       | [Read more](south-africa-stellenbosch.md) |
+| 🇪🇸 Spain        | Barcelona  | CRG                           | [Read more](spain-crg.md)                 |
+| 🇸🇪 Sweden       | Stockholm  | SciLifeLab                    | [Read more](sweden-scilifelab.md)         |
+| 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus  | [Read more](uk-wellcome-campus.md)        |
+| 🇺🇸 USA          | Dallas     | University of Texas at Dallas | [Read more](usa-university-texas.md)      |
+| 🇺🇸 USA          | Wyoming    | The University of Wyoming     | [Read more](usa-university-wyoming.md)    |
 
 Please view the event page for a specific location if you're interested in attending.
 

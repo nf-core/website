@@ -151,6 +151,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         $markdown_fn .= '.md';
     } elseif (is_dir($markdown_fn) && file_exists($markdown_fn . '/index.md')) {
         // Nested event index page
+        $href_url_prepend = basename($markdown_fn) . '/';
         $markdown_fn = $markdown_fn . '/index.md';
     }
 
@@ -358,7 +359,6 @@ foreach ($year_dirs as $year) {
             $event_md = $fpath;
             $url = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
         } elseif (is_dir($fpath) && file_exists($fpath . '/index.md')) {
-            $href_url_prepend = basename($markdown_fn) . '/';
             $event_md = $fpath . '/index.md';
             $url = '/events/' . basename($year) . '/' . basename($fpath);
         }
