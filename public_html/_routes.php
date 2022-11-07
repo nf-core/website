@@ -41,12 +41,6 @@ if (strtolower($path_parts[0]) == 'docs') {
         include 'documentation.php';
         exit();
     }
-    # New landing pages
-    if ($path_parts[1] == 'usage' or $path_parts[1] == 'contributing') {
-        $markdown_fn = $docs_md_base . $md_fn;
-        include 'documentation.php';
-        exit();
-    }
 }
 
 if (file_exists($docs_md_base . $md_fn)) {

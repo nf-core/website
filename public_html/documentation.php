@@ -37,8 +37,8 @@ function dir_tree($dir) {
 }
 
 $sidebar_nav_elements = dir_tree($docs_md_base . 'docs');
-//Remove landing pages from navigation
-unset($sidebar_nav_elements['0'], $sidebar_nav_elements['1']);
+//Remove landing page from navigation
+unset($sidebar_nav_elements['0']);
 krsort($sidebar_nav_elements, SORT_ASC); # sort Usage before Contributing
 # build html for the sidebar nav
 
@@ -102,10 +102,21 @@ $toc_nav .=
 $toc_nav .= '</nav>';
 
 $md_content_replace[] = ['<!-- usage_toc -->'];
-
-if (in_array($_GET['path'], ['docs/usage', 'docs/contributing'])) {
+//sorry, can't figure out how to do this in one loop
+if (in_array($_GET['path'], ['docs'])) {
     $inline_toc = '<div>';
-    foreach ($sidebar_nav_elements[basename($_GET['path'])] as $mdfile => $mdcontent) {
+    foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
+        if (isset($mdcontent['url'])) {
+            $inline_toc .=
+                '<div class="row mb-3 h3">' .
+                '<a href="/' .
+                $mdcontent['url'] .
+                '" class="text-success text-decoration-none">' .
+                $mdcontent['title'] .
+                '</div>';
+        }
+    }
+    foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $inline_toc .=
                 '<div class="row mb-3 h3">' .
