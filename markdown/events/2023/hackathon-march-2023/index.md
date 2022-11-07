@@ -27,7 +27,7 @@ Watch this space for more details in the coming weeks!
 
 | Country         | City       |  Location                     | Event page                                |
 | --------------- | ---------- | ----------------------------- | ----------------------------------------- |
-| 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS, Copenhagen    | [Read more](denmark-unseen-bio.md)        |
+| 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS                | [Read more](denmark-unseen-bio.md)        |
 | 🇩🇪 Germany      | Tübingen   | QBiC                          | [Read more](germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                       | [Read more](germany-mpi-eva.md)           |
 | 🇿🇦 South Africa | Cape Town  | Stellenbosch University       | [Read more](south-africa-stellenbosch.md) |
