@@ -1,9 +1,10 @@
 ## Governance
 
-nf-core is committed to building an open, inclusive, productive and open-source community focused on collecting a curated set of analysis pipelines built using Nextflow.
-All community members must comply with the Code of Conduct (CoC) at all times. Anyone with an interest in the project can join the community and contribute.
+nf-core is committed to being an open, inclusive, productive and open-source community.
+Anyone with an interest in the project can join the community and contribute to the project.
+All community members must comply with the Code of Conduct (CoC) at all times.
 
-To help manage the project, nf-core has teams that are made up of community members that oversee core activities. This page describes the structure of the nf-core community, including how governance teams are elected, their responsibilities, and how decisions are made.
+To help manage the project, nf-core has teams that are made up of community members that oversee core activities.
 
 <div class="mermaid">
 flowchart BT
@@ -15,19 +16,21 @@ flowchart BT
     safety --> steering
 </div>
 
+This page describes the structure of the nf-core community, including how governance teams are elected, their responsibilities, and how decisions are made.
+
 #### Steering committee {#steering}
 
 Changes that impact the community requires decisions informed by extensive experience with both the nf-core project and the larger ecosystem.
-The steering committee includes representatives from the core team and outside advisors who oversee the running of the nf-core project. 
+The steering committee is responsible for overseeing the running of the nf-core project.
 
+The steering committee is made up of representatives from the core team and outside advisors who are familiar with the project.
 The steering committee is not a fixed size with its members being elected by the current steering committee.
 The steering committee will meet regularly to discuss the project, funding and personnel.
 
 **Responsibilities**
 
-- Guiding large initiatives
-- Maintaining governance of the project
-- Making decisions about the project, funds and personnel
+- Guiding project initiatives
+- Making decisions about the project, funds, and personnel
 
 **Members**
 
@@ -39,7 +42,7 @@ The steering committee will meet regularly to discuss the project, funding and p
 
 #### Core team {#core}
 
-The core team ensures the day-to-day running of the nf-core project and oversees the activities of subgroups.
+The core team ensures the day-to-day running of the nf-core project and oversees the activities of governance teams.
 
 The core team is made up of community members that have demonstrated a continued commitment to the nf-core community.
 New members will be invited to join the core team based on contributions, experience, and engagement with the community.
@@ -52,7 +55,7 @@ Core team members will appear as organization members on the GitHub organization
 - Day-to-day community decisions
 - Attendance at the core team annual meeting
 - Regular attendance at monthly core team meetings
-- Sub-roles within the nf-core governance structure
+- Sub-roles within the nf-core governance teams
 - A strong community presence
 
 **Members**
@@ -112,12 +115,15 @@ The infrastructure team will have administrator access to repositories.
 
 **Responsibilities**
 
-- Development and maintenance of nf-core tools, website, and megatests
+- Development and maintenance of nf-core tools, website, and mega tests
 - Regular attendance at maintenance team meetings
+
+**Leads**
+
+<a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
 
 **Members**
 
-<a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/mirpedrol"><i aria-hidden="true"></i>Júlia Mir Pedrol</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/mashehu"><i aria-hidden="true"></i>Matthias Hörtenhuber</a>
 
@@ -139,11 +145,14 @@ The outreach leads will have access to community social media and YouTube accoun
 - Creating and sharing community content
 - Regular attendance at outreach team meetings
 
-**Members**
+**Leads**
 
 <a class="btn btn-light rounded-pill" href="https://github.com/christopher-hakkaart"><i aria-hidden="true"></i>Chris Hakkaart</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/FranBonath"><i aria-hidden="true"></i>Franziska Bonath</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/mribeirodantas"><i aria-hidden="true"></i>Marcel Ribeiro-Dantas</a>
+
+**Members**
+
 <a class="btn btn-light rounded-pill" href="https://github.com/abhi18av"><i aria-hidden="true"></i>Abhinav Sharma</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/Emiller88"><i aria-hidden="true"></i>Edmund Miller</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/MaxUlysse"><i aria-hidden="true"></i>Maxime Garcia</a>
@@ -163,10 +172,14 @@ nf-core maintainers will have write access to repositories.
 **Responsibilities**
 
 - Respond to `#github-invitations`
-- Review module, subworkflow pull, pipeline release pull requests
+- Review module, subworkflow, pipeline release pull requests
 - Manage repository access for community developers
 - Manage test data
 - Enable and promote Flux community values
+
+**Leads**
+
+<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
 
 **Members**
 
@@ -184,14 +197,13 @@ nf-core recognizes a vibrant, worldwide group of nf-core experts whose enthusias
 Ambassadors go above and beyond to share knowledge in a variety of ways including online via social media, blog posts and articles; or in person at conferences, workshops, and user group events.
 
 Community members with an interest in sharing knowledge and helping their communities can become nf-core ambassadors.
-Ambassadors are expected to regularly engage with the wider community and will be supported by the outreach team and other ambassadors,
-New ambassadors are welcome.
+Ambassadors are expected to regularly engage with the wider community and will be supported by the outreach team and other ambassadors.
 
-If you are interested in becoming an nf-core ambassador
+More information about becoming an nf-core ambassador can be found [here](https://github.com/).
 
 **Responsibilities**
 
-- Engaging with the nf-core community on Slack and other social media platforms
+- Engaging with local, national, and international Nextflow and nf-core community
 - Writing or sharing tweets, blogs, articles, and technical documentation
 - Running nf-core events such as user groups, hackathons, workshops, and more
 - Speaking about nf-core at meetings and events
