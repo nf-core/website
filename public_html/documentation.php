@@ -107,9 +107,10 @@ if (in_array($_GET['path'], ['docs'])) {
     $inline_toc = '<div>';
     foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
+            $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
             $inline_toc .=
                 '<div class="row mb-3 h3">' .
-                '<a href="/' .
+                '<a href="' .
                 $mdcontent['url'] .
                 '" class="text-success text-decoration-none">' .
                 $mdcontent['title'] .
@@ -118,6 +119,7 @@ if (in_array($_GET['path'], ['docs'])) {
     }
     foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
+            $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
             $inline_toc .=
                 '<div class="row mb-3 h3">' .
                 '<a href="/' .
