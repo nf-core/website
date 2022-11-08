@@ -4,45 +4,6 @@ The nf-core project is a diverse project spread across many groups.
 Here you can read how we organise ourselves, how we are funded and how the nf-core project was started.
 
 Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
-
-## Core team {#core}
-
-The core team members who administer the nf-core project are listed below:
-
-- [@apeltzer](https://github.com/apeltzer): Alexander Peltzer
-- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
-- [@drpatelh](https://github.com/drpatelh): Harshil Patel
-- [@ewels](https://github.com/ewels): Phil Ewels
-- [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
-- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
-- [@jfy133](https://github.com/jfy133): James A. Fellows Yates
-- [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
-- [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
-- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
-- [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
-- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
-
-We regularly review core team members - if you'd like to be involved, drop us a message on Slack.
-
-### Alumni
-
-The following former members of the nf-core team have earned their place in
-the nf-core alumni hall of fame:
-
-- [@alneberg](https://github.com/alneberg): Johannes Alneberg
-- [@KevinMenden](https://github.com/KevinMenden): Kevin Menden
-- [@olgabot](https://github.com/olgabot): Olga Botvinnik
-- [@sven1103](https://github.com/sven1103): Sven F.
-- [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
-
-## Outreach team {#outreach}
-
-The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
-This team includes all of the `@core-team` mentioned above and also:
-
-- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
-- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
-
 ## Financial Support
 
 The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
