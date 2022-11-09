@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: using custom scripts in Nextflow pipelines'
-subtitle: Chris Hakaard, Seqera labs
+subtitle: Chris Hakkaart, Seqera labs
 type: talk
 start_date: '2022-11-15'
 start_time: '13:00 CET'
@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: using custom scripts in Nextflow pipelines
 
-This week, Chris Hakaard ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will show how to integrate custom scripts, such as R or Perl o Python scripts, can be integrated into a Nextflow pipeline.
+This week, Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will show how to integrate custom scripts, such as R or Perl o Python scripts, can be integrated into a Nextflow pipeline.
