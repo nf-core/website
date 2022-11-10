@@ -14,6 +14,6 @@ location_name: MRC Insitute of Genetics and Cancer
 
 Local event to be held at the MRC Institute of Genetics and Cancer, University of Edinburgh. We'll be in the MEC Computing Lab 1. Go up the stairs or lift to the Outpatients Department 3rd floor, turn right and through the double doors, and the room is straight ahead.
 
-Primary contact: [<i class="fab fa-slack"></i>Alison Meynert](https://nfcore.slack.com/team/U010VQJJRNJ) or e-mail (mailto:alison.meynert@ed.ac.uk).
+Primary contact: [<i class="fab fa-slack"></i>Alison Meynert](https://nfcore.slack.com/team/U010VQJJRNJ) or e-mail ([alison.meynert@ed.ac.uk](mailto:alison.meynert@ed.ac.uk)).
 
 _Details to be confirmed_
