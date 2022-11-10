@@ -24,7 +24,7 @@ include '../includes/header.php';
 <p>We use a few different tools to organise the nf-core community -
     you are welcome to join us at any or all!</p>
 <p class="text-center">
-  <a href="https://nf-co.re/join/slack" class="mb-2 me-3 btn btn-lg btn-success">
+  <a href="https://nf-co.re/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #4a154b;">
     <i class="fab fa-slack"></i> Slack
   </a>
   <a href="https://github.com/nf-core" class="mb-2 me-3 btn btn-lg btn-dark">
