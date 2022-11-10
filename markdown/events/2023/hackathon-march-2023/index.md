@@ -26,7 +26,7 @@ Once sat together, join the global gathering online, on gather.town together.
 Watch this space for more details in the coming weeks!
 
 | Country         | City       |  Location                            | Event page                                |
-| --------------- | ---------- | -------------------------------------| ----------------------------------------- |
+| --------------- | ---------- | ------------------------------------ | ----------------------------------------- |
 | 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS                       | [Read more](denmark-unseen-bio.md)        |
 | 🇫🇷 France       | Rennes     | IGDR                                 | [Read more](france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                                 | [Read more](germany-qbic.md)              |
