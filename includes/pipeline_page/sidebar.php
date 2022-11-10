@@ -3,61 +3,50 @@
 // Sidebar for pipeline homepage with key stats
 /////////////////////
 
-// Get number of open issues and PRs
-$issues_json_fn = dirname(dirname(dirname(__FILE__))) . '/nfcore_issue_stats.json';
-$issues_json = json_decode(file_get_contents($issues_json_fn), true);
-$num_issues = 0;
-foreach ($issues_json['repos'][$pipeline->name]['issues'] as $issue) {
-    $num_issues += (int) ($issue['state'] == 'open');
-}
+// // Get number of clones over time
+// $stats_json_fn = dirname(dirname(dirname(__FILE__))) . '/nfcore_stats.json';
+// $stats_json = json_decode(file_get_contents($stats_json_fn), true);
+// $stats = $stats_json['pipelines'][$pipeline->name]['repo_metrics'][$stats_json['updated']];
 
-$num_prs = count($issues_json['repos'][$pipeline->name]['prs']);
-
-// Get number of clones over time
-$stats_json_fn = dirname(dirname(dirname(__FILE__))) . '/nfcore_stats.json';
-$stats_json = json_decode(file_get_contents($stats_json_fn), true);
-$stats = $stats_json['pipelines'][$pipeline->name]['repo_metrics'][$stats_json['updated']];
-$clones_counts = $stats_json['pipelines'][$pipeline->name]['clones_count'];
-$total_clones = 0;
-$clones_since = false;
-foreach ($clones_counts as $datetime => $count) {
-    $total_clones += $count;
-    if (!$clones_since) {
-        $clones_since = strtotime($datetime);
-    }
-    $clones_since = min($clones_since, strtotime($datetime));
-}
+$total_clones = array_sum(array_column($traffic_stats, 'clones'));
+$clones_since = end($traffic_stats)['timestamp'];
 
 // Get contributor avatars
 $contrib_avatars = [];
-foreach ($stats_json['pipelines'][$pipeline->name]['contributors'] as $contributor) {
-    $contributions = $contributor['total'];
-    if ($contributions > 1) {
-        $contributions .= ' contributions';
+foreach (array_unique(array_column($contributor_stats, 'author', 'avatar_url')) as $contributor_url => $contributor) {
+    // print_r($contributor."\n");
+    // get all contributions for this contributor
+    $contributions = array_filter($contributor_stats, function ($c) use ($contributor) {
+        return $c['author'] === $contributor;
+    });
+    // count the contributions
+    $total_commits = array_sum(array_column($contributions, 'week_commits'));
+    if ($total_commits > 1) {
+        $total_commits .= ' contributions';
     } else {
-        $contributions .= ' contribution';
+        $total_commits .= ' contribution';
     }
     $contrib_avatars[
-        '<a href="' .
-            $contributor['author']['html_url'] .
+        '<a href="https://github.com/' .
+            $contributor .
             '" title="@' .
-            $contributor['author']['login'] .
+            $contributor .
             ', ' .
-            $contributions .
+            $total_commits .
             '" data-bs-toggle="tooltip"><img src="' .
-            $contributor['author']['avatar_url'] .
+            $contributor_url .
             '"></a>'
-    ] = $contributor['total'];
+    ] = $total_commits;
 }
 arsort($contrib_avatars);
 
 // Last release and last commit
 $last_release_time = 'N/A';
 $release_cmd = ' -r ' . $release;
-if (count($pipeline->releases) > 0) {
-    $last_release_time = time_ago($pipeline->releases[0]->published_at);
+if (!is_null($pipeline_metrics['last_release_date'])) {
+    $last_release_time = time_ago($pipeline_metrics['last_release_date']);
 }
-$last_commit = time_ago($pipeline->updated_at);
+$last_commit = time_ago($pipeline_metrics['gh_updated_at']);
 
 // filter events for embed_at key and look if it is set to the this pipeline
 $pipeline_name = explode('/', $_GET['path'])[0];
@@ -71,13 +60,41 @@ $embed_video = array_values($embed_video)[0];
 ?>
 
 <div class="pipeline-sidebar">
-    <div class="row border-bottom pb-2">
+    <div class="row pb-2 mb-md-4">
         <div class="col-12">
-            <h6><i class="fas fa-terminal fa-xs"></i> command</h6>
-            <div class="input-group input-group-sm pipeline-run-cmd">
-                <input type="text" class="form-control input-sm code" id="pipeline-run-cmd-text" data-autoselect="" value="nextflow run <?php echo $pipeline->full_name .
-                    $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
-                <button class="btn btn-outline-secondary copy-txt" data-bs-target="pipeline-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+            <h6><i class="fas fa-terminal fa-xs"></i> Run with</h6>
+            <ul class="nav nav-tabs border-bottom-0" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-muted active" id="nfcore-tab" data-bs-toggle="tab" data-bs-target="#pipeline-nfcore-run-cmd" type="button" role="tab" aria-controls="nfcore" aria-selected="true">nf-core</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-muted" id="nf-tab" data-bs-toggle="tab" data-bs-target="#nf" type="button" role="tab" aria-controls="nf" aria-selected="false">Nextflow</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-muted" id="tw-tab" data-bs-toggle="tab" data-bs-target="#tw" type="button" role="tab" aria-controls="tw" aria-selected="false">Tower</button>
+                </li>
+            </ul>
+            <div class="tab-content mt-2">
+                <div class="tab-pane show active" id="pipeline-nfcore-run-cmd" role="tabpanel" aria-labelledby="nfcore-tab">
+                    <div class=" input-group input-group-sm pipeline-run-cmd">
+                        <input type="text" class="form-control input-sm code rounded-0" id="pipeline-nfcore-run-cmd-text"  value="nf-core launch <?php echo $pipeline->full_name .
+                            $release_cmd; ?>" aria-label="Copy run command" readonly="">
+                        <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-nfcore-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                    </div>
+                </div>
+                <div class="tab-pane" id="nf" role="tabpanel" aria-labelledby="nf-tab">
+                    <div class=" input-group input-group-sm pipeline-run-cmd">
+                        <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-nf-run-cmd-text"  value="nextflow run <?php echo $pipeline->full_name .
+                            $release_cmd; ?> -profile test --outdir <OUTDIR>" aria-label="Copy run command" readonly="">
+                        <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-nf-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tw" role="tabpanel" aria-labelledby="tw-tab">
+                    <div class=" input-group input-group-sm pipeline-run-cmd">
+                        <input type="text" class="form-control input-sm code  rounded-0" id="pipeline-tw-run-cmd-text" data-autoselect="" value="tw launch https://nf-co.re/<?php echo $pipeline->name .
+                            $release_cmd; ?>" aria-label="Copy run command" readonly="">
+                            <button class="btn btn-outline-secondary copy-txt rounded-0" data-bs-target="pipeline-tw-run-cmd-text" data-bs-toggle="tooltip" data-bs-placement="left" title="Copy to clipboard" type="button"><i class="fas fa-clipboard px-1"></i></button>
+                </div><p class="text-muted">Read how to configure the Tower CLI <u><a href='https://github.com/seqeralabs/tower-cli/#2-configuration' target="_blank">here</a></u>.</p></div>
             </div>
         </div>
     </div>
@@ -119,18 +136,22 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom">
         <div class="col-6">
             <h6>stars</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/stargazers"><?php echo $stats['stargazers_count']; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/stargazers"><?php echo $pipeline_metrics[
+    'stargazers_count'
+]; ?></a></p>
         </div>
         <div class="col-6">
             <h6>watchers</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/watchers"><?php echo $stats['subscribers_count']; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/watchers"><?php echo $pipeline_metrics[
+    'watchers_count'
+]; ?></a></p>
         </div>
     </div>
 
     <div class="row border-bottom">
         <div class="col-6">
             <h6>last release</h6>
-            <p><a href="/<?php echo $pipeline->name; ?>/releases"><?php echo $last_release; ?></a></p>
+            <p><a href="/<?php echo $pipeline->name; ?>/releases"><?php echo $last_release_time; ?></a></p>
         </div>
         <div class="col-6">
             <h6>last updated</h6>
@@ -141,11 +162,15 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom">
         <div class="col-6">
             <h6>open issues</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/issues"><?php echo $num_issues; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/issues"><?php echo $pipeline_metrics[
+    'open_issues_count'
+]; ?></a></p>
         </div>
         <div class="col-6">
-            <h6>pull requests</h6>
-            <p><a href="<?php echo $pipeline->html_url; ?>/pulls"><?php echo $num_prs; ?></a></p>
+            <h6>open pull requests</h6>
+            <p><a href="<?php echo $pipeline->html_url; ?>/pulls"><?php echo $pipeline_metrics[
+    'open_pr_count'
+]; ?></a></p>
         </div>
     </div>
     <div class="row border-bottom">
@@ -221,13 +246,16 @@ ob_start(); ?>
                     data: [
                         <?php
                         $dates = [];
-                        foreach (array_keys($clones_counts) as $date) {
-                            $dates[strtotime($date)] = $date;
-                        }
-                        ksort($dates);
-                        foreach ($dates as $ts => $date) {
-                            $count = $clones_counts[$date];
-                            echo '{ x: "' . date('Y-m-d', $ts) . '", y: ' . $count . ' },' . "\n\t\t\t";
+                        foreach ($traffic_stats as $clone) {
+                            if (!is_numeric($clone['clones'])) {
+                                continue;
+                            }
+                            echo '{ x: "' .
+                                date('Y-m-d', strtotime($clone['timestamp'])) .
+                                '", y: ' .
+                                $clone['clones'] .
+                                ' },' .
+                                "\n\t\t\t";
                         }
                         ?>
                     ]
@@ -236,7 +264,7 @@ ob_start(); ?>
             type: 'LineWithLine',
             options: {
                 onClick: function(e) {
-                    window.location.href = '/<?php echo $pipeline->name; ?>/stats';
+                    window.location.href = '/<?php echo $pipeline->name; ?>/releases_stats';
                 },
                 elements: {
                     point: {
@@ -280,7 +308,6 @@ ob_start(); ?>
         });
     });
 </script>
-
 <?php
 $end_of_html = ob_get_contents();
 ob_end_clean();

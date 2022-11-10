@@ -61,14 +61,14 @@ function prep_current_event($event) {
         'talk' => 'success',
         'poster' => 'secondary',
         'tutorial' => 'info',
-        'workshop' => 'warning',
+        'training' => 'warning',
     ];
     $d['event_type_icons'] = [
         'hackathon' => 'fad fa-laptop-code',
         'talk' => 'fad fa-presentation',
         'poster' => 'fad fa-image',
         'tutorial' => 'fad fa-graduation-cap',
-        'workshop' => 'fad fa-chalkboard-teacher',
+        'training' => 'fad fa-chalkboard-teacher',
     ];
     # Nice date strings
     $d['date_string'] =
@@ -119,13 +119,13 @@ function prep_current_event($event) {
         }
         foreach ($event['location_url'] as $idx => $url) {
             $d['location_url_meta'][$idx]['base_url'] = substr($url, 8, 7);
-
             switch ($d['location_url_meta'][$idx]['base_url']) {
                 case 'zoom.us':
                     $d['location_url_meta'][$idx]['icon'] = '<i class="fas fa-video me-1"></i>';
                     $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
                     break;
                 case 'youtu.b':
+                case 'youtube':
                     $d['location_url_meta'][$idx]['icon'] = '<i class="fab fa-youtube me-1"></i>';
                     $d['location_url_meta'][$idx]['print_url'] = count($event['location_url']) > 3 ? '' : $url;
                     break;
@@ -298,8 +298,8 @@ function get_self_url($strip_query = true) {
 }
 
 function generate_toc($html_string) {
-    $toc =
-        '<div class="d-none d-md-block "><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
+    $toc = '<div  class="d-none d-md-block"><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>
+        <div  style="max-height: calc(100vh - 150px); overflow: auto;">';
     $toc_md = '<div class="dropdown d-block d-md-none">
                 <a href="#" class="btn btn-secondary-outline bg-body dropdown-toggle float-end border" data-bs-toggle="dropdown">On this page</a>
                 <div class="dropdown-menu toc-md">';
@@ -370,7 +370,7 @@ function generate_toc($html_string) {
     $toc_md .= '<!-- tock_md_button_placeholder -->';
     $toc_md .= '<a class="dropdown-item" href="#"><i class="fas fa-arrow-to-top"></i> Back to top</a>';
     $toc_md .= '</div></div>';
-    $toc .= '</div>';
+    $toc .= '</div></div>';
     $toc = $toc_md . $toc;
     return $toc;
 }
@@ -524,8 +524,8 @@ foreach ($events as $idx => $event) {
             if (!$curr_event) {
                 $curr_event = $event;
             }
-            // If multiple events run now, take the one with latest start time
-            elseif ($event['start_ts'] > $curr_event['start_ts']) {
+            // If multiple events run now, take the one with most recent start time
+            elseif ($event['start_ts'] < $curr_event['start_ts']) {
                 $curr_event = $event;
             } else {
                 $additional_ongoing++;

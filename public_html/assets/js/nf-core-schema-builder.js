@@ -135,7 +135,7 @@ $(function () {
     });
 
     // Dismiss popover if click elsewhere
-    $(document).click(function (e) {
+    $(document).on('click', function (e) {
       var target = $(e.target);
       // Is a click outside the icon popover and button
       if (!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length) {
@@ -180,7 +180,7 @@ $(function () {
   }
 
   // Add parameter button
-  $('.add-param-btn').click(function (e) {
+  $('.add-param-btn').on('click', function (e) {
     var new_id = 'new_param_' + new_param_idx;
     if (schema.hasOwnProperty('properties')) {
       while (Object.keys(schema['properties']).indexOf(new_id) != -1) {
@@ -209,7 +209,7 @@ $(function () {
   });
 
   // Add group button
-  $('.add-group-btn').click(function (e) {
+  $('.add-group-btn').on('click', function (e) {
     var new_id = 'new_group_' + new_group_idx;
     var new_title = 'New Group ' + new_group_idx;
     if (!schema.hasOwnProperty('definitions')) {
@@ -242,13 +242,13 @@ $(function () {
   });
 
   // Collapse groups button
-  $('.collapse-groups-btn').click(function (e) {
+  $('.collapse-groups-btn').on('click', function (e) {
     $('.schema_group').find('.card-body').slideUp('fast');
     $('.schema_group').find('i.fa-angle-double-down').toggleClass('fa-angle-double-left fa-angle-double-down');
   });
 
   // Expand groups button
-  $('.expand-groups-btn').click(function (e) {
+  $('.expand-groups-btn').on('click', function (e) {
     $('.schema_group').find('.card-body').slideDown('fast');
     $('.schema_group').find('i.fa-angle-double-left').toggleClass('fa-angle-double-left fa-angle-double-down');
   });
@@ -257,7 +257,7 @@ $(function () {
   // FINISHED button
   //
   // Toggle between panels
-  $('.schema-panel-btn').click(function () {
+  $('.schema-panel-btn').on('click', function () {
     var target = $($(this).data('target'));
     if (target.is(':hidden')) {
       $('.schema-panel:visible').fadeOut('fast', function () {
@@ -783,7 +783,7 @@ $(function () {
   });
 
   // Save the help text
-  $('#help_text_save').click(function () {
+  $('#help_text_save').on('click', function () {
     var id = $('#help_text_modal').data('param-id');
     var param = find_param_in_schema(id);
     var help_text = $('#help_text_input').val();
@@ -833,9 +833,25 @@ $(function () {
     $('#settings_modal').data('param-id', id);
     $('#settings_modal .modal-title').html(modal_header);
     $('#settings_delete span').html(delete_btn_txt);
-    $('#settings_enum, #settings_pattern, #settings_minimum, #settings_maximum').val('');
-    $('.settings_nothing_special, .settings_enum_group, .settings_pattern_group, .settings_minmax_group').hide();
+    $('#settings_enum').val('');
+    $('#settings_pattern').val('');
+    $('#settings_format').val('');
+    $('#settings_mimetype').val('');
+    $('#settings_schema').val('');
+    $('#settings_minimum').val('');
+    $('#settings_maximum').val('');
+    $('.settings_nothing_special').hide();
+    $('.settings_enum_group').hide();
+    $('.settings_pattern_group').hide();
+    $('.settings_format_group').hide();
+    $('.settings_mimetype_group').hide();
+    $('.settings_schema_group').hide();
+    $('.settings_minmax_group').hide();
 
+    // Nicer placeholders
+    $('#settings_schema').attr('placeholder', 'assets/' + id + '_schema.json');
+
+    // Show appropriate fields based on param type
     if (['boolean', 'object'].indexOf(param['type']) != -1) {
       $('.settings_nothing_special').show();
     } else {
@@ -843,6 +859,11 @@ $(function () {
     }
     if (param['type'] == 'string') {
       $('.settings_pattern_group').show();
+      $('.settings_format_group').show();
+    }
+    if (param.hasOwnProperty('format') && param['format'] == 'file-path') {
+      $('.settings_mimetype_group').show();
+      $('.settings_schema_group').show();
     }
     if (['integer', 'number'].includes(param['type'])) {
       $('.settings_minmax_group').show();
@@ -855,6 +876,15 @@ $(function () {
     if (param.hasOwnProperty('pattern')) {
       $('#settings_pattern').val(param['pattern']);
     }
+    if (param.hasOwnProperty('format')) {
+      $('#settings_format').val(param['format']);
+    }
+    if (param.hasOwnProperty('mimetype')) {
+      $('#settings_mimetype').val(param['mimetype']);
+    }
+    if (param.hasOwnProperty('schema')) {
+      $('#settings_schema').val(param['schema']);
+    }
     if (param.hasOwnProperty('minimum')) {
       $('#settings_minimum').val(param['minimum']);
     }
@@ -866,14 +896,30 @@ $(function () {
   }
 
   //
+  // Settings modal: Show / hide file-path fields
+  //
+  $('#settings_format').on('change', function () {
+    if ($(this).val() == 'file-path') {
+      $('.settings_mimetype_group').show();
+      $('.settings_schema_group').show();
+    } else {
+      $('.settings_mimetype_group').hide();
+      $('.settings_schema_group').hide();
+    }
+  });
+
+  //
   // Settings Modal - save button
   //
-  $('#settings_save').click(function (e) {
+  $('#settings_save').on('click', function (e) {
     var id = $('#settings_modal').data('param-id');
     var param = find_param_in_schema(id);
 
     var settings = {};
     settings.pattern = $('#settings_pattern').val().trim();
+    settings.format = $('#settings_format').val().trim();
+    settings.mimetype = $('#settings_mimetype').val().trim();
+    settings.schema = $('#settings_schema').val().trim();
     settings.minimum =
       $('#settings_minimum').val().trim() === '' ? '' : parseFloat($('#settings_minimum').val().trim());
     settings.maximum =
@@ -956,7 +1002,7 @@ $(function () {
   //
   // Settings Modal - delete button
   //
-  $('#settings_delete').click(function (e) {
+  $('#settings_delete').on('click', function (e) {
     var id = $('#settings_modal').data('param-id');
     var row_el = $('.schema_row[data-id="' + id + '"]');
     var group_el = $('.schema_group[data-id="' + id + '"]');
@@ -1067,7 +1113,7 @@ $(function () {
 
   // Submit modal
   // move selected parameters into the group, close modal if no top-level parameters are left
-  $('#move_params').click(function () {
+  $('#move_params').on('click', function () {
     var id = $('#multi_select_modal').data('param-id');
     var group_el = $('.schema_group[data-id="' + id + '"] .card-body');
     $('#multi_select_modal')
@@ -1121,12 +1167,12 @@ $(function () {
     }
   }
   // select all parameter checkboxes via button
-  $('#select_all_params').click(function () {
+  $('#select_all_params').on('click', function () {
     $('.select_param:visible').prop('checked', true);
     $('.select_param').trigger('change');
   });
   // select all parameter checkboxes via button
-  $('#deselect_all_params').click(function () {
+  $('#deselect_all_params').on('click', function () {
     $('.select_param:visible').prop('checked', false);
     $('.select_param').trigger('change');
   });
@@ -1168,7 +1214,7 @@ $(function () {
   // Copy schema button
   //
   $('.toast').toast();
-  $('.copy-schema-btn').click(function () {
+  $('.copy-schema-btn').on('click', function () {
     // select the content
     var target = $('#json_schema');
     var currentFocus = document.activeElement;

@@ -67,7 +67,14 @@ function build_sidebar_nav($elements) {
             build_sidebar_nav($element);
             $sidebar_nav .= '</ul></nav>';
         } else {
-            $active = $md_fn == $element['url'] . '.md' ? 'active' : '';
+            $active = '';
+            if (
+                $md_fn == $element['url'] . '.md' ||
+                substr($md_fn, 0, -3) . '/index' == $element['url'] ||
+                substr($md_fn, 0, -3) . '/README' == $element['url']
+            ) {
+                $active = 'active';
+            }
             $sidebar_nav .=
                 '<li><a href="/' .
                 $element['url'] .
@@ -79,9 +86,10 @@ function build_sidebar_nav($elements) {
         }
     }
 }
-$sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
+$sidebar_nav =
+    '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
-$sidebar_nav .= '</ul></nav>';
+$sidebar_nav .= '</div></ul></nav>';
 
 # ToC
 $toc_nav = '<nav class="toc auto-toc mt-2 flex-column border-start">';

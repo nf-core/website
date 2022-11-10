@@ -6,18 +6,20 @@ use Spatie\CalendarLinks\Link;
 
 $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $event_type_classes = [
+    'bytesize' => 'success',
     'hackathon' => 'primary',
+    'poster' => 'danger',
     'talk' => 'success',
-    'poster' => 'secondary',
     'tutorial' => 'info',
-    'workshop' => 'light',
+    'training' => 'warning',
 ];
 $event_type_icons = [
+    'bytesize' => 'fas fa-apple-core',
     'hackathon' => 'fas fa-laptop-code',
-    'talk' => 'fas fa-presentation',
     'poster' => 'far fa-image',
+    'talk' => 'fas fa-presentation',
     'tutorial' => 'fas fa-graduation-cap',
-    'workshop' => 'fas fa-chalkboard-teacher',
+    'training' => 'fas fa-chalkboard-teacher',
 ];
 
 function create_event_download_button($event, $button_style) {
@@ -55,7 +57,7 @@ function create_event_download_button($event, $button_style) {
 function print_events($events, $is_past_event) {
     global $event_type_classes;
     global $event_type_icons;
-
+    $current_year = date('Y');
     foreach ($events as $idx => $event):
 
         # Nice date strings
@@ -72,13 +74,24 @@ function print_events($events, $is_past_event) {
         if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
             $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
         }
+        # if event title starts with bytesize change event type
+        if (strpos($event['title'], 'Bytesize') === 0) {
+            $event['type'] = 'bytesize';
+        }
+
+        if (($current_year != date('Y', $event['start_ts'])) & $is_past_event) {
+            $current_year = date('Y', $event['start_ts']);
+            echo _h3($current_year);
+        }
         $colour_class = $event_type_classes[strtolower($event['type'])];
         $text_colour_class = get_correct_text_color($colour_class);
         $icon_class = $event_type_icons[strtolower($event['type'])];
         ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible ">
+    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible <?php echo $event[
+     'type'
+ ]; ?>">
       <div class="card-body <?php if ($is_past_event) {
           echo 'py-2';
       } ?>">
@@ -132,7 +145,16 @@ function print_events($events, $is_past_event) {
 //
 if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
     // Parse the markdown before header.php, so that we can override subtitle etc
-    $markdown_fn = $md_base . $_GET['event'] . '.md';
+    $markdown_fn = $md_base . $_GET['event'];
+    if (is_file($markdown_fn . '.md')) {
+        // Regular single-page event
+        $markdown_fn .= '.md';
+    } elseif (is_dir($markdown_fn) && file_exists($markdown_fn . '/index.md')) {
+        // Nested event index page
+        $href_url_prepend = basename($markdown_fn) . '/';
+        $markdown_fn = $markdown_fn . '/index.md';
+    }
+
     require_once '../includes/parse_md.php';
 
     $output = parse_md($markdown_fn);
@@ -185,13 +207,21 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
             if (isset($event['location_name'])) {
                 $header_html .= '<dt class="col-sm-3">Location:</dt><dd class="col-sm-9">';
                 if (isset($event['location_url'])) {
-                    $header_html .=
-                        '<a class="text-white underline" href="' .
-                        $event['location_url'] .
-                        '">' .
-                        $event['location_name'] .
-                        '</a>' .
-                        '<br>';
+                    if (is_array($event['location_url'])) {
+                        foreach ($event['location_url'] as $url) {
+                            $location = count($event['location_url']) == 1 ? $event['location_name'] : $url;
+                            $header_html .=
+                                '<a class="text-white underline" href="' . $url . '">' . $location . '</a>' . '<br>';
+                        }
+                    } else {
+                        $header_html .=
+                            '<a class="text-white underline" href="' .
+                            $event['location_url'] .
+                            '">' .
+                            $event['location_name'] .
+                            '</a>' .
+                            '<br>';
+                    }
                 } else {
                     $header_html .= $event['location_name'] . '<br>';
                 }
@@ -322,14 +352,22 @@ $header_btn_text = '<i class="fas fa-rss me-1"></i> RSS';
 $events = [];
 $year_dirs = glob($md_base . 'events/*', GLOB_ONLYDIR);
 foreach ($year_dirs as $year) {
-    $event_mds = glob($year . '/*.md');
-    foreach ($event_mds as $event_md) {
+    // Single page events
+    $event_mds = glob($year . '/*');
+    foreach ($event_mds as $fpath) {
+        if (is_file($fpath) && substr($event_md, -3) == '.md') {
+            $event_md = $fpath;
+            $url = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+        } elseif (is_dir($fpath) && file_exists($fpath . '/index.md')) {
+            $event_md = $fpath . '/index.md';
+            $url = '/events/' . basename($year) . '/' . basename($fpath);
+        }
         // Load the file
         $md_full = file_get_contents($event_md);
         if ($md_full !== false) {
             $fm = parse_md_front_matter($md_full);
             // Add the URL
-            $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            $fm['meta']['url'] = $url;
             // Add to the events array
             $events[] = $fm['meta'];
         }
@@ -415,25 +453,62 @@ if (isset($_GET['rss'])) {
 //
 
 include '../includes/header.php';
+
+// add a row of buttons
+echo '<div class="btn-toolbar events-toolbar mb-4"><button type="button" class="btn txt-body">Filter:</button>';
+echo '<div class="event-filters input-group input-group-sm me-2">
+        <input type="search" class="form-control w-25" placeholder="Search events">
+        </div>';
+echo '<div class="btn-group events-filters w-50 align-items-center"  role="group" >';
+echo '<input type="radio" class="btn-check" name="filter" id="filter-all" autocomplete="off" checked>
+  <label class="btn btn-outline-secondary" for="filter-all">All</label>';
+
+foreach ($event_type_classes as $class => $color) {
+    echo '<input type="radio" class="btn-check " name="filter" data-bs-target=".' .
+        $class .
+        '" id="filter-' .
+        $class .
+        '" autocomplete="off">
+  <label class="text-nowrap btn btn-outline-' .
+        $color .
+        '" for="filter-' .
+        $class .
+        '">' .
+        '<i class=" ' .
+        $event_type_icons[$class] .
+        ' me-1"></i> ' .
+        $class .
+        '</label>';
+}
+
+echo '</div>';
+echo '</div>';
 echo '<div class="event-list">';
 if (count($current_events) > 0) {
+    echo '<div class="mb-5">';
     echo _h2('<i class="fad fa-calendar me-2"></i> Ongoing Events');
     print_current_events($current_events, true);
+    echo '</div>';
     echo '<hr>';
 }
+echo '<div class="mb-5">';
 echo _h2('<i class="fad fa-calendar-day me-2"></i> Upcoming Events');
+
 if (count($future_events) > 0) {
     print_events($future_events, false);
 } else {
-    print '<p class="text-muted">No events found</p>';
+    print '<p class="text-muted no-events">No events found</p>';
 }
-
+echo '</div>';
 echo '<hr>';
+echo '<div class="mb-5">';
 echo _h2('<i class="fad fa-calendar-check me-2"></i> Past Events');
 if (count($past_events) > 0) {
     print_events($past_events, true);
 } else {
-    print '<p class="text-muted">No events found</p>';
+    print '<p class="text-muted no-events">No events found</p>';
 }
+echo '</div>';
+echo '</div>';
 echo '</div>';
 include '../includes/footer.php';
