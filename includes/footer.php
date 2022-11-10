@@ -77,6 +77,9 @@ if (isset($subfooter) and $subfooter) {
             <a href="https://twitter.com/nf_core" target="_blank" title="Twitter" data-bs-toggle="tooltip">
               <img src="/assets/img/twitter.svg" />
             </a>
+            <a href="https://mstdn.science/@nf_core" target="_blank" title="mastodon" data-bs-toggle="tooltip">
+              <img src="/assets/img/mastodon.svg" />
+            </a>
             <a href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-bs-toggle="tooltip">
               <img src="/assets/img/youtube.svg" />
             </a>
