@@ -33,6 +33,9 @@ include '../includes/header.php';
   <a href="https://twitter.com/nf_core" class="mb-2 btn btn-lg btn-info" style="background-color: #4AA1EB;">
     <i class="fab fa-twitter"></i> @nf_core on twitter
   </a>
+  <a href="https://mstdn.science/@nf_core" class="mb-2 btn btn-lg btn-info" style="background-color: #6364ff;">
+    <i class="fab fa-mastodon"></i> @nf_core on mastodon
+  </a>
   <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
     <i class="fab fa-youtube"></i> nf-core on YouTube
   </a>
@@ -92,6 +95,14 @@ collaborators for editing and reviewing code.</p>
 <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large">Follow @nf_core</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+<h1 id="mastodon" class="mt-5">
+  <span class="join-pull-img"><img height="120px" src="/assets/img/mastodon.svg" /></span>
+  Mastodon
+  <a href="#mastodon" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+</h1>
+<p>The <a rel="me" href="https://mstdn.science/@nf_core">@nf_core@mstdn.science</a> Mastodon account mirrors all <a href="https://twitter.com/nf_core">@nf_core</a> twitter activity.</p>
+<p>Feel free to follow if you use Mastodon, whatever server you're using!</p>
+
 <h1 id="youtube" class="mt-5">
   <span class="join-pull-img"><img width="120px" src="/assets/img/youtube.svg" /></span>
   YouTube
@@ -109,7 +120,7 @@ collaborators for editing and reviewing code.</p>
   Gather Town
   <a href="#gather-town" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h1>
-<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for collaboration. 
+<p>nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office">gather.town</a> for collaboration.
   You can request access from the nf-core Slack under the
   <a href="https://nfcore.slack.com/channels/gather-town"><code>#gather-town</code></a> channel
 </p>
