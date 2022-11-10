@@ -33,6 +33,9 @@ include '../includes/header.php';
   <a href="https://twitter.com/nf_core" class="mb-2 btn btn-lg btn-info" style="background-color: #4AA1EB;">
     <i class="fab fa-twitter"></i> @nf_core on twitter
   </a>
+  <a href="https://mstdn.science/@nf_core" class="mb-2 btn btn-lg btn-info" style="background-color: #6364ff;">
+    <i class="fab fa-mastodon"></i> @nf_core on mastodon
+  </a>
   <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
     <i class="fab fa-youtube"></i> nf-core on YouTube
   </a>
