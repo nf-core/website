@@ -112,7 +112,7 @@ if (in_array($_GET['path'], ['docs'])) {
                 '<div class="row mb-3 h3">' .
                 '<a href="' .
                 $mdcontent['url'] .
-                '" class="text-success text-decoration-none">' .
+                '" target="_blank" class="text-success text-decoration-none">' .
                 $mdcontent['title'] .
                 '</div>';
         }
@@ -124,7 +124,7 @@ if (in_array($_GET['path'], ['docs'])) {
                 '<div class="row mb-3 h3">' .
                 '<a href="' .
                 $mdcontent['url'] .
-                '" class="text-success text-decoration-none">' .
+                '" target="_blank" class="text-success text-decoration-none">' .
                 $mdcontent['title'] .
                 '</div>';
         }
