@@ -140,7 +140,7 @@ The outreach leads will have access to community social media and YouTube accoun
 **Responsibilities**
 
 - Organizing and running the `#bytesize` seminar series
-- Leading the organizing hackathon, training, and other outreach events
+- Leading the organization of hackathons, training sessions, and other outreach events
 - Organizing and running the ambassador program
 - Creating and sharing community content
 - Regular attendance at outreach team meetings
@@ -205,7 +205,7 @@ More information about becoming an nf-core ambassador can be found [here](https:
 
 - Engaging with local, national, and international Nextflow and nf-core community
 - Writing or sharing tweets, blogs, articles, and technical documentation
-- Running nf-core events such as user groups, hackathons, workshops, and more
+- Running nf-core events such as user group meetings, hackathons, workshops, and more
 - Speaking about nf-core at meetings and events
 - Acting as a local liaison for new community members
 
