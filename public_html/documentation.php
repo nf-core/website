@@ -102,34 +102,70 @@ $toc_nav .=
 $toc_nav .= '</nav>';
 
 $md_content_replace[] = ['<!-- usage_toc -->'];
-//sorry, can't figure out how to do this in one loop
 if (in_array($_GET['path'], ['docs'])) {
-    $inline_toc = '<div>';
+    $inline_toc = '<div class="row"><div class="col-6 col-md-3"><div class="mb-3 h3">Usage</div>';
     foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
             $inline_toc .=
-                '<div class="row mb-3 h3">' .
+                '<div class="row">' .
                 '<a href="' .
-                $mdcontent['url'] .
-                '" class="text-success text-decoration-none">' .
-                $mdcontent['title'] .
+                $mdcontent['url'] . '">' . $mdcontent['title'] .
                 '</div>';
         }
+        else {
+            $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
+            $inline_toc .=
+                '<div class="row"><div class="ml-1">' .
+                ucfirst($mdfile) .
+                '</div></div>';
+            foreach ($mdcontent as $dropfile => $dropcontent) {
+                $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
+                $inline_toc .=
+                    '<div class="row"><div class="ml-3" style="margin-bottom:-20px;"><ul><li>' .
+                    '<a href="' .
+                    $dropcontent['url'] . '">' . $dropcontent['title'] .
+                    '</li></ul></div></div>';
+            }
+        }
     }
+    $inline_toc .= '</div>';
+    $inline_toc .= '<div class="col-6 col-md-3"><div class="mb-3 h3">Contributing</div>';
     foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
             $inline_toc .=
-                '<div class="row mb-3 h3">' .
+                '<div class="row">' .
                 '<a href="' .
-                $mdcontent['url'] .
-                '" class="text-success text-decoration-none">' .
-                $mdcontent['title'] .
+                $mdcontent['url'] . '">' . $mdcontent['title'] .
                 '</div>';
         }
+        else {
+            $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
+            $inline_toc .=
+                '<div class="row"><div class="ml-1">' .
+                ucfirst($mdfile) .
+                '</div></div>';
+            foreach ($mdcontent as $dropfile => $dropcontent) {
+                $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
+                if (is_array($dropcontent[0])){
+                    $inline_toc .=
+                        '<div class="row"><div class="ml-3" style="margin-bottom:-20px;"><ul><li>' .
+                        '<a href="' .
+                        $dropcontent[0]['url'] . '">' . $dropcontent[0]['title'] .
+                        '</li></ul></div></div>';
+                }
+                else {
+                    $inline_toc .=
+                        '<div class="row"><div class="ml-3" style="margin-bottom:-20px;"><ul><li>' .
+                        '<a href="' .
+                        $dropcontent['url'] . '">' . $dropcontent['title'] .
+                        '</li></ul></div></div>';
+                }
+            }
+        }
     }
-    $inline_toc .= '</div>';
+    $inline_toc .= '</div></div>';
     $md_content_replace[] = ['/<!-- inline_toc -->/', $inline_toc];
 }
 
