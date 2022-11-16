@@ -103,7 +103,7 @@ $toc_nav .= '</nav>';
 
 $md_content_replace[] = ['<!-- usage_toc -->'];
 if (in_array($_GET['path'], ['docs'])) {
-    $inline_toc = '<div class="row"><div class="col-6 col-md-3"><div class="mb-3 h3">Usage</div><ul>';
+    $inline_toc = '<div class="row"><div class="col-12 col-md-6"><div class="mb-3 h3">Usage</div><ul>';
     foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
@@ -131,7 +131,7 @@ if (in_array($_GET['path'], ['docs'])) {
         }
     }
     $inline_toc .= '</ul></div>';
-    $inline_toc .= '<div class="col-6 col-md-3"><div class="mb-3 h3">Contributing</div><ul>';
+    $inline_toc .= '<div class="col-12 col-md-6"><div class="mb-3 h3">Contributing</div><ul>';
     foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
@@ -151,6 +151,7 @@ if (in_array($_GET['path'], ['docs'])) {
             foreach ($mdcontent as $dropfile => $dropcontent) {
                 $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
                 if (is_array($dropcontent[0])){
+                    $dropcontent[0]['url'] = str_replace('docs/', '', $dropcontent[0]['url']);
                     $inline_toc .= '<ul>';
                     $inline_toc .=
                         '<li>' .
@@ -171,7 +172,6 @@ if (in_array($_GET['path'], ['docs'])) {
         }
     }
     $inline_toc .= '</ul></div></div>';
-    echo("<script>console.log('PHP: " . $inline_toc . "');</script>");
     $md_content_replace[] = ['/<!-- inline_toc -->/', $inline_toc];
 }
 
