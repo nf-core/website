@@ -103,69 +103,75 @@ $toc_nav .= '</nav>';
 
 $md_content_replace[] = ['<!-- usage_toc -->'];
 if (in_array($_GET['path'], ['docs'])) {
-    $inline_toc = '<div class="row"><div class="col-6 col-md-3"><div class="mb-3 h3">Usage</div>';
+    $inline_toc = '<div class="row"><div class="col-6 col-md-3"><div class="mb-3 h3">Usage</div><ul>';
     foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
             $inline_toc .=
-                '<div class="row">' .
+                '<li>' .
                 '<a href="' .
                 $mdcontent['url'] . '">' . $mdcontent['title'] .
-                '</div>';
+                '</li>';
         }
         else {
             $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
             $inline_toc .=
-                '<div class="row"><div class="ml-1">' .
+                '<li>' .
                 ucfirst($mdfile) .
-                '</div></div>';
+                '</li>';
+            $inline_toc .= '<ul>';
             foreach ($mdcontent as $dropfile => $dropcontent) {
                 $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
                 $inline_toc .=
-                    '<div class="row"><div class="ml-3" style="margin-bottom:-20px;"><ul><li>' .
-                    '<a href="' .
+                    '<li><a href="' .
                     $dropcontent['url'] . '">' . $dropcontent['title'] .
-                    '</li></ul></div></div>';
+                    '</li>';
             }
+            $inline_toc .= '</ul>';
         }
     }
-    $inline_toc .= '</div>';
-    $inline_toc .= '<div class="col-6 col-md-3"><div class="mb-3 h3">Contributing</div>';
+    $inline_toc .= '</ul></div>';
+    $inline_toc .= '<div class="col-6 col-md-3"><div class="mb-3 h3">Contributing</div><ul>';
     foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
             $inline_toc .=
-                '<div class="row">' .
+                '<li>' .
                 '<a href="' .
                 $mdcontent['url'] . '">' . $mdcontent['title'] .
-                '</div>';
+                '</li>';
         }
         else {
             $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
             $inline_toc .=
-                '<div class="row"><div class="ml-1">' .
+                '<li>' .
                 ucfirst($mdfile) .
-                '</div></div>';
+                '</li>';
+            $inline_toc .= '<ul>';
             foreach ($mdcontent as $dropfile => $dropcontent) {
                 $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
                 if (is_array($dropcontent[0])){
+                    $inline_toc .= '<ul>';
                     $inline_toc .=
-                        '<div class="row"><div class="ml-3" style="margin-bottom:-20px;"><ul><li>' .
+                        '<li>' .
                         '<a href="' .
                         $dropcontent[0]['url'] . '">' . $dropcontent[0]['title'] .
-                        '</li></ul></div></div>';
+                        '</li>';
+                    $inline_toc .= '</ul>';
                 }
                 else {
                     $inline_toc .=
-                        '<div class="row"><div class="ml-3" style="margin-bottom:-20px;"><ul><li>' .
+                        '<li>' .
                         '<a href="' .
                         $dropcontent['url'] . '">' . $dropcontent['title'] .
-                        '</li></ul></div></div>';
+                        '</li>';
                 }
             }
+            $inline_toc .= '</ul>';
         }
     }
-    $inline_toc .= '</div></div>';
+    $inline_toc .= '</ul></div></div>';
+    echo("<script>console.log('PHP: " . $inline_toc . "');</script>");
     $md_content_replace[] = ['/<!-- inline_toc -->/', $inline_toc];
 }
 
