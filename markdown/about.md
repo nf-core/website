@@ -93,7 +93,7 @@ This is used by most nf-core pipelines to give free and open access to the refer
 <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
 
 Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
-You will soon be able to explore and download these pipeline results under the <em class="mx-2"><i class="fab fa-microsoft me-2"></i> Results</em> tab on each pipeline page.
+You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
 
 <div class="clearfix"></div>
 
