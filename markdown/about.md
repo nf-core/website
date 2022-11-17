@@ -88,6 +88,15 @@ This is used by most nf-core pipelines to give free and open access to the refer
 
 <div class="clearfix"></div>
 
+### Microsoft Azure
+
+<img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+
+Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
+You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
+
+<div class="clearfix"></div>
+
 ## History of nf-core
 
 The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
