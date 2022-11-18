@@ -37,6 +37,7 @@ Watch this space for more details in the coming weeks!
 | 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus         | [Read more](uk-wellcome-campus.md)        |
 | 🇬🇧 UK           | Edinburgh  | MRC Institute of Genetics and Cancer | [Read more](uk-igc-edinburgh.md)          |
 | 🇺🇸 USA          | Dallas     | University of Texas at Dallas        | [Read more](usa-university-texas.md)      |
+| 🇺🇸 USA          | San Jose   | Quilt Co-Working Space               | [Read more](usa-san-jose.md)              |
 | 🇺🇸 USA          | Wyoming    | The University of Wyoming            | [Read more](usa-university-wyoming.md)    |
 
 Please view the event page for a specific location if you're interested in attending.
