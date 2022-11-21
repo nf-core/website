@@ -21,5 +21,3 @@ Please contact James if you would like to attend.
 This local event is being kindly supported by the Department of Archaeogenetics at MPI-EVA.
 
 _Details to be confirmed_
-
-
