@@ -512,11 +512,11 @@ process {
 
 4. Optional outputs SHOULD be marked as optional:
 
-     ```nextflow
-     tuple val(meta), path('*.tab')                   , optional:true, emit: tab
-     ```
+   ```nextflow
+   tuple val(meta), path('*.tab')                   , optional:true, emit: tab
+   ```
 
-5. Since it is not currently possible to mark individual elements of a tuple as optional, optional outputs SHOULD NOT be placed in output channels with mandatory outputs. 
+5. Since it is not currently possible to mark individual elements of a tuple as optional, optional outputs SHOULD NOT be placed in output channels with mandatory outputs.
 
 ### Module parameters
 
