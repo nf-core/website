@@ -516,7 +516,7 @@ process {
    tuple val(meta), path('*.tab')                   , optional:true, emit: tab
    ```
 
-5. Since it is not currently possible to mark individual elements of a tuple as optional, optional outputs SHOULD NOT be placed in output channels with mandatory outputs.
+5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Module parameters
 
