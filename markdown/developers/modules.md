@@ -513,7 +513,7 @@ process {
 4. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
-   tuple val(meta), path('*.tab')                   , optional:true, emit: tab
+   tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
 5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
