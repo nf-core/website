@@ -510,6 +510,14 @@ process {
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
+4. Optional outputs SHOULD be marked as optional:
+
+     ```nextflow
+     tuple val(meta), path('*.tab')                   , optional:true, emit: tab
+     ```
+
+5. Since it is not currently possible to mark individual elements of a tuple as optional, optional outputs SHOULD NOT be placed in output channels with mandatory outputs. 
+
 ### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
