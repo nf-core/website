@@ -29,6 +29,9 @@ if (isset($subfooter) and $subfooter) {
         <small class="d-flex mb-3">Supported by<div class="social-icons">
             <a href="/about#czi-eoss">
               <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
+            </a>,
+            <a href="/about#microsoft-azure">
+              <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" style="max-width: 50px">
             </a>
             <span class="ms-1">and</span>
             <a href="/about#aws">
