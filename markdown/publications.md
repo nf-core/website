@@ -84,6 +84,19 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_PeerJ_, 9:e10947 (2021)](https://peerj.com/articles/10947/);
 > doi: [10.7717/peerj.10947](https://doi.org/10.7717/peerj.10947)
 
+
+### [nf-core/hgtseq](https://nf-co.re/hgtseq)
+
+<!-- pub-stats 10.3390/ijms232314512 -->
+
+> **hgtseq: A Standard Pipeline to Study Horizontal Gene Transfer**
+>
+> Simone Carpanzano, Mariangela Santorsola, nf-core community and Francesco Lescai
+>
+> [Int. J. Mol. Sci. 2022, 23(23), 14512](https://www.mdpi.com/1422-0067/23/23/14512/htm)
+> doi: [10.3390/ijms232314512](https://doi.org/10.3390/ijms232314512)
+
+
 ### [nf-core/hicar](https://nf-co.re/hicar)
 
 <!-- pub-stats 10.1016/j.molcel.2022.01.023 -->
