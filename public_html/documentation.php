@@ -107,25 +107,14 @@ if (in_array($_GET['path'], ['docs'])) {
     foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
-            $inline_toc .=
-                '<li>' .
-                '<a href="' .
-                $mdcontent['url'] . '">' . $mdcontent['title'] .
-                '</li>';
-        }
-        else {
+            $inline_toc .= '<li>' . '<a href="' . $mdcontent['url'] . '">' . $mdcontent['title'] . '</li>';
+        } else {
             $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
-            $inline_toc .=
-                '<li>' .
-                ucfirst($mdfile) .
-                '</li>';
+            $inline_toc .= '<li>' . ucfirst($mdfile) . '</li>';
             $inline_toc .= '<ul>';
             foreach ($mdcontent as $dropfile => $dropcontent) {
                 $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
-                $inline_toc .=
-                    '<li><a href="' .
-                    $dropcontent['url'] . '">' . $dropcontent['title'] .
-                    '</li>';
+                $inline_toc .= '<li><a href="' . $dropcontent['url'] . '">' . $dropcontent['title'] . '</li>';
             }
             $inline_toc .= '</ul>';
         }
@@ -135,37 +124,21 @@ if (in_array($_GET['path'], ['docs'])) {
     foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
         if (isset($mdcontent['url'])) {
             $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
-            $inline_toc .=
-                '<li>' .
-                '<a href="' .
-                $mdcontent['url'] . '">' . $mdcontent['title'] .
-                '</li>';
-        }
-        else {
+            $inline_toc .= '<li>' . '<a href="' . $mdcontent['url'] . '">' . $mdcontent['title'] . '</li>';
+        } else {
             $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
-            $inline_toc .=
-                '<li>' .
-                ucfirst($mdfile) .
-                '</li>';
+            $inline_toc .= '<li>' . ucfirst($mdfile) . '</li>';
             $inline_toc .= '<ul>';
             foreach ($mdcontent as $dropfile => $dropcontent) {
                 $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
-                if (is_array($dropcontent[0])){
+                if (is_array($dropcontent[0])) {
                     $dropcontent[0]['url'] = str_replace('docs/', '', $dropcontent[0]['url']);
                     $inline_toc .= '<ul>';
                     $inline_toc .=
-                        '<li>' .
-                        '<a href="' .
-                        $dropcontent[0]['url'] . '">' . $dropcontent[0]['title'] .
-                        '</li>';
+                        '<li>' . '<a href="' . $dropcontent[0]['url'] . '">' . $dropcontent[0]['title'] . '</li>';
                     $inline_toc .= '</ul>';
-                }
-                else {
-                    $inline_toc .=
-                        '<li>' .
-                        '<a href="' .
-                        $dropcontent['url'] . '">' . $dropcontent['title'] .
-                        '</li>';
+                } else {
+                    $inline_toc .= '<li>' . '<a href="' . $dropcontent['url'] . '">' . $dropcontent['title'] . '</li>';
                 }
             }
             $inline_toc .= '</ul>';
