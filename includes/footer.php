@@ -31,8 +31,7 @@ if (isset($subfooter) and $subfooter) {
               <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
             </a>,
             <a href="/about#microsoft-azure">
-              <img src="/assets/img/contributors-white/azure.svg" alt="Microsoft Azure" class="hide-light" style="max-width: 50px">
-              <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" class="hide-dark" style="max-width: 50px">
+              <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" style="max-width: 50px">
             </a>
             <span class="ms-1">and</span>
             <a href="/about#aws">
