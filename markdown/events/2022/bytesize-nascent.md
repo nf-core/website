@@ -28,7 +28,7 @@ This week, Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will talk 
 **Note: The content has been edited for reader-friendliness**
 
 [0:01](https://www.youtube.com/watch?v=chayGGPTnfM&t=1)
-(host) Hello, everyone. My name is Franziska Bonath. I'm the host for today. With us is Edmund Miller. He is a PhD student at the University of Texas at Dallas. Edmund going to talk today about the pipeline from nf-core called nascent. And to you.
+(host) Hello, everyone. My name is Franziska Bonath. I'm the host for today. With us is Edmund Miller. He is a PhD student at the University of Texas at Dallas. Edmund is going to talk today about the pipeline from nf-core called nascent. And to you.
 
 [0:19](https://www.youtube.com/watch?v=chayGGPTnfM&t=19)
 Hey, good morning, everyone. I'm Edmund. Let's get started. If I can advance the slides. Okay, a quick overview of what we're going to talk about today. A quick background on nascent transcript identification. Because I'm not sure if it's as common as some other assays such as ChIP-seq, RNA-seq. A brief history of the development of the pipeline. Lastly, we're going to talk about the pipeline itself and give a brief overview of that.
