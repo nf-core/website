@@ -1515,7 +1515,7 @@ function generate_group_row(id, param, child_params) {
                 <div class="col-auto align-self-center schema_row_config border-start" title="Open settings" data-bs-toggle="tooltip">
                     <i class="fas fa-cog"></i>
                 </div>
-                <div class="col-auto align-self-center schema_group_move_params" title="Select parameter(s) to be moved into this group" data-bs-toggle="tooltip">
+                <div class="col-auto align-self-center schema_group_move_params" title="Moved ungrouped parameter(s) to this group" data-bs-toggle="tooltip">
                     <i class="fas fa-folder-download"></i>
                 </div>
                 <div class="col-auto align-self-center schema_group_collapse" title="Collapse group" data-bs-toggle="tooltip">
