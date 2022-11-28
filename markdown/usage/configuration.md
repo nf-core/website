@@ -145,7 +145,7 @@ process {
 }
 ```
 
-You can be more specific than this by targetting a given process name instead of it's label using `withName`. For example:
+You can be more specific than this by targeting a given process name instead of it's label using `withName`. For example:
 
 ```nextflow
 process {

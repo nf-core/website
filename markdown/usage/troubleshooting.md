@@ -539,7 +539,7 @@ params {
 }
 ```
 
-- Specifying an `--igenomes_base` path in your executation command.
+- Specifying an `--igenomes_base` path in your execution command.
 
 ```bash
 nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
