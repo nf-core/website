@@ -47,7 +47,7 @@ This team includes all of the `@core-team` mentioned above and also:
 
 The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
 Most of all, we would like to thank all contributors (and their employers!).
-You form the lifeblood of nf-core and we are eternally greatful for your time and efforts.
+You form the lifeblood of nf-core and we are eternally grateful for your time and efforts.
 
 A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/community#initiatives)).
 If you work with a project that would benefit from an explicit link with nf-core, please let us know.
