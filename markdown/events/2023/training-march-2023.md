@@ -13,7 +13,7 @@ location_name: YouTube
 
 Join us from March 13-16, 2022 for the Nextflow and nf-core training event!
 
-The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. The training will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon](https://nf-co.re/events/2023/hackathon-march-2023) (March 27-29, 2023) for the first time.
+The training is entirely virtual and free and will cover the fundamentals of using Nextflow and nf-core. The training will offer something for all skill levels but will be especially useful for those who are new to Nextflow and the nf-core community, or if you are thinking about joining the [nf-core Hackathon](https://nf-co.re/events/2023/hackathon-march-2023) (March 27-29, 2023) for the first time...
 
 Watch this space for more details in the coming weeks!
 
