@@ -24,20 +24,20 @@ include '../includes/header.php';
 <p>We use a few different tools to organise the nf-core community -
     you are welcome to join us at any or all!</p>
 <p class="text-center">
-  <a href="https://nf-co.re/join/slack" class="mb-2 btn btn-lg btn-success">
-    <i class="fab fa-slack"></i> Join nf-core Slack
+  <a href="https://nf-co.re/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #4a154b;">
+    <i class="fab fa-slack"></i> Slack
   </a>
-  <a href="https://github.com/nf-core" class="mb-2 btn btn-lg btn-dark">
-    <i class="fab fa-github"></i> nf-core on GitHub
+  <a href="https://github.com/nf-core" class="mb-2 me-3 btn btn-lg btn-dark">
+    <i class="fab fa-github"></i> GitHub
   </a>
-  <a href="https://twitter.com/nf_core" class="mb-2 btn btn-lg btn-info" style="background-color: #4AA1EB;">
-    <i class="fab fa-twitter"></i> @nf_core on twitter
+  <a href="https://twitter.com/nf_core" class="mb-2 me-3 btn btn-lg btn-info" style="background-color: #4AA1EB;">
+    <i class="fab fa-twitter"></i> twitter
   </a>
-  <a href="https://mstdn.science/@nf_core" class="mb-2 btn btn-lg btn-info" style="background-color: #6364ff;">
-    <i class="fab fa-mastodon"></i> @nf_core on mastodon
+  <a href="https://mstdn.science/@nf_core" class="mb-2 me-3 btn btn-lg btn-info" style="background-color: #6364ff;">
+    <i class="fab fa-mastodon"></i> mastodon
   </a>
-  <a href="https://www.youtube.com/c/nf-core" class="mb-2 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
-    <i class="fab fa-youtube"></i> nf-core on YouTube
+  <a href="https://www.youtube.com/c/nf-core" class="mb-2 me-3 btn btn-lg btn-danger" style="background-color: #EA3C1E;">
+    <i class="fab fa-youtube"></i> YouTube
   </a>
 </p>
 

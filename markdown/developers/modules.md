@@ -13,15 +13,15 @@ The features offered by Nextflow DSL2 can be used in various ways depending on t
 
 ### Module
 
-A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. At present, this repository has been created to only host atomic module files that should be added to the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
+A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. Atomic nf-core module files are available in the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
 
-### Sub-workflow
+### Subworkflow
 
-A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a subworkflow to run multiple QC tools with FastQ files as input. Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the [`subworkflow/`](https://github.com/nf-core/modules/tree/master/subworkflows) directory of nf-core/modules along with the required documentation and tests.
 
 ### Workflow
 
-What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 individual modules and sub-workflows.
+What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
 
 ## Writing a new module reference
 
@@ -307,7 +307,7 @@ Please follow the steps below to run the tests locally:
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
 
 ### Uploading to `nf-core/modules`
 
@@ -509,6 +509,14 @@ process {
 2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+
+4. Optional outputs SHOULD be marked as optional:
+
+   ```nextflow
+   tuple val(meta), path('*.tab'), emit: tab,  optional: true
+   ```
+
+5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Module parameters
 
@@ -719,7 +727,7 @@ process TOOL_SUBTOOL {
   input:
   tuple val(meta), path(bam)
 
-  ouput:
+  output:
   tuple val(meta), path("*.log"), emit: log
   path "versions.yml",            emit: versions
 

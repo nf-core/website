@@ -153,8 +153,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1">
-            <!-- TODO - write a new docs landing page at /docs -->
-            <a class="nav-link" href="/docs/usage/introduction">Docs</a>
+            <a class="nav-link" href="/docs">Docs</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
@@ -190,7 +189,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
 
   <?php
   if (isset($title) and $title): ?>
-
     <div class="mainpage">
       <div class="mainpage-heading triangle-down">
         <div class="container">
