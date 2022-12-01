@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/funcscan'
-subtitle: Jasmin Fragenberg - Dept. Palaeobiotechnology, Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute
+subtitle: Jasmin Frangenberg - Dept. Palaeobiotechnology, Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute
 type: talk
 start_date: '2023-01-24'
 start_time: '13:00 CET'
