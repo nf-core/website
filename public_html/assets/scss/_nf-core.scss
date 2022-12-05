@@ -997,7 +997,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
   Pipeline Page
 */
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(lg) {
   .pipeline-page-content,
   .module-page-content,
   .rendered-markdown,
@@ -1005,7 +1005,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     padding-top: $navbar-height;
   }
 }
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(lg) {
   .side-sub-subnav .dropdown {
     margin-top: $navbar-height;
   }
@@ -1486,8 +1486,8 @@ Launch Page
   color: inherit;
 }
 .sidebar-nav {
-  @media (max-width: 768px) {
-    height: calc(100vh - 70px);
+  @include media-breakpoint-up(lg) {
+    height: 100vh;
     overflow: auto;
   }
   .btn {
