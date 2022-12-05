@@ -89,8 +89,7 @@ function build_sidebar_nav($elements) {
     }
 }
 
-$sidebar_nav =
-    '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
+$sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
 $sidebar_nav .= '</ul></nav>';
 
