@@ -480,7 +480,7 @@ if ($pipeline->archived) {
       $toc = preg_replace('/<!-- tock_md_button_placeholder -->/', $toc_md, $toc);
       # Back to top link
       $toc .=
-          '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+          '<p class="small text-end mt-3 d-none d-lg-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
       $toc .= '</nav>';
       echo $toc;
   }
