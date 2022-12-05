@@ -1485,29 +1485,35 @@ Launch Page
 .tile[data-state='active'] {
   color: inherit;
 }
-.sidebar-nav .btn {
-  .fas {
-    transition: transform 0.3s ease;
+.sidebar-nav {
+  @media (max-width: 768px) {
+    height: calc(100vh - 70px);
+    overflow: auto;
   }
-  &:hover {
-    color: $success;
+  .btn {
+    .fas {
+      transition: transform 0.3s ease;
+    }
+    &:hover {
+      color: $success;
+    }
   }
-}
-.sidebar-nav .btn[aria-expanded='true'] .fas {
-  transform: rotate(90deg);
-}
-.sidebar-nav a {
-  color: $gray-700;
-  text-decoration: none;
-  border-left: 1px solid transparent; // For alignment
-  &.active {
-    color: $gray-900;
-    font-size: 0.9rem;
-    font-weight: 700;
-    border-left: 1px solid $success; // For alignment
+  .btn[aria-expanded='true'] .fas {
+    transform: rotate(90deg);
   }
-  &:hover {
-    color: $success;
+  a {
+    color: $gray-700;
+    text-decoration: none;
+    border-left: 1px solid transparent; // For alignment
+    &.active {
+      color: $gray-900;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-left: 1px solid $success; // For alignment
+    }
+    &:hover {
+      color: $success;
+    }
   }
 }
 .sidebar-nav.side-sub-subnav > ul > nav {

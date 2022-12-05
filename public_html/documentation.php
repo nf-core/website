@@ -90,9 +90,9 @@ function build_sidebar_nav($elements) {
 }
 
 $sidebar_nav =
-    '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
+    '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
-$sidebar_nav .= '</div></ul></nav>';
+$sidebar_nav .= '</ul></nav>';
 
 # ToC
 $toc_nav = '<nav class="toc auto-toc mt-2 flex-column border-start">';
