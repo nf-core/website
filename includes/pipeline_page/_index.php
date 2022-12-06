@@ -288,7 +288,7 @@ if ($pipeline->archived) {
 <div class="container-xxl main-content">
 
     <ul class="nav nav-fill nfcore-subnav justify-content-start justify-content-md-around d-print-none">
-    <li class="nav-item dropdown d-block d-md-none">
+    <li class="nav-item dropdown d-block d-lg-none">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $subpage_names[$pagetab]; ?>
         </button>
