@@ -65,7 +65,7 @@ You don't have to make fixed shapes like that. You can do lines with the Bezier 
 I should clear up slightly...
 
 [10:21](https://www.youtube.com/watch?v=0vKhfedYKGo&t=621)
-Another thing you can do is to group objects together. You have these two objects and, let's say, you're happy with the way they are positioned now, and you want to keep this relationship as you manipulate the image. We can click both: holding shift and clicking the second one. You can press CTRL + g to move them together. You can see now, I'm moving both at the same time, but they're not losing their position. Furthermore, all objects have an order, they're overlapping each other. This order you can modify.
+Another thing you can do is to group objects together. You have these two objects and, let's say, you're happy with the way they are positioned now, and you want to keep this relationship as you manipulate the image. We can click both: holding shift and clicking the second one. You can press CTRL + g to group them together. You can see now, I'm moving both at the same time, but they're not losing their position. Furthermore, all objects have an order, they're overlapping each other. This order you can modify.
 That's probably a bad color pairing, sorry, one second, I'll just try this.
 What you can see here is, that the two rings overlap each other. By pressing the page up and the page down, I'm moving what is displaying on top. These buttons are here as well, which does the same thing. You can also move to the very top of the stack so you can have as many objects as you want. For example, I can send this pink one right to the bottom as well, like this.
 
