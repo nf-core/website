@@ -4,19 +4,12 @@ import Markdown from "../../components/Markdown.astro";
 import TriangleHeading from "../../components/TriangleHeading.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import pipeline_names from '../../../public/pipeline_names.json';
-console.log(pipeline_names);
 export function getStaticPaths() {
     // go through all the pipelines and create a page for each one
     const paths = pipeline_names.pipeline.map((pipeline_name) => {
         return { params: { pipeline: pipeline_name } };
     });
     return paths;
-
-// return [
-//     {params: {pipeline: 'cageseq'}},
-//     {params: {pipeline: 'rnaseq'}},
-//     {params: {pipeline: 'sarek'}},
-//   ];
 }
 const { pipeline } = Astro.params;
 var description = '';
@@ -25,15 +18,7 @@ var description = '';
     // owner: 'nf-core',
     // repo: pipeline,
     // })
-
-
-console.log('================');
-// console.log(introduction);
-// const data = await fetch(introduction.body);
-// console.log(data);
-
 ---
-<!-- Data fetched at build can be rendered in HTML -->
 <BaseLayout>
     <TriangleHeading title={pipeline} subtitle={description} />
     <Markdown name={pipeline}></Markdown>
