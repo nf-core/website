@@ -787,6 +787,18 @@ In general:
   tool, then the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is
   not essential to the operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options should be
   defined using `ext.args`.
+- A module should function with `ext.args = ''`.
+- A module should not use extra channel inputs where Groovy truth can be used to evaluate a need. E.g.
+
+  ```nextflow
+  process TASK {
+      input:
+      tuple val(meta), path(bam)   // Mandatory: [ meta, *.bam ]
+      path reference               // Optional: reference
+      val  use_reference           // Boolean: true if reference should be used. This channel is unnecessary since reference can be tested for a value.
+      ...
+  }
+  ```
 
 ### input chanels
 
