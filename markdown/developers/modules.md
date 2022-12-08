@@ -769,14 +769,14 @@ nf-core modules are intended to be flexible as possible, and ensure pipelines ar
 In other words, we want to make modules work for pipelines, not pipelines to work for modules.
 Here we provide some general guidance on how and when to use the various ways of passing information into a module.
 
-The five ways of inserting information into a module are:
+The four ways of passing information into a module are:
 
 - `input:`: a distinct input channel defined by in the module itself
 - `val(meta)`: a common entry in nf-core module tuple-based input channels that is a list of information associated with a given sample/entity or associated files ( e.g. `meta.single_end` describing the endedness of the sequence files associated with the sample).
 - `ext.args`: defined in `modules.conf` configuration files that is used to insert non-mandatory custom flags/options to the tools used in the module.
 - `ext.prefix`: defined in `modules.conf` configuration files that is used for defining file names (typically based on a `meta.id` element).
 
-Note: Custom ext fields `ext.<custom>` are discouraged as tool command-line options can be defined from either a `input:` channel or via `ext.args`.
+Note: Custom ext fields `ext.<custom>` are discouraged as most use-cases can be accomodated using the above techniques.
 
 In general:
 
