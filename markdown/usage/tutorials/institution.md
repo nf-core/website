@@ -16,7 +16,7 @@ In case you couldn't find your institution / group of contributors on the [commu
    - `description:` Short description of the main activities of the Institution (see [`nf-core-contributors.yaml`](https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml) for examples)
    - `address:` Postal Address
    - `url:` Institution URL
-   - `affiliation:` Affiliation: could be the subunit of your institution where you are belonging to (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
+   - `affiliation:` Affiliation - could be the subunit or department of your institution where you work (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
    - `affiliation_url:` Affiliation URL
    - `image_fn:` Logo filename (see below)
    - `contact`: Your Name
