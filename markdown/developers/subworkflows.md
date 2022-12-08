@@ -327,7 +327,8 @@ emit:
    <...>
 
    emit:
-   bam = SAMTOOLS_VIEW.out.bam // channel: meta, bam
+   bam = SAMTOOLS_VIEW.out.bam // channel: [ val(meta), path(bam) ]
+   versions = ch_versions      // channel: [ path(versions.yml) ]
    ```
 
 2. Each input and output channel structure SHOULD also be described in the `meta.yml` in the description entry.
