@@ -765,22 +765,23 @@ To see some more advanced examples of these keys in use see:
 ## Guidance on module inputs
 
 There are various ways information that a given software needs can be entered into a module to make the module work.
-We aim to make nf-core modules as flexible as possible, to ensure pipelines are not constrained by 'particularities' of a given module. In otherways, we want to make modules work for pipelines, not pipelines to work for modules.
+We aim to make nf-core modules as flexible as possible, to ensure pipelines are not constrained by 'particularities' of a given module. In other words, we want to make modules work for pipelines, not pipelines to work for modules.
 Here we will provide some general guidance on how and when to use the various ways of passing information into a module.
 
 The five ways of inserting information into a module are:
 
 - `input:`: a distinct input channel defined by in the module itself
-- `val(meta)`: a common entry in nf-core module tuple-based input channels that is a list of information associated with a given file
+- `val(meta)`: a common entry in nf-core module tuple-based input channels that is a list of information associated with a given sample/entity or associated files ( e.g. `meta.single_end` describing the endedness of the sequence files associated with the sample).
 - `ext.args`: defined in `modules.conf` configuration files that is used to insert (normally non-mandatory) custom flags/options to the tools used in the module
 - `ext.prefix`: defined in `modules.conf` configuration files that is used for defining file names (typically based on a `meta.id` element)
-- `ext.<custom>`: defined in `modules.conf, custom 'variables' that can be passed into the module, defined by the writer of the module
+- `ext.<custom>`: ( discouraged ) defined in `modules.conf, custom 'variables' that can be passed into the module, defined by the writer of the module, which a pipeline user is intended to customise, and needs access task run time variables, such as the `meta` map. 
 
-In general the priority order is:
+In general:
 
-- All files should be inserted into a module via `input:` channels
-- All non-file inputs: `args` > `meta` > `ext.custom`
-  - Where custom pipeline-specific `meta` keys can be inserted into an `args`, rather than module-hardcoded `meta` keys
+- All files, mandatory, or non-mandatory, must have a corresponding `input:` channel ( type `path` ).
+- Command line options essential to the functioning of the tool, must also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `ext.args`. 
+- Filenames should be defined by `ext.prefix` and a file extension. 
+- Sample specific command-line options should be defined based on fields of the `meta` map. If the command-line option is essential to the function of the tool, then the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is not essential to the operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options should be defined using `ext.args`.  
 
 ## ext.args
 
@@ -794,12 +795,12 @@ This can be done via closures, and be dynamically constructued using conditions 
 ext.args = {
   [
     "-a" ,
-    "-b ${meta.id}",
-    run_mode ? "-c" : ""
+    "-b ${meta.id}",       // Set's an option value to be the meta.id
+    run_mode ? "-c" : ""   // run_mode is a variable defined in the main.nf of the module
     ].join(' ') }
 ```
 
-It is important to note that it is problematic to have something in ` config` that keeps a _module_ working, as configs can be overwritten. Therefore if the _module_ (not the tool!) requires a particular parameter to execute such information can be passed via an `input:` channel (see below). However, a pipeline can make sure that the _tool_ keeps working (i.e., non-file arguments) via their own `modules.conf`.
+It is important to note that it is problematic to have something in a `config` that keeps a _module_ working, as configs can be overwritten. Therefore if the _module_ (not the tool!) requires a particular parameter to execute such information must be passed via an `input:` channel (see below).
 
 ### input chanels
 
