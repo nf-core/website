@@ -8,10 +8,9 @@ import pipelines_json from '../../../public/pipelines.json';
 const pipelines = pipelines_json.remote_workflows;
 const title = "Pipelines";
 const description = `We currently have ${pipeline_names.pipeline.length} pipelines available.`;
-console.log(pipelines[0])
+
 ---
 <BaseLayout>
-    <TriangleHeading title={title} subtitle={description}/>
     <div class="main-content ">
         <h1>Available Pipelines</h1>
         Can you think of another pipeline that would fit in well? <a href="https://nf-co.re/join/slack">Let us know!</a>
