@@ -783,9 +783,10 @@ In general:
 - All files, mandatory, or non-mandatory, must have a corresponding `input:` channel ( type `path` ).
 - Command-line options essential to the functioning of the tool must also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `args` (e.g., seeding options for reproducibilty).
 - Output files should be named using `ext.prefix` and a file extension. Fixed-name files can be renamed using `mv`.
-- Sample specific command-line options should be defined based on fields of the `meta` map. If the command-line option is essential to the function of the tool, then
-    the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is not essential to the
-    operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options should be defined using `ext.args`.
+- Sample specific command-line options should be defined based on fields of the `meta` map. If the command-line option is essential to the function of the
+  tool, then the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is
+  not essential to the operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options should be
+  defined using `ext.args`.
 
 ### input chanels
 
