@@ -24,7 +24,9 @@ $event_type_icons = [
 
 function create_event_download_button($event, $button_style) {
     $start = DateTime::createFromFormat('U', $event['start_ts']);
+    $start->setTimezone(new DateTimeZone('Europe/Amsterdam'));
     $end = DateTime::createFromFormat('U', $event['end_ts']);
+    $end->setTimezone(new DateTimeZone('Europe/Amsterdam'));
     $address = $event['address'] ? $event['address'] : '';
     $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
     $address = is_array($address) ? $address[0] : $address; # if multiple location urls are given, take the first one
@@ -301,7 +303,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 
         # Back to top link
         $toc .=
-            '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            '<p class="small text-end mt-3 d-none d-lg-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
         $toc .= '</nav>';
         echo $toc;
 
