@@ -1,0 +1,45 @@
+---
+import octokit from "../../components/oktokit";
+import Markdown from "../../components/Markdown.astro";
+import TriangleHeading from "../../components/TriangleHeading.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+    // async function getPipelineNames() {
+    //     var results = await sql`SELECT name FROM pipelines`;
+    //     var pipelines = results.map((res) => {
+    //         return {
+    //             params: {
+    //                 pipeline: res.name,
+    //             },
+    //         };
+    //     });
+    //     return pipelines;
+    // }
+    // return getPipelineNames();
+return [
+    {params: {pipeline: 'cageseq'}},
+    {params: {pipeline: 'rnaseq'}},
+    {params: {pipeline: 'sarek'}},
+  ];
+}
+const { pipeline } = Astro.params;
+var description = '';
+
+    // const readme = await octokit.request('GET /repos/{owner}/{repo}/readme{?ref}', {
+    // owner: 'nf-core',
+    // repo: pipeline,
+    // })
+
+
+console.log('================');
+// console.log(introduction);
+// const data = await fetch(introduction.body);
+// console.log(data);
+
+---
+<!-- Data fetched at build can be rendered in HTML -->
+<BaseLayout>
+    <TriangleHeading title={pipeline} subtitle={description} />
+    <Markdown name={pipeline}></Markdown>
+</BaseLayout>
