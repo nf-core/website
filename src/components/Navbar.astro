@@ -1,0 +1,69 @@
+---
+const { title, description, image = '/social_img.png' } = Astro.props;
+---
+
+<nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav d-print-none">
+    <div class="container-fluid">
+        <a class="navbar-brand d-md-none" href="/">
+            <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark" />
+            <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light" />
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
+            <ul class="navbar-nav">
+                <li class="nav-item p-1">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item p-1">
+                    <a class="nav-link" href="/pipelines">Pipelines</a>
+                </li>
+                <li class="nav-item p-1">
+                    <a class="nav-link" href="/modules">Modules</a>
+                </li>
+                <li class="nav-item p-1">
+                    <a class="nav-link" href="/tools">Tools</a>
+                </li>
+                <li class="nav-item p-1">
+                    <a class="nav-link" href="/docs">Docs</a>
+                </li>
+                <li class="nav-item p-1">
+                    <!-- TODO - ADD BACK INDICATOR FOR LIVE EVENT -->
+                    <!--
+                        <span class="fa-stack small text-danger">
+                            <i class="fad fa-circle fa-stack-1x"></i>
+                            <i class="fas fa-circle-small fa-stack-1x"></i>
+                        </span>
+                     -->
+                    <a class="nav-link" href="/events">Events</a>
+                </li>
+                <li class="nav-item p-1 dropdown">
+                    <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/about">About nf-core</a>
+                        <a class="dropdown-item" href="/community">Community</a>
+                        <a class="dropdown-item" href="/stats">Statistics</a>
+                        <a class="dropdown-item" href="/publications">Publications</a>
+                        <a class="dropdown-item" href="/mentorships">Mentorships</a>
+                        <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
+                        <a class="dropdown-item" href="/join">Join nf-core</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr class="d-md-none" />
+        <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
+        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
+            Join nf-core
+        </a>
+    </div>
+</nav>
