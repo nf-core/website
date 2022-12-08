@@ -272,7 +272,7 @@ For more information on fixing linting errors in your code both locally and dire
 ## Test your code
 
 Once your code is polished, following any suggestions from linting, you should test the code and make sure everything works as expected.
-This can also be done automatically, using the [pytest-worfklow](https://pytest-workflow.readthedocs.io/en/stable/) tool.
+This can also be done automatically, using the [pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/) tool.
 
 ### Create a test workflow
 

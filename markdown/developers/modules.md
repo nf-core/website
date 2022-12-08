@@ -307,7 +307,7 @@ Please follow the steps below to run the tests locally:
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
 
 ### Uploading to `nf-core/modules`
 
@@ -509,6 +509,14 @@ process {
 2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+
+4. Optional outputs SHOULD be marked as optional:
+
+   ```nextflow
+   tuple val(meta), path('*.tab'), emit: tab,  optional: true
+   ```
+
+5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
@@ -748,7 +756,7 @@ process TOOL_SUBTOOL {
   input:
   tuple val(meta), path(bam)
 
-  ouput:
+  output:
   tuple val(meta), path("*.log"), emit: log
   path "versions.yml",            emit: versions
 

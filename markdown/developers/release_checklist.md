@@ -8,7 +8,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 1. All continuous-integration tests on the `dev` branch should be passing
    - Check the output of `nf-core lint` for warnings and address all that you can
    - Update any software dependencies that are out of date.
-     The linting will warn about availble updates via automated API calls to (bio-)conda
+     The linting will warn about available updates via automated API calls to (bio-)conda
 2. Check that there are no outstanding issues that need to be addressed, especially bug reports.
 3. Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter.
 4. If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones),
