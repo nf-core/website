@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b70a41615c0830ed4f9abde67b2eda90",
+    "content-hash": "6a751d45a843ac63905cd4403e063e83",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -265,25 +265,26 @@
         },
         {
             "name": "spatie/calendar-links",
-            "version": "1.6.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/calendar-links.git",
-                "reference": "aa984fb84d218cc8962b8f89ef46437298534c24"
+                "reference": "654fc0174e6279539b9bf0abdc3339e34c5286d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/calendar-links/zipball/aa984fb84d218cc8962b8f89ef46437298534c24",
-                "reference": "aa984fb84d218cc8962b8f89ef46437298534c24",
+                "url": "https://api.github.com/repos/spatie/calendar-links/zipball/654fc0174e6279539b9bf0abdc3339e34c5286d7",
+                "reference": "654fc0174e6279539b9bf0abdc3339e34c5286d7",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.0",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "phpunit/phpunit": "^9.5",
                 "spatie/phpunit-snapshot-assertions": "^4.0",
-                "vimeo/psalm": "^4.7"
+                "vimeo/psalm": "^4.20"
             },
             "type": "library",
             "autoload": {
@@ -306,7 +307,7 @@
             "keywords": ["calendar-links", "spatie"],
             "support": {
                 "issues": "https://github.com/spatie/calendar-links/issues",
-                "source": "https://github.com/spatie/calendar-links/tree/1.6.0"
+                "source": "https://github.com/spatie/calendar-links/tree/1.8.0"
             },
             "funding": [
                 {
@@ -314,7 +315,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-04-22T15:16:31+00:00"
+            "time": "2022-08-20T12:59:17+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -530,5 +531,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
