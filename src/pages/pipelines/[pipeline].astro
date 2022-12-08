@@ -3,25 +3,20 @@ import octokit from "../../components/oktokit";
 import Markdown from "../../components/Markdown.astro";
 import TriangleHeading from "../../components/TriangleHeading.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-
+import pipeline_names from '../../../public/pipeline_names.json';
+console.log(pipeline_names);
 export function getStaticPaths() {
-    // async function getPipelineNames() {
-    //     var results = await sql`SELECT name FROM pipelines`;
-    //     var pipelines = results.map((res) => {
-    //         return {
-    //             params: {
-    //                 pipeline: res.name,
-    //             },
-    //         };
-    //     });
-    //     return pipelines;
-    // }
-    // return getPipelineNames();
-return [
-    {params: {pipeline: 'cageseq'}},
-    {params: {pipeline: 'rnaseq'}},
-    {params: {pipeline: 'sarek'}},
-  ];
+    // go through all the pipelines and create a page for each one
+    const paths = pipeline_names.pipeline.map((pipeline_name) => {
+        return { params: { pipeline: pipeline_name } };
+    });
+    return paths;
+
+// return [
+//     {params: {pipeline: 'cageseq'}},
+//     {params: {pipeline: 'rnaseq'}},
+//     {params: {pipeline: 'sarek'}},
+//   ];
 }
 const { pipeline } = Astro.params;
 var description = '';
