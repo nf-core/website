@@ -47,7 +47,7 @@ This team includes all of the `@core-team` mentioned above and also:
 
 The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
 Most of all, we would like to thank all contributors (and their employers!).
-You form the lifeblood of nf-core and we are eternally greatful for your time and efforts.
+You form the lifeblood of nf-core and we are eternally grateful for your time and efforts.
 
 A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/community#initiatives)).
 If you work with a project that would benefit from an explicit link with nf-core, please let us know.
@@ -85,6 +85,15 @@ You can explore and download these pipeline results under the <em class="mx-2"><
 
 AWS also hosts the [AWS-iGenomes](https://registry.opendata.aws/aws-igenomes/) resource on the [Registry of Open Data on AWS](https://registry.opendata.aws/).
 This is used by most nf-core pipelines to give free and open access to the reference genomes of over 30 species, by using a simple `--genome` key when running a pipeline.
+
+<div class="clearfix"></div>
+
+### Microsoft Azure
+
+<img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+
+Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
+You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
 
 <div class="clearfix"></div>
 
