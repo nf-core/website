@@ -524,18 +524,18 @@ process {
 
 5. Tuples input and outputs MUST be split into separate entries
 
-- i.e., `meta` should be a separate entry to the `file` it is associated with
+   - i.e., `meta` should be a separate entry to the `file` it is associated with
 
 6. Input/output types MUST only be of the following categories: `string`, `file`, `directory`.
 
 7. Input/output entries MUST match a corresponding channel in the module itself
 
-- There should be a one-to-one relationship between the module and the `meta.yaml`.
-- Input/output entries MUST NOT combine multiple output channels
+   - There should be a one-to-one relationship between the module and the `meta.yaml`.
+   - Input/output entries MUST NOT combine multiple output channels
 
 8. Input/output descriptions SHOULD be descriptive of the contents of file
 
-- i.e., not just 'A TSV file'
+   - i.e., not just 'A TSV file'
 
 9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
 
