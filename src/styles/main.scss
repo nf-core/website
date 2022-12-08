@@ -3,15 +3,16 @@
 @import '_variables.scss';
 
 // TODO: REMOVE / SORT OUT WHEN WE HAVE DARK MODE
-.hide-light { display: none; }
-
+.hide-light {
+  display: none;
+}
 
 html {
   background-color: #f5f5f5;
   // font-family: "Nunito Sans", sans-serif;
-  font-family: "InterVariant", sans-serif;
+  font-family: 'InterVariant', sans-serif;
   font-weight: 400;
-  font-feature-settings: "ss03"; // curved r https://rsms.me/inter/#features/ss03
+  font-feature-settings: 'ss03'; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
 }
 
@@ -21,13 +22,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
 }
 
-
 code {
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+    monospace;
 }
 
 @media print {
