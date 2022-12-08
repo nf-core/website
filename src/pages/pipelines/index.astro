@@ -1,0 +1,33 @@
+---
+import TriangleHeading from "../../components/TriangleHeading.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PipelineCard from "../../components/PipelineCard.astro";
+import pipeline_names from '../../../public/pipeline_names.json';
+import pipelines_json from '../../../public/pipelines.json';
+
+const pipelines = pipelines_json.remote_workflows;
+const title = "Pipelines";
+const description = `We currently have ${pipeline_names.pipeline.length} pipelines available.`;
+console.log(pipelines[0])
+---
+<BaseLayout>
+    <TriangleHeading title={title} subtitle={description}/>
+    <div class="main-content ">
+        <h1>Available Pipelines</h1>
+        Can you think of another pipeline that would fit in well? <a href="https://nf-co.re/join/slack">Let us know!</a>
+        <div role="list" class="row g-2">
+            {pipelines.map((pipeline) => (
+            <PipelineCard
+				href={"/pipelines/"+pipeline.name}
+				name={pipeline.name}
+				body={pipeline.description}
+                stars={pipeline.stargazers_count}
+                topics={pipeline.topics}
+                releases={pipeline.releases}
+			/>
+        ))}
+        </div>
+    </div>
+</BaseLayout>
+<style>
+</style>
