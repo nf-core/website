@@ -16,7 +16,7 @@ In case you couldn't find your institution / group of contributors on the [commu
    - `description:` Short description of the main activities of the Institution (see [`nf-core-contributors.yaml`](https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml) for examples)
    - `address:` Postal Address
    - `url:` Institution URL
-   - `affiliation:` Affiliation (could be the subunit of the institution you are belonging to, e.g. department or research group)
+   - `affiliation:` Affiliation - could be the subunit or department of your institution where you work (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
    - `affiliation_url:` Affiliation URL
    - `image_fn:` Logo filename (see below)
    - `contact`: Your Name
@@ -36,4 +36,4 @@ In case you couldn't find your institution / group of contributors on the [commu
      - If you were not successful at this point, skip it and let us know about it in the pull request.
      - _Note:_ Please make sure that you have the permission to use logos of your institution in an open source project. Organizations often don't have any concerns about it, and just want to be notified.
 
-5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re). We will provide you a feedback if anything looks weird or hasn't been properly done. Feel free to let us know on Slack in the [`#request-review` channel](https://nfcore.slack.com/archives/CQY2U5QU9).
+5. After you did the hardest part, please open a pull request from your fork. The modifications shall be compared to the master branch [nf-core/nf-core](https://github.com/nf-core/nf-co.re). We will provide you feedback if anything looks weird or hasn't been properly done. Feel free to let us know on Slack in the [`#request-review` channel](https://nfcore.slack.com/archives/CQY2U5QU9).
