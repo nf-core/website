@@ -762,6 +762,104 @@ To see some more advanced examples of these keys in use see:
 - [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
 - [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
 
+## Guidance on module inputs
+
+There are various ways information that a given software needs can be entered into a module to make the module work.
+We aim to make nf-core modules as flexible as possible, to ensure pipelines are not constrained by 'particularities' of a given module. In otherways, we want to make modules work for pipelines, not pipelines to work for modules.
+Here we will provide some general guidance on how and when to use the various ways of passing information into a module.
+
+The five ways of inserting information into a module are:
+
+- `input:`: a distinct input channel defined by in the module itself
+- `val(meta)`: a common entry in nf-core module tuple-based input channels that is a list of information associated with a given file
+- `ext.args`: defined in `modules.conf` configuration files that is used to insert (normally non-mandatory) custom flags/options to the tools used in the module
+- `ext.prefix`: defined in `modules.conf` configuration files that is used for defining file names (typically based on a `meta.id` element)
+- `ext.<custom>`: defined in `modules.conf, custom 'variables' that can be passed into the module, defined by the writer of the module
+
+In general the priority order is:
+
+- All files should be inserted into a module via `input:` channels
+- All non-file inputs: `args` > `meta` > `ext.custom`
+  - Where custom pipeline-specific `meta` keys can be inserted into an `args`, rather than module-hardcoded `meta` keys
+
+## ext.args
+
+This is the main way to pass non-file inputs (flags, options, strings, etc.) to a tool within a module. Every nf-core module must include an `$args` variable within the command of the tool itself.
+
+Pipeline developers can insert any information stored in their `meta` maps to this variable via a `modules.config` (see below). Users can also add their own additional personal parameters or information to this via a custom `modules.conf` file (at their own risk).
+
+This can be done via closures, and be dynamically constructued using conditions within lists.
+
+```nextflow
+ext.args = {
+  [
+    "-a" ,
+    "-b ${meta.id}",
+    run_mode ? "-c" : ""
+    ].join(' ') }
+```
+
+It is important to note that it is problematic to have something in ` config` that keeps a _module_ working, as configs can be overwritten. Therefore if the _module_ (not the tool!) requires a particular parameter to execute such information can be passed via an `input:` channel (see below). However, a pipeline can make sure that the _tool_ keeps working (i.e., non-file arguments) via their own `modules.conf`.
+
+### input chanels
+
+This is the way for passing _files_ into a module. This is to ensure Nextflow correctly stages them in the working directory of a process.
+
+Input channels MAY, in rare cases, be used for other _mandatory_ information (e.g. passing in strings or booleans) in cases where they cannot reasonably passed to the module via `ext.args`.
+
+Non-`val()` input channels are mainly distinguished from `ext.args` because `val(inputs)` are only customisable by the pipeline (not the user).
+
+Information stored in a `meta` map that needs to be passed to a `val()` input channel can be done so via the [`.multiMap{}`](https://www.nextflow.io/docs/latest/operator.html#multimap) Nextflow operator.
+
+## meta
+
+`meta` lists can be used to pass pipeline-mandatory parameters to a tool, giving most flexibility to a pipeline developer.
+
+Pipeline developers can use whatever key name they want to record a given bit of information, and pass this into the module either via `ext.args` (or in some rare cases, a dedicated input channel, see above).
+
+Module developers SHOULD NOT assume 'hardcoded' `meta` fields and thus not use these within a module, but rather leave this to the pipeline developer to construct the correct parameters via `ext.args` in a config.
+
+For example, a module developer SHOULD NOT hardcode the use of a field such as `${meta.reference}`
+
+```bash
+tool \\
+  run \\
+  $args \\
+  -c ${meta.reference}
+```
+
+This then requires a pipeline developer to confirm to a particular naming scheme, that may not be compatible in the way other modules store the same information in their `meta`. Therefore we
+
+Rather, the pipeline developer can insert this into the module via `args`, where the command is:
+
+```bash
+tool \\
+  run \\
+  $args
+```
+
+and the modules config
+
+```nextflow
+ext.args = { "-c ${meta.reference}" }
+```
+
+In both ways, the `-c` paramter is inserted into the command. However in the latter example, a pipeline developer could instead use a different key for `meta.reference`, e.g. `meta.ref`.
+
+## ext.prefix
+
+This is the main way in which output files and directories are named within nf-core modules, if a tool does not generated output names themselves.
+
+No other information should be passed using `ext.prefix`.
+
+Note than an additional `ext` variabile called `ext.suffix` may also be used.
+
+## ext.custom
+
+A final way of passing information and using pipeline-level information in a module is via custom `ext.` variables.
+
+These are HIGHLY DISCOURAGED, much in the same way it is discouraged to not use 'hardcoded' `meta` keys. nf-core modules currently have no place to document such variables, therefore this makes pipeline development more onours for the pipleine as they then must discover and use additional non-standard `ext.` variables, in contrast to `ext.args` and `ext.prefix`, which are enforced requirements across all nf-core modules.
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
