@@ -1,4 +1,6 @@
 ---
+import { format} from 'timeago.js';
+
 export interface Props {
 	name: string;
 	body: string;
@@ -6,9 +8,19 @@ export interface Props {
     stars: number;
     topics: string[];
     releases: object[];
+    archived: boolean;
 }
 
-const { href, name, body, stars, topics, releases } = Astro.props;
+const { href, name, body, stars, topics, releases, archived } = Astro.props;
+const released = releases.length > 0;
+var latest_release, tag_name, release_tag, release_date_ago;
+
+if (released) {
+    latest_release = releases[releases.length-1];
+    tag_name = latest_release.tag_name;
+    release_date_ago = format(new Date(latest_release.published_at), 'en_GB');
+}
+
 ---
 <!-- TODO remove the following line when #1487 is merged -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
@@ -16,9 +28,10 @@ const { href, name, body, stars, topics, releases } = Astro.props;
 <div class="card col p-2 m-2">
 	<a href={href} class="card-name m-2 mb-0">
 		<h2 class="mb-0">
-			{name} {releases.length > 0 ? <i class="fa-solid fa-check text-success"></i> : <i class="fa-solid fa-wrench text-warning"></i>}
+			{name} {archived ? <i class="fa-solid fa-archive text-warning"></i> : released ? <i class="fa-solid fa-check text-success ms-3"></i> : <i class="fa-solid fa-wrench text-danger"></i>}
 
-            <small class="star-count text-small">
+            <small class="gh-stats text-small">
+                <span>{released ? <span class='text-muted'><i class="fa-regular fa-tag ms-3 me-1"></i>{tag_name}</span> :''}</span>
                 <a href={"https://github.com/nf-core/"+name+"/stargazers"} target="_blank" class="stargazers text-decoration-none mt-2 text-warning" title="" data-bs-toggle="tooltip" data-html="true" data-bs-original-title={stars +" stargazers on GitHub <small class='fa fa-solid fa-external-link-alt ms-2'></small>"}>
                     <i class="fa fa-regular fa-star" aria-hidden="true"></i>
                 </a>
@@ -35,6 +48,7 @@ const { href, name, body, stars, topics, releases } = Astro.props;
         </p>
         <p class="description">
             {body}
+            <p class="">Last release {release_date_ago}</p>
         </p>
 
         </div>
@@ -59,7 +73,7 @@ const { href, name, body, stars, topics, releases } = Astro.props;
     .badge.text-success{
         font-weight: 400;
     }
-    .star-count{
+    .gh-stats{
         float: right;
     }
     .stargazers .fa:hover{
