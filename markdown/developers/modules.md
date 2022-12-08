@@ -781,8 +781,8 @@ Note: Custom ext fields `ext.<custom>` are discouraged as tool command-line opti
 In general:
 
 - All files, mandatory, or non-mandatory, must have a corresponding `input:` channel ( type `path` ).
-- Command line options essential to the functioning of the tool, must also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `ext.args`.
-- Output files should be named using `ext.prefix` and a file extension.
+- Command-line options essential to the functioning of the tool must also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `args` (e.g., seeding options for reproducibilty).
+- Output files should be named using `ext.prefix` and a file extension. Fixed-name files can be renamed using `mv`.
 - Sample specific command-line options should be defined based on fields of the `meta` map. If the command-line option is essential to the function of the tool, then
     the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is not essential to the
     operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options should be defined using `ext.args`.
@@ -847,7 +847,7 @@ tool \\
   -c ${meta.reference}
 ```
 
-This then requires a pipeline developer to confirm to a particular naming scheme, that may not be compatible in the way other modules store
+This then requires a pipeline developer to confirm to a particular naming scheme, that may not be compatible with the way other modules store
 the same information in their `meta`. If the command-line option is mandatory, see above for an example on how to use `multiMap` to construct
 a necessary input. If the option is non-mandatory, the pipeline developer can insert this into the module via `args`, where the command is:
 
