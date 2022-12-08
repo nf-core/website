@@ -827,6 +827,57 @@ process MY_TASK {
 }
 ```
 
+When the value for a command-line option can be a file or a string, then the file must be supplied via an `input:` channel. If the command-line option is mandatory,
+then the string value should also be a separate `input:` channel of type `val`, and a default value encoded in case neither input is defined.
+
+```nextflow
+process TASK {
+    input:
+    tuple val(meta), path(bam)
+    path label_file
+    val  label_str
+
+    ...
+
+    script:
+    def labels = label_file ?: label_str ?: "no_label"
+    """
+    command \\
+        --labels $labels \\
+        ...
+    """
+}
+```
+
+If the command-line option is not necessary to function then, use `ext.args`.
+
+```nextflow
+process TASK {
+    input:
+    tuple val(meta), path(bam)
+    path label_file
+
+    ...
+
+    script:
+    def args = task.ext.args ?:
+    args     += label_file ? "--labels $label_file" : ''
+    """
+    command \\
+        $args \\
+        ...
+    """
+}
+```
+
+```nextflow
+process {
+    withName: 'TASK' {
+        ext.args = { (!labels_file) && meta.label ? "--labels ${meta.label}": '' }
+    }
+}
+```
+
 ### meta maps
 
 `meta` maps can be used to pass pipeline parameters to a tool, giving the most flexibility to a pipeline developer.
