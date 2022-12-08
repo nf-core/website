@@ -8,7 +8,7 @@ menu:
 
 In order to automate and standardise the nf-core best practices, we have built a code linting tool.
 These tests are run by the [nf-core/tools](https://github.com/nf-core/tools) package.
-The `nf-core lint` command must be run by continous integration tests on GitHub Actions and must be passing before release.
+The `nf-core lint` command must be run by continuous integration tests on GitHub Actions and must be passing before release.
 
 You can see the list of tests and how to pass them on the [error codes page](https://nf-co.re/tools).
 
