@@ -68,7 +68,7 @@ The objectives also function as a checklist of things that should be part of the
 
 #### Add a glossary.
 
-The glossary should define potentially unfamilar terms to a novice trying to use your guide for the first time.
+The glossary should define potentially unfamiliar terms to a novice trying to use your guide for the first time.
 
 #### Prepare your reader.
 
