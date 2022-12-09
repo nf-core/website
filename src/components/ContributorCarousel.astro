@@ -36,6 +36,11 @@ const contributors = contributors_yml.contributors.sort((a, b) => 0.5 - Math.ran
         // Animate the first image off the screen and then remove
         var margin_left = d.offsetWidth * -1;
         console.log(margin_left);
+
+        //
+        // TODO - this is not working
+        // FIXME - fix this
+        //
         d.animate([{ transform: 'translateX(0px)' }, { transform: 'translateX(' + margin_left + 'px)' }], {
             duration: 10000,
             iterations: 1,
