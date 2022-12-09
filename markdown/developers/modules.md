@@ -534,7 +534,7 @@ process {
 
    - i.e., `meta` should be a separate entry to the `file` it is associated with
 
-6. Input/output types MUST only be of the following categories: `string`, `file`, `directory`.
+6. Input/output types MUST only be of the following categories: `file`, `directory`, `string, `integer`, `float` .
 
 7. Input/output entries MUST match a corresponding channel in the module itself
 
