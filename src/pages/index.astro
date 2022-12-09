@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContributorCarousel from '../components/ContributorCarousel.astro';
 import NfCoreLogo from '../images/logos/nf-core-logo.svg';
 import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
 import NatureBiotech from '../images/homepage/nature_biotech.svg';
-import contributors_yml from '../config/contributors.yaml';
 
 import { Icon } from 'astro-icon';
-
-const contributors = contributors_yml.contributors.sort((a, b) => 0.5 - Math.random());
 ---
 
 <BaseLayout>
@@ -394,18 +392,7 @@ nf-core list
                     See a complete list &raquo;
                 </a>
             </p>
-            <div class="d-flex flex-row flex-wrap justify-content-between">
-                {
-                    contributors
-                        .slice(0, 5)
-                        .map((contributor) => (
-                            <img
-                                src={'/images/contributors/white/' + contributor.image_fn}
-                                class="my-2 my-lg-3 mx-2 d-block"
-                            />
-                        ))
-                }
-            </div>
+            <ContributorCarousel client:visible />
         </div>
     </div>
 </BaseLayout>
