@@ -22,11 +22,9 @@ if (released) {
 }
 
 ---
-<!-- TODO remove the following line when #1487 is merged -->
-<script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
 
-<div class="card col p-2 m-2">
-	<a href={href} class="card-name m-2 mb-0">
+<div class="card col p-3 pb-2 m-2">
+	<a href={href} class="card-name ">
 		<h2 class="mb-0">
 			{name} {archived ? <i class="fa-solid fa-archive text-warning"></i> : released ? <i class="fa-solid fa-check text-success ms-3"></i> : <i class="fa-solid fa-wrench text-danger"></i>}
 
@@ -40,17 +38,17 @@ if (released) {
             </h2>
 
     </a>
-		<div class="card-body pt-0">
+		<div class="card-body py-0 d-flex flex-column">
         <p class="topics mt-0">
             {topics.map((topic) => (
                 <span class="badge bg-light text-success mx-1">{topic}</span>
             ))}
         </p>
-        <p class="description">
+        <p class="description flex-grow-1">
             {body}
-            <p class="">Last release {release_date_ago}</p>
-        </p>
 
+        </p>
+    {released  ? <p class="text-muted align">Last release {release_date_ago}</p>:''}
         </div>
 
 </div>
@@ -67,8 +65,7 @@ if (released) {
 		color: rgb(var(--accent));
 	}
     .card.col {
-        min-width: 40vw;
-        max-width: 45vw;
+        min-width: 40%;
     }
     .badge.text-success{
         font-weight: 400;

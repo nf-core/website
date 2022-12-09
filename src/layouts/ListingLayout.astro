@@ -1,0 +1,16 @@
+---
+import FilterBar from '../components/FilterBar.astro';
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+    input: object[];
+}
+
+const input = Astro.props;
+
+---
+
+<BaseLayout>
+
+    <slot />
+</BaseLayout>
