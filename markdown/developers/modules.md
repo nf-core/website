@@ -530,7 +530,7 @@ process {
 
 4. Input and Output sections of the meta.yaml SHOULD only have entries of input and output channels
 
-5. Tuples input and outputs MUST be split into separate entries
+5. Input and output tuples MUST be split into separate entries
 
    - i.e., `meta` should be a separate entry to the `file` it is associated with
 
@@ -547,6 +547,7 @@ process {
 
 9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
 
+10. Input entries should be marked as Mandatory or Optional
 ### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
