@@ -3,8 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import NfCoreLogo from '../images/logos/nf-core-logo.svg';
 import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
 import NatureBiotech from '../images/homepage/nature_biotech.svg';
+import contributors_yml from '../config/contributors.yaml';
 
 import { Icon } from 'astro-icon';
+
+const contributors = contributors_yml.contributors.sort((a, b) => 0.5 - Math.random());
 ---
 
 <BaseLayout>
@@ -229,6 +232,179 @@ import { Icon } from 'astro-icon';
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-secondary py-5">
+        <div class="container">
+            <div class="row videos-row">
+                <div class="col-lg-6">
+                    <div class="ratio ratio-16x9 hidden-xs hidden-sm">
+                        <iframe
+                            id="nf-core-video"
+                            src="https://www.youtube.com/embed/gUM9acK25tQ"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-switch left video-chooser">
+                        <li>
+                            <a
+                                href="https://youtu.be/gUM9acK25tQ"
+                                data-src="https://www.youtube.com/embed/gUM9acK25tQ"
+                                class="active"
+                            >
+                                Introduction to nf-core <em>(1:01)</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/cXBYusdjrc0" data-src="https://www.youtube.com/embed/cXBYusdjrc0">
+                                Bytesize: How nf-core configs work <em>(15:00)</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/FFTNVbdD5pQ" data-src="https://www.youtube.com/embed/FFTNVbdD5pQ">
+                                Bytesize: Pipeline code walkthrough <em>(20:00)</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/OvtCc855Vek" data-src="https://www.youtube.com/embed/OvtCc855Vek">
+                                Tutorial: Running pipelines <em>(17:00)</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/-GcuxoIpfOc" data-src="https://www.youtube.com/embed/-GcuxoIpfOc">
+                                BovReg: A longer introduction to nf-core <em>(45:00)</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/hCGuF9bA9ho" data-src="https://www.youtube.com/embed/hCGuF9bA9ho">
+                                BovReg: nf-core pipelines <em>(60:00)</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/lUJ1L-qDeXM" data-src="https://www.youtube.com/embed/lUJ1L-qDeXM">
+                                BovReg: Developing with nf-core <em>(50:00)</em>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2 id="get-started" class="text-white">Get started in minutes</h2>
+                    <p class="text-white-50">
+                        Nextflow lets you run nf-core pipelines on virtually any computing environment.
+                    </p>
+                    <p class="text-white-50">
+                        Most nf-core genomics pipelines come with built-in support for
+                        <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;"
+                            >AWS-iGenomes</a
+                        >, with genome references for over 30 common species.
+                    </p>
+                    <p class="text-white-50">
+                        The nf-core companion tool makes it easy to list all available nf-core pipelines and shows which
+                        are available locally. Local versions are checked against the latest available release.
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
+                        <div class="card-body">
+                            <pre
+                                class="text-white mb-0">
+<span class="text-white-50"># Install nextflow</span>
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+<span class="text-white-50"># Launch the RNAseq pipeline</span>
+nextflow run nf-core/rnaseq \
+    --input samplesheet.csv \
+    --output ./results/ \
+    --genome GRCh37 \
+    -profile docker
+
+<span class="text-white-50"># Install nf-core tools</span>
+pip install nf-core
+
+<span class="text-white-50"># List all nf-core pipelines and show available updates</span>
+nf-core list
+</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 text-center">
+        <p class="lead"></p>
+        <div class="row">
+            <div class="col-md-4 px-md-5 mb-5 mb-md-0">
+                <h3>See what's available</h3>
+                <p>
+                    Check out the available pipelines to see if we have what you need. Each comes with release details,
+                    keywords and a description.
+                </p>
+                <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"
+                    ><span><i class="fas fa-toolbox me-1"></i> Available pipelines</span>
+                </a>
+            </div>
+            <div class="col-md-4 px-md-5 mb-5 mb-md-0">
+                <h3>Run a pipeline</h3>
+                <p>
+                    Read the quickstart tutorial to learn how to get set up with the required software and tools, and
+                    how to launch a nf-core pipeline.
+                </p>
+                <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"
+                    ><span><i class="fad fa-graduation-cap me-1"></i> Quickstart Tutorial</span>
+                </a>
+            </div>
+            <div class="col-md-4 px-md-5 mb-5 mb-md-0">
+                <h3>Get into the code</h3>
+                <p>
+                    If you're interested in contributing to nf-core, take a look at the developer documentation to see
+                    what's required.
+                </p>
+                <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"
+                    ><span><i class="fad fa-code me-1"></i> Developer docs</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="community" class="homepage-usedby">
+        <div class="container py-5">
+            <h2>
+                <a class="btn btn-success float-end d-none d-md-inline" href="/community#organisations">
+                    See a complete list &raquo;
+                </a>
+                <a href="/community#organisations">Used by groups all over the world</a>
+            </h2>
+            <p>The nf-core community is spread all over the globe and includes a large number of contributing users.</p>
+            <p>
+                <a class="btn btn-success d-inline d-md-none" href="/community#organisations">
+                    See a complete list &raquo;
+                </a>
+            </p>
+            <div class="d-flex flex-row flex-wrap justify-content-between">
+                {
+                    contributors
+                        .slice(0, 5)
+                        .map((contributor) => (
+                            <img
+                                src={'/images/contributors/white/' + contributor.image_fn}
+                                class="my-2 my-lg-3 mx-2 d-block"
+                            />
+                        ))
+                }
             </div>
         </div>
     </div>
