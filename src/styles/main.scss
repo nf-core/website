@@ -23,6 +23,8 @@ h4,
 h5,
 h6 {
   font-family: 'Maven Pro', sans-serif;
+  color: $nf-core-color;
+  font-weight: 600;
 }
 
 code {
@@ -791,6 +793,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
   position: relative;
   display: block;
   color: $white;
+  z-index: 0;
 }
 .homepage-usedby h2,
 .homepage-usedby a {
@@ -813,7 +816,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .homepage-usedby::after {
   content: '';
-  background: url('../img/flowcell.jpg') no-repeat;
+  background: url('/flowcell.jpg') no-repeat;
   background-attachment: fixed;
   opacity: 0.8;
   background-size: cover;
@@ -827,14 +830,10 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 }
 .homepage-usedby img {
   height: 80px;
-  max-width: 30%;
-  margin: 1rem 2rem 1rem 0;
 }
 @media (max-width: 576px) {
   .homepage-usedby img {
     height: 50px;
-    max-width: 120px;
-    margin: 0.5rem 1rem 0.5rem 0;
   }
 }
 .homepage_contrib_logos {
