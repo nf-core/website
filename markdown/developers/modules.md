@@ -780,15 +780,15 @@ Note: Custom ext fields `ext.<custom>` are discouraged as most use-cases can be 
 
 In general:
 
-- All files, mandatory, or non-mandatory, must have a corresponding `input:` channel ( type `path` ).
-- Command-line options essential to the functioning of the tool must also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `args` (e.g., seeding options for reproducibilty).
-- Output files should be named using `ext.prefix` and a file extension. Fixed-name files can be renamed using `mv`.
-- Sample specific command-line options should be defined based on fields of the `meta` map. If the command-line option is essential to the function of the
+- All files, mandatory, or non-mandatory, MUST have a corresponding `input:` channel ( type `path` ).
+- Command-line options essential to the functioning of the tool MUST also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `args` (e.g., seeding options for reproducibilty).
+- Output files SHOULD be named using `ext.prefix` and a file extension. Fixed-name files can be renamed using `mv`.
+- Sample specific command-line options SHOULD be defined based on fields of the `meta` map. If the command-line option is essential to the function of the
   tool, then the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is
-  not essential to the operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options should be
+  not essential to the operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options SHOULD be
   defined using `ext.args`.
-- A module should function with `ext.args = ''`.
-- A module should not use extra channel inputs where Groovy truth can be used to evaluate a need. E.g.
+- A module SHOULD function with `ext.args = ''`.
+- A module SHOULD not use extra channel inputs where Groovy truth can be used to evaluate a need. E.g.
 
   ```nextflow
   process TASK {
@@ -802,7 +802,7 @@ In general:
 
 ### input chanels
 
-All _files_ must be supplied using a channel into a module. This is to ensure Nextflow correctly stages them in the working directory of a process, and the process can
+All _files_ MUST be supplied using a channel into a module. This is to ensure Nextflow correctly stages them in the working directory of a process, and the process can
 function in an off-line environment independently of other processes.
 
 Input channels MUST be used for other _mandatory_ information (e.g. passing in strings or booleans) where the tool cannot function without this information.
@@ -840,8 +840,8 @@ process MY_TASK {
 }
 ```
 
-When the value for a command-line option can be a file or a string, then the file must be supplied via an `input:` channel. If the command-line option is mandatory,
-then the string value should also be a separate `input:` channel of type `val`, and a default value encoded in case neither input is defined.
+When the value for a command-line option can be a file or a string, then the file MUST be supplied via an `input:` channel. If the command-line option is mandatory,
+then the string value SHOULD also be a separate `input:` channel of type `val`, and a default value encoded in case neither input is defined.
 
 ```nextflow
 process TASK {
@@ -933,7 +933,7 @@ key for `meta.reference`, e.g. `meta.ref`.
 ### ext.args
 
 This is the main way to pass non-mandatory non-file inputs (flags, options, strings, etc.) to a tool within a module.
-Every nf-core module must include an `$args` variable within the command of the tool itself (unless all possible options are provided as `input:` channels).
+Every nf-core module MUST include an `$args` variable within the command of the tool itself (unless all possible options are provided as `input:` channels).
 
 Pipeline developers can define sensible settings based on their `meta` maps or other process variables to this variable via a `modules.config` (see below).
 Note that pipeline users are able to override these settings. Therefore if the _module_ (not the tool!) requires a particular parameter to execute, such
