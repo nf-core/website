@@ -1,33 +1,41 @@
 ---
-import TriangleHeading from "../../components/TriangleHeading.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import PipelineCard from "../../components/PipelineCard.astro";
-import pipeline_names from '../../../public/pipeline_names.json';
 import pipelines_json from '../../../public/pipelines.json';
+import PipelineCard from '../../components/PipelineCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
 
 const pipelines = pipelines_json.remote_workflows;
-const title = "Pipelines";
-const description = `We currently have ${pipeline_names.pipeline.length} pipelines available.`;
+const title = 'Pipelines';
+const description = `We currently have ${pipelines.length} pipelines available.`;
 
+var pipelines_filtered = pipelines.filter((pipeline) => pipeline.topics.includes());
+var num_released = pipelines.filter((pipeline) => pipeline.releases.length > 0 && pipeline.archived !== true).length;
+var num_dev = pipelines.filter((pipeline) => pipeline.releases.length == 0).length;
+var num_archived = 0;
+var sorted_by = 0;
+var display_as = 0;
 ---
+
 <BaseLayout>
-    <div class="main-content ">
+    <FilterBar num_released num_dev num_archived sorted_by display_as />
+    <div class="main-content">
         <h1>Available Pipelines</h1>
         Can you think of another pipeline that would fit in well? <a href="https://nf-co.re/join/slack">Let us know!</a>
         <div role="list" class="row g-2">
-            {pipelines.map((pipeline) => (
-            <PipelineCard
-				href={"/pipelines/"+pipeline.name}
-				name={pipeline.name}
-				body={pipeline.description}
-                stars={pipeline.stargazers_count}
-                topics={pipeline.topics}
-                releases={pipeline.releases}
-                archived={pipeline.archived}
-			/>
-        ))}
+            {
+                pipelines.map((pipeline) => (
+                    <PipelineCard
+                        href={'/pipelines/' + pipeline.name}
+                        name={pipeline.name}
+                        body={pipeline.description}
+                        stars={pipeline.stargazers_count}
+                        topics={pipeline.topics}
+                        releases={pipeline.releases}
+                        archived={pipeline.archived}
+                    />
+                ))
+            }
         </div>
     </div>
 </BaseLayout>
-<style>
-</style>
+<style></style>
