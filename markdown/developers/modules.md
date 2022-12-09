@@ -518,6 +518,8 @@ process {
 
 5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
 
+For detailed descriptions and examples on how to follow the above input/output guidance, please see [Guidance on module inputs](#guidance-on-module-inputs)
+
 ### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
