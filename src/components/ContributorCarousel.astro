@@ -1,0 +1,56 @@
+---
+import contributors_yml from '../config/contributors.yaml';
+const contributors = contributors_yml.contributors.sort((a, b) => 0.5 - Math.random()).slice(0, 5);
+---
+
+<div class="homepage_contrib_logos">
+    {
+        contributors.map(
+            (contributor) =>
+                contributor.image_fn && (
+                    <a href={'/community#' + contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}>
+                        <img
+                            src={'/images/contributors/white/' + contributor.image_fn}
+                            class="my-2 my-lg-3 mx-2"
+                            data-bs-placement="bottom"
+                            data-bs-toggle="tooltip"
+                            title={contributor.full_name}
+                        />
+                    </a>
+                )
+        )
+    }
+</div>
+
+<script>
+    // Homepage contributor images fading in and out
+    var h_contrib_imgs = document.querySelectorAll('.homepage_contrib_logos a');
+    if (h_contrib_imgs.length > 0) {
+        setTimeout(function () {
+            switch_contrib_img();
+        }, 3000);
+    }
+    function switch_contrib_img() {
+        let d = document.querySelector<HTMLElement>('.homepage_contrib_logos a:first-child');
+
+        // Animate the first image off the screen and then remove
+        var margin_left = d.offsetWidth * -1;
+        console.log(margin_left);
+
+        //
+        // TODO - this is not working
+        // FIXME - fix this
+        //
+        d.animate([{ transform: 'translateX(0px)' }, { transform: 'translateX(' + margin_left + 'px)' }], {
+            duration: 10000,
+            iterations: 1,
+        }).onfinish = function () {
+            // Move the image to the end of the list (should be off the screen to the right)
+            d.parentNode.appendChild(d);
+            // Run this again in 3 seconds
+            setTimeout(function () {
+                switch_contrib_img();
+            }, 3000);
+        };
+    }
+</script>
