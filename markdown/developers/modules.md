@@ -548,6 +548,7 @@ process {
 9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
 
 10. Input entries should be marked as Mandatory or Optional
+
 ### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
