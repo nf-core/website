@@ -88,19 +88,19 @@ import { Icon } from 'astro-icon';
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-                <HomepageCard title="Documentation" icon_name="noto:clipboard">
+                <HomepageCard title="Documentation" icon="noto:clipboard">
                     Extensive documentation covering installation, usage and description of output files ensures that
                     you won't be left in the dark.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="CI Testing" icon_name="logos:github-actions">
+                <HomepageCard title="CI Testing" icon="logos:github-actions">
                     Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration
                     testing to ensure that nothing has broken.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Stable Releases" icon_name="line-md:check-list-3-twotone" icon_color="#82D948">
+                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_color="#82D948">
                     nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
                     pipeline runs totally reproducible.
                 </HomepageCard>
@@ -118,14 +118,7 @@ import { Icon } from 'astro-icon';
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard
-                    title="Cloud-ready"
-                    icon_name="logos:aws"
-                    icon_class="hide-dark"
-                    icon2_name="mdi:aws"
-                    icon2_color="white"
-                    icon2_class="hide-light"
-                >
+                <HomepageCard title="Cloud-ready" icon="logos:aws" icon_dark="mdi:aws">
                     Pipelines are tested on AWS after every release. You can even browse results live on the website and
                     use outputs for your own benchmarking.
                 </HomepageCard>
@@ -275,3 +268,116 @@ nf-core list
 
     <ContributorCarousel client:visible />
 </BaseLayout>
+
+<style lang="scss">
+    @import 'bootstrap/scss/bootstrap.scss';
+    @import 'bootstrap-print-css/css/bootstrap-print.min';
+    @import '../styles/_variables.scss';
+    .homepage-header .homepage-header-contents {
+        margin: 3rem auto 0;
+        padding: 0;
+        text-align: center;
+    }
+    .homepage-header-fa-background {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        font-size: 16em;
+        opacity: 0.2;
+    }
+
+    /* Fancy call to action button on homepage
+Based on https://codepen.io/wintr/pen/beBJBb */
+    .homepage-cta-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    .homepage-cta {
+        width: 100px;
+        height: 100px;
+        line-height: 20px;
+        padding: 30px 0;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        transition: 0.3s all ease;
+        font-size: 14px;
+        color: $nf-core-color;
+        font-weight: bold;
+        z-index: 0;
+    }
+    .homepage-cta:after {
+        transition: 0.3s all ease;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 3px;
+        border: 2px solid $nf-core-color;
+    }
+    .homepage-cta:before {
+        content: '';
+        position: absolute;
+        border-radius: 3px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        background: $gray-200;
+        z-index: -1;
+        transition: 0.3s all ease;
+    }
+    .homepage-cta:hover,
+    .homepage-cta:focus {
+        color: $nf-core-color;
+        text-decoration: none;
+    }
+    .homepage-cta:hover:after,
+    .homepage-cta:focus:after {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .homepage-cta:active {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        color: $white;
+    }
+    .homepage-cta:active:before {
+        background-color: $nf-core-color;
+    }
+    .homepage-cta:active:after {
+        border-color: $nf-core-color;
+    }
+
+    .searchbar_form {
+        justify-content: center;
+    }
+    .searchbar_form input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+        width: auto;
+    }
+    .searchbar_form button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .homepage_search.searchbar_form {
+        margin-bottom: 3rem;
+    }
+
+    .homepage-intro {
+        background-color: $nf-core-color;
+    }
+    .homepage-intro .container .row div {
+        color: $white;
+        text-align: center;
+    }
+</style>
