@@ -1,16 +1,22 @@
 ---
-import FilterBar from '../components/FilterBar.astro';
+import FilterBar from '../components/FilterBar.jsx';
 import BaseLayout from './BaseLayout.astro';
+import Listing from '../components/Listing.jsx';
 
 export interface Props {
     input: object[];
+    title: string;
+    description: string;
 }
 
-const input = Astro.props;
-
+const {input, title, description }= Astro.props;
 ---
 
-<BaseLayout>
-
+<BaseLayout title={title} description={description}>
+    <FilterBar input={input} client:visible/>
+    <Listing input={input} client:visible/>
     <slot />
 </BaseLayout>
+
+<style lang="scss">
+</style>
