@@ -80,47 +80,47 @@ const contributors = contributors_yml.contributors.sort((a, b) => 0.5 - Math.ran
         display: block;
         color: $white;
         z-index: 0;
-    }
-    .homepage-usedby h2,
-    .homepage-usedby a {
-        color: $white;
-        text-decoration: none;
-    }
-    .homepage-usedby p,
-    .homepage-usedby p a {
-        color: rgba($white, 0.8);
-    }
-    .homepage-usedby::before {
-        content: '';
-        background: $black;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: -2;
-    }
-    .homepage-usedby::after {
-        content: '';
-        background: url('/flowcell.jpg') no-repeat;
-        background-attachment: fixed;
-        opacity: 0.8;
-        background-size: cover;
-        background-position: right top;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: -1;
-    }
-    .homepage-usedby img {
-        height: 80px;
-    }
-    @media (max-width: 576px) {
-        .homepage-usedby img {
-            height: 50px;
-            margin: 0.5rem 1rem 0.5rem 0;
+        h2,
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+        p,
+        p a {
+            color: rgba($white, 0.8);
+        }
+        &::before {
+            content: '';
+            background: $black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -2;
+        }
+        &::after {
+            content: '';
+            background: url('/flowcell.jpg') no-repeat;
+            background-attachment: fixed;
+            opacity: 0.8;
+            background-size: cover;
+            background-position: right top;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+        }
+        img {
+            height: 80px;
+        }
+        @media (max-width: 576px) {
+            img {
+                height: 50px;
+                margin: 0.5rem 1rem 0.5rem 0;
+            }
         }
     }
     .homepage_contrib_logos {
