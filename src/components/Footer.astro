@@ -1,8 +1,7 @@
 ---
+import FooterSocial from './FooterSocial.astro';
 import NfCoreLogo from '../images/logos/nf-core-logo.svg';
 import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
-
-import { Icon } from 'astro-icon';
 ---
 
 <footer class="footer">
@@ -13,43 +12,19 @@ import { Icon } from 'astro-icon';
                     <img height="30px" src={NfCoreLogo} alt="nf-core logo" class="hide-dark" />
                     <img height="30px" src={NfCoreLogoDarkbg} alt="nf-core logo" class="hide-light" />
                 </a>
-                <small class="d-block mb-3">Making awesome workflows since 2018</small>
+                <small class="d-block mb-3">Making awesome workflows since 2018.</small>
                 <small class="d-flex mb-3"
                     >Supported by
-                    <div class="social-icons">
-                        <a
-                            href="/about#czi-eoss"
-                            title="Chan Zuckerberg Initiative"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="czi" size="20px" />
-                        </a>,
-                        <a
-                            href="/about#microsoft-azure"
-                            title="Microsoft Azure"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:microsoft-azure" size="20px" />
-                        </a>
-                        <span class="ms-1">and</span>
-                        <a
-                            href="/about#aws"
-                            title="Amazon Web Services"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:aws" size="20px" class="hide-dark" />
-                            <Icon name="mdi:aws" size="20px" color="white" class="hide-light" />
-                        </a>
-                    </div>
+                    <FooterSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="czi" />,
+                    <FooterSocial link="/about#microsoft-azure" title="Microsoft Azure" icon="logos:microsoft-azure" />
+                    <span class="ms-1">and</span>
+                    <FooterSocial link="/about#aws" title="Amazon Web Services" icon="logos:aws" icon_dark="mdi:aws" />
                 </small>
                 <small class="d-block mb-3">
-                    See the source code for this website on GitHub: <a
-                        href="https://github.com/nf-core/nf-co.re"
-                        target="_blank">https://github.com/nf-core/nf-co.re</a
-                    >
+                    See the source code for this website on GitHub:
+                    <a href="https://github.com/nf-core/nf-co.re" target="_blank">
+                        https://github.com/nf-core/nf-co.re
+                    </a>
                 </small>
                 <div class="d-md-flex d-print-none">
                     <div class="btn-toolbar mb-3 me-4" role="toolbar">
@@ -106,57 +81,19 @@ import { Icon } from 'astro-icon';
                     </div>
 
                     <div class="social-icons mb-3 d-print-none">
-                        <a
-                            rel="me"
-                            href="https://nfcore.slack.com/"
-                            target="_blank"
-                            title="Slack"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:slack-icon" size="20px" />
-                        </a>
-                        <a
-                            rel="me"
-                            href="https://github.com/nf-core/"
-                            target="_blank"
-                            class="social-github"
-                            title="GitHub"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:github-icon" size="20px" />
-                        </a>
-                        <a
-                            rel="me"
-                            href="https://twitter.com/nf_core"
-                            target="_blank"
-                            title="Twitter"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:twitter" size="20px" />
-                        </a>
-                        <a
-                            rel="me"
+                        <FooterSocial href="https://nfcore.slack.com/" title="Slack" icon="logos:slack-icon" />
+                        <FooterSocial href="https://github.com/nf-core/" title="GitHub" icon="logos:github-icon" />
+                        <FooterSocial href="https://twitter.com/nf_core" title="Twitter" icon="logos:twitter" />
+                        <FooterSocial
                             href="https://mstdn.science/@nf_core"
-                            target="_blank"
                             title="Mastodon"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:mastodon-icon" size="20px" />
-                        </a>
-                        <a
-                            rel="me"
+                            icon="logos:mastodon-icon"
+                        />
+                        <FooterSocial
                             href="https://www.youtube.com/c/nf-core"
-                            target="_blank"
                             title="YouTube"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                        >
-                            <Icon name="logos:youtube-icon" size="20px" />
-                        </a>
+                            icon="logos:youtube-icon"
+                        />
                     </div>
                 </div>
             </div>
@@ -208,3 +145,36 @@ import { Icon } from 'astro-icon';
         </div>
     </div>
 </footer>
+
+<style lang="scss">
+    @import '../styles/_base.scss';
+    footer {
+        color: $gray-600;
+        &.footer {
+            padding: 4rem 0 5rem;
+            background-color: $gray-200;
+            h5 {
+                color: $gray-800;
+            }
+        }
+        &.subfooter {
+            padding: 2rem 0;
+            background-color: darken($gray-100, 2.5%);
+        }
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+            text-decoration: none;
+            color: $gray-600;
+        }
+        a:hover,
+        a:focus,
+        a:active {
+            text-decoration: underline;
+        }
+    }
+    .theme-switcher label {
+        cursor: pointer;
+    }
+</style>

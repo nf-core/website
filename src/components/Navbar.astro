@@ -1,12 +1,13 @@
 ---
-const { title, description, image = '/social_img.png' } = Astro.props;
+import NfCoreLogo from '../images/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
 ---
 
 <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav d-print-none">
     <div class="container-fluid">
         <a class="navbar-brand d-md-none" href="/">
-            <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark" />
-            <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light" />
+            <img height="25px" src={NfCoreLogo} class="hide-dark" />
+            <img height="25px" src={NfCoreLogoDarkbg} class="hide-light" />
         </a>
         <button
             class="navbar-toggler"
@@ -40,7 +41,7 @@ const { title, description, image = '/social_img.png' } = Astro.props;
                     <!-- TODO - ADD BACK INDICATOR FOR LIVE EVENT -->
                     <!--
                         <span class="fa-stack small text-danger">
-                            <i class="fad fa-circle fa-stack-1x"></i>
+                            <i class="fa-duotone fa-circle fa-stack-1x"></i>
                             <i class="fas fa-circle-small fa-stack-1x"></i>
                         </span>
                      -->
@@ -59,11 +60,41 @@ const { title, description, image = '/social_img.png' } = Astro.props;
                     </div>
                 </li>
             </ul>
+            <hr class="d-md-none" />
+            <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
+            <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
+                Join nf-core
+            </a>
         </div>
-        <hr class="d-md-none" />
-        <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
-        <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
-            Join nf-core
-        </a>
     </div>
 </nav>
+
+<style lang="scss">
+    @import '../styles/_base.scss';
+
+    .site-nav {
+        padding: 0.2rem 1rem;
+        .navbar-brand {
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .navbar-nav > li > a {
+            margin-left: 1rem;
+            margin-right: 1rem;
+            transition: ease-in-out color 0.1s;
+        }
+
+        li .dropdown-menu {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border: 0;
+            margin-top: 3px;
+        }
+        .collapse.show li .dropdown-menu {
+            background-color: transparent;
+        }
+        .dropdown-divider {
+            border-color: $gray-400;
+        }
+    }
+</style>

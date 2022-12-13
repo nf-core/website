@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon';
+
+const { title, icon, icon_color, icon_dark, fontawesome, btn_txt, btn_href } = Astro.props;
+---
+
+<div class="card h-100 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">{title}</h5>
+        <div class="d-flex align-items-center">
+            <p class="card-text"><slot /></p>
+            {icon && <Icon name={icon} color={icon_color} class={(icon_dark && 'hide-dark') + ' ms-3'} />}
+            {icon_dark && <Icon name={icon_dark} color="white" class="hide-light ms-3" />}
+            <i class={fontawesome + ' fa-5x ms-3'}></i>
+        </div>
+        {
+            btn_txt && btn_href && (
+                <a href={btn_href} class="btn btn-sm btn-outline-success arrow-hover">
+                    <span>{btn_txt}</span>
+                </a>
+            )
+        }
+    </div>
+</div>
+
+<style>
+    p {
+        font-size: 0.9rem;
+    }
+</style>

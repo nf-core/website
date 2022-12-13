@@ -129,7 +129,7 @@ $(function () {
       '<div class="card-header d-flex justify-content-between align-items-center">' + filename + btn_group + '</div>';
     if (file_size > 10000000) {
       data =
-        '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
+        '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fa-duotone fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
       $('#file-preview').show();
       $('#file-preview').html(header + '<div class="card-body">' + data + '</div>');
       var el_offset = $('#file-preview').offset().top - 140;
@@ -147,7 +147,7 @@ $(function () {
         response.text().then(function (data) {
           if (['.bam', '.bai', '.gz', '.zip'].includes(extension)) {
             data =
-              '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
+              '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fa-duotone fa-exclamation-triangle"></i> No preview available for binary or compressed files.</div>';
           } else if (!['.html', '.pdf', '.png', '.jpg', '.jpeg', '.svg'].includes(extension)) {
             var lang = ['.json', '.yaml', '.yml'].includes(extension) ? extension.slice(1) : 'plaintext';
             data = '<pre><code class="language-' + lang + '">' + sanitize_html(data) + '</code></pre>';
@@ -459,7 +459,7 @@ $(function () {
             sanitize_html(data) +
             '" href="' +
             object2hrefvirt(s3exp_config.Bucket, data) +
-            '"><i class="fad fa-folder-open"></i> ..</a></div></div>'
+            '"><i class="fa-duotone fa-folder-open"></i> ..</a></div></div>'
           );
         }
       } else {
