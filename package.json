@@ -13,6 +13,7 @@
     "dependencies": {
         "@astrojs/react": "^1.2.2",
         "@astrojs/rss": "^1.0.3",
+        "@astrojs/svelte": "^1.0.2",
         "@fontsource/inter": "^4.5.14",
         "@fontsource/maven-pro": "^4.5.12",
         "@nanostores/react": "^0.4.0",
@@ -29,13 +30,17 @@
         "react": "^18.2.0",
         "react-bootstrap": "^2.6.0",
         "react-dom": "^18.2.0",
+        "svelte": "^3.55.0",
+        "sveltestrap": "^5.10.0",
         "timeago.js": "^4.0.2"
     },
     "devDependencies": {
         "@trivago/prettier-plugin-sort-imports": "^4.0.0",
         "@types/marked": "^4.0.7",
         "prettier": "^2.8.0",
+        "prettier": "^2.8.1",
         "prettier-plugin-astro": "^0.7.0",
+        "prettier-plugin-svelte": "^2.9.0",
         "sass": "^1.56.1"
     }
 }
