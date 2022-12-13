@@ -1,0 +1,40 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+
+const {
+    image,
+    title = SITE_TITLE,
+    subtitle = SITE_DESCRIPTION,
+    header_html,
+    md_github_url,
+    header_btn_url,
+    header_btn_text,
+    mainpage_container,
+    subfooter = false,
+} = Astro.props;
+---
+
+<BaseLayout image={image} title={title} subtitle={subtitle} md_github_url={md_github_url} subfooter={subfooter}>
+    <div class="mainpage">
+        <Header
+            title={title}
+            subtitle={subtitle}
+            header_html={header_html}
+            md_github_url={md_github_url}
+            header_btn_url={header_btn_url}
+            header_btn_text={header_btn_text}
+        />
+        {
+            mainpage_container || mainpage_container == null ? (
+                <div class="container main-content pt-5">
+                    <slot />
+                </div>
+            ) : (
+                <slot />
+            )
+        }
+    </div>
+</BaseLayout>
