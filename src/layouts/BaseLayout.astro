@@ -1,28 +1,17 @@
 ---
-import '@fontsource/maven-pro';
+import '@fontsource/maven-pro/600.css';
 import '@fontsource/inter';
 import '../styles/main.scss';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
 
 import BaseHead from '../components/BaseHead.astro';
 import Navbar from '../components/Navbar.astro';
-import Header from '../components/Header.astro';
 import SubFooter from '../components/SubFooter.astro';
 import Footer from '../components/Footer.astro';
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
-const {
-    image,
-    title = SITE_TITLE,
-    subtitle = SITE_DESCRIPTION,
-    header_html,
-    md_github_url,
-    header_btn_url,
-    header_btn_text,
-    mainpage_container,
-    subfooter = false,
-} = Astro.props;
+const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, subfooter = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -33,25 +22,7 @@ const {
 
     <body tabindex="0">
         <Navbar />
-        <div class="mainpage">
-            <Header
-                title={title}
-                subtitle={subtitle}
-                header_html={header_html}
-                md_github_url={md_github_url}
-                header_btn_url={header_btn_url}
-                header_btn_text={header_btn_text}
-            />
-            {
-                mainpage_container || mainpage_container == null ? (
-                    <div class="container main-content pt-5">
-                        <slot />
-                    </div>
-                ) : (
-                    <slot />
-                )
-            }
-        </div>
+        <slot />
         {subfooter && <SubFooter md_github_url={md_github_url} />}
         <Footer />
 

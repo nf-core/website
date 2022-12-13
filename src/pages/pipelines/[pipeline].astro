@@ -1,8 +1,8 @@
 ---
-import octokit from "../../components/oktokit";
-import Markdown from "../../components/Markdown.astro";
-import TriangleHeading from "../../components/TriangleHeading.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import octokit from '../../components/oktokit';
+import Markdown from '../../components/Markdown.astro';
+import TriangleHeading from '../../components/TriangleHeading.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import pipeline_names from '../../../public/pipeline_names.json';
 export function getStaticPaths() {
     // go through all the pipelines and create a page for each one
@@ -13,11 +13,6 @@ export function getStaticPaths() {
 }
 const { pipeline } = Astro.params;
 var description = '';
-
-    // const readme = await octokit.request('GET /repos/{owner}/{repo}/readme{?ref}', {
-    // owner: 'nf-core',
-    // repo: pipeline,
-    // })
 ---
 <BaseLayout>
     <Markdown name={pipeline}></Markdown>
