@@ -12,6 +12,7 @@ export function getStaticPaths() {
 const { pipeline } = Astro.params;
 var description = 'TODO: fetch description';
 ---
-<PageLayout title={"nf-core/"+pipeline} subtitle={description}>
-    <Markdown name={pipeline}></Markdown>
+
+<PageLayout title={'nf-core/' + pipeline} subtitle={description}>
+    <Markdown name={pipeline} />
 </PageLayout>

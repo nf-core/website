@@ -1,23 +1,35 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import Header from '../components/Header.astro';
-
+import Header from '@components/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
-const {
-    image,
+let {
     title = SITE_TITLE,
     subtitle = SITE_DESCRIPTION,
+    image,
     header_html,
     md_github_url,
     header_btn_url,
     header_btn_text,
     mainpage_container,
     subfooter = false,
+    frontmatter,
 } = Astro.props;
+
+if (frontmatter) {
+    title = frontmatter.title || title;
+    subtitle = frontmatter.subtitle || subtitle;
+    image = frontmatter.image || image;
+    header_html = frontmatter.header_html || header_html;
+    md_github_url = frontmatter.md_github_url || md_github_url;
+    header_btn_url = frontmatter.header_btn_url || header_btn_url;
+    header_btn_text = frontmatter.header_btn_text || header_btn_text;
+    mainpage_container = frontmatter.mainpage_container || mainpage_container;
+    subfooter = frontmatter.subfooter || subfooter;
+}
 ---
 
-<BaseLayout image={image} title={title} subtitle={subtitle} md_github_url={md_github_url} subfooter={subfooter}>
+<BaseLayout title={title} subtitle={subtitle} image={image} md_github_url={md_github_url} subfooter={subfooter}>
     <div class="mainpage">
         <Header
             title={title}

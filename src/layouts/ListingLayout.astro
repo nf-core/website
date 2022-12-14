@@ -1,7 +1,7 @@
 ---
-import FilterBar from '../components/FilterBar.svelte';
+import FilterBar from '@components/FilterBar.svelte';
 
-import Listing from '../components/Listing.svelte';
+import Listing from '@components/Listing.svelte';
 import PageLayout from './PageLayout.astro';
 
 export interface Props {
@@ -10,14 +10,13 @@ export interface Props {
     description: string;
 }
 
-const {input, title, description, filter, displayStyle, sortBy }= Astro.props;
+const { input, title, description, filter, displayStyle, sortBy } = Astro.props;
 ---
 
 <PageLayout title={title} subtitle={description}>
-    <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible/>
-    <Listing pipelines={input} client:visible/>
+    <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible />
+    <Listing pipelines={input} client:visible />
     <slot />
 </PageLayout>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
