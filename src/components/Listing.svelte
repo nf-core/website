@@ -23,10 +23,10 @@
     };
 
     const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 0 && pipeline.archived !== true) {
+        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 0 && !pipeline.archived ) {
             return true;
         }
-        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 0) {
+        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 0 && !pipeline.archived) {
             return true;
         }
         if ($CurrentFilter.includes('Archived') && pipeline.archived === true) {
