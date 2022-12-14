@@ -324,6 +324,9 @@ section:before {
 code,
 .code {
   font-family: $font-family-monospace;
+}
+code:not(pre code),
+.code:not(pre .code) {
   background-color: rgba($gray-200, 0.75);
   border-radius: 3px;
   padding: 2px 6px;
@@ -335,9 +338,6 @@ code,
   .code {
     font-size: 10px;
   }
-}
-bg-code {
-  background-color: $gray-800;
 }
 .main-content pre {
   border-radius: 3px;
