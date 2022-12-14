@@ -1,10 +1,7 @@
 ---
-import octokit from '../../components/oktokit';
-import Markdown from '../../components/Markdown.astro';
-import TriangleHeading from '../../components/TriangleHeading.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import pipeline_names from '../../../public/pipeline_names.json';
-import PageLayout from '../../layouts/PageLayout.astro';
+import Markdown from '../components/Markdown.astro';
+import pipeline_names from '../../public/pipeline_names.json';
+import PageLayout from '../layouts/PageLayout.astro';
 export function getStaticPaths() {
     // go through all the pipelines and create a page for each one
     const paths = pipeline_names.pipeline.map((pipeline_name) => {
