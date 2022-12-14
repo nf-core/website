@@ -1,8 +1,7 @@
 // https://astro.build/config
-
-import { defineConfig } from 'astro/config';
-import svelte from "@astrojs/svelte";
+import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
+import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,5 +9,8 @@ export default defineConfig({
     integrations: [svelte()],
     vite: {
         plugins: [yaml()],
+        ssr: {
+            noExternal: ['@popperjs/core'],
+        },
     },
 });

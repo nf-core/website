@@ -1,7 +1,8 @@
 ---
-import FilterBar from '../components/FilterBar.jsx';
-import BaseLayout from './BaseLayout.astro';
-import Listing from '../components/Listing.jsx';
+import FilterBar from '../components/FilterBar.svelte';
+
+import Listing from '../components/Listing.svelte';
+import PageLayout from './PageLayout.astro';
 
 export interface Props {
     input: object[];
@@ -9,14 +10,14 @@ export interface Props {
     description: string;
 }
 
-const {input, title, description }= Astro.props;
+const {input, title, description,filter , displayStyle, sortBy }= Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
-    <FilterBar input={input} client:visible/>
-    <Listing input={input} client:visible/>
+<PageLayout title={title} subtitle={description}>
+    <FilterBar input={input} filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible/>
+    <Listing pipelines={input} client:visible/>
     <slot />
-</BaseLayout>
+</PageLayout>
 
 <style lang="scss">
 </style>
