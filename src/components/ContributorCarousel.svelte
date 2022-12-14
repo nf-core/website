@@ -1,0 +1,109 @@
+<script>
+    import { onMount } from 'svelte';
+    import contributors_yml from '../config/contributors.yaml';
+    export let contributors = contributors_yml.contributors
+        .filter((contributor) => contributor.image_fn)
+        .sort((a, b) => 0.5 - Math.random())
+        .slice(0, 5);
+
+    // Homepage contributor images fading in and out
+    // TODO: No animation yet
+    onMount(() => {
+        function shuffle_contributors() {
+            contributors = [...contributors.slice(1, contributors.length), contributors[0]];
+            setTimeout(function () {
+                shuffle_contributors();
+            }, 1000);
+        }
+        shuffle_contributors();
+    });
+</script>
+
+<div id="community" class="homepage-usedby">
+    <div class="container py-5">
+        <h2>
+            <a class="btn btn-success float-end d-none d-md-inline" href="/community#organisations">
+                See a complete list &raquo;
+            </a>
+            <a href="/community#organisations">Used by groups all over the world</a>
+        </h2>
+        <p>The nf-core community is spread all over the globe and includes a large number of contributing users.</p>
+        <p>
+            <a class="btn btn-success d-inline d-md-none" href="/community#organisations">
+                See a complete list &raquo;
+            </a>
+        </p>
+
+        <div class="homepage_contrib_logos">
+            {#each contributors as contributor (contributor)}
+                <a href="/community#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}">
+                    <img
+                        src="/images/contributors/white/{contributor.image_fn}"
+                        class="my-2 my-lg-3 mx-2"
+                        data-bs-placement="bottom"
+                        data-bs-toggle="tooltip"
+                        title={contributor.full_name}
+                        alt={contributor.full_name}
+                    />
+                </a>
+            {/each}
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+    @import '../styles/_base.scss';
+
+    .homepage-usedby {
+        position: relative;
+        display: block;
+        color: $white;
+        z-index: 0;
+        h2,
+        a {
+            color: $white;
+            text-decoration: none;
+        }
+        p,
+        p a {
+            color: rgba($white, 0.8);
+        }
+        &::before {
+            content: '';
+            background: $black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -2;
+        }
+        &::after {
+            content: '';
+            background: url('/flowcell.jpg') no-repeat;
+            background-attachment: fixed;
+            opacity: 0.8;
+            background-size: cover;
+            background-position: right top;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+        }
+        img {
+            height: 80px;
+        }
+        @media (max-width: 576px) {
+            img {
+                height: 50px;
+                margin: 0.5rem 1rem 0.5rem 0;
+            }
+        }
+    }
+    .homepage_contrib_logos {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+</style>
