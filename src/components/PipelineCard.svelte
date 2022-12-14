@@ -24,11 +24,11 @@
         <h2 class="mb-0 d-flex justify-content-between align-items-center">
             <a {href}>{name}
             {#if archived}
-                <i class="fa-solid fa-archive text-warning" />
+                <i class="fa-solid fa-archive text-info" />
             {:else if released}
                 <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip"/>
             {:else}
-                <i class="fa-solid fa-wrench text-danger" />
+                <i class="fa-solid fa-wrench text-warning" />
             {/if}
             </a>
             <small class="gh-stats text-small">
