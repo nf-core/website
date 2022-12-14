@@ -1,0 +1,23 @@
+---
+import FilterBar from '../components/FilterBar.svelte';
+
+import Listing from '../components/Listing.svelte';
+import PageLayout from './PageLayout.astro';
+
+export interface Props {
+    input: object[];
+    title: string;
+    description: string;
+}
+
+const {input, title, description,filter , displayStyle, sortBy }= Astro.props;
+---
+
+<PageLayout title={title} subtitle={description}>
+    <FilterBar input={input} filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible/>
+    <Listing pipelines={input} client:visible/>
+    <slot />
+</PageLayout>
+
+<style lang="scss">
+</style>
