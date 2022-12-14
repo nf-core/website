@@ -60,25 +60,23 @@
 </div>
 
 <style lang="scss">
-    @import '../styles/_base.scss';
-
     .homepage-usedby {
         position: relative;
         display: block;
-        color: $white;
+        color: #ffffff;
         z-index: 0;
         h2,
         a {
-            color: $white;
+            color: #ffffff;
             text-decoration: none;
         }
         p,
         p a {
-            color: rgba($white, 0.8);
+            color: rgba(255, 255, 255, 0.8);
         }
         &::before {
             content: '';
-            background: $black;
+            background: #000;
             position: absolute;
             top: 0;
             left: 0;
