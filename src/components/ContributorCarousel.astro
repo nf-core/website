@@ -39,7 +39,7 @@ const contributors = contributors_yml.contributors.sort((a, b) => 0.5 - Math.ran
     </div>
 </div>
 
-<script>
+<script client:visible>
     // Homepage contributor images fading in and out
     var h_contrib_imgs = document.querySelectorAll('.homepage_contrib_logos a');
     if (h_contrib_imgs.length > 0) {
