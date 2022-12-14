@@ -1,19 +1,23 @@
 <script>
     import { onMount } from 'svelte';
+    import { flip } from 'svelte/animate';
+    import { fade } from 'svelte/transition';
     import contributors_yml from '../config/contributors.yaml';
     export let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
         .sort((a, b) => 0.5 - Math.random())
-        .slice(0, 5);
+        .slice(0, 10);
 
     // Homepage contributor images fading in and out
     // TODO: No animation yet
     onMount(() => {
         function shuffle_contributors() {
-            contributors = [...contributors.slice(1, contributors.length), contributors[0]];
+            let removed_contrib = contributors.shift();
+            contributors = contributors; // trigger update
             setTimeout(function () {
+                contributors.push(removed_contrib);
                 shuffle_contributors();
-            }, 1000);
+            }, 3000);
         }
         shuffle_contributors();
     });
@@ -36,7 +40,11 @@
 
         <div class="homepage_contrib_logos">
             {#each contributors as contributor (contributor)}
-                <a href="/community#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}">
+                <a
+                    href="/community#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}"
+                    transition:fade={{ duration: 500 }}
+                    animate:flip={{ duration: 500 }}
+                >
                     <img
                         src="/images/contributors/white/{contributor.image_fn}"
                         class="my-2 my-lg-3 mx-2"
@@ -105,5 +113,8 @@
     .homepage_contrib_logos {
         overflow: hidden;
         white-space: nowrap;
+        a {
+            display: inline-block;
+        }
     }
 </style>
