@@ -1,31 +1,47 @@
 <script>
     export let pipelines = [];
-import PipelineCard from './PipelineCard.svelte';
-import { CurrentFilter, SortBy, DisplayStyle } from './filter.js';
+    import PipelineCard from './PipelineCard.svelte';
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './filter.js';
 
-import { Card, CardHeader, CardBody, CardFooter} from 'sveltestrap';
-let displayStyle = 'grid'
+    import { Card, CardHeader, CardBody, CardFooter } from 'sveltestrap';
+    let displayStyle = 'grid';
 
-const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.includes('released') && pipeline.releases.length > 0 && pipeline.archived !== true) {
+    const searchPipelines = (pipeline) => {
+        if ($SearchQuery === '') {
             return true;
         }
-        if ($CurrentFilter.includes('under_development') && pipeline.releases.length === 0) {
+        if (pipeline.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
             return true;
         }
-        if ($CurrentFilter.includes('archived') && pipeline.archived === true) {
+        if (pipeline.description && pipeline.description.toLowerCase().includes($SearchQuery.toLowerCase())) {
+            return true;
+        }
+        if (pipeline.topics.some((topic) => topic.toLowerCase().includes($SearchQuery.toLowerCase()))) {
+            return true;
+        }
+        return false;
+    };
+
+    const filterPipelines = (pipeline) => {
+        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 0 && !pipeline.archived ) {
+            return true;
+        }
+        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 0 && !pipeline.archived) {
+            return true;
+        }
+        if ($CurrentFilter.includes('Archived') && pipeline.archived === true) {
             return true;
         }
         return false;
     };
 
     const sortPipelines = (a, b) => {
-        if ($SortBy === 'alphabetical') {
+        if ($SortBy === 'Alphabetical') {
             return a.name.localeCompare(b.name);
-        } else if ($SortBy === 'stars') {
+        } else if ($SortBy === 'Stars') {
             return b.stargazers_count - a.stargazers_count;
-        } else if ($SortBy === 'last_release') {
-            // handle case where pipeline has no releases
+        } else if ($SortBy === 'Last release') {
+            // handle case where a pipeline has no releases
             if (a.releases.length === 0) {
                 return 1;
             }
@@ -38,31 +54,69 @@ const filterPipelines = (pipeline) => {
             );
         }
     };
+    function searchFilterSortPipelines(pipelines) {
+        return pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
+    }
+    SortBy.subscribe(() => {
+        filteredPipelines = searchFilterSortPipelines(pipelines);
+    });
+    CurrentFilter.subscribe(() => {
+        filteredPipelines = searchFilterSortPipelines(pipelines);
+    });
+    SearchQuery.subscribe(() => {
+        filteredPipelines = searchFilterSortPipelines(pipelines);
+    });
 
-    $: filteredPipelines = pipelines.filter(filterPipelines).sort(sortPipelines);
-// A react component to display a grid of pipelines
+    $: filteredPipelines = searchFilterSortPipelines(pipelines);
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
-    {#if displayStyle=== 'grid'}
-        {#each pipelines as pipeline}
-            <!-- <Card class="w-25 m-2">
-                <CardHeader>
-                    {pipeline.name}
-                </CardHeader>
-                <CardBody>
-                   {pipeline.description}
-                </CardBody>
-
-            </Card> -->
- <PipelineCard key={pipeline.name} pipeline={pipeline} />
+    {#if $DisplayStyle === 'grid'}
+        {#each filteredPipelines as pipeline (pipeline.name)}
+            <PipelineCard {pipeline} />
         {/each}
-    {:else}
-        {#each filteredPipelines as pipeline}
-            <!-- <PipelineCard key={pipeline.name} pipeline={pipeline} /> -->
-        {/each}
+    {:else if $DisplayStyle === 'table'}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Stars</th>
+                    <th scope="col">Last Release</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#each filteredPipelines as pipeline}
+                    <tr>
+                        <td>
+                            <a href={pipeline.html_url} target="_blank">{pipeline.name}</a>
+                        </td>
+                        <td>
+                            {pipeline.description}
+                        </td>
+                        <td>
+                            {pipeline.archived
+                                ? 'Archived'
+                                : pipeline.releases.length > 0
+                                ? 'Released'
+                                : 'Under Development'}
+                        </td>
+                        <td class="text-end">
+                            {pipeline.stargazers_count}
+                        </td>
+                        <td class="text-end">
+                            {pipeline.releases.length > 0
+                                ? pipeline.releases[pipeline.releases.length - 1].tag_name
+                                : '-'}
+                        </td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
     {/if}
 </div>
+
 <style>
     .card {
         width: 300px;

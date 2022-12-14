@@ -10,11 +10,11 @@ export interface Props {
     description: string;
 }
 
-const {input, title, description,filter , displayStyle, sortBy }= Astro.props;
+const {input, title, description, filter, displayStyle, sortBy }= Astro.props;
 ---
 
 <PageLayout title={title} subtitle={description}>
-    <FilterBar input={input} filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible/>
+    <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible/>
     <Listing pipelines={input} client:visible/>
     <slot />
 </PageLayout>
