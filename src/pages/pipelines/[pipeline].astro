@@ -1,10 +1,10 @@
 ---
-import octokit from '../../components/oktokit';
-import Markdown from '../../components/Markdown.astro';
-import TriangleHeading from '../../components/TriangleHeading.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import octokit from '@components/oktokit';
+import Markdown from '@components/Markdown.astro';
+import TriangleHeading from '@components/TriangleHeading.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 import pipeline_names from '../../../public/pipeline_names.json';
-import PageLayout from '../../layouts/PageLayout.astro';
+import PageLayout from '@layouts/PageLayout.astro';
 export function getStaticPaths() {
     // go through all the pipelines and create a page for each one
     const paths = pipeline_names.pipeline.map((pipeline_name) => {
@@ -15,6 +15,7 @@ export function getStaticPaths() {
 const { pipeline } = Astro.params;
 var description = 'TODO: fetch description';
 ---
-<PageLayout title={"nf-core/"+pipeline} subtitle={description}>
-    <Markdown name={pipeline}></Markdown>
+
+<PageLayout title={'nf-core/' + pipeline} subtitle={description}>
+    <Markdown name={pipeline} />
 </PageLayout>

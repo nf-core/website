@@ -1,11 +1,10 @@
 ---
 import pipelines_json from '../../../public/pipelines.json';
-import ListingLayout from '../../layouts/ListingLayout.astro';
+import ListingLayout from '@layouts/ListingLayout.astro';
 
 const pipelines = pipelines_json.remote_workflows;
 const title = 'Pipelines';
 const description = `We currently have ${pipelines.length} pipelines available.`;
-
 
 var num_archived = 0;
 var sorted_by = 0;
@@ -16,12 +15,9 @@ var display_as = 0;
     title={title}
     description={description}
     input={pipelines}
-    filter={["Released","Under development","Archived"]}
-    sortBy={["Last release", "Alphabetically", "Stars"]}
-    displayStyle={["grid","table"]}
->
-</ListingLayout>
+    filter={['Released', 'Under development', 'Archived']}
+    sortBy={['Last release', 'Alphabetically', 'Stars']}
+    displayStyle={['grid', 'table']}
+/>
 
-<style>
-
-</style>
+<style></style>
