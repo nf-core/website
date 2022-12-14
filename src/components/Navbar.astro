@@ -28,11 +28,16 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
                 <li class="nav-item p-1">
                     <a class="nav-link" href="/pipelines">Pipelines</a>
                 </li>
-                <li class="nav-item p-1">
-                    <a class="nav-link" href="/modules">Modules</a>
-                </li>
-                <li class="nav-item p-1">
-                    <a class="nav-link" href="/tools">Tools</a>
+                <li class="nav-item p-1 dropdown">
+                    <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">
+                        Resources
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/configs">Shared Configs</a></li>
+                        <li><a class="dropdown-item" href="/tools">Tools</a></li>
+                        <li><a class="dropdown-item" href="/modules">Modules</a></li>
+                        <li><a class="dropdown-item" href="/subworkflows">Subworkflows</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item p-1">
                     <a class="nav-link" href="/docs">Docs</a>
@@ -47,17 +52,22 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
                      -->
                     <a class="nav-link" href="/events">Events</a>
                 </li>
-                <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/about">About nf-core</a>
-                        <a class="dropdown-item" href="/community">Community</a>
-                        <a class="dropdown-item" href="/stats">Statistics</a>
-                        <a class="dropdown-item" href="/publications">Publications</a>
-                        <a class="dropdown-item" href="/mentorships">Mentorships</a>
-                        <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
-                        <a class="dropdown-item" href="/join">Join nf-core</a>
-                    </div>
+                <li class="nav-item dropdown p-1">
+                    <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown"> About</a>
+                    <ul class="dropdown-menu">
+                        <li><span class="dropdown-header">Community</span></li>
+                        <li><a class="dropdown-item" href="/community">Blog</a></li>
+                        <li><a class="dropdown-item" href="/community">Contributors</a></li>
+                        <li><a class="dropdown-item" href="/about">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/code_of_conduct">Code of conduct</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Initiatives</span></li>
+                        <li><a class="dropdown-item" href="/mentorships">Mentorships</a></li>
+                        <li><a class="dropdown-item" href="/publications">Publications</a></li>
+                        <li><a class="dropdown-item" href="/stats">Statistics</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="/join">Join nf-core</a></li>
+                    </ul>
                 </li>
             </ul>
             <hr class="d-md-none" />
@@ -87,8 +97,9 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
         li .dropdown-menu {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
-            border: 0;
-            margin-top: 3px;
+            border-top: 0;
+            margin-top: 5px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
         .collapse.show li .dropdown-menu {
             background-color: transparent;
