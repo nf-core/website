@@ -542,7 +542,7 @@ params {
 - Specifying an `--igenomes_base` path in your execution command.
 
 ```bash
-nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenomes_base <path>/<to>/<data>/igenomes
 ```
 
 - Specifying the `igenomes_base` parameter in a `params` file provided with `-params-file` in `yaml` or `json` format.
