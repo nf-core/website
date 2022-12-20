@@ -5,7 +5,7 @@ subtitle: How reference genomes are handled in nf-core
 
 Many nf-core pipelines need a reference genome for alignment, annotation, or similar purposes.
 
-## Illumina iGenomes
+## Illumina AWS iGenomes
 
 > :warning: The transcriptome and GTF files in iGenomes are vastly out of date with respect to current annotations from Ensembl e.g. human iGenomes annotations are from Ensembl release 75, while the current Ensembl release is 108. Please consider downloading and using a more updated version of your reference genome as outlined in the next section.
 
@@ -20,8 +20,6 @@ AWS iGenomes is hosted by Amazon as part of the [Registry of Open Data](https://
 All AWS iGenomes paths are specified in pipelines that support them in [`conf/igenomes.config`](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/igenomes.config#L14-L26). By default, the pipeline will automatically download the required reference files when you run the pipeline and supply an appropriate genome key (eg. `--genome GRCh37`). The pipeline will only download what it requires e.g. the nf-core/rnaseq pipeline will download the `star` indices speficied in `conf/igenomes.config` but not the `bismark` index because that is something specific to the nf-core/methylseq pipeline. Genome asset related parameters required by nf-core pipelines are typically defined in the [main script](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/main.nf#L20-L28) for DSL2 pipelines. When using AWS iGenomes, for convenience, when a reference asset is available for direct download, these parameters are essentially auto-populated based on what is defined in `conf/igenomes.config` when you provide the `--genome` parameter. Downloading reference genome files takes time and bandwidth so, if possible, we recommend storing a local copy of your relevant iGenomes references which is outlined [here](https://ewels.github.io/AWS-iGenomes/).
 
 To use a **local** version of iGenomes, the variable `params.igenomes_base` must be set to the path of the local iGenomes folder to reflect what is defined in [`conf/igenomes.config`](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/igenomes.config#L14-L26). Additional information on how to set the local `--igenomes_base` parameter can be found [here](troubleshooting.md#using-a-local-version-of-igenomes).
-
-############ add note about GRCh37
 
 ## Custom genomes
 
@@ -39,7 +37,7 @@ wget -L ftp://ftp.ensembl.org/pub/release-$VERSION/gtf/homo_sapiens/Homo_sapiens
 
 Most genomics nf-core pipelines are able to start from just a FASTA and GTF file and create any downstream reference assets as part of the pipeline execution e.g. genome indices, intervals files etc. To avoid having to recreate these assets every time you run the pipeline you can use the `--save_reference` parameter that will save the indices, interval files etc in the results directory for you to move and store in a more central location for re-use with future pipeline runs. Using nf-core/rnaseq as an example [see docs](https://nf-co.re/rnaseq/output#reference-genome-files): 
 
-```
+```bash
 nextflow run \
     nf-core/rnaseq \
     --input samplesheet.csv \
@@ -51,7 +49,7 @@ nextflow run \
 
 Any downstream reference assets will be published in the results folder. For example, if you ran the nf-core/rnaseq pipeline in the step above with default options then the STAR index will be created and stored in the `<RESULTS_DIR>/genome/index/star` folder. Once you have moved the reference files to a central location so they are persistently available you can remove the `--save_reference` parameter and now explicitly override the relevant parameters via the CLI or a `-params-file` in 'yaml' format. This will save having to re-create the genome indices and other assets over and over again which will be cost and time expensive.
 
-```
+```bash
 nextflow run \
     nf-core/rnaseq \
     --input samplesheet.csv \
