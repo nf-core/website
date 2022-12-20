@@ -35,7 +35,7 @@ wget -L ftp://ftp.ensembl.org/pub/release-$VERSION/fasta/homo_sapiens/dna/Homo_s
 wget -L ftp://ftp.ensembl.org/pub/release-$VERSION/gtf/homo_sapiens/Homo_sapiens.GRCh38.$VERSION.gtf.gz
 ```
 
-Most genomics nf-core pipelines are able to start from just a FASTA and GTF file and create any downstream reference assets as part of the pipeline execution e.g. genome indices, intervals files etc. To avoid having to recreate these assets every time you run the pipeline you can use the `--save_reference` parameter that will save the indices, interval files etc in the results directory for you to move and store in a more central location for re-use with future pipeline runs. Using nf-core/rnaseq as an example [see docs](https://nf-co.re/rnaseq/output#reference-genome-files): 
+Most genomics nf-core pipelines are able to start from just a FASTA and GTF file and create any downstream reference assets as part of the pipeline execution e.g. genome indices, intervals files etc. To avoid having to recreate these assets every time you run the pipeline you can use the `--save_reference` parameter that will save the indices, interval files etc in the results directory for you to move and store in a more central location for re-use with future pipeline runs. Using nf-core/rnaseq as an example [see docs](https://nf-co.re/rnaseq/output#reference-genome-files):
 
 ```bash
 nextflow run \
@@ -44,7 +44,7 @@ nextflow run \
     --fasta Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz \
     --gtf Homo_sapiens.GRCh38.108.gtf.gz \
     --save_reference \
-    <OTHER_PARAMETERS> 
+    <OTHER_PARAMETERS>
 ```
 
 Any downstream reference assets will be published in the results folder. For example, if you ran the nf-core/rnaseq pipeline in the step above with default options then the STAR index will be created and stored in the `<RESULTS_DIR>/genome/index/star` folder. Once you have moved the reference files to a central location so they are persistently available you can remove the `--save_reference` parameter and now explicitly override the relevant parameters via the CLI or a `-params-file` in 'yaml' format. This will save having to re-create the genome indices and other assets over and over again which will be cost and time expensive.
@@ -57,7 +57,7 @@ nextflow run \
     --gtf Homo_sapiens.GRCh38.108.gtf.gz \
     --star_index /path/to/moved/star/directory/ \
     --gene_bed /path/to/moved/genes.bed \
-    <OTHER_PARAMETERS> 
+    <OTHER_PARAMETERS>
 ```
 
 ## Using Refgenie for genome management
