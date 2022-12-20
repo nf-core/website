@@ -21,6 +21,18 @@ All AWS iGenomes paths are specified in pipelines that support them in [`conf/ig
 
 To use a **local** version of iGenomes, the variable `params.igenomes_base` must be set to the path of the local iGenomes folder to reflect what is defined in [`conf/igenomes.config`](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/igenomes.config#L14-L26). Additional information on how to set the local `--igenomes_base` parameter can be found [here](troubleshooting.md#using-a-local-version-of-igenomes).
 
+To get the version of the annotation used by AWS iGenomes you can download the `README` file specified in the [`conf/igenomes.config`](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/igenomes.config#L22) via the AWS CLI e.g.
+
+```bash
+$ aws s3 cp --no-sign-request s3://ngi-igenomes/igenomes/Homo_sapiens/Ensembl/GRCh37/Annotation/README.txt .
+download: s3://ngi-igenomes/igenomes/Homo_sapiens/Ensembl/GRCh37/Annotation/README.txt to ./README.txt
+
+$ cat README.txt
+The contents of the annotation directories were downloaded from Ensembl on: July 17, 2015.
+
+Gene annotation files were downloaded from Ensembl release 75. SmallRNA annotation files were downloaded from miRBase release 21.
+```
+
 ## Custom genomes
 
 As mentioned in the section above, most of the required genome assets will be defined in the [main script](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/main.nf#L20-L28) for DSL2 nf-core pipelines. If you are unable to use the AWS iGenomes references, you can still supply reference genome parameters on the command line or via a `-params-file` in `yaml` or `json` format.
