@@ -9,7 +9,7 @@ Many nf-core pipelines need a reference genome for alignment, annotation, or sim
 
 > :warning: The transcriptome and GTF files in iGenomes are vastly out of date with respect to current annotations from Ensembl e.g. human iGenomes annotations are from Ensembl release 75, while the current Ensembl release is 108. Please consider downloading and using a more updated version of your reference genome as outlined in the next section.
 
-> :warning: The GRCh38 iGenomes assembly is from the NCBI and not Ensembl and as such there are some discrepancies in the way that the annotation is defined that may cause problems when running certain pipelines e.g. [nf-core/rnaseq#460](https://github.com/nf-core/rnaseq/issues/460). If you would like to use the latest, soft-masked Ensembl assembly for GRCh38 instead please see the next section.
+> :warning: The GRCh38 iGenomes assembly is from the NCBI and not Ensembl and as such there are some discrepancies in the way that the annotation is defined that may cause problems when running certain pipelines e.g. [nf-core/rnaseq#460](https://github.com/nf-core/rnaseq/issues/460). If you would like to use the latest soft-masked Ensembl assembly for GRCh38 instead please see the next section.
 
 To make the use of reference genomes easier, Illumina has developed a centralised resource called [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html).
 The most commonly used reference genome files are organised in a consistent structure for multiple genomes.
