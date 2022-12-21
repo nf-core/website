@@ -1,0 +1,23 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import path from 'path';
+
+const events = await Astro.glob('../../events/**/*.md');
+console.log(events[12].file);
+// events.map((event) => {
+//     console.log(event.file.split('/').slice(3).join('/').replace('.md', ''));
+// });
+console.log(path.relative('src/', events[12].file));
+---
+
+<PageLayout>
+    <ul>
+        {
+            events.map((event) => (
+                <li>
+                    <a href={path.relative('src/events/', event.file)}>{event.frontmatter.title}</a>
+                </li>
+            ))
+        }
+    </ul>
+</PageLayout>
