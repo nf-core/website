@@ -90,6 +90,7 @@ conda install -c bioconda nf-core
 ```
 
 To update the package you can run the following command
+
 ```bash
 conda update nf-core
 ```
