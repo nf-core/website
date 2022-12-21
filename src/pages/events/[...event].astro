@@ -1,0 +1,23 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import path from 'path';
+
+export async function getStaticPaths() {
+    const events = await Astro.glob('../../events/**/*.md');
+    console.log('here_________________');
+
+    return events.map((event) => ({
+        params: {
+            event: path.relative('src/events/', event.file).replace(/\.md$/, ''),
+        },
+        props: {
+            event,
+        },
+    }));
+}
+const { Content } = Astro.props.event;
+---
+
+<PageLayout>
+    <Content />
+</PageLayout>
