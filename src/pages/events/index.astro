@@ -2,21 +2,90 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import path from 'path';
 
-const events = await Astro.glob('../../events/**/*.md');
-console.log(events[12].file);
+const event_entries = await Astro.glob('../../events/**/*.md');
+let events = [];
 // events.map((event) => {
 //     console.log(event.file.split('/').slice(3).join('/').replace('.md', ''));
 // });
-console.log(path.relative('src/', events[12].file));
+const event_md = event_entries.map((event_entry) => {
+    // check for CET and CEST as timezone
+    console.log(event_entry.frontmatter);
+    let start_time = new Date(
+        `${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`
+    ).toLocaleString('en-US', { timeZone: 'Europe/Berlin' });
+    start_time = event_entry.frontmatter.start_time;
+    if (event_entry.frontmatter.start_time.includes('CET') || event_entry.frontmatter.start_time.includes('CEST')) {
+        start_time = event_entry.frontmatter.start_time.replace('CET', '').replace('CEST', '');
+        start_time;
+        // event_entry.frontmatter.start_time = event_entry.frontmatter.start_time.replace('CET', '').replace('CEST', '');
+        //     event_entry.frontmatter.start_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
+        // }
+        // if (event_entry.frontmatter.end_time.includes('CET') || event_entry.frontmatter.end_time.includes('CEST')) {
+        //     event_entry.frontmatter.end_time = event_entry.frontmatter.end_time.replace('CET', '').replace('CEST', '');
+        //     event_entry.frontmatter.end_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.end_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
+        // }
+    }
+});
+// sort events into current, past, and future
+event_entries.map((event_entry, i) => {
+    // check for CET and CEST as timezone
+    console.log(event_entry.frontmatter);
+    event[i].start_time = new Date(
+        `${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`
+    ).toLocaleString('en-US', { timeZone: 'Europe/Berlin' });
+    // if (event_entry.frontmatter.start_time.includes('CET') || event_entry.frontmatter.start_time.includes('CEST')) {
+    // event_entry.frontmatter.start_time = event_entry.frontmatter.start_time.replace('CET', '').replace('CEST', '');
+    //     event_entry.frontmatter.start_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
+    // }
+    // if (event_entry.frontmatter.end_time.includes('CET') || event_entry.frontmatter.end_time.includes('CEST')) {
+    //     event_entry.frontmatter.end_time = event_entry.frontmatter.end_time.replace('CET', '').replace('CEST', '');
+    //     event_entry.frontmatter.end_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.end_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
+    // }
+});
+
+const futureEvents = event_entries.filter((event_entry) => {
+    const today = new Date();
+    // combine date and time strings
+    const eventDate = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`);
+    // console.log(eventDate);
+    return eventDate > today;
+});
+
+const currentEvents = event_entries.filter((event_entry) => {
+    const today = new Date();
+
+    // combine date and time strings
+    const eventDate = new Date(`${event_entry.frontmatter.date} ${event_entry.frontmatter.time}`);
+    return eventDate < today;
+});
+console.log(event_entries[14].getHeadings());
+const event_type_classes = {
+    bytesize: 'success',
+    hackathon: 'primary',
+    poster: 'danger',
+    talk: 'success',
+    tutorial: 'info',
+    training: 'warning',
+};
+const event_type_icons = {
+    bytesize: 'fas fa-apple-core',
+    hackathon: 'fas fa-laptop-code',
+    poster: 'far fa-image',
+    talk: 'fas fa-presentation',
+    tutorial: 'fas fa-graduation-cap',
+    training: 'fas fa-chalkboard-teacher',
+};
 ---
 
 <PageLayout>
     <ul>
         {
-            events.map((event) => (
-                <li>
-                    <a href={path.relative('src/events/', event.file)}>{event.frontmatter.title}</a>
-                </li>
+            event_entries.reverse().map((event_entry) => (
+                <div class="card">
+                    <a href={path.relative('src/', event_entry.file).replace(/\.md$/, '')}>
+                        {event_entry.frontmatter.title}
+                    </a>
+                </div>
             ))
         }
     </ul>

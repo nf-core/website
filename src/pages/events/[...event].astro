@@ -4,8 +4,6 @@ import path from 'path';
 
 export async function getStaticPaths() {
     const events = await Astro.glob('../../events/**/*.md');
-    console.log('here_________________');
-
     return events.map((event) => ({
         params: {
             event: path.relative('src/events/', event.file).replace(/\.md$/, ''),
@@ -16,6 +14,8 @@ export async function getStaticPaths() {
     }));
 }
 const { Content } = Astro.props.event;
+console.log(Content);
+const headings = Content;
 ---
 
 <PageLayout>
