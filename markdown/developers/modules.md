@@ -516,7 +516,7 @@ process {
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
+5. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
