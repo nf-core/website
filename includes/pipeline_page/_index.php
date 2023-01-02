@@ -60,11 +60,10 @@ if (count($pipeline->releases) > 0) {
     $release_url = $pipeline->releases[0]->html_url;
     $release_hash = $pipeline->releases[0]->tag_sha;
 }
-
 # Find release from URL if set
 if (count($path_parts) > 1) {
     foreach ($pipeline->releases as $r) {
-        if ($path_parts[1] == $r->tag_name) {
+        if ($path_parts[1] === $r->tag_name) {
             $release = $r->tag_name;
             $release_url = $releases->html_url;
             $release_hash = $r->tag_sha;
@@ -379,7 +378,7 @@ if ($pipeline->archived) {
             }
             $releases['dev'] = '';
             foreach ($releases as $r => $h) {
-                $selected = $r == $release ? 'selected="selected"' : '';
+                $selected = $r === $release ? 'selected="selected"' : '';
                 echo '<option value="/' .
                     $pipeline->name .
                     '/' .
