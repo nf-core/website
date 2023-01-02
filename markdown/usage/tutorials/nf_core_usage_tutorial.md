@@ -89,6 +89,12 @@ If using conda, first set up Bioconda as described in the [bioconda docs](https:
 conda install -c bioconda nf-core
 ```
 
+To update the package you can run the following command
+
+```bash
+conda update nf-core
+```
+
 The nf-core/tools source code is available at [https://github.com/nf-core/tools](https://github.com/nf-core/tools) - if you prefer, you can clone this repository and install the code locally:
 
 ```bash
