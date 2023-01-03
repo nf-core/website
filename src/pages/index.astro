@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import HomepageCard from '@components/HomepageCard.astro';
-import HomepageVideos from '@components/HomepageVideos.astro';
-import ContributorCarousel from '@components/ContributorCarousel.svelte';
-import CodeExample from '@components/HomepageCodeExample.md';
-import NfCoreLogo from '../images/logos/nf-core-logo.svg';
-import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
 import NatureBiotech from '../images/homepage/nature_biotech.svg';
+import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
+import NfCoreLogo from '../images/logos/nf-core-logo.svg';
+import ContributorCarousel from '@components/ContributorCarousel.svelte';
+import HomepageCard from '@components/HomepageCard.astro';
+import CodeExample from '@components/HomepageCodeExample.md';
+import HomepageVideos from '@components/HomepageVideos.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
@@ -98,8 +98,19 @@ import NatureBiotech from '../images/homepage/nature_biotech.svg';
                     testing to ensure that nothing has broken.
                 </HomepageCard>
             </div>
-            <div class="col">
-                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_color="#82D948">
+            <div class="col hide-dark">
+                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_color="#22ae63">
+                    nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
+                    pipeline runs totally reproducible.
+                </HomepageCard>
+            </div>
+            <div class="col hide-light">
+                <HomepageCard
+                    title="Stable Releases"
+                    icon="line-md:check-list-3-twotone"
+                    icon_color="#1a9655"
+                    class="hide-dark"
+                >
                     nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
                     pipeline runs totally reproducible.
                 </HomepageCard>
@@ -125,7 +136,7 @@ import NatureBiotech from '../images/homepage/nature_biotech.svg';
         </div>
     </div>
 
-    <div class="bg-secondary pt-4 pb-5" style="--bs-bg-opacity: .1;">
+    <div class="bg-body-tertiary pt-4 pb-5">
         <div id="developers" class="container homepage-feature-boxes">
             <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
             <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -167,7 +178,7 @@ import NatureBiotech from '../images/homepage/nature_biotech.svg';
         </div>
     </div>
 
-    <div class="bg-secondary py-5">
+    <div class="bg-body-secondary py-5">
         <HomepageVideos
             videos={[
                 ['gUM9acK25tQ', 'Introduction to nf-core', '1:01'],
@@ -209,39 +220,40 @@ import NatureBiotech from '../images/homepage/nature_biotech.svg';
             </div>
         </div>
     </div>
-
-    <div class="container my-5 text-center">
-        <p class="lead"></p>
-        <div class="row">
-            <div class="col-md-4 px-md-5 mb-5 mb-md-0">
-                <h3>See what's available</h3>
-                <p>
-                    Check out the available pipelines to see if we have what you need. Each comes with release details,
-                    keywords and a description.
-                </p>
-                <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"
-                    ><span><i class="fas fa-toolbox me-1"></i> Available pipelines</span>
-                </a>
-            </div>
-            <div class="col-md-4 px-md-5 mb-5 mb-md-0">
-                <h3>Run a pipeline</h3>
-                <p>
-                    Read the quickstart tutorial to learn how to get set up with the required software and tools, and
-                    how to launch a nf-core pipeline.
-                </p>
-                <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"
-                    ><span><i class="fa-duotone fa-graduation-cap me-1"></i> Quickstart Tutorial</span>
-                </a>
-            </div>
-            <div class="col-md-4 px-md-5 mb-5 mb-md-0">
-                <h3>Get into the code</h3>
-                <p>
-                    If you're interested in contributing to nf-core, take a look at the developer documentation to see
-                    what's required.
-                </p>
-                <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"
-                    ><span><i class="fa-duotone fa-code me-1"></i> Developer docs</span>
-                </a>
+    <div class="bg-body-secondary py-5">
+        <div class="container my-5 text-center">
+            <p class="lead"></p>
+            <div class="row">
+                <div class="col-md-4 px-md-5 mb-5 mb-md-0">
+                    <h3>See what's available</h3>
+                    <p>
+                        Check out the available pipelines to see if we have what you need. Each comes with release
+                        details, keywords and a description.
+                    </p>
+                    <a class="btn btn-lg btn-success arrow-hover" href="/pipelines"
+                        ><span><i class="fas fa-toolbox me-1"></i> Available pipelines</span>
+                    </a>
+                </div>
+                <div class="col-md-4 px-md-5 mb-5 mb-md-0">
+                    <h3>Run a pipeline</h3>
+                    <p>
+                        Read the quickstart tutorial to learn how to get set up with the required software and tools,
+                        and how to launch a nf-core pipeline.
+                    </p>
+                    <a class="btn btn-lg btn-success arrow-hover" href="/usage/introduction"
+                        ><span><i class="fa-duotone fa-graduation-cap me-1"></i> Quickstart Tutorial</span>
+                    </a>
+                </div>
+                <div class="col-md-4 px-md-5 mb-5 mb-md-0">
+                    <h3>Get into the code</h3>
+                    <p>
+                        If you're interested in contributing to nf-core, take a look at the developer documentation to
+                        see what's required.
+                    </p>
+                    <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"
+                        ><span><i class="fa-duotone fa-code me-1"></i> Developer docs</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -250,7 +262,7 @@ import NatureBiotech from '../images/homepage/nature_biotech.svg';
 </BaseLayout>
 
 <style lang="scss">
-    @import '../styles/_base.scss';
+    @import '../styles/_variables.scss';
     .homepage-header .homepage-header-contents {
         margin: 3rem auto 0;
         padding: 0;
@@ -308,7 +320,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
             right: 0;
             -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
-            background: $gray-200;
+            background: $gray-500;
+            opacity: 0.15;
             z-index: -1;
             transition: 0.3s all ease;
         }
@@ -325,7 +338,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
         &:active {
             -webkit-transform: scale(1);
             transform: scale(1);
-            color: $white;
+            color: $body-bg;
         }
         &:active:before {
             background-color: $nf-core-color;
@@ -353,7 +366,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     .homepage-intro {
         background-color: $nf-core-color;
         .container .row div {
-            color: $white;
+            color: $body-bg;
             text-align: center;
         }
     }
