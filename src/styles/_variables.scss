@@ -1,5 +1,6 @@
 // bootstrap options
 $enable-negative-margins: true;
+$enable-dark-mode: true;
 
 // main colors
 $nf-core-color: #22ae63;
@@ -10,16 +11,23 @@ $success: $nf-core-color;
 $info: #17a2b8; // old info color is not so harsh
 $light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
 
+$body-bg: #fefefe;
 $input-placeholder-color: #ced4da; // $gray-400
 $list-group-color: #495057; // $gray-700
 
-$min-contrast-ratio: 2.5; // keeps font-color white even with new $success color
+// $min-contrast-ratio: 2.5; // keeps font-color white even with new $success color
 
 $link-color: #1e6bb8;
 
+// overwrite standard heading styles
 $headings-font-family: 'Maven Pro', sans-serif;
 $headings-font-weight: 600;
 $headings-color: $success;
+
+// overwrite standard font styles
+$font-family-sans-serif: 'InterVariant', 'Open Sans', sans-serif;
+$font-family-monospace: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',
+  'Bitstream Vera Sans Mono', 'Courier New', monospace;
 
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
@@ -33,3 +41,17 @@ $container-max-widths: (
   xxl: 1380px,
   xxxl: 1560px,
 );
+
+// dark mode specific variables
+[data-bs-theme='dark'] {
+  $green: #1a9655;
+}
+
+// standard bootstrap variables
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+@import 'bootstrap/scss/_variables-dark.scss';
+
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';

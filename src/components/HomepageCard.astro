@@ -6,7 +6,7 @@ const { title, icon, icon_color, icon_dark, fontawesome, btn_txt, btn_href } = A
 
 <div class="card h-100 shadow-sm">
     <div class="card-body">
-        <h5 class="card-title">{title}</h5>
+        <h5 class="card-title text-success">{title}</h5>
         <div class="d-flex align-items-center">
             <p class="card-text"><slot /></p>
             {icon && <Icon name={icon} color={icon_color} class={(icon_dark && 'hide-dark') + ' ms-3'} />}
