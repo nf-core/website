@@ -33,3 +33,11 @@ $container-max-widths: (
   xxl: 1380px,
   xxxl: 1560px,
 );
+
+// standard bootstrap variables
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';

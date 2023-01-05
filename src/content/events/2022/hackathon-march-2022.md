@@ -8,7 +8,7 @@ end_date: '2022-03-18'
 end_time: '18:00 CET'
 youtube_embed: https://www.youtube.com/watch?v=yZ8xX4Jk4zU
 location_name: Gather town and Slack.
-import_typeform: true
+location_url: https://gather.town/
 ---
 
 # Welcome

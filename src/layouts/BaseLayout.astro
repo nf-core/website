@@ -1,7 +1,6 @@
 ---
 import '@fontsource/maven-pro/600.css';
 import '@fontsource/inter';
-import '../styles/main.scss';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
 
 import BaseHead from '@components/BaseHead.astro';
@@ -33,5 +32,8 @@ const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, s
                 (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
             );
         </script>
+        <style lang="scss">
+            @import '../styles/_base.scss';
+        </style>
     </body>
 </html>

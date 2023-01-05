@@ -7,6 +7,7 @@ start_time: '15:35'
 end_date: '2020-09-02'
 end_time: '15:50'
 location_url: http://slides.com/apeltzer/eccb2020-nf-nf-core
+location_name: Online
 ---
 
 ## About the conference

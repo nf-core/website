@@ -7,7 +7,7 @@ start_time: '10:00 CEST'
 end_date: '2023-03-29'
 end_time: '18:00 CEST'
 location_name: Gather town and Slack.
-import_typeform: true
+location_url: https://gather.town/
 ---
 
 ### Sweden

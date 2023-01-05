@@ -7,6 +7,7 @@ start_time: '10:00 CEST'
 end_date: '2023-03-29'
 end_time: '18:00 CEST'
 location_name: Stellenbosch University
+location_url: https://gather.town
 # address:
 # location_url:
 # location_latlng: [xxx, xxx]

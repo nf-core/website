@@ -1,92 +1,35 @@
 ---
+import EventListing from '@components/EventListing.svelte';
 import PageLayout from '@layouts/PageLayout.astro';
-import path from 'path';
+import { getCollection } from 'astro:content';
 
-const event_entries = await Astro.glob('../../events/**/*.md');
-let events = [];
-// events.map((event) => {
-//     console.log(event.file.split('/').slice(3).join('/').replace('.md', ''));
-// });
-const event_md = event_entries.map((event_entry) => {
-    // check for CET and CEST as timezone
-    console.log(event_entry.frontmatter);
-    let start_time = new Date(
-        `${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`
-    ).toLocaleString('en-US', { timeZone: 'Europe/Berlin' });
-    start_time = event_entry.frontmatter.start_time;
-    if (event_entry.frontmatter.start_time.includes('CET') || event_entry.frontmatter.start_time.includes('CEST')) {
-        start_time = event_entry.frontmatter.start_time.replace('CET', '').replace('CEST', '');
-        start_time;
-        // event_entry.frontmatter.start_time = event_entry.frontmatter.start_time.replace('CET', '').replace('CEST', '');
-        //     event_entry.frontmatter.start_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
-        // }
-        // if (event_entry.frontmatter.end_time.includes('CET') || event_entry.frontmatter.end_time.includes('CEST')) {
-        //     event_entry.frontmatter.end_time = event_entry.frontmatter.end_time.replace('CET', '').replace('CEST', '');
-        //     event_entry.frontmatter.end_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.end_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
-        // }
-    }
-});
-// sort events into current, past, and future
-event_entries.map((event_entry, i) => {
-    // check for CET and CEST as timezone
-    console.log(event_entry.frontmatter);
-    event[i].start_time = new Date(
-        `${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`
-    ).toLocaleString('en-US', { timeZone: 'Europe/Berlin' });
-    // if (event_entry.frontmatter.start_time.includes('CET') || event_entry.frontmatter.start_time.includes('CEST')) {
-    // event_entry.frontmatter.start_time = event_entry.frontmatter.start_time.replace('CET', '').replace('CEST', '');
-    //     event_entry.frontmatter.start_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
-    // }
-    // if (event_entry.frontmatter.end_time.includes('CET') || event_entry.frontmatter.end_time.includes('CEST')) {
-    //     event_entry.frontmatter.end_time = event_entry.frontmatter.end_time.replace('CET', '').replace('CEST', '');
-    //     event_entry.frontmatter.end_time = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.end_time}`).toLocaleString("en-US", {timeZone: "Europe/Berlin"});
-    // }
-});
+let events = await getCollection('events');
 
-const futureEvents = event_entries.filter((event_entry) => {
-    const today = new Date();
-    // combine date and time strings
-    const eventDate = new Date(`${event_entry.frontmatter.start_date} ${event_entry.frontmatter.start_time}`);
-    // console.log(eventDate);
-    return eventDate > today;
-});
+events
+    .map((event) => {
+        event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
+        event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
+    })
+    .sort((a, b) => {
+        return new Date(a.data.start) - new Date(b.data.start);
+    });
 
-const currentEvents = event_entries.filter((event_entry) => {
-    const today = new Date();
-
-    // combine date and time strings
-    const eventDate = new Date(`${event_entry.frontmatter.date} ${event_entry.frontmatter.time}`);
-    return eventDate < today;
+events = events.filter((event) => {
+    return event.slug.split('/').length === 2;
 });
-console.log(event_entries[14].getHeadings());
-const event_type_classes = {
-    bytesize: 'success',
-    hackathon: 'primary',
-    poster: 'danger',
-    talk: 'success',
-    tutorial: 'info',
-    training: 'warning',
+const searchEvents = (search) => {
+    const searchTerms = search.toLowerCase().split(' ');
+    return events.filter((event) => {
+        const eventString = JSON.stringify(event.data).toLowerCase();
+        return searchTerms.every((term) => eventString.includes(term));
+    });
 };
-const event_type_icons = {
-    bytesize: 'fas fa-apple-core',
-    hackathon: 'fas fa-laptop-code',
-    poster: 'far fa-image',
-    talk: 'fas fa-presentation',
-    tutorial: 'fas fa-graduation-cap',
-    training: 'fas fa-chalkboard-teacher',
+
+const filterEvents = (type) => {
+    return events.filter((event) => event.data.type === type);
 };
 ---
 
 <PageLayout>
-    <ul>
-        {
-            event_entries.reverse().map((event_entry) => (
-                <div class="card">
-                    <a href={path.relative('src/', event_entry.file).replace(/\.md$/, '')}>
-                        {event_entry.frontmatter.title}
-                    </a>
-                </div>
-            ))
-        }
-    </ul>
+    <EventListing {events} client:load />
 </PageLayout>

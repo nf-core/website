@@ -3,9 +3,6 @@
     import PipelineCard from './PipelineCard.svelte';
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './filter.js';
 
-    import { Card, CardHeader, CardBody, CardFooter } from 'sveltestrap';
-    let displayStyle = 'grid';
-
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
