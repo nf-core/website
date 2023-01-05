@@ -8,7 +8,7 @@ end_date: '2023-03-29'
 end_time: '18:00 CEST'
 location_name: University of Texas at Dallas
 # address:
-# location_url:
+location_url: https://gather.town
 # location_latlng: [xxx, xxx]
 ---
 

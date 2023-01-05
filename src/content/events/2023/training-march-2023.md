@@ -7,6 +7,7 @@ start_time: '05:00 CET'
 end_date: '2023-03-16'
 end_time: '21:30 CET'
 location_name: YouTube
+location_url: https://www.youtube.com/nf-core
 ---
 
 # Welcome

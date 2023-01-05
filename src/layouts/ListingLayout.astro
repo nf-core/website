@@ -8,6 +8,9 @@ export interface Props {
     input: object[];
     title: string;
     description: string;
+    filter: object[];
+    displayStyle: object[];
+    sortBy: string[];
 }
 
 const { input, title, description, filter, displayStyle, sortBy } = Astro.props;

@@ -6,6 +6,7 @@ start_date: '2020-11-17'
 start_time: '09:30'
 end_date: '2020-11-20'
 end_time: '17:30'
+location_name: The Center for Genomic Regulation (CRG), Barcelona
 location_url: https://github.com/BovReg/nf-workshop20
 ---
 
