@@ -1,5 +1,5 @@
+<svelte:head>
 <script>
-    import { onMount } from 'svelte';
     const storedTheme = localStorage.getItem('theme');
     const switchTheme = (e) => {
         const theme = e.target.value;
@@ -9,9 +9,9 @@
     };
     const setTheme = function (theme) {
         if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.setAttribute('data-bs-theme', 'dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
         } else {
-            document.body.setAttribute('data-bs-theme', theme);
+            document.documentElement.setAttribute('data-bs-theme', theme);
         }
     };
     const showActiveTheme = (theme) => {
@@ -21,22 +21,18 @@
         });
         btnToActive.checked = true;
     };
-    onMount(() => {
-        const getPreferredTheme = () => {
+    const getPreferredTheme = () => {
             if (storedTheme) {
                 return storedTheme;
             }
 
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
-
-        const setTheme = function (theme) {
-            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.setAttribute('data-bs-theme', 'dark');
-            } else {
-                document.body.setAttribute('data-bs-theme', theme);
-            }
-        };
+</script>
+</svelte:head>
+<script>
+    import { onMount } from 'svelte';
+    onMount(() => {
 
         setTheme(getPreferredTheme());
 

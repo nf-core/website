@@ -14,12 +14,12 @@ const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, s
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
     <head>
         <BaseHead title={title} description={subtitle} image={image} />
     </head>
 
-    <body tabindex="0" data-bs-theme="auto">
+    <body tabindex="0">
         <Navbar />
         <slot />
         {subfooter && <SubFooter md_github_url={md_github_url} />}
