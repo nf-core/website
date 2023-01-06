@@ -43,7 +43,7 @@
     <div class="d-none d-md-flex w-100 justify-content-center mb-2">
         <input type="text" class="form-control w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
         <div class="ms-3 d-flex align-items-center">
-            Filter
+            Show
             <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
                 {#each filter as fil}
                     <button
@@ -113,7 +113,7 @@
         <div class="dropdown-menu">
             <input type="text" class="form-control w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
             <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
-                Filter
+                Show
                 <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
                 {#each filter as fil}
                     <button
