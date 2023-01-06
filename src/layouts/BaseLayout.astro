@@ -32,8 +32,8 @@ const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, s
                 (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
             );
         </script>
-        <style lang="scss">
-            @import '../styles/_base.scss';
+        <style lang="scss" is:global>
+            @import '../styles/main.scss';
             body {
                 position: relative;
             }

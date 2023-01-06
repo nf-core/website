@@ -66,7 +66,7 @@
     <div class="card-body py-0 d-flex flex-column">
         <p class="topics mt-0">
             {#each topics as topic}
-                <span class="badge bg-light text-success mx-1">{topic}</span>
+                <span class="badge bg-body-tertiary text-success mx-1">{topic}</span>
             {/each}
         </p>
         <p class="description flex-grow-1">{body}</p>
