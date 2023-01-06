@@ -82,12 +82,12 @@
         margin-bottom: 0;
         color: #444;
     }
-    .link-card:is(:hover, :focus-within) {
+    /* .link-card:is(:hover, :focus-within) {
         background-position: 0;
     }
     .link-card:is(:hover, :focus-within) h2 {
         color: rgb(var(--accent));
-    }
+    } */
     .card {
         max-width: 40%;
     }

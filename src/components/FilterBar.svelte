@@ -1,5 +1,4 @@
 <script>
-    import { ButtonGroup, Button, Input } from 'sveltestrap';
     import { onMount } from 'svelte';
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './filter.js';
     export let filter;
@@ -42,7 +41,7 @@
 
 <div class="filter-bar">
     <div class="d-none d-md-flex w-100 justify-content-center mb-2">
-        <Input class="w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
+        <input type="text" class="form-control w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
         <div class="ms-3 d-flex align-items-center">
             Filter
             <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
@@ -75,7 +74,7 @@
         {#if sortBy.length > 1}
             <div class="ms-3 d-flex align-items-center">
                 Sort
-                <ButtonGroup class="ms-1 sort-buttons">
+                <div class="btn-group ms-1 sort-buttons" role="group" aria-label="Sort buttons">
                     {#each sortBy as sor (sor)}
                         <input
                             type="radio"
@@ -87,13 +86,13 @@
                         />
                         <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
                     {/each}
-                </ButtonGroup>
+                </div>
             </div>
         {/if}
         {#if displayStyle.length > 1}
             <div class="ms-3 d-flex align-items-center">
                 Display
-                <ButtonGroup class="ms-1 display-buttons">
+                <div class="btn-group ms-1 display-buttons" role="group" aria-label="Sort buttons">
                     {#each displayStyle as dis}
                         <button
                             type="button"
@@ -103,7 +102,7 @@
                             ><i class={dis.icon} />
                         </button>
                     {/each}
-                </ButtonGroup>
+                </div>
             </div>
         {/if}
     </div>
@@ -112,44 +111,55 @@
             Filter & Sort
         </button>
         <div class="dropdown-menu">
-            <Input class="me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
+            <input type="text" class="form-control w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
             <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
                 Filter
-                <ButtonGroup class="ms-1 filter-buttons">
-                    {#each filter as fil}
-                        <button
-                            type="button"
-                            class="btn btn-outline-success text-nowrap"
-                            class:active={$CurrentFilter.includes(fil.name)}
-                            on:click={() => handleFilter(fil.name)}
-                            on:mouseout={() => event.target.blur()}
-                            on:blur={() => event.target.blur()}
-                        >
-                            {fil.name}
+                <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                {#each filter as fil}
+                    <button
+                        type="button"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title={'Double click to only show items from this category'}
+                        class={fil.class
+                            ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
+                            : 'btn text-nowrap w-100 btn-outline-success'}
+                        class:active={$CurrentFilter.includes(fil.name)}
+                        on:click={() => handleFilter(fil.name)}
+                        on:dblclick={() => handleExlusiveFilter(fil.name)}
+                        on:mouseout={() => event.target.blur()}
+                        on:blur={() => event.target.blur()}
+                    >
+                        {#if fil.icon}
+                            <i class={fil.icon + ' me-1'} />
+                        {/if}
+                        {fil.name}
+                        {#if fil.count >= 0}
                             <span class="badge bg-secondary ms-1">{fil.count}</span>
-                        </button>
-                    {/each}
-                </ButtonGroup>
+                        {/if}
+                    </button>
+                {/each}
+            </div>
             </div>
             <div class="ms-3 d-flex align-items-center">
                 Sort
-                <ButtonGroup class="ms-1 sort-buttons">
-                    {#each sortBy as sor}
+                <div class="btn-group ms-1 sort-buttons" role="group" aria-label="Sort buttons">
+                    {#each sortBy as sor (sor)}
                         <input
                             type="radio"
                             class="btn-check"
                             name="options"
-                            id={sor}
+                            id={sor.replace(' ', '-')}
                             checked={sor === $SortBy}
                             on:click={() => handleSort(sor)}
                         />
-                        <label class="btn btn-outline-success text-nowrap" for={sor}>{sor}</label>
+                        <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
                     {/each}
-                </ButtonGroup>
+                </div>
             </div>
             <div class="ms-3 d-flex align-items-center">
                 Display
-                <ButtonGroup class="ms-1 display-buttons">
+                <div class="btn-group ms-1 display-buttons" role="group" aria-label="Sort buttons">
                     {#each displayStyle as dis}
                         <button
                             type="button"
@@ -159,7 +169,7 @@
                             ><i class={dis.icon} />
                         </button>
                     {/each}
-                </ButtonGroup>
+                </div>
             </div>
         </div>
     </div>
