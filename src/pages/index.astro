@@ -87,44 +87,35 @@ import BaseLayout from '@layouts/BaseLayout.astro';
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-                <HomepageCard title="Documentation" icon="noto:clipboard">
+                <HomepageCard title="Documentation" fontawesome="fa-solid fa-books text-success">
                     Extensive documentation covering installation, usage and description of output files ensures that
                     you won't be left in the dark.
-                </HomepageCard>
-            </div>
-            <div class="col">
-                <HomepageCard title="CI Testing" icon="logos:github-actions">
-                    Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration
-                    testing to ensure that nothing has broken.
-                </HomepageCard>
-            </div>
-            <div class="col hide-dark">
-                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_color="#22ae63">
-                    nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
-                    pipeline runs totally reproducible.
-                </HomepageCard>
-            </div>
-            <div class="col hide-light">
-                <HomepageCard
-                    title="Stable Releases"
-                    icon="line-md:check-list-3-twotone"
-                    icon_color="#1a9655"
-                    class="hide-dark"
-                >
-                    nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
-                    pipeline runs totally reproducible.
-                </HomepageCard>
-            </div>
-            <div class="col">
-                <HomepageCard title="Packaged software" fontawesome="fa-duotone fa-box-alt text-info">
-                    Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda or
-                    others. No need for any software installations.
                 </HomepageCard>
             </div>
             <div class="col">
                 <HomepageCard title="Portable and reproducible" fontawesome="fas fa-server text-success">
                     Pipelines follow best-practices to ensure maximum portability and reproducibility. The large
                     community makes the pipelines exceptionally well tested and easy to run.
+                </HomepageCard>
+            </div>
+            <div class="col">
+                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_class="text-success">
+                    nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
+                    pipeline runs totally reproducible.
+                </HomepageCard>
+            </div>
+
+            <div class="col">
+                <HomepageCard title="CI Testing" icon="logos:github-actions">
+                    Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration
+                    testing to ensure that nothing has broken.
+                </HomepageCard>
+            </div>
+
+            <div class="col">
+                <HomepageCard title="Packaged software" fontawesome="fa-duotone fa-box-alt docker">
+                    Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda or
+                    others. No need for any software installations.
                 </HomepageCard>
             </div>
             <div class="col">
@@ -154,7 +145,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
                 <div class="col">
                     <HomepageCard
                         title="Start from the template"
-                        fontawesome="fas fa-magic text-secondary"
+                        fontawesome="fa-solid fa-wand-magic-sparkles text-secondary"
                         btn_txt="Read the docs"
                         btn_href="contributing/adding_pipelines"
                     >
