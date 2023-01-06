@@ -95,7 +95,6 @@
                         frontmatter={event.data}
                         slug={event.slug}
                         type_class={event_type_classes[event.data.type]}
-                        type_icon={event_type_icons[event.data.type]}
                         time_category="current"
                     />
                 {/each}
@@ -110,7 +109,7 @@
                             frontmatter={event.data}
                             slug={event.slug}
                             type_class={event_type_classes[event.data.type]}
-                            type_icon={event_type_icons[event.data.type]}
+
                             time_category="future"
                         />
                     {/each}
@@ -125,7 +124,6 @@
                         frontmatter={event.data}
                         slug={event.slug}
                         type_class={event_type_classes[event.data.type]}
-                        type_icon={event_type_icons[event.data.type]}
                         time_category="past"
                     />
                 {/each}

@@ -87,7 +87,7 @@
                 {#each filteredPipelines as pipeline}
                     <tr>
                         <td>
-                            <a href={pipeline.html_url} target="_blank">{pipeline.name}</a>
+                            <a href={pipeline.html_url} target="_blank"  rel="noreferrer">{pipeline.name}</a>
                         </td>
                         <td>
                             {pipeline.description}
@@ -115,7 +115,4 @@
 </div>
 
 <style>
-    .card {
-        width: 300px;
-    }
 </style>
