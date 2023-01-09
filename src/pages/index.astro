@@ -4,14 +4,15 @@ import HomepageCard from '@components/HomepageCard.astro';
 import HomepageVideos from '@components/HomepageVideos.astro';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import CodeExample from '@components/HomepageCodeExample.md';
-import NfCoreLogo from '../images/logos/nf-core-logo.svg';
-import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
-import NatureBiotech from '../images/homepage/nature_biotech.svg';
+import NfCoreLogo from '/images/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '/images/logos/nf-core-logo-darkbg.svg';
+import NatureBiotech from '/images/homepage/nature_biotech.svg';
+import EventBanner from '@components/EventBanner.astro';
 ---
 
 <BaseLayout>
     <div class="homepage-header">
-        <!-- TODO: HIGHLIGHT UPCOMING / ONGOING EVENTS -->
+        <EventBanner />
         <div class="homepage-header-contents col-md-5">
             <h1>
                 <img src={NfCoreLogo} class="hide-dark" />
