@@ -1,8 +1,5 @@
 <script>
-    // import { ICalendar, GoogleCalendar, OutlookCalendar } from 'datebook'
-    // the above line throws the error: "Named export 'GoogleCalendar' not found." during build, even though it is in the datebook package
-    // so I'm using the following line instead:
-    import { ICalendar, GoogleCalendar, OutlookCalendar } from 'datebook'
+    import { ICalendar, GoogleCalendar, OutlookCalendar } from 'datebook/dist/datebook.min.mjs'
     import { saveAs } from 'file-saver';
     export let frontmatter = {
         title: '',
