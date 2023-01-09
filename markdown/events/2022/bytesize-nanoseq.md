@@ -93,7 +93,7 @@ Just to summarize, here is the nanoseq pipeline. There are a lot of tools includ
 
 (question cont.) Yeah.
 
-(speaker) I am aware that there are short read polyadenylation tools such as QAPA, Labrad, there are quite a few tools out there that do that. So I'm not exactly sure how translatable those tools are to nanopore reads, and so it will be great if you can suggest several long read tools that we can look into too.
+(speaker) I am aware that there are short read polyadenylation tools such as QAPA, LAPA, there are quite a few tools out there that do that. So I'm not exactly sure how translatable those tools are to nanopore reads, and so it will be great if you can suggest several long read tools that we can look into too.
 
 (question cont.) I think there is a long, roundabout way of getting it through FLAIR (Full-Length Alternative Isoform analysis of RNA), and then there is, I think, Tapas has got something, but I think Tapas is more Pacbio orientated.
 
