@@ -75,7 +75,7 @@ Just to summarize, here is the nanoseq pipeline. There are a lot of tools includ
 
 (question) He says that t2t completed _a_ human genome and not _the_ human genome. Also he thinks that sniffles2 exists, which is an enhanced caller for structural variants. Have you thought about sniffles2? I know this was not your main part, but...
 
-(Chris, answer) I can probably jump in. I've seen that come out very recently, maybe in the last four months. So sniffles was initially added about 12 months ago. It's the first caller that we were interested in. In my opinion, it's also superseded by QSV, which when we did testing, it was actually the best caller. But in saying that, I haven't actually tested sniffles2 with a full data set, so I can't be sure if it's better or worse, but something we can definitely look into for a quick add in the future.
+(Chris, answer) I can probably jump in. I've seen that come out very recently, maybe in the last four months. So sniffles was initially added about 12 months ago. It's the first caller that we were interested in. In my opinion, it's also superseded by cuteSV, which when we did testing, it was actually the best caller. But in saying that, I haven't actually tested sniffles2 with a full data set, so I can't be sure if it's better or worse, but something we can definitely look into for a quick add in the future.
 (speaker) Yeah. Thanks, Chris.
 
 [13:34](https://www.youtube.com/watch?v=KM1A0_GD2vQ&t=814)
