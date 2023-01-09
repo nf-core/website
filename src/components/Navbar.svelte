@@ -1,13 +1,15 @@
----
-import NfCoreLogo from '../images/logos/nf-core-logo.svg';
-import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
----
+<script>
+    const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
+    const NfCoreLogo = '/images/logos/nf-core-logo.svg';
+
+    import { EventIsOngoing } from './store.js';
+</script>
 
 <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav d-print-none">
     <div class="container-fluid">
         <a class="navbar-brand d-md-none" href="/">
-            <img height="25px" src={NfCoreLogo} class="hide-dark" />
-            <img height="25px" src={NfCoreLogoDarkbg} class="hide-light" />
+            <img height="25px" src={NfCoreLogo} class="hide-dark" alt="nf-core logo" />
+            <img height="25px" src={NfCoreLogoDarkbg} class="hide-light" alt="nf-core logo" />
         </a>
         <button
             class="navbar-toggler"
@@ -18,7 +20,7 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
             aria-expanded="false"
             aria-label="Toggle navigation"
         >
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon" />
         </button>
         <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
             <ul class="navbar-nav">
@@ -43,14 +45,15 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
                     <a class="nav-link" href="/docs">Docs</a>
                 </li>
                 <li class="nav-item p-1">
-                    <!-- TODO - ADD BACK INDICATOR FOR LIVE EVENT -->
-                    <!--
-                        <span class="fa-stack small text-danger">
-                            <i class="fa-duotone fa-circle fa-stack-1x"></i>
-                            <i class="fas fa-circle-small fa-stack-1x"></i>
-                        </span>
-                     -->
-                    <a class="nav-link" href="/events">Events</a>
+                    <a class="nav-link" href="/events">
+                        {#if $EventIsOngoing}
+                            <span class="fa-stack small text-danger">
+                                <i class="fa-duotone fa-circle fa-stack-1x" />
+                                <i class="fas fa-circle-small fa-stack-1x" />
+                            </span>
+                        {/if}
+                        Events
+                    </a>
                 </li>
                 <li class="nav-item dropdown p-1">
                     <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown"> About</a>

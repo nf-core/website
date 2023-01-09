@@ -1,7 +1,7 @@
 <script>
     export let pipelines = [];
     import PipelineCard from './PipelineCard.svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './filter.js';
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
 
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {

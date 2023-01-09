@@ -3,7 +3,7 @@
 
     import EventCard from './EventCard.svelte';
     import FilterBar from './FilterBar.svelte';
-    import { CurrentFilter, SearchQuery } from './filter.js';
+    import { CurrentFilter, SearchQuery } from './store.js';
 
     let filteredEvents = events;
     const filterByType = (event) => {

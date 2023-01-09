@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './filter.js';
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
     export let filter;
     export let sortBy;
     export let displayStyle;

@@ -13,6 +13,7 @@ const events = defineCollection({
         location_url: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
         start: z.date().optional(),
         end: z.date().optional(),
+        duration: z.string().optional(),
     },
 });
 
