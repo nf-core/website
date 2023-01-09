@@ -15,7 +15,10 @@ export default defineConfig({
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ['@popperjs/core', 'datebook'],
+            noExternal: ['@popperjs/core'],
         },
+    },
+    markdown: {
+        remarkPlugins: [remarkToc],
     },
 });
