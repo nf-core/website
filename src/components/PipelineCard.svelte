@@ -1,5 +1,4 @@
 <script>
-    import { each } from 'svelte/internal';
     import { format } from 'timeago.js';
     export let pipeline;
     const href = '/pipelines/' + pipeline.name;

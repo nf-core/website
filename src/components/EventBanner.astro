@@ -1,5 +1,5 @@
 ---
-import CurrentEvents from './CurrentEvents.svelte';
+import UpcomingEvents from './UpcomingEvents.svelte';
 import OngoingEvents from './OngoingEvents.svelte';
 import { getCollection } from 'astro:content';
 
@@ -18,13 +18,13 @@ events = events.filter((event) => {
     return event.slug.split('/').length === 2;
 });
 const currentEvents = events.filter((event) => {
-    let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in CurrentEvents.svelte to be sure to have all events created during the daily static build
+    let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build
     const event_start_unix = event.data.start.getTime();
     const event_end_unix = event.data.end.getTime();
 
     // increase time window to a week for events longer than 5 hours
     if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
-        time_window = 8 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in CurrentEvents.svelte for the same reason as above
+        time_window = 8 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
     }
 
     // if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
@@ -56,7 +56,7 @@ const event_type_icons = {
     currentEvents.length > 0 && (
         <div class="current-event-container bg-body-secondary">
             <OngoingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
-            <CurrentEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
+            <UpcomingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
         </div>
     )
 }
@@ -64,5 +64,34 @@ const event_type_icons = {
     .current-event-container {
         padding: 0 0 2rem 0;
         clip-path: polygon(100% 0%, 100% 85%, 50% 100%, 0 85%, 0% 0%);
+    }
+    @import '../styles/_variables.scss';
+    .mainpage-subheader-heading {
+        background-color: $gray-200;
+        margin-top: -3.5rem;
+        padding: 4rem 0 1rem;
+    }
+    @include media-breakpoint-down(md) {
+        .mainpage-subheader-heading {
+            padding-top: 2rem;
+        }
+    }
+
+    .mainpage-subheader-heading-header {
+        background-color: $gray-300;
+        box-shadow: 0 0 10px rgba($black, 0.2);
+    }
+    .mainpage-subheader-heading a.subheader-link {
+        text-decoration: none;
+        color: $gray-800;
+    }
+    .homepage-header-fa-background {
+        position: absolute;
+        margin-top: -2.5rem;
+        font-size: 16em;
+        opacity: 0.2;
+    }
+    .row:last-child .col {
+        border-bottom: 0;
     }
 </style>

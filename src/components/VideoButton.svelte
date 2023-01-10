@@ -22,7 +22,7 @@ const getIcon = (url) => {
 {#if urls.length === 1}
         <a class="btn btn-success me-2 mb-2" href={urls[0]}>
             <i class={getIcon(urls[0]) + ' me-1'} aria-hidden="true" />
-            Watch now
+            Join now
         </a>
 {:else}
 <div class="dropdown">
@@ -33,7 +33,7 @@ const getIcon = (url) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
             >
-                Watch now
+                Join now
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {#each urls as url (url)}
