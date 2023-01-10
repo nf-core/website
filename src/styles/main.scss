@@ -335,31 +335,7 @@ code:not(pre code),
     margin-top: $navbar-height-collapsed;
   }
 }
-.mainpage-heading {
-  background-color: $nf-core-color;
-  color: $white;
-  padding: 3rem 0 5rem 0;
-}
-.mainpage-heading h1,
-.mainpage-heading h1 a {
-  color: $white;
-  text-decoration: none;
-}
-@include media-breakpoint-down(md) {
-  .mainpage-heading {
-    padding: 1.5rem 0 1.5rem 0;
-  }
-  .mainpage-heading h1 {
-    font-size: 3rem;
-  }
-}
-.mainpage-heading h1 a:hover,
-.mainpage-heading h1 a:focus {
-  color: $gray-300;
-}
-.mainpage-heading code {
-  color: $white;
-}
+
 .mainpage-subheader-heading {
   background-color: $gray-200;
   margin-top: -3.5rem;
@@ -1227,5 +1203,8 @@ Launch Page
   .main-content pre code {
     border-color: $body-tertiary-bg-dark;
     background-color: $body-tertiary-bg-dark;
+  }
+  input.form-control {
+    background-color: $body-tertiary-bg-dark; // boostrap should actually fix that, but somehow uses the light theme variable here...
   }
 }
