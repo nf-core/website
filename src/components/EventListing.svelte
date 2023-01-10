@@ -88,7 +88,7 @@
     <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} />
     <div>
         {#if currentEvents.length > 0}
-            <div class="mb-5 col">
+            <div class="mb-3 mb-md-5 col">
                 <h2><i class="fa-duotone fa-calendar-exclamation me-3" />Currently ongoing</h2>
                 {#each currentEvents as event (event.id)}
                     <EventCard
@@ -101,7 +101,7 @@
             </div>
         {/if}
         <div class="row">
-            <div class="mb-5 col-12 col-md-6">
+            <div class="mb-3 mb-md-5 col-12 col-md-6">
                 <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>
                 {#if futureEvents.length > 0}
                     {#each futureEvents as event (event.id)}
@@ -117,7 +117,7 @@
                     <p>No upcoming events at the moment</p>
                 {/if}
             </div>
-            <div class="mb-5 col-12 col-md-6">
+            <div class="mb-3 mb-md-5 col-12 col-md-6">
                 <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
                 {#each pastEvents as event (event.id)}
                     <EventCard

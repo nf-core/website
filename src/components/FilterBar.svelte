@@ -111,10 +111,10 @@
             Filter & Sort
         </button>
         <div class="dropdown-menu">
-            <input type="text" class="form-control w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
+            <input type="text" class="form-control w-100 mt-0" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
             <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
                 Show
-                <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                <div class="btn-group-vertical ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
                 {#each filter as fil}
                     <button
                         type="button"
@@ -141,9 +141,10 @@
                 {/each}
             </div>
             </div>
+            {#if sortBy.length > 1}
             <div class="ms-3 d-flex align-items-center">
                 Sort
-                <div class="btn-group ms-1 sort-buttons" role="group" aria-label="Sort buttons">
+                <div class="btn-group-vertical ms-1 sort-buttons" role="group" aria-label="Sort buttons">
                     {#each sortBy as sor (sor)}
                         <input
                             type="radio"
@@ -157,9 +158,11 @@
                     {/each}
                 </div>
             </div>
+            {/if}
+            {#if displayStyle.length > 1}
             <div class="ms-3 d-flex align-items-center">
                 Display
-                <div class="btn-group ms-1 display-buttons" role="group" aria-label="Sort buttons">
+                <div class="btn-group-vertical ms-1 display-buttons" role="group" aria-label="Sort buttons">
                     {#each displayStyle as dis}
                         <button
                             type="button"
@@ -171,6 +174,7 @@
                     {/each}
                 </div>
             </div>
+            {/if}
         </div>
     </div>
 </div>

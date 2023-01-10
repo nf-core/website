@@ -366,14 +366,6 @@ code:not(pre code),
  * Main pages
  */
 
-.mainpage {
-  margin-top: $navbar-height;
-}
-@include media-breakpoint-down(md) {
-  .mainpage {
-    margin-top: $navbar-height-collapsed;
-  }
-}
 .mainpage-heading {
   background-color: $nf-core-color;
   color: $white;
