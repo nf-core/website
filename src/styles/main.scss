@@ -1,33 +1,11 @@
-@import '_base.scss';
-
-// TODO: REMOVE / SORT OUT WHEN WE HAVE DARK MODE
+@import './_base.scss';
 .hide-light {
   display: none;
 }
 
-html {
-  background-color: #f5f5f5;
-  // font-family: "Nunito Sans", sans-serif;
-  font-family: 'InterVariant', sans-serif;
-  font-weight: 400;
+body {
   font-feature-settings: 'ss03'; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Maven Pro', sans-serif;
-  color: $nf-core-color;
-  font-weight: 600;
-}
-
-code {
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
-    monospace;
 }
 
 @media print {
@@ -48,21 +26,11 @@ code {
   }
 }
 
-// additional variables
+// additional variables based on bootstrap variables
 $navbar-height: $navbar-brand-height + 2 * $navbar-brand-padding-y + 2 * $navbar-padding-y;
 $navbar-height-collapsed: $navbar-brand-height;
-$blockquote-background: shift-color($info, $alert-bg-scale);
-$blockquote-border: shift-color($info, $alert-border-scale);
-$blockquote-color: shift-color($info, $alert-color-scale);
-$body-bg: $gray-100;
 
 // general classes
-body {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  position: relative;
-  background-color: $body-bg;
-}
-
 strong {
   font-weight: 600;
 }
@@ -73,19 +41,14 @@ strong {
 blockquote {
   margin: 1rem 0 2rem;
   padding: 0.5rem 1rem;
-  color: $blockquote-color;
-  border-left: 5px solid $blockquote-border;
-  background-color: $blockquote-background;
+  color: $gray-600;
+  border-left: 5px solid $gray-300;
   font-style: italic;
   p:last-child {
     margin-bottom: 0;
   }
-  code {
-    background-color: rgba($gray-200, 0.75);
-    color: $gray-800;
-  }
-  a {
-    color: $blue-700;
+  code:not(pre code) {
+    color: $gray-600 !important;
   }
 }
 mark,
@@ -321,10 +284,6 @@ section:before {
 }
 
 // code
-code,
-.code {
-  font-family: $font-family-monospace;
-}
 code:not(pre code),
 .code:not(pre .code) {
   background-color: rgba($gray-200, 0.75);
@@ -344,7 +303,8 @@ code:not(pre code),
   padding: 12px 15px;
   font-size: 14px;
   code {
-    border: 1px solid $gray-300;
+    border: 1px solid $body-tertiary-bg;
+    background-color: $body-tertiary-bg;
     display: block;
     overflow-x: auto;
     padding: 1em;
@@ -375,31 +335,7 @@ code:not(pre code),
     margin-top: $navbar-height-collapsed;
   }
 }
-.mainpage-heading {
-  background-color: $nf-core-color;
-  color: $white;
-  padding: 3rem 0 5rem 0;
-}
-.mainpage-heading h1,
-.mainpage-heading h1 a {
-  color: $white;
-  text-decoration: none;
-}
-@include media-breakpoint-down(md) {
-  .mainpage-heading {
-    padding: 1.5rem 0 1.5rem 0;
-  }
-  .mainpage-heading h1 {
-    font-size: 3rem;
-  }
-}
-.mainpage-heading h1 a:hover,
-.mainpage-heading h1 a:focus {
-  color: $gray-300;
-}
-.mainpage-heading code {
-  color: $white;
-}
+
 .mainpage-subheader-heading {
   background-color: $gray-200;
   margin-top: -3.5rem;
@@ -1236,5 +1172,39 @@ Launch Page
   border-bottom: 1px solid $secondary;
   &:last-child {
     border-bottom: none;
+  }
+}
+
+////////////////////////////
+///  Dark Mode Overrides ///
+///////////////////////////
+
+@include color-mode(dark) {
+  .hide-dark {
+    display: none;
+  }
+  .hide-light {
+    display: inline;
+  }
+  code:not(pre code),
+  .code:not(pre .code) {
+    background-color: $gray-800;
+    color: $body-color-dark;
+  }
+  blockquote {
+    border-left-color: $gray-700;
+    color: $body-secondary-color-dark;
+    & code:not(pre code),
+    .code:not(pre .code) {
+      background-color: $body-tertiary-bg-dark;
+      color: $body-secondary-color-dark !important;
+    }
+  }
+  .main-content pre code {
+    border-color: $body-tertiary-bg-dark;
+    background-color: $body-tertiary-bg-dark;
+  }
+  input.form-control {
+    background-color: $body-tertiary-bg-dark; // boostrap should actually fix that, but somehow uses the light theme variable here...
   }
 }

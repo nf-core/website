@@ -1,30 +1,17 @@
 ---
-import FooterSocial from './FooterSocial.astro';
-import DarkModeSwitch from './DarkModeSwitch.astro';
-import NfCoreLogo from '../images/logos/nf-core-logo.svg';
 import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
+import NfCoreLogo from '../images/logos/nf-core-logo.svg';
+import FooterSocial from './FooterSocial.astro';
+import ThemeSwitch from './ThemeSwitch.svelte';
 ---
 
-<footer class="footer">
+<footer class="footer bg-body-secondary text-body-secondary">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="text-center text-lg-start col-12 col-lg mb-4">
-                <a href="/">
-                    <img height="30px" src={NfCoreLogo} alt="nf-core logo" class="hide-dark" />
-                    <img height="30px" src={NfCoreLogoDarkbg} alt="nf-core logo" class="hide-light" />
-                </a>
-                <div class="small d-block mb-3">Making awesome workflows since 2018.</div>
-                <div class="mb-1 small">
-                    Supported by:
-                    <FooterSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="czi" />,
-                    <FooterSocial link="/about#microsoft-azure" title="Microsoft Azure" icon="logos:microsoft-azure" />
-                    <span class="ms-1">and</span>
-                    <FooterSocial link="/about#aws" title="Amazon Web Services" icon="logos:aws" icon_dark="mdi:aws" />
-                </div>
-            </div>
-            <div class="col-12 col-lg text-center small mb-4">
-                <DarkModeSwitch />
-                <div class="social-icons d-print-none">
+        <div class="row align-items-end">
+            <div
+                class="text-center text-lg-start col-12 col-lg d-flex flex-column align-self-stretch justify-content-between"
+            >
+                <div class="social-icons d-print-none mt-1 ms-1">
                     <FooterSocial
                         marginLeft="0"
                         marginRight="1rem"
@@ -37,7 +24,8 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
                         marginRight="1rem"
                         href="https://github.com/nf-core/"
                         title="GitHub"
-                        icon="logos:github-icon"
+                        icon="fa-brands:github"
+                        icon_dark="fa-brands:github"
                     />
                     <FooterSocial
                         marginLeft="0"
@@ -61,8 +49,39 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
                         icon="logos:youtube-icon"
                     />
                 </div>
+                <div class="mt-3">
+                    <a href="/">
+                        <img height="30px" src={NfCoreLogo} alt="nf-core logo" class="hide-dark" />
+                        <img height="30px" src={NfCoreLogoDarkbg} alt="nf-core logo" class="hide-light" />
+                    </a>
+                    <div class="small d-block">Making awesome workflows since 2018.</div>
+                </div>
             </div>
-            <div class="col-12 col-lg text-center text-lg-end mb-4">
+            <div class="col-12 col-lg text-center small">
+                <div class="small mb-1">
+                    <p class="mb-1">Supported by:</p>
+                    <span class="text-center">
+                        <FooterSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="czi" />
+                        <span class="ms-1">+</span>
+                        <FooterSocial
+                            link="/about#microsoft-azure"
+                            title="Microsoft Azure"
+                            icon="logos:microsoft-azure"
+                        />
+                        <span class="ms-1">+</span>
+                        <FooterSocial
+                            link="/about#aws"
+                            title="Amazon Web Services"
+                            icon="logos:aws"
+                            icon_dark="mdi:aws"
+                        />
+                    </span>
+                </div>
+            </div>
+            <div
+                class="col-12 col-lg text-center text-lg-end d-flex flex-column align-items-end align-self-stretch justify-content-between"
+            >
+                <ThemeSwitch client:load />
                 <div class="d-block small">
                     See the source code for this website on GitHub:<br />
                     <a href="https://github.com/nf-core/nf-co.re" target="_blank">
@@ -74,31 +93,16 @@ import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
     </div>
 
     <style lang="scss">
-        @import '../styles/_base.scss';
+        @import '../styles/_variables.scss';
         footer {
-            color: $gray-600;
-            &.footer {
-                padding: 4rem 0 3rem;
-                background-color: $gray-200;
-                h5 {
-                    color: $gray-800;
-                }
-            }
-            &.subfooter {
-                padding: 2rem 0;
-                background-color: darken($gray-100, 2.5%);
-            }
-            a,
-            a:hover,
-            a:focus,
-            a:active {
-                text-decoration: none;
+            padding: 2rem 0 3rem;
+            & a {
                 color: $gray-600;
-            }
-            a:hover,
-            a:focus,
-            a:active {
-                text-decoration: underline;
+                &:hover,
+                &:focus,
+                &:active {
+                    text-decoration: underline;
+                }
             }
         }
     </style>
