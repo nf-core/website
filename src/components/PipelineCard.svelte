@@ -63,23 +63,22 @@
         </h2>
     </div>
     <div class="card-body py-0 d-flex flex-column">
-        <p class="topics mt-0">
+        <p class="topics mt-0 mb-0">
             {#each topics as topic}
-                <span class="badge bg-light text-success mx-1">{topic}</span>
+                <span class="badge bg-body-tertiary text-success mx-1">{topic}</span>
             {/each}
         </p>
-        <p class="description flex-grow-1">{body}</p>
-        {#if released}
+        <p class="description flex-grow-1 mb-0">{body}</p>
+
+    </div>
+    {#if released}
             <p class="text-muted align">Last release {release_date_ago}</p>
         {/if}
-    </div>
 </div>
 
 <style>
     p {
         margin-top: 0.5rem;
-        margin-bottom: 0;
-        color: #444;
     }
     /* .link-card:is(:hover, :focus-within) {
         background-position: 0;

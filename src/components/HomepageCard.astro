@@ -1,30 +1,46 @@
 ---
 import { Icon } from 'astro-icon';
 
-const { title, icon, icon_color, icon_dark, fontawesome, btn_txt, btn_href } = Astro.props;
+const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, btn_txt, btn_href } = Astro.props;
 ---
 
 <div class="card h-100 shadow-sm">
-    <div class="card-body">
-        <h5 class="card-title">{title}</h5>
-        <div class="d-flex align-items-center">
-            <p class="card-text"><slot /></p>
-            {icon && <Icon name={icon} color={icon_color} class={(icon_dark && 'hide-dark') + ' ms-3'} />}
-            {icon_dark && <Icon name={icon_dark} color="white" class="hide-light ms-3" />}
-            <i class={fontawesome + ' fa-5x ms-3'}></i>
+    <div class="card-body d-flex">
+        <div class="d-flex flex-column">
+            <div class="align-self-start">
+                <h5 class="card-title text-success">{title}</h5>
+                <div class="d-flex align-items-center">
+                    <p class="card-text">
+                        <slot />
+                    </p>
+                </div>
+            </div>
+            <div class="mt-2">
+                {
+                    btn_txt && btn_href && (
+                        <a href={btn_href} class="btn btn-sm btn-outline-success arrow-hover">
+                            <span>{btn_txt}</span>
+                        </a>
+                    )
+                }
+            </div>
         </div>
-        {
-            btn_txt && btn_href && (
-                <a href={btn_href} class="btn btn-sm btn-outline-success arrow-hover">
-                    <span>{btn_txt}</span>
-                </a>
-            )
-        }
+        <div class="icons align-self-enter d-flex align-items-center">
+            {icon && <Icon name={icon} color={icon_color} class={(icon_dark && 'hide-dark ') + icon_class} />}
+            {icon_dark && <Icon name={icon_dark} color="white" class={'hide-light ' + icon_class} />}
+            <i class={fontawesome + ' fa-5x'}></i>
+        </div>
     </div>
 </div>
 
 <style>
     p {
         font-size: 0.9rem;
+    }
+    .icons svg {
+        width: 5rem;
+    }
+    .docker {
+        color: #2496ed;
     }
 </style>

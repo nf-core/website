@@ -22,7 +22,7 @@ const { videos } = Astro.props;
                             <a
                                 href={'https://youtu.be/' + video[0]}
                                 data-src={'https://www.youtube.com/embed/' + video[0]}
-                                class={idx == 0 && 'active'}
+                                class={'bg-body-tertiary text-body-tertiary ' + (idx == 0 && 'active')}
                             >
                                 {video[1]} <em>({video[2]})</em>
                             </a>
@@ -55,7 +55,6 @@ const { videos } = Astro.props;
 
 <style lang="scss">
     @import '../styles/_variables.scss';
-
     .list-switch {
         li {
             list-style-type: none;
@@ -66,9 +65,7 @@ const { videos } = Astro.props;
             display: block;
             padding: 10px 15px;
             margin: 0;
-            border-bottom: 1px solid $gray-900;
-            background-color: $gray-800;
-            color: $gray-300;
+            border-bottom: 1px solid $body-tertiary-color;
             text-decoration: none;
             position: relative;
             height: 42px;
@@ -79,12 +76,12 @@ const { videos } = Astro.props;
             &:hover,
             &:active,
             &:focus {
-                color: $gray-300;
-                background-color: $gray-700;
+                color: $gray-300 !important;
+                background-color: $gray-700 !important;
             }
         }
         li:first-child a {
-            border-top: 1px solid $gray-900;
+            border-top: 1px solid $body-tertiary-color;
         }
 
         @include media-breakpoint-up(lg) {
@@ -103,13 +100,13 @@ const { videos } = Astro.props;
                     margin-left: 21px;
                 }
                 a.active:before {
-                    border-right-color: $gray-800;
+                    border-right-color: $body-tertiary-color;
                     left: -42px;
                 }
                 a:hover:before,
                 a:active:before,
                 a:focus:before {
-                    border-right-color: $gray-700;
+                    border-right-color: $gray-700 !important;
                 }
             }
             &.right {
@@ -117,14 +114,14 @@ const { videos } = Astro.props;
                     margin-right: 21px;
                 }
                 a.active:before {
-                    border-left-color: $gray-800;
+                    border-left-color: $gray-800 !important;
                     right: -42px;
                 }
 
                 a:hover:before,
                 a:active:before,
                 a:focus:before {
-                    border-left-color: $gray-700;
+                    border-left-color: $gray-700 !important;
                 }
             }
         }
