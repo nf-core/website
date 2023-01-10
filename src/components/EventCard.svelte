@@ -96,7 +96,7 @@
                         {event_date}
                     </p>
                 </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="See details or export calendar event">
                     <a href={'events/' + slug} class="btn btn-outline-success text-nowrap">See details</a>
                     {#if time_category !== 'past'}
                         <ExportEventButton {frontmatter}/>
