@@ -93,17 +93,16 @@ import ThemeSwitch from './ThemeSwitch.svelte';
     </div>
 
     <style lang="scss">
-        @import '../styles/_base.scss';
+        @import '../styles/_variables.scss';
         footer {
             padding: 2rem 0 3rem;
-            a {
-                text-decoration: none;
+            & a {
                 color: $gray-600;
-            }
-            a:hover,
-            a:focus,
-            a:active {
-                text-decoration: underline;
+                &:hover,
+                &:focus,
+                &:active {
+                    text-decoration: underline;
+                }
             }
         }
     </style>

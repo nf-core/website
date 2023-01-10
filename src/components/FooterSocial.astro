@@ -11,17 +11,17 @@ const { href, link, title, icon, icon_dark, marginLeft = '0.5rem', marginRight =
     title={title}
     data-bs-toggle="tooltip"
     data-bs-placement="bottom"
+    class="text-decoration-none"
 >
     <Icon name={icon} class={icon_dark && 'hide-dark'} />
     {icon_dark && <Icon name={icon_dark} color="white" class="hide-light" />}
 </a>
 
 <style lang="scss" define:vars={{ marginLeft, marginRight }}>
-    @import '../styles/_base.scss';
+    @import '../styles/_variables.scss';
     a {
         margin-left: var(--marginLeft);
         margin-right: var(--marginRight);
-        text-decoration: none;
         color: $body-color;
         svg {
             width: 20px;
@@ -31,10 +31,8 @@ const { href, link, title, icon, icon_dark, marginLeft = '0.5rem', marginRight =
         &:hover,
         &:focus,
         &:active {
-            text-decoration: none;
             svg {
                 filter: opacity(100%);
-                text-decoration: none;
             }
         }
     }
