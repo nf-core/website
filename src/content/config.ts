@@ -11,6 +11,8 @@ const events = defineCollection({
         end_time: z.string().transform((str) => str.replace(/\s+(\w+)/, ' ($1)')),
         location_name: z.string().optional(),
         location_url: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
+        location_latlng: z.array(z.number(), z.number()).optional(),
+        address: z.string().optional(),
         start: z.date().optional(),
         end: z.date().optional(),
         duration: z.string().optional(),

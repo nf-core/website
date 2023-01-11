@@ -1,32 +1,46 @@
 ---
-const { title, subtitle = false, header_html, md_github_url, header_btn_url, header_btn_text } = Astro.props;
+import EventHeader from './EventHeader.astro';
+
+const {
+    title,
+    subtitle = false,
+    header_html,
+    md_github_url,
+    header_btn_url,
+    header_btn_text,
+    event_header,
+} = Astro.props;
 ---
 
 <div class="mainpage-heading triangle-down">
     <div class="container">
-        {
-            md_github_url && (
-                <a
-                    href="{md_github_url}"
-                    class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none"
-                    title="Edit this page on GitHub"
-                    data-bs-toggle="tooltip"
-                    data-bs-delay="{ 'show': 500, 'hide': 0 }"
-                >
-                    <i class="fas fa-pencil-alt" /> Edit
-                </a>
-            )
-        }
-        {
-            header_btn_url && header_btn_text && (
-                <a href="{header_btn_url}" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">
-                    {header_btn_text}
-                </a>
-            )
-        }
-
-        <h1 class="display-2">{title}</h1>
+        <h1 class="display-2 d-flex justify-content-between">
+            {title}
+            <div>
+                {
+                    md_github_url && (
+                        <a
+                            href={md_github_url}
+                            class="edit-md-btn btn btn-sm btn-outline-light d-none d-md-inline-block ms-2 d-print-none align-self-center"
+                            title="Edit this page on GitHub"
+                            data-bs-toggle="tooltip"
+                            data-bs-delay="{ 'show': 500, 'hide': 0 }"
+                        >
+                            <i class="fas fa-pencil-alt" /> Edit
+                        </a>
+                    )
+                }
+                {
+                    header_btn_url && header_btn_text && (
+                        <a href="{header_btn_url}" class="btn btn-sm btn-outline-light d-none d-md-inline-block mt-4">
+                            {header_btn_text}
+                        </a>
+                    )
+                }
+            </div>
+        </h1>
         {subtitle && <p class="lead">{subtitle}</p>}
+        {event_header && <EventHeader frontmatter={event_header} />}
         {header_html && { header_html }}
     </div>
 </div>
@@ -36,6 +50,7 @@ const { title, subtitle = false, header_html, md_github_url, header_btn_url, hea
         background-color: $success;
         color: $white;
         padding: 3rem 0 5rem 0;
+        overflow: visible;
         cursor: default;
         h1,
         h1 a {
@@ -57,5 +72,16 @@ const { title, subtitle = false, header_html, md_github_url, header_btn_url, hea
         .mainpage-heading h1 {
             font-size: 3rem;
         }
+    }
+    a.edit-md-btn {
+        opacity: 0.5;
+        transition: opacity 0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+            border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    a.edit-md-btn:hover,
+    a.edit-md-btn:active,
+    a.edit-md-btn:focus {
+        opacity: 1;
+        color: $body-color;
     }
 </style>
