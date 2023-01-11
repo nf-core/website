@@ -8,6 +8,7 @@ let {
     subtitle = SITE_DESCRIPTION,
     image,
     header_html,
+    event_header,
     md_github_url,
     header_btn_url,
     header_btn_text,
@@ -15,6 +16,20 @@ let {
     subfooter = false,
     frontmatter,
 } = Astro.props;
+
+export interface Props {
+    title: string;
+    subtitle: string;
+    image?: string;
+    header_html?: string;
+    event_header?: string;
+    md_github_url?: string;
+    header_btn_url?: string;
+    header_btn_text?: string;
+    mainpage_container?: string;
+    subfooter: boolean;
+    frontmatter?: any;
+}
 
 if (frontmatter) {
     title = frontmatter.title || title;
@@ -35,6 +50,7 @@ if (frontmatter) {
             title={title}
             subtitle={subtitle}
             header_html={header_html}
+            event_header={event_header}
             md_github_url={md_github_url}
             header_btn_url={header_btn_url}
             header_btn_text={header_btn_text}
