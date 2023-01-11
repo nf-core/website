@@ -1,7 +1,7 @@
 <script>
     import { format } from 'timeago.js';
     export let pipeline;
-    const href = '/pipelines/' + pipeline.name;
+    const href = pipeline.name;
     const name = pipeline.name;
     const body = pipeline.description;
     const stars = pipeline.stargazers_count;
