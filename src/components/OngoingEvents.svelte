@@ -7,14 +7,17 @@
     export let event_type_icons = {};
     const ongoingEvents = events
         .filter((event) => {
-            if (event.data.start < new Date() && new Date() < event.data.end) {
-                EventIsOngoing.set(true);
-                return true;
-            }
+            return event.data.start < new Date() && new Date() < event.data.end
         })
         .sort((a, b) => {
             return a.data.start - b.data.start;
         });
+
+    if (ongoingEvents.length > 0) {
+        EventIsOngoing.set(true);
+    } else {
+        EventIsOngoing.set(false);
+    }
     const heading_title = ongoingEvents.length > 1 ? 'Ongoing events' : 'Ongoing event';
 </script>
 
@@ -23,7 +26,7 @@
         <div>
             <div class="d-none d-lg-flex">
                 <div class="col-lg-3 overflow-hidden">
-                    <h4 class="display-4 pt-2">{heading_title}</h4>
+                    <h4 class="display-4 pt-2 ms-3">{heading_title}</h4>
                     <i class="fad fa-broadcast-tower homepage-header-fa-background ms-1 ms-xl-5" aria-hidden="true" />
                 </div>
                 <div>

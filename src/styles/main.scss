@@ -326,32 +326,6 @@ code:not(pre code),
 /*
  * Main pages
  */
-
-.mainpage-heading {
-  background-color: $nf-core-color;
-  color: $white;
-  padding: 3rem 0 5rem 0;
-}
-.mainpage-heading h1,
-.mainpage-heading h1 a {
-  color: $white;
-  text-decoration: none;
-}
-@include media-breakpoint-down(md) {
-  .mainpage-heading {
-    padding: 1.5rem 0 1.5rem 0;
-  }
-  .mainpage-heading h1 {
-    font-size: 3rem;
-  }
-}
-.mainpage-heading h1 a:hover,
-.mainpage-heading h1 a:focus {
-  color: $gray-300;
-}
-.mainpage-heading code {
-  color: $white;
-}
 .mainpage-subheader-heading {
   background-color: $gray-200;
   margin-top: -3.5rem;
@@ -391,8 +365,9 @@ code:not(pre code),
 .main-content .h4,
 .main-content .h5,
 .main-content .h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'InterVariant', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
+  color: $success;
 }
 .main-content h1[id]::before,
 .main-content h2[id]::before,
@@ -1222,5 +1197,9 @@ Launch Page
   }
   input.form-control {
     background-color: $body-tertiary-bg-dark; // boostrap should actually fix that, but somehow uses the light theme variable here...
+  }
+  .mainpage-heading {
+    background-color: $nf-core-color-dark;
+    color: $gray-100;
   }
 }
