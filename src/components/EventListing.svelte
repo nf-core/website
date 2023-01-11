@@ -3,7 +3,7 @@
 
     import EventCard from './EventCard.svelte';
     import FilterBar from './FilterBar.svelte';
-    import { CurrentFilter, SearchQuery } from './store.js';
+    import { CurrentFilter, SearchQuery, EventIsOngoing } from './store.js';
 
     let filteredEvents = events;
     const filterByType = (event) => {
@@ -52,11 +52,17 @@
             return event.data.end < today;
         })
         .reverse();
-
+    let currentEvents = [];
     $: currentEvents = filteredEvents.filter((event) => {
         const today = new Date();
-        return event.data.start < today && event.data.end > today;
+        return event.data.start < today && event.data.end > today
     });
+
+    if (currentEvents.length > 0) {
+        EventIsOngoing.set(true);
+    } else {
+        EventIsOngoing.set(false);
+    }
 
     const event_type_classes = {
         bytesize: 'success',
@@ -109,7 +115,6 @@
                             frontmatter={event.data}
                             slug={event.slug}
                             type_class={event_type_classes[event.data.type]}
-
                             time_category="future"
                         />
                     {/each}

@@ -3,6 +3,7 @@ $enable-negative-margins: true;
 
 // main colors
 $nf-core-color: #22ae63;
+$nf-core-color-dark: #1a9655;
 $nf-tower-color: #335eea;
 
 // overwrite standard bootstrap colors
@@ -20,8 +21,9 @@ $link-color: #1e6bb8;
 
 // overwrite standard heading styles
 $headings-font-family: 'Maven Pro', sans-serif;
-$headings-font-weight: 600;
+$headings-font-weight: 500;
 $headings-color: $success;
+$headings-color-dark: $nf-core-color-dark;
 
 // overwrite standard font styles
 $font-family-sans-serif: 'InterVariant', 'Open Sans', sans-serif;
@@ -41,15 +43,19 @@ $container-max-widths: (
   xxxl: 1560px,
 );
 
-// dark mode specific variables
-[data-bs-theme='dark'] {
-  $green: #1a9655;
-}
-
 // standard bootstrap variables
 @import 'bootstrap/scss/_functions.scss';
 @import 'bootstrap/scss/_variables.scss';
+
 @import 'bootstrap/scss/_variables-dark.scss';
+// dark mode specific variables
+[data-bs-theme='dark'] {
+  --bs-heading-color: #{$nf-core-color-dark};
+  .tooltip {
+    --bs-tooltip-bg: #{$body-bg-dark};
+    --bs-tooltip-color: #{$body-color-dark};
+  }
+}
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/root';

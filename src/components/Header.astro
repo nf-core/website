@@ -33,17 +33,18 @@ const { title, subtitle = false, header_html, md_github_url, header_btn_url, hea
 <style lang="scss">
     @import '../styles/_variables.scss';
     .mainpage-heading {
-        background-color: $nf-core-color;
+        background-color: $success;
         color: $white;
         padding: 3rem 0 5rem 0;
+        cursor: default;
         h1,
         h1 a {
             color: $white;
             text-decoration: none;
-            &:hover,
-            &:focus {
-                color: $gray-300;
-            }
+        }
+        a:hover,
+        a:focus {
+            color: $gray-300;
         }
         code {
             color: $white;

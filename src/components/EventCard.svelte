@@ -41,7 +41,7 @@
                 minute: 'numeric',
                 hour12: false,
             }) +
-            ' - ' +
+            ' - <wbr>' +
             frontmatter.end.toLocaleString('en-US', {
                 year: 'numeric',
                 month: 'short',
@@ -52,11 +52,9 @@
             });
     }
 
-
-
 </script>
 
-<div class={'card mb-2 rounded-0 rounded-end border-' + type_class}>
+<div class={'card mb-2 rounded-0 rounded-end'} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class={'card-title'}>
             <a href={'events/' + slug}>
@@ -92,11 +90,11 @@
             <p>{frontmatter.subtitle}</p>
             <div class="d-flex justify-content-between align-items-end">
                 <div>
-                    <p class="text-muted">
-                        {event_date}
+                    <p class="text-muted text-nowrap">
+                        {@html event_date}
                     </p>
                 </div>
-                <div class="btn-group" role="group" aria-label="See details or export calendar event">
+                <div class="btn-group ms-1" role="group" aria-label="See details or export calendar event">
                     <a href={'events/' + slug} class="btn btn-outline-success text-nowrap">See details</a>
                     {#if time_category !== 'past'}
                         <ExportEventButton {frontmatter}/>
@@ -113,10 +111,7 @@
         color: $success;
     }
     .card.rounded-0 {
-        border-top: 0;
-        border-right: 0;
-        border-bottom: 0;
         border-left: 5px solid;
-        // overflow: hidden;
+        // border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-border-color) var(--type_class_border) !important;
     }
 </style>
