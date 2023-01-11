@@ -1,8 +1,7 @@
 <script>
+    import { EventIsOngoing } from './store.js';
     const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
     const NfCoreLogo = '/images/logos/nf-core-logo.svg';
-
-    import { EventIsOngoing } from './store.js';
 </script>
 
 <nav class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm site-nav d-print-none">
@@ -24,27 +23,27 @@
         </button>
         <div class="collapse navbar-collapse justify-content-md-center align-items-md-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <li class="nav-item p-1">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-1">
                     <a class="nav-link" href="/pipelines">Pipelines</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item p-1 dropdown">
                     <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">
                         Resources
                     </a>
-                    <ul class="dropdown-menu shadow-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
                         <li><a class="dropdown-item" href="/configs">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools">Tools</a></li>
                         <li><a class="dropdown-item" href="/modules">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows">Subworkflows</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-1">
                     <a class="nav-link" href="/docs">Docs</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item p-1">
                     <a class="nav-link" href="/events">
                         {#if $EventIsOngoing}
                             <span class="fa-stack small text-danger">
@@ -55,9 +54,9 @@
                         Events
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item p-1 dropdown">
                     <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown"> About</a>
-                    <ul class="dropdown-menu shadow-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
                         <li><span class="dropdown-header">Community</span></li>
                         <li><a class="dropdown-item" href="/community">Blog</a></li>
                         <li><a class="dropdown-item" href="/community">Contributors</a></li>
@@ -101,7 +100,7 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             border-top: 0;
-            margin-top: $navbar-padding-y;
+            margin-top: calc($navbar-padding-y/3);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
         .collapse.show li .dropdown-menu {
