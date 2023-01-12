@@ -54,7 +54,7 @@
 
 </script>
 
-<div class={'card mb-2 rounded-0 rounded-end'} style="border-left-color:var(--bs-{type_class});">
+<div class={'card mb-3 rounded-0 rounded-end'} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class={'card-title'}>
             <a href={'events/' + slug}>
@@ -88,7 +88,7 @@
         </div>
         <div class="card-text">
             <p>{frontmatter.subtitle}</p>
-            <div class="d-flex justify-content-between align-items-end">
+            <div class="d-flex justify-content-center justify-content-md-between align-items-center flex-wrap flex-md-nowrap">
                 <div>
                     <p class="text-muted text-nowrap">
                         {@html event_date}
@@ -112,6 +112,5 @@
     }
     .card.rounded-0 {
         border-left: 5px solid;
-        // border-color: var(--bs-border-color) var(--bs-border-color) var(--bs-border-color) var(--type_class_border) !important;
     }
 </style>
