@@ -88,7 +88,7 @@ Additionally there will be quality control figures like alpha rarefaction curves
 [19:23](https://youtu.be/a0VOEeAvETs&t=1163)
 (question) We have one comment here okay there's a question. This person thanks you for the presentation and asks what type of license is associated with this kind of tool, for example the ampliseq pipeline.
 
-(answer) It is a CCPY license, like I think all the nf-core pipelines have, there are no restrictions whatsoever.
+(answer) It is a CCPY license [comment: ampliseq is actually under an MIT licence], like I think all the nf-core pipelines have, there are no restrictions whatsoever.
 
 (host) I hope that answers your question. Yes thank you.
 
