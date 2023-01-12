@@ -119,5 +119,6 @@
     }
     .row:last-child .col {
         border-bottom: 0 !important;
+        padding-bottom: 1pt !important;
     }
 </style>
