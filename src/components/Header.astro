@@ -12,7 +12,7 @@ const {
 } = Astro.props;
 ---
 
-<div class="mainpage-heading triangle-down">
+<div class="mainpage-heading pb-1 text-bg-success">
     <div class="container">
         <h1 class="display-2 d-flex justify-content-between">
             {title}
@@ -44,17 +44,18 @@ const {
         {header_html && { header_html }}
     </div>
 </div>
+<div class="triangle-down bg-success"></div>
 <style lang="scss">
     @import '../styles/_variables.scss';
     .mainpage-heading {
-        background-color: $success;
-        color: $white;
-        padding: 3rem 0 5rem 0;
+        background-color: $success !important;
+        color: $white !important;
+        padding-top: 3rem;
         overflow: visible;
         cursor: default;
         h1,
         h1 a {
-            color: $white;
+            color: $white !important;
             text-decoration: none;
         }
         a:hover,
@@ -67,7 +68,10 @@ const {
     }
     @include media-breakpoint-down(md) {
         .mainpage-heading {
-            padding: 1.5rem 0 1.5rem 0;
+            padding-top: 1.5rem;
+            ::after {
+                clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
+            }
         }
         .mainpage-heading h1 {
             font-size: 3rem;
@@ -83,5 +87,9 @@ const {
     a.edit-md-btn:focus {
         opacity: 1;
         color: $body-color;
+    }
+
+    .triangle-down {
+        background-color: $success !important;
     }
 </style>

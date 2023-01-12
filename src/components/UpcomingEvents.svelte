@@ -18,7 +18,9 @@
             return false;
         }
 
-        if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
+        // if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
+        // TODO: uncoment above line and remove below line, which is only for testing purposes
+        if (new Date().getTime() < event_end_unix) {
             return true;
         }
     });
@@ -62,7 +64,7 @@
                 </div>
                 <div>
                     {#each upcomingEvents as event}
-                        <div class="row">
+                        <div class="row d-flex align-items-center">
                             <div class="col pt-lg-3 pb-lg-3 text-lg-start border-bottom border-black-subtle">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
                                     <a href={'events/' + event.slug} class="text-success text-decoration-none"
@@ -109,32 +111,36 @@
                 </div>
             </div>
             <div class="d-lg-none">
-                <div class="pt-2 pb-1 mb-2 overflow-hidden mainpage-subheader-heading-header">
-                    <h5 class="pt-2 font-weight-light text-center">{heading_title}</h5>
+                <div class="pt-2 pb-1 mb-2 overflow-hidden mainpage-subheader-heading-header bg-body-tertiary">
+                    <h5 class="pt-2 font-weight-light text-center text-sucess">{heading_title}</h5>
                 </div>
                 {#each upcomingEvents as event}
-                    <div class="row">
-                        <div class="col text-center border-bottom border-black-subtle">
-                            <h4 class="pt-2 pb-0">
-                                <a href={'events/' + event.slug} class="text-success text-decoration-none"
-                                    >{event.data.title}</a
-                                >
-                            </h4>
-                            <p class="d-sm-none mb-2">
-                                <a href={'events/' + event.slug} class="text-body text-decoration-none"
-                                    >{event.data.subtitle}</a
-                                >
-                            </p>
-                            <div class="small mb-2">
-                                <a href={'events/' + event.slug} class="text-secondary text-decoration-none"
-                                    >{event.data.duration}</a
-                                >
-                                <div class="btn-group" role="group" aria-label="Event details">
-                                    <a href={'events/' + event.slug} class="btn btn-outline-success text-nowrap">
-                                        Event Details
-                                    </a>
-                                    <ExportEventButton frontmatter={event.data} />
-                                </div>
+                    <div class="text-center border-bottom border-black-subtle">
+                        <h4 class="pt-2 pb-0">
+                            <a href={'events/' + event.slug} class="text-success text-decoration-none"
+                                >{event.data.title}</a
+                            >
+                        </h4>
+                        <p class="d-sm-none mb-2">
+                            <a href={'events/' + event.slug} class="text-body text-decoration-none"
+                                >{event.data.subtitle}</a
+                            ><span class={'badge bg-' + event_type_classes[event.data.type] + ' small ms-3'}
+                                            ><i
+                                                class={event_type_icons[event.data.type] + ' me-1'}
+                                                aria-hidden="true"
+                                            />
+                                            {event.data.type}</span
+                                        >
+                        </p>
+                        <div class="small mb-2">
+                            <a href={'events/' + event.slug} class="text-secondary text-decoration-none"
+                                >{event.data.duration}</a
+                            >
+                            <div class="btn-group" role="group" aria-label="Event details">
+                                <a href={'events/' + event.slug} class="btn btn-outline-success text-nowrap">
+                                    Event Details
+                                </a>
+                                <ExportEventButton frontmatter={event.data} />
                             </div>
                         </div>
                     </div>
@@ -153,5 +159,6 @@
     }
     .row:last-child .col {
         border-bottom: 0 !important;
+        padding-bottom: 1pt !important;
     }
 </style>
