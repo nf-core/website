@@ -24,12 +24,10 @@ const currentEvents = events.filter((event) => {
 
     // increase time window to a week for events longer than 5 hours
     if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
-        time_window = 8 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
+        time_window = 108 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
     }
 
-    // if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
-    // TODO: uncoment above line and remove below line, which is only for testing purposes
-    if (new Date().getTime() < event_end_unix) {
+    if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
         return true;
     }
 });
@@ -54,24 +52,21 @@ const event_type_icons = {
 
 <!-- generate bootstrap cards for current events -->{
     currentEvents.length > 0 && (
-        <div class="current-event-container bg-body-secondary">
-            <OngoingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
-            <UpcomingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
-        </div>
+        <>
+            <div class="current-event-container bg-body-secondary">
+                <OngoingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
+                <UpcomingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
+            </div>
+            <div class="triangle-down bg-body-secondary" />
+        </>
     )
 }
 <style lang="scss">
     @import '../styles/_variables.scss';
-    .current-event-container:has(.ongoing-event, .upcoming-event) {
-        padding: 0 0 3.5rem 0;
-        clip-path: polygon(100% 0%, 100% 85%, 50% 100%, 0 85%, 0% 0%);
+    .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
+        display: block;
     }
-    @include media-breakpoint-down(md) {
-        .current-event-container:has(.ongoing-event, .upcoming-event) {
-            padding: 0 0 2rem 0;
-            clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
-        }
-    }
+
     .mainpage-subheader-heading {
         background-color: $gray-200;
         margin-top: -3.5rem;
@@ -84,7 +79,6 @@ const event_type_icons = {
     }
 
     .mainpage-subheader-heading-header {
-        background-color: $gray-300;
         box-shadow: 0 0 10px rgba($black, 0.2);
     }
     .mainpage-subheader-heading a.subheader-link {

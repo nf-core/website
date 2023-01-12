@@ -64,8 +64,10 @@ const searchEvents = (search) => {
 const filterEvents = (type) => {
     return events.filter((event) => event.data.type === type);
 };
+const title = 'Events';
+const subtitle = 'Details of past and future events around nf-core.';
 ---
 
-<PageLayout>
+<PageLayout title={title} subtitle={subtitle}>
     <EventListing {events} client:load />
 </PageLayout>

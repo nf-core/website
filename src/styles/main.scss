@@ -100,6 +100,13 @@ section:before {
 .bg-lightgray {
   background-color: rgba($gray-200, 0.75);
 }
+.text-bg-success,
+.bg-success {
+  background-color: $nf-core-color !important;
+}
+.border-success {
+  border-color: $nf-core-color !important;
+}
 .bg-success-light {
   background-color: tint-color($success, 25%);
 }
@@ -173,34 +180,22 @@ section:before {
   width: 20px;
 }
 
-.triangle-down {
-  padding-bottom: 1rem;
-  clip-path: polygon(100% 0%, 100% 85%, 50% 100%, 0 85%, 0% 0%);
+.triangle-down,
+.triangle-up {
+  margin-top: -1px;
+  padding-bottom: 4rem;
+  clip-path: polygon(100% 0%, 100% 5%, 50% 100%, 0 5%, 0% 0%);
 }
 
-.chevron-down {
-  margin-top: -1rem;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  clip-path: polygon(100% 0%, 100% 85%, 50% 100%, 0 85%, 0% 0%, 50% 15%);
+.triangle-up {
+  transform: rotateX(180deg);
 }
-// triangle-down + triangle-up = hexagon
-.hexagon {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  clip-path: polygon(100% 7%, 100% 93%, 50% 100%, 0 93%, 0% 7%, 50% 0%);
-}
+
 @include media-breakpoint-down(md) {
-  .triangle-down {
-    clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
-  }
-  .chevron-down {
-    clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%, 50% 5%);
-  }
-  .hexagon {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    clip-path: polygon(100% 5%, 100% 95%, 50% 100%, 0 95%, 0% 5%, 50% 0%);
+  .triangle-down,
+  .triangle-up {
+    padding-bottom: 1.5rem;
+    clip-path: polygon(100% 0%, 100% 5%, 50% 100%, 0 5%, 0% 0%);
   }
 }
 
@@ -336,21 +331,26 @@ code:not(pre code),
     padding-top: 2rem;
   }
 }
-
-.mainpage-subheader-heading-header {
-  background-color: $gray-300;
-  box-shadow: 0 0 10px rgba($black, 0.2);
-}
-.mainpage-subheader-heading a.subheader-link {
-  text-decoration: none;
-  color: $gray-800;
-}
 .main-content {
   min-height: 300px;
   margin-top: 1rem;
   margin-bottom: 6rem;
   font-size: 1.1rem;
   line-height: 1.6;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $success !important; // TODO: resolve this with bootstrap variables (not working as of 5.3alpha1)
 }
 
 .main-content h1,
@@ -367,7 +367,6 @@ code:not(pre code),
 .main-content .h6 {
   font-family: 'InterVariant', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
-  color: $success;
 }
 .main-content h1[id]::before,
 .main-content h2[id]::before,
@@ -1166,6 +1165,10 @@ Launch Page
   .hide-light {
     display: inline;
   }
+  .bg-success,
+  .text-bg-success {
+    background-color: $nf-core-color-dark !important;
+  }
   code:not(pre code),
   .code:not(pre .code) {
     background-color: $gray-800;
@@ -1187,8 +1190,8 @@ Launch Page
   input.form-control {
     background-color: $body-tertiary-bg-dark; // boostrap should actually fix that, but somehow uses the light theme variable here...
   }
-  .mainpage-heading {
-    background-color: $nf-core-color-dark;
-    color: $gray-100;
+  .mainpage-heading,
+  .mainpage-heading h1 {
+    color: $gray-100 !important;
   }
 }

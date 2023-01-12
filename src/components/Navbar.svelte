@@ -74,7 +74,7 @@
             </ul>
             <hr class="d-md-none" />
             <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
+            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join">
                 Join nf-core
             </a>
         </div>

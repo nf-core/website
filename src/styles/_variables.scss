@@ -3,11 +3,15 @@ $enable-negative-margins: true;
 
 // main colors
 $nf-core-color: #22ae63;
+$green: $nf-core-color;
 $nf-core-color-dark: #1a9655;
 $nf-tower-color: #335eea;
 
 // overwrite standard bootstrap colors
 $success: $nf-core-color;
+:root {
+  --bs-success-rgb: #{$success};
+}
 $info: #17a2b8; // old info color is not so harsh
 $light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
 
@@ -50,7 +54,7 @@ $container-max-widths: (
 @import 'bootstrap/scss/_variables-dark.scss';
 // dark mode specific variables
 [data-bs-theme='dark'] {
-  --bs-heading-color: #{$nf-core-color-dark};
+  --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
   .tooltip {
     --bs-tooltip-bg: #{$body-bg-dark};
     --bs-tooltip-color: #{$body-color-dark};
