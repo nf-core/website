@@ -31,6 +31,7 @@ Watch this space for more details in the coming weeks!
 | 🇫🇷 France       | Rennes     | IGDR                                 | [Read more](france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                                 | [Read more](germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                              | [Read more](germany-mpi-eva.md)           |
+| 🇸🇳 Senegal      | Dakar      | Institut Pasteur de Dakar            | [Read more](senegal-pasteur-dakar.md)     |
 | 🇿🇦 South Africa | Cape Town  | Stellenbosch University              | [Read more](south-africa-stellenbosch.md) |
 | 🇪🇸 Spain        | Barcelona  | CRG                                  | [Read more](spain-crg.md)                 |
 | 🇸🇪 Sweden       | Stockholm  | SciLifeLab                           | [Read more](sweden-scilifelab.md)         |
