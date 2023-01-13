@@ -57,7 +57,7 @@
 <div class={'card mb-3 rounded-0 rounded-end'} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class={'card-title'}>
-            <a href={'events/' + slug}>
+            <a href={slug}>
                 {frontmatter.title}
             </a>
             {#if time_category === 'current'}
@@ -95,7 +95,7 @@
                     </p>
                 </div>
                 <div class="btn-group ms-1" role="group" aria-label="See details or export calendar event">
-                    <a href={'events/' + slug} class="btn btn-outline-success text-nowrap">See details</a>
+                    <a href={slug} class="btn btn-outline-success text-nowrap">See details</a>
                     {#if time_category !== 'past'}
                         <ExportEventButton {frontmatter}/>
                     {/if}

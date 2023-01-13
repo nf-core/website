@@ -1,9 +1,9 @@
 ---
+import Markdown from '@components/Markdown.astro';
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 import Toc from 'svelte-toc';
-import EventHeader from '@components/EventHeader.astro';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -19,7 +19,6 @@ export async function getStaticPaths() {
 marked.setOptions({
     baseUrl: Astro.params.slug, // add the slug to the base url of relative links
 });
-const Content = marked.parse(Astro.props.event.body).replace(/<a href="(.*?)(.md)"/g, '<a href="$1"'); // remove .md extension from links
 const title = Astro.props.event.data.title;
 const subtitle = Astro.props.event.data.subtitle;
 let frontmatter = Astro.props.event.data;
@@ -32,11 +31,7 @@ const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/
 ---
 
 <PageLayout title={title} subtitle={subtitle} subfooter={true} md_github_url={md_github_url} event_header={frontmatter}>
-    <div class="container markdown-content" set:html={Content} />
-    <Toc
-        headingSelector="markdown-content :where(h1,h2, h3, h4)"
-        activeHeadingScrollOffset={200}
-        desktop={true}
-        client:load
-    />
+    <div class="container">
+        <Markdown content={Astro.props.event.body} />
+    </div>
 </PageLayout>
