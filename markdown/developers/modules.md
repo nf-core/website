@@ -524,15 +524,15 @@ process {
 
 2. Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
 
-    - Keywords MUST NOT just be solely of the (sub)tool name
-
+   - Keywords MUST NOT just be solely of the (sub)tool name
 
 3. Keywords MUST be all lower case
 
 4. Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
 
 5. Input and output tuples MUST be split into separate entries
-    - i.e., `meta` should be a separate entry to the `file` it is associated with
+
+   - i.e., `meta` should be a separate entry to the `file` it is associated with
 
 6. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `integer`, `float`
 
