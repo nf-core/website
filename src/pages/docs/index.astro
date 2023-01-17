@@ -1,8 +1,19 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+let docs = await getCollection('docs');
+let usage_docs = [];
+let development_docs = [];
 
-const usage_docs = await Astro.glob('./usage/**/*.{md,mdx,astro}');
-const dev_docs = await Astro.glob('./development/**/*.{md,mdx,astro}');
+docs.map((doc) => {
+    if (doc.slug.startsWith('usage/')) {
+        usage_docs.push(doc);
+    }
+    if (doc.slug.startsWith('development/')) {
+        development_docs.push(doc);
+    }
+})
+
 ---
 
 <PageLayout
@@ -14,11 +25,27 @@ const dev_docs = await Astro.glob('./development/**/*.{md,mdx,astro}');
     <h2>Usage</h2>
     <ul>
         {
-            usage_docs.map((page) => (
-                <li>
-                    <a href={page.url}>{page.frontmatter.title}</a>
-                </li>
-            ))
+            usage_docs.map((doc) => {
+                return (
+                    <li>
+                        <a href={'docs/'+doc.slug}>{doc.data.title}</a>
+                    </li>
+                )
+            })
+
+        }
+    </ul>
+    <h2>Contributing</h2>
+    <ul>
+        {
+            development_docs.map((doc) => {
+                return (
+                    <li>
+                        <a href={'docs/'+doc.slug}>{doc.data.title}</a>
+                    </li>
+                )
+            })
+
         }
     </ul>
 </PageLayout>

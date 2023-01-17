@@ -1,9 +1,9 @@
 ---
 import Markdown from '@components/Markdown.astro';
+import ToC from '@components/ToC.svelte';
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
-import Toc from 'svelte-toc';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -26,12 +26,15 @@ if (typeof frontmatter.location_url == 'string') {
     frontmatter.location_url = [frontmatter.location_url];
 }
 
+const { headings, Content, remarkPluginFrontmatter } = await Astro.props.event.render();
+
 // TODO: update github url
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/events/' + Astro.props.event.id;
 ---
 
 <PageLayout title={title} subtitle={subtitle} subfooter={true} md_github_url={md_github_url} event_header={frontmatter}>
+    <ToC {headings} />
     <div class="container">
-        <Markdown content={Astro.props.event.body} />
+        <Content />
     </div>
 </PageLayout>
