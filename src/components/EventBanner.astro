@@ -2,6 +2,7 @@
 import UpcomingEvents from './UpcomingEvents.svelte';
 import OngoingEvents from './OngoingEvents.svelte';
 import { getCollection } from 'astro:content';
+import EventBannerElement from './EventBannerElement.svelte';
 
 let events = await getCollection('events');
 
@@ -50,39 +51,38 @@ const event_type_icons = {
 };
 ---
 
-<!-- generate bootstrap cards for current events -->{
+{
     currentEvents.length > 0 && (
         <>
             <div class="current-event-container bg-body-secondary">
-                <OngoingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
-                <UpcomingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
+                <EventBannerElement
+                    event_time_category={'ongoing'}
+                    events={currentEvents}
+                    {event_type_classes}
+                    {event_type_icons}
+                    client:load
+                />
+                <EventBannerElement
+                    event_time_category={'upcoming'}
+                    events={currentEvents}
+                    {event_type_classes}
+                    {event_type_icons}
+                    client:load
+                />
             </div>
-            <div class="triangle-down bg-body-secondary" />
+            <div class="triangle-down bg-body-secondary d-none" />
         </>
     )
 }
 <style lang="scss">
     @import '../styles/_variables.scss';
     .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
-        display: block;
+        display: block !important;
     }
 
-    .mainpage-subheader-heading {
-        background-color: $gray-200;
-        margin-top: -3.5rem;
-        padding: 4rem 0 1rem;
-    }
     @include media-breakpoint-down(md) {
         .mainpage-subheader-heading {
             padding-top: 2rem;
         }
-    }
-
-    .mainpage-subheader-heading-header {
-        box-shadow: 0 0 10px rgba($black, 0.2);
-    }
-    .mainpage-subheader-heading a.subheader-link {
-        text-decoration: none;
-        color: $gray-800;
     }
 </style>

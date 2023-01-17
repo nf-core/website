@@ -20,14 +20,14 @@ const getIcon = (url) => {
 </script>
 
 {#if urls.length === 1}
-        <a class="btn btn-success me-2 mb-2" href={urls[0]}>
+        <a class="btn btn-success me-2" href={urls[0]}>
             <i class={getIcon(urls[0]) + ' me-1'} aria-hidden="true" />
             Join now
         </a>
 {:else}
-<div class="dropdown">
+<div class="dropdown btn-group" role="group">
             <button
-                class="btn btn-success me-2 mb-2 dropdown-toggle"
+                class="btn btn-success me-2 dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
