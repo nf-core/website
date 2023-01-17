@@ -2,6 +2,8 @@
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
+import emoji from 'remark-emoji';
+import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 
 // https://astro.build/config
@@ -15,10 +17,10 @@ export default defineConfig({
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ['@popperjs/core', 'svelte-toc'],
+            noExternal: ['@popperjs/core'],
         },
     },
     markdown: {
-        remarkPlugins: [remarkToc],
+        remarkPlugins: [remarkToc, emoji, remarkGfm],
     },
 });
