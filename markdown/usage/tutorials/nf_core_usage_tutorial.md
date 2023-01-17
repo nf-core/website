@@ -86,7 +86,7 @@ pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git
 If using conda, first set up Bioconda as described in the [bioconda docs](https://bioconda.github.io/#usage) (especially setting the channel order), create and activate an environment and then install nf-core:
 
 ```bash
-conda install -c bioconda nf-core
+conda install nf-core
 ```
 
 To update the package you can run the following command
@@ -113,7 +113,7 @@ You will also need to install [Prettier](https://prettier.io/) for formatting yo
 To do so, you can either use the following command with conda:
 
 ```bash
-conda install -c conda-forge prettier
+conda install prettier
 ```
 
 Or use the Visual Studio Code extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) also available in the pack of useful extension [NF-core](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack).
