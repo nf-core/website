@@ -57,14 +57,14 @@ const event_type_icons = {
                 <OngoingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
                 <UpcomingEvents events={currentEvents} {event_type_classes} {event_type_icons} client:load />
             </div>
-            <div class="triangle-down bg-body-secondary" />
+            <div class="triangle-down bg-body-secondary d-none" />
         </>
     )
 }
 <style lang="scss">
     @import '../styles/_variables.scss';
     .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
-        display: block;
+        display: block !important;
     }
 
     .mainpage-subheader-heading {
