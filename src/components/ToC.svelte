@@ -7,7 +7,7 @@
 </script>
 
 <!-- Render remark-toc as a nav-list -->
-<div class="nav flex-column position-fixed">
+<div class="nav flex-column sticky-top">
     <strong class="d-none d-md-block h6 my-2 text-body">On this page</strong>
     <hr class="d-none d-md-block my-1" />
 
