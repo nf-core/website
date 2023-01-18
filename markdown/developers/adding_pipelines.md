@@ -224,7 +224,7 @@ Use the `nf-core bump-version` command to do this - there are quite a few locati
 code that need updating and this ensures that it happens in the correct places.
 
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
-when ready - this will check that everything looks correct. Pipeline release numbers must
+when ready - this will check that everything looks correct. Pipeline release numbers MUST
 use [Semantic Versioning](https://semver.org/).
 
 ### Core pipeline review
