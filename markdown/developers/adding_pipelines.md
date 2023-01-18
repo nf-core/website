@@ -243,7 +243,7 @@ What happens next depends on the state of your master branch:
   above will represent all changes associated with the proposed release, and the core team
   will use it for review and feedback.
 - If your master branch already contains changes associated with the release, the core
-  team may merge your PR and create a fake pull-request against the first commit in the
+  team may merge your PR and create a pseudo-PR against the first commit in the
   pipeline. This gives the PR review interface showing all code that you've written.
 
 In either case we will go through everything and request changes that we think are
