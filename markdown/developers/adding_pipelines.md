@@ -217,7 +217,7 @@ branch again.
 
 ### Bump the version
 
-At this point you shouldb bump the version numbers on `dev`.
+At this point you should bump the version numbers on `dev`.
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end.
 Use the `nf-core bump-version` command to do this - there are quite a few locations in the
