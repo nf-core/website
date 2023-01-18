@@ -26,8 +26,6 @@
             }
 
             if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
-                // TODO: uncoment above line and remove below line, which is only for testing purposes
-                // if (new Date().getTime() < event_end_unix) {
                 return true;
             }
         });
@@ -169,7 +167,7 @@
                                 >{event.data.title}</a
                             >
                         </h4>
-                        <p class="d-sm-none mb-2">
+                        <p class="d-sm-none mb-1">
                             <a href={'events/' + event.slug} class="text-body text-decoration-none"
                                 >{event.data.subtitle}</a
                             ><span class={'badge bg-' + event_type_classes[event.data.type] + ' small ms-3'}
@@ -177,8 +175,8 @@
                                 {event.data.type}</span
                             >
                         </p>
-                        <div class="small mb-2">
-                            <a href={'events/' + event.slug} class="text-secondary-emphasis text-decoration-none"
+                        <div class="small mb-1 mx-3 d-flex flex-column">
+                            <a href={'events/' + event.slug} class="text-secondary-emphasis text-decoration-none mb-2"
                                 >{event.data.duration}</a
                             >
                             <div class="btn-group text-nowrap" role="group" aria-label="Event details">

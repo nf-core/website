@@ -1,5 +1,6 @@
 <script>
 export let urls = [];
+export let btnClass = 'btn-success';
 if (typeof urls === 'string') {
     urls = [urls];
 }
@@ -20,7 +21,7 @@ const getIcon = (url) => {
 </script>
 
 {#if urls.length === 1}
-        <a class="btn btn-success me-2" href={urls[0]}>
+        <a class={"btn "+ btnClass} href={urls[0]}>
             <i class={getIcon(urls[0]) + ' me-1'} aria-hidden="true" />
             Join now
         </a>
