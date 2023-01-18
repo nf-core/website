@@ -6,8 +6,12 @@ start_date: '2023-01-17'
 start_time: '13:00 CET'
 end_date: '2023-01-17'
 end_time: '13:30 CET'
-location_url:
-  - https://kth-se.zoom.us/j/68390542812
+embed_at:
+youtube_embed: 'taxprofiler'
+location_url: https://www.youtube.com/watch?v=p1EQtidJiUY
+  - https://www.youtube.com/watch?v=p1EQtidJiUY
+  - https://doi.org/10.6084/m9.figshare.21916416.v1 (video)
+  - https://doi.org/10.6084/m9.figshare.21916386.v1 (slides)
 ---
 
 # nf-core/bytesize
