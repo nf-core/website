@@ -17,7 +17,7 @@ export default defineConfig({
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ['@popperjs/core'],
+            noExternal: ['@popperjs/core', 'svelte-toc'],
         },
     },
     markdown: {
