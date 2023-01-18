@@ -1,5 +1,6 @@
 <script>
     import ExportEventButton from "./ExportEventButton.svelte";
+    import VideoButton from "./VideoButton.svelte";
 
     export let frontmatter = {
         title: '',
@@ -61,36 +62,16 @@
                 {frontmatter.title}
             </a>
             {#if time_category === 'current'}
-                <div class="dropwdown btn-group float-end" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary dropdown-toggle"
-                        href="#"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                    >
-                        Watch now
-                    </button>
-                    <div class="dropdown-menu text-secondary">
-                        {#if typeof frontmatter.location_url === 'string'}
-                            <a class="dropdown-item" href={frontmatter.location_url} target="_blank" rel="noreferrer">
-                                {frontmatter.location_url}
-                            </a>
-                        {:else}
-                            {#each frontmatter.location_url as url}
-                                <a class="dropdown-item" href={url} target="_blank" rel="noreferrer"> {url} </a>
-                            {/each}
-                        {/if}
-                    </div>
+                <div class="float-end">
+                    <VideoButton urls={frontmatter.location_url} btnClass="btn-danger"/>
                 </div>
             {/if}
         </div>
         <div class="card-text">
-            <p>{frontmatter.subtitle}</p>
+            <p class="mb-2 mb-md-3">{frontmatter.subtitle}</p>
             <div class="d-flex justify-content-center justify-content-md-between align-items-center flex-wrap flex-md-nowrap">
                 <div>
-                    <p class="text-muted text-nowrap">
+                    <p class="text-muted text-nowrap text-center text-md-start">
                         {@html event_date}
                     </p>
                 </div>
