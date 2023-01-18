@@ -221,8 +221,7 @@ At this point you should bump the version numbers on `dev`.
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end.
 Use the `nf-core bump-version` command to do this - there are quite a few locations in the
-code that need updating and this ensures that it happens in the correct places. Note that
-when developing the `:dev` tag should be used for docker containers.
+code that need updating and this ensures that it happens in the correct places.
 
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
 when ready - this will check that everything looks correct. Pipeline release numbers must
