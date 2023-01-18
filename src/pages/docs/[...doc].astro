@@ -1,9 +1,9 @@
 ---
+import Markdown from '@components/Markdown.svelte';
+import ToC from '@components/ToC.svelte';
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
-import ToC from '@components/ToC.svelte';
-import Markdown from '@components/Markdown.svelte';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -23,11 +23,8 @@ const title = Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
 let frontmatter = Astro.props.doc.data;
 let body = Astro.props.doc.body;
-Astro.props.doc.body = Astro.props.doc.body.replace('```nextflow', '```groovy');
-
 const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.render();
 
-// Content = Content.replace('```nextflow', '```groovy');
 // TODO: update github url
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/docs/' + Astro.props.doc.id;
 ---
@@ -38,14 +35,12 @@ const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/
         <div class="col-12 col-md-10">
             <div class="markdown-content">
                 <Markdown headings={headings}>
-                    <Content/>
+                    <Content />
                 </Markdown>
             </div>
         </div>
         <div class="col-12 col-md-2 toc">
-            <ToC
-                headings={headings}
-                />
+            <ToC headings={headings} />
         </div>
     </div>
 </PageLayout>

@@ -18,7 +18,14 @@ const events = defineCollection({
         duration: z.string().optional(),
     },
 });
+const docs = defineCollection({
+    schema: {
+        title: z.string(),
+        subtitle: z.string().optional(),
+    },
+});
 
 export const collections = {
     events: events,
+    docs: docs,
 };

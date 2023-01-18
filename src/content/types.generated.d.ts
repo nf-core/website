@@ -39,6 +39,393 @@ declare module 'astro:content' {
     };
 
     const entryMap: {
+        docs: {
+            'development/adding_pipelines.md': {
+                id: 'development/adding_pipelines.md';
+                slug: 'development/adding_pipelines';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/design_guidelines.md': {
+                id: 'development/design_guidelines.md';
+                slug: 'development/design_guidelines';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/developer_tutorials.md': {
+                id: 'development/developer_tutorials.md';
+                slug: 'development/developer_tutorials';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/editor_plugins.md': {
+                id: 'development/editor_plugins.md';
+                slug: 'development/editor_plugins';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/gitpod/config.md': {
+                id: 'development/gitpod/config.md';
+                slug: 'development/gitpod/config';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/gitpod/git_in_gitpod.md': {
+                id: 'development/gitpod/git_in_gitpod.md';
+                slug: 'development/gitpod/git_in_gitpod';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/gitpod/gitpod_introduction.md': {
+                id: 'development/gitpod/gitpod_introduction.md';
+                slug: 'development/gitpod/gitpod_introduction';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/gitpod/nf_core_repo.md': {
+                id: 'development/gitpod/nf_core_repo.md';
+                slug: 'development/gitpod/nf_core_repo';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/gitpod/other_tutorials.md': {
+                id: 'development/gitpod/other_tutorials.md';
+                slug: 'development/gitpod/other_tutorials';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/gitpod/webdev.md': {
+                id: 'development/gitpod/webdev.md';
+                slug: 'development/gitpod/webdev';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/index.md': {
+                id: 'development/guidelines/index.md';
+                slug: 'development/guidelines';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/recommendations/bioconda.md': {
+                id: 'development/guidelines/recommendations/bioconda.md';
+                slug: 'development/guidelines/recommendations/bioconda';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/recommendations/cloud_compatible.md': {
+                id: 'development/guidelines/recommendations/cloud_compatible.md';
+                slug: 'development/guidelines/recommendations/cloud_compatible';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/recommendations/dois.md': {
+                id: 'development/guidelines/recommendations/dois.md';
+                slug: 'development/guidelines/recommendations/dois';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/recommendations/file_formats.md': {
+                id: 'development/guidelines/recommendations/file_formats.md';
+                slug: 'development/guidelines/recommendations/file_formats';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/acknowledgements.md': {
+                id: 'development/guidelines/requirements/acknowledgements.md';
+                slug: 'development/guidelines/requirements/acknowledgements';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/ci_testing.md': {
+                id: 'development/guidelines/requirements/ci_testing.md';
+                slug: 'development/guidelines/requirements/ci_testing';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/docker.md': {
+                id: 'development/guidelines/requirements/docker.md';
+                slug: 'development/guidelines/requirements/docker';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/docs.md': {
+                id: 'development/guidelines/requirements/docs.md';
+                slug: 'development/guidelines/requirements/docs';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/git_branches.md': {
+                id: 'development/guidelines/requirements/git_branches.md';
+                slug: 'development/guidelines/requirements/git_branches';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/identity_branding.md': {
+                id: 'development/guidelines/requirements/identity_branding.md';
+                slug: 'development/guidelines/requirements/identity_branding';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/keywords.md': {
+                id: 'development/guidelines/requirements/keywords.md';
+                slug: 'development/guidelines/requirements/keywords';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/linting.md': {
+                id: 'development/guidelines/requirements/linting.md';
+                slug: 'development/guidelines/requirements/linting';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/minimum_inputs.md': {
+                id: 'development/guidelines/requirements/minimum_inputs.md';
+                slug: 'development/guidelines/requirements/minimum_inputs';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/mit_license.md': {
+                id: 'development/guidelines/requirements/mit_license.md';
+                slug: 'development/guidelines/requirements/mit_license';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/parameters.md': {
+                id: 'development/guidelines/requirements/parameters.md';
+                slug: 'development/guidelines/requirements/parameters';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/semantic_versioning.md': {
+                id: 'development/guidelines/requirements/semantic_versioning.md';
+                slug: 'development/guidelines/requirements/semantic_versioning';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/single_command.md': {
+                id: 'development/guidelines/requirements/single_command.md';
+                slug: 'development/guidelines/requirements/single_command';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/use_the_template.md': {
+                id: 'development/guidelines/requirements/use_the_template.md';
+                slug: 'development/guidelines/requirements/use_the_template';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/workflow_name.md': {
+                id: 'development/guidelines/requirements/workflow_name.md';
+                slug: 'development/guidelines/requirements/workflow_name';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/workflow_size.md': {
+                id: 'development/guidelines/requirements/workflow_size.md';
+                slug: 'development/guidelines/requirements/workflow_size';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/guidelines/requirements/workflow_specificity.md': {
+                id: 'development/guidelines/requirements/workflow_specificity.md';
+                slug: 'development/guidelines/requirements/workflow_specificity';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/modules.md': {
+                id: 'development/modules.md';
+                slug: 'development/modules';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/release_checklist.md': {
+                id: 'development/release_checklist.md';
+                slug: 'development/release_checklist';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/subworkflows.md': {
+                id: 'development/subworkflows.md';
+                slug: 'development/subworkflows';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/sync.md': {
+                id: 'development/sync.md';
+                slug: 'development/sync';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/test_data_guidelines.md': {
+                id: 'development/test_data_guidelines.md';
+                slug: 'development/test_data_guidelines';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/training_guide.md': {
+                id: 'development/training_guide.md';
+                slug: 'development/training_guide';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/tutorials/adding_modules_to_pipelines.md': {
+                id: 'development/tutorials/adding_modules_to_pipelines.md';
+                slug: 'development/tutorials/adding_modules_to_pipelines';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/tutorials/creating_with_nf_core.md': {
+                id: 'development/tutorials/creating_with_nf_core.md';
+                slug: 'development/tutorials/creating_with_nf_core';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/tutorials/dsl2_modules_tutorial.md': {
+                id: 'development/tutorials/dsl2_modules_tutorial.md';
+                slug: 'development/tutorials/dsl2_modules_tutorial';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/tutorials/nf_core_contributing_overview.md': {
+                id: 'development/tutorials/nf_core_contributing_overview.md';
+                slug: 'development/tutorials/nf_core_contributing_overview';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'development/tutorials/unofficial_pipelines.md': {
+                id: 'development/tutorials/unofficial_pipelines.md';
+                slug: 'development/tutorials/unofficial_pipelines';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/configuration.md': {
+                id: 'usage/configuration.md';
+                slug: 'usage/configuration';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/data_management.md': {
+                id: 'usage/data_management.md';
+                slug: 'usage/data_management';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/installation.md': {
+                id: 'usage/installation.md';
+                slug: 'usage/installation';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/introduction.md': {
+                id: 'usage/introduction.md';
+                slug: 'usage/introduction';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/nextflow.md': {
+                id: 'usage/nextflow.md';
+                slug: 'usage/nextflow';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/offline.md': {
+                id: 'usage/offline.md';
+                slug: 'usage/offline';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/reference_genomes.md': {
+                id: 'usage/reference_genomes.md';
+                slug: 'usage/reference_genomes';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/troubleshooting.md': {
+                id: 'usage/troubleshooting.md';
+                slug: 'usage/troubleshooting';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/tutorials/institution.md': {
+                id: 'usage/tutorials/institution.md';
+                slug: 'usage/tutorials/institution';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/tutorials/nf_core_usage_tutorial.md': {
+                id: 'usage/tutorials/nf_core_usage_tutorial.md';
+                slug: 'usage/tutorials/nf_core_usage_tutorial';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/tutorials/step_by_step_institutional_profile.md': {
+                id: 'usage/tutorials/step_by_step_institutional_profile.md';
+                slug: 'usage/tutorials/step_by_step_institutional_profile';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+            'usage/usage_tutorials.md': {
+                id: 'usage/usage_tutorials.md';
+                slug: 'usage/usage_tutorials';
+                body: string;
+                collection: 'docs';
+                data: InferEntrySchema<'docs'>;
+            };
+        };
         events: {
             '2018/hackathon-scilifelab-2018.md': {
                 id: '2018/hackathon-scilifelab-2018.md';
