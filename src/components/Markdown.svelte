@@ -24,8 +24,4 @@
     <slot />
 </div>
 
-<style lang="scss">
-    .markdown-content pre.astro-code {
-        padding: 0;
-    }
-</style>
+

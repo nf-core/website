@@ -1,4 +1,5 @@
 @import './_base.scss';
+@import 'highlight.js/scss/github'; //highlight.js theme for code blocks
 .hide-light {
   display: none;
 }
@@ -295,11 +296,10 @@ code:not(pre code),
 }
 .main-content pre {
   border-radius: 3px;
-  padding: 12px 15px;
   font-size: 14px;
+  border: 1px solid $body-secondary-bg;
+  // background-color: $yellow-100;
   code {
-    border: 1px solid $body-tertiary-bg;
-    background-color: $body-tertiary-bg;
     display: block;
     overflow-x: auto;
     padding: 1em;
@@ -368,23 +368,6 @@ h6,
   font-family: 'InterVariant', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
-.main-content h1[id]::before,
-.main-content h2[id]::before,
-.main-content h3[id]::before,
-.main-content h4[id]::before,
-.main-content h5[id]::before,
-.main-content h6[id]::before,
-.main-content .h1[id]::before,
-.main-content .h2[id]::before,
-.main-content .h3[id]::before,
-.main-content .h4[id]::before,
-.main-content .h5[id]::before,
-.main-content .h6[id]::before {
-  display: block;
-  content: '';
-  padding-top: 50px;
-  margin-top: -50px;
-}
 .main-content h1[id] {
   margin-top: -30px;
 }
@@ -437,6 +420,20 @@ h4:focus .header-link,
     margin: 0;
     padding-right: 10px;
     opacity: 1;
+  }
+}
+
+.markdown-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: 4rem;
+    :hover .fa-link {
+      visibility: visible !important;
+    }
   }
 }
 
@@ -1159,6 +1156,7 @@ Launch Page
 ///////////////////////////
 
 @include color-mode(dark) {
+  @import 'highlight.js/scss/github-dark'; // unfortunately this makes the code blocks look dark in light mode too after switching between modes
   .hide-dark {
     display: none;
   }
@@ -1193,5 +1191,9 @@ Launch Page
   .mainpage-heading,
   .mainpage-heading h1 {
     color: $gray-100 !important;
+  }
+
+  .main-content pre {
+    border: 1px solid $body-secondary-bg-dark;
   }
 }
