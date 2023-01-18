@@ -43,7 +43,7 @@ conda config --add channels conda-forge
 
 > **Warning**
 > This is important - if not done, dependencies (such as Java) will be installed from
-> the wrong channels and thins may break in strange ways.
+> the wrong channels and things may break in strange ways.
 
 A best practice with conda is to create an environment and install the tools in it.
 Therefore you will prevent version conflicts and keep everything clean.
