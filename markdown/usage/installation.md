@@ -40,7 +40,6 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-
 > **Warning**
 > This is important - if not done, dependencies (such as Java) will be installed from
 > the wrong channels and things may break in strange ways.
