@@ -239,9 +239,10 @@ core team.
 
 What happens next depends on the state of your master branch:
 
-- If you have developed in such a way that your master branch is clean,.i.e. doesn't have any commits since the inital one, the PR created
-  above will represent all changes associated with the proposed release, and the core team
-  will use it for review and feedback.
+- If you have developed in such a way that your master branch is clean, .i.e. doesn't have
+  any commits since the inital one, the PR created above will represent all changes
+  associated with the proposed release, and the core team will use it for review and
+  feedback.
 - If your master branch already contains changes associated with the release, the core
   team may merge your PR and create a pseudo-PR against the first commit in the
   pipeline. This gives the PR review interface showing all code that you've written.
@@ -255,8 +256,8 @@ necessary until you're good to go. Common things that are flagged at this point 
 
 We typically tend to have two reviewers for most of the crucial code changes, e.g. adding
 new major features to an existing pipeline or making an entirely new pipeline release. You
-can also ping people from the nf-core core or the maintainers team to review your pipeline code by `@`ing
-them.
+can also ping people from the nf-core core or maintainers team to review your pipeline
+code by `@`ing them.
 
 ### Making the release
 
