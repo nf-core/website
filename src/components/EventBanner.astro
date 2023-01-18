@@ -1,8 +1,8 @@
 ---
-import UpcomingEvents from './UpcomingEvents.svelte';
-import OngoingEvents from './OngoingEvents.svelte';
-import { getCollection } from 'astro:content';
 import EventBannerElement from './EventBannerElement.svelte';
+import OngoingEvents from './OngoingEvents.svelte';
+import UpcomingEvents from './UpcomingEvents.svelte';
+import { getCollection } from 'astro:content';
 
 let events = await getCollection('events');
 
@@ -53,7 +53,7 @@ const event_type_icons = {
 
 {
     currentEvents.length > 0 && (
-        <>
+        <div>
             <div class="current-event-container bg-body-secondary">
                 <EventBannerElement
                     event_time_category={'ongoing'}
@@ -71,7 +71,7 @@ const event_type_icons = {
                 />
             </div>
             <div class="triangle-down bg-body-secondary d-none" />
-        </>
+        </div>
     )
 }
 <style lang="scss">
