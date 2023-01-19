@@ -40,7 +40,7 @@ the nf-core alumni hall of fame:
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
-This team includes all of the `@core-team` mentioned above, but mainly responsible are:
+This team includes all of the `@core-team` mentioned above, but the people in charge are:
 
 - [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
