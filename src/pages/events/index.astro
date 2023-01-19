@@ -5,6 +5,10 @@ import { getCollection } from 'astro:content';
 
 let events = await getCollection('events');
 
+events = events.filter((event) => {
+    return event.slug.split('/').length === 2;
+});
+
 events
     .map((event) => {
         event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
@@ -50,9 +54,6 @@ events
         return new Date(a.data.start) - new Date(b.data.start);
     });
 
-events = events.filter((event) => {
-    return event.slug.split('/').length === 2;
-});
 const searchEvents = (search) => {
     const searchTerms = search.toLowerCase().split(' ');
     return events.filter((event) => {

@@ -99,7 +99,7 @@
                 {#each currentEvents as event (event.id)}
                     <EventCard
                         frontmatter={event.data}
-                        slug={event.slug}
+                        slug={event.slug.startsWith('/events/') ? event.slug.replace('/events', '') : event.slug}
                         type_class={event_type_classes[event.data.type]}
                         time_category="current"
                     />
