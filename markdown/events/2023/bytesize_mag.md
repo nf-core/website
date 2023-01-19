@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/mag
 
-This week, Sabrina Krakau ([@skrakau](https://github.com/skrakau)) is going to introduce nf-core/mag. nf-core/funcscan is a bioinformatics best-practise analysis pipeline for assembly, binning and annotation of metagenomes.
+This week, Sabrina Krakau ([@skrakau](https://github.com/skrakau)) is going to introduce nf-core/mag. nf-core/mag is a bioinformatics best-practise analysis pipeline for assembly, binning and annotation of metagenomes.
