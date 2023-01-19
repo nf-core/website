@@ -1,9 +1,15 @@
 <script>
     export let headings = [];
     // get minimal heading depth from headings
-    let max_heading_depth = 2
-    headings = headings.filter(h => h.depth <= max_heading_depth);
+    let max_heading_depth = 3;
 
+    headings = headings.filter((h) => h.depth <= max_heading_depth);
+    let min_heading_depth = Math.min(...headings.map((h) => h.depth));
+    // make margin classes from min to max heading depth
+    let headingMargin = {};
+    for (let i = min_heading_depth; i <= 6; i++) {
+        headingMargin[i] = 'ms-' + (i - min_heading_depth) * 2;
+    }
 </script>
 
 <!-- Render remark-toc as a nav-list -->
@@ -11,22 +17,35 @@
     <strong class="d-none d-md-block h6 my-2 text-body">On this page</strong>
     <hr class="d-none d-md-block my-1" />
 
-    <nav id="TableOfContents">
+    <nav id="TableOfContents d-flex flex-column">
         <ul>
             {#each headings as heading}
-            <li class={"nav-item ps-"+heading.depth}>
-                <a class="nav-link small py-1" href={"#"+heading.slug}>
-                    {heading.text}
-                </a>
-            </li>
+                <li class={'nav-item ' + headingMargin[heading.depth]}>
+                    <a class="nav-link py-1 text-muted" href={'#' + heading.slug}>
+                        {heading.text}
+                    </a>
+                </li>
             {/each}
         </ul>
+        <div class="text-center">
+            <button class="btn btn-sm btn-outline-secondary mx-auto back-to-top" on:click={() => window.scrollTo(0, 0)}>
+                <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
+            </button>
+        </div>
     </nav>
 </div>
 
 <style lang="scss">
-    nav>ul{
+    .nav {
+        padding-top: 4rem;
+    }
+    nav > ul {
+        font-size: 0.875rem;
         list-style: none;
         padding-left: 0;
+        overflow-y: auto;
+        max-height: calc(100% - 56rem);
+
     }
+
 </style>
