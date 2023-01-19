@@ -1,10 +1,6 @@
 ---
-import Markdown from '@components/Markdown.svelte';
-import Toc from '@components/Toc.svelte';
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
-import { marked } from 'marked';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -17,16 +13,12 @@ export async function getStaticPaths() {
         },
     }));
 }
-marked.setOptions({
-    baseUrl: Astro.params.slug, // add the slug to the base url of relative links
-});
 const title = Astro.props.event.data.title;
 const subtitle = Astro.props.event.data.subtitle;
 let frontmatter = Astro.props.event.data;
 if (typeof frontmatter.location_url == 'string') {
     frontmatter.location_url = [frontmatter.location_url];
 }
-Astro.props.event.body = Astro.props.event.body.replace('ocal events', 'FOOOOBAR');
 const { headings, Content, remarkPluginFrontmatter } = await Astro.props.event.render();
 
 // TODO: update github url

@@ -1,11 +1,6 @@
 ---
-import Markdown from '@components/Markdown.svelte';
-import Toc from '@components/Toc.svelte';
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
-import { marked } from 'marked';
-
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
     return docs.map((doc) => ({
@@ -17,9 +12,6 @@ export async function getStaticPaths() {
         },
     }));
 }
-marked.setOptions({
-    baseUrl: Astro.params.slug, // add the slug to the base url of relative links
-});
 const title = Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
 let frontmatter = Astro.props.doc.data;
