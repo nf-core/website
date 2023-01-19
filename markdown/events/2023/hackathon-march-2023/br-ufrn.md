@@ -1,5 +1,5 @@
 ---
-title: Hackathon - March 2023 (Dakar)
+title: Hackathon - March 2023 (Natal)
 subtitle: Local node of the nf-core hackathon at the Federal University of Rio Grande do Norte
 type: hackathon
 start_date: '2023-03-27'
