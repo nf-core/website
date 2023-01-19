@@ -1,6 +1,7 @@
 ---
 import Markdown from '@components/Markdown.svelte';
 import Toc from '@components/Toc.svelte';
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
@@ -29,23 +30,6 @@ const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.ren
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/docs/' + Astro.props.doc.id;
 ---
 
-<PageLayout title={title} subtitle={subtitle} subfooter={true} md_github_url={md_github_url} mainpage_container={true}>
-    <!-- <Toc {headings} /> -->
-    <div class="container-fluid row">
-        <div class="col-12 col-md-10">
-            <div class="markdown-content">
-                <Markdown headings={headings}>
-                    <Content />
-                </Markdown>
-            </div>
-        </div>
-        <div class="col-12 col-md-2 sticky-top toc">
-            <Toc headings={headings} client:idle />
-        </div>
-    </div>
-</PageLayout>
-<style lang="scss">
-    .toc {
-        margin-top: -4rem; // compensate for the navbar-offset of the underlying .nav element
-    }
-</style>
+<MarkdownTocLayout title={title} subtitle={subtitle} md_github_url={md_github_url} headings={headings}>
+    <Content />
+</MarkdownTocLayout>
