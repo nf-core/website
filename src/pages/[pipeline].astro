@@ -1,7 +1,7 @@
 ---
 import Markdown from '@components/Markdown.svelte';
-import pipeline_names from '../../public/pipeline_names.json';
-import PageLayout from '../layouts/PageLayout.astro';
+import pipeline_names from '@public/pipeline_names.json';
+import PageLayout from '@layouts/PageLayout.astro';
 import octokit from '@components/octokit';
 import { marked } from 'marked';
 export function getStaticPaths() {
