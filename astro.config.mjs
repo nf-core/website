@@ -1,10 +1,9 @@
 // https://astro.build/config
-
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
-import { h, s } from 'hastscript';
+import { h } from 'hastscript';
 import groovy from 'highlight.js/lib/languages/groovy';
 import shell from 'highlight.js/lib/languages/shell';
 import addClasses from 'rehype-add-classes';
@@ -36,7 +35,7 @@ export default defineConfig({
                 rehypeAutolinkHeadings,
                 {
                     behavior: 'append',
-                    content: [h('span.visually-hidden', ' permalink'), s('.ms-1.fas.fa-link.invisible')],
+                    content: h('i.ms-1.fas.fa-link.invisible'),
                 },
             ],
             [addClasses, { table: 'table table-hover table-sm small' }],

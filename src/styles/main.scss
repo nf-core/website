@@ -112,63 +112,6 @@ section:before {
   background-color: tint-color($success, 25%);
 }
 
-// Table of Contents
-.toc .nav {
-  margin-left: 1rem;
-}
-.toc > .nav {
-  margin-top: 10px;
-  margin-left: 0;
-  padding-bottom: 1px;
-  max-height: calc(100vh - 9rem);
-  overflow-y: auto;
-}
-@include media-breakpoint-down(xl) {
-  .toc > .nav {
-    max-height: calc(100vh - 12.5rem);
-  }
-}
-.toc .nav-link {
-  font-weight: 300;
-  color: $text-muted;
-  &:hover {
-    color: $success;
-  }
-}
-.toc .nav .list-group .list-group {
-  display: none;
-  font-size: 90%;
-}
-.auto-toc .nav .nav {
-  display: none;
-}
-.auto-toc .nav .nav {
-  font-size: 90%;
-}
-
-.toc .list-group .list-group .list-group {
-  font-size: 80%;
-}
-
-.toc .nav > .active + .nav,
-.toc .nav .nav > .active + .nav {
-  display: block;
-}
-.toc .nav .nav-link.active {
-  color: $list-group-action-color;
-  font-weight: bold;
-}
-.toc .fa-fw {
-  margin-right: 0.5rem;
-  opacity: 0.8;
-}
-
-.toc-md {
-  max-height: 50vh;
-  max-width: 100%;
-  overflow-y: auto;
-}
-
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
@@ -368,15 +311,9 @@ h6,
   font-family: 'InterVariant', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
-.main-content h1[id] {
-  margin-top: -30px;
-}
+
 .main-content h1 {
   border-bottom: 1px solid $nf-core-color;
-}
-.main-content .module h4::before {
-  padding-top: 0px;
-  margin-top: 0px;
 }
 
 .header-link {
