@@ -1,15 +1,14 @@
 ---
-import pipelines_json from '../../public/pipelines.json';
-import ListingLayout from '../layouts/ListingLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+import ListingLayout from '@layouts/ListingLayout.astro';
 
 const pipelines = pipelines_json.remote_workflows;
 const title = 'Pipelines';
 const description = `We currently have ${pipelines.length} pipelines available.`;
 
-const num_released = pipelines.filter(p => p.releases.length >0 && !p.archived).length;
-const num_dev = pipelines.filter(p => p.releases.length == 0 && !p.archived).length;
-const num_archived = pipelines.filter(p => p.archived).length;
-
+const num_released = pipelines.filter((p) => p.releases.length > 0 && !p.archived).length;
+const num_dev = pipelines.filter((p) => p.releases.length == 0 && !p.archived).length;
+const num_archived = pipelines.filter((p) => p.archived).length;
 ---
 
 <ListingLayout
@@ -17,18 +16,15 @@ const num_archived = pipelines.filter(p => p.archived).length;
     description={description}
     input={pipelines}
     filter={[
-        {name:"Released",count:num_released},
-    {name:"Under development", count:num_dev},
-    {name:"Archived", count:num_archived}
-        ]}
-    sortBy={["Last release", "Alphabetical", "Stars"]}
+        { name: 'Released', count: num_released },
+        { name: 'Under development', count: num_dev },
+        { name: 'Archived', count: num_archived },
+    ]}
+    sortBy={['Last release', 'Alphabetical', 'Stars']}
     displayStyle={[
-                {name:"grid", icon:"fa-regular fa-grid-2"},
-                {name:"table", icon: "fa-regular fa-bars"}
-                ]}
->
-</ListingLayout>
+        { name: 'grid', icon: 'fa-regular fa-grid-2' },
+        { name: 'table', icon: 'fa-regular fa-bars' },
+    ]}
+/>
 
-<style>
-
-</style>
+<style></style>
