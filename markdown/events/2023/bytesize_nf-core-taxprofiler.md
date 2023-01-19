@@ -8,7 +8,7 @@ end_date: '2023-01-17'
 end_time: '13:30 CET'
 embed_at: 'taxprofiler'
 youtube_embed: https://www.youtube.com/watch?v=p1EQtidJiUY
-location_url: 
+location_url:
   - https://www.youtube.com/watch?v=p1EQtidJiUY
   - https://doi.org/10.6084/m9.figshare.21916416.v1 (video)
   - https://doi.org/10.6084/m9.figshare.21916386.v1 (slides)
