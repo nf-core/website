@@ -12,7 +12,6 @@
     }
 </script>
 
-<!-- Render remark-toc as a nav-list -->
 <div class="nav flex-column sticky-top">
     <strong class="d-none d-md-block h6 my-2 text-body">On this page</strong>
     <hr class="d-none d-md-block my-1" />
@@ -37,7 +36,7 @@
 
 <style lang="scss">
     .nav {
-        padding-top: 4rem;
+        padding-top: 4rem; // account for navbar
     }
     nav > ul {
         font-size: 0.875rem;
