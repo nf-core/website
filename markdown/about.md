@@ -13,6 +13,7 @@ The core team members who administer the nf-core project are listed below:
 - [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@drpatelh](https://github.com/drpatelh): Harshil Patel
 - [@ewels](https://github.com/ewels): Phil Ewels
+- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
 - [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
 - [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 - [@jfy133](https://github.com/jfy133): James A. Fellows Yates
@@ -34,14 +35,16 @@ the nf-core alumni hall of fame:
 - [@olgabot](https://github.com/olgabot): Olga Botvinnik
 - [@sven1103](https://github.com/sven1103): Sven F.
 - [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
+- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
-This team includes all of the `@core-team` mentioned above and also:
+This team includes all of the `@core-team` mentioned above, but the people in charge are:
 
+- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
-- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
 ## Financial Support
 
