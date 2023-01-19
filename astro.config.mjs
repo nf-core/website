@@ -10,6 +10,7 @@ import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
+import urls from 'rehype-urls';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
@@ -39,6 +40,16 @@ export default defineConfig({
                 },
             ],
             [addClasses, { table: 'table table-hover table-sm small' }],
+            [
+                urls,
+                (url) => {
+                    if (url.href?.endsWith('.md')) {
+                        url.href = url.href.replace(/\.md$/, '/');
+                        url.pathname = url.pathname.replace(/\.md$/, '/');
+                        url.path = url.path.replace(/\.md$/, '/');
+                    }
+                },
+            ],
             [
                 rehypeHighlight,
                 { languages: { groovy, shell }, aliases: { groovy: 'nextflow', shell: 'console', shell: 'git' } },
