@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Natal)
 subtitle: Local node of the nf-core hackathon at the Federal University of Rio Grande do Norte
 type: hackathon
 start_date: '2023-03-27'
-start_time: '10:00 CEST'
+start_time: '14:00 CEST'
 end_date: '2023-03-29'
-end_time: '18:00 CEST'
+end_time: '22:00 CEST'
 location_name: Brain Institute, Federal University of Rio Grande do Norte
 address: Av. Senador Salgado Filho, 3000 Campus Universitário, Lagoa Nova - Natal / RN 59078-900
 location_url: https://neuro.ufrn.br
