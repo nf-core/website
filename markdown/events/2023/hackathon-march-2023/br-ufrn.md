@@ -14,7 +14,7 @@ location_latlng: [-5.833184, -35.204875]
 
 Local event to be held at the Federal University of Rio Grande do Norte as a satellite event of the [Natal Bioinformatics Forum 2023](https://bioinfo.imd.ufrn.br/nbf).
 
-Primary contact: [Marcel Ribeiro-Dantas](http://mribeirodantas.me) / [João Paulo Matos Santos Lima](https://sigaa.ufrn.br/sigaa/public/docente/portal.jsf?siape=1513597)
+Primary contact: [Marcel Ribeiro-Dantas](https://nfcore.slack.com/team/U03932BSX1V) / [João Paulo Matos Santos Lima](https://sigaa.ufrn.br/sigaa/public/docente/portal.jsf?siape=1513597)
 
 :w
 _Details to be confirmed_
