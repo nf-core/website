@@ -1,7 +1,7 @@
 ---
 import PageLayout from './PageLayout.astro';
 import Markdown from '@components/Markdown.svelte';
-import Toc from '@components/Toc.svelte';
+import Toc from '@components/SidebarToc.svelte';
 
 export interface Props {
     title: string;
@@ -21,16 +21,17 @@ const { title, subtitle, md_github_url, event_header, headings } = Astro.props;
     event_header={event_header}
     subfooter={true}
     mainpage_container={true}
+    navTocHeadings={headings}
 >
     <div class="container-fluid row">
         <div class="col-12 col-md-10">
             <div class="markdown-content">
-                <Markdown headings={headings}>
+                <Markdown headings={headings} client:idle>
                     <slot />
                 </Markdown>
             </div>
         </div>
-        <div class="col-12 col-md-2 sticky-top toc">
+        <div class="col-12 col-md-2 sticky-top toc order-first order-md-last">
             <Toc headings={headings} client:idle />
         </div>
     </div>
