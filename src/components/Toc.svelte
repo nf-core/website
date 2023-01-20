@@ -37,7 +37,7 @@
 
 <style lang="scss">
     .nav {
-        padding-top: 4rem; // account for navbar
+        padding-top: 5.05rem; // account for navbar
     }
     nav > ul {
         font-size: 0.875rem;
