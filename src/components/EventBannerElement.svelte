@@ -50,7 +50,7 @@
     heading_title = events.length > 1 ? heading_title + 's' : heading_title;
 
     // countdown function to event start which updates every second, by making `now` and the function reactive
-    let now = '';
+    let now = new Date().getTime();
     setInterval(() => (now = new Date().getTime()), 1000);
     $: countdown = (event_start, short = false) => {
         if (event_time_category !== 'upcoming') {
