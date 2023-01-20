@@ -58,7 +58,7 @@
         return event.data.start < today && event.data.end > today
     });
 
-    if (currentEvents.length > 0) {
+    $: if (currentEvents.length > 0) {
         EventIsOngoing.set(true);
     } else {
         EventIsOngoing.set(false);

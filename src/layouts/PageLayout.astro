@@ -15,6 +15,7 @@ let {
     mainpage_container,
     subfooter = false,
     frontmatter,
+    navTocHeadings = [],
 } = Astro.props;
 
 export interface Props {
@@ -27,7 +28,7 @@ export interface Props {
     header_btn_url?: string;
     header_btn_text?: string;
     mainpage_container?: boolean;
-    n;
+    navTocHeadings?: object[];
     subfooter?: boolean;
     frontmatter?: any;
 }
@@ -45,7 +46,14 @@ if (frontmatter) {
 }
 ---
 
-<BaseLayout title={title} subtitle={subtitle} image={image} md_github_url={md_github_url} subfooter={subfooter}>
+<BaseLayout
+    title={title}
+    subtitle={subtitle}
+    image={image}
+    md_github_url={md_github_url}
+    subfooter={subfooter}
+    navTocHeadings={navTocHeadings}
+>
     <div class="mainpage">
         <Header
             title={title}

@@ -1,17 +1,31 @@
 ---
-import '@fontsource/maven-pro/600.css';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import BaseHead from '@components/BaseHead.astro';
+import Footer from '@components/Footer.astro';
+import Navbar from '@components/Navbar.astro';
+import SubFooter from '@components/SubFooter.astro';
 import '@fontsource/inter';
+import '@fontsource/maven-pro/600.css';
 import '@fontsource/open-sans';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
 
-import BaseHead from '@components/BaseHead.astro';
-import Navbar from '@components/Navbar.svelte';
-import SubFooter from '@components/SubFooter.astro';
-import Footer from '@components/Footer.astro';
+export interface Props {
+    image?: string;
+    title?: string;
+    subtitle?: string;
+    md_github_url?: string;
+    subfooter?: boolean;
+    navTocHeadings?: object[];
+}
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
-
-const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, subfooter = false } = Astro.props;
+const {
+    image,
+    title = SITE_TITLE,
+    subtitle = SITE_DESCRIPTION,
+    md_github_url,
+    subfooter = false,
+    navTocHeadings = [],
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -21,7 +35,7 @@ const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, s
     </head>
 
     <body tabindex="0" data-bs-theme="dark">
-        <Navbar client:idle />
+        <Navbar navTocHeadings={navTocHeadings} />
         <div class="content">
             <slot />
         </div>

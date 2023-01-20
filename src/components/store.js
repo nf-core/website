@@ -5,4 +5,12 @@ export const CurrentFilter = atom([]);
 export const SortBy = atom('');
 export const DisplayStyle = atom('');
 export const SearchQuery = atom('');
-export const EventIsOngoing = persistentAtom(false);
+
+export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
+  encode(value) {
+    return JSON.stringify(value);
+  },
+  decode(value) {
+    return JSON.parse(value);
+  },
+});

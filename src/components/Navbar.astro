@@ -1,8 +1,16 @@
-<script>
-    import { EventIsOngoing } from './store.js';
-    const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
-    const NfCoreLogo = '/images/logos/nf-core-logo.svg';
-</script>
+---
+import EventIndicator from './EventIndicator.svelte';
+import NavToc from './NavToc.svelte';
+
+export interface Props {
+    navTocHeadings?: object[];
+}
+
+const { navTocHeadings = [] } = Astro.props;
+
+const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
+const NfCoreLogo = '/images/logos/nf-core-logo.svg';
+---
 
 <nav class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm site-nav d-print-none">
     <div class="container-fluid">
@@ -10,6 +18,7 @@
             <img height="25px" src={NfCoreLogo} class="hide-dark" alt="nf-core logo" />
             <img height="25px" src={NfCoreLogoDarkbg} class="hide-light" alt="nf-core logo" />
         </a>
+        {navTocHeadings.length > 0 && <NavToc headings={navTocHeadings} />}
         <button
             class="navbar-toggler"
             type="button"
@@ -19,7 +28,7 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
         >
-            <span class="navbar-toggler-icon" />
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-md-center align-items-md-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
@@ -45,12 +54,7 @@
                 </li>
                 <li class="nav-item p-1">
                     <a class="nav-link" href="/events">
-                        {#if $EventIsOngoing}
-                            <span class="fa-stack small text-danger">
-                                <i class="fa-duotone fa-circle fa-stack-1x" />
-                                <i class="fas fa-circle-small fa-stack-1x" />
-                            </span>
-                        {/if}
+                        <EventIndicator client:idle />
                         Events
                     </a>
                 </li>
@@ -74,9 +78,7 @@
             </ul>
             <hr class="d-md-none" />
             <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join">
-                Join nf-core
-            </a>
+            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join"> Join nf-core</a>
         </div>
     </div>
 </nav>
