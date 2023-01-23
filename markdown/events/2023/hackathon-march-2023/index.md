@@ -69,22 +69,30 @@ We will coordinate our work and the issues we are working on using a single GitH
 There will be a separate tab for each group where will have a list of relevant issues for you to work on.
 
 #### Documentation
+
 The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow.
+
 #### Infrastructure
+
 The nf-core website and central tooling are always being improved. If this sounds like a fun task for you, join the infrastructure group!
+
 #### Pipelines
+
 The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline.
 
 #### Modules
+
 The modules group welcomes anyone who wants to work on current or new modules.
 
 #### Subworkflows
+
 Why stop at only sharing modules? Subworkflows can be shared between pipelines too! Join the subworkflows group to work on this new nf-core development!
+
 ## Schedule
 
 We expect people to come and go during the hackathon due to diverse time zones. Please do whatever works best for you!
 
-The full schedule for the nf-core hackathon will be available very soon... 
+The full schedule for the nf-core hackathon will be available very soon...
 
 ## How we will work
 
