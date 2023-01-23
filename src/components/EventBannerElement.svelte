@@ -1,5 +1,6 @@
 <script>
     import { EventIsOngoing } from './store.js';
+    import { format } from 'timeago.js';
     import ExportEventButton from './ExportEventButton.svelte';
     import VideoButton from './VideoButton.svelte';
     export let events = [];
@@ -52,32 +53,8 @@
     // countdown function to event start which updates every second, by making `now` and the function reactive
     let now = new Date().getTime();
     setInterval(() => (now = new Date().getTime()), 1000);
-    $: countdown = (event_start, short = false) => {
-        if (event_time_category !== 'upcoming') {
-            return '';
-        }
-        let timeLeftString = '';
-        const distance = event_start.getTime() - now;
-        // Time calculations for days, hours, minutes and seconds
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        // Display the result in the element with id="demo"
-        timeLeftString = days + ' days,</br> ' + hours + 'h ' + minutes + 'm';
-        if (short) {
-            timeLeftString = days + 'd ' + hours + 'h ' + minutes + 'm';
-        }
-        // If the count down is finished, write some text
-        if (days <= 0) {
-            timeLeftString = hours + 'h ' + minutes + 'm ' + seconds + 's';
-            if (hours <= 0) {
-                timeLeftString = minutes + 'm ' + seconds + 's';
-            }
-        }
-        if (distance < 0) {
-            timeLeftString = 'Event started';
-        }
+    $: countdown = (event_start) => {
+        const timeLeftString = format(event_start);
         return timeLeftString;
     };
 </script>
@@ -95,12 +72,21 @@
                 </div>
                 <div class="flex-grow-1">
                     {#each events as event}
-                        <div class=" d-flex align-items-center justify-content-between">
-                            <div class="pt-lg-3 pb-lg-3 text-lg-start">
+                        <div class="w-100 row align-items-center">
+                            <div class="col-9 pt-lg-3 pb-lg-3 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
                                     <a href={'events/' + event.slug} class="text-success text-decoration-none"
                                         >{event.data.title}</a
                                     >
+                                    <span class="ms-1 my-auto">
+                                        <span class={'badge bg-' + event_type_classes[event.data.type] + ' small'}
+                                            ><i
+                                                class={event_type_icons[event.data.type] + ' me-1'}
+                                                aria-hidden="true"
+                                            />
+                                            {event.data.type}</span
+                                        >
+                                    </span>
                                 </h5>
                                 <p class="lead">
                                     <a href={'events/' + event.slug} class="text-body text-decoration-none"
@@ -111,15 +97,7 @@
                                 <p class="">
                                     <a href={'events/' + event.slug} class="text-secondary-emphasis text-decoration-none"
                                         >{event.data.duration}</a
-                                    ><span class="ms-1">
-                                        <span class={'badge bg-' + event_type_classes[event.data.type] + ' small'}
-                                            ><i
-                                                class={event_type_icons[event.data.type] + ' me-1'}
-                                                aria-hidden="true"
-                                            />
-                                            {event.data.type}</span
-                                        >
-                                    </span>
+                                    >
                                 </p>
                                 {#if event_time_category === 'upcoming'}
                                     <div class="btn-group" role="group" aria-label="Event details">
@@ -131,18 +109,18 @@
                                 {/if}
                             </div>
 
-                            <div class="mx-3">
+                            <div class="col-3">
                                 {#if event_time_category === 'upcoming'}
-                                    <div class="text-center text-nowrap">
-                                        <h5>Event starts in:</h5>
-                                        <span class="display-5">
+                                    <div class="text-nowrap">
+                                        <h5>Event starts</h5>
+                                        <span class="display-6">
                                             {@html countdown(event.data.start)}
                                         </span>
                                     </div>
                                 {/if}
                                 {#if event_time_category === 'ongoing'}
                                     <div class="">
-                                        <div class="btn-group text-nowrap" role="group" aria-label="Event details">
+                                        <div class="btn-group" role="group" aria-label="Event details">
                                             <a href={'events/' + event.slug} class="btn btn-outline-success"
                                                 >Event Details</a
                                             >
