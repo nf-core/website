@@ -72,7 +72,7 @@ function github_query($gh_query_url) {
 //  nf-core modules table
 //
 
-$gh_modules = github_query('https://api.github.com/repos/nf-core/modules/git/trees/master?recursive=1');
+$gh_modules = github_query('https://api.github.com/repos/sanger-tol/nf-core-modules/git/trees/main?recursive=1');
 $modules = [];
 foreach ($gh_modules['tree'] as $f) {
     if (substr($f['path'], -8) == 'meta.yml' && substr($f['path'], 0, 8) == 'modules/') {
@@ -188,7 +188,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 //  nf-core pipelines table
 //
 
-$gh_pipelines = github_query('https://api.github.com/orgs/nf-core/repos?per_page=100');
+$gh_pipelines = github_query('https://api.github.com/orgs/sanger-tol/repos?per_page=100');
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
 
 // Drop existing table if query was successful
@@ -257,7 +257,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $gh_pushed_at = date('Y-m-d H:i:s', strtotime($pipeline['pushed_at']));
         $stargazers_count = $pipeline['stargazers_count'];
         $watchers_count = count(
-            github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/watchers'),
+            github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/watchers'),
         );
         $forks_count = $pipeline['forks_count'];
         $open_issues_count = $pipeline['open_issues_count'];
@@ -364,10 +364,17 @@ $sql = 'INSERT INTO pipelines_modules (pipeline_id,module_id) VALUES (?,?)';
 
 foreach ($pipelines as $pipeline) {
     $modules_json = github_query(
-        'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/contents/modules.json',
+        'https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/contents/modules.json',
     );
     $modules_json = json_decode(base64_decode($modules_json['content']), true);
+
+    /*
+    How our modules.json file being configed, use nf-core or sanger-tol?
+    Not well formated and has no startard format
+    */
+
     $modules = $modules_json['repos']['nf-core/modules'];
+ 
 
     // catch repos with no modules.json
     if ($modules == null) {
@@ -387,12 +394,18 @@ foreach ($pipelines as $pipeline) {
                 $repo_module = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 $pipeline_id = $pipeline['id'];
                 $module_id = $repo_module[0]['id'];
-                mysqli_stmt_execute($stmt);
-                print_r($stmt->error);
+
+                # need to check before inserting
+                $check_sql = "SELECT * FROM pipelines_modules WHERE pipeline_id = '$pipeline_id' AND module_id  = '$module_id'";
+                $res = mysqli_query($conn, $check_sql);
+                if ($res->num_rows == 0) {                
+                    mysqli_stmt_execute($stmt);
+                    print_r($stmt->error);
+                }
                 // Free result set
                 mysqli_free_result($result);
             } else {
-                echo "No modules with the name $name found.";
+                echo "No modules with the name $name found for pipeline ". $pipeline['name']."\n";
             }
         }
     }
