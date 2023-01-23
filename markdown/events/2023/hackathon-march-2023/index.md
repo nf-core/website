@@ -16,7 +16,6 @@ Join us online March 27-29 2023 for the nf-core hackathon! 🗓️
 
 The nf-core hackathon is free and is being held online (we will be back in [gather.town](https://gather.town/)).
 Some community members are also hosting local sites.
-You can read more about local sites below.
 We will do our best to support people in all time zones. :earth_americas: :earth_asia: :earth_africa:
 
 Please note this is not a training event. More information about our community training event, being held March 13-16 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
