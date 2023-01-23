@@ -24,7 +24,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
    - Use [Semantic Versioning](https://semver.org/)
 2. Run `nf-core lint --release` and check that there are no test failures for release.
 3. Check that `CHANGELOG.md` includes everything that has been added/fixed in this release, update the version number above the changes, and optionally add a human-readable release name (e.g. using a [code name generator](http://www.codenamegenerator.com/))
-   - We recommend you also add the github tag of the main contributors against each CHANGELOG entry (author, and significant reviewers). This will mean each release on GitHub will display each contributors icons for extra visibility and recognition.
+   - We recommend you also add the GitHub handle of the main contributors of each CHANGELOG entry (author, and significant reviewers etc.). This will mean each release on GitHub will display each contributors icons for extra visibility and recognition.
 4. [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 5. Once merged, open another PR from the nf-core `dev` branch to the nf-core `master`
    - Make sure that all of the CI tests are passing - this is a special case PR and the tests are different
