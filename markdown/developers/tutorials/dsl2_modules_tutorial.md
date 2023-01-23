@@ -11,7 +11,7 @@ If you create a new module with the goal of contributing the code to _nf-core_, 
 
 ### Module guidelines
 
-The nf-core community has agreed on a minimal set of [guidelines](https://github.com/nf-core/modules#guidelines), intended to make module most suitable for general use, i.e. to be shared across a wide variety of community workflows.
+The nf-core community has agreed on a minimal set of [guidelines](https://nf-co.re/docs/contributing/modules), intended to make module most suitable for general use, i.e. to be shared across a wide variety of community workflows.
 
 ### nf-core tools
 
@@ -23,6 +23,8 @@ On the website you can find more details about [installation](https://nf-co.re/t
 Even before beginning the development of a module, you should identify a small dataset you can use to test its functionality. Ideally, the dataset is existing already and can be shared with other test workflows for other modules.
 
 > :recycle: This is in active development, keep an eye for available test data [here](https://github.com/nf-core/test-datasets/tree/modules/data) and how to access them using a config file (see this [change](https://github.com/nf-core/modules/pull/365)).
+
+If you _must_ create your own test data, make sure you follow the [test data guidelines](https://nf-co.re/docs/contributing/test_data_guidelines).
 
 ---
 
@@ -40,6 +42,8 @@ In order to create a new module, it is best to branch the code into a recognisab
 
   - ```bash
     git checkout -b newmodule
+
+    ## alternatively: git switch -c newmodule
     ```
 
   - The branch will be synchronised with your remote once you push the first new commit.
@@ -69,7 +73,6 @@ Magic will happen now: nf-core tools will create the following entries for the c
 ```console
 software/fgbio
 └── fastqtobam
-    ├── functions.nf
     ├── main.nf
     └── meta.yml
 ```
@@ -80,6 +83,7 @@ And also the following for the testing of the module
 tests/software/fgbio
 └── fastqtobam
     ├── main.nf
+    ├── nextflow.config
     └── test.yml
 ```
 
@@ -115,9 +119,11 @@ Here you should first identify:
 - the outputs
 - any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
 
+Make sure to check the [guidelines](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist) for what you should and should not include.
+
 ### Inputs and Outputs
 
-As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called _meta_. This is part of a tuple which includes the read file(s).
+As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called [_meta_](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map). This is part of a tuple which includes the read file(s).
 
 In our case, FGBIO also has a mandatory argument, which is not sample-specific, i.e. the read structure: this refers to the position and structure of the UMI barcode in the read. Such information will be the same for all samples and characteristics of the kit used to prepare the sequencing library. Since it is not sample specific, we will not include it in the _meta_ map. Since it is a mandatory argument, we have decided to add it to the input list: in this way, it will be visible to others who wish to reuse this module, and it will be described explicitly in the metadata YAML file.
 
@@ -130,16 +136,17 @@ input:
 
 output:
     tuple val(meta), path("*_umi_converted.bam"), emit: umibam
-    path "*.version.txt"          , emit: version
+    path "*.version.txt"                        , emit: version
 ```
 
-### Passing options.args
+### Passing optional args
 
-Any optional parameter should be passed within a groovy map called options, and identified as a string within _args_.
-In our specific case, we are not using any optional argument and therefore we will include the module and initialise this with an empty string in our test workflow.
+Within nf-core modules any optional non-file parameter should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via a `ext.args` variable that is defined in a `modules.conf` file.
 
-```nextflow
-include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
+```
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
 ```
 
 But we will add this into the script code, so any other user who might want to execute the function with additional arguments will be able to.
@@ -150,19 +157,29 @@ mkdir tmpFolder
 
 fgbio --tmp-dir=${PWD}/tmpFolder \\
 FastqToBam \\
+$args \\
 -i ${reads} \\
 -o "${prefix}_umi_converted.bam" \\
---read-structures $read_structure \\
+c--read-structures $read_structure \\
 --sample ${meta.id} \\
---library ${meta.id} ${options.args}
+--library ${meta.id}
 ```
 
-Before wrapping up our code, we need to add a line to output the software version.
+Before wrapping up our code, we need to add a line to output the software version. This must go in the HEREDOC section of the end of the script block.
+
+```bash
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        fgbio: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' ))
+    END_VERSIONS
+```
+
+> ⚠️ Note the template you generate will include an **example** samtools command! Make sure to replace this!
 
 Usually a software prints their version with a code similar to this
 
 ```bash
-tool --version >${software}.version.txt
+tool --version
 ```
 
 However, in some cases the software outputs the version as _stderr_ and causes an exit that is recognised by Nextflow as if the process ended with an error.
@@ -170,88 +187,79 @@ However, in some cases the software outputs the version as _stderr_ and causes a
 In order to avoid that, we can in general print the version as part of an echo statement, like this
 
 ```nextflow
-echo \$(tool --version 2>&1) >${software}.version.txt
+echo \$(tool --version 2>&1)
 ```
 
 Notice the escape `\$` of the first `$` sign to distinguish between _bash_ variables and _nextflow_ variables.
 
-Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to output the version as a string, like this
-
-```nextflow
-def VERSION = '1.3.0'
-```
-
-and then in the script
+Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to use a few `bash` tricks to re-route the version and format it to be _just_ the semantic number.
 
 ```bash
-echo $VERSION >${software}.version.txt
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        fgbio: \$( echo \$(fgbio --version 2>&1 | tr -d '[:cntrl:]' ) | sed -e 's/^.*Version: //;s/\\[.*\$//')
+    END_VERSIONS
 ```
 
-Our final script will therefore look like this:
+This may take a bit of time to get right.
+
+Once that's complete, our final script will therefore look like this:
 
 ```nextflow
-// Import generic module functions
-include { initOptions; saveFiles; getSoftwareName } from './functions'
-
-params.options = [:]
-options        = initOptions(params.options)
-
-def VERSION = '1.3.0'
-
-/*
-unfortunately need to output the version manually
-as done for module
-https://github.com/nf-core/modules/blob/master/software/homer/annotatepeaks/main.nf
-because the solution adopted in iVar, i.e.
-echo \$(fgbio --version 2>&1) >${software}.version.txt
-for FGBIO still generates an error exit in Nextflow for some reasons
-*/
-
 process FGBIO_FASTQTOBAM {
     tag "$meta.id"
     label 'process_low'
-    publishDir "${params.outdir}",
-        mode: params.publish_dir_mode,
-        saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
 
-    conda (params.enable_conda ? "bioconda::fgbio=1.3.0" : null)
-    if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
-        container "https://depot.galaxyproject.org/singularity/fgbio:1.3.0--0"
-    } else {
-        container "quay.io/biocontainers/fgbio:1.3.0--0"
-    }
+    conda "bioconda::fgbio=2.0.2"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/fgbio:2.0.2--hdfd78af_0' :
+        'quay.io/biocontainers/fgbio:2.0.2--hdfd78af_0' }"
 
     input:
     tuple val(meta), path(reads)
-    val(read_structure)
 
     output:
-    tuple val(meta), path("*_umi_converted.bam"), emit: umibam
-    path "*.version.txt"          , emit: version
+    tuple val(meta), path("*.bam") , emit: bam , optional: true
+    tuple val(meta), path("*.cram"), emit: cram, optional: true
+    path "versions.yml"            , emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
 
     script:
-    def software = getSoftwareName(task.process)
-    def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
 
+    def sample_name = args.contains("--sample") ? "" : "--sample ${prefix}"
+    def library_name = args.contains("--library") ? "" : "--library ${prefix}"
+    def output = prefix =~ /\.(bam|cram)$/ ? prefix : "${prefix}.bam"
     """
-    mkdir tmpFolder
+    fgbio \\
+        --tmp-dir=. \\
+        FastqToBam \\
+        ${args} \\
+        --input ${reads} \\
+        --output ${output} \\
+        ${sample_name} \\
+        ${library_name}
 
-    fgbio --tmp-dir=${PWD}/tmpFolder \\
-    FastqToBam \\
-    -i ${reads} \\
-    -o "${prefix}_umi_converted.bam" \\
-    --read-structures $read_structure \\
-    --sample ${meta.id} \\
-    --library ${meta.id} ${options.args}
-
-    echo $VERSION >${software}.version.txt
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        fgbio: \$( echo \$(fgbio --version 2>&1 | tr -d '[:cntrl:]' ) | sed -e 's/^.*Version: //;s/\\[.*\$//')
+    END_VERSIONS
     """
 }
 ```
 
-Note that we have commented our choice to deviate from the guidelines in order to output the software version, so any users will be aware of the reasons for this code.
-
 > :heavy_check_mark: It is always good practice to commit regularly while you write the code and comment the commit with a meaningful message. This way, you will always be able to revert the changes at any time.
+
+### Fill in the meta.yaml
+
+Once the main module code is written, is it often a good point to fill in the `meta.yml` file sitting alongside the `main.nf` of the module.
+
+Here you will document key words, context information about the module, and most importantly document the input and output requirements.
+
+For guidance see the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules as examples on how to fill this information in.
 
 ### Lint your code
 
@@ -260,7 +268,7 @@ Now that you've completed code development, you are ready to check if your code 
 This can also be done easily using _nf-core tools_ just by changing folder into the parent _modules_ directory and typing the command
 
 ```bash
-nf-core modules lint fgbio/fastqtobam -d .
+nf-core modules lint fgbio/fastqtobam
 ```
 
 You will expect no test failed, as shown in figure below:
@@ -282,6 +290,7 @@ As described above, _nf-core tools_ has created already the following files
 tests/modules/fgbio
 └── fastqtobam
     ├── main.nf
+    ├── nextflow.config
     └── test.yml
 ```
 
@@ -292,17 +301,27 @@ You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a shor
 > :soon: this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
 
 In our test workflow we have to define the two mandatory inputs.
-We know the test data is using QIAseq library preparation, and therefore we use the following read structure string
+We know the test data is using QIAseq library preparation, and therefore we need to specify read structure string as an optional input, via the `args` variable.
+
+For this we update the `nextflow.config` to pass the string to the module.
 
 ```nextflow
-params.read_structure = "+T 12M11S+T"
+process {
+
+    publishDir = { "${params.outdir}/${task.process.tokenize(':')[-1].tokenize('_')[0].toLowerCase()}" }
+
+    withName: "test_fgbio_fastqtobam_paired_umi:FGBIO_FASTQTOBAM" {
+        ext.args = "--read-structures +T 12M11S+T"
+    }
+}
 ```
 
-Then we prepare our input tuple, to point to the correct test data
+> 💡 Note that in a pipeline context,you would likely replace the `+T 12M11S+T` string with a parameter, such as `--read-structures ${params.read_structure_string}`.
+
+Next we prepare our input tuple, to point to the correct test data
 
 ```nextflow
-def input = []
-    input = [ [id: 'test'], //meta map
+input = [ [id: 'test'], //meta map
                   [ file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_1.fastq.gz'), file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_2.fastq.gz') ] ]
 ```
 
@@ -314,15 +333,19 @@ Our test workflow will be very simple, and most of the code has been written by 
 nextflow.enable.dsl = 2
 params.read_structure = "+T 12M11S+T"
 
-include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf' addParams( options: [args: ''] )
+include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf'
 
 workflow test_fgbio_fastqtobam {
 
-    def input = []
-    input = [ [id: 'test'], //meta map
-                  [ file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_1.fastq.gz'), file('https://raw.githubusercontent.com/nf-core/test-datasets/sarek/testdata/umi-dna/qiaseq/SRR7545951-small_2.fastq.gz') ] ]
+    input = [
+        [ id:'test', single_end:false ], // meta map
+        [
+            file(params.test_data['homo_sapiens']['illumina']['test_umi_1_fastq_gz'], checkIfExists: true),
+            file(params.test_data['homo_sapiens']['illumina']['test_umi_2_fastq_gz'], checkIfExists: true)
+        ]
+    ]
 
-    FGBIO_FASTQTOBAM ( input, "${params.read_structure}" )
+    FGBIO_FASTQTOBAM ( input )
 }
 ```
 
@@ -353,6 +376,8 @@ This process will run the test workflow, generate the outputs and update the `te
 
 ### Check pytest YAML
 
+> ⚠️ This should be already updated for you when building the template - you shouldn't have to touch these sections!
+
 Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
 
 ```yaml
@@ -369,13 +394,6 @@ Now we are ready to run some tests using _pytest-workflow_ in order to anticipat
 
 We will follow the instructions on _nf-core_ [modules repository](https://github.com/nf-core/modules#running-tests-manually).
 
-Pytest-workflow will be launched using the tags specified in the `test.yml` we have just modified:
-
-```yaml
-tags:
-  - fgbio_fastqtobam
-  - fgbio
-```
 
 We will run one or more of the following, depending on the software profile available on our development environment:
 
@@ -403,15 +421,19 @@ Hopefully everything runs smoothly, and we are then ready to open a pull request
 
 To save you having to install `pytest-workflow` separately it was added as a dependency for nf-core/tools (`>= 1.13.2`). However, if you find that you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, you could try and install a later version of nf-core/tools to see if that works instead.
 
-The minimum Nextflow version required to run the tests can be found in [this `nextflow.config` file](https://github.com/nf-core/modules/blob/d63ff4ba1b08cd0dc05c375efa69885297de7507/tests/config/nextflow.config#L28) in the nf-core/modules repository. If the version of Nextflow you are using is older than the version specified there you may get an error such as `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`. The error will be reported in `log.err` in the directory where the outputs from the tests were generated. See the Nextflow [releases](https://github.com/nextflow-io/nextflow/releases) and [installation](https://www.nextflow.io/docs/latest/getstarted.html#installation) pages to install a later version.
+The minimum Nextflow version required to run the tests can be found in [this `nextflow.config` file](https://github.com/nf-core/modules/blob/master/tests/config/nextflow.config#L28) in the nf-core/modules repository.
+
+If the version of Nextflow you are using is older than the version specified there you may get an error such as `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`. The error will be reported in `log.err` in the directory where the outputs from the tests were generated. See the Nextflow [releases](https://github.com/nextflow-io/nextflow/releases) and [installation](https://www.nextflow.io/docs/latest/getstarted.html#installation) pages to install a later version.
 
 ```bash
-NXF_VER="21.04.0-edge" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+NXF_VER="22.10.1" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
 ```
+
+Once all your tests are passing - it's time to submit the module to nf-core/modules!
 
 ## Create a Pull Request
 
-Creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
+Back on GitHub, creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
 
 ![pull](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_06_pull-reqs.png)
 
