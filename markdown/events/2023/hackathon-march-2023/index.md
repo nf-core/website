@@ -15,7 +15,7 @@ import_typeform: true
 Join us online March 27-29 2023 for the nf-core hackathon! 🗓️
 
 The nf-core hackathon is free and is being held online (we will be back in [gather.town](https://gather.town/)).
-Some community members are also hosting local sites.
+Some community members are also hosting [local sites](#local-events).
 We will do our best to support people in all time zones. :earth_americas: :earth_asia: :earth_africa:
 
 Please note this is not a training event. More information about our community training event, being held March 13-16 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
@@ -71,15 +71,15 @@ There will be a separate tab for each group where will have a list of relevant i
 
 #### Documentation
 
-The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow.
+The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. This is a great group to start, if you are not sure where to begin.
 
 #### Infrastructure
 
-The nf-core website and central tooling are always being improved. If this sounds like a fun task for you, join the infrastructure group!
+The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript (we are using astrojs+svelte)), join the infrastructure group!
 
 #### Pipelines
 
-The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline.
+The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)).
 
 #### Modules
 
@@ -99,7 +99,7 @@ The full schedule for the nf-core hackathon will be available very soon...
 
 We will be a lot of people working in parallel during this hackathon, so to stay organised we have a recommended workflow:
 
-1. :speech_balloon: Chat with your group to get an overview of what is going on.
+1. :speech_balloon: Chat with your group (on slack or gather town) to get an overview of what is going on.
 2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project members (channels will be made available closer to the event).
 3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board (the board will be made available closer to the event).
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time).
