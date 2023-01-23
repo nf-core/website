@@ -22,10 +22,11 @@ Prior knowledge of Nextflow is not required but will make it easier to understan
 # Learning in your language
 
 Learning something in a non-native language can be difficult. To help make learning Nextflow more accessible, these training sessions will be streamed in four different languages!
-    - English
-    - French
-    - Portuguese
-    - Spanish
+
+- English
+- French
+- Portuguese
+- Spanish
 
 Please contact us if you are familiar with Nextflow and would like to help record training sessions in these or any other language that isn't listed.
 
