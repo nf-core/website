@@ -394,7 +394,6 @@ Now we are ready to run some tests using _pytest-workflow_ in order to anticipat
 
 We will follow the instructions on _nf-core_ [modules repository](https://github.com/nf-core/modules#running-tests-manually).
 
-
 We will run one or more of the following, depending on the software profile available on our development environment:
 
 ```bash
