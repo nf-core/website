@@ -82,7 +82,8 @@ $results = [
 ];
 
 // Fetch all repositories at nf-core
-$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos?per_page=100');
+// only first page, currently nf-core org has 90 repos
+$gh_repos = get_gh_api('https://api.github.com/orgs/sanger-tol/repos?per_page=100');
 
 // Save data from non-ignored repositories
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
@@ -191,11 +192,16 @@ file_put_contents($results_fn, $results_json);
 // Print simple list of pipelines to a file
 file_put_contents($pipeline_names_fn, json_encode(['pipeline' => $pipeline_names]));
 
+echo "\n\nPipeline json files saved\n" ;
+
 ////// Tweet about new releases
 // Get old releases
 $old_rel_tags = [];
 if ($old_json) {
     foreach ($old_json['remote_workflows'] as $old_pipeline) {
+
+        echo "Old pipeline names ".$old_pipeline['name']."\n";
+
         $old_rel_tags[$old_pipeline['name']] = [];
         // Collect releases from this pipeline
         foreach ($old_pipeline['releases'] as $rel) {
@@ -203,32 +209,41 @@ if ($old_json) {
                 continue;
             }
             $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
+            echo "Old release ".$rel['tag_name']."\n";
         }
     }
 }
 // Go through new releases
 foreach ($results['remote_workflows'] as $new_pipeline) {
+    echo "New pipeline names ".$new_pipeline['name']."\n";
     $rel_urls = [];
     foreach ($new_pipeline['releases'] as $rel) {
+        
         if ($rel['draft'] || $rel['prerelease']) {
             continue;
         }
+       
+        echo "New release ".$rel['tag_name']."\n";
+
         // See if this tag name was in the previous JSON
         if (
             !isset($old_rel_tags[$new_pipeline['name']]) ||
             !in_array($rel['tag_name'], $old_rel_tags[$new_pipeline['name']])
         ) {
+            echo 'Found new release for ' . $new_pipeline['full_name'] . ': ' . $rel['tag_name'] . "\n";
             // Prepare the tweet content!
             $tweet = 'Pipeline release! ';
             $tweet .= $new_pipeline['full_name'] . ' v' . $rel['tag_name'] . ' (' . $new_pipeline['description'] . ')';
             $tweet_url = "\n\nSee the changelog: " . $rel['html_url'];
             // 42 chars for tweet URL string with t.co url shortener
+            # BUG: if tweet_length not defined, infinte loop
             while (strlen($tweet) + 42 > $config['twitter_tweet_length']) {
                 $tweet = substr(rtrim($tweet, '.)'), 0, -3) . '..)';
             }
             $tweets[] = $tweet . $tweet_url;
-            echo 'Found new release for ' . $new_pipeline['full_name'] . ': ' . $rel['tag_name'] . "\n";
+            echo 'Found new release for ' . $new_pipeline['full_name'] . ': ' . $rel['tag_name'] . ", added to tweets\n";
         }
+
     }
 }
 
