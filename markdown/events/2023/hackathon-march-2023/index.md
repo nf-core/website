@@ -19,6 +19,8 @@ Some community members are also hosting local sites.
 You can read more about local sites below.
 We will do our best to support people in all time zones. :earth_americas: :earth_asia: :earth_africa:
 
+Please note this is not a training event. More information about our community training event, being held March 13-16 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
+
 ## Registration
 
 Registration for the March 2023 nf-core hackathon is now OPEN! 🎉
