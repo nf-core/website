@@ -123,7 +123,7 @@ Make sure to check the [guidelines](https://nf-co.re/docs/contributing/modules#n
 
 ### Inputs and Outputs
 
-As described in the guidelines, any sample-specific information should be passed as an input, as part of a groovy map called [_meta_](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map). This is part of a tuple which includes the read file(s).
+As described in the guidelines, any information that will differ between multiple runs of the same module in a workflow (e.g. when a module is run across many samples as in fgbio) should be passed as an input, as part of a groovy map called [_meta_](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map). This is part of a tuple which includes the read file(s).
 
 In our case, FGBIO also has a mandatory argument, which is not sample-specific, i.e. the read structure: this refers to the position and structure of the UMI barcode in the read. Such information will be the same for all samples and characteristics of the kit used to prepare the sequencing library. Since it is not sample specific, we will not include it in the _meta_ map. Since it is a mandatory argument, we have decided to add it to the input list: in this way, it will be visible to others who wish to reuse this module, and it will be described explicitly in the metadata YAML file.
 
@@ -141,7 +141,7 @@ output:
 
 ### Passing optional args
 
-Within nf-core modules any optional non-file parameter should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via a `ext.args` variable that is defined in a `modules.conf` file.
+Within nf-core modules any optional non-file parameters should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via an `ext.args` variable that is defined in a `modules.conf` file.
 
 ```
     script:
@@ -160,7 +160,7 @@ FastqToBam \\
 $args \\
 -i ${reads} \\
 -o "${prefix}_umi_converted.bam" \\
-c--read-structures $read_structure \\
+--read-structures $read_structure \\
 --sample ${meta.id} \\
 --library ${meta.id}
 ```
@@ -255,7 +255,7 @@ process FGBIO_FASTQTOBAM {
 
 ### Fill in the meta.yaml
 
-Once the main module code is written, is it often a good point to fill in the `meta.yml` file sitting alongside the `main.nf` of the module.
+Once the main module code is written, it is often a good point to fill in the `meta.yml` file sitting alongside the `main.nf` of the module.
 
 Here you will document key words, context information about the module, and most importantly document the input and output requirements.
 
@@ -316,7 +316,7 @@ process {
 }
 ```
 
-> 💡 Note that in a pipeline context,you would likely replace the `+T 12M11S+T` string with a parameter, such as `--read-structures ${params.read_structure_string}`.
+> 💡 Note that in a pipeline context, you should define parameter values in the pipeline-level nextflow config and  replace the `+T 12M11S+T` string with a parameter, such as `--read-structures ${params.read_structure_string}` to source the value from there.
 
 Next we prepare our input tuple, to point to the correct test data
 
