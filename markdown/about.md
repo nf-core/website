@@ -57,6 +57,13 @@ If you work with a project that would benefit from an explicit link with nf-core
 
 Finally, we would specifically like to acknowledge and thank the following sponsors who help to support the project:
 
+### SciLifeLab Data Centre
+<img src="/assets/img/contributors-colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+Iste officiis dolor necessitatibus pariatur aut. Voluptas unde optio deleniti in dolorem iste aliquam error. Et est ipsa quisquam voluptas.
+
+Saepe qui molestiae molestiae earum. Tempore ut voluptas velit. Architecto doloremque quasi autem rerum expedita iste et. Consequatur voluptatem beatae deleniti esse dolorum minima. Esse quas quos distinctio.
+
 ### Chan Zuckerberg Initiative {#czi-eoss}
 
 <img src="/assets/img/contributors-colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
