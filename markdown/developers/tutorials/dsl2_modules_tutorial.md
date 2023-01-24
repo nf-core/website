@@ -316,7 +316,7 @@ process {
 }
 ```
 
-> 💡 Note that in a pipeline context, you should define parameter values in the pipeline-level nextflow config and  replace the `+T 12M11S+T` string with a parameter, such as `--read-structures ${params.read_structure_string}` to source the value from there.
+> 💡 Note that in a pipeline context, you should define parameter values in the pipeline-level nextflow config and replace the `+T 12M11S+T` string with a parameter, such as `--read-structures ${params.read_structure_string}` to source the value from there.
 
 Next we prepare our input tuple, to point to the correct test data
 
