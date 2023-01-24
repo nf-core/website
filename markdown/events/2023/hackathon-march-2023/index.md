@@ -34,6 +34,9 @@ We are trying something new! 🚀
 
 Hacking in person is a lot of fun. Although the hackathon is online, to get the best of both worlds, we are encouraging everyone to create local sites where people can gather to hack together. Be it with your group, institute, city, or region, local sites will be a lot of fun!
 
+Some sites have limits for the number of people they can host - please register early so you don't miss out on attending a local site.
+Also, if you have registered for a local but can no longer attend please let us know so we can free your space for someone else who might want to attend.
+
 | Country         | City       |  Location                                 | Event page                                |
 | --------------- | ---------- | ----------------------------------------- | ----------------------------------------- |
 | 🇧🇷 Brazil       | Natal      | Federal University of Rio Grande do Norte | [Read more](br-ufrn.md)                   |
