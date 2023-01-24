@@ -303,7 +303,7 @@ You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a shor
 In our test workflow we have to define the two mandatory inputs.
 We know the test data is using QIAseq library preparation, and therefore we need to specify read structure string as an optional input, via the `args` variable.
 
-For this we update the `nextflow.config` to pass the string to the module.
+For this we update the `nextflow.config` to pass the string to the module via `ext.args` (the publishDir declaration is from the modules template, so can be left as is - it does not affect the passing of arguments).
 
 ```nextflow
 process {
