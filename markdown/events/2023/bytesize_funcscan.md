@@ -6,8 +6,11 @@ start_date: '2023-01-24'
 start_time: '13:00 CET'
 end_date: '2023-01-24'
 end_time: '13:30 CET'
+embed_at: 'funcscan'
+youtube_embed: https://www.youtube.com/watch?v=c1CnE6jPhpg
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://www.youtube.com/watch?v=c1CnE6jPhpg
+  - https://doi.org/10.6084/m9.figshare.21953978.v1
 ---
 
 # nf-core/bytesize
