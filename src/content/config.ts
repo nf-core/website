@@ -1,7 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 
 const events = defineCollection({
-    schema: {
+    schema: z.object({
         title: z.string(),
         subtitle: z.string(),
         type: z.enum(['talk', 'workshop', 'hackathon', 'poster', 'tutorial', 'training']),
@@ -16,13 +16,13 @@ const events = defineCollection({
         start: z.date().optional(),
         end: z.date().optional(),
         duration: z.string().optional(),
-    },
+    }),
 });
 const docs = defineCollection({
-    schema: {
+    schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
-    },
+    }),
 });
 
 export const collections = {
