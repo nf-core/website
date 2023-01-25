@@ -15,10 +15,6 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
 export default defineConfig({
-    experimental: {
-        contentCollections: true,
-        errorOverlay: true,
-    },
     site: 'https://nf-co.re/',
     integrations: [svelte(), sitemap()],
     vite: {
