@@ -51,6 +51,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
 > doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
 
+### [nf-core/circrna](https://nf-co.re/circrna)
+
+<!-- pub-stats 10.1186/s12859-022-05125-8 -->
+
+> **nf-core/circrna: a portable workflow for the quantification, miRNA target prediction and differential expression analysis of circular RNAs.**
+>
+> Barry Digby, Stephen P. Finn, & Pilib Ó Broin
+>
+> [BMC Bioinformatics 24, 27 (2023)](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-05125-8)
+> doi: [10.1186/s12859-022-05125-8](https://doi.org/10.1186/s12859-022-05125-8)
+
 ### [nf-core/coproid](https://nf-co.re/coproid)
 
 <!-- pub-stats 10.7717/peerj.9001 -->
