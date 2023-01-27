@@ -77,6 +77,17 @@ Amongst other things, the CZI EOSS grant money has enabled the nf-core community
 - Run organised mentorship programmes
 - Hiring local community advocates from geographical areas where we currently lack representation
 
+The CZI grant employs personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera Labs](https://seqera.io/).
+
+<div class="clearfix"></div>
+
+### SciLifeLab Data Centre
+
+<img src="/assets/img/contributors-colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
+This funding covers a full-time position ([@mashehu](https://github.com/mashehu), Matthias Hörtenhuber) to work on maintainance of nf-core framework code. For example, the [nf-core website](https://nf-co.re/) and the [nf-core/tools package](https://github.com/nf-core/tools/).
+
 <div class="clearfix"></div>
 
 ### Amazon Web Services {#aws}

@@ -31,10 +31,11 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
    - Request PR reviews from at least two people
    - Once approved by two reviewers, merge your PR into `master`
    - And finally delete any label of types: "under development", "under construction" or variants of these
-6. Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
+6. If this is a first release, ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
+7. Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
    - NB: Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
    - Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
-7. Celebrate! But not too much - you still have a few things left to do...
+8. Celebrate! But not too much - you still have a few things left to do...
 
 ### Automated events
 
@@ -48,16 +49,17 @@ A number of events are automatically triggered after the pipeline is released:
 
 The last step is to bump up the pipeline version number in the development branch:
 
-1. Bump the version number again on the `dev` branch of **your fork** to a new `dev` version
+1. Make sure the dev branch on your fork is up to date
+2. On a new branch, bump to a new `dev` version
    - For example, `1.0.0` becomes `1.1.0dev`
    - Use the `nf-core bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core bump-version 1.1.0dev`
-2. Update the `CHANGELOG.md` to include a new section for this new version
-3. [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
+3. Update the `CHANGELOG.md` to include a new section for this new version
+4. (first release only) After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
+   - Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
+   - Uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and insert the Zenodo DOI..
+   - Add in a badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md)..
+5. [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 
-### After first ever release
+### Copying DOI to master after the first ever release
 
-After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
-
-1. Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
-2. Uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and insert the Zenodo DOI. You should just be able to edit and commit the changes on the `master` branch directly.
-3. Add in a badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md). As with the point above, you should just be able to edit and commit the changes on the `master` branch directly.
+Please ask a core member to copy the DOI information you added to dev via the PR above to the master branch, so that it's visible to users of the nf-core site before the next release.

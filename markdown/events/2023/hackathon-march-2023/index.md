@@ -32,12 +32,14 @@ Watch this space for more details in the coming weeks!
 | 🇫🇷 France       | Rennes     | IGDR                                      | [Read more](france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                                      | [Read more](germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                                   | [Read more](germany-mpi-eva.md)           |
+| :it: Italy      | Pavia      | Department of Biology and Biotechnology   | [Read more](italy-unipv.md)               |
 | 🇸🇳 Senegal      | Dakar      | Institut Pasteur de Dakar                 | [Read more](senegal-pasteur-dakar.md)     |
 | 🇿🇦 South Africa | Cape Town  | Stellenbosch University                   | [Read more](south-africa-stellenbosch.md) |
 | 🇪🇸 Spain        | Barcelona  | CRG                                       | [Read more](spain-crg.md)                 |
 | 🇸🇪 Sweden       | Stockholm  | SciLifeLab                                | [Read more](sweden-scilifelab.md)         |
 | 🇬🇧 UK           | Cambridge  | Wellcome Trust Genome Campus              | [Read more](uk-wellcome-campus.md)        |
 | 🇬🇧 UK           | Edinburgh  | MRC Institute of Genetics and Cancer      | [Read more](uk-igc-edinburgh.md)          |
+| 🇬🇧 UK           | London     | Google Academy                            | [Read more](uk-google.md)                 |
 | 🇺🇸 USA          | Dallas     | University of Texas at Dallas             | [Read more](usa-university-texas.md)      |
 | 🇺🇸 USA          | San Jose   | Quilt Co-Working Space                    | [Read more](usa-san-jose.md)              |
 | 🇺🇸 USA          | Wyoming    | The University of Wyoming                 | [Read more](usa-university-wyoming.md)    |
