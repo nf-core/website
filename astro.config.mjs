@@ -14,6 +14,7 @@ import urls from 'rehype-urls';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
+
 export default defineConfig({
     site: 'https://nf-co.re/',
     integrations: [svelte(), sitemap()],
