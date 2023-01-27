@@ -1,6 +1,6 @@
 ---
 title: Hackathon - March 2023 (Google Academy)
-subtitle: Local node of the nf-core hackathon at Google Academy, London.
+subtitle: Local node of the nf-core Hackathon at Google Academy, London.
 type: hackathon
 start_date: '2023-03-27'
 start_time: '10:00 CEST'
