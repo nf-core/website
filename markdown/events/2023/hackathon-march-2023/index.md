@@ -72,11 +72,11 @@ To keep things manageable everyone will be organized into groups.
 You are free to change groups at any time during the hackathon.
 
 We will coordinate our work and the issues we are working on using a single GitHub project board (we'll post a link here closer to the time).
-There will be a separate tab for each group where will have a list of relevant issues for you to work on.
+There will be a separate tab for each group that will have a list of relevant issues for you to work on.
 
 #### Documentation
 
-The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. This is a great group to start, if you are not sure where to begin.
+The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. This is a great group to start if you are not sure where to begin.
 
 #### Infrastructure
 
@@ -84,7 +84,7 @@ The nf-core website and central tooling are always being improved. If you enjoy 
 
 #### Pipelines
 
-The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically lead by the main pipeline developers,  if they also attending the hackathon.
+The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
 
 #### Modules
 
@@ -102,13 +102,13 @@ The full schedule for the nf-core hackathon will be available very soon...
 
 ## How we will work
 
-We will be a lot of people working in parallel during this hackathon, so to stay organised we have a recommended workflow:
+We will be a lot of people working in parallel during this hackathon, so to stay organized we have a recommended workflow:
 
 1. :speech_balloon: Chat with your group (on slack or gather town) to get an overview of what is going on.
 2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project members (channels will be made available closer to the event).
 3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board (the board will be made available closer to the event).
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time).
-5. :fast_forward: When you're done, make a pull-request with your changes. Link it to the issue so that the issue closes when merged.
+5. :fast_forward: When you're done, make a pull request with your changes. Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
 7. :recycle: Repeat!
 
