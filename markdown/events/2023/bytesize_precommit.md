@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/pre-commit'
-subtitle: Matthias Hörtenhuber, Scilifelab Data Center, Sweden
+subtitle: Matthias Hörtenhuber, Scilifelab Data Centre, Sweden
 type: talk
 start_date: '2023-02-07'
 start_time: '13:00 CET'
@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/pre-commit
 
-This week, Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) is going to explain the use of pre-commits on github. Pre-commits were developed to inspect the snapshot that is about to be committed, to see if something may have been forgotten, to make sure tests run, or to examine whatever is needed to inspect in the code.
+This week, Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) is going to explain the use the newly added pre-commit tool added to nf-core/tools. Pre-commits were developed to inspect the snapshot that is about to be committed and helps to check formatting etc. before adding the code to the repository.
