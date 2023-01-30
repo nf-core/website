@@ -80,7 +80,7 @@ The documentation group will focus on all things documentation related, from pip
 
 #### Infrastructure
 
-The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript (we are using astrojs+svelte)), join the infrastructure group!
+The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript - we are using astrojs+svelte), join the infrastructure group!
 
 #### Pipelines
 
