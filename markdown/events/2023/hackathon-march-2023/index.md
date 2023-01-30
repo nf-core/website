@@ -88,7 +88,7 @@ The pipelines group will focus on any pipeline-related work. This could be a DSL
 
 #### Modules
 
-The modules group welcomes anyone who wants to work on current or new modules.
+The modules group welcomes anyone who wants to work on current or new [nf-core/modules](https://github.com/nf-core/modules).
 
 #### Subworkflows
 
