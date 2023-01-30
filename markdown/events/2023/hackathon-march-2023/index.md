@@ -92,7 +92,7 @@ The modules group welcomes anyone who wants to work on current or new [nf-core/m
 
 #### Subworkflows
 
-Why stop at only sharing modules? Subworkflows can be shared between pipelines too! Join the subworkflows group to work on this new nf-core development!
+Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modules) can be shared between pipelines too! Join the subworkflows group to work on this new nf-core development!
 
 ## Schedule
 
