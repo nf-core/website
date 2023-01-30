@@ -1,5 +1,11 @@
-<script>
-    export let headings = [];
+<script lang="ts">
+    export let headings: {
+        text: string;
+        slug: string;
+        depth: number;
+        fa_icon?: string;
+    }[];
+
     // get minimal heading depth from headings
     let max_heading_depth = 3;
     // filter out headings that are higher than max_heading_depth
@@ -22,6 +28,9 @@
                 {#each headings as heading (heading)}
                     <li class={'nav-item ' + headingMargin[heading.depth]}>
                         <a class="nav-link py-1 ps-1 text-muted" href={'#' + heading.slug}>
+                            {#if heading.fa_icon}
+                                <i class={heading.fa_icon} aria-hidden="true" />
+                            {/if}
                             {heading.text}
                         </a>
                     </li>
@@ -38,7 +47,6 @@
         </nav>
     </div>
     <!-- dropdown on smaller screens -->
-
 </div>
 
 <style lang="scss">
@@ -46,15 +54,6 @@
     .nav {
         padding-top: 5.05rem; // account for navbar
     }
-    @include media-breakpoint-down(md) {
-        .nav {
-            padding-top: 0;
-        }
-        .toc-md {
-            padding-top: 2rem;
-            z-index: 9999;
-        }
-}
     nav > ul {
         font-size: 0.875rem;
         list-style: none;

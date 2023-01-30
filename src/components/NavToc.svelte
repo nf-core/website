@@ -1,5 +1,10 @@
-<script>
-    export let headings = [];
+<script lang="ts">
+    export let headings: {
+        text: string;
+        slug: string;
+        depth: number;
+        fa_icon?: string;
+    }[];
 </script>
 
 <div class="d-md-none ms-auto pe-5 toc-md">
@@ -17,6 +22,9 @@
             {#each headings as heading (heading)}
                 <li>
                     <a class="dropdown-item" href={'#' + heading.slug}>
+                        {#if heading.fa_icon}
+                            <i class="{heading.fa_icon}" aria-hidden="true" />
+                        {/if}
                         {heading.text}
                     </a>
                 </li>
