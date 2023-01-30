@@ -84,7 +84,7 @@ The nf-core website and central tooling are always being improved. If you enjoy 
 
 #### Pipelines
 
-The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)).
+The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically lead by the main pipeline developers,  if they also attending the hackathon.
 
 #### Modules
 
