@@ -1,0 +1,75 @@
+---
+import SchemaListing from '@components/SchemaListing.svelte';
+import SchemaListingToc from '@components/SchemaListingToc.svelte';
+import SidebarToc from '@components/SidebarToc.svelte';
+import octokit from '@components/octokit';
+import PageLayout from '@layouts/PageLayout.astro';
+import { default as fetchngsschema } from '@public/fetchngs-schema.json';
+import pipelines_json from '@public/pipelines.json';
+
+export function getStaticPaths() {
+    const paths = pipelines_json.remote_workflows.map((pipeline) => {
+        const releases = [...pipeline.releases, { tag_name: 'dev' }];
+        const params = releases.map((release) => {
+            return {
+                params: { pipeline: pipeline.name, version: release.tag_name },
+            };
+        });
+        return params;
+    });
+    return paths;
+}
+const { pipeline, version } = Astro.params;
+
+const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
+const schema = await octokit
+    .request('GET /repos/{owner}/{repo}/contents/{path}{?ref}', {
+        owner: 'nf-core',
+        repo: pipeline,
+        path: `nextflow_schema.json`,
+        // ref: version, TODO: uncomment when I finished the error handling
+        ref: 'dev',
+    }) // parse file if found
+    .catch((error) => {
+        if (error.status === 404) {
+            console.log('Schema not found for ' + pipeline + ' ' + version);
+            return { status: 404 };
+        } else {
+            throw error;
+        }
+    })
+    .then((response) => {
+        if (response.status === 200) {
+            return JSON.parse(Buffer.from(response.data.content, 'base64').toString('utf-8'));
+        } else {
+            return { definitions: {} };
+        }
+    });
+
+const headings = Object.entries(schema.definitions).map(([key, value]) => {
+    return {
+        slug: key.replaceAll('_', '-'),
+        text: value.title,
+        depth: 1,
+        fa_icon: value.fa_icon,
+    };
+});
+---
+
+<PageLayout title={'nf-core/' + pipeline} subtitle={description} navTocHeadings={headings}>
+    <h1>Parameters</h1>
+    <div class="row">
+        <div class="col-10">
+            <SchemaListing {schema} client:load />
+        </div>
+        <div class="col-12 col-md-2 toc order-first order-md-last">
+            <SidebarToc headings={headings} client:idle />
+        </div>
+    </div>
+</PageLayout>
+
+<style lang="scss">
+    .toc {
+        margin-top: -5.05rem; // compensate for the navbar offset of .nav element in SidebarToc.svelte
+    }
+</style>
