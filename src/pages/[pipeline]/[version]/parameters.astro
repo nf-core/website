@@ -1,11 +1,10 @@
 ---
 import SchemaListing from '@components/SchemaListing.svelte';
-import SchemaListingToc from '@components/SchemaListingToc.svelte';
 import SidebarToc from '@components/SidebarToc.svelte';
 import octokit from '@components/octokit';
-import PageLayout from '@layouts/PageLayout.astro';
-import { default as fetchngsschema } from '@public/fetchngs-schema.json';
+import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
+import SchemaListingToc from '@components/SchemaListingToc.svelte';
 
 export function getStaticPaths() {
     const paths = pipelines_json.remote_workflows.map((pipeline) => {
@@ -56,17 +55,17 @@ const headings = Object.entries(schema.definitions).map(([key, value]) => {
 });
 ---
 
-<PageLayout title={'nf-core/' + pipeline} subtitle={description} navTocHeadings={headings}>
+<PipelinePageLayout pipeline={pipeline} subtitle={description} headings={headings} version={version}>
     <h1>Parameters</h1>
     <div class="row">
-        <div class="col-10">
+        <div class="col-12 col-md-10">
             <SchemaListing {schema} client:load />
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last">
-            <SidebarToc headings={headings} client:idle />
+            <SchemaListingToc headings={headings} client:idle />
         </div>
     </div>
-</PageLayout>
+</PipelinePageLayout>
 
 <style lang="scss">
     .toc {

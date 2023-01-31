@@ -13,8 +13,8 @@
   }
 </script>
 
-<div class="property row border border-secondary py-2 mx-2 justify-content-between" class:collapse={property.hidden} class:show={$showHidden}>
-  <div class="col-3 title border-right border-secondary overflow-x-scroll text-nowrap">
+<div class="property row border border-secondary py-2 mx-md-2 justify-content-between" class:collapse={property.hidden} class:show={$showHidden}>
+  <div class="col-12 col-md-3 title border-right border-secondary overflow-x-scroll text-nowrap">
     {#if property.fa_icon}
       <i class="fa fa-fw me-2 {property.fa_icon}" />
     {/if}
@@ -23,7 +23,7 @@
   <div class="col description ">
     {property.description}
   </div>
-  <div class="col-3 text-nowrap d-flex flex-column align-items-end justify-content-between">
+  <div class="col-12 col-md-3 text-nowrap d-flex flex-column align-items-end justify-content-between">
     {#if property.hidden}
       <span class="badge text-bg-warning">hidden</span>
     {/if}

@@ -134,12 +134,20 @@ section:before {
 .triangle-up {
   transform: rotateX(180deg);
 }
-
+.chevron-down {
+  margin-top: -3.75rem;
+  padding-top: 3.75rem;
+  clip-path: polygon(100% 0%, 100% 65%, 50% 100%, 0 65%, 0% 0%, 50% 32.5%);
+}
 @include media-breakpoint-down(md) {
   .triangle-down,
   .triangle-up {
     padding-bottom: 1.5rem;
     clip-path: polygon(100% 0%, 100% 5%, 50% 100%, 0 5%, 0% 0%);
+  }
+  .chevron-down {
+    margin-top: -3.5rem;
+    clip-path: polygon(100% 20%, 100% 85%, 50% 100%, 0 85%, 0% 20%, 50% 32.5%);
   }
 }
 
@@ -216,10 +224,6 @@ section:before {
 
 .btn.disabled .disabled btn:disabled {
   cursor: not-allowed;
-}
-
-.btn.rocket-launch-hover:hover i::before {
-  content: '\e027';
 }
 
 // code
@@ -372,6 +376,10 @@ h4:focus .header-link,
       visibility: visible !important;
     }
   }
+}
+
+.scroll-target {
+  scroll-margin-top: 5rem;
 }
 
 /*

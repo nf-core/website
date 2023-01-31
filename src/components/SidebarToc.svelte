@@ -24,7 +24,7 @@
         <strong class="h6 my-2 text-body">On this page</strong>
         <hr class="my-1" />
         <nav id="TableOfContents d-none d-md-flex flex-column ">
-            <ul>
+            <ul class="mb-0">
                 {#each headings as heading (heading)}
                     <li class={'nav-item ' + headingMargin[heading.depth]}>
                         <a class="nav-link py-1 ps-1 text-muted" href={'#' + heading.slug}>
@@ -36,13 +36,16 @@
                     </li>
                 {/each}
             </ul>
-            <div class="text-center">
-                <button
-                    class="btn btn-sm btn-outline-secondary mx-auto back-to-top"
+            <div class="">
+                <a
+                    href="#/"
+                    class="back-to-top text-muted text-small float-end mb-2"
                     on:click={() => window.scrollTo(0, 0)}
                 >
                     <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
-                </button>
+                </a>
+
+                <slot />
             </div>
         </nav>
     </div>

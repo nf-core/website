@@ -1,23 +1,24 @@
+<script lang="ts">
+    export let headings: {
+        text: string;
+        slug: string;
+        depth: number;
+        fa_icon?: string;
+    }[];
 
-<script>
-  import {showHidden,showHelp} from './store.js'
+    import { showHidden, showHelp } from './store.js';
 
-  export let schema;
-  // console.log(schema.definitions);
+    import SidebarToc from './SidebarToc.svelte';
 </script>
 
-<div class="toc">
-  <h2>On this page</h2>
-  <button type="button" class="btn btn-outline-secondary" on:click={()=>showHidden.set(!$showHidden)}>Show hidden</button>
-  <button type="button" class="btn btn-outline-secondary" on:click={()=>showHelp.set(!$showHelp)}>Show all help</button>
-  
-  <!-- <p  class="text-success">{schema.description}</p>
-  {#if schema.definitions}
-    <div class="d-flex flex-column">
-
-      {#each Object.entries(schema.definitions) as [_, definition]}
-        
-      {/each}
+<SidebarToc {headings}>
+    <div class="btn-group btn-sm" role="group" aria-label="Show/Hide hidden parameters and help texts">
+        <button type="button" class="btn btn-outline-secondary text-nowrap btn-sm" on:click={() => showHidden.set(!$showHidden)}
+        >{($showHidden?"Hide":"Show")} hidden</button
+    >
+    <button type="button" class="btn btn-outline-secondary text-nowrap btn-sm" on:click={() => showHelp.set(!$showHelp)}
+        >{($showHelp?"Hide":"Show")} all help texts</button
+    >
     </div>
-  {/if} -->
-</div>
+
+</SidebarToc>
