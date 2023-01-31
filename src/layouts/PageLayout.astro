@@ -63,7 +63,9 @@ if (frontmatter) {
             md_github_url={md_github_url}
             header_btn_url={header_btn_url}
             header_btn_text={header_btn_text}
-        />
+        >
+            <slot name="sub-header" />
+        </Header>
         {
             mainpage_container || mainpage_container == null ? (
                 <div class="container main-content pt-md-4">

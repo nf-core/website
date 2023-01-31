@@ -1,0 +1,25 @@
+---
+import PageLayout from './PageLayout.astro';
+import SubHeader from '@components/SubHeader.astro';
+
+export interface Props {
+    pipeline: string;
+    subtitle: string;
+    version: string;
+    headings: object[];
+}
+
+const { pipeline, subtitle, headings, version } = Astro.props;
+---
+
+<PageLayout title={'nf-core/' + pipeline} subtitle={subtitle} mainpage_container={true} navTocHeadings={headings}>
+    <SubHeader pipeline={pipeline} version={version} slot="sub-header" />
+    <div>
+        <slot />
+    </div>
+</PageLayout>
+<style lang="scss">
+    .toc {
+        margin-top: -4.5rem; // compensate for the navbar-offset of the underlying .nav element
+    }
+</style>
