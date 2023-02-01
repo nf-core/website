@@ -19,7 +19,7 @@
     }
 </script>
 
-<div class="nav flex-column sticky-top">
+<div class="nav flex-column sticky-top-under">
     <div class="d-none d-md-block">
         <strong class="h6 my-2 text-body">On this page</strong>
         <hr class="my-1" />
@@ -49,19 +49,19 @@
             </div>
         </nav>
     </div>
-    <!-- dropdown on smaller screens -->
 </div>
 
 <style lang="scss">
     @import 'src/styles/_variables';
-    .nav {
-        padding-top: 5.05rem; // account for navbar
-    }
     nav > ul {
         font-size: 0.875rem;
         list-style: none;
         padding-left: 0;
         overflow-y: auto;
         max-height: calc(100% - 56rem);
+    }
+    .sticky-top-under{
+        top: 5.05rem;
+        position: sticky;
     }
 </style>

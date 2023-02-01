@@ -1,0 +1,60 @@
+---
+import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+
+export function getStaticPaths() {
+    const paths = pipelines_json.remote_workflows.map((pipeline) => {
+        const releases = [...pipeline.releases, { tag_name: 'dev' }];
+        const params = releases.map((release) => {
+            return {
+                params: { pipeline: pipeline.name, version: release.tag_name },
+            };
+        });
+        return params;
+    });
+    return paths;
+}
+const { pipeline, version } = Astro.params;
+const headings = [];
+const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
+const activeTabItem = 'Introduction';
+
+let versions = pipelines_json.remote_workflows
+    .filter((p) => p.name === pipeline)
+    .map((p) => {
+        return p.releases.map((r) => {
+            return r.tag_name;
+        });
+    })
+    .flat();
+versions.push('dev');
+const baseUrl = '/' + pipeline + '/' + version;
+let tabItems = [
+    { label: 'Introduction', href: baseUrl, active: false, icon: 'fa-solid fa-sign-in' },
+    { label: 'Parameters', href: baseUrl + '/parameters', active: false },
+    { label: 'Usage', href: baseUrl + '/usage', active: false },
+    { label: 'Output', href: baseUrl + '/output', active: false },
+];
+
+tabItems = tabItems.map((item) => {
+    if (item.label === activeTabItem) {
+        item.active = true;
+    }
+    return item;
+});
+---
+
+<PipelinePageLayout
+    pipeline={pipeline}
+    subtitle={description}
+    headings={headings}
+    version={version}
+    versions={versions}
+    tabItems={tabItems}
+>
+    <h1>Introduction</h1>
+    <div class="row">
+        <div class="col-12 col-md-10"></div>
+        <div class="col-12 col-md-2 toc order-first order-md-last"></div>
+    </div>
+</PipelinePageLayout>

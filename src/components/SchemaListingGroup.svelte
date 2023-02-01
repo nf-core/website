@@ -25,7 +25,7 @@
         </h2>
     </div>
     <div class="card-body">
-        <p>{definition.description}</p>
+        <p>{definition.description?definition.description:''}</p>
         {#if definition.properties}
             <div class="properties">
                 {#each Object.entries(definition.properties) as [title, property] (title)}
@@ -37,10 +37,7 @@
 </div>
 
 <style lang="scss">
-    .position-sticky {
-        top:4.5rem;
-    }
-    .properties > :global(.row:not(.collapse):not(:first-child)) {
-        border-top: 0 !important;
+    .properties > :global(.row) {
+        margin-top: -1px; // avoid doubled borders
     }
 </style>

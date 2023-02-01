@@ -1,0 +1,123 @@
+---
+import SchemaListingToc from '@components/SchemaListingToc.svelte';
+import octokit from '@components/octokit';
+import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+
+export function getStaticPaths() {
+    const paths = pipelines_json.remote_workflows.map((pipeline) => {
+        const releases = [...pipeline.releases, { tag_name: 'dev' }];
+        const params = releases.map((release) => {
+            return {
+                params: { pipeline: pipeline.name, version: release.tag_name },
+            };
+        });
+        return params;
+    });
+    return paths;
+}
+const { pipeline, version } = Astro.params;
+
+const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
+const schema = await octokit
+    .request('GET /repos/{owner}/{repo}/contents/{path}{?ref}', {
+        owner: 'nf-core',
+        repo: pipeline,
+        path: `nextflow_schema.json`,
+        // ref: version, TODO: uncomment when I finished the error handling
+        ref: 'dev',
+    }) // parse file if found
+    .catch((error) => {
+        if (error.status === 404) {
+            console.log('Schema not found for ' + pipeline + ' ' + version);
+            return { status: 404 };
+        } else {
+            throw error;
+        }
+    })
+    .then((response) => {
+        if (response.status === 200) {
+            return JSON.parse(Buffer.from(response.data.content, 'base64').toString('utf-8'));
+        } else {
+            return { definitions: {} };
+        }
+    });
+
+let headings = [];
+if (schema.definitions && Object.keys(schema.definitions).length > 0) {
+    headings = Object.entries(schema.definitions).map(([key, value]) => {
+        return {
+            slug: key.replaceAll('_', '-'),
+            text: value.title,
+            depth: 1,
+            fa_icon: value.fa_icon,
+        };
+    });
+} else if (schema.properties && Object.keys(schema.properties).length > 0) {
+    schema.definitions = schema.properties; // catching the case where there is no definitions but only properties
+    headings = Object.entries(schema.definitions).map(([key, value]) => {
+        return {
+            slug: key.replaceAll('_', '-'),
+            text: value.title,
+            depth: 1,
+            fa_icon: value.fa_icon,
+        };
+    });
+}
+
+let versions = pipelines_json.remote_workflows
+    .filter((p) => p.name === pipeline)
+    .map((p) => {
+        return p.releases.map((r) => {
+            return r.tag_name;
+        });
+    })
+    .flat();
+versions.push('dev');
+---
+
+<PipelinePageLayout
+    pipeline={pipeline}
+    subtitle={description}
+    headings={headings}
+    version={version}
+    versions={versions}
+>
+    {
+        schema.definitions && Object.keys(schema.definitions).length > 0 ? (
+            <div class="container">
+                <div class="row">
+                    <p>
+                        Go through the pipeline inputs below, setting them to the values that you would like. When
+                        you're done, click Launch and your parameters will be saved.
+                    </p>
+                    <p>
+                        The page shown will show a command that you can use to directly launch the workflow. For those
+                        running on a system with no internet connection, you can copy the parameters JSON to a file and
+                        use the supplied command to launch.
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-10" />
+                    <div class="col-12 col-md-2 toc order-first order-md-last">
+                        <SchemaListingToc headings={headings} client:idle />
+                    </div>
+                </div>
+            </div>
+        ) : (
+            <div class="alert alert-warning mt-3 " role="alert">
+                <h4 class="text-warning">No nextflow_schema.json file found!</h4>
+                <p>
+                    It seems like there is no nextflow_schema.json file with parameters defined for this version of the
+                    pipeline. Try a newer version.
+                </p>
+            </div>
+        )
+    }
+
+    <style lang="scss">
+        .toc {
+            // margin-top: -5.05rem; // compensate for the navbar offset of .nav element in SidebarToc.svelte
+        }
+    </style>
+</PipelinePageLayout>

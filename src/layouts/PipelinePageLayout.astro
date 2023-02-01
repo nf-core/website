@@ -1,25 +1,63 @@
 ---
 import PageLayout from './PageLayout.astro';
 import SubHeader from '@components/SubHeader.astro';
+import TabBar from '@components/TabBar.astro';
 
 export interface Props {
     pipeline: string;
     subtitle: string;
     version: string;
+    versions?: string[];
     headings: object[];
+    tabItems?: { label: string; href: string; active: boolean; icon?: string }[];
 }
 
-const { pipeline, subtitle, headings, version } = Astro.props;
+const { pipeline, subtitle, headings, version, versions = [], tabItems = [] } = Astro.props;
+const latestVersion = version.length >= 2 ? versions[versions.length - 2] : versions[0];
 ---
 
 <PageLayout title={'nf-core/' + pipeline} subtitle={subtitle} mainpage_container={true} navTocHeadings={headings}>
-    <SubHeader pipeline={pipeline} version={version} slot="sub-header" />
+    <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} slot="sub-header" />
+    {
+        tabItems.length > 0 && (
+            <TabBar items={tabItems}>
+                <div class="input-group input-group-sm">
+                    <label class="input-group-text" for="version_select">
+                        <i class="fas fa-tags" />
+                    </label>
+                    <div class="dropdown">
+                        <button
+                            class="btn btn-secondary dropdown-toggle rounded-start-0"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            {version}
+                        </button>
+                        <ul class="dropdown-menu  dropdown-menu-end w-100">
+                            {versions.map((v) => {
+                                const url = Astro.url.pathname.replace(`${pipeline}/${version}`, `${pipeline}/${v}`);
+                                return (
+                                    <li>
+                                        <a class={'dropdown-item ' + (v === version ? 'active' : '')} href={url}>
+                                            {v}
+                                        </a>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                </div>
+            </TabBar>
+        )
+    }
+
     <div>
         <slot />
     </div>
 </PageLayout>
 <style lang="scss">
     .toc {
-        margin-top: -4.5rem; // compensate for the navbar-offset of the underlying .nav element
+        // margin-top: -4.5rem; // compensate for the navbar-offset of the underlying .nav element
     }
 </style>

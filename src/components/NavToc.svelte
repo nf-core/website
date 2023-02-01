@@ -10,7 +10,7 @@
 <div class="d-md-none ms-auto pe-5 toc-md">
     <div class="dropdown">
         <button
-            class="btn btn-sm btn-outline-secondary dropdown-toggle"
+            class="btn btn-sm btn-outline-secondary dropdown-toggle text-body-secondary"
             type="button"
             id="dropdownMenuButton"
             data-bs-toggle="dropdown"
