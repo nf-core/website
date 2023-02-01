@@ -26,8 +26,7 @@ const schema = await octokit
         owner: 'nf-core',
         repo: pipeline,
         path: `nextflow_schema.json`,
-        ref: version, // TODO: uncomment when I finished the error handling
-        // ref: 'dev',
+        ref: version,
     }) // parse file if found
     .catch((error) => {
         if (error.status === 404) {
@@ -112,8 +111,4 @@ tabItems = tabItems.map((item) => {
     </div>
 </PipelinePageLayout>
 
-<style lang="scss">
-    .toc {
-        // margin-top: -5.05rem; // compensate for the navbar offset of .nav element in SidebarToc.svelte
-    }
-</style>
+<style lang="scss"></style>

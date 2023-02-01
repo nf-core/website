@@ -31,7 +31,7 @@
       type: <code>{property.type}</code>
     </div>
     {#if property.enum}
-      <select bind:value={property.default}>
+      <select value={property.default}>
         {#each property.enum as value}
           <option {value}>{value + (value === property.default ? " (default)" : "")}</option>
         {/each}
