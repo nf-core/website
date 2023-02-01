@@ -52,7 +52,6 @@
 </div>
 
 <style lang="scss">
-    @import 'src/styles/_variables';
     nav > ul {
         font-size: 0.875rem;
         list-style: none;

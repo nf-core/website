@@ -2,7 +2,6 @@
   import SchemaListingGroup from "./SchemaListingGroup.svelte";
 
   export let schema;
-  // console.log(schema.definitions);
 </script>
 
 <div class="schema-listing">
