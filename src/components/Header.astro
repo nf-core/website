@@ -13,7 +13,7 @@ const {
 ---
 
 <div class="mainpage-heading pb-1 text-bg-success">
-    <div class="container">
+    <div class="container-fluid">
         <h1 class="display-2 d-flex justify-content-between">
             {title}
             <div>
@@ -39,7 +39,7 @@ const {
                 }
             </div>
         </h1>
-        {subtitle && <p class="lead">{subtitle}</p>}
+        {subtitle && <p class="lead mb-1 mb-md-3">{subtitle}</p>}
         {event_header && <EventHeader frontmatter={event_header} />}
         {header_html && { header_html }}
     </div>
