@@ -1,6 +1,6 @@
 ---
 title: Hackathon - March 2023 (Krakow)
-subtitle: Local node of the nf-core hackathon at Ardigen, Krakow.
+subtitle: Local node of the nf-core hackathon at Ardigen, Kraków.
 type: hackathon
 start_date: '2023-03-27'
 start_time: '10:00 CEST'
@@ -12,7 +12,7 @@ location_name: ToBeConfirmed
 # location_latlng: [xxx, xxx]
 ---
 
-Local event to be held at Ardigen, Krakow.
+Local event to be held at Ardigen, Kraków.
 
 Primary contact: [<i class="fab fa-slack"></i> Mauro Saporita](https://nfcore.slack.com/team/U03PV7P60KA)
 
