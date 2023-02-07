@@ -17,6 +17,7 @@ Local event to be held at SciLifeLab, Stockholm.
 Primary contact: [<i class="fab fa-slack"></i> Franziska Bonath](https://nfcore.slack.com/team/UGP9YUCKD)
 
 ## preliminary schedule
+
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
         <thead>
