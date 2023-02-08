@@ -1,6 +1,7 @@
 // https://astro.build/config
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
+import markdownIntegration from '@astropub/md';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
 import { h } from 'hastscript';
@@ -14,10 +15,9 @@ import urls from 'rehype-urls';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
-
 export default defineConfig({
     site: 'https://nf-co.re/',
-    integrations: [svelte(), sitemap()],
+    integrations: [svelte(), sitemap(), markdownIntegration()],
     vite: {
         plugins: [yaml()],
         ssr: {
@@ -47,10 +47,10 @@ export default defineConfig({
                     }
                 },
             ],
-            [
-                rehypeHighlight,
-                { languages: { groovy, shell }, aliases: { groovy: 'nextflow', shell: 'console', shell: 'git' } },
-            ],
+            // [
+            //     rehypeHighlight,
+            //     { languages: { groovy, shell,bibtex }, aliases: { groovy: 'nextflow', shell: 'console', shell: 'git' } },
+            // ],
         ],
     },
 });

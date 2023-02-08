@@ -8,7 +8,7 @@ export interface Props {
     subtitle: string;
     version: string;
     versions?: string[];
-    headings: object[];
+    headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: { label: string; href: string; active: boolean; icon?: string }[];
 }
 

@@ -15,7 +15,7 @@
     // make margin classes from min to max heading depth
     let headingMargin = {};
     for (let i = min_heading_depth; i <= 6; i++) {
-        headingMargin[i] = 'ms-' + (i - min_heading_depth) * 2;
+        headingMargin[i] = 'ps-' + (i - min_heading_depth) * 2;
     }
 </script>
 
@@ -26,12 +26,12 @@
         <nav id="TableOfContents d-none d-md-flex flex-column ">
             <ul class="mb-0">
                 {#each headings as heading (heading)}
-                    <li class={'nav-item ' + headingMargin[heading.depth]}>
+                    <li class={'nav-item ' + headingMargin[heading.depth]} class:active={heading.depth==2}>
                         <a class="nav-link py-1 ps-1 text-muted" href={'#' + heading.slug}>
                             {#if heading.fa_icon}
                                 <i class={heading.fa_icon} aria-hidden="true" />
                             {/if}
-                            {heading.text}
+                            {@html heading.text}
                         </a>
                     </li>
                 {/each}
@@ -52,6 +52,7 @@
 </div>
 
 <style lang="scss">
+    @import 'src/styles/_variables.scss';
     nav > ul {
         font-size: 0.875rem;
         list-style: none;
@@ -62,5 +63,12 @@
     .sticky-top-under{
         top: 5.05rem;
         position: sticky;
+    }
+    li{
+        border-left: 2pt solid $secondary;
+    }
+    li.active{
+        border-left: 2pt solid $success;
+        background-color: transparentize($success, 0.75);
     }
 </style>
