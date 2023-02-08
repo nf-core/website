@@ -18,4 +18,4 @@ Primary contacts: [<i class="fab fa-slack"></i> James Fellows Yates](https://nfc
 
 Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up, but feel free to email James or Thiseas if you would any more information.
 
-This local event is being kindly supported by the Department of Archaeogenetics at MPI-EVA. 
+This local event is being kindly supported by the Department of Archaeogenetics at MPI-EVA.
