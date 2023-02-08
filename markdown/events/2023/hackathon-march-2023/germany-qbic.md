@@ -14,6 +14,7 @@ location_latlng: [48.5379169, 9.0339095]
 
 Local event to be held at QBiC, Tübingen.
 
-Primary contact: [<i class="fab fa-slack"></i> Gisela Gabernet](https://nfcore.slack.com/team/UG3J99VUK)
+Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcore.slack.com/team/UPC8CHDKQ)
+
 
 _Details to be confirmed_
