@@ -25,7 +25,7 @@
                         {#if heading.fa_icon}
                             <i class="{heading.fa_icon}" aria-hidden="true" />
                         {/if}
-                        {heading.text}
+                        {@html heading.text}
                     </a>
                 </li>
             {/each}

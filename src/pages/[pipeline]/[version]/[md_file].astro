@@ -1,0 +1,111 @@
+---
+import Markdown from '@components/Markdown.svelte';
+
+import { markdown } from '@astropub/md';
+import octokit from '@components/octokit';
+import SidebarToc from '@components/SidebarToc.svelte';
+import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+
+export function getStaticPaths() {
+    var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    pipelines_json.remote_workflows.forEach((pipeline) => {
+        pipeline.releases.forEach((release) => {
+            const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
+            md_files.forEach((md_file) => {
+                paths.push({
+                    params: {
+                        pipeline: pipeline.name,
+                        version: release.tag_name,
+                        md_file: md_file,
+                    },
+                    props: {
+                        versions: pipeline.releases.map((release) => release.tag_name),
+                        md_files: md_files,
+                    },
+                });
+            });
+        });
+    });
+    return paths;
+}
+const { pipeline, version, md_file } = Astro.params;
+const { versions, md_files } = Astro.props;
+let headings = [];
+
+const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
+
+const baseUrl = '/' + pipeline + '/' + version;
+let tabItems = md_files.map((file) => {
+    return {
+        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }),
+        href: baseUrl + '/' + file,
+        active: file === md_file,
+    };
+});
+tabItems.unshift({
+    label: 'Introduction',
+    href: baseUrl,
+    active: false,
+    icon: 'fa-solid fa-sign-in',
+});
+
+const md_content = await octokit
+    .request('GET /repos/{owner}/{repo}/contents/{path}?{ref}', {
+        owner: 'nf-core',
+        repo: pipeline,
+        path: 'docs/' + md_file + '.md',
+        ref: version,
+    })
+    .then((response) => {
+        let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+        // add github url to image links in markdown
+        content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+            return `![${p1}](https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/${p2})`;
+        });
+        // remove github warning and everything before from docs
+        content = content.replace(/(.*?)(## :warning:)(.*?)( files\._)/s, '');
+        // cleanup heading
+        content = content.replace('# nf-core/' + pipeline + ': ', '# ');
+        // get headings and their depth for table of contents
+        headings = content.match(/^(#{1,6})\s(.*)$/gm).map((heading) => {
+            const depth = heading.match(/^(#{1,6})/)[0].length;
+            let text = heading.match(/^(#{1,6})\s(.*)$/)[2];
+            // replace markdown code blocks with <code> tags
+            text = text.replace(/`(.+?)`/g, '<code>$1</code>');
+            const slug = text
+                .toLowerCase()
+                .replace(/ /g, '-')
+                .replace(/[^\w-]+/g, '');
+            return { depth, text, slug };
+        });
+        return content;
+    });
+---
+
+<PipelinePageLayout
+    pipeline={pipeline}
+    subtitle={description}
+    headings={headings}
+    version={version}
+    versions={versions}
+    tabItems={tabItems}
+>
+    <div class="row">
+        <div class="col-12 col-md-10 pt-3">
+            <Markdown>
+                {
+                    async () => {
+                        const html = await markdown(md_content); // Markdown component of md package is broken at the moment, using this workaround
+                        return html;
+                    }
+                }
+            </Markdown>
+        </div>
+        <div class="col-12 col-md-2 toc">
+            <SidebarToc headings={headings} />
+        </div>
+    </div>
+</PipelinePageLayout>
