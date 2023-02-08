@@ -12,13 +12,13 @@ import_typeform: true
 
 # Welcome
 
-Join us online March 27-29 2023 for the nf-core hackathon! 🗓️
+Join us online March 27-29, 2023, for the nf-core hackathon! 🗓️
 
 The nf-core hackathon is free and is being held online (we will be back in [gather.town](https://gather.town/)).
 Some community members are also hosting [local sites](#local-events).
 We will do our best to support people in all time zones. :earth_americas: :earth_asia: :earth_africa:
 
-Please note this is not a training event. More information about our community training event, being held March 13-16 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
+Please note this is not a training event. More information about our community training event, being held March 13-16, 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
 
 ## Registration
 
@@ -97,9 +97,103 @@ Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modu
 
 ## Schedule
 
-We expect people to come and go during the hackathon due to diverse time zones. Please do whatever works best for you!
+The hackathon schedule is designed to accommodate diverse time zones.
+If you are attending online please come, go, and take breaks at times that fit your schedule.
+If you are attending a local site please check the schedule on the corresponding event page above.
 
-The full schedule for the nf-core hackathon will be available very soon...
+We hope to see you all at the hackathon welcome, daily syncs, and final wrap-up.
+However, if you can't make it, these will be recorded and can be viewed afterward.
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Mon. 27 Mar., 2023</th>
+                <th>Tue. 28 Mar., 2023</th>
+                <th>Wed. 29 Mar., 2023</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-timestamp="1679875200" data-timeformat="HH:mm z">02:00</td>
+                <td background-color:navy; rowspan="8"></td>
+                <td background-color:navy; rowspan="14">Hack!</td>
+                <td background-color:navy; rowspan="14">Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679878800" data-timeformat="HH:mm z">03:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679882400" data-timeformat="HH:mm z">04:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679886000" data-timeformat="HH:mm z">05:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679889600" data-timeformat="HH:mm z">06:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679893200" data-timeformat="HH:mm z">07:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679896800" data-timeformat="HH:mm z">08:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679900400" data-timeformat="HH:mm z">09:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679904000" data-timeformat="HH:mm z">10:00</td>
+                <td>Welcome<br>Location: Lecture Theatre</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679907600" data-timeformat="HH:mm z">11:00</td>
+                <td rowspan="5">Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679914800" data-timeformat="HH:mm z">12:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679914800" data-timeformat="HH:mm z">13:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679918400" data-timeformat="HH:mm z">14:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679922000" data-timeformat="HH:mm z">15:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679925600"  data-timeformat="HH:mm z">16:00</td>
+                <td>Daily sync<br>Location: Lecture Theatre</td>
+                <td>Daily sync<br>Location: Lecture Theatre</td>
+                <td>Final wrap-up<br>Location: Lecture Theatre</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679929200"  data-timeformat="HH:mm z">17:00</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6">Hack!</td>
+                <td rowspan="6"></td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679932800" data-timeformat="HH:mm z">18:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679936400" data-timeformat="HH:mm z">19:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679940000" data-timeformat="HH:mm z">20:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679943600" data-timeformat="HH:mm z">21:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679947200" data-timeformat="HH:mm z">22:00</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+_Please note that this is a preliminary schedule that may be subject to change._
 
 ## How we will work
 
