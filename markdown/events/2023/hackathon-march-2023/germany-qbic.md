@@ -16,5 +16,4 @@ Local event to be held at QBiC, Tübingen.
 
 Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcore.slack.com/team/UPC8CHDKQ)
 
-
 _Details to be confirmed_
