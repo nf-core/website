@@ -12,12 +12,10 @@ location_url: https://www.eva.mpg.de/
 location_latlng: [51.321402, 12.395295]
 ---
 
-Local event to be held at Max Planck Institute for Evolutionary Anthropology, Leipzig (Deutscher Pl. 6, 04103 Leipzig).
+Local event to be held at Max Planck Institute for Evolutionary Anthropology, Leipzig (Deutscher Pl. 6, 04103 Leipzig) in the Large Seminar room (H4.10)
 
-Primary contact: [<i class="fab fa-slack"></i> James Fellows Yates](https://nfcore.slack.com/team/UEM37TBAR) ([james_fellows_yates@eva.mpg.de](mailto:james_fellows_yates@eva.mpg.de))
+Primary contacts: [<i class="fab fa-slack"></i> James Fellows Yates](https://nfcore.slack.com/team/UEM37TBAR) ([james_fellows_yates@eva.mpg.de](mailto:james_fellows_yates@eva.mpg.de)) and [<i class="fab fa-slack"></i> Thiseas C. Lamnidis](https://nfcore.slack.com/team/UGUJX37FV) ([thiseas_christos_lamnidis@eva.mpg.de@eva.mpg.de](mailto:thiseas_christos_lamnidis@eva.mpg.de))
 
-Please contact James if you would like to attend.
+Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up, but feel free to email James or Thiseas if you would any more information.
 
-This local event is being kindly supported by the Department of Archaeogenetics at MPI-EVA.
-
-_Details to be confirmed_
+This local event is being kindly supported by the Department of Archaeogenetics at MPI-EVA. 
