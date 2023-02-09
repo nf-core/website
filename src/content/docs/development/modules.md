@@ -103,7 +103,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
 
-      ```groovy
+      ```nextflow
       include { FASTQC as FASTQC_POST } from '../../.....' // Good: Output folder is still 'fastqc'
       include { FASTQC as POST_FQC    } from '../../.....' // Bad: Generates problems with CI tests - Output folder is 'post'
       ```
@@ -340,9 +340,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
    Mandatory command line arguments MUST be specified in long form where possible.
 
-   `<module>.nf`:
-
-   ```nextflow
+   ```nextflow title="<module>.nf"
    script:
    def args = task.ext.args ?: ''
    def prefix = task.ext.prefix ?: "${meta.id}"
@@ -353,9 +351,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
    """
    ```
 
-   `modules.config`:
-
-   ```nextflow
+   ```nextflow title="modules.config"
    process {
        withName: <module> {
            ext.args = [                                                          // Assign either a string, or closure which returns a string

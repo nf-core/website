@@ -2,7 +2,6 @@
     import { onMount } from 'svelte';
     export let headings = [];
     function set_active_heading() {
-        console.log('set_active_heading');
         let idx = headings.length;
         while (idx--) {
             const { top } = headings[idx].getBoundingClientRect();

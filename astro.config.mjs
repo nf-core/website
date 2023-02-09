@@ -5,15 +5,21 @@ import markdownIntegration from '@astropub/md';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
 import { h } from 'hastscript';
-import groovy from 'highlight.js/lib/languages/groovy';
-import shell from 'highlight.js/lib/languages/shell';
 import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeHighlight from 'rehype-highlight';
+import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
+import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki';
+
+BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
+    if (lang.id === 'groovy') {
+        lang.aliases = ['nextflow', 'nf'];
+    }
+    return lang;
+});
 
 export default defineConfig({
     site: 'https://nf-co.re/',
@@ -47,10 +53,12 @@ export default defineConfig({
                     }
                 },
             ],
-            // [
-            //     rehypeHighlight,
-            //     { languages: { groovy, shell,bibtex }, aliases: { groovy: 'nextflow', shell: 'console', shell: 'git' } },
-            // ],
+            [
+                rehypePrettyCode,
+                {
+                    langPrefix: 'language-',
+                },
+            ],
         ],
     },
 });
