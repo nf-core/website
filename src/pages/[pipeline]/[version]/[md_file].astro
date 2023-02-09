@@ -63,12 +63,19 @@ const md_content = await octokit
         let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
         // add github url to image links in markdown
         content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
-            return `![${p1}](https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/${p2})`;
+            return `![${p1}](https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/docs/${p2})`;
+        });
+        // add github url to html img tags in markdown
+        content = content.replace(/<img(.*?)src="(.*?)"/g, (match, p1, p2) => {
+            return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/docs/${p2}"`;
         });
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)( files\._)/s, '');
         // cleanup heading
         content = content.replace('# nf-core/' + pipeline + ': ', '# ');
+
+        // remove everything before introduction
+        content = content.replace(/.*?## Introduction/gs, '## Introduction');
         // get headings and their depth for table of contents
         headings = content.match(/^(#{1,6})\s(.*)$/gm).map((heading) => {
             const depth = heading.match(/^(#{1,6})/)[0].length;
@@ -95,7 +102,7 @@ const md_content = await octokit
 >
     <div class="row">
         <div class="col-12 col-md-10 pt-3">
-            <Markdown>
+            <Markdown client:idle>
                 {
                     async () => {
                         const html = await markdown(md_content); // Markdown component of md package is broken at the moment, using this workaround

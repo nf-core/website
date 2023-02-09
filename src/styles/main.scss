@@ -1146,4 +1146,10 @@ Launch Page
   .main-content pre {
     border: 1px solid $body-secondary-bg-dark;
   }
+  [data-rehype-pretty-code-title] {
+    display: inline-block;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: $body-secondary-bg-dark;
+  }
 }

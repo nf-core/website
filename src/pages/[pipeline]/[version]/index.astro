@@ -9,8 +9,6 @@ export function getStaticPaths() {
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
             const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
-            console.log('release.doc_files', release.doc_files);
-            console.log('md_files', md_files);
             paths.push({
                 params: {
                     pipeline: pipeline.name,
@@ -29,7 +27,7 @@ const { pipeline, version } = Astro.params;
 const headings = [];
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
 const baseUrl = '/' + pipeline + '/' + version;
-// console.log(Astro.props);
+
 let { versions, md_files } = Astro.props;
 let tabItems = md_files.map((file) => {
     return {
