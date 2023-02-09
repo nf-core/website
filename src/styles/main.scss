@@ -1107,6 +1107,9 @@ Launch Page
   .hide-light {
     display: inline;
   }
+  img {
+    filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
+  }
   .bg-success,
   .text-bg-success {
     background-color: $nf-core-color-dark !important;
@@ -1133,7 +1136,7 @@ Launch Page
     background-color: $body-tertiary-bg-dark;
   }
   input.form-control {
-    background-color: $body-tertiary-bg-dark; // boostrap should actually fix that, but somehow uses the light theme variable here...
+    background-color: $body-tertiary-bg-dark; // bootstrap should actually fix that, but somehow uses the light theme variable here...
   }
   .mainpage-heading,
   .mainpage-heading h1 {
