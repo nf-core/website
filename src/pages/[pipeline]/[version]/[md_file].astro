@@ -1,11 +1,10 @@
 ---
-import Markdown from '@components/Markdown.svelte';
-
-import { markdown } from '@astropub/md';
-import octokit from '@components/octokit';
+import { Markdown } from '@astropub/md';
 import SidebarToc from '@components/SidebarToc.svelte';
+import octokit from '@components/octokit';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
+import MarkdownWrapper from '@components/MarkdownWrapper.svelte';
 
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
@@ -59,7 +58,18 @@ const md_content = await octokit
         path: 'docs/' + md_file + '.md',
         ref: version,
     })
+    .catch((error) => {
+        if (error.status === 404) {
+            console.log('docs/' + md_file + '.md' + ' not found for ' + pipeline + ' ' + version);
+            return { status: 404 };
+        } else {
+            throw error;
+        }
+    })
     .then((response) => {
+        if (response.status === 404) {
+            return;
+        }
         let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
         // add github url to image links in markdown
         content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
@@ -73,23 +83,37 @@ const md_content = await octokit
         content = content.replace(/(.*?)(## :warning:)(.*?)( files\._)/s, '');
         // cleanup heading
         content = content.replace('# nf-core/' + pipeline + ': ', '# ');
-
         // remove everything before introduction
         content = content.replace(/.*?## Introduction/gs, '## Introduction');
+        // remove code blocks from content to avoid picking up comments as headings
+        const text_content = content.replace(/```(.*?)```/gs, '');
         // get headings and their depth for table of contents
-        headings = content.match(/^(#{1,6})\s(.*)$/gm).map((heading) => {
+        headings = text_content.match(/^(#{1,6})\s(.*)$/gm).map((heading) => {
             const depth = heading.match(/^(#{1,6})/)[0].length;
             let text = heading.match(/^(#{1,6})\s(.*)$/)[2];
-            // replace markdown code blocks with <code> tags
-            text = text.replace(/`(.+?)`/g, '<code>$1</code>');
-            const slug = text
-                .toLowerCase()
-                .replace(/ /g, '-')
-                .replace(/[^\w-]+/g, '');
-            return { depth, text, slug };
+            // check if exactly two backticks are used to wrap text
+            if (text.match(/`(.+?)`/g)) {
+                text = text.replace(/`(.+?)`/g, '<code>$1</code>');
+                const slug = text
+                    .replace(/<code>(.*?)<\/code>/g, '$1')
+                    .toLowerCase()
+                    .replace(/ /g, '-')
+                    .replace(/[^\w-]+/g, '');
+                return { depth, text, slug };
+            } else {
+                const slug = text
+                    .toLowerCase()
+                    .replace(/ /g, '-')
+                    .replace(/[^\w-]+/g, '');
+                return { depth, text, slug };
+            }
         });
         return content;
     });
+
+const max_heading_depth = 2;
+// filter out headings that are higher than max_heading_depth
+headings = headings.filter((h) => h.depth <= max_heading_depth);
 ---
 
 <PipelinePageLayout
@@ -102,17 +126,12 @@ const md_content = await octokit
 >
     <div class="row">
         <div class="col-12 col-md-10 pt-3">
-            <Markdown client:idle>
-                {
-                    async () => {
-                        const html = await markdown(md_content); // Markdown component of md package is broken at the moment, using this workaround
-                        return html;
-                    }
-                }
-            </Markdown>
+            <MarkdownWrapper client:load headings={headings}>
+                <Markdown of={md_content} />
+            </MarkdownWrapper>
         </div>
         <div class="col-12 col-md-2 toc">
-            <SidebarToc headings={headings} />
+            <SidebarToc headings={headings} client:idle />
         </div>
     </div>
 </PipelinePageLayout>

@@ -62,7 +62,7 @@ const writePipelinesJson = async () => {
         .then((response) => {
           return response.data
             .filter((file) => {
-              return file.name.includes('.md');
+              return (file.name.includes('.md') && !file.name.includes('README'));
             })
             .map((file) => {
               return file.path;
