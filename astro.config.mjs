@@ -12,7 +12,7 @@ import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
-import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki';
+import { BUNDLED_LANGUAGES } from 'shiki';
 
 BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     if (lang.id === 'groovy') {
