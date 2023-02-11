@@ -7,7 +7,9 @@
         "dev": "astro dev",
         "start": "astro dev",
         "build-preview": "astro build && astro preview",
-        "build": "npm run build-pipeline-json && astro build",
+        "build-cache": "node bin/build-cache.js && tar -cJf .cache.tar.xz .cache",
+        "build-cache-force": "node bin/build-cache.js --force && tar -cJf .cache.tar.xz .cache",
+        "build": "npm run build-pipeline-json && tar -xf .cache.tar.xz && astro build",
         "preview": "astro preview",
         "astro": "astro",
         "build-pipeline-json": "node bin/pipelines.json.js"
@@ -29,6 +31,7 @@
         "datebook": "^8.0.0",
         "dotenv": "^16.0.3",
         "file-saver": "^2.0.5",
+        "file-system-cache": "^2.0.2",
         "hast-util-to-string": "^2.0.0",
         "highlight.js": "^11.7.0",
         "marked": "^4.2.12",

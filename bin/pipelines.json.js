@@ -1,20 +1,7 @@
 #! /usr/bin/env node
-// const { promisify } = require('util');
-// const { exec } = require('child_process');
-// const { octokit } = require('../src/components/octokit');
-// const readFile = promisify(fs.readFile);
-// const writeFile = promisify(fs.writeFile);
-import * as dotenv from 'dotenv';
+import octokit from './octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
-import { Octokit } from 'octokit';
 import path from 'path';
-
-// see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config();
-
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-});
 
 // get current path
 const __dirname = path.resolve();
@@ -62,7 +49,7 @@ const writePipelinesJson = async () => {
         .then((response) => {
           return response.data
             .filter((file) => {
-              return (file.name.includes('.md') && !file.name.includes('README'));
+              return file.name.includes('.md') && !file.name.includes('README');
             })
             .map((file) => {
               return file.path;
