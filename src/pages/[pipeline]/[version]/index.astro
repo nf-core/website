@@ -1,8 +1,8 @@
 ---
 import { markdown } from '@astropub/md';
-import octokit from '@components/octokit';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
+import cache from 'bin/cache';
 
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
@@ -38,21 +38,13 @@ let tabItems = md_files.map((file) => {
         active: false,
     };
 });
-tabItems.unshift({
-    label: 'Introduction',
-    href: baseUrl,
-    active: true,
-    icon: 'fa-solid fa-sign-in',
-});
-const md_content = await octokit
-    .request('GET /repos/{owner}/{repo}/contents/{path}?{ref}', {
-        owner: 'nf-core',
-        repo: pipeline,
-        path: 'README.md',
-        ref: version,
-    })
+
+const cache_key = `${pipeline}/${version}/README.md`;
+
+const md_content = await cache
+    .get(cache_key)
     .then((response) => {
-        let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+        let content = Buffer.from(response, 'base64').toString('utf-8');
         // add github url to image links in markdown
         content = content.replace(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
             return `![${p1}](https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/${p2})`;
@@ -60,6 +52,10 @@ const md_content = await octokit
         // remove everything before introduction
         content = content.replace(/.*?## Introduction/gs, '');
         return content;
+    })
+    .catch((error) => {
+        console.log(error);
+        return '';
     });
 ---
 

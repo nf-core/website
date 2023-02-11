@@ -9,7 +9,11 @@ export interface Props {
         icon?: string;
     }[];
 }
-const activeItem = items.find((item) => item.active);
+let activeItem = items.find((item) => item.active);
+if (!activeItem) {
+    items[0].active = true;
+    activeItem = items[0];
+}
 ---
 
 <div class="">

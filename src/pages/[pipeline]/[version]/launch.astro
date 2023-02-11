@@ -1,13 +1,12 @@
 ---
 import SchemaListingToc from '@components/SchemaListingToc.svelte';
-import octokit from '@components/octokit';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
+import cache from 'bin/cache';
 
 export function getStaticPaths() {
     const paths = pipelines_json.remote_workflows.map((pipeline) => {
-        const releases = [...pipeline.releases, { tag_name: 'dev' }];
-        const params = releases.map((release) => {
+        const params = pipeline.releases.map((release) => {
             return {
                 params: { pipeline: pipeline.name, version: release.tag_name },
             };
@@ -19,28 +18,16 @@ export function getStaticPaths() {
 const { pipeline, version } = Astro.params;
 
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
-const schema = await octokit
-    .request('GET /repos/{owner}/{repo}/contents/{path}{?ref}', {
-        owner: 'nf-core',
-        repo: pipeline,
-        path: `nextflow_schema.json`,
-        // ref: version, TODO: uncomment when I finished the error handling
-        ref: 'dev',
-    }) // parse file if found
-    .catch((error) => {
-        if (error.status === 404) {
-            console.log('Schema not found for ' + pipeline + ' ' + version);
-            return { status: 404 };
-        } else {
-            throw error;
-        }
-    })
+
+const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
+const schema = await cache
+    .get(cache_key)
     .then((response) => {
-        if (response.status === 200) {
-            return JSON.parse(Buffer.from(response.data.content, 'base64').toString('utf-8'));
-        } else {
-            return { definitions: {} };
-        }
+        return JSON.parse(Buffer.from(response, 'base64').toString('utf-8'));
+    })
+    .catch((error) => {
+        console.error(error);
+        return {};
     });
 
 let headings = [];
@@ -73,7 +60,6 @@ let versions = pipelines_json.remote_workflows
         });
     })
     .flat();
-versions.push('dev');
 ---
 
 <PipelinePageLayout

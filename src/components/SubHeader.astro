@@ -34,7 +34,7 @@ const latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipelin
                 ''
             )
         }
-        <a href="launch" class="btn btn-success launch-btn">
+        <a href=`${version}/launch` class="btn btn-success launch-btn">
             <i class="fa-duotone fa-rocket me-2"></i>{
                 'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)
             }

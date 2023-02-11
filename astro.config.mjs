@@ -14,6 +14,7 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import { BUNDLED_LANGUAGES } from 'shiki';
 
+
 BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     if (lang.id === 'groovy') {
         lang.aliases = ['nextflow', 'nf'];
@@ -27,7 +28,7 @@ export default defineConfig({
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ['@popperjs/core'],
+            noExternal: ['@popperjs/core', 'bin/cache.js'],
         },
     },
     markdown: {
