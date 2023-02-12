@@ -9,7 +9,8 @@ import cache from 'bin/cache';
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        let releases = [pipeline.releases[0], pipeline.releases[pipeline.releases.length - 1]]; //TODO remove when markdown file rendering has been optimised
+        releases.forEach((release) => {
             const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
             md_files.forEach((md_file) => {
                 paths.push({
