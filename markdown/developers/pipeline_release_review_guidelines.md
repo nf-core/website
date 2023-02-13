@@ -20,23 +20,23 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 ### Local code and modules
 
 - Do local scripts in `bin/` have author and license embedded?
-    - Local script licenses if written for the pipeline should not GPL, but ideally MIT (matching with pipeline code, upon which is assumed if not otherwise specified)
+  - Local script licenses if written for the pipeline should not GPL, but ideally MIT (matching with pipeline code, upon which is assumed if not otherwise specified)
 - Do all local modules have docker/singularity/conda declarations?
 - Do all local modules conda tool declarations have versions?
 - Do all local modules report versions (if applicable)?
-    - Simple modules with e.g. single `grep` operations not necessary
-    - It would be good to add with more complex operations such as `awk`
+  - Simple modules with e.g. single `grep` operations not necessary
+  - It would be good to add with more complex operations such as `awk`
 - Should any local modules be in nf-core/modules?
 
 ### Documentation
 
 - Documention is only on the nf-core website (not pointed to other non-nf-core standard places, e.g. not read the docs )
 - Is documentation sufficiently described (`usage.md`, `output.md`, `nextflow_schema.json`)?
-    - nextflow_schema.json: check if types are correct and that `default` and `enum` are used where applicable
-- Are there any typos in the documentation  (`usage.md`, `output.md`, `nextflow_schema.json`)
+  - nextflow_schema.json: check if types are correct and that `default` and `enum` are used where applicable
+- Are there any typos in the documentation (`usage.md`, `output.md`, `nextflow_schema.json`)
 - Is CHANGELOG sufficiently filled in?
-    - Check version system is three-point SemVer e.g. 2.1.0
-    - Has the date been updated?
+  - Check version system is three-point SemVer e.g. 2.1.0
+  - Has the date been updated?
 - Check citation formatting consistency in `CIATIONS.md`
 
 ### Code
@@ -45,13 +45,13 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 - Check for general code readability
 - Check for possible code bugs
 - Check for consistency in parameters
-    - i.e. `snake_case`
-    - All boolean parameters evaluate to `false` (e.g. bad: `params.run_step = true`, good: `params.skip_step = false` )
+  - i.e. `snake_case`
+  - All boolean parameters evaluate to `false` (e.g. bad: `params.run_step = true`, good: `params.skip_step = false` )
 - Check manifest includes DOI (if present) etc.
 
 ## Don't have to do
 
 - Comment on scientific content (unless you are familiar with the topic)
 - Major code optimisation
-    - You _can_ suggest small code optimisations
-    - Larger ones you can recommend, but shouldn't necessarily be _require_ for release (hopefully this should have been covered during development PRs)
+  - You _can_ suggest small code optimisations
+  - Larger ones you can recommend, but shouldn't necessarily be _require_ for release (hopefully this should have been covered during development PRs)
