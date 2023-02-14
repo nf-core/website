@@ -168,12 +168,21 @@ in the `.github/workflows/` YAML files too.
 Ok, so you're essentially finished. Your pipeline is written, the tests pass and
 you're ready to add your workflow to nf-core.
 
+To add your pipeline you have two options, transferring ownership or forking.
+
+### Forking
+
 First, fork your workflow repository to the nf-core GitHub organisation by
 clicking 'Fork' at the top of the GitHub webpage. If you don't see nf-core
 as an option, please ask one of the nf-core administrators to do this for you.
 
 Once you have forked the pipeline repository, the [nf-core website](https://nf-co.re)
 will automatically update to list your new pipeline.
+
+### Transfer
+
+First, go to the settings of your repository. Under the General page, in the 'Danger Zone' you should have an option to Transfer Ownership. Transfer this to the nf-core organisation.
+Once transferred, go to the transferred repository on nf-core, and make a new fork back to your user name or organisation to continue development on a fork.
 
 ### Branch setup
 
