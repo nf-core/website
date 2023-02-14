@@ -8,7 +8,7 @@ end_date: '2023-02-14'
 end_time: '13:30 CET'
 youtube_embed:
 location_url:
-    - https://kth-se.zoom.us/j/68390542812
+  - https://kth-se.zoom.us/j/68390542812
 ---
 
 # nf-core/bytesize
