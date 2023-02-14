@@ -23,7 +23,10 @@ const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
 const schema = await cache
     .get(cache_key)
     .then((response) => {
-        return JSON.parse(Buffer.from(response, 'base64').toString('utf-8'));
+        if (response === undefined) {
+            return { definitions: {} };
+        }
+        return JSON.parse(response);
     })
     .catch((error) => {
         console.error(error);

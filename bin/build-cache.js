@@ -4,6 +4,7 @@ import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';
 
+
 const cache = Cache.default({
   basePath: './.cache',
   ns: 'nf-core',
@@ -25,8 +26,9 @@ const buildCache = async () => {
     for (const release of releases) {
       release.doc_files.push('README.md'); // add the README to the cache
       release.doc_files.push('nextflow_schema.json'); // add the nextflow_schema.json to the cache
+      const version = release.tag_name;
       for (const f of release.doc_files) {
-        const cache_key = `${name}/${release.tag_name}/${f}`;
+        const cache_key = `${name}/${version}/${f}`;
         const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
         if (!is_cached || force) {
           await octokit
@@ -34,11 +36,11 @@ const buildCache = async () => {
               owner: 'nf-core',
               repo: name,
               path: f,
-              ref: release.tag_name,
+              ref: version,
             })
             .catch((error) => {
               if (error.status === 404) {
-                console.log(`File ${f} not found in ${name} ${release.tag_name}`);
+                console.log(`File ${f} not found in ${name} ${version}`);
                 console.log(error.request.url);
                 return;
               } else {
@@ -51,7 +53,26 @@ const buildCache = async () => {
                 return;
               }
               console.log('Caching ', cache_key);
-              cache.set(cache_key, response.data.content);
+              let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+
+              if (f.endsWith('.md')) {
+                const parent_directory = f.split('/').slice(0, -1).join('/');
+                // add github url to image links in markdown
+                content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+                  return `![${p1}](https://raw.githubusercontent.com/nf-core/${name}/${version}/${parent_directory}/${p2})`;
+                });
+                // add github url to html img tags in markdown
+                content = content.replaceAll(/<img(.*?)src="(.*?)"/g, (match, p1, p2) => {
+                  return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${name}/${version}/${parent_directory}/${p2}"`;
+                });
+                // remove github warning and everything before from docs
+                content = content.replace(/(.*?)(## :warning:)(.*?)( files\._)/s, '');
+                // cleanup heading
+                content = content.replace('# nf-core/' + name + ': ', '# ');
+                // remove everything before introduction
+                content = content.replace(/.*?## Introduction/gs, '## Introduction');
+              }
+              cache.set(cache_key, content);
             });
         } else {
           console.log(`Already cached ${cache_key}`);
