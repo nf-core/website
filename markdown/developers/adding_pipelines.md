@@ -168,12 +168,13 @@ in the `.github/workflows/` YAML files too.
 Ok, so you're essentially finished. Your pipeline is written, the tests pass and
 you're ready to add your workflow to nf-core.
 
-First, fork your workflow repository to the nf-core GitHub organisation by
-clicking 'Fork' at the top of the GitHub webpage. If you don't see nf-core
-as an option, please ask one of the nf-core administrators to do this for you.
+First, go to the settings of your repository. Under the General page, in the 'Danger Zone' you should have an option to Transfer Ownership. Transfer this to the nf-core organisation.
 
-Once you have forked the pipeline repository, the [nf-core website](https://nf-co.re)
-will automatically update to list your new pipeline.
+> You must make sure you are already a part of the nf-core organisation to allow transferring to nf-core. Alternatively you can add a core-team member to your repository, and ask them to do the transfer you.
+
+Once transferred, go to the transferred repository on nf-core, and make a new fork back to your user name or organisation to continue development on a fork.
+
+> We [prefer](https://nfcore.slack.com/archives/CQY2U5QU9/p1676366247726189?thread_ts=1676360232.837109&cid=CQY2U5QU9) transferring over _forking_ to nf-core. If we fork the original repository to nf-core whenever anyone opens a pull-request, it defaults to going to the original user's fork of the repository, not the nf-core repo. In this case the only way to fix to request manual detachment from GitHub support.
 
 ### Branch setup
 
