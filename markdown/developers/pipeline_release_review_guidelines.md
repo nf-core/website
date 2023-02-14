@@ -7,7 +7,7 @@ Pipeline release reviews are often quite an overwhelming task, particularly when
 
 Pipeline release PRs are often quite diverse in their contents, making it harder to provide a strict set of reviewing guidelines that the PR must meet for approval, when compared to [modules](modules) or [subworkflows](subworkflows).
 
-Overall, the role of the revewer of pipeline release PRs is to check for adherence to the central principles of nf-core (reproducibility, execellent reporting, documented, keeping to the template etc.,). These are detailed in the pipeline guidelines [here](guidelines)
+Overall, the role of the reviewer of pipeline release PRs is to check for adherence to the central principles of nf-core (reproducibility, execellent reporting, documented, keeping to the template etc.,). These are detailed in the pipeline guidelines [here](guidelines)
 
 Here we provide a general set of suggestions of what a reviewer should and do not need to look for when doing pipeline releases:
 
@@ -22,7 +22,8 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 - Do local scripts in `bin/` have author and license embedded?
   - Local script licenses if written for the pipeline should not GPL, but ideally MIT (matching with pipeline code, upon which is assumed if not otherwise specified)
 - Do all local modules have docker/singularity/conda declarations?
-- Do all local modules conda tool declarations have versions?
+    - Are they ideally in bioconda/biocontainers
+- Do all local modules conda/container tool declarations have versions?  (and _not_ `latest`, `dev` etc.)
 - Do all local modules report versions (if applicable)?
   - Simple modules with e.g. single `grep` operations not necessary
   - It would be good to add with more complex operations such as `awk`
@@ -38,6 +39,8 @@ Here we provide a general set of suggestions of what a reviewer should and do no
   - Check version system is three-point SemVer e.g. 2.1.0
   - Has the date been updated?
 - Check citation formatting consistency in `CIATIONS.md`
+- Check that all tools are cited
+- Check that (all) pipeline author(s) listed themselves in the manifest and other contributors are added in the README
 
 ### Code
 
