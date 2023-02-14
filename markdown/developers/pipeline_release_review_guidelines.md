@@ -22,8 +22,8 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 - Do local scripts in `bin/` have author and license embedded?
   - Local script licenses if written for the pipeline should not GPL, but ideally MIT (matching with pipeline code, upon which is assumed if not otherwise specified)
 - Do all local modules have docker/singularity/conda declarations?
-    - Are they ideally in bioconda/biocontainers
-- Do all local modules conda/container tool declarations have versions?  (and _not_ `latest`, `dev` etc.)
+  - Are they ideally in bioconda/biocontainers
+- Do all local modules conda/container tool declarations have versions? (and _not_ `latest`, `dev` etc.)
 - Do all local modules report versions (if applicable)?
   - Simple modules with e.g. single `grep` operations not necessary
   - It would be good to add with more complex operations such as `awk`
