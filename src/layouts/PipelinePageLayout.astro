@@ -21,7 +21,8 @@ tabItems.unshift({
     icon: 'fa-solid fa-sign-in',
 });
 const latestVersion = versions[0];
-if (cache.get(`${pipeline}/${version}/nextflow_schema.json`) !== undefined) {
+const schema = await cache.get(`${pipeline}/${version}/nextflow_schema.json`);
+if (schema !== undefined) {
     // Add the parameters tab if there is a schema to the second position
     tabItems.splice(1, 0, {
         label: 'Parameters',
