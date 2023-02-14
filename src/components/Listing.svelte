@@ -1,5 +1,16 @@
-<script>
-    export let pipelines = [];
+<script lang="ts">
+    export let pipelines: {
+        name: string;
+        description: string;
+        stargazers_count: number;
+        topics: string[];
+        releases: {
+            published_at: string;
+            tag_name: string;
+        }[];
+        archived: boolean;
+    }[] = [];
+
     import PipelineCard from './PipelineCard.svelte';
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
 
@@ -20,7 +31,7 @@
     };
 
     const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 0 && !pipeline.archived ) {
+        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 0 && !pipeline.archived) {
             return true;
         }
         if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 0 && !pipeline.archived) {
@@ -39,16 +50,13 @@
             return b.stargazers_count - a.stargazers_count;
         } else if ($SortBy === 'Last release') {
             // handle case where a pipeline has no releases
-            if (a.releases.length === 0) {
+            if (a.releases.length === 1) {
                 return 1;
             }
-            if (b.releases.length === 0) {
+            if (b.releases.length === 1) {
                 return -1;
             }
-            return (
-                new Date(b.releases[b.releases.length - 1].published_at) -
-                new Date(a.releases[a.releases.length - 1].published_at)
-            );
+            return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
         }
     };
     function searchFilterSortPipelines(pipelines) {
@@ -87,7 +95,7 @@
                 {#each filteredPipelines as pipeline}
                     <tr>
                         <td>
-                            <a href={pipeline.html_url} target="_blank"  rel="noreferrer">{pipeline.name}</a>
+                            <a href={pipeline.html_url} target="_blank" rel="noreferrer">{pipeline.name}</a>
                         </td>
                         <td>
                             {pipeline.description}

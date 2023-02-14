@@ -1,37 +1,36 @@
 <script>
     import { format } from 'timeago.js';
     export let pipeline;
-    const href = pipeline.name;
     const name = pipeline.name;
     const body = pipeline.description;
     const stars = pipeline.stargazers_count;
     const topics = pipeline.topics;
     const releases = pipeline.releases;
     const archived = pipeline.archived;
-    const released = releases.length > 0;
+    const released = releases.length > 1;
     var latest_release, tag_name, release_date_ago;
-
     if (released) {
-        latest_release = releases[releases.length - 1];
+        latest_release = releases[0];
         tag_name = latest_release.tag_name;
         release_date_ago = format(new Date(latest_release.published_at), 'en_GB');
     }
+    const href = pipeline.name + '/' + (released ? tag_name : 'dev');
 </script>
 
 <div class="card w-100 p-3 pb-2 m-2">
     <div class="card-name ">
         <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a {href}>{name}
-            {#if archived}
-                <i class="fa-solid fa-archive text-info" />
-            {:else if released}
-                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip"/>
-            {:else}
-                <i class="fa-solid fa-wrench text-warning" />
-            {/if}
+            <a {href}
+                >{name}
+                {#if archived}
+                    <i class="fa-solid fa-archive text-info" />
+                {:else if released}
+                    <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                {:else}
+                    <i class="fa-solid fa-wrench text-warning" />
+                {/if}
             </a>
             <small class="gh-stats text-small">
-
                 <span>
                     {#if released}
                         <a
@@ -69,11 +68,10 @@
             {/each}
         </p>
         <p class="description flex-grow-1 mb-0">{body}</p>
-
     </div>
     {#if released}
-            <p class="text-muted align">Last release {release_date_ago}</p>
-        {/if}
+        <p class="text-muted align">Last release {release_date_ago}</p>
+    {/if}
 </div>
 
 <style>
