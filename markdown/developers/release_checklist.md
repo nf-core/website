@@ -54,12 +54,9 @@ The last step is to bump up the pipeline version number in the development branc
    - For example, `1.0.0` becomes `1.1.0dev`
    - Use the `nf-core bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core bump-version 1.1.0dev`
 3. Update the `CHANGELOG.md` to include a new section for this new version
-4. (first release only) After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
+4. [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
+5. (first release only) After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
    - Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
-   - Uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and insert the Zenodo DOI..
-   - Add in a badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md)..
-5. [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
+   - Ask a core member to copy the DOI information you added to dev via the PR above to the master branch. The core member will uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and add the DOI, as well as as updating the badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md).
+8. (first release only) Ask a core member to change default branch from `dev` to `master`.
 
-### Copying DOI to master after the first ever release
-
-Please ask a core member to copy the DOI information you added to dev via the PR above to the master branch, so that it's visible to users of the nf-core site before the next release.
