@@ -22,4 +22,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week, Solenne Correard ([@scorreard](https://github.com/scorreard)) is introducing us to the nextflow pipeline `variantcatalogue`. Though not an nf-core pipeline (yet), `variantcatalogue` is using nf-core derived material to aid in the creation of the pipeline.
 
-The variant catalogue pipeline is a Nextflow workflow designed to generate variant catalogues, a list of variants and their frequencies in a population, from whole genome sequences. More information on the pipeline can be found [here](https://github.com/wassermanlab/Variant_catalogue_pipeline).
+The variant catalogue pipeline is a Nextflow workflow designed to generate variant catalogues (also called variant libraries): a list of variants and their frequencies in a population, from whole genome sequences. More information on the pipeline can be found [on Github](https://github.com/wassermanlab/Variant_catalogue_pipeline) or in the [associated preprint](https://www.biorxiv.org/content/10.1101/2022.10.03.508010v2).
