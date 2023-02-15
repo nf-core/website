@@ -7,7 +7,7 @@ start_time: '13:00 CET'
 end_date: '2023-02-21'
 end_time: '13:30 CET'
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - pre-recorded and released on youtube at the indicated time
 ---
 
 # nf-core/bytesize
