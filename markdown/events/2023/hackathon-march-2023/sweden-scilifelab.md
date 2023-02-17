@@ -76,7 +76,7 @@ Primary contact: [<i class="fab fa-slack"></i> Franziska Bonath](https://nfcore.
                 <td data-timestamp="1679927400" data-timeformat="HH:mm z">16:30</td>
                 <td rowspan="2">Hack!</td>
                 <td rowspan="2">Hack!</td>
-                <td rowspan="4">End of Hackathon social</td>
+                <td rowspan="4">Hackathon social in Gamma 2/ Alfa 3</td>
             </tr>
             <tr>
                 <td data-timestamp="1679932800" data-timeformat="HH:mm z">18:00</td>
