@@ -22,7 +22,7 @@ if (!activeItem) {
             items.map((item) => {
                 return (
                     <li class="nav-item">
-                        <a class={'nav-link ' + (item.active ? 'active' : '')} href={item.href}>
+                        <a class={'nav-link ' + (item.active ? 'active' : '')} href={item.href} rel="prefetch">
                             <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
                         </a>
                     </li>
@@ -53,7 +53,7 @@ if (!activeItem) {
                 {
                     items.map((item) => {
                         return (
-                            <a class={'dropdown-item ' + (item.active ? 'active' : '')} href={item.href}>
+                            <a class={'dropdown-item ' + (item.active ? 'active' : '')} href={item.href} rel="prefetch">
                                 <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
                             </a>
                         );
