@@ -1,4 +1,5 @@
 // https://astro.build/config
+import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import markdownIntegration from '@astropub/md';
@@ -14,7 +15,6 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import { BUNDLED_LANGUAGES } from 'shiki';
 
-
 BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     if (lang.id === 'groovy') {
         lang.aliases = ['nextflow', 'nf'];
@@ -24,7 +24,7 @@ BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
 
 export default defineConfig({
     site: 'https://nf-co.re/',
-    integrations: [svelte(), sitemap(), markdownIntegration()],
+    integrations: [svelte(), sitemap(), markdownIntegration(), prefetch()],
     vite: {
         plugins: [yaml()],
         ssr: {
@@ -43,7 +43,12 @@ export default defineConfig({
                     content: h('i.ms-1.fas.fa-link.invisible'),
                 },
             ],
-            [addClasses, { table: 'table table-hover table-sm small' }],
+            [
+                addClasses,
+                {
+                    table: 'table table-hover table-sm small',
+                },
+            ],
             [
                 urls,
                 (url) => {
