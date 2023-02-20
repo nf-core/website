@@ -37,7 +37,7 @@ The training will be streamed on YouTube from 3 pm (CET) on March 13-16. Each se
 
 ### Session 1
 
-Session 1 will provide an overview of core Nextflow concepts. You will be taken through example Nextflow pipelines and introduced to concepts that will be expanded in Sessions 2, 3, and 4.  
+Session 1 will provide an overview of core Nextflow concepts. You will be taken through example Nextflow pipelines and introduced to concepts that will be expanded in Sessions 2, 3, and 4.
 
 - Welcome (5 min)
 - An introduction to Nextflow (25 min)
