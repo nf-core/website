@@ -2,6 +2,7 @@
 import octokit from './octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import ProgressBar from 'progress';
 
 // get current path
 const __dirname = path.resolve();
@@ -12,6 +13,7 @@ const writePipelinesJson = async () => {
   const namesJson = readFileSync(path.join(__dirname, '/public/pipeline_names.json'));
   const pipelines = JSON.parse(pipelinesJson);
   const names = JSON.parse(namesJson).pipeline;
+  let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
   // go through names and add or update pipelines in pipelines.json
   for (const name of names) {
     // get the details from the github repo description
@@ -66,7 +68,7 @@ const writePipelinesJson = async () => {
     } else {
       pipelines.remote_workflows.push(data);
     }
-
+    bar.tick();
     // write the pipelines.json file
   }
   const json = JSON.stringify(pipelines, null, 4);
