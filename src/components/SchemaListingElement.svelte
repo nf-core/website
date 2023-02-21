@@ -48,7 +48,7 @@
         {/if}
     </div>
     {#if property.help_text}
-        <div class="row d-flex mt-2 mx-1 w-100 px-0">
+        <div class="row d-flex mt-2 mx-0 w-100 px-0 gx-3 gx-md-4">
             <Collapsible>
                 <div {id} class="p-2 px-3 text-body bg-secondary-subtle border border-secondary rounded-3">
                     {@html help_text}

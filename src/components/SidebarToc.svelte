@@ -58,18 +58,30 @@
         list-style: none;
         padding-left: 0;
         overflow-y: auto;
-        max-height: calc(100% - 56rem);
+        max-height: calc(100vh - 40rem);
     }
     .sticky-top-under {
-        top: 5.05rem;
+        top: 3.5rem;
         position: sticky;
     }
+
     li {
-        border-inline-start: 2pt solid $border-color-dark;
+        border-inline-start: 2pt solid $border-color;
         transition: background-color 0.3s ease-out, border-left 0.3s ease-out;
     }
+
     li.active {
         border-left: 2pt solid $success;
         background-color: transparentize($success, 0.75);
+    }
+
+    @include color-mode(dark) {
+        li {
+            border-inline-start: 2pt solid $border-color-dark;
+        }
+        li.active {
+            border-left: 2pt solid $success-dark;
+            background-color: transparentize($success-dark, 0.75);
+        }
     }
 </style>

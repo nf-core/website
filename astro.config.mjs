@@ -11,6 +11,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
+import rehypeWrap from 'rehype-wrap-all';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import { BUNDLED_LANGUAGES } from 'shiki';
@@ -43,12 +44,14 @@ export default defineConfig({
                     content: h('i.ms-1.fas.fa-link.invisible'),
                 },
             ],
+
             [
                 addClasses,
                 {
                     table: 'table table-hover table-sm small',
                 },
             ],
+            [rehypeWrap, { selector: 'table', wrapper: 'div.table-responsive' }],
             [
                 urls,
                 (url) => {
@@ -65,6 +68,7 @@ export default defineConfig({
                     langPrefix: 'language-',
                 },
             ],
+            // [rehypeWrap, { selector: 'pre:has(code.language-bash)', wrapper: 'div.copy-code' }],
         ],
     },
 });

@@ -1,6 +1,6 @@
 ---
 import EventIndicator from './EventIndicator.svelte';
-import NavToc from './NavToc.svelte';
+import NavbarToc from './NavbarToc.svelte';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -12,15 +12,17 @@ const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
 const NfCoreLogo = '/images/logos/nf-core-logo.svg';
 ---
 
-<nav class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm site-nav d-print-none">
-    <div class="container-fluid">
+<nav
+    class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-md-2"
+>
+    <div class="container">
         <a class="navbar-brand d-md-none" href="/">
             <img height="25px" src={NfCoreLogo} class="hide-dark" alt="nf-core logo" />
             <img height="25px" src={NfCoreLogoDarkbg} class="hide-light" alt="nf-core logo" />
         </a>
-        {navTocHeadings.length > 0 && <NavToc headings={navTocHeadings} />}
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:idle />}
         <button
-            class="navbar-toggler"
+            class="navbar-toggler border-0"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse"
@@ -86,18 +88,26 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
 <style lang="scss">
     @import '../styles/_variables.scss';
 
-    .site-nav {
-        padding: 0.2rem 1rem;
+    .navbar.fixed-top {
         .navbar-brand {
             margin-top: 0.25rem;
             margin-bottom: 0.25rem;
         }
-        .navbar-nav > li > a {
-            margin-left: 1rem;
-            margin-right: 1rem;
-            transition: ease-in-out color 0.1s;
+        // add wider margins on larger screens
+        @include media-breakpoint-up(md) {
+            padding: 0.2rem 1rem;
+            .navbar-nav > li > a {
+                margin-left: 1rem;
+                margin-right: 1rem;
+                transition: ease-in-out color 0.1s;
+            }
         }
-
+        @include media-breakpoint-down(md) {
+            .navbar-brand {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
         li .dropdown-menu {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
@@ -107,6 +117,9 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
         }
         .collapse.show li .dropdown-menu {
             background-color: transparent;
+        }
+        .navbar-toggler:focus-within {
+            box-shadow: none;
         }
     }
 </style>

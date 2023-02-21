@@ -11,9 +11,10 @@ export interface Props {
     versions?: string[];
     headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: { label: string; href: string; active: boolean; icon?: string }[];
+    md_github_url: string;
 }
 
-const { pipeline, subtitle, headings, version, versions = [], tabItems = [] } = Astro.props;
+const { pipeline, subtitle, headings, version, versions = [], tabItems = [], md_github_url = '' } = Astro.props;
 tabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}`,
@@ -33,12 +34,19 @@ if (schema !== undefined) {
 }
 ---
 
-<PageLayout title={'nf-core/' + pipeline} subtitle={subtitle} mainpage_container={true} navTocHeadings={headings}>
+<PageLayout
+    title={'nf-core/' + pipeline}
+    subtitle={subtitle}
+    mainpage_container={true}
+    navTocHeadings={headings}
+    md_github_url={md_github_url}
+    subfooter={md_github_url !== ''}
+>
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} slot="sub-header" />
     {
         tabItems.length > 0 && (
             <TabBar items={tabItems}>
-                <div class="input-group input-group-sm">
+                <div class="input-group input-group-sm justify-content-end justify-content-md-center">
                     <label class="input-group-text" for="version_select">
                         <i class="fas fa-tags" />
                     </label>
