@@ -66,7 +66,9 @@ const buildCache = async () => {
                   return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${name}/${version}/${parent_directory}/${p2}"`;
                 });
                 // remove github warning and everything before from docs
-                content = content.replace(/(.*?)(## :warning:)(.*?)( files\._)/s, '');
+                content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
+                // remove blockquote ending in "files._" from the start of the document
+                content = content.replace(/(.*?)(files\._)/s, '');
                 // cleanup heading
                 content = content.replace('# nf-core/' + name + ': ', '# ');
                 // remove everything before introduction

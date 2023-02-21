@@ -1,7 +1,5 @@
 import Cache from 'file-system-cache';
 
-console.log(Cache);
-console.log(Cache.default);
 let cache;
 // need this workaround because in ssr/dev mode vite doesn't use the default export of Cache
 // but it does in build/static mode
