@@ -6,7 +6,7 @@ start_date: '2023-03-27'
 start_time: '10:00 CEST'
 end_date: '2023-03-29'
 end_time: '18:00 CEST'
-location_name: ToBeConfirmed
+location_name: Ardigen
 address:  Podole, 76, 30-394, Kraków, Poland
 location_url: https://ardigen.com/
 location_latlng: [50.02159965915289, 19.89199888650787]
