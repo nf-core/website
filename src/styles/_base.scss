@@ -1,7 +1,7 @@
 @import '_variables.scss';
 
 // Manually import all bootstrap components, otherwise extra-wide breakpoints are not working
-@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/root';
 @import 'bootstrap/scss/reboot';
 @import 'bootstrap/scss/type';
 @import 'bootstrap/scss/images';
@@ -16,7 +16,6 @@
 @import 'bootstrap/scss/dropdown';
 @import 'bootstrap/scss/button-group';
 @import 'bootstrap/scss/nav';
-@import 'bootstrap/scss/navbar';
 @import 'bootstrap/scss/accordion';
 @import 'bootstrap/scss/breadcrumb';
 @import 'bootstrap/scss/pagination';
@@ -33,5 +32,7 @@
 @import 'bootstrap/scss/spinners';
 @import 'bootstrap/scss/offcanvas';
 @import 'bootstrap/scss/placeholders';
+@import 'bootstrap/scss/navbar';
 @import 'bootstrap/scss/utilities/api';
+
 @import 'bootstrap-print-css/css/bootstrap-print.min';

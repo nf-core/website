@@ -8,10 +8,11 @@ $nf-core-color-dark: #1a9655;
 $nf-tower-color: #335eea;
 
 // overwrite standard bootstrap colors
-$success: $nf-core-color;
-:root {
-  --bs-success-rgb: #{$success};
-}
+$green: $nf-core-color;
+
+// :root {
+//   --bs-success-rgb: #{$success};
+// }
 $info: #17a2b8; // old info color is not so harsh
 $light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
 
@@ -26,7 +27,7 @@ $link-color: #1e6bb8;
 // overwrite standard heading styles
 $headings-font-family: 'Maven Pro', sans-serif;
 $headings-font-weight: 500;
-$headings-color: $success;
+$headings-color: $green;
 $headings-color-dark: $nf-core-color-dark;
 
 // overwrite standard font styles
@@ -38,7 +39,37 @@ $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
 
 // standard bootstrap variables
-@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/functions';
+
+@import 'bootstrap/scss/variables';
+
+// make greens darker for dark mode
+$green: $nf-core-color-dark;
+$green-100: tint-color($green, 80%) !default;
+$green-200: tint-color($green, 60%) !default;
+$green-300: tint-color($green, 40%) !default;
+$green-400: tint-color($green, 20%) !default;
+$green-500: $green !default;
+$green-600: shade-color($green, 20%) !default;
+$green-700: shade-color($green, 40%) !default;
+$green-800: shade-color($green, 60%) !default;
+$green-900: shade-color($green, 80%) !default;
+
+$success-text-dark: $red;
+
+@import 'bootstrap/scss/variables-dark';
+
+
+// dark mode specific variables
+[data-bs-theme='dark'] {
+  --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
+  .tooltip {
+    --bs-tooltip-bg: #{$body-bg-dark};
+    --bs-tooltip-color: #{$body-color-dark};
+  }
+}
+
+
 // extra-wide breakpoints
 $container-max-widths: (
   sm: 540px,
@@ -58,17 +89,8 @@ $grid-breakpoints: (
   xxl: 1400px,
   xxxl: 1600px,
 );
-@import 'bootstrap/scss/_variables.scss';
 
-@import 'bootstrap/scss/_variables-dark.scss';
-// dark mode specific variables
-[data-bs-theme='dark'] {
-  --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
-  .tooltip {
-    --bs-tooltip-bg: #{$body-bg-dark};
-    --bs-tooltip-color: #{$body-color-dark};
-  }
-}
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';
-@import 'bootstrap/scss/root';
+@import "bootstrap/scss/utilities";
+
