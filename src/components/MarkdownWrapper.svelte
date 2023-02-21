@@ -15,9 +15,7 @@
                 });
             },
             {
-                // root: document.querySelector('.markdown-content'),
                 rootMargin: '0px 0px -92% 0px',
-                // rootMargin: '100px 0px -' + activeHeadingScrollOffset + 'px 0px',
             }
         );
         headings.forEach((heading) => {
@@ -30,3 +28,9 @@
 <div class="markdown-content">
     <slot />
 </div>
+
+<style lang="scss">
+    .markdown-content :global(a) {
+        word-wrap: break-word; // long links break layout on small screens
+    }
+</style>

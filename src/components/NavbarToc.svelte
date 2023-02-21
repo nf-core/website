@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { currentHeading } from '@components/store';
     export let headings: {
         text: string;
         slug: string;
@@ -7,7 +8,7 @@
     }[];
 </script>
 
-<div class="d-md-none ms-auto pe-5 toc-md">
+<div class="d-md-none toc-md">
     <div class="dropdown">
         <button
             class="btn btn-sm btn-outline-secondary dropdown-toggle text-body-secondary"
@@ -20,10 +21,10 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {#each headings as heading (heading)}
-                <li>
+                <li class:active={heading.slug === $currentHeading}>
                     <a class="dropdown-item" href={'#' + heading.slug}>
                         {#if heading.fa_icon}
-                            <i class="{heading.fa_icon}" aria-hidden="true" />
+                            <i class={heading.fa_icon} aria-hidden="true" />
                         {/if}
                         {@html heading.text}
                     </a>
@@ -32,3 +33,22 @@
         </ul>
     </div>
 </div>
+
+<style lang="scss">
+    @import 'src/styles/_variables.scss';
+    .toc-md {
+        .dropdown-menu {
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+    }
+    li.active {
+        background-color: transparentize($success, 0.75);
+    }
+
+    @include color-mode(dark) {
+        li.active {
+            background-color: transparentize($success-dark, 0.75);
+        }
+    }
+</style>

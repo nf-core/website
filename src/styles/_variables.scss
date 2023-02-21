@@ -10,9 +10,6 @@ $nf-tower-color: #335eea;
 // overwrite standard bootstrap colors
 $green: $nf-core-color;
 
-// :root {
-//   --bs-success-rgb: #{$success};
-// }
 $info: #17a2b8; // old info color is not so harsh
 $light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
 
@@ -45,17 +42,16 @@ $accordion-button-active-color: shade-color($nf-core-color, 10%);
 
 // make greens darker for dark mode
 $green: $nf-core-color-dark;
-$green-100: tint-color($green, 80%) !default;
-$green-200: tint-color($green, 60%) !default;
-$green-300: tint-color($green, 40%) !default;
-$green-400: tint-color($green, 20%) !default;
-$green-500: $green !default;
-$green-600: shade-color($green, 20%) !default;
-$green-700: shade-color($green, 40%) !default;
-$green-800: shade-color($green, 60%) !default;
-$green-900: shade-color($green, 80%) !default;
-
-$success-text-dark: $red;
+$green-100: tint-color($green, 80%);
+$green-200: tint-color($green, 60%);
+$green-300: tint-color($green, 40%);
+$green-400: tint-color($green, 20%);
+$green-500: $green;
+$green-600: shade-color($green, 20%);
+$green-700: shade-color($green, 40%);
+$green-800: shade-color($green, 60%);
+$green-900: shade-color($green, 80%);
+$success-dark: $green;
 
 @import 'bootstrap/scss/variables-dark';
 
