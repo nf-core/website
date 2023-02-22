@@ -6,8 +6,10 @@ start_date: '2023-02-21'
 start_time: '13:00 CET'
 end_date: '2023-02-21'
 end_time: '13:30 CET'
+youtube_embed: https://www.youtube.com/watch?v=Em1cHCLQQ_c
 location_url:
-  - pre-recorded and released on youtube at the indicated time
+  - https://doi.org/10.6084/m9.figshare.22140854.v1
+  - https://www.youtube.com/watch?v=Em1cHCLQQ_c
 ---
 
 # nf-core/bytesize
