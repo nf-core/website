@@ -56,16 +56,6 @@ $success-dark: $green;
 @import 'bootstrap/scss/variables-dark';
 
 
-// dark mode specific variables
-[data-bs-theme='dark'] {
-  --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
-  .tooltip {
-    --bs-tooltip-bg: #{$body-bg-dark};
-    --bs-tooltip-color: #{$body-color-dark};
-  }
-}
-
-
 // extra-wide breakpoints
 $container-max-widths: (
   sm: 540px,

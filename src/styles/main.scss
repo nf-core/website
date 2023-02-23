@@ -100,7 +100,6 @@ section:before {
 .bg-lightgray {
   background-color: rgba($gray-200, 0.75);
 }
-
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
@@ -489,9 +488,6 @@ h4:focus .header-link,
 /*
  * Modules
  */
-.module .contrib-avatars {
-  width: 30px;
-}
 .module .module-params .module-input {
   min-width: 30%;
 }
@@ -585,19 +581,6 @@ nfcore-subnav {
   background-color: rgba($nf-core-color, 0.05);
   color: $gray-800;
 }
-.pipeline-sidebar {
-  font-size: 75%;
-}
-.mainpage .pipeline-sidebar h6,
-.mainpage .module-sidebar h6 {
-  padding-top: 0;
-  margin-top: 5px;
-  color: $gray-500;
-  font-size: 12px;
-}
-.mainpage .module-sidebar h6 {
-  font-size: 14px;
-}
 
 .mainpage .pipeline-sidebar p,
 .mainpage .module-sidebar p {
@@ -632,11 +615,6 @@ nfcore-subnav {
 .module-run-cmd .btn-outline-secondary {
   border-color: $gray-400;
 }
-.pipeline-sidebar .contrib-avatars img,
-.module-sidebar .contrib-avatars img {
-  width: 42px;
-  padding: 0 0.5rem 0.5rem 0;
-}
 .pipeline-stats-table thead tr th {
   cursor: pointer;
 }
@@ -648,11 +626,6 @@ nfcore-subnav {
   text-decoration: underline;
 }
 
-.pipeline-stats .contrib-avatars img {
-  width: 60px;
-  padding: 0 0 0.75rem 0;
-  margin: 0;
-}
 /* Stats page */
 .stats_keynumbers .card,
 .event-list .card {
@@ -1089,7 +1062,12 @@ Launch Page
 ///////////////////////////
 
 @include color-mode(dark) {
-  @import 'highlight.js/scss/github-dark'; // unfortunately this makes the code blocks look dark in light mode too after switching between modes
+// dark mode specific variables
+  --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
+  .tooltip {
+    --bs-tooltip-bg: #{$body-bg-dark};
+    --bs-tooltip-color: #{$gray-300};
+  }
   .hide-dark {
     display: none;
   }
@@ -1141,4 +1119,15 @@ Launch Page
     padding-right: 1rem;
     background-color: $body-secondary-bg-dark;
   }
+
+.text-bg-success,
+.bg-success {
+  background-color: $nf-core-color-dark;
+}
+.border-success {
+  border-color: $nf-core-color-dark;
+}
+.bg-success-light {
+  background-color: tint-color($success-dark, 25%);
+}
 }

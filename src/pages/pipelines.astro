@@ -6,8 +6,8 @@ const pipelines = pipelines_json.remote_workflows;
 const title = 'Pipelines';
 const description = `We currently have ${pipelines.length} pipelines available.`;
 
-const num_released = pipelines.filter((p) => p.releases.length > 0 && !p.archived).length;
-const num_dev = pipelines.filter((p) => p.releases.length == 0 && !p.archived).length;
+const num_released = pipelines.filter((p) => p.releases.length > 1 && !p.archived).length;
+const num_dev = pipelines.filter((p) => p.releases.length == 1 && !p.archived).length;
 const num_archived = pipelines.filter((p) => p.archived).length;
 ---
 

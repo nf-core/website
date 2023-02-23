@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 
+
 // get current path
 const __dirname = path.resolve();
 
@@ -57,7 +58,42 @@ const writePipelinesJson = async () => {
               return file.path;
             });
         });
-      return { tag_name, published_at, doc_files };
+
+      let modules = await octokit
+        .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
+          owner: 'nf-core',
+          repo: name,
+          path: 'modules.json',
+          ref: tag_name,
+        })
+        .catch((error) => {
+          if (error.status === 404) {
+            // console.log(`modules.json not found in ${name} ${tag_name}`);
+            return;
+          } else {
+            console.log(error);
+            return;
+          }
+        })
+        .then((response) => {
+          if (response) {
+            const modules_json = JSON.parse(Buffer.from(response.data.content, 'base64').toString());
+            if (modules_json.repos['nf-core/modules']) {
+              if (modules_json.repos['nf-core/modules'].modules) {
+                return Object.keys(modules_json.repos['nf-core/modules'].modules);
+              }
+              return Object.keys(modules_json.repos['nf-core/modules']);
+            } else if (modules_json.repos['https://github.com/nf-core/modules.git']) {
+              return Object.keys(modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']);
+            }
+          }
+        });
+      if (modules) {
+        modules = modules.map((module) => {
+          return module.replace('/', '_');
+        });
+      }
+      return { tag_name, published_at, doc_files, modules };
     });
     // resolve the promises
     data['releases'] = await Promise.all(data['releases']);
@@ -68,6 +104,7 @@ const writePipelinesJson = async () => {
     } else {
       pipelines.remote_workflows.push(data);
     }
+
     bar.tick();
     // write the pipelines.json file
   }

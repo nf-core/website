@@ -87,8 +87,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Stars</th>
-                    <th scope="col">Last Release</th>
+                    <th class="text-end" scope="col">Stars</th>
+                    <th class="text-end" scope="col">Last Release</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +103,7 @@
                         <td>
                             {pipeline.archived
                                 ? 'Archived'
-                                : pipeline.releases.length > 0
+                                : pipeline.releases.length > 1
                                 ? 'Released'
                                 : 'Under Development'}
                         </td>
@@ -111,9 +111,7 @@
                             {pipeline.stargazers_count}
                         </td>
                         <td class="text-end">
-                            {pipeline.releases.length > 0
-                                ? pipeline.releases[pipeline.releases.length - 1].tag_name
-                                : '-'}
+                            {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
                         </td>
                     </tr>
                 {/each}

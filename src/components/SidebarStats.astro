@@ -1,0 +1,89 @@
+---
+const { component_type, contributors, included_pipelines } = Astro.props;
+
+export interface Props {
+    component_type: string;
+    contributors: string[];
+    included_pipelines?: {
+        name: string;
+        version: string;
+    }[];
+}
+---
+
+<div class="sidebar">
+    {
+        included_pipelines && (
+            <div class="row border-bottom">
+                <div class="col-12 mb-2">
+                    <h6 class="text-muted mb-0">
+                        included in {included_pipelines.length}{' '}
+                        {'pipeline' + (included_pipelines.length > 1 ? 's' : '')}
+                    </h6>
+                    <div>
+                        {included_pipelines.map((pipeline) => (
+                            <a
+                                href={'/' + pipeline.name + '/' + pipeline.version}
+                                class="badge text-bg-secondary me-2"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title={pipeline.version}
+                            >
+                                {pipeline.name}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    <div class="row border-bottom">
+        <div class="col-12">
+            <h6 class="text-muted">{component_type === 'pipeline' ? 'contributors' : 'author'}</h6>
+            <div class="contrib-avatars d-flex flex-wrap">
+                {
+                    contributors &&
+                        contributors.map(
+                            (contributor) => (
+                                (contributor = contributor.replace('@', '')),
+                                (
+                                    <a
+                                        href={'https://github.com/' + contributor}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="me-2 mb-2"
+                                    >
+                                        <img
+                                            src={'https://github.com/' + contributor + '.png?size=50'}
+                                            alt={contributor}
+                                        />
+                                    </a>
+                                )
+                            )
+                        )
+                }
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column">
+        <h6 class="text-muted">get in touch</h6>
+        <div class="d-flex flex-column">
+            <a class="btn btn-sm btn-outline-info mb-2" href="https://nfcore.slack.com/channels/modules"
+                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+            >
+            <a class="btn btn-sm btn-outline-secondary" href="https://github.com/nf-core/modules/issues"
+                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+            >
+        </div>
+    </div>
+</div>
+<style lang="scss">
+    .sidebar {
+        // font-size: 75%;
+        & h6 {
+            font-size: 0.8rem;
+            padding-top: 0;
+            margin-top: 5px;
+        }
+    }
+</style>
