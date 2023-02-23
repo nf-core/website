@@ -20,4 +20,6 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core modules patch
 
-Did you ever come accross the issue that you need non-nf-core or modified custom modules, but then linting complains when you put them anywhere logical? This is waht `nf-core modules patch` was created for. To hear more, join us for this weeks bytesize talk with Phil Ewels ([@ewels](https://github.com/ewels))!
+Have you ever wanted to tweak an nf-core module for your own use? No need to copy / paste and lose the benefits of linting and updates, instead try using the magic `nf-core modules patch` command to keep track of your modifications.
+
+Sounds too good to be true? Join us to hear more at this week's bytesize talk with Phil Ewels ([@ewels](https://github.com/ewels))!
