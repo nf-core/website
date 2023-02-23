@@ -1,13 +1,19 @@
 ---
-const { pipeline, version, latestVersion } = Astro.props;
+import InstallCmd from './InstallCmd.svelte';
+
+const { pipeline = '', version = '', latestVersion = '', component, gh_url, component_type } = Astro.props;
 
 export interface Props {
-    pipeline: string;
-    version: string;
-    latestVersion: string;
+    pipeline?: string;
+    version?: string;
+    latestVersion?: string;
+    component?: string;
+    component_type?: string;
+    gh_url: string;
 }
-const gh_link = 'https://github.com/nf-core/' + pipeline;
-const latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
+if (pipeline.length > 0) {
+    const latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
+}
 ---
 
 <div class="subheader bg-body-secondary under-triangle-down">
@@ -34,13 +40,20 @@ const latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipelin
                 ''
             )
         }
-        <a href=`${version}/launch` class="btn btn-success launch-btn">
-            <i class="fa-duotone fa-rocket me-2"></i>{
-                'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)
-            }
-        </a>
-        <a href={`${gh_link}/tree/${version}`} class="text-decoration-none text-body mt-2">
-            <i class="fab fa-github me-2"></i>{gh_link}
+        {
+            pipeline.length > 0 ? (
+                <a href={`${version}/launch`} class="btn btn-success launch-btn">
+                    <i class="fa-duotone fa-rocket me-2" />
+                    {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}
+                </a>
+            ) : (
+                <div class="w-50">
+                    <InstallCmd cmd={`nf-core ${component_type} install ${component?.replace('_', '/')}`} client:idle />
+                </div>
+            )
+        }
+        <a href={version ? `${gh_url}/tree/${version}` : gh_url} class="text-body mt-2">
+            <i class="fab fa-github me-2"></i>{gh_url}
         </a>
     </div>
 </div>

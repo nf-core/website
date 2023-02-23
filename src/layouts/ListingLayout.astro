@@ -1,24 +1,27 @@
 ---
 import PageLayout from './PageLayout.astro';
 import FilterBar from '@components/FilterBar.svelte';
-
-import Listing from '@components/Listing.svelte';
+import PipelinesListing from '@components/PipelinesListing.svelte';
+import ModulesListing from '@components/ModulesListing.svelte';
 
 export interface Props {
     input: object[];
     title: string;
     description: string;
-    filter: object[];
-    displayStyle: object[];
+    filter: { name: string; class?: string }[];
+    displayStyle: { name: string; icon: string }[];
     sortBy: string[];
+    pipelines?: object[];
 }
 
-const { input, title, description, filter, displayStyle, sortBy } = Astro.props;
+const { input, title, description, filter, displayStyle, sortBy, pipelines } = Astro.props;
 ---
 
 <PageLayout title={title} subtitle={description}>
     <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:visible />
-    <Listing pipelines={input} client:visible />
+    {Astro.url.pathname === '/pipelines' && <PipelinesListing pipelines={input} client:visible />}
+    {Astro.url.pathname === '/modules' && <ModulesListing modules={input} pipelines={pipelines} client:visible />}
+
     <slot />
 </PageLayout>
 

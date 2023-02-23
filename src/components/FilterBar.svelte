@@ -1,9 +1,10 @@
-<script>
-    import { onMount } from 'svelte';
+<script lang="ts">
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
-    export let filter;
-    export let sortBy;
-    export let displayStyle;
+    import { onMount } from 'svelte';
+
+    export let filter: { name: string; class?: string }[] = [];
+    export let sortBy: string[] = [];
+    export let displayStyle: { name: string; icon: string }[] = [];
 
     let search = $SearchQuery;
 
@@ -32,45 +33,64 @@
     function handleDisplayStyle(style) {
         DisplayStyle.set(style);
     }
+
     onMount(() => {
-        CurrentFilter.set(filter.map((fil) => fil.name));
-        SortBy.set(sortBy[0]);
-        DisplayStyle.set(displayStyle[0].name);
+        console.log('filter', filter.length);
+
+        console.log('sortBy', sortBy.length);
+        console.log('displayStyle', displayStyle.length);
+        if (filter.length > 0) {
+            CurrentFilter.set(filter.map((fil) => fil.name));
+        }
+        if (sortBy.length > 0) {
+            SortBy.set(sortBy[0]);
+        }
+        if (displayStyle.length > 0) {
+            DisplayStyle.set(displayStyle[0].name);
+        }
     });
 </script>
 
 <div class="filter-bar">
     <div class="d-none d-md-flex w-100 justify-content-center mb-2">
-        <input type="text" class="form-control w-25 me-2" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
-        <div class="ms-3 d-flex align-items-center">
-            Show:
-            <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
-                {#each filter as fil}
-                    <button
-                        type="button"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title={'Double click to only show items from this category'}
-                        class={fil.class
-                            ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
-                            : 'btn text-nowrap w-100 btn-outline-success'}
-                        class:active={$CurrentFilter.includes(fil.name)}
-                        on:click={() => handleFilter(fil.name)}
-                        on:dblclick={() => handleExlusiveFilter(fil.name)}
-                        on:mouseout={() => event.target.blur()}
-                        on:blur={() => event.target.blur()}
-                    >
-                        {#if fil.icon}
-                            <i class={fil.icon + ' me-1'} />
-                        {/if}
-                        {fil.name}
-                        {#if fil.count >= 0}
-                            <span class="badge bg-secondary ms-1">{fil.count}</span>
-                        {/if}
-                    </button>
-                {/each}
+        <input
+            type="text"
+            class="form-control w-25 me-2"
+            bind:value={search}
+            on:keyup={handleSearch}
+            placeholder="Filter"
+        />
+        {#if filter.length > 0}
+            <div class="ms-3 d-flex align-items-center">
+                Show:
+                <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                    {#each filter as fil}
+                        <button
+                            type="button"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title={'Double click to only show items from this category'}
+                            class={fil.class
+                                ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
+                                : 'btn text-nowrap w-100 btn-outline-success'}
+                            class:active={$CurrentFilter.includes(fil.name)}
+                            on:click={() => handleFilter(fil.name)}
+                            on:dblclick={() => handleExlusiveFilter(fil.name)}
+                            on:mouseout={() => event.target.blur()}
+                            on:blur={() => event.target.blur()}
+                        >
+                            {#if fil.icon}
+                                <i class={fil.icon + ' me-1'} />
+                            {/if}
+                            {fil.name}
+                            {#if fil.count >= 0}
+                                <span class="badge bg-secondary ms-1">{fil.count}</span>
+                            {/if}
+                        </button>
+                    {/each}
+                </div>
             </div>
-        </div>
+        {/if}
         {#if sortBy.length > 1}
             <div class="ms-3 d-flex align-items-center">
                 Sort:
@@ -111,74 +131,79 @@
             Filter & Sort
         </button>
         <div class="dropdown-menu">
-            <input type="text" class="form-control w-100 mt-0" bind:value={search} on:keyup={handleSearch} placeholder="Filter" />
+            <input
+                type="text"
+                class="form-control w-100 mt-0"
+                bind:value={search}
+                on:keyup={handleSearch}
+                placeholder="Filter"
+            />
             <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
                 Show:
                 <div class="btn-group-vertical ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
-                {#each filter as fil}
-                    <button
-                        type="button"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title={'Double click to only show items from this category'}
-                        class={fil.class
-                            ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
-                            : 'btn text-nowrap w-100 btn-outline-success'}
-                        class:active={$CurrentFilter.includes(fil.name)}
-                        on:click={() => handleFilter(fil.name)}
-                        on:dblclick={() => handleExlusiveFilter(fil.name)}
-                        on:mouseout={() => event.target.blur()}
-                        on:blur={() => event.target.blur()}
-                    >
-                        {#if fil.icon}
-                            <i class={fil.icon + ' me-1'} />
-                        {/if}
-                        {fil.name}
-                        {#if fil.count >= 0}
-                            <span class="badge bg-secondary ms-1">{fil.count}</span>
-                        {/if}
-                    </button>
-                {/each}
-            </div>
-            </div>
-            {#if sortBy.length > 1}
-            <div class="ms-3 d-flex align-items-center">
-                Sort:
-                <div class="btn-group-vertical ms-1 sort-buttons" role="group" aria-label="Sort buttons">
-                    {#each sortBy as sor (sor)}
-                        <input
-                            type="radio"
-                            class="btn-check"
-                            name="options"
-                            id={sor.replace(' ', '-')}
-                            checked={sor === $SortBy}
-                            on:click={() => handleSort(sor)}
-                        />
-                        <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
-                    {/each}
-                </div>
-            </div>
-            {/if}
-            {#if displayStyle.length > 1}
-            <div class="ms-3 d-flex align-items-center">
-                Display:
-                <div class="btn-group-vertical ms-1 display-buttons" role="group" aria-label="Sort buttons">
-                    {#each displayStyle as dis}
+                    {#each filter as fil}
                         <button
                             type="button"
-                            class="btn btn-outline-success text-nowrap"
-                            on:click={() => handleDisplayStyle(dis.name)}
-                            class:active={$DisplayStyle === dis.name}
-                            ><i class={dis.icon} />
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title={'Double click to only show items from this category'}
+                            class={fil.class
+                                ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
+                                : 'btn text-nowrap w-100 btn-outline-success'}
+                            class:active={$CurrentFilter.includes(fil.name)}
+                            on:click={() => handleFilter(fil.name)}
+                            on:dblclick={() => handleExlusiveFilter(fil.name)}
+                            on:mouseout={() => event.target.blur()}
+                            on:blur={() => event.target.blur()}
+                        >
+                            {#if fil.icon}
+                                <i class={fil.icon + ' me-1'} />
+                            {/if}
+                            {fil.name}
+                            {#if fil.count >= 0}
+                                <span class="badge bg-secondary ms-1">{fil.count}</span>
+                            {/if}
                         </button>
                     {/each}
                 </div>
             </div>
+            {#if sortBy.length > 1}
+                <div class="ms-3 d-flex align-items-center">
+                    Sort:
+                    <div class="btn-group-vertical ms-1 sort-buttons" role="group" aria-label="Sort buttons">
+                        {#each sortBy as sor (sor)}
+                            <input
+                                type="radio"
+                                class="btn-check"
+                                name="options"
+                                id={sor.replace(' ', '-')}
+                                checked={sor === $SortBy}
+                                on:click={() => handleSort(sor)}
+                            />
+                            <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
+                        {/each}
+                    </div>
+                </div>
+            {/if}
+            {#if displayStyle.length > 1}
+                <div class="ms-3 d-flex align-items-center">
+                    Display:
+                    <div class="btn-group-vertical ms-1 display-buttons" role="group" aria-label="Sort buttons">
+                        {#each displayStyle as dis}
+                            <button
+                                type="button"
+                                class="btn btn-outline-success text-nowrap"
+                                on:click={() => handleDisplayStyle(dis.name)}
+                                class:active={$DisplayStyle === dis.name}
+                                ><i class={dis.icon} />
+                            </button>
+                        {/each}
+                    </div>
+                </div>
             {/if}
         </div>
     </div>
 </div>
 
 <style>
-
 </style>

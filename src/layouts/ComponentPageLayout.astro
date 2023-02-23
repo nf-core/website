@@ -1,0 +1,22 @@
+---
+import PageLayout from './PageLayout.astro';
+import SubHeader from '@components/SubHeader.astro';
+import TabBar from '@components/TabBar.astro';
+import cache from 'bin/cache';
+
+export interface Props {
+    name: string;
+    description: string;
+}
+
+const { name, description } = Astro.props;
+const gh_url = 'https://github.com/nf-core/modules/tree/master/modules/nf-core/' + name.replace('_', '/');
+---
+
+<PageLayout title={'modules/' + name} subtitle={description} mainpage_container={true}>
+    <SubHeader gh_url={gh_url} component_type={'modules'} slot="sub-header" component={name} />
+    <div>
+        <slot />
+    </div>
+</PageLayout>
+<style lang="scss"></style>
