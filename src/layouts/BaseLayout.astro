@@ -46,9 +46,12 @@ const {
         <script src={bootstrap}></script>
         <script>
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            const tooltipList = [...tooltipTriggerList].map(
-                (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-            );
+            [...tooltipTriggerList].map((tooltipTriggerEl) => {
+                const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+                if (!tooltip) {
+                    new bootstrap.Tooltip(tooltipTriggerEl);
+                }
+            });
         </script>
         <style lang="scss" is:global>
             @import '../styles/main.scss';
