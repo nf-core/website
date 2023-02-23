@@ -45,11 +45,17 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.3`)
+1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-5. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+4. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+
+   ```bash
+   pre-commit install
+   ```
+
+5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+6. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -61,7 +67,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
+7. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -95,7 +101,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    2. [`./modules/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/fastqc/meta.yml)
 
-      This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module.
+      This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
 
    3. [`./tests/modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/main.nf)
 
