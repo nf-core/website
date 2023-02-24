@@ -37,6 +37,37 @@ the nf-core alumni hall of fame:
 - [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 - [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
+## Maintainers team {#maintainers}
+
+nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
+The maintainer's team takes an active role in managing nf-core repositories in collaboration with the wider nf-core community.
+
+The current members of the maintainer's team are:
+
+- Adam Talbot (Nonacus)
+- Anders Sune Pedersen (Danish National Genome Center)
+- Anders Jemt (Science for Life Laboratory)
+- Daniel Lundin (Linnaeus University)
+- Edmund Miller (University of Texas at Dallas & Element Biosciences)
+- Friederike Hanssen (Quantitative Biology Center, QBiC, University of Tübingen)
+- Júlia Mir Pedrol (Quantitative Biology Center, QBiC, University of Tübingen)
+- Gisela Gabernet (Quantitative Biology Center, QBiC, University of Tübingen)
+- Harshil Patel (Seqera Labs)
+- James A. Fellows Yates (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology)
+- Jasmin Frangenberg (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute)
+- Jon Manning, (Healx Ltd)
+- Jose Espinosa-Carrasco (Centre for Genomic Regulation)
+- Louisa Perelo (Quantitative Biology Center, QBiC, University of Tübingen)
+- Matthias De Smet (Center For Medical Genetics Ghent)
+- Matthias Hörtenhuber (Science for Life Laboratory)
+- Maxime U. Garcia (Seqera Labs)
+- Moritz E. Beber, (Unseen Bio ApS)
+- Nicolas Vannieuwkerke (Center For Medical Genetics Ghent)
+- Ramprasad Neethiraj (Science for Life Laboratory)
+- Rob Syme (Seqera Labs)
+- Simon Pearce (Cancer Research UK Manchester Institute)
+- Sofia Stamoul (Karolinska Institute & Karolinska University Hospital)
+
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
