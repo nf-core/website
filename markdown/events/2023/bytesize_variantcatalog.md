@@ -59,7 +59,7 @@ The reason why there is a parallel section here is because the mitochondrial DNA
 [8:04](https://www.youtube.com/watch?v=Em1cHCLQQ_c&t=484)
 The third subworkflow is the single nucleotide variant subworkflow. It is the most straightforward one. For variant calling, we decided to use DeepVariant. We are using GLnexus for the joint calling. For the fourth subworkflow, which is the structural variant subworkflow, it was mostly developed by Mohammed Abdallah, a postdoc within the Wasserman Lab. It was decided to use Smoove and Manta for structural variant callers. Jasmine is used to merge the variants, and Paragraph is used to genotype the structural variants within the individual data. Then the information is merged with BCFtools. For the short tandem repeats, we are using ExpensionHunter. For the mobile element insertions, we are using MELT.
 
-[9:07](https://www.youtube.com/watch?v=Em1cHCLQQ_c&t=547)
+[8:57](https://www.youtube.com/watch?v=Em1cHCLQQ_c&t=537)
 All the variant calling part is very similar to other pipelines, such as nf-core/raredisease or nf-core/sarek. What is really specific about this pipeline is the steps at the bottom here. It's the sample quality control, variant quality control, allele frequency calculation, and also sex imputation. The reason for that is the quality control is performed differently if you have just one individual or a trio versus if you have a population. All of this is performed within Hail, which is a Python-based analysis tool that is also used by gnomAD and some other variant catalogue pipelines. As I said, it performed some quality control as well as the variant frequency calculation. Then the variants are annotated using VEP.
 
 [10:00](https://www.youtube.com/watch?v=Em1cHCLQQ_c&t=600)
