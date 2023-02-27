@@ -19,7 +19,7 @@ const { title, description, filter, displayStyle, sortBy, pipelines, components 
 
 <PageLayout title={title} subtitle={description}>
     <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:load />
-    {Astro.url.pathname === '/pipelines/' && <PipelinesListing pipelines={pipelines} client:visible />}
+    {pipelines && <PipelinesListing pipelines={pipelines} client:load />}
     {Astro.url.pathname === '/modules/' && <ModulesListing modules={components} client:load />}
 
     <slot />

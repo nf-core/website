@@ -14,7 +14,7 @@ const num_archived = pipelines.filter((p) => p.archived).length;
 <ListingLayout
     title={title}
     description={description}
-    input={pipelines}
+    pipelines={pipelines}
     filter={[
         { name: 'Released', count: num_released },
         { name: 'Under development', count: num_dev },

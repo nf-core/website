@@ -35,10 +35,6 @@
     }
 
     onMount(() => {
-        console.log('filter', filter.length);
-
-        console.log('sortBy', sortBy.length);
-        console.log('displayStyle', displayStyle.length);
         if (filter.length > 0) {
             CurrentFilter.set(filter.map((fil) => fil.name));
         }
