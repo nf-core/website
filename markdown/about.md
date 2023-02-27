@@ -42,7 +42,7 @@ the nf-core alumni hall of fame:
 nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
 The maintainer's team consist of dedicated and highly active members of the community, that take official additional roles in managing nf-core repositories in collaboration with the wider nf-core community.
 
-The current members of the maintainer's team in 2023 are:
+The current members of the maintainer's team in 2023 are: <!-- TODO: check if year is up to date -->
 
 - Adam Talbot (Nonacus)
 - Anders Sune Pedersen (Danish National Genome Center)
@@ -66,7 +66,7 @@ The current members of the maintainer's team in 2023 are:
 - Ramprasad Neethiraj (Science for Life Laboratory)
 - Rob Syme (Seqera Labs)
 - Simon Pearce (Cancer Research UK Manchester Institute)
-- Sofia Stamoul (Karolinska Institute & Karolinska University Hospital)
+- Sofia Stamouli (Karolinska Institute & Karolinska University Hospital)
 
 We thank all the institutions and companies of the maintainers team for their support of nf-core.
 
