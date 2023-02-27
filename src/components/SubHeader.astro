@@ -11,8 +11,9 @@ export interface Props {
     component_type?: string;
     gh_url: string;
 }
+let latest_link = '';
 if (pipeline.length > 0) {
-    const latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
+    latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
 }
 ---
 
@@ -48,7 +49,7 @@ if (pipeline.length > 0) {
                 </a>
             ) : (
                 <div class="w-50">
-                    <InstallCmd cmd={`nf-core ${component_type} install ${component?.replace('_', '/')}`} client:idle />
+                    <InstallCmd cmd={`nf-core ${component_type} install ${component?.replace('_', '/')}`} client:load />
                 </div>
             )
         }

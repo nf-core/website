@@ -99,7 +99,7 @@
                         <input
                             type="radio"
                             class="btn-check"
-                            name="options"
+                            name="sort"
                             id={sor.replace(' ', '-')}
                             checked={sor === $SortBy}
                             on:click={() => handleSort(sor)}
@@ -138,35 +138,37 @@
                 on:keyup={handleSearch}
                 placeholder="Filter"
             />
-            <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
-                Show:
-                <div class="btn-group-vertical ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
-                    {#each filter as fil}
-                        <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title={'Double click to only show items from this category'}
-                            class={fil.class
-                                ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
-                                : 'btn text-nowrap w-100 btn-outline-success'}
-                            class:active={$CurrentFilter.includes(fil.name)}
-                            on:click={() => handleFilter(fil.name)}
-                            on:dblclick={() => handleExlusiveFilter(fil.name)}
-                            on:mouseout={() => event.target.blur()}
-                            on:blur={() => event.target.blur()}
-                        >
-                            {#if fil.icon}
-                                <i class={fil.icon + ' me-1'} />
-                            {/if}
-                            {fil.name}
-                            {#if fil.count >= 0}
-                                <span class="badge bg-secondary ms-1">{fil.count}</span>
-                            {/if}
-                        </button>
-                    {/each}
+            {#if filter.length > 0}
+                <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
+                    Show:
+                    <div class="btn-group-vertical ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                        {#each filter as fil}
+                            <button
+                                type="button"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title={'Double click to only show items from this category'}
+                                class={fil.class
+                                    ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
+                                    : 'btn text-nowrap w-100 btn-outline-success'}
+                                class:active={$CurrentFilter.includes(fil.name)}
+                                on:click={() => handleFilter(fil.name)}
+                                on:dblclick={() => handleExlusiveFilter(fil.name)}
+                                on:mouseout={() => event.target.blur()}
+                                on:blur={() => event.target.blur()}
+                            >
+                                {#if fil.icon}
+                                    <i class={fil.icon + ' me-1'} />
+                                {/if}
+                                {fil.name}
+                                {#if fil.count >= 0}
+                                    <span class="badge bg-secondary ms-1">{fil.count}</span>
+                                {/if}
+                            </button>
+                        {/each}
+                    </div>
                 </div>
-            </div>
+            {/if}
             {#if sortBy.length > 1}
                 <div class="ms-3 d-flex align-items-center">
                     Sort:
@@ -175,13 +177,25 @@
                             <input
                                 type="radio"
                                 class="btn-check"
-                                name="options"
-                                id={sor.replace(' ', '-')}
+                                name="sort-sm"
+                                id={sor.replace(' ', '-') + '-sm'}
                                 checked={sor === $SortBy}
                                 on:click={() => handleSort(sor)}
                             />
-                            <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
+                            <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-') + '-sm'}
+                                >{sor}</label
+                            >
                         {/each}
+                        <!-- {#each sortBy as sor (sor)}
+                            <input
+                                type="radio"
+                                class="btn-check"
+                                name="options"
+
+
+                            />
+                            <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
+                        {/each} -->
                     </div>
                 </div>
             {/if}

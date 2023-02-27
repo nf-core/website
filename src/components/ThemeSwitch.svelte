@@ -1,13 +1,6 @@
 <script>
-    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
     import { onMount } from 'svelte';
     onMount(() => {
-        // activate bootstrap tooltips
-        const tooltipTriggerList = document.querySelectorAll('.theme-switcher label');
-        [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
-
-        setTheme(getPreferredTheme());
-
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
             if (storedTheme !== 'light' || storedTheme !== 'dark') {
                 setTheme(getPreferredTheme());
@@ -19,6 +12,7 @@
 
 <svelte:head>
     <script>
+        // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
         const storedTheme = localStorage.getItem('theme');
         const switchTheme = (e) => {
             const theme = e.target.value;
@@ -47,6 +41,11 @@
 
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
+        // // activate bootstrap tooltips
+        // const tooltipTriggerList = document.querySelectorAll('.theme-switcher label');
+        // [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+
+        // setTheme(getPreferredTheme());
     </script>
 </svelte:head>
 
