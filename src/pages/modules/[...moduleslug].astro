@@ -6,7 +6,8 @@ import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 
 export function getStaticPaths() {
-    return components_json.modules.map((module) => {
+    // return components_json.modules.map((module) => { TODO: replace line below with this one when meta.yamls are fixed
+    return components_json.modules.slice(0, 10).map((module) => {
         return [
             {
                 params: {

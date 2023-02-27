@@ -1,15 +1,16 @@
-<script>
-    import ExportEventButton from "./ExportEventButton.svelte";
-    import VideoButton from "./VideoButton.svelte";
+<script lang="ts">
+    import ExportEventButton from './ExportEventButton.svelte';
+    import VideoButton from './VideoButton.svelte';
 
     export let frontmatter = {
         title: '',
         subtitle: '',
-        start: '',
-        start_date: '',
-        end: '',
-        end_date: '',
+        start: new Date(),
+        start_date: new Date(),
+        end: new Date(),
+        end_date: new Date(),
         type: '',
+        location_url: [''],
     };
     export let slug = '';
     export let type_class = '';
@@ -52,7 +53,6 @@
                 hour12: false,
             });
     }
-
 </script>
 
 <div class={'card mb-3 rounded-0 rounded-end'} style="border-left-color:var(--bs-{type_class});">
@@ -63,13 +63,15 @@
             </a>
             {#if time_category === 'current'}
                 <div class="float-end">
-                    <VideoButton urls={frontmatter.location_url} btnClass="btn-danger"/>
+                    <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
                 </div>
             {/if}
         </div>
         <div class="card-text">
             <p class="mb-2 mb-md-3">{frontmatter.subtitle}</p>
-            <div class="d-flex justify-content-center justify-content-md-between align-items-center flex-wrap flex-md-nowrap">
+            <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center flex-wrap flex-md-nowrap"
+            >
                 <div>
                     <p class="text-muted text-nowrap text-center text-md-start">
                         {@html event_date}
@@ -78,7 +80,7 @@
                 <div class="btn-group ms-1" role="group" aria-label="See details or export calendar event">
                     <a href={slug} class="btn btn-outline-success text-nowrap">See details</a>
                     {#if time_category !== 'past'}
-                        <ExportEventButton {frontmatter}/>
+                        <ExportEventButton {frontmatter} />
                     {/if}
                 </div>
             </div>

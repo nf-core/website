@@ -1,24 +1,11 @@
 <script lang="ts">
-    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
     import { onMount } from 'svelte';
 
     export let cmd: string;
 
     let Tooltip: any;
     $: copied = false;
-    const copyToClipboard = (text: string) => {
-        navigator.clipboard.writeText(text);
-        copied = true;
-        Tooltip.setContent({ '.tooltip-inner': 'Copied!' });
 
-        setTimeout(() => {
-            copied = false;
-
-            Tooltip.hide();
-            Tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
-        }, 1000);
-        return true;
-    };
     onMount(() => {
         // activate bootstrap tooltips
         const tooltipTriggerList = document.querySelectorAll('.copy-txt');
@@ -28,6 +15,20 @@
             Tooltip = new bootstrap.Tooltip(tooltipElement);
         }
     });
+
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text);
+        copied = true;
+        Tooltip.setContent({ '.tooltip-inner': 'Copied!' });
+        debugger;
+        setTimeout(() => {
+            copied = false;
+
+            Tooltip.hide();
+            Tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
+        }, 1000);
+        return true;
+    };
 </script>
 
 <div class="input-group module-install-cmd">
