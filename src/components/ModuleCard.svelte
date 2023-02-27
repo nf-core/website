@@ -15,7 +15,7 @@
         {#if module.meta.keywords}
             <p class="topics">
                 {#each module.meta.keywords as keyword}
-                    <span class="badge bg-body-tertiary text-success mx-1">{keyword}</span>
+                    <span class="badge bg-body-tertiary text-success me-2">{keyword}</span>
                 {/each}
             </p>
         {/if}

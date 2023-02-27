@@ -17,8 +17,8 @@
     const href = pipeline.name + '/' + (released ? tag_name : 'dev');
 </script>
 
-<div class="card w-100 p-3 pb-2 m-2">
-    <div class="card-name ">
+<div class="card flex-fill m-2">
+    <div class="card-header border-bottom-0 bg-transparent">
         <h2 class="mb-0 d-flex justify-content-between align-items-center">
             <a {href}
                 >{name}
@@ -61,17 +61,20 @@
             </small>
         </h2>
     </div>
-    <div class="card-body py-0 d-flex flex-column">
+    <div class="card-body pt-0 d-flex flex-column">
         <p class="topics mt-0 mb-0">
             {#each topics as topic}
-                <span class="badge bg-body-tertiary text-success mx-1">{topic}</span>
+                <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
         </p>
-        <p class="description flex-grow-1 mb-0">{body}</p>
+        {#if body}
+            <p class="description flex-grow-1 mb-0">{body}</p>
+        {/if}
+
+        {#if released}
+            <p class="text-muted align">Last release {release_date_ago}</p>
+        {/if}
     </div>
-    {#if released}
-        <p class="text-muted align">Last release {release_date_ago}</p>
-    {/if}
 </div>
 
 <style>
@@ -85,7 +88,7 @@
         color: rgb(var(--accent));
     } */
     .card {
-        max-width: 40%;
+        max-width: 40rem;
     }
     .badge.text-success {
         font-weight: 400;

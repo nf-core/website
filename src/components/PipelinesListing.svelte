@@ -13,7 +13,6 @@
 
     import PipelineCard from './PipelineCard.svelte';
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
-
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
@@ -31,10 +30,10 @@
     };
 
     const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 0 && !pipeline.archived) {
+        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 1 && !pipeline.archived) {
             return true;
         }
-        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 0 && !pipeline.archived) {
+        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 1 && !pipeline.archived) {
             return true;
         }
         if ($CurrentFilter.includes('Archived') && pipeline.archived === true) {
@@ -77,9 +76,15 @@
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
     {#if $DisplayStyle === 'grid'}
-        {#each filteredPipelines as pipeline (pipeline.name)}
-            <PipelineCard {pipeline} />
-        {/each}
+        {#if filteredPipelines.length === 0}
+            <div class="alert alert-warning" role="alert">
+                No pipelines found. Try changing your search query or filters.
+            </div>
+        {:else}
+            {#each filteredPipelines as pipeline (pipeline.name)}
+                <PipelineCard {pipeline} />
+            {/each}
+        {/if}
     {:else if $DisplayStyle === 'table'}
         <table class="table">
             <thead>
