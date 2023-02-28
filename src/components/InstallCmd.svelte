@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
 
     export let cmd: string;
+    export let icon: boolean = true;
 
     let Tooltip: any;
     $: copied = false;
@@ -20,7 +21,6 @@
         navigator.clipboard.writeText(text);
         copied = true;
         Tooltip.setContent({ '.tooltip-inner': 'Copied!' });
-        debugger;
         setTimeout(() => {
             copied = false;
 
@@ -32,10 +32,13 @@
 </script>
 
 <div class="input-group module-install-cmd">
-    <span class="input-group-text bg-body border-secondary border-end-0"><i class="fa-regular fa-terminal" /></span>
+    {#if icon}
+        <span class="input-group-text bg-body border-secondary border-end-0"><i class="fa-regular fa-terminal" /></span>
+    {/if}
     <input
         type="text"
-        class="form-control input code bg-body border-secondary border-start-0"
+        class="form-control input code bg-body border-secondary"
+        class:border-start-0={icon}
         id="module-install-cmd-text"
         data-autoselect=""
         value={cmd}

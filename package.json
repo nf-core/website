@@ -9,10 +9,11 @@
         "build-preview": "astro build && astro preview",
         "build-cache": "node bin/build-cache.js && tar -cJf --no-xattrs  .cache.tar.xz .cache",
         "build-cache-force": "node bin/build-cache.js --force && tar -cJf --no-xattrs  .cache.tar.xz .cache",
-        "build": "npm run build-pipeline-json && tar -xf .cache.tar.xz && astro build",
+        "build": "npm run build-pipeline-json && npm run build-component-json && tar -xf .cache.tar.xz && astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "build-pipeline-json": "node bin/pipelines.json.js"
+        "build-pipeline-json": "node bin/pipelines.json.js",
+        "build-component-json": "node bin/components.json.js"
     },
     "dependencies": {
         "@astrojs/prefetch": "^0.1.2",
@@ -29,6 +30,7 @@
         "astro-icon": "^0.8.0",
         "bootstrap": "^5.3.0-alpha1",
         "bootstrap-print-css": "^1.0.1",
+        "date-fns": "^2.29.3",
         "datebook": "^8.0.0",
         "dotenv": "^16.0.3",
         "file-saver": "^2.0.5",
