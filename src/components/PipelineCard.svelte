@@ -14,7 +14,7 @@
         tag_name = latest_release.tag_name;
         release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
     }
-    const href = pipeline.name + '/' + (released ? tag_name : 'dev');
+    const href = '/' + pipeline.name + '/' + (released ? tag_name : 'dev');
 </script>
 
 <div class="card flex-fill m-2">

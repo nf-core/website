@@ -54,6 +54,9 @@ const md_content = await cache
     })
     .then((response) => {
         let content = response;
+        if (content === undefined) {
+            console.log(`Cache miss for ${cache_key}`);
+        }
 
         const text_content = content.replace(/```(.*?)```/gs, '');
         // get headings and their depth for table of contents
