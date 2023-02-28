@@ -343,37 +343,37 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
-   Mandatory command line arguments MUST be specified in long form where possible.
+1. All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)).
 
-   `<module>.nf`:
+    - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
+      Mandatory command line arguments MUST be specified in long form where possible.
 
-   ```nextflow
-   script:
-   def args = task.ext.args ?: ''
-   def prefix = task.ext.prefix ?: "${meta.id}"
-   """
-   fastqc \\
-       $args \\
-        <...>
-   """
-   ```
+      `<module>.nf`:
 
-   `modules.config`:
+      ```nextflow
+      script:
+      def args = task.ext.args ?: ''
+      def prefix = task.ext.prefix ?: "${meta.id}"
+      """
+      fastqc \\
+          $args \\
+            <...>
+      """
+      ```
 
-   ```nextflow
-   process {
-       withName: <module> {
-           ext.args = [                                                          // Assign either a string, or closure which returns a string
-               '--quiet',
-               params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-           ].join(' ')                                                           // Join converts the list here to a string.
-           ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
-       }
-   }
-   ```
+      `modules.config`:
 
-   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+      ```nextflow
+      process {
+          withName: <module> {
+              ext.args = [                                                          // Assign either a string, or closure which returns a string
+                  '--quiet',
+                  params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+              ].join(' ')                                                           // Join converts the list here to a string.
+              ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+          }
+      }
+      ```
 
 2. Software that can be piped together SHOULD be added to separate module files
    unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -507,22 +507,37 @@ process {
 
 ### Input/output options
 
-1. Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
+1. Input channel `path` declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
 
    - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
    - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
-2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+2. Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g. parameters, flags etc).
 
-3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+    - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
+    - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
+    - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-4. Optional outputs SHOULD be marked as optional:
+        <details markdown="1">
+        <summary>Rationale</summary>
+        It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
+
+        The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run documented at a nf-core documentation level. It reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
+
+        Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+        </details>
+
+4. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+
+5. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+
+6. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-5. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+7. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
