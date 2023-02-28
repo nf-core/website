@@ -27,8 +27,8 @@ if (schema !== undefined) {
     // Add the parameters tab if there is a schema to the second position
     tabItems.splice(1, 0, {
         label: 'Parameters',
-        href: `/${pipeline}/${version}/parameters`,
-        active: Astro.url.pathname.endsWith('/parameters'),
+        href: `/${pipeline}/${version}/parameters/`,
+        active: Astro.url.pathname.endsWith('/parameters/'),
         icon: 'fa-regular fa-list',
     });
 }
