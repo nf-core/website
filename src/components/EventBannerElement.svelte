@@ -1,6 +1,6 @@
 <script>
     import { EventIsOngoing } from './store.js';
-    import { format } from 'timeago.js';
+    import { formatDistanceToNow } from 'date-fns';
     import ExportEventButton from './ExportEventButton.svelte';
     import VideoButton from './VideoButton.svelte';
     export let events = [];
@@ -54,7 +54,7 @@
     let now = new Date().getTime();
     setInterval(() => (now = new Date().getTime()), 1000);
     $: countdown = (event_start) => {
-        const timeLeftString = format(event_start);
+        const timeLeftString = formatDistanceToNow(event_start);
         return timeLeftString;
     };
 </script>
@@ -93,12 +93,15 @@
                                         >{event.data.subtitle}</a
                                     >
                                 </p>
-
-                                <p class="">
-                                    <a href={'events/' + event.slug} class="text-secondary-emphasis text-decoration-none"
-                                        >{event.data.duration}</a
-                                    >
-                                </p>
+                                {#if event.data.duration}
+                                    <p class="">
+                                        <a
+                                            href={'events/' + event.slug}
+                                            class="text-secondary-emphasis text-decoration-none"
+                                            >{event.data.duration}</a
+                                        >
+                                    </p>
+                                {/if}
                                 {#if event_time_category === 'upcoming'}
                                     <div class="btn-group" role="group" aria-label="Event details">
                                         <a href={'events/' + event.slug} class="btn btn-outline-success text-nowrap">
@@ -158,9 +161,7 @@
                                 >{event.data.duration}</a
                             >
                             <div class="btn-group text-nowrap" role="group" aria-label="Event details">
-                                <a href={'events/' + event.slug} class="btn btn-outline-success">
-                                    Event Details
-                                </a>
+                                <a href={'events/' + event.slug} class="btn btn-outline-success"> Event Details </a>
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
@@ -185,5 +186,4 @@
     hr:last-child {
         display: none;
     }
-
 </style>
