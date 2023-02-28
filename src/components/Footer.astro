@@ -1,6 +1,6 @@
 ---
-import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '../images/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '/images/logos/nf-core-logo-darkbg.svg';
+import NfCoreLogo from '/images/logos/nf-core-logo.svg';
 import FooterSocial from './FooterSocial.astro';
 import ThemeSwitch from './ThemeSwitch.svelte';
 ---
@@ -26,6 +26,7 @@ import ThemeSwitch from './ThemeSwitch.svelte';
                         title="GitHub"
                         icon="fa-brands:github"
                         icon_dark="fa-brands:github"
+                        additionalClass="text-body"
                     />
                     <FooterSocial
                         marginLeft="0"
@@ -79,7 +80,7 @@ import ThemeSwitch from './ThemeSwitch.svelte';
                 </div>
             </div>
             <div
-                class="col-12 col-lg text-center text-lg-end d-flex flex-column align-items-end align-self-stretch justify-content-between"
+                class="col-12 col-lg text-center text-lg-end d-flex flex-column align-items-center align-items-md-end align-self-stretch justify-content-between mt-2 mt-md-0"
             >
                 <ThemeSwitch client:load />
                 <div class="d-block small">

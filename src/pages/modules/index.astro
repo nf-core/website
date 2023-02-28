@@ -1,0 +1,23 @@
+---
+import ListingLayout from '@layouts/ListingLayout.astro';
+
+import components from '@public/components.json';
+const modules = components.modules;
+const title = 'nf-core/modules';
+const description = 'Browse the ' + modules.length + ' modules that are currently available as part of nf-core.';
+import pipelines from '@public/pipelines.json';
+---
+
+<ListingLayout
+    title={title}
+    description={description}
+    components={modules}
+    pipelines={pipelines.remote_workflows}
+    filter={[]}
+    sortBy={['Alphabetical', '# Pipeline integrations']}
+    displayStyle={[
+        { name: 'grid', icon: 'fa-regular fa-grid-2' },
+        { name: 'table', icon: 'fa-regular fa-bars' },
+    ]}
+/>
+<style></style>

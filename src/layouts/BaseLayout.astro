@@ -1,16 +1,32 @@
 ---
-import '@fontsource/maven-pro/600.css';
-import '@fontsource/inter';
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
-
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 import BaseHead from '@components/BaseHead.astro';
+import Footer from '@components/Footer.astro';
 import Navbar from '@components/Navbar.astro';
 import SubFooter from '@components/SubFooter.astro';
-import Footer from '@components/Footer.astro';
+import '@fontsource/inter';
+import '@fontsource/maven-pro/600.css';
+import '@fontsource/open-sans';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+export const prerender = true; // use static suites by default
+export interface Props {
+    image?: string;
+    title?: string;
+    subtitle?: string;
+    md_github_url?: string;
+    subfooter?: boolean;
+    navTocHeadings?: object[];
+}
 
-const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, subfooter = false } = Astro.props;
+const {
+    image,
+    title = SITE_TITLE,
+    subtitle = SITE_DESCRIPTION,
+    md_github_url,
+    subfooter = false,
+    navTocHeadings = [],
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,22 +36,38 @@ const { image, title = SITE_TITLE, subtitle = SITE_DESCRIPTION, md_github_url, s
     </head>
 
     <body tabindex="0" data-bs-theme="dark">
-        <Navbar />
-        <slot />
+        <Navbar navTocHeadings={navTocHeadings} />
+        <div class="content">
+            <slot />
+        </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}
         <Footer />
 
         <script src={bootstrap}></script>
         <script>
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            const tooltipList = [...tooltipTriggerList].map(
-                (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-            );
+            [...tooltipTriggerList].map((tooltipTriggerEl) => {
+                const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+                if (!tooltip) {
+                    new bootstrap.Tooltip(tooltipTriggerEl);
+                }
+            });
         </script>
         <style lang="scss" is:global>
             @import '../styles/main.scss';
+        </style>
+        <style lang="scss">
+            @import '../styles/_variables.scss';
             body {
                 position: relative;
+            }
+            .content {
+                padding-top: 3.45rem; //offset for navbar
+            }
+            @include media-breakpoint-down(md) {
+                .content {
+                    padding-top: 3rem; //offset for navbar
+                }
             }
         </style>
     </body>

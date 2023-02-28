@@ -1,20 +1,37 @@
 ---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@components/Header.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 
 let {
     title = SITE_TITLE,
     subtitle = SITE_DESCRIPTION,
     image,
     header_html,
+    event_header,
     md_github_url,
     header_btn_url,
     header_btn_text,
     mainpage_container,
     subfooter = false,
     frontmatter,
+    navTocHeadings = [],
 } = Astro.props;
+
+export interface Props {
+    title: string;
+    subtitle: string;
+    image?: string;
+    header_html?: string;
+    event_header?: object[];
+    md_github_url?: string;
+    header_btn_url?: string;
+    header_btn_text?: string;
+    mainpage_container?: boolean;
+    navTocHeadings?: object[];
+    subfooter?: boolean;
+    frontmatter?: any;
+}
 
 if (frontmatter) {
     title = frontmatter.title || title;
@@ -29,19 +46,29 @@ if (frontmatter) {
 }
 ---
 
-<BaseLayout title={title} subtitle={subtitle} image={image} md_github_url={md_github_url} subfooter={subfooter}>
+<BaseLayout
+    title={title}
+    subtitle={subtitle}
+    image={image}
+    md_github_url={md_github_url}
+    subfooter={subfooter}
+    navTocHeadings={navTocHeadings}
+>
     <div class="mainpage">
         <Header
             title={title}
             subtitle={subtitle}
             header_html={header_html}
+            event_header={event_header}
             md_github_url={md_github_url}
             header_btn_url={header_btn_url}
             header_btn_text={header_btn_text}
-        />
+        >
+            <slot name="sub-header" />
+        </Header>
         {
             mainpage_container || mainpage_container == null ? (
-                <div class="container main-content pt-5">
+                <div class="container main-content pt-md-4">
                     <slot />
                 </div>
             ) : (

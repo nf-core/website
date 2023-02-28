@@ -1,0 +1,74 @@
+---
+import SidebarStatsRow from '@components/SidebarStatsRow.astro';
+
+const { component_type, contributors, included_pipelines } = Astro.props;
+
+export interface Props {
+    component_type: string;
+    contributors: string[];
+    included_pipelines?: {
+        name: string;
+        version: string;
+    }[];
+}
+---
+
+<div class="sidebar">
+    {
+        included_pipelines && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: 'included in',
+                    },
+                ]}
+            >
+                <div class="mb-2">
+                    {included_pipelines.map((pipeline) => (
+                        <a
+                            href={'/' + pipeline.name + '/' + pipeline.version}
+                            class="badge text-bg-secondary me-2"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title={pipeline.version}
+                        >
+                            {pipeline.name}
+                        </a>
+                    ))}
+                </div>
+            </SidebarStatsRow>
+        )
+    }<SidebarStatsRow content={[{ title: 'author' + (contributors.length > 1 ? 's' : '') }]}>
+        <div class="contrib-avatars d-flex flex-wrap">
+            {
+                contributors &&
+                    contributors.map(
+                        (contributor) => (
+                            (contributor = contributor.replace('@', '')),
+                            (
+                                <a
+                                    href={'https://github.com/' + contributor}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="me-2 mb-2"
+                                >
+                                    <img src={'https://github.com/' + contributor + '.png?size=50'} alt={contributor} />
+                                </a>
+                            )
+                        )
+                    )
+            }
+        </div>
+    </SidebarStatsRow>
+    <SidebarStatsRow content={[{ title: 'get in touch' }]} lastChild={true}>
+        <div class="d-flex flex-column">
+            <a class="btn btn-sm btn-outline-info mb-2" href="https://nfcore.slack.com/channels/modules"
+                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+            >
+            <a class="btn btn-sm btn-outline-secondary" href="https://github.com/nf-core/modules/issues"
+                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+            >
+        </div>
+    </SidebarStatsRow>
+</div>
+<style lang="scss"></style>

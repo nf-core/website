@@ -100,67 +100,6 @@ section:before {
 .bg-lightgray {
   background-color: rgba($gray-200, 0.75);
 }
-.bg-success-light {
-  background-color: tint-color($success, 25%);
-}
-
-// Table of Contents
-.toc .nav {
-  margin-left: 1rem;
-}
-.toc > .nav {
-  margin-top: 10px;
-  margin-left: 0;
-  padding-bottom: 1px;
-  max-height: calc(100vh - 9rem);
-  overflow-y: auto;
-}
-@include media-breakpoint-down(xl) {
-  .toc > .nav {
-    max-height: calc(100vh - 12.5rem);
-  }
-}
-.toc .nav-link {
-  font-weight: 300;
-  color: $text-muted;
-  &:hover {
-    color: $success;
-  }
-}
-.toc .nav .list-group .list-group {
-  display: none;
-  font-size: 90%;
-}
-.auto-toc .nav .nav {
-  display: none;
-}
-.auto-toc .nav .nav {
-  font-size: 90%;
-}
-
-.toc .list-group .list-group .list-group {
-  font-size: 80%;
-}
-
-.toc .nav > .active + .nav,
-.toc .nav .nav > .active + .nav {
-  display: block;
-}
-.toc .nav .nav-link.active {
-  color: $list-group-action-color;
-  font-weight: bold;
-}
-.toc .fa-fw {
-  margin-right: 0.5rem;
-  opacity: 0.8;
-}
-
-.toc-md {
-  max-height: 50vh;
-  max-width: 100%;
-  overflow-y: auto;
-}
-
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
@@ -173,34 +112,29 @@ section:before {
   width: 20px;
 }
 
-.triangle-down {
-  padding-bottom: 1rem;
-  clip-path: polygon(100% 0%, 100% 85%, 50% 100%, 0 85%, 0% 0%);
+.triangle-down,
+.triangle-up {
+  margin-top: -2px;
+  padding-bottom: 3rem;
+  clip-path: polygon(100% 0%, 100% 5%, 50% 100%, 0 5%, 0% 0%);
 }
 
-.chevron-down {
-  margin-top: -1rem;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  clip-path: polygon(100% 0%, 100% 85%, 50% 100%, 0 85%, 0% 0%, 50% 15%);
+.triangle-up {
+  transform: rotateX(180deg);
 }
-// triangle-down + triangle-up = hexagon
-.hexagon {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
-  clip-path: polygon(100% 7%, 100% 93%, 50% 100%, 0 93%, 0% 7%, 50% 0%);
+.under-triangle-down {
+  margin-top: -2.9rem;
+  padding-top: 5rem;
 }
 @include media-breakpoint-down(md) {
-  .triangle-down {
-    clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
+  .triangle-down,
+  .triangle-up {
+    padding-bottom: 1.5rem;
+    clip-path: polygon(100% 0%, 100% 5%, 50% 100%, 0 5%, 0% 0%);
   }
-  .chevron-down {
-    clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%, 50% 5%);
-  }
-  .hexagon {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    clip-path: polygon(100% 5%, 100% 95%, 50% 100%, 0 95%, 0% 5%, 50% 0%);
+  .under-triangle-down {
+    margin-top: -1.49rem;
+    padding-top: 2rem;
   }
 }
 
@@ -279,10 +213,6 @@ section:before {
   cursor: not-allowed;
 }
 
-.btn.rocket-launch-hover:hover i::before {
-  content: '\e027';
-}
-
 // code
 code:not(pre code),
 .code:not(pre .code) {
@@ -300,11 +230,10 @@ code:not(pre code),
 }
 .main-content pre {
   border-radius: 3px;
-  padding: 12px 15px;
   font-size: 14px;
+  border: 1px solid $body-secondary-bg;
+  // background-color: $yellow-100;
   code {
-    border: 1px solid $body-tertiary-bg;
-    background-color: $body-tertiary-bg;
     display: block;
     overflow-x: auto;
     padding: 1em;
@@ -326,16 +255,6 @@ code:not(pre code),
 /*
  * Main pages
  */
-
-.mainpage {
-  margin-top: $navbar-height;
-}
-@include media-breakpoint-down(md) {
-  .mainpage {
-    margin-top: $navbar-height-collapsed;
-  }
-}
-
 .mainpage-subheader-heading {
   background-color: $gray-200;
   margin-top: -3.5rem;
@@ -346,21 +265,26 @@ code:not(pre code),
     padding-top: 2rem;
   }
 }
-
-.mainpage-subheader-heading-header {
-  background-color: $gray-300;
-  box-shadow: 0 0 10px rgba($black, 0.2);
-}
-.mainpage-subheader-heading a.subheader-link {
-  text-decoration: none;
-  color: $gray-800;
-}
 .main-content {
   min-height: 300px;
   margin-top: 1rem;
   margin-bottom: 6rem;
   font-size: 1.1rem;
   line-height: 1.6;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $success !important; // TODO: resolve this with bootstrap variables (not working as of 5.3alpha1)
 }
 
 .main-content h1,
@@ -375,35 +299,12 @@ code:not(pre code),
 .main-content .h4,
 .main-content .h5,
 .main-content .h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'InterVariant', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
-.main-content h1[id]::before,
-.main-content h2[id]::before,
-.main-content h3[id]::before,
-.main-content h4[id]::before,
-.main-content h5[id]::before,
-.main-content h6[id]::before,
-.main-content .h1[id]::before,
-.main-content .h2[id]::before,
-.main-content .h3[id]::before,
-.main-content .h4[id]::before,
-.main-content .h5[id]::before,
-.main-content .h6[id]::before {
-  display: block;
-  content: '';
-  padding-top: 50px;
-  margin-top: -50px;
-}
-.main-content h1[id] {
-  margin-top: -30px;
-}
+
 .main-content h1 {
   border-bottom: 1px solid $nf-core-color;
-}
-.main-content .module h4::before {
-  padding-top: 0px;
-  margin-top: 0px;
 }
 
 .header-link {
@@ -450,15 +351,22 @@ h4:focus .header-link,
   }
 }
 
-.edit-md-btn {
-  opacity: 0.5;
-  transition: opacity 0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.markdown-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: 4rem;
+    :hover .fa-link {
+      visibility: visible !important;
+    }
+  }
 }
-.edit-md-btn:hover,
-.edit-md-btn:active,
-.edit-md-btn:focus {
-  opacity: 1;
+
+.scroll-target {
+  scroll-margin-top: 5rem;
 }
 
 /*
@@ -580,9 +488,6 @@ h4:focus .header-link,
 /*
  * Modules
  */
-.module .contrib-avatars {
-  width: 30px;
-}
 .module .module-params .module-input {
   min-width: 30%;
 }
@@ -676,19 +581,6 @@ nfcore-subnav {
   background-color: rgba($nf-core-color, 0.05);
   color: $gray-800;
 }
-.pipeline-sidebar {
-  font-size: 75%;
-}
-.mainpage .pipeline-sidebar h6,
-.mainpage .module-sidebar h6 {
-  padding-top: 0;
-  margin-top: 5px;
-  color: $gray-500;
-  font-size: 12px;
-}
-.mainpage .module-sidebar h6 {
-  font-size: 14px;
-}
 
 .mainpage .pipeline-sidebar p,
 .mainpage .module-sidebar p {
@@ -723,11 +615,6 @@ nfcore-subnav {
 .module-run-cmd .btn-outline-secondary {
   border-color: $gray-400;
 }
-.pipeline-sidebar .contrib-avatars img,
-.module-sidebar .contrib-avatars img {
-  width: 42px;
-  padding: 0 0.5rem 0.5rem 0;
-}
 .pipeline-stats-table thead tr th {
   cursor: pointer;
 }
@@ -739,11 +626,6 @@ nfcore-subnav {
   text-decoration: underline;
 }
 
-.pipeline-stats .contrib-avatars img {
-  width: 60px;
-  padding: 0 0 0.75rem 0;
-  margin: 0;
-}
 /* Stats page */
 .stats_keynumbers .card,
 .event-list .card {
@@ -1180,11 +1062,27 @@ Launch Page
 ///////////////////////////
 
 @include color-mode(dark) {
+// dark mode specific variables
+  --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
+  .tooltip {
+    --bs-tooltip-bg: #{$body-bg-dark};
+    --bs-tooltip-color: #{$gray-300};
+  }
   .hide-dark {
     display: none;
   }
   .hide-light {
     display: inline;
+  }
+  img {
+    filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
+  }
+  .bg-success,
+  .text-bg-success {
+    background-color: $nf-core-color-dark !important;
+  }
+  .text-bg-success {
+    color: $gray-100 !important;
   }
   code:not(pre code),
   .code:not(pre .code) {
@@ -1205,6 +1103,31 @@ Launch Page
     background-color: $body-tertiary-bg-dark;
   }
   input.form-control {
-    background-color: $body-tertiary-bg-dark; // boostrap should actually fix that, but somehow uses the light theme variable here...
+    background-color: $body-tertiary-bg-dark; // bootstrap should actually fix that, but somehow uses the light theme variable here...
   }
+  .mainpage-heading,
+  .mainpage-heading h1 {
+    color: $gray-100 !important;
+  }
+
+  .main-content pre {
+    border: 1px solid $body-secondary-bg-dark;
+  }
+  [data-rehype-pretty-code-title] {
+    display: inline-block;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: $body-secondary-bg-dark;
+  }
+
+.text-bg-success,
+.bg-success {
+  background-color: $nf-core-color-dark;
+}
+.border-success {
+  border-color: $nf-core-color-dark;
+}
+.bg-success-light {
+  background-color: tint-color($success-dark, 25%);
+}
 }

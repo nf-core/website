@@ -1,0 +1,36 @@
+---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const events = await getCollection('events');
+    return events.map((event) => ({
+        params: {
+            event: event.slug,
+        },
+        props: {
+            event: event,
+        },
+    }));
+}
+const title = Astro.props.event.data.title;
+const subtitle = Astro.props.event.data.subtitle;
+let frontmatter = Astro.props.event.data;
+if (typeof frontmatter.location_url == 'string') {
+    frontmatter.location_url = [frontmatter.location_url];
+}
+const { headings, Content, remarkPluginFrontmatter } = await Astro.props.event.render();
+
+// TODO: update github url
+const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/events/' + Astro.props.event.id;
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    event_header={frontmatter}
+    headings={headings}
+>
+    <Content />
+</MarkdownTocLayout>

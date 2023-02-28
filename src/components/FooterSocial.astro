@@ -1,7 +1,16 @@
 ---
 import { Icon } from 'astro-icon';
 
-const { href, link, title, icon, icon_dark, marginLeft = '0.5rem', marginRight = '0' } = Astro.props;
+const {
+    href,
+    link,
+    title,
+    icon,
+    icon_dark,
+    additionalClass = '',
+    marginLeft = '0.5rem',
+    marginRight = '0',
+} = Astro.props;
 ---
 
 <a
@@ -11,7 +20,7 @@ const { href, link, title, icon, icon_dark, marginLeft = '0.5rem', marginRight =
     title={title}
     data-bs-toggle="tooltip"
     data-bs-placement="bottom"
-    class="text-decoration-none"
+    class={'text-decoration-none ' + additionalClass}
 >
     <Icon name={icon} class={icon_dark && 'hide-dark'} />
     {icon_dark && <Icon name={icon_dark} color="white" class="hide-light" />}

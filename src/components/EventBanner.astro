@@ -1,0 +1,88 @@
+---
+import EventBannerElement from './EventBannerElement.svelte';
+import OngoingEvents from './OngoingEvents.svelte';
+import UpcomingEvents from './UpcomingEvents.svelte';
+import { getCollection } from 'astro:content';
+
+let events = await getCollection('events');
+
+events
+    .map((event) => {
+        event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
+        event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
+    })
+    .sort((a, b) => {
+        return new Date(a.data.start) - new Date(b.data.start);
+    });
+
+events = events.filter((event) => {
+    return event.slug.split('/').length === 2;
+});
+const currentEvents = events.filter((event) => {
+    let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build
+    const event_start_unix = event.data.start.getTime();
+    const event_end_unix = event.data.end.getTime();
+
+    // increase time window to a week for events longer than 5 hours
+    if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
+        time_window = 108 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
+    }
+
+    if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
+        return true;
+    }
+});
+
+const event_type_classes = {
+    bytesize: 'success',
+    hackathon: 'primary',
+    poster: 'danger',
+    talk: 'success',
+    tutorial: 'info',
+    training: 'warning',
+};
+const event_type_icons = {
+    bytesize: 'fa-solid fa-apple-core',
+    hackathon: 'fa-solid fa-laptop-code',
+    poster: 'fa-regular fa-image',
+    talk: 'fa-solid fa-presentation',
+    tutorial: 'fa-solid fa-graduation-cap',
+    training: 'fa-solid fa-chalkboard-teacher',
+};
+---
+
+{
+    currentEvents.length > 0 && (
+        <div>
+            <div class="current-event-container bg-body-secondary">
+                <EventBannerElement
+                    event_time_category={'ongoing'}
+                    events={currentEvents}
+                    {event_type_classes}
+                    {event_type_icons}
+                    client:load
+                />
+                <EventBannerElement
+                    event_time_category={'upcoming'}
+                    events={currentEvents}
+                    {event_type_classes}
+                    {event_type_icons}
+                    client:load
+                />
+            </div>
+            <div class="triangle-down bg-body-secondary d-none d-md-block" />
+        </div>
+    )
+}
+<style lang="scss">
+    @import '../styles/_variables.scss';
+    .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
+        display: block !important;
+    }
+
+    @include media-breakpoint-down(md) {
+        .mainpage-subheader-heading {
+            padding-top: 2rem;
+        }
+    }
+</style>

@@ -1,41 +1,6 @@
-<svelte:head>
-<script>
-    const storedTheme = localStorage.getItem('theme');
-    const switchTheme = (e) => {
-        const theme = e.target.value;
-        localStorage.setItem('theme', theme);
-        setTheme(theme);
-        showActiveTheme(theme);
-    };
-    const setTheme = function (theme) {
-        if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.setAttribute('data-bs-theme', 'dark');
-        } else {
-            document.body.setAttribute('data-bs-theme', theme);
-        }
-    };
-    const showActiveTheme = (theme) => {
-        const btnToActive = document.querySelector(`.theme-switcher input[value="${theme}"]`);
-        document.querySelectorAll('.theme-switcher input[value]').forEach((element) => {
-            element.checked = false;
-        });
-        btnToActive.checked = true;
-    };
-    const getPreferredTheme = () => {
-            if (storedTheme) {
-                return storedTheme;
-            }
-
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
-</script>
-</svelte:head>
 <script>
     import { onMount } from 'svelte';
     onMount(() => {
-
-        setTheme(getPreferredTheme());
-
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
             if (storedTheme !== 'light' || storedTheme !== 'dark') {
                 setTheme(getPreferredTheme());
@@ -44,6 +9,45 @@
         showActiveTheme(getPreferredTheme());
     });
 </script>
+
+<svelte:head>
+    <script>
+        // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+        const storedTheme = localStorage.getItem('theme');
+        const switchTheme = (e) => {
+            const theme = e.target.value;
+            localStorage.setItem('theme', theme);
+            setTheme(theme);
+            showActiveTheme(theme);
+        };
+        const setTheme = function (theme) {
+            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.setAttribute('data-bs-theme', 'dark');
+            } else {
+                document.body.setAttribute('data-bs-theme', theme);
+            }
+        };
+        const showActiveTheme = (theme) => {
+            const btnToActive = document.querySelector(`.theme-switcher input[value="${theme}"]`);
+            document.querySelectorAll('.theme-switcher input[value]').forEach((element) => {
+                element.checked = false;
+            });
+            btnToActive.checked = true;
+        };
+        const getPreferredTheme = () => {
+            if (storedTheme) {
+                return storedTheme;
+            }
+
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+        // // activate bootstrap tooltips
+        // const tooltipTriggerList = document.querySelectorAll('.theme-switcher label');
+        // [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+
+        // setTheme(getPreferredTheme());
+    </script>
+</svelte:head>
 
 <div class="btn-toolbar mb-3 d-print-none" role="toolbar">
     <div class="theme-switcher mx-auto btn-group btn-group-sm" role="group">

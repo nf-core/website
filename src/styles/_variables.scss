@@ -3,10 +3,13 @@ $enable-negative-margins: true;
 
 // main colors
 $nf-core-color: #22ae63;
+$green: $nf-core-color;
+$nf-core-color-dark: #1a9655;
 $nf-tower-color: #335eea;
 
 // overwrite standard bootstrap colors
-$success: $nf-core-color;
+$green: $nf-core-color;
+
 $info: #17a2b8; // old info color is not so harsh
 $light: #e9ecef; // =$gray-200, because we already set body to $gray-100 which is the default light color value
 
@@ -20,8 +23,9 @@ $link-color: #1e6bb8;
 
 // overwrite standard heading styles
 $headings-font-family: 'Maven Pro', sans-serif;
-$headings-font-weight: 600;
-$headings-color: $success;
+$headings-font-weight: 500;
+$headings-color: $green;
+$headings-color-dark: $nf-core-color-dark;
 
 // overwrite standard font styles
 $font-family-sans-serif: 'InterVariant', 'Open Sans', sans-serif;
@@ -30,6 +34,27 @@ $font-family-monospace: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'Dej
 
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
+
+// standard bootstrap variables
+@import 'bootstrap/scss/functions';
+
+@import 'bootstrap/scss/variables';
+
+// make greens darker for dark mode
+$green: $nf-core-color-dark;
+$green-100: tint-color($green, 80%);
+$green-200: tint-color($green, 60%);
+$green-300: tint-color($green, 40%);
+$green-400: tint-color($green, 20%);
+$green-500: $green;
+$green-600: shade-color($green, 20%);
+$green-700: shade-color($green, 40%);
+$green-800: shade-color($green, 60%);
+$green-900: shade-color($green, 80%);
+$success-dark: $green;
+
+@import 'bootstrap/scss/variables-dark';
+
 
 // extra-wide breakpoints
 $container-max-widths: (
@@ -41,16 +66,17 @@ $container-max-widths: (
   xxxl: 1560px,
 );
 
-// dark mode specific variables
-[data-bs-theme='dark'] {
-  $green: #1a9655;
-}
-
-// standard bootstrap variables
-@import 'bootstrap/scss/_functions.scss';
-@import 'bootstrap/scss/_variables.scss';
-@import 'bootstrap/scss/_variables-dark.scss';
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+);
 
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';
-@import 'bootstrap/scss/root';
+@import "bootstrap/scss/utilities";
+
