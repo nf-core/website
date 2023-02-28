@@ -1,0 +1,35 @@
+---
+const { content, lastChild = false } = Astro.props;
+
+export interface Props {
+    content: {
+        title: string;
+        value?: string;
+        icon?: string;
+    }[];
+    lastChild?: boolean;
+}
+---
+
+<div class:list={['row', { 'border-bottom': !lastChild }]}>
+    {
+        content.map((entry) => (
+            <div class="col mb-1">
+                <h6 class="text-muted mt-1">
+                    {entry.icon && <i class={entry.icon + ' fa-fw me-1'} />}
+                    {entry.title}
+                </h6>
+                <div>
+                    {entry.value}
+                    <slot />
+                </div>
+            </div>
+        ))
+    }
+</div>
+
+<style lang="scss">
+    h6 {
+        font-size: 0.8rem;
+    }
+</style>

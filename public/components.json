@@ -151,7 +151,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -1180,7 +1180,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -1281,7 +1281,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -1359,7 +1359,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -1563,7 +1563,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -1629,7 +1629,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -2021,7 +2021,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -2113,7 +2113,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -3852,7 +3852,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -3908,7 +3908,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -6195,13 +6195,14 @@
           {
             "vcf": {
               "type": "file",
-              "description": "VCF with updated header",
-              "pattern": "*.{vcf.gz}"
+              "description": "VCF with updated header, bgzipped per default",
+              "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
             }
           }
         ],
         "authors": [
-          "@bjohnnyd"
+          "@bjohnnyd",
+          "@jemten"
         ]
       }
     },
@@ -8142,7 +8143,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -16460,7 +16461,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeannotator",
@@ -17618,7 +17619,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -17731,7 +17732,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -17788,7 +17789,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -17935,7 +17936,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -22058,7 +22059,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -22752,7 +22753,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeannotator",
@@ -30920,7 +30921,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -34069,7 +34070,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeannotator",
@@ -34284,7 +34285,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -34385,7 +34386,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -34487,7 +34488,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -34589,7 +34590,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -34691,7 +34692,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -34773,7 +34774,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -36536,7 +36537,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -38331,8 +38332,8 @@
           {
             "vcfs": {
               "type": "files",
-              "description": "The VCF files that need to be merged\nOnly supports unzipped VCFs: https://github.com/mkirsche/Jasmine/issues/31\n",
-              "pattern": "*.vcf"
+              "description": "The VCF files that need to be merged\n",
+              "pattern": "*.{vcf,vcf.gz}"
             }
           },
           {
@@ -38389,7 +38390,7 @@
             "vcf": {
               "type": "file",
               "description": "The merged VCF file",
-              "pattern": "*.vcf"
+              "pattern": "*.vcf.gz"
             }
           }
         ],
@@ -41679,7 +41680,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -47688,7 +47689,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "genomeannotator",
@@ -55141,7 +55142,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -55312,7 +55313,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -56739,7 +56740,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -63957,7 +63958,13 @@
         "authors": [
           "@peterpru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "raredisease",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "smoothxg",
@@ -70401,7 +70408,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "hgtseq",
@@ -71150,497 +71157,501 @@
       "name": "vcftools",
       "path": "modules/nf-core/vcftools/meta.yml",
       "meta": {
-          "name": "vcftools",
-          "description": "A set of tools written in Perl and C++ for working with VCF files",
-          "keywords": ["VCF - sort"],
-          "tools": [
-              {
-                  "vcftools": {
-                      "description": "A set of tools written in Perl and C++ for working with VCF files. This package only contains the C++ libraries whereas the package perl-vcftools-vcf contains the perl libraries",
-                      "homepage": "http://vcftools.sourceforge.net/",
-                      "documentation": "http://vcftools.sourceforge.net/man_latest.html",
-                      "tool_dev_url": "None",
-                      "doi": null,
-                      "licence": ["LGPL"]
-                  }
-              }
-          ],
-          "input": [
-              {
-                  "meta": {
-                      "type": "map",
-                      "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                  }
-              },
-              {
-                  "variant_file": {
-                      "type": "file",
-                      "description": "variant input file which can be vcf, vcf.gz, or bcf format."
-                  }
-              },
-              {
-                  "bed": {
-                      "type": "file",
-                      "description": "bed file which can be used with different arguments in vcftools (optional)"
-                  }
-              },
-              {
-                  "diff_variant_file": {
-                      "type": "file",
-                      "description": "secondary variant file which can be used with the 'diff' suite of tools (optional)"
-                  }
-              }
-          ],
-          "output": [
-              {
-                  "meta": {
-                      "type": "map",
-                      "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                  }
-              },
-              {
-                  "versions": {
-                      "type": "file",
-                      "description": "File containing software versions",
-                      "pattern": "versions.yml"
-                  }
-              },
-              {
-                  "vcf": {
-                      "type": "file",
-                      "description": "vcf file (optional)",
-                      "pattern": "*.vcf"
-                  }
-              },
-              {
-                  "bcf": {
-                      "type": "file",
-                      "description": "bcf file (optional)",
-                      "pattern": "*.bcf"
-                  }
-              },
-              {
-                  "frq": {
-                      "type": "file",
-                      "description": "Allele frequency for each site (optional)",
-                      "pattern": "*.frq"
-                  }
-              },
-              {
-                  "frq_count": {
-                      "type": "file",
-                      "description": "Allele counts for each site (optional)",
-                      "pattern": "*.frq.count"
-                  }
-              },
-              {
-                  "idepth": {
-                      "type": "file",
-                      "description": "mean depth per individual (optional)",
-                      "pattern": "*.idepth"
-                  }
-              },
-              {
-                  "ldepth": {
-                      "type": "file",
-                      "description": "depth per site summed across individuals (optional)",
-                      "pattern": "*.ildepth"
-                  }
-              },
-              {
-                  "ldepth_mean": {
-                      "type": "file",
-                      "description": "mean depth per site calculated across individuals (optional)",
-                      "pattern": "*.ldepth.mean"
-                  }
-              },
-              {
-                  "gdepth": {
-                      "type": "file",
-                      "description": "depth for each genotype in vcf file (optional)",
-                      "pattern": "*.gdepth"
-                  }
-              },
-              {
-                  "hap_ld": {
-                      "type": "file",
-                      "description": "r2, D, and D’ statistics using phased haplotypes (optional)",
-                      "pattern": "*.hap.ld"
-                  }
-              },
-              {
-                  "geno_ld": {
-                      "type": "file",
-                      "description": "squared correlation coefficient between genotypes encoded as 0, 1 and 2 to represent the number of non-reference alleles in each individual (optional)",
-                      "pattern": "*.geno.ld"
-                  }
-              },
-              {
-                  "geno_chisq": {
-                      "type": "file",
-                      "description": "test for genotype independence via the chi-squared statistic (optional)",
-                      "pattern": "*.geno.chisq"
-                  }
-              },
-              {
-                  "list_hap_ld": {
-                      "type": "file",
-                      "description": "r2 statistics of the sites contained in the provided input file verses all other sites (optional)",
-                      "pattern": "*.list.hap.ld"
-                  }
-              },
-              {
-                  "list_geno_ld": {
-                      "type": "file",
-                      "description": "r2 statistics of the sites contained in the provided input file verses all other sites (optional)",
-                      "pattern": "*.list.geno.ld"
-                  }
-              },
-              {
-                  "interchrom_hap_ld": {
-                      "type": "file",
-                      "description": "r2 statistics for sites (haplotypes) on different chromosomes (optional)",
-                      "pattern": "*.interchrom.hap.ld"
-                  }
-              },
-              {
-                  "interchrom_geno_ld": {
-                      "type": "file",
-                      "description": "r2 statistics for sites (genotypes) on different chromosomes (optional)",
-                      "pattern": "*.interchrom.geno.ld"
-                  }
-              },
-              {
-                  "tstv": {
-                      "type": "file",
-                      "description": "Transition / Transversion ratio in bins of size defined in options (optional)",
-                      "pattern": "*.TsTv"
-                  }
-              },
-              {
-                  "tstv_summary": {
-                      "type": "file",
-                      "description": "Summary of all Transitions and Transversions (optional)",
-                      "pattern": "*.TsTv.summary"
-                  }
-              },
-              {
-                  "tstv_count": {
-                      "type": "file",
-                      "description": "Transition / Transversion ratio as a function of alternative allele count (optional)",
-                      "pattern": "*.TsTv.count"
-                  }
-              },
-              {
-                  "tstv_qual": {
-                      "type": "file",
-                      "description": "Transition / Transversion ratio as a function of SNP quality threshold (optional)",
-                      "pattern": "*.TsTv.qual"
-                  }
-              },
-              {
-                  "filter_summary": {
-                      "type": "file",
-                      "description": "Summary of the number of SNPs and Ts/Tv ratio for each FILTER category (optional)",
-                      "pattern": "*.FILTER.summary"
-                  }
-              },
-              {
-                  "sites_pi": {
-                      "type": "file",
-                      "description": "Nucleotide divergency on a per-site basis (optional)",
-                      "pattern": "*.sites.pi"
-                  }
-              },
-              {
-                  "windowed_pi": {
-                      "type": "file",
-                      "description": "Nucleotide diversity in windows, with window size determined by options (optional)",
-                      "pattern": "*windowed.pi"
-                  }
-              },
-              {
-                  "weir_fst": {
-                      "type": "file",
-                      "description": "Fst estimate from Weir and Cockerham’s 1984 paper (optional)",
-                      "pattern": "*.weir.fst"
-                  }
-              },
-              {
-                  "heterozygosity": {
-                      "type": "file",
-                      "description": "Heterozygosity on a per-individual basis (optional)",
-                      "pattern": "*.het"
-                  }
-              },
-              {
-                  "hwe": {
-                      "type": "file",
-                      "description": "Contains the Observed numbers of Homozygotes and Heterozygotes and the corresponding Expected numbers under HWE (optional)",
-                      "pattern": "*.hwe"
-                  }
-              },
-              {
-                  "tajima_d": {
-                      "type": "file",
-                      "description": "Tajima’s D statistic in bins with size of the specified number in options (optional)",
-                      "pattern": "*.Tajima.D"
-                  }
-              },
-              {
-                  "freq_burden": {
-                      "type": "file",
-                      "description": "Number of variants within each individual of a specific frequency in options (optional)",
-                      "pattern": "*.ifreqburden"
-                  }
-              },
-              {
-                  "lroh": {
-                      "type": "file",
-                      "description": "Long Runs of Homozygosity (optional)",
-                      "pattern": "*.LROH"
-                  }
-              },
-              {
-                  "relatedness": {
-                      "type": "file",
-                      "description": "Relatedness statistic based on the method of Yang et al, Nature Genetics 2010 (doi:10.1038/ng.608) (optional)",
-                      "pattern": "*.relatedness"
-                  }
-              },
-              {
-                  "relatedness2": {
-                      "type": "file",
-                      "description": "Relatedness statistic based on the method of Manichaikul et al., BIOINFORMATICS 2010 (doi:10.1093/bioinformatics/btq559) (optional)",
-                      "pattern": "*.relatedness2"
-                  }
-              },
-              {
-                  "lqual": {
-                      "type": "file",
-                      "description": "per-site SNP quality (optional)",
-                      "pattern": "*.lqual"
-                  }
-              },
-              {
-                  "missing_individual": {
-                      "type": "file",
-                      "description": "Missingness on a per-individual basis (optional)",
-                      "pattern": "*.imiss"
-                  }
-              },
-              {
-                  "missing_site": {
-                      "type": "file",
-                      "description": "Missingness on a per-site basis (optional)",
-                      "pattern": "*.lmiss"
-                  }
-              },
-              {
-                  "snp_density": {
-                      "type": "file",
-                      "description": "Number and density of SNPs in bins of size defined by option (optional)",
-                      "pattern": "*.snpden"
-                  }
-              },
-              {
-                  "kept_sites": {
-                      "type": "file",
-                      "description": "All sites that have been kept after filtering (optional)",
-                      "pattern": "*.kept.sites"
-                  }
-              },
-              {
-                  "removed_sites": {
-                      "type": "file",
-                      "description": "All sites that have been removed after filtering (optional)",
-                      "pattern": "*.removed.sites"
-                  }
-              },
-              {
-                  "singeltons": {
-                      "type": "file",
-                      "description": "Location of singletons, and the individual they occur in (optional)",
-                      "pattern": "*.singeltons"
-                  }
-              },
-              {
-                  "indel_hist": {
-                      "type": "file",
-                      "description": "Histogram file of the length of all indels (including SNPs) (optional)",
-                      "pattern": "*.indel_hist"
-                  }
-              },
-              {
-                  "hapcount": {
-                      "type": "file",
-                      "description": "Unique haplotypes within user specified bins (optional)",
-                      "pattern": "*.hapcount"
-                  }
-              },
-              {
-                  "mendel": {
-                      "type": "file",
-                      "description": "Mendel errors identified in trios (optional)",
-                      "pattern": "*.mendel"
-                  }
-              },
-              {
-                  "format": {
-                      "type": "file",
-                      "description": "Extracted information from the genotype fields in the VCF file relating to a specfied FORMAT identifier (optional)",
-                      "pattern": "*.FORMAT"
-                  }
-              },
-              {
-                  "info": {
-                      "type": "file",
-                      "description": "Extracted information from the INFO field in the VCF file (optional)",
-                      "pattern": "*.INFO"
-                  }
-              },
-              {
-                  "genotypes_matrix": {
-                      "type": "file",
-                      "description": "Genotypes output as large matrix.\nGenotypes of each individual on a separate line.\nGenotypes are represented as 0, 1 and 2, where the number represent that number of non-reference alleles.\nMissing genotypes are represented by -1 (optional)\n",
-                      "pattern": "*.012"
-                  }
-              },
-              {
-                  "genotypes_matrix_individual": {
-                      "type": "file",
-                      "description": "Details the individuals included in the main genotypes_matrix file (optional)",
-                      "pattern": "*.012.indv"
-                  }
-              },
-              {
-                  "genotypes_matrix_position": {
-                      "type": "file",
-                      "description": "Details the site locations included in the main genotypes_matrix file (optional)",
-                      "pattern": "*.012.pos"
-                  }
-              },
-              {
-                  "impute_hap": {
-                      "type": "file",
-                      "description": "Phased haplotypes in IMPUTE reference-panel format (optional)",
-                      "pattern": "*.impute.hap"
-                  }
-              },
-              {
-                  "impute_hap_legend": {
-                      "type": "file",
-                      "description": "Impute haplotype legend file (optional)",
-                      "pattern": "*.impute.hap.legend"
-                  }
-              },
-              {
-                  "impute_hap_indv": {
-                      "type": "file",
-                      "description": "Impute haplotype individuals file (optional)",
-                      "pattern": "*.impute.hap.indv"
-                  }
-              },
-              {
-                  "ldhat_sites": {
-                      "type": "file",
-                      "description": "Output data in LDhat format, sites (optional)",
-                      "pattern": "*.ldhat.sites"
-                  }
-              },
-              {
-                  "ldhat_locs": {
-                      "type": "file",
-                      "description": "output data in LDhat format, locations (optional)",
-                      "pattern": "*.ldhat.locs"
-                  }
-              },
-              {
-                  "beagle_gl": {
-                      "type": "file",
-                      "description": "Genotype likelihoods for biallelic sites (optional)",
-                      "pattern": "*.BEAGLE.GL"
-                  }
-              },
-              {
-                  "beagle_pl": {
-                      "type": "file",
-                      "description": "Genotype likelihoods for biallelic sites (optional)",
-                      "pattern": "*.BEAGLE.PL"
-                  }
-              },
-              {
-                  "ped": {
-                      "type": "file",
-                      "description": "output the genotype data in PLINK PED format (optional)",
-                      "pattern": "*.ped"
-                  }
-              },
-              {
-                  "map_": {
-                      "type": "file",
-                      "description": "output the genotype data in PLINK PED format (optional)",
-                      "pattern": "*.map"
-                  }
-              },
-              {
-                  "tped": {
-                      "type": "file",
-                      "description": "output the genotype data in PLINK PED format (optional)",
-                      "pattern": "*.tped"
-                  }
-              },
-              {
-                  "tfam": {
-                      "type": "file",
-                      "description": "output the genotype data in PLINK PED format (optional)",
-                      "pattern": "*.tfam"
-                  }
-              },
-              {
-                  "diff_sites_in_files": {
-                      "type": "file",
-                      "description": "Sites that are common / unique to each file specified in optional inputs (optional)",
-                      "pattern": "*.diff.sites.in.files"
-                  }
-              },
-              {
-                  "diff_indv_in_files": {
-                      "type": "file",
-                      "description": "Individuals that are common / unique to each file specified in optional inputs (optional)",
-                      "pattern": "*.diff.indv.in.files"
-                  }
-              },
-              {
-                  "diff_sites": {
-                      "type": "file",
-                      "description": "Discordance on a site by site basis, specified in optional inputs (optional)",
-                      "pattern": "*.diff.sites"
-                  }
-              },
-              {
-                  "diff_indv": {
-                      "type": "file",
-                      "description": "Discordance on a individual by individual basis, specified in optional inputs (optional)",
-                      "pattern": "*.diff.indv"
-                  }
-              },
-              {
-                  "diff_discd_matrix": {
-                      "type": "file",
-                      "description": "Discordance matrix between files specified in optional inputs (optional)",
-                      "pattern": "*.diff.discordance.matrix"
-                  }
-              },
-              {
-                  "diff_switch_error": {
-                      "type": "file",
-                      "description": "Switch errors found between sites (optional)",
-                      "pattern": "*.diff.switch"
-                  }
-              }
-          ],
-          "authors": ["@Mark-S-Hill"]
+        "name": "vcftools",
+        "description": "A set of tools written in Perl and C++ for working with VCF files",
+        "keywords": "VCF - sort",
+        "tools": [
+          {
+            "vcftools": {
+              "description": "A set of tools written in Perl and C++ for working with VCF files. This package only contains the C++ libraries whereas the package perl-vcftools-vcf contains the perl libraries",
+              "homepage": "http://vcftools.sourceforge.net/",
+              "documentation": "http://vcftools.sourceforge.net/man_latest.html",
+              "tool_dev_url": "None",
+              "doi": null,
+              "licence": [
+                "LGPL"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "variant_file": {
+              "type": "file",
+              "description": "variant input file which can be vcf, vcf.gz, or bcf format."
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "bed file which can be used with different arguments in vcftools (optional)"
+            }
+          },
+          {
+            "diff_variant_file": {
+              "type": "file",
+              "description": "secondary variant file which can be used with the 'diff' suite of tools (optional)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "vcf file (optional)",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "bcf": {
+              "type": "file",
+              "description": "bcf file (optional)",
+              "pattern": "*.bcf"
+            }
+          },
+          {
+            "frq": {
+              "type": "file",
+              "description": "Allele frequency for each site (optional)",
+              "pattern": "*.frq"
+            }
+          },
+          {
+            "frq_count": {
+              "type": "file",
+              "description": "Allele counts for each site (optional)",
+              "pattern": "*.frq.count"
+            }
+          },
+          {
+            "idepth": {
+              "type": "file",
+              "description": "mean depth per individual (optional)",
+              "pattern": "*.idepth"
+            }
+          },
+          {
+            "ldepth": {
+              "type": "file",
+              "description": "depth per site summed across individuals (optional)",
+              "pattern": "*.ildepth"
+            }
+          },
+          {
+            "ldepth_mean": {
+              "type": "file",
+              "description": "mean depth per site calculated across individuals (optional)",
+              "pattern": "*.ldepth.mean"
+            }
+          },
+          {
+            "gdepth": {
+              "type": "file",
+              "description": "depth for each genotype in vcf file (optional)",
+              "pattern": "*.gdepth"
+            }
+          },
+          {
+            "hap_ld": {
+              "type": "file",
+              "description": "r2, D, and D’ statistics using phased haplotypes (optional)",
+              "pattern": "*.hap.ld"
+            }
+          },
+          {
+            "geno_ld": {
+              "type": "file",
+              "description": "squared correlation coefficient between genotypes encoded as 0, 1 and 2 to represent the number of non-reference alleles in each individual (optional)",
+              "pattern": "*.geno.ld"
+            }
+          },
+          {
+            "geno_chisq": {
+              "type": "file",
+              "description": "test for genotype independence via the chi-squared statistic (optional)",
+              "pattern": "*.geno.chisq"
+            }
+          },
+          {
+            "list_hap_ld": {
+              "type": "file",
+              "description": "r2 statistics of the sites contained in the provided input file verses all other sites (optional)",
+              "pattern": "*.list.hap.ld"
+            }
+          },
+          {
+            "list_geno_ld": {
+              "type": "file",
+              "description": "r2 statistics of the sites contained in the provided input file verses all other sites (optional)",
+              "pattern": "*.list.geno.ld"
+            }
+          },
+          {
+            "interchrom_hap_ld": {
+              "type": "file",
+              "description": "r2 statistics for sites (haplotypes) on different chromosomes (optional)",
+              "pattern": "*.interchrom.hap.ld"
+            }
+          },
+          {
+            "interchrom_geno_ld": {
+              "type": "file",
+              "description": "r2 statistics for sites (genotypes) on different chromosomes (optional)",
+              "pattern": "*.interchrom.geno.ld"
+            }
+          },
+          {
+            "tstv": {
+              "type": "file",
+              "description": "Transition / Transversion ratio in bins of size defined in options (optional)",
+              "pattern": "*.TsTv"
+            }
+          },
+          {
+            "tstv_summary": {
+              "type": "file",
+              "description": "Summary of all Transitions and Transversions (optional)",
+              "pattern": "*.TsTv.summary"
+            }
+          },
+          {
+            "tstv_count": {
+              "type": "file",
+              "description": "Transition / Transversion ratio as a function of alternative allele count (optional)",
+              "pattern": "*.TsTv.count"
+            }
+          },
+          {
+            "tstv_qual": {
+              "type": "file",
+              "description": "Transition / Transversion ratio as a function of SNP quality threshold (optional)",
+              "pattern": "*.TsTv.qual"
+            }
+          },
+          {
+            "filter_summary": {
+              "type": "file",
+              "description": "Summary of the number of SNPs and Ts/Tv ratio for each FILTER category (optional)",
+              "pattern": "*.FILTER.summary"
+            }
+          },
+          {
+            "sites_pi": {
+              "type": "file",
+              "description": "Nucleotide divergency on a per-site basis (optional)",
+              "pattern": "*.sites.pi"
+            }
+          },
+          {
+            "windowed_pi": {
+              "type": "file",
+              "description": "Nucleotide diversity in windows, with window size determined by options (optional)",
+              "pattern": "*windowed.pi"
+            }
+          },
+          {
+            "weir_fst": {
+              "type": "file",
+              "description": "Fst estimate from Weir and Cockerham’s 1984 paper (optional)",
+              "pattern": "*.weir.fst"
+            }
+          },
+          {
+            "heterozygosity": {
+              "type": "file",
+              "description": "Heterozygosity on a per-individual basis (optional)",
+              "pattern": "*.het"
+            }
+          },
+          {
+            "hwe": {
+              "type": "file",
+              "description": "Contains the Observed numbers of Homozygotes and Heterozygotes and the corresponding Expected numbers under HWE (optional)",
+              "pattern": "*.hwe"
+            }
+          },
+          {
+            "tajima_d": {
+              "type": "file",
+              "description": "Tajima’s D statistic in bins with size of the specified number in options (optional)",
+              "pattern": "*.Tajima.D"
+            }
+          },
+          {
+            "freq_burden": {
+              "type": "file",
+              "description": "Number of variants within each individual of a specific frequency in options (optional)",
+              "pattern": "*.ifreqburden"
+            }
+          },
+          {
+            "lroh": {
+              "type": "file",
+              "description": "Long Runs of Homozygosity (optional)",
+              "pattern": "*.LROH"
+            }
+          },
+          {
+            "relatedness": {
+              "type": "file",
+              "description": "Relatedness statistic based on the method of Yang et al, Nature Genetics 2010 (doi:10.1038/ng.608) (optional)",
+              "pattern": "*.relatedness"
+            }
+          },
+          {
+            "relatedness2": {
+              "type": "file",
+              "description": "Relatedness statistic based on the method of Manichaikul et al., BIOINFORMATICS 2010 (doi:10.1093/bioinformatics/btq559) (optional)",
+              "pattern": "*.relatedness2"
+            }
+          },
+          {
+            "lqual": {
+              "type": "file",
+              "description": "per-site SNP quality (optional)",
+              "pattern": "*.lqual"
+            }
+          },
+          {
+            "missing_individual": {
+              "type": "file",
+              "description": "Missingness on a per-individual basis (optional)",
+              "pattern": "*.imiss"
+            }
+          },
+          {
+            "missing_site": {
+              "type": "file",
+              "description": "Missingness on a per-site basis (optional)",
+              "pattern": "*.lmiss"
+            }
+          },
+          {
+            "snp_density": {
+              "type": "file",
+              "description": "Number and density of SNPs in bins of size defined by option (optional)",
+              "pattern": "*.snpden"
+            }
+          },
+          {
+            "kept_sites": {
+              "type": "file",
+              "description": "All sites that have been kept after filtering (optional)",
+              "pattern": "*.kept.sites"
+            }
+          },
+          {
+            "removed_sites": {
+              "type": "file",
+              "description": "All sites that have been removed after filtering (optional)",
+              "pattern": "*.removed.sites"
+            }
+          },
+          {
+            "singeltons": {
+              "type": "file",
+              "description": "Location of singletons, and the individual they occur in (optional)",
+              "pattern": "*.singeltons"
+            }
+          },
+          {
+            "indel_hist": {
+              "type": "file",
+              "description": "Histogram file of the length of all indels (including SNPs) (optional)",
+              "pattern": "*.indel_hist"
+            }
+          },
+          {
+            "hapcount": {
+              "type": "file",
+              "description": "Unique haplotypes within user specified bins (optional)",
+              "pattern": "*.hapcount"
+            }
+          },
+          {
+            "mendel": {
+              "type": "file",
+              "description": "Mendel errors identified in trios (optional)",
+              "pattern": "*.mendel"
+            }
+          },
+          {
+            "format": {
+              "type": "file",
+              "description": "Extracted information from the genotype fields in the VCF file relating to a specfied FORMAT identifier (optional)",
+              "pattern": "*.FORMAT"
+            }
+          },
+          {
+            "info": {
+              "type": "file",
+              "description": "Extracted information from the INFO field in the VCF file (optional)",
+              "pattern": "*.INFO"
+            }
+          },
+          {
+            "genotypes_matrix": {
+              "type": "file",
+              "description": "Genotypes output as large matrix.\nGenotypes of each individual on a separate line.\nGenotypes are represented as 0, 1 and 2, where the number represent that number of non-reference alleles.\nMissing genotypes are represented by -1 (optional)\n",
+              "pattern": "*.012"
+            }
+          },
+          {
+            "genotypes_matrix_individual": {
+              "type": "file",
+              "description": "Details the individuals included in the main genotypes_matrix file (optional)",
+              "pattern": "*.012.indv"
+            }
+          },
+          {
+            "genotypes_matrix_position": {
+              "type": "file",
+              "description": "Details the site locations included in the main genotypes_matrix file (optional)",
+              "pattern": "*.012.pos"
+            }
+          },
+          {
+            "impute_hap": {
+              "type": "file",
+              "description": "Phased haplotypes in IMPUTE reference-panel format (optional)",
+              "pattern": "*.impute.hap"
+            }
+          },
+          {
+            "impute_hap_legend": {
+              "type": "file",
+              "description": "Impute haplotype legend file (optional)",
+              "pattern": "*.impute.hap.legend"
+            }
+          },
+          {
+            "impute_hap_indv": {
+              "type": "file",
+              "description": "Impute haplotype individuals file (optional)",
+              "pattern": "*.impute.hap.indv"
+            }
+          },
+          {
+            "ldhat_sites": {
+              "type": "file",
+              "description": "Output data in LDhat format, sites (optional)",
+              "pattern": "*.ldhat.sites"
+            }
+          },
+          {
+            "ldhat_locs": {
+              "type": "file",
+              "description": "output data in LDhat format, locations (optional)",
+              "pattern": "*.ldhat.locs"
+            }
+          },
+          {
+            "beagle_gl": {
+              "type": "file",
+              "description": "Genotype likelihoods for biallelic sites (optional)",
+              "pattern": "*.BEAGLE.GL"
+            }
+          },
+          {
+            "beagle_pl": {
+              "type": "file",
+              "description": "Genotype likelihoods for biallelic sites (optional)",
+              "pattern": "*.BEAGLE.PL"
+            }
+          },
+          {
+            "ped": {
+              "type": "file",
+              "description": "output the genotype data in PLINK PED format (optional)",
+              "pattern": "*.ped"
+            }
+          },
+          {
+            "map_": {
+              "type": "file",
+              "description": "output the genotype data in PLINK PED format (optional)",
+              "pattern": "*.map"
+            }
+          },
+          {
+            "tped": {
+              "type": "file",
+              "description": "output the genotype data in PLINK PED format (optional)",
+              "pattern": "*.tped"
+            }
+          },
+          {
+            "tfam": {
+              "type": "file",
+              "description": "output the genotype data in PLINK PED format (optional)",
+              "pattern": "*.tfam"
+            }
+          },
+          {
+            "diff_sites_in_files": {
+              "type": "file",
+              "description": "Sites that are common / unique to each file specified in optional inputs (optional)",
+              "pattern": "*.diff.sites.in.files"
+            }
+          },
+          {
+            "diff_indv_in_files": {
+              "type": "file",
+              "description": "Individuals that are common / unique to each file specified in optional inputs (optional)",
+              "pattern": "*.diff.indv.in.files"
+            }
+          },
+          {
+            "diff_sites": {
+              "type": "file",
+              "description": "Discordance on a site by site basis, specified in optional inputs (optional)",
+              "pattern": "*.diff.sites"
+            }
+          },
+          {
+            "diff_indv": {
+              "type": "file",
+              "description": "Discordance on a individual by individual basis, specified in optional inputs (optional)",
+              "pattern": "*.diff.indv"
+            }
+          },
+          {
+            "diff_discd_matrix": {
+              "type": "file",
+              "description": "Discordance matrix between files specified in optional inputs (optional)",
+              "pattern": "*.diff.discordance.matrix"
+            }
+          },
+          {
+            "diff_switch_error": {
+              "type": "file",
+              "description": "Switch errors found between sites (optional)",
+              "pattern": "*.diff.switch"
+            }
+          }
+        ],
+        "authors": [
+          "@Mark-S-Hill"
+        ]
       },
       "pipelines": [
         {
@@ -73152,6 +73163,307 @@
         "authors": [
           "@drpatelh",
           "@maxulysse"
+        ]
+      }
+    },
+    {
+      "name": "paragraph_multigrmpy",
+      "path": "modules/nf-core/paragraph/multigrmpy/meta.yml",
+      "meta": {
+        "name": "paragraph_multigrmpy",
+        "description": "Genotype structural variants using paragraph and grmpy",
+        "keywords": [
+          "vcf",
+          "json",
+          "structural variants",
+          "graphs",
+          "genotyping"
+        ],
+        "tools": [
+          {
+            "paragraph": {
+              "description": "Graph realignment tools for structural variants",
+              "homepage": "https://github.com/Illumina/paragraph",
+              "documentation": "https://github.com/Illumina/paragraph",
+              "tool_dev_url": "https://github.com/Illumina/paragraph",
+              "doi": "https://doi.org/10.1101/635011",
+              "licence": "['Apache License 2.0']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "variants": {
+              "type": "file",
+              "description": "A VCF or JSON file containing called structural variants",
+              "pattern": "*.{vcf,json}"
+            }
+          },
+          {
+            "variants_index": {
+              "type": "file",
+              "description": "The index for the VCF file",
+              "pattern": "*.tbi"
+            }
+          },
+          {
+            "reads": {
+              "type": "file(s)",
+              "description": "BAM or CRAM file(s) to genotype against. These should be specified inside the `manifest`",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "reads_index": {
+              "type": "file(s)",
+              "description": "The index/indices for the BAM/CRAM file(s)",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "manifest": {
+              "type": "file",
+              "description": "A tab separated file containing information on the BAM/CRAM files.\nThis information can be generated using paragraph/idxdepth.\nMore information can be found here: https://github.com/Illumina/paragraph#sample-manifest\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for the FASTA file\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference FASTA file used to generate the VCF and BAM/CRAM files",
+              "pattern": "*.{fa,fasta,fna}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information for the FASTA index file\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta_fai": {
+              "type": "file",
+              "description": "The index of the reference FASTA file",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The genotyped VCF file in BGZIP format",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "json": {
+              "type": "file",
+              "description": "The genotyped JSON file in GZIP format",
+              "pattern": "*.json.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "shapeit5_ligate",
+      "path": "modules/nf-core/shapeit5/ligate/meta.yml",
+      "meta": {
+        "name": "shapeit5_ligate",
+        "description": "Ligate multiple phased BCF/VCF files into a single whole chromosome file.\nTypically run to ligate multiple chunks of phased common variants.\n",
+        "keywords": [
+          "ligate",
+          "haplotype",
+          "shapeit"
+        ],
+        "tools": [
+          {
+            "shapeit5": {
+              "description": "Fast and accurate method for estimation of haplotypes (phasing)",
+              "homepage": "https://odelaneau.github.io/shapeit5/",
+              "documentation": "https://odelaneau.github.io/shapeit5/docs/documentation",
+              "tool_dev_url": "https://github.com/odelaneau/shapeit5",
+              "doi": "10.1101/2022.10.19.512867 ",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input_list": {
+              "type": "file",
+              "description": "VCF/BCF files containing genotype probabilities (GP field).",
+              "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          },
+          {
+            "input_list_index": {
+              "type": "file",
+              "description": "VCF/BCF files index.",
+              "pattern": "*.csi"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "merged_variants": {
+              "type": "file",
+              "description": "Output VCF/BCF file for the merged regions.\nPhased information (HS field) is updated accordingly for the full region.\n",
+              "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@louislenezet"
+        ]
+      }
+    },
+    {
+      "name": "survivor_merge",
+      "path": "modules/nf-core/survivor/merge/meta.yml",
+      "meta": {
+        "name": "survivor_merge",
+        "description": "Compare or merge VCF files to generate a consensus or multi sample VCF files.",
+        "keywords": [
+          "survivor",
+          "merge",
+          "vcf",
+          "structural variants"
+        ],
+        "tools": [
+          {
+            "survivor": {
+              "description": "Toolset for SV simulation, comparison and filtering",
+              "homepage": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
+              "documentation": "https://github.com/fritzsedlazeck/SURVIVOR/wiki",
+              "tool_dev_url": "https://github.com/fritzsedlazeck/SURVIVOR",
+              "doi": "10.1038/NCOMMS14061",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcfs": {
+              "type": "files",
+              "description": "The VCF files to be merged\nGzipped VCF files are not supported: https://github.com/fritzsedlazeck/SURVIVOR/issues/158\n",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "max_distance_breakpoints": {
+              "type": "integer",
+              "description": "Max distance between breakpoints (0-1 percent of length, 1- number of bp)"
+            }
+          },
+          {
+            "min_supporting_callers": {
+              "type": "integer",
+              "description": "Minimum number of supporting caller"
+            }
+          },
+          {
+            "account_for_type": {
+              "type": "integer",
+              "description": "Take the type into account (1==yes, else no)"
+            }
+          },
+          {
+            "account_for_sv_strands": {
+              "type": "integer",
+              "description": "Take the strands of SVs into account (1==yes, else no)"
+            }
+          },
+          {
+            "estimate_distanced_by_sv_size": {
+              "type": "integer",
+              "description": "Estimate distance based on the size of SV (1==yes, else no)"
+            }
+          },
+          {
+            "min_sv_size": {
+              "type": "integer",
+              "description": "Minimum size of SVs to be taken into account"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "The merged VCF file",
+              "pattern": "*.vcf"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
         ]
       }
     }

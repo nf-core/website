@@ -34,6 +34,28 @@ const writePipelinesJson = async () => {
 
         return response.data;
       });
+
+    // get number of open pull requests
+    let { data: pull_requests } = await octokit.rest.pulls.list({
+      owner: 'nf-core',
+      repo: name,
+      state: 'open',
+    });
+    data['open_pr_count'] = pull_requests.length;
+
+    // get all the contributors
+    let { data: contributors } = await octokit.rest.repos.listContributors({
+      owner: 'nf-core',
+      repo: name,
+      per_page: 100,
+    });
+
+    data['contributors'] = contributors
+      .filter((contrtibutor) => contrtibutor.login !== 'nf-core-bot')
+      .map((contributor) => {
+        return { name: contributor.login, count: contributor.contributions };
+      });
+
     // get the releases
     let { data: releases } = await octokit.rest.repos.listReleases({
       owner: 'nf-core',
