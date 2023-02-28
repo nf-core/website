@@ -1,6 +1,4 @@
 ---
-import { GoogleAnalytics } from 'astro-analytics';
-
 export interface Props {
     title: string;
     description: string;
@@ -41,4 +39,13 @@ const { title, description, image = '/social_img.png' } = Astro.props;
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
 
-<GoogleAnalytics id="UA-68098153-2" />
+<!-- Google Analytics -->
+<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
+<script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'UA-68098153-2');
+</script>
