@@ -1,0 +1,77 @@
+---
+const { name, icon, params } = Astro.props;
+
+import { markdown } from '@astropub/md';
+export interface Props {
+    name: string;
+    icon: string;
+    params?: {}[];
+}
+---
+
+<h2 id={name.toLowerCase()} class="text-success ms-n3">
+    <i class="fad fa-sign-in fa-fw"></i>
+    {name}
+    <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link"
+        ><span class="fas fa-link" aria-hidden="true"></span>
+    </a>
+</h2>
+
+{
+    params ? (
+        <div class="row border-bottom border-3">
+            <div class="col-12 col-md-3 col-xxl-2">
+                <span class="text-muted">Name (Type)</span>
+            </div>
+            <div class="col-12 col-md-6">
+                <span class="text-muted text-start">Description</span>
+            </div>
+            <div class="col-12 col-md">
+                <span class="text-muted float-end">Pattern</span>
+            </div>
+        </div>
+    ) : (
+        ''
+    )
+}
+{
+    params ? (
+        params.map((param) => {
+            const name = Object.keys(param)[0];
+            const { type, description, pattern } = param[name];
+            return (
+                <div class="row border-bottom align-items-center">
+                    <div class="col-12 col-md-3 col-xxl-2 small-h">
+                        <h4 id={name} class="module-row-name-id d-flex align-items-center mb-0">
+                            <code>{name}</code>
+                            <span class="text-muted ms-1"> ({type})</span>
+                            <a href={'#' + name} class="header-link scroll_to_link me-2 mb-2">
+                                <span class="fas fa-link" aria-hidden="true" />
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div class={'col-12 description py-1 small col-md' + (pattern ? '-5' : '-7')}>
+                        {async () => {
+                            const html = await markdown(description);
+                            return html;
+                        }}
+                    </div>
+                    <div class={'col-12 col-md' + (pattern ? '-4' : '-1') + ' ms-auto'}>
+                        {pattern && <code class="float-end">{pattern}</code>}
+                    </div>
+                </div>
+            );
+        })
+    ) : (
+        <p class="text-muted">No input parameters</p>
+    )
+}
+<style>
+    h4 {
+        overflow: hidden;
+    }
+    .description :global(p) {
+        margin-bottom: 0;
+    }
+</style>

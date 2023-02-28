@@ -1,0 +1,66 @@
+---
+const { items } = Astro.props;
+
+export interface Props {
+    items: {
+        label: string;
+        href: string;
+        active?: boolean;
+        icon?: string;
+    }[];
+}
+let activeItem = items.find((item) => item.active);
+if (!activeItem) {
+    items[0].active = true;
+    activeItem = items[0];
+}
+---
+
+<div class="">
+    <ul class="d-none d-md-flex nav nav-tabs nav-fill">
+        {
+            items.map((item) => {
+                return (
+                    <li class="nav-item">
+                        <a class={'nav-link ' + (item.active ? 'active' : '')} href={item.href} rel="prefetch">
+                            <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
+                        </a>
+                    </li>
+                );
+            })
+        }
+
+        <li class="nav-item">
+            <slot />
+        </li>
+    </ul>
+    <!-- Show as dropdown on mobile -->
+    <div class="d-flex d-md-none justify-content-between">
+        <!-- No idea why justify-content is not working here -->
+        <div class="dropdown me-5">
+            <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="tabs"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+            >
+                <i class={activeItem.icon ? activeItem.icon : 'fa-regular fa-book'}></i>
+                {activeItem.label}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="tabs">
+                {
+                    items.map((item) => {
+                        return (
+                            <a class={'dropdown-item ' + (item.active ? 'active' : '')} href={item.href} rel="prefetch">
+                                <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
+                            </a>
+                        );
+                    })
+                }
+            </div>
+        </div>
+        <slot />
+    </div>
+</div>

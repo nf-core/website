@@ -1,0 +1,43 @@
+---
+import PageLayout from './PageLayout.astro';
+import MarkdownWrapper from '@components/MarkdownWrapper.svelte';
+import Toc from '@components/SidebarToc.svelte';
+
+export interface Props {
+    title: string;
+    subtitle: string;
+    md_github_url: string;
+    headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
+    event_header?: object[];
+}
+
+const { title, subtitle, md_github_url, event_header, headings } = Astro.props;
+---
+
+<PageLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    event_header={event_header}
+    subfooter={true}
+    mainpage_container={true}
+    navTocHeadings={headings}
+>
+    <div class="container-fluid row">
+        <div class="col-12 col-md-10">
+            <div class="markdown-content">
+                <MarkdownWrapper headings={headings} client:idle>
+                    <slot />
+                </MarkdownWrapper>
+            </div>
+        </div>
+        <div class="col-12 col-md-2 sticky-top toc order-first order-md-last">
+            <Toc headings={headings} client:idle />
+        </div>
+    </div>
+</PageLayout>
+<style lang="scss">
+    .toc {
+        margin-top: -4.5rem; // compensate for the navbar-offset of the underlying .nav element
+    }
+</style>

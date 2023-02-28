@@ -1,38 +1,36 @@
 <script>
-    import { each } from 'svelte/internal';
-    import { format } from 'timeago.js';
+    import { formatDistanceToNow } from 'date-fns';
     export let pipeline;
-    const href = '/pipelines/' + pipeline.name;
     const name = pipeline.name;
     const body = pipeline.description;
     const stars = pipeline.stargazers_count;
     const topics = pipeline.topics;
     const releases = pipeline.releases;
     const archived = pipeline.archived;
-    const released = releases.length > 0;
+    const released = releases.length > 1;
     var latest_release, tag_name, release_date_ago;
-
     if (released) {
-        latest_release = releases[releases.length - 1];
+        latest_release = releases[0];
         tag_name = latest_release.tag_name;
-        release_date_ago = format(new Date(latest_release.published_at), 'en_GB');
+        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
     }
+    const href = '/' + pipeline.name + '/' + (released ? tag_name : 'dev');
 </script>
 
-<div class="card w-100 p-3 pb-2 m-2">
-    <div class="card-name ">
+<div class="card flex-fill m-2">
+    <div class="card-header border-bottom-0 bg-transparent">
         <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a {href}>{name}
-            {#if archived}
-                <i class="fa-solid fa-archive text-info" />
-            {:else if released}
-                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip"/>
-            {:else}
-                <i class="fa-solid fa-wrench text-warning" />
-            {/if}
+            <a {href}
+                >{name}
+                {#if archived}
+                    <i class="fa-solid fa-archive text-info" />
+                {:else if released}
+                    <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                {:else}
+                    <i class="fa-solid fa-wrench text-warning" />
+                {/if}
             </a>
             <small class="gh-stats text-small">
-
                 <span>
                     {#if released}
                         <a
@@ -63,32 +61,34 @@
             </small>
         </h2>
     </div>
-    <div class="card-body py-0 d-flex flex-column">
+    <div class="card-body pt-0 d-flex flex-column">
         <p class="topics mt-0 mb-0">
             {#each topics as topic}
-                <span class="badge bg-body-tertiary text-success mx-1">{topic}</span>
+                <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
         </p>
-        <p class="description flex-grow-1 mb-0">{body}</p>
+        {#if body}
+            <p class="description flex-grow-1 mb-0">{body}</p>
+        {/if}
 
-    </div>
-    {#if released}
+        {#if released}
             <p class="text-muted align">Last release {release_date_ago}</p>
         {/if}
+    </div>
 </div>
 
 <style>
     p {
         margin-top: 0.5rem;
     }
-    .link-card:is(:hover, :focus-within) {
+    /* .link-card:is(:hover, :focus-within) {
         background-position: 0;
     }
     .link-card:is(:hover, :focus-within) h2 {
         color: rgb(var(--accent));
-    }
+    } */
     .card {
-        max-width: 40%;
+        max-width: 40rem;
     }
     .badge.text-success {
         font-weight: 400;

@@ -1,0 +1,110 @@
+---
+import InstallCmd from './InstallCmd.svelte';
+
+const { pipeline = '', version = '', latestVersion = '', component, gh_url, component_type } = Astro.props;
+
+export interface Props {
+    pipeline?: string;
+    version?: string;
+    latestVersion?: string;
+    component?: string;
+    component_type?: string;
+    gh_url: string;
+}
+let latest_link = '';
+if (pipeline.length > 0) {
+    latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
+}
+---
+
+<div class="subheader bg-body-secondary under-triangle-down">
+    <div class="container text-center d-flex flex-column align-items-center">
+        {
+            version !== latestVersion || version === 'dev' ? (
+                <div class="alert alert-warning p-1 p-md-3" role="alert">
+                    <span>
+                        {version === 'dev' ? (
+                            <span>This is the development version of the pipeline.</span>
+                        ) : (
+                            <span>
+                                These pages are for an old version of the pipeline (<code>{version}</code>). The latest
+                                stable release is (
+                                <a href={latest_link}>
+                                    <code>{latestVersion}</code>
+                                </a>
+                                ).
+                            </span>
+                        )}
+                    </span>
+                </div>
+            ) : (
+                ''
+            )
+        }
+        {
+            pipeline.length > 0 ? (
+                <a href={`${version}/launch`} class="btn btn-success launch-btn">
+                    <i class="fa-duotone fa-rocket me-2" />
+                    {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}
+                </a>
+            ) : (
+                <div class="w-50">
+                    <InstallCmd cmd={`nf-core ${component_type} install ${component?.replace('_', '/')}`} client:load />
+                </div>
+            )
+        }
+        <a href={version ? `${gh_url}/tree/${version}` : gh_url} class="text-body mt-2">
+            <i class="fab fa-github me-2"></i>{gh_url}
+        </a>
+    </div>
+</div>
+
+<div class="triangle-down bg-body-secondary"></div>
+
+<style lang="scss">
+    .btn.launch-btn:hover i {
+        &::after {
+            content: '\e027\e027';
+        }
+        animation: shake 0.5s;
+
+        /* When the animation is finished, start again */
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
+        10% {
+            transform: translate(0px, -1px) rotate(-1deg);
+        }
+        20% {
+            transform: translate(-1px, 0px) rotate(1deg);
+        }
+        30% {
+            transform: translate(0px, 1px) rotate(0deg);
+        }
+        40% {
+            transform: translate(1px, -1px) rotate(1deg);
+        }
+        50% {
+            transform: translate(-1px, 0px) rotate(-1deg);
+        }
+        60% {
+            transform: translate(-1px, 1px) rotate(0deg);
+        }
+        70% {
+            transform: translate(0px, 1px) rotate(-1deg);
+        }
+        80% {
+            transform: translate(-1px, 0px) rotate(1deg);
+        }
+        90% {
+            transform: translate(0px, -1px) rotate(0deg);
+        }
+        100% {
+            transform: translate(1px, -1px) rotate(-1deg);
+        }
+    }
+</style>

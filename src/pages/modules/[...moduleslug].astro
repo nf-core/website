@@ -1,0 +1,133 @@
+---
+import { markdown } from '@astropub/md';
+import ComponentParamTable from '@components/ComponentParamTable.astro';
+import SidebarStats from '@components/SidebarStats.astro';
+import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
+import components_json from '@public/components.json';
+
+export function getStaticPaths() {
+    // return components_json.modules.map((module) => { TODO: replace line below with this one when meta.yamls are fixed
+    return components_json.modules.slice(0, 10).map((module) => {
+        return [
+            {
+                params: {
+                    moduleslug: module.name,
+                },
+                props: {
+                    module: module,
+                },
+            },
+        ];
+    });
+}
+const { moduleslug } = Astro.params;
+const { module } = Astro.props;
+const tool = module.meta.tools[0];
+const toolName = Object.keys(tool)[0];
+---
+
+<ComponentPageLayout name={module.name} description={module.meta.description}>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <div class="mb-5">
+                <h2 id="description" class="ms-n3">
+                    <i class="fa-duotone fa-swap-opacity fa-book fa-fw"></i> Description
+                    <a href="#description" class="header-link scroll_to_link"
+                        ><span class="fas fa-link" aria-hidden="true"></span></a
+                    >
+                </h2>
+                <div class="">
+                    {
+                        async () => {
+                            const html = await markdown(module.meta.description);
+                            return html;
+                        }
+                    }
+                </div>
+            </div>
+            <div class="module-params">
+                {
+                    module.meta.input ? (
+                        <div class="module input mb-5">
+                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} params={module.meta.input} />
+                        </div>
+                    ) : (
+                        <div class="module input mb-5">
+                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} />
+                        </div>
+                    )
+                }
+                <div class="module output mb-5">
+                    <ComponentParamTable name={'Output'} icon={'fa-sign-out'} params={module.meta.output} />
+                </div>
+            </div>
+            <div class="module-tools">
+                <h2>
+                    <i class="fa-duotone fa-tools fa-fw"></i> Tools
+                    <a href="#tools" class="header-link scroll_to_link"
+                        ><span class="fas fa-link" aria-hidden="true"></span></a
+                    >
+                </h2>
+                <div>
+                    <h3 class="text-success">
+                        {toolName}
+                    </h3>
+                    <p>
+                        {tool[toolName].description}
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            {
+                                tool[toolName].documentation && (
+                                    <a href={tool[toolName].documentation} class="btn btn-outline-secondary">
+                                        <i class="fa-duotone fa-books fa-fw" /> Documentation
+                                    </a>
+                                )
+                            }
+                            {
+                                tool[toolName].homepage && (
+                                    <a href={tool[toolName].homepage} class="btn btn-outline-secondary">
+                                        <i class="fa-regular fa-globe fa-fw" /> Homepage
+                                    </a>
+                                )
+                            }
+                            {
+                                tool[toolName].tool_dev_url && (
+                                    <a href={tool[toolName].tool_dev_url} class="btn btn-outline-secondary">
+                                        <i class="fa-duotone fa-wrench fa-fw" /> Dev Docs
+                                    </a>
+                                )
+                            }
+                        </div>
+                        <div>
+                            {
+                                tool[toolName].licence && typeof tool[toolName].licence === 'string' ? (
+                                    <span class="badge text-bg-secondary">{tool[toolName].licence}</span>
+                                ) : (
+                                    tool[toolName].licence.map((licence) => {
+                                        return <span class="badge text-bg-secondary">Licence: {licence}</span>;
+                                    })
+                                )
+                            }
+                            {
+                                tool[toolName].doi && (
+                                    <a class="badge text-bg-secondary" href={'http://doi.org/' + tool[toolName].doi}>
+                                        doi: {tool[toolName].doi}
+                                    </a>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-none col-md-2">
+            <SidebarStats
+                component_type={'module'}
+                contributors={module.meta.authors}
+                included_pipelines={module.pipelines}
+            />
+        </div>
+    </div>
+</ComponentPageLayout>

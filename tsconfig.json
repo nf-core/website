@@ -4,7 +4,10 @@
         "baseUrl": ".",
         "paths": {
             "@components/*": ["src/components/*"],
-            "@layouts/*": ["src/layouts/*"]
-        }
+            "@layouts/*": ["src/layouts/*"],
+            "@content/*": ["src/content/*"],
+            "@public/*": ["public/*"]
+        },
+        "strictNullChecks": true
     }
 }

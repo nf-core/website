@@ -1,17 +1,18 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import NatureBiotech from '../images/homepage/nature_biotech.svg';
-import NfCoreLogoDarkbg from '../images/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '../images/logos/nf-core-logo.svg';
+import NatureBiotech from '/images/homepage/nature_biotech.svg';
+import NfCoreLogoDarkbg from '/images/logos/nf-core-logo-darkbg.svg';
+import NfCoreLogo from '/images/logos/nf-core-logo.svg';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
+import EventBanner from '@components/EventBanner.astro';
 import HomepageCard from '@components/HomepageCard.astro';
 import CodeExample from '@components/HomepageCodeExample.md';
 import HomepageVideos from '@components/HomepageVideos.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
     <div class="homepage-header">
-        <!-- TODO: HIGHLIGHT UPCOMING / ONGOING EVENTS -->
+        <EventBanner />
         <div class="homepage-header-contents col-md-5">
             <h1>
                 <img src={NfCoreLogo} class="hide-dark" />
@@ -34,7 +35,8 @@ import HomepageVideos from '@components/HomepageVideos.astro';
         </form>
     </div>
 
-    <div class="homepage-intro hexagon">
+    <div class="triangle-up text-bg-success"></div>
+    <div class="homepage-intro text-bg-success">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
@@ -77,7 +79,7 @@ import HomepageVideos from '@components/HomepageVideos.astro';
             </div>
         </div>
     </div>
-
+    <div class="triangle-down bg-success"></div>
     <div class="container py-5 text-center lead" id="features">
         <p>Nextflow is an incredibly powerful and flexible workflow language.</p>
         <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
@@ -249,7 +251,7 @@ import HomepageVideos from '@components/HomepageVideos.astro';
         </div>
     </div>
 
-    <ContributorCarousel client:only />
+    <ContributorCarousel client:idle />
 </BaseLayout>
 
 <style lang="scss">
@@ -355,9 +357,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     }
 
     .homepage-intro {
-        background-color: $nf-core-color;
         .container .row div {
-            color: $body-bg;
             text-align: center;
         }
     }

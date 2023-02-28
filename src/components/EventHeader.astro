@@ -1,0 +1,93 @@
+---
+import ExportEventButton from './ExportEventButton.svelte';
+
+const { frontmatter } = Astro.props;
+const start = frontmatter.start.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+});
+const end = frontmatter.start.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+});
+---
+
+<div class="">
+    <div class="row row-cols-2">
+        <div class="">
+            <dl>
+                <dt>Event start:</dt>
+                <dd>{start}</dd>
+                <dt>Event end:</dt>
+                <dd>{end}</dd>
+            </dl>
+        </div>
+        <div class="">
+            <dl>
+                <dt>{frontmatter.location_url.length === 1 ? 'Link' : 'Links'}:</dt>
+                <dd>
+                    {
+                        frontmatter.location_url.map((loc) => {
+                            return (
+                                <a class="text-white underline" href={loc}>
+                                    {loc}
+                                </a>
+                            );
+                        })
+                    }
+                </dd>
+                {
+                    frontmatter.location_name && (
+                        <>
+                            <dt>Location:</dt>
+                            <dd>{frontmatter.location_name}</dd>
+                        </>
+                    )
+                }
+                {
+                    frontmatter.address && (
+                        <>
+                            <dt>Address:</dt>
+                            <dd>{frontmatter.address}</dd>
+                        </>
+                    )
+                }
+                {
+                    frontmatter.location_latlng && (
+                        <>
+                            <dd>
+                                <a
+                                    class="mt-2 btn btn-sm btn-outline-light"
+                                    href={`https://www.google.com/maps/search/?api=1&query=${frontmatter.location_latlng.join(
+                                        ','
+                                    )}`}
+                                    target="_blank"
+                                >
+                                    <i class="fa-duotone fa-map-pin me-1" />
+                                    See on map
+                                </a>
+                            </dd>
+                        </>
+                    )
+                }
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center justify-content-md-start">
+        <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" />
+    </div>
+</div>
+<style lang="scss">
+    .dropdown-menu {
+        z-index: 100;
+    }
+</style>

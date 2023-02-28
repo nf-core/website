@@ -1,8 +1,21 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+let docs = await getCollection('docs');
+let usageDocs = [];
+let developmentDocs = [];
 
-const usage_docs = await Astro.glob('./usage/**/*.{md,mdx,astro}');
-const dev_docs = await Astro.glob('./development/**/*.{md,mdx,astro}');
+docs = docs.filter((doc) => {
+    return doc.slug.split('/').length === 2;
+});
+docs.map((doc) => {
+    if (doc.slug.startsWith('usage/')) {
+        usageDocs.push(doc);
+    }
+    if (doc.slug.startsWith('development/')) {
+        developmentDocs.push(doc);
+    }
+});
 ---
 
 <PageLayout
@@ -12,13 +25,27 @@ const dev_docs = await Astro.glob('./development/**/*.{md,mdx,astro}');
     This section contains the following subsections:
 
     <h2>Usage</h2>
+
+    {
+        // nested list based on the depth of the docs.slug
+        usageDocs.map((doc) => {
+            return (
+                <li>
+                    <a href={doc.slug}>{doc.data.title}</a>
+                </li>
+            );
+        })
+    }
+    <h2>Contributing</h2>
     <ul>
         {
-            usage_docs.map((page) => (
-                <li>
-                    <a href={page.url}>{page.frontmatter.title}</a>
-                </li>
-            ))
+            developmentDocs.map((doc) => {
+                return (
+                    <li>
+                        <a href={doc.slug}>{doc.data.title}</a>
+                    </li>
+                );
+            })
         }
     </ul>
 </PageLayout>

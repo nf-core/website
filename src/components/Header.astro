@@ -1,49 +1,66 @@
 ---
-const { title, subtitle = false, header_html, md_github_url, header_btn_url, header_btn_text } = Astro.props;
+import EventHeader from './EventHeader.astro';
+
+let {
+    title,
+    subtitle = false,
+    header_html,
+    md_github_url,
+    header_btn_url,
+    header_btn_text,
+    event_header,
+} = Astro.props;
+title = title.replace('nf-core/', 'nf-core/<wbr>');
 ---
 
-<div class="mainpage-heading triangle-down">
+<div class="mainpage-heading pb-1 text-bg-success">
     <div class="container">
-        {
-            md_github_url && (
-                <a
-                    href="{md_github_url}"
-                    class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none"
-                    title="Edit this page on GitHub"
-                    data-bs-toggle="tooltip"
-                    data-bs-delay="{ 'show': 500, 'hide': 0 }"
-                >
-                    <i class="fas fa-pencil-alt" /> Edit
-                </a>
-            )
-        }
-        {
-            header_btn_url && header_btn_text && (
-                <a href="{header_btn_url}" class="btn btn-sm btn-outline-light float-end d-none d-md-inline-block mt-4">
-                    {header_btn_text}
-                </a>
-            )
-        }
-
-        <h1 class="display-2">{title}</h1>
-        {subtitle && <p class="lead">{subtitle}</p>}
+        <h1 class="display-2 d-flex justify-content-between mb-0 mb-md-1">
+            <span set:html={title} />
+            <div>
+                {
+                    md_github_url && (
+                        <a
+                            href={md_github_url}
+                            class="edit-md-btn btn btn-sm btn-outline-light d-none d-md-inline-block ms-2 d-print-none align-self-start"
+                            title="Edit this page on GitHub"
+                            data-bs-toggle="tooltip"
+                        >
+                            <i class="fas fa-pencil-alt" /> Edit
+                        </a>
+                    )
+                }
+                {
+                    header_btn_url && header_btn_text && (
+                        <a href="{header_btn_url}" class="btn btn-sm btn-outline-light d-none d-md-inline-block mt-4">
+                            {header_btn_text}
+                        </a>
+                    )
+                }
+            </div>
+        </h1>
+        {subtitle && <p class="lead mb-2 mb-md-3">{subtitle}</p>}
+        {event_header && <EventHeader frontmatter={event_header} />}
         {header_html && { header_html }}
     </div>
 </div>
+<div class="triangle-down bg-success"></div>
+<slot />
 <style lang="scss">
     @import '../styles/_variables.scss';
     .mainpage-heading {
-        background-color: $nf-core-color;
-        color: $white;
-        padding: 3rem 0 5rem 0;
+        background-color: $success !important;
+        & h1,
+        & p {
+            color: $white !important;
+        }
+        padding-top: 3rem;
+        overflow: visible;
+        cursor: default;
         h1,
-        h1 a {
-            color: $white;
+        h1 {
+            color: $white !important;
             text-decoration: none;
-            &:hover,
-            &:focus {
-                color: $gray-300;
-            }
         }
         code {
             color: $white;
@@ -51,10 +68,16 @@ const { title, subtitle = false, header_html, md_github_url, header_btn_url, hea
     }
     @include media-breakpoint-down(md) {
         .mainpage-heading {
-            padding: 1.5rem 0 1.5rem 0;
+            padding-top: 1.45rem;
+            ::after {
+                clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
+            }
         }
         .mainpage-heading h1 {
             font-size: 3rem;
         }
+    }
+    .triangle-down {
+        background-color: $success !important;
     }
 </style>
