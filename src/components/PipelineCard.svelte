@@ -1,5 +1,5 @@
 <script>
-    import { format } from 'timeago.js';
+    import { formatDistanceToNow } from 'date-fns';
     export let pipeline;
     const name = pipeline.name;
     const body = pipeline.description;
@@ -12,7 +12,7 @@
     if (released) {
         latest_release = releases[0];
         tag_name = latest_release.tag_name;
-        release_date_ago = format(new Date(latest_release.published_at), 'en_GB');
+        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
     }
     const href = pipeline.name + '/' + (released ? tag_name : 'dev');
 </script>
