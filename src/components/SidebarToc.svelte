@@ -75,7 +75,7 @@
         background-color: transparentize($success, 0.75);
     }
 
-    @include color-mode(dark) {
+    :global([data-bs-theme='dark']) {
         li {
             border-inline-start: 2pt solid $border-color-dark;
         }
