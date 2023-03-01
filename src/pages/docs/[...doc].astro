@@ -1,6 +1,7 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
+
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
     return docs.map((doc) => ({
@@ -22,6 +23,12 @@ const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.ren
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/docs/' + Astro.props.doc.id;
 ---
 
-<MarkdownTocLayout title={title} subtitle={subtitle} md_github_url={md_github_url} headings={headings}>
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    left_sidebar={true}
+>
     <Content />
 </MarkdownTocLayout>
