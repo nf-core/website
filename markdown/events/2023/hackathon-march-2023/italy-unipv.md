@@ -74,7 +74,6 @@ There is a cafeteria close by - [La Bouvette dell'Ingegnere](https://www.instagr
 
 We will also optionally arrange a social dinner in one of the evenings if there is interest among the attendees.
 
-
 ## Acknowledgments
 
 This local event is kindly supported by the Department of Biology and Biotechnology of the University of Pavia, hosting the event, by [seqeralabs](https://seqera.io) and the [Chan Zuckerberg Initiative](https://chanzuckerberg.com)
