@@ -25,24 +25,25 @@ docs.map((doc) => {
     This section contains the following subsections:
 
     <h2>Usage</h2>
-
-    {
-        // nested list based on the depth of the docs.slug
-        usageDocs.map((doc) => {
-            return (
-                <li>
-                    <a href={doc.slug}>{doc.data.title}</a>
-                </li>
-            );
-        })
-    }
+    <ul>
+        {
+            // nested list based on the depth of the docs.slug
+            usageDocs.map((doc) => {
+                return (
+                    <li>
+                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
     <h2>Contributing</h2>
     <ul>
         {
             developmentDocs.map((doc) => {
                 return (
                     <li>
-                        <a href={doc.slug}>{doc.data.title}</a>
+                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
                     </li>
                 );
             })

@@ -16,7 +16,7 @@
     }
 </script>
 
-<div class="nav flex-column sticky-top-under">
+<div class="nav flex-column sticky-top-under align-items-end">
     <div class="d-none d-md-inline">
         <strong class="h6 my-2 text-body">On this page</strong>
         <!-- <hr class="my-1" /> -->
@@ -57,11 +57,13 @@
         font-size: 0.875rem;
         list-style: none;
         padding-left: 0;
+    }
+    .nav {
         overflow-y: auto;
-        max-height: calc(100vh - 40rem);
+        max-height: calc(100vh - 4rem);
     }
     .sticky-top-under {
-        top: 3.5rem;
+        top: 4rem;
         position: sticky;
     }
 
@@ -71,8 +73,11 @@
     }
 
     li.active {
+        a {
+            color: $green-800 !important;
+        }
         border-left: 2pt solid $success;
-        background-color: transparentize($success, 0.75);
+        background-color: transparentize($success, 0.5);
     }
 
     :global([data-bs-theme='dark']) {
@@ -81,7 +86,10 @@
         }
         li.active {
             border-left: 2pt solid $success-dark;
-            background-color: transparentize($success-dark, 0.75);
+            background-color: transparentize($success-dark, 0.5);
+            & a {
+                color: $gray-200 !important;
+            }
         }
     }
 </style>
