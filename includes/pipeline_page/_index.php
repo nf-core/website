@@ -16,7 +16,7 @@ if (count($path_parts) > 2 && $path_parts[1] == 'docs' && $path_parts[2] == 'out
 ########
 ## Configure page header
 ########
-$title = 'nf-core/<br class="d-sm-none">' . $pipeline->name;
+$title = 'sanger-tol/<br class="d-sm-none">' . $pipeline->name;
 $subtitle = $pipeline->description;
 $content = '';
 $schema_content = '';
@@ -133,7 +133,7 @@ if (!is_dir(dirname($gh_pipeline_schema_fn))) {
 // Try to fetch the nextflow_schema.json file for the selected release, if not already cached or release==dev. Decides later if Launch button is included on the page or not.
 if ((!file_exists($gh_pipeline_schema_fn) && !file_exists($gh_pipeline_no_schema_fn)) || $release == 'dev') {
     $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
-    $gh_launch_schema_url = "https://api.github.com/repos/nf-core/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
+    $gh_launch_schema_url = "https://api.github.com/repos/sanger-tol/{$pipeline->name}/contents/nextflow_schema.json?ref={$release}";
     $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
     if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
         echo '<script>console.log("Sent request to ' .
@@ -199,8 +199,8 @@ elseif ($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name . '
     header('HTTP/1.1 404 Not Found');
     $suggestion_404_urls = [
         $protocol . $_SERVER['HTTP_HOST'] . '/' . $pipeline->name,
-        'https://github.com/nf-core/' . $pipeline->name . '/blob/' . $release . '/' . $url_string,
-        'https://github.com/nf-core/' . $pipeline->name . '/blob/' . $release . '/' . $url_string . '.md',
+        'https://github.com/sanger-tol/' . $pipeline->name . '/blob/' . $release . '/' . $url_string,
+        'https://github.com/snger-tol/' . $pipeline->name . '/blob/' . $release . '/' . $url_string . '.md',
     ];
     include '404.php';
     die();

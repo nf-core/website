@@ -16,7 +16,7 @@ $title = 'Pipelines';
 $subtitle =
     'Browse the <strong>' .
     $pipelines_json->pipeline_count .
-    '</strong> pipelines that are currently available as part of nf-core.';
+    '</strong> pipelines that are currently available as part of sanger-tol.';
 include '../includes/header.php';
 
 usort($pipelines, 'rsort_pipelines');
@@ -94,7 +94,7 @@ echo $msg;
               </a>
             <?php endif; ?>
             <a href="/<?php echo $wf->name; ?>" class="pipeline-name">
-              <span class="d-none d-lg-inline">nf-core/</span><?php echo $wf->name; ?>
+              <span class="d-none d-lg-inline">sanger-tol/</span><?php echo $wf->name; ?>
             </a>
             <?php if ($wf->archived): ?>
               <small class="status-icon text-warning ms-2 fas fa-archive" title="This pipeline has been archived and is no longer being maintained." data-bs-toggle="tooltip"></small>
