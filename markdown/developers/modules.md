@@ -343,10 +343,11 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)).
+1. Where non-file inputs are mandatory or needed to modify the command, they should be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below. 
+
+All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable.
 
     - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
-      Mandatory command line arguments MUST be specified in long form where possible.
 
       `<module>.nf`:
 
@@ -522,7 +523,7 @@ process {
         <summary>Rationale</summary>
         It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
 
-        The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run documented at a nf-core documentation level. It reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
+        The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
 
         Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
         </details>
