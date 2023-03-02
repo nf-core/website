@@ -19,7 +19,7 @@ The core team members who administer the nf-core project are listed below:
 - [@jfy133](https://github.com/jfy133): James A. Fellows Yates
 - [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
 - [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
-- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+- [@maxulysse](https://github.com/maxulysse): Maxime U. Garcia
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
