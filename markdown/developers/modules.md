@@ -556,6 +556,8 @@ process {
 
 10. Input entries should be marked as Mandatory or Optional
 
+For detailed descriptions and examples on how to follow the above input/output guidance, please see [Guidance on module inputs](#guidance-on-module-inputs)
+
 ### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
@@ -799,6 +801,222 @@ To see some more advanced examples of these keys in use see:
 - [Set ext.args based on parameter settings](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L222-L226)
 - [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
 - [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
+
+## Guidance on module inputs
+
+There are various ways information that a given software needs can be entered into a module to make the module work.
+nf-core modules are intended to be flexible as possible, and ensure pipelines are not constrained by 'particularities' of a given module.
+In other words, we want to make modules work for pipelines, not pipelines to work for modules.
+Here we provide some general guidance on how and when to use the various ways of passing information into a module.
+
+The four ways of passing information into a module are:
+
+- `input:`: a distinct input channel defined in the module itself
+- `val(meta)`: a common entry in nf-core module tuple-based input channels that is a list of information associated with a given sample/entity or associated files ( e.g. `meta.single_end` describing the endedness of the sequence files associated with the sample).
+- `ext.args`: defined in `modules.conf` configuration files that is used to insert non-mandatory custom flags/options to the tools used in the module.
+- `ext.prefix`: defined in `modules.conf` configuration files that is used for defining file names (typically based on a `meta.id` element).
+
+Note: Custom ext fields `ext.<custom>` are discouraged as most use-cases can be accomodated using the above techniques.
+
+In general:
+
+- All files, mandatory, or non-mandatory, MUST have a corresponding `input:` channel ( type `path` ).
+- Command-line options essential to the functioning of the tool MUST also be `input:` channels ( type `val` ), or encoded as a sensible default that can be overridden by checking `args` (e.g., seeding options for reproducibilty).
+- Output files SHOULD be named using `ext.prefix` and a file extension. Fixed-name files can be renamed using `mv`.
+- Sample specific command-line options SHOULD be defined based on fields of the `meta` map. If the command-line option is essential to the function of the
+  tool, then the channel operator `multiMap` should be used to construct the string and pass it to an `input:` channel. If the command-line option is
+  not essential to the operation of the tool or certain options should be defined by what is in the `meta` map, then the command-line options SHOULD be
+  defined using `ext.args`.
+- A module SHOULD function with `ext.args = ''`.
+- A module SHOULD not use extra channel inputs where Groovy truth can be used to evaluate a need. E.g.
+
+  ```nextflow
+  process TASK {
+      input:
+      tuple val(meta), path(bam)   // Mandatory: [ meta, *.bam ]
+      path reference               // Optional: reference
+      val  use_reference           // Boolean: true if reference should be used. This channel is unnecessary since reference can be tested for a value.
+      ...
+  }
+  ```
+
+### input chanels
+
+All _files_ MUST be supplied using a channel into a module. This is to ensure Nextflow correctly stages them in the working directory of a process, and the process can
+function in an off-line environment independently of other processes.
+
+Input channels MUST be used for other _mandatory_ information (e.g. passing in strings or booleans) where the tool cannot function without this information.
+
+Information stored in a `meta` map that needs to be passed to a `val()` input channel can be done so via the
+[`.multiMap{}`](https://www.nextflow.io/docs/latest/operator.html#multimap) Nextflow operator.
+
+```nextflow
+workflow {}
+    ...
+    // ch_input = [ [ id : 'Sample', phenotype: "WT" ], file ]
+    ch_input.multiMap { meta, files ->
+        ch1: [ meta, files ]
+        ch2: meta.phenotype
+    }.set { ch_mytask }
+
+    MY_TASK(
+        ch_mytask.ch1, // multiMap ensures channel contents are emitted simultaneously, circumventing asynchronous input pairing.
+        ch_mytask.ch2
+    )
+    ...
+}
+
+process MY_TASK {
+    input:
+    tuple val(meta), path(files)
+    val phenotype
+
+    ...
+
+    script:
+    """
+    command --input $files --phenotype $phenotype ...
+    """
+}
+```
+
+When the value for a command-line option can be a file or a string, then the file MUST be supplied via an `input:` channel. If the command-line option is mandatory,
+then the string value SHOULD also be a separate `input:` channel of type `val`, and a default value encoded in case neither input is defined.
+
+```nextflow
+process TASK {
+    input:
+    tuple val(meta), path(bam)
+    path label_file
+    val  label_str
+
+    ...
+
+    script:
+    def labels = label_file ?: label_str ?: "no_label"
+    """
+    command \\
+        --labels $labels \\
+        ...
+    """
+}
+```
+
+If the command-line option is not necessary to function then, use `ext.args`.
+
+```nextflow
+process TASK {
+    input:
+    tuple val(meta), path(bam)
+    path label_file
+
+    ...
+
+    script:
+    def args = task.ext.args ?:
+    args     += label_file ? "--labels $label_file" : ''
+    """
+    command \\
+        $args \\
+        ...
+    """
+}
+```
+
+```nextflow
+process {
+    withName: 'TASK' {
+        ext.args = { (!labels_file) && meta.label ? "--labels ${meta.label}": '' }
+    }
+}
+```
+
+### meta maps
+
+`meta` maps can be used to pass pipeline parameters to a tool, giving the most flexibility to a pipeline developer.
+
+Pipeline developers can use whatever key name they want to record a given bit of information, and pass this into the module either
+via a dedicated channel (see above) or `ext.args`.
+
+Module developers SHOULD NOT assume 'hardcoded' `meta` fields and thus not use these within a module, but rather leave this to the
+pipeline developer to construct the correct parameters via the channel operator `multiMap` or contstrucing an appropriate string for
+`ext.args` in a config.
+
+For example, a module developer SHOULD NOT hardcode the use of a field such as `${meta.reference}`
+
+```bash
+tool \\
+  run \\
+  $args \\
+  -c ${meta.reference}
+```
+
+This then requires a pipeline developer to confirm to a particular naming scheme, that may not be compatible with the way other modules store
+the same information in their `meta`. If the command-line option is mandatory, see above for an example on how to use `multiMap` to construct
+a necessary input. If the option is non-mandatory, the pipeline developer can insert this into the module via `args`, where the command is:
+
+```bash
+tool \\
+  run \\
+  $args
+```
+
+and the modules config is
+
+```nextflow
+ext.args = { "-c ${meta.reference}" }
+```
+
+In both ways, the `-c` paramter is inserted into the command. However in the latter example, a pipeline developer could instead use a different
+key for `meta.reference`, e.g. `meta.ref`.
+
+### ext.args
+
+This is the main way to pass non-mandatory non-file inputs (flags, options, strings, etc.) to a tool within a module.
+Every nf-core module MUST include an `$args` variable within the command of the tool itself (unless all possible options are provided as `input:` channels).
+
+Pipeline developers can define sensible settings based on their `meta` maps or other process variables to this variable via a `modules.config` (see below).
+Note that pipeline users are able to override these settings. Therefore if the _module_ (not the tool!) requires a particular parameter to execute, such
+information must be passed via an `input:` channel (see above).
+
+Task specific variables can be accessed via closures, and be used dynamically to construct command-line options using conditions within lists.
+
+```nextflow
+ext.args = {
+  [
+    "-a" ,
+    "-b ${meta.id}",       // Set's an option value to be the meta.id
+    run_mode ? "-c" : ""   // run_mode is a variable defined in the main.nf of the module
+    ].join(' ') }
+```
+
+### ext.prefix
+
+This is the main way in which output files and directories are named within nf-core modules, if a tool does not generate output names themselves.
+Modules can use `mv` to rename fixed filenames to use a prefix, to ensure multiple process instances do not result in filenaming clashes when gathered or
+published.
+
+No other information should be passed using `ext.prefix`. The prefix defines the start of a filename, which is then followed a file extension in the module script.
+
+Accepted:
+
+```bash
+tool \\
+    run \\
+    ... \\
+    --output ${prefix}.ext.gz
+```
+
+Not accepted:
+
+```bash
+tool \\
+    run \\
+    ... \\
+    --output ${prefix}${infile.baseName}.ext.gz
+```
+
+Note than an additional `ext` variable called `ext.suffix` may also be used.
 
 ## Help
 
