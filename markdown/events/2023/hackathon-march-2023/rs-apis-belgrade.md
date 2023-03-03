@@ -1,5 +1,5 @@
 ---
-title: Hackathon - March 2023 (Google Academy)
+title: Hackathon - March 2023 (APIS Assay Technologies Ltd)
 subtitle: Local node of the nf-core Hackathon at Startit Centar, by APIS Assay Technologies Ltd, Belgrade.
 type: hackathon
 start_date: '2023-03-27'
