@@ -56,6 +56,7 @@ Also, if you have registered for a local but can no longer attend please let us 
 | 🇺🇸 USA          | Dallas     | University of Texas at Dallas             | [Read more](usa-university-texas.md)      |
 | 🇺🇸 USA          | San Jose   | Quilt Co-Working Space                    | [Read more](usa-san-jose.md)              |
 | 🇺🇸 USA          | Wyoming    | The University of Wyoming                 | [Read more](usa-university-wyoming.md)    |
+| 🇷🇸 Serbia       | Belgrade   | APIS Assay Technologies - Startit Centar  | [Read more](rs-apis-belgrade.md)          |
 
 Please view the event page above for location-specific information. Also, if you intend to attend a local site, make sure you select it during your registration so the local host knows you will be attending.
 
