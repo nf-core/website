@@ -18,7 +18,6 @@ Primary contacts: [<i class="fab fa-slack"></i> Björn Langer](https://nfcore.sl
 
 Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up, but feel free to contact Björn, Luca or Toni if you would like any more information.
 
-
 ## Acknowledgments
 
 This local event is being kindly supported by the CRG.
