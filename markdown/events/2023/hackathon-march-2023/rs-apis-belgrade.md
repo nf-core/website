@@ -9,7 +9,7 @@ end_time: '17:00 CET'
 location_name: Startit Centar, Beograd
 address: Savska 5, Belgrade 11000, Serbia
 location_url: https://startit.rs/beograd/
-location_latlng: [44.80973, 20.45610]
+location_latlng: [44.80696373983825, 20.45561989400684]
 ---
 
 Local event to be held at the Startit Centar, by Bioinformatics Department of Apis Assay Technologies Ltd.
