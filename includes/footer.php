@@ -132,7 +132,7 @@ if (isset($subfooter) and $subfooter) {
           <li><a href="/stats">Statistics</a></li>
           <li><a href="/publications">Publications</a></li>
           <li><a href="/code_of_conduct">Code of conduct</a></li>
-          <li><a href="/join" class="mt-1 btn btn-outline-success">Join nf-core</a></li>
+          <li><a href="/join" class="mt-1 btn btn-outline-success">Join sanger-tol</a></li>
         </ul>
       </div>
     </div>

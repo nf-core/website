@@ -166,22 +166,22 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/about">About nf-core</a>
+              <a class="dropdown-item" href="/about">About sanger-tol</a>
               <a class="dropdown-item" href="/community">Community</a>
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/mentorships">Mentorships</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
-              <a class="dropdown-item" href="/join">Join nf-core</a>
+              <a class="dropdown-item" href="/join">Join sanger-tol</a>
             </div>
           </li>
         </ul>
         <hr class="d-md-none">
         <a class="d-md-none btn d-block btn-success mb-3" href="/join">
-          Join nf-core
+          Join sanger-tol
         </a>
         <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
-          Join nf-core
+          Join sanger-tol
         </a>
       </div>
     </div>
