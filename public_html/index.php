@@ -223,7 +223,7 @@ endif;
       <img src="assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
       <img src="assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
     </h1>
-    <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
+    <p class="lead font-weight-normal">Workflows and tools to investigate the diversity of complex organisms.</p>
     <div class="homepage-cta-flex mb-5">
       <a class="homepage-cta" href="/pipelines">View Pipelines</a>
     </div>
@@ -496,6 +496,7 @@ nf-core list
   </div>
 </div>
 
+<!--
 <div id="community" class="homepage-usedby">
   <div class="container py-5">
     <h2>
@@ -512,6 +513,7 @@ nf-core list
     </div>
   </div>
 </div>
+-->
 
 <script type="text/javascript">
 // List of remaining contributor logos which have not yet been shown
