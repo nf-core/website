@@ -93,4 +93,3 @@ Auf der Morgenstelle 10
 ## Acknowledgments
 
 This local event is being kindly supported by the [Quantitative Biology Center](https://uni-tuebingen.de/forschung/forschungsinfrastruktur/zentrum-fuer-quantitative-biologie-qbic/) at the University of Tuebingen.
-
