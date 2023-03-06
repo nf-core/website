@@ -150,7 +150,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/modules">Modules</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/tools">Tools</a>
+            <a class="nav-link" href="/software">Software</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/docs">Docs</a>
