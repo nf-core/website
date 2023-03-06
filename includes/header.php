@@ -132,8 +132,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm site-nav d-print-none">
     <div class="container-fluid">
       <a class="navbar-brand d-md-none" href="/">
-        <img height="25px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
-        <img height="25px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
+        <img height="25px" src="/assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
+        <img height="25px" src="/assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

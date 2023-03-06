@@ -220,8 +220,8 @@ endif;
   <?php endif; ?>
   <div class="homepage-header-contents col-md-5">
     <h1>
-      <img src="assets/img/logo/sanger-tol-log.svg" class="hide-dark">
-      <img src="assets/img/logo/sanger-tol-log-darkbg.svg" class="hide-light">
+      <img src="assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
+      <img src="assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
     </h1>
     <p class="lead font-weight-normal">A community effort to collect a curated set of analysis pipelines built using Nextflow.</p>
     <div class="homepage-cta-flex mb-5">

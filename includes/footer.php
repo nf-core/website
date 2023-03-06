@@ -22,8 +22,8 @@ if (isset($subfooter) and $subfooter) {
     <div class="row">
       <div class="col-lg-3 mb-3">
         <a href="/">
-          <img height="30px" src="/assets/img/logo/nf-core-logo.svg" class="hide-dark">
-          <img height="30px" src="/assets/img/logo/nf-core-logo-darkbg.svg" class="hide-light">
+          <img height="30px" src="/assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
+          <img height="30px" src="/assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
         </a>
         <small class="d-block mb-3">Making awesome workflows since 2018</small>
         <small class="d-flex mb-3">Supported by<div class="social-icons">
