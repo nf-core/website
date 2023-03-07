@@ -27,7 +27,7 @@ We regularly review core team members - if you'd like to be involved, drop us a 
 
 ### Alumni
 
-The following former members of the nf-core team have earned their place in
+The following former members of the nf-core core team have earned their place in
 the nf-core alumni hall of fame:
 
 - [@alneberg](https://github.com/alneberg): Johannes Alneberg
@@ -78,6 +78,16 @@ This team includes all of the `@core-team` mentioned above, but the people in ch
 - [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
+
+## Safety team {#safety}
+
+The safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare, and members are not a part of the core team.
+
+The current safety team in 2023 are:
+
+- [@ctuni](https://t.co/mQInuSXc5R) Cris Tuñí
+- [@heuerm](https://github.com/heuermh) Michael Heuer
+- [@snafees](https://github.com/snafees/) Saba Nafees
 
 ## Financial Support
 
