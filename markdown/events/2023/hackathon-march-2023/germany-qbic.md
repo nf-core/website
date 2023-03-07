@@ -31,27 +31,32 @@ Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcor
             <tbody>
             <tr>
                 <td data-timestamp="1679900400" data-timeformat="HH:mm z">09:00</td>
-                <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02 & Local Welcome</td>
+                <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02</td>
                 <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02</td>
                 <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02</td>
             </tr>
+            <tr>
+                <td data-timestamp="1679902200" data-timeformat="HH:mm z">09:30</td>
+                <td background-color:navy; rowspan="1">Local Welcome</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>
+            </tr>
+            <tr>
                 <td data-timestamp="1679904000" data-timeformat="HH:mm z">10:00</td>
                 <td>Welcome<br>Location: Lecture Theatre</td>
-                <td rowspan="2">Hack!</td>
-                <td rowspan="2">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679907600" data-timeformat="HH:mm z">11:00</td>
                 <td rowspan="1">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679911200" data-timeformat="HH:mm z">12:30</td>
-                <td background-color:navy; rowspan="1">Lunch</td>
+                <td data-timestamp="1679869800" data-timeformat="HH:mm z">12:30</td>
+                <td background-color:navy; rowspan="1">Lunch @QBiC</td>
                 <td background-color:navy; rowspan="1">Lunch</td>
                 <td background-color:navy; rowspan="1">Lunch</td>
             </tr>
             <tr>
-                <td data-timestamp="1679914800" data-timeformat="HH:mm z">13:30</td>
+                <td data-timestamp="1679916600" data-timeformat="HH:mm z">13:30</td>
                 <td rowspan="3">Hack!</td>
                 <td rowspan="3">Hack!</td>
                 <td rowspan="3">Hack!</td>
@@ -69,7 +74,7 @@ Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcor
                 <td>Final wrap-up<br>Location: Lecture Theatre</td>
             </tr>
             <tr>
-                <td data-timestamp="1679925600"  data-timeformat="HH:mm z">19:00</td>
+                <td data-timestamp="1679936400"  data-timeformat="HH:mm z">19:00</td>
                 <td>Social Dinner<br>Location: TBD</td>
                 <td>Seqera Pizza Dinner<br>Location: TBD</td>
                 <td></td>
@@ -83,7 +88,7 @@ Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcor
 The University of Tuebingen has an in-house mensa for lunch, where we will eat Tuesday and Wednesday. We will arrange for guest cards that can be recharged by both card and cash.
 We will also arrange a social dinner on Monday.
 
-we will meet on all days at:
+We will meet on all days at:
 
 ```
 Auf der Morgenstelle 10
