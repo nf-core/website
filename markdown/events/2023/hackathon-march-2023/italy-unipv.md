@@ -32,7 +32,7 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
             </thead>
             <tbody>
             <tr>
-                <td data-timestamp="1679900400" data-timeformat="HH:mm z">09:30</td>
+                <td data-timestamp="1679902200" data-timeformat="HH:mm z">09:30</td>
                 <td background-color:navy; rowspan="1">Local Welcome and Setup</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
