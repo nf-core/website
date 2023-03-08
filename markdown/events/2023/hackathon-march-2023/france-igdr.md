@@ -28,7 +28,7 @@ Primary contact: [<i class="fab fa-slack"></i> Louis Le Nézet](https://nfcore.s
             </thead>
             <tbody>
             <tr>
-                <td data-timestamp="1679905800" data-timeformat="HH:mm z">09:30</td>
+                <td data-timestamp="1679904000" data-timeformat="HH:mm z">10:00</td>
                 <td background-color:navy; rowspan="1">Welcome and Setup</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
