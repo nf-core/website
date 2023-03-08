@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Google Academy)
 subtitle: Local node of the nf-core Hackathon at Google Academy, London.
 type: hackathon
 start_date: '2023-03-27'
-start_time: '09:00 GMT'
+start_time: '09:00 BST'
 end_date: '2023-03-29'
-end_time: '17:00 GMT'
+end_time: '17:00 BST'
 location_name: Google Academy, London
 address: 123 Buckingham Palace Rd, London SW1W 9SH
 location_url: https://www.wired.co.uk/article/google-digital-skills-academy
