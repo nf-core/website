@@ -52,7 +52,7 @@ Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcor
                 <td rowspan="1">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679920200" data-timeformat="HH:mm z">12:30</td>
+                <td data-timestamp="1679869800" data-timeformat="HH:mm z">12:30</td>
                 <td background-color:navy; rowspan="1">Lunch @QBiC</td>
                 <td background-color:navy; rowspan="1">Lunch</td>
                 <td background-color:navy; rowspan="1">Lunch</td>
