@@ -66,13 +66,18 @@ Primary contact: [<i class="fab fa-slack"></i> Louis Le Nézet](https://nfcore.s
 ## Organisational Information
 
 ### Registration
+
 Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up and select the location you want.
 We will therefore be able to plan everything based on the number of persons coming.
+
 ### Location
+
 We'll be in the room 336 at the 3rd floor of the Building 4.
 
 ### Material
+
 Please come with your computer and a RJ45 cable for internet connection.
 
 ### Food
+
 There is the university restaurant near the building and a cafetaria room athe the basement floor (with a micro-wave).
