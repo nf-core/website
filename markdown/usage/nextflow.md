@@ -16,6 +16,7 @@ Some key Nextflow resources:
 - Tutorials and workshops:
   - **Seqera Labs — Nextflow Training** - <https://seqera.io/training/>
   - Introduction to Bioinformatics workflows with Nextflow and nf-core (Pre-alpha Software Carpentries course) - <https://carpentries-incubator.github.io/workflows-nextflow/>
+  - Nextflow Training - Radio Astronomy Edition (Carpentries course) <https://adacs-australia.github.io/Nextflow_Training_2022B/>
   - Nextflow Tutorial - Variant Calling Edition - <https://sateeshperi.github.io/nextflow_varcal/>
   - Rinn Lab 2021 undergraduate course lectures, covering Nextflow and nf-core
     - <https://github.com/boulderrinnlab/CLASS_2021>

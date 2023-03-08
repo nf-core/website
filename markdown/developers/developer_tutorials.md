@@ -14,7 +14,7 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
 - [Tutorial: Using nf-core components outside nf-core](tutorials/unofficial_pipelines.md)
   - In some cases you may wish to follow parts nf-core best practices for your own pipeline. This tutorial describes how to use nf-core code without making official nf-core pipelines.
 - DSL2 template code walkthrough:
-- [Tutorial: Adding Modules to Pipelines](adding_modules_to_pipelines.md)
+- [Tutorial: Adding Modules to Pipelines](tutorials/adding_modules_to_pipelines.md)
   - Quick reference of the steps needed to add a new module to a pipeline.
   <div class="ratio ratio-16x9">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
