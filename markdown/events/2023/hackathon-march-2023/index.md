@@ -40,7 +40,6 @@ Also, if you have registered for a local but can no longer attend please let us 
 | Country         | City       |  Location                                 | Event page                                |
 | --------------- | ---------- | ----------------------------------------- | ----------------------------------------- |
 | 🇧🇷 Brazil       | Natal      | Federal University of Rio Grande do Norte | [Read more](br-ufrn.md)                   |
-| 🇩🇰 Denmark      | Copenhagen | Unseen Bio ApS                            | [Read more](denmark-unseen-bio.md)        |
 | 🇫🇷 France       | Rennes     | IGDR                                      | [Read more](france-igdr.md)               |
 | 🇩🇪 Germany      | Tübingen   | QBiC                                      | [Read more](germany-qbic.md)              |
 | 🇩🇪 Germany      | Leipzig    | MPI-EVA                                   | [Read more](germany-mpi-eva.md)           |
