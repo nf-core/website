@@ -55,7 +55,7 @@ There will be a set of milestones and aims for each partnership and a short writ
 
 The funding for this program comes from the [Chan Zuckerberg Initiative](https://chanzuckerberg.com/).
 
-In 2021, nf-core together with Nextflow successfully applied for grants from CZI and we recieved funding for both the [EOSS Cycle 4](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) grant and also the EOSS [Diversity & Inclusion](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) program.
+In 2021, nf-core together with Nextflow successfully applied for grants from CZI and we received funding for both the [EOSS Cycle 4](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) grant and also the EOSS [Diversity & Inclusion](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) program.
 
 You can read a [CZI blog post](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b) about the motivations and aims of the Diversity & Inclusion program.
 

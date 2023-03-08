@@ -13,15 +13,15 @@ The features offered by Nextflow DSL2 can be used in various ways depending on t
 
 ### Module
 
-A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. At present, this repository has been created to only host atomic module files that should be added to the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
+A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. Atomic nf-core module files are available in the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
 
-### Sub-workflow
+### Subworkflow
 
-A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a subworkflow to run multiple QC tools with FastQ files as input. Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the [`subworkflow/`](https://github.com/nf-core/modules/tree/master/subworkflows) directory of nf-core/modules along with the required documentation and tests.
 
 ### Workflow
 
-What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 individual modules and sub-workflows.
+What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
 
 ## Writing a new module reference
 
@@ -45,11 +45,17 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.3`)
+1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-5. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+4. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+
+   ```bash
+   pre-commit install
+   ```
+
+5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+6. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -61,7 +67,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
+7. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -95,7 +101,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    2. [`./modules/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/fastqc/meta.yml)
 
-      This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module.
+      This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
 
    3. [`./tests/modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/main.nf)
 
@@ -122,7 +128,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       `md5sum` checks are the preferable choice of test to determine file changes, however, this may not be possible for all outputs generated by some tools e.g. if they include time stamps or command-related headers. Please do your best to avoid just checking for the file being present e.g. it may still be possible to check that the file contains the appropriate text snippets.
 
-7. Create a yaml file containing information required for module unit testing
+8. Create a yaml file containing information required for module unit testing
 
    ```console
    $ nf-core modules create-test-yml
@@ -155,52 +161,52 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
 
-8. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-9. Lint the module locally to check that it adheres to nf-core guidelines before submission
+10. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
-   ```console
-   $ nf-core modules lint fastqc --dir .
+    ```console
+    $ nf-core modules lint fastqc --dir .
 
-                                         ,--./,-.
-         ___     __   __   __   ___     /,-._.--~\
-   |\ | |__  __ /  ` /  \ |__) |__         }  {
-   | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                         `._,._,'
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
 
-    nf-core/tools version 2.3dev0 - https://nf-co.re
+     nf-core/tools version 2.3dev0 - https://nf-co.re
 
-    INFO     Linting modules repo: .                                                __init__.py:15
-    INFO     Linting module: fastqc                                                 __init__.py:163
+     INFO     Linting modules repo: .                                                __init__.py:15
+     INFO     Linting module: fastqc                                                 __init__.py:163
 
-   ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-   │ [!] 3 Test Warnings                                                                                            │
-   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-   ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
-   │ Module name  │ Test message                                                 │ File path                        │
-   ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
-   │ fastqc       │ TODO string in meta.yml: #Add a description of the module... │ modules/nf-core/modules/fastqc/  │
-   │ fastqc       │ TODO string in meta.yml: #Add a description and other det... │ modules/nf-core/modules/fastqc/  │
-   │ fastqc       │ TODO string in meta.yml: #Add a description of all of the... │ modules/nf-core/modules/fastqc/  │
-   ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
-   ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-   │ [!] 1 Test Failed                                                                                              │
-   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-   ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
-   │ Module name  │ Test message                                                 │ File path                        │
-   ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
-   │ fastqc       │ 'meta' map not emitted in output channel(s)                  │ modules/nf-core/modules/fastqc/  │
-   ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
-   ╭──────────────────────╮
-   │ LINT RESULTS SUMMARY │
-   ├──────────────────────┤
-   │ [✔]  38 Tests Passed │
-   │ [!]   3 Test Warning │
-   │ [✗]   1 Test Failed  │
-   ╰──────────────────────╯
-   ```
+    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    │ [!] 3 Test Warnings                                                                                            │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
+    │ Module name  │ Test message                                                 │ File path                        │
+    ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
+    │ fastqc       │ TODO string in meta.yml: #Add a description of the module... │ modules/nf-core/modules/fastqc/  │
+    │ fastqc       │ TODO string in meta.yml: #Add a description and other det... │ modules/nf-core/modules/fastqc/  │
+    │ fastqc       │ TODO string in meta.yml: #Add a description of all of the... │ modules/nf-core/modules/fastqc/  │
+    ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
+    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    │ [!] 1 Test Failed                                                                                              │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
+    │ Module name  │ Test message                                                 │ File path                        │
+    ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
+    │ fastqc       │ 'meta' map not emitted in output channel(s)                  │ modules/nf-core/modules/fastqc/  │
+    ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
+    ╭──────────────────────╮
+    │ LINT RESULTS SUMMARY │
+    ├──────────────────────┤
+    │ [✔]  38 Tests Passed │
+    │ [!]   3 Test Warning │
+    │ [✗]   1 Test Failed  │
+    ╰──────────────────────╯
+    ```
 
-10. Once ready, the code can be pushed and a pull request (PR) created
+11. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -307,7 +313,7 @@ Please follow the steps below to run the tests locally:
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
 
 ### Uploading to `nf-core/modules`
 
@@ -510,6 +516,46 @@ process {
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
+4. Optional outputs SHOULD be marked as optional:
+
+   ```nextflow
+   tuple val(meta), path('*.tab'), emit: tab,  optional: true
+   ```
+
+5. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+
+### Documentation
+
+1. Each module MUST have a `meta.yaml` in the same directory as the `main.nf` of the module itself.
+
+2. Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
+
+   - Keywords MUST NOT just be solely of the (sub)tool name
+
+3. Keywords MUST be all lower case
+
+4. Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
+
+5. Input and output tuples MUST be split into separate entries
+
+   - i.e., `meta` should be a separate entry to the `file` it is associated with
+
+6. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `integer`, `float`
+
+7. Input/output entries MUST match a corresponding channel in the module itself
+
+   - There should be a one-to-one relationship between the module and the `meta.yaml`
+
+   - Input/output entries MUST NOT combine multiple output channels
+
+8. Input/output descriptions SHOULD be descriptive of the contents of file
+
+   - i.e., not just 'A TSV file'
+
+9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+
+10. Input entries should be marked as Mandatory or Optional
+
 ### Module parameters
 
 1. A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
@@ -537,7 +583,7 @@ process {
 1. Software requirements SHOULD be declared within the module file using the Nextflow `container` directive. For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
 ```nextflow
-conda (params.enable_conda ? "bioconda::fastqc=0.11.9" : null)
+conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
     'quay.io/biocontainers/fastqc:0.11.9--0' }"
@@ -719,7 +765,7 @@ process TOOL_SUBTOOL {
   input:
   tuple val(meta), path(bam)
 
-  ouput:
+  output:
   tuple val(meta), path("*.log"), emit: log
   path "versions.yml",            emit: versions
 

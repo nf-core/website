@@ -16,4 +16,81 @@ Local event to be held at SciLifeLab, Stockholm.
 
 Primary contact: [<i class="fab fa-slack"></i> Franziska Bonath](https://nfcore.slack.com/team/UGP9YUCKD)
 
+## preliminary schedule
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Mon. 27 March, 2023</th>
+                <th>Tue. 28 March, 2023</th>
+                <th>Wed. 29 March, 2023</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-timestamp="1679900400" data-timeformat="HH:mm z">09:00</td>
+                <td rowspan="1">Arrival / SciLifelab, Gamma 5, Becquerel (G5201)</td>
+                <td>Arrival / SciLifeLab, Gamma 7 (G7300)</td>
+                <td>Arrival / Scilifelab, Gamma 7 (G7300)</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679904000" data-timeformat="HH:mm z">10:00</td>
+                <td rowspan="1">Intro by hub organiser</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679905800" data-timeformat="HH:mm z">10:30</td>
+                <td rowspan="2">Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679907600" data-timeformat="HH:mm z">11:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679914800" data-timeformat="HH:mm z">12:00</td>
+                <td rowspan="1">Lunch</td>
+                <td rowspan="1">Lunch</td>
+                <td rowspan="1">Lunch</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679914800" data-timeformat="HH:mm z">13:00</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>            
+            </tr>
+            <tr>
+                <td data-timestamp="1679918400" data-timeformat="HH:mm z">14:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679922000" data-timeformat="HH:mm z">15:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679925600"  data-timeformat="HH:mm z">16:00</td>
+                <td rowspan="1">Hub Check In</td>
+                <td rowspan="1">Hub Check In</td>
+                <td rowspan="1">Hackathon Summary</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679927400" data-timeformat="HH:mm z">16:30</td>
+                <td rowspan="2">Hack!</td>
+                <td rowspan="2">Hack!</td>
+                <td rowspan="4">Hackathon social in Gamma 2/ Alfa 3</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679932800" data-timeformat="HH:mm z">18:00</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679936400" data-timeformat="HH:mm z">19:00</td>
+                <td rowspan="2"></td>
+                <td rowspan="2"></td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679940000" data-timeformat="HH:mm z">20:00</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 _Details to be confirmed_

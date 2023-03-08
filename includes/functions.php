@@ -298,9 +298,9 @@ function get_self_url($strip_query = true) {
 }
 
 function generate_toc($html_string) {
-    $toc = '<div  class="d-none d-md-block"><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>
+    $toc = '<div  class="d-none d-lg-block"><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>
         <div  style="max-height: calc(100vh - 150px); overflow: auto;">';
-    $toc_md = '<div class="dropdown d-block d-md-none">
+    $toc_md = '<div class="dropdown d-block d-lg-none">
                 <a href="#" class="btn btn-secondary-outline bg-body dropdown-toggle float-end border" data-bs-toggle="dropdown">On this page</a>
                 <div class="dropdown-menu toc-md">';
     $is_active = true;

@@ -74,7 +74,18 @@ Nextflow looks for these files in three locations:
 
 Configuration parameters are loaded one after another and overwrite previous values.
 Hardcoded pipeline defaults are first, then the user's home directory, then the work directory,
-then every `-c` file in the order supplied, and finally command line `--parameter` options.
+then every `-c` file in the order supplied, and finally command line `--<parameter>` options.
+
+> ⚠️ For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in these cases
+>
+> ```
+> {
+>    "<parameter1_name>": 1,
+>    "<parameter2_name>": '<string>'
+> }
+> ```
+>
+> You can also generate such a JSON via each pipelines 'launch' button on the [nf-co.re website](https://nf-co.re/launch).
 
 See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html) for more information about configuration syntax and available parameters.
 
@@ -145,7 +156,7 @@ process {
 }
 ```
 
-You can be more specific than this by targetting a given process name instead of it's label using `withName`. For example:
+You can be more specific than this by targeting a given process name instead of it's label using `withName`. For example:
 
 ```nextflow
 process {

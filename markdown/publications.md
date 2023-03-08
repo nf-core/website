@@ -51,6 +51,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
 > doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
 
+### [nf-core/circrna](https://nf-co.re/circrna)
+
+<!-- pub-stats 10.1186/s12859-022-05125-8 -->
+
+> **nf-core/circrna: a portable workflow for the quantification, miRNA target prediction and differential expression analysis of circular RNAs.**
+>
+> Barry Digby, Stephen P. Finn, & Pilib Ó Broin
+>
+> [BMC Bioinformatics 24, 27 (2023)](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-05125-8)
+> doi: [10.1186/s12859-022-05125-8](https://doi.org/10.1186/s12859-022-05125-8)
+
 ### [nf-core/coproid](https://nf-co.re/coproid)
 
 <!-- pub-stats 10.7717/peerj.9001 -->
@@ -83,6 +94,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_PeerJ_, 9:e10947 (2021)](https://peerj.com/articles/10947/);
 > doi: [10.7717/peerj.10947](https://doi.org/10.7717/peerj.10947)
+
+### [nf-core/hgtseq](https://nf-co.re/hgtseq)
+
+<!-- pub-stats 10.3390/ijms232314512 -->
+
+> **hgtseq: A Standard Pipeline to Study Horizontal Gene Transfer**
+>
+> Simone Carpanzano, Mariangela Santorsola, nf-core community and Francesco Lescai
+>
+> [Int. J. Mol. Sci. 2022, 23(23), 14512](https://www.mdpi.com/1422-0067/23/23/14512/htm)
+> doi: [10.3390/ijms232314512](https://doi.org/10.3390/ijms232314512)
 
 ### [nf-core/hicar](https://nf-co.re/hicar)
 

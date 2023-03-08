@@ -997,7 +997,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
   Pipeline Page
 */
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(lg) {
   .pipeline-page-content,
   .module-page-content,
   .rendered-markdown,
@@ -1005,7 +1005,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     padding-top: $navbar-height;
   }
 }
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(lg) {
   .side-sub-subnav .dropdown {
     margin-top: $navbar-height;
   }
@@ -1485,29 +1485,35 @@ Launch Page
 .tile[data-state='active'] {
   color: inherit;
 }
-.sidebar-nav .btn {
-  .fas {
-    transition: transform 0.3s ease;
+.sidebar-nav {
+  @include media-breakpoint-up(lg) {
+    height: 100vh;
+    overflow: auto;
   }
-  &:hover {
-    color: $success;
+  .btn {
+    .fas {
+      transition: transform 0.3s ease;
+    }
+    &:hover {
+      color: $success;
+    }
   }
-}
-.sidebar-nav .btn[aria-expanded='true'] .fas {
-  transform: rotate(90deg);
-}
-.sidebar-nav a {
-  color: $gray-700;
-  text-decoration: none;
-  border-left: 1px solid transparent; // For alignment
-  &.active {
-    color: $gray-900;
-    font-size: 0.9rem;
-    font-weight: 700;
-    border-left: 1px solid $success; // For alignment
+  .btn[aria-expanded='true'] .fas {
+    transform: rotate(90deg);
   }
-  &:hover {
-    color: $success;
+  a {
+    color: $gray-700;
+    text-decoration: none;
+    border-left: 1px solid transparent; // For alignment
+    &.active {
+      color: $gray-900;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-left: 1px solid $success; // For alignment
+    }
+    &:hover {
+      color: $success;
+    }
   }
 }
 .sidebar-nav.side-sub-subnav > ul > nav {
