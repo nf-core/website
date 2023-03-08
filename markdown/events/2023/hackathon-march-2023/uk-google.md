@@ -38,12 +38,13 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
                 <td data-timestamp="1679907600" data-timeformat="HH:mm z">09:00</td>
-                <td rowspan="6">Hack!</td>
-                <td rowspan="6">Hack!</td>
-                <td rowspan="6">Hack!</td>
+                <td rowspan="1">Intro by hub organiser</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:00</td>
+                <td rowspan="2">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679914800" data-timeformat="HH:mm z">11:00</td>
@@ -56,6 +57,9 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
             </tr>
             <tr>
                 <td data-timestamp="1679922000" data-timeformat="HH:mm z">13:00</td>
+                <td rowspan="2">Hack!</td>
+                <td rowspan="2">Hack!</td>
+                <td rowspan="2">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679925600" data-timeformat="HH:mm z">14:00</td>
