@@ -343,7 +343,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. Where non-file inputs are mandatory or needed to modify the command, they SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below. 
+1. Where non-file inputs are mandatory or needed to modify the command, they SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
 All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable.
 
@@ -515,30 +515,30 @@ process {
 
 2. Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g. parameters, flags etc).
 
-    - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
-    - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
-    - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
+   - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
+   - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
+   - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-        <details markdown="1">
-        <summary>Rationale</summary>
-        It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
+       <details markdown="1">
+       <summary>Rationale</summary>
+       It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
 
-        The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
+     The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
 
-        Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
-        </details>
+     Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+       </details>
 
-4. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
-5. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+4. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
-6. Optional outputs SHOULD be marked as optional:
+5. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-7. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+6. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
