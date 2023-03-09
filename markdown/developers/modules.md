@@ -343,7 +343,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. Where non-file inputs are mandatory or needed to modify the command, they should be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below. 
+1. Where non-file inputs are mandatory or needed to modify the command, they SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below. 
 
 All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable.
 
