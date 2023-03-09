@@ -24,11 +24,13 @@ Please note this is not a training event. More information about our community t
 
 Registration for the March 2023 nf-core hackathon is now OPEN! 🎉
 
-Please sign up [here](https://seqera.typeform.com/mar23hackathon) or in the widget below 👇
+You can sign up [here](https://seqera.typeform.com/mar23hackathon) or in the widget below 👇
+
+> Please note that registration for local sites will close on March 17. Registration for attending online will stay open until the event.
 
 <div data-tf-widget="x3rn8866" style="width:100%;height:500px;color:#FFFFFF;"></div>
 
-## Local events
+## Local sites
 
 We are trying something new! 🚀
 
