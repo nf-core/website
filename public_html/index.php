@@ -272,8 +272,8 @@ endif;
 
 
 <div class="container py-5 text-center lead" id="features">
-  <p>Nextflow is an incredibly powerful and flexible workflow language.</p>
-  <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
+  <p>Tree of Life production suite is designed to handle nature's diversity.</p>
+  <p><strong>sanger-tol</strong> pipelines use Nextflow DSL2 and adhere to strict nf-core guidelines.</p>
 </div>
 
 <div id="features" class="container homepage-feature-boxes pb-5">
@@ -297,7 +297,7 @@ endif;
           <div>
             <h5 class="card-title">CI Testing</h5>
             <p class="card-text">Every time a change is made to the pipeline code,
-              nf-core pipelines use continuous-integration testing to ensure that nothing has broken.</p>
+              sanger-tol pipelines use continuous-integration testing to ensure that nothing has broken.</p>
           </div>
           <img class="ms-3" height="90px" src="assets/img/github-actions.svg" />
         </div>
@@ -308,7 +308,7 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
-            <p class="card-text">nf-core pipelines use GitHub releases to tag stable versions of the code
+            <p class="card-text">sanger-tol pipelines use GitHub releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/releases.svg" />
@@ -336,8 +336,8 @@ endif;
             <p class="card-text">
               Pipelines follow best-practices to ensure maximum
               portability and reproducibility.
-              The large community makes the pipelines exceptionally
-              well tested and easy to run.
+              Scale and diversity in Tree of Life makes the pipelines 
+              exceptionally well tested and easy to run.
             </p>
           </div>
           <i class="fas fa-server fa-5x text-success ms-3"></i>
@@ -348,9 +348,9 @@ endif;
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Cloud-ready</h5>
-            <p class="card-text">Pipelines are tested on AWS after every release.
-              You can even browse results live on the website and use outputs for your own benchmarking.
+            <h5 class="card-title">Robust</h5>
+            <p class="card-text">Pipelines are tested on data from different parts of the tree of life.
+              sanger-tol pipelines are for all organisms not just model organisms.
             </p>
           </div>
           <img class="ms-3 hide-light" width="100px" src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services">
