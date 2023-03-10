@@ -259,11 +259,11 @@ endif;
     </div>
     <div>
       <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-        <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="60px" class="float-start me-3">
-        <a class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center" href="https://doi.org/10.1038/s41587-020-0439-x" target="_blank">
-          nf-core is published in Nature Biotechnology!
-          <span class="underline m-auto"><em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
-            <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ms-2"></span>
+        <img src="/assets/img/pnas.png" alt="PNAS" width="60px" class="float-start me-3">
+        <a class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center" href="https://doi.org/10.1073/pnas.2115642118" target="_blank">
+          Sequence locally, think globally: The Darwin Tree of Life Project
+          <span class="underline m-auto"><em>PNAS</em> <strong>119 (4)</strong> e2115642118 (2022).
+            <img src="/assets/img/OpenAccess.svg" alt="PNAS" height="20px" class="ms-2"></span>
         </a>
       </p>
     </div>
