@@ -384,7 +384,7 @@ endif;
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
             <div class='d-flex align-items-center'>
-              <p class="card-text">All pipelines and modules must be based on nf-core templates and be created using <code>nf-core</code> <a href="https://github.com/nf-core/tools">tools</a>.</p>
+              <p class="card-text">All pipelines and modules must be based on nf-core templates and be created using <a href="https://github.com/nf-core/tools">nf-core tools</a>.</p>
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
