@@ -435,13 +435,9 @@ endif;
     <div class="row">
       <div class="col-sm-6">
         <h2 id="get-started" class="text-white">Get started in minutes</h2>
-        <p class="text-white-50">Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
-        <p class="text-white-50">Most nf-core genomics pipelines come with built-in support for
-          <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;">AWS-iGenomes</a>,
-          with genome references for over 30 common species.
-        </p>
-        <p class="text-white-50">The nf-core companion tool makes it easy to list all available nf-core pipelines
-          and shows which are available locally. Local versions are checked against the latest available release.</p>
+        <p class="text-white-50">Nextflow lets you run sanger-tol pipelines on virtually any computing environment.</p>
+        <p class="text-white-50">All sanger-tol genomics pipelines come with built-in support for
+          <a href="https://github.com/nf-core/tools" target="_blank" style="white-space:nowrap;">nf-core tools</a>.</p>
       </div>
       <div class="col-sm-6">
         <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
@@ -451,17 +447,14 @@ endif;
 curl -s https://get.nextflow.io | bash
 mv nextflow ~/bin/
 
-<span class="text-white-50"># Launch the RNAseq pipeline</span>
-nextflow run nf-core/rnaseq \
+<span class="text-white-50"># Launch the readmapping pipeline</span>
+nextflow run sanger-tol/readmapping \
     --input samplesheet.csv \
-    --genome GRCh37 \
-    -profile docker
+    --fasta genome.fasta \
+    -profile singularity
 
 <span class="text-white-50"># Install nf-core tools</span>
 pip install nf-core
-
-<span class="text-white-50"># List all nf-core pipelines and show available updates</span>
-nf-core list
 </pre>
           </div>
         </div>
@@ -485,7 +478,7 @@ nf-core list
     </div>
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
-      <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
+      <p>If you're interested in contributing to sanger-tol, take a look at the developer documentation to see what's required.</p>
       <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
