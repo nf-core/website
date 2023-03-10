@@ -259,7 +259,7 @@ endif;
     </div>
     <div>
       <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-        <img src="/assets/img/pnas.png" alt="PNAS" width="60px" class="float-start me-3">
+        <img src="/assets/img/pnas-logo.png" alt="PNAS" width="60px" class="float-start me-3">
         <a class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center" href="https://doi.org/10.1073/pnas.2115642118" target="_blank">
           Sequence locally, think globally: The Darwin Tree of Life Project
           <span class="underline m-auto"><em>PNAS</em> <strong>119 (4)</strong> e2115642118 (2022).
