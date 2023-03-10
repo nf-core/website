@@ -415,18 +415,14 @@ endif;
     <div class="row videos-row">
       <div class="col-lg-6">
         <div class="ratio ratio-16x9 hidden-xs hidden-sm">
-          <iframe id="nf-core-video"  src="https://www.youtube.com/embed/gUM9acK25tQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="dtol-intro-video"  src="https://www.youtube.com/embed/aK1Ek39z4sA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="col-lg-6">
         <ul class="list-switch left video-chooser">
-          <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"> Introduction to nf-core <em>(1:01)</em></a></li>
-          <li><a href="https://youtu.be/cXBYusdjrc0" data-src="https://www.youtube.com/embed/cXBYusdjrc0"> Bytesize: How nf-core configs work <em>(15:00)</em></a></li>
-          <li><a href="https://youtu.be/FFTNVbdD5pQ" data-src="https://www.youtube.com/embed/FFTNVbdD5pQ"> Bytesize: Pipeline code walkthrough <em>(20:00)</em></a></li>
-          <li><a href="https://youtu.be/OvtCc855Vek" data-src="https://www.youtube.com/embed/OvtCc855Vek"> Tutorial: Running pipelines <em>(17:00)</em></a></li>
-          <li><a href="https://youtu.be/-GcuxoIpfOc" data-src="https://www.youtube.com/embed/-GcuxoIpfOc"> BovReg: A longer introduction to nf-core <em>(45:00)</em></a></li>
-          <li><a href="https://youtu.be/hCGuF9bA9ho" data-src="https://www.youtube.com/embed/hCGuF9bA9ho"> BovReg: nf-core pipelines <em>(60:00)</em></a></li>
-          <li><a href="https://youtu.be/lUJ1L-qDeXM" data-src="https://www.youtube.com/embed/lUJ1L-qDeXM"> BovReg: Developing with nf-core <em>(50:00)</em></a></li>
+          <li><a href="https://youtu.be/aK1Ek39z4sA" data-src="https://www.youtube.com/embed/aK1Ek39z4sA" class="active"> Introduction to Darwin Tree of Life <em>(0:44)</em></a></li>
+          <li><a href="https://youtu.be/Zort8tv7iRI" data-src="https://www.youtube.com/embed/Zort8tv7iRI"> Nextflow Summit: sanger-tol Production Engine <em>(14:57)</em></a></li>
+          <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ"> Introduction to nf-core <em>(1:01)</em></a></li>
         </ul>
       </div>
     </div>
