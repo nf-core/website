@@ -25,23 +25,19 @@ if (isset($subfooter) and $subfooter) {
           <img height="30px" src="/assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
           <img height="30px" src="/assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
         </a>
-        <small class="d-block mb-3">Making awesome workflows since 2018</small>
+        <small class="d-block mb-3">Decoding earth's diversity since 2019</small>
         <small class="d-flex mb-3">Supported by<div class="social-icons">
-            <a href="/about#czi-eoss">
-              <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
-            </a>,
-            <a href="/about#microsoft-azure">
-              <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" style="max-width: 50px">
+            <a href="/about#wellcome">
+              <img src="/assets/img/contributors-colour/Wellcome_Trust_logo.svg" alt="Wellcome" class="" style="max-width: 50px">
             </a>
             <span class="ms-1">and</span>
-            <a href="/about#aws">
-              <img src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services" class="hide-light" style="max-width: 50px">
-              <img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="hide-dark" style="max-width: 50px">
+            <a href="/about#sanger">
+              <img src="/assets/img/contributors-colour/sanger-alt.svg" alt="Sanger" class="hide-dark" style="max-width: 50px">
             </a>
           </div>
         </small>
         <small class="d-block mb-3">
-          See the source code for this website on GitHub: <a href="https://github.com/nf-core/nf-co.re" target="_blank">https://github.com/nf-core/nf-co.re</a>
+          See the source code for this website on GitHub: <a href="https://github.com/sanger-tol/nf-co.re" target="_blank">https://github.com/sanger-tol/nf-co.re</a>
         </small>
         <div class="d-md-flex d-print-none">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
@@ -71,19 +67,16 @@ if (isset($subfooter) and $subfooter) {
           </div>
 
           <div class="social-icons mb-3 d-print-none">
-            <a rel="me" href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip" data-bs-placement="bottom">
+            <a rel="me" href="https://sangertreeoflife.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/slack.svg" />
             </a>
-            <a rel="me" href="https://github.com/nf-core/" target="_blank" class="social-github" title="GitHub" data-bs-toggle="tooltip" data-bs-placement="bottom">
+            <a rel="me" href="https://github.com/sanger-tol/" target="_blank" class="social-github" title="GitHub" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/github.svg" />
             </a>
-            <a rel="me" href="https://twitter.com/nf_core" target="_blank" title="Twitter" data-bs-toggle="tooltip" data-bs-placement="bottom">
+            <a rel="me" href="https://twitter.com/sangertol" target="_blank" title="Twitter" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/twitter.svg" />
             </a>
-            <a rel="me" href="https://mstdn.science/@nf_core" target="_blank" title="Mastodon" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                <img src="/assets/img/mastodon.svg" />
-            </a>
-            <a rel="me" href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-bs-toggle="tooltip" data-bs-placement="bottom">
+            <a rel="me" href="https://www.youtube.com/@sangertreeoflife" target="_blank" title="YouTube" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/youtube.svg" />
             </a>
           </div>
@@ -94,39 +87,34 @@ if (isset($subfooter) and $subfooter) {
         <h5>Getting Started</h5>
         <ul class="list-unstyled">
           <li><a href="/pipelines">Available pipelines</a></li>
-          <li><a href="/modules">Available modules</a></li>
-          <li><a href="/tools">Helper tools</a></li>
-          <li><a href="/docs/usage/introduction">Getting started</a></li>
-          <li><a href="/docs/usage/installation">Installation</a></li>
-          <li><a href="/docs/usage/configuration">Pipeline configuration</a></li>
-          <li><a href="/docs/usage/offline">Running offline</a></li>
-          <li><a href="/docs/usage/usage_tutorials">Usage tutorials</a></li>
-          <li><a href="/docs/usage/reference_genomes">Reference genomes</a></li>
-          <li><a href="/docs/usage/data_management">Data Management</a></li>
-          <li><a href="/docs/usage/troubleshooting">Troubleshooting</a></li>
-          <li><a href="/docs/usage/nextflow">Nextflow resources</a></li>
+          <li><a href="https://nf-co.re/modules">nf-core modules</a></li>
+          <li><a href="https://nf-co.re/tools">nf-core tools</a></li>
+          <li><a href="https://nf-co.re/docs/usage/introduction">Getting started</a></li>
+          <li><a href="https://nf-co.re/docs/usage/installation">Installation</a></li>
+          <li><a href="https://nf-co.re/docs/usage/configuration">Pipeline configuration</a></li>
+          <li><a href="https://nf-co.re/docs/usage/offline">Running offline</a></li>
+          <li><a href="https://nf-co.re/docs/usage/usage_tutorials">Usage tutorials</a></li>
+          <li><a href="https://nf-co.re/docs/usage/data_management">Data Management</a></li>
+          <li><a href="https://nf-co.re/docs/usage/troubleshooting">Troubleshooting</a></li>
+          <li><a href="https://nf-co.re/docs/usage/nextflow">Nextflow resources</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-3 mb-3 d-print-none">
         <h5>For Authors</h5>
         <ul class="list-unstyled">
-          <li><a href="/docs/contributing/guidelines">Guidelines</a></li>
-          <li><a href="/docs/contributing/adding_pipelines">Adding a new pipeline</a></li>
-          <li><a href="/docs/contributing/modules">DSL2 modules</a></li>
-          <li><a href="/docs/contributing/subworkflows">DSL2 subworkflows</a></li>
-          <li><a href="/docs/contributing/release_checklist">Release checklist</a></li>
-          <li><a href="/docs/contributing/training_guide">Training guide</a></li>
-          <li><a href="/tools-docs">Lint error codes</a></li>
-          <li><a href="/docs/contributing/sync">Template synchronisation</a></li>
-          <li><a href="/docs/contributing/developer_tutorials">Developer tutorials</a></li>
-          <li><a href="/docs/contributing/editor_plugins">Code editor plugins</a></li>
-          <li><a href="/docs/contributing/design_guidelines">Graphic design guidelines</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/modules">DSL2 modules</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/subworkflows">DSL2 subworkflows</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/training_guide">Training guide</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/sync">Template synchronisation</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/developer_tutorials">Developer tutorials</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/editor_plugins">Code editor plugins</a></li>
+          <li><a href="https://nf-co.re/docs/contributing/design_guidelines">Graphic design guidelines</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">
         <h5>About nf-core</h5>
         <ul class="list-unstyled">
-          <li><a href="/about">About nf-core</a></li>
+          <li><a href="/about">About sanger-tol</a></li>
           <li><a href="/events">Events</a></li>
           <li><a href="/community">Community</a></li>
           <li><a href="/stats">Statistics</a></li>
