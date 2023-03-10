@@ -372,10 +372,10 @@ endif;
             <h5 class="card-title">Develop <u>with</u> the community</h5>
             <div class='d-flex align-items-center'>
               <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
-                to find collaborators and check that your pipeline is suitable for nf-core.</p>
+                to find collaborators and check that your pipeline is suitable for sanger-tol.</p>
               <i class="fad fa-people-carry fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
+            <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join sanger-tol</span></a>
           </div>
         </div>
       </div>
@@ -384,8 +384,7 @@ endif;
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
             <div class='d-flex align-items-center'>
-              <p class="card-text">All pipelines and modules must be based on our template and be created using <code>nf-core</code> <a href="/tools">tools</a>.
-                An automated sync keeps pipelines up to date.</p>
+              <p class="card-text">All pipelines and modules must be based on nf-core templates and be created using <code>nf-core</code> <a href="https://github.com/nf-core/tools">tools</a>.</p>
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
@@ -398,7 +397,7 @@ endif;
           <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
             <div class='d-flex align-items-center'>
-              <p class="card-text">We only allow one pipeline per data type / analysis type.
+              <p class="card-text">We only allow one pipeline per analysis type.
                 If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
               <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
             </div>
