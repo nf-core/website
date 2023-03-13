@@ -32,46 +32,46 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
             </thead>
             <tbody>
             <tr>
-                <td data-timestamp="1679905800" data-timeformat="HH:mm z">09:30</td>
+                <td data-timestamp="1679913000" data-timeformat="HH:mm z">09:30</td>
                 <td background-color:navy; rowspan="1">Registrations open</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
-                <td data-timestamp="1679907600" data-timeformat="HH:mm z">10:00</td>
+                <td data-timestamp="1679914800" data-timeformat="HH:mm z">10:00</td>
                 <td rowspan="1">Welcome by nf-core</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:15</td>
+                <td data-timestamp="1679915700" data-timeformat="HH:mm z">10:15</td>
                 <td rowspan="1">Hackathon introduction</td>
             </tr>
             <tr>
-                <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:30</td>
+                <td data-timestamp="1679916600" data-timeformat="HH:mm z">10:30</td>
                 <td rowspan="1">Welcome by Google</td>
             </tr>
             <tr>
-                <td data-timestamp="1679911200" data-timeformat="HH:mm z">11:00</td>
+                <td data-timestamp="1679918400" data-timeformat="HH:mm z">11:00</td>
                 <td rowspan="1">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679918400" data-timeformat="HH:mm z">13:00</td>
+                <td data-timestamp="1679925600" data-timeformat="HH:mm z">13:00</td>
                 <td rowspan="1">Lunch</td>
                 <td rowspan="1">Lunch</td>
                 <td rowspan="1">Lunch</td>
             </tr>
             <tr>
-                <td data-timestamp="1679922000" data-timeformat="HH:mm z">14:00</td>
+                <td data-timestamp="1679929200" data-timeformat="HH:mm z">14:00</td>
                 <td rowspan="2">Hack!</td>
                 <td rowspan="2">Hack!</td>
                 <td rowspan="1">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679929200"  data-timeformat="HH:mm z">15:30</td>
+                <td data-timestamp="1679934600"  data-timeformat="HH:mm z">15:30</td>
                 <td>Final wrap-up</td>
             </tr>
             <tr>
-                <td data-timestamp="1679925600"  data-timeformat="HH:mm z">17:00</td>
+                <td data-timestamp="1679940000"  data-timeformat="HH:mm z">17:00</td>
                 <td>Daily sync</td>
                 <td>Daily sync</td>
                 <td></td>
