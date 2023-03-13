@@ -71,7 +71,7 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
                 <td>Final wrap-up</td>
             </tr>
             <tr>
-                <td data-timestamp="1679929200"  data-timeformat="HH:mm z">17:00</td>
+                <td data-timestamp="1679925600"  data-timeformat="HH:mm z">17:00</td>
                 <td>Daily sync</td>
                 <td>Daily sync</td>
                 <td></td>
