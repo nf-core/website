@@ -14,8 +14,7 @@ location_latlng: [51.493721, -0.146830]
 
 Local event to be held at the [Google Academy, London](https://goo.gl/maps/4RH3qsYMRVnM65Bb9).
 
-Primary contact(s): [<i class="fab fa-slack"></i> Harshil Patel](https://nfcore.slack.com/team/UEB97FBN3)
-
+Primary contact(s): [<i class="fab fa-slack"></i> Harshil Patel](https://nfcore.slack.com/team/UEB97FBN3), [<i class="fab fa-slack"></i> Maxime Garcia](https://nfcore.slack.com/team/UE6D8290F), and [<i class="fab fa-slack"></i> Rob Syme](https://nfcore.slack.com/team/U02K1GP73DK)
 Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up.
 
 ## Local Schedule
