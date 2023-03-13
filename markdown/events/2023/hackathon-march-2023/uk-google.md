@@ -33,22 +33,22 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
             <tbody>
             <tr>
                 <td data-timestamp="1679905800" data-timeformat="HH:mm z">09:30</td>
-                <td background-color:navy; rowspan="1">Welcome and Setup</td>
+                <td background-color:navy; rowspan="1">Registrations open</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
                 <td data-timestamp="1679907600" data-timeformat="HH:mm z">10:00</td>
-                <td rowspan="1">Intro by nf-core</td>
+                <td rowspan="1">Welcome by nf-core</td>
                 <td rowspan="4">Hack!</td>
                 <td rowspan="4">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:15</td>
-                <td rowspan="1">Intro by Google</td>
+                <td rowspan="1">Hackathon introduction</td>
             </tr>
             <tr>
                 <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:30</td>
-                <td rowspan="1">Hackathon intro</td>
+                <td rowspan="1">Welcome by Google</td>
             </tr>
             <tr>
                 <td data-timestamp="1679911200" data-timeformat="HH:mm z">11:00</td>
