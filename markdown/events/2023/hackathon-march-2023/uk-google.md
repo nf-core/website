@@ -33,14 +33,18 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
             <tbody>
             <tr>
                 <td data-timestamp="1679905800" data-timeformat="HH:mm z">09:30</td>
-                <td background-color:navy; rowspan="1">Registations open</td>
+                <td background-color:navy; rowspan="1">Welcome and Setup</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
                 <td data-timestamp="1679907600" data-timeformat="HH:mm z">10:00</td>
+                <td rowspan="1">Intro by nf-core</td>
+                <td rowspan="3">Hack!</td>
+                <td rowspan="3">Hack!</td>
+            </tr>
+            <tr>
+                <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:15</td>
                 <td rowspan="1">Intro by Google</td>
-                <td rowspan="2">Hack!</td>
-                <td rowspan="2">Hack!</td>
             </tr>
             <tr>
                 <td data-timestamp="1679911200" data-timeformat="HH:mm z">10:30</td>
@@ -59,7 +63,7 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
                 <td rowspan="1">Hack!</td>
             </tr>
             <tr>
-                <td data-timestamp="1679929200"  data-timeformat="HH:mm z">16:00</td>
+                <td data-timestamp="1679929200"  data-timeformat="HH:mm z">15:30</td>
                 <td>Final wrap-up</td>
             </tr>
             <tr>
