@@ -78,7 +78,7 @@ Session 4 will show you how to configure and deploy Nextflow pipelines. Strategi
 
 ## Asking questions
 
-Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can.
+Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
 - [#mar23-training-english](https://nfcore.slack.com/archives/C04RU8PCKNK)
 - [#mar23-training-french](https://nfcore.slack.com/archives/C04S26Q4Z46)
