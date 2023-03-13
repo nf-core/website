@@ -20,5 +20,5 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core/hgtseq
 
-This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting us the nf-core pipeline hgtseq. Nf-core/hgtseq is a bioinformatics best-practice analysis pipeline built to investigate horizontal gene transfer from NGS data.
+This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting us the nf-core pipeline hgtseq. nf-core/hgtseq is a bioinformatics best-practice analysis pipeline built to investigate horizontal gene transfer from NGS data.
 It uses metagenomic classification of paired-read alignments against a reference genome to identify the presence of non-host microbial sequences within read pairs, and to infer potential integration sites into the host genome.
