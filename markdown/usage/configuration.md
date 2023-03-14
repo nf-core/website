@@ -194,8 +194,6 @@ Once you've written the [config file](#custom-configuration-files), and you can 
 > [cpus](https://www.nextflow.io/docs/latest/process.html#cpus) (int) and
 > [time](https://www.nextflow.io/docs/latest/process.html#time).
 
-
-
 If you think that the defaults in the pipeline are way off, please the pipeline developers know either on Slack or via a GitHub issue on the pipeline repository! Then we can adjust the defaults to the benefit of all pipeline users.
 
 ## Updating Tool Versions
@@ -204,44 +202,44 @@ The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementatio
 
 If for some reason you need to use a different version of a particular tool with the pipeline then you just need to identify the `process` name and override the Nextflow `container` or `conda` definition for that process using the `withName` declaration.
 
-For example, the [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline uses a tool called Pangolin that updates an internal database of COVID-19 lineages  quite frequently. It doesn't make sense to re-release the nf-core/viralrecon everytime a new version of Pangolin has been released.
+For example, the [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline uses a tool called Pangolin that updates an internal database of COVID-19 lineages quite frequently. It doesn't make sense to re-release the nf-core/viralrecon everytime a new version of Pangolin has been released.
 
 In this case, a user can override the default container used by the pipeline by creating a custom config file and passing it as a command-line argument via -c custom.config.
 
 1. Check the default version used by the pipeline in the module file for the tool under `modules/nf-core/` directory of the pipeline. E.g. for [Pangolin](https://github.com/nf-core/viralrecon/blob/a85d5969f9025409e3618d6c280ef15ce417df65/modules/nf-core/software/pangolin/main.nf#L14-L19)
 2. Find the latest version of the Biocontainer available on [Quay.io](https://quay.io/repository/biocontainers/pangolin?tag=latest&tab=tags) for Docker or [Galaxy Project](https://depot.galaxyproject.org/singularity/) for Singularity
-    - Note the container version tag is identical for both container systems, but must include the 'build' ID (e.g.`--pyhdfd78af_1`)
+   - Note the container version tag is identical for both container systems, but must include the 'build' ID (e.g.`--pyhdfd78af_1`)
 3. Create the custom config accordingly:
 
-    - For Docker:
+   - For Docker:
 
-        ```nextflow
-        process {
-            withName: PANGOLIN {
-                container = 'quay.io/biocontainers/pangolin:3.1.17--pyhdfd78af_1'
-            }
-        }
-        ```
+     ```nextflow
+     process {
+         withName: PANGOLIN {
+             container = 'quay.io/biocontainers/pangolin:3.1.17--pyhdfd78af_1'
+         }
+     }
+     ```
 
-    - For Singularity:
+   - For Singularity:
 
-        ```nextflow
-        process {
-            withName: PANGOLIN {
-                container = 'https://depot.galaxyproject.org/singularity/pangolin:3.1.17--pyhdfd78af_1'
-            }
-        }
-        ```
+     ```nextflow
+     process {
+         withName: PANGOLIN {
+             container = 'https://depot.galaxyproject.org/singularity/pangolin:3.1.17--pyhdfd78af_1'
+         }
+     }
+     ```
 
-    - For Conda (note you must check against e.g. [bioconda](https://bioconda.github.io), and this does not contain the build tag):
+   - For Conda (note you must check against e.g. [bioconda](https://bioconda.github.io), and this does not contain the build tag):
 
-        ```nextflow
-        process {
-            withName: PANGOLIN {
-                conda = 'bioconda::pangolin=3.1.17'
-            }
-        }
-        ```
+     ```nextflow
+     process {
+         withName: PANGOLIN {
+             conda = 'bioconda::pangolin=3.1.17'
+         }
+     }
+     ```
 
 > **:warning: It is important to note updating containers comes with no warranty by the pipeline developers! If the update tool in the container has a major changes, this may break the pipeline**
 
@@ -259,7 +257,7 @@ However if this is not listed, there are two main places that a tool can have a 
 
 Most arguments (both mandatory or optional) are defined in the `conf/modules.conf` file in the pipeline code under the `ext.args` entry. For example, you can see the default arguments used by the `SORTMERNA` step of the nf-core/rnaseq pipeline [here](https://github.com/nf-core/rnaseq/blob/6e1e448f535ccf34d11cc691bb241cfd6e60a647/conf/modules.config#LL299).
 
-> ℹ️ Arguments specified in `ext.args`  are then inserted into the module itself via the `$args` variable in the module's bash code
+> ℹ️ Arguments specified in `ext.args` are then inserted into the module itself via the `$args` variable in the module's bash code
 
 In some cases _some_ modules have mandatory information for a tool for it to be executed, and these normally equate to 'mandatory' arguments. You can see the argument is used in the pipeline itself looking in the `script` section given module code itself, as in the pipeline's GitHub repository under `modules/<nf-core/local>/<tool>/main.nf`.
 
