@@ -19,7 +19,7 @@ The core team members who administer the nf-core project are listed below:
 - [@jfy133](https://github.com/jfy133): James A. Fellows Yates
 - [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
 - [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
-- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+- [@maxulysse](https://github.com/maxulysse): Maxime U. Garcia
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
@@ -27,7 +27,7 @@ We regularly review core team members - if you'd like to be involved, drop us a 
 
 ### Alumni
 
-The following former members of the nf-core team have earned their place in
+The following former members of the nf-core core team have earned their place in
 the nf-core alumni hall of fame:
 
 - [@alneberg](https://github.com/alneberg): Johannes Alneberg
@@ -37,6 +37,39 @@ the nf-core alumni hall of fame:
 - [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 - [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
+## Maintainers team {#maintainers}
+
+nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
+The maintainer's team consist of dedicated and highly active members of the community, that take official additional roles in managing nf-core repositories in collaboration with the wider nf-core community.
+
+The current members of the maintainer's team in 2023 are: <!-- TODO: check if year is up to date -->
+
+- [@adamrtalbot](https://github.com/adamrtalbot): Adam Talbot (Nonacus)
+- [@asp8200](https://github.com/asp8200): Anders Sune Pedersen (Danish National Genome Center)
+- [@jemten](https://github.com/jemten): Anders Jemt (Science for Life Laboratory)
+- [@erikrikarddaniel](https://github.com/erikrikarddaniel): Daniel Lundin (Linnaeus University)
+- [@Emiller88](https://github.com/Emiller88): Edmund Miller (University of Texas at Dallas & Element Biosciences)
+- [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@drpatelh](https://github.com/drpatelh): Harshil Patel (Seqera Labs)
+- [@jfy133](https://github.com/jfy133): James A. Fellows Yates (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology)
+- [@jasmezz](https://github.com/jasmezz): Jasmin Frangenberg (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute)
+- [@pinin4fjords](https://github.com/pinin4fjords): Jon Manning (Healx Ltd)
+- [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco (Centre for Genomic Regulation)
+- [@louperelo](https://github.com/louperelo): Louisa Perelo (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@matthdsm](https://github.com/matthdsm): Matthias De Smet (Center For Medical Genetics Ghent)
+- [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber (Science for Life Laboratory)
+- [@maxulysse](https://github.com/maxulysse): Maxime U. Garcia (Seqera Labs)
+- [@Midnighter](https://github.com/Midnighter): Moritz E. Beber (Unseen Bio ApS)
+- [@nvnieuwk](https://github.com/nvnieuwk): Nicolas Vannieuwkerke (Center For Medical Genetics Ghent)
+- [@ramprasadn](https://github.com/ramprasadn): Ramprasad Neethiraj (Science for Life Laboratory)
+- [@robsyme](https://github.com/robsyme): Rob Syme (Seqera Labs)
+- [@sppearce](https://github.com/sppearce): Simon Pearce (Cancer Research UK Manchester Institute)
+- [@sofstam](https://github.com/sofstam): Sofia Stamouli (Karolinska Institute & Karolinska University Hospital)
+
+We thank all the institutions and companies of the maintainers team for their support of nf-core.
+
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
@@ -45,6 +78,16 @@ This team includes all of the `@core-team` mentioned above, but the people in ch
 - [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
+
+## Safety team {#safety}
+
+The safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare, and members are not a part of the core team.
+
+The current safety team in 2023 are:
+
+- [@ctuni](https://t.co/mQInuSXc5R) Cris Tuñí
+- [@heuerm](https://github.com/heuermh) Michael Heuer
+- [@snafees](https://github.com/snafees/) Saba Nafees
 
 ## Financial Support
 
