@@ -70,7 +70,7 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
 
 ## Organisational Information
 
-MPI-EVA has an in-house cafeteria for lunch, and accepts both EC or credit card. Cash is **no**t possible!
+MPI-EVA has an in-house cafeteria for lunch, and accepts both EC or credit card. Cash is **not** possible!
 
 We will also optionally arrange a social dinner in one of the evenings if there is interest among the attendees.
 
