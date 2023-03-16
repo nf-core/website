@@ -65,7 +65,6 @@ BMRI meeting room **1072**, close to the stairs on the ground floor.
 </tbody>
 </table>
 
-
 ## Special interest groups
 
 The goal of the hackathon is to speed up the learning and familiarization curve when it comes to reproducible research using Nextflow, nf-core community as well as the available computing infrastructure for computing.
