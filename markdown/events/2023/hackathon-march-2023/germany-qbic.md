@@ -33,9 +33,9 @@ Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcor
             <tbody>
             <tr>
                 <td data-timestamp="1679900400" data-timeformat="HH:mm z">09:00</td>
-                <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02</td>
-                <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02</td>
-                <td background-color:navy; rowspan="1">Arrival:<br>B-Bau 7E02</td>
+                <td background-color:navy; rowspan="1">Arrival:<br>H-Bau H2C14</td>
+                <td background-color:navy; rowspan="1">Arrival:<br>H-Bau H2C14</td>
+                <td background-color:navy; rowspan="1">Arrival:<br>H-Bau H2C14</td>
             </tr>
             <tr>
                 <td data-timestamp="1679902200" data-timeformat="HH:mm z">09:30</td>
@@ -93,9 +93,12 @@ We will also arrange a social dinner on Monday.
 We will meet on all days at:
 
 ```
-Auf der Morgenstelle 10
+H-Bau (CZI)
+Auf der Morgenstelle 6
 72076 Tübingen
 ```
+
+[Morgenstelle Campus map](https://uni-tuebingen.de/en/einrichtungen/personalvertretungen-beratung-beauftragte/lageplaene/karte-a-morgenstelle/)
 
 ## Acknowledgments
 
