@@ -8,21 +8,17 @@ end_date: '2023-03-29'
 end_time: '16:00 SAST'
 location_name: Tygerberg campus, Stellenbosch University
 address: https://www.sun.ac.za/english/faculty/healthsciences/
-location_url: 
+location_url:
 # location_latlng: [xxx, xxx]
 ---
-
 
 Local event to be held at the BMRI building, Tygerberg Campus, University of Stellenbosch.
 
 Primary contacts: [<i class="fab fa-slack"></i> Abhinav Sharma](https://nfcore.slack.com/team/U01E6QW86R1) ([abhinavsharma@sun.ac.za](mailto:abhinavsharma@sun.ac.za)).
 
-
-
-## Venue 
+## Venue
 
 BMRI meeting room **1072**, close to the stairs on the ground floor.
-
 
 ## Schedule
 
@@ -68,7 +64,7 @@ BMRI meeting room **1072**, close to the stairs on the ground floor.
   </tr>
 </tbody>
 </table>
- 
+
 
 ## Special interest groups
 
@@ -76,9 +72,9 @@ The goal of the hackathon is to speed up the learning and familiarization curve 
 
 We are planning to work in different special interest groups (SIG) so that each group can focus on aspects, important for them.
 
-Here are some of the SIGs 
+Here are some of the SIGs
 
-1. **Reproducible research** : A group to understand and try to reproduce methodology of research papers using principles of reproducible research 
+1. **Reproducible research** : A group to understand and try to reproduce methodology of research papers using principles of reproducible research
 
 2. **Nextflow and nf-core best practices** : Discuss or learn about anything related to Nextflow and nf-core.
 
@@ -86,13 +82,8 @@ Here are some of the SIGs
 
 4. **Your idea!** - Yes, please feel free to suggest any interest groups which you feel we have missed.
 
-
-
 ## Campus map
 
 BMRI building (formerly Fisan building)
 
 https://www.sun.ac.za/english/welcome/Documents/Medies%20kaart.pdf
-
-
- 
