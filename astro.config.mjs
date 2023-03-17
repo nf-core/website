@@ -19,6 +19,7 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import { BUNDLED_LANGUAGES } from 'shiki';
 
+
 BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     if (lang.id === 'groovy') {
         lang.aliases = ['nextflow', 'nf'];
@@ -28,7 +29,7 @@ BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://nf-co.re/',
+    site: 'https://deploy-preview-1652--nf-core.netlify.app/', // TODO: switch back to 'https://nf-co.re/'
     output: 'server',
     adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
