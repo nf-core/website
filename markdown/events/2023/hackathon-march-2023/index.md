@@ -95,6 +95,7 @@ The documentation group will focus on all things documentation related, from pip
 
 #### Group leaders
 
+- Abhinav Sharma
 - Marcel Ribeiro-Dantas,
 - Franziska Bonath
 ### Infrastructure
