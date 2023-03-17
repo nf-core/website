@@ -2,10 +2,11 @@
 import { h } from 'hastscript';
 import { visit } from 'unist-util-visit';
 
+
 const acceptableCalloutTypes = {
   note: {
     title: 'Note',
-    id: 'note',
+    id: 'secondary',
     svg: 'M11 9h2V7h-2m1 13c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m-1 15h2v-6h-2v6Z',
   },
   info: {
@@ -44,7 +45,7 @@ export default function calloutsPlugin() {
         const tagName = node.type === 'textDirective' ? 'span' : 'div';
         data.hName = tagName;
         data.hProperties = h(tagName, {
-          class: `admonition admonition-${boxInfo.id} rounded rounded-top-3 border border-${boxInfo.id} mb-4 bg-blend-multiply`, // rounded-top-3 is needed because otherwise .title shows a weird border artifact.
+          class: `admonition admonition-${boxInfo.id} mb-4`,
         }).properties;
 
         // Add svg icon
@@ -76,7 +77,7 @@ export default function calloutsPlugin() {
         const iconWrapperData = iconWrapper.data || (iconWrapper.data = {});
         iconWrapperData.hName = 'div';
         iconWrapperData.hProperties = h('div', {
-          class: `title bg-${boxInfo.id} text-white fw-bold px-3 pt-2 pb-2 d-flex align-items-center rounded-top`, // rounded-top is needed because for some reason it is not contained by the rounded border for .admonition.
+          class: `title text-bg-${boxInfo.id} fw-bold px-3 py-2 d-flex align-items-center rounded-top-1`, // rounded-top is needed because for some reason it is not contained by the rounded border for .admonition.
         }).properties;
         iconWrapper.children = [svg, title];
 
@@ -92,7 +93,7 @@ export default function calloutsPlugin() {
         const wrapperData = contentWrapper.data || (contentWrapper.data = {});
         wrapperData.hName = 'div';
         wrapperData.hProperties = h('div', {
-          class: `admonition-body bg-${boxInfo.id}-subtle rounded text-${boxInfo.id}-emphasis`,
+          class: `admonition-body alert alert-${boxInfo.id} p-0 rounded-1 rounded-top-2`, // rounded-top-2 is needed because otherwise .title shows a weird border artifact.
         }).properties;
         contentWrapper.children = [iconWrapper, contentColWrapper];
         node.children = [contentWrapper];

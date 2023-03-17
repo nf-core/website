@@ -1063,20 +1063,12 @@ Launch Page
   .admonition-body svg {
     width: 1.5rem;
     height: 1.5rem;
-    fill: $white;
+    fill: currentColor;
   }
   .title {
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.9rem;
   }
-  &.admonition-note {
-    border-color: $secondary;
-    background-color: $secondary-bg-subtle;
-    color: var(--secondary-emphasis-color);
-    .title {
-      color: $white;
-      background-color: $secondary;
-    }
-  }
+
 
 }
 
