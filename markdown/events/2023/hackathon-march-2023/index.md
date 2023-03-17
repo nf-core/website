@@ -85,7 +85,7 @@ There will be a separate tab for each group that will have a list of relevant is
 
 #### AMER Group Leaders
 
-- Marcel Ribeiro-Dantas,
+- Marcel Ribeiro-Dantas
 
 ### Documentation
 
@@ -95,7 +95,7 @@ The documentation group will focus on all things documentation related, from pip
 
 #### Group leaders
 
-- Abhinav Sharma
+- Abhinav Sharma,
 - Marcel Ribeiro-Dantas,
 - Franziska Bonath
 ### Infrastructure
@@ -126,8 +126,8 @@ The modules group welcomes anyone who wants to work on current or new [nf-core/m
 
 #### Group leaders
 
-- Maxime Garcia
-- Harshil Patel
+- Maxime Garcia,
+- Harshil Patel,
 - Louisa Perelo
 ### Subworkflows
 
