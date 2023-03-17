@@ -1,5 +1,5 @@
-// https://astro.build/config
 import calloutsPlugin from './bin/remark-callouts.js';
+import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
 import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
@@ -19,7 +19,6 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import { BUNDLED_LANGUAGES } from 'shiki';
 
-
 BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     if (lang.id === 'groovy') {
         lang.aliases = ['nextflow', 'nf'];
@@ -30,6 +29,8 @@ BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
+    output: 'server',
+    adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
     vite: {
         plugins: [yaml()],
