@@ -16,6 +16,7 @@
         "build-component-json": "node bin/components.json.js"
     },
     "dependencies": {
+        "@astrojs/netlify": "^2.2.0",
         "@astrojs/partytown": "^1.1.1",
         "@astrojs/prefetch": "^0.2.1",
         "@astrojs/rss": "^2.3.0",
@@ -53,8 +54,12 @@
         "remark-directive": "^2.0.1",
         "remark-emoji": "^3.1.1",
         "remark-gfm": "^3.0.1",
+        "satori": "^0.4.3",
+        "satori-html": "^0.3.2",
+        "sharp": "^0.31.3",
         "svelte": "^3.57.0",
-        "yaml": "^2.2.1"
+        "yaml": "^2.2.1",
+        "yoga-wasm-web": "^0.3.3"
     },
     "devDependencies": {
         "@rollup/plugin-yaml": "^4.0.1",
