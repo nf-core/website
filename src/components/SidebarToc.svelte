@@ -20,7 +20,7 @@
     <div class="d-none d-md-inline">
         <strong class="h6 my-2 text-body">On this page</strong>
         <!-- <hr class="my-1" /> -->
-        <nav id="TableOfContents d-none d-md-flex flex-column">
+        <nav id="TableOfContents" class="d-none d-md-flex flex-column">
             <ul class="mb-0 mt-1">
                 {#each headings as heading (heading)}
                     <li
