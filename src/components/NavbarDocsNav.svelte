@@ -31,11 +31,14 @@
 {/if}
 
 <style lang="scss">
+    @import '../styles/_variables.scss';
     header.small {
         margin-top: 3rem;
     }
-    :global(body:has(.docs-nav) .content) {
-        padding-top: 0;
+    @include media-breakpoint-down(md) {
+        :global(body:has(.docs-nav) .content) {
+            padding-top: 0;
+        }
     }
     button svg {
         width: 1.5rem;
