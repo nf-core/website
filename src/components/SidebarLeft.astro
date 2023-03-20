@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+
+let docs = await getCollection('docs');
+let usageDocs = [];
+let developmentDocs = [];
+
+docs = docs.filter((doc) => {
+    return doc.slug.split('/').length === 2;
+});
+docs.map((doc) => {
+    if (doc.slug.startsWith('usage/')) {
+        usageDocs.push(doc);
+    }
+    if (doc.slug.startsWith('development/')) {
+        developmentDocs.push(doc);
+    }
+});
+---
+
+<div class="nav sticky-top-under">
+    <div class="d-none d-md-inline">
+        <strong>Usage</strong>
+        <ul class="list-unstyled">
+            {
+                usageDocs.map((doc) => {
+                    return (
+                        <li
+                            class:list={[
+                                'mt-2 w-100',
+                                {
+                                    active: Astro.url.pathname === '/docs/' + doc.slug,
+                                },
+                            ]}
+                        >
+                            <a
+                                class:list={[
+                                    'text-decoration-none p-1',
+                                    {
+                                        'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                    },
+                                ]}
+                                href={'/docs/' + doc.slug}
+                            >
+                                {doc.data.title}
+                            </a>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+        <strong>Contributing</strong>
+        <ul class="list-unstyled">
+            {
+                developmentDocs.map((doc) => {
+                    return (
+                        <li
+                            class:list={[
+                                'mt-2 w-100',
+                                {
+                                    active: Astro.url.pathname === '/docs/' + doc.slug,
+                                },
+                            ]}
+                        >
+                            <a
+                                class:list={[
+                                    'text-decoration-none p-1',
+                                    {
+                                        'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                    },
+                                ]}
+                                href={'/docs/' + doc.slug}
+                            >
+                                {doc.data.title}
+                            </a>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    </div>
+</div>
+
+<style lang="scss">
+    @import 'src/styles/_variables.scss';
+    .nav {
+        overflow-y: auto;
+        max-height: calc(100vh - 4rem);
+    }
+    .sticky-top-under {
+        top: 4rem;
+        position: sticky;
+    }
+    li {
+        font-size: 0.9rem;
+    }
+
+    li.active {
+        background-color: transparentize($success, 0.75);
+        a {
+            color: $green-800 !important;
+        }
+    }
+
+    :global([data-bs-theme='dark']) {
+        li.active {
+            background-color: transparentize($success-dark, 0.5);
+            & a {
+                color: $gray-200 !important;
+            }
+        }
+    }
+</style>
