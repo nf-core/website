@@ -61,7 +61,7 @@
         max-height: calc(100vh - 40rem);
     }
     .sticky-top-under {
-        top: 3.5rem;
+        top: 4rem;
         position: sticky;
     }
 
