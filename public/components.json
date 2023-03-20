@@ -12064,7 +12064,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -12186,7 +12186,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -12257,7 +12257,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -16581,7 +16581,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "smrnaseq",
@@ -22861,7 +22861,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "smrnaseq",
@@ -32082,7 +32082,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -34182,7 +34182,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "taxprofiler",
@@ -38950,7 +38950,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -39057,7 +39057,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -47803,7 +47803,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "smrnaseq",
@@ -66650,7 +66650,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.1.0"
+          "version": "2.2.0"
         }
       ]
     },
@@ -70342,7 +70342,13 @@
           "@kbattenb",
           "@tomkellygenetics"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scrnaseq",
+          "version": "2.2.0"
+        }
+      ]
     },
     {
       "name": "untar",
@@ -75756,10 +75762,17 @@
             }
           },
           {
-            "bam": {
+            "input": {
               "type": "file",
               "description": "BAM/CRAM/SAM file",
               "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "input_index": {
+              "type": "file",
+              "description": "BAM/CRAM index file",
+              "pattern": "*.{bai,crai}"
             }
           }
         ],
