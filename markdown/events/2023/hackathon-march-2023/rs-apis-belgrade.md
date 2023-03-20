@@ -29,8 +29,8 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
                 <th>Tue. 28 Mar., 2023</th>
                 <th>Wed. 29 Mar., 2023</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             <tr>
                 <td data-timestamp="1679900400" data-timeformat="HH:mm z">09:00 CET</td>
                 <td style="color: pearl; background-color:navy;" rowspan="1">Local Welcome and Setup</td>
