@@ -1,0 +1,51 @@
+---
+// Fetch the config.yml that has section titles and order of pages
+import docs_nav from '../../../MultiQC/docs/core/config.yaml';
+
+const sections = [];
+const all_docs = await Astro.glob('../../../MultiQC/docs/core/**/*.md');
+docs_nav['nav'].forEach((section) => {
+    let pages = [];
+    Object.values(section)[0].forEach((filename) => {
+        var url = '/docs/' + filename.replace(/\.md$/, '').replace(/index$/, '');
+        var filtered = all_docs.filter(function (el) {
+            return el.file.endsWith('docs/core/' + filename);
+        });
+        pages.push([url, filtered[0]]);
+    });
+    sections.push({ section: section, pages: pages });
+});
+---
+
+{
+    sections.map((section) => (
+        <section class="mb-6">
+            <h5 class="mb-2 font-semibold">{Object.keys(section.section)[0]}</h5>
+            <ul class="">
+                {section.pages.map((page) => (
+                    <li class="ml-1 text-gray-400">
+                        <a
+                            href={page[0]}
+                            class:list={[
+                                'block',
+                                'border-l-2',
+                                'border-gray-700',
+                                'hover:text-blue-600',
+                                'hover:border-blue-600',
+                                'pl-2',
+                                'py-0.5',
+                                'text-xs',
+                                {
+                                    'font-semibold border-l-blue-600 hover:border-l-blue-600 text-blue-600 hover:text-blue-600':
+                                        Astro.url.pathname == page[0],
+                                },
+                            ]}
+                        >
+                            {page[1].frontmatter.title}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    ))
+}

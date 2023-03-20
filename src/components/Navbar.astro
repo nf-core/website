@@ -1,12 +1,16 @@
 ---
 import EventIndicator from './EventIndicator.svelte';
 import NavbarToc from './NavbarToc.svelte';
+import NavbarDocsNav from '@components/NavbarDocsNav.svelte';
+import NavbarDocsNavTitle from '@components/NavbarDocsNavTitle.astro';
+import NavbarDocsNavMenu from '@components/NavbarDocsNavMenu.astro';
 
 export interface Props {
     navTocHeadings?: object[];
+    title?: string;
 }
 
-const { navTocHeadings = [] } = Astro.props;
+const { navTocHeadings = [], title } = Astro.props;
 
 const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
 const NfCoreLogo = '/images/logos/nf-core-logo.svg';
@@ -84,6 +88,14 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
         </div>
     </div>
 </nav>
+{
+    Astro.url.pathname.includes('/docs/') && (
+        <NavbarDocsNav client:load>
+            <NavbarDocsNavTitle slot="title" title={title} />
+            <NavbarDocsNavMenu slot="menu" />
+        </NavbarDocsNav>
+    )
+}
 
 <style lang="scss">
     @import '../styles/_variables.scss';
