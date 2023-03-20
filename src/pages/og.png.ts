@@ -29,7 +29,7 @@ export const get: APIRoute = async ({ params, request }) => {
    "
    >
    <div style="display:flex; height:50%; padding-top:10rem;">
-  <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/master/public_html/assets/img/logo/nf-core-logo-darkbg.svg" width="489" height="130"/>
+  <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/master/public_html/assets/img/logo/nf-core-logo-darkbg.png" width="489" height="130"/>
 
 </div>
 <span style="font-size: 24px;text-align:center; padding-bottom:10rem">
@@ -57,7 +57,7 @@ A community effort to collect a curated set of analysis pipelines built using Ne
     font-weight: 500;
   }
 </style>`;
-    const imageOptions = { site: request.url, width: 1200, height: 630, debug: false };
+    const imageOptions = { site: request.url, width: 1200, height: 630, debug: true };
     const jsx = html(html_string);
     const buffer = await generateImage(jsx, imageOptions);
 
