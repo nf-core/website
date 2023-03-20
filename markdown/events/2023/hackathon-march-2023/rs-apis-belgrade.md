@@ -66,7 +66,7 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
                 <td>Hack!</td>
                 <td>End of hack day!</td>
             </tr>
-	    <tr>
+	        <tr>
                 <td data-timestamp="1679936400" data-timeformat="HH:mm z">17:00 CET</td>
                 <td>End of hack day!</td>
                 <td>End of hack day!</td>
