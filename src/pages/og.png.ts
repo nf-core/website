@@ -32,7 +32,7 @@ export const get: APIRoute = async ({ params, request }) => {
   <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/master/public_html/assets/img/logo/nf-core-logo-darkbg.png" width="489" height="130"/>
 
 </div>
-<span style="font-size: 24px;text-align:center; padding-bottom:10rem">
+<span style="font-size: 32px;text-align:center; padding-bottom:10rem">
 A community effort to collect a curated set of analysis pipelines built using Nextflow.
 </span>
   <div style="display:flex;

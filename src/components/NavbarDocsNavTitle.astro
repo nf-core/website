@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon';
+
+// Fetch the config.yml that has section titles and order of pages
+import docs_nav from '../../../MultiQC/docs/core/config.yaml';
+
+export interface Props {
+    title?: string;
+}
+
+const { title } = Astro.props;
+
+// Figure out the current section
+var current_section = '';
+docs_nav['nav'].forEach((section) => {
+    Object.values(section)[0].forEach((filename) => {
+        var url = '/docs/' + filename.replace(/\.md$/, '').replace(/index$/, '');
+        if (Astro.url.pathname.replace(/\/$/, '') == url.replace(/\/$/, '')) {
+            current_section = Object.keys(section)[0];
+        }
+    });
+});
+---
+
+{current_section}
+<i class="fa fa-chevron-right"></i>
+{title}
