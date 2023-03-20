@@ -20,6 +20,14 @@ We will do our best to support people in all time zones. :earth_americas: :earth
 
 Please note this is not a training event. More information about our community training event, being held March 13-16, 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
 
+The hackathon is being held in a virtual venue on the platform Gather. If you have never used Gather before we have [a bytesize video](https://nf-co.re/events/2022/bytesize-37-gathertown) from the March 2022 hackathon that will help you to get started.
+
+To join, you will need to follow these steps:
+1. Follow [this link](https://app.gather.town/app/br78S294XBCL487A/nf-core-hackathon) to find the Gather space. Please note that the hackathon space will not open until the event.
+2. Enter the email address you used to register for the hackathon. This is the same address from which you received this email
+3. Check your email for a one-time code and enter it into the Gather window
+4. Enter the space and enjoy the hackathon!  
+
 ## Registration
 
 Registration for the March 2023 nf-core hackathon is now OPEN! 🎉
@@ -120,7 +128,7 @@ However, if you can't make it, these will be recorded and can be viewed afterwar
             <tr>
                 <td data-timestamp="1679875200" data-timeformat="HH:mm z">02:00</td>
                 <td background-color:navy; rowspan="8"></td>
-                <td background-color:navy; rowspan="14">Hack!</td>
+                <td background-color:navy; rowspan="13">Hack!</td>
                 <td background-color:navy; rowspan="14">Hack!</td>
             </tr>
             <tr>
@@ -163,6 +171,7 @@ However, if you can't make it, these will be recorded and can be viewed afterwar
             </tr>
             <tr>
                 <td data-timestamp="1679922000" data-timeformat="HH:mm z">15:00</td>
+                <td>Online Quiz<br>Location: Lecture Theatre</td>
             </tr>
             <tr>
                 <td data-timestamp="1679925600"  data-timeformat="HH:mm z">16:00</td>
@@ -202,9 +211,14 @@ _Please note that this is a preliminary schedule that may be subject to change._
 We will be a lot of people working in parallel during this hackathon, so to stay organized we have a recommended workflow:
 
 1. :speech_balloon: Chat with your group (on slack or gather town) to get an overview of what is going on.
-2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project members (channels will be made available closer to the event).
-3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board (the board will be made available closer to the event).
-4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time).
+2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project members.
+  -  [Documentation channel](https://nfcore.slack.com/archives/C04UGQXUK2N)
+  -  [Infrastructure channel](https://nfcore.slack.com/archives/C04V6FR8LN4)
+  -  [Pipelines channel](https://nfcore.slack.com/archives/C04UK9FMKN0)
+  -  [Modules channel](https://nfcore.slack.com/archives/C04UA7FFWES)
+  -  [Subworkflows channel](https://nfcore.slack.com/archives/C04UGMMT3JP)
+3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/41/views/1). If you have something you want to do that's not there, please make an issue and add it to the board.
+4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time). This is so that multiple people don't accidentally work on the same task.
 5. :fast_forward: When you're done, make a pull request with your changes. Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
 7. :recycle: Repeat!
