@@ -15,12 +15,15 @@ location_latlng: [44.80696373983825, 20.45561989400684]
 
 Local event to be held at the Startit Centar, by Bioinformatics Department of Apis Assay Technologies Ltd.
 
+
 Primary contact: [`<i class="fab fa-slack"></i>` Nadezda Bogdanovic](https://nfcore.slack.com/archives/D04RWFB6QP6) or e-mail ([nadezda.bogdanovic@apisassay.com](mailto:nadezda.bogdanovic@apisassay.com)).
+
 
 Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up, but feel free to email Nadezda if you would like any more information.
 
 
 # Local Schedule
+
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -83,16 +86,20 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
 
 # Organisational Information
 
+
 Coffee, snacks and lunch will be provided by APIS Assay Technologies Ltd. and Seqera.
+
 
 We will also optionally arrange a social event at the end of third day if there is interest among the attendees.
 
 
 # Materials
 
+
 Please come with your laptop with installed Nextflow and Docker (or Gitpod account) and Github account.
 
 
 ## Acknowledgments
+
 
 This local event is kindly supported by [seqeralabs](https://seqera.io/), [Chan Zuckerberg Initiative](https://chanzuckerberg.com/) and [APIS Assay Technologies Ltd.](https://www.apisassay.com/)
