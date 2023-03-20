@@ -99,6 +99,7 @@ The documentation group will focus on all things documentation related, from pip
 - Abhinav Sharma,
 - Marcel Ribeiro-Dantas,
 - Franziska Bonath (Tuesday, Wednesday)
+
 ### Infrastructure
 
 The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript - we are using astrojs+svelte), join the infrastructure group!
@@ -109,6 +110,7 @@ The nf-core website and central tooling are always being improved. If you enjoy 
 
 - Matthias Hörtenhuber,
 - Júlia Mir Pedrol
+
 ### Pipelines
 
 The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
@@ -119,6 +121,7 @@ The pipelines group will focus on any pipeline-related work. This could be a DSL
 
 - James Fellows Yates,
 - Friederike Hanssen
+
 ### Modules
 
 The modules group welcomes anyone who wants to work on current or new [nf-core/modules](https://github.com/nf-core/modules).
@@ -143,6 +146,7 @@ Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modu
 - Edmund Miller,
 - Maxime Garcia
 - Matthias De Smet
+
 ## Schedule
 
 The hackathon schedule is designed to accommodate diverse time zones.
