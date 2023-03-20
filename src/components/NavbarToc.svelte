@@ -46,7 +46,7 @@
         background-color: transparentize($success, 0.75);
     }
 
-    @include color-mode(dark) {
+    :global([data-bs-theme='dark']) {
         li.active {
             background-color: transparentize($success-dark, 0.75);
         }
