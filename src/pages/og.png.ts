@@ -28,31 +28,35 @@ export const get: APIRoute = async ({ params, request }) => {
 
    "
    >
-   <div style="display:flex; height:50%; padding-top:10rem;">
-  <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/master/public_html/assets/img/logo/nf-core-logo-darkbg.png" width="489" height="130"/>
+   <div style="display:flex; align-items: center; flex-grow:5;">
+  <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/master/public_html/assets/img/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
 
 </div>
-<span style="font-size: 32px;text-align:center; padding-bottom:10rem">
-A community effort to collect a curated set of analysis pipelines built using Nextflow.
-</span>
+
+<div style="display:flex; flex-direction:column; width:100%; height:30%;">
+<svg fill="#fff" xmlns="http://www.w3.org/2000/svg"  width="100%" height="25%"><path d="M 0 300 L 400 300 L 200 00 z"
+        fill="#1a9655" /></svg>
+
   <div style="display:flex;
-  align-items:center;
+  width: 100%;
+  align-items:stretch;
   justify-content:center;
-  align-self: flex-start;
+  flex-grow: 8;
   width: 100%;
   height: 25%;
   background-color:#1a9655;">
-</svg>
-
-
 
   <h1>${args.title}</h1>
+  </div>
+
+<span style="font-size: 32px;text-align:center; padding-left: 15rem; padding-right:15rem; position:absolute; margin-top:-7.5rem;">
+A community effort to collect a curated set of analysis pipelines built using Nextflow.
+</span>
   </div>
 
 <style>
 
   h1 {
-    margin-bottom: 1rem;
     font-size: 64px;
     font-weight: 500;
   }
@@ -78,8 +82,8 @@ type ImageOptions = {
 };
 
 async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
-    const roboto500 = await fetch(
-        'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hjp-Ek-_EeA.woff'
+    const mavenpro = await fetch(
+        'https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff'
     ).then((res) => res.arrayBuffer());
     const svg = await satori(jsx, {
         debug: debug,
@@ -88,8 +92,8 @@ async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
         fonts: [
             {
                 name: 'Roboto',
-                data: roboto500,
-                weight: 500,
+                data: mavenpro,
+                weight: 700,
                 style: 'normal',
             },
         ],
