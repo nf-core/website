@@ -57,7 +57,7 @@ A community effort to collect a curated set of analysis pipelines built using Ne
     font-weight: 500;
   }
 </style>`;
-    const imageOptions = { site: request.url, width: 1200, height: 630, debug: true };
+    const imageOptions = { site: request.url, width: 1200, height: 630, debug: false };
     const jsx = html(html_string);
     const buffer = await generateImage(jsx, imageOptions);
 
