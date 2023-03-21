@@ -132,7 +132,7 @@ The modules group welcomes anyone who wants to work on current or new [nf-core/m
 #### Group leaders
 
 - Maxime Garcia,
-- Louisa Perelo
+- Louisa Perelo (Tuesday, Wednesday)
 - Nicolas Vannieuwkerke
 - Laurence Kuhlburger
 
