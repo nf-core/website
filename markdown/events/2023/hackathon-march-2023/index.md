@@ -121,6 +121,7 @@ The pipelines group will focus on any pipeline-related work. This could be a DSL
 
 - James Fellows Yates,
 - Friederike Hanssen
+- Susanne Jodoin
 
 ### Modules
 
