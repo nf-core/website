@@ -276,7 +276,7 @@ We will be a lot of people working in parallel during this hackathon, so to stay
    - [Pipelines channel](https://nfcore.slack.com/archives/C04UK9FMKN0)
    - [Modules channel](https://nfcore.slack.com/archives/C04UA7FFWES)
    - [Subworkflows channel](https://nfcore.slack.com/archives/C04UGMMT3JP)
-3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/41/views/1).
+3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/38/views/16).
    - If you have something you want to do that's not there, please make an issue and add it to the board.
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time).
    - This is so that multiple people don't accidentally work on the same task.
