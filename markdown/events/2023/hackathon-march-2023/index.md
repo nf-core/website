@@ -97,7 +97,7 @@ The documentation group will focus on all things documentation related, from pip
 #### Group leaders
 
 - Marcel Ribeiro-Dantas,
-- Franziska Bonath (Tuesday, Wednesday)
+- Louisa Perelo (Monday)
 
 ### Infrastructure
 
