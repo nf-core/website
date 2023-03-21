@@ -82,27 +82,78 @@ You are free to change groups at any time during the hackathon.
 We will coordinate our work and the issues we are working on using a single GitHub project board (we'll post a link here closer to the time).
 There will be a separate tab for each group that will have a list of relevant issues for you to work on.
 
+### Time zones
+
+#### APAC Group Leaders
+
+- Chris Haakart
+- Yuk Kei Wan
+
+#### AMER Group Leaders
+
+- Marcel Ribeiro-Dantas
+
 ### Documentation
 
 The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. This is a great group to start if you are not sure where to begin.
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-documentation`](https://nfcore.slack.com/archives/C04UGQXUK2N)
+
+#### Group leaders
+
+- Marcel Ribeiro-Dantas,
+- Franziska Bonath (Tuesday, Wednesday)
+- Louisa Perelo (Monday)
 
 ### Infrastructure
 
 The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript - we are using astrojs+svelte), join the infrastructure group!
 
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-infrastructure`](https://nfcore.slack.com/archives/C04V6FR8LN4)
+
+#### Group leaders
+
+- Matthias Hörtenhuber,
+- Júlia Mir Pedrol
+
 ### Pipelines
 
 The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-pipelines`](https://nfcore.slack.com/archives/C04UK9FMKN0)
+
+#### Group leaders
+
+- James Fellows Yates,
+- Friederike Hanssen
+- Susanne Jodoin
 
 ### Modules
 
 The modules group welcomes anyone who wants to work on current or new [nf-core/modules](https://github.com/nf-core/modules).
 
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-modules`](https://nfcore.slack.com/archives/C04UA7FFWES)
+
+#### Group leaders
+
+- Maxime Garcia,
+- Louisa Perelo (Tuesday, Wednesday)
+- Nicolas Vannieuwkerke
+- Laurence Kuhlburger
+
 ### Subworkflows
 
 Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modules) can be shared between pipelines too! Join the subworkflows group to work on this new nf-core development!
 
-# Schedule
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-subworkflows`](https://nfcore.slack.com/archives/C04UGMMT3JP)
+
+#### Group leaders
+
+- Edmund Miller,
+- Maxime Garcia
+- Matthias De Smet
+
+## Schedule
 
 The hackathon schedule is designed to accommodate diverse time zones.
 If you are attending online please come, go, and take breaks at times that fit your schedule.
