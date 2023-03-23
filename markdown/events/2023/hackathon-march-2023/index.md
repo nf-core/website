@@ -139,7 +139,7 @@ The modules group welcomes anyone who wants to work on current or new [nf-core/m
 - Maxime Garcia,
 - Louisa Perelo (Tuesday, Wednesday)
 - Nicolas Vannieuwkerke
-- Laurence Kuhlburger
+- Jonathan Manning
 
 ### Subworkflows
 
