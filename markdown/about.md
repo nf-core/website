@@ -47,6 +47,7 @@ The current members of the maintainer's team in 2023 are: <!-- TODO: check if ye
 - [@adamrtalbot](https://github.com/adamrtalbot): Adam Talbot (Nonacus)
 - [@asp8200](https://github.com/asp8200): Anders Sune Pedersen (Danish National Genome Center)
 - [@jemten](https://github.com/jemten): Anders Jemt (Science for Life Laboratory)
+- [@christopher-mohr](https://github.com/christopher-mohr): Christopher Mohr (Boehringer Ingelheim)
 - [@erikrikarddaniel](https://github.com/erikrikarddaniel): Daniel Lundin (Linnaeus University)
 - [@Emiller88](https://github.com/Emiller88): Edmund Miller (University of Texas at Dallas & Element Biosciences)
 - [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen (Quantitative Biology Center, QBiC, University of Tübingen)
