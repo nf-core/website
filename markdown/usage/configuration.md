@@ -194,9 +194,9 @@ Once you've written the [config file](#custom-configuration-files), and you can 
 > [cpus](https://www.nextflow.io/docs/latest/process.html#cpus) (int) and
 > [time](https://www.nextflow.io/docs/latest/process.html#time).
 
-If you think that the defaults in the pipeline are way off, please the pipeline developers know either on Slack or via a GitHub issue on the pipeline repository! Then we can adjust the defaults to the benefit of all pipeline users.
+If you think that the defaults in the pipeline are way off, please the pipeline developers know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository! Then we can adjust the defaults to the benefit of all pipeline users.
 
-## Updating Tool Versions
+## Updating tool versions
 
 The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of nf-core pipelines uses one container or conda environment per process which makes it much easier to maintain and update software dependencies.
 
@@ -204,7 +204,7 @@ If for some reason you need to use a different version of a particular tool with
 
 For example, the [nf-core/viralrecon](https://nf-co.re/viralrecon) pipeline uses a tool called Pangolin that updates an internal database of COVID-19 lineages quite frequently. It doesn't make sense to re-release the nf-core/viralrecon everytime a new version of Pangolin has been released.
 
-In this case, a user can override the default container used by the pipeline by creating a custom config file and passing it as a command-line argument via -c custom.config.
+In this case, a user can override the default container used by the pipeline by creating a custom config file and passing it as a command-line argument via `-c custom.config`.
 
 1. Check the default version used by the pipeline in the module file for the tool under `modules/nf-core/` directory of the pipeline. E.g. for [Pangolin](https://github.com/nf-core/viralrecon/blob/a85d5969f9025409e3618d6c280ef15ce417df65/modules/nf-core/software/pangolin/main.nf#L14-L19)
 2. Find the latest version of the Biocontainer available on [Quay.io](https://quay.io/repository/biocontainers/pangolin?tag=latest&tab=tags) for Docker or [Galaxy Project](https://depot.galaxyproject.org/singularity/) for Singularity
@@ -241,7 +241,7 @@ In this case, a user can override the default container used by the pipeline by 
      }
      ```
 
-> **:warning: It is important to note updating containers comes with no warranty by the pipeline developers! If the update tool in the container has a major changes, this may break the pipeline**
+> **:warning: It is important to note that updating containers comes with no warranty by the pipeline developers! If the update tool in the container has a major changes, this may break the pipeline**
 
 > **:warning: Sometimes tool developers change how tool versions are reported between updates. Updating containers may break version reporting within the pipeline and result in missing values in MultiQC version tables**
 
@@ -251,7 +251,7 @@ In some cases you may wish to understand which tool arguments or options a pipel
 
 You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/1.0.1/parameters#annotation_bakta_mincontig) in [nf-core/funcscan](https://nf-co.re/funcscan).
 
-### Finding Already Used Arguments
+### Finding already used arguments
 
 However if this is not listed, there are two main places that a tool can have a tool argument specified.
 
@@ -261,7 +261,7 @@ Most arguments (both mandatory or optional) are defined in the `conf/modules.con
 
 In some cases _some_ modules have mandatory information for a tool for it to be executed, and these normally equate to 'mandatory' arguments. You can see the argument is used in the pipeline itself looking in the `script` section given module code itself, as in the pipeline's GitHub repository under `modules/<nf-core/local>/<tool>/main.nf`.
 
-### Customing Tool Arguments
+### Customising tool arguments
 
 If you want to modify which parameters are used by a given tool, you can do this by specyfing them in the the `ext.args` entry of a process in a [custom config](#custom-configuration-files).
 
@@ -287,7 +287,7 @@ process {
 
 > **:warning: It is recommended to copy and paste existing parameters in a pipelines `conf/modules.config` file, to ensure the pipeline can function as expected**
 
-> **:warning: It is important to note updating tool parameters or changing `ext.args` comes with no warranty by the pipeline developers!**
+> **:warning: It is important to note that updating tool parameters or changing `ext.args` comes with no warranty by the pipeline developers!**
 
 # Debugging
 
