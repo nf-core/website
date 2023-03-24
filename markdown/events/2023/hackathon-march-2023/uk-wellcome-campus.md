@@ -16,7 +16,7 @@ Local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl
 
 Primary contact: [<i class="fab fa-slack"></i> Priyanka Surana](https://nfcore.slack.com/team/U02JA08N0BC)
 
-Please use the [main registration form](https://nf-co.re/events/2023/hackathon-march-2023) to sign up.
+Site registration is now closed.
 
 ## Local Schedule
 
