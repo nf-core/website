@@ -2,10 +2,10 @@
 title: Hackathon - March 2023 (Online)
 subtitle: A virtual hackathon with local gatherings to develop nf-core together
 type: hackathon
-start_date: '2023-03-27'
-start_time: '10:00 CEST'
-end_date: '2023-03-29'
-end_time: '18:00 CEST'
+start_date: "2023-03-27"
+start_time: "10:00 CEST"
+end_date: "2023-03-29"
+end_time: "18:00 CEST"
 location_name: Gather town, Slack, and local sites.
 import_typeform: true
 ---
