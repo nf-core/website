@@ -35,6 +35,9 @@ Please note this is not a training event. More information about our community t
 Watch the video below for a Welcome & Introduction video :)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mIWypvo94gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+If you're not aware of the project board with tasks, check the video below to learn more ;)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gwaHz7-9v1Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 # Gather access
 
 The hackathon is being held in a virtual venue on the platform Gather. If you have never used Gather before we have [a bytesize video](https://nf-co.re/events/2022/bytesize-37-gathertown) from the March 2022 hackathon that will help you to get started.
