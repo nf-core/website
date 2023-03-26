@@ -18,17 +18,27 @@ The nf-core hackathon is free and is being held online (we will be back in [Gath
 Some community members are also hosting [local sites](#local-events).
 We will do our best to support people in all time zones. :earth_americas: :earth_asia: :earth_africa:
 
-Please note this is not a training event. More information about our community training event, being held March 13-16, 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
+> Please note this is not a training event. More information about our community training event, being held March 13-16, 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
 
+<!--
 # Registration
 
-Registration for the March 2023 nf-core hackathon is now OPEN! 🎉
+ Registration for the March 2023 nf-core hackathon is now OPEN! 🎉
 
-You can sign up [here](https://seqera.typeform.com/mar23hackathon) or in the widget below 👇
+ You can sign up [here](https://seqera.typeform.com/mar23hackathon) or in the widget below 👇
 
-> Please note that registration for local sites is now closed. Registration for attending online will stay open until the event.
+ > Please note that registration for local sites is now closed. Registration for attending online will stay open until the event.
 
-<div data-tf-widget="x3rn8866" style="width:100%;height:500px;color:#FFFFFF;"></div>
+ <div data-tf-widget="x3rn8866" style="width:100%;height:500px;color:#FFFFFF;"></div>
+-->
+
+Please watch the introduction video below to get started:
+
+<div style="max-width: 560px; margin: 0 auto 30px;">
+<div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/mIWypvo94gA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
 
 # Gather access
 
@@ -54,6 +64,8 @@ For the most recent information about your site as well as the contact details o
 
 > Reminder: Even if you are attending a local site you will still join everyone online in Gather.
 
+<div class="table-responsive" markdown="1">
+
 | Country         | City      |  Location                                 | Event page                                |
 | --------------- | --------- | ----------------------------------------- | ----------------------------------------- |
 | 🇧🇷 Brazil       | Natal     | Federal University of Rio Grande do Norte | [Read more](br-ufrn.md)                   |
@@ -74,84 +86,7 @@ For the most recent information about your site as well as the contact details o
 | 🇺🇸 USA          | San Jose  | Quilt Co-Working Space                    | [Read more](usa-san-jose.md)              |
 | 🇺🇸 USA          | Wyoming   | The University of Wyoming                 | [Read more](usa-university-wyoming.md)    |
 
-# Groups
-
-To keep things manageable everyone will be organized into groups.
-You are free to change groups at any time during the hackathon.
-
-We will coordinate our work and the issues we are working on using a single GitHub project board (we'll post a link here closer to the time).
-There will be a separate tab for each group that will have a list of relevant issues for you to work on.
-
-### Time zones
-
-#### APAC Group Leaders
-
-- Chris Haakart
-- Yuk Kei Wan
-
-#### AMER Group Leaders
-
-- Marcel Ribeiro-Dantas
-
-### Documentation
-
-The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. This is a great group to start if you are not sure where to begin.
-
-[<i class="fab fa-slack"></i> `#hackathon-march-2023-documentation`](https://nfcore.slack.com/archives/C04UGQXUK2N)
-
-#### Group leaders
-
-- Marcel Ribeiro-Dantas,
-- Franziska Bonath (Tuesday, Wednesday)
-- Louisa Perelo (Monday)
-
-### Infrastructure
-
-The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript - we are using astrojs+svelte), join the infrastructure group!
-
-[<i class="fab fa-slack"></i> `#hackathon-march-2023-infrastructure`](https://nfcore.slack.com/archives/C04V6FR8LN4)
-
-#### Group leaders
-
-- Matthias Hörtenhuber,
-- Júlia Mir Pedrol
-
-### Pipelines
-
-The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
-
-[<i class="fab fa-slack"></i> `#hackathon-march-2023-pipelines`](https://nfcore.slack.com/archives/C04UK9FMKN0)
-
-#### Group leaders
-
-- James Fellows Yates,
-- Friederike Hanssen
-- Susanne Jodoin
-
-### Modules
-
-The modules group welcomes anyone who wants to work on current or new [nf-core/modules](https://github.com/nf-core/modules).
-
-[<i class="fab fa-slack"></i> `#hackathon-march-2023-modules`](https://nfcore.slack.com/archives/C04UA7FFWES)
-
-#### Group leaders
-
-- Maxime Garcia,
-- Louisa Perelo (Tuesday, Wednesday)
-- Nicolas Vannieuwkerke
-- Jonathan Manning
-
-### Subworkflows
-
-Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modules) can be shared between pipelines too! Join the subworkflows group to work on this new nf-core development!
-
-[<i class="fab fa-slack"></i> `#hackathon-march-2023-subworkflows`](https://nfcore.slack.com/archives/C04UGMMT3JP)
-
-#### Group leaders
-
-- Edmund Miller,
-- Maxime Garcia
-- Matthias De Smet
+</div>
 
 ## Schedule
 
@@ -291,16 +226,150 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 > The HackMD document is the easiest to forget, but please add something even if you think what you did was small -
 > we will use it in the group check-outs for each day and also in the reporting after the event so it's important for us :bow:
 
+See below for an introduction on how to use the [GitHub project board](https://github.com/orgs/nf-core/projects/38):
+
+<div style="max-width: 560px; margin: 0 auto 30px;">
+<div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/gwaHz7-9v1Y" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+
+# Groups
+
+To keep things manageable everyone will be organized into groups.
+You are free to change groups at any time during the hackathon.
+
+We will coordinate our work and the issues we are working on using a single [GitHub project board](https://github.com/orgs/nf-core/projects/38).
+There is a separate tab for each group that will have a list of relevant issues for you to work on.
+
+### Time zones
+
+If you're in APAC (Asia / Pacific) or AMER (Americas) and can't find anyone, message the group leaders below.
+They will be online all day and can get you started.
+
+<div class="row mb-5"><div class="col-md-6" markdown="1">
+
+#### APAC Group Leaders
+
+- Chris Haakart
+- Yuk Kei Wan
+
+</div><div class="col-md-6" markdown="1">
+
+#### AMER Group Leaders
+
+- Marcel Ribeiro-Dantas
+
+</div></div>
+
+<div class="card mb-5"><div class="card-body"><div class="row"><div class="col-md-6" markdown="1">
+
+### Documentation
+
+The documentation group will focus on all things documentation related, from pipelines themselves to modules and general documentation to aid in getting started with nf-core and Nextflow. This is a great group to start if you are not sure where to begin.
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-documentation`](https://nfcore.slack.com/archives/C04UGQXUK2N)
+
+#### Group leaders
+
+- Marcel Ribeiro-Dantas,
+- Franziska Bonath (Tuesday, Wednesday)
+- Louisa Perelo (Monday)
+
+</div><div class="col-md-6"><div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/ln9ldR8rx8w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div></div></div></div></div>
+
+<div class="card mb-5"><div class="card-body"><div class="row"><div class="col-md-6" markdown="1">
+
+### Infrastructure
+
+The nf-core website and central tooling are always being improved. If you enjoy working with python or want to do some web development (mainly CSS and javascript - we are using astrojs+svelte), join the infrastructure group!
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-infrastructure`](https://nfcore.slack.com/archives/C04V6FR8LN4)
+
+#### Group leaders
+
+- Matthias Hörtenhuber,
+- Júlia Mir Pedrol
+
+</div><div class="col-md-6"><div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/9555Oi-yS5c" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div></div></div></div></div>
+
+<div class="card mb-5"><div class="card-body"><div class="row"><div class="col-md-6" markdown="1">
+
+### Pipelines
+
+The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-pipelines`](https://nfcore.slack.com/archives/C04UK9FMKN0)
+
+#### Group leaders
+
+- James Fellows Yates,
+- Friederike Hanssen
+- Susanne Jodoin
+
+</div><div class="col-md-6"><div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/teU4P0W6uSw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div></div></div></div></div>
+
+<div class="card mb-5"><div class="card-body"><div class="row"><div class="col-md-6" markdown="1">
+
+### Modules
+
+The modules group welcomes anyone who wants to work on current or new [nf-core/modules](https://github.com/nf-core/modules).
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-modules`](https://nfcore.slack.com/archives/C04UA7FFWES)
+
+#### Group leaders
+
+- Maxime Garcia,
+- Louisa Perelo (Tuesday, Wednesday)
+- Nicolas Vannieuwkerke
+- Jonathan Manning
+
+</div><div class="col-md-6"><div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/5yQgn-GOYIc" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div></div></div></div></div>
+
+<div class="card mb-5"><div class="card-body"><div class="row"><div class="col-md-6" markdown="1">
+
+### Subworkflows
+
+Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modules) can be shared between pipelines too! Join the subworkflows group to work on this new nf-core development!
+
+[<i class="fab fa-slack"></i> `#hackathon-march-2023-subworkflows`](https://nfcore.slack.com/archives/C04UGMMT3JP)
+
+#### Group leaders
+
+- Edmund Miller,
+- Maxime Garcia
+- Matthias De Smet
+
+</div><div class="col-md-6"><div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/XiRLypwx3xY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div></div></div></div></div>
+
 # Social activities
 
 During the hackathon, we will have light-hearted fun and games! Special edition nf-core rubber ducks are up for grabs for the winners!
 
-- An online quiz will be held in the Gather lecture theater at 3 pm (CEST) on Tuesday, March 28. Local sites have access to the quiz and are free to host it at a time that fits them or join the online one. All scores are compared at the end.
-- Throughout the three days, we will be running an nf-core hackathon bingo! Follow [this link](https://nfcore-bingo.web.app/?game=nf-core-hackathon) to get your bingo card and join in the fun.
-- Join the [#hackathon-march-2023-scavenger](https://nfcore.slack.com/archives/C04UKA05AGL) Slack channel. Take photos of you completing as many challenges as you can and share them on the channel!
-- Keep an eye out for nf-core socks hidden in Gather. Take screenshots of as many as you can find! See the sock hunt information board in Gather for more information.
+- Online quiz: Meet in the Gather lecture theater at 3 pm (CEST) on Tuesday, March 28.
+  - Local sites have access to the quiz and are free to host it at a time that fits them or join the online one. All scores are compared at the end.
+- Scavenger Hunt
+  - Join the [`#hackathon-march-2023-scavenger`](https://nfcore.slack.com/archives/C04UKA05AGL) Slack channel.
+  - Take photos of you completing as many challenges as you can and share them on the channel!
+- Hackathon bingo
+  - Grab your [bingo card](https://nfcore-bingo.web.app/?game=nf-core-hackathon) and join in the fun.
+- Hidden socks in Gather
+  - Take screenshots of as many as you can find!
+  - See the sock hunt information board in Gather for more information.
+- Free pizza! (local sites only)
+  - Many thanks to [Seqera Labs](https://seqera.io/) and the [CZI](https://chanzuckerberg.com/eoss/) for making this happen.
 
-_All social activities are of course optional, but we hope to see as many people joining in as possible._
+> _All social activities are of course optional, but we hope to see as many people joining in as possible._
 
 # Code of conduct
 
