@@ -484,18 +484,33 @@ $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $events = [];
 $year_dirs = glob($md_base . 'events/*', GLOB_ONLYDIR);
 foreach ($year_dirs as $year) {
+    // Markdown files
     $event_mds = glob($year . '/*.md');
+    // Event subdirectories
+    $event_dirs = glob($year . '/*', GLOB_ONLYDIR);
+    foreach ($event_dirs as $event_dir) {
+        if(is_file($event_dir.'/index.md')){
+            $event_mds[] = $event_dir.'/index.md';
+        }
+    }
+
     foreach ($event_mds as $event_md) {
         // Load the file
         $md_full = file_get_contents($event_md);
         if ($md_full !== false) {
             $fm = parse_md_front_matter($md_full);
             // Add the URL
-            $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            if(basename($event_md) == 'index.md'){
+                $fm['meta']['url'] = '/events/' . basename($year) . '/' . basename(dirname($event_md));
+            }
+            else {
+                $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            }
             // Add to the events array
             $events[] = $fm['meta'];
         }
     }
+
 }
 
 # Look to see if we have an upcoming / ongoing event to show and pick one
