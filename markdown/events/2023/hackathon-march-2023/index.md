@@ -20,6 +20,18 @@ We will do our best to support people in all time zones. :earth_americas: :earth
 
 Please note this is not a training event. More information about our community training event, being held March 13-16, 2023, can be found [here](https://nf-co.re/events/2023/training-march-2023).
 
+<!--
+# Registration
+
+ Registration for the March 2023 nf-core hackathon is now OPEN! 🎉
+
+ You can sign up [here](https://seqera.typeform.com/mar23hackathon) or in the widget below 👇
+
+ > Please note that registration for local sites is now closed. Registration for attending online will stay open until the event.
+
+ <div data-tf-widget="x3rn8866" style="width:100%;height:500px;color:#FFFFFF;"></div>
+-->
+
 # Gather access
 
 The hackathon is being held in a virtual venue on the platform Gather. If you have never used Gather before we have [a bytesize video](https://nf-co.re/events/2022/bytesize-37-gathertown) from the March 2022 hackathon that will help you to get started.
