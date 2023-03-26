@@ -32,6 +32,9 @@ Please note this is not a training event. More information about our community t
  <div data-tf-widget="x3rn8866" style="width:100%;height:500px;color:#FFFFFF;"></div>
 -->
 
+Watch the video below for a Welcome & Introduction video :)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mIWypvo94gA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 # Gather access
 
 The hackathon is being held in a virtual venue on the platform Gather. If you have never used Gather before we have [a bytesize video](https://nf-co.re/events/2022/bytesize-37-gathertown) from the March 2022 hackathon that will help you to get started.
@@ -101,6 +104,9 @@ The documentation group will focus on all things documentation related, from pip
 
 [<i class="fab fa-slack"></i> `#hackathon-march-2023-documentation`](https://nfcore.slack.com/archives/C04UGQXUK2N)
 
+You want to collaborate with this team? Watch the instructions in the video below :)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ln9ldR8rx8w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 #### Group leaders
 
 - Marcel Ribeiro-Dantas,
@@ -113,6 +119,9 @@ The nf-core website and central tooling are always being improved. If you enjoy 
 
 [<i class="fab fa-slack"></i> `#hackathon-march-2023-infrastructure`](https://nfcore.slack.com/archives/C04V6FR8LN4)
 
+You want to collaborate with this team? Watch the instructions in the video below :)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9555Oi-yS5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 #### Group leaders
 
 - Matthias Hörtenhuber,
@@ -123,6 +132,9 @@ The nf-core website and central tooling are always being improved. If you enjoy 
 The pipelines group will focus on any pipeline-related work. This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline, or an entirely new pipeline (please let us register a new pipeline already before the hackathon, following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)). These are typically led by the main pipeline developers if they also attend the hackathon.
 
 [<i class="fab fa-slack"></i> `#hackathon-march-2023-pipelines`](https://nfcore.slack.com/archives/C04UK9FMKN0)
+
+You want to collaborate with this team? Watch the instructions in the video below :)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/teU4P0W6uSw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 #### Group leaders
 
@@ -135,6 +147,9 @@ The pipelines group will focus on any pipeline-related work. This could be a DSL
 The modules group welcomes anyone who wants to work on current or new [nf-core/modules](https://github.com/nf-core/modules).
 
 [<i class="fab fa-slack"></i> `#hackathon-march-2023-modules`](https://nfcore.slack.com/archives/C04UA7FFWES)
+
+You want to collaborate with this team? Watch the instructions in the video below :)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5yQgn-GOYIc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 #### Group leaders
 
@@ -149,11 +164,15 @@ Why stop at only sharing modules? [Subworkflows](https://github.com/nf-core/modu
 
 [<i class="fab fa-slack"></i> `#hackathon-march-2023-subworkflows`](https://nfcore.slack.com/archives/C04UGMMT3JP)
 
+You want to collaborate with this team? Watch the instructions in the video below :)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XiRLypwx3xY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 #### Group leaders
 
 - Edmund Miller,
 - Maxime Garcia
 - Matthias De Smet
+
 
 ## Schedule
 
