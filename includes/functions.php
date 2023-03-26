@@ -500,7 +500,12 @@ foreach ($year_dirs as $year) {
         if ($md_full !== false) {
             $fm = parse_md_front_matter($md_full);
             // Add the URL
-            $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            if(basename($event_md) == 'index.md'){
+                $fm['meta']['url'] = '/events/' . basename($year) . '/' . basename(dirname($event_md));
+            }
+            else {
+                $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            }
             // Add to the events array
             $events[] = $fm['meta'];
         }
