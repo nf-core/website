@@ -168,12 +168,13 @@ in the `.github/workflows/` YAML files too.
 Ok, so you're essentially finished. Your pipeline is written, the tests pass and
 you're ready to add your workflow to nf-core.
 
-First, fork your workflow repository to the nf-core GitHub organisation by
-clicking 'Fork' at the top of the GitHub webpage. If you don't see nf-core
-as an option, please ask one of the nf-core administrators to do this for you.
+First, go to the settings of your repository. Under the General page, in the 'Danger Zone' you should have an option to Transfer Ownership. Transfer this to the nf-core organisation.
 
-Once you have forked the pipeline repository, the [nf-core website](https://nf-co.re)
-will automatically update to list your new pipeline.
+> You must make sure you are already a part of the nf-core organisation to allow transferring to nf-core. Alternatively you can add a core-team member to your repository, and ask them to do the transfer you.
+
+Once transferred, go to the transferred repository on nf-core, and make a new fork back to your user name or organisation to continue development on a fork.
+
+> We [prefer](https://nfcore.slack.com/archives/CQY2U5QU9/p1676366247726189?thread_ts=1676360232.837109&cid=CQY2U5QU9) transferring over _forking_ to nf-core. If we fork the original repository to nf-core whenever anyone opens a pull-request, it defaults to going to the original user's fork of the repository, not the nf-core repo. In this case the only way to fix to request manual detachment from GitHub support.
 
 ### Branch setup
 
@@ -210,44 +211,61 @@ that. Then the tests should pass.
 
 ## Making the first release
 
-When the code is stable and ready for a release, set the `master` branch to be the default branch again.
-Bump the version numbers on `dev` (see below) and make a pull-request from the `dev` branch to `master` on the nf-core fork.
-This is a special case and the tests should pass.
-Once they do, merge the PR yourself and let the nf-core team know that you're ready.
+### Reset the default branch
 
-### Version numbers
+When the code is stable and ready for a release, set the `master` branch to be the default
+branch again.
+
+### Bump the version
+
+At this point you should bump the version numbers on `dev`.
 
 When developing the pipeline, the version numbers should be numeric with `dev` at the end.
 Use the `nf-core bump-version` command to do this - there are quite a few locations in the
 code that need updating and this ensures that it happens in the correct places.
-Note that when developing the `:dev` tag should be used for docker containers.
 
 When making a release, version numbers should all be numeric. Use `nf-core lint --release`
-when ready - this will check that everything looks correct.
-Pipeline release numbers must use [Semantic Versioning](https://semver.org/).
+when ready - this will check that everything looks correct. Pipeline release numbers MUST
+use [Semantic Versioning](https://semver.org/).
 
 ### Core pipeline review
 
-Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-core
-team?! Not to worry, we're a friendly bunch. Let us know about the new pipeline,
-when you're ready we will create a fake pull-request against the first commit in
-the pipeline. This gives the PR review interface showing all code that you've
-written. We will go through everything and request changes that we think are
-necessary until you're good to go.
+Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-core team?!
+Not to worry, we're a friendly bunch, just let us know about the new pipeline, when you're
+ready, following the process below.
 
-Common things that are flagged at this point are:
+Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
+special case and the tests should pass, and once they do you can request a review from the
+core team.
+
+What happens next depends on the state of your master branch:
+
+- If you have developed in such a way that your master branch is clean, .i.e. doesn't have
+  any commits since the inital one, the PR created above will represent all changes
+  associated with the proposed release, and the core team will use it for review and
+  feedback.
+- If your master branch already contains changes associated with the release, the core
+  team may merge your PR and create a pseudo-PR against the first commit in the
+  pipeline. This gives the PR review interface showing all code that you've written.
+
+In either case we will go through everything and request changes that we think are
+necessary until you're good to go. Common things that are flagged at this point are:
 
 - A clear, short but descriptive readme
 - Good documentation, especially describing the output files and all parameters
 - Pipeline code
 
-We typically tend to have two reviewers for most of the crucial code changes, e.g. adding new major features to an existing pipeline or making an entirely new pipeline release. You can also ping people from the nf-core core team to review your pipeline code by `@`ing them.
+We typically tend to have two reviewers for most of the crucial code changes, e.g. adding
+new major features to an existing pipeline or making an entirely new pipeline release. You
+can also ping people from the nf-core core or maintainers team to review your pipeline
+code by `@`ing them.
 
 ### Making the release
 
-Once the pseudo-PR is approved, we'll close it and you can go ahead with releasing the pipeline.
-Put in a basic changelog entry describing the general functionality at release.
-When you're ready, follow the instructions in the nf-core [release checklist](release_checklist.md).
+Once any requested changes have been made and the associated PR approved, you can go ahead
+with releasing the pipeline. Put in a basic changelog entry describing the general
+functionality at release. When you're ready, follow the instructions in the nf-core
+[release checklist](release_checklist.md). We recommend you also explicitly tag contributors with their GitHub handles, so each release on GitHub will display their icons.
 
 The nf-core website and helper tools will automatically detect the new release and be updated accordingly.
 

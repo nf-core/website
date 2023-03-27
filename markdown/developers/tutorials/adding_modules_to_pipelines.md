@@ -41,7 +41,14 @@ Different pipelines may have different workflows, but the following steps will c
     - Or run VSCode 'Format Document' function on: `citations.md`, `usage.md`, `output.md`, `README.md`, `modules.json`, `nextflow_schema.json`
     - If you forget this step you can also post a comment on the open PR once made with `@nf-core-bot fix linting`
 
-14. Lint the new code with
+14. Run a local test of the pipeline with the included new functionality to check it works.
+
+    ```bash
+    mkdir test/ && cd test/
+    nextflow run ../main.nf -profile test,<docker,singularity,conda> --outdir ./results <include new parameters required to activate new functionality if necessary>
+    ```
+
+15. Lint the new code with
 
     ```bash
     nf-core lint
