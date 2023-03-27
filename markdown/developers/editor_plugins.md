@@ -54,6 +54,8 @@ Other useful packages include:
 - `todo-show`: <https://atom.io/packages/todo-show>
 - `trailing-spaces`: <https://atom.io/packages/trailing-spaces>
 
+**IN CASE YOU MISSED IT, ATOM HAS BEEN ARCHIVED AND SUPPORT FOR IT WILL BE LIMITED/ABSENT IN THE NEAR FUTURE.** 
+
 # Emacs
 
 An Emacs mode written by [@Emiller88](https://github.com/Emiller88) gives Nextflow syntax highlighting:
