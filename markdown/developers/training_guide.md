@@ -23,12 +23,12 @@ Thank you for helping us write a guide to using an aspect of nf-core.
 <details>
     <summary>Click here to expand the glossary of potentially unfamiliar terms</summary>
 
-- **Learning Objective:** A predictive statement describing the specific outcomes that a training session is intended to achieve.
-- **Key point:** An important take home message.
-- **Cognitive load:** This relates to the amount of information that working memory can hold at one time.
-- **Summative assessment:** A way of evaluating the learners progress at the end of a lesson.
-- **Fork a repository:** This makes a copy of the repository to your personal GitHub workspace.
-- **Make a branch:** A branch is another version of the files in your repository, including a history of how files were changed from the start of the branch to the current state of files.
+  - **Learning Objective:** A predictive statement describing the specific outcomes that a training session is intended to achieve.
+  - **Key point:** An important take home message.
+  - **Cognitive load:** This relates to the amount of information that working memory can hold at one time.
+  - **Summative assessment:** A way of evaluating the learners progress at the end of a lesson.
+  - **Fork a repository:** This makes a copy of the repository to your personal GitHub workspace.
+  - **Make a branch:** A branch is another version of the files in your repository, including a history of how files were changed from the start of the branch to the current state of files.
 
 </details>
 
