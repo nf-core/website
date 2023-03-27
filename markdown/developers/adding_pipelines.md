@@ -23,6 +23,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 6. [Updates and new releases](#subsequent-releases)
 
 ## Join the community
+
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
 Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
 and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
