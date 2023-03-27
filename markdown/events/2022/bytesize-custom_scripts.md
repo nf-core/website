@@ -6,6 +6,7 @@ start_date: '2022-11-15'
 start_time: '13:00 CET'
 end_date: '2022-11-15'
 end_time: '13:30 CET'
+youtube_embed: https://www.youtube.com/watch?v=3aA5-s8PAF0
 location_url:
   - https://doi.org/10.6084/m9.figshare.21572238.v1
   - https://www.youtube.com/watch?v=3aA5-s8PAF0
@@ -77,7 +78,7 @@ Also from the RNA-seq pipeline here, we have the `deseq2_qc` process. What you c
 [11:55](https://www.youtube.com/watch?v=3aA5-s8PAF0&t=715)
 Just to summarize, what I've covered today is that NextFlow can use custom scripts written from many different languages. Scripts can be stored in both the bin or the templates directory. And both of these will be available to the Nextflow script. Meaning that you don't need to specify an absolute or a relative path as you're executing a script. It's really fantastic to do this because it makes your scripts much more portable and usable by others. Dependencies can be managed using conda and containers. In the examples I've shown, you can see that it can be quite simple or much more complex with the use of mulled containers to help you store all those together with singularity and conda images. And with that, I will finish. I think we're probably about where I thought we'd be for time. And I'll finish on this. And if there are any questions, I'm happy to do my best to answer them. Thanks very much.
 
-12:49](https://www.youtube.com/watch?v=3aA5-s8PAF0&t=769)
+[12:49](https://www.youtube.com/watch?v=3aA5-s8PAF0&t=769)
 (host) Thank you very much. So anyone can now unmute themselves. If there are any questions, you can just ask them or put them in the chat and I will read them out. There is one question in the chat.
 
 (comment) If you're on a newer Nextflow version... Oh no, that's I think a comment. If you're on a newer Nextflow version, there's also a link to module binaries.
