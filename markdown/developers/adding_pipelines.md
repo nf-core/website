@@ -84,7 +84,7 @@ git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 git add .
 git commit -m "Starting to build my pipeline"
 ## Push to GitHub
-git push -all origin
+git push --all origin
 ```
 
 ### Work on your pipeline
