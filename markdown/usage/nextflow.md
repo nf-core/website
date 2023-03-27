@@ -28,7 +28,7 @@ Some key Nextflow resources:
   - Nextflow Camp 2019 DSLv2 tutorial: <https://github.com/nextflow-io/nfcamp-tutorial>
 - Running Nextflow in the cloud:
   - AWS Batch tutorial: <https://docs.opendata.aws/genomics-workflows/orchestration/nextflow/nextflow-overview.html>
-  - Google Batch tutorial: https://nextflow.io/blog/2022/deploy-nextflow-pipelines-with-google-cloud-batch.html
+  - Get Started with Nextflow on Google Cloud Batch: https://www.nextflow.io/blog/2023/nextflow-with-gbatch.html
   - Google Cloud tutorial: <https://cloud.google.com/genomics/docs/tutorials/nextflow>
   - Microsoft Azure tutorial: <https://nextflow.io/blog/2021/introducing-nextflow-for-azure-batch.html>
     For Nextflow questions, use the **Nextflow Slack** community:
