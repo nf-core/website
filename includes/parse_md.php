@@ -155,7 +155,7 @@ function parse_md($markdown) {
                       <div class="rendered-markdown publication-page-content">' .
             $content .
             # '</div>'. # Removing fixes the ToC for the hackathon event page. Not sure why. TODO: May break other stuff
-                '</div>';
+            '</div>';
         # sidebar
         $content .= '<div class="col-12 col-lg-3 ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
         # ToC
