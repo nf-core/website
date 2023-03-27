@@ -212,7 +212,7 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_(programming)). This is even if you are only running one paired end sample.
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>). This is even if you are only running one paired end sample.
    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
@@ -279,7 +279,7 @@ Sometimes a newly downloaded and set up nf-core pipeline will encounter an issue
 
 The first thing to do is always check the `.nextflow.log` to see if it reports contains specific error. Common cases are described below.
 
-> :warning:  Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
+> :warning: Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
 
 ### Tool not found
 
@@ -508,6 +508,7 @@ To download new version of a pipeline, you can use the following.
 ```bash
 nextflow pull nf-core/<pipeline> -latest
 ```
+
 To download a previous version of a pipeline, you can instead use the following, replacing `<version>` to the corresponding version (v3.4 for example)
 
 ```bash
