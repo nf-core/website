@@ -34,32 +34,36 @@ You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
 
 First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
-```console
+```bash
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
+> **Warning**
+> This is important - if not done, dependencies (such as Java) will be installed from
+> the wrong channels and things may break in strange ways.
+
 A best practice with conda is to create an environment and install the tools in it.
 Therefore you will prevent version conflicts and keep everything clean.
 To do so use the following command:
 
-```console
-conda create --name env_nf
+```bash
+conda create --name env_nf nextflow
 conda activate env_nf
-```
-
-Then install Nextflow:
-
-```console
-conda install -c bioconda nextflow
 ```
 
 To deactivate the conda environment, run the following command:
 
-```console
+```bash
 conda deactivate
 ```
+
+> If you're already in the conda environment you want to use, you can just install Nextflow directly:
+>
+> ```bash
+> conda install nextflow
+> ```
 
 If you want to develop your own pipelines or collaborate with others using the nf-core guidelines you will need the nf-core packages.
 Please follow the instructions [here](tutorials/nf_core_usage_tutorial.md)
