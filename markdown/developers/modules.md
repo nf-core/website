@@ -526,6 +526,22 @@ process {
      The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
 
      Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+
+       </details>
+
+       <details markdown="1">
+       <summary>Inputs particular cases</summary>
+        When one and only one of multiple argument are required:
+
+        - If they all are string argument : use 1 argument that will be equal to the string
+
+        e.g. Parameter model of [glimpse2 chunk](https://nf-co.re/modules/glimpse2_chunk)
+
+        - If some are files put them all in one channel and test if only one is present
+
+        e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
+
+        `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
        </details>
 
 3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
