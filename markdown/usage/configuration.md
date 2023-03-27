@@ -36,8 +36,8 @@ nf-core offers a range of basic profiles for configuration of container engines:
 - `docker`
   - A generic configuration profile to be used with [Docker](http://docker.com/)
   - Pulls software from DockerHub
-- `singularity`
-  - A generic configuration profile to be used with [Singularity](http://singularity.lbl.gov/)
+- `apptainer`
+  - A generic configuration profile to be used with [Singularity](https://apptainer.org/)
   - Pulls software from DockerHub
 - `podman`
   - A generic configuration profile to be used with [Podman](https://podman.io/)

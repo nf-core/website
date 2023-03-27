@@ -523,6 +523,7 @@ If when running the pipeline you don't see any changes in the fixed version when
 
 ```bash
 rm -r ~/.nextflow/assets/nf-core/<pipeline>
+rm -r ~/.config/nfcore/nf-core/modules
 ```
 
 And re-pull the pipeline with the command above. This will install a fresh version of the version with the fixes.
