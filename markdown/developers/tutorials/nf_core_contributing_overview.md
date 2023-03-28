@@ -353,6 +353,11 @@ A step-by-step tutorial [adding new modules](https://nf-co.re/docs/contributing/
 - Use the pipeline you created in Exercise 2 and add an nf-core module (e.g. trimgalore).
 - Connect the module to the main pipeline workflow (under `workflows/<pipeline-name>.nf`).
 
+#### Subworkflow
+
+Subworkflows are chains of modules that offer a higher-level of functionality within the context of a pipeline.
+Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the 'subworkflow/' directory of nf-core/modules along with the required documentation and tests.
+
 ## Releasing nf-core pipelines
 
 Your pipeline is written and ready to go!
