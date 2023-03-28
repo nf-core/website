@@ -686,7 +686,7 @@ A PR review is the process of examining a new modules' submission or the changes
 
 #### General reviews of submissions to modules:
 
-- Ensure all checks pass, including linting, conda, and docker.
+- Ensure all checks pass, including linting, conda, singularity, and docker.
 - Check that the module is suitable for offline running, without automatic database downloads assumed.
 - If running docker containers, check that Nextflow changes the `--entrypoint` to `/bin/bash` and that environment variables used by certain programs (e.g., Busco, Merqury) are sourced again to use them in container settings.
 - Check that it adheres to nf-core coding standards (e.g. use of meta map).
