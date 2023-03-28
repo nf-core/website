@@ -279,7 +279,7 @@ process FGBIO_FASTQTOBAM {
 
 Once the main module code is written, it is often a good point to fill in the `meta.yml` file sitting alongside the `main.nf` of the module.
 
-Here you will document key words, context information about the module, and most importantly document the input and output requirements.
+Here you will document key words, context information about the module, and most importantly document the input and output requirements. In general, it follows a similar shape as the pipeline schema but is no JSON file. At the top you should add the name of the module, a short description and some search terms, which descirbe the module. Afterwards, describe all used tools, usually only one. The main part of the `meta.yml` should be about the input and output requirements, which follow the same fields as the pipeline schema for a file parameter. For each input and output reuqirement you have to add the file type, a short description about the content and the file extension. The last block contains the authors, who worked on the module, to allow other users to easly reach out to them. If you are the main developer of the module, your github name will be automaticlly added to the `meta.yml`.
 
 For guidance see the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules as examples on how to fill this information in.
 
@@ -290,7 +290,7 @@ Now that you've completed code development, you are ready to check if your code 
 This can also be done easily using _nf-core tools_ just by changing folder into the parent _modules_ directory and typing the command
 
 ```bash
-nf-core modules lint fgbio/fastqtobam
+nf-core modules lint fgbio/demofastqtobam
 ```
 
 You will expect no test failed, as shown in figure below:
