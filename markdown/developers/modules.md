@@ -682,13 +682,13 @@ nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/co
 
 ### PR Review Checklist
 
-A PR review is the process of examining a new modules' submission or the changes proposed to a module. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository. The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality. The following is a collection of suggestions to have into account during the review process. 
+A PR review is the process of examining a new modules' submission or the changes proposed to a module. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository. The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality. The following is a collection of suggestions to have into account during the review process.
 
 #### General reviews of submissions to modules:
 
 - Ensure all checks pass, including linting, conda, and docker.
 - Check that the module is suitable for offline running, without automatic database downloads assumed.
-- If running docker containers, check that Nextflow changes the `--entrypoint` to `/bin/bash` and that environment variables used by certain programs (e.g., Busco, Merqury)  are sourced again to use them in container settings.
+- If running docker containers, check that Nextflow changes the `--entrypoint` to `/bin/bash` and that environment variables used by certain programs (e.g., Busco, Merqury) are sourced again to use them in container settings.
 - Check that it adheres to nf-core coding standards (e.g. use of meta map).
 - Check that the code is readable and the formatting is correct (e.g. indenting, extra spaces).
 
@@ -706,7 +706,6 @@ A PR review is the process of examining a new modules' submission or the changes
 - Check that the `meta.yml` file has correct documentation links and patterns of files.
 - Run the tool help and check that important input (usually optional) has not been missed.
 - Check that all outputs are captured by running pytest (e.g. on Gitpod).
-
 
 ## What is the `meta` map?
 
