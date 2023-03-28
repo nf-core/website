@@ -11,6 +11,7 @@ $md_fn = $_GET['path'];
 if (substr($md_fn, -3) !== '.md') {
     $md_fn .= '.md';
 }
+
 # new docs structure
 if (strtolower($path_parts[0]) == 'docs') {
     if (file_exists($docs_md_base . $md_fn)) {

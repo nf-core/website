@@ -13,12 +13,13 @@ The core team members who administer the nf-core project are listed below:
 - [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@drpatelh](https://github.com/drpatelh): Harshil Patel
 - [@ewels](https://github.com/ewels): Phil Ewels
+- [@FranBonath](https://github.com/FranBonath): Franziska Bonath
 - [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen
 - [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 - [@jfy133](https://github.com/jfy133): James A. Fellows Yates
 - [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco
 - [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber
-- [@MaxUlysse](https://github.com/MaxUlysse): Maxime Garcia
+- [@maxulysse](https://github.com/maxulysse): Maxime U. Garcia
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
@@ -26,7 +27,7 @@ We regularly review core team members - if you'd like to be involved, drop us a 
 
 ### Alumni
 
-The following former members of the nf-core team have earned their place in
+The following former members of the nf-core core team have earned their place in
 the nf-core alumni hall of fame:
 
 - [@alneberg](https://github.com/alneberg): Johannes Alneberg
@@ -34,20 +35,66 @@ the nf-core alumni hall of fame:
 - [@olgabot](https://github.com/olgabot): Olga Botvinnik
 - [@sven1103](https://github.com/sven1103): Sven F.
 - [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
+- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
+
+## Maintainers team {#maintainers}
+
+nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
+The maintainer's team consist of dedicated and highly active members of the community, that take official additional roles in managing nf-core repositories in collaboration with the wider nf-core community.
+
+The current members of the maintainer's team in 2023 are: <!-- TODO: check if year is up to date -->
+
+- [@adamrtalbot](https://github.com/adamrtalbot): Adam Talbot (Nonacus)
+- [@asp8200](https://github.com/asp8200): Anders Sune Pedersen (Danish National Genome Center)
+- [@jemten](https://github.com/jemten): Anders Jemt (Science for Life Laboratory)
+- [@christopher-mohr](https://github.com/christopher-mohr): Christopher Mohr (Boehringer Ingelheim)
+- [@erikrikarddaniel](https://github.com/erikrikarddaniel): Daniel Lundin (Linnaeus University)
+- [@Emiller88](https://github.com/Emiller88): Edmund Miller (University of Texas at Dallas & Element Biosciences)
+- [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@drpatelh](https://github.com/drpatelh): Harshil Patel (Seqera Labs)
+- [@jfy133](https://github.com/jfy133): James A. Fellows Yates (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology)
+- [@jasmezz](https://github.com/jasmezz): Jasmin Frangenberg (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute)
+- [@pinin4fjords](https://github.com/pinin4fjords): Jon Manning (Healx Ltd)
+- [@JoseEspinosa](https://github.com/JoseEspinosa): Jose Espinosa-Carrasco (Centre for Genomic Regulation)
+- [@louperelo](https://github.com/louperelo): Louisa Perelo (Quantitative Biology Center, QBiC, University of Tübingen)
+- [@matthdsm](https://github.com/matthdsm): Matthias De Smet (Center For Medical Genetics Ghent)
+- [@mashehu](https://github.com/mashehu): Matthias Hörtenhuber (Science for Life Laboratory)
+- [@maxulysse](https://github.com/maxulysse): Maxime U. Garcia (Seqera Labs)
+- [@Midnighter](https://github.com/Midnighter): Moritz E. Beber (Unseen Bio ApS)
+- [@nvnieuwk](https://github.com/nvnieuwk): Nicolas Vannieuwkerke (Center For Medical Genetics Ghent)
+- [@ramprasadn](https://github.com/ramprasadn): Ramprasad Neethiraj (Science for Life Laboratory)
+- [@robsyme](https://github.com/robsyme): Rob Syme (Seqera Labs)
+- [@sppearce](https://github.com/sppearce): Simon Pearce (Cancer Research UK Manchester Institute)
+- [@sofstam](https://github.com/sofstam): Sofia Stamouli (Karolinska Institute & Karolinska University Hospital)
+
+We thank all the institutions and companies of the maintainers team for their support of nf-core.
 
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
-This team includes all of the `@core-team` mentioned above and also:
+This team includes all of the `@core-team` mentioned above, but the people in charge are:
 
+- [@christopher-hakkaart](https://github.com/christopher-hakkaart): Chris Hakkaart
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
-- [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
+- [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
+
+## Safety team {#safety}
+
+The safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare, and members are not a part of the core team.
+
+The current safety team in 2023 are:
+
+- [@ctuni](https://t.co/mQInuSXc5R) Cris Tuñí
+- [@heuerm](https://github.com/heuermh) Michael Heuer
+- [@snafees](https://github.com/snafees/) Saba Nafees
 
 ## Financial Support
 
 The vast majority of nf-core development is done as a labour of love, on a voluntary basis.
 Most of all, we would like to thank all contributors (and their employers!).
-You form the lifeblood of nf-core and we are eternally greatful for your time and efforts.
+You form the lifeblood of nf-core and we are eternally grateful for your time and efforts.
 
 A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/community#initiatives)).
 If you work with a project that would benefit from an explicit link with nf-core, please let us know.
@@ -74,6 +121,17 @@ Amongst other things, the CZI EOSS grant money has enabled the nf-core community
 - Run organised mentorship programmes
 - Hiring local community advocates from geographical areas where we currently lack representation
 
+The CZI grant employs personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera Labs](https://seqera.io/).
+
+<div class="clearfix"></div>
+
+### SciLifeLab Data Centre
+
+<img src="/assets/img/contributors-colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
+This funding covers a full-time position ([@mashehu](https://github.com/mashehu), Matthias Hörtenhuber) to work on maintainance of nf-core framework code. For example, the [nf-core website](https://nf-co.re/) and the [nf-core/tools package](https://github.com/nf-core/tools/).
+
 <div class="clearfix"></div>
 
 ### Amazon Web Services {#aws}
@@ -85,6 +143,15 @@ You can explore and download these pipeline results under the <em class="mx-2"><
 
 AWS also hosts the [AWS-iGenomes](https://registry.opendata.aws/aws-igenomes/) resource on the [Registry of Open Data on AWS](https://registry.opendata.aws/).
 This is used by most nf-core pipelines to give free and open access to the reference genomes of over 30 species, by using a simple `--genome` key when running a pipeline.
+
+<div class="clearfix"></div>
+
+### Microsoft Azure
+
+<img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+
+Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
+You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
 
 <div class="clearfix"></div>
 

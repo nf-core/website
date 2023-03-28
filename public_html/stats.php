@@ -546,8 +546,6 @@ A list of these repositories can be found <a href="#core_repos">below</a>.</p>
 <table class="table table-sm mt-5">
   <tbody>
 <?php
-$stats_json_fn = dirname(dirname(__FILE__)) . '/nfcore_stats.json';
-$stats_json = json_decode(file_get_contents($stats_json_fn));
 $contributors = [];
 $contribution_counts = [];
 $contribution_counts_bytype = [];
@@ -613,7 +611,7 @@ foreach ($contribution_counts as $login => $count) {
         $top_repos[$login][1] .
         ' commits)" data-bs-toggle="tooltip">' .
         $top_repos[$login][0] .
-        ' 
+        '
         <span class="badge rounded-pill bg-secondary float-end">' .
         $top_repos[$login][1] .
         '</span></a>
@@ -672,7 +670,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type): ?>
         <th class="">Unique repo visitors</th>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr class="text-bold">
         <th>&nbsp;</th>

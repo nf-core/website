@@ -11,8 +11,9 @@ $(function () {
     html: true,
   });
   if (document.querySelector('.toc')) {
+    // Enable scrollspy
     var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-      target: '.toc',
+      target: '.toc>div>div>.nav',
     });
   }
   // Enable code highlighting
@@ -443,6 +444,46 @@ $(function () {
     dataSpyList.forEach(function (dataSpyEl) {
       bootstrap.ScrollSpy.getInstance(dataSpyEl).refresh();
     });
+  });
+
+  // Filter events with buttons
+  $('.events-toolbar .events-filters input[type="radio"]').click(function () {
+    $(this).blur().toggleClass('active');
+    var showclasses = $(this).data('bsTarget') ? $(this).data('bsTarget') : [];
+    if (showclasses.length > 0) {
+      $('.event-list .card').filter(showclasses).show();
+      $('.event-list .card').not(showclasses).hide();
+    } else {
+      // reset filtering
+      $('.event-list .card').show();
+    }
+  });
+
+  // Filter pipelines with text
+  function filter_events_text(ftext) {
+    if (ftext.length > 0) {
+      $('.event-list .card:visible:contains("' + ftext + '")').show();
+      $('.event-list .card:visible:not(:contains("' + ftext + '"))').hide();
+    } else {
+      // reset filtering
+      $('.event-list .card').show();
+    }
+  }
+  // page load
+  if ($('.events-toolbar .event-filters input').val()) {
+    var ftext = $('.events-toolbar .event-filters input').val();
+    filter_events_text(ftext);
+    $('.events-toolbar .event-filters input').addClass('active');
+  }
+  // onchange
+  $('.events-toolbar .event-filters input').keyup(function () {
+    var ftext = $('.events-toolbar .event-filters input').val();
+    filter_events_text(ftext);
+    if ($('.events-toolbar .event-filters input').val()) {
+      $('.events-toolbar .event-filters input').addClass('active');
+    } else {
+      $('.events-toolbar .event-filters input').removeClass('active');
+    }
   });
 });
 

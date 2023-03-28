@@ -309,7 +309,7 @@ Adding nf-core modules to a pipeline, if the modules already exist in the nf-cor
 nf-core modules install <module name>
 ```
 
-The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as `workflows/<pipeline-name>.nf`) or a sub-workflow, an include statement needs to be added in the corresponding Nextflow file:
+The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as `workflows/<pipeline-name>.nf`) or a subworkflow, an include statement needs to be added in the corresponding Nextflow file:
 
 ```bash
 include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'
