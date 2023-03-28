@@ -81,6 +81,7 @@ Nextflow works best when you have an active internet connection, as it is able t
 
 - Hyphens matter! Core Nextflow command-line options use one (`-`), whereas pipeline-specific parameters use two (`--`)
 - Specify `--email your@email.com` to receive emails when your pipeline completes
+- Specify `--hook_url YOUR-HOOK-URL` to receive notifications from your pipeline in Microsoft Teams. Learn how to set up an [incoming webhook in MS Teams here](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet).
 - Include `-r <version-number>` when running your pipeline to specify a release version explicitly. That way, the same command will give identical results in future.
 - Use `-resume` to restart pipelines that did not complete. This ensures that successful tasks from the previous run won't be re-executed.
 - Use `nextflow log` to find names of all previous runs in your directory. These can be used with `-resume` to restart specific runs.
