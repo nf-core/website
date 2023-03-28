@@ -33,7 +33,7 @@ Learning something in a non-native language can be difficult. To help make learn
 
 To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
 
-You can find playlist of the streams for this event in five languages [here]([https://www.youtube.com/playlist?list=PL3xpfTVZLcNhhS2HSrBRvdpDWuCltIFSJ](https://www.youtube.com/@nf-core/playlists?view=50&sort=dd&shelf_id=2)).
+You can find playlists of the streams for this event in five languages [here](https://www.youtube.com/@nf-core/playlists?view=50&sort=dd&shelf_id=2).
 
 # Schedule
 
