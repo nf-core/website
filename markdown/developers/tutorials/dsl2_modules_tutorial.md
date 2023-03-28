@@ -398,7 +398,7 @@ We will run one or more of the following, depending on the software profile avai
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+PROFILE=docker pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
 
 ```
 
@@ -406,14 +406,14 @@ or if we use _singularity_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-TMPDIR=~ PROFILE=singularity pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+TMPDIR=~ PROFILE=singularity pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
 ```
 
 or _Conda_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+PROFILE=conda pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
 ```
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
@@ -425,7 +425,7 @@ The minimum Nextflow version required to run the tests can be found in [this `ne
 If the version of Nextflow you are using is older than the version specified there you may get an error such as `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`. The error will be reported in `log.err` in the directory where the outputs from the tests were generated. See the Nextflow [releases](https://github.com/nextflow-io/nextflow/releases) and [installation](https://www.nextflow.io/docs/latest/getstarted.html#installation) pages to install a later version.
 
 ```bash
-NXF_VER="22.10.1" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+NXF_VER="22.10.1" PROFILE=docker pytest --tag fgbio_fastqtobam --symlink --keep-workflow-wd
 ```
 
 Once all your tests are passing - it's time to submit the module to nf-core/modules!
