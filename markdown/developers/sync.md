@@ -159,7 +159,7 @@ Unmerged paths:
 ```
 
 You now need to go through each of these files to resolve every merge conflict.
-Most code editors have tools to help with this, for example [Atom](https://flight-manual.atom.io/using-atom/sections/github-package/#resolve-conflicts) and [VSCode](https://code.visualstudio.com/docs/editor/versioncontrol#_merge-conflicts) have built-in support.
+Most code editors have tools to help with this, for example [VSCode](https://code.visualstudio.com/docs/editor/versioncontrol#_merge-conflicts) have built-in support.
 
 Be careful when resolving conflicts.
 Most of the time you will want to use the version from the `TEMPLATE` branch,
@@ -372,8 +372,6 @@ CONFLICT (add/add): Merge conflict in docs/usage.md
 
 Go through each file resolving the merge conflicts carefully.
 Many text editors have plugins to help with this task.
-The [Atom GitHub package](https://github.atom.io/) is one example of an excellent interface to manage merge conflicts
-(see the [docs](https://flight-manual.atom.io/using-atom/sections/github-package/#resolve-conflicts)).
 
 It's highly recommended to use a visual tool to help you with this, as it's easy to make mistakes if handling
 the merge markers manually when there are so many to deal with.
