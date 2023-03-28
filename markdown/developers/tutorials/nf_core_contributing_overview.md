@@ -255,14 +255,14 @@ It will check:
 
 > Tip: when using a code editor, some code editor settings might help you solve any code linting errors by linting when saving a file and even fixing the errors directly. You can check out [this documentation](https://nf-co.re/docs/contributing/editor_plugins) on code editor plugins.
 
-#### Prettier 
+#### Prettier
 
 Prettier is a tool used to make the code more consistent and readable.
 It's a optionated code formatter that enforces a consistent style by parsing the code and re-printing it in its own rules.
 
 Every code and file of the nf-core community needs to be checked and formatted by Prettier before the upload.
 
-The command to check if the style of all files in your directory and its subdirectories is valid for Prettier is the following: 
+The command to check if the style of all files in your directory and its subdirectories is valid for Prettier is the following:
 
 ```bash
 prettier -c .
