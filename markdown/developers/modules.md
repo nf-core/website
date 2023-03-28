@@ -605,7 +605,7 @@ process {
 2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`. If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
 3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32-L46)), you MUST assign cpus per tool such that the total number of used CPUs does not exceed `task.cpus`.
-   - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
+   - Note that [`task.cpus`] is supplied unchanged when a process uses multiple cores
    - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
 
 ### Software requirements
