@@ -126,7 +126,7 @@ FGBIO command line for the function _FastqToBam_ looks like the following:
 ```bash
 fgbio --tmp-dir=tmpFolder \\
     FastqToBam \\
-    -i read1_fastq.gz read2_fastq.gz \\
+    -i read1.fastq.gz read2.fastq.gz \\
     -o "sampleID_umi_converted.bam" \\
     --read-structures "+T 12M11S+T" \\
     --sample "sampleID" \\
@@ -139,6 +139,8 @@ Here you should first identify:
 - the inputs / arguments, which are optional
 - the outputs
 - any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
+
+Here, the mandatory input would be the `-i read1.fastq.gz` and the `--read-structures`. In this command we have no optional arguments. The arguments associated with the sample are `--sample`, `--library` ,and the sample ID in the output file (`-o`).  
 
 Make sure to check the [guidelines](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist) for what you should and should not include.
 
@@ -162,7 +164,7 @@ output:
 
 ### Passing optional args
 
-Within nf-core modules any optional non-file parameters should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via an `ext.args` variable that is defined in a `modules.conf` file.
+Within nf-core modules any optional non-file parameters should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via an `ext.args` variable that is defined in a `modules.conf` file. The `task` in `task.ext.args` and `task.ext.prefix` refers to the name of your module.
 
 ```
     script:
@@ -170,8 +172,7 @@ Within nf-core modules any optional non-file parameters should be passed within 
     def prefix = task.ext.prefix ?: "${meta.id}"
 ```
 
-But we will add this into the script code, so any other user who might want to execute the function with additional arguments will be able to.
-The code of the script will therefore look like this, once we have substituted inputs and outputs as appropriate.
+We now can substitute all our parameters with our predefined inputs, outputs and args. With the `modules.conf` every other user can run the module with the additionel arguments of choice. After the substitutions the code of the script looks as follows:
 
 ```bash
 mkdir tmpFolder
