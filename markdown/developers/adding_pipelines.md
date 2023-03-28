@@ -84,8 +84,9 @@ git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
 git add .
 git commit -m "Starting to build my pipeline"
 ## Push to GitHub
-git push --all origin
+git push
 ```
+**NOTE:**  If you have made independent commits to multiple branches of your repo, and you want to push all the commits to their respective branches on remote in one go, you can use `git push --all origin` instead of `git push`. You can read more about `git push` arguments [here](https://git-scm.com/docs/git-push).
 
 ### Work on your pipeline
 
