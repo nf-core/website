@@ -533,15 +533,15 @@ process {
        <summary>Inputs particular cases</summary>
         When one and only one of multiple argument are required:
 
-        - If they all are string argument : use 1 argument that will be equal to the string
+     - If they all are string argument : use 1 argument that will be equal to the string
 
-        e.g. Parameter model of [glimpse2 chunk](https://nf-co.re/modules/glimpse2_chunk)
+     e.g. Parameter model of [glimpse2 chunk](https://nf-co.re/modules/glimpse2_chunk)
 
-        - If some are files put them all in one channel and test if only one is present
+     - If some are files put them all in one channel and test if only one is present
 
-        e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
+     e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
 
-        `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
+     `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
        </details>
 
 3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
