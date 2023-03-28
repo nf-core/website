@@ -306,19 +306,21 @@ This can also be done automatically, using the [pytest-workflow](https://pytest-
 
 ### Create a test workflow
 
-As described above, _nf-core tools_ has created already the following files
+As described above, _nf-core tools_ has created already the following files ready for you to modify.
 
 ```bash
-tests/modules/fgbio
-└── fastqtobam
-    ├── main.nf
-    ├── nextflow.config
-    └── test.yml
+tests
+├── modules
+│   └── fgbio
+│       └── demofastqtobam
+│           ├── main.nf
+│           ├── nextflow.config
+│           └── test.yml
+└── config
+    └── pytest_modules.yml
 ```
 
-ready for you to modify.
-
-You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
+You should first open `tests/modules/fgbio/demofastqtobam/main.nf` and create a short test workflow, with available test data.
 
 > :soon: this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
 
@@ -332,7 +334,7 @@ process {
 
     publishDir = { "${params.outdir}/${task.process.tokenize(':')[-1].tokenize('_')[0].toLowerCase()}" }
 
-    withName: "test_fgbio_fastqtobam_paired_umi:FGBIO_FASTQTOBAM" {
+    withName: "test_fgbio_fastqtobam_paired_umi:FGBIO_DEMOFASTQTOBAM" {
         ext.args = "--read-structures +T 12M11S+T"
     }
 }
@@ -355,7 +357,7 @@ Our test workflow will be very simple, and most of the code has been written by 
 nextflow.enable.dsl = 2
 params.read_structure = "+T 12M11S+T"
 
-include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf'
+include { FGBIO_DEMOFASTQTOBAM } from '../../../../modules/fgbio/demofastqtobam/main.nf'
 
 workflow test_fgbio_fastqtobam {
 
@@ -377,13 +379,13 @@ In order to carry out the test, _pytest-workflow_ will search for information st
 
 ```bash
 modules/tests/config/pytest_software.yml
-modules/tests/software/fgbio/fastqtobam/test.yml
+modules/tests/software/fgbio/demofastqtobam/test.yml
 ```
 
 We can modify these files using _nf-core tools_, moving into the parent modules directory and using a simple command:
 
 ```bash
-nf-core modules create-test-yml -t fgbio/fastqtobam
+nf-core modules create-test-yml -t fgbio/demofastqtobam
 ```
 
 The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose _yes_. We can leave defaults for entry points, test name and command.
@@ -403,12 +405,12 @@ This process will run the test workflow, generate the outputs and update the `te
 Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
 
 ```yaml
-fgbio_fastqtobam:
-  - modules/fgbio/fastqtobam/**
-  - tests/modules/fgbio/fastqtobam/**
+fgbio_demofastqtobam:
+  - modules/fgbio/demofastqtobam/**
+  - tests/modules/fgbio/demofastqtobam/**
 ```
 
-These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `modules/fgbio/fastqtobam/**` and the test at `tests/modules/fgbio/fastqtobam/**`.
+These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `modules/fgbio/demofastqtobam/**` and the test at `tests/modules/fgbio/demofastqtobam/**`.
 
 ### Run tests locally
 
@@ -420,7 +422,7 @@ We will run one or more of the following, depending on the software profile avai
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+PROFILE=docker pytest --tag fgbio_demobamtofastq --symlink --keep-workflow-wd
 
 ```
 
@@ -428,14 +430,14 @@ or if we use _singularity_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-TMPDIR=~ PROFILE=singularity pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+TMPDIR=~ PROFILE=singularity pytest --tag fgbio_demobamtofastq --symlink --keep-workflow-wd
 ```
 
 or _Conda_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+PROFILE=conda pytest --tag fgbio_demobamtofastq --symlink --keep-workflow-wd
 ```
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
@@ -466,6 +468,6 @@ You can find more information on the GitHub [guide](https://docs.github.com/en/g
 
 Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
 
-A pull request will be created: volunteers will review your code and will use comments and requests for changes on GitHub to interact with you and suggest changes if necessary. This is a collaborative and very interesting part of your development work.
+A pull request will be created: Volunteers will review your code and will use comments and requests for changes on GitHub to interact with you and suggest changes if necessary. This is a collaborative and very interesting part of your development work.
 
 Enjoy!
