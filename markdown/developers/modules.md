@@ -867,6 +867,67 @@ To see some more advanced examples of these keys in use see:
 - [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
 - [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
 
+## Advanced pattern
+
+### Multimaping
+
+It is possible with `multiMap` to split a channel in to and to call them separately afterwards.
+
+```nextflow
+ch_input = reads.combine(db).multiMap{ it ->
+   reads: it[0]
+   db: it[1]
+}
+MODULE(ch_input.reads, ch_input.db)
+```
+
+### Adding additional information to the meta map
+
+It is possible to combine a input channel with a set of parameters as follows:
+
+```nextflow
+ch_input.flatMap { meta, filetype ->
+    [300, 500, 1000].collect {
+      def new_meta = meta.clone()
+      new_meta.window_size = it
+      [ new_meta, filetype]
+    }
+}
+```
+
+You can also combine this technique with others for more processing:
+
+```nextflow
+workflow {
+
+    input = [
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ]
+    ]
+    Channel.fromList ( input )
+        .map { meta, intervals ->
+            new_meta = meta.clone()
+            new_meta.id = intervals.baseName != "no_intervals" ? new_meta.sample + "_" + intervals.baseName : new_meta.sample
+            intervals = intervals.baseName != "no_intervals" ? intervals : []
+            [new_meta, intervals]
+        }.view { meta, intervals -> meta.id }
+}
+```
+
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
