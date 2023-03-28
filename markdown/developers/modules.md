@@ -7,9 +7,11 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
 
+**⚠️ While it is possible to run DSL1 pipelines, DSL1 has reached it's end-of-life as of 2023. ⚠️**
+
 ## Terminology
 
-The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
+A domain-specific language (DSL) is a programming language that is developed for a specific application. Nextflow is based on a DSL, where DSL2 is the latest version. DSL2 allows data analysis pipelines to be scaled and modularised. The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
 
 ### Module
 
@@ -21,7 +23,7 @@ A chain of multiple modules that offer a higher-level of functionality within th
 
 ### Workflow
 
-What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
+DSL2 is considered an end-to-end pipeline, where one or more inputs can produce a series of outputs. This can either be implemented using a large monolithic script, or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
 
 ## Writing a new module reference
 
