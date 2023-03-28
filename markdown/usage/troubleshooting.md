@@ -212,7 +212,7 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_(programming)). This is even if you are only running one paired end sample.
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>). This is even if you are only running one paired end sample.
    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
