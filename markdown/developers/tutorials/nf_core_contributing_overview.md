@@ -273,6 +273,7 @@ While the command to automatically format the style of all the files in your dir
 ```bash
 prettier -w .
 ```
+See pre-commit infos at the link: https://nf-co.re/docs/contributing/modules#new-module-workflow
 
 #### Continuous integration tests
 
@@ -355,7 +356,7 @@ A step-by-step tutorial [adding new modules](https://nf-co.re/docs/contributing/
 
 #### Subworkflow
 
-Subworkflows are chains of modules that offer a higher-level of functionality within the context of a pipeline. A subworkflow is able tu run multiple tools on the same input file.
+Subworkflows are chains of modules that offer a higher-level of functionality within the context of a pipeline. A subworkflow is able to run multiple tools on the same input file.
 Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the 'subworkflow/' directory of nf-core/modules along with the required documentation and tests.
 
 ## Releasing nf-core pipelines
