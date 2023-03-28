@@ -682,7 +682,7 @@ nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/co
 
 ### PR Review Checklist
 
-A PR review is the process of examining a new modules' submission or the changes proposed to a module. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository. The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality. The following is a collection of suggestions to have into account during the review process.
+A PR review is the process of examining a new modules' submission or the changes proposed to a module. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository. The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality. While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) is responsible for overseeing the PR review process for modules, these guidelines can assist community members in reviewing PRs and ensure that the review process is consistent and effective. The following is a collection of community suggestions to have into account during the review process.
 
 #### General reviews of submissions to modules:
 
