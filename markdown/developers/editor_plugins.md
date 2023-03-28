@@ -54,7 +54,7 @@ Other useful packages include:
 - `todo-show`: <https://atom.io/packages/todo-show>
 - `trailing-spaces`: <https://atom.io/packages/trailing-spaces>
 
-**IN CASE YOU MISSED IT, ATOM HAS BEEN ARCHIVED AND SUPPORT FOR IT WILL BE LIMITED/ABSENT IN THE NEAR FUTURE.** 
+**IN CASE YOU MISSED IT, ATOM HAS BEEN ARCHIVED AND SUPPORT FOR IT WILL BE LIMITED/ABSENT IN THE NEAR FUTURE.**
 
 # Emacs
 
