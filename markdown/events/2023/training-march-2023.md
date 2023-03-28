@@ -29,11 +29,15 @@ Learning something in a non-native language can be difficult. To help make learn
 - Portuguese
 - Spanish
 
-Please contact us if you are familiar with Nextflow and would like to help record training sessions in these or any other language that isn't listed.
+# Accessing the streams
+
+To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
+
+You can find playlists of the streams for this event in five languages [here](https://www.youtube.com/@nf-core/playlists?view=50&sort=dd&shelf_id=2).
 
 # Schedule
 
-Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 2 hours and community volunteers will be available to answer questions on dedicated Slack channels during the event. Recordings of these sessions will remain online after the event for you to come back and watch again at any time.
+Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 2 hours.
 
 ### Session 1 (March 13)
 
@@ -72,13 +76,17 @@ Session 4 will show you how to configure and deploy Nextflow pipelines. Strategi
 - Troubleshooting (20 min)
 - Getting started with Nextflow Tower (30 min)
 
-# Registration
+## Asking questions
 
-Registration for the training is now OPEN! 🎉
+Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-Please sign up [here](https://seqera.typeform.com/mar2023training) or in the widget below to be kept up to date with all relevant information 👇
+- [#mar23-training-english](https://nfcore.slack.com/archives/C04RU8PCKNK)
+- [#mar23-training-french](https://nfcore.slack.com/archives/C04S26Q4Z46)
+- [#mar23-training-hindi](https://nfcore.slack.com/archives/C04S8QLNB7C)
+- [#mar23-training-portuguese](https://nfcore.slack.com/archives/C04SYFF7BLG)
+- [#mar23-training-spanish](https://nfcore.slack.com/archives/C04RU921X63)
 
-<div data-tf-widget="LbETv0hU" style="width:100%;height:500px;color:#FFFFFF;"></div>
+> Please be aware that due to the size of this event there may be a delay when answering your questions.
 
 # Code of conduct
 

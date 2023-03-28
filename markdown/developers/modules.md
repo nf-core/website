@@ -343,37 +343,38 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
-   Mandatory command line arguments MUST be specified in long form where possible.
+1. Where non-file inputs are mandatory or needed to modify the command, they SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
-   `<module>.nf`:
+All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable.
 
-   ```nextflow
-   script:
-   def args = task.ext.args ?: ''
-   def prefix = task.ext.prefix ?: "${meta.id}"
-   """
-   fastqc \\
-       $args \\
-        <...>
-   """
-   ```
+    - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
-   `modules.config`:
+      `<module>.nf`:
 
-   ```nextflow
-   process {
-       withName: <module> {
-           ext.args = [                                                          // Assign either a string, or closure which returns a string
-               '--quiet',
-               params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-           ].join(' ')                                                           // Join converts the list here to a string.
-           ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
-       }
-   }
-   ```
+      ```nextflow
+      script:
+      def args = task.ext.args ?: ''
+      def prefix = task.ext.prefix ?: "${meta.id}"
+      """
+      fastqc \\
+          $args \\
+            <...>
+      """
+      ```
 
-   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+      `modules.config`:
+
+      ```nextflow
+      process {
+          withName: <module> {
+              ext.args = [                                                          // Assign either a string, or closure which returns a string
+                  '--quiet',
+                  params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+              ].join(' ')                                                           // Join converts the list here to a string.
+              ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+          }
+      }
+      ```
 
 2. Software that can be piped together SHOULD be added to separate module files
    unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -507,22 +508,53 @@ process {
 
 ### Input/output options
 
-1. Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
+1. Input channel `path` declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
 
    - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
    - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
-2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+2. Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g. parameters, flags etc).
 
-3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+   - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
+   - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
+   - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-4. Optional outputs SHOULD be marked as optional:
+       <details markdown="1">
+       <summary>Rationale</summary>
+       It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
+
+     The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
+
+     Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+
+       </details>
+
+       <details markdown="1">
+       <summary>Inputs particular cases</summary>
+        When one and only one of multiple argument are required:
+
+     - If they all are string argument : use 1 argument that will be equal to the string
+
+     e.g. Parameter model of [glimpse2 chunk](https://nf-co.re/modules/glimpse2_chunk)
+
+     - If some are files put them all in one channel and test if only one is present
+
+     e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
+
+     `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
+       </details>
+
+3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+
+4. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+
+5. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-5. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+6. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
@@ -573,7 +605,7 @@ process {
 2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`. If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
 3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32-L46)), you MUST assign cpus per tool such that the total number of used CPUs does not exceed `task.cpus`.
-   - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
+   - Note that [`task.cpus`] is supplied unchanged when a process uses multiple cores
    - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
 
 ### Software requirements
@@ -693,7 +725,7 @@ The only required value is `meta.id` for most of the modules, however, they usua
 
 The `meta map` is generated with [create_fastq_channel function in the input_check subworkflow](https://github.com/nf-core/rnaseq/blob/587c61b441c5e00bd3201317d48b95a82afe6aaa/subworkflows/local/input_check.nf#L23-L45) of most nf-core pipelines. Where the meta information is easily extracted from a samplesheet that contains the input file paths.
 
-#### Generating a `meta map` from file pairs
+### Generating a `meta map` from file pairs
 
 Sometimes you want to use nf-core modules in small scripts. You don't want to make a samplesheet, or maintain a bunch of validation.
 For instance, here's an example script to run fastqc
@@ -725,7 +757,7 @@ workflow {
 }
 ```
 
-#### Sorting samples by groups
+### Sorting samples by groups
 
 ```nextflow
 ch_genome_bam.map {
@@ -736,6 +768,41 @@ ch_genome_bam.map {
     .groupTuple(by: [0])
     .map { it ->  [ it[0], it[1].flatten() ] }
     .set { ch_sort_bam }
+```
+
+### Combining channel on meta subset
+
+Sometimes it is necessary to combine multiple channels based on a subset of the meta maps.
+Unfortunately this is not yet supported as the argument `by` isn't a closure in `.combine()` and `.join()` and it probably won't ([Nextflow issue #3175](https://github.com/nextflow-io/nextflow/issues/3175)).
+
+To bypass this restriction one of the solution is to create a new map with only the necessary keys and make the junction on it. Here is an example:
+
+```nextflow
+ch_input = [[["id":"Ind1","ref":"RefA"],"file1"],[["id":"Ind2","ref":"RefB"],"file2"]]
+ch_ref   = [[["ref":"RefA"],"fileA"],[["ref":"RefB"],"fileB"]]
+
+ch_join  = ch_input
+            .map{metaIR, file -> [metaIR.subMap(["ref"]), metaIR, file]}
+            .combine(chr_ref)
+            .map{metaR, metaIR, file, ref -> [metaIR, file, ref]}
+```
+
+### Modify the meta map
+
+There is multiple ways to modify the meta map.
+Here are some examples:
+
+```nextflow
+// Add to map - adding two maps makes a new Map object
+ch.map { meta, files -> [ meta + [ single_end: files instanceof Path ], files ] }
+
+// Remove certain keys (and their entries) from a map
+ch.map { meta, files -> [ meta.subMap( ['id','rg'] ), files ] }
+  // OR by specifying what not to include
+ch.map { meta, files -> [ meta.findAll { ! it.key in ['single_end'] }, files ] }
+
+// Split a map - use both methods of removing keys ( there is a split method for Maps, but the results are not Maps )
+ch.map { meta, files -> def keyset = ['id', 'read_group']; [ meta.subMap(keyset), meta.findAll { ! it.key in keyset },  files ] }
 ```
 
 ### Conclusion
@@ -799,6 +866,67 @@ To see some more advanced examples of these keys in use see:
 - [Set ext.args based on parameter settings](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L222-L226)
 - [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
 - [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
+
+## Advanced pattern
+
+### Multimaping
+
+It is possible with `multiMap` to split a channel in to and to call them separately afterwards.
+
+```nextflow
+ch_input = reads.combine(db).multiMap{ it ->
+   reads: it[0]
+   db: it[1]
+}
+MODULE(ch_input.reads, ch_input.db)
+```
+
+### Adding additional information to the meta map
+
+It is possible to combine a input channel with a set of parameters as follows:
+
+```nextflow
+ch_input.flatMap { meta, filetype ->
+    [300, 500, 1000].collect {
+      def new_meta = meta.clone()
+      new_meta.window_size = it
+      [ new_meta, filetype]
+    }
+}
+```
+
+You can also combine this technique with others for more processing:
+
+```nextflow
+workflow {
+
+    input = [
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ]
+    ]
+    Channel.fromList ( input )
+        .map { meta, intervals ->
+            new_meta = meta.clone()
+            new_meta.id = intervals.baseName != "no_intervals" ? new_meta.sample + "_" + intervals.baseName : new_meta.sample
+            intervals = intervals.baseName != "no_intervals" ? intervals : []
+            [new_meta, intervals]
+        }.view { meta, intervals -> meta.id }
+}
+```
 
 ## Help
 

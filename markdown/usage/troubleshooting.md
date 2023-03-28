@@ -212,11 +212,11 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>). This is even if you are only running one paired end sample.
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_(programming)). This is even if you are only running one paired end sample.
    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
-4. If you are running single-end data make sure to specify `--singleEnd`
+4. If you are running single-end data make sure to specify `--single_end`
 5. [Your data should be organised in a 'tidy' manner](#data-organization)
 
 A few examples are as follows:
@@ -224,19 +224,19 @@ A few examples are as follows:
 - Running with a single, single-end FASTQ file as input (this will produce output files for this sample only)
 
   ```bash
-  nextflow run nf-core/<pipeline> -input 'my_data.fastq.gz` --single_end
+  nextflow run nf-core/<pipeline> --input 'my_data.fastq.gz` --single_end
   ```
 
 - Running multiple single-end FASTQ files as input using a wildcard glob pattern. This will find all files in the directory beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two strings being considered distinct samples (and will produce output files for each of the multiple input files).
 
   ```bash
-  nextflow run nf-core/<pipeline> -input 'my_*.fastq.gz` --single_end
+  nextflow run nf-core/<pipeline> --input 'my_*.fastq.gz` --single_end
   ```
 
 - Running multiple paired-end FASTQ files as input using wildcard and grouping glob patterns. This will find all files in the directory beginning with `my_`, and ending in `.fastq.gz`, with each file with any other characters between those two strings being considered distinct samples. However, any pair of file names that are exactly the same other than `R1` and `R2` will be grouped together, and processed as related files. You will in most cases get output files for each distinct file, but with the `*{R1,R2}` syntax, R1 and R2 pairs are collapsed into one.
 
   ```bash
-  nextflow run nf-core/<pipeline> -input 'my_*{R1,R2}.fastq.gz`
+  nextflow run nf-core/<pipeline> --input 'my_*{R1,R2}.fastq.gz`
   ```
 
 Note that if your sample name is "messy" then you have to be very particular with your glob specification (see point 2 above). A file name like `L1-1-D-2h_S1_L002_R1_001.fastq.gz` can be difficult enough for a human to read. Specifying `*{1,2}*.gz` will not give you what you want, whilst `*{R1,R2}*.gz` will.
@@ -279,7 +279,7 @@ Sometimes a newly downloaded and set up nf-core pipeline will encounter an issue
 
 The first thing to do is always check the `.nextflow.log` to see if it reports contains specific error. Common cases are described below.
 
-:warning: Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
+> :warning: Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
 
 ### Tool not found
 
@@ -297,6 +297,15 @@ To fix, just re-pull the pipeline's Docker container manually with:
 
 ```bash
 docker pull nfcore/<pipeline>:dev
+```
+
+If you work in a `dev` branch, you may also want to consider putting a request for a pull in each run you do with nextflow, by putting this line of code in your nextflow.config file:
+
+```bash
+docker {
+    enabled = true
+    runOptions = '--pull=always'
+}
 ```
 
 ### Error related to Singularity
@@ -438,8 +447,7 @@ To fix this you need to change the default memory requirements for the process t
 For example, let's say it's the `markduplicates` process that is running out of memory (as displayed on the Nextflow running display).
 
 - First we need to check to see what default memory value we have. For this you need to go into the pipeline code locally in your local copy (typically: `~/.nextflow/assets/nf-core/<pipeline>/`, or the GitHub repository (`https://github.com/nf-core/<pipeline>`)
-  - If the pipeline has a `modules/` directory, i.e. is a DSL2 pipeline: Go to the file here `modules/nf-core/<tool_name>/main.nf`, and check the `label` line.
-  - If the pipeline doesn't have a `modules/` directory, i.e. is a DSL1 pipelines. Go to the main code of the pipeline by going to the corresponding pipeline GitHub repository and open the `main.nf` file. Search for `process markduplicates`.
+- Go to the file here `modules/nf-core/<tool_name>/main.nf`, and check the `label` line.
 - Once found, check the line called `label` and note down the corresponding label. In this case the label could be `process_low`.
 - Go back to the main github repository, and open `conf/base.config`. Now, search in your browser for `withLabel:'process_low'`.
 - Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
@@ -478,7 +486,7 @@ For example, let's say it's the `markduplicates` process that is running out of 
   ```
 
   - We have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
-  - :warning: it's important that the `big_data` profile name comes first, to ensure it overwrites any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
+  - :warning: It's important that the `big_data` profile name comes first, to ensure it doesn't get overwritten by any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
 
 ## Crashed pipeline with an error but Nextflow is still running
 
@@ -490,15 +498,21 @@ If this happens, you can either wait until all other already running jobs to saf
 
 Possible options:
 
-1. If an optional step, check for a typo in the parameter name. Nextflow _does not_ check for this
+1. If an optional step, check for a typo in the parameter name. Nextflow _does not_ check for this (unless you created a workflow with the nf-core template, which provides parameter validation)
 2. Check that an upstream step/process was turned on (if a step/process requires the output of an earlier process, it will not be activated unless it receives the output of that process)
 
 ## My pipeline update doesn't seem to do anything
 
-To download a new version of a pipeline, you can use the following, replacing `<version>` to the corresponding version.
+To download new version of a pipeline, you can use the following.
 
 ```bash
-nextflow pull nf-core/<pipeline> -r <version>
+nextflow pull nf-core/<pipeline> -latest
+```
+
+To download a previous version of a pipeline, you can instead use the following, replacing `<version>` to the corresponding version (v3.4 for example)
+
+```bash
+nextflow pull nf-core/<pipeline> -r `<version>`
 ```
 
 However, in very rare cases, minor fixes to a version will be pushed out without a version number bump. This can confuse Nextflow slightly, as it thinks you already have the 'broken' version from your original pipeline download.
@@ -509,6 +523,7 @@ If when running the pipeline you don't see any changes in the fixed version when
 
 ```bash
 rm -r ~/.nextflow/assets/nf-core/<pipeline>
+rm -r ~/.config/nfcore/nf-core/modules
 ```
 
 And re-pull the pipeline with the command above. This will install a fresh version of the version with the fixes.
