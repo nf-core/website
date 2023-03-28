@@ -776,6 +776,7 @@ Sometimes it is necessary to combine multiple channels based on a subset of the 
 Unfortunately this is not yet supported as the argument `by` isn't a closure in `.combine()` and `.join()` and it probably won't ([Nextflow issue #3175](https://github.com/nextflow-io/nextflow/issues/3175)).
 
 To bypass this restriction one of the solution is to create a new map with only the necessary keys and make the junction on it. Here is an example:
+
 ```nextflow
 ch_input = [[["id":"Ind1","ref":"RefA"],"file1"],[["id":"Ind2","ref":"RefB"],"file2"]]
 ch_ref   = [[["ref":"RefA"],"fileA"],[["ref":"RefB"],"fileB"]]
@@ -785,6 +786,7 @@ ch_join  = ch_input
             .combine(chr_ref)
             .map{metaR, metaIR, file, ref -> [metaIR, file, ref]}
 ```
+
 ### Modify the meta map
 
 There is multiple ways to modify the meta map.
@@ -802,6 +804,7 @@ ch.map { meta, files -> [ meta.findAll { ! it.key in ['single_end'] }, files ] }
 // Split a map - use both methods of removing keys ( there is a split method for Maps, but the results are not Maps )
 ch.map { meta, files -> def keyset = ['id', 'read_group']; [ meta.subMap(keyset), meta.findAll { ! it.key in keyset },  files ] }
 ```
+
 ### Conclusion
 
 As you can see the `meta map` is a quite flexible way for storing meta data in channels. Feel free to add whatever other key-value pairs your pipeline may need to it. We're looking to add [Custom objects](https://github.com/nf-core/modules/issues/1338) which will lock down the usage a bit more.
