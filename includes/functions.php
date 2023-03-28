@@ -489,8 +489,8 @@ foreach ($year_dirs as $year) {
     // Event subdirectories
     $event_dirs = glob($year . '/*', GLOB_ONLYDIR);
     foreach ($event_dirs as $event_dir) {
-        if(is_file($event_dir.'/index.md')){
-            $event_mds[] = $event_dir.'/index.md';
+        if (is_file($event_dir . '/index.md')) {
+            $event_mds[] = $event_dir . '/index.md';
         }
     }
 
@@ -500,17 +500,15 @@ foreach ($year_dirs as $year) {
         if ($md_full !== false) {
             $fm = parse_md_front_matter($md_full);
             // Add the URL
-            if(basename($event_md) == 'index.md'){
+            if (basename($event_md) == 'index.md') {
                 $fm['meta']['url'] = '/events/' . basename($year) . '/' . basename(dirname($event_md));
-            }
-            else {
+            } else {
                 $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
             }
             // Add to the events array
             $events[] = $fm['meta'];
         }
     }
-
 }
 
 # Look to see if we have an upcoming / ongoing event to show and pick one
