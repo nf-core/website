@@ -273,7 +273,7 @@ While the command to automatically format the style of all the files in your dir
 ```bash
 prettier -w .
 ```
-See pre-commit infos at the link: https://nf-co.re/docs/contributing/modules#new-module-workflow
+See pre-commit informations here: https://nf-co.re/docs/contributing/modules#new-module-workflow
 
 #### Continuous integration tests
 
