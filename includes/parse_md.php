@@ -154,15 +154,15 @@ function parse_md($markdown) {
             '<div class="row flex-wrap-reverse flex-lg-wrap"><div class="col-12 col-lg-9">
                       <div class="rendered-markdown publication-page-content">' .
             $content .
-            '</div>
-                </div>';
+            # '</div>'. # Removing fixes the ToC for the hackathon event page. Not sure why. TODO: May break other stuff
+            '</div>';
         # sidebar
         $content .= '<div class="col-12 col-lg-3 ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
         # ToC
         $content .= '<nav class="toc auto-toc mt-2 flex-column border-start">';
         $content .= generate_toc($content);
         $content .=
-            '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            '<p class="small text-end mt-3 d-none d-lg-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 
         $content .= '</nav>';
 

@@ -61,14 +61,14 @@ function prep_current_event($event) {
         'talk' => 'success',
         'poster' => 'secondary',
         'tutorial' => 'info',
-        'workshop' => 'warning',
+        'training' => 'warning',
     ];
     $d['event_type_icons'] = [
         'hackathon' => 'fad fa-laptop-code',
         'talk' => 'fad fa-presentation',
         'poster' => 'fad fa-image',
         'tutorial' => 'fad fa-graduation-cap',
-        'workshop' => 'fad fa-chalkboard-teacher',
+        'training' => 'fad fa-chalkboard-teacher',
     ];
     # Nice date strings
     $d['date_string'] =
@@ -298,9 +298,9 @@ function get_self_url($strip_query = true) {
 }
 
 function generate_toc($html_string) {
-    $toc =
-        '<div class="d-none d-md-block" style="height: calc(100vh - 70px); overflow: auto;"><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>';
-    $toc_md = '<div class="dropdown d-block d-md-none">
+    $toc = '<div  class="d-none d-lg-block"><strong class="ms-3 d-inline-block w-100 text-secondary border-bottom">On this page</strong>
+        <div  style="max-height: calc(100vh - 150px); overflow: auto;">';
+    $toc_md = '<div class="dropdown d-block d-lg-none">
                 <a href="#" class="btn btn-secondary-outline bg-body dropdown-toggle float-end border" data-bs-toggle="dropdown">On this page</a>
                 <div class="dropdown-menu toc-md">';
     $is_active = true;
@@ -370,7 +370,7 @@ function generate_toc($html_string) {
     $toc_md .= '<!-- tock_md_button_placeholder -->';
     $toc_md .= '<a class="dropdown-item" href="#"><i class="fas fa-arrow-to-top"></i> Back to top</a>';
     $toc_md .= '</div></div>';
-    $toc .= '</div>';
+    $toc .= '</div></div>';
     $toc = $toc_md . $toc;
     return $toc;
 }
@@ -484,14 +484,27 @@ $md_base = dirname(dirname(__FILE__)) . '/markdown/';
 $events = [];
 $year_dirs = glob($md_base . 'events/*', GLOB_ONLYDIR);
 foreach ($year_dirs as $year) {
+    // Markdown files
     $event_mds = glob($year . '/*.md');
+    // Event subdirectories
+    $event_dirs = glob($year . '/*', GLOB_ONLYDIR);
+    foreach ($event_dirs as $event_dir) {
+        if (is_file($event_dir . '/index.md')) {
+            $event_mds[] = $event_dir . '/index.md';
+        }
+    }
+
     foreach ($event_mds as $event_md) {
         // Load the file
         $md_full = file_get_contents($event_md);
         if ($md_full !== false) {
             $fm = parse_md_front_matter($md_full);
             // Add the URL
-            $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            if (basename($event_md) == 'index.md') {
+                $fm['meta']['url'] = '/events/' . basename($year) . '/' . basename(dirname($event_md));
+            } else {
+                $fm['meta']['url'] = '/events/' . basename($year) . '/' . str_replace('.md', '', basename($event_md));
+            }
             // Add to the events array
             $events[] = $fm['meta'];
         }

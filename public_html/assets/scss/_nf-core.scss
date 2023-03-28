@@ -27,12 +27,13 @@ $navbar-height-collapsed: $navbar-brand-height;
 $blockquote-background: shift-color($info, $alert-bg-scale);
 $blockquote-border: shift-color($info, $alert-border-scale);
 $blockquote-color: shift-color($info, $alert-color-scale);
+$body-bg: $gray-100;
 
 // general classes
 body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: relative;
-  background-color: $gray-100;
+  background-color: $body-bg;
 }
 
 strong {
@@ -222,7 +223,8 @@ section:before {
   border-color: $nf-core-color;
   color: $nf-core-color;
 }
-.btn-outline-success:not(:disabled):not(.disabled):hover {
+.btn-outline-success:not(:disabled):not(.disabled):hover,
+.btn-check:checked + .btn-outline-success:not(:disabled):not(.disabled) {
   background-color: $nf-core-color;
   color: $white;
 }
@@ -406,6 +408,7 @@ footer a:active {
   &:focus img,
   &:active img {
     filter: opacity(100%);
+    text-decoration: none;
   }
 }
 
@@ -676,7 +679,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .homepage-intro {
   background-color: $nf-core-color;
 }
-.homepage-intro .container .row div {
+.homepage-intro {
   color: $white;
   text-align: center;
 }
@@ -812,7 +815,8 @@ Based on https://codepen.io/wintr/pen/beBJBb */
  * Pipelines
  */
 
-.pipelines-toolbar .pipeline-filters input {
+.pipelines-toolbar .pipeline-filters input,
+.events-toolbar .event-filters input {
   max-width: 10rem;
 }
 .pipelines-toolbar .btn.active {
@@ -993,7 +997,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 /*
   Pipeline Page
 */
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(lg) {
   .pipeline-page-content,
   .module-page-content,
   .rendered-markdown,
@@ -1001,7 +1005,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     padding-top: $navbar-height;
   }
 }
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(lg) {
   .side-sub-subnav .dropdown {
     margin-top: $navbar-height;
   }
@@ -1042,6 +1046,16 @@ nfcore-subnav {
   a {
     text-decoration: none;
     color: $gray-900;
+  }
+}
+.mainpage .pipeline-sidebar .nav-link {
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.active {
+    background-color: $body-bg;
+    text-decoration: underline;
   }
 }
 .pipeline-run-cmd input {
@@ -1471,29 +1485,35 @@ Launch Page
 .tile[data-state='active'] {
   color: inherit;
 }
-.sidebar-nav .btn {
-  .fas {
-    transition: transform 0.3s ease;
+.sidebar-nav {
+  @include media-breakpoint-up(lg) {
+    height: 100vh;
+    overflow: auto;
   }
-  &:hover {
-    color: $success;
+  .btn {
+    .fas {
+      transition: transform 0.3s ease;
+    }
+    &:hover {
+      color: $success;
+    }
   }
-}
-.sidebar-nav .btn[aria-expanded='true'] .fas {
-  transform: rotate(90deg);
-}
-.sidebar-nav a {
-  color: $gray-700;
-  text-decoration: none;
-  border-left: 1px solid transparent; // For alignment
-  &.active {
-    color: $gray-900;
-    font-size: 0.9rem;
-    font-weight: 700;
-    border-left: 1px solid $success; // For alignment
+  .btn[aria-expanded='true'] .fas {
+    transform: rotate(90deg);
   }
-  &:hover {
-    color: $success;
+  a {
+    color: $gray-700;
+    text-decoration: none;
+    border-left: 1px solid transparent; // For alignment
+    &.active {
+      color: $gray-900;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-left: 1px solid $success; // For alignment
+    }
+    &:hover {
+      color: $success;
+    }
   }
 }
 .sidebar-nav.side-sub-subnav > ul > nav {

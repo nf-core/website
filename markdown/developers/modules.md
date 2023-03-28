@@ -13,15 +13,15 @@ The features offered by Nextflow DSL2 can be used in various ways depending on t
 
 ### Module
 
-A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. At present, this repository has been created to only host atomic module files that should be added to the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
+A `process` that can be used within different pipelines and is as atomic as possible i.e. cannot be split into another module. An example of this would be a module file containing the process definition for a single tool such as `FastQC`. Atomic nf-core module files are available in the [`modules/`](https://github.com/nf-core/modules/tree/master/modules) directory of nf-core/modules along with the required documentation and tests.
 
-### Sub-workflow
+### Subworkflow
 
-A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a sub-workflow to run multiple QC tools with FastQ files as input. Sub-workflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. As it stands, this repository will not host sub-workflows although this may change in the future since well-written sub-workflows will be the most powerful aspect of DSL2.
+A chain of multiple modules that offer a higher-level of functionality within the context of a pipeline. For example, a subworkflow to run multiple QC tools with FastQ files as input. Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the [`subworkflow/`](https://github.com/nf-core/modules/tree/master/subworkflows) directory of nf-core/modules along with the required documentation and tests.
 
 ### Workflow
 
-What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 individual modules and sub-workflows.
+What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
 
 ## Writing a new module reference
 
@@ -45,11 +45,17 @@ If the module doesn't exist on `nf-core/modules`:
 
 We have implemented a number of commands in the `nf-core/tools` package to make it incredibly easy for you to create and contribute your own modules to nf-core/modules.
 
-1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.3`)
+1. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 2. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.04.0`)
 3. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
-4. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-5. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
+4. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+
+   ```bash
+   pre-commit install
+   ```
+
+5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
+6. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
    ```bash
    git remote add upstream https://github.com/nf-core/modules.git
@@ -61,7 +67,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    git checkout -b fastqc
    ```
 
-6. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
+7. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/modules/main.nf):
 
    ```console
    $ nf-core modules create fastqc --author @joebloggs --label process_low --meta
@@ -95,7 +101,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    2. [`./modules/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/fastqc/meta.yml)
 
-      This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module.
+      This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
 
    3. [`./tests/modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/main.nf)
 
@@ -122,7 +128,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       `md5sum` checks are the preferable choice of test to determine file changes, however, this may not be possible for all outputs generated by some tools e.g. if they include time stamps or command-related headers. Please do your best to avoid just checking for the file being present e.g. it may still be possible to check that the file contains the appropriate text snippets.
 
-7. Create a yaml file containing information required for module unit testing
+8. Create a yaml file containing information required for module unit testing
 
    ```console
    $ nf-core modules create-test-yml
@@ -155,52 +161,52 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
 
-8. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
-9. Lint the module locally to check that it adheres to nf-core guidelines before submission
+10. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
-   ```console
-   $ nf-core modules lint fastqc --dir .
+    ```console
+    $ nf-core modules lint fastqc --dir .
 
-                                         ,--./,-.
-         ___     __   __   __   ___     /,-._.--~\
-   |\ | |__  __ /  ` /  \ |__) |__         }  {
-   | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                         `._,._,'
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
 
-    nf-core/tools version 2.3dev0 - https://nf-co.re
+     nf-core/tools version 2.3dev0 - https://nf-co.re
 
-    INFO     Linting modules repo: .                                                __init__.py:15
-    INFO     Linting module: fastqc                                                 __init__.py:163
+     INFO     Linting modules repo: .                                                __init__.py:15
+     INFO     Linting module: fastqc                                                 __init__.py:163
 
-   ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-   │ [!] 3 Test Warnings                                                                                            │
-   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-   ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
-   │ Module name  │ Test message                                                 │ File path                        │
-   ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
-   │ fastqc       │ TODO string in meta.yml: #Add a description of the module... │ modules/nf-core/modules/fastqc/  │
-   │ fastqc       │ TODO string in meta.yml: #Add a description and other det... │ modules/nf-core/modules/fastqc/  │
-   │ fastqc       │ TODO string in meta.yml: #Add a description of all of the... │ modules/nf-core/modules/fastqc/  │
-   ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
-   ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-   │ [!] 1 Test Failed                                                                                              │
-   ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-   ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
-   │ Module name  │ Test message                                                 │ File path                        │
-   ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
-   │ fastqc       │ 'meta' map not emitted in output channel(s)                  │ modules/nf-core/modules/fastqc/  │
-   ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
-   ╭──────────────────────╮
-   │ LINT RESULTS SUMMARY │
-   ├──────────────────────┤
-   │ [✔]  38 Tests Passed │
-   │ [!]   3 Test Warning │
-   │ [✗]   1 Test Failed  │
-   ╰──────────────────────╯
-   ```
+    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    │ [!] 3 Test Warnings                                                                                            │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
+    │ Module name  │ Test message                                                 │ File path                        │
+    ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
+    │ fastqc       │ TODO string in meta.yml: #Add a description of the module... │ modules/nf-core/modules/fastqc/  │
+    │ fastqc       │ TODO string in meta.yml: #Add a description and other det... │ modules/nf-core/modules/fastqc/  │
+    │ fastqc       │ TODO string in meta.yml: #Add a description of all of the... │ modules/nf-core/modules/fastqc/  │
+    ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
+    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    │ [!] 1 Test Failed                                                                                              │
+    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
+    │ Module name  │ Test message                                                 │ File path                        │
+    ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
+    │ fastqc       │ 'meta' map not emitted in output channel(s)                  │ modules/nf-core/modules/fastqc/  │
+    ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
+    ╭──────────────────────╮
+    │ LINT RESULTS SUMMARY │
+    ├──────────────────────┤
+    │ [✔]  38 Tests Passed │
+    │ [!]   3 Test Warning │
+    │ [✗]   1 Test Failed  │
+    ╰──────────────────────╯
+    ```
 
-10. Once ready, the code can be pushed and a pull request (PR) created
+11. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -307,7 +313,7 @@ Please follow the steps below to run the tests locally:
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. recieving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
 
 ### Uploading to `nf-core/modules`
 
@@ -337,37 +343,38 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
-   Mandatory command line arguments MUST be specified in long form where possible.
+1. Where non-file inputs are mandatory or needed to modify the command, they SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
-   `<module>.nf`:
+All non-mandatory command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable.
 
-   ```nextflow
-   script:
-   def args = task.ext.args ?: ''
-   def prefix = task.ext.prefix ?: "${meta.id}"
-   """
-   fastqc \\
-       $args \\
-        <...>
-   """
-   ```
+    - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
-   `modules.config`:
+      `<module>.nf`:
 
-   ```nextflow
-   process {
-       withName: <module> {
-           ext.args = [                                                          // Assign either a string, or closure which returns a string
-               '--quiet',
-               params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-           ].join(' ')                                                           // Join converts the list here to a string.
-           ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
-       }
-   }
-   ```
+      ```nextflow
+      script:
+      def args = task.ext.args ?: ''
+      def prefix = task.ext.prefix ?: "${meta.id}"
+      """
+      fastqc \\
+          $args \\
+            <...>
+      """
+      ```
 
-   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+      `modules.config`:
+
+      ```nextflow
+      process {
+          withName: <module> {
+              ext.args = [                                                          // Assign either a string, or closure which returns a string
+                  '--quiet',
+                  params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+              ].join(' ')                                                           // Join converts the list here to a string.
+              ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+          }
+      }
+      ```
 
 2. Software that can be piped together SHOULD be added to separate module files
    unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -431,7 +438,7 @@ of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a to
 not erroneously terminate the module.
 
 If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually
-specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/homer/annotatepeaks/main.nf).
+specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
 Please include the accompanying comments above the software packing directives and beside the version string.
 
 ```nextflow
@@ -462,7 +469,7 @@ process TOOL {
 }
 ```
 
-If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf).
+If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
 5. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
@@ -479,7 +486,7 @@ process {
 
 ### Naming conventions
 
-1. The directory structure for the module name must be all lowercase e.g. [`modules/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
+1. The directory structure for the module name must be all lowercase e.g. [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/). The name of the software (i.e. `bwa`) and tool (i.e. `mem`) MUST be all one word.
 
 2. The process name in the module file MUST be all uppercase e.g. `process BWA_MEM {`. The name of the software (i.e. `BWA`) and tool (i.e. `MEM`) MUST be all one word separated by an underscore.
 
@@ -501,14 +508,85 @@ process {
 
 ### Input/output options
 
-1. Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
+1. Input channel `path` declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
 
    - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
    - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
-2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+2. Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g. parameters, flags etc).
 
-3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+   - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
+   - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
+   - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
+
+       <details markdown="1">
+       <summary>Rationale</summary>
+       It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
+
+     The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
+
+     Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+
+       </details>
+
+       <details markdown="1">
+       <summary>Inputs particular cases</summary>
+        When one and only one of multiple argument are required:
+
+     - If they all are string argument : use 1 argument that will be equal to the string
+
+     e.g. Parameter model of [glimpse2 chunk](https://nf-co.re/modules/glimpse2_chunk)
+
+     - If some are files put them all in one channel and test if only one is present
+
+     e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
+
+     `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
+       </details>
+
+3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+
+4. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+
+5. Optional outputs SHOULD be marked as optional:
+
+   ```nextflow
+   tuple val(meta), path('*.tab'), emit: tab,  optional: true
+   ```
+
+6. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+
+### Documentation
+
+1. Each module MUST have a `meta.yaml` in the same directory as the `main.nf` of the module itself.
+
+2. Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
+
+   - Keywords MUST NOT just be solely of the (sub)tool name
+
+3. Keywords MUST be all lower case
+
+4. Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
+
+5. Input and output tuples MUST be split into separate entries
+
+   - i.e., `meta` should be a separate entry to the `file` it is associated with
+
+6. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `integer`, `float`
+
+7. Input/output entries MUST match a corresponding channel in the module itself
+
+   - There should be a one-to-one relationship between the module and the `meta.yaml`
+
+   - Input/output entries MUST NOT combine multiple output channels
+
+8. Input/output descriptions SHOULD be descriptive of the contents of file
+
+   - i.e., not just 'A TSV file'
+
+9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+
+10. Input entries should be marked as Mandatory or Optional
 
 ### Module parameters
 
@@ -527,7 +605,7 @@ process {
 2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`. If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
 3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32-L46)), you MUST assign cpus per tool such that the total number of used CPUs does not exceed `task.cpus`.
-   - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
+   - Note that [`task.cpus`] is supplied unchanged when a process uses multiple cores
    - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
 
 ### Software requirements
@@ -537,7 +615,7 @@ process {
 1. Software requirements SHOULD be declared within the module file using the Nextflow `container` directive. For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
 ```nextflow
-conda (params.enable_conda ? "bioconda::fastqc=0.11.9" : null)
+conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
     'quay.io/biocontainers/fastqc:0.11.9--0' }"
@@ -596,7 +674,7 @@ For example: the nf-core/test-datasets file `genomics/sarscov2/genome/genome.fas
 
 ### Using a stub test when required test data is too big
 
-If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/ascat/test.yml)):
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf). In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
 
 ```console
 nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
@@ -647,7 +725,7 @@ The only required value is `meta.id` for most of the modules, however, they usua
 
 The `meta map` is generated with [create_fastq_channel function in the input_check subworkflow](https://github.com/nf-core/rnaseq/blob/587c61b441c5e00bd3201317d48b95a82afe6aaa/subworkflows/local/input_check.nf#L23-L45) of most nf-core pipelines. Where the meta information is easily extracted from a samplesheet that contains the input file paths.
 
-#### Generating a `meta map` from file pairs
+### Generating a `meta map` from file pairs
 
 Sometimes you want to use nf-core modules in small scripts. You don't want to make a samplesheet, or maintain a bunch of validation.
 For instance, here's an example script to run fastqc
@@ -679,7 +757,7 @@ workflow {
 }
 ```
 
-#### Sorting samples by groups
+### Sorting samples by groups
 
 ```nextflow
 ch_genome_bam.map {
@@ -692,9 +770,163 @@ ch_genome_bam.map {
     .set { ch_sort_bam }
 ```
 
+### Combining channel on meta subset
+
+Sometimes it is necessary to combine multiple channels based on a subset of the meta maps.
+Unfortunately this is not yet supported as the argument `by` isn't a closure in `.combine()` and `.join()` and it probably won't ([Nextflow issue #3175](https://github.com/nextflow-io/nextflow/issues/3175)).
+
+To bypass this restriction one of the solution is to create a new map with only the necessary keys and make the junction on it. Here is an example:
+
+```nextflow
+ch_input = [[["id":"Ind1","ref":"RefA"],"file1"],[["id":"Ind2","ref":"RefB"],"file2"]]
+ch_ref   = [[["ref":"RefA"],"fileA"],[["ref":"RefB"],"fileB"]]
+
+ch_join  = ch_input
+            .map{metaIR, file -> [metaIR.subMap(["ref"]), metaIR, file]}
+            .combine(chr_ref)
+            .map{metaR, metaIR, file, ref -> [metaIR, file, ref]}
+```
+
+### Modify the meta map
+
+There is multiple ways to modify the meta map.
+Here are some examples:
+
+```nextflow
+// Add to map - adding two maps makes a new Map object
+ch.map { meta, files -> [ meta + [ single_end: files instanceof Path ], files ] }
+
+// Remove certain keys (and their entries) from a map
+ch.map { meta, files -> [ meta.subMap( ['id','rg'] ), files ] }
+  // OR by specifying what not to include
+ch.map { meta, files -> [ meta.findAll { ! it.key in ['single_end'] }, files ] }
+
+// Split a map - use both methods of removing keys ( there is a split method for Maps, but the results are not Maps )
+ch.map { meta, files -> def keyset = ['id', 'read_group']; [ meta.subMap(keyset), meta.findAll { ! it.key in keyset },  files ] }
+```
+
 ### Conclusion
 
 As you can see the `meta map` is a quite flexible way for storing meta data in channels. Feel free to add whatever other key-value pairs your pipeline may need to it. We're looking to add [Custom objects](https://github.com/nf-core/modules/issues/1338) which will lock down the usage a bit more.
+
+## What are the ext properties/keys?
+
+Ext properties or keys are special process directives (See: [ext directive](https://www.nextflow.io/docs/latest/process.html#ext) ) that insert strings into the module scripts. For example, an nf-core module uses the string assigned to `ext.args` ( or `ext.args2`, `ext.args3`, ... ) to insert tool specific options in a module script:
+
+Example:
+
+The configuration
+
+```nextflow
+process {
+  withName: 'TOOL_SUBTOOL' {
+    ext.args = '-T -K'
+  }
+}
+```
+
+inserts the string `-T -K` as options to the module script:
+
+```nextflow
+process TOOL_SUBTOOL {
+  input:
+  tuple val(meta), path(bam)
+
+  output:
+  tuple val(meta), path("*.log"), emit: log
+  path "versions.yml",            emit: versions
+
+  script:
+  def args   = task.ext.args ?: ''          // If ext.args is defined assign it to args
+  def prefix = task.ext.prefix ?: meta.id   // If ext.prefix is defined assign it to prefix, otherwise assign meta.id value
+  """
+  tool subtool $args $bam > ${prefix}.log
+  """
+}
+```
+
+so the script becomes:
+
+```bash
+#! /usr/env/bin bash
+tool subtool -T -K test.bam > test.log
+```
+
+The following table lists the available keys commonly used in nf-core modules.
+
+| Key        | Description                                            |
+| ---------- | ------------------------------------------------------ |
+| ext.args   | Additional arguments appended to command in module.    |
+| ext.args2  | Second set of arguments appended to command in module. |
+| ext.args3  | Third set of arguments appended to command in module.  |
+| ext.prefix | File name prefix for output files.                     |
+
+To see some more advanced examples of these keys in use see:
+
+- [Set ext.args based on parameter settings](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L222-L226)
+- [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
+- [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
+
+## Advanced pattern
+
+### Multimaping
+
+It is possible with `multiMap` to split a channel in to and to call them separately afterwards.
+
+```nextflow
+ch_input = reads.combine(db).multiMap{ it ->
+   reads: it[0]
+   db: it[1]
+}
+MODULE(ch_input.reads, ch_input.db)
+```
+
+### Adding additional information to the meta map
+
+It is possible to combine a input channel with a set of parameters as follows:
+
+```nextflow
+ch_input.flatMap { meta, filetype ->
+    [300, 500, 1000].collect {
+      def new_meta = meta.clone()
+      new_meta.window_size = it
+      [ new_meta, filetype]
+    }
+}
+```
+
+You can also combine this technique with others for more processing:
+
+```nextflow
+workflow {
+
+    input = [
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ]
+    ]
+    Channel.fromList ( input )
+        .map { meta, intervals ->
+            new_meta = meta.clone()
+            new_meta.id = intervals.baseName != "no_intervals" ? new_meta.sample + "_" + intervals.baseName : new_meta.sample
+            intervals = intervals.baseName != "no_intervals" ? intervals : []
+            [new_meta, intervals]
+        }.view { meta, intervals -> meta.id }
+}
+```
 
 ## Help
 
