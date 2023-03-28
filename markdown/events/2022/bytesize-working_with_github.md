@@ -6,6 +6,7 @@ start_date: '2022-11-29'
 start_time: '13:00 CET'
 end_date: '2022-11-29'
 end_time: '13:30 CET'
+youtube_embed: https://www.youtube.com/watch?v=QLxXtCe1vIo
 location_url:
   - https://doi.org/10.6084/m9.figshare.21647114.v1
   - https://www.youtube.com/watch?v=QLxXtCe1vIo
