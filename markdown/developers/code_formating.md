@@ -13,7 +13,7 @@ Error: Process completed with exit code 1.
 ```
 
 NF-Core community aim for a normalized code style. To do so multiple linting tests are checked and one of them is made with [Prettier](https://prettier.io/).
-It checks that the code style is correctly formatted, it supports many languages (thus many different files) and can be integrates with most editors.
+It checks that the code style is correctly formatted, it supports many languages (thus many different files) and can be integrated with most editors.
 
 # Installation and usage
 
@@ -26,7 +26,7 @@ To do so, you can use the following command with conda:
 conda install prettier
 ```
 
-and run afterwards the command `prettier -w .`to overwrite the file with a good style or use `prettier -c .` to only check if your files follow the requirements.
+and afterwards run the command `prettier -w .` to overwrite the file with a good style or use `prettier -c .` to only check if your files follow the requirements.
 
 ## With git as a pre-commit hook
 
