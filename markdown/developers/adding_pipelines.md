@@ -138,8 +138,8 @@ to the [repository GitHub web page](https://github.com/nf-core/test-datasets/) a
 this new branch using the UI there.
 Once created, you can open a pull request and select this as the target branch.
 
-If in doubt, ask for help!
-([Slack](https://nf-co.re/join/slack), if you already join you can go directly to the [#help](https://nfcore.slack.com/channels/help) channel)
+Don't forget to ask for help if you have any doubts!
+([Slack](https://nf-co.re/join/slack),alternatively if you already joined Slack you can go directly to the [#help](https://nfcore.slack.com/channels/help) channel)
 
 ### Setting up a test workflow
 
