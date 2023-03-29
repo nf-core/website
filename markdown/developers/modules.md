@@ -7,7 +7,7 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
 
-**⚠️ While it is possible to run DSL1 pipelines, DSL1 has reached it's end-of-life as of 2023. ⚠️**
+**⚠️ DSL1 has reached it's end-of-life as of 2023. As of Nextflow version 22.04.x and 22.10.x it will not be possible to run DSL1 scripts. ⚠️**
 
 ## Terminology
 
