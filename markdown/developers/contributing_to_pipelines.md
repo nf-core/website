@@ -30,7 +30,7 @@ At its heart, nf-core is a community - to contribute to a pipeline, you should b
 Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
 and join the nf-core [Slack](https://nf-co.re/join/slack).
 
-Each nf-core pipeline has their own channel.
+Each nf-core pipeline has its own Slack channel that can be found by searching the channel list.
 
 ## Contribution overview
 
