@@ -13,7 +13,6 @@ Before you start typing, check that you're happy with the following points:
   (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 - The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
 
-
 The main steps involved in adding a new nf-core pipeline covered below are:
 
 1. [Joining the community](#join-the-community)
