@@ -405,7 +405,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
    The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`. E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
 
-6. Modules MUST NOT use 'custom' hardcoded `meta` fields. The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`. Prosposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
+6. Modules MUST NOT use 'custom' hardcoded `meta` fields. The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`. Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
     <details markdown="1">
       <summary>Rationale</summary>
