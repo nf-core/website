@@ -77,7 +77,7 @@ These tests are run both with the latest available version of `Nextflow` and als
 
 ## Getting help
 
-For further information/help, please consult the usage documentation for the particular pipeline and don't hesitate to get in touch on the nf-core Slack `#<pipeline-name>` channel ([join our Slack here](https://nf-co.re/join/slack)).
+For further information/help, please consult the usage documentation for the particular pipeline and don't hesitate to get in touch on the nf-core Slack `#<pipeline-name>` channel. If you are not already a member you can ([join our Slack here](https://nf-co.re/join/slack)).
 
 ## Pipeline contribution conventions
 
