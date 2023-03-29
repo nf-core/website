@@ -42,7 +42,7 @@ If you'd like to write some code for an nf-core pipeline, the standard workflow 
 4. Use `nf-core schema build` and add any new parameters to the pipeline JSON schema (requires [nf-core tools](https://github.com/nf-core/tools) >= 1.10).
 5. Submit a Pull Request against the `dev` branch and wait for the code to be reviewed and merged
 
-If you're not used to this workflow with git, you can start with some [docs from GitHub](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or even their [excellent `git` resources](https://try.github.io/).
+If you're new to working with git, you can view the [GitHub pull requests documentation](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or other [excellent `git` resources](https://try.github.io/) to get started.
 
 ## Testing
 
