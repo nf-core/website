@@ -86,7 +86,8 @@ git commit -m "Starting to build my pipeline"
 ## Push to GitHub
 git push
 ```
-**NOTE:**  If you have made independent commits to multiple branches of your repo, and would like to
+
+**NOTE:** If you have made independent commits to multiple branches of your repo, and would like to
 push them to their respective branches on remote in one go, you can use `git push --all origin` instead
 of `git push`. You can read more about `git push` arguments [here](https://git-scm.com/docs/git-push).
 
