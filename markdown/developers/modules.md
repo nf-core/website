@@ -5,8 +5,6 @@ subtitle: Guidelines and reference for DSL2 modules
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
-
 ## Terminology
 
 The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
@@ -662,6 +660,10 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 
 5. If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
+### Misc
+
+1. All code must be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.
+
 ### Publishing results
 
 Results are published using Nextflow's native [`publishDir`](https://www.nextflow.io/docs/latest/process.html#publishdir) directive defined in the `modules.config` of a workflow (see [here](https://github.com/nf-core/rnaseq/blob/f7702d5b76a1351e2e7796a5ed3f59943a139fbf/conf/modules.config#L100-L106) for an example.) Results were earlier published using a custom `publishDir` definition, using a Groovy Map defined by `params.modules`.
@@ -953,6 +955,70 @@ workflow {
             [new_meta, intervals]
         }.view { meta, intervals -> meta.id }
 }
+```
+
+## What is the Harshil Alignment
+
+The Harshil Alignment™️ format is the whitespace-happy code style that was introduced by a certain core member to get on everyone's nerves, but then make subsequently develop Stockholm Syndrome so that no-one in nf-core else now can look at Nextflow code without it.
+
+The Harshil Alignment™️ format involves ensuring that common punctuation across multiple lines in a group are placed in the same location as each other.
+
+There are many places where the format can be applied, however common examples are as follows:
+
+### Curly Bracket Example
+
+❌ Bad
+
+```nextflow
+include { SAMTOOLS_SORT } from '../../../modules/nf-core/samtools/sort/main'
+include { SAMTOOLS_INDEX } from '../../../modules/nf-core/samtools/index/main'
+include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
+```
+
+✅ Good
+
+```nextflow
+include { SAMTOOLS_SORT      } from '../../../modules/nf-core/samtools/sort/main'
+include { SAMTOOLS_INDEX     } from '../../../modules/nf-core/samtools/index/main'
+include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
+```
+
+### Equals Example
+
+❌ Bad
+
+```nextflow
+stats = BAM_STATS_SAMTOOLS.out.stats    // channel: [ val(meta), [ stats ] ]
+flagstat = BAM_STATS_SAMTOOLS.out.flagstat // channel: [ val(meta), [ flagstat ] ]
+idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ] ]
+```
+
+✅ Good
+
+```nextflow
+stats    = BAM_STATS_SAMTOOLS.out.stats    // channel: [ val(meta), [ stats    ] ]
+flagstat = BAM_STATS_SAMTOOLS.out.flagstat // channel: [ val(meta), [ flagstat ] ]
+idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ] ]
+```
+
+### Comma Example
+
+❌ Bad
+
+```nextflow
+tuple val(meta), path("*.bam"), emit: bam, optional:true
+tuple val(meta), path("*.log"), emit: log
+tuple val(meta), path("*fastq.gz"), emit: fastq, optional:true
+path  "versions.yml", emit: versions
+```
+
+✅ Good
+
+```nextflow
+tuple val(meta), path("*.bam")    , emit: bam     , optional:true
+tuple val(meta), path("*.log")    , emit: log
+tuple val(meta), path("*fastq.gz"), emit: fastq   , optional:true
+path  "versions.yml"              , emit: versions
 ```
 
 ## Help
