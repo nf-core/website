@@ -1023,7 +1023,6 @@ tuple val(meta), path("*fastq.gz"), emit: fastq   , optional:true
 path  "versions.yml"              , emit: versions
 ```
 
-
 ## Help
 
 For further information or help, don't hesitate to get in touch on [Slack `#modules` channel](https://nfcore.slack.com/channels/modules) (you can join with [this invite](https://nf-co.re/join/slack)).
