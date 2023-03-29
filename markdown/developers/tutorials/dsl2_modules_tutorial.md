@@ -191,7 +191,9 @@ In order to avoid that, we can in general print the version as part of an echo s
 ```nextflow
 echo \$(tool --version 2>&1)
 ```
+
 or pipe the output as follow
+
 ```nextlfow
 tool --version |& sed 'pattern'
 ```
@@ -202,11 +204,13 @@ Notice the escape `\$` of the first `$` sign to distinguish between _bash_ varia
       <summary>Tips</summary>
       - `sed '3!d'` Extracts only line 3 of the output printed by `samtools --version`
       - Determine whether the error printed to stderr or stdout, by trying to filter the line with `sed`
+
       ```bash
       samtools --version
       # Try filtering the specific line
       samtools --version | sed '1!d'
       ```
+
       - If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
       - You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
       - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
