@@ -68,7 +68,7 @@ nf-core modules create fgbio/demofastqtobam
 - We separate the keys by a forward slash (`/`)
 - The second word indicates the function of the tool we are creating a module for
 
-Nf-core tools will set up an empty module for you based on a template. Follow the instructions on the command-line and a new module will be created in the fgbio folder. 
+Nf-core tools will set up an empty module for you based on a template. Follow the instructions on the command-line and a new module will be created in the fgbio folder.
 
 One parameter you have to specify during the creation is the `process resource label` based on the process label in the `base.config` files in workflows. You have to select one of the following labels:
 
@@ -79,7 +79,7 @@ One parameter you have to specify during the creation is the `process resource l
 - process_long
 - process_high_memory
 
-For now can just select the default and continue. 
+For now can just select the default and continue.
 
 In the next step you have to specify if you need a `meta map` with sample-specific information. Our test module will need a meta map, so select yes for the moment. If you want to know what exactly meta maps are check out the documentation [here](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map).
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
