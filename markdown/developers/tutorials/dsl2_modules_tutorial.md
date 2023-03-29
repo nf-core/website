@@ -112,7 +112,55 @@ Each of the files is pre-filled according to a defined nf-core template.
 
 You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
-![module](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_03_create_module_ver2.png)
+```nextflow
+// TODO nf-core: If in doubt look at other nf-core/modules to see how we are doing things! :)
+//               https://github.com/nf-core/modules/tree/master/modules
+//               You can also ask for help via your pull request or on the #modules channel on the nf-core Slack workspace:
+//               https://nf-co.re/join
+// TODO nf-core: A module file SHOULD only define input and output files as command-line parameters.
+//               All other parameters MUST be provided using the "task.ext" directive, see here:
+//               https://www.nextflow.io/docs/latest/process.html#ext
+//               where "task.ext" is a string.
+//               Any parameters that need to be evaluated in the context of a particular sample
+//               e.g. single-end/paired-end data MUST also be defined and evaluated appropriately.
+// TODO nf-core: Software that can be piped together SHOULD be added to separate module files
+//               unless there is a run-time, storage advantage in implementing in this way
+//               e.g. it's ok to have a single module for bwa to output BAM instead of SAM:
+//                 bwa mem | samtools view -B -T ref.fasta
+// TODO nf-core: Optional inputs are not currently supported by Nextflow. However, using an empty
+//               list (`[]`) instead of a file can be used to work around this issue.
+
+process FGBIO_DEMOFASTQTOBAM {
+    tag "$meta.id"
+    label 'process_single'
+
+    // TODO nf-core: List required Conda package(s).
+    //               Software MUST be pinned to channel (i.e. "bioconda"), version (i.e. "1.10").
+    //               For Conda, the build (i.e. "h9402c20_2") must be EXCLUDED to support installation on different operating systems.
+    // TODO nf-core: See section in main README for further information regarding finding and adding container addresses to the section below.
+    conda (params.enable_conda ? "bioconda::fgbio=2.0.2" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/YOUR-TOOL-HERE':
+        'quay.io/biocontainers/YOUR-TOOL-HERE' }"
+
+    input:
+    // TODO nf-core: Where applicable all sample-specific information e.g. "id", "single_end", "read_group"
+    //               MUST be provided as an input via a Groovy Map called "meta".
+    //               This information may not be required in some instances e.g. indexing reference genome files:
+    //               https://github.com/nf-core/modules/blob/master/modules/bwa/index/main.nf
+    // TODO nf-core: Where applicable please provide/convert compressed files as input/output
+    //               e.g. "*.fastq.gz" and NOT "*.fastq", "*.bam" and NOT "*.sam" etc.
+    tuple val(meta), path(bam)
+
+    output:
+    // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
+    tuple val(meta), path("*.bam"), emit: bam
+    // TODO nf-core: List additional required output channels/values here
+    path "versions.yml"           , emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+```
 
 The above represents the main code of your module, which will need to be changed.
 NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those files will be pre-filled for you.
@@ -277,9 +325,26 @@ process FGBIO_FASTQTOBAM {
 
 Once the main module code is written, it is often a good point to fill in the `meta.yml` file sitting alongside the `main.nf` of the module.
 
-Here you will document key words, context information about the module, and most importantly document the input and output requirements. In general, it follows a similar shape as the pipeline schema but is no JSON file. At the top you should add the name of the module, a short description and at least three keywords, which describe the module. Afterwards, describe all used tools, usually only one. The main part of the `meta.yml` should be about the input and output requirements, which follow the same fields as the pipeline schema for a file parameter. For each input and output requirement you have to add the file type, a short description about the content and the file extension. The last block contains the authors, who worked on the module, to allow other users to easily reach out to them. If you are the main developer of the module, your GitHub name will be automatically added to the `meta.yml`.
+Here you will document key words, context information about the module, and most importantly document the input and output requirements. In general, it follows a similar shape as the pipeline schema but is no JSON file. At the top you should add the name of the module, a short description and at least three keywords, which describe the module. Afterwards, describe all used tools, usually only one. The main part of the `meta.yml` should be about the input and output requirements, which follow the same fields as the pipeline schema for a file parameter. For each input and output requirement you have to add a type, a short description about the content and a pattern. The last block contains the authors, who worked on the module, to allow other users to easily reach out to them. If you are the main developer of the module, your GitHub name will be automatically added to the `meta.yml`. The types in the `meta.yml` are limited to map, file, directory, string, integer and float. In this example module, the prebuild `meta.yml` is already filled and the input part looks as follows:
 
-For guidance see the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules as examples on how to fill this information in.
+```nextflow
+## TODO nf-core: Add a description of all of the variables used as input
+input:
+  # Only when we have meta
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  # 
+  ## TODO nf-core: Delete / customise this example input
+  - bam:
+      type: file
+      description: BAM/CRAM/SAM file
+      pattern: "*.{bam,cram,sam}"
+```
+
+Maps and files as shown above are the two main input / output requirements. For the other input / output types check out the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules.
 
 ### Lint your code
 
