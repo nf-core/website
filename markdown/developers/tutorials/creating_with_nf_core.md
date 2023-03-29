@@ -666,7 +666,7 @@ $ nf-core modules install
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-    nf-core/tools version 2.6 - https://nf-co.re
+    nf-core/tools version 2.7.2 - https://nf-co.re
 
 
 ? Tool name: fastp
@@ -703,10 +703,12 @@ $ nf-core modules info fastp
   reads  (file)               │List of input FastQ files of size 1 and 2 for single-end and paired-end data,      │
                               │respectively. If you wish to run interleaved paired-end data,  supply as single-end│
                               │data but with --interleaved_in in your modules.conf's ext.args for the module.     │
-╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼───────╴
+╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼────────────────────╴
+  adapter_fasta  (file)       │File in FASTA format containing possible adapters to remove.                       │*.{fasta,fna,fas,fa} 
+╶─────────────────────────────┼──────────���──────────────────────────────────────────────────────────────────────┼───────────────────                              
   save_trimmed_fail  (boolean)│Specify true to save files that failed to pass trimming thresholds ending in       │
                               │*.fail.fastq.gz                                                                    │
-╶─────────────────────────────┼──────────────────────────────────────────────────────────────���────────────────────┼───────╴
+╶─────────────────────────────┼──────────────────────────────────────────────────────────────���──────────────────┼───────╴
   save_merged  (boolean)      │Specify true to save all merged reads to the a file ending in *.merged.fastq.gz    │
                               ╵                                                                                   ╵
                       ╷                                                                               ╷
@@ -744,6 +746,7 @@ We now just need to call the `FASTP` process in the main `workflow`. Paste the s
     //
     FASTP (
         INPUT_CHECK.out.reads,
+        [],
         false,
         false
     )
