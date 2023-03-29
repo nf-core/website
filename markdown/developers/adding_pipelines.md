@@ -58,11 +58,17 @@ nf-core template (`nf-core create` - see [the docs](https://nf-co.re/tools#creat
 then your life will be much easier.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
-Be sure to set the default branch to `dev` before start working on the code, by moving inside the newly 
+Be sure to switch to the `dev` branch before start working on the code, by moving inside the newly 
 created pipeline folder and using the command:
-```
-git checkout dev
-```
+    ```bash
+    git checkout dev
+    ```
+    
+    or 
+    
+    ```bash
+    git switch dev
+    ```
 only after the first official release, the default branch will be `master`.
 
 Even if you already have a working pipeline, it may be easier in the long run to use this this template
