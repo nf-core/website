@@ -23,7 +23,6 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 5. [Getting help](#getting-help)
 6. [Pipeline contribution conventions](#pipeline-contribution-conventions)
 
-
 ## Join the community
 
 At its heart, nf-core is a community - to contribute to a pipeline, you should be part of that community!
