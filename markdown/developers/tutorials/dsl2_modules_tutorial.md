@@ -336,7 +336,7 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. [ id:'test', single_end:false ]
-  # 
+  #
   ## TODO nf-core: Delete / customise this example input
   - bam:
       type: file
