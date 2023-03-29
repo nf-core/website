@@ -403,7 +403,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
        $args2
    ```
 
-   The numbering of each `$args` MUST correspond to the order of the tools, and MUST be documented in `meta.yml`.
+   The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`. E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
 
 6. Modules MUST NOT use 'custom' hardcoded `meta` fields. The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`. Prosposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
@@ -414,6 +414,24 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
       As all non-mandatory arguments must go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
+
+        So, in the module code we DO NOT do:
+
+        ```bash
+        my_command -r ${meta.strand} input.txt output.txt
+        ```
+
+        ... but rather, in `modules.conf`
+
+        ```nextflow
+        ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
+        ```
+
+        ... and then in the module code `main.nf`:
+
+        ```bash
+        my_command $args input.txt output.txt
+        ```
       </details>
 
 7. Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
@@ -603,19 +621,9 @@ process {
     ```yml
     tools:
       - bowtie2:
-          description:  <...
-          homepage:  <...>
-          documentation:  <...>
-          doi: <...>
-          licence: <...>
-          args_id: <...>
+          <....>
       - samtools:
-          description: <...>
-          homepage: <...>
-          documentation: <...>
-          doi: <...>
-          licence: <...>
-          args_id: <...>
+          <....>
     ```
 
 5. The tools section  MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for that specific module. A single tool module will only have `args_id: "$args"`.
@@ -623,18 +631,10 @@ process {
     ```yml
     tools:
       - bowtie2:
-          description:  <...
-          homepage:  <...>
-          documentation:  <...>
-          doi: <...>
-          licence: <...>
+          <...>
           args_id: "$args"
       - samtools:
-          description: <...>
-          homepage: <...>
-          documentation: <...>
-          doi: <...>
-          licence: <...>
+          <...>
           args_id: "$args2"
     ```
 
