@@ -23,7 +23,7 @@ A chain of multiple modules that offer a higher-level of functionality within th
 
 ### Workflow
 
-DSL2 is considered an end-to-end pipeline, where one or more inputs can produce a series of outputs. This can either be implemented using a large monolithic script, or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
+An end-to-end pipeline where one or more inputs produce a series of outputs. This can either be implemented using a large monolithic script or by using a combination of DSL2 modules and subworkflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
 
 ## Writing a new module reference
 
