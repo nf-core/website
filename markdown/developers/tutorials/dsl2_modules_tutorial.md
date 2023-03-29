@@ -112,7 +112,7 @@ Each of the files is pre-filled according to a defined nf-core template.
 
 You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
-![module](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_03_create_module.png)
+![module](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_03_create_module_ver2.png)
 
 The above represents the main code of your module, which will need to be changed.
 NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those files will be pre-filled for you.
@@ -139,8 +139,6 @@ Here you should first identify:
 - the inputs / arguments, which are optional
 - the outputs
 - any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
-
-Here, the mandatory input would be the `-i read1.fastq.gz` and the `--read-structures`. In this command we have no optional arguments. The arguments associated with the sample are `--sample`, `--library` ,and the sample ID in the output file (`-o`).  
 
 Make sure to check the [guidelines](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist) for what you should and should not include.
 
