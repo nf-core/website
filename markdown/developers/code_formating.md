@@ -73,3 +73,29 @@ The extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esb
 ## During your pull request
 
 If you already did your PR, you can also add a comment with `@nf-core-bot fix linting` in your Pull Request and prettier will be used to apply the required fixes to your code.
+
+
+# Black
+
+[Black](https://black.readthedocs.io/) is a tool for formatting Python code in a quick and efficient way.
+It is designed to be opinionated and enforce consistent standards in whitespace and style.
+
+Most nf-core repositories come with a `pyproject.toml` configuration file that sets the formatting defaults.
+
+### Command line
+
+As with Prettier above, Black can be installed on the command line:
+
+```bash
+pip install black
+```
+
+Then, pass it a path for your files (typically `.` for the current working directory) and it will search recursively:
+
+```bash
+black .
+```
+
+### In Visual Studio Code
+
+As with Prettier, there is a VSCode plugin that will run Black for you whenever you save a file. See [Black Formatter on the VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter) for details.
