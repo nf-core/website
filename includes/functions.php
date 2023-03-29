@@ -448,11 +448,11 @@ function add_ids_to_headers($content_input, $is_hidden = false) {
             $heading_ids[] = $hid;
             $hidden_class = $is_hidden ? 'toc-hidden' : '';
             $to_return = '<h' . $matches[1] . ' id="' . $hid . '" class="' . $hidden_class . '">';
-            if(strpos($matches[2], '</i>')){
+            if(strpos($matches[2], '<code>')){
                 $to_return .= $to_return . 
                     '<a href="#' .
                     $hid .
-                    '" class="header-link scroll_to_link"><span class="fas fa-link fa-xs me-2"></span></a>' .
+                    '" class="header-link parameter-link scroll_to_link"><span class="fas fa-link fa-xs me-2"></span></a>' .
                     $matches[2] .
                     '</h' .
                     $matches[3] .
