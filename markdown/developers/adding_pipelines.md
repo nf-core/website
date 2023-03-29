@@ -71,7 +71,6 @@ Please see the [manual synchronisation](sync.md) documentation.
 > Note that workflow names should be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms.
 
-
 ### Push to GitHub
 
 Create an empty repository on GitHub for your new pipeline under your personal account.
