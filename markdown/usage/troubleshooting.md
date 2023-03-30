@@ -465,7 +465,7 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
   }
   ```
 
-  > ℹ️ In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, if a module is used multiple times in a workflow and not all instances need the same resources.
+  > ℹ️ In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, or in the pipelines `conf/modules.config` file, if a module is used multiple times in a workflow and not all instances need the same resources.
 
   - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
 
