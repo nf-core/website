@@ -212,8 +212,8 @@ Notice the escape `\$` of the first `$` sign to distinguish between _bash_ varia
       ```
 
       - If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
-      - You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
       - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
+      - You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
       - It is not necessary to use `echo`
       - For non-zero error code: `command --version || true` or  `command --version | sed ... || true`
       - If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
