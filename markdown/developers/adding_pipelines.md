@@ -312,7 +312,9 @@ charliecloud {
     enabled = true
     }
 ```
+
 An extensive guide on how to handle containers can be found [here](https://www.nextflow.io/docs/latest/container.html)
+
 - List this new dependency as something new in the `CHANGELOG`
 - Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 
