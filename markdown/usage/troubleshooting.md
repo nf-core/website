@@ -209,6 +209,8 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 
 ### Direct input
 
+> ⚠️ This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
+
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
@@ -301,7 +303,7 @@ docker pull nfcore/<pipeline>:dev
 
 If you work in a `dev` branch, you may also want to consider putting a request for a pull in each run you do with nextflow, by putting this line of code in your nextflow.config file:
 
-```bash
+```nextflow
 docker {
     enabled = true
     runOptions = '--pull=always'
@@ -407,10 +409,10 @@ Sometimes part way through a run, a particular tool or step of the pipeline will
 An example is as follows:
 
 ```text
-Error executing process > 'markduplicates (DA117)'
+Error executing process > 'NFCORE_SAREK:SAREK:MARKDUPLICATES (DA117)'
 
 Caused by:
-  Process `markduplicates (DA117)` terminated with an error exit status (137)
+  Process `NFCORE_SAREK:SAREK:MARKDUPLICATES (DA117)` terminated with an error exit status (137)
 
 Command executed:
 
@@ -463,7 +465,7 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
   }
   ```
 
-  > ℹ️ In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NF_CORE_SAREK:SAREK:MARKDUPLICATES'`, if a module is used multiple times in a workflow and not all instances need the same resources.
+  > ℹ️ In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, if a module is used multiple times in a workflow and not all instances need the same resources.
 
   - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
 
