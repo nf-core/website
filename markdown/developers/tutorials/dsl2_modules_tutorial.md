@@ -218,7 +218,7 @@ Notice the escape `\$` of the first `$` sign to distinguish between _bash_ varia
       - For non-zero error code: `command --version || true` or  `command --version | sed ... || true`
       - If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
       - To extract the version number in the middle you can also use regex pattern with `grep` as follow: `grep -o -E '([0-9]+.){1,2}[0-9]'`
-      - If multiple lines are returned you can select the first one with `head -n 1`
+      - If multiple lines are returned you can select the first one with `tool --version | head -n 1`
       </details>
 
 Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to use a few `bash` tricks to re-route the version and format it to be _just_ the semantic number.
