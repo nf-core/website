@@ -74,7 +74,6 @@ The extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esb
 
 If you already did your PR, you can also add a comment with `@nf-core-bot fix linting` in your Pull Request and prettier will be used to apply the required fixes to your code.
 
-
 # Black
 
 [Black](https://black.readthedocs.io/) is a tool for formatting Python code in a quick and efficient way.
