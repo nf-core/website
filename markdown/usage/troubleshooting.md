@@ -304,8 +304,7 @@ If you work in a `dev` branch, you may also want to consider putting a request f
 ```bash
 docker {
     enabled = true
-    runOptions = '--pull=always'
-}
+    runOptions = '--pull=always' }
 ```
 
 ### Error related to Singularity
