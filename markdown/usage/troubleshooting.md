@@ -485,7 +485,6 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
   nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile <original> <...>
   ```
 
-
 ## Crashed pipeline with an error but Nextflow is still running
 
 If this happens, you can either wait until all other already running jobs to safely finish, or if Nextflow _still_ does not stop press `ctrl + c` on your keyboard (or equivalent) to stop the Nextflow run.
