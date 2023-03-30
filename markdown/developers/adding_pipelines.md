@@ -302,15 +302,15 @@ Sometimes, especially when adding new features to a pipeline, the dependencies c
 ```bash
 process {
     withName:foo {
-        container = 'image_name_1'
-    }
+        container = 'image_name_1' 
+        }
     withName:bar {
         container = 'image_name_2'
-    }
-    }
+        } 
+      }
 charliecloud {
     enabled = true
-}
+    }
 ```
 An extensive guide on how to handle containers can be found [here](https://www.nextflow.io/docs/latest/container.html)
 - List this new dependency as something new in the `CHANGELOG`
