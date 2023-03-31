@@ -705,7 +705,7 @@ $ nf-core modules info fastp
                               │data but with --interleaved_in in your modules.conf's ext.args for the module.     │
 ╶─────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────┼────────────────────╴
   adapter_fasta  (file)       │File in FASTA format containing possible adapters to remove.                       │*.{fasta,fna,fas,fa}
-╶─────────────────────────────┼──────────���──────────────────────────────────────────────────────────────────────┼───────────────────
+╶─────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼───────────────────
   save_trimmed_fail  (boolean)│Specify true to save files that failed to pass trimming thresholds ending in       │
                               │*.fail.fastq.gz                                                                    │
 ╶─────────────────────────────┼──────────────────────────────────────────────────────────────���──────────────────┼───────╴
