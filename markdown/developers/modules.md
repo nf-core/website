@@ -568,7 +568,6 @@ process {
    - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
    - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-3. Optional outputs SHOULD be marked as optional:
        <details markdown="1">
        <summary>Rationale</summary>
        It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
@@ -594,9 +593,9 @@ process {
      `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
        </details>
 
-4. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
 
-5. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+4. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
   For example, having a module (`MY_MODULE`) that can take a `cram` channel and an optional `fasta` channel as input, can be used in the following ways:
 
@@ -605,13 +604,13 @@ process {
   MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
   ```
 
-6. Optional outputs SHOULD be marked as optional:
+5. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-7. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+6. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
