@@ -708,7 +708,7 @@ $ nf-core modules info fastp
 ╶─────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼───────────────────
   save_trimmed_fail  (boolean)│Specify true to save files that failed to pass trimming thresholds ending in       │
                               │*.fail.fastq.gz                                                                    │
-╶─────────────────────────────┼──────────────────────────────────────────────────────────────���──────────────────┼───────╴
+╶─────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┼───────╴
   save_merged  (boolean)      │Specify true to save all merged reads to the a file ending in *.merged.fastq.gz    │
                               ╵                                                                                   ╵
                       ╷                                                                               ╷
