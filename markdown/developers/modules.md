@@ -516,6 +516,14 @@ process {
 
 3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
+For example, having a module (`MY_MODULE`) that can take a `cram` channel and an optional `fasta` channel as input, can be used in the following ways:
+
+```nextflow
+MY_MODULE(cram, [])     // fasta is optional, the module will run without the fasta present
+MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
+```
+
+
 4. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
