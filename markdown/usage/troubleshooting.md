@@ -306,7 +306,7 @@ If you work in a `dev` branch, you may also want to consider putting a request f
 ```nextflow
 docker {
     enabled = true
-    runOptions = '--pull=always' 
+    runOptions = '--pull=always'
     }
 ```
 
