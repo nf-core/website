@@ -300,7 +300,7 @@ Sometimes, especially when adding new features to a pipeline, the dependencies c
 - If you only add new processes to an already existing pipeline however, you can simply specify the container in the `nextflow.config` file, like so:
 
 ```bash
-process {
+ process {
     withName:foo {
         container = 'image_name_1'
         }
@@ -308,7 +308,7 @@ process {
         container = 'image_name_2'
         }
       }
-charliecloud {
+ charliecloud {
     enabled = true
     }
 ```
