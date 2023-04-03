@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: Workflow safety and immutable objects
 
-This week, Rob Syme ([@robsyme](https://github.com/robsyme)) will talk about best practice for workflow safety in groovy-based Nextflow with immutable objects.
+This week, Rob Syme ([@robsyme](https://github.com/robsyme)) will talk about how to avoid introducing subtle concurrency bugs in your Nextflow workflows by safely modifying objects (or more specifically, by _not_ modifying objects) when writing Groovy closures.
