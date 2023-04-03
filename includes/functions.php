@@ -447,19 +447,28 @@ function add_ids_to_headers($content_input, $is_hidden = false) {
             $hid = preg_replace('/^[\s\-]+/', '', $hid); // remove dashes from start of string (e.g. for parameter)
             $heading_ids[] = $hid;
             $hidden_class = $is_hidden ? 'toc-hidden' : '';
-            return '<h' .
-                $matches[1] .
-                ' id="' .
-                $hid .
-                '" class="' .
-                $hidden_class .
-                '">' .
-                $matches[2] .
-                '<a href="#' .
-                $hid .
-                '" class="header-link scroll_to_link"><span class="fas fa-link fa-xs ms-1"></span></a></h' .
-                $matches[3] .
-                '>';
+            $to_return = '<h' . $matches[1] . ' id="' . $hid . '" class="' . $hidden_class . '">';
+            if (strpos($matches[2], '<code>')) {
+                $to_return .=
+                    $to_return .
+                    '<a href="#' .
+                    $hid .
+                    '" class="header-link parameter-link scroll_to_link"><span class="fas fa-link fa-xs me-2"></span></a>' .
+                    $matches[2] .
+                    '</h' .
+                    $matches[3] .
+                    '>';
+            } else {
+                $to_return .=
+                    $to_return .
+                    $matches[2] .
+                    '<a href="#' .
+                    $hid .
+                    '" class="header-link scroll_to_link"><span class="fas fa-link fa-xs ms-1"></span></a></h' .
+                    $matches[3] .
+                    '>';
+            }
+            return $to_return;
         },
         $content_input,
     );
