@@ -378,16 +378,16 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     <details markdown="1">
       <summary>Rationale</summary>
-      A disadvantage of passing non-mandatory arguments via ext.args vs channels is that it splits up the different ways to pass information into a module, which can be difficult for people to understand how/why a module is working as it is.
+      A disadvantage of passing arguments via ext.args is that it splits up how information is passed to a module, which can be difficult to understand where module inputs are defined.
 
-    The justification behind using the `ext.args` functionality is by providing more flexibility to users. As `ext.args` in the module's command is derived from `modules.config` and other config files, it allows advanced users to supply to overwrite the pipeline's default args and supply their own completely custom arguments (with no warranty by the pipeline developers).
+    The justification behind using the `ext.args` is to provide more flexibility to users. As `ext.args` is derived from the configuration (e.g. `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module. This can increase the capabilities of a pipeline beyond what the original developers intended.
 
-    Initially these were passed via the main workflow script using custom functions (e.g. `addParams`) and other additional nf-core custom methods, but this had a syntax overhead and other limitations that were found to be more difficult to use and understand by pipeline developers. Therefore using the 'native' `ext` functionality provided by Nextflow was the less complex to understand and easier to maintain and use.
+    Initially these were passed via the main workflow script using custom functions (e.g. `addParams`) and other additional nf-core custom methods, but this had a syntax overhead and other limitations that were found to be more difficult to use and understand by pipeline developers. Therefore using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain and use.
 
-    Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config` if a closure is used.
+    Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`. A closure is used to make Nextflow evaluate the code in the code in the string.
 
     ```nextflow
-    ext.args = { "${meta.sample_params}" }
+    ext.args = { "--id ${meta.id}" }
     ```
 
       </details>
