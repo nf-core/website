@@ -376,6 +376,21 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       }
       ```
 
+    <details markdown="1">
+      <summary>Rationale</summary>
+      A disadvantage of passing non-mandatory arguments via ext.args vs channels is that it splits up the different ways to pass information into a module, which can be difficult for people to understand how/why a module is working as it is.
+
+      The justification behind using the `ext.args` functionality is by providing more flexibility to users. As `ext.args` in the module's command is derived from `modules.config` and other config files, it allows advanced users to supply to overwrite the pipeline's default args and supply their own completely custom arguments (with no warranty by the pipeline developers).
+
+      Initially these were passed via the main workflow script using custom functions (e.g. `addParams`) and other additional nf-core custom methods, but this had a syntax overhead and other limitations that were found to be more difficult to use and understand by pipeline developers. Therefore using the 'native' `ext` functionality provided by Nextflow was the less complex to understand and easier to maintain and use.
+
+      Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config` if a closure is used.
+
+      ```nextflow
+      ext.args = { "${meta.sample_params}" }
+      ```
+      </details>
+
 4.  Software that can be piped together SHOULD be added to separate module files
     unless there is a run-time, storage advantage in implementing in this way. For example,
     using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
@@ -413,23 +428,23 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     As all non-mandatory arguments must go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
-        So, in the module code we DO NOT do:
+      So, in the module code we DO NOT do:
 
-        ```bash
-        my_command -r ${meta.strand} input.txt output.txt
-        ```
+      ```bash
+      my_command -r ${meta.strand} input.txt output.txt
+      ```
 
-        ... but rather, in `modules.conf`
+      ... but rather, in `modules.conf`
 
-        ```nextflow
-        ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
-        ```
+      ```nextflow
+      ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
+      ```
 
-        ... and then in the module code `main.nf`:
+      ... and then in the module code `main.nf`:
 
-        ```bash
-        my_command $args input.txt output.txt
-        ```
+      ```bash
+      my_command $args input.txt output.txt
+      ```
 
       </details>
 
