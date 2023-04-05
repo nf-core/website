@@ -74,7 +74,7 @@ If you are interested in adding a local site, please put in a pull request to ed
 To keep things manageable everyone will be organized into groups.
 You are free to change groups at any time during the hackathon.
 
-We will coordinate our work and the issues we are working on using a single [GitHub project board](https://github.com/orgs/nf-core/projects/38/views/16).
+We will coordinate our work and the issues we are working on using a single GitHub project board (we'll post a link here closer to the time).
 There will be a separate tab for each group that will have a list of relevant issues for you to work on.
 
 ### Time zones
@@ -254,7 +254,7 @@ We will be a lot of people working in parallel during this hackathon, so to stay
 
 1. :speech_balloon: Chat with your group (on slack or gather town) to get an overview of what is going on.
 2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project members (channels will be made available closer to the event).
-3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/38/views/16).
+3. <i class="fab fa-github"></i> Find a task to work on using the GitHub Project Board (the board will be made available closer to the event).
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time).
 5. :fast_forward: When you're done, make a pull request with your changes. Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
