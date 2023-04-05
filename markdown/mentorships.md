@@ -122,7 +122,7 @@ Dates are subject to change:
 
 <!-- Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you! -->
 
-\_Applications for Round 3 are now open!
+_Applications for Round 3 are now open!
 
 Please submit an application using the forms below before May 1<sup>st</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
