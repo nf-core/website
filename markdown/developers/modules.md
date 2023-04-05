@@ -729,6 +729,8 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 
      The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
+   - If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
+
 5. If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
 ### Misc
