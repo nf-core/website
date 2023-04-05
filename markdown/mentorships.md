@@ -84,7 +84,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of August 2022</dd>
 </dl>
 
-## Round 2 (Applications closed)
+## Round 2 (Closed)
 
 ### Key dates
 
@@ -120,11 +120,11 @@ Dates are subject to change:
 
 ## Application process
 
-Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you!
+<!-- Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you! -->
 
-<!-- _ Applications for Round 2 are now open!
+Applications for Round 3 are now open!
 
-Please submit an application using the forms below before November 1<sup>st</sup> to be considered for the program.
+Please submit an application using the forms below before May 1<sup>st</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<p class="text-center"><a href="https://forms.gle/oXgDDwGPUHV6nMYk8" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>_ -->
+<p class="text-center"><a href="https://seqera.typeform.com/to/TGpEG5Yt" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
