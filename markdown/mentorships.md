@@ -122,9 +122,9 @@ Dates are subject to change:
 
 <!-- Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you! -->
 
-_Applications for Round 3 are now open!
+\_Applications for Round 3 are now open!
 
 Please submit an application using the forms below before May 1<sup>st</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<p class="text-center"><a href="#" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>_
+<p class="text-center"><a href="https://seqera.typeform.com/to/TGpEG5Yt" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>_
