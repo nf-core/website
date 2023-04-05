@@ -336,7 +336,7 @@ endif;
             <p class="card-text">
               Pipelines follow best-practices to ensure maximum
               portability and reproducibility.
-              Scale and diversity in Tree of Life makes the pipelines 
+              Scale and diversity in Tree of Life make the pipelines 
               exceptionally well tested and easy to run.
             </p>
           </div>
