@@ -2,7 +2,7 @@
 
 As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation.
 In Spring 2022, Nextflow and nf-core started a joint mentorship program with the aim of improving outreach and training in underrepresented groups and areas.
-Round 2 (Autumn 2022) of the program is now under way!
+Applications for Round 3 are now open!
 
 In this page, we use the following terminology:
 
