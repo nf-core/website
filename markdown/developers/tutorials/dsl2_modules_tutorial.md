@@ -165,12 +165,14 @@ $args \\
 --library ${meta.id}
 ```
 
+### Export the version of the tool
+
 Before wrapping up our code, we need to add a line to output the software version. This must go in the HEREDOC section of the end of the script block.
 
 ```bash
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        fgbio: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' ))
+        fgbio: \$(samtools --version | sed '1!d; s/samtools \$//')
     END_VERSIONS
 ```
 
@@ -190,7 +192,34 @@ In order to avoid that, we can in general print the version as part of an echo s
 echo \$(tool --version 2>&1)
 ```
 
+or pipe the output as follow
+
+```nextlfow
+tool --version |& sed 'pattern'
+```
+
 Notice the escape `\$` of the first `$` sign to distinguish between _bash_ variables and _nextflow_ variables.
+
+      <details markdown="1">
+      <summary>Tips</summary>
+      - `sed '3!d'` Extracts only line 3 of the output printed by `samtools --version`
+      - Determine whether the error printed to stderr or stdout, by trying to filter the line with `sed`
+
+      ```bash
+      samtools --version
+      # Try filtering the specific line
+      samtools --version | sed '1!d'
+      ```
+
+      - If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
+      - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
+      - You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
+      - It is not necessary to use `echo`
+      - For non-zero error code: `command --version || true` or  `command --version | sed ... || true`
+      - If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
+      - To extract the version number in the middle you can also use regex pattern with `grep` as follow: `grep -o -E '([0-9]+.){1,2}[0-9]'`
+      - If multiple lines are returned you can select the first one with `tool --version | head -n 1`
+      </details>
 
 Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to use a few `bash` tricks to re-route the version and format it to be _just_ the semantic number.
 

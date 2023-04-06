@@ -190,6 +190,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
+              $md_github_url = str_replace('/contributing/', '/developers/', $md_github_url);
+              $md_github_url = str_replace('/docs', '', $md_github_url);
               echo '<a href="' .
                   $md_github_url .
                   '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';

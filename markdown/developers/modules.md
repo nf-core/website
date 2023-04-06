@@ -5,8 +5,6 @@ subtitle: Guidelines and reference for DSL2 modules
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
-
 ## Terminology
 
 The features offered by Nextflow DSL2 can be used in various ways depending on the granularity with which you would like to write pipelines. Please see the listing below for the hierarchy and associated terminology we have decided to use when referring to DSL2 components.
@@ -313,7 +311,7 @@ Please follow the steps below to run the tests locally:
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
 
 ### Uploading to `nf-core/modules`
 
@@ -343,134 +341,186 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ### General
 
-1. All command-line tool non-file arguments MUST be provided as a string via the `$task.ext.args` variable, unless an argument is needed to modify the command (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)). The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
-   Mandatory command line arguments MUST be specified in long form where possible.
+1.  All mandatory and optional input files MUST be included in `input` channel definitions.
 
-   `<module>.nf`:
+2.  Non-file mandatory arguments or arguments needed to modify the command to make the module run with no error, SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
-   ```nextflow
-   script:
-   def args = task.ext.args ?: ''
-   def prefix = task.ext.prefix ?: "${meta.id}"
-   """
-   fastqc \\
-       $args \\
-        <...>
-   """
-   ```
+3.  All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
 
-   `modules.config`:
+    - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
-   ```nextflow
-   process {
-       withName: <module> {
-           ext.args = [                                                          // Assign either a string, or closure which returns a string
-               '--quiet',
-               params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
-           ].join(' ')                                                           // Join converts the list here to a string.
-           ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
-       }
-   }
-   ```
+      `<module>.nf`:
 
-   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+      ```nextflow
+      script:
+      def args = task.ext.args ?: ''
+      def prefix = task.ext.prefix ?: "${meta.id}"
+      """
+      fastqc \\
+          $args \\
+            <...>
+      """
+      ```
 
-2. Software that can be piped together SHOULD be added to separate module files
-   unless there is a run-time, storage advantage in implementing in this way. For example,
-   using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
+      `modules.config`:
 
-   ```bash
-   bwa mem | samtools view -B -T ref.fasta
-   ```
+      ```nextflow
+      process {
+          withName: <module> {
+              ext.args = [                                                          // Assign either a string, or closure which returns a string
+                  '--quiet',
+                  params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter dependent values can be provided like so
+              ].join(' ')                                                           // Join converts the list here to a string.
+              ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
+          }
+      }
+      ```
 
-3. Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
+4.  Software that can be piped together SHOULD be added to separate module files
+    unless there is a run-time, storage advantage in implementing in this way. For example,
+    using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
-   - `*.fastq.gz` and NOT `*.fastq`
-   - `*.bam` and NOT `*.sam`
+    ```bash
+    bwa mem $args | samtools view $args2 -B -T ref.fasta
+    ```
 
-   If a tool does not support compressed input or output natively, we RECOMMEND passing the
-   uncompressed data via unix pipes, such that it never gets written to disk, e.g.
+5.  Each tool in a multi-tool module MUST have an `$args` e.g.,
 
-   ```bash
-   gzip -cdf $input | tool | gzip > $output
-   ```
+    ```bash
+    bwa mem $args | samtools view $args2 -B -T ref.fasta | samtools sort $args3
+    ```
 
-   The `-f` option makes `gzip` auto-detect if the input is compressed or not.
+    or
 
-   If a tool cannot read from STDIN, or has multiple input files, it is possible to use
-   named pipes:
+    ```bash
+    <tool> \\
+       <subcommand> \\
+       $args
 
-   ```bash
-   mkfifo input1_uncompressed input2_uncompressed
-   gzip -cdf $input1 > input1_uncompressed &
-   gzip -cdf $input2 > input2_uncompressed &
-   tool input1_uncompressed input2_uncompressed > $output
-   ```
+    gzip \\
+        $args2
+    ```
 
-   Only if a tool reads the input multiple times, it is required to uncompress the
-   file before running the tool.
+    The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`. E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
 
-4. Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
+6.  Modules MUST NOT use 'custom' hardcoded `meta` fields. The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`. Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
-```bash
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-    fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
-    samtools: \$( samtools --version 2>&1 | sed 's/^.*samtools //; s/Using.*\$// )
-END_VERSION
-```
+    <details markdown="1">
+      <summary>Rationale</summary>
+      Modules should be written to allow as much flexibility to pipeline developers as possible.
 
-resulting in, for instance,
+    Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
-```yaml
-'FASTQC':
-  fastqc: 0.11.9
-  samtools: 1.12
-```
+    As all non-mandatory arguments must go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
-All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for
-unversioned software, a Git SHA commit id (40 character hexadecimal string).
+        So, in the module code we DO NOT do:
 
-We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
-line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
-of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
-not erroneously terminate the module.
+        ```bash
+        my_command -r ${meta.strand} input.txt output.txt
+        ```
 
-If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually
-specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
-Please include the accompanying comments above the software packing directives and beside the version string.
+        ... but rather, in `modules.conf`
 
-```nextflow
-process TOOL {
-    ...
+        ```nextflow
+        ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
+        ```
 
-    // WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
-    conda (params.enable_conda ? "bioconda::tool=0.9.1:" : null)
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
-        'quay.io/biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
+        ... and then in the module code `main.nf`:
 
-    ...
+        ```bash
+        my_command $args input.txt output.txt
+        ```
 
-    script:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
-    def VERSION = '0.9.1' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
-    """
-    ...
+      </details>
 
+7.  Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
+
+    - `*.fastq.gz` and NOT `*.fastq`
+    - `*.bam` and NOT `*.sam`
+
+    If a tool does not support compressed input or output natively, we RECOMMEND passing the
+    uncompressed data via unix pipes, such that it never gets written to disk, e.g.
+
+    ```bash
+    gzip -cdf $input | tool | gzip > $output
+    ```
+
+    The `-f` option makes `gzip` auto-detect if the input is compressed or not.
+
+    If a tool cannot read from STDIN, or has multiple input files, it is possible to use
+    named pipes:
+
+    ```bash
+    mkfifo input1_uncompressed input2_uncompressed
+    gzip -cdf $input1 > input1_uncompressed &
+    gzip -cdf $input2 > input2_uncompressed &
+    tool input1_uncompressed input2_uncompressed > $output
+    ```
+
+    Only if a tool reads the input multiple times, it is required to uncompress the
+    file before running the tool.
+
+8.  Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
+
+    ```bash
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        tool: $VERSION
-    END_VERSIONS
-    """
+        fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
+        samtools: \$( samtools --version 2>&1 | sed 's/^.*samtools //; s/Using.*\$// )
+    END_VERSION
+    ```
 
-}
-```
+    resulting in, for instance,
 
-If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+    ```yaml
+    'FASTQC':
+      fastqc: 0.11.9
+      samtools: 1.12
+    ```
 
-5. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
+    All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for
+    unversioned software, a Git SHA commit id (40 character hexadecimal string).
+
+    We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file
+    line-by-line as we believe the latter makes it easy to accidentally overwrite the file. Moreover, the exit status
+    of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does
+    not erroneously terminate the module.
+
+    If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually
+    specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
+    Please include the accompanying comments above the software packing directives and beside the version string.
+
+    ```nextflow
+    process TOOL {
+        ...
+
+        // WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
+        conda (params.enable_conda ? "bioconda::tool=0.9.1:" : null)
+        container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+            'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
+            'quay.io/biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
+
+        ...
+
+        script:
+        def args = task.ext.args ?: ''
+        def prefix = task.ext.prefix ?: "${meta.id}"
+        def VERSION = '0.9.1' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+        """
+        ...
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            tool: $VERSION
+        END_VERSIONS
+        """
+
+    }
+    ```
+
+    If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+
+9.  The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
 ```groovy
 process {
@@ -507,22 +557,53 @@ process {
 
 ### Input/output options
 
-1. Input channel declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
+1. Input channel `path` declarations MUST be defined for all _possible_ input files (i.e. both required and optional files).
 
    - Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g. [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
    - Other generic auxiliary files used across different input files (e.g. common reference sequences) MAY be defined using a dedicated input channel (e.g. [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
-2. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+2. Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g. parameters, flags etc).
 
-3. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+   - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
+   - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
+   - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-4. Optional outputs SHOULD be marked as optional:
+       <details markdown="1">
+       <summary>Rationale</summary>
+       It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
+
+     The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run. It also allows module code to consume parameter values without parsing them out of the `ext.args` string and reduces possible risks of entire breakage of modules with future [expected config changes](https://github.com/nextflow-io/nextflow/issues/2723) at a Nextflow level.
+
+     Downsides to this approach are readability (now multiple places must be checked on how to modify a module execution - modules.conf `ext.args`, the module invocation in pipeline code etc.), and reduced user freedom. However it was felt that it was more important for stability in and 'installation' and 'execution' of modules was preferred (e.g. for tools that require position arguments etc.)
+
+       </details>
+
+       <details markdown="1">
+       <summary>Inputs particular cases</summary>
+        When one and only one of multiple argument are required:
+
+     - If they all are string argument : use 1 argument that will be equal to the string
+
+     e.g. Parameter model of [glimpse2 chunk](https://nf-co.re/modules/glimpse2_chunk)
+
+     - If some are files put them all in one channel and test if only one is present
+
+     e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
+
+     `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
+       </details>
+
+3. Named file extensions MUST be emitted for ALL output channels e.g. `path "*.txt", emit: txt`.
+
+4. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
+
+5. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-5. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+6. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
 ### Documentation
 
@@ -534,27 +615,47 @@ process {
 
 3. Keywords MUST be all lower case
 
-4. Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
+4. The tools section MUST list every tool used in the module. For example
 
-5. Input and output tuples MUST be split into separate entries
+   ```yml
+   tools:
+     - bowtie2: <....>
+     - samtools: <....>
+   ```
+
+5. The tools section MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for that specific module. A single tool module will only have `args_id: "$args"`.
+
+   ```yml
+   tools:
+     - bowtie2:
+         <...>
+         args_id: "$args"
+     - samtools:
+         <...>
+         args_id: "$args2"
+   ```
+
+6. Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
+
+7. Input and output tuples MUST be split into separate entries
 
    - i.e., `meta` should be a separate entry to the `file` it is associated with
 
-6. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `integer`, `float`
+8. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `integer`, `float`
 
-7. Input/output entries MUST match a corresponding channel in the module itself
+9. Input/output entries MUST match a corresponding channel in the module itself
 
    - There should be a one-to-one relationship between the module and the `meta.yaml`
 
    - Input/output entries MUST NOT combine multiple output channels
 
-8. Input/output descriptions SHOULD be descriptive of the contents of file
+10. Input/output descriptions SHOULD be descriptive of the contents of file
 
-   - i.e., not just 'A TSV file'
+- i.e., not just 'A TSV file'
 
-9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+11. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
 
-10. Input entries should be marked as Mandatory or Optional
+12. Input entries should be marked as Mandatory or Optional
 
 ### Module parameters
 
@@ -572,9 +673,9 @@ process {
 
 2. If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`. If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
-3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32-L46)), you MUST assign cpus per tool such that the total number of used CPUs does not exceed `task.cpus`.
-   - For example, combining two (or more) tools that both (all) have multi-threading, this can be assigned to the variable [`split_cpus`](https://github.com/nf-core/modules/blob/28b023e6f4d0d2745406d9dc6e38006882804e67/modules/bowtie2/align/main.nf#L32)
-   - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus - 1}`](https://github.com/nf-core/modules/blob/6e68c1af9a514bb056c0513ebba6764efd6750fc/modules/bwa/sampe/main.nf#L42-L43)
+3. If a module contains _multiple_ tools that supports multi-threading (e.g. [piping output into a samtools command](https://github.com/nf-core/modules/blob/c4cc1db284faba9fc4896f64bddf7703cedc7430/modules/nf-core/bowtie2/align/main.nf#L47-L54)), you can assign CPUs per tool.
+   - Note that [`task.cpus`] is supplied unchanged when a process uses multiple cores
+   - If one tool is multi-threaded and another uses a single thread, you can specify directly in the command itself e.g. with [`${task.cpus}`](https://github.com/nf-core/modules/blob/master/modules/nf-core/bwa/sampe/main.nf#L34)
 
 ### Software requirements
 
@@ -628,7 +729,13 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
 
      The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
+   - If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
+
 5. If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
+
+### Misc
+
+1. All code must be aligned to follow the '[Harshil Alignment™️](#what-is-the-harshil-alignment)' format.
 
 ### Publishing results
 
@@ -647,6 +754,33 @@ If the module absolute cannot run using tiny test data, there is a possibility t
 ```console
 nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/config/nextflow.config -stub-run
 ```
+
+### PR Review Checklist
+
+A PR review is the process of examining a new modules' submission or the changes proposed to a module. The reviewer provides constructive feedback on those changes before they are merged into the nf-core repository. The goal of a PR review is to ensure that the code meets the coding standards of the project, is consistent and of high-quality. While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) is responsible for overseeing the PR review process for modules, these guidelines can assist community members in reviewing PRs and ensure that the review process is consistent and effective. The following is a collection of community suggestions to have into account during the review process.
+
+#### General reviews of submissions to modules:
+
+- Ensure all checks pass, including linting, conda, singularity, and docker.
+- Check that the module is suitable for offline running, without automatic database downloads assumed.
+- If running docker containers, check that Nextflow changes the `--entrypoint` to `/bin/bash` and that environment variables used by certain programs (e.g., Busco, Merqury) are sourced again to use them in container settings.
+- Check that it adheres to nf-core coding standards (e.g. use of meta map).
+- Check that the code is readable and the formatting is correct (e.g. indenting, extra spaces).
+
+#### In `modules/nf-core/modulename/main.nf`:
+
+- Check that all optional parameters are in the `$args` section.
+- Check that the software version extraction command is optimized, if required.
+- Check if the bioconda version of the tool is the latest version.
+- Ensure that temporary unzipped files are removed to avoid mitigating benefits and worsening problems.
+- Ensure that large outputs are compressed with the correct tool (follow guidelines for gzip vs bzip2 vs other options).
+
+#### In `../tests/modules/nf-core/modulename/main.nf` and `../tests/modules/nf-core/modulename/meta.yml`:
+
+- Check that there are tests for all outputs, including optional ones.
+- Check that the `meta.yml` file has correct documentation links and patterns of files.
+- Run the tool help and check that important input (usually optional) has not been missed.
+- Check that all outputs are captured by running pytest (e.g. on Gitpod).
 
 ## What is the `meta` map?
 
@@ -693,7 +827,7 @@ The only required value is `meta.id` for most of the modules, however, they usua
 
 The `meta map` is generated with [create_fastq_channel function in the input_check subworkflow](https://github.com/nf-core/rnaseq/blob/587c61b441c5e00bd3201317d48b95a82afe6aaa/subworkflows/local/input_check.nf#L23-L45) of most nf-core pipelines. Where the meta information is easily extracted from a samplesheet that contains the input file paths.
 
-#### Generating a `meta map` from file pairs
+### Generating a `meta map` from file pairs
 
 Sometimes you want to use nf-core modules in small scripts. You don't want to make a samplesheet, or maintain a bunch of validation.
 For instance, here's an example script to run fastqc
@@ -725,7 +859,7 @@ workflow {
 }
 ```
 
-#### Sorting samples by groups
+### Sorting samples by groups
 
 ```nextflow
 ch_genome_bam.map {
@@ -736,6 +870,41 @@ ch_genome_bam.map {
     .groupTuple(by: [0])
     .map { it ->  [ it[0], it[1].flatten() ] }
     .set { ch_sort_bam }
+```
+
+### Combining channel on meta subset
+
+Sometimes it is necessary to combine multiple channels based on a subset of the meta maps.
+Unfortunately this is not yet supported as the argument `by` isn't a closure in `.combine()` and `.join()` and it probably won't ([Nextflow issue #3175](https://github.com/nextflow-io/nextflow/issues/3175)).
+
+To bypass this restriction one of the solution is to create a new map with only the necessary keys and make the junction on it. Here is an example:
+
+```nextflow
+ch_input = [[["id":"Ind1","ref":"RefA"],"file1"],[["id":"Ind2","ref":"RefB"],"file2"]]
+ch_ref   = [[["ref":"RefA"],"fileA"],[["ref":"RefB"],"fileB"]]
+
+ch_join  = ch_input
+            .map{metaIR, file -> [metaIR.subMap(["ref"]), metaIR, file]}
+            .combine(chr_ref)
+            .map{metaR, metaIR, file, ref -> [metaIR, file, ref]}
+```
+
+### Modify the meta map
+
+There is multiple ways to modify the meta map.
+Here are some examples:
+
+```nextflow
+// Add to map - adding two maps makes a new Map object
+ch.map { meta, files -> [ meta + [ single_end: files instanceof Path ], files ] }
+
+// Remove certain keys (and their entries) from a map
+ch.map { meta, files -> [ meta.subMap( ['id','rg'] ), files ] }
+  // OR by specifying what not to include
+ch.map { meta, files -> [ meta.findAll { ! it.key in ['single_end'] }, files ] }
+
+// Split a map - use both methods of removing keys ( there is a split method for Maps, but the results are not Maps )
+ch.map { meta, files -> def keyset = ['id', 'read_group']; [ meta.subMap(keyset), meta.findAll { ! it.key in keyset },  files ] }
 ```
 
 ### Conclusion
@@ -794,11 +963,138 @@ The following table lists the available keys commonly used in nf-core modules.
 | ext.args3  | Third set of arguments appended to command in module.  |
 | ext.prefix | File name prefix for output files.                     |
 
+**Note:** that the order of the numeric ID of `args` must match the order of the tools as used in the module.
+
 To see some more advanced examples of these keys in use see:
 
 - [Set ext.args based on parameter settings](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L222-L226)
 - [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
 - [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
+
+## Advanced pattern
+
+### Multimaping
+
+It is possible with `multiMap` to split a channel in to and to call them separately afterwards.
+
+```nextflow
+ch_input = reads.combine(db).multiMap{ it ->
+   reads: it[0]
+   db: it[1]
+}
+MODULE(ch_input.reads, ch_input.db)
+```
+
+### Adding additional information to the meta map
+
+It is possible to combine a input channel with a set of parameters as follows:
+
+```nextflow
+ch_input.flatMap { meta, filetype ->
+    [300, 500, 1000].collect {
+      def new_meta = meta.clone()
+      new_meta.window_size = it
+      [ new_meta, filetype]
+    }
+}
+```
+
+You can also combine this technique with others for more processing:
+
+```nextflow
+workflow {
+
+    input = [
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample', sample: 'test', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_23355001-46709983.bed")
+        ],
+        [
+            [ patient: 'sample2', sample: 'test5', id: 'test' ],
+            file ("chr21_2-23354000.bed")
+        ]
+    ]
+    Channel.fromList ( input )
+        .map { meta, intervals ->
+            new_meta = meta.clone()
+            new_meta.id = intervals.baseName != "no_intervals" ? new_meta.sample + "_" + intervals.baseName : new_meta.sample
+            intervals = intervals.baseName != "no_intervals" ? intervals : []
+            [new_meta, intervals]
+        }.view { meta, intervals -> meta.id }
+}
+```
+
+## What is the Harshil Alignment
+
+The Harshil Alignment™️ format is the whitespace-happy code style that was introduced by a certain core member to get on everyone's nerves, but then make subsequently develop Stockholm Syndrome so that no-one in nf-core else now can look at Nextflow code without it.
+
+The Harshil Alignment™️ format involves ensuring that common punctuation across multiple lines in a group are placed in the same location as each other.
+
+There are many places where the format can be applied, however common examples are as follows:
+
+### Curly Bracket Example
+
+❌ Bad
+
+```nextflow
+include { SAMTOOLS_SORT } from '../../../modules/nf-core/samtools/sort/main'
+include { SAMTOOLS_INDEX } from '../../../modules/nf-core/samtools/index/main'
+include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
+```
+
+✅ Good
+
+```nextflow
+include { SAMTOOLS_SORT      } from '../../../modules/nf-core/samtools/sort/main'
+include { SAMTOOLS_INDEX     } from '../../../modules/nf-core/samtools/index/main'
+include { BAM_STATS_SAMTOOLS } from '../bam_stats_samtools/main'
+```
+
+### Equals Example
+
+❌ Bad
+
+```nextflow
+stats = BAM_STATS_SAMTOOLS.out.stats    // channel: [ val(meta), [ stats ] ]
+flagstat = BAM_STATS_SAMTOOLS.out.flagstat // channel: [ val(meta), [ flagstat ] ]
+idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ] ]
+```
+
+✅ Good
+
+```nextflow
+stats    = BAM_STATS_SAMTOOLS.out.stats    // channel: [ val(meta), [ stats    ] ]
+flagstat = BAM_STATS_SAMTOOLS.out.flagstat // channel: [ val(meta), [ flagstat ] ]
+idxstats = BAM_STATS_SAMTOOLS.out.idxstats // channel: [ val(meta), [ idxstats ] ]
+```
+
+### Comma Example
+
+❌ Bad
+
+```nextflow
+tuple val(meta), path("*.bam"), emit: bam, optional:true
+tuple val(meta), path("*.log"), emit: log
+tuple val(meta), path("*fastq.gz"), emit: fastq, optional:true
+path  "versions.yml", emit: versions
+```
+
+✅ Good
+
+```nextflow
+tuple val(meta), path("*.bam")    , emit: bam     , optional:true
+tuple val(meta), path("*.log")    , emit: log
+tuple val(meta), path("*fastq.gz"), emit: fastq   , optional:true
+path  "versions.yml"              , emit: versions
+```
 
 ## Help
 
