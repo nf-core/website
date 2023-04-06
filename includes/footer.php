@@ -67,9 +67,6 @@ if (isset($subfooter) and $subfooter) {
           </div>
 
           <div class="social-icons mb-3 d-print-none">
-            <a rel="me" href="https://sangertreeoflife.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip" data-bs-placement="bottom">
-              <img src="/assets/img/slack.svg" />
-            </a>
             <a rel="me" href="https://github.com/sanger-tol/" target="_blank" class="social-github" title="GitHub" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/github.svg" />
             </a>
@@ -78,6 +75,9 @@ if (isset($subfooter) and $subfooter) {
             </a>
             <a rel="me" href="https://www.youtube.com/@sangertreeoflife" target="_blank" title="YouTube" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/youtube.svg" />
+	    </a>
+            <a rel="me" href="https://www.linkedin.com/company/sangertol/" target="_blank" title="LinkedIn" data-bs-toggle="tooltip" data-bs-placement="bottom">
+              <img src="/assets/img/linkedin.png" />
             </a>
           </div>
         </div>
