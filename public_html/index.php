@@ -348,9 +348,9 @@ endif;
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Robust</h5>
-            <p class="card-text">Pipelines are tested on data from different parts of the tree of life.
-              sanger-tol pipelines are for all organisms not just model organisms.
+            <h5 class="card-title">Cloud-ready</h5>
+            <p class="card-text">Pipelines are tested via Nextflow Tower before release. 
+              You can run the pipelines on any Nextflow supported cloud provider.
             </p>
           </div>
           <img class="ms-3 hide-light" width="100px" src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services">
