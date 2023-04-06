@@ -272,7 +272,7 @@ endif;
 
 
 <div class="container py-5 text-center lead" id="features">
-  <p>Tree of Life production suite is designed to handle nature's diversity.</p>
+  <p>The Tree of Life production suite is designed to handle nature's diversity.</p>
   <p><strong>sanger-tol</strong> pipelines use Nextflow DSL2 and adhere to strict nf-core guidelines.</p>
 </div>
 
@@ -308,7 +308,7 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
-            <p class="card-text">sanger-tol pipelines use GitHub releases to tag stable versions of the code
+            <p class="card-text">sanger-tol pipelines use GitHub and Zenodo releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/releases.svg" />
