@@ -25,12 +25,12 @@ if (isset($markdown_fn) and $markdown_fn) {
 }
 
 // Page title
-$page_title = 'nf-core';
+$page_title = 'sanger-tol';
 if (isset($title) && strlen($title) > 0) {
-    $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)) . ' &raquo; nf-core';
+    $page_title = preg_replace('/^sanger-tol\//', '', strip_tags($title)) . ' &raquo; sanger-tol';
 }
 // Page meta description
-$page_meta = 'A collection of high quality Nextflow pipelines';
+$page_meta = 'A collection of high quality Nextflow pipelines and associated tools.';
 if (isset($subtitle) && strlen($subtitle) > 0) {
     $page_meta = strip_tags($subtitle);
 }
@@ -43,11 +43,11 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title><?php echo $page_title; ?></title>
   <meta name="description" content="<?php echo $page_meta; ?>">
-  <meta name="author" content="Phil Ewels">
+  <meta name="author" content="Priyanka Surana, Guoying Qi, Matthieu Muffato">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#1d9655">
-  <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
-  <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
+  <link rel="shortcut icon" href="/assets/img/logo/sanger-tol-logo-tree.png" type="image/png" />
+  <link rel="alternate" type="application/rss+xml" title="Events" href="/events/rss" />
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -147,9 +147,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
           <li class="nav-item p-1">
-            <a class="nav-link" href="/modules">Modules</a>
-          </li>
-          <li class="nav-item p-1">
             <a class="nav-link" href="/software">Software</a>
           </li>
           <li class="nav-item p-1">
@@ -168,7 +165,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About sanger-tol</a>
               <a class="dropdown-item" href="/community">Community</a>
-              <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/internships">Internships</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
