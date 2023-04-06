@@ -25,12 +25,12 @@ if (isset($markdown_fn) and $markdown_fn) {
 }
 
 // Page title
-$page_title = 'nf-core';
+$page_title = 'sanger-tol';
 if (isset($title) && strlen($title) > 0) {
-    $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)) . ' &raquo; nf-core';
+    $page_title = preg_replace('/^sanger-tol\//', '', strip_tags($title)) . ' &raquo; sanger-tol';
 }
 // Page meta description
-$page_meta = 'A collection of high quality Nextflow pipelines';
+$page_meta = 'A collection of high quality Nextflow pipelines and associated tools.';
 if (isset($subtitle) && strlen($subtitle) > 0) {
     $page_meta = strip_tags($subtitle);
 }
@@ -46,8 +46,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <meta name="author" content="Priyanka Surana, Guoying Qi, Matthieu Muffato">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#1d9655">
-  <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
-  <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
+  <link rel="shortcut icon" href="/assets/img/logo/sanger-tol-logo-tree.png" type="image/png" />
+  <link rel="alternate" type="application/rss+xml" title="Events" href="/events/rss" />
   <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
