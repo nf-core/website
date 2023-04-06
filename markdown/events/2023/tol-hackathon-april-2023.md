@@ -10,10 +10,12 @@ location_name: Floating Room, Morgan Building, Wellcome Genome Campus.
 import_typeform: true
 ---
 
-# Food and Refreshments
+## Food and Refreshments
 
 We will have vouchers for beverages in the morning and afternoon. Lunch will be catered. Please enter your order [here](https://docs.google.com/spreadsheets/d/1qLFg2ZGLfDos3v29vyzbsv1X56kcEaPT-D7hflirkRQ).
 
-# Code of conduct
+</br>
+
+## Code of conduct
 
 Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](http://pipelines.tol-dev.sanger.ac.uk/code_of_conduct).
