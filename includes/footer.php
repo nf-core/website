@@ -27,17 +27,19 @@ if (isset($subfooter) and $subfooter) {
         </a>
         <small class="d-block mb-3">Decoding Earth's Diversity since 2019</small>
         <small class="d-flex mb-3">Supported by<div class="social-icons">
-            <a href="/about#wellcome">
-              <img src="/assets/img/contributors-colour/Wellcome_Trust_logo.svg" alt="Wellcome" class="" style="max-width: 50px">
+	    <a href="/about#wellcome">
+              <img src="/assets/img/contributors-white/wellcome.png" alt="Wellcome" class="hide-light" style="max-width: 50px">
+              <img src="/assets/img/contributors-colour/wellcome.png" alt="Wellcome" class="hide-dark" style="max-width: 50px">
             </a>
             <span class="ms-1">and</span>
             <a href="/about#sanger">
-              <img src="/assets/img/contributors-colour/sanger-alt.svg" alt="Sanger" class="" style="max-width: 50px">
+	      <img src="/assets/img/contributors-white/sanger.svg" alt="Sanger" class="hide-light" style="max-width: 50px">
+              <img src="/assets/img/contributors-colour/sanger.svg" alt="Sanger" class="hide-dark" style="max-width: 50px">
             </a>
           </div>
         </small>
         <small class="d-block mb-3">
-          See the source code for this website on GitHub: <a href="https://github.com/sanger-tol/nf-co.re" target="_blank">https://github.com/sanger-tol/nf-co.re</a> (modified from <a href="https://github.com/nf-core/nf-co.re" target="_blank">https://github.com/nf-core/nf-co.re</a>)
+          See the source code for this website on GitHub: <a href="https://github.com/sanger-tol/pipelines-website" target="_blank">https://github.com/sanger-tol/pipelines_website</a> (modified from <a href="https://github.com/nf-core/nf-co.re" target="_blank">https://github.com/nf-core/nf-co.re</a>)
         </small>
         <div class="d-md-flex d-print-none">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
