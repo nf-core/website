@@ -272,7 +272,7 @@ endif;
 
 
 <div class="container py-5 text-center lead" id="features">
-  <p>Tree of Life production suite is designed to handle nature's diversity.</p>
+  <p>The Tree of Life production suite is designed to handle nature's diversity.</p>
   <p><strong>sanger-tol</strong> pipelines use Nextflow DSL2 and adhere to strict nf-core guidelines.</p>
 </div>
 
@@ -308,7 +308,7 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
-            <p class="card-text">sanger-tol pipelines use GitHub releases to tag stable versions of the code
+            <p class="card-text">sanger-tol pipelines use GitHub and Zenodo releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/releases.svg" />
@@ -336,7 +336,7 @@ endif;
             <p class="card-text">
               Pipelines follow best-practices to ensure maximum
               portability and reproducibility.
-              Scale and diversity in Tree of Life makes the pipelines 
+              Scale and diversity in Tree of Life make the pipelines 
               exceptionally well tested and easy to run.
             </p>
           </div>
@@ -348,9 +348,9 @@ endif;
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Robust</h5>
-            <p class="card-text">Pipelines are tested on data from different parts of the tree of life.
-              sanger-tol pipelines are for all organisms not just model organisms.
+            <h5 class="card-title">Cloud-ready</h5>
+            <p class="card-text">Pipelines are tested via Nextflow Tower before release. 
+              You can run the pipelines on any Nextflow supported cloud provider.
             </p>
           </div>
           <img class="ms-3 hide-light" width="100px" src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services">
