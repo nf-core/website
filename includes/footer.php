@@ -25,14 +25,14 @@ if (isset($subfooter) and $subfooter) {
           <img height="30px" src="/assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
           <img height="30px" src="/assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
         </a>
-        <small class="d-block mb-3">Decoding earth's diversity since 2019</small>
+        <small class="d-block mb-3">Decoding Earth's Diversity since 2019</small>
         <small class="d-flex mb-3">Supported by<div class="social-icons">
             <a href="/about#wellcome">
               <img src="/assets/img/contributors-colour/Wellcome_Trust_logo.svg" alt="Wellcome" class="" style="max-width: 50px">
             </a>
             <span class="ms-1">and</span>
             <a href="/about#sanger">
-              <img src="/assets/img/contributors-colour/sanger-alt.svg" alt="Sanger" class="hide-dark" style="max-width: 50px">
+              <img src="/assets/img/contributors-colour/sanger-alt.svg" alt="Sanger" class="" style="max-width: 50px">
             </a>
           </div>
         </small>
