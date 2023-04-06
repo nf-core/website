@@ -25,7 +25,7 @@ foreach ($contributors['contributors'] as $idx => $c) {
 shuffle($contributors_img_list);
 
 //Check if there is an event
-$md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/events';
+$md_github_url = 'https://github.com/sanger-tol/nf-co.re/tree/main/markdown/events';
 $header_btn_url = 'https://nf-co.re/events/rss';
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
@@ -259,11 +259,11 @@ endif;
     </div>
     <div>
       <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-        <img src="/assets/img/nature_biotech.svg" alt="Nature Biotechnology" width="60px" class="float-start me-3">
-        <a class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center" href="https://doi.org/10.1038/s41587-020-0439-x" target="_blank">
-          nf-core is published in Nature Biotechnology!
-          <span class="underline m-auto"><em>Nat Biotechnol</em> <strong>38</strong>, 276–278 (2020).
-            <img src="/assets/img/OpenAccess.svg" alt="Nature Biotechnology" height="20px" class="ms-2"></span>
+        <img src="/assets/img/pnas-logo.png" alt="PNAS" width="60px" class="float-start me-3">
+        <a class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center" href="https://doi.org/10.1073/pnas.2115642118" target="_blank">
+          Sequence locally, think globally: The Darwin Tree of Life Project
+          <span class="underline m-auto"><em>PNAS</em> <strong>119 (4)</strong> e2115642118 (2022).
+            <img src="/assets/img/OpenAccess.svg" alt="PNAS" height="20px" class="ms-2"></span>
         </a>
       </p>
     </div>
@@ -272,8 +272,8 @@ endif;
 
 
 <div class="container py-5 text-center lead" id="features">
-  <p>Nextflow is an incredibly powerful and flexible workflow language.</p>
-  <p><strong>nf-core</strong> pipelines adhere to strict guidelines - if one works, they all will.</p>
+  <p>The Tree of Life production suite is designed to handle nature's diversity.</p>
+  <p><strong>sanger-tol</strong> pipelines use Nextflow DSL2 and adhere to strict nf-core guidelines.</p>
 </div>
 
 <div id="features" class="container homepage-feature-boxes pb-5">
@@ -297,7 +297,7 @@ endif;
           <div>
             <h5 class="card-title">CI Testing</h5>
             <p class="card-text">Every time a change is made to the pipeline code,
-              nf-core pipelines use continuous-integration testing to ensure that nothing has broken.</p>
+              sanger-tol pipelines use continuous-integration testing to ensure that nothing has broken.</p>
           </div>
           <img class="ms-3" height="90px" src="assets/img/github-actions.svg" />
         </div>
@@ -308,7 +308,7 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
-            <p class="card-text">nf-core pipelines use GitHub releases to tag stable versions of the code
+            <p class="card-text">sanger-tol pipelines use GitHub and Zenodo releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/releases.svg" />
@@ -336,8 +336,8 @@ endif;
             <p class="card-text">
               Pipelines follow best-practices to ensure maximum
               portability and reproducibility.
-              The large community makes the pipelines exceptionally
-              well tested and easy to run.
+              Scale and diversity in Tree of Life make the pipelines 
+              exceptionally well tested and easy to run.
             </p>
           </div>
           <i class="fas fa-server fa-5x text-success ms-3"></i>
@@ -349,8 +349,8 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Cloud-ready</h5>
-            <p class="card-text">Pipelines are tested on AWS after every release.
-              You can even browse results live on the website and use outputs for your own benchmarking.
+            <p class="card-text">Pipelines are tested via Nextflow Tower before release. 
+              You can run the pipelines on any Nextflow supported cloud provider.
             </p>
           </div>
           <img class="ms-3 hide-light" width="100px" src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services">
@@ -372,10 +372,10 @@ endif;
             <h5 class="card-title">Develop <u>with</u> the community</h5>
             <div class='d-flex align-items-center'>
               <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
-                to find collaborators and check that your pipeline is suitable for nf-core.</p>
+                to find collaborators and check that your pipeline is suitable for sanger-tol.</p>
               <i class="fad fa-people-carry fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
+            <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join sanger-tol</span></a>
           </div>
         </div>
       </div>
@@ -384,8 +384,7 @@ endif;
           <div class="card-body">
             <h5 class="card-title">Start from the template</h5>
             <div class='d-flex align-items-center'>
-              <p class="card-text">All pipelines and modules must be based on our template and be created using <code>nf-core</code> <a href="/tools">tools</a>.
-                An automated sync keeps pipelines up to date.</p>
+              <p class="card-text">All pipelines and modules must be based on nf-core templates and be created using <a href="https://github.com/nf-core/tools">nf-core tools</a>.</p>
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
@@ -398,7 +397,7 @@ endif;
           <div class="card-body">
             <h5 class="card-title">Collaborate, don't duplicate</h5>
             <div class='d-flex align-items-center'>
-              <p class="card-text">We only allow one pipeline per data type / analysis type.
+              <p class="card-text">We only allow one pipeline per analysis type.
                 If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
               <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
             </div>
@@ -416,18 +415,14 @@ endif;
     <div class="row videos-row">
       <div class="col-lg-6">
         <div class="ratio ratio-16x9 hidden-xs hidden-sm">
-          <iframe id="nf-core-video"  src="https://www.youtube.com/embed/gUM9acK25tQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="dtol-intro-video"  src="https://www.youtube.com/embed/aK1Ek39z4sA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="col-lg-6">
         <ul class="list-switch left video-chooser">
-          <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ" class="active"> Introduction to nf-core <em>(1:01)</em></a></li>
-          <li><a href="https://youtu.be/cXBYusdjrc0" data-src="https://www.youtube.com/embed/cXBYusdjrc0"> Bytesize: How nf-core configs work <em>(15:00)</em></a></li>
-          <li><a href="https://youtu.be/FFTNVbdD5pQ" data-src="https://www.youtube.com/embed/FFTNVbdD5pQ"> Bytesize: Pipeline code walkthrough <em>(20:00)</em></a></li>
-          <li><a href="https://youtu.be/OvtCc855Vek" data-src="https://www.youtube.com/embed/OvtCc855Vek"> Tutorial: Running pipelines <em>(17:00)</em></a></li>
-          <li><a href="https://youtu.be/-GcuxoIpfOc" data-src="https://www.youtube.com/embed/-GcuxoIpfOc"> BovReg: A longer introduction to nf-core <em>(45:00)</em></a></li>
-          <li><a href="https://youtu.be/hCGuF9bA9ho" data-src="https://www.youtube.com/embed/hCGuF9bA9ho"> BovReg: nf-core pipelines <em>(60:00)</em></a></li>
-          <li><a href="https://youtu.be/lUJ1L-qDeXM" data-src="https://www.youtube.com/embed/lUJ1L-qDeXM"> BovReg: Developing with nf-core <em>(50:00)</em></a></li>
+          <li><a href="https://youtu.be/aK1Ek39z4sA" data-src="https://www.youtube.com/embed/aK1Ek39z4sA" class="active"> Introduction to Darwin Tree of Life <em>(0:44)</em></a></li>
+          <li><a href="https://youtu.be/Zort8tv7iRI" data-src="https://www.youtube.com/embed/Zort8tv7iRI"> Nextflow Summit: sanger-tol Production Engine <em>(14:57)</em></a></li>
+          <li><a href="https://youtu.be/gUM9acK25tQ" data-src="https://www.youtube.com/embed/gUM9acK25tQ"> Introduction to nf-core <em>(1:01)</em></a></li>
         </ul>
       </div>
     </div>
@@ -440,13 +435,9 @@ endif;
     <div class="row">
       <div class="col-sm-6">
         <h2 id="get-started" class="text-white">Get started in minutes</h2>
-        <p class="text-white-50">Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
-        <p class="text-white-50">Most nf-core genomics pipelines come with built-in support for
-          <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;">AWS-iGenomes</a>,
-          with genome references for over 30 common species.
-        </p>
-        <p class="text-white-50">The nf-core companion tool makes it easy to list all available nf-core pipelines
-          and shows which are available locally. Local versions are checked against the latest available release.</p>
+        <p class="text-white-50">Nextflow lets you run sanger-tol pipelines on virtually any computing environment.</p>
+        <p class="text-white-50">All sanger-tol genomics pipelines come with built-in support for
+          <a href="https://github.com/nf-core/tools" target="_blank" style="white-space:nowrap;">nf-core tools</a>.</p>
       </div>
       <div class="col-sm-6">
         <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
@@ -456,17 +447,14 @@ endif;
 curl -s https://get.nextflow.io | bash
 mv nextflow ~/bin/
 
-<span class="text-white-50"># Launch the RNAseq pipeline</span>
-nextflow run nf-core/rnaseq \
+<span class="text-white-50"># Launch the readmapping pipeline</span>
+nextflow run sanger-tol/readmapping \
     --input samplesheet.csv \
-    --genome GRCh37 \
-    -profile docker
+    --fasta genome.fasta \
+    -profile singularity
 
 <span class="text-white-50"># Install nf-core tools</span>
 pip install nf-core
-
-<span class="text-white-50"># List all nf-core pipelines and show available updates</span>
-nf-core list
 </pre>
           </div>
         </div>
@@ -490,7 +478,7 @@ nf-core list
     </div>
     <div class="col-md-4 px-md-5 mb-5 mb-md-0">
       <h3>Get into the code</h3>
-      <p>If you're interested in contributing to nf-core, take a look at the developer documentation to see what's required.</p>
+      <p>If you're interested in contributing to sanger-tol, take a look at the developer documentation to see what's required.</p>
       <a class="btn btn-lg btn-success arrow-hover" href="/docs/contributing/adding_pipelines"><span><i class="fad fa-code me-1"></i> Developer docs</span></a>
     </div>
   </div>
