@@ -3,9 +3,9 @@ title: 'Bytesize: HackMD and reveal.js'
 subtitle: Maxime Garcia, Seqera Labs
 type: talk
 start_date: '2023-04-18'
-start_time: '13:00 CET'
+start_time: '13:00 CEST'
 end_date: '2023-04-18'
-end_time: '13:30 CET'
+end_time: '13:30 CEST'
 location_url:
   - https://kth-se.zoom.us/j/68390542812
 ---
