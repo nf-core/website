@@ -9,7 +9,7 @@ menu:
 ## Nextflow
 
 All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
-See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
+See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system. To install `nf-core` afterwards, follow [these instructions](https://nf-co.re/tools/#installation).
 
 ### Typical installation
 
