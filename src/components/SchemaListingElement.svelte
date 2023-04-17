@@ -1,16 +1,17 @@
 <script>
     import { showHidden } from './store.js';
+    // import { markdown } from '@astropub/md';
+    import Collapsible from './Collapsible.svelte';
+    import Markdown from './Markdown.svelte';
 
     export let title;
     export let property;
     const id = title.replace(' ', '-');
 
-    import { marked } from 'marked';
-    import Collapsible from './Collapsible.svelte';
-    let help_text = '';
-    if (property.help_text) {
-        help_text = marked.parse(property.help_text);
-    }
+    // let help_text = '';
+    // if (property.help_text) {
+    //     help_text = markdown(property.help_text);
+    // }
 </script>
 
 <div
@@ -24,7 +25,7 @@
         {/if}
         <code>--{title}</code>
     </div>
-    <div class="col description ">
+    <div class="col description">
         {property.description}
     </div>
     <div class="col-12 col-md-3 col-xl-2 text-nowrap d-flex flex-column align-items-end justify-content-between">
@@ -51,7 +52,9 @@
         <div class="row d-flex mt-2 mx-0 w-100 px-0 gx-3 gx-md-4">
             <Collapsible>
                 <div {id} class="p-2 px-3 text-body bg-secondary-subtle border border-secondary rounded-3">
-                    {@html help_text}
+                    {property.help_text}
+                    <Markdown md={property.help_text} />
+                    <!-- <Markdown of={property.help_text} /> -->
                 </div>
             </Collapsible>
         </div>
