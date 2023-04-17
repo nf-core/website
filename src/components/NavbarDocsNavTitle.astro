@@ -1,27 +1,28 @@
 ---
-import { Icon } from 'astro-icon';
-
-// Fetch the config.yml that has section titles and order of pages
-import docs_nav from '../../../MultiQC/docs/core/config.yaml';
-
 export interface Props {
     title?: string;
 }
 
 const { title } = Astro.props;
 
-// Figure out the current section
-var current_section = '';
-docs_nav['nav'].forEach((section) => {
-    Object.values(section)[0].forEach((filename) => {
-        var url = '/docs/' + filename.replace(/\.md$/, '').replace(/index$/, '');
-        if (Astro.url.pathname.replace(/\/$/, '') == url.replace(/\/$/, '')) {
-            current_section = Object.keys(section)[0];
-        }
-    });
+var url = Astro.url.pathname.split('/').filter(function (el) {
+    return el != '' && el != 'docs';
 });
+url.pop(); // remove last element, which is already saved as title
 ---
 
-{current_section}
-<i class="fa fa-chevron-right"></i>
-{title}
+{
+    url.map((item) => {
+        // make item title case
+        item = item.replace(/_/g, ' ').replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+        return (
+            <span>
+                {item}
+                <i class="fa fa-chevron-right fa-w fa-xs mx-1 " />
+            </span>
+        );
+    })
+}
+{title?.replace('Docs/', '')}

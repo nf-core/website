@@ -28,7 +28,7 @@ const { title, subtitle, md_github_url, event_header, headings, left_sidebar } =
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top">
+                <div class="col-12 col-md-2 sticky-top d-none d-md-inline sidebar-left sticky-top-under">
                     <SidebarLeft />
                 </div>
             )
@@ -49,5 +49,13 @@ const { title, subtitle, md_github_url, event_header, headings, left_sidebar } =
     .toc {
         padding-top: 3.5rem;
         margin-top: -4rem; // compensate for the navbar-offset of the underlying .nav element
+    }
+    .sidebar-left {
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+    }
+    .sticky-top-under {
+        top: 4rem;
+        position: sticky;
     }
 </style>

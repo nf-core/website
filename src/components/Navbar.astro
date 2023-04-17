@@ -4,6 +4,7 @@ import NavbarToc from './NavbarToc.svelte';
 import NavbarDocsNav from '@components/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/NavbarDocsNavTitle.astro';
 import NavbarDocsNavMenu from '@components/NavbarDocsNavMenu.astro';
+import SidebarLeft from './SidebarLeft.astro';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -92,7 +93,7 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
     Astro.url.pathname.includes('/docs/') && (
         <NavbarDocsNav client:load>
             <NavbarDocsNavTitle slot="title" title={title} />
-            <NavbarDocsNavMenu slot="menu" />
+            <SidebarLeft slot="menu" />
         </NavbarDocsNav>
     )
 }

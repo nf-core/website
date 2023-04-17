@@ -11,4 +11,4 @@
     md = md.replace(/(> ⚠️)(.*)(\n|\.$)/g, ':::note \n $2 \n:::\n');
 </script>
 
-<Markdown {md} plugins={[{ remarkPlugin: [remarkDirective, calloutsPlugin, emoji, remarkGfm] }]} />
+<Markdown {md} plugins={[{ remarkPlugin: [emoji, remarkGfm, remarkDirective, calloutsPlugin] }]} />
