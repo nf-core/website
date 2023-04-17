@@ -20,12 +20,14 @@ import remarkGfm from 'remark-gfm';
 import { BUNDLED_LANGUAGES } from 'shiki';
 
 
+// highlight nextflow code as groovy
 BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     if (lang.id === 'groovy') {
         lang.aliases = ['nextflow', 'nf'];
     }
     return lang;
 });
+
 
 // https://astro.build/config
 export default defineConfig({

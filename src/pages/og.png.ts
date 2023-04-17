@@ -25,6 +25,7 @@ export const get: APIRoute = async ({ params, request }) => {
         font-weight: 600;
         color: #F8F9FA;
         background-color: #212529;
+        border-top: 5pt solid #1a9655;
 
    "
    >
@@ -39,7 +40,7 @@ export const get: APIRoute = async ({ params, request }) => {
 
   <div style="display:flex;
   width: 100%;
-  align-items:stretch;
+  align-items:center;
   justify-content:center;
   flex-grow: 8;
   width: 100%;
@@ -49,8 +50,8 @@ export const get: APIRoute = async ({ params, request }) => {
   <h1>${args.title}</h1>
   </div>
 
-<span style="font-size: 32px;text-align:center; padding-left: 15rem; padding-right:15rem; position:absolute; margin-top:-7.5rem;">
-A community effort to collect a curated set of analysis pipelines built using Nextflow.
+<span style="font-size: 32px;text-align:center; align-self:center; position:absolute; margin-top:-7.5rem;">
+Community built pipelines using Nextflow.
 </span>
   </div>
 
