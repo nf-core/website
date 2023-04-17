@@ -272,6 +272,11 @@ code:not(pre code),
   font-size: 1.1rem;
   line-height: 1.6;
 }
+@include media-breakpoint-down(md) {
+  .main-content {
+    margin-bottom: 2rem;
+  }
+}
 h1,
 h2,
 h3,

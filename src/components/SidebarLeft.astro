@@ -18,8 +18,8 @@ docs.map((doc) => {
 });
 ---
 
-<div class="nav sticky-top-under">
-    <div class="d-none d-md-inline">
+<div class="nav">
+    <div class="w-100">
         <strong>Usage</strong>
         <ul class="list-unstyled">
             {
@@ -83,14 +83,7 @@ docs.map((doc) => {
 
 <style lang="scss">
     @import 'src/styles/_variables.scss';
-    .nav {
-        overflow-y: auto;
-        max-height: calc(100vh - 4rem);
-    }
-    .sticky-top-under {
-        top: 4rem;
-        position: sticky;
-    }
+
     li {
         font-size: 0.9rem;
     }

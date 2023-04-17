@@ -13,7 +13,7 @@ export async function getStaticPaths() {
         },
     }));
 }
-const title = 'Docs > ' + Astro.props.doc.data.title;
+const title = 'Docs/' + Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
 let frontmatter = Astro.props.doc.data;
 let body = Astro.props.doc.body;

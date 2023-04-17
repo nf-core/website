@@ -1,6 +1,5 @@
 <script lang="ts">
     const icon_mdi_dots_vertical = `<svg viewBox="0 0 24 24" class="d-inline-block" astro-icon="mdi:dots-vertical"><path fill="currentColor" d="M12 16a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2z"></path></svg>`;
-    const icon_mdi_close = `<svg viewBox="0 0 24 24" class="d-inline-block" astro-icon="mdi:close"><path fill="currentColor" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>`;
 
     let visible = false;
     function toggleVisible() {
@@ -8,23 +7,26 @@
     }
 </script>
 
-<header class="docs-nav small border-bottom d-md-none">
-    <div class="me-2 w-100 overflow-x-hidden text-truncate text-nowrap">
-        <button class="btn" on:click={toggleVisible}>
-            {@html icon_mdi_dots_vertical}
+<div class="docs-nav fixed-top bg-body small border-bottom d-md-none">
+    <div class="w-100 text-nowrap">
+        <button class="btn text-body d-flex align-items-center ps-2" on:click={toggleVisible}>
+            <i class="fa-regular fa-ellipsis-vertical me-2" />
+
+            <slot name="title" />
         </button>
-        <slot name="title" />
     </div>
-</header>
+</div>
 
 {#if visible}
-    <div class="fixed inset-0 z-50">
-        <div class="fixed inset-0 backdrop-blur-sm" />
-        <nav class="side-nav relative h-screen w-80 max-w-full overflow-y-auto bg-gray-800 p-5 text-gray-400">
-            <button class="float-right mt-1" on:click={toggleVisible}>
-                {@html icon_mdi_close}
-            </button>
-            <h4 class="mb-4 text-base font-semibold">MultiQC Documentation</h4>
+    <div class="d-md-none position-fixed bg-body min-vh-100 z-3">
+        <span
+            class="position-fixed bg-dark bg-opacity-50 w-100 min-vh-100"
+            on:click={toggleVisible}
+            on:keypress={toggleVisible}
+        />
+        <nav class="side-nav position-relative w-100 bg-body p-3 pe-0 text-gray-400 overflow-y-auto">
+            <button type="button" class="btn-close float-end me-2" on:click={toggleVisible} aria-label="Close" />
+            <h4 class="mb-2 fw-semibold">nf-core Documentation</h4>
             <slot name="menu" />
         </nav>
     </div>
@@ -32,16 +34,17 @@
 
 <style lang="scss">
     @import '../styles/_variables.scss';
-    header.small {
+    .docs-nav {
         margin-top: 3rem;
+        z-index: 1029; // reduce z-index by one to have navbarToc on top
     }
     @include media-breakpoint-down(md) {
         :global(body:has(.docs-nav) .content) {
-            padding-top: 0;
+            padding-top: 5.5rem;
         }
     }
-    button svg {
-        width: 1.5rem;
-        height: 1.5rem;
+    .side-nav {
+        margin-top: 5rem;
+        max-height: calc(100vh - 5rem);
     }
 </style>
