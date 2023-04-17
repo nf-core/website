@@ -597,6 +597,13 @@ process {
 
 4. Optional inputs are not currently supported by Nextflow. However, passing an empty list (`[]`) instead of a file as a module parameter can be used to work around this issue.
 
+For example, having a module (`MY_MODULE`) that can take a `cram` channel and an optional `fasta` channel as input, can be used in the following ways:
+
+```nextflow
+MY_MODULE(cram, [])     // fasta is optional, the module will run without the fasta present
+MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
+```
+
 5. Optional outputs SHOULD be marked as optional:
 
    ```nextflow
@@ -728,6 +735,8 @@ mulled-search --destination quay singularity --channel bioconda --search bowtie 
      ```
 
      The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
+
+   - If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
 
 5. If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. We will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
 
