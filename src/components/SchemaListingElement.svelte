@@ -15,7 +15,7 @@
 </script>
 
 <div
-    class="property row border border-secondary py-2 mx-md-2 justify-content-between"
+    class="property row border py-2 mx-md-2 justify-content-between"
     class:collapse={property.hidden}
     class:show={$showHidden}
 >

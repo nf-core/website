@@ -1,7 +1,8 @@
 ---
 import PageLayout from './PageLayout.astro';
 import MarkdownWrapper from '@components/MarkdownWrapper.svelte';
-import Toc from '@components/SidebarToc.svelte';
+import SidebarLeft from '@components/SidebarLeft.astro';
+import SidebarToc from '@components/SidebarToc.svelte';
 
 export interface Props {
     title: string;
@@ -9,9 +10,10 @@ export interface Props {
     md_github_url: string;
     headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
     event_header?: object[];
+    left_sidebar?: boolean;
 }
 
-const { title, subtitle, md_github_url, event_header, headings } = Astro.props;
+const { title, subtitle, md_github_url, event_header, headings, left_sidebar } = Astro.props;
 ---
 
 <PageLayout
@@ -23,16 +25,23 @@ const { title, subtitle, md_github_url, event_header, headings } = Astro.props;
     mainpage_container={true}
     navTocHeadings={headings}
 >
-    <div class="container-fluid row">
-        <div class="col-12 col-md-10">
+    <div class="row">
+        {
+            left_sidebar && (
+                <div class="col-12 col-md-2 sticky-top">
+                    <SidebarLeft />
+                </div>
+            )
+        }
+        <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <div class="markdown-content">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>
             </div>
         </div>
-        <div class="col-12 col-md-2 sticky-top toc order-first order-md-last">
-            <Toc headings={headings} client:idle />
+        <div class="col-12 col-md-2 toc">
+            <SidebarToc headings={headings} client:idle />
         </div>
     </div>
 </PageLayout>
