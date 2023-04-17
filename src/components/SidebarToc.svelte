@@ -16,11 +16,11 @@
     }
 </script>
 
-<div class="nav flex-column sticky-top-under">
+<div class="nav flex-column sticky-top-under align-items-end">
     <div class="d-none d-md-inline">
         <strong class="h6 my-2 text-body">On this page</strong>
         <!-- <hr class="my-1" /> -->
-        <nav id="TableOfContents d-none d-md-flex flex-column">
+        <nav id="TableOfContents" class="d-none d-md-flex flex-column">
             <ul class="mb-0 mt-1">
                 {#each headings as heading (heading)}
                     <li
@@ -57,8 +57,10 @@
         font-size: 0.875rem;
         list-style: none;
         padding-left: 0;
+    }
+    .nav {
         overflow-y: auto;
-        max-height: calc(100vh - 40rem);
+        max-height: calc(100vh - 4rem);
     }
     .sticky-top-under {
         top: 4rem;
@@ -71,17 +73,23 @@
     }
 
     li.active {
+        a {
+            color: $green-800 !important;
+        }
         border-left: 2pt solid $success;
-        background-color: transparentize($success, 0.75);
+        background-color: transparentize($success, 0.5);
     }
 
-    @include color-mode(dark) {
+    :global([data-bs-theme='dark']) {
         li {
             border-inline-start: 2pt solid $border-color-dark;
         }
         li.active {
             border-left: 2pt solid $success-dark;
-            background-color: transparentize($success-dark, 0.75);
+            background-color: transparentize($success-dark, 0.5);
+            & a {
+                color: $gray-200 !important;
+            }
         }
     }
 </style>

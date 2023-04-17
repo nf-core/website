@@ -9,22 +9,13 @@ This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 Here's how the website is built:
 
-- Language: PHP
-- HTML / CSS / JS framework: [Bootstrap v5](http://getbootstrap.com/)
-- JavaScript libraries:
-  - [jQuery](https://jquery.com/)
-  - [Popper.js](https://popper.js.org/) _(used for bootstrap tooltips)_
-  - [highlightjs](https://highlightjs.org/) _(syntax highlighting)_
-  - [Leaflet](https://leafletjs.com/) _(contributor map)_
-  - [Moment.js](https://momentjs.com/) _(time and date parsing)_
-  - [Chart.js](https://www.chartjs.org/) _(statistics plots)_
-  - [hammer.js](https://hammerjs.github.io/) _(mobile touch interaction handling)_
-  - [chartjs-plugin-zoom](https://github.com/chartjs/chartjs-plugin-zoom) _(Zoom and pan plugin for Chart.js)_
-  - [Canvas2Svg.js](https://gliffy.github.io/canvas2svg/) _(SVG exports of Chart.JS plots)_
-  - [FileSaver.js](https://github.com/eligrey/FileSaver.js/) _(Trigger browser downloads from in-page data, used to save plot SVGs to files)_
-  - [jQuery table sorter](https://mottie.github.io/tablesorter/) _(sorting tables)_
-- PHP Markdown parsing: [Parsedown](https://github.com/erusev/parsedown/) and [Parsedown Extra](https://github.com/erusev/parsedown-extra/)
-- SVG icons: <http://www.flaticon.com>, <https://worldvectorlogo.com/>
+- Language: Javascript
+- Frameworks:
+  - [Astro](https://astro.build/) (static site generator),
+  - [Svelte](https://svelte.dev/) (interactive components),
+  - [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/) (CSS framework)
+- Tools:
+  - [npm](https://www.npmjs.com/) (package manager)
 
 ## Development
 
@@ -33,113 +24,71 @@ Here's how the website is built:
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
 ```bash
-git clone git@github.com:[USERNAME]/nf-co.re.git
+gh repo fork nf-core/nf-co.re
 cd nf-co.re/
+```
+
+### Installing dependencies
+
+The website is built using [Astro](https://astro.build/), a static site generator.
+To install the dependencies, run:
+
+```bash
+npm install
 ```
 
 ### Running a local server
 
-Ok, you're ready! To run the website locally, just start the apache-php server with:
+Ok, you're ready! To run the website locally, just start astro dev mode:
 
 ```bash
-docker compose up
+npm run dev
 ```
 
-> NB: If you are using a Mac with Apple silicon, you need to run:
->
-> ```bash
-> docker compose -f m1-docker-compose.yml up
-> ```
+You should then be able to access the website in your browser at [http://localhost:3000/](http://localhost:3000/).
 
-You should then be able to access the website in your browser at [http://localhost:8888/](http://localhost:8888/).
+### File structure
 
-If you prefer, you can also use a tool such as [MAMP](https://www.mamp.info/) - if so,
-set the base directory to `/path/to/nf-co.re/public_html` in _Preferences > Web-Server > Document Root_ and then hit _Start Servers_.
+We follow Astro's [file structure](https://docs.astro.build/guides/project-structure) for the website.
+The main files are:
 
-Most of the hand-written text is in `/markdown`, to make it easier to write. The PHP files in `/public_html` then parse this into HTML dynamically, if supplied with a filename.
+- `src/pages/` - Astro pages
+- `src/content/` - [Astro content collections](https://docs.astro.build/en/guides/content-collections/) (markdown files for events, docs)
+- `src/components/` - Astro/Svelte components
+- `src/layouts/` - HTML layouts
+- `src/styles/` - (S)CSS stylesheets
+- `public/` - Static files (images, json files etc)
 
-Note that the `.htaccess` file is set up to remove the `.php` file extensions in URLs.
+### Updating the JSON files and cached markdown
 
-### First-run
+Much of the site is powered by the JSON files in `/public` and the cached markdown files (from the pipeline docs) in `/.cache`.
 
-Much of the site is powered by a `pipelines.json` file.
-The webserver does this automatically when GitHub events trigger an update, but you'll need to run the script manually.
-
-#### Access tokens
-
-First you'll need a `config.ini` text file with values for `github_username` and `github_access_token`.
-See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
-This file is ignored in `.gitignore` for security reasons.
-
-For the MySQL database you should also add the following values:
-
-```ini
-host = 'db'
-port = '3306';
-dbname = 'nfcore';
-username = 'nfcore_admin';
-password = 'PEBBLY8exhibit_mead1cilium6despise'
-```
-
-#### Running PHP scripts
-
-It's easiest to run these first manual update scripts on the command line. If you have PHP available
-then you may be able to do this directly. Alternatively, if you are using Docker as above then you can
-open a shell inside the running container. The container is typically named `web` (you can check this
-with the `docker ps` command), so you can open an interactive shell using the following command:
+They come pre-built with the repository, but if you want to rebuild them then you'll need to run the following commands. Note that you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 ```bash
-docker exec -it web /bin/bash
-cd var/www/
+npm run build-pipeline-json
+npm run build-component-json
+npm run build-cache-force
 ```
 
-#### Update scripts
-
-The following command will create `public_html/pipelines.json`, which is used by the website.
-
-```bash
-php update_pipeline_details.php
-```
-
-To update the modules database (from within the docker container) run:
-
-```bash
-docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
-```
-
-Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
-
-Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
-
-```bash
-php update_issue_stats.php
-php update_stats.php
-php update_fontawesome_icons.php
-```
-
-Note that your GitHub account needs push rights for the nf-core permission for the `update_stats.php` to work.
-
-This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
-all also ignored in `.gitignore`.
-
-## Production Server Setup
+<!-- ## Production Server Setup
 
 ### Deployment
 
 The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/nf-core/nf-co.re/blob/master/.github/workflows/web-deploy.yml)).
-This script runs PHP composer and npm, then syncs the required files to the web server via FTP.
+This script runs PHP composer and npm, then syncs the required files to the web server via FTP. -->
 
 ### Tools API docs
 
 Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
 [These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
 
-### GitHub web hooks
+<!-- ### GitHub web hooks
 
 There is a GitHub web hook at the nf-core organisation level which triggers the pipeline update script whenever a repo is created, or has a release etc.
-This pings the `deploy_pipelines.php` script.
+This pings the `deploy_pipelines.php` script. -->
 
-### Stats cronjob
+<!-- ### Stats cronjob
 
 The web server needs the following cronjobs running to scrape statistics and udates:
 
@@ -152,7 +101,7 @@ The web server needs the following cronjobs running to scrape statistics and uda
 Remember to replace `/path/to/deployment/` with your actual deployment directory.
 
 The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
-This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour.
+This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour. -->
 
 ## Contribution guidelines
 
@@ -164,8 +113,9 @@ If you have any questions or issues please send us a message on [Slack](https://
 
 ## Credits
 
-Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation.
-More recently, [@mashehu](https://github.com/mashehu) has done a great deal of work with the code.
-See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
+Phil Ewels ([@ewels](http://github.com/ewels/)) built the initial website, but there have been many contributors to the content and documentation.
+Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) worked on the concept and code for the new website rewrite.
+
+See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more details.
 
 Kudos to the excellent [npm website](https://www.npmjs.com), which provided inspiration for the design of the pipeline pages.
