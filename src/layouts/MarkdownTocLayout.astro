@@ -21,12 +21,9 @@ let next_page: CollectionEntry<'docs'> | string = '';
 
 if (Astro.url.pathname.startsWith('/docs/')) {
     let docs = await getCollection('docs');
-    //exclude nested pages
-    docs = docs.filter((doc) => {
-        return doc.slug.split('/').length === 2;
-    });
 
     // find the index of the current page and use that to get the previous and next page
+    const url = Astro.url.pathname.replace('/docs/', '').replace(/\/$/, '');
     const current_page_index = docs.findIndex(
         (page) => page.slug === Astro.url.pathname.replace('/docs/', '').replace(/\/$/, '')
     );
@@ -34,9 +31,11 @@ if (Astro.url.pathname.startsWith('/docs/')) {
         console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
     } else {
         prev_page = docs[current_page_index - 1];
-        prev_page = prev_page && prev_page.slug?.split('/')[0] === Astro.url.pathname.split('/')[2] ? prev_page : '';
+        prev_page =
+            prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : '';
         next_page = docs[current_page_index + 1];
-        next_page = next_page && next_page.slug?.split('/')[0] === Astro.url.pathname.split('/')[2] ? next_page : '';
+        next_page =
+            next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : '';
     }
 }
 ---
