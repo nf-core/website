@@ -3,6 +3,8 @@ import PageLayout from './PageLayout.astro';
 import MarkdownWrapper from '@components/MarkdownWrapper.svelte';
 import SidebarLeft from '@components/SidebarLeft.astro';
 import SidebarToc from '@components/SidebarToc.svelte';
+import FooterPrevNext from '@components/FooterPrevNext.astro';
+import { getCollection } from 'astro:content';
 
 export interface Props {
     title: string;
@@ -14,6 +16,15 @@ export interface Props {
 }
 
 const { title, subtitle, md_github_url, event_header, headings, left_sidebar } = Astro.props;
+
+const docs = await getCollection('docs');
+
+// get the previous and next page based on the current page
+const current_page = docs.find((page) => page.slug === Astro.url.pathname.replace('/docs/', ''));
+// find the index of the current page and use that to get the previous and next page
+const current_page_index = docs.findIndex((page) => page.slug === Astro.url.pathname.replace('/docs/', ''));
+const prev_page = docs[current_page_index - 1];
+const next_page = docs[current_page_index + 1];
 ---
 
 <PageLayout
@@ -21,7 +32,7 @@ const { title, subtitle, md_github_url, event_header, headings, left_sidebar } =
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
-    subfooter={true}
+    subfooter={false}
     mainpage_container={true}
     navTocHeadings={headings}
 >
@@ -44,6 +55,7 @@ const { title, subtitle, md_github_url, event_header, headings, left_sidebar } =
             <SidebarToc headings={headings} client:idle />
         </div>
     </div>
+    <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
 </PageLayout>
 <style lang="scss">
     .toc {
