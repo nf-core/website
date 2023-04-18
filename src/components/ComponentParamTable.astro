@@ -44,7 +44,7 @@ export interface Props {
                     <div class="col-12 col-md-3 col-xxl-2 small-h">
                         <h4 id={name} class="module-row-name-id d-flex align-items-center mb-0">
                             <code>{name}</code>
-                            <span class="text-muted ms-1"> ({type})</span>
+                            {type && <span class="text-muted ms-1"> ({type})</span>}
                             <a href={'#' + name} class="header-link scroll_to_link me-2 mb-2">
                                 <span class="fas fa-link" aria-hidden="true" />
                             </a>

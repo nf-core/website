@@ -81,7 +81,7 @@ const writePipelinesJson = async () => {
             });
         });
 
-      let modules = await octokit
+      let components = await octokit
         .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
           owner: 'nf-core',
           repo: name,
@@ -102,23 +102,37 @@ const writePipelinesJson = async () => {
             const modules_json = JSON.parse(Buffer.from(response.data.content, 'base64').toString());
             if (modules_json.repos['nf-core/modules']) {
               if (modules_json.repos['nf-core/modules'].modules) {
-                return Object.keys(modules_json.repos['nf-core/modules'].modules);
+                return { modules: Object.keys(modules_json.repos['nf-core/modules'].modules) };
               }
-              return Object.keys(modules_json.repos['nf-core/modules']);
+              return { modules: Object.keys(modules_json.repos['nf-core/modules']) };
             } else if (modules_json.repos['https://github.com/nf-core/modules.git']) {
-              return Object.keys(modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']);
+              if (modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows) {
+                return {
+                  modules: Object.keys(modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']),
+                  subworkflows: Object.keys(
+                    modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core']
+                  ),
+                };
+              } else {
+                return {
+                  modules: Object.keys(modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']),
+                };
+              }
             }
           }
         });
-      if (modules) {
-        modules = modules.map((module) => {
-          return module.replace('/', '_');
+      if (components && components.modules) {
+        components.modules = components.modules.map((component) => {
+          return component.replace('/', '_');
         });
       }
-      return { tag_name, published_at, doc_files, modules };
+      return { tag_name, published_at, doc_files, components };
     });
     // resolve the promises
     data['releases'] = await Promise.all(data['releases']);
+    if (!pipelines.remote_workflows) {
+      pipelines.remote_workflows = [];
+    }
     // update in pipelines.remote_workflows if entry with name exists or add it otherwise
     const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     if (index > -1) {

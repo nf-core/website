@@ -1,7 +1,7 @@
 ---
 import SidebarStatsRow from '@components/SidebarStatsRow.astro';
 
-const { component_type, contributors, included_pipelines } = Astro.props;
+const { component_type, contributors, included_pipelines, included_modules } = Astro.props;
 
 export interface Props {
     component_type: string;
@@ -10,6 +10,7 @@ export interface Props {
         name: string;
         version: string;
     }[];
+    included_modules?: string[];
 }
 ---
 
@@ -38,7 +39,27 @@ export interface Props {
                 </div>
             </SidebarStatsRow>
         )
-    }<SidebarStatsRow content={[{ title: 'author' + (contributors.length > 1 ? 's' : '') }]}>
+    }
+    {
+        included_modules && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: 'included modules',
+                    },
+                ]}
+            >
+                <div class="mb-2">
+                    {included_modules.map((module) => (
+                        <a href={'/modules/' + module.replace('/', '_')} class="badge text-bg-secondary me-2">
+                            {module}
+                        </a>
+                    ))}
+                </div>
+            </SidebarStatsRow>
+        )
+    }
+    <SidebarStatsRow content={[{ title: 'author' + (contributors.length > 1 ? 's' : '') }]}>
         <div class="contrib-avatars d-flex flex-wrap">
             {
                 contributors &&
