@@ -1,0 +1,76 @@
+---
+import { markdown } from '@astropub/md';
+import ComponentParamTable from '@components/ComponentParamTable.astro';
+import SidebarStats from '@components/SidebarStats.astro';
+import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
+import components_json from '@public/components.json';
+
+export function getStaticPaths() {
+    return components_json.subworkflows.map((subworkflow) => {
+        return [
+            {
+                params: {
+                    subworkflowslug: subworkflow.name,
+                },
+                props: {
+                    subworkflow: subworkflow,
+                },
+            },
+        ];
+    });
+}
+const { subworkflowslug } = Astro.params;
+const { subworkflow } = Astro.props;
+// const tool = subworkflow.meta.tools[0];
+// const toolName = Object.keys(tool)[0];
+
+export const prerender = true;
+---
+
+<ComponentPageLayout name={subworkflow.name} description={subworkflow.meta.description} type="subworkflows">
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <div class="mb-5">
+                <h2 id="description" class="ms-n3">
+                    <i class="fa-duotone fa-swap-opacity fa-book fa-fw"></i> Description
+                    <a href="#description" class="header-link scroll_to_link"
+                        ><span class="fas fa-link" aria-hidden="true"></span></a
+                    >
+                </h2>
+                <div class="">
+                    {
+                        async () => {
+                            const html = await markdown(subworkflow.meta.description);
+                            return html;
+                        }
+                    }
+                </div>
+            </div>
+            <div class="subworkflow-params">
+                {
+                    subworkflow.meta.input ? (
+                        <div class="subworkflow input mb-5">
+                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} params={subworkflow.meta.input} />
+                        </div>
+                    ) : (
+                        <div class="subworkflow input mb-5">
+                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} />
+                        </div>
+                    )
+                }
+                <div class="subworkflow output mb-5">
+                    <ComponentParamTable name={'Output'} icon={'fa-sign-out'} params={subworkflow.meta.output} />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-none col-md-2">
+            <SidebarStats
+                component_type={'subworkflow'}
+                contributors={subworkflow.meta.authors}
+                included_pipelines={subworkflow.pipelines}
+                included_modules={subworkflow.meta.modules}
+            />
+        </div>
+    </div>
+</ComponentPageLayout>
