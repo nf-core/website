@@ -4,8 +4,8 @@ import { CollectionEntry } from 'astro:content';
 
 export interface Props {
     md_github_url?: string;
-    prev_page: CollectionEntry<'docs'> | '';
-    next_page: CollectionEntry<'docs'> | '';
+    prev_page: CollectionEntry<'docs'> | string;
+    next_page: CollectionEntry<'docs'> | string;
 }
 const { md_github_url, prev_page, next_page } = Astro.props;
 ---
