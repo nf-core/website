@@ -83,7 +83,7 @@ const writeComponentsJson = async () => {
   // get subworkflows
   const subworkflows = tree
     .filter((file) => {
-      return file.path.includes('meta.yml') && file.path.includes('subworkflows/');
+      return file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq');// TODO: remove the last exception and fix that subworkflow name
     })
     .map((file) => {
       return {
