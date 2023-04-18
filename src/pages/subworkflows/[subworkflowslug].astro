@@ -4,7 +4,6 @@ import ComponentParamTable from '@components/ComponentParamTable.astro';
 import SidebarStats from '@components/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
-
 export function getStaticPaths() {
     return components_json.subworkflows.map((subworkflow) => {
         return [
@@ -21,8 +20,6 @@ export function getStaticPaths() {
 }
 const { subworkflowslug } = Astro.params;
 const { subworkflow } = Astro.props;
-// const tool = subworkflow.meta.tools[0];
-// const toolName = Object.keys(tool)[0];
 
 export const prerender = true;
 ---
