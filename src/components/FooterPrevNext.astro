@@ -10,12 +10,12 @@ export interface Props {
 const { md_github_url, prev_page, next_page } = Astro.props;
 ---
 
-<footer class="d-flex bg-body-tertiary text-body-tertiary align-items-center">
-    <div class="flex-fill text-end text-body w-100 h-100">
+<footer class="d-flex bg-body-tertiary text-body-tertiary align-items-start">
+    <div class="flex-fill text-body w-100 h-100">
         {
             prev_page && (
                 <a
-                    class="btn nav-btn rounded-0 d-flex flex-column align-items-end py-md-3 py-2 px-3  text-body text-decoration-none"
+                    class="btn nav-btn rounded-0 d-flex flex-column align-items-end py-md-3 py-2 px-3  text-body text-decoration-none text-end"
                     href={'/docs/' + prev_page.slug}
                 >
                     <span class="text-muted d-none d-md-inline">Previous: </span>
@@ -25,22 +25,17 @@ const { md_github_url, prev_page, next_page } = Astro.props;
             )
         }
     </div>
-    <div class="flex-shrink-1 align-self-center text-center">
-        <p class="m-0 px-3 text-body d-none d-md-inline-block">
-            <i class="fab fa-github"></i> Markdown source:
-            <code>
-                <a href={md_github_url}>{md_github_url}</a>
-            </code>
-        </p>
-        <p class="m-0 px-3 d-md-none text-center">
-            <a class="text-body" href={md_github_url}><i class="fab fa-github"></i> Markdown source</a>
+    <div class="flex-shrink-1 text-center align-self-center">
+        <p class="m-0 pt-0 pt-md-1 px-3 text-center d-flex flex-column align-items-center">
+            <i class="fab fa-github me-2 text-body"></i>
+            <a class="md-link text-body" href={md_github_url}> Markdown source</a>
         </p>
     </div>
-    <div class="flex-fill text-start text-body w-100 h-100">
+    <div class="flex-fill text-body w-100 h-100">
         {
             next_page && (
                 <a
-                    class="btn nav-btn rounded-0 d-flex flex-column align-items-start py-md-3 py-2 px-3 text-body text-decoration-none"
+                    class="btn nav-btn rounded-0 d-flex flex-column align-items-start py-md-3 py-2 px-3 text-body text-decoration-none text-start"
                     href={'/docs/' + next_page.slug}
                 >
                     <span class="text-muted d-none d-md-inline">Next: </span>
@@ -61,6 +56,11 @@ const { md_github_url, prev_page, next_page } = Astro.props;
             &,
             & .text-muted {
                 color: $gray-900 !important;
+            }
+        }
+        @include media-breakpoint-up(md) {
+            .md-link {
+                white-space: nowrap;
             }
         }
     </style>
