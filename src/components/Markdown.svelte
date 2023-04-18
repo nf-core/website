@@ -8,7 +8,7 @@
     export let md;
 
     // replace > ⚠️ with :::warning amd add ::: at the end
-    md = md.replace(/(> ⚠️)(.*)(\n|\.$)/g, ':::note \n $2 \n:::\n');
+    // md = md.replace(/(> ⚠️)(.*)(\n|\.$)/g, ':::note \n $2 \n:::\n');
 </script>
 
 <Markdown {md} plugins={[{ remarkPlugin: [emoji, remarkGfm, remarkDirective, calloutsPlugin] }]} />
