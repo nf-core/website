@@ -1161,8 +1161,8 @@ Launch Page
   }
   footer .nav-btn:hover {
             background-color: tint-color($body-tertiary-bg-dark,3%);
-            .text-muted,
-            a {
+            &, & .text-muted {
+
                 color: $gray-200 !important;
             }
         }
