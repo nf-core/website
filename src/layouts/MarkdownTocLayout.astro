@@ -1,10 +1,10 @@
 ---
 import PageLayout from './PageLayout.astro';
+import FooterPrevNext from '@components/FooterPrevNext.astro';
 import MarkdownWrapper from '@components/MarkdownWrapper.svelte';
 import SidebarLeft from '@components/SidebarLeft.astro';
 import SidebarToc from '@components/SidebarToc.svelte';
-import FooterPrevNext from '@components/FooterPrevNext.astro';
-import { getCollection } from 'astro:content';
+import { CollectionEntry, getCollection } from 'astro:content';
 
 export interface Props {
     title: string;
@@ -16,21 +16,29 @@ export interface Props {
 }
 
 const { title, subtitle, md_github_url, event_header, headings, left_sidebar } = Astro.props;
+let prev_page: CollectionEntry<'docs'> | string = '';
+let next_page: CollectionEntry<'docs'> | string = '';
 
-let docs = await getCollection('docs');
-//exclude nested pages
-docs = docs.filter((doc) => {
-    return doc.slug.split('/').length === 2;
-});
+if (Astro.url.pathname.startsWith('/docs/')) {
+    let docs = await getCollection('docs');
+    //exclude nested pages
+    docs = docs.filter((doc) => {
+        return doc.slug.split('/').length === 2;
+    });
 
-// get the previous and next page based on the current page
-const current_page = docs.find((page) => page.slug === Astro.url.pathname.replace('/docs/', ''));
-// find the index of the current page and use that to get the previous and next page
-const current_page_index = docs.findIndex((page) => page.slug === Astro.url.pathname.replace('/docs/', ''));
-let prev_page = docs[current_page_index - 1];
-prev_page = prev_page && prev_page.slug?.split('/')[0] === Astro.url.pathname.split('/')[2] ? prev_page : '';
-let next_page = docs[current_page_index + 1];
-next_page = next_page && next_page.slug?.split('/')[0] === Astro.url.pathname.split('/')[2] ? next_page : '';
+    // find the index of the current page and use that to get the previous and next page
+    const current_page_index = docs.findIndex(
+        (page) => page.slug === Astro.url.pathname.replace('/docs/', '').replace(/\/$/, '')
+    );
+    if (current_page_index === -1) {
+        console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
+    } else {
+        prev_page = docs[current_page_index - 1];
+        prev_page = prev_page && prev_page.slug?.split('/')[0] === Astro.url.pathname.split('/')[2] ? prev_page : '';
+        next_page = docs[current_page_index + 1];
+        next_page = next_page && next_page.slug?.split('/')[0] === Astro.url.pathname.split('/')[2] ? next_page : '';
+    }
+}
 ---
 
 <PageLayout
@@ -61,7 +69,16 @@ next_page = next_page && next_page.slug?.split('/')[0] === Astro.url.pathname.sp
             <SidebarToc headings={headings} client:idle />
         </div>
     </div>
-    <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
+    {
+        Astro.url.pathname.startsWith('/docs/') && (
+            <FooterPrevNext
+                slot="pre-footer"
+                md_github_url={md_github_url}
+                prev_page={prev_page}
+                next_page={next_page}
+            />
+        )
+    }
 </PageLayout>
 <style lang="scss">
     .toc {
