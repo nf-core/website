@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: training translations
 
-In this weeks bytesize talk, Marcel Ribeiro-Dantas ([@mribeirodantas](https://github.com/mribeirodantas)) is talking about his efforts to translate nf-core/nextflow training material into other languages inlcluding Portuguese and Spanish.
+In this weeks bytesize talk, Marcel Ribeiro-Dantas ([@mribeirodantas](https://github.com/mribeirodantas)) is talking about his efforts to translate nf-core/nextflow training material into other languages including Portuguese and Spanish.
