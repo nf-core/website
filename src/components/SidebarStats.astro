@@ -28,10 +28,10 @@ export interface Props {
                     {included_pipelines.map((pipeline) => (
                         <a
                             href={'/' + pipeline.name + '/' + pipeline.version}
-                            class="badge text-bg-secondary me-2"
+                            class="badge text-bg-secondary me-2 text-decoration-none"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
-                            title={pipeline.version}
+                            title={'most recent pipeline version with it:\n' + pipeline.version}
                         >
                             {pipeline.name}
                         </a>
@@ -51,7 +51,10 @@ export interface Props {
             >
                 <div class="mb-2">
                     {included_modules.map((module) => (
-                        <a href={'/modules/' + module.replace('/', '_')} class="badge text-bg-secondary me-2">
+                        <a
+                            href={'/modules/' + module.replace('/', '_')}
+                            class="badge text-bg-secondary me-2 text-decoration-none"
+                        >
                             {module}
                         </a>
                     ))}
@@ -92,4 +95,12 @@ export interface Props {
         </div>
     </SidebarStatsRow>
 </div>
-<style lang="scss"></style>
+<style lang="scss">
+    a.badge:hover {
+        text-decoration: underline !important;
+    }
+    img {
+        width: 50px;
+        height: 50px;
+    }
+</style>

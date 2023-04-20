@@ -51,14 +51,16 @@ export interface Props {
                         </h4>
                     </div>
 
-                    <div class={'col-12 description py-1 small col-md' + (pattern ? '-5' : '-7')}>
+                    <div class={'col-12 description py-1 small col-md-' + (pattern ? '5' : '7')}>
                         {async () => {
-                            const html = await markdown(description);
+                            //replace new lines with 2 spaces to force line break
+                            //replace *. with \*. to prevent markdown from interpreting it as italics
+                            const html = await markdown(description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.'));
                             return html;
                         }}
                     </div>
-                    <div class={'col-12 col-md' + (pattern ? '-4' : '-1') + ' ms-auto'}>
-                        {pattern && <code class="float-end">{pattern}</code>}
+                    <div class={'col-12 col-md-' + (pattern ? '4' : '1') + ' ms-auto'}>
+                        {pattern && <code class="float-end pattern">{pattern}</code>}
                     </div>
                 </div>
             );
@@ -73,5 +75,8 @@ export interface Props {
     }
     .description :global(p) {
         margin-bottom: 0;
+    }
+    .pattern {
+        line-break: anywhere;
     }
 </style>
