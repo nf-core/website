@@ -11,18 +11,18 @@ import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
 
 export const prerender = true; // use static suites by default
 export interface Props {
-    image?: string;
     title?: string;
     subtitle?: string;
+    image?: string;
     md_github_url?: string;
     subfooter?: boolean;
     navTocHeadings?: object[];
 }
 
 const {
-    image,
     title = SITE_TITLE,
     subtitle = SITE_DESCRIPTION,
+    image = `/og.png?title=${encodeURIComponent(title ? title : SITE_TITLE)}`,
     md_github_url,
     subfooter = false,
     navTocHeadings = [],
@@ -36,7 +36,7 @@ const {
     </head>
 
     <body tabindex="0" data-bs-theme="dark">
-        <Navbar navTocHeadings={navTocHeadings} />
+        <Navbar navTocHeadings={navTocHeadings} title={title} />
         <div class="content">
             <slot />
         </div>
@@ -62,7 +62,7 @@ const {
                 position: relative;
             }
             .content {
-                padding-top: 3.45rem; //offset for navbar
+                padding-top: 4rem; //offset for navbar
             }
             @include media-breakpoint-down(md) {
                 .content {

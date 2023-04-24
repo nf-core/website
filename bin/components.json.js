@@ -5,6 +5,7 @@ import path from 'path';
 import ProgressBar from 'progress';
 import { parse } from 'yaml';
 
+
 // get current path
 const __dirname = path.resolve();
 
@@ -63,7 +64,6 @@ const writeComponentsJson = async () => {
   // get pipelines that use this module
   for (const pipeline of pipelines.remote_workflows) {
     const release = pipeline.releases[0];
-    console.log(release.modules);
     if (release.modules) {
       for (const module of release.modules) {
         const index = components.modules.findIndex((m) => m.name === module);

@@ -2,7 +2,7 @@
 import SchemaListingToc from '@components/SchemaListingToc.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import cache from 'bin/cache';
+import cache from 'bin/cache.js';
 
 export function getStaticPaths() {
     const paths = pipelines_json.remote_workflows.map((pipeline) => {
@@ -63,6 +63,8 @@ let versions = pipelines_json.remote_workflows
         });
     })
     .flat();
+
+export const prerender = true;
 ---
 
 <PipelinePageLayout

@@ -272,6 +272,11 @@ code:not(pre code),
   font-size: 1.1rem;
   line-height: 1.6;
 }
+@include media-breakpoint-down(md) {
+  .main-content {
+    margin-bottom: 2rem;
+  }
+}
 h1,
 h2,
 h3,
@@ -1056,13 +1061,28 @@ Launch Page
     border-bottom: none;
   }
 }
+.admonition {
+  p {
+    margin-bottom: 0;
+  }
+  .admonition-body svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+  }
+  .title {
+    margin-bottom: 0.9rem;
+  }
+
+
+}
 
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
 
 @include color-mode(dark) {
-// dark mode specific variables
+  // dark mode specific variables
   --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
   .tooltip {
     --bs-tooltip-bg: #{$body-bg-dark};
@@ -1120,14 +1140,30 @@ Launch Page
     background-color: $body-secondary-bg-dark;
   }
 
-.text-bg-success,
-.bg-success {
-  background-color: $nf-core-color-dark;
-}
-.border-success {
-  border-color: $nf-core-color-dark;
-}
-.bg-success-light {
-  background-color: tint-color($success-dark, 25%);
-}
+  .text-bg-success,
+  .bg-success {
+    background-color: $nf-core-color-dark;
+  }
+  .border-success {
+    border-color: $nf-core-color-dark;
+  }
+  .bg-success-light {
+    background-color: tint-color($success-dark, 25%);
+  }
+  .admonition-note {
+    border-color: $secondary;
+    background-color: $secondary-bg-subtle;
+    color: $body-color;
+    .title {
+      color: $white;
+      background-color: $secondary;
+    }
+  }
+  footer .nav-btn:hover {
+            background-color: tint-color($body-tertiary-bg-dark,3%);
+            &, & .text-muted {
+
+                color: $gray-200 !important;
+            }
+        }
 }

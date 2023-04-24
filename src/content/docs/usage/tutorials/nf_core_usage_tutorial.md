@@ -293,7 +293,9 @@ Not everything always runs smoothly and you might be getting some errors when ru
 Here is a bytesize talk with a step by step explanation on how to troubleshoot failing pipelines.
 
 <!-- markdownlint-disable -->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/z9n2F4ByIkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="ratio ratio-16x9">
+<iframe src="https://www.youtube.com/embed/z9n2F4ByIkY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 <!-- markdownlint-restore -->
 
 ## Conclusion
