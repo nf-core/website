@@ -4,7 +4,7 @@ import InstallCmd from '@components/InstallCmd.svelte';
 import SidebarStatsRow from '@components/SidebarStatsRow.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import cache from 'bin/cache';
+import cache from 'bin/cache.js';
 import { formatDistance } from 'date-fns';
 
 export function getStaticPaths() {
@@ -54,6 +54,8 @@ const md_content = await cache
         console.log(error);
         return '';
     });
+
+export const prerender = true;
 ---
 
 <PipelinePageLayout

@@ -1,0 +1,28 @@
+---
+export interface Props {
+    title?: string;
+}
+
+const { title } = Astro.props;
+
+var url = Astro.url.pathname.split('/').filter(function (el) {
+    return el != '' && el != 'docs';
+});
+url.pop(); // remove last element, which is already saved as title
+---
+
+{
+    url.map((item) => {
+        // make item title case
+        item = item.replace(/_/g, ' ').replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+        return (
+            <span>
+                {item}
+                <i class="fa fa-chevron-right fa-w fa-xs mx-1 " />
+            </span>
+        );
+    })
+}
+{title?.replace('Docs/', '')}
