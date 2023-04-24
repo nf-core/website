@@ -2530,7 +2530,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -11960,7 +11960,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "sarek",
@@ -12062,7 +12062,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -16758,7 +16758,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -22959,7 +22959,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -23173,7 +23173,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -26246,7 +26246,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnavar",
@@ -27164,7 +27164,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnavar",
@@ -39348,7 +39348,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -48422,7 +48422,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnavar",
@@ -52852,7 +52852,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -53443,7 +53443,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -60182,7 +60182,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnavar",
@@ -60943,7 +60943,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -61371,7 +61371,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -61694,7 +61694,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "sarek",
@@ -67409,7 +67409,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -67489,7 +67489,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -67925,7 +67925,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         }
       ]
     },
@@ -68028,7 +68028,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "2.2.0"
+          "version": "2.3.0"
         },
         {
           "name": "rnaseq",
@@ -82138,6 +82138,95 @@
         ],
         "authors": [
           "@nevinwui"
+        ]
+      }
+    },
+    {
+      "name": "bedtools_jaccard",
+      "path": "modules/nf-core/bedtools/jaccard/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedtools_jaccard",
+        "description": "Calculate Jaccard statistic b/w two feature files.",
+        "keywords": [
+          "vcf",
+          "gff",
+          "bed",
+          "jaccard",
+          "intersection",
+          "union",
+          "statistics"
+        ],
+        "tools": [
+          {
+            "bedtools": {
+              "description": "A set of tools for genomic analysis tasks, specifically enabling genome arithmetic (merge, count, complement) on various file types.\n",
+              "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "input_a": {
+              "type": "file",
+              "description": "VCF,GFF or BED file to use with the `-a` option",
+              "pattern": "*.{vcf,vcf.gz,bed,bed.gz,gff}"
+            }
+          },
+          {
+            "input_b": {
+              "type": "file",
+              "description": "VCF,GFF or BED file to use with the `-b` option",
+              "pattern": "*.{vcf,vcf.gz,bed,bed.gz,gff}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing genome file information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "genome_file": {
+              "type": "file",
+              "description": "A file containing all the contigs of the genome used to create the input files",
+              "pattern": "*.{txt,sizes,fai}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file containing the results",
+              "pattern": "*.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
         ]
       }
     }
