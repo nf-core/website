@@ -125,6 +125,24 @@ The CZI grant employs personnel based at the [SciLifeLab National Genomics Infra
 
 <div class="clearfix"></div>
 
+### Seqera Labs {#seqera}
+
+<img src="/assets/img/contributors-colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+Seqera Labs is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
+
+Seqera is the company behind Nextflow and has supported the nf-core community since its inception.
+
+Specifically, Seqera helps nf-core with:
+
+- Event organisation and costs
+- Website hosting
+- Employment of several core contributors
+- A [Tower Cloud Professional](https://cloud.tower.nf/pricing/) account for launching and managing full-size release tests.
+- Providing and maintaining Nextflow! ✨
+
+<div class="clearfix"></div>
+
 ### SciLifeLab Data Centre
 
 <img src="/assets/img/contributors-colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
