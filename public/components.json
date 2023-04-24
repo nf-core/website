@@ -74712,10 +74712,11 @@
             }
           },
           {
-            "most_frequent_unmatched": null,
-            "type": "file",
-            "description": "File containing unmatched fastq records\n",
-            "pattern": "output/unmatched*.fq.gz"
+            "most_frequent_unmatched": {
+              "type": "file",
+              "description": "File containing unmatched fastq records\n",
+              "pattern": "output/unmatched*.fq.gz"
+            }
           }
         ],
         "authors": [
@@ -81347,7 +81348,7 @@
             "sort_arg": {
               "type": "string",
               "description": "Argument to provide to sort algorithm. Sort by abundance with --sortbysize or by sequence length with --sortbylength.",
-              "enums": [
+              "enum": [
                 "--sortbysize",
                 "--sortbylength"
               ]
@@ -82166,6 +82167,7 @@
         "input": [
           {
             "ch_mutect2_in": {
+              "type": "list",
               "description": "An input channel containing the following files:\n- input: One or more BAM/CRAM files\n- input_index: The index/indices from the BAM/CRAM file(s)\n- interval_file: An interval file to be used with the mutect call\nStructure: [ meta, input, input_index, interval_file ]\n"
             }
           },
@@ -82375,7 +82377,8 @@
           },
           {
             "hapmap_file": {
-              "type": null
+              "type": "file",
+              "description": "Hapmap file"
             }
           }
         ],
@@ -82509,7 +82512,9 @@
         "description": "Take a set of bam files and run NGSCheckMate to determine whether samples match with each other, using a set of SNPs.",
         "keywords": [
           "ngscheckmate",
-          "qc"
+          "qc",
+          "bam",
+          "snp"
         ],
         "modules": [
           "bcftools/mpileup",
@@ -82729,18 +82734,8 @@
           "readduplication",
           "tin"
         ],
-        "tools": [
-          {
-            "rseqc": {
-              "description": "RSeQC package provides a number of useful modules that can comprehensively evaluate\nhigh throughput sequence data especially RNA-seq data.\n",
-              "homepage": "http://rseqc.sourceforge.net/",
-              "documentation": "http://rseqc.sourceforge.net/",
-              "doi": "10.1093/bioinformatics/bts356",
-              "licence": [
-                "GPL-3.0-or-later"
-              ]
-            }
-          }
+        "modules": [
+          "rseqc"
         ],
         "input": [
           {
@@ -83765,10 +83760,12 @@
       "type": "subworkflow",
       "meta": {
         "name": "bedgraph_bedclip_bedgraphtobigwig",
-        "description": "Convert gedgraph to bigwig with clip",
+        "description": "Convert bedgraph to bigwig with clip",
         "keywords": [
           "bedgraph",
-          "bigwig"
+          "bigwig",
+          "clip",
+          "conversion"
         ],
         "modules": [
           "ucsc/bedclip",
@@ -83778,14 +83775,14 @@
           {
             "bedgraph": {
               "type": "file",
-              "description": "bedGraph file whoch should be converted",
+              "description": "bedGraph file which should be converted",
               "pattern": "*.bedGraph"
             }
           },
           {
             "sizes": {
               "type": "file",
-              "description": "File with chromosom sizes",
+              "description": "File with chromosome sizes",
               "pattern": "*.sizes"
             }
           }
@@ -84044,9 +84041,10 @@
         ],
         "input": [
           {
-            "ch_pp_data": null,
-            "type": "map",
-            "description": "Structure: [\n  meta: val(meta),\n  data: [\n    alignmethod:  'hmmer',\n    queryseqfile: path(\"*.faa\"),\n    refseqfile:   path(\"*.alnfaa\"),\n    refphylogeny: path(\"*.newick\"),\n    model:        \"LG\",\n    taxonomy:     path(\"*.tsv\")\n  ]\n]\n"
+            "ch_pp_data": {
+              "type": "map",
+              "description": "Structure: [\n  meta: val(meta),\n  data: [\n    alignmethod:  'hmmer',\n    queryseqfile: path(\"*.faa\"),\n    refseqfile:   path(\"*.alnfaa\"),\n    refphylogeny: path(\"*.newick\"),\n    model:        \"LG\",\n    taxonomy:     path(\"*.tsv\")\n  ]\n]\n"
+            }
           },
           {
             "meta": {
@@ -84206,7 +84204,9 @@
           },
           {
             "sort_bam": {
-              "description": "Save reads that do not map to the reference (true) or discard them (false)\n(default: false)\n"
+              "type": "boolean",
+              "description": "Save reads that do not map to the reference (true) or discard them (false)\n",
+              "default": false
             }
           },
           {
@@ -85078,11 +85078,17 @@
             }
           },
           {
-            "groupreadsbyumi_strategy": null,
-            "type": "string",
-            "description": "",
-            "Reguired argument": "defines the UMI assignment strategy.",
-            "Must be chosen among": "Identity, Edit, Adjacency, Paired."
+            "groupreadsbyumi_strategy": {
+              "type": "string",
+              "description": "",
+              "Reguired argument": "defines the UMI assignment strategy.",
+              "enum": [
+                "Identity",
+                "Edit",
+                "Adjacency",
+                "Paired"
+              ]
+            }
           }
         ],
         "output": [
@@ -85284,10 +85290,11 @@
             }
           },
           {
-            "reads": null,
-            "type": "file",
-            "description": "Extracted FASTQ files. | For single-end reads, pattern is \\${prefix}.umi_extract.fastq.gz. |\n  For paired-end reads, pattern is \\${prefix}.umi_extract_{1,2}.fastq.gz.\n",
-            "pattern": "*.{fastq.gz}"
+            "reads": {
+              "type": "file",
+              "description": "Extracted FASTQ files. | For single-end reads, pattern is \\${prefix}.umi_extract.fastq.gz. |\n  For paired-end reads, pattern is \\${prefix}.umi_extract_{1,2}.fastq.gz.\n",
+              "pattern": "*.{fastq.gz}"
+            }
           },
           {
             "fastqc_html": {
@@ -85332,21 +85339,24 @@
             }
           },
           {
-            "trim_reads_fail": null,
-            "type": "file",
-            "description": "Trimmed fastq files failing QC",
-            "pattern": "*.{fastq.gz}"
+            "trim_reads_fail": {
+              "type": "file",
+              "description": "Trimmed fastq files failing QC",
+              "pattern": "*.{fastq.gz}"
+            }
           },
           {
-            "trim_reads_merged": null,
-            "type": "file",
-            "description": "Trimmed and merged fastq files",
-            "pattern": "*.{fastq.gz}"
+            "trim_reads_merged": {
+              "type": "file",
+              "description": "Trimmed and merged fastq files",
+              "pattern": "*.{fastq.gz}"
+            }
           },
           {
-            "trim_read_count": null,
-            "type": "integer",
-            "description": "Number of reads after trimming"
+            "trim_read_count": {
+              "type": "integer",
+              "description": "Number of reads after trimming"
+            }
           },
           {
             "fastqc_trim_html": {
@@ -85453,10 +85463,11 @@
         ],
         "output": [
           {
-            "reads": null,
-            "type": "file",
-            "description": "Extracted FASTQ files. | For single-end reads, pattern is \\${prefix}.umi_extract.fastq.gz. |\n  For paired-end reads, pattern is \\${prefix}.umi_extract_{1,2}.fastq.gz.\n",
-            "pattern": "*.{fastq.gz}"
+            "reads": {
+              "type": "file",
+              "description": "Extracted FASTQ files. | For single-end reads, pattern is \\${prefix}.umi_extract.fastq.gz. |\n  For paired-end reads, pattern is \\${prefix}.umi_extract_{1,2}.fastq.gz.\n",
+              "pattern": "*.{fastq.gz}"
+            }
           },
           {
             "fastqc_html": {
@@ -85694,71 +85705,84 @@
             }
           },
           {
-            "val_skip_fastqc": null,
-            "type": "boolean",
-            "description": "Structure: val(skip_fastqc)\nskip the fastqc process if true\n"
+            "val_skip_fastqc": {
+              "type": "boolean",
+              "description": "Structure: val(skip_fastqc)\nskip the fastqc process if true\n"
+            }
           },
           {
-            "val_skip_fastp": null,
-            "type": "boolean",
-            "description": "Structure: val(skip_fastp)\nskip the fastp process if true\n"
+            "val_skip_fastp": {
+              "type": "boolean",
+              "description": "Structure: val(skip_fastp)\nskip the fastp process if true\n"
+            }
           }
         ],
         "output": [
           {
-            "meta": null,
-            "type": "value",
-            "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]"
+            "meta": {
+              "type": "value",
+              "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]"
+            }
           },
           {
-            "reads": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(reads) ]\nThe trimmed/modified/unmerged fastq reads\n"
+            "reads": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(reads) ]\nThe trimmed/modified/unmerged fastq reads\n"
+            }
           },
           {
-            "trim_json": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(trim_json) ]\nResults in JSON format\n"
+            "trim_json": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(trim_json) ]\nResults in JSON format\n"
+            }
           },
           {
-            "trim_html": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(trim_html) ]\nResults in HTML format\n"
+            "trim_html": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(trim_html) ]\nResults in HTML format\n"
+            }
           },
           {
-            "trim_log": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(trim_log) ]\nfastq log file\n"
+            "trim_log": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(trim_log) ]\nfastq log file\n"
+            }
           },
           {
-            "trim_reads_fail": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(trim_reads_fail) ]\nReads the failed the preprocessing\n"
+            "trim_reads_fail": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(trim_reads_fail) ]\nReads the failed the preprocessing\n"
+            }
           },
           {
-            "trim_reads_merged": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(trim_reads_merged) ]\nReads that were successfully merged\n"
+            "trim_reads_merged": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(trim_reads_merged) ]\nReads that were successfully merged\n"
+            }
           },
           {
-            "fastqc_raw_html": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(fastqc_raw_html) ]\nRaw fastQC report\n"
+            "fastqc_raw_html": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fastqc_raw_html) ]\nRaw fastQC report\n"
+            }
           },
           {
-            "fastqc_raw_zip": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(fastqc_raw_zip) ]\nRaw fastQC report archive\n"
+            "fastqc_raw_zip": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fastqc_raw_zip) ]\nRaw fastQC report archive\n"
+            }
           },
           {
-            "fastqc_trim_html": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(fastqc_trim_html) ]\nTrimmed fastQC report\n"
+            "fastqc_trim_html": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fastqc_trim_html) ]\nTrimmed fastQC report\n"
+            }
           },
           {
-            "fastqc_trim_zip": null,
-            "type": "file",
-            "description": "Structure: [ val(meta), path(fastqc_trim_zip) ]\nTrimmed fastQC report archive\n"
+            "fastqc_trim_zip": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fastqc_trim_zip) ]\nTrimmed fastQC report archive\n"
+            }
           },
           {
             "versions": {
