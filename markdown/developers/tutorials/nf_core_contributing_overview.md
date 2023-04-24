@@ -256,7 +256,7 @@ It will check:
 
 #### Black
 
-[Black](https://black.readthedocs.io/en/stable/getting_started.html) is a formatting software that allows the code to be formatted in a quick and efficient way.
+[Black](https://black.readthedocs.io/en/stable/index.html) is a formatting software that allows the code to be formatted in a quick and efficient way.
 
 It can be installed with the command `pip install black`, which requires Python 3.7+ to run.
 
