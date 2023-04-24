@@ -106,7 +106,6 @@ const writeComponentsJson = async () => {
         return content;
       });
     subworkflow['meta'] = content;
-    console.log(subworkflow);
 
     // update elements in components.subworkflows if it exists, add it otherwise
     if (!components.subworkflows) {
@@ -117,6 +116,21 @@ const writeComponentsJson = async () => {
       components.subworkflows[index] = subworkflow;
     } else {
       components.subworkflows.push(subworkflow);
+    }
+
+    // add subworkflow to module which is part of it
+    if (content.modules) {
+      for (const module of content.modules) {
+        const index = components.modules.findIndex((m) => m.name === module);
+        if (index > -1) {
+          const entry = subworkflow.name;
+          if (components.modules[index].subworkflows) {
+            components.modules[index].subworkflows.push(entry);
+          } else {
+            components.modules[index].subworkflows = [entry];
+          }
+        }
+      }
     }
 
     bar.tick();
