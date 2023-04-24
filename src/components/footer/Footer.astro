@@ -1,8 +1,8 @@
 ---
 import NfCoreLogoDarkbg from '/images/logos/nf-core-logo-darkbg.svg';
 import NfCoreLogo from '/images/logos/nf-core-logo.svg';
-import FooterSocial from './FooterSocial.astro';
-import ThemeSwitch from './ThemeSwitch.svelte';
+import FooterSocial from '@components/footer/FooterSocial.astro';
+import ThemeSwitch from '@components/ThemeSwitch.svelte';
 ---
 
 <footer class="footer bg-body-secondary text-body-secondary">
@@ -94,7 +94,7 @@ import ThemeSwitch from './ThemeSwitch.svelte';
     </div>
 
     <style lang="scss">
-        @import '../styles/_variables.scss';
+        @import '@styles/_variables.scss';
         footer {
             padding: 2rem 0 3rem;
             & a {

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import ExportEventButton from './ExportEventButton.svelte';
-    import VideoButton from './VideoButton.svelte';
+    import ExportEventButton from '@components/event/ExportEventButton.svelte';
+    import VideoButton from '@components/VideoButton.svelte';
 
     export let frontmatter = {
         title: '',
@@ -89,7 +89,7 @@
 </div>
 
 <style lang="scss">
-    @import '../styles/_variables';
+    @import '@styles/_variables';
     .card .card-title a {
         color: $success;
     }

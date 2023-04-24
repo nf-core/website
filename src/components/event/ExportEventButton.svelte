@@ -3,7 +3,7 @@
     import { saveAs } from 'file-saver';
 
     export let frontmatter = {};
-    export let add_class="btn-outline-success";
+    export let add_class = 'btn-outline-success';
 
     let event_location = '';
     if (typeof frontmatter.location_url === 'string') {
@@ -31,7 +31,7 @@
 <div class="dropwdown btn-group" role="group">
     <button
         type="button"
-        class={"btn dropdown-toggle "+add_class}
+        class={'btn dropdown-toggle ' + add_class}
         href="#"
         data-bs-toggle="dropdown"
         aria-haspopup="true"
