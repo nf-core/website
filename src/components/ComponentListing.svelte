@@ -1,9 +1,11 @@
 <script lang="ts">
     import { SortBy, DisplayStyle, SearchQuery } from './store.js';
-    import ModuleCard from '@components/ModuleCard.svelte';
+    import ComponentCard from '@components/ComponentCard.svelte';
 
-    export let modules: {
+    export let components: {
         name: string;
+        path: string;
+        type: string;
         meta: {
             description: string;
             name: string;
@@ -14,26 +16,29 @@
         }[];
     }[] = [];
 
-    const searchModules = (module) => {
+    const searchComponents = (component) => {
         if ($SearchQuery === '') {
             return true;
         }
-        if (module.meta.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
-            return true;
-        }
-        if (module.meta.description && module.meta.description.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (component.meta.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
             return true;
         }
         if (
-            module.meta.keywords &&
-            module.meta.keywords.some((keyword) => keyword.toLowerCase().includes($SearchQuery.toLowerCase()))
+            component.meta.description &&
+            component.meta.description.toLowerCase().includes($SearchQuery.toLowerCase())
+        ) {
+            return true;
+        }
+        if (
+            component.meta.keywords &&
+            component.meta.keywords.some((keyword) => keyword.toLowerCase().includes($SearchQuery.toLowerCase()))
         ) {
             return true;
         }
         return false;
     };
 
-    const sortModules = (a, b) => {
+    const sortComponents = (a, b) => {
         if ($SortBy === 'Alphabetical') {
             return a.name.localeCompare(b.name);
         } else if ($SortBy === '# Pipeline integrations') {
@@ -48,23 +53,23 @@
             }
         }
     };
-    function searchFilterSortModules(modules) {
-        return modules.sort(sortModules).filter(searchModules);
+    function searchFilterSortComponents(components) {
+        return components.sort(sortComponents).filter(searchComponents);
     }
     SortBy.subscribe(() => {
-        filteredModules = searchFilterSortModules(modules);
+        filteredComponents = searchFilterSortComponents(components);
     });
     SearchQuery.subscribe(() => {
-        filteredModules = searchFilterSortModules(modules);
+        filteredComponents = searchFilterSortComponents(components);
     });
 
-    $: filteredModules = searchFilterSortModules(modules);
+    $: filteredComponents = searchFilterSortComponents(components);
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
     {#if $DisplayStyle === 'grid'}
-        {#each filteredModules as module (module.name)}
-            <ModuleCard {module} />
+        {#each filteredComponents as component (component.name)}
+            <ComponentCard {component} />
         {/each}
     {:else if $DisplayStyle === 'table'}
         <table class="table">
@@ -77,14 +82,16 @@
                 </tr>
             </thead>
             <tbody>
-                {#each filteredModules as module}
+                {#each filteredComponents as component}
                     <tr>
                         <td class="name">
-                            <a href={'/modules/' + module.name}>{@html module.name.replace('_', '_<wbr>')}</a>
+                            <a href={'/' + component.type + 's/' + component.name}
+                                >{@html component.name.replace('_', '_<wbr>')}</a
+                            >
                         </td>
                         <td class="keywords">
-                            {#if module.meta.keywords}
-                                {#each module.meta.keywords as keyword}
+                            {#if component.meta.keywords}
+                                {#each component.meta.keywords as keyword}
                                     <span class="badge bg-secondary me-1">{keyword}</span>
                                 {/each}
                             {:else}
@@ -92,11 +99,11 @@
                             {/if}
                         </td>
                         <td>
-                            {module.meta.description}
+                            {component.meta.description}
                         </td>
                         <td class="text-end">
-                            {#if module.pipelines}
-                                {module.pipelines.length}
+                            {#if component.pipelines}
+                                {component.pipelines.length}
                             {:else}
                                 -
                             {/if}

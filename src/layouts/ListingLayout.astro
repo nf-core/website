@@ -1,7 +1,7 @@
 ---
 import PageLayout from './PageLayout.astro';
 import FilterBar from '@components/FilterBar.svelte';
-import ModulesListing from '@components/ModulesListing.svelte';
+import ComponentListing from '@components/ComponentListing.svelte';
 import PipelinesListing from '@components/PipelinesListing.svelte';
 
 export interface Props {
@@ -20,7 +20,7 @@ const { title, description, filter, displayStyle, sortBy, pipelines, components 
 <PageLayout title={title} subtitle={description}>
     <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:load />
     {!components && <PipelinesListing pipelines={pipelines} client:load />}
-    {components && <ModulesListing modules={components} client:load />}
+    {components && <ComponentListing components={components} client:load />}
 
     <slot />
 </PageLayout>

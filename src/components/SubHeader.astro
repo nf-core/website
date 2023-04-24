@@ -15,6 +15,10 @@ let latest_link = '';
 if (pipeline.length > 0) {
     latest_link = Astro.url.pathname.replace(pipeline + '/' + version, pipeline + '/' + latestVersion);
 }
+let component_name = component;
+if (component_type === 'modules') {
+    component_name = component.replace('_', '/');
+}
 ---
 
 <div class="subheader bg-body-secondary under-triangle-down">
@@ -49,7 +53,7 @@ if (pipeline.length > 0) {
                 </a>
             ) : (
                 <div class="w-50">
-                    <InstallCmd cmd={`nf-core ${component_type} install ${component?.replace('_', '/')}`} client:load />
+                    <InstallCmd cmd={`nf-core ${component_type} install ${component_name}`} client:load />
                 </div>
             )
         }

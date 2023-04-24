@@ -1,7 +1,7 @@
 ---
 import SidebarStatsRow from '@components/SidebarStatsRow.astro';
 
-const { component_type, contributors, included_pipelines } = Astro.props;
+const { component_type, contributors, included_pipelines, included_modules, included_subworkflows } = Astro.props;
 
 export interface Props {
     component_type: string;
@@ -10,6 +10,8 @@ export interface Props {
         name: string;
         version: string;
     }[];
+    included_modules?: string[];
+    included_subworkflows?: string[];
 }
 ---
 
@@ -27,10 +29,10 @@ export interface Props {
                     {included_pipelines.map((pipeline) => (
                         <a
                             href={'/' + pipeline.name + '/' + pipeline.version}
-                            class="badge text-bg-secondary me-2"
+                            class="badge text-bg-warning me-2 text-decoration-none"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
-                            title={pipeline.version}
+                            title={'most recent pipeline version with it:\n' + pipeline.version}
                         >
                             {pipeline.name}
                         </a>
@@ -38,7 +40,52 @@ export interface Props {
                 </div>
             </SidebarStatsRow>
         )
-    }<SidebarStatsRow content={[{ title: 'author' + (contributors.length > 1 ? 's' : '') }]}>
+    }
+    {
+        included_subworkflows && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: 'part of',
+                    },
+                ]}
+            >
+                <div class="mb-2">
+                    {included_subworkflows.map((module) => (
+                        <a
+                            href={'/subworkflows/' + module.replace('/', '_')}
+                            class="badge text-bg-info me-2 text-decoration-none"
+                        >
+                            {module}
+                        </a>
+                    ))}
+                </div>
+            </SidebarStatsRow>
+        )
+    }
+    {
+        included_modules && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: 'included modules',
+                    },
+                ]}
+            >
+                <div class="mb-2">
+                    {included_modules.map((module) => (
+                        <a
+                            href={'/modules/' + module.replace('/', '_')}
+                            class="badge text-bg-info me-2 text-decoration-none"
+                        >
+                            {module}
+                        </a>
+                    ))}
+                </div>
+            </SidebarStatsRow>
+        )
+    }
+    <SidebarStatsRow content={[{ title: 'author' + (contributors.length > 1 ? 's' : '') }]}>
         <div class="contrib-avatars d-flex flex-wrap">
             {
                 contributors &&
@@ -71,4 +118,12 @@ export interface Props {
         </div>
     </SidebarStatsRow>
 </div>
-<style lang="scss"></style>
+<style lang="scss">
+    a.badge:hover {
+        text-decoration: underline !important;
+    }
+    img {
+        width: 50px;
+        height: 50px;
+    }
+</style>
