@@ -7,7 +7,7 @@ import components_json from '@public/components.json';
 
 export function getStaticPaths() {
     // return components_json.modules.map((module) => { TODO: remove the below line once modules are fixed
-    return components_json.modules.slice(0, 50).map((module) => {
+    return components_json.modules.slice(0, 200).map((module) => {
         return [
             {
                 params: {
@@ -129,6 +129,7 @@ export const prerender = true;
                 component_type={'module'}
                 contributors={module.meta.authors}
                 included_pipelines={module.pipelines}
+                included_subworkflows={module.subworkflows}
             />
         </div>
     </div>

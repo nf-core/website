@@ -1,7 +1,7 @@
 ---
 import SidebarStatsRow from '@components/SidebarStatsRow.astro';
 
-const { component_type, contributors, included_pipelines, included_modules } = Astro.props;
+const { component_type, contributors, included_pipelines, included_modules, included_subworkflows } = Astro.props;
 
 export interface Props {
     component_type: string;
@@ -11,6 +11,7 @@ export interface Props {
         version: string;
     }[];
     included_modules?: string[];
+    included_subworkflows?: string[];
 }
 ---
 
@@ -28,12 +29,34 @@ export interface Props {
                     {included_pipelines.map((pipeline) => (
                         <a
                             href={'/' + pipeline.name + '/' + pipeline.version}
-                            class="badge text-bg-secondary me-2 text-decoration-none"
+                            class="badge text-bg-warning me-2 text-decoration-none"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title={'most recent pipeline version with it:\n' + pipeline.version}
                         >
                             {pipeline.name}
+                        </a>
+                    ))}
+                </div>
+            </SidebarStatsRow>
+        )
+    }
+    {
+        included_subworkflows && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: 'part of',
+                    },
+                ]}
+            >
+                <div class="mb-2">
+                    {included_subworkflows.map((module) => (
+                        <a
+                            href={'/subworkflows/' + module.replace('/', '_')}
+                            class="badge text-bg-info me-2 text-decoration-none"
+                        >
+                            {module}
                         </a>
                     ))}
                 </div>
@@ -53,7 +76,7 @@ export interface Props {
                     {included_modules.map((module) => (
                         <a
                             href={'/modules/' + module.replace('/', '_')}
-                            class="badge text-bg-secondary me-2 text-decoration-none"
+                            class="badge text-bg-info me-2 text-decoration-none"
                         >
                             {module}
                         </a>
