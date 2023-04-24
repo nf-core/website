@@ -44,21 +44,23 @@ export interface Props {
                     <div class="col-12 col-md-3 col-xxl-2 small-h">
                         <h4 id={name} class="module-row-name-id d-flex align-items-center mb-0">
                             <code>{name}</code>
-                            <span class="text-muted ms-1"> ({type})</span>
+                            {type && <span class="text-muted ms-1"> ({type})</span>}
                             <a href={'#' + name} class="header-link scroll_to_link me-2 mb-2">
                                 <span class="fas fa-link" aria-hidden="true" />
                             </a>
                         </h4>
                     </div>
 
-                    <div class={'col-12 description py-1 small col-md' + (pattern ? '-5' : '-7')}>
+                    <div class={'col-12 description py-1 small col-md-' + (pattern ? '5' : '7')}>
                         {async () => {
-                            const html = await markdown(description);
+                            //replace new lines with 2 spaces to force line break
+                            //replace *. with \*. to prevent markdown from interpreting it as italics
+                            const html = await markdown(description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.'));
                             return html;
                         }}
                     </div>
-                    <div class={'col-12 col-md' + (pattern ? '-4' : '-1') + ' ms-auto'}>
-                        {pattern && <code class="float-end">{pattern}</code>}
+                    <div class={'col-12 col-md-' + (pattern ? '4' : '1') + ' ms-auto'}>
+                        {pattern && <code class="float-end pattern">{pattern}</code>}
                     </div>
                 </div>
             );
@@ -73,5 +75,8 @@ export interface Props {
     }
     .description :global(p) {
         margin-bottom: 0;
+    }
+    .pattern {
+        line-break: anywhere;
     }
 </style>

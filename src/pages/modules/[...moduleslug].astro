@@ -6,8 +6,8 @@ import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 
 export function getStaticPaths() {
-    // return components_json.modules.map((module) => { TODO: replace line below with this one when meta.yamls are fixed
-    return components_json.modules.slice(0, 10).map((module) => {
+    // return components_json.modules.map((module) => { TODO: remove the below line once modules are fixed
+    return components_json.modules.slice(0, 200).map((module) => {
         return [
             {
                 params: {
@@ -28,7 +28,7 @@ const toolName = Object.keys(tool)[0];
 export const prerender = true;
 ---
 
-<ComponentPageLayout name={module.name} description={module.meta.description}>
+<ComponentPageLayout name={module.name} description={module.meta.description} type="modules">
     <div class="row">
         <div class="col-12 col-md-10">
             <div class="mb-5">
@@ -106,7 +106,7 @@ export const prerender = true;
                                 tool[toolName].licence && typeof tool[toolName].licence === 'string' ? (
                                     <span class="badge text-bg-secondary">{tool[toolName].licence}</span>
                                 ) : (
-                                    tool[toolName].licence.map((licence) => {
+                                    tool[toolName].licence?.map((licence) => {
                                         return <span class="badge text-bg-secondary">Licence: {licence}</span>;
                                     })
                                 )
@@ -129,6 +129,7 @@ export const prerender = true;
                 component_type={'module'}
                 contributors={module.meta.authors}
                 included_pipelines={module.pipelines}
+                included_subworkflows={module.subworkflows}
             />
         </div>
     </div>
