@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { showHelp } from './store.js';
+    import { showHelp } from '@components/store.js';
     export let buttonText: string = 'Help text';
     export let buttonClass: string = 'btn-outline-secondary ms-auto';
     export let textClass: string = '';

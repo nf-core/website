@@ -41,6 +41,9 @@ export default defineConfig({
             noExternal: ['@popperjs/core', 'bin/cache.js'],
         },
     },
+    image: {
+        service: 'astro/assets/services/sharp',
+    },
     markdown: {
         syntaxHighlight: false,
         remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],

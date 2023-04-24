@@ -1,7 +1,7 @@
 <script>
-    import { showHidden } from './store.js';
-    import Collapsible from './Collapsible.svelte';
-    import Markdown from './Markdown.svelte';
+    import { showHidden } from '@components/store.js';
+    import Collapsible from '@components/Collapsible.svelte';
+    import Markdown from '@components/markdown/Markdown.svelte';
 
     export let title;
     export let property;
