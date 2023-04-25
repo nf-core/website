@@ -173,6 +173,28 @@ You will soon be able to explore and download these pipeline results on the nf-c
 
 <div class="clearfix"></div>
 
+## Open Source Support
+
+We also thank the following organisations for supporting nf-core through providing us 'open source plans' of their services:
+
+<div class="row my-5">
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://www.docker.com/" target="_blank">
+      <img src="/assets/img/docker-horizontal.png" alt="Docker w-100">
+    </a>
+  </div>
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://gitpod.io/" target="_blank">
+      <img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
+    </a>
+  </div>
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://hackmd.io/" target="_blank">
+      <img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
+    </a>
+  </div>
+</div>
+
 ## History of nf-core
 
 The nf-core project came about at the start of 2018. [Phil Ewels](http://phil.ewels.co.uk/) ([@ewels](https://github.com/ewels/)) was the head of the development facility at [NGI Stockholm](https://ngisweden.scilifelab.se/) (National Genomics Infrastructure), part of [SciLifeLab](https://www.scilifelab.se/) in Sweden.
