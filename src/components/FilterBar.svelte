@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store.js';
     import { onMount } from 'svelte';
 
     export let filter: { name: string; class?: string }[] = [];

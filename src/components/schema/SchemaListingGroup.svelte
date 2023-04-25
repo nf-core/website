@@ -1,6 +1,6 @@
 <script>
-    import SchemaListingElement from './SchemaListingElement.svelte';
-    import { showHidden } from './store.js';
+    import SchemaListingElement from '@components/schema/SchemaListingElement.svelte';
+    import { showHidden } from '@components/store.js';
 
     export let definition;
     export let id;
@@ -17,7 +17,7 @@
 
 <div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
     <div class="card-header position-sticky bg-body-secondary">
-        <h2 class="card-title text-success scroll-target " id={id.replaceAll('_', '-')}>
+        <h2 class="card-title text-success scroll-target" id={id.replaceAll('_', '-')}>
             {#if definition.fa_icon}
                 <i class="fa fa-fw me-2 {definition.fa_icon}" />
             {/if}
@@ -25,7 +25,7 @@
         </h2>
     </div>
     <div class="card-body">
-        <p>{definition.description?definition.description:''}</p>
+        <p>{definition.description ? definition.description : ''}</p>
         {#if definition.properties}
             <div class="properties">
                 {#each Object.entries(definition.properties) as [title, property] (title)}

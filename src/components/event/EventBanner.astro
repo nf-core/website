@@ -1,7 +1,5 @@
 ---
-import EventBannerElement from './EventBannerElement.svelte';
-import OngoingEvents from './OngoingEvents.svelte';
-import UpcomingEvents from './UpcomingEvents.svelte';
+import EventBannerElement from '@components/event/EventBannerElement.svelte';
 import { getCollection } from 'astro:content';
 
 let events = await getCollection('events');
@@ -75,7 +73,7 @@ const event_type_icons = {
     )
 }
 <style lang="scss">
-    @import '../styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
         display: block !important;
     }
