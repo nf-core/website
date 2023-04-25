@@ -1,4 +1,4 @@
-<img align="left" src="https://goat.genomehubs.org/static/092eb939ef98ce8ebf19/about/browse.png" height="70px">
+<img align="left" src="https://goat.genomehubs.org/static/092eb939ef98ce8ebf19/about/browse.png" height="50px">
 
 ## Genomes on a Tree (GoaT)
 
