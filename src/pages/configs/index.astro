@@ -1,0 +1,92 @@
+---
+import octokit from '@components/octokit';
+import ListingLayout from '@layouts/ListingLayout.astro';
+
+//get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
+const files = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    owner: 'nf-core',
+    repo: 'configs',
+    path: 'docs',
+});
+
+function parseConfig(fileContent) {
+    const config = {};
+
+    // Define regular expression to match each configuration block
+    const blockRegex = /(\w+)\s*\{([\s\S]*?)\}/g;
+
+    let match;
+    while ((match = blockRegex.exec(fileContent))) {
+        const blockType = match[1];
+        const blockContent = match[2];
+        const blockConfig = {};
+
+        // Parse key-value pairs within configuration block
+        const keyValueRegex = /(\w+)\s*=\s*([^\n]+)/g;
+        let keyValMatch;
+        while ((keyValMatch = keyValueRegex.exec(blockContent))) {
+            const key = keyValMatch[1];
+            const value = keyValMatch[2].replaceAll(/^['"]|['"]$/g, ''); // Remove quotes from value
+            // check if key already exists
+            if (blockConfig[key]) {
+                // if it does, make it an array
+                if (!Array.isArray(blockConfig[key])) {
+                    blockConfig[key] = [blockConfig[key]];
+                }
+                // add the new value to the array
+                blockConfig[key].push(value);
+            } else {
+                blockConfig[key] = value;
+            }
+        }
+
+        // Add configuration block to overall config object
+        config[blockType] = blockConfig;
+    }
+
+    return config;
+}
+
+//filter out directories
+let markdowns = files.data.filter((file) => file.type === 'file');
+// exclude template file
+markdowns = markdowns.filter((file) => file.name !== 'template.md');
+
+//get the markdown file contents
+const configs = await Promise.all(
+    markdowns.map(async (markdown) => {
+        const content = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+            owner: 'nf-core',
+            repo: 'configs',
+            path: markdown.path,
+        });
+        const config = await octokit
+            .request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'nf-core',
+                repo: 'configs',
+                path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
+            })
+            .catch((error) => {
+                console.log(error);
+                return {
+                    data: {
+                        content: Buffer.from('No config file found').toString('base64'),
+                    },
+                };
+            });
+        return {
+            name: markdown.name,
+            content: Buffer.from(content.data.content, 'base64').toString(),
+            config: parseConfig(Buffer.from(config.data.content, 'base64').toString()),
+        };
+    })
+);
+console.log(configs[20].config);
+const title = 'nf-core/configs';
+const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
+
+export const prerender = true;
+---
+
+<ListingLayout title={title} description={description} configs={configs} filter={[]} sortBy={[]} displayStyle={[]} />
+<style></style>
