@@ -242,9 +242,9 @@ endif;
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-        <i class="fad fa-industry-alt fa-3x mb-2"></i>
-        <h3 class="text-white">For facilities</h3>
-        <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
+        <i class="fad fa-hand-holding-seedling fa-3x mb-2"></i>
+        <h3 class="text-white">For biodiversity projects</h3>
+        <p class="lead">End-to-end suite of pipelines, from sequencing quality-checks to genome assembly to single-genome analysis and comparative analyses.</p>
       </div>
       <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-users fa-3x mb-2"></i>
@@ -254,7 +254,7 @@ endif;
       <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-laptop-code fa-3x mb-2"></i>
         <h3 class="text-white">For developers</h3>
-        <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
+        <p class="lead">Modular, reusable pipelines that follow the <a href="https://nf-co.re/">nf-core</a> model.</p>
       </div>
     </div>
     <div>
@@ -273,7 +273,7 @@ endif;
 
 <div class="container py-5 text-center lead" id="features">
   <p>The Tree of Life production suite is designed to handle nature's diversity.</p>
-  <p><strong>sanger-tol</strong> pipelines use Nextflow DSL2 and adhere to strict nf-core guidelines.</p>
+  <p><strong>sanger-tol</strong> pipelines use <a href="https://www.nextflow.io/">Nextflow</a> DSL2 and adhere to strict <a href="https://nf-co.re/">nf-core</a> guidelines.</p>
 </div>
 
 <div id="features" class="container homepage-feature-boxes pb-5">
@@ -308,7 +308,7 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
-            <p class="card-text">sanger-tol pipelines use GitHub and Zenodo releases to tag stable versions of the code
+            <p class="card-text">sanger-tol pipelines use GitHub and <a href="https://zenodo.org/search?page=1&size=20&q=%22sanger-tol%22&type=workflow">Zenodo</a> releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/releases.svg" />
@@ -337,7 +337,8 @@ endif;
               Pipelines follow best-practices to ensure maximum
               portability and reproducibility.
               Scale and diversity in Tree of Life make the pipelines 
-              exceptionally well tested and easy to run.
+              exceptionally well tested and easy to run on a wide
+              range of organisms.
             </p>
           </div>
           <i class="fas fa-server fa-5x text-success ms-3"></i>
