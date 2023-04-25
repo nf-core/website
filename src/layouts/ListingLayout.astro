@@ -3,6 +3,8 @@ import PageLayout from './PageLayout.astro';
 import FilterBar from '@components/FilterBar.svelte';
 import ComponentListing from '@components/ComponentListing.svelte';
 import PipelinesListing from '@components/PipelinesListing.svelte';
+import ConfigListing from '@components/ConfigListing.svelte';
+import { string } from 'astro/zod';
 
 export interface Props {
     title: string;
@@ -12,15 +14,17 @@ export interface Props {
     sortBy: string[];
     pipelines?: object[];
     components?: object[];
+    configs?: { name: string; content: string }[];
 }
 
-const { title, description, filter, displayStyle, sortBy, pipelines, components } = Astro.props;
+const { title, description, filter, displayStyle, sortBy, pipelines, components, configs } = Astro.props;
 ---
 
 <PageLayout title={title} subtitle={description}>
     <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:load />
     {!components && <PipelinesListing pipelines={pipelines} client:load />}
     {components && <ComponentListing components={components} client:load />}
+    {configs && <ConfigListing configs={configs} client:load />}
 
     <slot />
 </PageLayout>
