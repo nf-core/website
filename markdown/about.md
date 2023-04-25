@@ -180,17 +180,17 @@ We also thank the following organisations for supporting nf-core through providi
 <div class="row my-5">
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://www.docker.com/" target="_blank">
-      <img src="/assets/img/docker.svg" alt="Docker" class="darkmode-image" style="max-height: 150px;">
+      <img src="/assets/img/docker-horizontal.png" alt="Docker w-100">
     </a>
   </div>
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://gitpod.io/" target="_blank">
-      <img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image" style="max-height: 150px;">
+      <img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
     </a>
   </div>
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://hackmd.io/" target="_blank">
-      <img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image" style="max-height: 150px;">
+      <img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
     </a>
   </div>
 </div>
