@@ -177,13 +177,22 @@ You will soon be able to explore and download these pipeline results on the nf-c
 
 We also thank the following organisations for supporting nf-core through providing us 'open source plans' of their services:
 
-<div style="">
-<a href="https://www.docker.com/"><img src="/assets/img/docker.svg" alt="Docker" class=" darkmode-image me-5 mb-5 w-25 ms-3" style="height: 125px;display:inline;vertical-align:middle"></a>
-
-<a href="https://gitpod.io/"><img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image me-5 mb-5 w-25 ms-3" style="height: 125px;display:inline;vertical-align:middle"></a>
-
-<a href="https://hackmd.io/"><img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image me-5 mb-5 w-25 ms-3" style="height: 125px;display:inline;vertical-align:middle"></a>
-
+<div class="row my-5">
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://www.docker.com/" target="_blank">
+      <img src="/assets/img/docker.svg" alt="Docker" class="darkmode-image" style="max-height: 150px;">
+    </a>
+  </div>
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://gitpod.io/" target="_blank">
+      <img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image" style="max-height: 150px;">
+    </a>
+  </div>
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://hackmd.io/" target="_blank">
+      <img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image" style="max-height: 150px;">
+    </a>
+  </div>
 </div>
 
 ## History of nf-core
