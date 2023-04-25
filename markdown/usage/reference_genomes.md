@@ -132,6 +132,7 @@ To address this, you can create a file with translations that will be used to ge
 2. `alias_translations.yaml` must contain the equivalences of asset aliases in yaml format.
    Keys correspond to the name of refgenie server aliases while values correspond to the name of the respective nf-core pipeline aliases.
    For example:
+
    ```
    ensembl_gtf: gtf
    star_index: star
