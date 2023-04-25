@@ -428,7 +428,7 @@ endif;
       <div class="col-sm-6">
         <h2 id="get-started" class="text-white">Get started in minutes</h2>
         <p class="text-white-50">Nextflow lets you run sanger-tol pipelines on virtually any computing environment.</p>
-        <p class="text-white-50">All sanger-tol genomics pipelines come with built-in support for
+        <p class="text-white-50">All sanger-tol genomics pipelines are modifiable with the
           <a href="https://github.com/nf-core/tools" target="_blank" style="white-space:nowrap;">nf-core tools</a>.</p>
       </div>
       <div class="col-sm-6">
