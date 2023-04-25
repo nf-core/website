@@ -1,9 +1,7 @@
-## [GoaT](https://goat.genomehubs.org) – Genomes on a Tree :goat:
+<img align="left" src="https://goat.genomehubs.org/static/092eb939ef98ce8ebf19/about/browse.png" height="70px">
 
-<img align="right" src="https://pbs.twimg.com/profile_images/1478779508861853703/FUWR3orh_400x400.jpg" height="150px">
+# Genomes on a Tree (GoaT)
 
-GoaT - Genomes on a Tree is built using [GenomeHubs 2.0](https://github.com/genomehubs/genomehubs) to present genome-relevant metadata for all Eukaryotic taxa across the tree of life. GoaT uses the [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) as the default backbone taxonomy, and adds synonyms from the following sources: [Open Tree of Life](https://tree.opentreeoflife.org/opentree/opentree13.4@ott304358/Eukaryota), [GBIF](https://www.gbif.org/species/search), and [IRMNG](https://www.irmng.org/index.php). Alternative backbone taxonomies will be implemented in the near future. Metadata in GoaT include, genome assembly attributes, genome sizes, C values, and chromosome numbers from [multiple sources](https://goat.genomehubs.org/sources).
+Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index for genome-relevant metadata and sequencing project plans and statuses. Attributes can be queried against assembly and taxon indexes through 1) a mature [API](https://goat.genomehubs.org/api-docs), 2) a [web](https://goat.genomehubs.org) front end, and 3) a command line interface, [GoaT-cli](https://github.com/genomehubs/goat-cli). GoaT uses NCBI Taxonomy as backbone and allows retrieval of inferred estimates for missing attribute values based on phylogenetic interpolation. The web front end additionally provides summary visualisations for data exploration and reporting (see https://goat.genomehubs.org). GoaT was implemented as an instance of the open-source GenomeHubs codebase. For more information visit https://github.com/genomehubs/genomehubs.
 
-**Queries of Genome-Relevant Metadata** – Use GoaT's [search](https://goat.genomehubs.org/search) to access direct and estimate values for any Eukaryote.
-
-**Access Earth Biogenome Project Network Progress Reports** – Use GoaT's [project-dedicated pages](https://goat.genomehubs.org/projects) to see and download sequencing status and reports of Earth Biogenome Project Affiliated Projects.
+**Pipelines:** [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
