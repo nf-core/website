@@ -183,6 +183,7 @@ We also thank the following organisations for supporting nf-core through providi
 <a href="https://gitpod.io/"><img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image me-5 mb-5 w-25 ms-3" style="height: 125px;display:inline;vertical-align:middle"></a>
 
 <a href="https://hackmd.io/"><img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image me-5 mb-5 w-25 ms-3" style="height: 125px;display:inline;vertical-align:middle"></a>
+
 </div>
 
 ## History of nf-core
