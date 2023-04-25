@@ -1,7 +1,7 @@
 ---
 import { markdown } from '@astropub/md';
 import InstallCmd from '@components/InstallCmd.svelte';
-import SidebarStatsRow from '@components/SidebarStatsRow.astro';
+import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import cache from 'bin/cache.js';
@@ -218,7 +218,7 @@ export const prerender = true;
 </PipelinePageLayout>
 
 <style lang="scss">
-    @import '../../../styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .nav-link {
         &:hover {
             border: 0;

@@ -58,7 +58,7 @@
 </div>
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
+    @import '@styles/_variables.scss';
 
     input:focus {
         box-shadow: none;

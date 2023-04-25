@@ -1,9 +1,9 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 import BaseHead from '@components/BaseHead.astro';
-import Footer from '@components/Footer.astro';
-import Navbar from '@components/Navbar.astro';
-import SubFooter from '@components/SubFooter.astro';
+import Footer from '@components/footer/Footer.astro';
+import Navbar from '@components/navbar/Navbar.astro';
+import SubFooter from '@components/footer/SubFooter.astro';
 import '@fontsource/inter';
 import '@fontsource/maven-pro/600.css';
 import '@fontsource/open-sans';
@@ -54,10 +54,10 @@ const {
             });
         </script>
         <style lang="scss" is:global>
-            @import '../styles/main.scss';
+            @import '@styles/main.scss';
         </style>
         <style lang="scss">
-            @import '../styles/_variables.scss';
+            @import '@styles/_variables.scss';
             body {
                 position: relative;
             }
