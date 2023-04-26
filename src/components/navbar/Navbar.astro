@@ -1,9 +1,9 @@
 ---
-import EventIndicator from './EventIndicator.svelte';
-import NavbarToc from './NavbarToc.svelte';
-import NavbarDocsNav from '@components/NavbarDocsNav.svelte';
-import NavbarDocsNavTitle from '@components/NavbarDocsNavTitle.astro';
-import SidebarLeft from './SidebarLeft.astro';
+import EventIndicator from '@components/event/EventIndicator.svelte';
+import NavbarToc from '@components/navbar/NavbarToc.svelte';
+import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
+import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
+import SidebarNav from '@components/sidebar/SidebarNav.astro';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -92,13 +92,13 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
     Astro.url.pathname.includes('/docs/') && (
         <NavbarDocsNav client:load>
             <NavbarDocsNavTitle slot="title" title={title} />
-            <SidebarLeft slot="menu" />
+            <SidebarNav slot="menu" />
         </NavbarDocsNav>
     )
 }
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
+    @import '@styles/_variables.scss';
 
     .navbar.fixed-top {
         .navbar-brand {

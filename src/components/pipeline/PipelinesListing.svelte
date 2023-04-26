@@ -11,8 +11,8 @@
         archived: boolean;
     }[] = [];
 
-    import PipelineCard from './PipelineCard.svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from './store.js';
+    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store.js';
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;

@@ -1,5 +1,5 @@
 ---
-import EventHeader from './EventHeader.astro';
+import EventHeader from '@components/event/EventHeader.astro';
 
 let {
     title,
@@ -47,7 +47,7 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
 <div class="triangle-down bg-success"></div>
 <slot />
 <style lang="scss">
-    @import '../styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .mainpage-heading {
         background-color: $success !important;
         & h1,
