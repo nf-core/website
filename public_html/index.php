@@ -223,7 +223,7 @@ endif;
       <img src="assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
       <img src="assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
     </h1>
-    <p class="lead font-weight-normal">Workflows and tools to investigate the diversity of complex organisms.</p>
+    <p class="lead font-weight-normal">Workflows and tools to investigate the genomics diversity of complex organisms.</p>
     <div class="homepage-cta-flex mb-5">
       <a class="homepage-cta" href="/pipelines">View Pipelines</a>
     </div>
