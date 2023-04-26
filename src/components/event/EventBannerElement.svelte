@@ -1,8 +1,8 @@
 <script>
-    import { EventIsOngoing } from './store.js';
+    import { EventIsOngoing } from '@components/store.js';
     import { formatDistanceToNow } from 'date-fns';
-    import ExportEventButton from './ExportEventButton.svelte';
-    import VideoButton from './VideoButton.svelte';
+    import ExportEventButton from '@components/event/ExportEventButton.svelte';
+    import VideoButton from '@components/VideoButton.svelte';
     export let events = [];
     export let event_time_category = '';
 
@@ -142,7 +142,7 @@
                     <h5 class="pt-2 font-weight-light text-center text-sucess">{heading_title}</h5>
                 </div>
                 {#each events as event}
-                    <div class="text-center ">
+                    <div class="text-center">
                         <h4 class="pt-2 pb-0">
                             <a href={'events/' + event.slug} class="text-success text-decoration-none"
                                 >{event.data.title}</a

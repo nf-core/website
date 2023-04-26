@@ -1,9 +1,9 @@
 <script>
     export let events = [];
 
-    import EventCard from './EventCard.svelte';
-    import FilterBar from './FilterBar.svelte';
-    import { CurrentFilter, SearchQuery, EventIsOngoing } from './store.js';
+    import EventCard from '@components/event/EventCard.svelte';
+    import FilterBar from '@components/FilterBar.svelte';
+    import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store.js';
 
     let filteredEvents = events;
     const filterByType = (event) => {
@@ -55,7 +55,7 @@
     let currentEvents = [];
     $: currentEvents = filteredEvents.filter((event) => {
         const today = new Date();
-        return event.data.start < today && event.data.end > today
+        return event.data.start < today && event.data.end > today;
     });
 
     $: if (currentEvents.length > 0) {

@@ -3,10 +3,9 @@ import NatureBiotech from '/images/homepage/nature_biotech.svg';
 import NfCoreLogoDarkbg from '/images/logos/nf-core-logo-darkbg.svg';
 import NfCoreLogo from '/images/logos/nf-core-logo.svg';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
-import EventBanner from '@components/EventBanner.astro';
-import HomepageCard from '@components/HomepageCard.astro';
-import CodeExample from '@components/HomepageCodeExample.md';
-import HomepageVideos from '@components/HomepageVideos.astro';
+import EventBanner from '@components/event/EventBanner.astro';
+import HomepageCard from '@components/homepage/HomepageCard.astro';
+import HomepageVideos from '@components/homepage/HomepageVideos.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
 export const prerender = true;
@@ -209,7 +208,28 @@ export const prerender = true;
                 </div>
                 <div class="col-sm-6">
                     <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
-                        <div class="card-body" id="homepage-code-example"><CodeExample /></div>
+                        <div class="card-body" id="homepage-code-example">
+                            <div data-rehype-pretty-code-fragment="">
+                                <pre
+                                    data-language="bash"
+                                    data-theme="default"><code data-language="bash" data-theme="default"><span class="line"><span style="color: #616E88"># Install nextflow</span></span>
+<span class="line"><span style="color: #D8DEE9FF">curl -s https://get.nextflow.io </span><span style="color: #81A1C1">|</span><span style="color: #D8DEE9FF"> bash</span></span>
+<span class="line"><span style="color: #D8DEE9FF">mv nextflow </span><span style="color: #81A1C1">~</span><span style="color: #D8DEE9FF">/bin/</span></span>
+<span class="line" />
+<span class="line"><span style="color: #616E88"># Launch the RNAseq pipeline</span></span>
+<span class="line"><span style="color: #D8DEE9FF">nextflow run nf-core/rnaseq \</span></span>
+<span class="line"><span style="color: #D8DEE9FF">    --input samplesheet.csv \</span></span>
+<span class="line"><span style="color: #D8DEE9FF">    --output ./results/ \</span></span>
+<span class="line"><span style="color: #D8DEE9FF">    --genome GRCh37 \</span></span>
+<span class="line"><span style="color: #D8DEE9FF">    -profile docker</span></span>
+<span class="line" />
+<span class="line"><span style="color: #616E88"># Install nf-core tools</span></span>
+<span class="line"><span style="color: #D8DEE9FF">pip install nf-core</span></span>
+<span class="line" />
+<span class="line"><span style="color: #616E88"># List all nf-core pipelines and show available updates</span></span>
+<span class="line"><span style="color: #D8DEE9FF">nf-core list</span></span></code></pre>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,7 +277,7 @@ export const prerender = true;
 </BaseLayout>
 
 <style lang="scss">
-    @import '../styles/_variables.scss';
+    @import '@styles/_variables.scss';
     .homepage-header .homepage-header-contents {
         margin: 4rem auto 0;
         padding: 0;

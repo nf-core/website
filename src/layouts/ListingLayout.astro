@@ -1,10 +1,9 @@
 ---
-import PageLayout from './PageLayout.astro';
+import PageLayout from '@layouts/PageLayout.astro';
 import FilterBar from '@components/FilterBar.svelte';
-import ComponentListing from '@components/ComponentListing.svelte';
-import PipelinesListing from '@components/PipelinesListing.svelte';
+import ComponentListing from '@components/component/ComponentListing.svelte';
+import PipelinesListing from '@components/pipeline/PipelinesListing.svelte';
 import ConfigListing from '@components/ConfigListing.svelte';
-import { string } from 'astro/zod';
 
 export interface Props {
     title: string;
