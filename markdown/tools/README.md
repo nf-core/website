@@ -6,8 +6,9 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 **Pipelines:** [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
 
+</br>
 
-<img align="left" src="assets/img/Cobiont_sm.png" height="50px" style="margin-right: 8px">
+<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main_page/markdown/tools/images/cobiontID.png" height="50px" style="margin-right: 8px">
 
 ## CobiontID
 
@@ -15,6 +16,7 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 **Pipelines:** cobiontcheck
 
+</br>
 
 ## Yet another Hi-C Scaffolding tool (YaHS)
 
@@ -22,6 +24,7 @@ Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index fo
 
 **Pipelines:** [genomeassembly](https://pipelines.tol.sanger.ac.uk/genomeassembly)
 
+</br>
 
 ## MitoHiFi
 
