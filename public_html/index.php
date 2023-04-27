@@ -223,7 +223,7 @@ endif;
       <img src="assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
       <img src="assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
     </h1>
-    <p class="lead font-weight-normal">Workflows and tools to investigate the genomics diversity of complex organisms.</p>
+    <p class="lead font-weight-normal">Workflows and tools to investigate the genomic diversity of complex organisms.</p>
     <div class="homepage-cta-flex mb-5">
       <a class="homepage-cta" href="/pipelines">View Pipelines</a>
     </div>
@@ -428,7 +428,7 @@ endif;
       <div class="col-sm-6">
         <h2 id="get-started" class="text-white">Get started in minutes</h2>
         <p class="text-white-50">Nextflow lets you run sanger-tol pipelines on virtually any computing environment.</p>
-        <p class="text-white-50">All sanger-tol genomics pipelines are modifiable with the
+        <p class="text-white-50">All sanger-tol genomic pipelines are modifiable with the
           <a href="https://github.com/nf-core/tools" target="_blank" style="white-space:nowrap;">nf-core tools</a>.</p>
       </div>
       <div class="col-sm-6">
