@@ -76,10 +76,10 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                          `._,._,'
 
-    nf-core/tools version 2.3dev0 - https://nf-co.re
+    nf-core/tools version 2.8 - https://nf-co.re
 
     INFO     Using Bioconda package: 'bioconda::fastqc=0.11.9'                                                                                                           create.py:130
-    INFO     Using Docker container: 'quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1'                                                                                   create.py:190
+    INFO     Using Docker container: 'biocontainers/fastqc:0.11.9--hdfd78af_1'                                                                                   create.py:190
     INFO     Using Singularity container: 'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--hdfd78af_1'                                                        create.py:191
     INFO     Created / edited following files:                                                                                                                           create.py:269
             ./modules/fastqc/main.nf
@@ -498,7 +498,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
         conda (params.enable_conda ? "bioconda::tool=0.9.1:" : null)
         container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
             'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
-            'quay.io/biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
+            'biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
 
         ...
 
@@ -694,7 +694,7 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
-    'quay.io/biocontainers/fastqc:0.11.9--0' }"
+    'biocontainers/fastqc:0.11.9--0' }"
 ```
 
 2. If the software is available on Conda it MUST also be defined using the Nextflow `conda` directive. Using `bioconda::bwa=0.7.17` as an example, software MUST be pinned to the channel (i.e. `bioconda`) and version (i.e. `0.7.17`). Conda packages MUST not be pinned to a build because they can vary on different platforms.
