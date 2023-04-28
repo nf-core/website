@@ -3,7 +3,7 @@ title: 'Bytesize: nf-core community survey 2023'
 subtitle: Christopher Hakkaart - Seqera Labs
 type: talk
 start_date: '2023-05-16'
-start_time: '13:00 CET'
+start_time: '13:00 CEST'
 end_date: '2023-05-16'
 end_time: '13:30 CET'
 location_url:
