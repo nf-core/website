@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-core community survey 2023
 
-This week, Christopher Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will discuss the results of the nf-core community survey.
+This week, Christopher Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) will discuss the results of the nextflow/nf-core community survey.
