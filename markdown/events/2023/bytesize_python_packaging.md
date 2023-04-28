@@ -5,7 +5,7 @@ type: talk
 start_date: '2023-05-02'
 start_time: '13:00 CEST'
 end_date: '2023-05-02'
-end_time: '13:30 CET'
+end_time: '13:30 CEST'
 location_url:
   - https://kth-se.zoom.us/j/68390542812
 ---
