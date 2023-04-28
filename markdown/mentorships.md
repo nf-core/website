@@ -111,7 +111,7 @@ Dates are subject to change:
   <dt class="col-md-3 text-md-end">Applications open:</dt>
   <dd class="col-md-9">April 1st 2023</dd>
   <dt class="col-md-3 text-md-end">Applications close:</dt>
-  <dd class="col-md-9">May 1st 2023</dd>
+  <dd class="col-md-9">May 15th 2023</dd>
   <dt class="col-md-3 text-md-end">Mentorships start:</dt>
   <dd class="col-md-9">June 1st 2023</dd>
   <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
