@@ -3,7 +3,7 @@ title: 'Bytesize: Converting Python scripts into packages for PyPI, Bioconda & B
 subtitle: Phil Ewels - Seqera Labs
 type: talk
 start_date: '2023-05-02'
-start_time: '13:00 CET'
+start_time: '13:00 CEST'
 end_date: '2023-05-02'
 end_time: '13:30 CET'
 location_url:
