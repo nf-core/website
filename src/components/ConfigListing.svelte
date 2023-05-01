@@ -51,7 +51,7 @@
             {#each filteredConfigs as config}
                 <tr>
                     <td class="name">
-                        <a href={'configs/' + config.name}>{@html config.name.replace('_', '_<wbr>')}</a>
+                        <a href={'/configs/' + config.name}>{@html config.name.replace('_', '_<wbr>')}</a>
                     </td>
                     <td class="description w-50">
                         {config.config.config_profile_description}
