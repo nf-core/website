@@ -28,7 +28,6 @@ BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
     return lang;
 });
 
-
 // https://astro.build/config
 export default defineConfig({
     site: 'https://deploy-preview-1652--nf-core.netlify.app/', // TODO: switch back to 'https://nf-co.re/'

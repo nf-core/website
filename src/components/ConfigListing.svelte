@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { config } from 'dotenv';
-    import { DisplayStyle, SearchQuery } from './store.js';
-    import ComponentCard from '@components/ComponentCard.svelte';
+    import { SearchQuery } from './store.js';
 
     export let configs: {
         name: string;
@@ -30,6 +28,9 @@
     });
 
     $: filteredConfigs = searchFilterConfigs(configs);
+    configs.map((config) => {
+        config.name = config.name.replace('.md', '');
+    });
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
@@ -42,25 +43,21 @@
         <thead>
             <tr>
                 <th class="name" scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">URL</th>
+                <th class="description" scope="col">Description</th>
+                <th scope="col">Executor</th>
             </tr>
         </thead>
         <tbody>
             {#each filteredConfigs as config}
                 <tr>
                     <td class="name">
-                        <a href={config.name}>{@html config.name.replace('_', '_<wbr>')}</a>
+                        <a href={'configs/' + config.name}>{@html config.name.replace('_', '_<wbr>')}</a>
                     </td>
-                    <td class="description">
-                        {config.config?.params?.config_profile_description
-                            ? config.config.params.config_profile_description
-                            : ''}
+                    <td class="description w-50">
+                        {config.config.config_profile_description}
                     </td>
-                    <td class="url">
-                        {config.config?.params?.config_profile_url
-                            ? `<a href=${config.config.params.config_profile_url}>${config.config.params.config_profile_url}</a>`
-                            : ''}
+                    <td>
+                        {config.config.executor}
                     </td>
                 </tr>
             {/each}
@@ -72,6 +69,11 @@
 <style>
     .name {
         min-width: 15rem;
+        word-break: break-word;
+    }
+
+    .description {
+        min-width: 20rem;
         word-break: break-word;
     }
     .keywords {
