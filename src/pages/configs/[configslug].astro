@@ -1,0 +1,207 @@
+---
+import { markdown } from '@astropub/md';
+import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
+import octokit from '@components/octokit';
+import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+    //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
+    const files = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'nf-core',
+        repo: 'configs',
+        path: 'docs',
+    });
+
+    function parseConfig(fileContent) {
+        let config = {
+            config_profile_description: '',
+            config_profile_contact: '',
+            config_profile_url: '',
+            executor: '',
+        };
+
+        // find values executor in params files
+        config.config_profile_description = fileContent.match(/config_profile_description\s*=\s*(.*)/)
+            ? fileContent.match(/config_profile_description\s*=\s*(.*)/)[1]
+            : '';
+        config.config_profile_contact = fileContent.match(/config_profile_contact\s*=\s*(.*)/)
+            ? fileContent.match(/config_profile_contact\s*=\s*(.*)/)[1]
+            : '';
+        config.config_profile_url = fileContent.match(/config_profile_url\s*=\s*(.*)/)
+            ? fileContent.match(/config_profile_url\s*=\s*(.*)/)[1]
+            : '';
+        config.executor = fileContent.match(/executor\s*=\s*(.*)/) ? fileContent.match(/executor\s*=\s*(.*)/)[1] : '';
+
+        //remove double and quotes
+        Object.keys(config).forEach((key) => {
+            config[key] = config[key].replace(/'|"/g, '');
+        });
+
+        return config;
+    }
+
+    //filter out directories
+    let markdowns = files.data.filter((file) => file.type === 'file');
+    // exclude template file
+    markdowns = markdowns.filter((file) => file.name !== 'template.md');
+
+    //get the markdown file contents
+    const configs = await Promise.all(
+        markdowns.map(async (markdown) => {
+            const content = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'nf-core',
+                repo: 'configs',
+                path: markdown.path,
+            });
+            const config = await octokit
+                .request('GET /repos/{owner}/{repo}/contents/{path}', {
+                    owner: 'nf-core',
+                    repo: 'configs',
+                    path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
+                })
+                .catch((error) => {
+                    console.log(error);
+                    return {
+                        data: {
+                            content: Buffer.from('No config file found').toString('base64'),
+                        },
+                    };
+                });
+            return {
+                name: markdown.name,
+                content: Buffer.from(content.data.content, 'base64').toString(),
+                config: parseConfig(Buffer.from(config.data.content, 'base64').toString()),
+                raw_config: Buffer.from(config.data.content, 'base64').toString(),
+                path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
+            };
+        })
+    );
+    return await configs.map((config) => {
+        return [
+            {
+                params: {
+                    configslug: config.name.replace('.md', ''),
+                },
+                props: {
+                    content: config.content,
+                    config: config.config,
+                    raw_config: config.raw_config,
+                    path: config.path,
+                },
+            },
+        ];
+    });
+}
+const { configslug } = Astro.params;
+let { content, config, raw_config, path } = Astro.props;
+
+// remove nf-core/configs (with or without :) from markdown heading
+
+content = content.replace(/nf-core\/configs(:)?\s*/g, '');
+//wrap raw_config as markdown code-block
+raw_config = '```nextflow title="' + path.split('/').pop() + '"\n' + raw_config + '\n```';
+const contact = config.config_profile_contact.match(/@(\w+)/) ? config.config_profile_contact.match(/@(\w+)/)[1] : '';
+
+export const prerender = true;
+
+const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configslug + '.md';
+---
+
+<PageLayout
+    title={configslug}
+    subtitle={config.config_profile_description}
+    mainpage_container={true}
+    md_github_url={gh_url}
+    subfooter={true}
+>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <div class="markdown-content">
+                <MarkdownWrapper headings={} client:idle>
+                    {
+                        async () => {
+                            const html = await markdown(content);
+                            return html;
+                        }
+                    }
+                </MarkdownWrapper>
+            </div>
+            <h1>Config file</h1>
+            <div class="config-code">
+                {
+                    async () => {
+                        const html = await markdown(raw_config);
+                        return html;
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-none col-md-2 sidebar">
+            {
+                config.executor && (
+                    <SidebarStatsRow
+                        content={[
+                            { title: 'executor', value: config.executor },
+                            {
+                                title: 'contact',
+                                value: `<a
+                                    href=${'https://github.com/' + contact}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    slot="contact"
+                                >
+                                    <img class="me-2 pb-2" src=${
+                                        'https://github.com/' + contact + '.png?size=50'
+                                    } alt=${contact} />
+                                </a>`,
+                            },
+                        ]}
+                    />
+                )
+            }
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: 'homepage',
+                    },
+                ]}
+            >
+                <a class="text-truncate text-nowrap overflow-x-auto" href={config.config_profile_url}
+                    >{config.config_profile_url}</a
+                >
+            </SidebarStatsRow>
+            {
+                !config.executor && (
+                    <SidebarStatsRow
+                        content={[
+                            {
+                                title: 'contact',
+                                value: `<a
+                                    href=${'https://github.com/' + contact}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    slot="contact"
+                                >
+                                    <img class="me-2 pb-2" src=${
+                                        'https://github.com/' + contact + '.png?size=50'
+                                    } alt=${contact} />
+                                </a>`,
+                            },
+                        ]}
+                    />
+                )
+            }
+            <SidebarStatsRow content={[{ title: 'get in touch' }]} lastChild={true}>
+                <div class="d-flex flex-column">
+                    <a class="btn btn-sm btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/configs'}
+                        ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+                    >
+                    <a class="btn btn-sm btn-outline-secondary" href={'https://github.com/nf-core/configs/issues'}
+                        ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+                    >
+                </div>
+            </SidebarStatsRow>
+        </div>
+    </div>
+</PageLayout>

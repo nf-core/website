@@ -10,39 +10,29 @@ const files = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}',
 });
 
 function parseConfig(fileContent) {
-    const config = {};
+    let config = {
+        config_profile_description: '',
+        config_profile_contact: '',
+        config_profile_url: '',
+        executor: '',
+    };
 
-    // Define regular expression to match each configuration block
-    const blockRegex = /(\w+)\s*\{([\s\S]*?)\}/g;
+    // find values executor in params files
+    config.config_profile_description = fileContent.match(/config_profile_description\s*=\s*(.*)/)
+        ? fileContent.match(/config_profile_description\s*=\s*(.*)/)[1]
+        : '';
+    config.config_profile_contact = fileContent.match(/config_profile_contact\s*=\s*(.*)/)
+        ? fileContent.match(/config_profile_contact\s*=\s*(.*)/)[1]
+        : '';
+    config.config_profile_url = fileContent.match(/config_profile_url\s*=\s*(.*)/)
+        ? fileContent.match(/config_profile_url\s*=\s*(.*)/)[1]
+        : '';
+    config.executor = fileContent.match(/executor\s*=\s*(.*)/) ? fileContent.match(/executor\s*=\s*(.*)/)[1] : '';
 
-    let match;
-    while ((match = blockRegex.exec(fileContent))) {
-        const blockType = match[1];
-        const blockContent = match[2];
-        const blockConfig = {};
-
-        // Parse key-value pairs within configuration block
-        const keyValueRegex = /(\w+)\s*=\s*([^\n]+)/g;
-        let keyValMatch;
-        while ((keyValMatch = keyValueRegex.exec(blockContent))) {
-            const key = keyValMatch[1];
-            const value = keyValMatch[2].replaceAll(/^['"]|['"]$/g, ''); // Remove quotes from value
-            // check if key already exists
-            if (blockConfig[key]) {
-                // if it does, make it an array
-                if (!Array.isArray(blockConfig[key])) {
-                    blockConfig[key] = [blockConfig[key]];
-                }
-                // add the new value to the array
-                blockConfig[key].push(value);
-            } else {
-                blockConfig[key] = value;
-            }
-        }
-
-        // Add configuration block to overall config object
-        config[blockType] = blockConfig;
-    }
+    //remove double and quotes
+    Object.keys(config).forEach((key) => {
+        config[key] = config[key].replace(/'|"/g, '');
+    });
 
     return config;
 }
@@ -81,7 +71,6 @@ const configs = await Promise.all(
         };
     })
 );
-console.log(configs[20].config);
 const title = 'nf-core/configs';
 const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
 
