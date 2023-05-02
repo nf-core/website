@@ -1,9 +1,10 @@
 ---
 import EventIndicator from '@components/event/EventIndicator.svelte';
-import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
+import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
+import Search from 'astro-pagefind/components/Search';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -82,9 +83,12 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
                     </ul>
                 </li>
             </ul>
+            <!-- search bar -->
+
+            <Search class="p-2" />
             <hr class="d-md-none" />
             <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join"> Join nf-core</a>
+            <a class="d-none d-lg-block btn btn-success ms-auto align-self-start" href="/join"> Join nf-core</a>
         </div>
     </div>
 </nav>
@@ -97,7 +101,7 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
     )
 }
 
-<style lang="scss">
+<style lang="scss" is:global>
     @import '@styles/_variables.scss';
 
     .navbar.fixed-top {
@@ -132,6 +136,18 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
         }
         .navbar-toggler:focus-within {
             box-shadow: none;
+        }
+    }
+    .pagefind-ui {
+        max-width: 95%;
+        --pagefind-ui-border: #{$gray-400};
+        .pagefind-ui__search-input {
+            opacity: 1;
+            color: $gray-900 !important;
+        }
+        .pagefind-ui__drawer,
+        .pagefind-ui__drawer .pagefind-ui__result-link {
+            color: $secondary !important;
         }
     }
 </style>
