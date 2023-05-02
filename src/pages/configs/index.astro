@@ -1,0 +1,88 @@
+---
+import octokit from '@components/octokit';
+import ListingLayout from '@layouts/ListingLayout.astro';
+
+//get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
+const files = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    owner: 'nf-core',
+    repo: 'configs',
+    path: 'docs',
+});
+
+function parseConfig(fileContent) {
+    let config = {
+        config_profile_description: '',
+        config_profile_contact: '',
+        config_profile_url: '',
+        executor: '',
+    };
+
+    // find values executor in params files
+    config.config_profile_description = fileContent.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/)
+        ? fileContent.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/)[2]
+        : '';
+    config.config_profile_contact = fileContent.match(/config_profile_contact\s*=\s*(.*)/)
+        ? fileContent.match(/config_profile_contact\s*=\s*(.*)/)[1]
+        : '';
+    config.config_profile_url = fileContent.match(/config_profile_url\s*=\s*(.*)/)
+        ? fileContent.match(/config_profile_url\s*=\s*(.*)/)[1]
+        : '';
+    config.executor = fileContent.match(/executor\s*=\s*(.*)/) ? fileContent.match(/executor\s*=\s*(.*)/)[1] : '';
+    if (config.executor === '') {
+        //maybe it is executor{\n name=...} instead?
+        config.executor = fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*/)
+            ? fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*/)[1]
+            : '';
+    }
+    //remove double and quotes
+    Object.keys(config).forEach((key) => {
+        config[key] = config[key].replace(/'|"/g, '');
+    });
+
+    //remove provided by nf-core/configs string from description
+    config.config_profile_description = config.config_profile_description.replace(' provided by nf-core/configs', '');
+
+    return config;
+}
+//filter out directories
+let markdowns = files.data.filter((file) => file.type === 'file');
+// exclude template file
+markdowns = markdowns.filter((file) => file.name !== 'template.md');
+
+//get the markdown file contents
+const configs = await Promise.all(
+    markdowns.map(async (markdown) => {
+        const content = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+            owner: 'nf-core',
+            repo: 'configs',
+            path: markdown.path,
+        });
+        const config = await octokit
+            .request('GET /repos/{owner}/{repo}/contents/{path}', {
+                owner: 'nf-core',
+                repo: 'configs',
+                path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
+            })
+            .catch((error) => {
+                console.log(error);
+                return {
+                    data: {
+                        content: Buffer.from('No config file found').toString('base64'),
+                    },
+                };
+            });
+        return {
+            name: markdown.name,
+            content: Buffer.from(content.data.content, 'base64').toString(),
+            config: parseConfig(Buffer.from(config.data.content, 'base64').toString()),
+        };
+    })
+);
+const title = 'nf-core/configs';
+const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
+
+export const prerender = true;
+---
+
+<ListingLayout title={title} description={description} configs={configs} filter={[]} sortBy={[]} displayStyle={[]} />
+<style></style>
