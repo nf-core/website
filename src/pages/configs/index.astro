@@ -39,6 +39,9 @@ function parseConfig(fileContent) {
         config[key] = config[key].replace(/'|"/g, '');
     });
 
+    //remove provided by nf-core/configs string from description
+    config.config_profile_description = config.config_profile_description.replace(' provided by nf-core/configs', '');
+
     return config;
 }
 //filter out directories
