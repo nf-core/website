@@ -11,10 +11,13 @@
         if ($SearchQuery === '') {
             return true;
         }
-        if (config.meta.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (config.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
             return true;
         }
-        if (config.content && config.content.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (config.config_profile_description?.toLowerCase().includes($SearchQuery.toLowerCase())) {
+            return true;
+        }
+        if (config.executor?.toLowerCase().includes($SearchQuery.toLowerCase())) {
             return true;
         }
         return false;
@@ -40,7 +43,7 @@
         {/each}
     {:else if $DisplayStyle === 'table'} -->
     <table class="table">
-        <thead>
+        <thead class="text-bg-secondary">
             <tr>
                 <th class="name" scope="col">Name</th>
                 <th class="description" scope="col">Description</th>
@@ -66,7 +69,8 @@
     <!-- {/if} -->
 </div>
 
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
     .name {
         min-width: 15rem;
         word-break: break-word;
