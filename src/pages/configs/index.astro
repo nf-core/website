@@ -18,8 +18,8 @@ function parseConfig(fileContent) {
     };
 
     // find values executor in params files
-    config.config_profile_description = fileContent.match(/config_profile_description\s*=\s*(.*)/)
-        ? fileContent.match(/config_profile_description\s*=\s*(.*)/)[1]
+    config.config_profile_description = fileContent.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/)
+        ? fileContent.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/)[2]
         : '';
     config.config_profile_contact = fileContent.match(/config_profile_contact\s*=\s*(.*)/)
         ? fileContent.match(/config_profile_contact\s*=\s*(.*)/)[1]
@@ -28,7 +28,12 @@ function parseConfig(fileContent) {
         ? fileContent.match(/config_profile_url\s*=\s*(.*)/)[1]
         : '';
     config.executor = fileContent.match(/executor\s*=\s*(.*)/) ? fileContent.match(/executor\s*=\s*(.*)/)[1] : '';
-
+    if (config.executor === '') {
+        //maybe it is executor{\n name=...} instead?
+        config.executor = fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*/)
+            ? fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*/)[1]
+            : '';
+    }
     //remove double and quotes
     Object.keys(config).forEach((key) => {
         config[key] = config[key].replace(/'|"/g, '');
@@ -36,7 +41,6 @@ function parseConfig(fileContent) {
 
     return config;
 }
-
 //filter out directories
 let markdowns = files.data.filter((file) => file.type === 'file');
 // exclude template file
