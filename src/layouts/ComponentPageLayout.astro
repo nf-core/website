@@ -12,14 +12,9 @@ const { name, description, type } = Astro.props;
 const gh_url = 'https://github.com/nf-core/modules/tree/master/modules/nf-core/' + name.replace('_', '/');
 ---
 
-<PageLayout
-    title={type + '/' + name}
-    subtitle={description}
-    mainpage_container={true}
-    data-pagefind-filter=`${type}:${name}`
->
+<PageLayout title={type + '/' + name} subtitle={description} mainpage_container={true}>
     <SubHeader gh_url={gh_url} component_type={type} slot="sub-header" component={name} />
-    <div>
+    <div data-pagefind-filter=`category:${type}`>
         <slot />
     </div>
 </PageLayout>
