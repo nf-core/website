@@ -1,0 +1,117 @@
+---
+import Search from 'astro-pagefind/components/Search';
+---
+
+<script>
+    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+    // check if macOS switch to ctrl if not for keyboard shortcut
+    const isMacOS = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    if (!isMacOS) {
+        document.getElementById('keyboard-shortcut').innerText = 'Ctrl K';
+    }
+    // toggle modal on keyboard shortcut
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            var myModal = new bootstrap.Modal(document.getElementById('searchModal'));
+            myModal.show();
+            //set focus on search input after animation
+            setTimeout(function () {
+                document.querySelector('.pagefind-ui__search-input').focus();
+            }, 500);
+        }
+    });
+</script>
+<button
+    type="button"
+    class="btn btn-outline-secondary align-self-center d-flex align-items-center justify-content-between w-100 pe-2"
+    data-bs-toggle="modal"
+    data-bs-target="#searchModal"
+>
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="hidden md:inline-block text-mute flex-fill d-flex align-items-center">
+        <span class="ms-1">Search</span>
+        <span id="keyboard-shortcut" class="text-bg-secondary p-1 rounded-1 ms-auto text-small">⌘ K</span>
+    </div>
+</button>
+
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body" id="search">
+                <button
+                    type="button"
+                    class="float-end btn btn-close text-small"
+                    aria-label="Close"
+                    data-bs-dismiss="modal"></button>
+                <Search class="pt-3" />
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .btn-outline-secondary {
+        max-width: 10rem;
+    }
+</style>
+<style lang="scss" is:global>
+    @import '@styles/_variables.scss';
+    .modal-backdrop.fade.show {
+        z-index: 1;
+    }
+    .modal-body {
+        max-height: 95vh;
+        overflow: auto;
+    }
+    #search .pagefind-ui {
+        // max-width: 95%;
+        padding-top: 2rem;
+        --pagefind-ui-border: #{$gray-400};
+        .pagefind-ui__search-input {
+            opacity: 1;
+            color: $gray-900 !important;
+        }
+        .pagefind-ui__drawer {
+            color: body-color !important;
+            .pagefind-ui__result-link {
+                color: $success !important;
+            }
+        }
+        .pagefind-ui__result-thumb {
+            display: none;
+        }
+    }
+    @include color-mode(dark) {
+        #search .pagefind-ui {
+            // max-width: 95%;
+            padding-top: 2rem;
+            --pagefind-ui-border: #{$border-color-dark};
+            --pagefind-ui-text: #{$body-color-dark};
+            .pagefind-ui__search-input,
+            .pagefind-ui__search-input::before {
+                opacity: 1;
+                background-color: $body-tertiary-bg-dark;
+                color: $emphasis-color-dark !important;
+            }
+            .pagefind-ui__search-clear {
+                padding-left: 1rem;
+                background-color: $body-secondary-bg-dark;
+                color: $emphasis-color-dark !important;
+                &:hover {
+                    background-color: tint-color($body-secondary-bg-dark, 25%);
+                }
+            }
+
+            .pagefind-ui__drawer {
+                color: $body-color-dark !important;
+                .pagefind-ui__result-link {
+                    color: $success !important;
+                }
+            }
+            .pagefind-ui__result-thumb {
+                display: none;
+            }
+        }
+    }
+</style>

@@ -32,6 +32,8 @@ $font-family-sans-serif: 'InterVariant', 'Open Sans', sans-serif;
 $font-family-monospace: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',
   'Bitstream Vera Sans Mono', 'Courier New', monospace;
 
+$btn-close-width: 0.75em;
+
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
 
@@ -55,7 +57,6 @@ $success-dark: $green;
 
 @import 'bootstrap/scss/variables-dark';
 
-
 // extra-wide breakpoints
 $container-max-widths: (
   sm: 540px,
@@ -78,5 +79,4 @@ $grid-breakpoints: (
 
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';
-@import "bootstrap/scss/utilities";
-
+@import 'bootstrap/scss/utilities';
