@@ -1,15 +1,3 @@
-<script>
-    import { onMount } from 'svelte';
-    onMount(() => {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-            if (storedTheme !== 'light' || storedTheme !== 'dark') {
-                setTheme(getPreferredTheme());
-            }
-        });
-        showActiveTheme(getPreferredTheme());
-    });
-</script>
-
 <svelte:head>
     <script>
         // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -23,8 +11,10 @@
         const setTheme = function (theme) {
             if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.body.setAttribute('data-bs-theme', 'dark');
+                showActiveTheme(getPreferredTheme());
             } else {
                 document.body.setAttribute('data-bs-theme', theme);
+                showActiveTheme(theme);
             }
         };
         const showActiveTheme = (theme) => {
