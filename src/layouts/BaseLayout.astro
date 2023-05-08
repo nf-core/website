@@ -35,7 +35,8 @@ const {
         <BaseHead title={title} description={subtitle} image={image} />
     </head>
 
-    <body tabindex="0" data-bs-theme="dark">
+    <body tabindex="0">
+        <Navbar navTocHeadings={navTocHeadings} title={title} />
         <Navbar navTocHeadings={navTocHeadings} title={title} />
         <div class="content">
             <slot />

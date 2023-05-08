@@ -39,6 +39,24 @@ const { title, description, image = '/social_img.png' } = Astro.props;
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
 
+<!-- Theme -->
+<script is:inline>
+    const root = document.documentElement;
+    const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
+    })();
+    if (theme === 'light') {
+        root.setAttribute('data-bs-theme', 'light');
+    } else {
+        root.setAttribute('data-bs-theme', 'dark');
+    }
+</script>
 <!-- Google Analytics -->
 <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=UA-68098153-2"></script>
 <script type="text/partytown">
