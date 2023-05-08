@@ -28,7 +28,7 @@
     }
 </script>
 
-<div class="dropwdown btn-group" role="group">
+<div class="dropwdown btn-group" role="group" data-pagefind-ignore>
     <button
         type="button"
         class={'btn dropdown-toggle ' + add_class}

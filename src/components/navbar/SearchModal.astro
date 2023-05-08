@@ -3,8 +3,6 @@ import Search from 'astro-pagefind/components/Search';
 ---
 
 <script>
-    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
     // check if macOS switch to ctrl if not for keyboard shortcut
     const isMacOS = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     if (!isMacOS) {
@@ -16,11 +14,13 @@ import Search from 'astro-pagefind/components/Search';
             e.preventDefault();
             var myModal = new bootstrap.Modal(document.getElementById('searchModal'));
             myModal.show();
-            //set focus on search input after animation
-            setTimeout(function () {
-                document.querySelector('.pagefind-ui__search-input').focus();
-            }, 500);
         }
+    });
+    //set focus on search input after show.bs.modal event
+    document.getElementById('searchModal').addEventListener('show.bs.modal', () => {
+        setTimeout(() => {
+            document.querySelector('.pagefind-ui__search-input').focus();
+        }, 500);
     });
 </script>
 <button
@@ -54,11 +54,14 @@ import Search from 'astro-pagefind/components/Search';
     .btn-outline-secondary {
         max-width: 10rem;
     }
+    .modal.modal-dialog {
+        margin-top: 5rem;
+    }
 </style>
 <style lang="scss" is:global>
     @import '@styles/_variables.scss';
     .modal-backdrop.fade.show {
-        z-index: 1;
+        z-index: 1029;
     }
     .modal-body {
         max-height: 95vh;

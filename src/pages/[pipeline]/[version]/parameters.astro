@@ -75,7 +75,11 @@ export const prerender = true;
     versions={versions}
     tabItems={tabItems}
 >
-    <div class="row">
+    <div
+        class="row"
+        data-pagefind-filter=`category:pipeline`
+        data-pagefind-meta=`title:${pipeline}(${version}) Parameters`
+    >
         <div class="col-12 col-md-10">
             {
                 Object.keys(schema.definitions).length === 0 && (
