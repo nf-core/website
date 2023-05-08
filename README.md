@@ -71,6 +71,14 @@ npm run build-component-json
 npm run build-cache-force
 ```
 
+### Updating the search index
+
+The search index is built using [pagefind](https://pagefind.app/) and is automatically created after the build step. In order to have it available in `dev` mode, you need to therefore run the build command prior to starting the `dev` server:
+
+```bash
+npm run build
+```
+
 <!-- ## Production Server Setup
 
 ### Deployment
