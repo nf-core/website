@@ -7,6 +7,7 @@ import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
 import HomepageVideos from '@components/homepage/HomepageVideos.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { Code } from 'astro/components';
 
 export const prerender = true;
 ---
@@ -37,7 +38,7 @@ export const prerender = true;
     </div>
 
     <div class="triangle-up text-bg-success"></div>
-    <div class="homepage-intro text-bg-success">
+    <div class="homepage-intro text-white bg-success">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
@@ -209,26 +210,25 @@ export const prerender = true;
                 <div class="col-sm-6">
                     <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
                         <div class="card-body" id="homepage-code-example">
-                            <div data-rehype-pretty-code-fragment="">
-                                <pre
-                                    data-language="bash"
-                                    data-theme="default"><code data-language="bash" data-theme="default"><span class="line"><span style="color: #616E88"># Install nextflow</span></span>
-<span class="line"><span style="color: #D8DEE9FF">curl -s https://get.nextflow.io </span><span style="color: #81A1C1">|</span><span style="color: #D8DEE9FF"> bash</span></span>
-<span class="line"><span style="color: #D8DEE9FF">mv nextflow </span><span style="color: #81A1C1">~</span><span style="color: #D8DEE9FF">/bin/</span></span>
-<span class="line" />
-<span class="line"><span style="color: #616E88"># Launch the RNAseq pipeline</span></span>
-<span class="line"><span style="color: #D8DEE9FF">nextflow run nf-core/rnaseq \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    --input samplesheet.csv \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    --output ./results/ \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    --genome GRCh37 \</span></span>
-<span class="line"><span style="color: #D8DEE9FF">    -profile docker</span></span>
-<span class="line" />
-<span class="line"><span style="color: #616E88"># Install nf-core tools</span></span>
-<span class="line"><span style="color: #D8DEE9FF">pip install nf-core</span></span>
-<span class="line" />
-<span class="line"><span style="color: #616E88"># List all nf-core pipelines and show available updates</span></span>
-<span class="line"><span style="color: #D8DEE9FF">nf-core list</span></span></code></pre>
-                            </div>
+                            <Code
+                                code={`# Install nextflow
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+# Launch the RNAseq pipeline
+nextflow run nf-core/rnaseq \\
+    --input samplesheet.csv \\
+    --output ./results/ \\
+    --genome GRCh37 \\
+    -profile docker
+
+# Install nf-core tools
+pip install nf-core
+
+# List all nf-core pipelines and show available updates
+nf-core list`}
+                                lang="bash"
+                            />
                         </div>
                     </div>
                 </div>
