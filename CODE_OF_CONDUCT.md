@@ -28,7 +28,11 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about).
 
-Our Safety Officers are Saba Nafees, Cris Tuñí, and Michael Heuer.
+Our Safety Officers are 
+
+- [@ctuni](https://github.com/ctuni): Cris Tuñí ([contact](mailto:c.tuni.dominguez@gmail.com))
+- [@heuerm](https://github.com/heuermh): Michael Heuer ([contact](mailto:mheuer@mammothbiosci.com))
+- [@snafees](https://github.com/snafees/): Saba Nafees ([contact](mailto:saba.nafees314@gmail.com))
 
 nf-core is a young and growing community that welcomes contributions from anyone with a shared vision for [Open Science Policies](https://www.fosteropenscience.eu/taxonomy/term/8). Open science policies encompass inclusive behaviours and we strive to build and maintain a safe and inclusive environment for all individuals.
 
