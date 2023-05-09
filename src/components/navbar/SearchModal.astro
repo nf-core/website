@@ -25,14 +25,17 @@ import Search from 'astro-pagefind/components/Search';
 </script>
 <button
     type="button"
-    class="btn btn-outline-secondary btn-sm align-self-center d-flex align-items-center justify-content-between w-100 pe-2"
+    class="btn btn-outline-secondary btn-sm align-self-center d-flex align-items-center justify-content-between w-100 pe-1"
     data-bs-toggle="modal"
     data-bs-target="#searchModal"
 >
     <i class="fa-solid fa-magnifying-glass"></i>
     <div class="hidden md:inline-block text-mute flex-fill d-flex align-items-center">
         <span class="ms-1">Search</span>
-        <span id="keyboard-shortcut" class="text-bg-secondary p-1 rounded-1 ms-auto text-small">⌘ K</span>
+        <span
+            id="keyboard-shortcut"
+            class="d-none d-md-inline-block border border-2 text-w p-1 rounded-1 ms-auto text-small">⌘ K</span
+        >
     </div>
 </button>
 
@@ -54,8 +57,10 @@ import Search from 'astro-pagefind/components/Search';
     .btn-outline-secondary {
         max-width: 10rem;
     }
-    .modal .modal-dialog {
-        margin-top: 5rem;
+    @include media-breakpoint-up(md) {
+        .modal .modal-dialog {
+            margin-top: 5rem;
+        }
     }
 </style>
 <style lang="scss" is:global>
@@ -77,6 +82,9 @@ import Search from 'astro-pagefind/components/Search';
         }
         .pagefind-ui__drawer {
             color: body-color !important;
+            @include media-breakpoint-down(md) {
+                flex-direction: column;
+            }
             .pagefind-ui__result-link {
                 color: $success !important;
             }
