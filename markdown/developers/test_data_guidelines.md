@@ -26,7 +26,9 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 1. Always ask on the [#modules](https://nfcore.slack.com/channels/modules) or [#test-data](https://nfcore.slack.com/channels/modules) channels on the [nf-core slack](https://nf-co.re/join/slack) before adding test data.
 
-2. Add any new test data from a pull request from a personal fork of the nf-core/test-dataset repository.
+2. Add any new test data via a pull request from the corresponding branch of a personal fork of the nf-core/test-dataset repository.
+
+    - For example, to add test-data for a module, upload to the `modules` branch of your fork, and open the PR against the `modules` branch of the nf-core/test-datasets repo. For a pipeline, e.g. nf-core/mag, upload to the `mag` branch of your fork, and open the PR against the `mag` branch of the nf-core/test-datasets repo.
 
 3. New bioinformatic test data files should be generated from the existing collections of test data as far as possible. See field-specific guidance [below](#field-specific-guidance).
 
@@ -40,6 +42,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 5. For non-bioinformatic specific files (like simple text files, or tables), you can place these in the `generic/` directory.
 
 6. Files must have as small a file size as possible - aggressively subsample as much as you can.
+
 7. Test data must be publicly available and have licenses that allow public reuse.
 
 8. Files should generally be organised in directories based on their file extension.
