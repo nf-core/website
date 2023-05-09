@@ -664,7 +664,7 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 
    - i.e., `meta` should be a separate entry to the `file` it is associated with
 
-8. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `boolean`, `integer`, `float`
+8. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `boolean`, `integer`, `float`, `boolean`, `list`
 
 9. Input/output entries MUST match a corresponding channel in the module itself
 
