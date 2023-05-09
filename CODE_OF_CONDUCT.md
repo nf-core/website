@@ -28,7 +28,7 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about).
 
-Our Safety Officers are 
+Our Safety Officers are
 
 - [@ctuni](https://github.com/ctuni): Cris Tuñí ([contact](mailto:c.tuni.dominguez@gmail.com))
 - [@heuermh](https://github.com/heuermh): Michael Heuer ([contact](mailto:mheuer@mammothbiosci.com))
