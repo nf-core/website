@@ -86,9 +86,9 @@ The safety team is responsible for ensuring the community is a safe place and re
 
 The current safety team in 2023 are:
 
-- [@ctuni](https://t.co/mQInuSXc5R) Cris Tuñí
-- [@heuerm](https://github.com/heuermh) Michael Heuer
-- [@snafees](https://github.com/snafees/) Saba Nafees
+- [@ctuni](https://github.com/ctuni): Cris Tuñí ([contact](mailto:c.tuni.dominguez@gmail.com))
+- [@heuerm](https://github.com/heuermh): Michael Heuer ([contact](mailto:mheuer@mammothbiosci.com))
+- [@snafees](https://github.com/snafees/): Saba Nafees ([contact](mailto:saba.nafees314@gmail.com))
 
 ## Financial Support
 
