@@ -28,7 +28,7 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 
 2. Add any new test data via a pull request from the corresponding branch of a personal fork of the nf-core/test-dataset repository.
 
-    - For example, to add test-data for a module, upload to the `modules` branch of your fork, and open the PR against the `modules` branch of the nf-core/test-datasets repo. For a pipeline, e.g. nf-core/mag, upload to the `mag` branch of your fork, and open the PR against the `mag` branch of the nf-core/test-datasets repo.
+   - For example, to add test-data for a module, upload to the `modules` branch of your fork, and open the PR against the `modules` branch of the nf-core/test-datasets repo. For a pipeline, e.g. nf-core/mag, upload to the `mag` branch of your fork, and open the PR against the `mag` branch of the nf-core/test-datasets repo.
 
 3. New bioinformatic test data files should be generated from the existing collections of test data as far as possible. See field-specific guidance [below](#field-specific-guidance).
 
