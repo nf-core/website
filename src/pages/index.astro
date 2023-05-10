@@ -7,7 +7,16 @@ import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
 import HomepageVideos from '@components/homepage/HomepageVideos.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import TypeAhead from '@components/TypeAhead.svelte';
 
+import pipelines_json from '@public/pipelines.json';
+const pipelines = pipelines_json.remote_workflows;
+const pipeline_links = pipelines.map((pipeline) => {
+    return {
+        name: pipeline.name,
+        href: pipeline.name + '/' + pipeline.releases[0].tag_name,
+    };
+});
 export const prerender = true;
 ---
 
@@ -27,13 +36,10 @@ export const prerender = true;
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <form class="searchbar_form homepage_search" action="search" method="get">
-            <div class="input-group">
-                <input type="search" class="form-control" placeholder="Search" name="q" required />
-                <button type="submit" class="btn btn-outline-success">Search</button>
-            </div>
-        </form>
+    <div class="d-flex justify-content-center mb-4">
+        <TypeAhead possibleResults={pipeline_links} placeholder="Search Pipelines" client:idle>
+            <!-- <button type="submit" class="btn btn-outline-success rounded-start-0" slot="button">Search</button> -->
+        </TypeAhead>
     </div>
 
     <div class="triangle-up text-bg-success"></div>
@@ -360,21 +366,6 @@ Based on https://codepen.io/wintr/pen/beBJBb */
         }
         &:active:after {
             border-color: $nf-core-color;
-        }
-    }
-
-    .searchbar_form {
-        justify-content: center;
-        margin-bottom: 3rem;
-        input {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: none;
-            width: auto;
-        }
-        button {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
         }
     }
 
