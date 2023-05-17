@@ -101,7 +101,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of March 2023</dd>
 </dl>
 
-## Round 3
+## Round 3 (Closed)
 
 ### Key dates
 
@@ -111,7 +111,7 @@ Dates are subject to change:
   <dt class="col-md-3 text-md-end">Applications open:</dt>
   <dd class="col-md-9">April 1st 2023</dd>
   <dt class="col-md-3 text-md-end">Applications close:</dt>
-  <dd class="col-md-9">May 1st 2023</dd>
+  <dd class="col-md-9">May 15th 2023</dd>
   <dt class="col-md-3 text-md-end">Mentorships start:</dt>
   <dd class="col-md-9">June 1st 2023</dd>
   <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
@@ -120,11 +120,11 @@ Dates are subject to change:
 
 ## Application process
 
-<!-- Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you! -->
+Applications for Round 3 are now closed. Those who have applied will hear from us soon. Thank you!
 
-Applications for Round 3 are now open!
+<!-- Applications for Round 3 are now open!
 
-Please submit an application using the forms below before May 1<sup>st</sup> to be considered for the program.
+Please submit an application using the forms below before May 15<sup>th</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<p class="text-center"><a href="https://seqera.typeform.com/to/TGpEG5Yt" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>
+<p class="text-center"><a href="https://seqera.typeform.com/to/TGpEG5Yt" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p> -->
