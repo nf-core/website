@@ -1,0 +1,49 @@
+name: Add tool
+description: Add details to include your tool to the website
+title: "[Tool]: "
+labels: ["tool", "enhancement"]
+assignees:
+  - priyanka-surana
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to add your tool to the ToL website!
+  - type: input
+    id: tool
+    attributes:
+      label: Tool Name
+      description: Full tool name (Abbreviation)
+      placeholder: Example: Genomes on a Tree (GoaT)
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Short description (about 100 words) with relevant links
+      placeholder: Example: http://pipelines.tol.sanger.ac.uk/tools/#genomes-on-a-tree-goat
+    validations:
+      required: true
+  - type: input
+    id: pipelines
+    attributes:
+      label: Pipelines
+      description: Name and link to pipelines currently using the tool
+      placeholder: Example: [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
+    validations:
+      required: true
+  - type: textarea
+    id: information
+    attributes:
+      label: Any additional information
+      description: Feel free to add any information that provides context for the reviewers
+      placeholder: ...
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](http://pipelines.tol.sanger.ac.uk/code_of_conduct)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
