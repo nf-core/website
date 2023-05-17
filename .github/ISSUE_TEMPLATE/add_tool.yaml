@@ -43,14 +43,12 @@ body:
       description: Add the location for the logo or a representative image
       placeholder: |
         https://raw.githubusercontent.com/genomehubs/genomehubs/main/src/genomehubs-ui/src/client/favicon/icon-512.png
-      required: false
   - type: textarea
     id: information
     attributes:
       label: Any additional information
       description: Feel free to add any information that provides context for the reviewers
       placeholder: ...
-      required: false
   - type: checkboxes
     id: terms
     attributes:
