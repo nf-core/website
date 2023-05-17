@@ -14,7 +14,7 @@ body:
     attributes:
       label: Tool Name
       description: Full tool name (Abbreviation)
-      placeholder: "Example: Genomes on a Tree (GoaT)"
+      placeholder: Example - Genomes on a Tree (GoaT)
     validations:
       required: true
   - type: textarea
@@ -22,7 +22,7 @@ body:
     attributes:
       label: Description
       description: Short description (about 100 words) with relevant links
-      placeholder: Example: http://pipelines.tol.sanger.ac.uk/tools/#genomes-on-a-tree-goat
+      placeholder: Example - http://pipelines.tol.sanger.ac.uk/tools/#genomes-on-a-tree-goat
     validations:
       required: true
   - type: input
@@ -30,7 +30,7 @@ body:
     attributes:
       label: Pipelines
       description: Name and link to pipelines currently using the tool
-      placeholder: Example: [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
+      placeholder: Example - [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
     validations:
       required: true
   - type: textarea
