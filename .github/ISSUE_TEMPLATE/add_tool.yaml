@@ -15,7 +15,7 @@ body:
       label: Tool Name
       description: Full tool name (Abbreviation)
       placeholder: |
-        Example - Genomes on a Tree (GoaT)
+        Genomes on a Tree (GoaT)
     validations:
       required: true
   - type: textarea
@@ -24,7 +24,7 @@ body:
       label: Description
       description: Short description (about 100 words) with relevant links
       placeholder: |
-        Example - Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index for genome-relevant metadata and sequencing project plans and statuses. Attributes can be queried against assembly and taxon indexes through 1) an [API](https://goat.genomehubs.org/api-docs), 2) a [web](https://goat.genomehubs.org) front end, and 3) a command line interface, [GoaT-cli](https://github.com/genomehubs/goat-cli). GoaT uses NCBI Taxonomy as backbone and allows retrieval of inferred values for missing attribute values based on phylogenetic interpolation. The web front end additionally provides summary visualisations for data exploration and reporting (see https://goat.genomehubs.org). GoaT was implemented as an instance of the open-source GenomeHubs codebase. For more information visit https://github.com/genomehubs/genomehubs.
+        Genomes on a Tree (GoaT), an Elasticsearch-powered datastore and search index for genome-relevant metadata and sequencing project plans and statuses. Attributes can be queried against assembly and taxon indexes through 1) an [API](https://goat.genomehubs.org/api-docs), 2) a [web](https://goat.genomehubs.org) front end, and 3) a command line interface, [GoaT-cli](https://github.com/genomehubs/goat-cli). GoaT uses NCBI Taxonomy as backbone and allows retrieval of inferred values for missing attribute values based on phylogenetic interpolation. The web front end additionally provides summary visualisations for data exploration and reporting (see https://goat.genomehubs.org). GoaT was implemented as an instance of the open-source GenomeHubs codebase. For more information visit https://github.com/genomehubs/genomehubs.
     validations:
       required: true
   - type: textarea
@@ -33,15 +33,24 @@ body:
       label: Pipelines
       description: Name and link to pipelines currently using the tool
       placeholder: |
-        Example - [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
+        [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote) | [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
     validations:
       required: true
+  - type: textarea
+    id: image
+    attributes:
+      label: Image or Logo
+      description: Add the location for the logo or a representative image
+      placeholder: |
+        https://raw.githubusercontent.com/genomehubs/genomehubs/main/src/genomehubs-ui/src/client/favicon/icon-512.png
+      required: false
   - type: textarea
     id: information
     attributes:
       label: Any additional information
       description: Feel free to add any information that provides context for the reviewers
       placeholder: ...
+      required: false
   - type: checkboxes
     id: terms
     attributes:
