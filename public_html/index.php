@@ -223,7 +223,7 @@ endif;
       <img src="assets/img/logo/sanger-tol-logo.svg" class="hide-dark">
       <img src="assets/img/logo/sanger-tol-logo-darkbg.svg" class="hide-light">
     </h1>
-    <p class="lead font-weight-normal">Workflows and tools to investigate the diversity of complex organisms.</p>
+    <p class="lead font-weight-normal">Workflows and tools to investigate the genomic diversity of complex organisms.</p>
     <div class="homepage-cta-flex mb-5">
       <a class="homepage-cta" href="/pipelines">View Pipelines</a>
     </div>
@@ -242,19 +242,19 @@ endif;
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-        <i class="fad fa-industry-alt fa-3x mb-2"></i>
-        <h3 class="text-white">For facilities</h3>
-        <p class="lead">Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.</p>
+        <i class="fad fa-hand-holding-seedling fa-3x mb-2"></i>
+        <h3 class="text-white">For biodiversity projects</h3>
+        <p class="lead">End-to-end suite of pipelines, from genome assembly to genome analysis.</p>
       </div>
       <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-users fa-3x mb-2"></i>
         <h3 class="text-white">For users</h3>
-        <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that you can trust.</p>
+        <p class="lead">Portable, documented and easy&nbsp;to&nbsp;use workflows.<br>Pipelines that just work.</p>
       </div>
       <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
         <i class="fad fa-laptop-code fa-3x mb-2"></i>
         <h3 class="text-white">For developers</h3>
-        <p class="lead">Companion templates and tools help to validate your code and simplify common tasks.</p>
+        <p class="lead">Modular, reusable &amp; configurable pipelines that follow the <a href="https://nf-co.re/">nf-core</a> model.</p>
       </div>
     </div>
     <div>
@@ -273,11 +273,11 @@ endif;
 
 <div class="container py-5 text-center lead" id="features">
   <p>The Tree of Life production suite is designed to handle nature's diversity.</p>
-  <p><strong>sanger-tol</strong> pipelines use Nextflow DSL2 and adhere to strict nf-core guidelines.</p>
+  <p><strong>sanger-tol</strong> pipelines use <a href="https://www.nextflow.io/">Nextflow</a> DSL2 and adhere to strict <a href="https://nf-co.re/">nf-core</a> guidelines.</p>
 </div>
 
 <div id="features" class="container homepage-feature-boxes pb-5">
-  <h3 class="mb-4 text-center">Fully featured pipelines</h3>
+  <h3 class="mb-4 text-center">Best-in-class pipelines</h3>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
       <div class="card h-100 shadow-sm">
@@ -285,7 +285,7 @@ endif;
           <div>
             <h5 class="card-title">Documentation</h5>
             <p class="card-text">Extensive documentation covering installation, usage and description of output files
-              ensures that you won't be left in the dark.</p>
+              makes sanger-tol pipelines easy to run.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/docs.svg" />
         </div>
@@ -308,7 +308,9 @@ endif;
         <div class="card-body d-flex align-items-center">
           <div>
             <h5 class="card-title">Stable Releases</h5>
-            <p class="card-text">sanger-tol pipelines use GitHub and Zenodo releases to tag stable versions of the code
+            <p class="card-text">sanger-tol pipelines use GitHub and
+              <a href="https://zenodo.org/search?page=1&size=20&q=%22sanger-tol%22&type=workflow&sort=mostrecent">Zenodo</a>
+              releases to tag stable versions of the code
               and software, making pipeline runs totally reproducible.</p>
           </div>
           <img class="ms-3" height="100px" src="assets/img/releases.svg" />
@@ -332,12 +334,10 @@ endif;
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Portable and reproducible</h5>
-            <p class="card-text">
-              Pipelines follow best-practices to ensure maximum
-              portability and reproducibility.
-              Scale and diversity in Tree of Life make the pipelines 
-              exceptionally well tested and easy to run.
+            <h5 class="card-title">Portable and cloud-compatible</h5>
+            <p class="card-text">Pipelines follow best-practices to ensure maximum
+            portability. You can run the pipelines on any Nextflow supported cloud
+            provider. We test all our pipelines via Nextflow Tower before release.
             </p>
           </div>
           <i class="fas fa-server fa-5x text-success ms-3"></i>
@@ -348,61 +348,53 @@ endif;
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex align-items-center">
           <div>
-            <h5 class="card-title">Cloud-ready</h5>
-            <p class="card-text">Pipelines are tested via Nextflow Tower before release. 
-              You can run the pipelines on any Nextflow supported cloud provider.
-            </p>
+            <h5 class="card-title">Made with nf-core</h5>
+            <p class="card-text">All pipelines and modules must be based on nf-core templates
+              and be created using <a href="https://github.com/nf-core/tools">nf-core tools</a>.</p>
           </div>
-          <img class="ms-3 hide-light" width="100px" src="/assets/img/contributors-white/aws.svg" alt="Amazon Web Services">
-          <img class="ms-3 hide-dark" width="100px" src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services">
+          <img class="ms-3" height="100px" src="/assets/img/logo/nf-core-logo-square.png" />
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-<div class="bg-secondary pt-4 pb-5" style="--bs-bg-opacity: .1;">
-  <div id="developers" class="container homepage-feature-boxes">
-    <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="cold">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Develop <u>with</u> the community</h5>
-            <div class='d-flex align-items-center'>
-              <p class="card-text">Come and talk to us <em>before</em> you start writing a pipeline
-                to find collaborators and check that your pipeline is suitable for sanger-tol.</p>
-              <i class="fad fa-people-carry fa-5x text-secondary ms-3"></i>
-            </div>
-            <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join sanger-tol</span></a>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex align-items-center">
+          <div>
+            <h5 class="card-title">Developed <u>for</u> and <u>with</u> the community</h5>
+            <p class="card-text">Research teams from the Sanger and partner institutes helped
+              define the scope and content of each pipeline.
+            </p>
           </div>
+          <i class="fas fa-people-carry fa-5x text-success ms-3"></i>
         </div>
       </div>
-      <div class="cold">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Start from the template</h5>
-            <div class='d-flex align-items-center'>
-              <p class="card-text">All pipelines and modules must be based on nf-core templates and be created using <a href="https://github.com/nf-core/tools">nf-core tools</a>.</p>
-              </p>
-              <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
-            </div>
-            <a href="/docs/contributing/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex align-items-center">
+          <div>
+            <h5 class="card-title">Universal</h5>
+            <p class="card-text">
+              Scale and diversity in Tree of Life make the pipelines
+              exceptionally well tested and suitable for a wide
+              range of organisms (eukaryotes).
+            </p>
           </div>
+          <i class="fas fa-alicorn fa-5x text-success ms-3"></i>
         </div>
       </div>
-      <div class="cold">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">Collaborate, don't duplicate</h5>
-            <div class='d-flex align-items-center'>
-              <p class="card-text">We only allow one pipeline per analysis type.
-                If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
-              <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
-            </div>
-            <a href="/docs/contributing/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
+    </div>
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex align-items-center">
+          <div>
+            <h5 class="card-title">Optimised</h5>
+            <p class="card-text">The high throughput of species in Tree of Life makes us
+              strive for efficiency. We have refined and optimised the resource usage of
+              the sanger-tol pipelines to best utilise compute resources.
+            </p>
           </div>
+          <i class="fas fa-stars fa-5x text-success ms-3"></i>
         </div>
       </div>
     </div>
@@ -436,7 +428,7 @@ endif;
       <div class="col-sm-6">
         <h2 id="get-started" class="text-white">Get started in minutes</h2>
         <p class="text-white-50">Nextflow lets you run sanger-tol pipelines on virtually any computing environment.</p>
-        <p class="text-white-50">All sanger-tol genomics pipelines come with built-in support for
+        <p class="text-white-50">All sanger-tol pipelines are modifiable with the
           <a href="https://github.com/nf-core/tools" target="_blank" style="white-space:nowrap;">nf-core tools</a>.</p>
       </div>
       <div class="col-sm-6">
