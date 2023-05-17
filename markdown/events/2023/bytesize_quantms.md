@@ -1,6 +1,6 @@
 ---
 title: 'Bytesize: nf-core/quantms'
-subtitle: Julianus Pfeuffer (Eberhard-Karls-University Tübingen/FU Berlin) and Yasset Perez Riverol (EMBL-EBI)
+subtitle: Julianus Pfeuffer (Zuse Institute Berlin) and Yasset Perez Riverol (EMBL-EBI)
 type: talk
 start_date: '2023-05-30'
 start_time: '13:00 CEST'
