@@ -9,12 +9,13 @@ body:
     attributes:
       value: |
         Thanks for taking the time to add your tool to the ToL website!
-  - type: input
+  - type: textarea
     id: tool
     attributes:
       label: Tool Name
       description: Full tool name (Abbreviation)
-      placeholder: Example - Genomes on a Tree (GoaT)
+      placeholder: |
+        Example - Genomes on a Tree (GoaT)
     validations:
       required: true
   - type: textarea
