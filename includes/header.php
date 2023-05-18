@@ -149,10 +149,12 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           <li class="nav-item p-1">
             <a class="nav-link" href="/tools">Tools</a>
           </li>
-          <li class="nav-item p-1">
+<!--
+	  <li class="nav-item p-1">
             <a class="nav-link" href="/docs">Docs</a>
           </li>
-          <li class="nav-item p-1">
+-->
+	  <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
                 echo '  <span class="fa-stack small text-danger">
                             <i class="fad fa-circle fa-stack-1x"></i>
