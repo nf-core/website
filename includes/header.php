@@ -160,7 +160,8 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
                         </span>';
             } ?>Events</a>
           </li>
-          <li class="nav-item p-1 dropdown">
+<!--
+	  <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About sanger-tol</a>
@@ -170,15 +171,18 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join sanger-tol</a>
             </div>
-          </li>
+	  </li>
+-->
         </ul>
-        <hr class="d-md-none">
+<!--
+	<hr class="d-md-none">
         <a class="d-md-none btn d-block btn-success mb-3" href="/join">
           Join sanger-tol
         </a>
         <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
           Join sanger-tol
-        </a>
+	</a>
+-->
       </div>
     </div>
   </nav>
