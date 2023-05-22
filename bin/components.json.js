@@ -1,10 +1,9 @@
 #! /usr/bin/env node
-import octokit from './octokit.js';
+import octokit from '../src/components/octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 import { parse } from 'yaml';
-
 
 // get current path
 const __dirname = path.resolve();
@@ -83,7 +82,9 @@ const writeComponentsJson = async () => {
   // get subworkflows
   const subworkflows = tree
     .filter((file) => {
-      return file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq');// TODO: remove the last exception and fix that subworkflow name
+      return (
+        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq')
+      ); // TODO: remove the last exception and fix that subworkflow name
     })
     .map((file) => {
       return {
