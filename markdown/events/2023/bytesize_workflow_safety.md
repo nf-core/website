@@ -7,7 +7,7 @@ start_time: '13:00 CET'
 end_date: '2023-05-23'
 end_time: '13:30 CET'
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://seqera-io.zoom.us/j/89853414209?pwd=V2NoK1lvN0FGMDRhNW4rbXlhWVRvQT09
 ---
 
 # nf-core/bytesize
