@@ -73,18 +73,6 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
 >
     <div class="row">
         <div class="col-12 col-md-10">
-            {
-                Object.keys(schema.definitions).length === 0 && (
-                    <div class="alert alert-warning mt-3 " role="alert">
-                        <h4 class="text-warning">No nextflow_schema.json file found!</h4>
-                        <p>
-                            It seems like there is no nextflow_schema.json file with parameters defined for this version
-                            of the pipeline. Try a newer version.
-                        </p>
-                    </div>
-                )
-            }
-
             <SchemaListing {schema} client:load />
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last pe-0">
