@@ -30,7 +30,7 @@ export const getGitHubFile = async (repo, path, ref) => {
     })
     .then((response) => {
       if (response == null) {
-        console.log('response is null');
+        return;
       }
       let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
       if (path.endsWith('.md')) {
