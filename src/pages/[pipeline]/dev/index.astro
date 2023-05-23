@@ -3,7 +3,7 @@ import { markdown } from '@astropub/md';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import octokit, { getGitHubFile } from '@components/octokit.js';
+import octokit, { getGitHubFile } from '@components/octokit.ts';
 
 const { pipeline } = Astro.params;
 
@@ -12,7 +12,9 @@ const meta = pipelines_json.remote_workflows.find(
     (wf) => wf.name === pipeline && wf.releases.flatMap((r) => r.tag_name).includes('dev')
 );
 
-if (!meta) return Astro.redirect('/404');
+if (!meta) {
+    return Astro.redirect('/404');
+}
 const md_content = await getGitHubFile(pipeline, 'README.md', 'dev');
 
 const version = 'dev';

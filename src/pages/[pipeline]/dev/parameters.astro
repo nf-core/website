@@ -1,5 +1,5 @@
 ---
-import octokit, { getGitHubFile } from '@components/octokit.js';
+import octokit, { getGitHubFile } from '@components/octokit.ts';
 import SchemaListing from '@components/schema/SchemaListing.svelte';
 import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
@@ -8,13 +8,17 @@ import pipelines_json from '@public/pipelines.json';
 const { pipeline } = Astro.params;
 const version = 'dev';
 let headings = [];
+// check if pipeline and version is in pipelines_json
 const meta = pipelines_json.remote_workflows.find(
     (wf) => wf.name === pipeline && wf.releases.flatMap((r) => r.tag_name).includes('dev')
 );
-const description = meta?.description;
+if (!meta) {
+    return Astro.redirect('/404');
+}
+const description = meta.description;
 const baseUrl = '/' + pipeline + '/' + version;
 
-const versions = meta?.releases.map((r) => r.tag_name);
+const versions = meta.releases.map((r) => r.tag_name);
 let doc_files = await octokit.rest.repos
     .getContent({
         owner: 'nf-core',

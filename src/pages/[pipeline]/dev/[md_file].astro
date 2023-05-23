@@ -4,7 +4,7 @@ import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import octokit, { getGitHubFile } from '@components/octokit.js';
+import octokit, { getGitHubFile } from '@components/octokit.ts';
 
 const { pipeline, md_file } = Astro.params;
 const version = 'dev';

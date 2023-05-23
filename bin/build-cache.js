@@ -1,8 +1,9 @@
 #! /usr/bin/env node
-import octokit, { getGitHubFile } from '../src/components/octokit.js';
+import octokit, { getGitHubFile } from '../src/components/octokit.ts';
 import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';
+
 
 const cache = Cache.default({
   basePath: './.cache',
