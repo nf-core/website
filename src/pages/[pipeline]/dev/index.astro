@@ -3,7 +3,7 @@ import { markdown } from '@astropub/md';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import octokit, { getGitHubFile } from '@components/octokit.ts';
+import octokit, { getGitHubFile } from '@components/octokit';
 
 const { pipeline } = Astro.params;
 
@@ -12,14 +12,18 @@ const meta = pipelines_json.remote_workflows.find(
     (wf) => wf.name === pipeline && wf.releases.flatMap((r) => r.tag_name).includes('dev')
 );
 
-if (!meta) {
+if (!meta || !pipeline) {
     return Astro.redirect('/404');
 }
 const md_content = await getGitHubFile(pipeline, 'README.md', 'dev');
 
 const version = 'dev';
 const description = meta.description;
-const headings = [];
+const headings: {
+    depth: number;
+    text: string;
+    slug: string;
+}[] = [];
 const versions = meta.releases.map((r) => r.tag_name);
 const baseUrl = '/' + pipeline + '/dev';
 let doc_files = await octokit.rest.repos
@@ -31,18 +35,18 @@ let doc_files = await octokit.rest.repos
     })
     .then((response) => {
         return response.data
-            .filter((file) => {
+            .filter((file: { name: string }) => {
                 return file.name.includes('.md') && !file.name.includes('README');
             })
-            .map((file) => {
+            .map((file: { path: string }) => {
                 return file.path.replace('docs/', '').replace('.md', '');
             });
     });
 
 let tabItems = doc_files.map((file) => {
     return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
+            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
         }),
         href: baseUrl + '/' + file,
         active: false,

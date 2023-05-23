@@ -6,7 +6,8 @@ import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files: string[] } }[] =
+        [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
             const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
@@ -32,8 +33,8 @@ const baseUrl = '/' + pipeline + '/' + version;
 let { versions, md_files } = Astro.props;
 let tabItems = md_files.map((file) => {
     return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
+            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
         }),
         href: baseUrl + '/' + file,
         active: false,
@@ -48,7 +49,7 @@ let schema = await cache
     })
     .catch((error) => {
         console.log(error);
-        return { definitions: {} };
+        return { definitions: [], properties: [] };
     });
 
 if (schema.definitions && Object.keys(schema.definitions).length > 0) {

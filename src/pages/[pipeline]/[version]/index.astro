@@ -31,10 +31,10 @@ const description = pipelines_json.remote_workflows.filter((p) => p.name === pip
 const baseUrl = '/' + pipeline + '/' + version;
 
 let { versions, md_files, meta } = Astro.props;
-let tabItems = md_files.map((file) => {
+let tabItems = md_files.map((file: string) => {
     return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
+            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
         }),
         href: baseUrl + '/' + file,
         active: false,

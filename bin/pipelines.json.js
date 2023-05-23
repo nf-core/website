@@ -1,9 +1,8 @@
 #! /usr/bin/env node
-import octokit from '../src/components/octokit.ts';
+import octokit from '../src/components/octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
-
 
 // get current path
 const __dirname = path.resolve();
@@ -61,7 +60,17 @@ const writePipelinesJson = async () => {
       owner: 'nf-core',
       repo: name,
     });
-    releases = [...releases, { tag_name: 'dev', published_at: Date.now() }];
+    // get last push to dev branch
+    const { data: dev_branch } = await octokit.rest.repos.listCommits({
+      owner: 'nf-core',
+      repo: name,
+      sha: 'dev',
+    });
+    if (dev_branch.length > 0) {
+      releases = [...releases, { tag_name: 'dev', published_at: dev_branch[0].commit.author.date }];
+    } else {
+      console.log(`No commits to dev branch found for ${name}`);
+    }
     data['releases'] = releases.map(async (release) => {
       const { tag_name, published_at } = release;
       const doc_files = await octokit.rest.repos
