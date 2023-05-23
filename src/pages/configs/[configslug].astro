@@ -108,8 +108,6 @@ content = content.replace(/nf-core\/configs(:)?\s*/g, '');
 raw_config = '```nextflow title="' + path.split('/').pop() + '"\n' + raw_config + '\n```';
 const contact = config.config_profile_contact.match(/@(\w+)/) ? config.config_profile_contact.match(/@(\w+)/)[1] : '';
 
-export const prerender = true;
-
 const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configslug + '.md';
 ---
 

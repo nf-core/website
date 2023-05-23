@@ -22,7 +22,10 @@ import remarkGfm from 'remark-gfm';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://deploy-preview-1652--nf-core.netlify.app/', // TODO: switch back to 'https://nf-co.re/'
-    output: 'server',
+    output: 'hybrid',
+    experimental: {
+        hybridOutput: true,
+    },
     adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
     vite: {
@@ -32,7 +35,7 @@ export default defineConfig({
         },
     },
     image: {
-        service: { entrypoint: 'astro/assets/services/sharp'}
+        service: { entrypoint: 'astro/assets/services/sharp' },
     },
     markdown: {
         syntaxHighlight: false,
