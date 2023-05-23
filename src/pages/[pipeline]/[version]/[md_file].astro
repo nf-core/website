@@ -86,8 +86,6 @@ const md_content = await cache
 const max_heading_depth = 2;
 // filter out headings that are higher than max_heading_depth
 headings = headings.filter((h) => h.depth <= max_heading_depth);
-
-export const prerender = true;
 ---
 
 <PipelinePageLayout

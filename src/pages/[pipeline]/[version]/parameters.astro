@@ -63,8 +63,6 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
 } else if (schema.properties && Object.keys(schema.properties).length > 0) {
     schema.definitions = schema.properties; // catching the case where there is no definitions but only properties
 }
-
-export const prerender = true;
 ---
 
 <PipelinePageLayout
