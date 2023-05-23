@@ -1,5 +1,6 @@
 <script lang="ts">
     import { currentHeading } from '@components/store';
+    import { onMount } from 'svelte';
 
     export let headings: {
         text: string;
@@ -14,6 +15,12 @@
     for (let i = min_heading_depth; i <= 4; i++) {
         headingMargin[i] = 'ps-' + (i - min_heading_depth) * 2;
     }
+    onMount(() => {
+        // set the first heading as active on initial load
+        if (!$currentHeading) {
+            currentHeading.set(headings[0].slug);
+        }
+    });
 </script>
 
 <div class="nav flex-column sticky-top-under align-items-end">
