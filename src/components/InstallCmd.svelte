@@ -3,7 +3,7 @@
 
     export let cmd: string;
     export let icon: boolean = true;
-    export let flatTop: boolean;
+    export let flatTop: boolean = false;
 
     let Tooltip: any;
     $: copied = false;
@@ -40,7 +40,7 @@
         type="text"
         class="form-control input code bg-body border-secondary"
         class:border-start-0={icon}
-        class:rounded-top-0={!flatTop}
+        class:rounded-top-0={flatTop}
         id="module-install-cmd-text"
         data-autoselect=""
         value={cmd}
@@ -50,7 +50,7 @@
     <button
         class="btn btn-outline-secondary bg-body-secondary border-secondary copy-txt"
         class:text-bg-success={copied}
-        class:rounded-top-0={!flatTop}
+        class:rounded-top-0={flatTop}
         data-bs-target="#module-install-cmd-text"
         data-bs-toggle="tooltip"
         data-bs-placement="left"
