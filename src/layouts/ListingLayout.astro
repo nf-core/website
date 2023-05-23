@@ -11,9 +11,35 @@ export interface Props {
     filter: { name: string; class?: string }[];
     displayStyle: { name: string; icon: string }[];
     sortBy: string[];
-    pipelines?: object[];
-    components?: object[];
-    configs?: { name: string; content: string }[];
+    pipelines?: {
+        name: string;
+        description: string;
+        stargazers_count: number;
+        topics: string[];
+        releases: {
+            published_at: string;
+            tag_name: string;
+        }[];
+        archived: boolean;
+    }[];
+    components?: {
+        name: string;
+        path: string;
+        type: string;
+        meta: {
+            description: string;
+            name: string;
+        };
+        pipelines: {
+            name: string;
+            version: string;
+        }[];
+    }[];
+    configs?: {
+        name: string;
+        content: string;
+        config: {};
+    }[];
 }
 
 const { title, description, filter, displayStyle, sortBy, pipelines, components, configs } = Astro.props;

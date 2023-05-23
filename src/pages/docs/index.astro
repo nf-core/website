@@ -1,9 +1,9 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, CollectionEntry } from 'astro:content';
 let docs = await getCollection('docs');
-let usageDocs = [];
-let developmentDocs = [];
+let usageDocs: CollectionEntry<'docs'>[] = [];
+let developmentDocs: CollectionEntry<'docs'>[] = [];
 
 docs = docs.filter((doc) => {
     return doc.slug.split('/').length === 2;

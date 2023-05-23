@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit from '../src/components/octokit.ts';
+import octokit from '../src/components/octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';

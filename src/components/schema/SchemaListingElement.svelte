@@ -1,5 +1,5 @@
 <script>
-    import { showHidden } from '@components/store.js';
+    import { showHidden } from '@components/store';
     import Collapsible from '@components/Collapsible.svelte';
     import Markdown from '@components/markdown/Markdown.svelte';
 

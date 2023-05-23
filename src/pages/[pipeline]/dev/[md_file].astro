@@ -4,15 +4,19 @@ import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import octokit, { getGitHubFile } from '@components/octokit.ts';
+import octokit, { getGitHubFile } from '@components/octokit';
 
 const { pipeline, md_file } = Astro.params;
 const version = 'dev';
 const meta = pipelines_json.remote_workflows.find(
     (wf) => wf.name === pipeline && wf.releases.flatMap((r) => r.tag_name).includes('dev')
 );
-const versions = meta?.releases.map((r) => r.tag_name);
-const description = meta?.description;
+if (!meta || !pipeline) {
+    return Astro.redirect('/404');
+}
+
+const versions = meta.releases.map((r) => r.tag_name);
+const description = meta.description;
 const baseUrl = '/' + pipeline + '/' + version;
 
 let doc_files = await octokit.rest.repos
@@ -33,14 +37,18 @@ let doc_files = await octokit.rest.repos
     });
 let tabItems = doc_files.map((file) => {
     return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
+            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
         }),
         href: baseUrl + '/' + file,
         active: file === md_file,
     };
 });
-let headings = [];
+let headings: {
+    depth: number;
+    text: string;
+    slug: string;
+}[] = [];
 
 const filePath = 'docs/' + md_file + '.md';
 const md_content = await getGitHubFile(pipeline, filePath, 'dev').then((content) => {

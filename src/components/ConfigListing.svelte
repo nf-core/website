@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { SearchQuery } from './store.js';
+    import { SearchQuery } from '@components/store';
 
     export let configs: {
         name: string;
         content: string;
-        config: object;
+        config: {};
     }[] = [];
 
     const searchconfigs = (config) => {

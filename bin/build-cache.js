@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit, { getGitHubFile } from '../src/components/octokit.ts';
+import octokit, { getGitHubFile } from '../src/components/octokit.js';
 import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';

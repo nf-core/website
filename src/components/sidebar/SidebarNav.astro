@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, CollectionEntry } from 'astro:content';
 
 let docs = await getCollection('docs');
-let usageDocs = [];
-let developmentDocs = [];
+let usageDocs: CollectionEntry<'docs'>[] = [];
+let developmentDocs: CollectionEntry<'docs'>[] = [];
 
 docs = docs.filter((doc) => {
     return doc.slug.split('/').length === 2;
@@ -23,59 +23,61 @@ docs.map((doc) => {
         <strong>Usage</strong>
         <ul class="list-unstyled">
             {
-                usageDocs.map((doc) => {
-                    return (
-                        <li
-                            class:list={[
-                                'mt-2 w-100',
-                                {
-                                    active: Astro.url.pathname === '/docs/' + doc.slug,
-                                },
-                            ]}
-                        >
-                            <a
+                usageDocs &&
+                    usageDocs.map((doc) => {
+                        return (
+                            <li
                                 class:list={[
-                                    'text-decoration-none p-1',
+                                    'mt-2 w-100',
                                     {
-                                        'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                        active: Astro.url.pathname === '/docs/' + doc.slug,
                                     },
                                 ]}
-                                href={'/docs/' + doc.slug}
                             >
-                                {doc.data.title}
-                            </a>
-                        </li>
-                    );
-                })
+                                <a
+                                    class:list={[
+                                        'text-decoration-none p-1',
+                                        {
+                                            'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                        },
+                                    ]}
+                                    href={'/docs/' + doc.slug}
+                                >
+                                    {doc.data.title}
+                                </a>
+                            </li>
+                        );
+                    })
             }
         </ul>
         <strong>Contributing</strong>
         <ul class="list-unstyled">
             {
-                developmentDocs.map((doc) => {
-                    return (
-                        <li
-                            class:list={[
-                                'mt-2 w-100',
-                                {
-                                    active: Astro.url.pathname === '/docs/' + doc.slug,
-                                },
-                            ]}
-                        >
-                            <a
+                developmentDocs &&
+                    developmentDocs.map((doc) => {
+                        return (
+                            <li
                                 class:list={[
-                                    'text-decoration-none p-1',
+                                    'mt-2 w-100',
                                     {
-                                        'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                        active: Astro.url.pathname === '/docs/' + doc.slug,
                                     },
                                 ]}
-                                href={'/docs/' + doc.slug}
                             >
-                                {doc.data.title}
-                            </a>
-                        </li>
-                    );
-                })
+                                <a
+                                    class:list={[
+                                        'text-decoration-none p-1',
+                                        {
+                                            'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                        },
+                                    ]}
+                                    href={'/docs/' + doc.slug}
+                                >
+                                    {doc.data.title}
+                                </a>
+                            </li>
+                        );
+                    })
             }
         </ul>
     </div>

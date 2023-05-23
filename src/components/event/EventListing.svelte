@@ -1,9 +1,11 @@
-<script>
-    export let events = [];
+<script lang="ts">
+    import { CollectionEntry } from 'astro:content';
+
+    export let events: CollectionEntry<'events'>[] = [];
 
     import EventCard from '@components/event/EventCard.svelte';
     import FilterBar from '@components/FilterBar.svelte';
-    import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store.js';
+    import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store';
 
     let filteredEvents = events;
     const filterByType = (event) => {
@@ -52,7 +54,7 @@
             return event.data.end < today;
         })
         .reverse();
-    let currentEvents = [];
+    let currentEvents: CollectionEntry<'events'>[] = [];
     $: currentEvents = filteredEvents.filter((event) => {
         const today = new Date();
         return event.data.start < today && event.data.end > today;
