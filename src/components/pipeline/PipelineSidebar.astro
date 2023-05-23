@@ -42,7 +42,7 @@ export interface Props {
             </li>
             <li class="nav-item" role="presentation">
                 <a
-                    class="nav-link text-reset py-1 border-secondary btn btn-sm btn-outline-secondary rounded-0"
+                    class="nav-link text-reset py-1 border-secondary btn btn-sm btn-outline-secondary rounded-0 border border-start-0 border-end-0"
                     id="nextflow-tab"
                     data-bs-toggle="tab"
                     data-bs-target="#nextflow-tab-pane"
@@ -166,6 +166,13 @@ export interface Props {
     :global([data-bs-theme='dark']) {
         .border-secondary {
             border-color: $gray-700 !important;
+        }
+        .nav-link.btn {
+            &.active,
+            &:hover,
+            &:focus {
+                background-color: $gray-700;
+            }
         }
     }
 </style>
