@@ -19,8 +19,8 @@ docs.map((doc) => {
 ---
 
 <div class="nav">
-    <div class="w-100">
-        <strong>Usage</strong>
+    <div class="w-100 sticky-top-under">
+        <h6 class="my-2 text-body">Usage</h6>
         <ul class="list-unstyled">
             {
                 usageDocs &&
@@ -50,7 +50,7 @@ docs.map((doc) => {
                     })
             }
         </ul>
-        <strong>Contributing</strong>
+        <h6 class="my-2 text-body">Contributing</h6>
         <ul class="list-unstyled">
             {
                 developmentDocs &&
@@ -99,7 +99,7 @@ docs.map((doc) => {
 
     :global([data-bs-theme='dark']) {
         li.active {
-            background-color: transparentize($success-dark, 0.5);
+            background-color: transparentize($success-dark, 0.35);
             & a {
                 color: $gray-200 !important;
             }
