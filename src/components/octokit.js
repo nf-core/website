@@ -56,3 +56,23 @@ export const getGitHubFile = async (repo, path, ref) => {
     });
   return response;
 };
+
+export const getDocFiles = async (pipeline, version) => {
+  const doc_files = await octokit.rest.repos
+    .getContent({
+      owner: 'nf-core',
+      repo: pipeline,
+      path: 'docs',
+      ref: version,
+    })
+    .then((response) => {
+      return response.data
+        .filter((file) => {
+          return file.name.includes('.md') && !file.name.includes('README');
+        })
+        .map((file) => {
+          return file.path.replace('docs/', '').replace('.md', '');
+        });
+    });
+  return doc_files;
+};

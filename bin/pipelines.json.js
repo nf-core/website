@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 
+
 // get current path
 const __dirname = path.resolve();
 
@@ -73,22 +74,7 @@ const writePipelinesJson = async () => {
     }
     data['releases'] = releases.map(async (release) => {
       const { tag_name, published_at } = release;
-      const doc_files = await octokit.rest.repos
-        .getContent({
-          owner: 'nf-core',
-          repo: name,
-          path: 'docs',
-          ref: tag_name,
-        })
-        .then((response) => {
-          return response.data
-            .filter((file) => {
-              return file.name.includes('.md') && !file.name.includes('README');
-            })
-            .map((file) => {
-              return file.path;
-            });
-        });
+      const doc_files = await getDocFiles(pipeline, version);
 
       let components = await octokit
         .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
