@@ -63,7 +63,7 @@ const md_content = await cache
     tabItems={tabItems}
 >
     <div class="row">
-        <div class="col-12 col-md-9 pt-3">
+        <div class="col-12 col-md-9 pt-3 markdown-content">
             {
                 async () => {
                     const html = await markdown(md_content); // Markdown component of md package is broken at the moment, using this workaround
