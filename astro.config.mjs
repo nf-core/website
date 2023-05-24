@@ -21,7 +21,8 @@ import remarkGfm from 'remark-gfm';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://deploy-preview-1652--nf-core.netlify.app/', // TODO: switch back to 'https://nf-co.re/'
+    site: 'https://astro--nf-core.netlify.app/',
+    // TODO: switch back to 'https://nf-co.re/'
     output: 'hybrid',
     experimental: {
         hybridOutput: true,
@@ -35,11 +36,14 @@ export default defineConfig({
         },
     },
     image: {
-        service: { entrypoint: 'astro/assets/services/sharp' },
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+        },
     },
     markdown: {
         syntaxHighlight: false,
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin], // Also update the plugins in `src/components/Markdown.svelte`!
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
+        // Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
             [
@@ -76,6 +80,11 @@ export default defineConfig({
                 rehypePrettyCode,
                 {
                     langPrefix: 'language-',
+                    keepBackground: true,
+                    theme: {
+                        dark: 'nord',
+                        light: 'github-light',
+                    },
                 },
             ],
             // [rehypeWrap, { selector: 'pre:has(code.language-bash)', wrapper: 'div.copy-code' }],
