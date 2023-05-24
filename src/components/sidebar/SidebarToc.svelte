@@ -71,10 +71,6 @@
         overflow-y: auto;
         max-height: calc(100vh - 4rem);
     }
-    .sticky-top-under {
-        top: 4rem;
-        position: sticky;
-    }
 
     li {
         border-inline-start: 2pt solid $border-color;
@@ -86,7 +82,7 @@
             color: $green-800 !important;
         }
         border-left: 2pt solid $success;
-        background-color: transparentize($success, 0.5);
+        background-color: transparentize($success, 0.75);
     }
 
     :global([data-bs-theme='dark']) {
@@ -95,7 +91,7 @@
         }
         li.active {
             border-left: 2pt solid $success-dark;
-            background-color: transparentize($success-dark, 0.5);
+            background-color: transparentize($success-dark, 0.35);
             & a {
                 color: $gray-200 !important;
             }
