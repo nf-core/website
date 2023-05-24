@@ -39,7 +39,7 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin], // Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
             [
