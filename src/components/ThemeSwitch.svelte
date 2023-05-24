@@ -1,7 +1,3 @@
-<script lang="ts">
-    export let switchTheme;
-</script>
-
 <svelte:head>
     <script>
         // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
