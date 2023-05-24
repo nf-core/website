@@ -1,5 +1,5 @@
 ---
-import octokit, { getGitHubFile } from '@components/octokit';
+import { getGitHubFile, getDocFiles } from '@components/octokit';
 import SchemaListing from '@components/schema/SchemaListing.svelte';
 import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
@@ -24,22 +24,8 @@ const description = meta.description;
 const baseUrl = '/' + pipeline + '/' + version;
 
 const versions = meta.releases.map((r) => r.tag_name);
-let doc_files = await octokit.rest.repos
-    .getContent({
-        owner: 'nf-core',
-        repo: pipeline,
-        path: 'docs',
-        ref: 'dev',
-    })
-    .then((response) => {
-        return response.data
-            .filter((file: { name: string }) => {
-                return file.name.includes('.md') && !file.name.includes('README');
-            })
-            .map((file: { path: string }) => {
-                return file.path.replace('docs/', '').replace('.md', '');
-            });
-    });
+
+const doc_files = await getDocFiles(pipeline, version);
 let tabItems = doc_files.map((file: string) => {
     return {
         label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
@@ -50,7 +36,7 @@ let tabItems = doc_files.map((file: string) => {
     };
 });
 
-let schema_raw = await getGitHubFile(pipeline, 'nextflow_schema.json', 'dev');
+const schema_raw = await getGitHubFile(pipeline, 'nextflow_schema.json', 'dev');
 let schema: { definitions: []; properties: [] };
 if (schema_raw === undefined) {
     schema = {
