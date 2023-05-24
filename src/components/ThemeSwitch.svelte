@@ -1,8 +1,13 @@
+<script lang="ts">
+    export let switchTheme;
+</script>
+
 <svelte:head>
     <script>
         // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
         const storedTheme = localStorage.getItem('theme');
-        const switchTheme = (e) => {
+        switchTheme = (e) => {
             const theme = e.target.value;
             localStorage.setItem('theme', theme);
             setTheme(theme);
@@ -31,11 +36,6 @@
 
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         };
-        // // activate bootstrap tooltips
-        // const tooltipTriggerList = document.querySelectorAll('.theme-switcher label');
-        // [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
-
-        // setTheme(getPreferredTheme());
     </script>
 </svelte:head>
 

@@ -6,7 +6,7 @@
     import calloutsPlugin from '/bin/remark-callouts.js';
     import addClasses from 'rehype-add-classes';
     import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-    import rehypePrettyCode from 'rehype-pretty-code';
+    // import rehypePrettyCode from 'rehype-pretty-code';
     import rehypeSlug from 'rehype-slug';
     import urls from 'rehype-urls';
     import rehypeWrap from 'rehype-wrap-all';
@@ -61,12 +61,12 @@
                         }
                     },
                 ],
-                [
-                    rehypePrettyCode,
-                    {
-                        langPrefix: 'language-',
-                    },
-                ],
+                // [ // vite doesn't like to compile rehype-pretty-code
+                //     rehypePrettyCode,
+                //     {
+                //         langPrefix: 'language-',
+                //     },
+                // ],
             ],
         },
     ]}

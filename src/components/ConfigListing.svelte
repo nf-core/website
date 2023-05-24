@@ -80,7 +80,4 @@
         min-width: 20rem;
         word-break: break-word;
     }
-    .keywords {
-        max-width: 35rem;
-    }
 </style>
