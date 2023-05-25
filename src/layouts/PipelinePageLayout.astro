@@ -15,10 +15,12 @@ export interface Props {
 }
 
 const { pipeline, subtitle, headings, version, versions = [], tabItems = [], md_github_url = '' } = Astro.props;
+const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+
 tabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}`,
-    active: Astro.url.pathname === `/${pipeline}/${version}`,
+    active: url === `/${pipeline}/${version}`,
     icon: 'fa-solid fa-sign-in',
 });
 const latestVersion = versions[0];
