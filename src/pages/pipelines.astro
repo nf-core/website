@@ -9,8 +9,6 @@ const description = `We currently have ${pipelines.length} pipelines available.`
 const num_released = pipelines.filter((p) => p.releases.length > 1 && !p.archived).length;
 const num_dev = pipelines.filter((p) => p.releases.length == 1 && !p.archived).length;
 const num_archived = pipelines.filter((p) => p.archived).length;
-
-export const prerender = true;
 ---
 
 <ListingLayout

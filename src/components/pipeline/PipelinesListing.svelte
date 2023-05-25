@@ -12,7 +12,7 @@
     }[] = [];
 
     import PipelineCard from '@components/pipeline/PipelineCard.svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store.js';
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store';
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;

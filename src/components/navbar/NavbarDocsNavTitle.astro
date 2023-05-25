@@ -15,7 +15,7 @@ url.pop(); // remove last element, which is already saved as title
     url.map((item) => {
         // make item title case
         item = item.replace(/_/g, ' ').replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
         });
         return (
             <span>

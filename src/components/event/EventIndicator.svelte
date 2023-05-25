@@ -1,5 +1,5 @@
 <script>
-    import { EventIsOngoing } from '@components/store.js';
+    import { EventIsOngoing } from '@components/store';
 </script>
 
 {#if $EventIsOngoing}

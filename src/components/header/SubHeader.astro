@@ -47,7 +47,7 @@ if (component_type === 'modules') {
         }
         {
             pipeline.length > 0 ? (
-                <a href={`${version}/launch`} class="btn btn-success launch-btn">
+                <a href={`${pipeline}/${version}/launch`} class="btn btn-success launch-btn">
                     <i class="fa-duotone fa-rocket me-2" />
                     {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}
                 </a>

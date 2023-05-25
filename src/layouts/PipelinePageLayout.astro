@@ -5,20 +5,22 @@ import TabBar from '@components/TabBar.astro';
 import cache from 'bin/cache.js';
 
 export interface Props {
-    pipeline: string;
-    subtitle: string;
-    version: string;
+    pipeline?: string;
+    subtitle?: string | null;
+    version?: string;
     versions?: string[];
-    headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
+    headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: { label: string; href: string; active: boolean; icon?: string }[];
-    md_github_url: string;
+    md_github_url?: string;
 }
 
 const { pipeline, subtitle, headings, version, versions = [], tabItems = [], md_github_url = '' } = Astro.props;
+const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+
 tabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}`,
-    active: Astro.url.pathname === `/${pipeline}/${version}`,
+    active: url === `/${pipeline}/${version}`,
     icon: 'fa-solid fa-sign-in',
 });
 const latestVersion = versions[0];

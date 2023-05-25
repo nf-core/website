@@ -1,6 +1,6 @@
 <script>
     import SchemaListingElement from '@components/schema/SchemaListingElement.svelte';
-    import { showHidden } from '@components/store.js';
+    import { showHidden } from '@components/store';
 
     export let definition;
     export let id;

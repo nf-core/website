@@ -17,21 +17,16 @@ import rehypeWrap from 'rehype-wrap-all';
 import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
-import { BUNDLED_LANGUAGES } from 'shiki';
 
-
-// highlight nextflow code as groovy
-BUNDLED_LANGUAGES = BUNDLED_LANGUAGES.map((lang) => {
-    if (lang.id === 'groovy') {
-        lang.aliases = ['nextflow', 'nf'];
-    }
-    return lang;
-});
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://deploy-preview-1652--nf-core.netlify.app/', // TODO: switch back to 'https://nf-co.re/'
-    output: 'server',
+    site: 'https://astro--nf-core.netlify.app/',
+    // TODO: switch back to 'https://nf-co.re/'
+    output: 'hybrid',
+    experimental: {
+        hybridOutput: true,
+    },
     adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
     vite: {
@@ -41,11 +36,14 @@ export default defineConfig({
         },
     },
     image: {
-        service: 'astro/assets/services/sharp',
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+        },
     },
     markdown: {
         syntaxHighlight: false,
         remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
+        // Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
             [
@@ -82,6 +80,11 @@ export default defineConfig({
                 rehypePrettyCode,
                 {
                     langPrefix: 'language-',
+                    keepBackground: true,
+                    theme: {
+                        dark: 'nord',
+                        light: 'github-light',
+                    },
                 },
             ],
             // [rehypeWrap, { selector: 'pre:has(code.language-bash)', wrapper: 'div.copy-code' }],

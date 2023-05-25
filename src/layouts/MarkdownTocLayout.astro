@@ -16,8 +16,8 @@ export interface Props {
 }
 
 const { title, subtitle, md_github_url, event_header, headings, left_sidebar } = Astro.props;
-let prev_page: CollectionEntry<'docs'> | string = '';
-let next_page: CollectionEntry<'docs'> | string = '';
+let prev_page: CollectionEntry<'docs'> | null = null;
+let next_page: CollectionEntry<'docs'> | null = null;
 
 if (Astro.url.pathname.startsWith('/docs/')) {
     let docs = await getCollection('docs');
@@ -32,10 +32,10 @@ if (Astro.url.pathname.startsWith('/docs/')) {
     } else {
         prev_page = docs[current_page_index - 1];
         prev_page =
-            prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : '';
+            prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
         next_page = docs[current_page_index + 1];
         next_page =
-            next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : '';
+            next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
     }
 }
 ---
@@ -52,7 +52,7 @@ if (Astro.url.pathname.startsWith('/docs/')) {
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top d-none d-md-inline sidebar-left sticky-top-under">
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
                     <SidebarNav />
                 </div>
             )
@@ -80,16 +80,8 @@ if (Astro.url.pathname.startsWith('/docs/')) {
     }
 </PageLayout>
 <style lang="scss">
-    .toc {
-        padding-top: 3.5rem;
-        margin-top: -4rem; // compensate for the navbar-offset of the underlying .nav element
-    }
     .sidebar-left {
         max-height: calc(100vh - 4rem);
         overflow-y: auto;
-    }
-    .sticky-top-under {
-        top: 4rem;
-        position: sticky;
     }
 </style>

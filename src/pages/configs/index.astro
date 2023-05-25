@@ -80,8 +80,6 @@ const configs = await Promise.all(
 );
 const title = 'nf-core/configs';
 const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
-
-export const prerender = true;
 ---
 
 <ListingLayout title={title} description={description} configs={configs} filter={[]} sortBy={[]} displayStyle={[]} />

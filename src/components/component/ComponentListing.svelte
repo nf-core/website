@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SortBy, DisplayStyle, SearchQuery } from '@components/store.js';
+    import { SortBy, DisplayStyle, SearchQuery } from '@components/store';
     import ComponentCard from '@components/component/ComponentCard.svelte';
 
     export let components: {
