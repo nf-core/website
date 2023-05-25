@@ -16,6 +16,8 @@ docs.map((doc) => {
         developmentDocs.push(doc);
     }
 });
+
+const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
 ---
 
 <div class="nav">
@@ -30,7 +32,7 @@ docs.map((doc) => {
                                 class:list={[
                                     'mt-2 w-100',
                                     {
-                                        active: Astro.url.pathname === '/docs/' + doc.slug,
+                                        active: url === '/docs/' + doc.slug,
                                     },
                                 ]}
                             >
@@ -38,7 +40,7 @@ docs.map((doc) => {
                                     class:list={[
                                         'text-decoration-none p-1',
                                         {
-                                            'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                            'text-muted': url !== '/docs/' + doc.slug,
                                         },
                                     ]}
                                     href={'/docs/' + doc.slug}
