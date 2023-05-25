@@ -24,8 +24,6 @@ const { moduleslug } = Astro.params;
 const { module } = Astro.props;
 const tool = module.meta.tools[0];
 const toolName = Object.keys(tool)[0];
-
-export const prerender = true;
 ---
 
 <ComponentPageLayout name={module.name} description={module.meta.description} type="modules">

@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit from './octokit.js';
+import octokit, { getGitHubFile } from '../src/components/octokit.js';
 import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -31,51 +31,8 @@ const buildCache = async () => {
         const cache_key = `${name}/${version}/${f}`;
         const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
         if (!is_cached || force) {
-          await octokit
-            .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
-              owner: 'nf-core',
-              repo: name,
-              path: f,
-              ref: version,
-            })
-            .catch((error) => {
-              if (error.status === 404) {
-                console.log(`File ${f} not found in ${name} ${version}`);
-                console.log(error.request.url);
-                return;
-              } else {
-                console.log(error);
-                return;
-              }
-            })
-            .then((response) => {
-              if (response == null) {
-                return;
-              }
-              console.log('Caching ', cache_key);
-              let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
-
-              if (f.endsWith('.md')) {
-                const parent_directory = f.split('/').slice(0, -1).join('/');
-                // add github url to image links in markdown
-                content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
-                  return `![${p1}](https://raw.githubusercontent.com/nf-core/${name}/${version}/${parent_directory}/${p2})`;
-                });
-                // add github url to html img tags in markdown
-                content = content.replaceAll(/<img(.*?)src="(.*?)"/g, (match, p1, p2) => {
-                  return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${name}/${version}/${parent_directory}/${p2}"`;
-                });
-                // remove github warning and everything before from docs
-                content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
-                // remove blockquote ending in "files._" from the start of the document
-                content = content.replace(/(.*?)(files\._)/s, '');
-                // cleanup heading
-                content = content.replace('# nf-core/' + name + ': ', '# ');
-                // remove everything before introduction
-                content = content.replace(/.*?## Introduction/gs, '## Introduction');
-              }
-              cache.set(cache_key, content);
-            });
+          const content = await getGitHubFile(name, f, version);
+          cache.set(cache_key, content);
         } else {
           console.log(`Already cached ${cache_key}`);
         }

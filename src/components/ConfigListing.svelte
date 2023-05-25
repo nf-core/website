@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { SearchQuery } from './store.js';
+    import { SearchQuery } from '@components/store';
 
     export let configs: {
         name: string;
         content: string;
-        config: object;
+        config: {};
     }[] = [];
 
     const searchconfigs = (config) => {
@@ -79,8 +79,5 @@
     .description {
         min-width: 20rem;
         word-break: break-word;
-    }
-    .keywords {
-        max-width: 35rem;
     }
 </style>

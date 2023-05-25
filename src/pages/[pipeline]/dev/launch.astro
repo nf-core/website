@@ -8,7 +8,7 @@ export function getStaticPaths() {
     const paths = pipelines_json.remote_workflows.map((pipeline) => {
         const params = pipeline.releases.map((release) => {
             return {
-                params: { pipeline: pipeline.name, version: release.tag_name },
+                params: { pipeline: pipeline.name, version: 'dev' },
             };
         });
         return params;
@@ -63,6 +63,8 @@ let versions = pipelines_json.remote_workflows
         });
     })
     .flat();
+
+export const prerender = false;
 ---
 
 <PipelinePageLayout

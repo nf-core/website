@@ -1,11 +1,10 @@
 ---
-import { Icon } from 'astro-icon';
 import { CollectionEntry } from 'astro:content';
 
 export interface Props {
     md_github_url?: string;
-    prev_page: CollectionEntry<'docs'> | string;
-    next_page: CollectionEntry<'docs'> | string;
+    prev_page: CollectionEntry<'docs'> | null;
+    next_page: CollectionEntry<'docs'> | null;
 }
 const { md_github_url, prev_page, next_page } = Astro.props;
 ---

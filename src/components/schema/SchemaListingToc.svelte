@@ -1,6 +1,6 @@
 <script lang="ts">
     import SidebarToc from '@components/sidebar/SidebarToc.svelte';
-    import { showHidden, showHelp } from '@components/store.js';
+    import { showHidden, showHelp } from '@components/store';
 
     export let headings: {
         text: string;

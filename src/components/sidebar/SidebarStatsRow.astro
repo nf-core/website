@@ -4,7 +4,7 @@ const { content, lastChild = false } = Astro.props;
 export interface Props {
     content: {
         title: string;
-        value?: string;
+        value?: string | number;
         icon?: string;
     }[];
     lastChild?: boolean;
