@@ -26,7 +26,11 @@ export function getStaticPaths() {
     return paths;
 }
 const { pipeline, version } = Astro.params;
-let headings = [];
+let headings: {
+    depth: number;
+    text: string;
+    slug: string;
+}[] = [];
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
 const baseUrl = '/' + pipeline + '/' + version;
 

@@ -27,6 +27,7 @@ const versions = meta.releases.map((r) => r.tag_name);
 
 const doc_files = await getDocFiles(pipeline, version);
 let tabItems = doc_files.map((file: string) => {
+    file = file.replace('docs/', '').replace('.md', '');
     return {
         label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
             return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
