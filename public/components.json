@@ -150,7 +150,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -1186,7 +1186,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -1288,7 +1288,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -1367,7 +1367,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -1573,7 +1573,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -1632,7 +1632,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -2027,7 +2027,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -2120,7 +2120,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -3871,7 +3871,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -3928,7 +3928,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -8275,7 +8275,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -16717,7 +16717,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "genomeannotator",
@@ -17887,7 +17887,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -18001,7 +18001,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -18059,7 +18059,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -18207,7 +18207,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -21860,6 +21860,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference genome",
@@ -21867,10 +21873,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference genome index",
               "pattern": "*.fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -21959,10 +21977,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference FASTA file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -22048,10 +22078,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The FASTA reference file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -22483,7 +22525,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -23189,7 +23231,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "genomeannotator",
@@ -31637,7 +31679,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -34867,7 +34909,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "genomeannotator",
@@ -35082,7 +35124,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -35184,7 +35226,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -35286,7 +35328,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -35388,7 +35430,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -35490,7 +35532,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -35572,7 +35614,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -37394,7 +37436,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -42589,7 +42631,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -48669,7 +48711,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "genomeannotator",
@@ -56269,7 +56311,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "mag",
@@ -56441,7 +56483,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "mag",
@@ -57886,7 +57928,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -60494,7 +60536,8 @@
         "description": "Index FASTA file",
         "keywords": [
           "index",
-          "fasta"
+          "fasta",
+          "faidx"
         ],
         "tools": [
           {
@@ -60513,7 +60556,7 @@
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -60521,6 +60564,19 @@
               "type": "file",
               "description": "FASTA file",
               "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "FASTA index file",
+              "pattern": "*.{fai}"
             }
           }
         ],
@@ -68058,6 +68114,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "variant_catalog": {
               "type": "file",
               "description": "json file with repeat expansion sites to genotype",
@@ -69308,7 +69370,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -71865,7 +71927,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "hgtseq",
@@ -80543,7 +80605,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -83704,7 +83766,7 @@
             }
           },
           {
-            "all": {
+            "unc": {
               "type": "file",
               "description": "List of all reads without a hit",
               "pattern": "*.unc"
@@ -85694,6 +85756,188 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_applyvarcal",
+      "path": "modules/nf-core/sentieon/applyvarcal/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_applyvarcal",
+        "description": "Apply a score cutoff to filter variants based on a recalibration table.\nSentieon's Aplyvarcal performs the second pass in a two-stage process called Variant Quality Score Recalibration (VQSR).\nSpecifically, it applies filtering to the input variants based on the recalibration table produced\nin the previous step VarCal and a target sensitivity value.\nhttps://support.sentieon.com/manual/usages/general/#applyvarcal-algorithm\n",
+        "keywords": [
+          "sentieon",
+          "applyvarcal",
+          "varcal",
+          "VQSR"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file to be recalibrated, this should be the same file as used for the first stage VariantRecalibrator.",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "vcf_tbi": {
+              "type": "file",
+              "description": "tabix index for the input vcf file.",
+              "pattern": "*.vcf.tbi"
+            }
+          },
+          {
+            "recal": {
+              "type": "file",
+              "description": "Recalibration file produced when the input vcf was run through VariantRecalibrator in stage 1.",
+              "pattern": "*.recal"
+            }
+          },
+          {
+            "recal_index": {
+              "type": "file",
+              "description": "Index file for the recalibration file.",
+              "pattern": ".recal.idx"
+            }
+          },
+          {
+            "tranches": {
+              "type": "file",
+              "description": "Tranches file produced when the input vcf was run through VariantRecalibrator in stage 1.",
+              "pattern": ".tranches"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The reference fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of reference fasta file",
+              "pattern": "*.fasta.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "compressed vcf file containing the recalibrated variants.",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "tbi": {
+              "type": "file",
+              "description": "Index of recalibrated vcf file.",
+              "pattern": "*vcf.gz.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions.",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@assp8200"
+        ]
+      }
+    },
+    {
+      "name": "kmcp_merge",
+      "path": "modules/nf-core/kmcp/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "kmcp_merge",
+        "description": "Merge search results from multiple databases.",
+        "keywords": [
+          "metagenomics",
+          "classify",
+          "taxonomic profiling",
+          "fastq",
+          "sequences",
+          "kmers"
+        ],
+        "tools": [
+          {
+            "kmcp": {
+              "description": "Accurate metagenomic profiling of both prokaryotic and viral populations by pseudo-mapping",
+              "homepage": "https://github.com/shenwei356/kmcp",
+              "documentation": "https://github.com/shenwei356/kmcp#documents",
+              "tool_dev_url": "https://github.com/shenwei356/kmcp",
+              "doi": "10.1093/bioinformatics/btac845",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "search_out": {
+              "type": "file",
+              "description": "The output file created by kmcp search",
+              "pattern": "*.gz"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "result": {
+              "type": "file",
+              "description": "Output file in gzipped format",
+              "pattern": "*.gz"
+            }
+          }
+        ],
+        "authors": [
+          "@sofstam"
         ]
       }
     }

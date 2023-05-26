@@ -1,9 +1,11 @@
 ---
 import { markdown } from '@astropub/md';
-import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
+import InstallCmd from '@components/InstallCmd.svelte';
+import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import cache from 'bin/cache.js';
+import { formatDistance } from 'date-fns';
 
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
@@ -26,15 +28,19 @@ export function getStaticPaths() {
     return paths;
 }
 const { pipeline, version } = Astro.params;
-const headings = [];
+let headings: {
+    depth: number;
+    text: string;
+    slug: string;
+}[] = [];
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
 const baseUrl = '/' + pipeline + '/' + version;
 
 let { versions, md_files, meta } = Astro.props;
-let tabItems = md_files.map((file: string) => {
+let tabItems = md_files.map((file) => {
     return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
-            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         }),
         href: baseUrl + '/' + file,
         active: false,
@@ -52,6 +58,8 @@ const md_content = await cache
         console.log(error);
         return '';
     });
+
+export const prerender = true;
 ---
 
 <PipelinePageLayout
@@ -63,7 +71,7 @@ const md_content = await cache
     tabItems={tabItems}
 >
     <div class="row">
-        <div class="col-12 col-md-9 pt-3 markdown-content">
+        <div class="col-12 col-md-9 pt-3">
             {
                 async () => {
                     const html = await markdown(md_content); // Markdown component of md package is broken at the moment, using this workaround
@@ -72,7 +80,143 @@ const md_content = await cache
             }
         </div>
         <div class="col-12 col-md-3 toc order-first order-md-last">
-            <PipelineSidebar {meta} {pipeline} {version} />
+            <div class="sidebar">
+                <SidebarStatsRow content={[{ title: 'run with', icon: 'fa-regular fa-terminal' }]}>
+                    <ul class="nav nav-fill small" role="tablist">
+                        <li class="nav-item border-0" role="presentation">
+                            <a
+                                class="nav-link active"
+                                id="nf-core-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#nf-core-tab-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="nf-core-tab-pane"
+                                aria-selected="true">nf-core</a
+                            >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a
+                                class="nav-link"
+                                id="nextflow-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#nextflow-tab-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="nextflow-tab-pane"
+                                aria-selected="false">Nextflow</a
+                            >
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a
+                                class="nav-link"
+                                id="tower-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#tower-tab-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="tower-tab-pane"
+                                aria-selected="false">Tower</a
+                            >
+                        </li>
+                    </ul>
+                    <div class="tab-content py-2 px-1">
+                        <div
+                            class="tab-pane show active"
+                            id="nf-core-tab-pane"
+                            role="tabpanel"
+                            aria-labelledby="nf-core-tab"
+                            tabindex="0"
+                        >
+                            <InstallCmd
+                                client:idle
+                                icon={false}
+                                cmd={`nf-core launch nf-core/${pipeline} -r ${version}`}
+                            />
+                        </div>
+                        <div
+                            class="tab-pane"
+                            id="nextflow-tab-pane"
+                            role="tabpanel"
+                            aria-labelledby="nextflow-tab"
+                            tabindex="0"
+                        >
+                            <InstallCmd
+                                client:visible
+                                icon={false}
+                                cmd={`nextflow run nf-core/${pipeline} -r ${version} -profile test --outdir <OUTDIR>`}
+                            />
+                        </div>
+                        <div
+                            class="tab-pane"
+                            id="tower-tab-pane"
+                            role="tabpanel"
+                            aria-labelledby="tower-tab"
+                            tabindex="0"
+                        >
+                            <InstallCmd
+                                client:visible
+                                icon={false}
+                                cmd={`tw launch https://nf-co.re/${pipeline} -r ${version}`}
+                            />
+                            <span class="text-muted small"
+                                >See the <a
+                                    href="https://github.com/seqeralabs/tower-cli/#2-configuration"
+                                    target="_blank">docs</a
+                                > on how to configure the Tower CLI.</span
+                            >
+                        </div>
+                    </div>
+                </SidebarStatsRow>
+                <SidebarStatsRow
+                    content={[
+                        { title: 'subscribers', value: meta.subscribers_count },
+                        { title: 'stars', value: meta.stargazers_count },
+                    ]}
+                />
+                <SidebarStatsRow
+                    content={[
+                        { title: 'open issues', value: meta.open_issues_count },
+                        { title: 'open PRs', value: meta.open_pr_count },
+                    ]}
+                />
+                <SidebarStatsRow
+                    content={[
+                        {
+                            title: 'last release',
+                            value: formatDistance(new Date(meta.releases[0].published_at), new Date(), {
+                                addSuffix: true,
+                            }),
+                        },
+                        {
+                            title: 'last update',
+                            value: formatDistance(new Date(meta.updated_at), new Date(), { addSuffix: true }),
+                        },
+                    ]}
+                />
+                <SidebarStatsRow content={[{ title: 'contributors' }]}>
+                    {
+                        meta.contributors.map((contributor) => {
+                            return (
+                                <img
+                                    src={'https://github.com/' + contributor.name + '.png?size=50'}
+                                    alt={contributor.name}
+                                    class="me-2 mb-2"
+                                    width="50"
+                                    height="50"
+                                    data-bs-toggle="tooltip"
+                                    title={
+                                        contributor.name +
+                                        '\n (' +
+                                        contributor.count +
+                                        (contributor.count > 1 ? ' contributions)' : ' contribution)')
+                                    }
+                                />
+                            );
+                        })
+                    }
+                </SidebarStatsRow>
+            </div>
         </div>
     </div>
 </PipelinePageLayout>
