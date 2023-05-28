@@ -6,8 +6,9 @@ start_date: '2023-05-02'
 start_time: '13:00 CEST'
 end_date: '2023-05-02'
 end_time: '13:30 CEST'
+youtube_embed: https://www.youtube.com/watch?v=hOuS6mXCwhk
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://www.youtube.com/watch?v=hOuS6mXCwhk
 ---
 
 # nf-core/bytesize
@@ -37,3 +38,10 @@ Even if it's a small script that you think no-one will ever use outside of your 
 
 Once released in PyPI, releases via [Bioconda](https://bioconda.github.io/) are simple (see [Bytesize 40: Software packaging](https://nf-co.re/events/2022/bytesize-40-software-packaging)).
 Once in BioConda, software will be available for Conda users, but also Docker + Singularity, via the [BioContainers](https://biocontainers.pro/) project.
+
+<details markdown="1"><summary>Video transcription</summary>
+**Note: The content has been edited for reader-friendliness**
+
+[0:01](https://www.youtube.com/watch?v=hOuS6mXCwhk&t=1)
+
+</details>
