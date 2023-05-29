@@ -134,7 +134,7 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 
 > **nf-core/isoseq: Simple gene and isoform annotation with PacBio Iso-Seq long-read sequencing.**
 >
-> Sébastien Guizard, Katarzyna Miedzinska, Jaqueline Smith, Jonathan Smith, Richard Kuo, Megan Davey, Michael Bryan Watson
+> Sébastien Guizard, Katarzyna Miedzinska, Jacqueline Smith, Jonathan Smith, Richard Kuo, Megan Davey, Alan Archibald, Michael Bryan Watson
 >
 > [_Bioinformatics_ 2023 Mar](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btad150);
 > doi: [10.1093/bioinformatics/btad150](https://doi.org/10.1093/bioinformatics/btad150)
