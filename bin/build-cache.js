@@ -31,7 +31,6 @@ const buildCache = async () => {
       release.doc_files.push('nextflow_schema.json'); // add the nextflow_schema.json to the cache
       const version = release.tag_name;
       for (let f of release.doc_files) {
-        // fix path for files in docs folder
         const cache_key = `${name}/${version}/${f}`;
         const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
         if (!is_cached || force) {

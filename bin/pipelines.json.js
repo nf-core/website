@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 
+
 // get current path
 const __dirname = path.resolve();
 
@@ -85,7 +86,7 @@ const writePipelinesJson = async () => {
       console.log(`No commits to dev branch found for ${name}`);
     }
     data['releases'] = releases.map(async (release) => {
-      const { tag_name, published_at } = release;
+      const { tag_name, published_at, sha } = release;
       const doc_files = await getDocFiles(name, release.tag_name);
 
       let components = await octokit
@@ -133,8 +134,9 @@ const writePipelinesJson = async () => {
           return component.replace('/', '_');
         });
       }
-      return { tag_name, published_at, doc_files, components };
+      return { tag_name, published_at, sha, doc_files, components };
     });
+
     // resolve the promises
     data['releases'] = await Promise.all(data['releases']);
     if (!pipelines.remote_workflows) {
@@ -147,10 +149,10 @@ const writePipelinesJson = async () => {
     } else {
       pipelines.remote_workflows.push(data);
     }
-
     bar.tick();
     // write the pipelines.json file
   }
+
   const json = JSON.stringify(pipelines, null, 4);
   await writeFileSync(path.join(__dirname, '/public/pipelines.json'), json, 'utf8');
 };
