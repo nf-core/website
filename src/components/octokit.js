@@ -71,7 +71,7 @@ export const getDocFiles = async (pipeline, version) => {
           return file.name.includes('.md') && !file.name.includes('README');
         })
         .map((file) => {
-          return file.path.replace('docs/', '').replace('.md', '');
+          return file.path;
         });
     });
   return doc_files;

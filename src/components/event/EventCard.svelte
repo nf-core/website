@@ -73,7 +73,7 @@
                 class="d-flex justify-content-center justify-content-md-between align-items-center flex-wrap flex-md-nowrap"
             >
                 <div>
-                    <p class="text-muted text-nowrap text-center text-md-start">
+                    <p class="text-body-secondary text-nowrap text-center text-md-start">
                         {@html event_date}
                     </p>
                 </div>
