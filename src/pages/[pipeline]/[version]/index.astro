@@ -12,20 +12,19 @@ export function getStaticPaths() {
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
             if (release.tag_name === 'dev') {
-                return;
+                const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
+                paths.push({
+                    params: {
+                        pipeline: pipeline.name,
+                        version: release.tag_name,
+                    },
+                    props: {
+                        versions: pipeline.releases.map((release) => release.tag_name),
+                        md_files: md_files,
+                        meta: pipeline,
+                    },
+                });
             }
-            const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
-            paths.push({
-                params: {
-                    pipeline: pipeline.name,
-                    version: release.tag_name,
-                },
-                props: {
-                    versions: pipeline.releases.map((release) => release.tag_name),
-                    md_files: md_files,
-                    meta: pipeline,
-                },
-            });
         });
     });
     return paths;
