@@ -23,9 +23,6 @@ const buildCache = async () => {
   for (const pipeline of pipelines.remote_workflows) {
     const { name } = pipeline;
     let releases = pipeline.releases;
-    // drop 'dev' from releases, as it shouldn't be cached
-    releases = releases.filter((release) => release.tag_name !== 'dev');
-
     for (const release of releases) {
       release.doc_files.push('README.md'); // add the README to the cache
       release.doc_files.push('nextflow_schema.json'); // add the nextflow_schema.json to the cache
