@@ -40,7 +40,7 @@ const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) :
                                     class:list={[
                                         'text-decoration-none p-1',
                                         {
-                                            'text-muted': url !== '/docs/' + doc.slug,
+                                            'text-body-secondary': url !== '/docs/' + doc.slug,
                                         },
                                     ]}
                                     href={'/docs/' + doc.slug}
@@ -70,7 +70,7 @@ const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) :
                                     class:list={[
                                         'text-decoration-none p-1',
                                         {
-                                            'text-muted': Astro.url.pathname !== '/docs/' + doc.slug,
+                                            'text-body-secondary': Astro.url.pathname !== '/docs/' + doc.slug,
                                         },
                                     ]}
                                     href={'/docs/' + doc.slug}

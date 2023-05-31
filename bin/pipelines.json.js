@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit from '../src/components/octokit.js';
+import octokit, { getDocFiles } from '../src/components/octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
@@ -61,6 +61,16 @@ const writePipelinesJson = async () => {
       owner: 'nf-core',
       repo: name,
     });
+    // get sha of release commit
+    for (const release of releases) {
+      const { data: commit } = await octokit.rest.repos.getCommit({
+        owner: 'nf-core',
+        repo: name,
+        ref: release.tag_name,
+      });
+      release['sha'] = commit.sha;
+    }
+
     // get last push to dev branch
     const { data: dev_branch } = await octokit.rest.repos.listCommits({
       owner: 'nf-core',
@@ -68,13 +78,16 @@ const writePipelinesJson = async () => {
       sha: 'dev',
     });
     if (dev_branch.length > 0) {
-      releases = [...releases, { tag_name: 'dev', published_at: dev_branch[0].commit.author.date }];
+      releases = [
+        ...releases,
+        { tag_name: 'dev', published_at: dev_branch[0].commit.author.date, sha: dev_branch[0].sha },
+      ];
     } else {
       console.log(`No commits to dev branch found for ${name}`);
     }
     data['releases'] = releases.map(async (release) => {
-      const { tag_name, published_at } = release;
-      const doc_files = await getDocFiles(pipeline, version);
+      const { tag_name, published_at, sha } = release;
+      const doc_files = await getDocFiles(name, release.tag_name);
 
       let components = await octokit
         .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
@@ -121,8 +134,9 @@ const writePipelinesJson = async () => {
           return component.replace('/', '_');
         });
       }
-      return { tag_name, published_at, doc_files, components };
+      return { tag_name, published_at, sha, doc_files, components };
     });
+
     // resolve the promises
     data['releases'] = await Promise.all(data['releases']);
     if (!pipelines.remote_workflows) {
@@ -135,10 +149,10 @@ const writePipelinesJson = async () => {
     } else {
       pipelines.remote_workflows.push(data);
     }
-
     bar.tick();
     // write the pipelines.json file
   }
+
   const json = JSON.stringify(pipelines, null, 4);
   await writeFileSync(path.join(__dirname, '/public/pipelines.json'), json, 'utf8');
 };

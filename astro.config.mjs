@@ -1,4 +1,6 @@
 import calloutsPlugin from './bin/remark-callouts.js';
+import githubLightTheme from '/public/themes/github-light.json';
+import nordTheme from '/public/themes/nord.json';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
 import prefetch from '@astrojs/prefetch';
@@ -26,6 +28,7 @@ export default defineConfig({
     output: 'hybrid',
     experimental: {
         hybridOutput: true,
+        inlineStylesheets: `auto`,
     },
     adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
@@ -42,6 +45,11 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
+        shikiConfig: {
+            langs: [],
+            theme: nordTheme,
+            wrap: false,
+        },
         remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
         // Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
@@ -82,8 +90,8 @@ export default defineConfig({
                     langPrefix: 'language-',
                     keepBackground: true,
                     theme: {
-                        dark: 'nord',
-                        light: 'github-light',
+                        dark: nordTheme,
+                        light: githubLightTheme,
                     },
                 },
             ],

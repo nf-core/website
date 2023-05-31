@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import octokit, { getGitHubFile } from '../src/components/octokit.js';
+import { getGitHubFile } from '../src/components/octokit.js';
 import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -22,12 +22,12 @@ const buildCache = async () => {
   // go through the releases of each pipeline and get the files which are needed for the pipeline pages
   for (const pipeline of pipelines.remote_workflows) {
     const { name } = pipeline;
-    const releases = pipeline.releases;
+    let releases = pipeline.releases;
     for (const release of releases) {
       release.doc_files.push('README.md'); // add the README to the cache
       release.doc_files.push('nextflow_schema.json'); // add the nextflow_schema.json to the cache
       const version = release.tag_name;
-      for (const f of release.doc_files) {
+      for (let f of release.doc_files) {
         const cache_key = `${name}/${version}/${f}`;
         const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
         if (!is_cached || force) {
