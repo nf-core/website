@@ -26,6 +26,7 @@ export default defineConfig({
     output: 'hybrid',
     experimental: {
         hybridOutput: true,
+        inlineStylesheets: `auto`,
     },
     adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
