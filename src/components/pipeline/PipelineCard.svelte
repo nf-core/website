@@ -36,7 +36,7 @@
                         <a
                             href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
                             style={{ cursor: 'pointer' }}
-                            class="text-muted text-decoration-none"
+                            class="text-body-secondary text-decoration-none"
                         >
                             <i class="fa-regular fa-tag ms-3 me-1" />
                             {tag_name}
@@ -72,7 +72,7 @@
         {/if}
 
         {#if released}
-            <p class="text-muted align">Last release {release_date_ago}</p>
+            <p class="text-body-secondary align">Last release {release_date_ago}</p>
         {/if}
     </div>
 </div>

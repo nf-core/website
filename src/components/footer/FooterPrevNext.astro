@@ -17,7 +17,7 @@ const { md_github_url, prev_page, next_page } = Astro.props;
                     class="btn nav-btn rounded-0 d-flex flex-column align-items-end py-md-3 py-2 px-3  text-body text-decoration-none text-end"
                     href={'/docs/' + prev_page.slug}
                 >
-                    <span class="text-muted d-none d-md-inline">Previous: </span>
+                    <span class="text-body-secondary d-none d-md-inline">Previous: </span>
                     <i class="fa-solid fa-arrow-left me-1 d-md-none" />
                     <span>{prev_page.data.title}</span>
                 </a>
@@ -37,7 +37,7 @@ const { md_github_url, prev_page, next_page } = Astro.props;
                     class="btn nav-btn rounded-0 d-flex flex-column align-items-start py-md-3 py-2 px-3 text-body text-decoration-none text-start"
                     href={'/docs/' + next_page.slug}
                 >
-                    <span class="text-muted d-none d-md-inline">Next: </span>
+                    <span class="text-body-secondary d-none d-md-inline">Next: </span>
                     <i class="fa-solid fa-arrow-right ms-1 d-md-none" />
                     <span>{next_page.data.title}</span>
                 </a>
@@ -53,7 +53,7 @@ const { md_github_url, prev_page, next_page } = Astro.props;
         .nav-btn:hover {
             background-color: shade-color($body-tertiary-bg, 3%);
             &,
-            & .text-muted {
+            & .text-body-secondary {
                 color: $gray-900 !important;
             }
         }

@@ -84,27 +84,27 @@ Just remember to check back in with the main group periodically.
 
 ##### New pipeline development
 
-- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
-- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
-<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv) ] -->
+- <i class="fab fa-fw fa-slack text-body-secondary me-2"></i> Slack channel: [`#hackathon-july-2020-new-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-new-pipelines)
+- <i class="fas fa-fw fa-video text-body-secondary me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-New-pipelines)
+<!-- * <i class="fab fa-fw fa-markdown text-body-secondary me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/U3hNik2AQG2bor_4pWlvfQ) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/ByaotZZkv) ] -->
 
 ##### Existing nf-core pipeline development
 
-- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
-- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
-<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD) ] -->
+- <i class="fab fa-fw fa-slack text-body-secondary me-2"></i> Slack channel: [`#hackathon-july-2020-existing-pipelines`](https://nfcore.slack.com/channels/hackathon-july-2020-existing-pipelines)
+- <i class="fas fa-fw fa-video text-body-secondary me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines](https://meet.jit.si/nf-core-hackathon-July2020-Existing-pipelines)
+<!-- * <i class="fab fa-fw fa-markdown text-body-secondary me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/sVE8c7XxSW-QyCBaDAwxMg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/Hk7HqW-JD) ] -->
 
 ##### Improving nf-core framework tools (written in Python)
 
-- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-tools`](https://nfcore.slack.com/channels/hackathon-july-2020-tools)
-- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement](https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement)
-<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP) ] -->
+- <i class="fab fa-fw fa-slack text-body-secondary me-2"></i> Slack channel: [`#hackathon-july-2020-tools`](https://nfcore.slack.com/channels/hackathon-july-2020-tools)
+- <i class="fas fa-fw fa-video text-body-secondary me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement](https://meet.jit.si/nf-core-hackathon-July2020-Tools-improvement)
+<!-- * <i class="fab fa-fw fa-markdown text-body-secondary me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/Okx7xOUvTGW4NMVropSttg) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/r1ZJiZWkP) ] -->
 
 ##### Nextflow DSL2 modules
 
-- <i class="fab fa-fw fa-slack text-muted me-2"></i> Slack channel: [`#hackathon-july-2020-modules-dsl2`](https://nfcore.slack.com/channels/hackathon-july-2020-modules-dsl2)
-- <i class="fas fa-fw fa-video text-muted me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2](https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2)
-<!-- * <i class="fab fa-fw fa-markdown text-muted me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD) ] -->
+- <i class="fab fa-fw fa-slack text-body-secondary me-2"></i> Slack channel: [`#hackathon-july-2020-modules-dsl2`](https://nfcore.slack.com/channels/hackathon-july-2020-modules-dsl2)
+- <i class="fas fa-fw fa-video text-body-secondary me-2"></i> Jitsi room: [https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2](https://meet.jit.si/nf-core-hackathon-July2020-modules-dsl2)
+<!-- * <i class="fab fa-fw fa-markdown text-body-secondary me-2"></i> Slides on HackMD: [ [<i class="fas fa-sm fa-pencil"></i> Edit](https://hackmd.io/CMmZaDl2QWK3C7ZBDzffPw) ], [ [<i class="fas fa-sm fa-presentation"></i> View](https://hackmd.io/@nf-core-hackathon-july-2020/By4n2-bkD) ] -->
 
 ## Schedule
 

@@ -36,7 +36,7 @@
 
         <p class="description flex-grow-1">{component.meta.description}</p>
         {#if component.pipelines}
-            <span class="text-muted align-self-bottom"
+            <span class="text-body-secondary align-self-bottom"
                 >Included in:
                 {#each component.pipelines as pipeline}
                     <a class="badge text-bg-warning me-2" href={'/' + pipeline.name + '/' + pipeline.version}
@@ -46,7 +46,7 @@
             </span>
         {/if}
         {#if component.subworkflows}
-            <span class="text-muted align-self-bottom"
+            <span class="text-body-secondary align-self-bottom"
                 >Part of:
                 {#each component.subworkflows as subworkflow}
                     <a class="badge text-bg-info me-2" href={'/subworkflows/' + subworkflow}>{subworkflow}</a>
@@ -54,7 +54,7 @@
             </span>
         {/if}
         {#if component.meta.modules}
-            <span class="text-muted align-self-bottom"
+            <span class="text-body-secondary align-self-bottom"
                 >Contains:
                 {#each component.meta.modules as module}
                     <a class="badge text-bg-info me-2" href={'/modules/' + module.replace('/', '_')}>{module}</a>
