@@ -6,8 +6,7 @@ import cache from 'bin/cache.js';
 
 export function getStaticPaths() {
     const paths = pipelines_json.remote_workflows.map((pipeline) => {
-        const releases = pipeline.releases.filter((release) => release.tag_name !== 'dev');
-        const params = releases.map((release) => {
+        const params = pipeline.releases.map((release) => {
             return {
                 params: { pipeline: pipeline.name, version: release.tag_name },
             };
