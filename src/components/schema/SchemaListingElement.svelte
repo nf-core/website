@@ -26,7 +26,7 @@
         {#if property.hidden}
             <span class="badge text-bg-warning">hidden</span>
         {/if}
-        <div class="text-muted">
+        <div class="text-body-secondary">
             type: <code>{property.type}</code>
         </div>
         {#if property.enum}
@@ -37,7 +37,7 @@
             </select>
         {/if}
         {#if property.default && !property.enum}
-            <div class="default w-100 text-end text-muted overflow-x-scroll">
+            <div class="default w-100 text-end text-body-secondary overflow-x-scroll">
                 default: <code>{property.default}</code>
             </div>
         {/if}

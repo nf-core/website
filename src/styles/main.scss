@@ -1283,10 +1283,6 @@ div[data-rehype-pretty-code-fragment] {
     }
   }
 
-  input.form-control {
-    background-color: $body-tertiary-bg-dark; // bootstrap should actually fix that, but somehow uses the light theme variable here...
-  }
-
   .mainpage-heading,
   .mainpage-heading h1 {
     color: $gray-100 !important;
@@ -1329,7 +1325,7 @@ div[data-rehype-pretty-code-fragment] {
     background-color: tint-color($body-tertiary-bg-dark, 3%);
 
     &,
-    & .text-muted {
+    & .text-body-secondary {
       color: $gray-200 !important;
     }
   }

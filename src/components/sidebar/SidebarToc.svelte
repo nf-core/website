@@ -35,7 +35,7 @@
                             class={'nav-item ' + headingMargin[heading.depth]}
                             class:active={heading.slug === $currentHeading}
                         >
-                            <a class="nav-link py-1 ps-3 text-muted" href={'#' + heading.slug}>
+                            <a class="nav-link py-1 ps-3 text-body-secondary" href={'#' + heading.slug}>
                                 {#if heading.fa_icon}
                                     <i class={heading.fa_icon} aria-hidden="true" />
                                 {/if}
@@ -47,7 +47,7 @@
                 <div class="">
                     <a
                         href="#/"
-                        class="back-to-top text-muted text-small float-end mb-2"
+                        class="back-to-top text-body-secondary text-small float-end mb-2"
                         on:click={() => window.scrollTo(0, 0)}
                     >
                         <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top

@@ -21,13 +21,13 @@ export interface Props {
     params ? (
         <div class="row border-bottom border-3">
             <div class="col-12 col-md-3 col-xxl-2">
-                <span class="text-muted">Name (Type)</span>
+                <span class="text-body-secondary">Name (Type)</span>
             </div>
             <div class="col-12 col-md-6">
-                <span class="text-muted text-start">Description</span>
+                <span class="text-body-secondary text-start">Description</span>
             </div>
             <div class="col-12 col-md">
-                <span class="text-muted float-end">Pattern</span>
+                <span class="text-body-secondary float-end">Pattern</span>
             </div>
         </div>
     ) : (
@@ -44,7 +44,7 @@ export interface Props {
                     <div class="col-12 col-md-3 col-xxl-2 small-h">
                         <h4 id={name} class="module-row-name-id d-flex align-items-center mb-0">
                             <code>{name}</code>
-                            {type && <span class="text-muted ms-1"> ({type})</span>}
+                            {type && <span class="text-body-secondary ms-1"> ({type})</span>}
                             <a href={'#' + name} class="header-link scroll_to_link me-2 mb-2">
                                 <span class="fas fa-link" aria-hidden="true" />
                             </a>
@@ -66,7 +66,7 @@ export interface Props {
             );
         })
     ) : (
-        <p class="text-muted">No input parameters</p>
+        <p class="text-body-secondary">No input parameters</p>
     )
 }
 <style>
