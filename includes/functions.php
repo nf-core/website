@@ -462,7 +462,7 @@ function add_ids_to_headers($content_input, $is_hidden = false) {
                 $to_return .=
                     $to_return .
                     $matches[2] .
-                    '<a href="#' .
+                    ' <a href="#' .
                     $hid .
                     '" class="header-link scroll_to_link"><span class="fas fa-link fa-xs ms-1"></span></a></h' .
                     $matches[3] .
