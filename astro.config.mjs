@@ -27,6 +27,7 @@ export default defineConfig({
     // TODO: switch back to 'https://nf-co.re/'
     output: 'hybrid',
     experimental: {
+        assets: true,
         hybridOutput: true,
         inlineStylesheets: `auto`,
     },

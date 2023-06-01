@@ -24,8 +24,15 @@ const docs = defineCollection({
         subtitle: z.string().optional(),
     }),
 });
+const about = defineCollection({
+    schema: z.object({
+        title: z.string(),
+        subtitle: z.string().optional(),
+    }),
+});
 
 export const collections = {
     events: events,
     docs: docs,
+    about: about,
 };
