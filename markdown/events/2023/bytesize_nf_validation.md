@@ -20,4 +20,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: nf-validation
 
-This week Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol)) is presenting nf-validation, the soon to be released plugin to validate the input samplesheets for Nextflow pipelines.
+This week Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol)) is presenting nf-validation, the soon to be released plugin to validate the input parameters and sample sheets for Nextflow pipelines.
