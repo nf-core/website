@@ -10,7 +10,7 @@ Here you can read how we organise ourselves, how we are funded and how the nf-co
 
 Please note that all nf-core community members are expected to adhere to our [code of conduct](/code_of_conduct).
 
-# Core team {#core}
+# Core team
 
 The core team members who administer the nf-core project are listed below:
 
@@ -42,7 +42,7 @@ the nf-core alumni hall of fame:
 - [@renbot-bio](https://github.com/renbot-bio): Renuka Kudva
 - [@Xesus-Abalo](https://github.com/Xesus-Abalo): Xesús M. Abalo
 
-# Maintainers team {#maintainers}
+# Maintainers team
 
 nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
 The maintainer's team consist of dedicated and highly active members of the community, that take official additional roles in managing nf-core repositories in collaboration with the wider nf-core community.
@@ -76,7 +76,7 @@ The current members of the maintainer's team in 2023 are: <!-- TODO: check if ye
 
 We thank all the institutions and companies of the maintainers team for their support of nf-core.
 
-# Outreach team {#outreach}
+# Outreach team
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
 This team includes all of the `@core-team` mentioned above, but the people in charge are:
@@ -85,7 +85,7 @@ This team includes all of the `@core-team` mentioned above, but the people in ch
 - [@FranBonath](https://github.com/FranBonath): Franziska Bonath
 - [@mribeirodantas](https://github.com/mribeirodantas): Marcel Ribeiro-Dantas
 
-# Safety team {#safety}
+# Safety team
 
 The safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare, and members are not a part of the core team.
 
@@ -106,9 +106,9 @@ If you work with a project that would benefit from an explicit link with nf-core
 
 Finally, we would specifically like to acknowledge and thank the following sponsors who help to support the project:
 
-## Chan Zuckerberg Initiative {#czi-eoss}
+## Chan Zuckerberg Initiative
 
-<img src="/_astro/contributors/colour/CZI.hash.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/src/assets/contributors/colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
 We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
@@ -130,9 +130,9 @@ The CZI grant employs personnel based at the [SciLifeLab National Genomics Infra
 
 <div class="clearfix"></div>
 
-## Seqera Labs {#seqera}
+## Seqera Labs
 
-<img src="/assets/img/contributors-colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/src/assets/contributors/colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 Seqera Labs is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
 
@@ -150,16 +150,16 @@ Specifically, Seqera helps nf-core with:
 
 ## SciLifeLab Data Centre
 
-<img src="/assets/img/contributors-colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/src/assets/contributors/colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
 This funding covers a full-time position ([@mashehu](https://github.com/mashehu), Matthias Hörtenhuber) to work on maintainance of nf-core framework code. For example, the [nf-core website](https://nf-co.re/) and the [nf-core/tools package](https://github.com/nf-core/tools/).
 
 <div class="clearfix"></div>
 
-## Amazon Web Services {#aws}
+## Amazon Web Services
 
-<img src="/assets/img/contributors-colour/aws.svg" alt="Amazon Web Services" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+<img src="/src/assets/contributors/colour/aws.svg" alt="Amazon Web Services" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
 
 Amazon Web Services (AWS) kindly support nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You can explore and download these pipeline results under the <em class="mx-2"><i class="fab fa-aws me-2"></i> Results</em> tab on each pipeline page.
@@ -171,7 +171,7 @@ This is used by most nf-core pipelines to give free and open access to the refer
 
 ## Microsoft Azure
 
-<img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+<img src="/src/assets/contributors/colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 ms-3">
 
 Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
@@ -185,17 +185,17 @@ We also thank the following organisations for supporting nf-core through providi
 <div class="row my-5">
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://www.docker.com/" target="_blank">
-      <img src="/assets/img/docker-horizontal.png" alt="Docker w-100">
+      <img src="/src/assets/docker-horizontal.png" alt="Docker">
     </a>
   </div>
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://gitpod.io/" target="_blank">
-      <img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
+      <img src="/src/assets/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
     </a>
   </div>
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://hackmd.io/" target="_blank">
-      <img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
+      <img src="/src/assets/contributors/colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
     </a>
   </div>
 </div>
