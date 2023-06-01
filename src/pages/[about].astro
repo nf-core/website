@@ -17,7 +17,7 @@ const title = Astro.props.about.data.title;
 const subtitle = Astro.props.about.data.description;
 const { headings, Content } = await Astro.props.about.render();
 
-const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/' + Astro.props.about.data.slug + '.md';
+const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/' + Astro.props.about.slug + '.md';
 ---
 
 <MarkdownTocLayout
@@ -25,7 +25,7 @@ const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/
     subtitle={subtitle}
     md_github_url={md_github_url}
     headings={headings}
-    left_sidebar={true}
+    left_sidebar={false}
 >
     <Content />
 </MarkdownTocLayout>
