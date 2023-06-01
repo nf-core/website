@@ -44,9 +44,6 @@ $href_url_prepend = preg_replace('/\/\/+/', '/', $href_url_prepend);
 $src_url_prepend = 'https://raw.githubusercontent.com/nf-core' . $href_url_prepend;
 $href_url_suffix_cleanup = '\.md';
 
-# Footer link
-$md_github_url = 'https://github.com/' . $pipeline->full_name . '/blob/' . $release . '/' . $filename;
-
 # Markdown cleanup
 $md_content_replace[] = ['/# nf-core\/' . $pipeline->name . ': /', '# '];
 $md_content_replace[] = [
