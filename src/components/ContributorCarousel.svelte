@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
     import { flip } from 'svelte/animate';
     import { fade } from 'svelte/transition';
-    import contributors_yml from '../config/contributors.yaml';
+    import contributors_yml from '@public/contributors.yaml';
     export let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
         .sort((a, b) => 0.5 - Math.random())
