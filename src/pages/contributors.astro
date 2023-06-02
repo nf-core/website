@@ -1,11 +1,29 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import pipelines_json from '@public/pipelines.json';
+import contributors_yml from '@public/contributors.yaml';
+import Leaflet from '@components/Leaflet.svelte';
 
-const pipelines = pipelines_json.remote_workflows;
 let contributors = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 contributors = [...new Set(contributors.map((contributor) => contributor.name.replace('@', '')))];
-console.log(contributors);
+
+const contributors_map: {
+    location: [number, number];
+    name: string;
+    url: string;
+    image: string;
+}[] = contributors_yml.contributors.map((contributor) => {
+    const location = contributor.location;
+    if (location) {
+        return {
+            location: location,
+            name: contributor.full_name,
+            url: contributor.url,
+            image: contributor.image_fn,
+        };
+    }
+    return null;
+});
 
 const title = 'Contributors';
 const subtitle = 'Find out who is involved in the nf-core project';
@@ -102,9 +120,11 @@ const headings = [
     </blockquote>
 
     <div class="card contributors-map-card">
-        <div class="card-body" id="contributors-map"></div>
+        <div class="card-body" id="contributors-map">
+            <Leaflet locations={contributors_map} client:only="svelte" />
+        </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="d-flex align-items-center">
         <!-- <?php
     // Parse YAML contributors file
     require '../vendor/autoload.php';

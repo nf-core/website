@@ -58,7 +58,6 @@ const { title, description, image = '/social_img.png' } = Astro.props;
         // Switch any images with .darkmode-image class after page has finished loading
         window.addEventListener('load', () => {
             const images = document.querySelectorAll('img.darkmode-image');
-            console.log(images);
             for (const img of images) {
                 img.src = img.src.replace('/colour/', '/white/');
             }
