@@ -45,7 +45,7 @@ if (Astro.url.pathname.startsWith('/docs/')) {
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
-    subfooter={false}
+    subfooter={md_github_url ? true : false}
     mainpage_container={true}
     navTocHeadings={headings}
 >

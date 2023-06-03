@@ -59,8 +59,16 @@
 <div style="height:500px;width:90%" use:mapAction />
 
 <style lang="scss">
-    .contributor_map_logo {
-        height: 45px;
+    :global(.contributor_map_logo) {
+        max-height: 5rem;
         margin-top: 0.25rem;
+    }
+    :global(.leaflet-popup-content-wrapper) {
+        max-height: 15rem;
+        :global(.leaflet-popup-content) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     }
 </style>
