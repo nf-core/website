@@ -3,10 +3,17 @@ import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import contributors_yml from '@public/contributors.yaml';
 import Leaflet from '@components/Leaflet.svelte';
+import GitHubUser from '@components/GitHubProfilePicture.svelte';
 
 let contributors = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
-contributors = [...new Set(contributors.map((contributor) => contributor.name.replace('@', '')))];
+contributors = contributors.map((contributor) => {
+    return { name: contributor.name.replace('@', ''), avatar_url: contributor.avatar_url };
+});
 
+// remove duplicates
+contributors = contributors.filter(
+    (contributor, index, self) => index === self.findIndex((t) => t.name === contributor.name)
+);
 const contributors_map: {
     location: [number, number];
     name: string;
@@ -24,7 +31,6 @@ const contributors_map: {
     }
     return null;
 });
-
 const title = 'Contributors';
 const subtitle = 'Find out who is involved in the nf-core project';
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml';
@@ -93,16 +99,12 @@ const headings = [
             contributors &&
                 contributors.map((contributor) => (
                     <a
-                        href={'https://github.com/' + contributor}
+                        href={'https://github.com/' + contributor.name}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="me-2 mb-2 contributor text-decoration-none"
+                        class="text-decoration-none"
                     >
-                        <img
-                            class="rounded-circle"
-                            src={'https://github.com/' + contributor + '.png'}
-                            alt={contributor}
-                        />
+                        <GitHubUser name={contributor.name} image={contributor.avatar_url} size={40} />
                     </a>
                 ))
         }
@@ -124,142 +126,57 @@ const headings = [
             <Leaflet locations={contributors_map} client:only="svelte" />
         </div>
     </div>
-    <div class="d-flex align-items-center">
-        <!-- <?php
-    // Parse YAML contributors file
-    require '../vendor/autoload.php';
+    <div class="d-flex align-items-stretch flex-wrap">
+        {
+            contributors_yml.contributors &&
+                contributors_yml.contributors.map((institution) => (
+                    <div class="card m-2 institution">
+                        <div class="card-body">
+                            <div class="border-bottom-0 bg-transparent card-title">
+                                <a
+                                    href={institution.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="d-flex justify-content-between text-decoration-none"
+                                >
+                                    <h3 class="">{institution.full_name}</h3>
 
-    use Spyc;
-
-    $locations = [];
-    $contributors = spyc_load_file('../nf-core-contributors.yaml');
-    $contributors_html = '';
-    foreach ($contributors['contributors'] as $idx => $c) {
-        // Start card div
-        $contributors_html .= '<div class="col"><div class="card contributor h-100"><div class="card-body">';
-        // Header, title
-        $img_path = '';
-        if (array_key_exists('image_fn', $c)) {
-            // Dark theme
-            $hide_dark = '';
-            $dark_img_path = 'assets/img/contributors-white/' . $c['image_fn'];
-            if ($c['image_fn'] and file_exists($dark_img_path)) {
-                $contributors_html .=
-                    '<img class="contributor_logo hide-light" title="' .
-                    $c['full_name'] .
-                    '" src="' .
-                    $dark_img_path .
-                    '">';
-                $hide_dark = 'hide-dark';
-            }
-            // Normal, light theme
-            $img_path = 'assets/img/contributors-colour/' . $c['image_fn'];
-            if ($c['image_fn'] and file_exists($img_path)) {
-                $contributors_html .=
-                    '<img class="contributor_logo ' .
-                    $hide_dark .
-                    '" title="' .
-                    $c['full_name'] .
-                    '" src="' .
-                    $img_path .
-                    '">';
-            } else {
-                $img_path = '';
-            }
+                                    <img
+                                        src={`/src/assets/contributors/colour/${institution.image_fn}`}
+                                        class="institution-logo darkmode-image"
+                                    />
+                                </a>
+                            </div>
+                            <div class="card-text">{institution.description}</div>
+                        </div>
+                        <div class="card-footer d-flex overflow-x-auto">
+                            {institution.contact_email && (
+                                <a href={'mailto:' + institution.contact_email} class="me-3 text-nowrap">
+                                    <i class="fa-solid fa-envelope" />{' '}
+                                    {institution.contact ? institution.contact : institution.contact_email}
+                                </a>
+                            )}
+                            {institution.contact_github && (
+                                <a href={'https://github.com/' + institution.contact_github} class="me-3 text-nowrap">
+                                    <i class="fab fa-github" />{' '}
+                                    {institution.contact_github.replace('https://github.com/', '')}
+                                </a>
+                            )}
+                            {institution.twitter && (
+                                <a href={'https://twitter.com/' + institution.twitter} class="me-3 text-nowrap">
+                                    <i class="fab fa-twitter" />{' '}
+                                    {institution.twitter.replace('https://twitter.com/', '')}
+                                </a>
+                            )}
+                            {institution.mastodon && (
+                                <a href={institution.mastodon} class="">
+                                    <i class="fab fa-mastodon" /> {institution.mastodon}
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                ))
         }
-        $card_id = $idx;
-        if (array_key_exists('full_name', $c)) {
-            $card_id = preg_replace('/[^a-z]+/', '-', strtolower($c['full_name']));
-            $contributors_html .= '<h5 class="card-title" id="' . $card_id . '">';
-            if (array_key_exists('url', $c)) {
-                $contributors_html .= ' <a href="' . $c['url'] . '" target="_blank">';
-            }
-            $contributors_html .= $c['full_name'];
-            if (array_key_exists('url', $c)) {
-                $contributors_html .= ' </a>';
-            }
-            $contributors_html .= '</h5>';
-        }
-        if (array_key_exists('affiliation', $c)) {
-            $contributors_html .= '<h6 class="card-subtitle mb-2 text-muted">';
-            if (array_key_exists('affiliation_url', $c)) {
-                $contributors_html .= '<a href="' . $c['affiliation_url'] . '" target="_blank">';
-            }
-            $contributors_html .= $c['affiliation'];
-            if (array_key_exists('affiliation_url', $c)) {
-                $contributors_html .= '</a>';
-            }
-            $contributors_html .= '</h6>';
-        }
-        // Description
-        if (array_key_exists('description', $c)) {
-            $contributors_html .= '<p class="card-text small text-muted">' . $c['description'] . '</p> ';
-        }
-        // Contact person
-        $contributors_html .= '<div class="contributor_contact">';
-        if (array_key_exists('contact_email', $c)) {
-            $contributors_html .=
-                '<a href="mailto:' .
-                $c['contact_email'] .
-                '" class="badge bg-light text-dark fw-normal" data-bs-toggle="tooltip" title="Primary contact: ' .
-                $c['contact_email'] .
-                '"><i class="far fa-envelope"></i> ';
-            if (array_key_exists('contact', $c)) {
-                $contributors_html .= $c['contact'];
-            } else {
-                $contributors_html .= $c['contact_email'];
-            }
-            $contributors_html .= '</a> ';
-        } elseif (array_key_exists('contact', $c)) {
-            $contributors_html .= '<span class="badge bg-light text-dark fw-normal">' . $c['contact'] . '</span> ';
-        }
-        if (array_key_exists('contact_github', $c)) {
-            $contributors_html .=
-                '<a href="https://github.com/' .
-                trim($c['contact_github'], '@') .
-                '/" target="_blank" class="badge bg-light text-dark fw-normal" data-bs-toggle="tooltip" title="Primary contact: GitHub @' .
-                trim($c['contact_github'], '@') .
-                '"><i class="fab fa-github"></i> ' .
-                trim($c['contact_github'], '@') .
-                '</a> ';
-        }
-        if (array_key_exists('twitter', $c)) {
-            $contributors_html .=
-                '<a href="https://twitter.com/' .
-                trim($c['twitter'], '@') .
-                '/" target="_blank" class="badge bg-light text-dark fw-normal" data-bs-toggle="tooltip" title="Institutional twitter: @' .
-                trim($c['twitter'], '@') .
-                '"><i class="fab fa-twitter"></i> @' .
-                trim($c['twitter'], '@') .
-                '</a> ';
-        }
-        $contributors_html .= '</div>';
-        // Close card div
-        $contributors_html .= '</div></div></div>';
-
-        // Location JSON
-        if (array_key_exists('location', $c)) {
-            $location['location'] = $c['location'];
-            $location['full_name'] = array_key_exists('full_name', $c) ? $c['full_name'] : '';
-            $location['card_id'] = $card_id;
-            if ($img_path) {
-                $location['image'] =
-                    '<br><a href="#' .
-                    $card_id .
-                    '"><img class="contributor_map_logo" title="' .
-                    $location['full_name'] .
-                    '" src="' .
-                    $img_path .
-                    '"></a>';
-            } else {
-                $location['image'] = '';
-            }
-            array_push($locations, $location);
-        }
-    }
-
-    echo $contributors_html;
-    ?> -->
     </div>
     <!-- <script type="text/javascript">
     var locations = <?php echo json_encode($locations, JSON_PRETTY_PRINT); ?>;
@@ -397,10 +314,12 @@ const headings = [
         ecosystem. The federated registry will support a common API to simplify access for tool developers.
     </p>
 </MarkdownTocLayout>
-<style lang="scss">
-    @import '@styles/_variables.scss';
-    .contributor img {
-        width: 50px;
-        height: 50px;
+<style>
+    .institution {
+        max-width: 48%;
+    }
+    .institution-logo {
+        max-width: 40%;
+        max-height: 5rem;
     }
 </style>

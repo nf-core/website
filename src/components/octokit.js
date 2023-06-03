@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 
+
 if (!import.meta.env) {
   dotenv.config();
 }
@@ -12,8 +13,7 @@ export default octokit;
 
 export const getGitHubFile = async (repo, path, ref) => {
   const response = await octokit
-    .request('GET /repos/{owner}/{repo}/contents/{path}?ref={ref}', {
-      owner: 'nf-core',
+    .request('GET /repos/nf-core/{repo}/contents/{path}?ref={ref}', {
       repo: repo,
       path: path,
       ref: ref,
