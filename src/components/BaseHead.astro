@@ -55,13 +55,6 @@ const { title, description, image = '/social_img.png' } = Astro.props;
         root.setAttribute('data-bs-theme', 'light');
     } else {
         root.setAttribute('data-bs-theme', 'dark');
-        // Switch any images with .darkmode-image class after page has finished loading
-        window.addEventListener('load', () => {
-            const images = document.querySelectorAll('img.darkmode-image');
-            for (const img of images) {
-                img.src = img.src.replace('/colour/', '/white/');
-            }
-        });
     }
 </script>
 <!-- Google Analytics -->
