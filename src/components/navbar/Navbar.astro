@@ -12,8 +12,8 @@ export interface Props {
 
 const { navTocHeadings = [], title } = Astro.props;
 
-const NfCoreLogoDarkbg = '/images/logos/nf-core-logo-darkbg.svg';
-const NfCoreLogo = '/images/logos/nf-core-logo.svg';
+const NfCoreLogoDarkbg = '@assets/logos/nf-core-logo-darkbg.svg';
+const NfCoreLogo = '@assets/logos/nf-core-logo.svg';
 ---
 
 <nav
@@ -21,8 +21,8 @@ const NfCoreLogo = '/images/logos/nf-core-logo.svg';
 >
     <div class="container">
         <a class="navbar-brand d-md-none" href="/">
-            <img height="25px" src={NfCoreLogo} class="hide-dark" alt="nf-core logo" />
-            <img height="25px" src={NfCoreLogoDarkbg} class="hide-light" alt="nf-core logo" />
+            <img height="25px" src={NfCoreLogo.src} class="hide-dark" alt="nf-core logo" />
+            <img height="25px" src={NfCoreLogoDarkbg.src} class="hide-light" alt="nf-core logo" />
         </a>
         {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:idle />}
         <button

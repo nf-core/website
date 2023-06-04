@@ -1,6 +1,6 @@
 ---
-import NfCoreLogoDarkbg from '/images/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '/images/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
+import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
 import FooterSocial from '@components/footer/FooterSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 ---
@@ -52,8 +52,8 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
                 </div>
                 <div class="mt-3">
                     <a href="/">
-                        <img height="30px" src={NfCoreLogo} alt="nf-core logo" class="hide-dark" />
-                        <img height="30px" src={NfCoreLogoDarkbg} alt="nf-core logo" class="hide-light" />
+                        <img height="30px" src={NfCoreLogo.src} alt="nf-core logo" class="hide-dark" />
+                        <img height="30px" src={NfCoreLogoDarkbg.src} alt="nf-core logo" class="hide-light" />
                     </a>
                     <div class="small d-block">Making awesome workflows since 2018.</div>
                 </div>
