@@ -5,8 +5,9 @@ import contributors_yml from '@public/contributors.yaml';
 import Leaflet from '@components/Leaflet.svelte';
 import GitHubUser from '@components/GitHubProfilePicture.svelte';
 
-let contributors = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
-contributors = contributors.map((contributor) => {
+const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
+
+let contributors = contributors_flat.map((contributor) => {
     return { name: contributor.name.replace('@', ''), avatar_url: contributor.avatar_url };
 });
 
@@ -70,43 +71,29 @@ const headings = [
         the Statistics page.
     </p>
     <p class="pt-3">
-        <!-- <?php
-    $stats_json_fn = dirname(dirname(__FILE__)) . '/nfcore_stats.json';
-    $stats_json = json_decode(file_get_contents($stats_json_fn));
-    $contributors = [];
-    foreach (['pipelines', 'core_repos'] as $repo_type) {
-        foreach ($stats_json->{$repo_type} as $repo) {
-            foreach ($repo->contributors as $contributor) {
-                $contributors[$contributor->author->login] = $contributor->author;
-            }
-        }
-    }
-    // Random order!
-    $logins = array_keys($contributors);
-    shuffle($logins);
-    foreach ($logins as $login) {
-        $author = $contributors[$login];
-        echo '<a title="@' .
-            $author->login .
-            '" href="' .
-            $author->html_url .
-            '" target="_blank" data-bs-toggle="tooltip"><img src="' .
-            $author->avatar_url .
-            '" class="border rounded-circle me-1 mb-1" width="50" height="50"></a>';
-    }
-    ?> -->
         {
             contributors &&
-                contributors.map((contributor) => (
-                    <a
-                        href={'https://github.com/' + contributor.name}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-decoration-none"
-                    >
-                        <GitHubUser name={contributor.name} image={contributor.avatar_url} size={40} />
-                    </a>
-                ))
+                contributors
+                    .map((value) => {
+                        value.sort = Math.random();
+                        return value;
+                    })
+                    .sort((a, b) => a.sort - b.sort)
+                    .map((contributor) => (
+                        <a
+                            href={'https://github.com/' + contributor.name}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-decoration-none"
+                        >
+                            <GitHubUser
+                                name={contributor.name}
+                                image={contributor.avatar_url}
+                                size={50}
+                                circle={true}
+                            />
+                        </a>
+                    ))
         }
     </p>
 
@@ -178,39 +165,6 @@ const headings = [
                 ))
         }
     </div>
-    <!-- <script type="text/javascript">
-    var locations = <?php echo json_encode($locations, JSON_PRETTY_PRINT); ?>;
-
-    $(function() {
-        var map = L.map('contributors-map', {
-            zoom: 2
-        });
-        var greenIcon = new L.Icon({
-            iconUrl: 'assets/img/marker-icon-2x-green.png',
-            shadowUrl: 'assets/img/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var latlngs = [];
-        locations.forEach(function(marker) {
-            if (marker != null) {
-                L.marker(marker.location, {
-                    icon: greenIcon
-                }).addTo(map).bindPopup('<a href="#' + marker.card_id + '">' + marker.full_name + '</a>' + marker.image);
-                latlngs.push(marker.location);
-            }
-        });
-        map.fitBounds(latlngs);
-    });
-</script> -->
-
     <h1 id="initiatives">
         Projects we are involved with<a href="#initiatives" class="header-link"
             ><span class="fas fa-link" aria-hidden="true"></span></a
@@ -222,7 +176,7 @@ const headings = [
     </p>
 
     <h3 id="dfg_testimonial">
-        <img width="350px" src="/src/assets/contributors/colour/dfg_logo.svg" class="float-end ps-4 bg-light" />
+        <img width="350px" src="/src/assets/contributors/colour/dfg_logo.svg" class="float-end ps-4 darkmode-image" />
 
         German National Sequencing Initiative
         <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
