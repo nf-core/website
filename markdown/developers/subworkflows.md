@@ -65,21 +65,21 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 6. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/subworkflows/main.nf) in the root of the clone of the nf-core/modules repository:
 
-    ```console
-    $ nf-core subworkflows create bam_sort_stats_samtools --author @joebloggs
+   ```console
+   $ nf-core subworkflows create bam_sort_stats_samtools --author @joebloggs
 
-                                              ,--./,-.
-              ___     __   __   __   ___     /,-._.--~\
-        |\ | |__  __ /  ` /  \ |__) |__         }  {
-        | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                              `._,._,'
+                                             ,--./,-.
+             ___     __   __   __   ___     /,-._.--~\
+       |\ | |__  __ /  ` /  \ |__) |__         }  {
+       | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                             `._,._,'
 
-        nf-core/tools version 2.8 - https://nf-co.re
+       nf-core/tools version 2.8 - https://nf-co.re
 
 
-    INFO     Repository type: modules
-    INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to open links.
-    ```
+   INFO     Repository type: modules
+   INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to open links.
+   ```
 
 All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
@@ -137,7 +137,6 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
    ```
 
    > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
-
 
 7. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
 
