@@ -23,8 +23,6 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(m);
-        let latlng: [number, number][] = [];
-        console.log('locations', locations);
         locations.map(function (marker) {
             if (marker != null) {
                 L.marker(marker.location, {
@@ -39,7 +37,6 @@
                             '</a></h6>' +
                             `<img src="/src/assets/contributors/colour/${marker.image}" title="${marker.name}" class="contributor_map_logo"></img>`
                     );
-                latlng.push(marker.location);
             }
         });
 
