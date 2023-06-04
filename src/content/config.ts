@@ -27,7 +27,8 @@ const docs = defineCollection({
 const about = defineCollection({
     schema: z.object({
         title: z.string(),
-        subtitle: z.string().optional(),
+        description: z.string(),
+        md_github_url: z.string().url().optional(),
     }),
 });
 

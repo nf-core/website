@@ -1,6 +1,7 @@
 import calloutsPlugin from './bin/remark-callouts.js';
 import githubLightTheme from '/public/themes/github-light.json';
 import nordTheme from '/public/themes/nord.json';
+import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
 import prefetch from '@astrojs/prefetch';
@@ -20,63 +21,85 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
-import mdx from "@astrojs/mdx";
-
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astro--nf-core.netlify.app/',
-  // TODO: switch back to 'https://nf-co.re/'
-  output: 'hybrid',
-  experimental: {
-    assets: true,
-    hybridOutput: true,
-    inlineStylesheets: `auto`
-  },
-  adapter: netlify(),
-  integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown(), mdx()],
-  vite: {
-    plugins: [yaml()],
-    ssr: {
-      noExternal: ['@popperjs/core', 'bin/cache.js']
-    }
-  },
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp'
-    }
-  },
-  markdown: {
-    syntaxHighlight: false,
-    shikiConfig: {
-      langs: [],
-      theme: nordTheme,
-      wrap: false
+    site: 'https://astro--nf-core.netlify.app/',
+    // TODO: switch back to 'https://nf-co.re/'
+    output: 'hybrid',
+    experimental: {
+        assets: true,
+        hybridOutput: true,
+        inlineStylesheets: `auto`,
     },
-    remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
-    // Also update the plugins in `src/components/Markdown.svelte`!
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {
-      behavior: 'append',
-      content: h('i.ms-1.fas.fa-link.invisible')
-    }], [addClasses, {
-      table: 'table table-hover table-sm small'
-    }], [rehypeWrap, {
-      selector: 'table',
-      wrapper: 'div.table-responsive'
-    }], [urls, url => {
-      if (url.href?.endsWith('.md')) {
-        url.href = url.href.replace(/\.md$/, '/');
-        url.pathname = url.pathname.replace(/\.md$/, '/');
-        url.path = url.path.replace(/\.md$/, '/');
-      }
-    }], [rehypePrettyCode, {
-      langPrefix: 'language-',
-      keepBackground: true,
-      theme: {
-        dark: nordTheme,
-        light: githubLightTheme
-      }
-    }]
-    // [rehypeWrap, { selector: 'pre:has(code.language-bash)', wrapper: 'div.copy-code' }],
-    ]
-  }
+    adapter: netlify(),
+    integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown(), mdx()],
+    vite: {
+        plugins: [yaml()],
+        ssr: {
+            noExternal: ['@popperjs/core', 'bin/cache.js'],
+        },
+        resolve: {
+            preserveSymlinks: true,
+        },
+    },
+    image: {
+        service: {
+            entrypoint: 'astro/assets/services/sharp',
+        },
+    },
+    markdown: {
+        syntaxHighlight: false,
+        shikiConfig: {
+            langs: [],
+            theme: nordTheme,
+            wrap: false,
+        },
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
+        // Also update the plugins in `src/components/Markdown.svelte`!
+        rehypePlugins: [
+            rehypeSlug,
+            [
+                rehypeAutolinkHeadings,
+                {
+                    behavior: 'append',
+                    content: h('i.ms-1.fas.fa-link.invisible'),
+                },
+            ],
+            [
+                addClasses,
+                {
+                    table: 'table table-hover table-sm small',
+                },
+            ],
+            [
+                rehypeWrap,
+                {
+                    selector: 'table',
+                    wrapper: 'div.table-responsive',
+                },
+            ],
+            [
+                urls,
+                (url) => {
+                    if (url.href?.endsWith('.md')) {
+                        url.href = url.href.replace(/\.md$/, '/');
+                        url.pathname = url.pathname.replace(/\.md$/, '/');
+                        url.path = url.path.replace(/\.md$/, '/');
+                    }
+                },
+            ],
+            [
+                rehypePrettyCode,
+                {
+                    langPrefix: 'language-',
+                    keepBackground: true,
+                    theme: {
+                        dark: nordTheme,
+                        light: githubLightTheme,
+                    },
+                },
+            ],
+            // [rehypeWrap, { selector: 'pre:has(code.language-bash)', wrapper: 'div.copy-code' }],
+        ],
+    },
 });
