@@ -79,6 +79,13 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    INFO     Repository type: modules
    INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to open links.
+   INFO     Created / edited following files:                                                                                 
+              ./subworkflows/nf-core/bam_sort_stats_samtools/main.nf                                                                            
+              ./subworkflows/nf-core/bam_sort_stats_samtools/meta.yml                                                                           
+              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf                                                                      
+              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml                                                                     
+              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config                                                              
+              ./tests/config/pytest_modules.yml   
    ```
 
 All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
@@ -130,10 +137,23 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
        nf-core/tools version 2.8 - https://nf-co.re
 
 
-   INFO     Press enter to use default values (shown in brackets) or type your own
-          responses
-   Test YAML output path (- for stdout)
-
+   INFO     Press enter to use default values (shown in brackets) or type your own 
+      responses
+   Test YAML output path (- for stdout) (tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml):
+   INFO     Looking for test workflow entry points: 'tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf'
+   INFO     Building test meta for entry point 'test_bam_sort_stats_samtools_single_end'
+   Test name (bam_sort_stats_samtools test_bam_sort_stats_samtools_single_end):
+   Test command (nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry 
+      test_bam_sort_stats_samtools_single_end -c ./tests/config/nextflow.config):
+   Test tags (comma separated):
+   Test output folder with results (leave blank to run test):
+   ? Choose software profile Docker
+   INFO     Setting env var '$PROFILE' to 'docker'
+   INFO     Running 'bam_sort_stats_samtools' test with command:                                                              
+         nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry       
+            test_bam_sort_stats_samtools_single_end  
+            -c ./tests/config/nextflow.config --outdir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmping28ow_ 
+            -work-dir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmportf0uab
    ```
 
    > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
@@ -236,10 +256,9 @@ Please follow the steps below to run the tests locally:
 
 
     INFO     Press enter to use default values (shown in brackets) or type your own responses
-    ? Choose software profile (Use arrow keys)
-    » Docker
-      Singularity
-      Conda
+    ? Choose software profile Docker
+    INFO     Setting environment variable '$PROFILE' to 'conda'
+    NFO     Running pytest for subworkflow 'bam_sort_stats_samtools'
    ```
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.

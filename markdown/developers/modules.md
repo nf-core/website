@@ -276,7 +276,6 @@ Please follow the steps below to run the tests locally:
                                               `._,._,'
 
         nf-core/tools version 2.8 - https://nf-co.re
-     ```
 
    INFO Press enter to use default values (shown in brackets) or type your own responses
    ? Choose software profile Docker
@@ -318,7 +317,6 @@ Please follow the steps below to run the tests locally:
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
    - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
-   ```
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
