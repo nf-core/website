@@ -165,7 +165,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
 10. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
-prettier -w .
+    prettier -w .
 11. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ```console
@@ -276,6 +276,7 @@ Please follow the steps below to run the tests locally:
                                               `._,._,'
 
         nf-core/tools version 2.8 - https://nf-co.re
+     ```
 
    INFO Press enter to use default values (shown in brackets) or type your own responses
    ? Choose software profile Docker
@@ -317,6 +318,7 @@ Please follow the steps below to run the tests locally:
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
    - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
+   ```
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >

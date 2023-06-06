@@ -79,13 +79,13 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    INFO     Repository type: modules
    INFO     Press enter to use default values (shown in brackets) or type your own responses. ctrl+click underlined text to open links.
-   INFO     Created / edited following files:                                                                                 
-              ./subworkflows/nf-core/bam_sort_stats_samtools/main.nf                                                                            
-              ./subworkflows/nf-core/bam_sort_stats_samtools/meta.yml                                                                           
-              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf                                                                      
-              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml                                                                     
-              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config                                                              
-              ./tests/config/pytest_modules.yml   
+   INFO     Created / edited following files:
+              ./subworkflows/nf-core/bam_sort_stats_samtools/main.nf
+              ./subworkflows/nf-core/bam_sort_stats_samtools/meta.yml
+              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf
+              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml
+              ./tests/subworkflows/nf-core/bam_sort_stats_samtools/nextflow.config
+              ./tests/config/pytest_modules.yml
    ```
 
 All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
@@ -137,29 +137,29 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
        nf-core/tools version 2.8 - https://nf-co.re
 
 
-   INFO     Press enter to use default values (shown in brackets) or type your own 
+   INFO     Press enter to use default values (shown in brackets) or type your own
       responses
    Test YAML output path (- for stdout) (tests/subworkflows/nf-core/bam_sort_stats_samtools/test.yml):
    INFO     Looking for test workflow entry points: 'tests/subworkflows/nf-core/bam_sort_stats_samtools/main.nf'
    INFO     Building test meta for entry point 'test_bam_sort_stats_samtools_single_end'
    Test name (bam_sort_stats_samtools test_bam_sort_stats_samtools_single_end):
-   Test command (nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry 
+   Test command (nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry
       test_bam_sort_stats_samtools_single_end -c ./tests/config/nextflow.config):
    Test tags (comma separated):
    Test output folder with results (leave blank to run test):
    ? Choose software profile Docker
    INFO     Setting env var '$PROFILE' to 'docker'
-   INFO     Running 'bam_sort_stats_samtools' test with command:                                                              
-         nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry       
-            test_bam_sort_stats_samtools_single_end  
-            -c ./tests/config/nextflow.config --outdir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmping28ow_ 
+   INFO     Running 'bam_sort_stats_samtools' test with command:
+         nextflow run ./tests/subworkflows/nf-core/bam_sort_stats_samtools -entry
+            test_bam_sort_stats_samtools_single_end
+            -c ./tests/config/nextflow.config --outdir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmping28ow_
             -work-dir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmportf0uab
    ```
 
    > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
 
 7. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
-prettier -w .
+   prettier -w .
 
 8. Check that the new subworkflow you've added follows the [new subworkflow guidelines](#new-subworkflow-guidelines-and-pr-review-checklist)
 
