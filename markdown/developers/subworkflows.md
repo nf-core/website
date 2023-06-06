@@ -159,6 +159,7 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
    > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
 
 7. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
+prettier -w .
 
 8. Check that the new subworkflow you've added follows the [new subworkflow guidelines](#new-subworkflow-guidelines-and-pr-review-checklist)
 
