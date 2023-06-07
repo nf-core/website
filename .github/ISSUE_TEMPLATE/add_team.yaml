@@ -1,4 +1,4 @@
-name: Team pages
+name: Add team
 description: Add details to include your team details to the website
 title: "[Team]: "
 labels: ["team", "enhancement"]
@@ -9,13 +9,15 @@ body:
     attributes:
       value: |
         Thanks for taking the time to add your team to the ToL website!
-  - type: input
+  - type: dropdown
     id: team
     attributes:
-      label: Team Name
-      description: Full team name (Abbreviation)
-      placeholder: |
-        Informatics Infrastructure (IT)
+      label: Team
+      options:
+        - Assembly (ToLA)
+        - Curation (GRIT)
+        - Informatics Infrastructure (ToL–IT)
+        - Platforms (ToLP)
     validations:
       required: true
   - type: textarea
@@ -56,6 +58,21 @@ body:
         Priyanka Surana (@priyanka-surana)
         Matthieu Muffato (@muffato)
         ...
+  - type: checkboxes
+    id: pipelines
+    attributes:
+      label: Which pipelines has the team contributed towards?
+      options:
+        - label: blobtoolkit
+        - label: ensemblgenedownload
+        - label: ensemblrepeatdownload
+        - label: genomeassembly
+        - label: genomenote
+        - label: insdcdownload
+        - label: readmapping
+        - label: sequencecomposition
+        - label: treeval
+        - label: variantcalling
   - type: input
     id: slack
     attributes:
