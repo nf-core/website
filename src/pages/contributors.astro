@@ -4,6 +4,8 @@ import pipelines_json from '@public/pipelines.json';
 import contributors_yml from '@public/contributors.yaml';
 import Leaflet from '@components/Leaflet.svelte';
 import GitHubUser from '@components/GitHubProfilePicture.svelte';
+import Admonition from '@components/Admonition.astro';
+import Heading from '@components/Heading.astro';
 
 const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 
@@ -37,6 +39,11 @@ const subtitle = 'Find out who is involved in the nf-core project';
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml';
 const headings = [
     {
+        text: 'Introduction',
+        slug: 'introduction',
+        depth: 1,
+    },
+    {
         text: 'Contributors',
         slug: 'contributors',
         depth: 1,
@@ -55,13 +62,12 @@ const headings = [
 ---
 
 <MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url={md_github_url}>
-    <h1>Introduction</h1>
+    <Heading level={1} id="introduction">Introduction</Heading>
     <p>
         nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many
         dedicated contributors.
     </p>
-
-    <h1 id="contributors">Contributors</h1>
+    <Heading level={1} id="contributors">Contributors</Heading>
     <p>
         The nf-core pipelines and community is driven by many individuals, listed below. This list updates
         automatically.
@@ -96,80 +102,78 @@ const headings = [
                     ))
         }
     </p>
-
-    <h1 id="organisations">Organisations</h1>
+    <Heading level={1} id="organisations">Organisations</Heading>
     <p>
         Some of the organisations running nf-core pipelines are listed below, along with a key person who you can
         contact for advice.
     </p>
-    <blockquote>
+    <Admonition title={'note'}>
         Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a
             href="https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml">simple YAML file.</a
         >
-    </blockquote>
-
-    <div class="card contributors-map-card">
-        <div class="card-body" id="contributors-map">
-            <Leaflet locations={contributors_map} client:only="svelte" />
-        </div>
+    </Admonition>
+    <div class="contributors-map-card">
+        <Leaflet locations={contributors_map} client:only="svelte" />
     </div>
-    <div class="d-flex align-items-stretch flex-wrap">
+    <div class="contributor-cards row row-cols-1 row-cols-md-2">
         {
             contributors_yml.contributors &&
                 contributors_yml.contributors.map((institution) => (
-                    <div class="card m-2 institution">
-                        <div class="card-body">
-                            <div class="border-bottom-0 bg-transparent card-title">
-                                <a
-                                    href={institution.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="d-flex justify-content-between text-decoration-none"
-                                >
-                                    <h3 class="">{institution.full_name}</h3>
-
-                                    <img
-                                        src={`/src/assets/contributors/colour/${institution.image_fn}`}
-                                        class="institution-logo darkmode-image"
-                                    />
-                                </a>
+                    <div class="col align-items-stretch d-flex">
+                        <div class="card my-2 align-items-stretch">
+                            <div class="card-body">
+                                <div class="border-bottom-0 bg-transparent card-title">
+                                    <a
+                                        href={institution.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="d-flex justify-content-between text-decoration-none"
+                                    >
+                                        <h3 class="">{institution.full_name}</h3>
+                                        {institution.image_fn && (
+                                            <img
+                                                src={`/src/assets/contributors/colour/${institution.image_fn}`}
+                                                class="institution-logo darkmode-image"
+                                            />
+                                        )}
+                                    </a>
+                                </div>
+                                <div class="card-text">{institution.description}</div>
                             </div>
-                            <div class="card-text">{institution.description}</div>
-                        </div>
-                        <div class="card-footer d-flex overflow-x-auto">
-                            {institution.contact_email && (
-                                <a href={'mailto:' + institution.contact_email} class="me-3 text-nowrap">
-                                    <i class="fa-solid fa-envelope" />{' '}
-                                    {institution.contact ? institution.contact : institution.contact_email}
-                                </a>
-                            )}
-                            {institution.contact_github && (
-                                <a href={'https://github.com/' + institution.contact_github} class="me-3 text-nowrap">
-                                    <i class="fab fa-github" />{' '}
-                                    {institution.contact_github.replace('https://github.com/', '')}
-                                </a>
-                            )}
-                            {institution.twitter && (
-                                <a href={'https://twitter.com/' + institution.twitter} class="me-3 text-nowrap">
-                                    <i class="fab fa-twitter" />{' '}
-                                    {institution.twitter.replace('https://twitter.com/', '')}
-                                </a>
-                            )}
-                            {institution.mastodon && (
-                                <a href={institution.mastodon} class="">
-                                    <i class="fab fa-mastodon" /> {institution.mastodon}
-                                </a>
-                            )}
+                            <div class="card-footer d-flex overflow-x-auto w-100">
+                                {institution.contact_email && (
+                                    <a href={'mailto:' + institution.contact_email} class="me-3 text-nowrap">
+                                        <i class="fa-solid fa-envelope" />{' '}
+                                        {institution.contact ? institution.contact : institution.contact_email}
+                                    </a>
+                                )}
+                                {institution.contact_github && (
+                                    <a
+                                        href={'https://github.com/' + institution.contact_github}
+                                        class="me-3 text-nowrap"
+                                    >
+                                        <i class="fab fa-github" />{' '}
+                                        {institution.contact_github.replace('https://github.com/', '')}
+                                    </a>
+                                )}
+                                {institution.twitter && (
+                                    <a href={'https://twitter.com/' + institution.twitter} class="me-3 text-nowrap">
+                                        <i class="fab fa-twitter" />{' '}
+                                        {institution.twitter.replace('https://twitter.com/', '')}
+                                    </a>
+                                )}
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))
         }
     </div>
-    <h1 id="initiatives">
-        Projects we are involved with<a href="#initiatives" class="header-link"
-            ><span class="fas fa-link" aria-hidden="true"></span></a
-        >
-    </h1>
+    <Heading level={1} id="initiatives">Projects we are involved with</Heading>
     <p>
         A number of large projects are committing to working with the nf-core community for data analysis pipelines. You
         can see an overview of these below.
@@ -186,7 +190,8 @@ const headings = [
             >The German Funding Body (DFG)</a
         >
         has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely
-        on <em>nf-core</em> pipelines for analyzing large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden
+        on
+        <em>nf-core</em> pipelines for analyzing large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden
         sites are already actively contributing to nf-core, and the other sequencing center in Cologne/Bonn (West German
         Genome Center) has committed to joining and contributing its expertise.
     </p>
@@ -268,9 +273,12 @@ const headings = [
         ecosystem. The federated registry will support a common API to simplify access for tool developers.
     </p>
 </MarkdownTocLayout>
-<style>
-    .institution {
-        max-width: 48%;
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    @include media-breakpoint-down(md) {
+        .contributor-cards {
+            padding-top: 8rem;
+        }
     }
     .institution-logo {
         max-width: 40%;

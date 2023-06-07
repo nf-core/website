@@ -31,7 +31,9 @@ Please note that the list above is alphabetised and is therefore not ranked in a
 
 ## Preamble
 
-> Note: This Code of Conduct (CoC) has been drafted by Renuka Kudva, Cris Tuñí, and Michael Heuer, with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officers and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will be amended periodically to keep it up-to-date. In case of any dispute, the most current version will apply.
+:::note
+This Code of Conduct (CoC) has been drafted by Renuka Kudva, Cris Tuñí, and Michael Heuer, with input from the nf-core Core Team and Susanna Marquez from the nf-core community. "We", in this document, refers to the Safety Officers and members of the nf-core Core Team, both of whom are deemed to be members of the nf-core community and are therefore required to abide by this Code of Conduct. This document will be amended periodically to keep it up-to-date. In case of any dispute, the most current version will apply.
+:::
 
 An up-to-date list of members of the nf-core core team can be found [here](https://nf-co.re/about).
 
