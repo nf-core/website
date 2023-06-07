@@ -1,0 +1,90 @@
+name: Add project
+description: Add project details to include in team page on the website
+title: "[Team]: "
+labels: ["team", "enhancement"]
+assignees:
+  - priyanka-surana
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to add your team projects, posters, and presentations on the ToL website!
+  - type: dropdown
+    id: project
+    attributes:
+      label: Are you adding a project, poster or presentation?
+      description: Do not include any Nextflow pipelines (example: genomeassembly) or programme projects (example: DToL).
+      options:
+        - Project
+        - Poster
+        - Presentation
+    validations:
+      required: true
+  - type: dropdown
+    id: team
+    attributes:
+      label: Team
+      options:
+        - Assembly (ToLA)
+        - Curation (GRIT)
+        - Informatics Infrastructure (ToL–IT)
+        - Platforms (ToLP)
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Project Name or Poster/Presentation Title
+      placeholder: ToL informatics website
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link to the project, poster or presentation
+      placeholder: https://pipelines.tol.sanger.ac.uk
+  - type: textarea
+    id: summary
+    attributes:
+      label: Short description
+      description: Short description (1 paragraph) with relevant links. For images or poster, add as a png. For presentation slides, add as a pdf. For presentation video, add either as a link or mp4.
+      placeholder: |
+        The website is a platform hosted by the Wellcome Sanger Institute's Tree of Life programme. It offers a range of pipelines and tools designed for analyzing genomic data and conducting various bioinformatics analyses. Users can access and utilize these pipelines to process and interpret DNA sequences, perform phylogenetic analyses, and explore evolutionary relationships between organisms.
+    validations:
+      required: true
+  - type: textarea
+    id: techstack
+    attributes:
+      label: Which programming languages and/or technologies were used?
+      placeholder: |
+        PHP, HTML, Markdown
+    validations:
+      required: true
+  - type: textarea
+    id: members
+    attributes:
+      label: Which team members contributed 
+      description: Add the names and GitHub usernames for contributing members
+      placeholder: |
+        Priyanka Surana (@priyanka-surana)
+        Matthieu Muffato (@muffato)
+        ...
+  - type: input
+    id: github
+    attributes:
+      label: Source code
+      placeholder: https://github.com/sanger-tol/pipelines-website
+  - type: textarea
+    id: information
+    attributes:
+      label: Any additional information
+      description: Feel free to add any information that provides context for the reviewers
+      placeholder: ...
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](http://pipelines.tol.sanger.ac.uk/code_of_conduct)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
