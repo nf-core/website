@@ -4,6 +4,8 @@ import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
+import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
+import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -11,9 +13,6 @@ export interface Props {
 }
 
 const { navTocHeadings = [], title } = Astro.props;
-
-const NfCoreLogoDarkbg = '@assets/logos/nf-core-logo-darkbg.svg';
-const NfCoreLogo = '@assets/logos/nf-core-logo.svg';
 ---
 
 <nav
