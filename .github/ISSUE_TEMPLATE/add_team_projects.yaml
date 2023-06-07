@@ -13,7 +13,7 @@ body:
     id: project
     attributes:
       label: Are you adding a project, poster or presentation?
-      description: Do not include any Nextflow pipelines (example: genomeassembly) or programme projects (example: DToL).
+      description: Do not include any Nextflow pipelines (example, genomeassembly) or programme projects (example, DToL).
       options:
         - Project
         - Poster
@@ -42,7 +42,8 @@ body:
     id: link
     attributes:
       label: Link to the project, poster or presentation
-      placeholder: https://pipelines.tol.sanger.ac.uk
+      placeholder: |
+        https://pipelines.tol.sanger.ac.uk
   - type: textarea
     id: summary
     attributes:
@@ -73,7 +74,8 @@ body:
     id: github
     attributes:
       label: Source code
-      placeholder: https://github.com/sanger-tol/pipelines-website
+      placeholder: |
+        https://github.com/sanger-tol/pipelines-website
   - type: textarea
     id: information
     attributes:
