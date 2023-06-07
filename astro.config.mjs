@@ -21,6 +21,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://astro--nf-core.netlify.app/',
@@ -28,11 +29,12 @@ export default defineConfig({
     output: 'hybrid',
     experimental: {
         assets: true,
-        hybridOutput: true,
-        inlineStylesheets: `auto`,
     },
     adapter: netlify(),
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown(), mdx()],
+    build: {
+        inlineStylesheets: 'auto',
+    },
     vite: {
         plugins: [yaml()],
         ssr: {
