@@ -64,7 +64,8 @@ body:
       label: GitHub
       placeholder: |
         @priyanka-surana
-      required: true
+      validations:
+        required: true
   - type: input
     id: sanger
     attributes:
