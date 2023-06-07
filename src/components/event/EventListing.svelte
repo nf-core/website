@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { CollectionEntry } from 'astro:content';
-
-    export let events: CollectionEntry<'events'>[] = [];
+    export let events = [];
 
     import EventCard from '@components/event/EventCard.svelte';
     import FilterBar from '@components/FilterBar.svelte';
