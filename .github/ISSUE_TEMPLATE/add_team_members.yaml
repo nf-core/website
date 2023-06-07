@@ -62,7 +62,8 @@ body:
     id: github
     attributes:
       label: GitHub
-      placeholder: @priyanka-surana
+      placeholder: |
+        @priyanka-surana
       required: true
   - type: input
     id: sanger
@@ -74,7 +75,8 @@ body:
     id: twitter
     attributes:
       label: Twitter
-      placeholder: @psurana
+      placeholder: |
+        @psurana
   - type: input
     id: linkedin
     attributes:
@@ -85,7 +87,8 @@ body:
     id: mastodon
     attributes:
       label: Mastodon
-      placeholder: ...
+      placeholder: |
+        ...
   - type: checkboxes
     id: terms
     attributes:
