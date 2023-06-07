@@ -1,0 +1,96 @@
+name: Team pages
+description: Add details to include your team details to the website
+title: "[Team]: "
+labels: ["team", "enhancement"]
+assignees:
+  - priyanka-surana
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to add your team to the ToL website!
+  - type: textarea
+    id: team
+    attributes:
+      label: Team Name
+      description: Full team name (Abbreviation)
+      placeholder: |
+        Informatics Infrastructure (IT)
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Short description
+      description: Short description (couple sentences) with relevant links
+      placeholder: |
+        The [Informatics Infrastructure team](internal link) oversees the implementation and delivery of the genome assembly pipelines in the Tree of Life programme, and provides support for large-scale genome analyses for the faculty teams.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Long description
+      description: Detailed description (few paragraphs) with relevant links
+      placeholder: |
+        We are the interface between the Tree of Life teams (assembly production and faculty research) and Sanger’s IT teams, working together with the informatics teams of the other programmes. The work involves a wide range of scientific fields and technologies such as assembly methods, genomics, comparative genomics, cloud computing, large-scale analyses, with a strong emphasis on metadata tracking, quality controls, and event recording.
+        ...
+    validations:
+      required: true
+  - type: textarea
+    id: techstack
+    attributes:
+      label: Tech stack
+      description: Set of technologies used in the team
+      placeholder: |
+        The team uses a wide range of technologies, frameworks and programming languages, including Nextflow, Python, Conda, Jira, LSF, Singularity, and Kubernetes.
+        Drag and drop an image for your tech stack (Example: https://www.sanger.ac.uk/wp-content/uploads/Informatics-Infrastructure-Technology-wheel-300.png)
+    validations:
+      required: true
+  - type: textarea
+    id: members
+    attributes:
+      label: Current Members
+      description: Add the names and GitHub usernames for current members
+      placeholder: |
+        Priyanka Surana (@priyanka-surana)
+        Matthieu Muffato (@muffato)
+        ...
+  - type: input
+    id: slack
+    attributes:
+      label: Slack
+      description: Add the team Slack channel name. If you use personal account for this, it will require approval from Sanger communications team.
+      placeholder: ...
+  - type: input
+    id: twitter
+    attributes:
+      label: Twitter
+      description: Add the team Twitter handle. If you use personal account for this, it will require approval from Sanger communications team.
+      placeholder: ...
+  - type: input
+    id: youtube
+    attributes:
+      label: Youtube
+      description: Add the team YouTube channel handle. If you use personal account for this, it will require approval from Sanger communications team.
+      placeholder: ...
+  - type: input
+    id: mastodon
+    attributes:
+      label: Mastodon
+      description: Add the team Mastodon handle. If you use personal account for this, it will require approval from Sanger communications team.
+      placeholder: ...
+  - type: textarea
+    id: information
+    attributes:
+      label: Any additional information
+      description: Feel free to add any information that provides context for the reviewers
+      placeholder: ...
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](http://pipelines.tol.sanger.ac.uk/code_of_conduct)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
