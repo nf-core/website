@@ -51,11 +51,29 @@
             },
         };
     }
+    function resizeMap() {
+        if (map) {
+            map.invalidateSize();
+        }
+    }
 </script>
 
-<div style="height:500px;width:90%" use:mapAction />
+<svelte:window on:resize={resizeMap} />
+
+<div class="map m-auto" use:mapAction />
 
 <style lang="scss">
+    @import '@styles/_variables.scss';
+    .map {
+        height: 480px;
+        width: 90%;
+    }
+    @include media-breakpoint-down(md) {
+        .map {
+            height: 350px;
+            width: 100%;
+        }
+    }
     :global(.contributor_map_logo) {
         max-height: 5rem;
         margin-top: 0.25rem;
