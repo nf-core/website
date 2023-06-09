@@ -1,5 +1,6 @@
 ---
-import NatureBiotech from '/images/homepage/nature_biotech.svg';
+import Icon from 'astro-icon';
+import NatureBiotech from '@assets/logos/nature_biotech.svg';
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
@@ -67,7 +68,7 @@ const pipeline_links = pipelines.map((pipeline) => {
             </div>
             <div>
                 <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-                    <img src={NatureBiotech} alt="Nature Biotechnology" width="60px" class="float-start me-3" />
+                    <Icon name="nature_biotech" class="float-start me-3" width="60px" />
                     <a
                         class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center"
                         href="https://doi.org/10.1038/s41587-020-0439-x"
