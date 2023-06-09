@@ -40,12 +40,34 @@ if (Astro.url.pathname.startsWith('/docs/')) {
 }
 ---
 
+<script>
+    // Switch any images with .darkmode-image class to the correct version for the theme
+    function switchDarkModeImages() {
+        const theme = document.documentElement.getAttribute('data-bs-theme');
+        const images = document.querySelectorAll('img.darkmode-image');
+        for (const img of images) {
+            if (theme === 'light') {
+                img.src = img.src.replace('/white/', '/colour/');
+            } else if (theme === 'dark') {
+                img.src = img.src.replace('/colour/', '/white/');
+            }
+        }
+    }
+    // change images on page load, based on current theme
+    window.addEventListener('load', () => {
+        switchDarkModeImages();
+    });
+    // listen for even dispatched from ThemeSwitch.svelte
+    window.addEventListener('theme-changed', (e) => {
+        switchDarkModeImages();
+    });
+</script>
 <PageLayout
     title={title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
-    subfooter={false}
+    subfooter={md_github_url ? true : false}
     mainpage_container={true}
     navTocHeadings={headings}
 >

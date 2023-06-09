@@ -8,6 +8,7 @@
             localStorage.setItem('theme', theme);
             setTheme(theme);
             showActiveTheme(theme);
+            window.dispatchEvent(new Event('theme-changed'));
         };
         const setTheme = function (theme) {
             if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {

@@ -1,6 +1,7 @@
 import calloutsPlugin from './bin/remark-callouts.js';
 import githubLightTheme from '/public/themes/github-light.json';
 import nordTheme from '/public/themes/nord.json';
+import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
 import prefetch from '@astrojs/prefetch';
@@ -27,15 +28,20 @@ export default defineConfig({
     // TODO: switch back to 'https://nf-co.re/'
     output: 'hybrid',
     experimental: {
-        hybridOutput: true,
-        inlineStylesheets: `auto`,
+        assets: true,
     },
     adapter: netlify(),
-    integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown()],
+    integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown(), mdx()],
+    build: {
+        inlineStylesheets: 'auto',
+    },
     vite: {
         plugins: [yaml()],
         ssr: {
             noExternal: ['@popperjs/core', 'bin/cache.js'],
+        },
+        resolve: {
+            preserveSymlinks: true,
         },
     },
     image: {
