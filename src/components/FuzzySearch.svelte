@@ -23,12 +23,12 @@
 
 <div>
     <input class="form-control form-control" type="text" {placeholder} aria-label={placeholder} on:keyup={search} />
-    <div class="search-results dropdown-menu" class:show={results.length > 0}>
+    <div class="search-results dropdown-menu px-2" class:show={results.length > 0}>
         {#if results}
             {#each results as result (result)}
                 <li>
-                    <a href={result.obj.href} id={result.obj.name} class="text-decoration-none text-body">
-                        {@html fuzzysort.highlight(result, '<span class="text-bg-success">', '</span>')}
+                    <a href={result.obj.href} id={result.obj.name} class="text-decoration-none text-body fs-5">
+                        {@html fuzzysort.highlight(result, '<span class="text-success">', '</span>')}
                     </a>
                 </li>
             {/each}
