@@ -1,0 +1,287 @@
+---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+import contributors_yml from '@public/contributors.yaml';
+import Leaflet from '@components/Leaflet.svelte';
+import GitHubUser from '@components/GitHubProfilePicture.svelte';
+import Admonition from '@components/Admonition.astro';
+import Heading from '@components/Heading.astro';
+
+const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
+
+let contributors = contributors_flat.map((contributor) => {
+    return { name: contributor.name.replace('@', ''), avatar_url: contributor.avatar_url };
+});
+
+// remove duplicates
+contributors = contributors.filter(
+    (contributor, index, self) => index === self.findIndex((t) => t.name === contributor.name)
+);
+const contributors_map: {
+    location: [number, number];
+    name: string;
+    url: string;
+    image: string;
+}[] = contributors_yml.contributors.map((contributor) => {
+    const location = contributor.location;
+    if (location) {
+        return {
+            location: location,
+            name: contributor.full_name,
+            url: contributor.url,
+            image: contributor.image_fn,
+        };
+    }
+    return null;
+});
+const title = 'Contributors';
+const subtitle = 'Find out who is involved in the nf-core project';
+const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml';
+const headings = [
+    {
+        text: 'Introduction',
+        slug: 'introduction',
+        depth: 1,
+    },
+    {
+        text: 'Contributors',
+        slug: 'contributors',
+        depth: 1,
+    },
+    {
+        text: 'Organisations',
+        slug: 'organisations',
+        depth: 1,
+    },
+    {
+        text: 'Projects we are involved with',
+        slug: 'initiatives',
+        depth: 1,
+    },
+];
+---
+
+<MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url={md_github_url}>
+    <Heading level={1} id="introduction">Introduction</Heading>
+    <p>
+        nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many
+        dedicated contributors.
+    </p>
+    <Heading level={1} id="contributors">Contributors</Heading>
+    <p>
+        The nf-core pipelines and community is driven by many individuals, listed below. This list updates
+        automatically.
+    </p>
+    <p>
+        Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a> on
+        the Statistics page.
+    </p>
+    <p class="pt-3">
+        {
+            contributors &&
+                contributors
+                    .map((value) => {
+                        value.sort = Math.random();
+                        return value;
+                    })
+                    .sort((a, b) => a.sort - b.sort)
+                    .map((contributor) => (
+                        <a
+                            href={'https://github.com/' + contributor.name}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-decoration-none"
+                        >
+                            <GitHubUser
+                                name={contributor.name}
+                                image={contributor.avatar_url}
+                                size={50}
+                                circle={true}
+                            />
+                        </a>
+                    ))
+        }
+    </p>
+    <Heading level={1} id="organisations">Organisations</Heading>
+    <p>
+        Some of the organisations running nf-core pipelines are listed below, along with a key person who you can
+        contact for advice.
+    </p>
+    <Admonition title={'note'}>
+        Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a
+            href="https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml">simple YAML file.</a
+        >
+    </Admonition>
+    <div class="contributors-map-card">
+        <Leaflet locations={contributors_map} client:only="svelte" />
+    </div>
+    <div class="contributor-cards row row-cols-1 row-cols-md-2">
+        {
+            contributors_yml.contributors &&
+                contributors_yml.contributors.map((institution) => (
+                    <div class="col align-items-stretch d-flex">
+                        <div class="card my-2 align-items-stretch">
+                            <div class="card-body">
+                                <div class="border-bottom-0 bg-transparent card-title">
+                                    <a
+                                        href={institution.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="d-flex justify-content-between text-decoration-none"
+                                    >
+                                        <h3 class="">{institution.full_name}</h3>
+                                        {institution.image_fn && (
+                                            <img
+                                                src={`/src/assets/contributors/colour/${institution.image_fn}`}
+                                                class="institution-logo darkmode-image"
+                                            />
+                                        )}
+                                    </a>
+                                </div>
+                                <div class="card-text">{institution.description}</div>
+                            </div>
+                            <div class="card-footer d-flex overflow-x-auto w-100">
+                                {institution.contact_email && (
+                                    <a href={'mailto:' + institution.contact_email} class="me-3 text-nowrap">
+                                        <i class="fa-solid fa-envelope" />{' '}
+                                        {institution.contact ? institution.contact : institution.contact_email}
+                                    </a>
+                                )}
+                                {institution.contact_github && (
+                                    <a
+                                        href={'https://github.com/' + institution.contact_github}
+                                        class="me-3 text-nowrap"
+                                    >
+                                        <i class="fab fa-github" />{' '}
+                                        {institution.contact_github.replace('https://github.com/', '')}
+                                    </a>
+                                )}
+                                {institution.twitter && (
+                                    <a href={'https://twitter.com/' + institution.twitter} class="me-3 text-nowrap">
+                                        <i class="fab fa-twitter" />{' '}
+                                        {institution.twitter.replace('https://twitter.com/', '')}
+                                    </a>
+                                )}
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))
+        }
+    </div>
+    <Heading level={1} id="initiatives">Projects we are involved with</Heading>
+    <p>
+        A number of large projects are committing to working with the nf-core community for data analysis pipelines. You
+        can see an overview of these below.
+    </p>
+
+    <h3 id="dfg_testimonial">
+        <img width="350px" src="/src/assets/contributors/colour/dfg_logo.svg" class="float-end ps-4 darkmode-image" />
+
+        German National Sequencing Initiative
+        <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h3>
+    <p>
+        <a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank"
+            >The German Funding Body (DFG)</a
+        >
+        has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely
+        on
+        <em>nf-core</em> pipelines for analyzing large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden
+        sites are already actively contributing to nf-core, and the other sequencing center in Cologne/Bonn (West German
+        Genome Center) has committed to joining and contributing its expertise.
+    </p>
+    <div class="clearfix"></div>
+
+    <h3 id="easi_genomics_testimonial">
+        <img
+            width="350px"
+            src="/src/assets/contributors/colour/EASI-Genomics.svg"
+            class="float-end ps-4 darkmode-image"
+        />
+        EASI-Genomics
+        <a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a
+        >
+    </h3>
+    <p>
+        <a href="https://www.easi-genomics.eu/" target="_blank">EASI-Genomics</a>
+        provides easy and seamless access to cutting-edge DNA sequencing technologies to researchers from academia and industry,
+        within a framework that ensures compliance with ethical and legal requirements, as well as FAIR and secure data management.
+        EASI-Genomics aims to build a community of practice, which leverages advanced sequencing technologies beyond country
+        and sector borders to tackle global challenges in science. It organizes competitive calls to get fully-funded access
+        to state-of-the-art facilities and services, including integrative data analysis.
+    </p>
+    <p>
+        EASI-Genomics partners are committed to working within community best-practices for the bioinformatics
+        processing of the data that they produce. To this end they will use <em>nf-core</em> pipelines to process data and
+        contribute new developments and pipelines within the nf-core framework.
+    </p>
+    <div class="clearfix"></div>
+
+    <h3 id="bovreg_testimonial">
+        <img width="350px" src="/src/assets/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
+        BovReg
+        <a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h3>
+    <p>
+        <a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
+        <a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
+        to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and
+        how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.
+    </p>
+    <p>
+        BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible
+        data analyses to the community.
+    </p>
+    <div class="clearfix"></div>
+    <h3 id="dockstore">
+        <img width="350px" src="/src/assets/contributors/colour/dockstore.svg" class="float-end ps-0" />
+        Dockstore
+        <a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h3>
+    <p>
+        <a href="https://www.dockstore.org/" target="_blank">Dockstore</a> is a platform used by researchers across the world
+        to share reproducible computational analyses and hosts hundreds of individual tools and workflows created by more
+        than a hundred different contributors.
+    </p>
+    <p>
+        By using lightweight containerization technology along with the essential metadata needed for combining tools
+        into scientific analysis "recipes", Dockstore allows users to create, share, publish (using citable DOIs) and
+        reproducibly reuse these recipes across platforms and compute environments.
+    </p>
+    <div class="clearfix"></div>
+
+    <h3 id="workflowhub">
+        <img width="250px" src="/src/assets/contributors/colour/workflowhub.svg" class="float-end px-4" />
+        Workflow Hub
+        <a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h3>
+    <p>
+        <a href="https://www.workflowhub.eu/" target="_blank">Workflow Hub</a> was created as part of the <a
+            href="https://www.eosc-life.eu/"
+            target="_blank">EOSC-Life</a
+        > WP2: <em>Tools Collaboratory and Research Objects</em> to glue in federated workflow and tool descriptions across
+        research infrastructures.
+    </p>
+    <p>
+        It is workflow system agnostic, supports a repository of workflows in native and standardised form and the
+        virtual aggregation of established tool, workflow and registries to support discovery over a fragmented
+        ecosystem. The federated registry will support a common API to simplify access for tool developers.
+    </p>
+</MarkdownTocLayout>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    @include media-breakpoint-down(md) {
+        .contributor-cards {
+            padding-top: 8rem;
+        }
+    }
+    .institution-logo {
+        max-width: 40%;
+        max-height: 5rem;
+    }
+</style>

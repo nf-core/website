@@ -53,7 +53,7 @@ const writePipelinesJson = async () => {
     data['contributors'] = contributors
       .filter((contrtibutor) => contrtibutor.login !== 'nf-core-bot')
       .map((contributor) => {
-        return { name: contributor.login, count: contributor.contributions };
+        return { name: contributor.login, count: contributor.contributions, avatar_url: contributor.avatar_url };
       });
 
     // get the releases
