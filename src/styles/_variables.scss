@@ -19,6 +19,8 @@ $list-group-color: #495057; // $gray-700
 
 $link-color: #1e6bb8;
 
+$min-contrast-ratio:   2.85; // 4.5 is the standard, but this makes for example text-bg-success have black text.
+
 // overwrite standard heading styles
 $headings-font-family: 'Maven Pro Variable', sans-serif;
 $headings-font-weight: 500;
