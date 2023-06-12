@@ -51,13 +51,8 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
-        shikiConfig: {
-            langs: [],
-            theme: nordTheme,
-            wrap: false,
-        },
         remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
-        // Also update the plugins in `src/components/Markdown.svelte`!
+        // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
             [
@@ -101,7 +96,6 @@ export default defineConfig({
                     },
                 },
             ],
-            // [rehypeWrap, { selector: 'pre:has(code.language-bash)', wrapper: 'div.copy-code' }],
         ],
     },
 });

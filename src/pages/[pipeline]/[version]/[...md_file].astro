@@ -2,13 +2,16 @@
 import { Markdown } from '@astropub/md';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
+import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import cache from 'bin/cache.js';
 import { getGitHubFile } from '@components/octokit';
 
+import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
+
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    let paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
             const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
@@ -38,17 +41,30 @@ let headings: {
 }[] = [];
 
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
+const left_sidebar =
+    md_file.split('/').length > 1 || md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]).length > 1;
+let sections = {};
+let siblings = [];
+if (left_sidebar) {
+    siblings = md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]);
+    sections = { section_name: siblings[0], children: siblings.slice(1) };
+    //make title case
+    sections.section_name = sections.section_name
+        .split('/')[0]
+        .replace(/-/g, ' ')
+        .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
+    sections.children = sections.children.map((child) => {
+        return {
+            title: child
+                .split('/')[1]
+                .split('/')[0]
+                .replace(/-/g, ' ')
+                .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase())),
+            slug: child,
+        };
+    });
+}
 
-const baseUrl = '/' + pipeline + '/' + version;
-let tabItems = md_files.map((file) => {
-    return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt: string) => {
-            return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
-        }),
-        href: baseUrl + '/' + file,
-        active: file === md_file,
-    };
-});
 const cache_key = `${pipeline}/${version}/docs/${md_file}.md`;
 
 const md_content = await cache
@@ -90,6 +106,7 @@ const md_content = await cache
     });
 
 const max_heading_depth = 2;
+
 // filter out headings that are higher than max_heading_depth
 headings = headings.filter((h) => h.depth <= max_heading_depth);
 ---
@@ -100,17 +117,24 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
     headings={headings}
     version={version}
     versions={versions}
-    tabItems={tabItems}
+    tabItems={md_files}
     md_github_url={`https://github.com/nf-core/${pipeline}/blob/${version}/docs/${md_file}.md`}
 >
     <div class="row">
-        <div class="col-12 col-md-9 pt-3">
+        {
+            left_sidebar && (
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+                    <SidebarNav items={[sections]} />
+                </div>
+            )
+        }
+        <div class:list={['col-12 pt-3', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
                 <Markdown of={md_content} />
             </MarkdownWrapper>
         </div>
-        <div class="col-12 col-md-3 toc">
-            <SidebarToc headings={headings} client:idle />
+        <div class:list={['col-12 toc', { 'col-md-3': !left_sidebar, 'col-md-2': left_sidebar }]}>
+            <SidebarToc headings={headings} client:idle><ExpandDetailsButton client:idle /></SidebarToc>
         </div>
     </div>
-</PipelinePageLayout>
+</PipelinePageLayout>pip
