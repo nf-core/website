@@ -47,7 +47,10 @@ if (component_type === 'modules') {
         }
         {
             pipeline.length > 0 ? (
-                <a href={`${pipeline}/${version}/launch`} class="btn btn-success launch-btn">
+                <a
+                    href={`${pipeline}/${version}/launch`}
+                    class={'btn btn-success launch-btn' + (version === 'dev' ? '-dev' : '')}
+                >
                     <i class="fa-duotone fa-rocket me-2" />
                     {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}
                 </a>
@@ -66,13 +69,17 @@ if (component_type === 'modules') {
 <div class="triangle-down bg-body-secondary"></div>
 
 <style lang="scss">
-    .btn.launch-btn:hover i {
+    // shaking taken from https://www.w3schools.com/howto/howto_css_shake_image.asp
+    .btn.launch-btn:hover i,
+    .btn.launch-btn-dev:hover i {
         &::after {
             content: '\e027\e027';
         }
         animation: shake 0.5s;
-
-        /* When the animation is finished, start again */
+        animation-iteration-count: infinite;
+    }
+    .btn.launch-btn-dev:hover i {
+        animation: shake-harder 0.5s;
         animation-iteration-count: infinite;
     }
 
@@ -109,6 +116,42 @@ if (component_type === 'modules') {
         }
         100% {
             transform: translate(1px, -1px) rotate(-1deg);
+        }
+    }
+
+    @keyframes shake-harder {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
+        10% {
+            transform: translate(0px, -1px) rotate(-3deg);
+        }
+        20% {
+            transform: translate(-1px, 0px) rotate(3deg);
+        }
+        30% {
+            transform: translate(0px, 1px) rotate(0deg);
+        }
+        40% {
+            transform: translate(1px, -1px) rotate(3deg);
+        }
+        50% {
+            transform: translate(-1px, 0px) rotate(-3deg);
+        }
+        60% {
+            transform: translate(-1px, 1px) rotate(0deg);
+        }
+        70% {
+            transform: translate(0px, 1px) rotate(-3deg);
+        }
+        80% {
+            transform: translate(-1px, 0px) rotate(3deg);
+        }
+        90% {
+            transform: translate(0px, -1px) rotate(0deg);
+        }
+        100% {
+            transform: translate(1px, -1px) rotate(-3deg);
         }
     }
 </style>
