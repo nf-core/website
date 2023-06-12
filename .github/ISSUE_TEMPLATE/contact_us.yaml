@@ -1,0 +1,38 @@
+name: Contact Us
+description: Get in touch with the Tree of Life informatics teams.
+title: "[Contact Us]: "
+labels: ["connect"]
+assignees:
+  - priyanka-surana
+  - muffato
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for getting in touch with us.
+  - type: dropdown
+    id: team
+    attributes:
+      label: Which Tree of Life informatics team do you want to connect with?
+      options:
+        - Informatics Infrastructure (ToL–IT)
+        - Platforms (ToLP)
+        - Assembly (ToLA)
+        - Curation (GRIT)
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Message
+      description: If you have a problem or feature request for a pipeline/tool, please create an issue on the respective GitHub page directly. If there is an issue with the website, please add a [bug report](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=&labels=bug&projects=&template=bug_report.md).
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](http://pipelines.tol.sanger.ac.uk/code_of_conduct)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
