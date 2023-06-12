@@ -1,0 +1,70 @@
+name: Genome After Party feature request
+description: Suggest an idea for the Genome After Party pipeline suite
+title: "[Feature]: "
+labels: ["pipeline", "enhancement"]
+assignees:
+  - priyanka-surana
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest an idea for the Genome After Party.
+  - type: checkboxes
+    id: pipelines
+    attributes:
+      label: Which pipelines is your feature request related to?
+      options:
+        - label: |
+          [insdcdownload](https://pipelines.tol.sanger.ac.uk/insdcdownload)
+        - label: |
+          [ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)
+        - label: |
+          [ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)
+        - label: |
+          [sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
+        - label: |
+          [readmapping](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
+        - label: |
+          [variantcalling](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
+        - label: |
+          [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
+        - label: |
+          [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem? Please describe.
+      description: A clear and concise description of what the problem is.
+      placeholder: |
+        I'm always frustrated when [...]
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the solution you'd like.
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: solutions
+    attributes:
+      label: Describe alternatives you've considered.
+      description: A clear and concise description of any alternative solutions or features you've considered.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context.
+      description: Add any other context or screenshots about the feature request here.
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](http://pipelines.tol.sanger.ac.uk/code_of_conduct)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
