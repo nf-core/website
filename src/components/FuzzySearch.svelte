@@ -1,6 +1,5 @@
 <script lang="ts">
     import fuzzysort from 'fuzzysort';
-    import { onMount } from 'svelte';
 
     export let possibleResults: { href: string; name: string }[] = [];
     export let placeholder: string = 'Search';
