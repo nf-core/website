@@ -10,14 +10,27 @@ export interface Props {
     version?: string;
     versions?: string[];
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
-    tabItems?: { label: string; href: string; active: boolean; icon?: string }[];
+    tabItems?: string[];
     md_github_url?: string;
 }
 
 const { pipeline, subtitle, headings, version, versions = [], tabItems = [], md_github_url = '' } = Astro.props;
 const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+const baseUrl = '/' + pipeline + '/' + version;
+let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
 
-tabItems.unshift({
+allTabItems = tabItems
+    .filter((file) => file.split('/').length === 1)
+    .map((file) => {
+        return {
+            label: file.replace(/-|_/g, ' ').replace(/\w\S*/g, (txt: string) => {
+                return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+            }),
+            href: baseUrl + '/' + file,
+            active: url.match(baseUrl + '/' + file),
+        };
+    });
+allTabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}`,
     active: url === `/${pipeline}/${version}`,
@@ -27,7 +40,7 @@ const latestVersion = versions[0];
 const schema = await cache.get(`${pipeline}/${version}/nextflow_schema.json`);
 if (schema !== undefined) {
     // Add the parameters tab if there is a schema to the second position
-    tabItems.splice(1, 0, {
+    allTabItems.splice(1, 0, {
         label: 'Parameters',
         href: `/${pipeline}/${version}/parameters/`,
         active: Astro.url.pathname.endsWith('/parameters/'),
@@ -48,7 +61,7 @@ const gh_url = 'https://github.com/nf-core/' + pipeline;
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {
         tabItems.length > 0 && (
-            <TabBar items={tabItems}>
+            <TabBar items={allTabItems}>
                 <div class="input-group input-group-sm justify-content-end justify-content-md-center">
                     <label class="input-group-text" for="version_select">
                         <i class="fas fa-tags" />
