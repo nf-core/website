@@ -21,17 +21,28 @@
     }
 </script>
 
-<div>
+<div class="search-container dropdown">
     <input class="form-control form-control" type="text" {placeholder} aria-label={placeholder} on:keyup={search} />
-    <div class="search-results dropdown-menu px-2" class:show={results.length > 0}>
+
+    <ul class="search-results dropdown-menu" class:show={results.length > 0}>
         {#if results}
             {#each results as result (result)}
                 <li>
-                    <a href={result.obj.href} id={result.obj.name} class="text-decoration-none text-body fs-5">
+                    <a href={result.obj.href} id={result.obj.name} class="text-decoration-none text-body dropdown-item">
                         {@html fuzzysort.highlight(result, '<span class="text-success">', '</span>')}
                     </a>
                 </li>
             {/each}
         {/if}
-    </div>
+    </ul>
 </div>
+
+<style lang="scss">
+    .search-container {
+        width: 100%;
+        max-width: 15rem;
+        .dropdown-menu {
+            min-width: 15rem;
+        }
+    }
+</style>
