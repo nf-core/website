@@ -14,21 +14,22 @@ body:
     attributes:
       label: Which pipelines is your feature request related to?
       options:
-        - label: [insdcdownload](pipelines.tol.sanger.ac.uk/insdcdownload)
         - label: |
-          [ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)
+            [insdcdownload](https:pipelines.tol.sanger.ac.uk/insdcdownload)
         - label: |
-          [ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)
+            [ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)
         - label: |
-          [sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
+            [ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)
         - label: |
-          [readmapping](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
+            [sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
         - label: |
-          [variantcalling](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
+            [readmapping](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
         - label: |
-          [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
+            [variantcalling](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
         - label: |
-          [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)
+            [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
+        - label: |
+           [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)
   - type: textarea
     id: problem
     attributes:
