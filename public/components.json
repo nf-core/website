@@ -3049,6 +3049,8 @@
         "name": "ataqv_ataqv",
         "description": "ataqv function of a corresponding ataqv tool",
         "keywords": [
+          "ATAC-seq",
+          "qc",
           "ataqv"
         ],
         "tools": [
@@ -3173,6 +3175,10 @@
         "name": "ataqv_mkarv",
         "description": "mkarv function of a corresponding ataqv tool",
         "keywords": [
+          "ataqv",
+          "ATAC-seq",
+          "qc",
+          "ataqv",
           "mkarv"
         ],
         "tools": [
@@ -16792,7 +16798,7 @@
         },
         {
           "name": "nanostring",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -48836,7 +48842,7 @@
         },
         {
           "name": "nanostring",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -83863,6 +83869,13 @@
               "description": "List of all reads without a hit",
               "pattern": "*.unc"
             }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Text file containing console output from ganon classify",
+              "pattern": "*.log"
+            }
           }
         ],
         "authors": [
@@ -87232,6 +87245,99 @@
         ],
         "authors": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "metaeuk_easypredict",
+      "path": "modules/nf-core/metaeuk/easypredict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "metaeuk_easypredict",
+        "description": "Annotation of eukaryotic metagenomes using MetaEuk",
+        "keywords": [
+          "genomics",
+          "annotation",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "metaeuk": {
+              "description": "MetaEuk - sensitive, high-throughput gene discovery and annotation for large-scale eukaryotic metagenomics",
+              "homepage": "https://github.com/soedinglab/metaeuk",
+              "documentation": "https://github.com/soedinglab/metaeuk",
+              "tool_dev_url": "https://github.com/soedinglab/metaeuk",
+              "doi": "10.1186/s40168-020-00808-x",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Nucleotide FASTA file for annotation",
+              "pattern": "*.{fasta,fa,fasta.gz,fa.gz}"
+            }
+          },
+          {
+            "database": {
+              "type": "file",
+              "description": "Either a fasta file containing protein sequences, or a directory containing an mmseqs2-formatted protein database"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "faa": {
+              "type": "file",
+              "description": "Protein FASTA file containing the exons from the input FASTA file",
+              "pattern": "*.{fas}"
+            }
+          },
+          {
+            "codon": {
+              "type": "file",
+              "description": "Nucleotide FASTA file of protein-coding sequences",
+              "pattern": "*.{codon.fas}"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file containing locations of each protein coding sequence in the input fasta",
+              "pattern": "*.headersMap.{tsv}"
+            }
+          },
+          {
+            "gff": {
+              "type": "file",
+              "description": "Annotation file in GFF format",
+              "pattern": "*.{gff}"
+            }
+          }
+        ],
+        "authors": [
+          "@prototaxites"
         ]
       }
     }
