@@ -12,24 +12,17 @@ body:
   - type: checkboxes
     id: pipelines
     attributes:
-      label: Which pipelines is your feature request related to?
+      label: Which pipeline(s) is your feature request for?
+      description: See our pipelines at [https://pipelines.tol.sanger.ac.uk/pipelines](https://pipelines.tol.sanger.ac.uk/pipelines).
       options:
-        - label: |
-            [insdcdownload](https:pipelines.tol.sanger.ac.uk/insdcdownload)
-        - label: |
-            [ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)
-        - label: |
-            [ensemblgenedownload](https://pipelines.tol.sanger.ac.uk/ensemblgenedownload)
-        - label: |
-            [sequencecomposition](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
-        - label: |
-            [readmapping](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
-        - label: |
-            [variantcalling](https://pipelines.tol.sanger.ac.uk/sequencecomposition)
-        - label: |
-            [blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)
-        - label: |
-           [genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)
+        - label: insdcdownload
+        - label: ensemblrepeatdownload
+        - label: ensemblgenedownload
+        - label: sequencecomposition
+        - label: readmapping
+        - label: variantcalling
+        - label: blobtoolkit
+        - label: genomenote
   - type: textarea
     id: problem
     attributes:
