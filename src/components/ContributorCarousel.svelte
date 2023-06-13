@@ -47,7 +47,7 @@
                     animate:flip={{ duration: 500 }}
                 >
                     <img
-                        src="/src/assets/contributors/white/{contributor.image_fn}"
+                        src="/_astro/contributors/white/{contributor.image_fn}"
                         class="my-2 my-lg-3 mx-2"
                         data-bs-placement="bottom"
                         data-bs-toggle="tooltip"
