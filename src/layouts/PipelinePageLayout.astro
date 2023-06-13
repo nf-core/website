@@ -27,7 +27,7 @@ allTabItems = tabItems
                 return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
             }),
             href: baseUrl + '/' + file,
-            active: url.match(baseUrl + '/' + file),
+            active: url.includes(baseUrl + '/' + file),
         };
     });
 allTabItems.unshift({

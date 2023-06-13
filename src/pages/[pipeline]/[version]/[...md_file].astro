@@ -41,13 +41,15 @@ let headings: {
 }[] = [];
 
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
-const left_sidebar =
-    md_file.split('/').length > 1 || md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]).length > 1;
+let left_sidebar = md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]).length > 1;
 let sections = {};
 let siblings = [];
 if (left_sidebar) {
     siblings = md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]);
-    sections = { section_name: siblings[0], children: siblings.slice(1) };
+    // remove the index file with the section name from the siblings, e.g. output.md
+    siblings = siblings.filter((file) => md_file.split('/')[0] !== file);
+
+    sections = { section_name: md_file.split('/')[0], children: siblings };
     //make title case
     sections.section_name = sections.section_name
         .split('/')[0]
@@ -82,7 +84,12 @@ const md_content = await cache
 
         const text_content = content.replace(/```(.*?)```/gs, '');
         // get headings and their depth for table of contents
-        headings = text_content.match(/^(#{1,6})\s(.*)$/gm).map((heading) => {
+        headings = text_content.match(/^(#{1,6})\s(.*)$/gm);
+        if (headings === null) {
+            headings = [];
+            return content;
+        }
+        headings = headings.map((heading) => {
             const depth = heading.match(/^(#{1,6})/)[0].length;
             let text = heading.match(/^(#{1,6})\s(.*)$/)[2];
             // check if exactly two backticks are used to wrap text
