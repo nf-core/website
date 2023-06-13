@@ -70,7 +70,11 @@ export const getDocFiles = async (pipeline, version) => {
         if (file.type === 'dir' && file.name !== 'images') {
           const subFiles = await getFilesInDir(file.path);
           files.push(...subFiles);
-        } else if (file.type === 'file' && file.name.includes('.md') && !file.name.includes('README')) {
+        } else if (
+          file.type === 'file' &&
+          file.name.includes('.md') &&
+          (file.path.includes('output') || file.path.includes('usage'))
+        ) {
           files.push(file.path);
         }
       }

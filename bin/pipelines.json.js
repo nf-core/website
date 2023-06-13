@@ -4,7 +4,6 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 
-
 // get current path
 const __dirname = path.resolve();
 
