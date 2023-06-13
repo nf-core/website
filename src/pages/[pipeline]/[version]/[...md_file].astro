@@ -41,30 +41,34 @@ let headings: {
 }[] = [];
 
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
-let left_sidebar = md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]).length > 1;
+const section = md_file.split('/')[0];
+// check if there are multiple files in the section
+let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
+
 let sections = {};
 let siblings = [];
-if (left_sidebar) {
-    siblings = md_files.filter((file) => file.split('/')[0] === md_file.split('/')[0]);
-    // remove the index file with the section name from the siblings, e.g. output.md
-    siblings = siblings.filter((file) => md_file.split('/')[0] !== file);
 
-    sections = { section_name: md_file.split('/')[0], children: siblings };
-    //make title case
-    sections.section_name = sections.section_name
-        .split('/')[0]
-        .replace(/-/g, ' ')
-        .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
-    sections.children = sections.children.map((child) => {
+if (left_sidebar) {
+    siblings = md_files.filter((file) => file.split('/')[0] === section);
+    // remove the index file with the section name from the siblings, e.g. output.md
+    siblings = siblings.filter((file) => section !== file);
+    const prefix = md_file !== section ? section + '/' : '';
+    // fix slug for children if I am in the main section
+    siblings = siblings.map((child) => {
         return {
             title: child
-                .split('/')[1]
-                .split('/')[0]
+                .replace(section + '/', '')
+                .replace(prefix, '')
                 .replace(/-/g, ' ')
                 .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase())),
-            slug: child,
+            slug: child.replace(prefix, ''),
         };
     });
+    sections = { section_name: section, children: siblings };
+    //make title case
+    sections.section_name = sections.section_name
+        .replace(/-/g, ' ')
+        .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
 }
 
 const cache_key = `${pipeline}/${version}/docs/${md_file}.md`;
