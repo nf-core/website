@@ -6,12 +6,33 @@ import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
+import { getCollection } from 'astro:content';
 
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
 }
-
+let sections: { section_name: string; children: {}[] } | never[] = [];
+if (Astro.url.pathname.startsWith('/docs/')) {
+    const docs = await getCollection('docs');
+    const subpages = docs.filter((doc) => {
+        return doc.slug.split('/').length === 2;
+    });
+    sections = [
+        { section_name: 'Usage', children: [] },
+        { section_name: 'Development', children: [] },
+    ];
+    subpages.map((doc) => {
+        if (doc.slug.startsWith('usage/')) {
+            let index = sections.findIndex((section) => section.section_name === 'Usage');
+            sections[index].children.push({ title: doc.data.title, slug: doc.slug });
+        }
+        if (doc.slug.startsWith('development/')) {
+            let index = sections.findIndex((section) => section.section_name === 'Development');
+            sections[index].children.push({ title: doc.data.title, slug: doc.slug });
+        }
+    });
+}
 const { navTocHeadings = [], title } = Astro.props;
 ---
 
@@ -91,7 +112,7 @@ const { navTocHeadings = [], title } = Astro.props;
     Astro.url.pathname.includes('/docs/') && (
         <NavbarDocsNav client:load>
             <NavbarDocsNavTitle slot="title" title={title} />
-            <SidebarNav slot="menu" />
+            <SidebarNav slot="menu" items={sections} />
         </NavbarDocsNav>
     )
 }

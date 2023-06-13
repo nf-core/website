@@ -30,7 +30,7 @@ const buildCache = async () => {
       for (let f of release.doc_files) {
         const cache_key = `${name}/${version}/${f}`;
         const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
-        if (!is_cached || force) {
+        if (!is_cached || force || version === 'dev') {
           const content = await getGitHubFile(name, f, version);
           cache.set(cache_key, content);
         } else {

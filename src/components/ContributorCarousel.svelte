@@ -2,7 +2,8 @@
     import { onMount } from 'svelte';
     import { flip } from 'svelte/animate';
     import { fade } from 'svelte/transition';
-    import contributors_yml from '@public/contributors.yaml';
+    import contributors_yml from '../contributors.yaml';
+
     export let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
         .sort((a, b) => 0.5 - Math.random())
@@ -46,7 +47,7 @@
                     animate:flip={{ duration: 500 }}
                 >
                     <img
-                        src="/images/contributors/white/{contributor.image_fn}"
+                        src="/src/assets/contributors/white/{contributor.image_fn}"
                         class="my-2 my-lg-3 mx-2"
                         data-bs-placement="bottom"
                         data-bs-toggle="tooltip"

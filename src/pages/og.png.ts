@@ -102,3 +102,5 @@ async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
 
     return await sharp(Buffer.from(svg)).png().toBuffer();
 }
+
+export const prerender = false;

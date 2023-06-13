@@ -34,18 +34,8 @@ let headings: {
     slug: string;
 }[] = [];
 const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
-const baseUrl = '/' + pipeline + '/' + version;
 
 let { versions, md_files, meta } = Astro.props;
-let tabItems = md_files.map((file) => {
-    return {
-        label: file.replace(/-/g, ' ').replace(/\w\S*/g, (txt) => {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        }),
-        href: baseUrl + '/' + file,
-        active: false,
-    };
-});
 
 const cache_key = `${pipeline}/${version}/README.md`;
 const md_content = await cache
@@ -59,7 +49,7 @@ const md_content = await cache
         return '';
     });
 
-export const prerender = true;
+const md_github_url = 'https://github.com/nf-core/' + pipeline + '/blob/' + version + '/README.md';
 ---
 
 <PipelinePageLayout
@@ -68,7 +58,8 @@ export const prerender = true;
     headings={headings}
     version={version}
     versions={versions}
-    tabItems={tabItems}
+    tabItems={md_files}
+    md_github_url={md_github_url}
 >
     <div class="row">
         <div class="col-12 col-md-9 pt-3">

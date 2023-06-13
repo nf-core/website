@@ -56,23 +56,40 @@ export const getGitHubFile = async (repo, path, ref) => {
     });
   return response;
 };
-
 export const getDocFiles = async (pipeline, version) => {
-  const doc_files = await octokit.rest.repos
-    .getContent({
-      owner: 'nf-core',
-      repo: pipeline,
-      path: 'docs',
-      ref: version,
-    })
-    .then((response) => {
-      return response.data
-        .filter((file) => {
-          return file.name.includes('.md') && !file.name.includes('README');
-        })
-        .map((file) => {
-          return file.path;
-        });
-    });
+  const getFilesInDir = async (directory) => {
+    try {
+      const response = await octokit.rest.repos.getContent({
+        owner: 'nf-core',
+        repo: pipeline,
+        path: directory,
+        ref: version,
+      });
+      const files = [];
+      for (const file of response.data) {
+        if (file.type === 'dir' && file.name !== 'images') {
+          const subFiles = await getFilesInDir(file.path);
+          files.push(...subFiles);
+        } else if (
+          file.type === 'file' &&
+          file.name.includes('.md') &&
+          (file.path.includes('output') || file.path.includes('usage'))
+        ) {
+          files.push(file.path);
+        }
+      }
+      return files;
+    } catch (error) {
+      if (error.status === 404) {
+        console.log(`Directory ${directory} not found in ${pipeline} ${version}`);
+        console.log(error.request.url);
+      } else {
+        console.log(error);
+      }
+      return [];
+    }
+  };
+
+  const doc_files = await getFilesInDir('docs');
   return doc_files;
 };
