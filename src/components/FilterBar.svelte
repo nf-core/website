@@ -9,7 +9,7 @@
     let search = $SearchQuery;
 
     function handleSearch(q) {
-        SearchQuery.set(q.target.value);
+        SearchQuery.set(q.target.value.trim());
     }
     function handleFilter(fil) {
         // remove focus from button

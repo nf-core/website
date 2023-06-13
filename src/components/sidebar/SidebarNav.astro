@@ -1,87 +1,59 @@
 ---
-import { getCollection, CollectionEntry } from 'astro:content';
+const { items } = Astro.props;
 
-let docs = await getCollection('docs');
-let usageDocs: CollectionEntry<'docs'>[] = [];
-let developmentDocs: CollectionEntry<'docs'>[] = [];
-
-docs = docs.filter((doc) => {
-    return doc.slug.split('/').length === 2;
-});
-docs.map((doc) => {
-    if (doc.slug.startsWith('usage/')) {
-        usageDocs.push(doc);
-    }
-    if (doc.slug.startsWith('development/')) {
-        developmentDocs.push(doc);
-    }
-});
+export interface Props {
+    items: {
+        section_name: string;
+        children: {
+            title: string;
+            slug: string;
+            order?: number;
+        }[];
+    };
+}
 
 const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+const baseURL = url.split('/').slice(0, -1).join('/');
 ---
 
 <div class="nav">
     <div class="w-100 sticky-top-under">
-        <h6 class="my-2 text-body">Usage</h6>
-        <ul class="list-unstyled">
-            {
-                usageDocs &&
-                    usageDocs.map((doc) => {
-                        return (
-                            <li
-                                class:list={[
-                                    'mt-2 w-100',
-                                    {
-                                        active: url === '/docs/' + doc.slug,
-                                    },
-                                ]}
-                            >
-                                <a
-                                    class:list={[
-                                        'text-decoration-none p-1',
-                                        {
-                                            'text-body-secondary': url !== '/docs/' + doc.slug,
-                                        },
-                                    ]}
-                                    href={'/docs/' + doc.slug}
-                                >
-                                    {doc.data.title}
-                                </a>
-                            </li>
-                        );
-                    })
-            }
-        </ul>
-        <h6 class="my-2 text-body">Contributing</h6>
-        <ul class="list-unstyled">
-            {
-                developmentDocs &&
-                    developmentDocs.map((doc) => {
-                        return (
-                            <li
-                                class:list={[
-                                    'mt-2 w-100',
-                                    {
-                                        active: Astro.url.pathname === '/docs/' + doc.slug,
-                                    },
-                                ]}
-                            >
-                                <a
-                                    class:list={[
-                                        'text-decoration-none p-1',
-                                        {
-                                            'text-body-secondary': Astro.url.pathname !== '/docs/' + doc.slug,
-                                        },
-                                    ]}
-                                    href={'/docs/' + doc.slug}
-                                >
-                                    {doc.data.title}
-                                </a>
-                            </li>
-                        );
-                    })
-            }
-        </ul>
+        {
+            items &&
+                items.map((item) => {
+                    return (
+                        <div class="mb-3">
+                            <h6 class="my-2 text-body">{item.section_name}</h6>
+                            <ul class="list-unstyled">
+                                {item.children.map((child) => {
+                                    return (
+                                        <li
+                                            class:list={[
+                                                'mt-2 w-100',
+                                                {
+                                                    active: url.endsWith(child.slug),
+                                                },
+                                            ]}
+                                        >
+                                            <a
+                                                class:list={[
+                                                    'text-decoration-none p-1',
+                                                    {
+                                                        'text-body-secondary': !url.endsWith(child.slug),
+                                                    },
+                                                ]}
+                                                href={baseURL + '/' + child.slug}
+                                            >
+                                                {child.title}
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    );
+                })
+        }
     </div>
 </div>
 

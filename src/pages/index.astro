@@ -1,5 +1,5 @@
 ---
-import NatureBiotech from '/images/homepage/nature_biotech.svg';
+import Icon from 'astro-icon';
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
@@ -7,7 +7,7 @@ import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
 import HomepageVideos from '@components/homepage/HomepageVideos.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import TypeAhead from '@components/TypeAhead.svelte';
+import FuzzySearch from '@components/FuzzySearch.svelte';
 
 import pipelines_json from '@public/pipelines.json';
 const pipelines = pipelines_json.remote_workflows;
@@ -36,7 +36,7 @@ const pipeline_links = pipelines.map((pipeline) => {
         </div>
     </div>
     <div class="d-flex justify-content-center mb-4">
-        <TypeAhead possibleResults={pipeline_links} placeholder="Search Pipelines" client:idle />
+        <FuzzySearch possibleResults={pipeline_links} placeholder="Search Pipelines" client:idle />
     </div>
 
     <div class="triangle-up text-bg-success"></div>
@@ -67,7 +67,7 @@ const pipeline_links = pipelines.map((pipeline) => {
             </div>
             <div>
                 <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-                    <img src={NatureBiotech} alt="Nature Biotechnology" width="60px" class="float-start me-3" />
+                    <Icon name="nature_biotech" class="float-start me-3" width="60px" />
                     <a
                         class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center"
                         href="https://doi.org/10.1038/s41587-020-0439-x"

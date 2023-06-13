@@ -4,7 +4,6 @@ import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 
-
 // get current path
 const __dirname = path.resolve();
 
@@ -61,8 +60,19 @@ const writePipelinesJson = async () => {
       owner: 'nf-core',
       repo: name,
     });
+
+    // remove releases that are already in the pipelines.json file
+    const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
+    let new_releases = releases;
+    let old_releases = [];
+    if (index > -1) {
+      old_releases = pipelines.remote_workflows[index].releases.filter((release) => release.tag_name !== 'dev');
+      const existing_releases = old_releases.map((release) => release.tag_name);
+      new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
+    }
+
     // get sha of release commit
-    for (const release of releases) {
+    for (const release of new_releases) {
       const { data: commit } = await octokit.rest.repos.getCommit({
         owner: 'nf-core',
         repo: name,
@@ -78,14 +88,14 @@ const writePipelinesJson = async () => {
       sha: 'dev',
     });
     if (dev_branch.length > 0) {
-      releases = [
-        ...releases,
+      new_releases = [
+        ...new_releases,
         { tag_name: 'dev', published_at: dev_branch[0].commit.author.date, sha: dev_branch[0].sha },
       ];
     } else {
       console.log(`No commits to dev branch found for ${name}`);
     }
-    data['releases'] = releases.map(async (release) => {
+    new_releases = new_releases.map(async (release) => {
       const { tag_name, published_at, sha } = release;
       const doc_files = await getDocFiles(name, release.tag_name);
 
@@ -137,13 +147,14 @@ const writePipelinesJson = async () => {
       return { tag_name, published_at, sha, doc_files, components };
     });
 
+    data['releases'] = [...old_releases, ...new_releases];
     // resolve the promises
     data['releases'] = await Promise.all(data['releases']);
+
     if (!pipelines.remote_workflows) {
       pipelines.remote_workflows = [];
     }
     // update in pipelines.remote_workflows if entry with name exists or add it otherwise
-    const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     if (index > -1) {
       pipelines.remote_workflows[index] = data;
     } else {
