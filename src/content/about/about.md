@@ -101,14 +101,14 @@ The vast majority of nf-core development is done as a labour of love, on a volun
 Most of all, we would like to thank all contributors (and their employers!).
 You form the lifeblood of nf-core and we are eternally grateful for your time and efforts.
 
-A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/community#initiatives)).
+A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/contributors#initiatives)).
 If you work with a project that would benefit from an explicit link with nf-core, please let us know.
 
 Finally, we would specifically like to acknowledge and thank the following sponsors who help to support the project:
 
 ## Chan Zuckerberg Initiative
 
-<img src="/src/assets/contributors/colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/images/contributors/colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
 We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
@@ -132,7 +132,7 @@ The CZI grant employs personnel based at the [SciLifeLab National Genomics Infra
 
 ## Seqera Labs
 
-<img src="/src/assets/contributors/colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/images/contributors/colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 Seqera Labs is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
 
@@ -150,7 +150,7 @@ Specifically, Seqera helps nf-core with:
 
 ## SciLifeLab Data Centre
 
-<img src="/src/assets/contributors/colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img src="/images/contributors/colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
 
 The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
 This funding covers a full-time position ([@mashehu](https://github.com/mashehu), Matthias Hörtenhuber) to work on maintainance of nf-core framework code. For example, the [nf-core website](https://nf-co.re/) and the [nf-core/tools package](https://github.com/nf-core/tools/).
@@ -159,7 +159,7 @@ This funding covers a full-time position ([@mashehu](https://github.com/mashehu)
 
 ## Amazon Web Services
 
-<img src="/src/assets/contributors/colour/aws.svg" alt="Amazon Web Services" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+<img src="/images/contributors/colour/aws.svg" alt="Amazon Web Services" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
 
 Amazon Web Services (AWS) kindly support nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You can explore and download these pipeline results under the <em class="mx-2"><i class="fab fa-aws me-2"></i> Results</em> tab on each pipeline page.
@@ -171,7 +171,7 @@ This is used by most nf-core pipelines to give free and open access to the refer
 
 ## Microsoft Azure
 
-<img src="/src/assets/contributors/colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 ms-3">
+<img src="/images/contributors/colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 ms-3">
 
 Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
@@ -185,17 +185,17 @@ We also thank the following organisations for supporting nf-core through providi
 <div class="row my-5">
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://www.docker.com/" target="_blank">
-      <img src="/src/assets/docker-horizontal.png" alt="Docker">
+      <img src="/images/docker-horizontal.png" alt="Docker">
     </a>
   </div>
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://gitpod.io/" target="_blank">
-      <img src="/src/assets/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
+      <img src="/images/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
     </a>
   </div>
   <div class="col-lg-4" style="align-self:center;">
     <a href="https://hackmd.io/" target="_blank">
-      <img src="/src/assets/contributors/colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
+      <img src="/images/contributors/colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
     </a>
   </div>
 </div>

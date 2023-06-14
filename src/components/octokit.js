@@ -43,6 +43,10 @@ export const getGitHubFile = async (repo, path, ref) => {
         content = content.replaceAll(/<img(.*?)src="(.*?)"/g, (match, p1, p2) => {
           return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
         });
+        // add github url to html img tags in markdown for dark mode images
+        content = content.replaceAll(/<source(.*?)srcset="(.*?)"/g, (match, p1, p2) => {
+          return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
+        });
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
         // remove blockquote ending in "files._" from the start of the document

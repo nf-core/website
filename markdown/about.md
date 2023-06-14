@@ -49,7 +49,7 @@ The vast majority of nf-core development is done as a labour of love, on a volun
 Most of all, we would like to thank all contributors (and their employers!).
 You form the lifeblood of nf-core and we are eternally grateful for your time and efforts.
 
-A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/community#initiatives)).
+A number of projects and grants list nf-core as collaborators and also contribute to our community (see [_Projects we are involved with_](/contributors#initiatives)).
 If you work with a project that would benefit from an explicit link with nf-core, please let us know.
 
 Finally, we would specifically like to acknowledge and thank the following sponsors who help to support the project:
