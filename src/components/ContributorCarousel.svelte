@@ -27,14 +27,14 @@
 <div id="community" class="homepage-usedby">
     <div class="container py-5">
         <h2>
-            <a class="btn btn-success float-end d-none d-md-inline" href="/community#organisations">
+            <a class="btn btn-success float-end d-none d-md-inline" href="/contributors#organisations">
                 See a complete list &raquo;
             </a>
-            <a href="/community#organisations">Used by groups all over the world</a>
+            <a href="/contributors#organisations">Used by groups all over the world</a>
         </h2>
         <p>The nf-core community is spread all over the globe and includes a large number of contributing users.</p>
         <p>
-            <a class="btn btn-success d-inline d-md-none" href="/community#organisations">
+            <a class="btn btn-success d-inline d-md-none" href="/contributors#organisations">
                 See a complete list &raquo;
             </a>
         </p>
@@ -42,12 +42,12 @@
         <div class="homepage_contrib_logos">
             {#each contributors as contributor (contributor)}
                 <a
-                    href="/community#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}"
+                    href="/contributors#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}"
                     transition:fade={{ duration: 500 }}
                     animate:flip={{ duration: 500 }}
                 >
                     <img
-                        src="/src/assets/contributors/white/{contributor.image_fn}"
+                        src="/images/contributors/white/{contributor.image_fn}"
                         class="my-2 my-lg-3 mx-2"
                         data-bs-placement="bottom"
                         data-bs-toggle="tooltip"

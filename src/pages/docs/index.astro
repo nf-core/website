@@ -3,7 +3,7 @@ import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection, CollectionEntry } from 'astro:content';
 let docs = await getCollection('docs');
 let usageDocs: CollectionEntry<'docs'>[] = [];
-let developmentDocs: CollectionEntry<'docs'>[] = [];
+let contributingDocs: CollectionEntry<'docs'>[] = [];
 
 docs = docs.filter((doc) => {
     return doc.slug.split('/').length === 2;
@@ -12,8 +12,8 @@ docs.map((doc) => {
     if (doc.slug.startsWith('usage/')) {
         usageDocs.push(doc);
     }
-    if (doc.slug.startsWith('development/')) {
-        developmentDocs.push(doc);
+    if (doc.slug.startsWith('contributing/')) {
+        contributingDocs.push(doc);
     }
 });
 ---
@@ -40,7 +40,7 @@ docs.map((doc) => {
     <h2>Contributing</h2>
     <ul>
         {
-            developmentDocs.map((doc) => {
+            contributingDocs.map((doc) => {
                 return (
                     <li>
                         <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
