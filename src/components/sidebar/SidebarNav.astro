@@ -42,7 +42,7 @@ const baseURL = url.split('/').slice(0, -1).join('/');
                                                         'text-body-secondary': !url.endsWith(child.slug),
                                                     },
                                                 ]}
-                                                href={baseURL + '/' + child.slug}
+                                                href={child.slug}
                                             >
                                                 {child.title}
                                             </a>

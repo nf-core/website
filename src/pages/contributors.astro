@@ -119,7 +119,10 @@ const headings = [
         {
             contributors_yml.contributors &&
                 contributors_yml.contributors.map((institution) => (
-                    <div class="col align-items-stretch d-flex">
+                    <div
+                        class="col align-items-stretch d-flex"
+                        id={institution.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}
+                    >
                         <div class="card my-2 align-items-stretch">
                             <div class="card-body">
                                 <div class="border-bottom-0 bg-transparent card-title">
@@ -129,7 +132,7 @@ const headings = [
                                         rel="noopener noreferrer"
                                         class="d-flex justify-content-between text-decoration-none"
                                     >
-                                        <h3 class="">{institution.full_name}</h3>
+                                        <h3>{institution.full_name}</h3>
                                         {institution.image_fn && (
                                             <img
                                                 src={`/images/contributors/colour/${institution.image_fn}`}
