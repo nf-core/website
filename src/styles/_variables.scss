@@ -17,8 +17,6 @@ $body-bg: #fefefe;
 $input-placeholder-color: #ced4da; // $gray-400
 $list-group-color: #495057; // $gray-700
 
-$link-color: #1e6bb8;
-
 $min-contrast-ratio:   2.85; // 4.5 is the standard, but this makes for example text-bg-success have black text.
 
 // overwrite standard heading styles
@@ -40,6 +38,9 @@ $accordion-button-active-color: shade-color($nf-core-color, 10%);
 
 @import 'bootstrap/scss/variables';
 
+$link-color: $body-color;
+
+
 // make greens darker for dark mode
 $green: $nf-core-color-dark;
 $green-100: tint-color($green, 80%);
@@ -54,6 +55,9 @@ $green-900: shade-color($green, 80%);
 $success-dark: $green;
 
 @import 'bootstrap/scss/variables-dark';
+
+$link-color-dark: $body-color-dark;
+
 
 
 // extra-wide breakpoints
