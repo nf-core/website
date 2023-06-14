@@ -46,29 +46,28 @@ const section = md_file.split('/')[0];
 let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
 
 let sections = {};
-let siblings = [];
+
+// add trailing slash to url if missing
+const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
 if (left_sidebar) {
-    siblings = md_files.filter((file) => file.split('/')[0] === section);
-    // remove the index file with the section name from the siblings, e.g. output.md
-    siblings = siblings.filter((file) => section !== file);
-    const prefix = md_file !== section ? section + '/' : '';
-    // fix slug for children if I am in the main section
-    siblings = siblings.map((child) => {
-        return {
-            title: child
+    const siblings = md_files
+        .filter((file) => file.split('/')[0] === section && section !== file)
+        .map((child) => {
+            const prefix = md_file !== section ? section + '/' : '';
+            const title = child
                 .replace(section + '/', '')
                 .replace(prefix, '')
                 .replace(/-/g, ' ')
-                .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase())),
-            slug: child.replace(prefix, ''),
-        };
-    });
-    sections = { section_name: section, children: siblings };
-    //make title case
-    sections.section_name = sections.section_name
-        .replace(/-/g, ' ')
-        .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
+                .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
+            const slug = baseURL + child.replace(prefix, '');
+            return { title, slug };
+        });
+
+    const sectionName = section.replace(/-/g, ' ').replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
+
+    sections = { section_name: sectionName, children: siblings };
 }
 
 const cache_key = `${pipeline}/${version}/docs/${md_file}.md`;
@@ -85,7 +84,19 @@ const md_content = await cache
             console.log(`Cache miss for ${cache_key}`);
             content = await getGitHubFile(pipeline, `/docs/${md_file}.md`, version);
         }
-
+        // make relative links to other markdown files absolute to current Astro.url.pathname
+        content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
+            console.log(
+                url
+                    .split('/')
+                    .filter((i) => i)
+                    .concat(p2.split('/').filter((i) => i))
+            );
+            const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(
+                '/'
+            );
+            return `[${p1}](/${link})`;
+        });
         const text_content = content.replace(/```(.*?)```/gs, '');
         // get headings and their depth for table of contents
         headings = text_content.match(/^(#{1,6})\s(.*)$/gm);
