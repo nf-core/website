@@ -20,15 +20,15 @@ if (Astro.url.pathname.startsWith('/docs/')) {
     });
     sections = [
         { section_name: 'Usage', children: [] },
-        { section_name: 'Development', children: [] },
+        { section_name: 'Contributing', children: [] },
     ];
     subpages.map((doc) => {
         if (doc.slug.startsWith('usage/')) {
             let index = sections.findIndex((section) => section.section_name === 'Usage');
             sections[index].children.push({ title: doc.data.title, slug: doc.slug });
         }
-        if (doc.slug.startsWith('development/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Development');
+        if (doc.slug.startsWith('contributing/')) {
+            let index = sections.findIndex((section) => section.section_name === 'Contributing');
             sections[index].children.push({ title: doc.data.title, slug: doc.slug });
         }
     });
