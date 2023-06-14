@@ -27,7 +27,7 @@ Here's the desired format
 ```
 
 3. For the purpose of displaying your institution logo, please also add the `SVG` of your institutions logo. These logos are displayed on the [main page](https://nf-co.re/) as
-   well as in the [community page](https://nf-co.re/community#organisations).
+   well as in the [community page](https://nf-co.re/contributors#organisations).
 
 Please note that`nf-co.re` website makes use of the `light/dark` mode so it's recommended that you add the logo for both modes. You could make use of `Adobe Illustrator/Inkscape` for converting the logo in two variants.
 

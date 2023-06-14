@@ -3,7 +3,7 @@ title: How to add yourself to the community page
 subtitle: Adding your institution to the contributor's list
 ---
 
-In case you couldn't find your institution / group of contributors on the [community pages](https://nf-co.re/community), please add yourself. All you need to add is a few lines of YAML and your institution's logo.
+In case you couldn't find your institution / group of contributors on the [community pages](https://nf-co.re/contributors), please add yourself. All you need to add is a few lines of YAML and your institution's logo.
 
 1. Fork the repository [nf-core/nf-core](https://github.com/nf-core/nf-co.re) to your own GitHub account. Look [here](https://guides.github.com/activities/forking/) for advice on how to fork a GitHub project.
 
