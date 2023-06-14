@@ -13,8 +13,8 @@
     function createMap(container) {
         let m = L.map(container, { minZoom: 2 }).setView([15.505, 10.09], 2);
         let greenIcon = new L.Icon({
-            iconUrl: '/_astro/marker-icon-2x-green.png',
-            shadowUrl: '/_astro/marker-shadow.png',
+            iconUrl: '/images/marker-icon-2x-green.png',
+            shadowUrl: '/images/marker-shadow.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34],
@@ -35,7 +35,7 @@
                             '">' +
                             marker.name +
                             '</a></h6>' +
-                            `<img src="/_astro/contributors/colour/${marker.image}" title="${marker.name}" class="contributor_map_logo"></img>`
+                            `<img src="/images/contributors/colour/${marker.image}" title="${marker.name}" class="contributor_map_logo"></img>`
                     );
             }
         });
