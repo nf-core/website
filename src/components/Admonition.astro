@@ -29,6 +29,7 @@ const admonitionTypes = {
         <div
             class={`title fw-bold px-3 py-2 d-flex align-items-center rounded-top-1 text-bg-${admonitionTypes[title].id}`}
         >
+            <svg class="icon fill-current me-2" viewBox="0 0 24 24"><path d={admonitionTypes[title].svg}></path></svg>
             {title.charAt(0).toUpperCase() + title.slice(1)}
         </div>
         <div class="p-3 pt-0">
