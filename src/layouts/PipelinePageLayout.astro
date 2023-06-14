@@ -28,6 +28,7 @@ allTabItems = tabItems
             }),
             href: baseUrl + '/' + file,
             active: url.includes(baseUrl + '/' + file),
+            icon: tabItems.some((f) => f.startsWith(file + '/')) ? 'fa-regular fa-books' : '',
         };
     });
 allTabItems.unshift({
