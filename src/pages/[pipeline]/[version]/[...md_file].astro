@@ -25,6 +25,7 @@ export function getStaticPaths() {
                     props: {
                         versions: pipeline.releases.map((release) => release.tag_name),
                         md_files: md_files,
+                        description: pipeline.description,
                     },
                 });
             });
@@ -33,14 +34,13 @@ export function getStaticPaths() {
     return paths;
 }
 const { pipeline, version, md_file } = Astro.params;
-const { versions, md_files } = Astro.props;
+const { versions, md_files, description } = Astro.props;
 let headings: {
     depth: number;
     text: string;
     slug: string;
 }[] = [];
 
-const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
 const section = md_file.split('/')[0];
 // check if there are multiple files in the section
 let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).length > 1;
@@ -86,12 +86,6 @@ const md_content = await cache
         }
         // make relative links to other markdown files absolute to current Astro.url.pathname
         content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
-            console.log(
-                url
-                    .split('/')
-                    .filter((i) => i)
-                    .concat(p2.split('/').filter((i) => i))
-            );
             const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(
                 '/'
             );

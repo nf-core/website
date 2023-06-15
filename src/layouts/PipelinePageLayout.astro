@@ -48,6 +48,14 @@ if (schema !== undefined) {
         icon: 'fa-regular fa-list',
     });
 }
+if (version !== 'dev') {
+    allTabItems.splice(1, 0, {
+        label: 'Results',
+        href: `/${pipeline}/${version}/results`,
+        active: url.includes(`/${pipeline}/${version}/results`),
+        icon: 'fa-brands fa-aws',
+    });
+}
 const gh_url = 'https://github.com/nf-core/' + pipeline;
 ---
 
@@ -78,7 +86,10 @@ const gh_url = 'https://github.com/nf-core/' + pipeline;
                         </button>
                         <ul class="dropdown-menu  dropdown-menu-end w-100">
                             {versions.map((v) => {
-                                const url = Astro.url.pathname.replace(`${pipeline}/${version}`, `${pipeline}/${v}`);
+                                let url = Astro.url.pathname.replace(`${pipeline}/${version}`, `${pipeline}/${v}`);
+                                if (url.includes('/results/')) {
+                                    url = `/${pipeline}/${v}/results/`;
+                                }
                                 return (
                                     <li>
                                         <a class={'dropdown-item ' + (v === version ? 'active' : '')} href={url}>
