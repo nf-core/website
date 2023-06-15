@@ -202,12 +202,7 @@ export const prerender = false;
                                 files
                                     .filter((item) => item.depth === depth - 1)
                                     .filter((item) => item.path.includes(path))
-                                    .filter((item) => item.name === 'GM12878_REP1_1_fastqc.html')
-                                    .map((item) => (
-                                        <AWSLinkPreview item={item} client:load>
-                                            {' '}
-                                        </AWSLinkPreview>
-                                    ))}
+                                    .map((item) => <AWSLinkPreview item={item} client:load />)}
                         </tbody>
                     </table>
                     <div id="aws-preview d-none" />
