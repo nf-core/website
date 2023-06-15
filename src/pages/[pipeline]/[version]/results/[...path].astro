@@ -6,6 +6,7 @@ import AWSLinkPreview from '@components/pipeline/AWSLinkPreview.svelte';
 
 // import AWSBrowser from '@components/pipeline/AWSBrowser.svelte';
 
+export const prerender = false;
 let { pipeline, version, path } = Astro.params;
 const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
 const versions = meta.releases.map((release) => release.tag_name);
@@ -20,9 +21,6 @@ const releaseSHA = meta.releases.find((release) => release.tag_name === version)
 const bucketName = 'nf-core-awsmegatests';
 const prefix = `${pipeline}/results-${releaseSHA}/`;
 const baseURL = `/${pipeline}/${version}/`;
-if (!path) {
-    return Astro.redirect(baseURL + 'results/' + prefix);
-}
 
 path = path?.endsWith('/') ? path : path + '/';
 
@@ -107,8 +105,6 @@ if (!isTruncated) {
         })
         .sort((a, b) => a.depth - b.depth);
 }
-
-export const prerender = false;
 ---
 
 <PipelinePageLayout
@@ -117,6 +113,7 @@ export const prerender = false;
     version={version}
     versions={versions}
     tabItems={md_files}
+    releaseSHA={releaseSHA}
 >
     <div class="mt-3">
         {

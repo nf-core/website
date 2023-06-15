@@ -1,0 +1,14 @@
+---
+import pipelines_json from '@public/pipelines.json';
+
+export const prerender = false;
+let { pipeline, version } = Astro.params;
+const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
+const releaseSHA = meta.releases.find((release) => release.tag_name === version)?.sha;
+
+const prefix = `${pipeline}/results-${releaseSHA}/`;
+const baseURL = `/${pipeline}/${version}/`;
+if (meta) {
+    return Astro.redirect(baseURL + 'results/' + prefix);
+}
+---
