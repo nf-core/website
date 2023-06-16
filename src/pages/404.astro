@@ -1,0 +1,15 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+---
+
+<PageLayout title="Error 404: Page Not Found" subtitle="The page you were looking for has been moved or removed.">
+    <p class="mb-6">Apologies, the link you followed is broken and the page cannot be found.</p>
+    <p class="mb-3">If you believe this is an error, please report it on the website repository:</p>
+    <a
+        class="btn btn-sm btn-primary"
+        href="https://github.com/nf-core/nf-co.re/issues/new?assignees=&labels=bug&template=bug_report.md"
+    >
+        <i class="fa-brands fa-github me-2"></i>
+        Open an issue on GitHub
+    </a>
+</PageLayout>
