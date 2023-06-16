@@ -31,6 +31,7 @@ export default defineConfig({
         assets: true,
     },
     adapter: netlify(),
+    trailingSlash: 'always',
     integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown(), mdx()],
     build: {
         inlineStylesheets: 'auto',
