@@ -16837,6 +16837,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pangenome",
+          "version": "dev"
+        },
+        {
           "name": "proteinfold",
           "version": "1.0.0"
         },
@@ -25783,7 +25787,8 @@
         "description": "Apply base quality score recalibration (BQSR) to a bam file",
         "keywords": [
           "bqsr",
-          "bam"
+          "bam",
+          "base quality score recalibration"
         ],
         "tools": [
           {
@@ -32844,7 +32849,13 @@
         "authors": [
           "@heuermh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gfastats",
@@ -49029,6 +49040,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pangenome",
+          "version": "dev"
+        },
+        {
           "name": "proteinfold",
           "version": "1.0.0"
         },
@@ -50561,7 +50576,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_draw",
@@ -50635,7 +50656,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_layout",
@@ -50709,7 +50736,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_sort",
@@ -50776,7 +50809,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_squeeze",
@@ -50843,7 +50882,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_stats",
@@ -50917,7 +50962,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_unchop",
@@ -50984,7 +51035,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_view",
@@ -51051,7 +51108,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "odgi_viz",
@@ -51118,7 +51181,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "oncocnv",
@@ -60911,6 +60980,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pangenome",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.0.0"
         },
@@ -64104,7 +64177,13 @@
         "authors": [
           "@heuermh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seroba_run",
@@ -65718,7 +65797,13 @@
         "authors": [
           "@heuermh, @subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "smoove_call",
@@ -69693,6 +69778,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "pangenome",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -71001,9 +71090,11 @@
       "type": "module",
       "meta": {
         "name": "ucsc_bedclip",
-        "description": "See http://hgdownload.cse.ucsc.edu/admin/exe/",
+        "description": "Remove lines from bed file that refer to off-chromosome locations.",
         "keywords": [
-          "sort"
+          "bed",
+          "genomics",
+          "ucsc"
         ],
         "tools": [
           {
@@ -74488,7 +74579,13 @@
         "authors": [
           "@subwaystation"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pangenome",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "wgsim",
@@ -75084,7 +75181,7 @@
               "homepage": "https://github.com/Illumina/paragraph",
               "documentation": "https://github.com/Illumina/paragraph",
               "tool_dev_url": "https://github.com/Illumina/paragraph",
-              "doi": "https://doi.org/10.1101/635011",
+              "doi": "10.1101/635011",
               "licence": "['Apache License 2.0']"
             }
           }
@@ -75112,14 +75209,14 @@
           },
           {
             "reads": {
-              "type": "file(s)",
+              "type": "file",
               "description": "BAM or CRAM file(s) to genotype against. These should be specified inside the `manifest`",
               "pattern": "*.{bam,cram}"
             }
           },
           {
             "reads_index": {
-              "type": "file(s)",
+              "type": "file",
               "description": "The index/indices for the BAM/CRAM file(s)",
               "pattern": "*.{bai,crai}"
             }
@@ -75440,7 +75537,9 @@
         "name": "bcftools_split",
         "description": "Split a vcf file into files per chromosome",
         "keywords": [
-          "sort"
+          "vcf",
+          "split",
+          "genomics"
         ],
         "tools": [
           {
@@ -75488,7 +75587,7 @@
           {
             "split_vcf": {
               "type": "file",
-              "description": null,
+              "description": "Compressed vcf files per chromosome",
               "pattern": "*.vcf.gz"
             }
           },
@@ -76487,6 +76586,7 @@
           },
           {
             "meta2": {
+              "type": "map",
               "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
             }
           },
@@ -76619,7 +76719,7 @@
               "homepage": "https://github.com/DiltheyLab/HLA-LA",
               "documentation": "https://github.com/DiltheyLab/HLA-LA#running-hlala",
               "tool_dev_url": "https://github.com/DiltheyLab/HLA-LA",
-              "doi": "https://doi.org/10.1093/bioinformatics/btz235",
+              "doi": "10.1093/bioinformatics/btz235",
               "licence": "['GPL']"
             }
           }
@@ -76627,7 +76727,7 @@
         "input": [
           {
             "graph": {
-              "type": "path",
+              "type": "directory",
               "description": "PRG graph directory"
             }
           }
@@ -76642,7 +76742,7 @@
           },
           {
             "folder": {
-              "type": "path",
+              "type": "directory",
               "description": "Directory containing indexed graph"
             }
           }
@@ -76674,7 +76774,7 @@
               "homepage": "https://github.com/DiltheyLab/HLA-LA",
               "documentation": "https://github.com/DiltheyLab/HLA-LA#running-hlala",
               "tool_dev_url": "https://github.com/DiltheyLab/HLA-LA",
-              "doi": "https://doi.org/10.1093/bioinformatics/btz235",
+              "doi": "10.1093/bioinformatics/btz235",
               "licence": "['GPL']"
             }
           }
@@ -76695,7 +76795,7 @@
           },
           {
             "graph": {
-              "type": "path",
+              "type": "directory",
               "description": "Path to prepared graph with hla-la --acton prepareGraph"
             }
           }
@@ -76716,7 +76816,7 @@
           },
           {
             "folder": {
-              "type": "path",
+              "type": "directory",
               "description": "Folder containing the HLA typing output"
             }
           }
@@ -76855,7 +76955,6 @@
               "homepage": "https://github.com/mpieva/mapAD",
               "documentation": "https://github.com/mpieva/mapAD",
               "tool_dev_url": "https://github.com/mpieva/mapAD",
-              "doi": "",
               "licence": "['MIT']"
             }
           }
@@ -77001,8 +77100,6 @@
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
               "documentation": "https://docs.nvidia.com/clara/parabricks/4.0.1/Documentation/",
-              "tool_dev_url": "",
-              "doi": "",
               "licence": "custom"
             }
           }
@@ -77092,7 +77189,7 @@
           },
           {
             "qc_metrics": {
-              "type": "dir",
+              "type": "directory",
               "description": "(optional) optional directory of qc metrics",
               "pattern": "qc_metrics"
             }
@@ -77136,7 +77233,7 @@
               "homepage": "https://github.com/Illumina/paragraph",
               "documentation": "https://github.com/Illumina/paragraph",
               "tool_dev_url": "https://github.com/Illumina/paragraph",
-              "doi": "https://doi.org/10.1101/635011",
+              "doi": "10.1101/635011",
               "licence": "['Apache License 2.0']"
             }
           }
@@ -78151,9 +78248,7 @@
             "art": {
               "description": "ART is a set of simulation tools to generate synthetic next-generation sequencing reads. ART simulates sequencing reads by mimicking real sequencing process with empirical error models or quality profiles summarized from large recalibrated sequencing data. ART can also simulate reads using user own read error model or quality profiles. ",
               "homepage": "https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm",
-              "documentation": "",
-              "tool_dev_url": "",
-              "doi": "https://doi.org/10.1093/bioinformatics/btr708",
+              "doi": "10.1093/bioinformatics/btr708",
               "licence": "GPL version 3 license"
             }
           }
@@ -78338,7 +78433,6 @@
               "homepage": "https://github.com/SchapiroLabor/Background_subtraction",
               "documentation": "https://github.com/SchapiroLabor/Background_subtraction/blob/master/README.md",
               "tool_dev_url": "https://github.com/SchapiroLabor/Background_subtraction",
-              "doi": "",
               "licence": "MIT licence"
             }
           }
@@ -79004,7 +79098,7 @@
               "homepage": "https://github.com/francescojm/CRISPRcleanR",
               "documentation": "https://github.com/francescojm/CRISPRcleanR/blob/master/Quick_start.pdf",
               "tool_dev_url": "https://github.com/francescojm/CRISPRcleanR/tree/v3.0.0",
-              "doi": "https://doi.org/10.1186/s12864-018-4989-y",
+              "doi": "10.1186/s12864-018-4989-y",
               "licence": "['MIT']"
             }
           }
@@ -79232,7 +79326,7 @@
               "homepage": "https://github.com/andersen-lab/Freyja",
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
-              "doi": "http://dx.doi.org/10.1038/s41586-022-05049-6",
+              "doi": "10.1038/s41586-022-05049-6",
               "licence": "['BSD-2-Clause']"
             }
           }
@@ -79266,7 +79360,7 @@
           },
           {
             "repeats": {
-              "type": "value (int)",
+              "type": "integer",
               "description": "Number of bootstrap repeats to perform"
             }
           },
@@ -79351,7 +79445,7 @@
               "homepage": "https://github.com/andersen-lab/Freyja",
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
-              "doi": "http://dx.doi.org/10.1038/s41586-022-05049-6",
+              "doi": "10.1038/s41586-022-05049-6",
               "licence": "['BSD-2-Clause']"
             }
           }
@@ -79371,9 +79465,10 @@
             }
           },
           {
-            "meta2": null,
-            "type": "map",
-            "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
           },
           {
             "depths": {
@@ -79455,7 +79550,7 @@
               "homepage": "https://github.com/andersen-lab/Freyja",
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
-              "doi": "http://dx.doi.org/10.1038/s41586-022-05049-6",
+              "doi": "10.1038/s41586-022-05049-6",
               "licence": "['BSD-2-Clause']"
             }
           }
@@ -79522,7 +79617,7 @@
               "homepage": "https://github.com/andersen-lab/Freyja",
               "documentation": "https://github.com/andersen-lab/Freyja/wiki",
               "tool_dev_url": "https://github.com/andersen-lab/Freyja",
-              "doi": "http://dx.doi.org/10.1038/s41586-022-05049-6",
+              "doi": "10.1038/s41586-022-05049-6",
               "licence": "['BSD-2-Clause']"
             }
           }
@@ -79960,7 +80055,7 @@
               "homepage": "https://www.ebi.ac.uk/interpro/search/sequence/",
               "documentation": "https://interproscan-docs.readthedocs.io",
               "tool_dev_url": "https://github.com/ebi-pf-team/interproscan",
-              "doi": "doi.org/10.1093/bioinformatics/btu031",
+              "doi": "10.1093/bioinformatics/btu031",
               "licence": "['GPL v3']"
             }
           }
@@ -80137,14 +80232,15 @@
         ],
         "tools": [
           {
-            "metaphlan": null,
-            "description": "Identify clades (phyla to species) present in the metagenome obtained from a microbiome sample and their relative abundance",
-            "homepage": "https://huttenhower.sph.harvard.edu/metaphlan/",
-            "documentation": "https://github.com/biobakery/MetaPhlAn",
-            "doi": "10.7554/eLife.65088",
-            "licence": [
-              "MIT License"
-            ]
+            "metaphlan": {
+              "description": "Identify clades (phyla to species) present in the metagenome obtained from a microbiome sample and their relative abundance",
+              "homepage": "https://huttenhower.sph.harvard.edu/metaphlan/",
+              "documentation": "https://github.com/biobakery/MetaPhlAn",
+              "doi": "10.7554/eLife.65088",
+              "licence": [
+                "MIT License"
+              ]
+            }
           }
         ],
         "output": [
@@ -80187,7 +80283,6 @@
               "homepage": "https://github.com/ViriatoII/MindaGap",
               "documentation": "https://github.com/ViriatoII/MindaGap/blob/main/README.md",
               "tool_dev_url": "https://github.com/ViriatoII/MindaGap",
-              "doi": "",
               "licence": "BSD-3-Clause license"
             }
           }
@@ -80582,16 +80677,16 @@
         "description": "NVIDIA Clara Parabricks GPU-accelerated apply Base Quality Score Recalibration (BQSR).",
         "keywords": [
           "bqsr",
-          "bam"
+          "bam",
+          "GPU-accelerated",
+          "base quality score recalibration"
         ],
         "tools": [
           {
             "parabricks": {
               "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
               "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
-              "documentation": "https://docs.nvidia.com/clara/parabricks/4.0.1/Documentation/",
-              "tool_dev_url": "",
-              "doi": "",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/",
               "licence": "custom"
             }
           }
@@ -80691,10 +80786,9 @@
           {
             "picard": {
               "description": "Java tools for working with NGS data in the BAM format",
-              "homepage": "None",
-              "documentation": "None",
+              "homepage": "https://broadinstitute.github.io/picard/",
+              "documentation": "https://broadinstitute.github.io/picard/",
               "tool_dev_url": "https://github.com/broadinstitute/picard",
-              "doi": "",
               "licence": "['MIT']"
             }
           }
@@ -80972,7 +81066,6 @@
               "homepage": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
               "documentation": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
               "tool_dev_url": "https://github.com/biod/sambamba",
-              "doi": "",
               "licence": "['GPL v2']"
             }
           }
@@ -81741,7 +81834,7 @@
           },
           {
             "minnumreads": {
-              "integer": "integer",
+              "type": "integer",
               "description": "Min number of reads support [RE flag (-1 to disable)]"
             }
           }
@@ -82042,9 +82135,9 @@
             "svtyper": {
               "description": "Compute genotype of structural variants based on breakpoint depth",
               "homepage": "https://github.com/hall-lab/svtyper",
-              "documentation": " https://github.com/hall-lab/svtyper",
+              "documentation": "https://github.com/hall-lab/svtyper",
               "tool_dev_url": "https://github.com/hall-lab/svtyper",
-              "doi": "doi:10.1038/nmeth.3505",
+              "doi": "10.1038/nmeth.3505",
               "licence": "['MIT']"
             }
           }
@@ -83348,7 +83441,7 @@
       "type": "module",
       "meta": {
         "name": "snpsift_annotate",
-        "description": null,
+        "description": "Annotate a VCF file with another VCF file",
         "keywords": [
           "variant calling",
           "annotate",
@@ -85182,7 +85275,7 @@
               "homepage": "https://github.com/broadinstitute/pilon/wiki",
               "documentation": "https://github.com/broadinstitute/pilon/wiki/Requirements-&-Usage",
               "tool_dev_url": "https://github.com/broadinstitute/pilon",
-              "doi": "https://doi.org/10.1371/journal.pone.0112963",
+              "doi": "10.1371/journal.pone.0112963",
               "licence": "['GPL v2']"
             }
           }
@@ -85217,9 +85310,9 @@
           },
           {
             "pilon_mode": {
-              "type": "value",
+              "type": "string",
               "description": "Indicates the type of bam file used (frags for paired-end sequencing of DNA fragments, such as Illumina paired-end reads of fragment size <1000bp, jumps for paired sequencing data of larger insert size, such as Illumina mate pair libraries, typically of insert size >1000bp, unpaired for unpaired sequencing reads, bam will automatically classify the BAM as one of the three types above (version 1.17 and higher).",
-              "pattern": [
+              "enum": [
                 "frags",
                 "jumps",
                 "unpaired",
@@ -87590,6 +87683,314 @@
         ],
         "authors": [
           "@prototaxites"
+        ]
+      }
+    },
+    {
+      "name": "spaceranger_count",
+      "path": "modules/nf-core/spaceranger/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spaceranger_count",
+        "description": "Module to use the 10x Spaceranger pipeline to proces 10x spatial transcriptomics data",
+        "keywords": [
+          "align",
+          "count",
+          "spatial",
+          "spaceranger",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "spaceranger": {
+              "description": "Visium Spatial Gene Expression is a next-generation molecular profiling solution for classifying tissue\nbased on total mRNA. Space Ranger is a set of analysis pipelines that process Visium Spatial Gene Expression\ndata with brightfield and fluorescence microscope images. Space Ranger allows users to map the whole\ntranscriptome in formalin fixed paraffin embedded (FFPE) and fresh frozen tissues to discover novel\ninsights into normal development, disease pathology, and clinical translational research. Space Ranger provides\npipelines for end to end analysis of Visium Spatial Gene Expression experiments.\n",
+              "homepage": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "documentation": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "tool_dev_url": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "licence": "10x Genomics EULA"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', slide:'10L13-020', area: 'B1']\n\n`id`, `slide` and `area` are mandatory information!\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+              "pattern": "${Sample_Name}_S1_L00${Lane_Number}_${I1,I2,R1,R2}_001.fastq.gz"
+            }
+          },
+          {
+            "image": {
+              "type": "file",
+              "description": "Brightfield tissue H&E image in JPEG or TIFF format.",
+              "pattern": "*.{tif,tiff,jpg,jpeg}"
+            }
+          },
+          {
+            "cytaimage": {
+              "type": "file",
+              "description": "CytAssist instrument captured eosin stained Brightfield tissue image with fiducial\nframe in TIFF format. The size of this image is set at 3k in both dimensions and this image should\nnot be modified any way before passing it as input to either Space Ranger or Loupe Browser.\n",
+              "pattern": "*.{tif,tiff}"
+            }
+          },
+          {
+            "darkimage": {
+              "type": "file",
+              "description": "Optional for dark background fluorescence microscope image input. Multi-channel, dark-background fluorescence\nimage as either a single, multi-layer TIFF file or as multiple TIFF or JPEG files.\n",
+              "pattern": "*.{tif,tiff,jpg,jpeg}"
+            }
+          },
+          {
+            "colorizedimage": {
+              "type": "file",
+              "description": "Required for color composite fluorescence microscope image input.\nA color composite of one or more fluorescence image channels saved as a single-page,\nsingle-file color TIFF or JPEG.\n",
+              "pattern": "*.{tif,tiff,jpg,jpeg}"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "OPTIONAL - Path to manual image alignment.",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "slidefile": {
+              "type": "file",
+              "description": "OPTIONAL - Path to slide specifications.",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Folder containing all the reference indices needed by Spaceranger"
+            }
+          },
+          {
+            "probeset": {
+              "type": "file",
+              "description": "OPTIONAL - Probe set specification.",
+              "pattern": "*.csv"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "outs": {
+              "type": "file",
+              "description": "Files containing the outputs of Cell Ranger, see official 10X Genomics documentation for a complete list",
+              "pattern": "${meta.id}/outs/*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@grst"
+        ]
+      }
+    },
+    {
+      "name": "spaceranger_mkgtf",
+      "path": "modules/nf-core/spaceranger/mkgtf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spaceranger_mkgtf",
+        "description": "Module to build a filtered GTF needed by the 10x Genomics Cell Ranger tool. Uses the cellranger mkgtf command.",
+        "keywords": [
+          "reference",
+          "mkref",
+          "index",
+          "spaceranger"
+        ],
+        "tools": [
+          {
+            "spaceranger": {
+              "description": "Visium Spatial Gene Expression is a next-generation molecular profiling solution for classifying tissue\nbased on total mRNA. Space Ranger is a set of analysis pipelines that process Visium Spatial Gene Expression\ndata with brightfield and fluorescence microscope images. Space Ranger allows users to map the whole\ntranscriptome in formalin fixed paraffin embedded (FFPE) and fresh frozen tissues to discover novel\ninsights into normal development, disease pathology, and clinical translational research. Space Ranger provides\npipelines for end to end analysis of Visium Spatial Gene Expression experiments.\n",
+              "homepage": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "documentation": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "tool_dev_url": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "licence": "10x Genomics EULA"
+            }
+          }
+        ],
+        "input": [
+          {
+            "gtf": {
+              "type": "file",
+              "description": "The reference GTF transcriptome file",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "gtf": {
+              "type": "directory",
+              "description": "The filtered GTF transcriptome file",
+              "pattern": "*.filtered.gtf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@grst"
+        ]
+      }
+    },
+    {
+      "name": "spaceranger_mkref",
+      "path": "modules/nf-core/spaceranger/mkref/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spaceranger_mkref",
+        "description": "Module to build the reference needed by the 10x Genomics Spaceranger tool. Uses the spaceranger mkref command.",
+        "keywords": [
+          "reference",
+          "mkref",
+          "index",
+          "spaceranger"
+        ],
+        "tools": [
+          {
+            "spaceranger": {
+              "description": "Visium Spatial Gene Expression is a next-generation molecular profiling solution for classifying tissue\nbased on total mRNA. Space Ranger is a set of analysis pipelines that process Visium Spatial Gene Expression\ndata with brightfield and fluorescence microscope images. Space Ranger allows users to map the whole\ntranscriptome in formalin fixed paraffin embedded (FFPE) and fresh frozen tissues to discover novel\ninsights into normal development, disease pathology, and clinical translational research. Space Ranger provides\npipelines for end to end analysis of Visium Spatial Gene Expression experiments.\n",
+              "homepage": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "documentation": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "tool_dev_url": "https://support.10xgenomics.com/spatial-gene-expression/software/pipelines/latest/what-is-space-ranger",
+              "licence": "10x Genomics EULA"
+            }
+          }
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome FASTA file",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Reference transcriptome GTF file",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "reference_name": {
+              "type": "string",
+              "description": "The name to give the new reference folder",
+              "pattern": "str"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reference": {
+              "type": "directory",
+              "description": "Folder containing all the reference indices needed by Cell Ranger"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software version",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@grst"
+        ]
+      }
+    },
+    {
+      "name": "upd",
+      "path": "modules/nf-core/upd/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "upd",
+        "description": "Simple software to call UPD regions from germline exome/wgs trios.",
+        "keywords": [
+          "upd",
+          "uniparental",
+          "disomy"
+        ],
+        "tools": [
+          {
+            "upd": {
+              "description": "Simple software to call UPD regions from germline exome/wgs trios.",
+              "homepage": "https://github.com/bjhall/upd",
+              "documentation": "https://github.com/bjhall/upd",
+              "tool_dev_url": "https://github.com/bjhall/upd",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "BED file",
+              "pattern": "*.{bed}"
+            }
+          }
+        ],
+        "authors": [
+          "@hrydbeck"
         ]
       }
     }
