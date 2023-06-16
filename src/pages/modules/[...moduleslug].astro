@@ -6,9 +6,9 @@ import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 
 export function getStaticPaths() {
-    // return components_json.modules.map((module) => {
-    // TODO: remove the below line once modules are fixed
-    return components_json.modules.slice(0, 200).map((module) => {
+    return components_json.modules.map((module) => {
+        // TODO: remove the below line once modules are fixed
+        // return components_json.modules.slice(0, 200).map((module) => {
         return [
             {
                 params: {
@@ -102,13 +102,14 @@ const toolName = Object.keys(tool)[0];
                         </div>
                         <div>
                             {
-                                tool[toolName].licence && typeof tool[toolName].licence === 'string' ? (
-                                    <span class="badge text-bg-secondary">{tool[toolName].licence}</span>
-                                ) : (
-                                    tool[toolName].licence?.map((licence) => {
-                                        return <span class="badge text-bg-secondary">Licence: {licence}</span>;
-                                    })
-                                )
+                                tool[toolName].licence &&
+                                    (typeof tool[toolName].licence === 'string' ? (
+                                        <span class="badge text-bg-secondary">{tool[toolName].licence}</span>
+                                    ) : (
+                                        tool[toolName].licence?.map((licence) => {
+                                            return <span class="badge text-bg-secondary">Licence: {licence}</span>;
+                                        })
+                                    ))
                             }
                             {
                                 tool[toolName].doi && (
