@@ -93,15 +93,15 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
    All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 5 files to modify:
 
-   1. [`./modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/fastqc/main.nf)
+   1. [`./modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf)
 
       This is the main script containing the `process` definition for the module. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
 
-   2. [`./modules/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/fastqc/meta.yml)
+   2. [`./modules/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/meta.yml)
 
       This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
 
-   3. [`./tests/modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/main.nf)
+   3. [`./tests/modules/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/fastqc/main.nf)
 
       Every module MUST have a test workflow. This file will define one or more Nextflow `workflow` definitions that will be used to unit test the output files created by the module. By default, one `workflow` definition will be added but please feel free to add as many as possible so we can ensure that the module works on different data types / parameters e.g. separate `workflow` for single-end and paired-end data.
 
@@ -114,11 +114,11 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
       Minimal test data required for your module may already exist within the [nf-core/modules repository](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config), in which case you may just have to change a couple of paths in this file - see the [Test data](#test-data) section for more info and guidelines for adding new standardised data if required.
 
-   4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/amps/nextflow.config)
+   4. [`./tests/modules/fastqc/nextflow.config`](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/amps/nextflow.config)
 
       Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-   5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/fastqc/test.yml)
+   5. [`./tests/modules/fastqc/test.yml`](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/fastqc/test.yml)
 
       This file will contain all of the details required to unit test the main script in the point above using [pytest-workflow](https://pytest-workflow.readthedocs.io/). If possible, any outputs produced by the test workflow(s) MUST be included and listed in this file along with an appropriate check e.g. md5sum. The different test options are listed in the [pytest-workflow docs](https://pytest-workflow.readthedocs.io/en/stable/#test-options).
 
@@ -129,42 +129,7 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 8. Create a yaml file containing information required for module unit testing
 
    ```console
-   $ nf-core modules create-test-yml
-
-                                         ,--./,-.
-         ___     __   __   __   ___     /,-._.--~\
-   |\ | |__  __ /  ` /  \ |__) |__         }  {
-   | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                         `._,._,'
-
-    nf-core/tools version 2.3dev0 - https://nf-co.re
-
-
-   INFO     Press enter to use default values (shown in brackets) or type your own responses                                             test_yml_builder.py:51
-   ? Tool name: fastqc
-   Test YAML output path (- for stdout) (tests/modules/fastqc/test.yml):
-   INFO     Looking for test workflow entry points: 'tests/modules/fastqc/main.nf'                                                      test_yml_builder.py:116
-   INFO     Building test meta for entry point 'test_fastqc_single_end'                                                                  test_yml_builder.py:150
-   Test name (fastqc test_fastqc_single_end):
-   Test command (nextflow run tests/modules/fastqc -entry test_fastqc_single_end -c tests/config/nextflow.config):
-   Test tags (comma separated) (fastqc,fastqc_single_end):
-   Test output folder with results (leave blank to run test):
-   ? Choose software profile Singularity
-   INFO     Setting env var '$PROFILE' to 'singularity'                                                                                  test_yml_builder.py:258
-   INFO     Running 'fastqc' test with command:                                                                                          test_yml_builder.py:263
-            nextflow run tests/modules/fastqc -entry test_fastqc_single_end -c tests/config/nextflow.config --outdir /tmp/tmpgbneftf5
-   INFO     Test workflow finished!                                                                                                      test_yml_builder.py:276
-   INFO     Writing to 'tests/modules/fastqc/test.yml'                                                                                  test_yml_builder.py:293
-   ```
-
-   > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
-
-9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
-
-10. Lint the module locally to check that it adheres to nf-core guidelines before submission
-
-    ```console
-    $ nf-core modules lint fastqc --dir .
+   $ nf-core modules create-test-yml fastqc
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -172,39 +137,78 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                           `._,._,'
 
-     nf-core/tools version 2.3dev0 - https://nf-co.re
+    nf-core/tools version 2.8 - https://nf-co.re
 
-     INFO     Linting modules repo: .                                                __init__.py:15
-     INFO     Linting module: fastqc                                                 __init__.py:163
 
-    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-    │ [!] 3 Test Warnings                                                                                            │
-    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-    ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
-    │ Module name  │ Test message                                                 │ File path                        │
-    ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
-    │ fastqc       │ TODO string in meta.yml: #Add a description of the module... │ modules/nf-core/modules/fastqc/  │
-    │ fastqc       │ TODO string in meta.yml: #Add a description and other det... │ modules/nf-core/modules/fastqc/  │
-    │ fastqc       │ TODO string in meta.yml: #Add a description of all of the... │ modules/nf-core/modules/fastqc/  │
-    ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
-    ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-    │ [!] 1 Test Failed                                                                                              │
-    ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-    ╭──────────────┬──────────────────────────────────────────────────────────────┬──────────────────────────────────╮
-    │ Module name  │ Test message                                                 │ File path                        │
-    ├──────────────┼──────────────────────────────────────────────────────────────┼──────────────────────────────────┤
-    │ fastqc       │ 'meta' map not emitted in output channel(s)                  │ modules/nf-core/modules/fastqc/  │
-    ╰──────────────┴──────────────────────────────────────────────────────────────┴──────────────────────────────────╯
-    ╭──────────────────────╮
-    │ LINT RESULTS SUMMARY │
-    ├──────────────────────┤
-    │ [✔]  38 Tests Passed │
-    │ [!]   3 Test Warning │
-    │ [✗]   1 Test Failed  │
-    ╰──────────────────────╯
+    INFO     Press enter to use default values (shown in brackets) or type your own responses
+    Test YAML output path (- for stdout) (tests/modules/nf-core/fastqc/test.yml):
+    File exists! 'tests/modules/nf-core/fastqc/test.yml' Overwrite? [y/n]: y
+    INFO     Looking for test workflow entry points: 'tests/modules/nf-core/fastqc/main.nf'
+    ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    INFO     Building test meta for entry point 'test_fastqc_paired_end'
+    Test name (fastqc test_fastqc_paired_end):
+    Test command (nextflow run ./tests/modules/nf-core/fastqc -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/fastqc/nextflow.config):
+    Test tags (comma separated) (fastqc):
+    Test output folder with results (leave blank to run test):
+    ? Choose software profile Docker
+    INFO     Running 'fastqc' test with command:
+            nextflow run ./tests/modules/nf-core/fastqc -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/fastqc/nextflow.config --outdir /tmp/tmpzznl9oxd -work-dir
+            /tmp/tmpb0r4zt6i
+    INFO     Repeating test ...
+    INFO     Test workflow finished!
+    ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    INFO     Writing to 'tests/modules/nf-core/fastqc/test.yml'
+   ```
+
+   > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+
+9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
+
+10. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
+    prettier -w .
+11. Lint the module locally to check that it adheres to nf-core guidelines before submission
+
+    ```console
+    $ nf-core modules lint fastqc
+
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.8 - https://nf-co.re
+
+
+    INFO     Linting modules repo: '.'
+    INFO     Linting module: 'fastqc'
+
+    ╭─ [!] 10 Module Test Warnings ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+    │                                           ╷                                       ╷                                                                                                                             │
+    │ Module name                               │ File path                             │ Test message                                                                                                                │
+    │╶──────────────────────────────────────────┼───────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╴│
+    │ fastqc                                    │ modules/nf-core/fastqc/main.nf        │ Conda update: bioconda::fastqc 0.11.9 -> 0.12.1                                                                             │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │ fastqc                                    │ tests/modules/nf-core/fastqc/test.yml │ TODO string in test.yml: - 'file md5sum was variable, please replace this text with a string found in the file instead '    │
+    │                                           ╵                                       ╵                                                                                                                             │
+    ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭───────────────────────╮
+    │ LINT RESULTS SUMMARY  │
+    ├───────────────────────┤
+    │ [✔]  23 Tests Passed  │
+    │ [!]  10 Test Warnings │
+    │ [✗]   0 Tests Failed  │
+    ╰───────────────────────╯
     ```
 
-11. Once ready, the code can be pushed and a pull request (PR) created
+12. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -264,50 +268,57 @@ Please follow the steps below to run the tests locally:
      ```console
      $ cd /path/to/git/clone/of/nf-core/modules/
      $ nf-core modules test fastqc
-                                               ,--./,-.
-               ___     __   __   __   ___     /,-._.--~\
-         |\ | |__  __ /  ` /  \ |__) |__         }  {
-         | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                               `._,._,'
 
-         nf-core/tools version 2.4
+                                              ,--./,-.
+              ___     __   __   __   ___     /,-._.--~\
+        |\ | |__  __ /  ` /  \ |__) |__         }  {
+        | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                              `._,._,'
 
-     ? Choose software profile Docker
-     INFO     Setting environment variable '$PROFILE' to 'docker'
-     INFO     Running pytest for module 'fastqc'
-
-     ========================================== test session starts ==========================================
-     platform darwin -- Python 3.9.12, pytest-7.1.2, pluggy-1.0.0
-     rootdir: ~/modules, configfile: pytest.ini
-     plugins: workflow-1.6.0
-     collecting ...
-     collected 761 items
-
-     fastqc single-end:
-             command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-             directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
-             stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
-             stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
-     'fastqc single-end' done.
-
-     fastqc paired-end:
-             command:   nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-             directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
-             stdout:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
-             stderr:    /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
-     'fastqc paired-end' done.
-
-     tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
-     ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
-     ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
-     sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
-     ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss     [ 98%]
-     tests/modules/fastqc/test.yml ........
-     Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
-     ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
+        nf-core/tools version 2.8 - https://nf-co.re
      ```
 
+   INFO Press enter to use default values (shown in brackets) or type your own responses
+   ? Choose software profile Docker
+   INFO Setting environment variable '$PROFILE' to 'docker'
+   ───────────────────────────────────────────────────────────────────────────────────────────────────── fastqc ──────────────────────────────────────────────────────────────────────────────────────────────────────
+   INFO Running pytest for module 'fastqc'
+   =============================================================================================== test session starts ===============================================================================================
+   platform linux -- Python 3.11.3, pytest-7.3.1, pluggy-1.0.0
+   rootdir: /home/james/git/jfy133/nf-core-modules
+   configfile: pytest.ini
+   plugins: workflow-2.0.1
+   collecting ...
+   collected 1882 items
+
+   fastqc single-end:
+   command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+   directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
+   stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
+   stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
+   'fastqc single-end' done.
+
+   fastqc paired-end:
+   command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+   directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
+   stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
+   stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
+   'fastqc paired-end' done.
+
+   tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
+   ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
+   ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
+   sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
+   ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 98%]
+   tests/modules/fastqc/test.yml ........
+   Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
+   ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
+
+   ```
+
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
+   - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
+   ```
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
