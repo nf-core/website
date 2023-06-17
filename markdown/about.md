@@ -5,29 +5,29 @@ Here you can read how we organise ourselves, how we are funded and how the sange
 
 Please note that all sanger community members are expected to adhere to our [code of conduct](/code_of_conduct), which is adopted from [nf-core](https://nf-co.re).
 
-## Informatics Infrastructure team {#tol-it}
+## Informatics Infrastructure team {#it}
 
-The [Informatics Infrastructure team](/teams/tol_it) oversees the implementation and delivery of genomics pipelines for the Tree of Life programme, and provides support for large-scale genome analyses for the faculty teams. Current members are listed below:
+The [Informatics Infrastructure team](/teams/it) provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions. Current members are listed below:
 
-- [Matthieu Muffato](https://github.com/muffato)
-- [Guoying Qi](https://github.com/gq1)
-- [Priyanka Surana](https://github.com/priyanka-surana)
-- [Cibin Sadasivan Baby](https://github.com/cibinsb)
-- [Cibele Sotero-Caio](https://github.com/ccaio)
-- [Paul Davis](https://github.com/)
-- [Beth Yates](https://github.com/BethYates)
+- [Matthieu Muffato](/teams/it#matthieu-muffato)
+- [Guoying Qi](/teams/it#guoying-qi)
+- [Priyanka Surana](/teams/it#priyanka-surana)
+- [Cibin Sadasivan Baby](/teams/it#cibin-sadasivan-baby)
+- [Cibele Sotero-Caio](/teams/it#cibele-sotero-caio)
+- [Paul Davis](/teams/it#paul-davis)
+- [Beth Yates](/teams/it#beth-yates)
 
-We welcome external collaboration on our projects - if you'd like to be involved, [drop us a message]().
+We welcome external collaboration on our projects - if you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
 
 ## Safety team {#safety}
 
-The safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
+The [Safety team](/teams/safety) is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
 
 The current safety team in 2023 are:
 
-- [Matthieu Muffato](https://github.com/muffato) ([contact](mailto:xx##@sanger.ac.uk))
-- [Priyanka Surana](https://github.com/priyanka-surana) ([contact](mailto:xx##@sanger.ac.uk))
-- Edward Symons ([contact](mailto:xx##@sanger.ac.uk))
+- [Matthieu Muffato](/teams/safety#matthieu-muffato)
+- [Priyanka Surana](/teams/it#priyanka-surana)
+- [Edward Symons](/teams/it#edward-symons)
 
 ## Financial Support
 
