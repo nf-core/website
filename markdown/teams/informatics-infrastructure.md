@@ -68,3 +68,7 @@ Learn more about our pipelines on their dedicated pages. These pipelines are cre
 ### Beth Yates, Bioinformatics Engineer {#beth-yates}
 
 
+
+### Alumni {#alumni}
+
+- [Zaynab Butt](linkedin), Informatics and Digital Associate
