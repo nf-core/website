@@ -18,8 +18,13 @@ body:
         - Curation (GRIT)
         - Informatics Infrastructure (ToL–IT)
         - Platforms (ToLP)
+        - Other
     validations:
       required: true
+  - type: input
+    id: name
+    attributes:
+      label: Team Name (if "Other" selected)
   - type: textarea
     id: summary
     attributes:
@@ -53,10 +58,10 @@ body:
     id: members
     attributes:
       label: Current Members
-      description: Add the names and GitHub usernames for current members
+      description: Add full names for current members
       placeholder: |
-        Priyanka Surana (@priyanka-surana)
-        Matthieu Muffato (@muffato)
+        Priyanka Surana
+        Matthieu Muffato
         ...
   - type: checkboxes
     id: pipelines
