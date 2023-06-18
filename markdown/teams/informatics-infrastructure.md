@@ -1,4 +1,4 @@
-# Introduction {#introduction}
+## Introduction {#introduction}
 
 The [Tree of Life](https://www.sanger.ac.uk/programme/tree-of-life/) projects will generate tens of thousands of high-quality genomes – more than have ever been sequenced! It is a challenging and extremely exciting task that will shape the future of biology, and the team’s role is to provide the platform for assembling and analysing those genomes at an unprecedented scale. We are the interface between the Tree of Life teams (assembly production and faculty research) and Sanger IT, working together with the informatics teams of the other programmes.
 
@@ -41,8 +41,9 @@ Learn more about our pipelines on their dedicated pages. These pipelines are cre
 
 ## Members {#members}
 
-### Matthieu Muffato, Team Lead {#matthieu-muffato}
+### Matthieu Muffato, Team Lead {#matthieu-muffato} [<img align="right" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/matthieu-muffato/) &nbsp; &nbsp; [<img align="right" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/muffato) &nbsp; &nbsp; [<img align="right" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/muffato-matthieu/)
 
+Matthieu leads the Informatics Infrastructure team, which guides the implementation and delivery of the genome assembly pipelines, and provides support for large-scale genome analyses for the Tree of Life faculty teams. He joined the Wellcome Sanger Institute in February 2021, to form the Informatics Infrastructure team for the Tree of Life programme. He has recruited 7 team members, with skills covering data curation & management, software development & operations, and bioinformatics.
 
 
 ### Guoying Qi, DevOps Software Developer {#guoying-qi}
