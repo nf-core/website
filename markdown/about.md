@@ -7,27 +7,27 @@ Please note that all sanger community members are expected to adhere to our [cod
 
 ## Informatics Infrastructure team {#it}
 
-The [Informatics Infrastructure team](/teams/it) provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions. Current members are listed below:
+The [Informatics Infrastructure team](/it) provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions. Current members are listed below:
 
-- [Matthieu Muffato](/teams/it#matthieu-muffato)
-- [Guoying Qi](/teams/it#guoying-qi)
-- [Priyanka Surana](/teams/it#priyanka-surana)
-- [Cibin Sadasivan Baby](/teams/it#cibin-sadasivan-baby)
-- [Cibele Sotero-Caio](/teams/it#cibele-sotero-caio)
-- [Paul Davis](/teams/it#paul-davis)
-- [Beth Yates](/teams/it#beth-yates)
+- [Matthieu Muffato](/it#matthieu-muffato)
+- [Guoying Qi](/it#guoying-qi)
+- [Priyanka Surana](/it#priyanka-surana)
+- [Cibin Sadasivan Baby](/it#cibin-sadasivan-baby)
+- [Cibele Sotero-Caio](/it#cibele-sotero-caio)
+- [Paul Davis](/it#paul-davis)
+- [Beth Yates](/it#beth-yates)
 
 We welcome external collaboration on our projects - if you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
 
 ## Safety team {#safety}
 
-The [Safety team](/teams/safety) is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
+The [Safety team](/safety) is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
 
 The current safety team in 2023 are:
 
-- [Matthieu Muffato](/teams/safety#matthieu-muffato)
-- [Priyanka Surana](/teams/it#priyanka-surana)
-- [Edward Symons](/teams/it#edward-symons)
+- [Matthieu Muffato](/safety#matthieu-muffato)
+- [Priyanka Surana](/safety#priyanka-surana)
+- [Edward Symons](/safety#edward-symons)
 
 ## Financial Support
 
