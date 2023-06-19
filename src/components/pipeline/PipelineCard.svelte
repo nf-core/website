@@ -14,13 +14,12 @@
         tag_name = latest_release.tag_name;
         release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
     }
-    const href = '/' + pipeline.name + '/' + (released ? tag_name : 'dev');
 </script>
 
 <div class="card flex-fill m-2">
     <div class="card-header border-bottom-0 bg-transparent">
         <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a {href}
+            <a href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
                 >{name}
                 {#if archived}
                     <i class="fa-solid fa-archive text-info" />

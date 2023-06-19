@@ -7,7 +7,8 @@ import AWSLinkPreview from '@components/pipeline/AWSLinkPreview.svelte';
 // import AWSBrowser from '@components/pipeline/AWSBrowser.svelte';
 
 export const prerender = false;
-let { pipeline, version, path } = Astro.params;
+let { pipeline, version, aws_pipeline, path } = Astro.params;
+path = pipeline + '/' + path;
 const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
 const versions = meta.releases.map((release) => release.tag_name);
 const md_files = meta.releases.reduce((result, release) => {
@@ -102,9 +103,6 @@ if (!isTruncated) {
         })
         .sort((a, b) => a.depth - b.depth);
 }
-console.log('depth', depth);
-console.log('path', path);
-console.log('pathParts', pathParts);
 ---
 
 <PipelinePageLayout
