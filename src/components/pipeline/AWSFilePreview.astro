@@ -1,0 +1,8 @@
+---
+const { file } = Astro.props;
+const content = await fetch('https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/' + file.path).then((r) =>
+    r.text()
+);
+---
+
+{file.path.endsWith('.html') && <iframe srcdoc={content} style="border:none;" width="100%" height="1000px" />}

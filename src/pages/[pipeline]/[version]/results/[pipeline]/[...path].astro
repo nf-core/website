@@ -1,14 +1,15 @@
 ---
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
-import AWSLinkPreview from '@components/pipeline/AWSLinkPreview.svelte';
-
-// import AWSBrowser from '@components/pipeline/AWSBrowser.svelte';
+import { S3Client, ListObjectsV2Command, S3, HeadObjectCommand } from '@aws-sdk/client-s3';
+import AWSFile from '@components/pipeline/AWSFile.svelte';
+import AWSFilePreview from '@components/pipeline/AWSFilePreview.astro';
 
 export const prerender = false;
+
 let { pipeline, version, path } = Astro.params;
 path = pipeline + '/' + path;
+
 const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
 const versions = meta?.releases.map((release) => release.tag_name);
 const md_files = meta?.releases.reduce((result, release) => {
@@ -23,13 +24,12 @@ const bucketName = 'nf-core-awsmegatests';
 const prefix = `${pipeline}/results-${releaseSHA}/`;
 const baseURL = `/${pipeline}/${version}/`;
 if (!Astro.url.pathname.includes(baseURL + 'results/' + prefix)) {
-    console.log('redirecting to ' + baseURL);
     return Astro.redirect(baseURL);
 } else {
-    console.log('url', Astro.url.pathname);
 }
 const pathParts = path.split('/');
-
+let filename = Astro.url.searchParams.get('file');
+console.log(filename);
 const description = meta?.description;
 const depth = pathParts.length;
 let client = new S3Client({
@@ -106,7 +106,9 @@ if (!isTruncated) {
                 lastModified: item.LastModified,
             };
         })
-        .sort((a, b) => a.depth - b.depth);
+        .sort((a, b) => a.depth - b.depth)
+        .filter((item) => item.depth === depth)
+        .filter((item) => item.path.includes(path));
 }
 ---
 
@@ -130,86 +132,72 @@ if (!isTruncated) {
                 </div>
             )
         }
-        {
-            bucketContents.length > 0 && (
-                <div>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <span>
-                                    <i class="fa-brands fa-aws me-2" />
-                                    {bucketName}
-                                </span>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <span>{pipeline}</span>
-                            </li>
-                            {path &&
-                                pathParts.slice(1, -1).map((item, i) => (
-                                    <li class="breadcrumb-item">
-                                        <a href={baseURL + 'results/' + pathParts.slice(0, i + 2).join('/') + '/'}>
-                                            {item}
-                                        </a>
-                                    </li>
-                                ))}
-                            <li class="breadcrumb-item active">
-                                <span>{pathParts.slice(-1) + '/'}</span>
-                            </li>
-                        </ol>
-                    </nav>
-                    <table class="table table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Last Modified</th>
-                                <th scope="col">Size</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {depth > 2 && (
-                                <tr>
-                                    <td>
-                                        <a
-                                            href={baseURL + 'results/' + pathParts.slice(0, -1).join('/') + '/'}
-                                            class="text-decoration-none"
-                                        >
-                                            <i class="fa-regular fa-folder-open me-2" />
-                                            ..
-                                        </a>
-                                    </td>
-                                    <td />
-                                    <td />
-                                </tr>
-                            )}
-                            {directories &&
-                                directories
-                                    .filter((item) => item.depth === depth)
-                                    .filter((item) => item.path.includes(path))
-                                    .map((item) => (
-                                        <tr class="position-relative">
-                                            <td>
-                                                <a
-                                                    href={baseURL + 'results/' + path + '/' + item.name}
-                                                    class="text-decoration-none"
-                                                >
-                                                    <i class="fa-regular fa-folder me-2 stretched-link" />
-                                                    {item.name}
-                                                </a>
-                                            </td>
-                                            <td />
-                                            <td />
-                                        </tr>
-                                    ))}
-                            {files &&
-                                files
-                                    .filter((item) => item.depth === depth)
-                                    .filter((item) => item.path.includes(path))
-                                    .map((item) => <AWSLinkPreview item={item} client:load />)}
-                        </tbody>
-                    </table>
-                    <div id="aws-preview d-none" />
-                </div>
-            )
-        }
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <span>
+                            <i class="fa-brands fa-aws me-2"></i>
+                            {bucketName}
+                        </span>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span>{pipeline}</span>
+                    </li>
+                    {
+                        path &&
+                            pathParts.slice(1, -1).map((item, i) => (
+                                <li class="breadcrumb-item">
+                                    <a href={baseURL + 'results/' + pathParts.slice(0, i + 2).join('/') + '/'}>
+                                        {item}
+                                    </a>
+                                </li>
+                            ))
+                    }
+                    <li class="breadcrumb-item active">
+                        <span>{pathParts.slice(-1) + '/'}</span>
+                    </li>
+                </ol>
+            </nav>
+            <div class="file-browser">
+                <li class="list-group-item fw-bold">
+                    <span class="">Name</span>
+                    <span class="">Last Modified</span>
+                    <span class="">Size</span>
+                </li>
+                {
+                    depth > 2 && (
+                        <a
+                            href={baseURL + 'results/' + pathParts.slice(0, -1).join('/') + '/'}
+                            class="list-group-item list-group-item-action"
+                        >
+                            <span class="">
+                                <i class="fa-regular fa-folder-open me-2" />
+                                ..
+                            </span>
+                        </a>
+                    )
+                }
+                {
+                    directories &&
+                        directories
+                            .filter((item) => item.depth === depth)
+                            .filter((item) => item.path.includes(path))
+                            .map((item) => (
+                                <a
+                                    href={baseURL + 'results/' + path + '/' + item.name}
+                                    class="list-group-item list-group-item-action"
+                                >
+                                    <span class="">
+                                        <i class="fa-regular fa-folder me-2" />
+                                        {item.name}
+                                    </span>
+                                </a>
+                            ))
+                }
+                {files && files.map((item) => <AWSFile item={item} client:load />)}
+            </div>
+            {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
+        </div>
     </div>
 </PipelinePageLayout>
