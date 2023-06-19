@@ -3,6 +3,7 @@ import PageLayout from '@layouts/PageLayout.astro';
 import SubHeader from '@components/header/SubHeader.astro';
 import TabBar from '@components/TabBar.astro';
 import cache from 'bin/cache.js';
+import pipelines_json from '@public/pipelines.json';
 
 export interface Props {
     pipeline?: string;
@@ -49,9 +50,13 @@ if (schema !== undefined) {
     });
 }
 if (version !== 'dev') {
+    const releaseSHA = pipelines_json.remote_workflows
+        .find((wf) => wf.name === pipeline)
+        ?.releases.find((r) => r.tag_name === version)?.sha;
+    console.log(releaseSHA);
     allTabItems.splice(1, 0, {
         label: 'Results',
-        href: `/${pipeline}/${version}/results/`,
+        href: `/${pipeline}/${version}/results/${pipeline}/results-${releaseSHA}/`,
         active: url.includes(`/${pipeline}/${version}/results/`),
         icon: 'fa-brands fa-aws',
     });

@@ -10,15 +10,15 @@ export const prerender = false;
 let { pipeline, version, path } = Astro.params;
 path = pipeline + '/' + path;
 const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
-const versions = meta.releases.map((release) => release.tag_name);
-const md_files = meta.releases.reduce((result, release) => {
+const versions = meta?.releases.map((release) => release.tag_name);
+const md_files = meta?.releases.reduce((result, release) => {
     if (release.tag_name === version) {
         result = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
     }
     return result;
 }, []);
 
-const releaseSHA = meta.releases.find((release) => release.tag_name === version)?.sha;
+const releaseSHA = meta?.releases.find((release) => release.tag_name === version)?.sha;
 const bucketName = 'nf-core-awsmegatests';
 const prefix = `${pipeline}/results-${releaseSHA}/`;
 const baseURL = `/${pipeline}/${version}/`;
