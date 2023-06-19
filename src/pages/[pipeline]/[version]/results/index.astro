@@ -2,17 +2,16 @@
 import pipelines_json from '@public/pipelines.json';
 
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    var paths: { params: { pipeline: string; version: string }; props: { releaseSHA: string } }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
-            const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
             paths.push({
                 params: {
                     pipeline: pipeline.name,
                     version: release.tag_name,
                 },
                 props: {
-                    meta: pipeline,
+                    releaseSHA: release.sha,
                 },
             });
         });
@@ -21,13 +20,11 @@ export function getStaticPaths() {
 }
 
 const { pipeline, version } = Astro.params;
-const { meta } = Astro.props;
-const releaseSHA = meta.releases.find((release) => release.tag_name === version)?.sha;
+const { releaseSHA } = Astro.props;
 
-if (meta) {
+if (releaseSHA) {
     const prefix = `${pipeline}/results-${releaseSHA}/`;
     const baseURL = `/${pipeline}/${version}/`;
-    console.log('redirect', baseURL + 'results/' + prefix);
     return Astro.redirect(baseURL + 'results/' + prefix);
 }
 ---
