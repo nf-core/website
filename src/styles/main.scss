@@ -1309,4 +1309,10 @@ div[data-rehype-pretty-code-fragment] {
       color: $gray-200 !important;
     }
   }
+
+  // list-group-item color is currently broken in dark mode as off 5.3.0
+  .list-group-item {
+    background-color: $gray-800;
+    color: $body-color-dark;
+  }
 }
