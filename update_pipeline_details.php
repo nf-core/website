@@ -89,16 +89,17 @@ $gh_repos = get_gh_api('https://api.github.com/orgs/sanger-tol/repos?per_page=10
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
 $ignored_topics = parse_ini_file('ignored_repos.ini')['topics'];
 foreach ($gh_repos as $repo) {
-    # we could filter these results with topics nextflow and pipeline and then no need to use the ignore file
-    # we need to ask each pipeline creater to add both topics
+
     if (!in_array($repo->name, $ignored_repos)) {
         $topics = [];
-        if (!is_null($repo->topics)) {
+        if (!is_null($repo->topics) && in_array('pipeline', $repo->topics) && in_array('nextflow', $repo->topics)) {
             foreach ($repo->topics as $topic) {
                 if (!in_array($topic, $ignored_topics)) {
                     $topics[] = $topic;
                 }
             }
+        }else{
+            continue;
         }
         $results['remote_workflows'][] = [
             'id' => $repo->id,
