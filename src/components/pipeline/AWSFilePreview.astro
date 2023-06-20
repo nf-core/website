@@ -1,8 +1,39 @@
 ---
 const { file } = Astro.props;
+import { Code } from 'astro/components';
 const content = await fetch('https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/' + file.path).then((r) =>
     r.text()
 );
+const extension = file.path.split('.').pop();
 ---
 
-{file.path.endsWith('.html') && <iframe srcdoc={content} style="border:none;" width="100%" height="1000px" />}
+{
+    ['.bam', '.bai', '.gz', '.zip'].includes(extension) && (
+        <div class="alert alert-warning text-center mb-0" role="alert">
+            <i class="fa-duotone fa-exclamation-triangle" /> No preview available for binary or compressed files.
+        </div>
+    )
+}
+{
+    extension === 'html' && (
+        <div class="iframe-container w-100 d-flex align-items-start">
+            <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x" />
+            <iframe
+                class="d-none"
+                srcdoc={content}
+                onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
+                title={file.name}
+                style="border:none;"
+                width="100%"
+                height="1000px"
+            />
+        </div>
+    )
+}
+{
+    ['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extension) && (
+        <img src={'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/' + file.path} class="img-fluid" />
+    )
+}
+{['.json', 'yaml', 'yml'].includes(extension) && <Code lang={extension} code={content} />}
+{['.log'].includes(extension) && <Code lang="console" code={content} />}
