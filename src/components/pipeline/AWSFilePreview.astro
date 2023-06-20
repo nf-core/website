@@ -1,39 +1,110 @@
 ---
-const { file } = Astro.props;
+import icons from 'code-icons';
+import 'code-icons/styles.css';
 import { Code } from 'astro/components';
-const content = await fetch('https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/' + file.path).then((r) =>
-    r.text()
-);
-const extension = file.path.split('.').pop();
+import CopyButton from '@components/CopyButton.svelte';
+import Admonition from '@components/Admonition.astro';
+
+const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
+
+const { file } = Astro.props;
+
+let content = '';
+const extension = file.name.split('.').pop();
+const fileIcon = icons.getClass(file.name);
+const hasPreview = ['json', 'yaml', 'yml', 'csv', 'tsv', 'log', 'txt', 'html', 'pdf'].includes(extension);
+const tooBig = file.size > 100000;
+if (!tooBig && hasPreview) {
+    content = await fetch(hrefPrefix + file.path).then((r) => r.text());
+}
 ---
 
-{
-    ['.bam', '.bai', '.gz', '.zip'].includes(extension) && (
-        <div class="alert alert-warning text-center mb-0" role="alert">
-            <i class="fa-duotone fa-exclamation-triangle" /> No preview available for binary or compressed files.
+<script>
+    //scroll to file-preview
+    window.addEventListener('load', () => {
+        const filePreview = document.getElementById('file-preview');
+        if (filePreview) {
+            filePreview.scrollIntoView();
+        }
+    });
+</script>
+<div id="file-preview" class="card mt-3">
+    <div class="card-header d-flex align-items-center">
+        <span class="fs-bold d-flex">
+            {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
+            {file.name}
+        </span>
+        <div class="ms-auto">
+            <div class="btn-group" role="group">
+                <a class="btn btn-outline-secondary download-file-btn" href={hrefPrefix + file.path} target="_blank"
+                    >Download file</a
+                >
+                <span class="btn btn-outline-secondary">
+                    <CopyButton text={hrefPrefix + file.path} client:idle>Copy File URL</CopyButton>
+                </span>
+                <span class="btn btn-outline-secondary">
+                    <CopyButton text={hrefPrefix.replace('https://', 's3://') + file.path} client:idle>
+                        Copy S3 URL
+                    </CopyButton>
+                </span>
+            </div>
         </div>
-    )
-}
-{
-    extension === 'html' && (
-        <div class="iframe-container w-100 d-flex align-items-start">
-            <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x" />
-            <iframe
-                class="d-none"
-                srcdoc={content}
-                onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
-                title={file.name}
-                style="border:none;"
-                width="100%"
-                height="1000px"
-            />
-        </div>
-    )
-}
-{
-    ['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extension) && (
-        <img src={'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/' + file.path} class="img-fluid" />
-    )
-}
-{['.json', 'yaml', 'yml'].includes(extension) && <Code lang={extension} code={content} />}
-{['.log'].includes(extension) && <Code lang="console" code={content} />}
+    </div>
+    <div class:list={['card-body  pb-0', { 'd-none': !hasPreview || tooBig }]}>
+        {
+            ['bam', 'bai', 'gz', 'zip'].includes(extension) && (
+                <Admonition title="warning">
+                    <p>This file is compressed and cannot be previewed. You can download it and view it locally.</p>
+                </Admonition>
+            )
+        }
+        {
+            extension === 'html' && (
+                <div class="iframe-container w-100 d-flex align-items-start">
+                    <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x" />
+                    <iframe
+                        class="d-none"
+                        srcdoc={content}
+                        onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
+                        title={file.name}
+                        style="border:none;"
+                        width="100%"
+                        height="1000px"
+                    />
+                </div>
+            )
+        }
+        {
+            ['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extension) && (
+                <img src={hrefPrefix + file.path} class="img-fluid" />
+            )
+        }
+        {['json', 'yaml', 'yml'].includes(extension) && <Code lang={extension} code={content} />}
+        {['log', 'txt', 'csv', 'tsv'].includes(extension) && <Code lang="console" code={content} />}
+        {
+            extension === 'pdf' && (
+                <object data={hrefPrefix + file.path} type="application/pdf" width="100%" height="1000px">
+                    <p>
+                        You don't have a PDF plugin, but you can
+                        <a href="mypdf.pdf">download the PDF file. </a>
+                    </p>
+                </object>
+            )
+        }
+    </div>
+    <div class:list={['p-3 mt-4', { 'd-none': hasPreview }]}>
+        <Admonition title="note">
+            <p>No preview available for this file type. You can download it and view it locally.</p>
+        </Admonition>
+    </div>
+    <div class:list={['p-3 ', { 'd-none': !tooBig || !hasPreview }]}>
+        <Admonition title="info">
+            <p>The file is too big to preview.</p>
+        </Admonition>
+    </div>
+</div>
+<style lang="scss">
+    .file-icon {
+        vertical-align: middle;
+    }
+</style>

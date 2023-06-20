@@ -1,8 +1,8 @@
 ---
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import { S3Client, ListObjectsV2Command, S3, HeadObjectCommand } from '@aws-sdk/client-s3';
-import AWSFile from '@components/pipeline/AWSFile.svelte';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
+import AWSFile from '@components/pipeline/AWSFile.astro';
 import AWSFilePreview from '@components/pipeline/AWSFilePreview.astro';
 
 export const prerender = false;
@@ -29,7 +29,6 @@ if (!Astro.url.pathname.includes(baseURL + 'results/' + prefix)) {
 }
 const pathParts = path.split('/');
 let filename = Astro.url.searchParams.get('file');
-console.log(filename);
 const description = meta?.description;
 const depth = pathParts.length;
 let client = new S3Client({
@@ -197,7 +196,7 @@ if (!isTruncated) {
                                 </a>
                             ))
                 }
-                {files && files.map((item) => <AWSFile item={item} client:load />)}
+                {files && files.map((item) => <AWSFile item={item} />)}
             </div>
             {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
         </div>
