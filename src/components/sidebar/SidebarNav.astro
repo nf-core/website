@@ -12,8 +12,7 @@ export interface Props {
     };
 }
 
-const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
-const baseURL = url.split('/').slice(0, -1).join('/');
+const url = Astro.url.pathname;
 ---
 
 <div class="nav">

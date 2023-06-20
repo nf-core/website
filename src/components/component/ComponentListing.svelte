@@ -85,7 +85,7 @@
                 {#each filteredComponents as component}
                     <tr>
                         <td class="name">
-                            <a href={'/' + component.type + 's/' + component.name}
+                            <a href={'/' + component.type + 's/' + component.name + '/'}
                                 >{@html component.name.replace('_', '_<wbr>')}</a
                             >
                         </td>
@@ -94,8 +94,6 @@
                                 {#each component.meta.keywords as keyword}
                                     <span class="badge bg-secondary me-1">{keyword}</span>
                                 {/each}
-                            {:else}
-                                -
                             {/if}
                         </td>
                         <td>
@@ -104,8 +102,6 @@
                         <td class="text-end">
                             {#if component.pipelines}
                                 {component.pipelines.length}
-                            {:else}
-                                -
                             {/if}
                         </td>
                     </tr>
