@@ -19,7 +19,7 @@
     // const fileIcon = icons.getClass(item.name);
 </script>
 
-<a href={'?file=' + item.name} class="" on:click={() => showPreview()}>
+<a href={'?file=' + item.name} class="list-group-item list-group-item-action" on:click={() => showPreview()}>
     <div class="row">
         <span class="col">
             <!-- {#if fileIcon}
