@@ -18,7 +18,7 @@
     onMount(() => {
         // set the first heading as active on initial load
         if (!$currentHeading) {
-            currentHeading.set(headings[0].slug);
+            currentHeading.set(headings[0]?.slug);
         }
     });
 </script>

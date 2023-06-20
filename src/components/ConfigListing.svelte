@@ -37,11 +37,6 @@
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
-    <!-- {#if $DisplayStyle === 'grid'}
-        {#each filteredConfigs as config (config.name)}
-            <p>{config.name}</p>
-        {/each}
-    {:else if $DisplayStyle === 'table'} -->
     <table class="table">
         <thead class="text-bg-secondary">
             <tr>
@@ -54,7 +49,7 @@
             {#each filteredConfigs as config}
                 <tr>
                     <td class="name">
-                        <a href={'/configs/' + config.name}>{@html config.name.replace('_', '_<wbr>')}</a>
+                        <a href={'/configs/' + config.name + '/'}>{@html config.name.replace('_', '_<wbr>')}</a>
                     </td>
                     <td class="description w-50">
                         {config.config.config_profile_description}
@@ -66,11 +61,9 @@
             {/each}
         </tbody>
     </table>
-    <!-- {/if} -->
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
     .name {
         min-width: 15rem;
         word-break: break-word;

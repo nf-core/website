@@ -2,7 +2,7 @@
 import ExportEventButton from '@components/event/ExportEventButton.svelte';
 
 const { frontmatter } = Astro.props;
-const start = frontmatter.start.toLocaleString('en-US', {
+const start = frontmatter.start?.toLocaleString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -10,7 +10,7 @@ const start = frontmatter.start.toLocaleString('en-US', {
     minute: 'numeric',
     hour12: false,
 });
-const end = frontmatter.start.toLocaleString('en-US', {
+const end = frontmatter.start?.toLocaleString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
