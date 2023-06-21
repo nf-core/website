@@ -19,6 +19,7 @@ export function getStaticPaths() {
                 props: {
                     versions: pipeline.releases.map((release) => release.tag_name),
                     md_files: md_files,
+                    description: pipeline.description,
                 },
             });
         });
@@ -31,15 +32,18 @@ let headings: {
     text: string;
     slug: string;
 }[] = [];
-const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
 
-let { versions, md_files } = Astro.props;
+let { versions, md_files, description } = Astro.props;
 
 const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
 let schema = await cache
     .get(cache_key)
     .then((response) => {
-        return JSON.parse(response);
+        if (response !== undefined) {
+            return JSON.parse(response);
+        } else {
+            return { definitions: [], properties: [] };
+        }
     })
     .catch((error) => {
         console.log(error);

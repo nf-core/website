@@ -33,9 +33,9 @@ let headings: {
     text: string;
     slug: string;
 }[] = [];
-const description = pipelines_json.remote_workflows.filter((p) => p.name === pipeline).description;
 
 let { versions, md_files, meta } = Astro.props;
+const description = meta.description;
 
 const cache_key = `${pipeline}/${version}/README.md`;
 const md_content = await cache

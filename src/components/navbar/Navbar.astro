@@ -44,7 +44,7 @@ const { navTocHeadings = [], title } = Astro.props;
             <img height="25px" src={NfCoreLogo.src} class="hide-dark" alt="nf-core logo" />
             <img height="25px" src={NfCoreLogoDarkbg.src} class="hide-light" alt="nf-core logo" />
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:idle />}
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -62,55 +62,55 @@ const { navTocHeadings = [], title } = Astro.props;
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item p-1">
-                    <a class="nav-link" href="/pipelines">Pipelines</a>
+                    <a class="nav-link" href="/pipelines/">Pipelines</a>
                 </li>
                 <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" href="/about/" role="button" data-bs-toggle="dropdown">
                         Resources
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
-                        <li><a class="dropdown-item" href="/configs">Shared Configs</a></li>
-                        <li><a class="dropdown-item" href="/tools">Tools</a></li>
-                        <li><a class="dropdown-item" href="/modules">Modules</a></li>
-                        <li><a class="dropdown-item" href="/subworkflows">Subworkflows</a></li>
+                        <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
+                        <li><a class="dropdown-item" href="/tools/">Tools</a></li>
+                        <li><a class="dropdown-item" href="/modules/">Modules</a></li>
+                        <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
                     </ul>
                 </li>
                 <li class="nav-item p-1">
-                    <a class="nav-link" href="/docs">Docs</a>
+                    <a class="nav-link" href="/docs/">Docs</a>
                 </li>
                 <li class="nav-item p-1">
-                    <a class="nav-link" href="/events">
+                    <a class="nav-link" href="/events/">
                         <EventIndicator client:idle />
                         Events
                     </a>
                 </li>
                 <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown"> About</a>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
                         <li><span class="dropdown-header">Community</span></li>
-                        <li><a class="dropdown-item" href="/contributors">Blog</a></li>
-                        <li><a class="dropdown-item" href="/contributors">Contributors</a></li>
-                        <li><a class="dropdown-item" href="/about">About nf-core</a></li>
-                        <li><a class="dropdown-item" href="/code_of_conduct">Code of conduct</a></li>
+                        <!-- <li><a class="dropdown-item" href="/contributors/">Blog</a></li> -->
+                        <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                        <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Initiatives</span></li>
-                        <li><a class="dropdown-item" href="/mentorships">Mentorships</a></li>
-                        <li><a class="dropdown-item" href="/publications">Publications</a></li>
-                        <li><a class="dropdown-item" href="/stats">Statistics</a></li>
+                        <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
+                        <li><a class="dropdown-item" href="/publications/">Publications</a></li>
+                        <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="/join">Join nf-core</a></li>
+                        <li><a class="dropdown-item" href="/join/">Join nf-core</a></li>
                     </ul>
                 </li>
             </ul>
             <hr class="d-md-none" />
-            <a class="d-md-none btn d-block btn-success mb-3" href="/join"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join"> Join nf-core</a>
+            <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
+            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
 </nav>
 {
     Astro.url.pathname.includes('/docs/') && (
-        <NavbarDocsNav client:load>
+        <NavbarDocsNav client:visible>
             <NavbarDocsNavTitle slot="title" title={title} />
             <SidebarNav slot="menu" items={sections} />
         </NavbarDocsNav>

@@ -1110,13 +1110,10 @@ Launch Page
   display: none;
 }
 
-.breadcrumb-item.active {
-  text-decoration: underline;
-  color: $gray-700;
-}
-
-#tb-s3objects_wrapper tr i {
-  color: $success;
+.breadcrumb-item:not(.active) {
+  & a, & span{
+  color: $gray-600 !important;
+  }
 }
 
 #file-preview .card-body {
@@ -1311,5 +1308,11 @@ div[data-rehype-pretty-code-fragment] {
     & .text-body-secondary {
       color: $gray-200 !important;
     }
+  }
+
+  // list-group-item color is currently broken in dark mode as off 5.3.0
+  .list-group-item {
+    background-color: $gray-800;
+    color: $body-color-dark;
   }
 }

@@ -28,11 +28,11 @@ export interface Props {
                 <div class="mb-2">
                     {included_pipelines.map((pipeline) => (
                         <a
-                            href={'/' + pipeline.name + '/' + pipeline.version}
+                            href={'/' + pipeline.name + '/' + pipeline.version + '/'}
                             class="badge text-bg-warning me-2 text-decoration-none"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
-                            title={'most recent pipeline version with it:\n' + pipeline.version}
+                            title={'most recent pipeline version with this module:\n' + pipeline.version}
                         >
                             {pipeline.name}
                         </a>
@@ -75,7 +75,7 @@ export interface Props {
                 <div class="mb-2">
                     {included_modules.map((module) => (
                         <a
-                            href={'/modules/' + module.replace('/', '_')}
+                            href={'/modules/' + module.replace('/', '_') + '/'}
                             class="badge text-bg-info me-2 text-decoration-none"
                         >
                             {module}

@@ -15,7 +15,7 @@
         }[];
         subworkflows?: string[];
     };
-    const href = '/' + component.type + 's/' + component.name;
+    const href = '/' + component.type + 's/' + component.name + '/';
 </script>
 
 <div class="card flex-fill m-2">
@@ -39,7 +39,7 @@
             <span class="text-body-secondary align-self-bottom"
                 >Included in:
                 {#each component.pipelines as pipeline}
-                    <a class="badge text-bg-warning me-2" href={'/' + pipeline.name + '/' + pipeline.version}
+                    <a class="badge text-bg-warning me-2" href={'/' + pipeline.name + '/' + pipeline.version + '/'}
                         >{pipeline.name}</a
                     >
                 {/each}
@@ -49,7 +49,7 @@
             <span class="text-body-secondary align-self-bottom"
                 >Part of:
                 {#each component.subworkflows as subworkflow}
-                    <a class="badge text-bg-info me-2" href={'/subworkflows/' + subworkflow}>{subworkflow}</a>
+                    <a class="badge text-bg-info me-2" href={'/subworkflows/' + subworkflow + '/'}>{subworkflow}</a>
                 {/each}
             </span>
         {/if}
@@ -57,7 +57,7 @@
             <span class="text-body-secondary align-self-bottom"
                 >Contains:
                 {#each component.meta.modules as module}
-                    <a class="badge text-bg-info me-2" href={'/modules/' + module.replace('/', '_')}>{module}</a>
+                    <a class="badge text-bg-info me-2" href={'/modules/' + module.replace('/', '_') + '/'}>{module}</a>
                 {/each}
             </span>
         {/if}
