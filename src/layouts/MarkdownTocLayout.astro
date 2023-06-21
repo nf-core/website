@@ -13,13 +13,13 @@ export interface Props {
     headings: { text: string; slug: string; depth: number; fa_icon?: string }[];
     event_header?: object[];
     left_sidebar?: boolean;
+    sections?: { section_name: string; children: {}[] }[] | never[];
 }
 
-const { title, subtitle, md_github_url, event_header, headings, left_sidebar } = Astro.props;
+const { title, subtitle, md_github_url, event_header, headings, left_sidebar, sections } = Astro.props;
 
 let prev_page: CollectionEntry<'docs'> | null = null;
 let next_page: CollectionEntry<'docs'> | null = null;
-let sections: { section_name: string; children: {}[] } | never[] = [];
 if (Astro.url.pathname.startsWith('/docs/')) {
     const docs = await getCollection('docs');
     const subpages = docs.filter((doc) => {

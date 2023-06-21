@@ -1,5 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 
+
 const events = defineCollection({
     schema: z.object({
         title: z.string(),
@@ -31,9 +32,15 @@ const about = defineCollection({
         md_github_url: z.string().url().optional(),
     }),
 });
-
+const tools = defineCollection({
+    schema: z.object({
+        // title: z.string(),
+        // subtitle: z.string().optional(),
+    }),
+});
 export const collections = {
     events: events,
     docs: docs,
     about: about,
+    tools: tools,
 };
