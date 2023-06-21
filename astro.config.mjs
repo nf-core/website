@@ -40,7 +40,6 @@ export default defineConfig({
         plugins: [yaml()],
         ssr: {
             noExternal: ['@popperjs/core', 'bin/cache.js'],
-            external: ['shiki'],
         },
         resolve: {
             preserveSymlinks: true,
