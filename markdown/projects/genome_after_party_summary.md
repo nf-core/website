@@ -1,4 +1,4 @@
-# sanger-tol/insdcdownload - 1.1.0
+## sanger-tol/insdcdownload - 1.1.0 {#insdcdownload}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
@@ -16,7 +16,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/insdcdownload). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3). 
 
-# sanger-tol/ensemblrepeatdownload - 1.0.0
+## sanger-tol/ensemblrepeatdownload - 1.0.0 {#ensemblrepeatdownload}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
@@ -31,7 +31,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-# sanger-tol/ensemblgenedownload – 1.0.1
+## sanger-tol/ensemblgenedownload – 1.0.1 {#ensemblgenedownload}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
@@ -47,7 +47,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-# sanger-tol/sequencecomposition – 1.0.0
+## sanger-tol/sequencecomposition – 1.0.0 {#sequencecomposition}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
@@ -64,7 +64,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/sequencecomposition). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-# sanger-tol/readmapping – 1.1.0
+## sanger-tol/readmapping – 1.1.0 {#readmapping}
 
 This pipeline is run for all **primary and alternative** ToL assemblies.
 
@@ -89,7 +89,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies.
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/readmapping). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-# sanger-tol/variantcalling  – 1.0.0
+## sanger-tol/variantcalling  – 1.0.0 {#variantcalling}
 
 This pipeline is run for all **primary** ToL assemblies.
 
@@ -111,7 +111,7 @@ This pipeline is run for all **primary** ToL assemblies.
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/variantcalling). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3). 
 
-# sanger-tol/blobtoolkit – 0.1.0
+## sanger-tol/blobtoolkit – 0.1.0 {#blobtoolkit}
 
 This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release.
 
@@ -133,7 +133,7 @@ This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/blobtoolkit). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-# sanger-tol/genomenote – 1.0.0
+## sanger-tol/genomenote – 1.0.0 {#genomenote}
 
 This pipeline is run for all **primary** ToL assemblies.
 
