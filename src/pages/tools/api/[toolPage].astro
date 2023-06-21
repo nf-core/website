@@ -16,7 +16,6 @@ export async function getStaticPaths() {
 const title = '';
 const subtitle = '';
 let { headings, Content, remarkPluginFrontmatter } = await Astro.props.toolPage.render();
-console.log(Content);
 // filter out headings that are higher than max_heading_depth
 // headings = headings.filter((h) => h.depth <= max_heading_depth);
 // TODO: update github url
