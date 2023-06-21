@@ -1,8 +1,8 @@
-## sanger-tol/insdcdownload - 1.1.0 {#insdcdownload}
+# sanger-tol/insdcdownload {#insdcdownload}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
-**Current features:**
+### Current features:
 - Download genomes from NCBI.
 - Unmask genome assembly.
 - Build `samtools` `faidx` and `dict` indices for genome assembly.
@@ -10,7 +10,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 - Build `tabix` index for BED file.
 - Custom download location.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 
