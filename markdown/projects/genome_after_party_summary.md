@@ -16,47 +16,47 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/insdcdownload). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3). 
 
-## sanger-tol/ensemblrepeatdownload - 1.0.0 {#ensemblrepeatdownload}
+# sanger-tol/ensemblrepeatdownload {#ensemblrepeatdownload}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
-**Current features:**
+### Current features:
 - Download the masked FASTA file from Ensembl.
 - Extract the coordinates of the masked regions into a BED file.
 - Compress and index the BED file with bgzip and tabix.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-## sanger-tol/ensemblgenedownload – 1.0.1 {#ensemblgenedownload}
+# sanger-tol/ensemblgenedownload {#ensemblgenedownload}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
-**Current features:**
+### Current features:
 - Download from Ensembl gene annotation in GFF3 format.
 - Download from Ensembl gene sequences in FASTA format.
 - Compress and index all sequences files with `bgzip`, `samtools faidx`, and `samtools dict`.
 - Compress and index the annotation files with `bgzip` and `tabix`.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-## sanger-tol/sequencecomposition – 1.0.0 {#sequencecomposition}
+# sanger-tol/sequencecomposition {#sequencecomposition}
 
 This pipeline is run for all **primary and alternative** ToL assemblies, as well as non-ToL (VGP, lepidoptera, and requests) assemblies.
 
-**Current features:**
+### Current features:
 - Run `fasta_windows` on the genome FASTA file.
 - Extract single-statistics bedGraph files from the multi-statistics outputs.
 - Compress and index all bedGraph and TSV files with `bgzip` and `tabix`.
 
-**Planned features:**
+### Planned features:
 - Add [TRASH (Tandem Repeat Annotation and Structural Hierarchy)](https://github.com/vlothec/TRASH) pipeline
 - Import features from [GDA (Genome Decomposition Analysis)](https://github.com/sanger-tol/gda) pipeline
 - Update pipeline template
@@ -64,11 +64,11 @@ This pipeline is run for all **primary and alternative** ToL assemblies, as well
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/sequencecomposition). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-## sanger-tol/readmapping – 1.1.0 {#readmapping}
+# sanger-tol/readmapping {#readmapping}
 
 This pipeline is run for all **primary and alternative** ToL assemblies.
 
-**Current features:**
+### Current features:
 - Align short read data (HiC and Illumina) against the genome with `bwamem2 mem`
 - Mark duplicates for short read alignment with `samtools`.
 - Filter PacBio raw read data using vector database.
@@ -76,7 +76,7 @@ This pipeline is run for all **primary and alternative** ToL assemblies.
 - Merge all alignment files at the individual level and convert to CRAM format.
 - Calculate statistics for all alignment files using `samtools` `stats`, `flagstat`, and `idxstats`.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 - Add calculation for how 
@@ -89,16 +89,16 @@ This pipeline is run for all **primary and alternative** ToL assemblies.
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/readmapping). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-## sanger-tol/variantcalling  – 1.0.0 {#variantcalling}
+# sanger-tol/variantcalling {#variantcalling}
 
 This pipeline is run for all **primary** ToL assemblies.
 
-**Current features:**
+### Current features:
 - Calls variants using DeepVariant for PacBio long read data.
 - Speed improvements made by splitting the genome before calling variants.
 - Outputs both VCF and GVCF formats.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 - Add calculation for hetrozygosity, flag for homozygous alternatives, and InDel size distribution
@@ -111,11 +111,11 @@ This pipeline is run for all **primary** ToL assemblies.
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/variantcalling). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3). 
 
-## sanger-tol/blobtoolkit – 0.1.0 {#blobtoolkit}
+# sanger-tol/blobtoolkit {#blobtoolkit}
 
-This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release.
+This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release. Currently, the [Snakemake pipeline](https://github.com/blobtoolkit/blobtoolkit/tree/main/src/blobtoolkit-pipeline/src) is used in production.
 
-**Current features:**
+### Current features:
 - Calculate sequence statistics in 1kb windows for each contig.
 - Count BUSCOs in 1kb windows for each contig using specific and basal lineages.
 - Calculate coverage in 1kb windows using `blobtk depth`.
@@ -124,7 +124,7 @@ This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release
 - Import analysis results into a BlobDir dataset.
 - BlobDir validation and static image generation.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 - Improved BlobDir validation
@@ -133,15 +133,15 @@ This pipeline will be run for all **primary** ToL assemblies after 1.0.0 release
 
 For more details, visit the [pipeline website](https://pipelines.tol.sanger.ac.uk/blobtoolkit). If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
-## sanger-tol/genomenote – 1.0.0 {#genomenote}
+# sanger-tol/genomenote {#genomenote}
 
 This pipeline is run for all **primary** ToL assemblies.
 
-**Current features:**
+### Current features:
 - Create HiC contact map and chromosomal grid using `Cooler`.
 - Create summary table using (1) assembly information, statistics and chromosome details from NCBI `datasets`, (2) genome completeness from `BUSCO`, (3) consensus quality and k-mer completeness from `MerquryFK`, and (4) HiC primary mapped percentage from `samtools flagstat`.
 
-**Planned features:**
+### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
 - Improve genome metadata fetching and processing
