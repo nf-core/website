@@ -31,7 +31,7 @@ docs.map((doc) => {
             usageDocs.map((doc) => {
                 return (
                     <li>
-                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
+                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
                     </li>
                 );
             })
@@ -43,7 +43,7 @@ docs.map((doc) => {
             contributingDocs.map((doc) => {
                 return (
                     <li>
-                        <a href={'/docs/' + doc.slug}>{doc.data.title}</a>
+                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
                     </li>
                 );
             })

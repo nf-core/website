@@ -1,0 +1,204 @@
+---
+import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
+import AWSFile from '@components/pipeline/AWSFile.astro';
+import AWSFilePreview from '@components/pipeline/AWSFilePreview.astro';
+
+export const prerender = false;
+
+let { pipeline, version, path } = Astro.params;
+path = pipeline + '/' + path;
+
+const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
+const versions = meta?.releases.map((release) => release.tag_name);
+const md_files = meta?.releases.reduce((result, release) => {
+    if (release.tag_name === version) {
+        result = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
+    }
+    return result;
+}, []);
+
+const releaseSHA = meta?.releases.find((release) => release.tag_name === version)?.sha;
+const bucketName = 'nf-core-awsmegatests';
+const prefix = `${pipeline}/results-${releaseSHA}/`;
+const baseURL = `/${pipeline}/${version}/`;
+if (!Astro.url.pathname.includes(baseURL + 'results/' + prefix)) {
+    return Astro.redirect(baseURL);
+} else {
+}
+const pathParts = path.split('/');
+let filename = Astro.url.searchParams.get('file');
+const description = meta?.description;
+const depth = pathParts.length;
+let client = new S3Client({
+    region: 'eu-west-1',
+    signer: { sign: async (request) => request },
+});
+
+let response;
+const bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
+let isTruncated = true;
+while (isTruncated) {
+    response = await client.send(
+        new ListObjectsV2Command({
+            Bucket: bucketName,
+            ContinuationToken: response?.NextContinuationToken,
+            Prefix: prefix,
+        })
+    );
+    if (response.KeyCount === 0) {
+        break;
+    }
+    if (response.Contents) {
+        bucketContents.push(...response.Contents);
+
+        isTruncated = response.IsTruncated;
+    }
+}
+let directories: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
+let files: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
+if (!isTruncated) {
+    directories = bucketContents
+        .filter((item) => item.Key.endsWith('/'))
+        .map((item) => {
+            return {
+                name: item.Key.replace(prefix, '').split('/').slice(-2).join('/'),
+                path: item.Key,
+                depth: item.Key.replace(prefix, '').split('/').length,
+                size: item.Size,
+                lastModified: item.LastModified,
+            };
+        })
+        .sort((a, b) => a.depth - b.depth);
+
+    // check if element has object of depth 2 and if it does not, create and add the parent object
+    const depth2 = directories.filter((item) => item.depth === 2);
+    if (depth2.length === 0) {
+        // create parent objects based on the parent directory of directories
+        const parents = directories
+            .filter((item) => item.depth === 3)
+            .map((item) => {
+                const parent = item.path.replace(prefix, '').split('/').slice(0, -2).join('/');
+                return {
+                    name: parent + '/',
+                    path: prefix + parent,
+                    depth: parent.split('/').length + 1,
+                };
+            });
+        // remove duplicated entries in parents
+        const uniqueParents = [...new Map(parents.map((item) => [item.name, item])).values()];
+        // add parents to directories
+        directories = uniqueParents.concat(directories);
+    }
+
+    files = bucketContents
+        .filter((item) => !item.Key.endsWith('/'))
+        .map((item) => {
+            return {
+                name: item.Key.replace(path + '/', '')
+                    .split('/')
+                    .pop(),
+                path: item.Key,
+                depth: item.Key.replace(prefix, '').split('/').length + 1,
+                size: item.Size,
+                lastModified: item.LastModified,
+            };
+        })
+        .sort((a, b) => a.depth - b.depth)
+        .filter((item) => item.depth === depth)
+        .filter((item) => item.path.includes(path));
+}
+---
+
+<PipelinePageLayout
+    pipeline={pipeline}
+    subtitle={description}
+    version={version}
+    versions={versions}
+    tabItems={md_files}
+    releaseSHA={releaseSHA}
+>
+    <div class="mt-3">
+        {
+            bucketContents.length === 0 && (
+                <div class="alert alert-warning mt-3 " role="alert">
+                    <h4 class="text-warning">No AWS results found!</h4>
+                    <p>
+                        It seems like there is not yet any AWS results for this version of {pipeline}. Please check
+                        newer releases of this pipeline.
+                    </p>
+                </div>
+            )
+        }
+        <div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <span>
+                            <i class="fa-brands fa-aws me-2"></i>
+                            {bucketName}
+                        </span>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <span>{pipeline}</span>
+                    </li>
+                    {
+                        path &&
+                            pathParts.slice(1, -1).map((item, i) => (
+                                <li class="breadcrumb-item">
+                                    <a href={baseURL + 'results/' + pathParts.slice(0, i + 2).join('/') + '/'}>
+                                        {item}
+                                    </a>
+                                </li>
+                            ))
+                    }
+                    <li class="breadcrumb-item active">
+                        <span>{pathParts.slice(-1) + '/'}</span>
+                    </li>
+                </ol>
+            </nav>
+            <div class="file-browser list-group">
+                <li class="list-group-item fw-bold">
+                    <div class="row">
+                        <span class="col">Name</span>
+                        <span class="col">Last Modified</span>
+                        <span class="col-1">Size</span>
+                    </div>
+                </li>
+                {
+                    depth > 2 && (
+                        <a
+                            href={baseURL + 'results/' + pathParts.slice(0, -1).join('/') + '/'}
+                            class="list-group-item list-group-item-action"
+                        >
+                            <span class="">
+                                <i class="fa-regular fa-folder-open me-2" />
+                                ..
+                            </span>
+                        </a>
+                    )
+                }
+                {
+                    directories &&
+                        directories
+                            .filter((item) => item.depth === depth)
+                            .filter((item) => item.path.includes(path))
+                            .map((item) => (
+                                <a
+                                    href={baseURL + 'results/' + path + '/' + item.name}
+                                    class="list-group-item list-group-item-action"
+                                >
+                                    <span class="">
+                                        <i class="fa-regular fa-folder me-2" />
+                                        {item.name}
+                                    </span>
+                                </a>
+                            ))
+                }
+                {files && files.map((item) => <AWSFile item={item} />)}
+            </div>
+            {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
+        </div>
+    </div>
+</PipelinePageLayout>

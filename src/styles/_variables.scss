@@ -39,7 +39,7 @@ $accordion-button-active-color: shade-color($nf-core-color, 10%);
 @import 'bootstrap/scss/variables';
 
 $link-color: $body-color;
-
+$breadcrumb-active-color: $white;
 
 // make greens darker for dark mode
 $green: $nf-core-color-dark;
@@ -57,8 +57,6 @@ $success-dark: $green;
 @import 'bootstrap/scss/variables-dark';
 
 $link-color-dark: $body-color-dark;
-
-
 
 // extra-wide breakpoints
 $container-max-widths: (

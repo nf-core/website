@@ -3,7 +3,7 @@
         // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
         const storedTheme = localStorage.getItem('theme');
-        switchTheme = (e) => {
+        const switchTheme = (e) => {
             const theme = e.target.value;
             localStorage.setItem('theme', theme);
             setTheme(theme);
