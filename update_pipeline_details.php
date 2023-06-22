@@ -82,7 +82,7 @@ $results = [
 ];
 
 // Fetch all repositories at nf-core
-$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos?per_page=100');
+$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos?per_page=200');
 
 // Save data from non-ignored repositories
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
