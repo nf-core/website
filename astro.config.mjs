@@ -1,4 +1,5 @@
 import calloutsPlugin from './bin/remark-callouts.js';
+import { mermaid } from './bin/remark-mermaid.ts';
 import githubLightTheme from '/public/themes/github-light.json';
 import nordTheme from '/public/themes/nord.json';
 import mdx from '@astrojs/mdx';
@@ -13,7 +14,6 @@ import { defineConfig } from 'astro/config';
 import { h } from 'hastscript';
 import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeMermaid from 'rehype-mermaidjs';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
@@ -52,7 +52,7 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin, mermaid],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
@@ -86,7 +86,6 @@ export default defineConfig({
                     }
                 },
             ],
-            rehypeMermaid,
             [
                 rehypePrettyCode,
                 {
