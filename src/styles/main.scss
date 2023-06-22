@@ -1315,4 +1315,15 @@ div[data-rehype-pretty-code-fragment] {
     background-color: $gray-800;
     color: $body-color-dark;
   }
+
+
+//Mermaid graphs
+svg[id^='mermaid'] {
+  .flowchart-link {
+    stroke: $body-color-dark !important;
+  }
+  .marker {
+    fill: $body-color-dark !important;
+  }
+}
 }
