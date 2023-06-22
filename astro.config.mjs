@@ -13,6 +13,7 @@ import { defineConfig } from 'astro/config';
 import { h } from 'hastscript';
 import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeMermaid from 'rehype-mermaidjs';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
@@ -20,7 +21,6 @@ import rehypeWrap from 'rehype-wrap-all';
 import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
-
 
 // https://astro.build/config
 export default defineConfig({
@@ -86,6 +86,7 @@ export default defineConfig({
                     }
                 },
             ],
+            rehypeMermaid,
             [
                 rehypePrettyCode,
                 {
