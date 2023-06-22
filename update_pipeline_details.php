@@ -17,6 +17,7 @@ echo "\n\nUpdating pipeline details - " . date('Y-m-d h:i:s') . "\n";
 
 // Load the twitter PHP library
 require 'vendor/autoload.php';
+
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 // Allow PHP fopen to work with remote links
@@ -25,7 +26,8 @@ ini_set('allow_url_fopen', 1);
 // Get the twitter auth secrets
 $config = parse_ini_file('config.ini');
 
-function get_gh_api($gh_api_url) {
+function get_gh_api($gh_api_url)
+{
     global $config;
     $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
 
@@ -42,14 +44,37 @@ function get_gh_api($gh_api_url) {
     ]);
 
     // Get API response
-    $gh_api_raw = file_get_contents($gh_api_url, false, $gh_api_opts);
-    if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-        die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
-        var_dump($http_response_header);
-        echo "\n$gh_api_raw\n";
-        die("\n-------- END ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
+    $first_page = true;
+    $next_page = false;
+    $res = [];
+    while ($first_page || $next_page) {
+        // reset loop vars
+        $first_page = false;
+        // Get GitHub API results
+        if ($next_page) {
+            $gh_api_url = $next_page;
+        }
+        $tmp_results = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
+        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
+            die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
+            var_dump($http_response_header);
+            echo "\n$tmp_results\n";
+            die("\n-------- END ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
+        }
+
+        array_push($res, ...$tmp_results);
+        // Look for URL to next page of API results
+        $next_page = false;
+        $m_array = preg_grep('/rel="next"/', $http_response_header);
+
+        if (count($m_array) > 0) {
+            preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
+            if (isset($matches[1])) {
+                $next_page = $matches[1];
+            }
+        }
     }
-    return json_decode($gh_api_raw);
+    return $res;
 }
 
 // Final filenames to write JSON to
@@ -64,11 +89,13 @@ if (file_exists($results_fn)) {
 }
 
 // Function to sort assoc array by key value (name)
-function sort_name($a, $b) {
+function sort_name($a, $b)
+{
     return strcmp($a['full_name'], $b['full_name']);
 }
 // Function to sort assoc array by key value (datestamp)
-function sort_datestamp($a, $b) {
+function sort_datestamp($a, $b)
+{
     return strtotime($a['published_at']) - strtotime($b['published_at']);
 }
 
@@ -82,7 +109,7 @@ $results = [
 ];
 
 // Fetch all repositories at nf-core
-$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos?per_page=100');
+$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos');
 
 // Save data from non-ignored repositories
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
