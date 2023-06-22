@@ -26,8 +26,7 @@ ini_set('allow_url_fopen', 1);
 // Get the twitter auth secrets
 $config = parse_ini_file('config.ini');
 
-function get_gh_api($gh_api_url)
-{
+function get_gh_api($gh_api_url) {
     global $config;
     $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
 
@@ -89,13 +88,11 @@ if (file_exists($results_fn)) {
 }
 
 // Function to sort assoc array by key value (name)
-function sort_name($a, $b)
-{
+function sort_name($a, $b) {
     return strcmp($a['full_name'], $b['full_name']);
 }
 // Function to sort assoc array by key value (datestamp)
-function sort_datestamp($a, $b)
-{
+function sort_datestamp($a, $b) {
     return strtotime($a['published_at']) - strtotime($b['published_at']);
 }
 
