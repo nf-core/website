@@ -46,6 +46,7 @@ function get_gh_api($gh_api_url)
     // Get API response
     $first_page = true;
     $next_page = false;
+    $counter = 1;
     $res = [];
     while ($first_page || $next_page) {
         // reset loop vars
@@ -64,14 +65,18 @@ function get_gh_api($gh_api_url)
 
         array_push($res, ...$tmp_results);
         // Look for URL to next page of API results
-        $next_page = false;
         $m_array = preg_grep('/rel="next"/', $http_response_header);
 
         if (count($m_array) > 0) {
-            preg_match('/<([^>]+)>; rel="next"/', array_values($m_array)[0], $matches);
-            if (isset($matches[1])) {
-                $next_page = $matches[1];
+            $counter++;
+            // check if page parameter is in gh_api_url
+            if (strpos($gh_api_url, 'page=') === false) {
+                $next_page = $gh_api_url . '?page=2';
+            } else {
+                $next_page = preg_replace('/page=\d+/', 'page=' . $counter, $gh_api_url);
             }
+        } else {
+            $next_page = false;
         }
     }
     return $res;
