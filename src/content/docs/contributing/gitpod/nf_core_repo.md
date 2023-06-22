@@ -1,8 +1,8 @@
 ---
-title: 5 - Developing pipelines
+title: Developing pipelines
 subtitle: Creating a new module for the nf-core modules repository.
+weight: 5
 ---
-
 ## Trying your first Gitpod environment
 
 You can run Gitpod with any nf-core pipeline repository.

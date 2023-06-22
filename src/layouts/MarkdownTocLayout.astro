@@ -123,4 +123,8 @@ if (Astro.url.pathname.startsWith('/docs/')) {
         max-height: calc(100vh - 4rem);
         overflow-y: auto;
     }
+    .markdown-content :global(img[loading='lazy']) {
+        aspect-ratio: attr(width) / attr(height);
+        height: auto;
+    }
 </style>

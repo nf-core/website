@@ -27,7 +27,10 @@ This pipeline uses code and infrastructure developed and maintained by the [nf-c
 ## General
 
 - Replace all references to the pipeline name that include the `nf-core/` suffix.
-  - :warning: If you still wish to use the `nf-core tools` linting functionality, this may result in a lot of linting failures. You can create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests. You can find more information on how to do this [here](/tools/#linting-config). One example is the `pipeline_name_conventions`
+
+  :::warning
+  If you still wish to use the `nf-core tools` linting functionality, this may result in a lot of linting failures. You can create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests. You can find more information on how to do this [here](/tools/#linting-config). One example is the `pipeline_name_conventions`
+  :::
 
 ### `README`
 

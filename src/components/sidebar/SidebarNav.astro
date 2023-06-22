@@ -30,7 +30,14 @@ const url = Astro.url.pathname;
                                             class:list={[
                                                 'mt-2 w-100',
                                                 {
-                                                    active: url.endsWith(child.slug),
+                                                    active:
+                                                        url.endsWith(child.slug) ||
+                                                        (url.split('/').length >= 6 &&
+                                                            url
+                                                                .split('/')
+                                                                .slice(0, 4)
+                                                                .join('/')
+                                                                .endsWith(child.slug.replace(/\/$/, ''))),
                                                 },
                                             ]}
                                         >
