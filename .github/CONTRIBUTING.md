@@ -1,3 +1,10 @@
+---
+title: Getting started
+subtitle: How to run your first nf-core pipeline.
+menu:
+  main:
+    weight: 10
+---
 # nf-core/nf-co.re - Contributing Guidelines
 
 Hi there! Many thanks for taking an interest in improving the nf-core website.

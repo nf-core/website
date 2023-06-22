@@ -1,6 +1,7 @@
 ---
-title: 1 - Introduction
+title: Gitpod
 subtitle: Testing, Code review and Website dev.
+weight: 1
 ---
 
 # Introduction
@@ -28,15 +29,15 @@ By clicking on the Gitpod button (see below), your repository is cloned into you
 We recommend that you first install a [Gitpod browser extension](https://www.gitpod.io/docs/browser-extension).
 This adds the green Gitpod button to each Git repository for easy access to the environment.
 This button simply appends `https://gitpod.io/#` onto the git repo URL (e.g. `https://gitpod.io/#https://github.com/nf-core/rnaseq`).
-![PNG](/assets/markdown_assets/developers/gitpod/gitpodbutton.png)
+![image of gitpod button](@assets/contributing/gitpod/gitpodbutton.png)
 
 Once you click on the green button, you will asked to sign in with Github.
 Then you should see something similar to the following:
-![PNG](/assets/markdown_assets/developers/gitpod/nf-core-gitpod.png)
+![Screenshot of the gitpod interface](@assets/contributing/gitpod/nf-core-gitpod.png)
 
 1. **The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.)
    Click the Explorer button to see which files are in this repository:
-   ![PNG](/assets/markdown_assets/developers/gitpod/explorer.png)
+   ![PNG](@assets/contributing/gitpod/explorer.png)
 
 2. **The terminal** allows you to run all the programs in the repository.
    The base image comes with `nextflow`, `nf-core` and `docker` already installed.
@@ -45,14 +46,14 @@ Then you should see something similar to the following:
 3. **The main window** allows you to view and edit files.
    Clicking on a file in the Explorer will open it within the main window.
    Once a file is open, Markdown or HTML can be rendered using the preview option.
-   ![PNG](/assets/markdown_assets/developers/gitpod/preview.png)
+   ![PNG](@assets/contributing/gitpod/preview.png)
 
 ## Guides
 
 See the following guides for Gitpod use in different scenarios:
 
-- [Configuration of a Gitpod environment](config.md)
 - [Using git within Gitpod](git_in_gitpod.md)
+- [Configuration of a Gitpod environment](config.md)
 - [How to develop Markdown for the nf-core website](webdev.md)
 - [How to develop nf core pipelines with Gitpod](nf_core_repo.md)
 - [Other Gitpod tutorials](other_tutorials.md)

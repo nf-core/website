@@ -30,7 +30,7 @@ Even before beginning the development of a module, you should identify a small d
 
 The first step, to contribute a module to the community repository is to fork \*nf-core modules into your own account or organisation. To do this, you should click on the top-right of the nf-core modules repository, and choose "fork" as shown in the figure below.
 
-![fork](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
+![fork](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_01_fork.png)
 
 You then choose the account or organisation you want to fork the repository into. Once forked, you can commit all changes you need into the new repository.
 
@@ -48,7 +48,7 @@ In order to create a new module, it is best to branch the code into a recognisab
 
   - To do this, you can select the dropdown menu on the top-left of your repository code, write the name of the new branch and choose to create it as shown below:
 
-    ![branch](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
+    ![branch](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)
 
   - You will then sync this locally (ideally, you clone the forked repository on your working environment to edit code more comfortably)
 
@@ -87,7 +87,7 @@ Each of the files is pre-filled according to a defined nf-core template.
 
 You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
-![module](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_03_create_module.png)
+![module](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_03_create_module.png)
 
 The above represents the main code of your module, which will need to be changed.
 NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those files will be pre-filled for you.
@@ -265,7 +265,7 @@ nf-core modules lint fgbio/fastqtobam -d .
 
 You will expect no test failed, as shown in figure below:
 
-![lint](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_04_lint_module.png)
+![lint](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_04_lint_module.png)
 
 For more information on fixing linting errors in your code both locally and directly in your pull request in GitHub, check at the end of this subsection [here](https://nf-co.re/docs/usage/tutorials/nf_core_usage_tutorial#installing-the-nf-core-helper-tools).
 
@@ -347,7 +347,7 @@ We are then prompted for the software profile, and we have to choose between _Co
 
 In the example below we have chosen Conda.
 
-![create_yaml](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_05_create_test_yaml.png)
+![create_yaml](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_05_create_test_yaml.png)
 
 This process will run the test workflow, generate the outputs and update the `test.yml` file accordingly.
 
@@ -413,11 +413,11 @@ NXF_VER="21.04.0-edge" PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --
 
 Creating a Pull Request is very simple: on the top right of your repository you can click on the link "Pull request" as shown in the figure below:
 
-![pull](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_06_pull-reqs.png)
+![pull](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_06_pull-reqs.png)
 
 If you have initiated the pull request from your forked repository, the direction of the request should be indicated by the arrow, as in the picture below, i.e. from your fork to the nf-core original repository
 
-![open_pull](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
+![open_pull](@assets/contributing/dsl2_modules_tutorial/dsl2-mod_07_pull-reqs-open.png)
 
 You can find more information on the GitHub [guide](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) and the nf-core talk [_Bytesize 4: GitHub contribution basics_](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics).
 

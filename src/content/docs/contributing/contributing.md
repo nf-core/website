@@ -1,14 +1,18 @@
 ---
 title: Contributing
-description: Guides for how to contribute to the MultiQC code base
-order: 6
+subtitle: Guides on how to contribute to the nf-core documentation.
+menu:
+  main:
+    weight: 10
 ---
 
-## Documentation
+# Admonitions
 
-### Admonitions
+Admonitions are used to highlight text in a box with a title. They are used to draw attention to important information, or to warn of potential problems.
 
-#### Notes
+You can use the following admonitions on this website:
+
+## Notes
 
 ```md
 :::note
@@ -20,7 +24,7 @@ He had half a mind just to keep on `falling`.
 He had half a mind just to keep on `falling`.
 :::
 
-#### Info
+## Info
 
 ```md
 :::info
@@ -32,7 +36,7 @@ His face froze for a second or two and then began to do that terribly slow crash
 His face froze for a second or two and then began to do that terribly slow crashing `trick` that Arctic ice floes do so spectacularly in the spring.
 :::
 
-#### Warnings
+## Warnings
 
 ```md
 :::warning
@@ -44,7 +48,7 @@ He smiled the smile that Zaphod had wanted to hit and this time `Zaphod` hit it.
 He smiled the smile that Zaphod had wanted to hit and this time `Zaphod` hit it.
 :::
 
-#### Danger
+## Danger
 
 ```md
 :::danger
@@ -56,7 +60,7 @@ One of the troublesome circumstances was the Plural nature of this Galactic Sect
 One of the troublesome circumstances was the Plural nature of this Galactic Sector, where the possible `continually` interfered with the probable.
 :::
 
-#### Attributes
+## Attributes
 
 ```md
 :::note{title="Don't Panic"}

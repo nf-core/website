@@ -1,5 +1,7 @@
 ---
-title: 3 - Configuration
+title: Configuration
+subtitle: Configuring your Gitpod environment
+weight: 3
 ---
 
 ## Configuration of Gitpod
