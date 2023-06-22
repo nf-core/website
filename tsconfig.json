@@ -1,8 +1,6 @@
 {
     "extends": "astro/tsconfigs/base",
     "compilerOptions": {
-        "target": "ESNext",
-        "module": "ESNext",
         "baseUrl": ".",
         "paths": {
             "@assets/*": ["src/assets/*"],
