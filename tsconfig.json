@@ -1,6 +1,7 @@
 {
     "extends": "astro/tsconfigs/base",
     "compilerOptions": {
+        "module": "ES2022",
         "baseUrl": ".",
         "paths": {
             "@assets/*": ["src/assets/*"],
@@ -9,7 +10,6 @@
             "@content/*": ["src/content/*"],
             "@public/*": ["public/*"],
             "@styles/*": ["src/styles/*"],
-            "@assets/*": ["src/assets/*"],
         },
         "strictNullChecks": true
     }
