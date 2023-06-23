@@ -11,21 +11,21 @@ Once you have made changes within the Gitpod environment, you can push these to 
 
 First, make sure your edited files are saved in your Gitpod environment (on macOS, `cmd-s`).
 Then click the Git checkout branch option at the bottom left of the window.
-![PNG](@assets/contributing/gitpod/git.1.png)
+![PNG](/images/contributing/gitpod/git.1.png)
 
 Here will pop up an option to _"Create a new branch..."_.
 Name a new branch and now you are operating on a branch of the main repository.
-![PNG](@assets/contributing/gitpod/git.2.png)
+![PNG](/images/contributing/gitpod/git.2.png)
 
 To stage files to this new branch, click on the **Source Control** button (on the left hand panel).
-![PNG](@assets/contributing/gitpod/source.png)
+![PNG](/images/contributing/gitpod/source.png)
 
 This shows all the changes to files and you can stage all changes by clicking the + button when you hover over the file name.
-![PNG](@assets/contributing/gitpod/git.3.png)
+![PNG](/images/contributing/gitpod/git.3.png)
 
 Finally, type in a commit message and click the tick button at the top of the source window.
 Then click sync changes. You should have now pushed the new files to your new branch.
-![PNG](@assets/contributing/gitpod/git.4.png)
+![PNG](/images/contributing/gitpod/git.4.png)
 
 ## Using the command line
 

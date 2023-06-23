@@ -28,15 +28,15 @@ By clicking on the Gitpod button (see below), your repository is cloned into you
 We recommend that you first install a [Gitpod browser extension](https://www.gitpod.io/docs/browser-extension).
 This adds the green Gitpod button to each Git repository for easy access to the environment.
 This button simply appends `https://gitpod.io/#` onto the git repo URL (e.g. `https://gitpod.io/#https://github.com/nf-core/rnaseq`).
-![image of gitpod button](@assets/contributing/gitpod/gitpodbutton.png)
+![image of gitpod button](/images/contributing/gitpod/gitpodbutton.png)
 
 Once you click on the green button, you will asked to sign in with Github.
 Then you should see something similar to the following:
-![Screenshot of the gitpod interface](@assets/contributing/gitpod/nf-core-gitpod.png)
+![Screenshot of the gitpod interface](/images/contributing/gitpod/nf-core-gitpod.png)
 
 1. **The sidebar** allows you to customise your environment and perform basic tasks (Copy/Paste, Open files, search, git, etc.)
    Click the Explorer button to see which files are in this repository:
-   ![PNG](@assets/contributing/gitpod/explorer.png)
+   ![PNG](/images/contributing/gitpod/explorer.png)
 
 2. **The terminal** allows you to run all the programs in the repository.
    The base image comes with `nextflow`, `nf-core` and `docker` already installed.
@@ -45,7 +45,7 @@ Then you should see something similar to the following:
 3. **The main window** allows you to view and edit files.
    Clicking on a file in the Explorer will open it within the main window.
    Once a file is open, Markdown or HTML can be rendered using the preview option.
-   ![PNG](@assets/contributing/gitpod/preview.png)
+   ![PNG](/images/contributing/gitpod/preview.png)
 
 ## Guides
 

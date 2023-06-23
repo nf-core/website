@@ -13,7 +13,7 @@ This will open a Gitpod environment for the website. You'll need to sign in with
 > The editing process is the same.
 
 Most of the content on the nf-core website is written in Markdown.
-You can navigate to the Markdown files by using the Explorer panel to the left hand side: ![PNG](@assets/contributing/gitpod/explorer.png)
+You can navigate to the Markdown files by using the Explorer panel to the left hand side: ![PNG](/images/contributing/gitpod/explorer.png)
 
 Then follow `nf-co.re/markdown/developers` to open individual Markdown files. Click on a name of the file you want to edit.
 
@@ -24,11 +24,11 @@ When you open Gitpod from the nf-core website (`master`, a branch, or from a pul
 > This is a great way to preview changes in a pull-request!
 
 When the environment launches, you should see a terminal window at the bottom with the log output from `docker compose` and a _'Simple Browser'_ tab should open in the main view:
-![PNG](@assets/contributing/gitpod/website_preview.png)
+![PNG](/images/contributing/gitpod/website_preview.png)
 
 If you open up a file to edit, you can drag this pane to the left and have both the editor and the browser side by side.
 Click refresh in the browser pane to see your edits appear as you type:
-![PNG](@assets/contributing/gitpod/website_preview_2.png)
+![PNG](/images/contributing/gitpod/website_preview_2.png)
 
 Note that the URL within the _Simple Browser_ can also be opened up directly in a web browser. This can be shared with others and should persist for as long as the Gitpod environment is running.
 
@@ -43,7 +43,7 @@ To get this stuff to work, please see the [First-run](https://github.com/nf-core
 
 If you prefer, Gitpod is also able to conveniently render Markdown within the Editor window.
 Whilst editing some Markdown, at the top right of the text editor window, click the preview button:
-![PNG](@assets/contributing/gitpod/preview.png)
+![PNG](/images/contributing/gitpod/preview.png)
 
 This should open up in a new window the rendering of the Markdown code.
 Now you can edit your raw code and see the changes happening live in the preview.
@@ -63,7 +63,7 @@ By adding the Prettier plugin to VSCode, your Markdown edits will automatically 
 The plugin may already be installed within your Gitpod environment.
 If not, you can add it yourself. Click the extension button on the side panel:
 
-![PNG](@assets/contributing/gitpod/extension.png)
+![PNG](/images/contributing/gitpod/extension.png)
 
 Then choose `Prettier - Code formatter`:
-![PNG](@assets/contributing/gitpod/prettier-vscode.png)
+![PNG](/images/contributing/gitpod/prettier-vscode.png)
