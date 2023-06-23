@@ -21,7 +21,7 @@ The following lists an overview of the guidelines. Follow links to dedicated pag
 
 The instructions below are subject to interpretation and specific scenarios.
 If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
-You can join the nf-core Slack [here](/join).
+You can join the nf-core Slack [here](/join/).
 
 ## Requirements
 

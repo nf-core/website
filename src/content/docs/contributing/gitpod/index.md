@@ -1,7 +1,6 @@
 ---
 title: Gitpod
 subtitle: Testing, Code review and Website dev.
-weight: 1
 ---
 
 # Introduction
