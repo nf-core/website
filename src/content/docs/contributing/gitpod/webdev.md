@@ -2,7 +2,6 @@
 title: Editing Markdown
 subtitle: How to develop Markdown for the website
 weight: 4
-parent: gitpod
 ---
 
 ## How to develop Markdown for the website
