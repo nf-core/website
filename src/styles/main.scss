@@ -164,14 +164,10 @@ section:before {
 
 // buttons
 
-
-.btn-outline-success:not(:disabled):not(.disabled) {
-  color: $nf-core-color;
-}
 // make hover and active states more obvious for outline buttons
 .btn-outline-success:not(:disabled):not(.disabled):hover:not(.active) {
   background-color: shade-color($nf-core-color, 15%);
-  color: white;
+  color: $white;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled):hover:not(.active) {
