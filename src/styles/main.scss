@@ -164,19 +164,15 @@ section:before {
 
 // buttons
 .btn-outline-success:not(:disabled):not(.disabled) {
-  border-color: $nf-core-color;
   color: $nf-core-color;
 }
 
-.btn-outline-success:not(:disabled):not(.disabled):hover,
-.btn-check:checked + .btn-outline-success:not(:disabled):not(.disabled) {
-  background-color: $nf-core-color;
+.btn-outline-success:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($nf-core-color, 15%);
   color: $white;
 }
 
 .btn-success:not(:disabled):not(.disabled) {
-  background-color: $nf-core-color;
-  border-color: $nf-core-color;
   color: $white;
 }
 
