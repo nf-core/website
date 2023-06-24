@@ -1,7 +1,7 @@
 import calloutsPlugin from './bin/remark-callouts.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import githubLightTheme from '/public/themes/github-light.json';
-import nordTheme from '/public/themes/nord.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
@@ -92,7 +92,7 @@ export default defineConfig({
                     langPrefix: 'language-',
                     keepBackground: true,
                     theme: {
-                        dark: nordTheme,
+                        dark: 'github-dark-dimmed',
                         light: githubLightTheme,
                     },
                 },

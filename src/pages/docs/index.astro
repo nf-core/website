@@ -5,9 +5,34 @@ let docs = await getCollection('docs');
 let usageDocs: CollectionEntry<'docs'>[] = [];
 let contributingDocs: CollectionEntry<'docs'>[] = [];
 
-docs = docs.filter((doc) => {
-    return doc.slug.split('/').length === 2;
-});
+// sort docs first depth, then by weight, then by title
+const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
+    if (a.slug.split('/').length < b.slug.split('/').length) {
+        return 1;
+    } else if (a.slug.split('/').length > b.slug.split('/').length) {
+        return -1;
+    } else {
+        if (a.data.weight && !b.data.weight) {
+            return -1;
+        } else if (!a.data.weight && b.data.weight) {
+            return 1;
+        }
+        if (a.data.weight < b.data.weight) {
+            return -1;
+        } else if (a.data.weight > b.data.weight) {
+            return 1;
+        } else {
+            if (a.data.title < b.data.title) {
+                return -1;
+            } else if (a.data.title > b.data.title) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+};
+
 docs.map((doc) => {
     if (doc.slug.startsWith('usage/')) {
         usageDocs.push(doc);
@@ -16,6 +41,8 @@ docs.map((doc) => {
         contributingDocs.push(doc);
     }
 });
+usageDocs.sort(sortDocs);
+contributingDocs.sort(sortDocs);
 ---
 
 <PageLayout
@@ -23,30 +50,83 @@ docs.map((doc) => {
     subtitle="Here you can find all documentation on how to use nf-core pipelines, and nf-core tools to start processing your data. You will also find information on how to contribute to nf-core pipelines, modules and subworkflows."
 >
     This section contains the following subsections:
+    <div class="d-md-flex justify-content-around">
+        <div>
+            <h2>Usage</h2>
 
-    <h2>Usage</h2>
-    <ul>
-        {
-            // nested list based on the depth of the docs.slug
-            usageDocs.map((doc) => {
-                return (
-                    <li>
-                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                    </li>
-                );
-            })
-        }
-    </ul>
-    <h2>Contributing</h2>
-    <ul>
-        {
-            contributingDocs.map((doc) => {
-                return (
-                    <li>
-                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                    </li>
-                );
-            })
-        }
-    </ul>
+            <ul>
+                {
+                    usageDocs
+                        .filter((doc) => doc.slug.split('/').length === 2)
+                        .map((doc) => {
+                            // check if this is a parent of a nested doc
+                            const childDocs = usageDocs.filter((childDoc) => childDoc.slug.startsWith(doc.slug + '/'));
+                            if (childDocs.length > 0) {
+                                return (
+                                    <li>
+                                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                        <ul>
+                                            {childDocs.map((childDoc) => {
+                                                return (
+                                                    <li>
+                                                        <a href={'/docs/' + childDoc.slug + '/'}>
+                                                            {childDoc.data.title}
+                                                        </a>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </li>
+                                );
+                            } else {
+                                return (
+                                    <li>
+                                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                    </li>
+                                );
+                            }
+                        })
+                }
+            </ul>
+        </div>
+        <div>
+            <h2>Contributing</h2>
+            <ul>
+                {
+                    contributingDocs
+                        .filter((doc) => doc.slug.split('/').length === 2)
+                        .map((doc) => {
+                            // check if this is a parent of a nested doc
+                            const childDocs = contributingDocs.filter((childDoc) =>
+                                childDoc.slug.startsWith(doc.slug + '/')
+                            );
+                            if (childDocs.length > 0) {
+                                return (
+                                    <li>
+                                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                        <ul>
+                                            {childDocs.map((childDoc) => {
+                                                return (
+                                                    <li>
+                                                        <a href={'/docs/' + childDoc.slug + '/'}>
+                                                            {childDoc.data.title}
+                                                        </a>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </li>
+                                );
+                            } else {
+                                return (
+                                    <li>
+                                        <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                    </li>
+                                );
+                            }
+                        })
+                }
+            </ul>
+        </div>
+    </div>
 </PageLayout>

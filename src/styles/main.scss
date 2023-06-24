@@ -46,6 +46,10 @@ strong {
   font-size: 90%;
 }
 
+.font-sans-serif {
+  font-family: $font-family-sans-serif;
+}
+
 blockquote {
   margin: 1rem 0 2rem;
   padding: 0.5rem 1rem;
@@ -163,27 +167,27 @@ section:before {
 }
 
 // buttons
-.btn-outline-success:not(:disabled):not(.disabled) {
-  border-color: $nf-core-color;
-  color: $nf-core-color;
-}
 
-.btn-outline-success:not(:disabled):not(.disabled):hover,
-.btn-check:checked + .btn-outline-success:not(:disabled):not(.disabled) {
-  background-color: $nf-core-color;
+// make hover and active states more obvious for outline buttons
+.btn-outline-success:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($nf-core-color, 15%);
   color: $white;
 }
 
-.btn-success:not(:disabled):not(.disabled) {
-  background-color: $nf-core-color;
-  border-color: $nf-core-color;
-  color: $white;
+.btn-outline-primary:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($primary, 15%);
 }
-
-.btn-success:not(:disabled):not(.disabled):hover {
-  background-color: $nf-core-color;
-  border-color: shade-color($nf-core-color, 5%);
-  color: $white;
+.btn-outline-secondary:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($secondary, 15%);
+}
+.btn-outline-info:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($info, 15%);
+}
+.btn-outline-warning:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($warning, 15%);
+}
+.btn-outline-danger:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($danger, 15%);
 }
 
 .btn-outline-success:not(:disabled):not(.disabled).active,
@@ -264,7 +268,7 @@ code:not(pre code),
   font-size: 14px;
   code {
     border: 1px solid $border-color;
-    display: block;
+    display: flow-root;
     overflow-x: auto;
     padding: 1em;
 
@@ -1233,7 +1237,7 @@ div.mermaid {
   }
 
   .hide-light {
-    display: inline;
+    display: inline-block;
   }
   pre[data-theme='dark'] {
     display: inline;

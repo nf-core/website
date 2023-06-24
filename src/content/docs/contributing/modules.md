@@ -5,7 +5,7 @@ subtitle: Guidelines and reference for DSL2 modules
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
+See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial/) for a step by step guide for how to add a module!
 
 ## Terminology
 
@@ -25,7 +25,7 @@ What DSL1 users would consider an end-to-end pipeline. For example, from one or 
 
 ## Writing a new module reference
 
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
+See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial/) for a step by step guide for how to add a module!
 
 ### Before you start
 

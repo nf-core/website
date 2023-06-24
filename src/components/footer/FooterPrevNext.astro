@@ -15,7 +15,7 @@ const { md_github_url, prev_page, next_page } = Astro.props;
             prev_page && (
                 <a
                     class="btn nav-btn rounded-0 d-flex flex-column align-items-end py-md-3 py-2 px-3  text-body text-decoration-none text-end"
-                    href={'/docs/' + prev_page.slug}
+                    href={'/docs/' + prev_page.slug + '/'}
                 >
                     <span class="text-body-secondary d-none d-md-inline">Previous: </span>
                     <i class="fa-solid fa-arrow-left me-1 d-md-none" />
@@ -35,7 +35,7 @@ const { md_github_url, prev_page, next_page } = Astro.props;
             next_page && (
                 <a
                     class="btn nav-btn rounded-0 d-flex flex-column align-items-start py-md-3 py-2 px-3 text-body text-decoration-none text-start"
-                    href={'/docs/' + next_page.slug}
+                    href={'/docs/' + next_page.slug + '/'}
                 >
                     <span class="text-body-secondary d-none d-md-inline">Next: </span>
                     <i class="fa-solid fa-arrow-right ms-1 d-md-none" />

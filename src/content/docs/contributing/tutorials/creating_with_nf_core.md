@@ -39,7 +39,7 @@ To work with a clean directory, you can do the following:
 
 - In the menu top left, select File > Open Folder (<kbd>^</kbd> <kbd>⇧</kbd> <kbd>O</kbd> or <kbd>^</kbd> <kbd>O</kbd>)
 
-  ![gitpod open folder menu](/assets/markdown_assets/developers/creating_with_nf_core/gitpod_open_folder.png)
+  ![gitpod open folder menu](/images/contributing/creating_with_nf_core/gitpod_open_folder.png)
 
 - Enter `/home/gitpod/training`
 - GitPod will probably reload the browser tab
@@ -81,13 +81,13 @@ nf-core --help
 
 You should get something that looks like the following output:
 
-![nf-core --help](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_help.svg)
+![nf-core --help](/images/contributing/creating_with_nf_core/nfcore_help.svg)
 
 The first set of subcommands are typically useful for running pipelines, the second are for developing pipelines.
 
 You can try out some commands, for example listing available nf-core pipelines:
 
-![nf-core list](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_list.svg)
+![nf-core list](/images/contributing/creating_with_nf_core/nfcore_list.svg)
 
 In this tutorial we will focus on creating a pipeline, but please do look at the functionality that nf-core/tools provides to you as a user - especially `nf-core launch` and `nf-core download`.
 
@@ -101,7 +101,7 @@ nf-core create
 
 Although you can provide options on the command line, it's easiest to use the interactive prompts.
 
-![nf-core create](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_create.svg)
+![nf-core create](/images/contributing/creating_with_nf_core/nfcore_create.svg)
 
 Follow the instructions and you should see a new pipeline appear in your file explorer.
 
@@ -117,15 +117,15 @@ cd nf-core-demo/
 The `nf-core create` command has made a fully fledged pipeline for you.
 Before getting too carried away looking at all of the files, note that it has also initiated a git repository:
 
-![git status](/assets/markdown_assets/developers/creating_with_nf_core/git_status.svg)
+![git status](/images/contributing/creating_with_nf_core/git_status.svg)
 
 It's actually created three branches for you:
 
-![git branch](/assets/markdown_assets/developers/creating_with_nf_core/git_branch.svg)
+![git branch](/images/contributing/creating_with_nf_core/git_branch.svg)
 
 Each have the same initial commit, with the vanilla template:
 
-![git log](/assets/markdown_assets/developers/creating_with_nf_core/git_log.svg)
+![git log](/images/contributing/creating_with_nf_core/git_log.svg)
 
 This is important, because this shared git history with unmodified nf-core template in the `TEMPLATE` branch is how the [nf-core automated template synchronisation](https://nf-co.re/docs/contributing/sync) works (see the docs for more details).
 
@@ -144,7 +144,7 @@ cd ../
 nextflow run nf-core-demo/ -profile test,docker --outdir test_results
 ```
 
-![nextflow run](/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_1.svg)
+![nextflow run](/images/contributing/creating_with_nf_core/nextflow_run_1.svg)
 
 Sure enough, our new pipeline has run FastQC and MultiQC on a selection of test data.
 
@@ -175,7 +175,7 @@ nf-core lint
 Linting tests can have one of four statuses: pass, ignore, warn or fail.
 For example, at first you will see a large number of _warnings_ about `TODO` comments, letting you know that you haven't finished setting up your new pipeline:
 
-![nf-core lint](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_warnings.svg)
+![nf-core lint](/images/contributing/creating_with_nf_core/nfcore_lint_warnings.svg)
 
 Warnings are ok at this stage, but should be cleared up before a pipeline release.
 
@@ -187,7 +187,7 @@ echo "Edited" >> CODE_OF_CONDUCT.md
 nf-core lint
 ```
 
-![nf-core lint](/assets/markdown_assets/developers/creating_with_nf_core/nfcore_lint_failure.svg)
+![nf-core lint](/images/contributing/creating_with_nf_core/nfcore_lint_failure.svg)
 
 ### Continuous integration testing
 
@@ -224,7 +224,7 @@ cd ../
 nextflow run nf-core-demo/ --help
 ```
 
-![nextflow run --help](/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_help.svg)
+![nextflow run --help](/images/contributing/creating_with_nf_core/nextflow_run_help.svg)
 
 Here we get a rich help output, with command line parameter variable types, and help text.
 However, the Nextflow syntax in `nextflow.config` does not allow for this kind of rich metadata natively.
@@ -244,7 +244,7 @@ Indeed, if you try to run the new pipeline without the required `--outdir` param
 nextflow run nf-core-demo/ -profile test,docker
 ```
 
-![nextflow run --help](/assets/markdown_assets/developers/creating_with_nf_core/nextflow_run_no_outdir.svg)
+![nextflow run --help](/images/contributing/creating_with_nf_core/nextflow_run_no_outdir.svg)
 
 ### Working with Nextflow schema
 
