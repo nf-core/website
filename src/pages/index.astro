@@ -1,7 +1,7 @@
 ---
 import Icon from 'astro-icon';
-import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
@@ -25,8 +25,12 @@ const pipeline_links = pipelines.map((pipeline) => {
         <EventBanner />
         <div class="homepage-header-contents col-md-5">
             <h1>
-                <img src={NfCoreLogo.src} class="hide-dark" />
-                <img src={NfCoreLogoDarkbg.src} class="hide-light" />
+                <div class="hide-dark">
+                    <Fragment set:html={NfCoreLogo} />
+                </div>
+                <div class="hide-light">
+                    <Fragment set:html={NfCoreLogoDarkbg} />
+                </div>
             </h1>
             <p class="lead font-weight-normal">
                 A community effort to collect a curated set of analysis pipelines built using Nextflow.

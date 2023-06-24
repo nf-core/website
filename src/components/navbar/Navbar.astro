@@ -4,8 +4,8 @@ import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
 import { getCollection } from 'astro:content';
 
 export interface Props {
@@ -41,8 +41,12 @@ const { navTocHeadings = [], title } = Astro.props;
 >
     <div class="container">
         <a class="navbar-brand d-md-none" href="/">
-            <img height="25px" src={NfCoreLogo.src} class="hide-dark" alt="nf-core logo" />
-            <img height="25px" src={NfCoreLogoDarkbg.src} class="hide-light" alt="nf-core logo" />
+            <div class="hide-dark">
+                <Fragment set:html={NfCoreLogo} />
+            </div>
+            <div class="hide-light">
+                <Fragment set:html={NfCoreLogoDarkbg} />
+            </div>
         </a>
         {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
         <button
@@ -124,6 +128,9 @@ const { navTocHeadings = [], title } = Astro.props;
         .navbar-brand {
             margin-top: 0.25rem;
             margin-bottom: 0.25rem;
+            :global(svg) {
+                height: 25px;
+            }
         }
         // add wider margins on larger screens
         @include media-breakpoint-up(md) {
