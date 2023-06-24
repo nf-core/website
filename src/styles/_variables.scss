@@ -30,8 +30,11 @@ $font-family-sans-serif: 'Inter Variable', 'Open Sans Variable', sans-serif;
 $font-family-monospace: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',
   'Bitstream Vera Sans Mono', 'Courier New', monospace;
 
+
+// overwrite standard button styles
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
+
 
 // standard bootstrap variables
 @import 'bootstrap/scss/functions';

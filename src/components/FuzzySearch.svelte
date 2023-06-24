@@ -21,7 +21,14 @@
 </script>
 
 <div class="search-container dropdown">
-    <input class="form-control form-control" type="text" {placeholder} aria-label={placeholder} on:keyup={search} />
+    <input
+        id="fuzzy-search"
+        class="form-control form-control"
+        type="text"
+        {placeholder}
+        aria-label={placeholder}
+        on:keyup={search}
+    />
 
     <ul class="search-results dropdown-menu" class:show={results.length > 0}>
         {#if results}

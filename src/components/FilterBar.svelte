@@ -89,7 +89,7 @@
         {/if}
         {#if sortBy.length > 1}
             <div class="ms-3 d-flex align-items-center">
-                Sort:
+                Sort by:
                 <div class="btn-group ms-1 sort-buttons" role="group" aria-label="Sort buttons">
                     {#each sortBy as sor (sor)}
                         <input

@@ -1,6 +1,7 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection } from 'astro:content';
+import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
+import { getCollection, CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
     const docs = await getCollection('docs');
@@ -17,6 +18,83 @@ const title = 'Docs/' + Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
 const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.render();
 
+let prev_page: CollectionEntry<'docs'> | null = null;
+let next_page: CollectionEntry<'docs'> | null = null;
+
+const docs = await getCollection('docs');
+
+let sections = [
+    { section_name: 'Usage', children: [] },
+    { section_name: 'Contributing', children: [] },
+];
+
+// sort docs first depth, then by weight, then by title
+const sortDocs = (a: CollectionEntry<'docs'>, b: CollectionEntry<'docs'>) => {
+    if (a.slug.split('/').length < b.slug.split('/').length) {
+        return -1;
+    } else if (a.slug.split('/').length > b.slug.split('/').length) {
+        return 1;
+    } else {
+        if (a.data.weight && !b.data.weight) {
+            return -1;
+        } else if (!a.data.weight && b.data.weight) {
+            return 1;
+        } else if (a.data.weight < b.data.weight) {
+            return -1;
+        } else if (a.data.weight > b.data.weight) {
+            return 1;
+        } else {
+            if (a.data.title < b.data.title) {
+                return -1;
+            } else if (a.data.title > b.data.title) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+};
+let usageDocs: CollectionEntry<'docs'>[] = [];
+let contributingDocs: CollectionEntry<'docs'>[] = [];
+docs.map((doc) => {
+    if (doc.slug.startsWith('usage/')) {
+        usageDocs.push(doc);
+    }
+    if (doc.slug.startsWith('contributing/')) {
+        contributingDocs.push(doc);
+    }
+});
+usageDocs.sort(sortDocs);
+contributingDocs.sort(sortDocs);
+
+usageDocs
+    .filter((doc) => doc.slug.split('/').length === 2)
+    .map((doc) => {
+        sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+    });
+contributingDocs
+    .filter((doc) => doc.slug.split('/').length === 2)
+    .map((doc) => {
+        sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+    });
+// find the index of the current page and use that to get the previous and next page
+const url = Astro.url.pathname.replace(/\/$/, '');
+const currentDocs = url.startsWith('/docs/usage/') ? usageDocs : contributingDocs;
+console.log('url', url);
+console.log(
+    'currentDocs',
+    currentDocs.map((doc) => '/docs/' + doc.slug)
+);
+const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
+
+if (current_page_index === -1) {
+    console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
+} else {
+    prev_page = currentDocs[current_page_index - 1];
+    prev_page = prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
+    next_page = currentDocs[current_page_index + 1];
+    next_page = next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
+}
 // TODO: update github url
 const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/docs/' + Astro.props.doc.id;
 ---
@@ -27,6 +105,8 @@ const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/
     md_github_url={md_github_url}
     headings={headings}
     left_sidebar={true}
+    sections={sections}
 >
     <Content />
+    <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
 </MarkdownTocLayout>

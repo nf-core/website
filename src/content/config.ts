@@ -1,5 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 
+
 const events = defineCollection({
     schema: z.object({
         title: z.string(),
@@ -22,6 +23,8 @@ const docs = defineCollection({
     schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
+        weight: z.number().optional(),
+        parent: z.string().optional(),
     }),
 });
 const about = defineCollection({

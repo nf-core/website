@@ -1,6 +1,6 @@
 ---
-import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg';
-import NfCoreLogo from '@assets/logos/nf-core-logo.svg';
+import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
 import FooterSocial from '@components/footer/FooterSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 ---
@@ -51,9 +51,13 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
                     />
                 </div>
                 <div class="mt-3">
-                    <a href="/">
-                        <img height="30px" src={NfCoreLogo.src} alt="nf-core logo" class="hide-dark" />
-                        <img height="30px" src={NfCoreLogoDarkbg.src} alt="nf-core logo" class="hide-light" />
+                    <a href="/" class="text-decoration-none">
+                        <div class="hide-dark">
+                            <Fragment set:html={NfCoreLogo} />
+                        </div>
+                        <div class="hide-light">
+                            <Fragment set:html={NfCoreLogoDarkbg} />
+                        </div>
                     </a>
                     <div class="small d-block">Making awesome workflows since 2018.</div>
                 </div>
@@ -62,7 +66,7 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
                 <div class="small mb-1">
                     <p class="mb-1">Supported by:</p>
                     <span class="text-center">
-                        <FooterSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="czi" />
+                        <FooterSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="logos/czi" />
                         <span class="ms-1">+</span>
                         <FooterSocial
                             link="/about#microsoft-azure"
@@ -95,6 +99,12 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
 
     <style lang="scss">
         @import '@styles/_variables.scss';
+        .hide-light:has(svg),
+        .hide-dark:has(svg) {
+            height: 3rem;
+            width: 7.5rem;
+        }
+
         footer {
             padding: 2rem 0 3rem;
             & a {

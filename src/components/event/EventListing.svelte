@@ -31,7 +31,7 @@
         return false;
     };
 
-    $: filteredEvents = events.filter(filterByType).filter(searchEvents);
+    $: filteredEvents = events;
 
     CurrentFilter.subscribe(() => {
         filteredEvents = events.filter(filterByType).filter(searchEvents);
