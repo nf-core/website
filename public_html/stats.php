@@ -12,7 +12,7 @@ $start_time = microtime(true);
 $title = 'nf-core in numbers';
 $subtitle = 'Measuring activity across the nf-core community.';
 $import_chartjs = true;
-include '../includes/header.php';
+include '../includes/slim_header.php';
 
 $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 $pipelines = $pipelines_json->remote_workflows;
@@ -1631,7 +1631,7 @@ $subfooter =
     $time_taken .
     ' seconds.</p>';
 
-include '../includes/footer.php';
+// include '../includes/footer.php';
 
 
 ?>

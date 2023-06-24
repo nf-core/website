@@ -465,7 +465,7 @@ function build_form_param($param_id, $param, $is_required) {
 $title = 'Launch pipeline';
 $subtitle = 'Configure workflow parameters for a pipeline run.';
 $import_schema_launcher = true;
-include '../includes/header.php';
+include '../includes/slim_header.php';
 
 if (count($error_msgs) > 0) {
     echo '<div class="alert alert-danger">' . implode('<br>', $error_msgs) . '</div>';
@@ -971,5 +971,5 @@ ob_start();
     $end_of_html = ob_get_contents();
     ob_end_clean();
 
-    include '../includes/footer.php';
+    // include '../includes/footer.php';
 

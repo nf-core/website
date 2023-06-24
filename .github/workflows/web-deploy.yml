@@ -2,9 +2,9 @@ name: Deploy website
 
 on:
   push:
-    branches: [master]
+    branches: [old-master]
   pull_request:
-    branches: [master]
+    branches: [old-master]
   workflow_dispatch:
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
           server: ${{ secrets.ftp_server }}
           username: ${{ secrets.ftp_username}}
           password: ${{ secrets.ftp_password }}
-          server-dir: ${{ secrets.ftp_server_dir }} # Relative, not absolute path
+          server-dir: ${{ secrets.ftp_server_old_site_dir }} # Relative, not absolute path
           protocol: ${{ secrets.ftp_protocol }}
           port: ${{ secrets.ftp_port }}
           exclude: >
