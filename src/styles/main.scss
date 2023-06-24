@@ -46,6 +46,10 @@ strong {
   font-size: 90%;
 }
 
+.font-sans-serif {
+  font-family: $font-family-sans-serif;
+}
+
 blockquote {
   margin: 1rem 0 2rem;
   padding: 0.5rem 1rem;
@@ -264,7 +268,7 @@ code:not(pre code),
   font-size: 14px;
   code {
     border: 1px solid $border-color;
-    display: block;
+    display: flow-root;
     overflow-x: auto;
     padding: 1em;
 
@@ -1236,7 +1240,7 @@ div.mermaid {
     display: inline-block;
   }
   pre[data-theme='dark'] {
-    display: inline-block;
+    display: inline;
   }
 
   pre[data-theme='light'] {
