@@ -163,23 +163,31 @@ section:before {
 }
 
 // buttons
+
+
 .btn-outline-success:not(:disabled):not(.disabled) {
   color: $nf-core-color;
 }
-
+// make hover and active states more obvious for outline buttons
 .btn-outline-success:not(:disabled):not(.disabled):hover:not(.active) {
   background-color: shade-color($nf-core-color, 15%);
-  color: $white;
+  color: white;
 }
 
-.btn-success:not(:disabled):not(.disabled) {
-  color: $white;
+.btn-outline-primary:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($primary, 15%);
 }
-
-.btn-success:not(:disabled):not(.disabled):hover {
-  background-color: $nf-core-color;
-  border-color: shade-color($nf-core-color, 5%);
-  color: $white;
+.btn-outline-secondary:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($secondary, 15%);
+}
+.btn-outline-info:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($info, 15%);
+}
+.btn-outline-warning:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($warning, 15%);
+}
+.btn-outline-danger:not(:disabled):not(.disabled):hover:not(.active) {
+  background-color: shade-color($danger, 15%);
 }
 
 .btn-outline-success:not(:disabled):not(.disabled).active,
