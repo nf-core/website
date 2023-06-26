@@ -60,12 +60,15 @@ if (version !== 'dev') {
         icon: 'fa-brands fa-aws',
     });
 }
-allTabItems.push({
-    label: 'Releases',
-    href: `/${pipeline}/releases_stats/`,
-    active: url === `/${pipeline}/releases_stats/`,
-    icon: 'fa-regular fa-chart-line',
-});
+if (versions.length > 1) {
+    allTabItems.push({
+        label: 'Releases',
+        href: `/${pipeline}/releases_stats/`,
+        active: url === `/${pipeline}/releases_stats/`,
+        icon: 'fa-regular fa-chart-line',
+    });
+}
+
 const gh_url = 'https://github.com/nf-core/' + pipeline;
 ---
 

@@ -15,7 +15,7 @@ const pipelines = pipelines_json.remote_workflows;
 const pipeline_links = pipelines.map((pipeline) => {
     return {
         name: pipeline.name,
-        href: pipeline.name + '/' + pipeline.releases[0].tag_name,
+        href: pipeline.name + '/' + pipeline.releases[0].tag_name + '/',
     };
 });
 ---

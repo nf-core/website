@@ -10,12 +10,6 @@ const { pipeline } = Astro.params;
 
 const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 
-if (!pipeline?.startsWith('launch')) {
-    return Astro.redirect(`/${pipeline}/}`);
-}
-if (abouts.map((about) => about.slug).includes(pipeline)) {
-    return Astro.redirect(`/${pipeline}/`);
-}
 if (!meta) {
     console.log(`Pipeline ${pipeline} not found`);
     return Astro.redirect('/404');
