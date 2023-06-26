@@ -48,30 +48,18 @@ Learn more about our pipelines on their dedicated pages. These pipelines are cre
 </br> Matthieu leads the Informatics Infrastructure team, which guides the implementation and delivery of the genome assembly pipelines, and provides support for large-scale genome analyses for the Tree of Life faculty teams. He joined the Wellcome Sanger Institute in February 2021, to form the Informatics Infrastructure team for the Tree of Life programme. He has recruited 7 team members, with skills covering data curation & management, software development & operations, and bioinformatics.
 
 
-### Guoying Qi, DevOps Software Developer {#guoying-qi}
-
-
-
 ### Priyanka Surana, Senior Bioinformatician {#priyanka-surana}
 
+[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/surana-priyanka/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/priyanka-surana) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/priyanka-surana/) &nbsp;
 
-
-### Cibin Sadasivan Baby, Senior Software Developer {#cibin-sadasivan-baby}
-
-
-
-### Cibele Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
-
-
+</br> Priyanka is a Senior Bioinformatician, overseeing the development of Nextflow pipelines for genome assembly, curation and downstream analyses. She also facilitates the workflows community and is passionate about building networks that support peer learning.
 
 ### Paul Davis, Data Manager {#paul-davis}
 
+[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/davis-paul/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/Paul-Davis) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/paul-davis-uk/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/twitter.svg" height=25px>](https://twitter.com/SirPaulDavis) &nbsp;
 
-
-### Beth Yates, Bioinformatics Engineer {#beth-yates}
-
-
+</br> Paul works on the main ToL Genome Engine. This system was developed by the ToL to manage and track samples from collection, onboarding, processing in the lab, sequencing and finally the publication of the assembly and Genome Note publication. As there are many steps in this process developing methodology to identify issues as early as possible is vital to avoid wasted time and resource. Paul works at all levels of the project fielding questions about data flow, data fixes and helps other ToL staff and project stakeholders with data and information. Paul also interacts with external groups and stakeholders to maintain data integrity in the public domain.
 
 ### Alumni {#alumni}
 
-- [Zaynab Butt](linkedin), Informatics and Digital Associate
+- Zaynab Butt, Informatics and Digital Associate
