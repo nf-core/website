@@ -1,11 +1,11 @@
 ---
 title: Community Advanced Nextflow Training - September 2023
-subtitle: A set of global online Nextflow and nf-core training events
+subtitle: A global online advanced Nextflow training event
 type: training
 start_date: '2023-09-27'
-start_time: '15:00 CET'
+start_time: '15:00 CEST'
 end_date: '2023-09-28'
-end_time: '17:00 CET'
+end_time: '17:00 CEST'
 location_name: YouTube
 import_typeform: true
 ---
@@ -22,11 +22,15 @@ Please note that this is not an introductory workshop and experience writing Nex
 
 To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
 
+# Attending at the Wellcome Genome Campus
+
+A local streaming event is being held at the Wellcome Genome Campus. More information about this local event can be found [here](wgc.md).
+
 # Schedule
 
-Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 2 hours.
+Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 2 hours.
 
-### Session 1 (Sept 27)
+### Session 1 (September 27)
 
 Session 1 will cover the following topics:
 
@@ -35,7 +39,7 @@ Session 1 will cover the following topics:
 - Grouping and splitting
 - Groovy imports
 
-### Session 2 (Sept 28)
+### Session 2 (September 28)
 
 Session 2 will cover the following topics:
 
