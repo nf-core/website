@@ -10,12 +10,12 @@ Please note that all sanger community members are expected to adhere to our [cod
 The [Informatics Infrastructure team](/it) provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions. Current members are listed below:
 
 - [Matthieu Muffato](/it#matthieu-muffato)
-- [Guoying Qi](/it#guoying-qi)
+- Guoying Qi
 - [Priyanka Surana](/it#priyanka-surana)
-- [Cibin Sadasivan Baby](/it#cibin-sadasivan-baby)
-- [Cibele Sotero-Caio](/it#cibele-sotero-caio)
+- Cibin Sadasivan Baby
+- Cibele Sotero-Caio
 - [Paul Davis](/it#paul-davis)
-- [Beth Yates](/it#beth-yates)
+- Beth Yates
 
 We welcome external collaboration on our projects - if you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
 
@@ -31,7 +31,15 @@ The current safety team in 2023 are:
 
 ## Financial Support
 
-
++<a>
++  <img src="/assets/img/contributors-white/wellcome.png" alt="Wellcome" class="hide-light" style="width: 100px; align: right">
++  <img src="/assets/img/contributors-colour/wellcome.png" alt="Wellcome" class="hide-dark" style="width: 100px; align: right">
++</a>
++<a>
++  <img src="/assets/img/contributors-white/sanger.svg" alt="Sanger" class="hide-light" style="width: 100px; align: right">
++  <img src="/assets/img/contributors-colour/sanger.svg" alt="Sanger" class="hide-dark" style="width: 100px; align: right">
++</a>
++Tree of Life is a core funded programme within the Wellcome Sanger Institute and is allocated a slice of the Institute’s core Wellcome grant.
 
 ## History of sanger-tol
 
