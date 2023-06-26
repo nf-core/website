@@ -24,7 +24,7 @@ To make the workshops available to everyone they will be streamed on the [nf-cor
 
 # Attending at the Wellcome Genome Campus
 
-A local streaming event is being held at the Wellcome Genome Campus. More information about this local event can be found [here](wgc.md).
+An in-person version of advanced training will be held at the Wellcome Genome Campus, Hinxton, UK. The training will take place from 10am to 4pm on both days. More information about this local event can be found [here](wgc.md).
 
 # Schedule
 
