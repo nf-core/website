@@ -21,13 +21,13 @@ We welcome external collaboration on our projects - if you'd like to be involved
 
 ## Safety team {#safety}
 
-The [Safety team](/safety) is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
+The Safety team is responsible for ensuring the community is a safe place and responding to instances of misconduct. It is made up of community members who have displayed integrity, strong communication, and a genuine concern for community welfare.
 
 The current safety team in 2023 are:
 
-- [Matthieu Muffato](/safety#matthieu-muffato)
-- [Priyanka Surana](/safety#priyanka-surana)
-- [Edward Symons](/safety#edward-symons)
+- [Priyanka Surana](mailto:ps22@sanger.ac.uk)
+- [Matthieu Muffato](mailto:mm49@sanger.ac.uk)
+- [Edward Symons](mailto:es13@sanger.ac.uk)
 
 ## Financial Support
 
