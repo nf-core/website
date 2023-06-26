@@ -18,6 +18,13 @@ const end = frontmatter.start?.toLocaleString('en-US', {
     minute: 'numeric',
     hour12: false,
 });
+
+if (frontmatter.start === undefined) {
+    frontmatter.start = new Date(frontmatter.start_date + ' ' + frontmatter.start_time);
+}
+if (frontmatter.end === undefined) {
+    frontmatter.end = new Date(frontmatter.end_date + ' ' + frontmatter.end_time);
+}
 ---
 
 <div class="">
