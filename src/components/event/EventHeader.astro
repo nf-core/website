@@ -73,9 +73,7 @@ if (frontmatter.end === undefined) {
                             <dd>
                                 <a
                                     class="mt-2 btn btn-sm btn-outline-light"
-                                    href={`https://www.google.com/maps/search/?api=1&query=${frontmatter.location_latlng.join(
-                                        ','
-                                    )}`}
+                                    href={`https://www.openstreetmap.org/?mlat=${frontmatter.location_latlng[0]}&mlon=${frontmatter.location_latlng[1]}&zoom=16#map=16/${frontmatter.location_latlng[0]}/${frontmatter.location_latlng[1]}`}
                                     target="_blank"
                                 >
                                     <i class="fa-duotone fa-map-pin me-1" />
@@ -90,7 +88,7 @@ if (frontmatter.end === undefined) {
     </div>
 
     <div class="d-flex justify-content-center justify-content-md-start">
-        <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" />
+        <ExportEventButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
     </div>
 </div>
 <style lang="scss">
