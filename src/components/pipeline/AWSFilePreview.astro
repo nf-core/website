@@ -1,7 +1,7 @@
 ---
-import icons from 'code-icons';
-import 'code-icons/styles.css';
-// import { Code } from 'astro/components';
+import * as icons from 'file-icons-js';
+import 'file-icons-js/css/style.css';
+import { Code } from 'astro/components';
 import CopyButton from '@components/CopyButton.svelte';
 import Admonition from '@components/Admonition.astro';
 
@@ -81,18 +81,18 @@ if (!tooBig && hasPreview) {
         }
         {
             ['json', 'yaml', 'yml'].includes(extension) && (
-            // <Code lang={extension} code={content} />
-                <pre>
-                    <code class={'language-' + (extension === 'json' ? 'json' : 'yaml')}>{content}</code>
-                </pre>
+                <Code lang={extension} code={content} />
+                // <pre>
+                //     <code class={'language-' + (extension === 'json' ? 'json' : 'yaml')}>{content}</code>
+                // </pre>
             )
         }
         {
             ['log', 'txt', 'csv', 'tsv'].includes(extension) && (
-            // <Code lang="console" code={content} />
-                <pre>
-                    <code class="language-console">{content}</code>
-                </pre>
+                <Code lang="console" code={content} />
+                // <pre>
+                //     <code class="language-console">{content}</code>
+                // </pre>
             )
         }
         {
