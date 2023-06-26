@@ -305,9 +305,13 @@ Please follow the steps below to run the tests locally:
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
 
-> 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
->
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+:::info
+For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
+:::
+
+:::warning
+if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/bowtie2/build_test).
+:::
 
 ### Uploading to `nf-core/modules`
 
@@ -363,7 +367,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
    }
    ```
 
-   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+   :::warning
+   Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+   :::
 
 2. Software that can be piped together SHOULD be added to separate module files
    unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -462,7 +468,7 @@ If the HEREDOC cannot be used because the script is not bash, the versions.yml m
 
 5. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
-```groovy
+```nextflow
 process {
     withName: 'FOO' {
         ext.when = !params.skip_module
@@ -555,7 +561,9 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
 mulled-search --destination quay singularity --channel bioconda --search bowtie samtools | grep "mulled"
 ```
 
-> NB: Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
+:::note
+Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
+:::
 
 4. It is also possible for a new multi-tool container to be built and added to BioContainers by submitting a pull request on their [`multi-package-containers`](https://github.com/BioContainers/multi-package-containers) repository.
 

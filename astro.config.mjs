@@ -1,4 +1,4 @@
-import calloutsPlugin from './bin/remark-callouts.js';
+import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import githubLightTheme from '/public/themes/github-light.json';
@@ -52,7 +52,7 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, calloutsPlugin, mermaid],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,

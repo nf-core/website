@@ -1,0 +1,26 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+
+export const prerender = false;
+
+// get the id from the url
+const id = Astro.url.searchParams.get('id');
+---
+
+<PageLayout
+    title="Launch pipeline"
+    subtitle="Configure workflow parameters for a pipeline run."
+    mainpage_container={false}
+>
+    <div class="iframe-container w-100 d-flex align-items-start vh-100">
+        <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
+        <iframe
+            class="d-none"
+            src={'https://nf-co.re/launch' + (id ? '?id=' + id : '')}
+            onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
+            title="pipeline_heath"
+            style="border:none;"
+            width="100%"
+            height="100%"></iframe>
+    </div>
+</PageLayout>

@@ -1,9 +1,10 @@
 <script lang="ts">
     import { currentHeading } from '@components/store';
+    import * as icons from 'file-icons-js';
+    import 'file-icons-js/css/style.css';
     import { onMount } from 'svelte';
 
     export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
-
     // find current heading in viewport with IntersectionObserver
     onMount(() => {
         const observer = new IntersectionObserver(
@@ -64,6 +65,20 @@
                 button.classList.add('opacity-50');
             }, 1500);
         }
+        // Add file icon to code block titles
+        document.querySelectorAll('div[data-rehype-pretty-code-title]').forEach((block) => {
+            const title = block.textContent;
+            const fileIcon = icons.getClass(title);
+            let icon: HTMLElement;
+            if (fileIcon) {
+                icon = document.createElement('span');
+                icon.classList.add('mx-2', fileIcon);
+            } else {
+                icon = document.createElement('i');
+                icon.classList.add('fa-regular', 'fa-file-code', 'mx-2');
+            }
+            block.prepend(icon);
+        });
     });
 </script>
 
@@ -74,10 +89,5 @@
 <style lang="scss">
     .markdown-content :global(a) {
         word-wrap: break-word; // long links break layout on small screens
-    }
-    .markdown-content :global(.copy-code-button) {
-        background-color: none;
-        margin-top: 0.65rem;
-        margin-right: 0.6rem;
     }
 </style>

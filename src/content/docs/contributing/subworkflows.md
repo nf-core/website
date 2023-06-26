@@ -98,7 +98,7 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
 
    When writing multiple tests, a common practice is to alias process names to differentiate them between tests. When using an alias, add a suffix to the process name so the CI tests can still find the output in the folder named after the tool, e.g.
 
-   ```groovy
+   ```nextflow
    include { BAM_SORT_STATS_SAMTOOLS as BAM_SORT_STATS_SAMTOOLS_SINGLE_END } from '../../../../subworkflows/nf-core/bam_sort_stats_samtools/main' // Good: Output folder is still 'fastqc'
    include { BAM_SORT_STATS_SAMTOOLS as SINGLE_END_BAM_SORT_STATS_SAMTOOLS } from '../../../../subworkflows/nf-core/bam_sort_stats_samtools/main' // Bad: Generates problems with CI tests - Output folder is 'post'
    ```

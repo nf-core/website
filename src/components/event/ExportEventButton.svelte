@@ -1,4 +1,5 @@
 <script>
+    import ca from 'date-fns/locale/ca';
     import { ICalendar, GoogleCalendar, OutlookCalendar } from 'datebook/dist/datebook.min.mjs';
     import { saveAs } from 'file-saver';
 
@@ -18,6 +19,13 @@
         end: frontmatter.end,
         location: event_location,
     };
+
+    if (calendar_event.start === undefined) {
+        calendar_event.start = new Date(calendar_event.start_date + ' ' + calendar_event.start_time);
+    }
+    if (calendar_event.end === undefined) {
+        calendar_event.end = new Date(calendar_event.end_date + ' ' + calendar_event.end_time);
+    }
 
     const googleCalendar = new GoogleCalendar(calendar_event).render();
     const outlookCalendar = new OutlookCalendar(calendar_event).render();
