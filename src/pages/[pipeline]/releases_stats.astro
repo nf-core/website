@@ -20,12 +20,16 @@ export function getStaticPaths() {
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const md_files = pipeline.releases[0].doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
+        const releases = pipeline.releases.filter((release) => release.tag_name !== 'dev');
+        if (releases.length === 0) {
+            return;
+        }
         paths.push({
             params: {
                 pipeline: pipeline.name,
             },
             props: {
-                releases: pipeline.releases,
+                releases: releases,
                 md_files: md_files,
                 meta: pipeline,
             },
@@ -36,7 +40,6 @@ export function getStaticPaths() {
 const { pipeline } = Astro.params;
 
 let { releases, md_files, meta } = Astro.props;
-releases = releases.filter((release) => release.tag_name !== 'dev');
 const version = releases[0].tag_name;
 const description = meta.description;
 const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', {
@@ -57,7 +60,8 @@ const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', 
             <h1>Version history</h1>
             <div class="accordion" id="releases">
                 {
-                    releases &&
+                    gh_releases &&
+                        releases &&
                         releases.map((release, i) => {
                             return (
                                 <div class="accordion-item">
