@@ -4,7 +4,8 @@
   display: none;
 }
 
-pre[data-theme='dark'] {
+pre[data-theme='dark'],
+div[data-rehype-pretty-code-title][data-theme='dark'] {
   display: none;
 }
 body {
@@ -263,7 +264,7 @@ code:not(pre code),
   }
 }
 
-.main-content pre{
+.main-content pre {
   border-radius: 3px;
   font-size: 14px;
   code {
@@ -271,28 +272,13 @@ code:not(pre code),
     display: flow-root;
     overflow-x: auto;
     padding: 1em;
-
-    .copy-button {
-      margin-top: 0.4rem;
-      margin-right: 0.4rem;
-      display: none;
-
-      &:focus {
-        // color: $success;
-        box-shadow: none;
-      }
-    }
-
-    &:hover .copy-button {
-      display: block;
-    }
   }
 }
 
 .sticky-top-under {
-        top: 4rem;
-        position: sticky;
-    }
+  top: 4rem;
+  position: sticky;
+}
 
 /*
  * Main pages
@@ -1115,8 +1101,9 @@ Launch Page
 }
 
 .breadcrumb-item:not(.active) {
-  & a, & span{
-  color: $gray-600 !important;
+  & a,
+  & span {
+    color: $gray-600 !important;
   }
 }
 
@@ -1201,8 +1188,8 @@ Launch Page
   }
 
   .admonition-body svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
     fill: currentColor;
   }
 
@@ -1213,6 +1200,27 @@ Launch Page
 
 div[data-rehype-pretty-code-fragment] {
   margin-bottom: 1rem;
+  display: block;
+}
+
+.main-content div[data-rehype-pretty-code-fragment] pre .copy-code-button {
+  margin-top: 0.6rem;
+  margin-right: 0.5rem;
+}
+
+.main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button {
+  margin-top: 0.6rem;
+}
+
+div[data-rehype-pretty-code-title] {
+  border: 1px solid $border-color;
+  padding: 0.5rem;
+  margin-bottom: -1px;
+}
+
+div[data-rehype-pretty-code-title][data-theme='light'] {
+  border: 1px solid $border-color;
+  background-color: $card-cap-bg;
 }
 
 div.mermaid {
@@ -1239,12 +1247,18 @@ div.mermaid {
   .hide-light {
     display: inline-block;
   }
+
   pre[data-theme='dark'] {
-    display: inline;
+    display: block;
   }
 
-  pre[data-theme='light'] {
+  pre[data-theme='light'],
+  div[data-rehype-pretty-code-title][data-theme='light'] {
     display: none;
+  }
+  div[data-rehype-pretty-code-title][data-theme='dark'] {
+    display: block;
+    border: 1px solid $border-color-dark;
   }
   img {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
@@ -1281,13 +1295,8 @@ div.mermaid {
     color: $gray-100 !important;
   }
 
-  .main-content pre code{
+  .main-content pre code {
     border: 1px solid $border-color-dark;
-  }
-
-  div[data-rehype-pretty-code-title] {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   .border-success {
@@ -1296,17 +1305,6 @@ div.mermaid {
 
   .bg-success-light {
     background-color: tint-color($success-dark, 25%);
-  }
-
-  .admonition-note {
-    border-color: $secondary;
-    background-color: $secondary-bg-subtle;
-    color: $body-color;
-
-    .title {
-      color: $white;
-      background-color: $secondary;
-    }
   }
 
   footer .nav-btn:hover {
@@ -1323,6 +1321,4 @@ div.mermaid {
     background-color: $gray-800;
     color: $body-color-dark;
   }
-
-
 }

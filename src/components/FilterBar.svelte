@@ -108,13 +108,15 @@
         {#if displayStyle.length > 1}
             <div class="ms-3 d-flex align-items-center">
                 Display:
-                <div class="btn-group ms-1 display-buttons" role="group" aria-label="Sort buttons">
+                <div class="btn-group ms-1 display-buttons" role="group" aria-label="Display style">
                     {#each displayStyle as dis}
                         <button
                             type="button"
                             class="btn btn-outline-success text-nowrap"
                             on:click={() => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
+                            title={dis.name + ' view'}
+                            data-bs-toggle="tooltip"
                             ><i class={dis.icon} />
                         </button>
                     {/each}
