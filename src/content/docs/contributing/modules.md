@@ -462,7 +462,7 @@ If the HEREDOC cannot be used because the script is not bash, the versions.yml m
 
 5. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
-```groovy
+```nextflow
 process {
     withName: 'FOO' {
         ext.when = !params.skip_module
