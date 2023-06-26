@@ -363,7 +363,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
    }
    ```
 
-   > ⚠️ Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+   :::warning
+   Exceptions to non-file mandatory arguments may be acceptable in rare cases, however you must consult the community on Slack (#modules) in these cases.
+   :::
 
 2. Software that can be piped together SHOULD be added to separate module files
    unless there is a run-time, storage advantage in implementing in this way. For example,
@@ -555,7 +557,9 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
 mulled-search --destination quay singularity --channel bioconda --search bowtie samtools | grep "mulled"
 ```
 
-> NB: Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
+:::note
+Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
+:::
 
 4. It is also possible for a new multi-tool container to be built and added to BioContainers by submitting a pull request on their [`multi-package-containers`](https://github.com/BioContainers/multi-package-containers) repository.
 

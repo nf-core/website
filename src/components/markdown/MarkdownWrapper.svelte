@@ -75,9 +75,4 @@
     .markdown-content :global(a) {
         word-wrap: break-word; // long links break layout on small screens
     }
-    .markdown-content :global(.copy-code-button) {
-        background-color: none;
-        margin-top: 0.65rem;
-        margin-right: 0.6rem;
-    }
 </style>
