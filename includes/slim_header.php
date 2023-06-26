@@ -59,15 +59,15 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/lib/groovy.min.js"></script>
     <!-- Page-specific CSS and JS -->
     <?php
-    if (isset($import_moment) && $import_moment) : ?>
+    if (isset($import_moment) && $import_moment): ?>
         <script src="/assets/lib/moment.js"></script>
         <script src="/assets/lib/moment-timezone-with-data-10-year-range.min.js"></script>
     <?php endif;
-    if (isset($import_leaflet) && $import_leaflet) : ?>
+    if (isset($import_leaflet) && $import_leaflet): ?>
         <link href="/assets/lib/leaflet.css" rel="stylesheet">
         <script src="/assets/lib/leaflet.js"></script>
     <?php endif;
-    if (isset($import_chartjs) && $import_chartjs) : ?>
+    if (isset($import_chartjs) && $import_chartjs): ?>
         <script src="/assets/lib/moment.js"></script>
         <script src="/assets/lib/Chart.min.js"></script>
         <link href="/assets/lib/Chart.min.css" rel="stylesheet">
@@ -78,34 +78,34 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <script src="/assets/lib/FileSaver.min.js"></script>
         <script src="/assets/lib/jquery.tablesorter.min.js"></script>
     <?php endif;
-    if (isset($import_schema_launcher) && $import_schema_launcher) : ?>
+    if (isset($import_schema_launcher) && $import_schema_launcher): ?>
         <script src="/assets/lib/moment.js"></script>
         <script src="/assets/lib/showdown.min.js"></script>
         <script src="/assets/js/nf-core-schema-launcher.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
-    if (isset($aws) && $aws) : ?>
+    if (isset($aws) && $aws): ?>
         <link rel="stylesheet" href="/assets/lib/dataTables.bootstrap5.min.css">
         <script src="/assets/lib/aws-sdk.min.js"></script>
         <script src="/assets/lib/jquery.dataTables.min.js"></script>
         <script src="/assets/lib/dataTables.bootstrap5.min.js"></script>
         <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
-    if (isset($import_schema_builder) && $import_schema_builder) : ?>
+    if (isset($import_schema_builder) && $import_schema_builder): ?>
         <link href="/assets/lib/jquery-ui.min.css" rel="stylesheet">
         <script src="/assets/lib/jquery-ui.min.js"></script>
         <script src="/assets/lib/moment.js"></script>
         <script src="/assets/lib/showdown.min.js"></script>
         <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
     <?php endif;
-    if (isset($import_typeform) && $import_typeform) : ?>
+    if (isset($import_typeform) && $import_typeform): ?>
         <script src="https://embed.typeform.com/next/embed.js"></script>
 
     <?php endif;
-    if (isset($title) && $title == 'Publications') : ?>
+    if (isset($title) && $title == 'Publications'): ?>
         <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
         <script type="text/javascript" src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
     <?php endif;
-    if (isset($youtube_embed)) : ?>
+    if (isset($youtube_embed)): ?>
         <script src="/assets/js/transcripts.js"></script>
     <?php endif;
     ?>
@@ -122,7 +122,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         gtag('js', new Date());
         gtag('config', 'UA-68098153-2');
 
-        <?php if (isset($youtube_embed)) : ?>
+        <?php if (isset($youtube_embed)): ?>
             youtube_embed = true;
         <?php endif; ?>
     </script>
@@ -130,17 +130,18 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
 
 <body tabindex="0">
     <?php
-    if (isset($title) and $title) : ?>
+    if (isset($title) and $title): ?>
         <div class="mainpage">
 
             <?php if (
                 !isset($mainpage_container) or $mainpage_container
-            ) : ?> <div class="container main-content pt-5"> <?php endif; ?>
+            ): ?> <div class="container main-content pt-5"> <?php endif; ?>
 
             <?php endif;
-        if (isset($markdown_fn) and $markdown_fn) {
-            // Print the parsed HTML
-            if (!isset($no_print_content) or !$no_print_content) {
-                echo $content;
-            }
+    if (isset($markdown_fn) and $markdown_fn) {
+        // Print the parsed HTML
+        if (!isset($no_print_content) or !$no_print_content) {
+            echo $content;
         }
+    }
+

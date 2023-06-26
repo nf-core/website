@@ -5,8 +5,7 @@ $mainpage_container = false;
 include '../includes/slim_header.php';
 
 // Refresh cache?
-function is_refresh_cache($repo = null, $any_repo = false)
-{
+function is_refresh_cache($repo = null, $any_repo = false) {
     if (!isset($_GET['action']) || $_GET['action'] != 'refresh') {
         return false;
     }
@@ -20,8 +19,7 @@ function is_refresh_cache($repo = null, $any_repo = false)
 }
 
 // Fix repo?
-function is_fix_repo($repo = null)
-{
+function is_fix_repo($repo = null) {
     if (!isset($_GET['action']) || $_GET['action'] != 'fix') {
         return false;
     }
@@ -62,14 +60,12 @@ define(
 );
 
 // Base repo health class
-class RepoHealth
-{
+class RepoHealth {
     // Init vars
     public $name;
     public $refresh = false;
     public $cache_base;
-    public function __construct($name)
-    {
+    public function __construct($name) {
         $this->name = $name;
         $this->refresh = is_refresh_cache($this->name);
 
@@ -148,19 +144,16 @@ class RepoHealth
     public $branch_dev_enforce_admins;
     public $branch_template_restrict_push;
 
-    public function get_data()
-    {
+    public function get_data() {
         $this->get_repo_data();
         $this->get_branch_data();
     }
-    public function run_tests()
-    {
+    public function run_tests() {
         $this->test_repo();
         $this->test_teams();
         $this->test_branch_exists();
     }
-    public function fix_tests()
-    {
+    public function fix_tests() {
         if (is_fix_repo($this->name)) {
             $this->fix_repo();
             $this->fix_topics();
@@ -170,8 +163,7 @@ class RepoHealth
         }
     }
 
-    public function get_repo_data()
-    {
+    public function get_repo_data() {
         // Super annoyingly, the teams call misses just one or two keys we need :(
         if (is_null($this->gh_repo) || !isset($this->gh_repo->allow_merge_commit)) {
             if (file_exists($this->gh_repo_cache) && !$this->refresh) {
@@ -184,8 +176,7 @@ class RepoHealth
         }
     }
 
-    public function get_release_data()
-    {
+    public function get_release_data() {
         // Currently only used to get last release for tools, as have otheres from pipelines.json
         if (file_exists($this->gh_release_cache) && !$this->refresh) {
             $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
@@ -196,8 +187,7 @@ class RepoHealth
         }
     }
 
-    public function get_branch_data()
-    {
+    public function get_branch_data() {
         // List of all branches
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
@@ -243,8 +233,7 @@ class RepoHealth
         }
     }
 
-    public function test_topics()
-    {
+    public function test_topics() {
         $topics_pass = true;
         foreach ($this->required_topics as $top) {
             if (!in_array($top, $this->gh_repo->topics)) {
@@ -254,8 +243,7 @@ class RepoHealth
         }
         return $topics_pass;
     }
-    public function test_repo()
-    {
+    public function test_repo() {
         if (isset($this->gh_repo->has_wiki)) {
             $this->repo_wikis = !$this->gh_repo->has_wiki;
         }
@@ -284,13 +272,11 @@ class RepoHealth
             $this->repo_url = $this->gh_repo->homepage == $this->web_url;
         }
     }
-    public function test_teams()
-    {
+    public function test_teams() {
         $this->team_all = isset($this->gh_teams['all']) ? $this->gh_teams['all']->push : false;
         $this->team_core = isset($this->gh_teams['core']) ? $this->gh_teams['core']->admin : false;
     }
-    public function test_branch_exists()
-    {
+    public function test_branch_exists() {
         // Check that branches exist
         if (isset($this->gh_branches)) {
             $this->branch_master_exists = false;
@@ -307,8 +293,7 @@ class RepoHealth
             }
         }
     }
-    public function test_branch_protection()
-    {
+    public function test_branch_protection() {
         // Test branch protection for master and dev
         foreach ($this->branches_protection as $branch) {
             $prs_required = $branch == 'master' ? 2 : 1;
@@ -392,8 +377,7 @@ class RepoHealth
         }
     }
 
-    private function fix_repo()
-    {
+    private function fix_repo() {
         // https://developer.github.com/v3/repos/#edit
         $payload = [];
         if (!$this->repo_wikis) {
@@ -427,8 +411,7 @@ class RepoHealth
         }
     }
 
-    private function fix_topics()
-    {
+    private function fix_topics() {
         // https://developer.github.com/v3/repos/#replace-all-topics-for-a-repository
         if (!$this->repo_keywords) {
             $topics = [
@@ -443,13 +426,11 @@ class RepoHealth
         }
     }
 
-    private function fix_teams()
-    {
+    private function fix_teams() {
         $this->fix_team('all');
         $this->fix_team('core');
     }
-    private function fix_team($team)
-    {
+    private function fix_team($team) {
         global $gh_team_ids;
         global $updated_teams;
         if (!$this->{'team_' . $team}) {
@@ -467,8 +448,7 @@ class RepoHealth
         }
     }
 
-    public function fix_branch_protection()
-    {
+    public function fix_branch_protection() {
         // Fix branch protection for master and dev
         foreach ($this->branches_protection as $branch) {
             // Convenience vars for test results
@@ -552,8 +532,7 @@ class RepoHealth
         }
     }
 
-    public function _send_gh_api_data($url, $content, $method = 'POST')
-    {
+    public function _send_gh_api_data($url, $content, $method = 'POST') {
         $context = stream_context_create([
             'http' => [
                 'method' => $method,
@@ -593,8 +572,7 @@ class RepoHealth
         }
     }
 
-    public function _save_cache_data($path, $data, $encode_json = true)
-    {
+    public function _save_cache_data($path, $data, $encode_json = true) {
         if (!file_exists(dirname($path))) {
             mkdir(dirname($path), 0777, true);
         }
@@ -606,8 +584,7 @@ class RepoHealth
         file_put_contents($path, $data_json);
     }
 
-    public function print_table_cell($test_name)
-    {
+    public function print_table_cell($test_name) {
         $test_url = $this->test_urls[$test_name];
         $test_url = str_replace('{repo}', $this->name, $test_url);
         if (property_exists($this, 'last_release') && $this->last_release) {
@@ -658,11 +635,9 @@ class RepoHealth
 }
 
 // Pipeline health class
-class PipelineHealth extends RepoHealth
-{
+class PipelineHealth extends RepoHealth {
     // URL should point to pipeline page
-    public function __construct($name)
-    {
+    public function __construct($name) {
         parent::__construct($name);
         $this->web_url = 'https://nf-co.re/' . $this->name;
     }
@@ -682,21 +657,18 @@ class PipelineHealth extends RepoHealth
     public $master_is_release;
 
     // Extra pipeline-specific tests
-    public function run_tests()
-    {
+    public function run_tests() {
         parent::run_tests();
         $this->test_branch_protection();
         $this->test_files_exist();
         $this->test_releases();
     }
 
-    public function check_url($url)
-    {
+    public function check_url($url) {
         $headers = get_headers($url);
         return substr($headers[0], 9, 3) == '200';
     }
-    public function test_files_exist()
-    {
+    public function test_files_exist() {
         // No releases - always check the dev branch (no caching)
         if (!$this->has_release) {
             $this->has_json_schema = $this->check_url(
@@ -746,8 +718,7 @@ class PipelineHealth extends RepoHealth
         }
     }
 
-    public function test_releases()
-    {
+    public function test_releases() {
         global $tools_last_release;
         // No releases - set to -1 and return
         if (!$this->has_release) {
@@ -770,8 +741,7 @@ class PipelineHealth extends RepoHealth
     }
 
     // Extra pipeline-specific fixes
-    public function fix_tests()
-    {
+    public function fix_tests() {
         parent::fix_tests();
         if (is_fix_repo($this->name)) {
             $this->fix_branch_protection();
@@ -782,13 +752,11 @@ class PipelineHealth extends RepoHealth
 }
 
 // Core repo health class
-class CoreRepoHealth extends RepoHealth
-{
+class CoreRepoHealth extends RepoHealth {
 }
 
 // Get nf-core GitHub teams info & repos
-function get_gh_team_repos($team)
-{
+function get_gh_team_repos($team) {
     // Globals
     global $pipelines_json;
     global $pipelines;
@@ -1028,7 +996,7 @@ $pipeline_test_descriptions =
         'master_is_release' => 'Master branch is same commit as the last release',
         'has_json_schema' => 'Has a nextflow_schema.json file (in last release, dev if no release)',
         'has_dsl2_modules_dir' =>
-        'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
+            'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
     ] + $base_test_descriptions;
 $pipeline_test_descriptions['repo_url'] = 'URL should be set to https://nf-co.re/[PIPELINE-NAME]';
 $pipeline_test_urls =
