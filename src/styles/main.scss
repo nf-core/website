@@ -1209,6 +1209,16 @@ div[data-rehype-pretty-code-fragment] {
 .main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button{
   margin-top: 1.825rem;
 }
+
+div[data-rehype-pretty-code-title]{
+  border: 1px solid $border-color-dark;
+  border-bottom: 5px solid $body-bg-dark;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+
+}
+
 div.mermaid {
   text-align: center;
   padding: 1rem 0 2rem;
