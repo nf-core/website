@@ -7,7 +7,6 @@ import SubFooter from '@components/footer/SubFooter.astro';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/maven-pro';
 import '@fontsource-variable/open-sans';
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js?url';
 
 export interface Props {
     title?: string;
@@ -42,16 +41,20 @@ const {
         </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}
         <Footer />
-
-        <script src={bootstrap}></script>
         <script>
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            [...tooltipTriggerList].map((tooltipTriggerEl) => {
-                const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
-                if (!tooltip) {
-                    new bootstrap.Tooltip(tooltipTriggerEl);
-                }
-            });
+            import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+            window.onload = function () {
+                setTimeout(() => {
+                    // need timeout to wait for svelte elements to render
+                    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                    [...tooltipTriggerList].map((tooltipTriggerEl) => {
+                        const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+                        if (!tooltip) {
+                            new bootstrap.Tooltip(tooltipTriggerEl);
+                        }
+                    });
+                }, 100);
+            };
         </script>
         <style lang="scss" is:global>
             @import '@styles/main.scss';

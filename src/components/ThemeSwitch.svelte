@@ -1,7 +1,5 @@
 <svelte:head>
     <script>
-        // import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
         const storedTheme = localStorage.getItem('theme');
         const switchTheme = (e) => {
             const theme = e.target.value;
@@ -48,7 +46,7 @@
             on:click={(e) => switchTheme(e)}
             checked={localStorage.getItem('theme') === 'auto'}
         />
-        <label class="btn btn-secondary" for="theme-auto" data-bs-toggle=" tooltip" title="Auto Light / Dark"
+        <label class="btn btn-secondary" for="theme-auto" data-bs-toggle="tooltip" title="Auto Light / Dark"
             ><i class="fas fa-adjust" />
         </label>
 
@@ -62,7 +60,7 @@
             on:click={(e) => switchTheme(e)}
             checked={localStorage.getItem('theme') === 'light'}
         />
-        <label class="btn btn-secondary" for="theme-light" data-bs-toggle=" tooltip" title="Light Theme"
+        <label class="btn btn-secondary" for="theme-light" data-bs-toggle="tooltip" title="Light Theme"
             ><i class="fas fa-sun" />
         </label>
 
@@ -76,7 +74,7 @@
             on:click={(e) => switchTheme(e)}
             checked={localStorage.getItem('theme') === 'dark'}
         />
-        <label class="btn btn-secondary" for="theme-dark" data-bs-toggle=" tooltip" title="Dark Theme"
+        <label class="btn btn-secondary" for="theme-dark" data-bs-toggle="tooltip" title="Dark Theme"
             ><i class="fas fa-moon" />
         </label>
     </div>
