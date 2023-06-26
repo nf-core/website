@@ -1,9 +1,6 @@
 ---
-title: Contributing
+title: Contributing to Docs
 subtitle: Guides on how to contribute to the nf-core documentation.
-menu:
-  main:
-    weight: 10
 ---
 
 # Admonitions

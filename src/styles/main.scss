@@ -4,7 +4,8 @@
   display: none;
 }
 
-pre[data-theme='dark'] {
+pre[data-theme='dark'],
+div[data-rehype-pretty-code-title][data-theme='dark'] {
   display: none;
 }
 body {
@@ -271,21 +272,6 @@ code:not(pre code),
     display: flow-root;
     overflow-x: auto;
     padding: 1em;
-
-    .copy-button {
-      margin-top: 0.4rem;
-      margin-right: 0.4rem;
-      display: none;
-
-      &:focus {
-        // color: $success;
-        box-shadow: none;
-      }
-    }
-
-    &:hover .copy-button {
-      display: block;
-    }
   }
 }
 
@@ -1201,8 +1187,8 @@ Launch Page
   }
 
   .admonition-body svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
     fill: currentColor;
   }
 
@@ -1215,6 +1201,14 @@ div[data-rehype-pretty-code-fragment] {
   margin-bottom: 1rem;
 }
 
+.main-content div[data-rehype-pretty-code-fragment] pre .copy-code-button{
+  margin-top: 0.6rem;
+  margin-right: 0.5rem;
+}
+
+.main-content div[data-rehype-pretty-code-fragment]:has(div[data-rehype-pretty-code-title]) pre .copy-code-button{
+  margin-top: 1.825rem;
+}
 div.mermaid {
   text-align: center;
   padding: 1rem 0 2rem;
@@ -1239,11 +1233,14 @@ div.mermaid {
   .hide-light {
     display: inline-block;
   }
-  pre[data-theme='dark'] {
+
+  pre[data-theme='dark'],
+  div[data-rehype-pretty-code-title][data-theme='dark'] {
     display: inline;
   }
 
-  pre[data-theme='light'] {
+  pre[data-theme='light'],
+  div[data-rehype-pretty-code-title][data-theme='light'] {
     display: none;
   }
   img {
@@ -1285,28 +1282,12 @@ div.mermaid {
     border: 1px solid $border-color-dark;
   }
 
-  div[data-rehype-pretty-code-title] {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
   .border-success {
     border-color: $nf-core-color-dark;
   }
 
   .bg-success-light {
     background-color: tint-color($success-dark, 25%);
-  }
-
-  .admonition-note {
-    border-color: $secondary;
-    background-color: $secondary-bg-subtle;
-    color: $body-color;
-
-    .title {
-      color: $white;
-      background-color: $secondary;
-    }
   }
 
   footer .nav-btn:hover {
