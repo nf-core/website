@@ -49,10 +49,7 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
         }
         {
             pipeline.length > 0 ? (
-                <a
-                    href={`/${pipeline}/${version}/launch/`}
-                    class={'btn btn-success launch-btn' + (version === 'dev' ? '-dev' : '')}
-                >
+                <a href={`/launch/`} class={'btn btn-success launch-btn' + (version === 'dev' ? '-dev' : '')}>
                     <i class="fa-duotone fa-rocket me-2" />
                     {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}
                 </a>
