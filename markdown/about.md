@@ -31,15 +31,15 @@ The current safety team in 2023 are:
 
 ## Financial Support
 
-+<a>
-+  <img src="/assets/img/contributors-white/wellcome.png" alt="Wellcome" class="hide-light" style="width: 100px; align: right">
-+  <img src="/assets/img/contributors-colour/wellcome.png" alt="Wellcome" class="hide-dark" style="width: 100px; align: right">
-+</a>
-+<a>
-+  <img src="/assets/img/contributors-white/sanger.svg" alt="Sanger" class="hide-light" style="width: 100px; align: right">
-+  <img src="/assets/img/contributors-colour/sanger.svg" alt="Sanger" class="hide-dark" style="width: 100px; align: right">
-+</a>
-+Tree of Life is a core funded programme within the Wellcome Sanger Institute and is allocated a slice of the Institute’s core Wellcome grant.
+<a> 
+  <img src="/assets/img/contributors-white/wellcome.png" alt="Wellcome" class="hide-light" style="width: 100px; align: right">
+  <img src="/assets/img/contributors-colour/wellcome.png" alt="Wellcome" class="hide-dark" style="width: 100px; align: right">
+</a>
+<a>
+  <img src="/assets/img/contributors-white/sanger.svg" alt="Sanger" class="hide-light" style="width: 100px; align: right">
+  <img src="/assets/img/contributors-colour/sanger.svg" alt="Sanger" class="hide-dark" style="width: 100px; align: right">
+</a>
+Tree of Life is a core funded programme within the Wellcome Sanger Institute and is allocated a slice of the Institute’s core Wellcome grant.
 
 ## History of sanger-tol
 
