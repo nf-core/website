@@ -68,16 +68,14 @@
         // Add file icon to code block titles
         document.querySelectorAll('div[data-rehype-pretty-code-title]').forEach((block) => {
             const title = block.textContent;
-
             const fileIcon = icons.getClass(title);
-            console.log(fileIcon);
             let icon: HTMLElement;
             if (fileIcon) {
                 icon = document.createElement('span');
-                icon.classList.add('me-2', fileIcon);
+                icon.classList.add('mx-2', fileIcon);
             } else {
                 icon = document.createElement('i');
-                icon.classList.add('fa-regular', 'fa-file-code', 'me-2');
+                icon.classList.add('fa-regular', 'fa-file-code', 'mx-2');
             }
             block.prepend(icon);
         });
