@@ -3,7 +3,7 @@
     import emoji from 'remark-emoji';
     import remarkGfm from 'remark-gfm';
     import remarkDirective from 'remark-directive';
-    import admonitionPlugin from '/bin/remark-admonition.js';
+    import admonitionsPlugin from '/bin/remark-admonitions.js';
     import addClasses from 'rehype-add-classes';
     import rehypeAutolinkHeadings from 'rehype-autolink-headings';
     // import rehypePrettyCode from 'rehype-pretty-code';
@@ -28,7 +28,7 @@
     {md}
     plugins={[
         {
-            remarkPlugin: [emoji, remarkGfm, remarkDirective, admonitionPlugin],
+            remarkPlugin: [emoji, remarkGfm, remarkDirective, admonitionsPlugin],
             rehypePlugin: [
                 rehypeSlug,
                 [
