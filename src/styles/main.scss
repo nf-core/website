@@ -1227,6 +1227,13 @@ div.mermaid {
   text-align: center;
   padding: 1rem 0 2rem;
 }
+
+.bg-success-light {
+  background-color: tint-color($success-dark, 15%);
+  a {
+    color: $link-color;
+  }
+}
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
@@ -1301,10 +1308,6 @@ div.mermaid {
 
   .border-success {
     border-color: $nf-core-color-dark;
-  }
-
-  .bg-success-light {
-    background-color: tint-color($success-dark, 25%);
   }
 
   footer .nav-btn:hover {
