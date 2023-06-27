@@ -219,8 +219,8 @@ const pipeline_links = pipelines.map((pipeline) => {
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card text-white bg-secondary border-secondary" style="--bs-bg-opacity: .3;">
-                        <div class="card-body" id="homepage-code-example">
+                    <div class="card border-secondary rounded-0">
+                        <div class="card-body bg-dark p-0" id="homepage-code-example">
                             <Code
                                 lang="bash"
                                 theme="github-dark-dimmed"
@@ -382,8 +382,9 @@ Based on https://codepen.io/wintr/pen/beBJBb */
     <style lang="scss">
         @import '@styles/_variables.scss';
         #homepage-code-example {
-            pre {
-                background-color: transparent !important;
+            & :global(pre) {
+                padding: 1rem;
+                margin: 0;
             }
         }
         .icon-lg :global(svg) {
