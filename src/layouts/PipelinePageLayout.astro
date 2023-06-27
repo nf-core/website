@@ -60,7 +60,7 @@ if (version !== 'dev') {
         icon: 'fa-brands fa-aws',
     });
 }
-if (versions.length > 1) {
+if (versions.filter((v) => v !== 'dev').length > 0) {
     allTabItems.push({
         label: 'Releases',
         href: `/${pipeline}/releases_stats/`,
