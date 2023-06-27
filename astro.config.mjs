@@ -22,6 +22,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://astro--nf-core.netlify.app/',
@@ -32,7 +33,19 @@ export default defineConfig({
     },
     adapter: netlify(),
     trailingSlash: 'always',
-    integrations: [svelte(), sitemap(), markdownIntegration(), prefetch(), partytown(), mdx()],
+    integrations: [
+        svelte(),
+        sitemap(),
+        markdownIntegration(),
+        prefetch(),
+        partytown({
+            // Adds dataLayer.push as a forwarding-event.
+            config: {
+                forward: ['dataLayer.push'],
+            },
+        }),
+        mdx(),
+    ],
     build: {
         inlineStylesheets: 'auto',
     },
