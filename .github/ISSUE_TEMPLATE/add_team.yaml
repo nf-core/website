@@ -63,21 +63,11 @@ body:
         Priyanka Surana
         Matthieu Muffato
         ...
-  - type: checkboxes
-    id: pipelines
+  - type: textarea
+    id: publications
     attributes:
-      label: Which pipelines has the team contributed towards?
-      options:
-        - label: blobtoolkit
-        - label: ensemblgenedownload
-        - label: ensemblrepeatdownload
-        - label: genomeassembly
-        - label: genomenote
-        - label: insdcdownload
-        - label: readmapping
-        - label: sequencecomposition
-        - label: treeval
-        - label: variantcalling
+      label: Publications
+      description: List publications associated with your team projects. Please do not add genome notes here.
   - type: input
     id: slack
     attributes:
