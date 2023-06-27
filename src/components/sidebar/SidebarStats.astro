@@ -1,6 +1,6 @@
 ---
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-
+import GitHubUser from '@components/GitHubProfilePicture.svelte';
 const { component_type, contributors, included_pipelines, included_modules, included_subworkflows } = Astro.props;
 
 export interface Props {
@@ -99,7 +99,11 @@ export interface Props {
                                     rel="noopener noreferrer"
                                     class="me-2 mb-2"
                                 >
-                                    <img src={'https://github.com/' + contributor + '.png?size=50'} alt={contributor} />
+                                    <GitHubUser
+                                        name={contributor}
+                                        image={`https://github.com/${contributor}.png`}
+                                        size={50}
+                                    />
                                 </a>
                             )
                         )

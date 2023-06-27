@@ -1,7 +1,3 @@
-<script>
-    export let switchTheme;
-</script>
-
 <svelte:head>
     <script>
         const storedTheme = localStorage.getItem('theme');
