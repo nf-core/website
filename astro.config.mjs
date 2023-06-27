@@ -11,6 +11,7 @@ import svelte from '@astrojs/svelte';
 import markdownIntegration from '@astropub/md';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
+import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
 import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -50,7 +51,13 @@ export default defineConfig({
         inlineStylesheets: 'auto',
     },
     vite: {
-        plugins: [yaml()],
+        plugins: [
+            yaml(),
+            FontaineTransform.vite({
+                // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
+                fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
+            }),
+        ],
         ssr: {
             noExternal: ['@popperjs/core', 'bin/cache.js'],
         },

@@ -1,18 +1,30 @@
 ---
 const { videos } = Astro.props;
+import { YouTube } from '@astro-community/astro-embed-youtube';
 ---
 
 <div class="container">
     <div class="row videos-row">
-        <div class="col-lg-6">
-            <div class="ratio ratio-16x9 hidden-xs hidden-sm">
-                <iframe
-                    id="nf-core-video"
-                    src={'https://www.youtube.com/embed/' + videos[0][0]}
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
+        <div class="col-lg-6" id="nf-core-video">
+            {
+                videos.map((video, idx) => {
+                    return (
+                        <div
+                            id={'id-' + video[0]}
+                            class:list={[
+                                'ratio ratio-16x9 hidden-xs hidden-sm',
+                                { 'd-none': idx !== 0 },
+                                { 'd-visible': idx === 0 },
+                            ]}
+                        >
+                            <YouTube
+                                id={video[0]}
+                                poster={`https://img.youtube.com/vi/${video[0]}/maxresdefault.jpg`}
+                            />
+                        </div>
+                    );
+                })
+            }
         </div>
         <div class="col-lg-6">
             <ul class="list-switch left video-chooser">
@@ -21,7 +33,7 @@ const { videos } = Astro.props;
                         <li>
                             <a
                                 href={'https://youtu.be/' + video[0]}
-                                data-src={'https://www.youtube.com/embed/' + video[0]}
+                                data-youtube_id={video[0]}
                                 class={'bg-body-tertiary text-body-tertiary ' + (idx == 0 && 'active')}
                             >
                                 {video[1]} <em>({video[2]})</em>
@@ -43,11 +55,13 @@ const { videos } = Astro.props;
         e.addEventListener('click', function (e) {
             if (isVisible(document.getElementById('nf-core-video'))) {
                 e.preventDefault();
+                const id = e.target?.dataset.youtube_id;
                 Array.from(document.querySelectorAll('.video-chooser a')).forEach((el) =>
                     el.classList.remove('active')
                 );
                 this.classList.add('active');
-                document.getElementById('nf-core-video').src = this.dataset.src;
+                document.querySelector('#nf-core-video .d-visible')?.classList.replace('d-visible', 'd-none');
+                document.getElementById('id-' + id)?.classList.replace('d-none', 'd-visible');
             }
         })
     );

@@ -33,7 +33,8 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
     </div>
 </div>
 
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
     p {
         font-size: 0.9rem;
     }
@@ -43,4 +44,70 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
     .docker {
         color: #2496ed;
     }
+    .icons svg {
+        &.text-success {
+            fill: $success;
+        }
+        &.docker {
+            fill: #2496ed;
+        }
+        :global(.lights) {
+            fill: $body-bg-dark;
+            opacity: 0.2;
+        }
+        :global(.fa-secondary) {
+            opacity: 0.4;
+        }
+    }
+    // @keyframes fade {
+    //         from {
+    //             opacity: 1;
+    //         }
+    //         50% {
+    //             opacity: 0;
+    //         }
+    //         to {
+    //             opacity: 1;
+    //         }
+    //     }
+
+    //     @-webkit-keyframes fade {
+    //         from {
+    //             opacity: 1;
+    //         }
+    //         30% {
+    //             opacity: 0;
+    //         }
+    //         60% {
+    //             opacity: 0;
+    //         }
+    //         to {
+    //             opacity: 1;
+    //         }
+    //     }
+    //     :global(svg .lights:nth-of-type(4n + 1)) {
+    //     fill: $danger;
+    //     opacity: 0;
+    //     animation: fade 1000ms ease alternate infinite;;
+    //     -webkit-animation: fade 4000m ease alternate infinite;;
+
+    // }
+    // :global(svg .lights:nth-of-type(2n + 1)) {
+    //     fill: $danger;
+    //     animation: fade 3000ms ease alternate infinite;;
+    //     -webkit-animation: fade 4000ms ease alternate infinite;;
+
+    // }
+    // :global(svg .lights:nth-of-type(3n + 1)) {
+    //     fill:  $body-bg-dark;
+    //     animation: fade 3000ms ease alternate infinite;;
+    //     -webkit-animation: fade 4000ms ease alternate infinite;;
+
+    // }
+    // :global(svg .lights:nth-of-type(5n + 1)) {
+    //     fill:  $danger;
+    //     animation: fade 2000ms ease alternate infinite;;
+    //     -webkit-animation: fade 2000ms ease alternate infinite;;
+
+    // }
 </style>
