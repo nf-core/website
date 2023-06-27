@@ -164,6 +164,6 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Update pipeline template
 - Update samplesheet validation steps
 - Improve genome metadata fetching and processing
-- Combine results and metadata with template XML for submission to F1000
+- Combine results and metadata with template Word document
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
