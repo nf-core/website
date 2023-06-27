@@ -53,7 +53,7 @@ const pipeline_links = pipelines.map((pipeline) => {
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
                     <!-- <i class="fa-duotone fa-swap-opacity fa-industry-alt fa-3x mb-2"></i> -->
-                    <i set:html={industryIcon} class="icon-lg mb-2" />
+                    <i set:html={industryIcon} class="icon-lg mb-1" />
                     <h3 class="text-white">For facilities</h3>
                     <p class="lead">
                         Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.
@@ -70,7 +70,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
                     <!-- <i class="fa-duotone fa-laptop-code fa-3x mb-2"></i> -->
-                    <i set:html={laptopIcon} class="icon-lg mb-2" />
+                    <i set:html={laptopIcon} class="icon-lg mb-3" />
                     <h3 class="text-white">For developers</h3>
                     <p class="lead">
                         Companion templates and tools help to validate your code and simplify common tasks.
@@ -390,8 +390,11 @@ Based on https://codepen.io/wintr/pen/beBJBb */
             height: 8rem;
             fill: $white;
         }
-        .mb-2 :global(svg) {
-            margin-bottom: 0.25rem;
+        .mb-3 :global(svg) {
+            padding-bottom: 0.35rem;
+        }
+        .mb-1 :global(svg) {
+            padding-bottom: 0.25rem;
         }
     </style>
 </BaseLayout>
