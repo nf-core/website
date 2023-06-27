@@ -52,7 +52,7 @@ const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', 
     subtitle={description}
     headings={[]}
     version={version}
-    versions={[]}
+    versions={releases.map((release) => release.tag_name)}
     tabItems={md_files}
 >
     <div class="row">
