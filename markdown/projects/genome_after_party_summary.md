@@ -97,7 +97,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 ### Planned features:
 - Update pipeline template
 - Update samplesheet validation steps
-- Add calculation for how 
+- Add calculation for PacBio filtered data percentage
 - Add support for Pacbio ULI reads
 - Add support for RNAseq data
 - Implement chunking to speed up alignment for all technologies
