@@ -99,7 +99,11 @@ export interface Props {
                                     rel="noopener noreferrer"
                                     class="me-2 mb-2"
                                 >
-                                    <GitHubUser name={contributor.name} image={contributor.avatar_url} size={50} />
+                                    <GitHubUser
+                                        name={contributor}
+                                        image={`https://github.com/${contributor}.png`}
+                                        size={50}
+                                    />
                                 </a>
                             )
                         )
