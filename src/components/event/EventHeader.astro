@@ -41,15 +41,19 @@ if (frontmatter.end === undefined) {
             <dl>
                 <dt>{frontmatter.location_url.length === 1 ? 'Link' : 'Links'}:</dt>
                 <dd>
-                    {
-                        frontmatter.location_url.map((loc) => {
-                            return (
-                                <a class="text-white underline" href={loc}>
-                                    {loc}
-                                </a>
-                            );
-                        })
-                    }
+                    <ul class="list-unstyled">
+                        {
+                            frontmatter.location_url.map((loc) => {
+                                return (
+                                    <li class="list-item">
+                                        <a class="text-white underline" href={loc}>
+                                            {loc}
+                                        </a>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ul>
                 </dd>
                 {
                     frontmatter.location_name && (
