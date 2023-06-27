@@ -1,22 +1,10 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-
     export let cmd: string;
     export let icon: boolean = true;
     export let flatTop: boolean = false;
 
     let Tooltip: any;
     $: copied = false;
-
-    onMount(() => {
-        // activate bootstrap tooltips
-        const tooltipTriggerList = document.querySelectorAll('.copy-txt');
-        const tooltipElement = [...tooltipTriggerList][0];
-        Tooltip = bootstrap.Tooltip.getInstance(tooltipElement);
-        if (!Tooltip) {
-            Tooltip = new bootstrap.Tooltip(tooltipElement);
-        }
-    });
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
