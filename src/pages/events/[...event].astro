@@ -1,6 +1,8 @@
 ---
 import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import { getCollection } from 'astro:content';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+import VideoTranscript from '@components/VideoTranscript.svelte';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -13,16 +15,24 @@ export async function getStaticPaths() {
         },
     }));
 }
-const title = Astro.props.event.data.title;
-const subtitle = Astro.props.event.data.subtitle;
-let frontmatter = Astro.props.event.data;
+const { event } = Astro.props;
+const title = event.data.title;
+const subtitle = event.data.subtitle;
+let frontmatter = event.data;
 if (typeof frontmatter.location_url == 'string') {
     frontmatter.location_url = [frontmatter.location_url];
 }
-const { headings, Content, remarkPluginFrontmatter } = await Astro.props.event.render();
+const { headings, Content, remarkPluginFrontmatter } = await event.render();
 
 // TODO: update github url
-const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/events/' + Astro.props.event.id;
+const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/events/' + event.id;
+
+let video = event.data.location_url;
+if (typeof video === 'string') {
+    video = [video];
+}
+video = video?.filter((v) => v.includes('youtube.com') || v.includes('youtu.be'))[0];
+const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '');
 ---
 
 <MarkdownTocLayout
@@ -33,4 +43,5 @@ const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/markdown/
     headings={headings}
 >
     <Content />
+    <VideoTranscript id={id} client:idle />
 </MarkdownTocLayout>
