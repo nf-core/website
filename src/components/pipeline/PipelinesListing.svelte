@@ -115,7 +115,7 @@
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Released</th>
                     <th class="text-end" scope="col">Stars</th>
                     <th class="text-end" scope="col">Last Release</th>
                 </tr>
@@ -126,21 +126,36 @@
                         <td>
                             <a href={pipeline.html_url} target="_blank" rel="noreferrer">{pipeline.name}</a>
                         </td>
-                        <td>
+                        <td class="text-small">
                             {pipeline.description}
                         </td>
-                        <td>
-                            {pipeline.archived
-                                ? 'Archived'
-                                : pipeline.releases.length > 1
-                                ? 'Released'
-                                : 'Under Development'}
+                        <td class="text-center">
+                            {#if pipeline.archived}
+                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+                            {:else if pipeline.releases.length === 1}
+                                <i
+                                    class="fa-solid fa-xs fa-wrench text-warning"
+                                    title="under development"
+                                    data-bs-toggle="tooltip"
+                                />
+                            {:else if pipeline.releases.length > 1}
+                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                            {/if}
                         </td>
                         <td class="text-end">
                             {pipeline.stargazers_count}
                         </td>
                         <td class="text-end">
-                            {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                            <a
+                                class=""
+                                href={'/' +
+                                    pipeline.name +
+                                    '/' +
+                                    (pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : 'dev') +
+                                    '/'}
+                            >
+                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                            </a>
                         </td>
                     </tr>
                 {/each}

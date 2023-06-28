@@ -26,11 +26,15 @@
                 href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
                 >{'nf-core/' + name}
                 {#if archived}
-                    <i class="fa-solid fa-xs fa-archive text-info" />
+                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
                 {:else if released}
                     <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
                 {:else}
-                    <i class="fa-solid fa-xs fa-wrench text-warning" />
+                    <i
+                        class="fa-solid fa-xs fa-wrench text-warning"
+                        title="under development"
+                        data-bs-toggle="tooltip"
+                    />
                 {/if}
             </a>
             <small class="gh-stats text-small">
