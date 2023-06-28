@@ -48,7 +48,7 @@ Do you know of a ToL informatics publication that we are missing?
 > [G3 Genes|Genomes|Genetics (2020)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7144090/);
 > doi: [10.1534/g3.119.400908](https://doi.org/10.1534/g3.119.400908)
 
-## [Genomes on a Tree (GoaT)]()
+## [Genomes on a Tree (GoaT)](https://goat.genomehubs.org)
 
 > **Genomes on a Tree (GoaT): A versatile, scalable search engine for genomic and sequencing project metadata across the eukaryotic tree of life**
 >
