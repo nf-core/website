@@ -21,6 +21,7 @@ const {
     title={title}
     data-bs-toggle="tooltip"
     data-bs-placement="bottom"
+    data-bs-delay="500"
     class={'text-decoration-none ' + additionalClass}
 >
     <Icon name={icon} class={icon_dark && 'hide-dark'} color={color} />
@@ -40,28 +41,27 @@ const {
 
     a.monochrome {
         svg {
-            width: 20px;
-            filter: brightness(0.2);
+            filter: brightness(0) opacity(0.7);
             transition: filter 0.1s ease-in-out;
         }
         &:hover,
         &:focus,
         &:active {
             svg {
-                filter: brightness();
+                filter: brightness(0) opacity(1);
             }
         }
     }
     :global([data-bs-theme='dark']) {
         a.monochrome {
             svg {
-                filter: brightness(0) invert(1);
+                filter: brightness(0) invert(1) opacity(0.7);
             }
             &:hover,
             &:focus,
             &:active {
                 svg {
-                    filter: brightness(1) invert(0);
+                    filter: brightness(0) invert(1) opacity(1);
                 }
             }
         }

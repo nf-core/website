@@ -1,12 +1,13 @@
 <script lang="ts">
     import { onMount } from 'svelte';
 
-    $: theme = 'dark';
+    let theme = 'dark';
     onMount(() => {
-        theme = document.documentElement.getAttribute('data-bs-theme');
+        theme = document.documentElement.getAttribute('data-bs-theme') || 'auto';
         window.addEventListener('theme-changed', (e) => {
             theme = document.documentElement.getAttribute('data-bs-theme');
         });
+        console.log('ThemeSwitch: theme =', theme === 'light');
     });
 </script>
 
@@ -14,11 +15,10 @@
     <script>
     </script>
 </svelte:head>
-<div class="dropdown">
-    <a
+<div class="dropdown-center">
+    <button
         class="nav-link dropdown-toggle"
-        href="#"
-        role="button"
+        type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
         title="Change theme"
@@ -29,91 +29,51 @@
         <i class="theme-icon-dark" class:d-none={theme !== 'dark'}>
             <slot name="dark" />
         </i>
-    </a>
-    <ul class="dropdown-menu">
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
         <li><span class="dropdown-header">Select theme</span></li>
-        <li class="dropdown-item">
-            <a
-                type="button"
-                class="text-decoration-none"
+        <li class="dropdown-item" class:active={theme === 'light'}>
+            <div
+                class="text-decoration-none theme-option w-100"
                 id="theme-light"
                 title="light"
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
             >
                 <slot name="light" /> <span class="ms-1">Light</span>
-            </a>
+            </div>
         </li>
-        <li class="dropdown-item">
-            <a
-                type="button"
-                class="text-decoration-none"
+        <li class="dropdown-item" class:active={theme === 'dark'}>
+            <div
+                class="text-decoration-none theme-option w-100"
                 id="theme-dark"
                 title="dark"
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
             >
                 <slot name="dark" /> <span class="ms-1">Dark</span>
-            </a>
+            </div>
         </li>
         <li class="dropdown-item">
-            <a
-                type="button"
-                class="text-decoration-none"
+            <div
+                class="text-decoration-none theme-option w-100"
                 id="theme-auto"
                 title="auto"
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
             >
                 <i class="fa-solid fa-adjust" /> <span class="ms-1">System</span>
-            </a>
+            </div>
         </li>
     </ul>
 </div>
 
-<!-- <div class="btn-toolbar d-print-none align-self-center ms-3" role="toolbar">
-    <div class="theme-switcher mx-auto btn-group btn-group-sm" role="group">
-        <input
-            type="radio"
-            class="btn-check"
-            id="theme-light"
-            name="theme-light"
-            value="light"
-            autocomplete="off"
-            on:click={(e) => switchTheme(e)}
-            checked={theme === 'light'}
-        />
-        <label
-            class="btn btn-outline-secondary"
-            for="theme-light"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Light Theme"
-        >
-            <slot name="light" />
-        </label>
-
-        <input
-            type="radio"
-            class="btn-check"
-            id="theme-dark"
-            name="theme-dark"
-            value="dark"
-            autocomplete="off"
-            on:click={(e) => switchTheme(e)}
-            checked={theme === 'dark'}
-        />
-        <label
-            class="btn btn-outline-secondary"
-            for="theme-dark"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Dark Theme"
-        >
-            <slot name="dark" />
-        </label>
-    </div>
-</div> -->
-
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    :global([data-bs-theme='light']) dropdown-item.active :global(.icon svg) {
+        fill: $white;
+    }
+    .theme-option {
+        cursor: pointer;
+    }
 </style>

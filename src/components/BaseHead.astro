@@ -55,10 +55,10 @@ const { title, description, image = '/social_img.png' } = Astro.props;
     const switchTheme = (e) => {
         const target = e.target;
         let theme = '';
-        // check if we clicked on svg or on a link{
-        if (target.tagName !== 'a') {
-            // check if parent element is a link
-            theme = target.closest('a').title;
+        // check if we clicked on svg or if target doesn't have a title attribute
+        if (target.tagName !== 'div' || !target.title) {
+            // get the parent div
+            theme = target.closest('div.theme-option').title;
         } else {
             theme = e.target.title;
         }
