@@ -26,7 +26,7 @@ echo $msg;
 
 <h1>Available Pipelines</h1>
 <p class="mb-3">Can you think of another pipeline that would fit in well?
-  <a href="https://nf-co.re/join/slack">Let us know!</a>
+  <a href="https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+">Let us know!</a>
 </p>
 
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
