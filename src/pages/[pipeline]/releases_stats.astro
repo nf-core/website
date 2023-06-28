@@ -110,7 +110,7 @@ const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', 
                                                     View on GitHub
                                                 </a>
                                             </div>
-                                            {gh_releases.data[i].body
+                                            {gh_releases.data[i] && gh_releases.data[i].body
                                                 ? async () => {
                                                       const html = await markdown(gh_releases.data[i].body);
                                                       return html;
