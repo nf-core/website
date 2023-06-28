@@ -12,42 +12,34 @@
     if (released) {
         latest_release = releases[0];
         tag_name = latest_release.tag_name;
-        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
+        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at), {
+            addSuffix: true,
+        });
     }
 </script>
 
-<div class="card flex-fill m-2">
-    <div class="card-header border-bottom-0 bg-transparent">
+<div class="card m-2">
+    <div class="card-header">
         <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
-                >{name}
+            <a
+                class="text-success text-decoration-none"
+                href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
+                >{'nf-core/' + name}
                 {#if archived}
-                    <i class="fa-solid fa-archive text-info" />
+                    <i class="fa-solid fa-xs fa-archive text-info" />
                 {:else if released}
-                    <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                    <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
                 {:else}
-                    <i class="fa-solid fa-wrench text-warning" />
+                    <i class="fa-solid fa-xs fa-wrench text-warning" />
                 {/if}
             </a>
             <small class="gh-stats text-small">
-                <span>
-                    {#if released}
-                        <a
-                            href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
-                            style={{ cursor: 'pointer' }}
-                            class="text-body-secondary text-decoration-none"
-                        >
-                            <i class="fa-regular fa-tag ms-3 me-1" />
-                            {tag_name}
-                        </a>
-                    {/if}
-                </span>
                 <a
                     href={'https://github.com/nf-core/' + name + '/stargazers'}
                     target="_blank"
                     rel="noreferrer"
                     class="stargazers text-decoration-none mt-2 ms-2 text-warning"
-                    title=""
+                    title={stars + ' stargazers on GitHub'}
                     data-bs-toggle="tooltip"
                     data-html="true"
                     data-bs-original-title={stars + ' stargazers on GitHub'}
@@ -60,8 +52,8 @@
             </small>
         </h2>
     </div>
-    <div class="card-body pt-0 d-flex flex-column">
-        <p class="topics mt-0 mb-0">
+    <div class="card-body pt-0 pb-2 d-flex flex-column">
+        <p class="topics mb-0">
             {#each topics as topic}
                 <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
@@ -71,12 +63,23 @@
         {/if}
 
         {#if released}
-            <p class="text-body-secondary align">Last release {release_date_ago}</p>
+            <p class="release">
+                <a
+                    href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
+                    style={{ cursor: 'pointer' }}
+                    class="text-body text-decoration-none"
+                >
+                    <i class="fa-regular fa-tag me-1" />
+                    {tag_name}
+                </a>
+                <span class="text-body-secondary text-small"> released {release_date_ago}</span>
+            </p>
         {/if}
     </div>
 </div>
 
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
     p {
         margin-top: 0.5rem;
     }
@@ -87,7 +90,12 @@
         color: rgb(var(--accent));
     } */
     .card {
-        max-width: 40rem;
+        width: 34.25rem;
+    }
+    @include media-breakpoint-down(md) {
+        .card {
+            width: 100%;
+        }
     }
     .badge.text-success {
         font-weight: 400;
@@ -95,7 +103,13 @@
     .gh-stats {
         float: right;
     }
-    .gh-stats a:hover .fa-regular {
-        font-weight: 900;
+    .gh-stats a,
+    .release a {
+        &:hover {
+            text-decoration: underline !important;
+            .fa-regular {
+                font-weight: 900;
+            }
+        }
     }
 </style>

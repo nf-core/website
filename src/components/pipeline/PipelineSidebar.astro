@@ -100,9 +100,13 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             </div>
         </div>
     </SidebarStatsRow>
-    <SidebarStatsRow content={[{ title: 'video introduction', icon: 'fa-brands fa-youtube' }]}>
-        <YouTube id={id} poster={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} />
-    </SidebarStatsRow>
+    {
+        id && (
+            <SidebarStatsRow content={[{ title: 'video introduction', icon: 'fa-brands fa-youtube' }]}>
+                <YouTube id={id} poster={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} />
+            </SidebarStatsRow>
+        )
+    }
     <SidebarStatsRow
         content={[
             { title: 'subscribers', value: meta.subscribers_count },

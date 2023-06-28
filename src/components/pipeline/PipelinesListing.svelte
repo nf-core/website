@@ -1,4 +1,7 @@
 <script lang="ts">
+    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+
     export let pipelines: {
         name: string;
         description: string;
@@ -11,8 +14,6 @@
         archived: boolean;
     }[] = [];
 
-    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store';
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
@@ -59,7 +60,29 @@
         }
     };
     function searchFilterSortPipelines(pipelines) {
-        return pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
+        pipelines = pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
+        Filters.set(
+            $Filters.map((filter) => {
+                if (filter.name === 'Released') {
+                    return {
+                        name: filter.name,
+                        count: pipelines.filter((p) => p.releases.length > 1 && !p.archived).length,
+                    };
+                }
+                if (filter.name === 'Under development') {
+                    return {
+                        name: filter.name,
+                        count: pipelines.filter((p) => p.releases.length === 1 && !p.archived).length,
+                    };
+                }
+                if (filter.name === 'Archived') {
+                    return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
+                }
+                return filter;
+            })
+        );
+        console.log($Filters);
+        return pipelines;
     }
     SortBy.subscribe(() => {
         filteredPipelines = searchFilterSortPipelines(pipelines);
@@ -72,6 +95,7 @@
     });
 
     $: filteredPipelines = searchFilterSortPipelines(pipelines);
+    // update counts in CurrentFilter
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">

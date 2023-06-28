@@ -7,7 +7,6 @@
         window.addEventListener('theme-changed', (e) => {
             theme = document.documentElement.getAttribute('data-bs-theme');
         });
-        console.log('ThemeSwitch: theme =', theme === 'light');
     });
 </script>
 

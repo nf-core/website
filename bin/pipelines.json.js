@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 import octokit, { getDocFiles } from '../src/components/octokit.js';
 import { readFileSync, writeFileSync } from 'fs';
+import yaml from 'js-yaml';
 import path from 'path';
 import ProgressBar from 'progress';
 
@@ -13,6 +14,10 @@ const writePipelinesJson = async () => {
   const namesJson = readFileSync(path.join(__dirname, '/public/pipeline_names.json'));
   const pipelines = JSON.parse(pipelinesJson);
   const names = JSON.parse(namesJson).pipeline;
+  // get ignored_topics from ignored_reops.yml
+  const ignored_topics = yaml.load(
+    readFileSync(path.join(__dirname, 'src/config/ignored_repos.yaml'), 'utf8')
+  ).ignore_topics;
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
   // go through names and add or update pipelines in pipelines.json
   for (const name of names) {
@@ -33,7 +38,8 @@ const writePipelinesJson = async () => {
 
         return response.data;
       });
-
+    // remove ignored topics
+    data['topics'] = data['topics'].filter((topic) => !ignored_topics.includes(topic));
     // get number of open pull requests
     let { data: pull_requests } = await octokit.rest.pulls.list({
       owner: 'nf-core',

@@ -8,7 +8,7 @@ import ConfigListing from '@components/ConfigListing.svelte';
 export interface Props {
     title: string;
     description: string;
-    filter: { name: string; class?: string }[];
+    filter: { name: string; count?: number }[];
     displayStyle: { name: string; icon: string }[];
     sortBy: string[];
     pipelines?: {
@@ -45,12 +45,13 @@ export interface Props {
 const { title, description, filter, displayStyle, sortBy, pipelines, components, configs } = Astro.props;
 ---
 
-<PageLayout title={title} subtitle={description}>
-    <FilterBar filter={filter} displayStyle={displayStyle} sortBy={sortBy} client:load />
-    {!components && <PipelinesListing pipelines={pipelines} client:load />}
-    {components && <ComponentListing components={components} client:load />}
-    {configs && <ConfigListing configs={configs} client:load />}
-
+<PageLayout title={title} subtitle={description} mainpage_container={false}>
+    <div class="container-fluid main-content pt-md-4 p-3">
+        <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
+        {!components && <PipelinesListing pipelines={pipelines} client:load />}
+        {components && <ComponentListing components={components} client:load />}
+        {configs && <ConfigListing configs={configs} client:load />}
+    </div>
     <slot />
 </PageLayout>
 
