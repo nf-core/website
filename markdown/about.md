@@ -3,7 +3,7 @@
 The sanger-tol project is the informatics branch of the Tree of Life programme at the Wellcome Sanger Institute, UK.
 Here you can read how we organise ourselves, how we are funded and how the sanger-tol project was started.
 
-Please note that all sanger community members are expected to adhere to our [code of conduct](/code_of_conduct), which is adopted from [nf-core](https://nf-co.re).
+Please note that all community members are expected to adhere to our [code of conduct](/code_of_conduct), which is adopted from [nf-core](https://nf-co.re).
 
 ## Informatics Infrastructure team {#it}
 
