@@ -1,9 +1,9 @@
 Do you know of a ToL informatics publication that we are missing?
 [Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=&projects=&template=publications.yaml&title=%5BPublication%5D%3A+DOI).
 
-# Initiatives
+# Initiatives {#initiatives}
 
-## [Earth Biogenome Project](https://www.earthbiogenome.org)
+## [Earth Biogenome Project](https://www.earthbiogenome.org) {#ebp}
 
 > **Why sequence all eukaryotes?**
 >
@@ -26,7 +26,7 @@ Do you know of a ToL informatics publication that we are missing?
 > [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115639118)
 > doi: [10.1073/pnas.2115639118](https://doi.org/10.1073/pnas.2115639118)
 
-### [Darwin Tree of Life](https://www.darwintreeoflife.org)
+### [Darwin Tree of Life](https://www.darwintreeoflife.org) {#dtol}
 
 > **Sequence locally, think globally: The Darwin Tree of Life Project**
 >
@@ -35,11 +35,11 @@ Do you know of a ToL informatics publication that we are missing?
 > [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115642118);
 > doi: [10.1073/pnas.2115642118](https://doi.org/10.1073/pnas.2115642118)
 
-# Pipelines and Tools
+# Pipelines and Tools {#pipelines-tools}
 
-## Genome After Party
+## Genome After Party {#genome_after_party}
 
-### [BlobToolKit](https://blobtoolkit.genomehubs.org)
+### [BlobToolKit](https://blobtoolkit.genomehubs.org) {#btk}
 
 > **BlobToolKit – interactive quality assessment of genome assemblies**
 >
@@ -48,7 +48,7 @@ Do you know of a ToL informatics publication that we are missing?
 > [G3 Genes|Genomes|Genetics (2020)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7144090/);
 > doi: [10.1534/g3.119.400908](https://doi.org/10.1534/g3.119.400908)
 
-## [Genomes on a Tree (GoaT)](https://goat.genomehubs.org)
+## [Genomes on a Tree (GoaT)](https://goat.genomehubs.org) {#goat}
 
 > **Genomes on a Tree (GoaT): A versatile, scalable search engine for genomic and sequencing project metadata across the eukaryotic tree of life**
 >
@@ -57,7 +57,7 @@ Do you know of a ToL informatics publication that we are missing?
 > [Wellcome Open Research (2021)](https://wellcomeopenresearch.org/articles/8-24/v1);
 > doi: [10.12688/wellcomeopenres.18658.1](https://doi.org/10.12688/wellcomeopenres.18658.1)
 
-# Genome Notes
+# Genome Notes {#genomenotes}
 
 > **Launching the Tree of Life Gateway**
 >
