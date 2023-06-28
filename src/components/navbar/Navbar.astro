@@ -6,7 +6,10 @@ import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
+import IconSocial from '@components/IconSocial.astro';
 import { getCollection } from 'astro:content';
+import ThemeSwitch from '@components/ThemeSwitch.svelte';
+import Icon from 'astro-icon';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -106,9 +109,45 @@ const { navTocHeadings = [], title } = Astro.props;
                     </ul>
                 </li>
             </ul>
+            <div class="ms-auto align-self-center me-4 rounded-3 px-2 py-1">
+                <ThemeSwitch client:load>
+                    <i class="icon" slot="light"><Icon name="sun" width={'1rem'} /></i>
+                    <i class="icon" slot="dark"><Icon name="moon" width={'1rem'} /></i>
+                </ThemeSwitch>
+            </div>
             <hr class="d-md-none" />
+            <div class="social-icons d-print-none align-self-center">
+                <IconSocial
+                    href="https://github.com/nf-core/"
+                    title="GitHub"
+                    icon="fa-brands:github"
+                    icon_dark="fa-brands:github"
+                    additionalClass="text-body monochrome me-3"
+                />
+                <IconSocial href="https://twitter.com/nf_core" icon="logos:twitter" additionalClass="monochrome me-3" />
+                <!-- <IconSocial
+                    marginLeft="0"
+                    marginRight="1rem"
+                    href="https://mstdn.science/@nf_core"
+                    title="Mastodon"
+                    icon="logos:mastodon-icon"
+                    additionalClass="monochrome me-3"
+                /> -->
+                <IconSocial
+                    href="https://www.youtube.com/c/nf-core"
+                    icon="mdi:youtube"
+                    additionalClass="monochrome me-3"
+                    color="red"
+                />
+                <IconSocial
+                    href="https://nfcore.slack.com/"
+                    title="Slack"
+                    icon="logos:slack-icon"
+                    additionalClass="monochrome me-3"
+                />
+            </div>
             <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join/"> Join nf-core</a>
+            <a class="d-none d-lg-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
 </nav>
@@ -159,6 +198,12 @@ const { navTocHeadings = [], title } = Astro.props;
         }
         .navbar-toggler:focus-within {
             box-shadow: none;
+        }
+    }
+    .icon :global(svg) {
+        fill: $navbar-light-color;
+        .active & {
+            fill: $navbar-light-color;
         }
     }
 </style>

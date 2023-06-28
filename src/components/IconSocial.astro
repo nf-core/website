@@ -10,6 +10,7 @@ const {
     additionalClass = '',
     marginLeft = '0.5rem',
     marginRight = '0',
+    color,
 } = Astro.props;
 ---
 
@@ -22,7 +23,7 @@ const {
     data-bs-placement="bottom"
     class={'text-decoration-none ' + additionalClass}
 >
-    <Icon name={icon} class={icon_dark && 'hide-dark'} />
+    <Icon name={icon} class={icon_dark && 'hide-dark'} color={color} />
     {icon_dark && <Icon name={icon_dark} color="white" class="hide-light" />}
 </a>
 
@@ -34,14 +35,34 @@ const {
         color: $body-color;
         svg {
             width: 20px;
-            filter: opacity(80%);
+        }
+    }
+
+    a.monochrome {
+        svg {
+            width: 20px;
+            filter: brightness(0.2);
             transition: filter 0.1s ease-in-out;
         }
         &:hover,
         &:focus,
         &:active {
             svg {
-                filter: opacity(100%);
+                filter: brightness();
+            }
+        }
+    }
+    :global([data-bs-theme='dark']) {
+        a {
+            svg {
+                filter: brightness(0) invert(1);
+            }
+            &:hover,
+            &:focus,
+            &:active {
+                svg {
+                    filter: brightness(1) invert(0);
+                }
             }
         }
     }

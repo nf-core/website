@@ -51,11 +51,33 @@ const { title, description, image = '/social_img.png' } = Astro.props;
         }
         return 'light';
     })();
-    if (theme === 'light') {
-        root.setAttribute('data-bs-theme', 'light');
-    } else {
-        root.setAttribute('data-bs-theme', 'dark');
-    }
+
+    const switchTheme = (e) => {
+        const target = e.target;
+        let theme = '';
+        // check if we clicked on svg or on a link{
+        if (target.tagName !== 'a') {
+            // check if parent element is a link
+            theme = target.closest('a').title;
+        } else {
+            theme = e.target.title;
+        }
+        localStorage.setItem('theme', theme);
+        setTheme(theme);
+        window.dispatchEvent(new Event('theme-changed'));
+    };
+    const setTheme = function (theme) {
+        if (theme === 'auto') {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                root.setAttribute('data-bs-theme', 'dark');
+            } else {
+                root.setAttribute('data-bs-theme', 'light');
+            }
+        } else {
+            root.setAttribute('data-bs-theme', theme);
+        }
+    };
+    setTheme(theme);
 </script>
 <!-- Google Analytics -->
 <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-1J32LEB1KZ"></script>
