@@ -14,6 +14,9 @@
         archived: boolean;
     }[] = [];
 
+    function handleSort(sor) {
+        SortBy.set(sor);
+    }
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
@@ -113,10 +116,22 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
+                    <th class="text-nowrap sortable" scope="col" on:click={() => handleSort('Alphabetical')}
+                        ><i
+                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
+                            class:fa-duotone={$SortBy === 'Alphabetical'}
+                            class:fa-regular={$SortBy !== 'Alphabetical'}
+                        /> Name</th
+                    >
                     <th scope="col">Description</th>
                     <th scope="col">Released</th>
-                    <th class="text-end" scope="col">Stars</th>
+                    <th class="text-end text-nowrap sortable" scope="col" on:click={() => handleSort('Stars')}
+                        ><i
+                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
+                            class:fa-duotone={$SortBy === 'Stars'}
+                            class:fa-regular={$SortBy !== 'Stars'}
+                        /> Stars</th
+                    >
                     <th class="text-end" scope="col">Last Release</th>
                 </tr>
             </thead>
@@ -164,5 +179,12 @@
     {/if}
 </div>
 
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    .table .sortable {
+        cursor: pointer;
+        &:hover {
+            background-color: $secondary-bg-subtle;
+        }
+    }
 </style>
