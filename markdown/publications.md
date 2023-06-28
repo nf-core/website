@@ -1,206 +1,69 @@
-Do you know of an nf-core publication that we're missing?
-Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/markdown/publications.md).
+Do you know of a ToL informatics publication that we are missing?
+[Let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=&projects=&template=publications.yaml&title=%5BPublication%5D%3A+DOI).
 
-# The nf-core project
+# Initiatives
 
-Main publication for the main nf-core paper, describing the community and framework:
+## [Earth Biogenome Project](https://www.earthbiogenome.org)
 
-<!-- pub-stats 10.1038/s41587-020-0439-x -->
-
-> **The nf-core framework for community-curated bioinformatics pipelines**
+> **Why sequence all eukaryotes?**
 >
-> Philip Ewels, Alexander Peltzer, Sven Fillinger, Harshil Patel, Johannes Alneberg, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso & Sven Nahnsen
+> Mark Blaxter, John M Archibald, Anna K Childers, Jonathan A Coddington, Keith A Crandall, *et al.*
 >
-> [_Nat Biotechnology_ (2020)](https://www.nature.com/articles/s41587-020-0439-x);
-> doi: [10.1038/s41587-020-0439-x](https://doi.org/10.1038/s41587-020-0439-x)
+> [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115636118);
+> doi: [10.1073/pnas.2115636118](https://doi.org/10.1073/pnas.2115636118)
+
+> **The Earth Biogenome Project 2020: Starting the Clock**
 >
-> ReadCube: [View full text](https://rdcu.be/b1GjZ)
-
-Preprint for the main nf-core paper (significantly different from the final Nature Biotech paper):
-
-<!-- pub-stats 10.1101/610741 -->
-
-> **_nf-core:_ Community curated bioinformatics pipelines**
+> Harris A. Lewin, Stephen Richards, Erez Lieberman Aiden, Miguel L. Allende, John M. Archibald, *et al.*
 >
-> Philip Ewels, Alexander Peltzer, Sven Fillinger, Johannes Alneberg, Harshil Patel, Andreas Wilm, Maxime Ulysse Garcia, Paolo Di Tommaso, Sven Nahnsen
+> [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115635118);
+> doi: [10.1073/pnas.2115635118](https://doi.org/10.1073/pnas.2115635118)
+
+> **Standards recommendations for the Earth Biogenome Project**
 >
-> [_bioRxiv_ 610741](https://www.biorxiv.org/content/10.1101/610741v3);
-> doi: [10.1101/610741](https://doi.org/10.1101/610741)
-
-Article in _Nature_ describing scientific workflows (including nf-core):
-
-<!-- pub-stats 10.1038/d41586-019-02619-z -->
-
-> **Workflow systems turn raw data into scientific knowledge**
+> Mara K. N. Lawniczak, Richard Durbin, Paul Flicek, Kerstin Lindblad-Toh, Xiaofeng Wei, *et al.*
 >
-> Jeffrey M. Perkel
+> [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115639118)
+> doi: [10.1073/pnas.2115639118](https://doi.org/10.1073/pnas.2115639118)
+
+### [Darwin Tree of Life](https://www.darwintreeoflife.org)
+
+> **Sequence locally, think globally: The Darwin Tree of Life Project**
 >
-> [_Nature_ **573**, 149-150 (2019)](https://www.nature.com/articles/d41586-019-02619-z);
-> doi: [10.1038/d41586-019-02619-z](https://doi.org/10.1038/d41586-019-02619-z)
-
-# Pipeline publications
-
-### [nf-core/ampliseq](https://nf-co.re/ampliseq)
-
-<!-- pub-stats 10.3389/fmicb.2020.550420 -->
-
-> **Interpretations of Environmental Microbial Community Studies Are Biased by the Selected 16S rRNA (Gene) Amplicon Sequencing Pipeline**
+> Darwin Tree of Life Project Consortium
 >
-> Daniel Straub, Nia Blackwell, Adrian Langarica-Fuentes, Alexander Peltzer, Sven Nahnsen and Sara Kleindienst
+> [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115642118);
+> doi: [10.1073/pnas.2115642118](https://doi.org/10.1073/pnas.2115642118)
+
+# Pipelines and Tools
+
+## Genome After Party
+
+### [BlobToolKit](https://blobtoolkit.genomehubs.org)
+
+> **BlobToolKit – interactive quality assessment of genome assemblies**
 >
-> [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
-> doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
-
-### [nf-core/circrna](https://nf-co.re/circrna)
-
-<!-- pub-stats 10.1186/s12859-022-05125-8 -->
-
-> **nf-core/circrna: a portable workflow for the quantification, miRNA target prediction and differential expression analysis of circular RNAs.**
+> Richard Challis, Edward Richards, Jeena Rajan, Guy Cochrane, and Mark Blaxter
 >
-> Barry Digby, Stephen P. Finn, & Pilib Ó Broin
+> [G3 Genes|Genomes|Genetics (2020)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7144090/);
+> doi: [10.1534/g3.119.400908](https://doi.org/10.1534/g3.119.400908)
+
+## [Genomes on a Tree (GoaT)]()
+
+> **Genomes on a Tree (GoaT): A versatile, scalable search engine for genomic and sequencing project metadata across the eukaryotic tree of life**
 >
-> [BMC Bioinformatics 24, 27 (2023)](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-05125-8)
-> doi: [10.1186/s12859-022-05125-8](https://doi.org/10.1186/s12859-022-05125-8)
-
-### [nf-core/coproid](https://nf-co.re/coproid)
-
-<!-- pub-stats 10.7717/peerj.9001 -->
-
-> **CoproID predicts the source of coprolites and paleofeces using microbiome composition and host DNA content**
+> Richard Challis, Sujai Kumar, Cibele Sotero-Caio, Max Brown, and Mark Blaxter
 >
-> Maxime Borry, Bryan Cordova, Angela Perri, Marsha Wibowo, Tanvi Prasad Honap, Jada Ko, Jie Yu, Kate Britton, Linus Girdland-Flink, Robert C. Power, Ingelise Stuijts, Domingo C. Salazar-Garcia, Courtney Hofman, Richard Hagan, Thérèse Samdapawindé Kagoné, Nicolas Meda, Hélène Carabin, David Jacobson, Karl Reinhard, Cecil Lewis, Aleksandar Kostic, Choongwon Jeong, Alexander Herbig, Alexander Hübner, Christina Warinner
+> [Wellcome Open Research (2021)](https://wellcomeopenresearch.org/articles/8-24/v1);
+> doi: [10.12688/wellcomeopenres.18658.1](https://doi.org/10.12688/wellcomeopenres.18658.1)
+
+# Genome Notes
+
+> **Launching the Tree of Life Gateway**
 >
-> [_PeerJ_, 9001 (2020)](https://peerj.com/articles/9001);
-> doi: [10.7717/peerj.9001](https://doi.org/10.7717/peerj.9001)
-
-### [nf-core/diaproteomics](https://nf-co.re/diaproteomics)
-
-<!-- pub-stats 10.1021/acs.jproteome.1c00123 -->
-
-> **DIAproteomics: A Multifunctional Data Analysis Pipeline for Data-Independent Acquisition Proteomics and Peptidomics**
+> Jonathan Threlfall, and Mark Blaxter
 >
-> Leon Bichmann, Shubham Gupta, George Rosenberger, Leon Kuchenbecker, Timo Sachsenberg, Phil Ewels, Oliver Alka, Julianus Pfeuffer, Oliver Kohlbacher, and Hannes Röst
->
-> [J. Proteome Res. (2021)](https://pubs.acs.org/doi/abs/10.1021/acs.jproteome.1c00123)
-> doi: [10.1021/acs.jproteome.1c00123](https://doi.org/10.1021/acs.jproteome.1c00123)
+> [Wellcome Open Research (2021)](https://wellcomeopenresearch.org/articles/6-125/v1);
+> doi: [10.12688/wellcomeopenres.16913.1](https://doi.org/10.12688/wellcomeopenres.16913.1)
 
-### [nf-core/eager](https://nf-co.re/eager)
-
-<!-- pub-stats 10.7717/peerj.10947 -->
-
-> **Reproducible, portable, and efficient ancient genome reconstruction with nf-core/eager**
->
-> James A. Fellows Yates, Thiseas C. Lamnidis, Maxime Borry, Aida Andrades Valtueña, Zandra Fagernäs, Stephen Clayton, Maxime U. Garcia, Judith Neukamm, Alexander Peltzer
->
-> [_PeerJ_, 9:e10947 (2021)](https://peerj.com/articles/10947/);
-> doi: [10.7717/peerj.10947](https://doi.org/10.7717/peerj.10947)
-
-### [nf-core/hgtseq](https://nf-co.re/hgtseq)
-
-<!-- pub-stats 10.3390/ijms232314512 -->
-
-> **hgtseq: A Standard Pipeline to Study Horizontal Gene Transfer**
->
-> Simone Carpanzano, Mariangela Santorsola, nf-core community and Francesco Lescai
->
-> [Int. J. Mol. Sci. 2022, 23(23), 14512](https://www.mdpi.com/1422-0067/23/23/14512/htm)
-> doi: [10.3390/ijms232314512](https://doi.org/10.3390/ijms232314512)
-
-### [nf-core/hicar](https://nf-co.re/hicar)
-
-<!-- pub-stats 10.1016/j.molcel.2022.01.023 -->
-
-> **HiCAR is a robust and sensitive method to analyze open-chromatin-associated genome organization.**
->
-> Xiaolin Wei, Yu Xiang, Derek T. Peters, Choiselle Marius, Tongyu Sun, Ruocheng Shan, Jianhong Ou, Xin Lin, Feng Yue, Wei Li, Kevin W. Southerland, Yarui Diao
->
-> [Molecular Cell (2022)](https://www.sciencedirect.com/science/article/pii/S1097276522000983);
-> doi: [10.1016/j.molcel.2022.01.023](https://doi.org/10.1016/j.molcel.2022.01.023)
-
-### [nf-core/imcyto](https://nf-co.re/imcyto)
-
-<!-- pub-stats 10.1038/s41467-021-26214-x -->
-
-> **Characterisation of tumour microenvironment remodelling following oncogene inhibition in preclinical studies with imaging mass cytometry.**
->
-> Febe van Maldegem, Karishma Valand, Megan Cole, Harshil Patel, Mihaela Angelova, Sareena Rana, Emma Colliver, Katey Enfield, Nourdine Bah, Gavin Kelly, Victoria Siu Kwan Tsang, Edurne Mugarza, Christopher Moore, Philip Hobson, Dina Levi, Miriam Molina, Charles Swanton & Julian Downward
->
-> [_Nat Commun._ 2021 Oct 8;12(1):5906](https://www.nature.com/articles/s41467-021-26214-x);
-> doi: [10.1038/s41467-021-26214-x](https://doi.org/10.1038/s41467-021-26214-x)
-
-### [nf-core/isoseq](https://nf-co.re/isoseq)
-
-<!-- pub-stats 10.1093/bioinformatics/btad150 -->
-
-> **nf-core/isoseq: Simple gene and isoform annotation with PacBio Iso-Seq long-read sequencing.**
->
-> Sébastien Guizard, Katarzyna Miedzinska, Jacqueline Smith, Jonathan Smith, Richard Kuo, Megan Davey, Alan Archibald, Michael Bryan Watson
->
-> [_Bioinformatics_ 2023 Mar](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btad150);
-> doi: [10.1093/bioinformatics/btad150](https://doi.org/10.1093/bioinformatics/btad150)
-
-### [nf-core/lncpipe](https://nf-co.re/lncpipe)
-
-<!-- pub-stats 10.1016/j.jgg.2018.06.005 -->
-
-> **LncPipe: A Nextflow-based pipeline for identification and analysis of long non-coding RNAs from RNA-Seq data.**
->
-> Qi Zhao, Yu Sun, Dawei Wang, Hongwan Zhang, Kai Yu, Jian Zheng, Zhixiang Zuo.
->
-> [_Journal of Genetics and Genomics_ **20**;45(7):399-401 (2018)](https://www.sciencedirect.com/science/article/pii/S1673852718301176)
-> doi: [10.1016/j.jgg.2018.06.005](https://doi.org/10.1016/j.jgg.2018.06.005)
-
-### [nf-core/mag](https://nf-co.re/mag)
-
-<!-- pub-stats 10.1093/nargab/lqac007 -->
-
-> **nf-core/mag: a best-practice pipeline for metagenome hybrid assembly and binning**
->
-> Sabrina Krakau, Daniel Straub, Hadrien Gourlé, Gisela Gabernet, Sven Nahnsen
->
-> [_NAR Genomics and Bioinformatics_, Vol 4, Issue 1 (2022)](https://academic.oup.com/nargab/article/4/1/lqac007/6520104);
-> doi: [10.1093/nargab/lqac007](https://doi.org/10.1093/nargab/lqac007)
-
-### [nf-core/mhcquant](https://nf-co.re/mhcquant)
-
-<!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
-
-> **MHCquant: Automated and Reproducible Data Analysis for Immunopeptidomics**
->
-> Leon Bichmann, Annika Nelde, Michael Ghosh, Lukas Heumos, Christopher Mohr, Alexander Peltzer, Leon Kuchenbecker, Timo Sachsenberg, Juliane S. Walz, Stefan Stevanović, Hans-Georg Rammensee, and Oliver Kohlbacher
->
-> [_Journal of Proteome Research_ **18**(11), 3876-3884 (2019)](https://pubs.acs.org/doi/10.1021/acs.jproteome.9b00313)
-> doi: [10.1021/acs.jproteome.9b00313](https://doi.org/10.1021/acs.jproteome.9b00313)
-
-### [nf-core/nanoseq](https://nf-co.re/nanoseq)
-
-<!-- pub-stats 10.1101/2021.04.21.440736 -->
-
-> **A systematic benchmark of Nanopore long read RNA sequencing for transcript level analysis in human cell lines**
->
-> Ying Chen, Nadia M. Davidson, Yuk Kei Wan, Harshil Patel, Fei Yao, Hwee Meng Low, Christopher Hendra, Laura Watten, Andre Sim, Chelsea Sawyer, Viktoriia Iakovleva, Puay Leng Lee, Lixia Xin, Hui En Vanessa Ng, Jia Min Loo, Xuewen Ong, Hui Qi Amanda Ng, Jiaxu Wang, Wei Qian Casslynn Koh, Suk Yeah Polly Poon, Dominik Stanojevic, Hoang-Dai Tran, Kok Hao Edwin Lim, Shen Yon Toh, Philip Andrew Ewels, Huck-Hui Ng, N.Gopalakrishna Iyer, Alexandre Thiery, Wee Joo Chng, Leilei Chen, Ramanuj DasGupta, Mile Sikic, Yun-Shen Chan, Boon Ooi Patrick Tan, Yue Wan, Wai Leong Tam, Qiang Yu, Chiea Chuan Khor, Torsten Wüstefeld, Ploy N. Pratanwanich, Michael I. Love, Wee Siong Sho Goh, Sarah B. Ng, Alicia Oshlack, Jonathan Göke, SG-NEx consortium
->
-> [_bioRxiv_ 610741](https://www.biorxiv.org/content/10.1101/2021.04.21.440736v1);
-> doi: [10.1101/610741](https://doi.org/10.1101/2021.04.21.440736)
-
-### [nf-core/sarek](https://nf-co.re/sarek)
-
-<!-- pub-stats 10.12688/f1000research.16665.2 -->
-
-> **Sarek: A portable workflow for whole-genome sequencing analysis of germline and somatic variants** [version 2; peer review: 2 approved].
->
-> Maxime Garcia, Szilveszter Juhos, Malin Larsson, Pall I. Olason, Marcel Martin, Jesper Eisfeldt, Sebastian DiLorenzo, Johanna Sandgren, Teresita Díaz De Ståhl, Philip Ewels, Valtteri Wirta, Monica Nistér, Max Käller, Björn Nystedt
->
-> [_F1000Research_, 9:63 (2020)](https://f1000research.com/articles/9-63/v2)
-> doi: [10.12688/f1000research.16665.2](https://doi.org/10.12688/f1000research.16665.2)
-
-### [nf-core/scflow](https://nf-co.re/scflow)
-
-<!-- pub-stats 10.1101/2021.08.16.456499 -->
-
-> **scFlow: A Scalable and Reproducible Analysis Pipeline for Single-Cell RNA Sequencing Data**
->
-> Combiz Khozoie, Nurun Fancy, Mahdi M. Marjaneh, Alan E. Murphy, Paul M. Matthews, Nathan Skene
->
-> [_bioRxiv_ 2021.08.16.456499](https://www.biorxiv.org/content/10.1101/2021.08.16.456499v2)
-> doi: [10.1101/2021.08.16.456499](https://doi.org/10.1101/2021.08.16.456499)
+To access all genome notes published, visit the [Tree of Life Gateway](https://wellcomeopenresearch.org/treeoflife).
