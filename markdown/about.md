@@ -22,7 +22,7 @@ The [Informatics Infrastructure team](/it) provides support for the production o
 ## Collaborations
 
 We welcome external contributions and collaboration on our projects.
-Iif you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) or comment directly on an existing GitHub issue.
+If you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) or comment directly on an existing GitHub issue.
 
 Please note that we don't have funded internships or student placements at the moment, but are still very happy to help and mentor.
 
