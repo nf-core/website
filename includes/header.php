@@ -143,6 +143,12 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
           <li class="nav-item p-1">
             <a class="nav-link" href="/">Home</a>
           </li>
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Projects</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
+            </div>
+	      </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
@@ -150,11 +156,11 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/tools/">Tools</a>
           </li>
 <!--
-	  <li class="nav-item p-1">
+	      <li class="nav-item p-1">
             <a class="nav-link" href="/docs">Docs</a>
           </li>
 -->
-	  <li class="nav-item p-1">
+	      <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
                 echo '  <span class="fa-stack small text-danger">
                             <i class="fad fa-circle fa-stack-1x"></i>
@@ -163,7 +169,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             } ?>Events</a>
           </li>
 
-	  <li class="nav-item p-1 dropdown">
+	      <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About sanger-tol</a>
@@ -171,7 +177,14 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join sanger-tol</a>
             </div>
-	  </li>
+	      </li>
+
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Teams</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/it">Informatics Infrastructure (IT)</a>
+            </div>
+	      </li>
 
         </ul>
 
