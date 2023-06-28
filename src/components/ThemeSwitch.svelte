@@ -1,55 +1,78 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+
+    $: theme = 'dark';
+    onMount(() => {
+        theme = document.documentElement.getAttribute('data-bs-theme');
+        window.addEventListener('theme-changed', (e) => {
+            theme = document.documentElement.getAttribute('data-bs-theme');
+        });
+    });
+</script>
+
 <svelte:head>
     <script>
-        const storedTheme = localStorage.getItem('theme');
-        const switchTheme = (e) => {
-            const theme = e.target.value;
-            localStorage.setItem('theme', theme);
-            setTheme(theme);
-            showActiveTheme(theme);
-            window.dispatchEvent(new Event('theme-changed'));
-        };
-        const setTheme = function (theme) {
-            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.setAttribute('data-bs-theme', 'dark');
-                showActiveTheme(getPreferredTheme());
-            } else {
-                document.documentElement.setAttribute('data-bs-theme', theme);
-                showActiveTheme(theme);
-            }
-        };
-        const showActiveTheme = (theme) => {
-            const btnToActive = document.querySelector(`.theme-switcher input[value="${theme}"]`);
-            document.querySelectorAll('.theme-switcher input[value]').forEach((element) => {
-                element.checked = false;
-            });
-            btnToActive.checked = true;
-        };
-        const getPreferredTheme = () => {
-            if (storedTheme) {
-                return storedTheme;
-            }
-
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
     </script>
 </svelte:head>
+<div class="dropdown">
+    <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        title="Change theme"
+    >
+        <i class="theme-icon-light" class:d-none={theme !== 'light'}>
+            <slot name="light" />
+        </i>
+        <i class="theme-icon-dark" class:d-none={theme !== 'dark'}>
+            <slot name="dark" />
+        </i>
+    </a>
+    <ul class="dropdown-menu">
+        <li><span class="dropdown-header">Select theme</span></li>
+        <li class="dropdown-item">
+            <a
+                type="button"
+                class="text-decoration-none"
+                id="theme-light"
+                title="light"
+                on:click={(e) => switchTheme(e)}
+                on:keydown={(e) => switchTheme(e)}
+            >
+                <slot name="light" /> <span class="ms-1">Light</span>
+            </a>
+        </li>
+        <li class="dropdown-item">
+            <a
+                type="button"
+                class="text-decoration-none"
+                id="theme-dark"
+                title="dark"
+                on:click={(e) => switchTheme(e)}
+                on:keydown={(e) => switchTheme(e)}
+            >
+                <slot name="dark" /> <span class="ms-1">Dark</span>
+            </a>
+        </li>
+        <li class="dropdown-item">
+            <a
+                type="button"
+                class="text-decoration-none"
+                id="theme-auto"
+                title="auto"
+                on:click={(e) => switchTheme(e)}
+                on:keydown={(e) => switchTheme(e)}
+            >
+                <i class="fa-solid fa-adjust" /> <span class="ms-1">System</span>
+            </a>
+        </li>
+    </ul>
+</div>
 
-<div class="btn-toolbar mb-3 d-print-none" role="toolbar">
+<!-- <div class="btn-toolbar d-print-none align-self-center ms-3" role="toolbar">
     <div class="theme-switcher mx-auto btn-group btn-group-sm" role="group">
-        <input
-            type="radio"
-            class="btn-check"
-            id="theme-auto"
-            name="theme-auto"
-            value="auto"
-            autocomplete="off"
-            on:click={(e) => switchTheme(e)}
-            checked={localStorage.getItem('theme') === 'auto'}
-        />
-        <label class="btn btn-secondary" for="theme-auto" data-bs-toggle="tooltip" title="Auto Light / Dark"
-            ><i class="fas fa-adjust" />
-        </label>
-
         <input
             type="radio"
             class="btn-check"
@@ -58,10 +81,16 @@
             value="light"
             autocomplete="off"
             on:click={(e) => switchTheme(e)}
-            checked={localStorage.getItem('theme') === 'light'}
+            checked={theme === 'light'}
         />
-        <label class="btn btn-secondary" for="theme-light" data-bs-toggle="tooltip" title="Light Theme"
-            ><i class="fas fa-sun" />
+        <label
+            class="btn btn-outline-secondary"
+            for="theme-light"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Light Theme"
+        >
+            <slot name="light" />
         </label>
 
         <input
@@ -72,13 +101,19 @@
             value="dark"
             autocomplete="off"
             on:click={(e) => switchTheme(e)}
-            checked={localStorage.getItem('theme') === 'dark'}
+            checked={theme === 'dark'}
         />
-        <label class="btn btn-secondary" for="theme-dark" data-bs-toggle="tooltip" title="Dark Theme"
-            ><i class="fas fa-moon" />
+        <label
+            class="btn btn-outline-secondary"
+            for="theme-dark"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Dark Theme"
+        >
+            <slot name="dark" />
         </label>
     </div>
-</div>
+</div> -->
 
 <style>
 </style>

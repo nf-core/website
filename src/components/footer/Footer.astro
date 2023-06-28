@@ -1,8 +1,7 @@
 ---
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
-import FooterSocial from '@components/footer/FooterSocial.astro';
-import ThemeSwitch from '@components/ThemeSwitch.svelte';
+import IconSocial from '@components/IconSocial.astro';
 ---
 
 <footer class="footer bg-body-secondary text-body-secondary">
@@ -11,45 +10,6 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
             <div
                 class="text-center text-lg-start col-12 col-lg d-flex flex-column align-self-stretch justify-content-between"
             >
-                <div class="social-icons d-print-none mt-1 ms-1">
-                    <FooterSocial
-                        marginLeft="0"
-                        marginRight="1rem"
-                        href="https://nfcore.slack.com/"
-                        title="Slack"
-                        icon="logos:slack-icon"
-                    />
-                    <FooterSocial
-                        marginLeft="0"
-                        marginRight="1rem"
-                        href="https://github.com/nf-core/"
-                        title="GitHub"
-                        icon="fa-brands:github"
-                        icon_dark="fa-brands:github"
-                        additionalClass="text-body"
-                    />
-                    <FooterSocial
-                        marginLeft="0"
-                        marginRight="1rem"
-                        href="https://twitter.com/nf_core"
-                        title="Twitter"
-                        icon="logos:twitter"
-                    />
-                    <FooterSocial
-                        marginLeft="0"
-                        marginRight="1rem"
-                        href="https://mstdn.science/@nf_core"
-                        title="Mastodon"
-                        icon="logos:mastodon-icon"
-                    />
-                    <FooterSocial
-                        marginLeft="0"
-                        marginRight="1rem"
-                        href="https://www.youtube.com/c/nf-core"
-                        title="YouTube"
-                        icon="logos:youtube-icon"
-                    />
-                </div>
                 <div class="mt-3">
                     <a href="/" class="text-decoration-none">
                         <div class="hide-dark">
@@ -66,15 +26,15 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
                 <div class="small mb-1">
                     <p class="mb-1">Supported by:</p>
                     <span class="text-center">
-                        <FooterSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="logos/czi" />
+                        <IconSocial link="/about#czi-eoss" title="Chan Zuckerberg Initiative" icon="logos/czi" />
                         <span class="ms-1">+</span>
-                        <FooterSocial
+                        <IconSocial
                             link="/about#microsoft-azure"
                             title="Microsoft Azure"
                             icon="logos:microsoft-azure"
                         />
                         <span class="ms-1">+</span>
-                        <FooterSocial
+                        <IconSocial
                             link="/about#aws"
                             title="Amazon Web Services"
                             icon="logos:aws"
@@ -83,11 +43,8 @@ import ThemeSwitch from '@components/ThemeSwitch.svelte';
                     </span>
                 </div>
             </div>
-            <div
-                class="col-12 col-lg text-center text-lg-end d-flex flex-column align-items-center align-items-md-end align-self-stretch justify-content-between mt-2 mt-md-0"
-            >
-                <ThemeSwitch client:load />
-                <div class="d-block small">
+            <div class="col-12 col-lg text-center text-lg-end mt-2 mt-md-0">
+                <div class="small">
                     See the source code for this website on GitHub:<br />
                     <a href="https://github.com/nf-core/nf-co.re" target="_blank">
                         https://github.com/nf-core/nf-co.re
