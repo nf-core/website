@@ -1,5 +1,5 @@
 name: Add publications
-description: Add publications to include on the sanger-tol website
+description: Add publication to the sanger-tol website
 title: "[Publication]: DOI"
 assignees:
   - priyanka-surana
@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to add publications to the ToL website!
+        Thanks for taking the time to add this publication to the ToL website!
   - type: input
     id: context
     attributes:
@@ -28,7 +28,8 @@ body:
   - type: input
     id: doi
     attributes:
-      label: Add DOI for the publication.
+      label: DOI
+      description: Add DOI for the publication.
       placeholder: |
         10.12688/wellcomeopenres.18658.1
     validations:
