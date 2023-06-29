@@ -65,6 +65,12 @@ Learn more about our pipelines on their dedicated pages. These pipelines are cre
 
 </br> Paul works on the main ToL Genome Engine. This system was developed by the ToL to manage and track samples from collection, onboarding, processing in the lab, sequencing and finally the publication of the assembly and Genome Note publication. As there are many steps in this process developing methodology to identify issues as early as possible is vital to avoid wasted time and resource. Paul works at all levels of the project fielding questions about data flow, data fixes and helps other ToL staff and project stakeholders with data and information. Paul also interacts with external groups and stakeholders to maintain data integrity in the public domain.
 
+### Beth Yates, Bioinformatics Engineer {#beth-yates}
+
+[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/BethYates) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/bethanyates/) &nbsp;
+
+</br> Beth is a Bioinformatics Engineer working on a building a platform to automate the production of [Genome Note publications](https://wellcomeopenresearch.org/treeoflife). The Universal Genome Note platform consists of a web portal, database and Nextflow pipelines. Beth is contributing to the genomenote pipeline, this pipeline fetches assembly meta data and generates some of the figures and statistics included in each genome note.
+
 ### Alumni {#alumni}
 
 - Zaynab Butt, Informatics and Digital Associate
