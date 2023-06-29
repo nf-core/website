@@ -47,12 +47,17 @@ Learn more about our pipelines on their dedicated pages. These pipelines are cre
 
 </br> Matthieu leads the Informatics Infrastructure team, which guides the implementation and delivery of the genome assembly pipelines, and provides support for large-scale genome analyses for the Tree of Life faculty teams. He joined the Wellcome Sanger Institute in February 2021, to form the Informatics Infrastructure team for the Tree of Life programme. He has recruited 7 team members, with skills covering data curation & management, software development & operations, and bioinformatics.
 
-
 ### Priyanka Surana, Senior Bioinformatician {#priyanka-surana}
 
 [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/surana-priyanka/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/priyanka-surana) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/priyanka-surana/) &nbsp;
 
 </br> Priyanka is a Senior Bioinformatician, overseeing the development of Nextflow pipelines for genome assembly, curation and downstream analyses. She also facilitates the workflows community and is passionate about building networks that support peer learning.
+
+### Cibele G Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
+
+[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/sotero-caio-cibele) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/ccaio) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibele-sotero-caio-b379071a6/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/twitter.svg" height=25px>](https://twitter.com/CibeleCaio) &nbsp;
+
+</br> Cibele is the data curator for the Genomes on a Tree (GoaT) - a platform developed to support the Tree of Life and other sequencing initiatives of the Earth Biogenome project (EBP).
 
 ### Paul Davis, Data Manager {#paul-davis}
 
