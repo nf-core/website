@@ -18,7 +18,7 @@ The [Informatics Infrastructure team](/it) provides support for the production o
 - Cibin Sadasivan Baby
 - [Cibele Sotero-Caio](/it#cibele-sotero-caio)
 - [Paul Davis](/it#paul-davis)
-- Beth Yates
+- [Beth Yates](/it#beth-yates)
 
 ## Safety team {#safety}
 
