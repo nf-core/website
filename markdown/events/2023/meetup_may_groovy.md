@@ -8,7 +8,9 @@ end_date: '2023-05-23'
 end_time: '16:30 CET'
 location_name: Sulston C3-02, Hinxton Hall, Wellcome Genome Campus
 location_url: https://sanger.zoom.us/j/93327483010?pwd=TEk5UTJEUVdZMGFGWHJKSURGcUVZZz09
-youtube_embed: https://www.youtube.com/playlist?list=PLo5QmrytFHLHLF6pCVezqn9M1xa5jpM--
+youtube_embed:
+  - https://youtu.be/p8wFyMhmCsg
+  - https://youtu.be/0EZ1EFknEL8
 ---
 
 **Workflows Community** is inviting you to a meetup focused on supercharging your Nextflow pipelines with Groovy.
