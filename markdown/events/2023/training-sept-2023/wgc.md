@@ -12,7 +12,11 @@ location_url: https://www.wellcomegenomecampus.org
 location_latlng: [48.8583, 2.2923]
 ---
 
-This is a free local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl/maps/XA8caWCAVToVT6EeA). If you do not work on campus and would like to attend, please reach out to [Priyanka Surana](mailto:ps22@sanger.ac.uk). 
+This is a free local event to be held at the [Wellcome Genome Campus, Cambridge](https://goo.gl/maps/XA8caWCAVToVT6EeA). 
+
+Please register [here](https://form.typeform.com/to/gFMjNQzt). 
+
+If you do not work on campus and would like to attend, reach out to [Priyanka Surana](mailto:ps22@sanger.ac.uk). 
 
 ## Local Schedule
 
