@@ -1,27 +1,10 @@
 <script>
-    import { onMount } from 'svelte';
-    import { flip } from 'svelte/animate';
-    import { fade } from 'svelte/transition';
-    import contributors_yml from '../contributors.yaml';
+    import Marquee from 'svelte-fast-marquee';
+    import contributors_yml from '../config/contributors.yaml';
 
-    export let contributors = contributors_yml.contributors
+    let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
-        .sort((a, b) => 0.5 - Math.random())
-        .slice(0, 10);
-
-    // Homepage contributor images fading in and out
-    // TODO: No animation yet
-    onMount(() => {
-        function shuffle_contributors() {
-            let removed_contrib = contributors.shift();
-            contributors = contributors; // trigger update
-            setTimeout(function () {
-                contributors.push(removed_contrib);
-                shuffle_contributors();
-            }, 3000);
-        }
-        shuffle_contributors();
-    });
+        .sort((a, b) => 0.5 - Math.random());
 </script>
 
 <div id="community" class="homepage-usedby">
@@ -40,22 +23,20 @@
         </p>
 
         <div class="homepage_contrib_logos">
-            {#each contributors as contributor (contributor)}
-                <a
-                    href="/contributors#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}"
-                    transition:fade={{ duration: 500 }}
-                    animate:flip={{ duration: 500 }}
-                >
-                    <img
-                        src="/images/contributors/white/{contributor.image_fn}"
-                        class="my-2 my-lg-3 mx-2"
-                        data-bs-placement="bottom"
-                        data-bs-toggle="tooltip"
-                        title={contributor.full_name}
-                        alt={contributor.full_name}
-                    />
-                </a>
-            {/each}
+            <Marquee pauseOnHover={true} speed={5}>
+                {#each contributors as contributor (contributor)}
+                    <a href="/contributors/#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}">
+                        <img
+                            src="/images/contributors/white/{contributor.image_fn}"
+                            class="my-lg-3 px-2"
+                            data-bs-placement="bottom"
+                            data-bs-toggle="tooltip"
+                            title={contributor.full_name}
+                            alt={contributor.full_name}
+                        />
+                    </a>
+                {/each}
+            </Marquee>
         </div>
     </div>
 </div>
@@ -102,18 +83,8 @@
         img {
             height: 80px;
         }
-        @media (max-width: 576px) {
-            img {
-                height: 50px;
-                margin: 0.5rem 1rem 0.5rem 0;
-            }
-        }
     }
-    .homepage_contrib_logos {
-        overflow: hidden;
-        white-space: nowrap;
-        a {
-            display: inline-block;
-        }
+    :global(.marqueeck-wrapper) {
+        background-color: transparent !important;
     }
 </style>
