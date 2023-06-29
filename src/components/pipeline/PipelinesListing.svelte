@@ -1,4 +1,7 @@
 <script lang="ts">
+    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+
     export let pipelines: {
         name: string;
         description: string;
@@ -11,8 +14,9 @@
         archived: boolean;
     }[] = [];
 
-    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+    function handleSort(sor) {
+        SortBy.set(sor);
+    }
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
@@ -59,7 +63,29 @@
         }
     };
     function searchFilterSortPipelines(pipelines) {
-        return pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
+        pipelines = pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
+        Filters.set(
+            $Filters.map((filter) => {
+                if (filter.name === 'Released') {
+                    return {
+                        name: filter.name,
+                        count: pipelines.filter((p) => p.releases.length > 1 && !p.archived).length,
+                    };
+                }
+                if (filter.name === 'Under development') {
+                    return {
+                        name: filter.name,
+                        count: pipelines.filter((p) => p.releases.length === 1 && !p.archived).length,
+                    };
+                }
+                if (filter.name === 'Archived') {
+                    return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
+                }
+                return filter;
+            })
+        );
+        console.log($Filters);
+        return pipelines;
     }
     SortBy.subscribe(() => {
         filteredPipelines = searchFilterSortPipelines(pipelines);
@@ -72,6 +98,7 @@
     });
 
     $: filteredPipelines = searchFilterSortPipelines(pipelines);
+    // update counts in CurrentFilter
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
@@ -89,10 +116,22 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
+                    <th class="text-nowrap sortable" scope="col" on:click={() => handleSort('Alphabetical')}
+                        ><i
+                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
+                            class:fa-duotone={$SortBy === 'Alphabetical'}
+                            class:fa-regular={$SortBy !== 'Alphabetical'}
+                        /> Name</th
+                    >
                     <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th class="text-end" scope="col">Stars</th>
+                    <th scope="col">Released</th>
+                    <th class="text-end text-nowrap sortable" scope="col" on:click={() => handleSort('Stars')}
+                        ><i
+                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
+                            class:fa-duotone={$SortBy === 'Stars'}
+                            class:fa-regular={$SortBy !== 'Stars'}
+                        /> Stars</th
+                    >
                     <th class="text-end" scope="col">Last Release</th>
                 </tr>
             </thead>
@@ -102,21 +141,36 @@
                         <td>
                             <a href={pipeline.html_url} target="_blank" rel="noreferrer">{pipeline.name}</a>
                         </td>
-                        <td>
+                        <td class="text-small">
                             {pipeline.description}
                         </td>
-                        <td>
-                            {pipeline.archived
-                                ? 'Archived'
-                                : pipeline.releases.length > 1
-                                ? 'Released'
-                                : 'Under Development'}
+                        <td class="text-center">
+                            {#if pipeline.archived}
+                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+                            {:else if pipeline.releases.length === 1}
+                                <i
+                                    class="fa-solid fa-xs fa-wrench text-warning"
+                                    title="under development"
+                                    data-bs-toggle="tooltip"
+                                />
+                            {:else if pipeline.releases.length > 1}
+                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                            {/if}
                         </td>
                         <td class="text-end">
                             {pipeline.stargazers_count}
                         </td>
                         <td class="text-end">
-                            {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                            <a
+                                class=""
+                                href={'/' +
+                                    pipeline.name +
+                                    '/' +
+                                    (pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : 'dev') +
+                                    '/'}
+                            >
+                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                            </a>
                         </td>
                     </tr>
                 {/each}
@@ -125,5 +179,12 @@
     {/if}
 </div>
 
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    .table .sortable {
+        cursor: pointer;
+        &:hover {
+            background-color: $secondary-bg-subtle;
+        }
+    }
 </style>

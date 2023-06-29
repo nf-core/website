@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
     import { onMount } from 'svelte';
 
     export let filter: { name: string; class?: string }[] = [];
@@ -35,6 +35,7 @@
     }
 
     onMount(() => {
+        Filters.set(filter);
         if (filter.length > 0) {
             CurrentFilter.set(filter.map((fil) => fil.name));
         }
@@ -48,19 +49,19 @@
 </script>
 
 <div class="filter-bar">
-    <div class="d-none d-md-flex w-100 justify-content-center mb-2">
+    <div class="d-none d-lg-flex w-100 justify-content-center mb-2">
         <input
             type="text"
             class="form-control w-25 me-2"
             bind:value={search}
             on:keyup={handleSearch}
-            placeholder="Filter"
+            placeholder="Search"
         />
-        {#if filter.length > 0}
+        {#if $Filters.length > 0}
             <div class="ms-3 d-flex align-items-center">
                 Show:
                 <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
-                    {#each filter as fil}
+                    {#each $Filters as fil}
                         <button
                             type="button"
                             data-bs-toggle="tooltip"
@@ -88,8 +89,8 @@
             </div>
         {/if}
         {#if sortBy.length > 1}
-            <div class="ms-3 d-flex align-items-center">
-                Sort by:
+            <div class="ms-3 d-none d-xl-flex align-items-center">
+                <span class="text-nowrap">Sort by: </span>
                 <div class="btn-group ms-1 sort-buttons" role="group" aria-label="Sort buttons">
                     {#each sortBy as sor (sor)}
                         <input
@@ -102,6 +103,34 @@
                         />
                         <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
                     {/each}
+                </div>
+            </div>
+            <div class="ms-3 d-inline d-xl-none align-items-center">
+                <div class="dropdown">
+                    <button
+                        class="btn btn-outline-success dropdown-toggle text-nowrap"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Sorted by: <span class="text-nowrap d-none d-xl-inline">{$SortBy}</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {#each sortBy as sor (sor)}
+                            <li>
+                                <div
+                                    class="dropdown-item"
+                                    title="sort"
+                                    id={sor.replace(' ', '-')}
+                                    class:active={sor === $SortBy}
+                                    on:click={() => handleSort(sor)}
+                                    on:keydown={() => handleSort(sor)}
+                                >
+                                    {sor}
+                                </div>
+                            </li>
+                        {/each}
+                    </ul>
                 </div>
             </div>
         {/if}
@@ -124,23 +153,23 @@
             </div>
         {/if}
     </div>
-    <div class="d-md-none dropdown">
+    <div class="d-lg-none dropdown-center text-center">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Filter & Sort
         </button>
         <div class="dropdown-menu">
             <input
                 type="text"
-                class="form-control w-100 mt-0"
+                class="form-control mt-0 mb-2"
                 bind:value={search}
                 on:keyup={handleSearch}
                 placeholder="Filter"
             />
-            {#if filter.length > 0}
-                <div class="ms-3 d-flex flex-colum flex-md-row align-items-center">
-                    Show:
-                    <div class="btn-group-vertical ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
-                        {#each filter as fil}
+            {#if $Filters.length > 0}
+                <div class="mx-1 mb-2 align-items-center">
+                    <span>Show:</span>
+                    <div class="btn-group-vertical mx-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                        {#each $Filters as fil}
                             <button
                                 type="button"
                                 data-bs-toggle="tooltip"
@@ -168,7 +197,7 @@
                 </div>
             {/if}
             {#if sortBy.length > 1}
-                <div class="ms-3 d-flex align-items-center">
+                <div class="mx-2 mb-2 d-flex align-items-center">
                     Sort:
                     <div class="btn-group-vertical ms-1 sort-buttons" role="group" aria-label="Sort buttons">
                         {#each sortBy as sor (sor)}
@@ -184,23 +213,13 @@
                                 >{sor}</label
                             >
                         {/each}
-                        <!-- {#each sortBy as sor (sor)}
-                            <input
-                                type="radio"
-                                class="btn-check"
-                                name="options"
-
-
-                            />
-                            <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>
-                        {/each} -->
                     </div>
                 </div>
             {/if}
             {#if displayStyle.length > 1}
-                <div class="ms-3 d-flex align-items-center">
+                <div class="mx-2 d-flex align-items-center">
                     Display:
-                    <div class="btn-group-vertical ms-1 display-buttons" role="group" aria-label="Sort buttons">
+                    <div class="btn-group ms-1 display-buttons" role="group" aria-label="Sort buttons">
                         {#each displayStyle as dis}
                             <button
                                 type="button"

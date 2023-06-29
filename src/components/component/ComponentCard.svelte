@@ -1,4 +1,5 @@
 <script lang="ts">
+    import ListingCard from '@components/ListingCard.svelte';
     export let component: {
         name: string;
         path: string;
@@ -18,18 +19,16 @@
     const href = '/' + component.type + 's/' + component.name + '/';
 </script>
 
-<div class="card flex-fill m-2">
-    <div class="card-header border-bottom-0 pb-0">
-        <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a {href}>{@html component.name.replace('_', '_<wbr>')} </a>
-            <small class="gh-stats text-small" />
-        </h2>
+<ListingCard>
+    <div slot="card-header">
+        <a {href}>{@html component.name.replace('_', '_<wbr>')} </a>
+        <small class="gh-stats text-small" />
     </div>
-    <div class="card-body pt-0 d-flex flex-column">
+    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
         {#if component.meta.keywords}
             <p class="topics">
                 {#each component.meta.keywords as keyword}
-                    <span class="badge bg-body-tertiary text-success me-2">{keyword}</span>
+                    <span class="badge fw-normal bg-body-tertiary text-success me-2">{keyword}</span>
                 {/each}
             </p>
         {/if}
@@ -39,8 +38,9 @@
             <span class="text-body-secondary align-self-bottom"
                 >Included in:
                 {#each component.pipelines as pipeline}
-                    <a class="badge text-bg-warning me-2" href={'/' + pipeline.name + '/' + pipeline.version + '/'}
-                        >{pipeline.name}</a
+                    <a
+                        class="badge fw-normal border border-warn-subtleing bg-warning-subtle text-body me-2"
+                        href={'/' + pipeline.name + '/' + pipeline.version + '/'}>{pipeline.name}</a
                     >
                 {/each}
             </span>
@@ -49,20 +49,26 @@
             <span class="text-body-secondary align-self-bottom"
                 >Part of:
                 {#each component.subworkflows as subworkflow}
-                    <a class="badge text-bg-info me-2" href={'/subworkflows/' + subworkflow + '/'}>{subworkflow}</a>
+                    <a
+                        class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2"
+                        href={'/subworkflows/' + subworkflow + '/'}>{subworkflow}</a
+                    >
                 {/each}
             </span>
         {/if}
         {#if component.meta.modules}
             <span class="text-body-secondary align-self-bottom"
-                >Contains:
+                >Includes:
                 {#each component.meta.modules as module}
-                    <a class="badge text-bg-info me-2" href={'/modules/' + module.replace('/', '_') + '/'}>{module}</a>
+                    <a
+                        class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2"
+                        href={'/modules/' + module.replace('/', '_') + '/'}>{module}</a
+                    >
                 {/each}
             </span>
         {/if}
     </div>
-</div>
+</ListingCard>
 
 <style>
     .card {

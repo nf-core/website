@@ -6,7 +6,10 @@ import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
+import IconSocial from '@components/IconSocial.astro';
 import { getCollection } from 'astro:content';
+import ThemeSwitch from '@components/ThemeSwitch.svelte';
+import Icon from 'astro-icon';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -75,6 +78,8 @@ const { navTocHeadings = [], title } = Astro.props;
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
                     </ul>
@@ -106,9 +111,61 @@ const { navTocHeadings = [], title } = Astro.props;
                     </ul>
                 </li>
             </ul>
+            <div class="ms-auto d-none d-md-block align-self-center px-2 py-1">
+                <ThemeSwitch client:load>
+                    <i class="icon" slot="light"><Icon name="sun" width={'1rem'} /></i>
+                    <i class="icon" slot="dark"><Icon name="moon" width={'1rem'} /></i>
+                </ThemeSwitch>
+            </div>
+            <div class="vr d-none d-xl-inline mx-3"></div>
             <hr class="d-md-none" />
+            <div
+                class="social-icons d-print-none d-flex align-items-center d-md-none d-xl-block align-self-center mb-3 mb-md-0"
+            >
+                <IconSocial
+                    href="https://github.com/nf-core/"
+                    title="GitHub"
+                    icon="fa-brands:github"
+                    icon_dark="fa-brands:github"
+                    additionalClass="text-body monochrome me-1"
+                />
+                <IconSocial
+                    href="https://twitter.com/nf_core"
+                    icon="logos:twitter"
+                    title="Twitter"
+                    additionalClass="monochrome me-1"
+                />
+                <!-- <IconSocial
+                    marginLeft="0"
+                    marginRight="1rem"
+                    href="https://mstdn.science/@nf_core"
+                    title="Mastodon"
+                    icon="logos:mastodon-icon"
+                    additionalClass="monochrome me-1"
+                /> -->
+                <IconSocial
+                    href="https://www.youtube.com/c/nf-core"
+                    icon="mdi:youtube"
+                    title="YouTube"
+                    additionalClass="monochrome me-1"
+                    color="red"
+                />
+                <IconSocial
+                    href="https://nfcore.slack.com/"
+                    title="Slack"
+                    icon="logos:slack-icon"
+                    additionalClass="monochrome me-1"
+                />
+                <div class="d-md-none ms-auto px-2 py-1">
+                    <ThemeSwitch client:load>
+                        <i class="icon" slot="light"><Icon name="sun" width={'1rem'} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={'1rem'} /></i>
+                    </ThemeSwitch>
+                </div>
+            </div>
+            <div class="d-none d-lg-block vr mx-3"></div>
             <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success ms-auto align-self-center" href="/join/"> Join nf-core</a>
+            <a class="d-none d-lg-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
 </nav>
@@ -154,11 +211,21 @@ const { navTocHeadings = [], title } = Astro.props;
             margin-top: calc($navbar-padding-y/3);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
-        .collapse.show li .dropdown-menu {
-            background-color: transparent;
+        .collapse.show {
+            max-height: 80vh;
+            overflow-y: auto;
+            li .dropdown-menu {
+                border: none;
+            }
         }
         .navbar-toggler:focus-within {
             box-shadow: none;
+        }
+    }
+    .icon :global(svg) {
+        fill: $navbar-light-color;
+        :global(.active) & {
+            fill: $white;
         }
     }
 </style>

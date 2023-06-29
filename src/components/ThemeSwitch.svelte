@@ -1,84 +1,74 @@
-<svelte:head>
-    <script>
-        const storedTheme = localStorage.getItem('theme');
-        const switchTheme = (e) => {
-            const theme = e.target.value;
-            localStorage.setItem('theme', theme);
-            setTheme(theme);
-            showActiveTheme(theme);
-            window.dispatchEvent(new Event('theme-changed'));
-        };
-        const setTheme = function (theme) {
-            if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.setAttribute('data-bs-theme', 'dark');
-                showActiveTheme(getPreferredTheme());
-            } else {
-                document.documentElement.setAttribute('data-bs-theme', theme);
-                showActiveTheme(theme);
-            }
-        };
-        const showActiveTheme = (theme) => {
-            const btnToActive = document.querySelector(`.theme-switcher input[value="${theme}"]`);
-            document.querySelectorAll('.theme-switcher input[value]').forEach((element) => {
-                element.checked = false;
-            });
-            btnToActive.checked = true;
-        };
-        const getPreferredTheme = () => {
-            if (storedTheme) {
-                return storedTheme;
-            }
+<script lang="ts">
+    import { onMount } from 'svelte';
 
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        };
-    </script>
-</svelte:head>
+    let theme = 'dark';
+    onMount(() => {
+        theme = document.documentElement.getAttribute('data-bs-theme') || 'auto';
+        window.addEventListener('theme-changed', (e) => {
+            theme = document.documentElement.getAttribute('data-bs-theme');
+        });
+    });
+</script>
 
-<div class="btn-toolbar mb-3 d-print-none" role="toolbar">
-    <div class="theme-switcher mx-auto btn-group btn-group-sm" role="group">
-        <input
-            type="radio"
-            class="btn-check"
-            id="theme-auto"
-            name="theme-auto"
-            value="auto"
-            autocomplete="off"
-            on:click={(e) => switchTheme(e)}
-            checked={localStorage.getItem('theme') === 'auto'}
-        />
-        <label class="btn btn-secondary" for="theme-auto" data-bs-toggle="tooltip" title="Auto Light / Dark"
-            ><i class="fas fa-adjust" />
-        </label>
-
-        <input
-            type="radio"
-            class="btn-check"
-            id="theme-light"
-            name="theme-light"
-            value="light"
-            autocomplete="off"
-            on:click={(e) => switchTheme(e)}
-            checked={localStorage.getItem('theme') === 'light'}
-        />
-        <label class="btn btn-secondary" for="theme-light" data-bs-toggle="tooltip" title="Light Theme"
-            ><i class="fas fa-sun" />
-        </label>
-
-        <input
-            type="radio"
-            class="btn-check"
-            id="theme-dark"
-            name="theme-dark"
-            value="dark"
-            autocomplete="off"
-            on:click={(e) => switchTheme(e)}
-            checked={localStorage.getItem('theme') === 'dark'}
-        />
-        <label class="btn btn-secondary" for="theme-dark" data-bs-toggle="tooltip" title="Dark Theme"
-            ><i class="fas fa-moon" />
-        </label>
-    </div>
+<div class="dropdown">
+    <button
+        class="nav-link dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        title="Change theme"
+    >
+        <i class="theme-icon-light" class:d-none={theme !== 'light'}>
+            <slot name="light" />
+        </i>
+        <i class="theme-icon-dark" class:d-none={theme !== 'dark'}>
+            <slot name="dark" />
+        </i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+        <li><span class="dropdown-header">Select theme</span></li>
+        <li class="dropdown-item" class:active={theme === 'light'}>
+            <div
+                class="text-decoration-none theme-option w-100"
+                id="theme-light"
+                title="light"
+                on:click={(e) => switchTheme(e)}
+                on:keydown={(e) => switchTheme(e)}
+            >
+                <slot name="light" /> <span class="ms-1">Light</span>
+            </div>
+        </li>
+        <li class="dropdown-item" class:active={theme === 'dark'}>
+            <div
+                class="text-decoration-none theme-option w-100"
+                id="theme-dark"
+                title="dark"
+                on:click={(e) => switchTheme(e)}
+                on:keydown={(e) => switchTheme(e)}
+            >
+                <slot name="dark" /> <span class="ms-1">Dark</span>
+            </div>
+        </li>
+        <li class="dropdown-item">
+            <div
+                class="text-decoration-none theme-option w-100"
+                id="theme-auto"
+                title="auto"
+                on:click={(e) => switchTheme(e)}
+                on:keydown={(e) => switchTheme(e)}
+            >
+                <i class="fa-solid fa-adjust" /> <span class="ms-1">System</span>
+            </div>
+        </li>
+    </ul>
 </div>
 
-<style>
+<style lang="scss">
+    @import '@styles/_variables.scss';
+    :global([data-bs-theme='light']) dropdown-item.active :global(.icon svg) {
+        fill: $white;
+    }
+    .theme-option {
+        cursor: pointer;
+    }
 </style>

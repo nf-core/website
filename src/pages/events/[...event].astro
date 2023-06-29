@@ -43,5 +43,11 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     headings={headings}
 >
     <Content />
-    <VideoTranscript id={id} client:idle />
+    {
+        id && (
+            <VideoTranscript id={id} client:idle>
+                <YouTube id={id} poster={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} />
+            </VideoTranscript>
+        )
+    }
 </MarkdownTocLayout>
