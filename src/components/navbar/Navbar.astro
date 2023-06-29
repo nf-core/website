@@ -78,6 +78,8 @@ const { navTocHeadings = [], title } = Astro.props;
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Components</span></li>
                         <li><a class="dropdown-item" href="/modules/">Modules</a></li>
                         <li><a class="dropdown-item" href="/subworkflows/">Subworkflows</a></li>
                     </ul>
@@ -109,16 +111,17 @@ const { navTocHeadings = [], title } = Astro.props;
                     </ul>
                 </li>
             </ul>
-            <div class="ms-auto align-self-center rounded-3 px-2 py-1">
+            <div class="ms-auto d-none d-md-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'1rem'} /></i>
                     <i class="icon" slot="dark"><Icon name="moon" width={'1rem'} /></i>
                 </ThemeSwitch>
             </div>
+            <div class="vr d-none d-xl-inline mx-3"></div>
             <hr class="d-md-none" />
-
-            <div class="social-icons d-print-none d-none d-xl-inline align-self-center">
-                <div class="vr mx-3"></div>
+            <div
+                class="social-icons d-print-none d-flex align-items-center d-md-none d-xl-block align-self-center mb-3 mb-md-0"
+            >
                 <IconSocial
                     href="https://github.com/nf-core/"
                     title="GitHub"
@@ -153,6 +156,12 @@ const { navTocHeadings = [], title } = Astro.props;
                     icon="logos:slack-icon"
                     additionalClass="monochrome me-1"
                 />
+                <div class="d-md-none ms-auto px-2 py-1">
+                    <ThemeSwitch client:load>
+                        <i class="icon" slot="light"><Icon name="sun" width={'1rem'} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={'1rem'} /></i>
+                    </ThemeSwitch>
+                </div>
             </div>
             <div class="d-none d-lg-block vr mx-3"></div>
             <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
@@ -202,8 +211,12 @@ const { navTocHeadings = [], title } = Astro.props;
             margin-top: calc($navbar-padding-y/3);
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
-        .collapse.show li .dropdown-menu {
-            background-color: transparent;
+        .collapse.show {
+            max-height: 80vh;
+            overflow-y: auto;
+            li .dropdown-menu {
+                border: none;
+            }
         }
         .navbar-toggler:focus-within {
             box-shadow: none;

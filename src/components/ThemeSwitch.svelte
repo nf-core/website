@@ -10,11 +10,7 @@
     });
 </script>
 
-<svelte:head>
-    <script>
-    </script>
-</svelte:head>
-<div class="dropdown-center">
+<div class="dropdown">
     <button
         class="nav-link dropdown-toggle"
         type="button"
