@@ -5,11 +5,16 @@
     export let id: string = '';
     let timer: any;
     let current_highlight: any;
-    $: currentTime = 0;
+    let noTranscript = true;
     onMount(async () => {
         // get details element
 
         const details = document.querySelector('details');
+        if (details === null) {
+            return;
+        } else {
+            noTranscript = false;
+        }
         // add video placeholder before details
         const videoPlaceholder = document.createElement('div');
         videoPlaceholder.id = 'video-placeholder';
@@ -77,4 +82,6 @@
     });
 </script>
 
-<!-- <Youtube {id} altThumb={true} /> -->
+{#if noTranscript}
+    <slot />
+{/if}

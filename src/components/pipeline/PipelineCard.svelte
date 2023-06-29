@@ -1,4 +1,5 @@
 <script>
+    import ListingCard from '@components/ListingCard.svelte';
     import { formatDistanceToNow } from 'date-fns';
     export let pipeline;
     const name = pipeline.name;
@@ -12,56 +13,44 @@
     if (released) {
         latest_release = releases[0];
         tag_name = latest_release.tag_name;
-        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at));
+        release_date_ago = formatDistanceToNow(new Date(latest_release.published_at), {
+            addSuffix: true,
+        });
     }
 </script>
 
-<div class="card flex-fill m-2">
-    <div class="card-header border-bottom-0 bg-transparent">
-        <h2 class="mb-0 d-flex justify-content-between align-items-center">
-            <a href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
-                >{name}
-                {#if archived}
-                    <i class="fa-solid fa-archive text-info" />
-                {:else if released}
-                    <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
-                {:else}
-                    <i class="fa-solid fa-wrench text-warning" />
-                {/if}
-            </a>
-            <small class="gh-stats text-small">
-                <span>
-                    {#if released}
-                        <a
-                            href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
-                            style={{ cursor: 'pointer' }}
-                            class="text-body-secondary text-decoration-none"
-                        >
-                            <i class="fa-regular fa-tag ms-3 me-1" />
-                            {tag_name}
-                        </a>
-                    {/if}
-                </span>
-                <a
-                    href={'https://github.com/nf-core/' + name + '/stargazers'}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="stargazers text-decoration-none mt-2 ms-2 text-warning"
-                    title=""
-                    data-bs-toggle="tooltip"
-                    data-html="true"
-                    data-bs-original-title={stars + ' stargazers on GitHub'}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <i class="fa-regular fa-star" aria-hidden="true" />
+<ListingCard>
+    <div slot="card-header" class="d-flex justify-content-between align-items-center">
+        <a class="text-decoration-none" href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
+            >{'nf-core/' + name}
+            {#if archived}
+                <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+            {:else if released}
+                <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
+            {:else}
+                <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" data-bs-toggle="tooltip" />
+            {/if}
+        </a>
+        <small class="gh-stats text-small">
+            <a
+                href={'https://github.com/nf-core/' + name + '/stargazers'}
+                target="_blank"
+                rel="noreferrer"
+                class="stargazers text-decoration-none mt-2 ms-2 text-warning"
+                title={stars + ' stargazers on GitHub'}
+                data-bs-toggle="tooltip"
+                data-html="true"
+                data-bs-original-title={stars + ' stargazers on GitHub'}
+                style={{ cursor: 'pointer' }}
+            >
+                <i class="fa-regular fa-star" aria-hidden="true" />
 
-                    {stars}
-                </a>
-            </small>
-        </h2>
+                {stars}
+            </a>
+        </small>
     </div>
-    <div class="card-body pt-0 d-flex flex-column">
-        <p class="topics mt-0 mb-0">
+    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
+        <p class="topics mb-2">
             {#each topics as topic}
                 <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
@@ -71,31 +60,20 @@
         {/if}
 
         {#if released}
-            <p class="text-body-secondary align">Last release {release_date_ago}</p>
+            <p class="release mt-3">
+                <a
+                    href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
+                    style={{ cursor: 'pointer' }}
+                    class="text-body text-decoration-none"
+                >
+                    <i class="fa-regular fa-tag me-1" />
+                    {tag_name}
+                </a>
+                <span class="text-body-secondary text-small"> released {release_date_ago}</span>
+            </p>
         {/if}
     </div>
-</div>
+</ListingCard>
 
-<style>
-    p {
-        margin-top: 0.5rem;
-    }
-    /* .link-card:is(:hover, :focus-within) {
-        background-position: 0;
-    }
-    .link-card:is(:hover, :focus-within) h2 {
-        color: rgb(var(--accent));
-    } */
-    .card {
-        max-width: 40rem;
-    }
-    .badge.text-success {
-        font-weight: 400;
-    }
-    .gh-stats {
-        float: right;
-    }
-    .gh-stats a:hover .fa-regular {
-        font-weight: 900;
-    }
+<style lang="scss">
 </style>
