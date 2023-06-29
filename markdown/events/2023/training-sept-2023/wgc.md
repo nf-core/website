@@ -32,7 +32,7 @@ If you do not work on campus and would like to attend, reach out to [Priyanka Su
             <tbody>
             <tr>
                 <td data-timestamp="1695804300" data-timeformat="HH:mm z">09:45</td>
-                <td background-color:navy; rowspan="1">Welcome and Introduction</td>
+                <td background-color:navy; rowspan="1">Welcome and Introductions</td>
                 <td background-color:navy; rowspan="1">Daily Start</td>
             </tr>
                 <td data-timestamp="1695805200" data-timeformat="HH:mm z">10:00</td>
@@ -50,7 +50,7 @@ If you do not work on campus and would like to attend, reach out to [Priyanka Su
                 <td rowspan="1">Session 4</td>
             </tr>
             <tr>
-                <td data-timestamp="1695823200"  data-timeformat="HH:mm z">15:00</td>
+                <td data-timestamp="1695823200" data-timeformat="HH:mm z">15:00</td>
                 <td>Q&A</td>
                 <td>Q&A</td>
             </tr>
