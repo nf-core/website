@@ -3,6 +3,9 @@
 The sanger-tol project is the informatics branch of the Tree of Life programme at the Wellcome Sanger Institute, UK.
 Here you can read how we organise ourselves, how we are funded and how the sanger-tol project was started.
 
+We welcome external contributions and collaboration on our projects.
+If you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+) or comment directly on an existing GitHub issue.
+
 Please note that all community members are expected to adhere to our [code of conduct](/code_of_conduct), which is adopted from [nf-core](https://nf-co.re).
 
 ## Informatics Infrastructure team {#it}
@@ -16,8 +19,6 @@ The [Informatics Infrastructure team](/it) provides support for the production o
 - [Cibele Sotero-Caio](/it#cibele-sotero-caio)
 - [Paul Davis](/it#paul-davis)
 - Beth Yates
-
-We welcome external collaboration on our projects - if you'd like to be involved, [drop us a message](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
 
 ## Safety team {#safety}
 
