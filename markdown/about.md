@@ -13,7 +13,7 @@ The [Informatics Infrastructure team](/it) provides support for the production o
 - Guoying Qi
 - [Priyanka Surana](/it#priyanka-surana)
 - Cibin Sadasivan Baby
-- Cibele Sotero-Caio
+- [Cibele Sotero-Caio](/it#cibele-sotero-caio)
 - [Paul Davis](/it#paul-davis)
 - Beth Yates
 
