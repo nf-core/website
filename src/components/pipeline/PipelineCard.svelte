@@ -1,4 +1,5 @@
 <script>
+    import ListingCard from '@components/ListingCard.svelte';
     import { formatDistanceToNow } from 'date-fns';
     export let pipeline;
     const name = pipeline.name;
@@ -18,46 +19,38 @@
     }
 </script>
 
-<div class="card m-2">
-    <div class="card-header">
-        <h2 class="mb-0 d-flex justify-content-between align-items-center">
+<ListingCard>
+    <div slot="card-header" class="d-flex justify-content-between align-items-center">
+        <a class="text-decoration-none" href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
+            >{'nf-core/' + name}
+            {#if archived}
+                <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+            {:else if released}
+                <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
+            {:else}
+                <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" data-bs-toggle="tooltip" />
+            {/if}
+        </a>
+        <small class="gh-stats text-small">
             <a
-                class="text-success text-decoration-none"
-                href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
-                >{'nf-core/' + name}
-                {#if archived}
-                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
-                {:else if released}
-                    <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip" />
-                {:else}
-                    <i
-                        class="fa-solid fa-xs fa-wrench text-warning"
-                        title="under development"
-                        data-bs-toggle="tooltip"
-                    />
-                {/if}
-            </a>
-            <small class="gh-stats text-small">
-                <a
-                    href={'https://github.com/nf-core/' + name + '/stargazers'}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="stargazers text-decoration-none mt-2 ms-2 text-warning"
-                    title={stars + ' stargazers on GitHub'}
-                    data-bs-toggle="tooltip"
-                    data-html="true"
-                    data-bs-original-title={stars + ' stargazers on GitHub'}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <i class="fa-regular fa-star" aria-hidden="true" />
+                href={'https://github.com/nf-core/' + name + '/stargazers'}
+                target="_blank"
+                rel="noreferrer"
+                class="stargazers text-decoration-none mt-2 ms-2 text-warning"
+                title={stars + ' stargazers on GitHub'}
+                data-bs-toggle="tooltip"
+                data-html="true"
+                data-bs-original-title={stars + ' stargazers on GitHub'}
+                style={{ cursor: 'pointer' }}
+            >
+                <i class="fa-regular fa-star" aria-hidden="true" />
 
-                    {stars}
-                </a>
-            </small>
-        </h2>
+                {stars}
+            </a>
+        </small>
     </div>
-    <div class="card-body pt-0 pb-2 d-flex flex-column">
-        <p class="topics mb-0">
+    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
+        <p class="topics mb-2">
             {#each topics as topic}
                 <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
@@ -67,7 +60,7 @@
         {/if}
 
         {#if released}
-            <p class="release">
+            <p class="release mt-3">
                 <a
                     href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
                     style={{ cursor: 'pointer' }}
@@ -80,40 +73,7 @@
             </p>
         {/if}
     </div>
-</div>
+</ListingCard>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
-    p {
-        margin-top: 0.5rem;
-    }
-    /* .link-card:is(:hover, :focus-within) {
-        background-position: 0;
-    }
-    .link-card:is(:hover, :focus-within) h2 {
-        color: rgb(var(--accent));
-    } */
-    .card {
-        width: 34.25rem;
-    }
-    @include media-breakpoint-down(md) {
-        .card {
-            width: 100%;
-        }
-    }
-    .badge.text-success {
-        font-weight: 400;
-    }
-    .gh-stats {
-        float: right;
-    }
-    .gh-stats a,
-    .release a {
-        &:hover {
-            text-decoration: underline !important;
-            .fa-regular {
-                font-weight: 900;
-            }
-        }
-    }
 </style>
