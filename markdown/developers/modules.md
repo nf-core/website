@@ -276,49 +276,46 @@ Please follow the steps below to run the tests locally:
                                               `._,._,'
 
         nf-core/tools version 2.8 - https://nf-co.re
+
+        INFO Press enter to use default values (shown in brackets) or type your own responses
+        ? Choose software profile Docker
+        INFO Setting environment variable '$PROFILE' to 'docker'
+        ───────────────────────────────────────────────────────────────────────────────────────────────────── fastqc ──────────────────────────────────────────────────────────────────────────────────────────────────────
+        INFO Running pytest for module 'fastqc'
+        =============================================================================================== test session starts ===============================================================================================
+        platform linux -- Python 3.11.3, pytest-7.3.1, pluggy-1.0.0
+        rootdir: /home/james/git/jfy133/nf-core-modules
+        configfile: pytest.ini
+        plugins: workflow-2.0.1
+        collecting ...
+        collected 1882 items
+
+        fastqc single-end:
+        command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+        directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
+        stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
+        stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
+        'fastqc single-end' done.
+
+        fastqc paired-end:
+        command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
+        directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
+        stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
+        stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
+        'fastqc paired-end' done.
+
+        tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
+        ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
+        ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
+        sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
+        ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 98%]
+        tests/modules/fastqc/test.yml ........
+        Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
+        ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
+
+        - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
+        - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
      ```
-
-   INFO Press enter to use default values (shown in brackets) or type your own responses
-   ? Choose software profile Docker
-   INFO Setting environment variable '$PROFILE' to 'docker'
-   ───────────────────────────────────────────────────────────────────────────────────────────────────── fastqc ──────────────────────────────────────────────────────────────────────────────────────────────────────
-   INFO Running pytest for module 'fastqc'
-   =============================================================================================== test session starts ===============================================================================================
-   platform linux -- Python 3.11.3, pytest-7.3.1, pluggy-1.0.0
-   rootdir: /home/james/git/jfy133/nf-core-modules
-   configfile: pytest.ini
-   plugins: workflow-2.0.1
-   collecting ...
-   collected 1882 items
-
-   fastqc single-end:
-   command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_single_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-   directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end
-   stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.out
-   stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_single-end/log.err
-   'fastqc single-end' done.
-
-   fastqc paired-end:
-   command: nextflow run ./tests/modules/fastqc/ -entry test_fastqc_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/fastqc/nextflow.config -c ./tests/modules/fastqc/nextflow.config
-   directory: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end
-   stdout: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.out
-   stderr: /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/pytest_workflow_ahvulf1v/fastqc_paired-end/log.err
-   'fastqc paired-end' done.
-
-   tests/test_versions_yml.py ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 17%]
-   ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 38%]
-   ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 59%]
-   sssssssssssssssssssssssssssssssssssss..sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 80%]
-   ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 98%]
-   tests/modules/fastqc/test.yml ........
-   Keeping temporary directories and logs. Use '--kwd' or '--keep-workflow-wd' to disable this behaviour.
-   ============================= 10 passed, 751 skipped, 479 warnings in 50.76s =============================
-
-   ```
-
-   - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
-   - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
-   ```
 
 > 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
 >
