@@ -43,7 +43,7 @@ Do you know of a ToL informatics publication that we are missing?
 > [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115642118);
 > doi: [10.1073/pnas.2115642118](https://doi.org/10.1073/pnas.2115642118)
 
-# Pipelines and Tools {#pipelines-tools}
+# Pipelines {#pipelines}
 
 ### [Genome After Party](https://pipelines.tol.sanger.ac.uk/genome_after_party) {#genome_after_party}
 
@@ -58,7 +58,9 @@ Do you know of a ToL informatics publication that we are missing?
 > [G3 Genes|Genomes|Genetics (2020)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7144090/);
 > doi: [10.1534/g3.119.400908](https://doi.org/10.1534/g3.119.400908)
 
-### [Genomes on a Tree (GoaT)](https://goat.genomehubs.org) {#goat}
+# Pipelines {#pipelines}
+
+🐐 [Genomes on a Tree (GoaT)](https://goat.genomehubs.org) {#goat}
 
 <!-- pub-stats 10.12688/wellcomeopenres.18658.1 -->
 
@@ -66,7 +68,7 @@ Do you know of a ToL informatics publication that we are missing?
 >
 > Richard Challis, Sujai Kumar, Cibele Sotero-Caio, Max Brown, and Mark Blaxter
 >
-> [Wellcome Open Research (2021)](https://wellcomeopenresearch.org/articles/8-24/v1);
+> [Wellcome Open Research (2023)](https://wellcomeopenresearch.org/articles/8-24/v1);
 > doi: [10.12688/wellcomeopenres.18658.1](https://doi.org/10.12688/wellcomeopenres.18658.1)
 
 # Genome Notes {#genomenotes}
