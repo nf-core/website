@@ -10,7 +10,13 @@ use Symfony\Component\Yaml\Yaml;
 // Get auth secrets
 $config = parse_ini_file('config.ini');
 $gh_auth = base64_encode($config['github_username'] . ':' . $config['github_access_token']);
-$conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['dbname'], $config['port']);
+$conn = mysqli_connect(
+    $config['host'],
+    $config['username'],
+    $config['password'],
+    $config['dbname'],
+    $config['port'],
+);
 
 if ($conn === false) {
     die('ERROR: Could not connect. ' . mysqli_connect_error());
@@ -72,7 +78,7 @@ function github_query($gh_query_url) {
 //  nf-core modules table
 //
 
-$gh_modules = github_query('https://api.github.com/repos/sanger-tol/nf-core-modules/git/trees/main?recursive=1');
+$gh_modules = github_query('https://api.github.com/repos/nf-core/modules/git/trees/master?recursive=1');
 $modules = [];
 foreach ($gh_modules['tree'] as $f) {
     if (substr($f['path'], -8) == 'meta.yml' && substr($f['path'], 0, 8) == 'modules/') {
