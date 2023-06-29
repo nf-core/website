@@ -203,7 +203,7 @@ $old_rel_tags = [];
 if ($old_json) {
     foreach ($old_json['remote_workflows'] as $old_pipeline) {
 
-        echo "Old pipeline names ".$old_pipeline['name']."\n";
+        // echo "Old pipeline names ".$old_pipeline['name']."\n";
 
         $old_rel_tags[$old_pipeline['name']] = [];
         // Collect releases from this pipeline
@@ -212,13 +212,13 @@ if ($old_json) {
                 continue;
             }
             $old_rel_tags[$old_pipeline['name']][] = $rel['tag_name'];
-            echo "Old release ".$rel['tag_name']."\n";
+            // echo "Old release ".$rel['tag_name']."\n";
         }
     }
 }
 // Go through new releases
 foreach ($results['remote_workflows'] as $new_pipeline) {
-    echo "New pipeline names ".$new_pipeline['name']."\n";
+    // echo "New pipeline names ".$new_pipeline['name']."\n";
     $rel_urls = [];
     foreach ($new_pipeline['releases'] as $rel) {
         
@@ -226,7 +226,7 @@ foreach ($results['remote_workflows'] as $new_pipeline) {
             continue;
         }
        
-        echo "New release ".$rel['tag_name']."\n";
+        // echo "New release ".$rel['tag_name']."\n";
 
         // See if this tag name was in the previous JSON
         if (
