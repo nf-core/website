@@ -159,7 +159,6 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   - Does not need root access or any daemon processes - images are built from files
   - NOTE: As of June 2023 this will use docker containers instead of using the pre-built singularity containers. To use the singularity containers you need to select the `singularity` profile with apptainer installed on your system; as `apptainer` defines `singularity` as an alias to the `apptainer` function this will currently work.
 
-
 ## Pipeline code
 
 ### Automatic
