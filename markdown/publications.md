@@ -161,6 +161,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_NAR Genomics and Bioinformatics_, Vol 4, Issue 1 (2022)](https://academic.oup.com/nargab/article/4/1/lqac007/6520104);
 > doi: [10.1093/nargab/lqac007](https://doi.org/10.1093/nargab/lqac007)
 
+### [nf-core/marsseq](https://nf-co.re/marsseq)
+
+<!-- pub-stats 10.1101/2023.06.28.546862 -->
+
+> **nf-core/marsseq: systematic pre-processing pipeline for MARS-seq experiments**
+>
+> Martin Proks, Jose Alejandro Romero Herrera, Jakub Sedzinski, Joshua M Brickman
+>
+> [_bioRxiv_ 2023.06.28.546862](https://www.biorxiv.org/content/10.1101/2023.06.28.546862v1);
+> doi: [10.1101/2023.06.28.546862](https://doi.org/10.1101/2023.06.28.546862)
+
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
 <!-- pub-stats 10.1021/acs.jproteome.9b00313 -->
