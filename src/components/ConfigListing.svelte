@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { SearchQuery } from '@components/store';
+    import { SearchQuery, SortBy } from '@components/store';
+    import ListingTableHeader from '@components/ListingTableHeader.svelte';
 
     export let configs: {
         name: string;
@@ -22,15 +23,24 @@
         }
         return false;
     };
-
-    function searchFilterConfigs(configs) {
-        return configs.filter(searchconfigs);
+    let invertSort = false;
+    const sortConfigs = (a, b) => {
+        invertSort = $SortBy.endsWith(';inverse');
+        if ($SortBy.startsWith('Name')) {
+            return a.name.localeCompare(b.name) * (invertSort ? -1 : 1);
+        } else if ($SortBy.startsWith('Executor')) {
+            return a.config.executor.localeCompare(b.config.executor) * (invertSort ? -1 : 1);
+        }
+    };
+    function searchFilterSortConfigs(configs) {
+        return configs.filter(searchconfigs).sort(sortConfigs);
     }
+
     SearchQuery.subscribe(() => {
-        filteredConfigs = searchFilterConfigs(configs);
+        filteredConfigs = searchFilterSortConfigs(configs);
     });
 
-    $: filteredConfigs = searchFilterConfigs(configs);
+    $: filteredConfigs = searchFilterSortConfigs(configs);
     configs.map((config) => {
         config.name = config.name.replace('.md', '');
     });
@@ -40,9 +50,9 @@
     <table class="table">
         <thead class="text-bg-secondary">
             <tr>
-                <th class="name" scope="col">Name</th>
+                <ListingTableHeader name="Name" />
                 <th class="description" scope="col">Description</th>
-                <th scope="col">Executor</th>
+                <ListingTableHeader name="Executor" />
             </tr>
         </thead>
         <tbody>

@@ -48,7 +48,7 @@ const { title, description, filter, displayStyle, sortBy, pipelines, components,
 <PageLayout title={title} subtitle={description} mainpage_container={false}>
     <div class="container-fluid main-content pt-md-4 p-3">
         <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
-        {!components && <PipelinesListing pipelines={pipelines} client:load />}
+        {!components && !configs && <PipelinesListing pipelines={pipelines} client:load />}
         {components && <ComponentListing components={components} client:load />}
         {configs && <ConfigListing configs={configs} client:load />}
     </div>

@@ -7056,7 +7056,10 @@
         "description": "Converts a bam file to a bed12 file.",
         "keywords": [
           "bam",
-          "bed"
+          "bed",
+          "bedtools",
+          "bamtobed",
+          "converter"
         ],
         "tools": [
           {
@@ -7376,7 +7379,9 @@
         "keywords": [
           "bed",
           "bam",
-          "genomecov"
+          "genomecov",
+          "bedtools",
+          "histogram"
         ],
         "tools": [
           {
@@ -7405,7 +7410,7 @@
           },
           {
             "scale": {
-              "type": "value",
+              "type": "integer",
               "description": "Number containing the scale factor for the output. Set to 1 to disable. Setting to a value other than 1 will also get the -bg bedgraph output format as this is required for this command switch"
             }
           },
@@ -7795,7 +7800,9 @@
         "description": "combines overlapping or “book-ended” features in an interval file into a single feature which spans all of the combined features.",
         "keywords": [
           "bed",
-          "merge"
+          "merge",
+          "bedtools",
+          "overlapped bed"
         ],
         "tools": [
           {
@@ -7875,7 +7882,10 @@
         "description": "Identifies common intervals among multiple (and subsets thereof) sorted BED/GFF/VCF files.",
         "keywords": [
           "bedtools",
-          "multinterval"
+          "multinterval",
+          "bed",
+          "vcf",
+          "gff"
         ],
         "tools": [
           {
@@ -7946,7 +7956,8 @@
         "description": "Adds a specified number of bases in each direction (unique values may be specified for either -l or -r)",
         "keywords": [
           "bed",
-          "slopBed"
+          "slopBed",
+          "bedtools"
         ],
         "tools": [
           {
@@ -8012,7 +8023,9 @@
         "description": "Sorts a feature file by chromosome and other criteria.",
         "keywords": [
           "bed",
-          "sort"
+          "sort",
+          "bedtools",
+          "chromosome"
         ],
         "tools": [
           {
@@ -10821,7 +10834,7 @@
           },
           {
             "lineage": {
-              "type": "value",
+              "type": "string",
               "description": "The BUSCO lineage to use, or \"auto\" to automatically select lineage"
             }
           },
@@ -15872,7 +15885,10 @@
         "name": "cooler_balance",
         "description": "Run matrix balancing on a cool file",
         "keywords": [
-          "balance"
+          "cooler/balance",
+          "cooler",
+          "cool",
+          "cooler"
         ],
         "tools": [
           {
@@ -15904,7 +15920,7 @@
           },
           {
             "resolution": {
-              "type": "value",
+              "type": "integer",
               "description": "Resolution"
             }
           }
@@ -15951,7 +15967,10 @@
         "name": "cooler_cload",
         "description": "Create a cooler from genomic pairs and bins",
         "keywords": [
-          "cool"
+          "cool",
+          "cooler",
+          "cload",
+          "hic"
         ],
         "tools": [
           {
@@ -15988,7 +16007,7 @@
           },
           {
             "cool_bin": {
-              "type": "value",
+              "type": "integer",
               "description": "Bins size in bp"
             }
           },
@@ -16022,7 +16041,7 @@
           },
           {
             "cool_bin": {
-              "type": "value",
+              "type": "integer",
               "description": "Bins size in bp"
             }
           }
@@ -16048,7 +16067,8 @@
         "description": "Generate fragment-delimited genomic bins",
         "keywords": [
           "digest",
-          "enzyme"
+          "enzyme",
+          "cooler"
         ],
         "tools": [
           {
@@ -16080,7 +16100,7 @@
           },
           {
             "enzyme": {
-              "type": "String",
+              "type": "string",
               "description": "Name of restriction enzyme. e.g. CviQI.",
               "documentation": "http://biopython.org/DIST/docs/cookbook/Restriction.html"
             }
@@ -16121,7 +16141,9 @@
         "name": "cooler_dump",
         "description": "Dump a cooler’s data to a text stream.",
         "keywords": [
-          "dump"
+          "dump",
+          "text",
+          "cooler"
         ],
         "tools": [
           {
@@ -16153,7 +16175,7 @@
           },
           {
             "resolution": {
-              "type": "value",
+              "type": "integer",
               "description": "Resolution"
             }
           }
@@ -16204,7 +16226,9 @@
         "name": "cooler_makebins",
         "description": "Generate fixed-width genomic bins",
         "keywords": [
-          "makebins"
+          "makebins",
+          "cooler",
+          "genomic bins"
         ],
         "tools": [
           {
@@ -16229,7 +16253,7 @@
           },
           {
             "cool_bin": {
-              "type": "value",
+              "type": "integer",
               "description": "Resolution (bin size) in base pairs"
             }
           }
@@ -16270,7 +16294,9 @@
         "name": "cooler_merge",
         "description": "Merge multiple coolers with identical axes",
         "keywords": [
-          "merge"
+          "merge",
+          "cooler",
+          "hic"
         ],
         "tools": [
           {
@@ -16336,7 +16362,9 @@
         "name": "cooler_zoomify",
         "description": "Generate a multi-resolution cooler file by coarsening",
         "keywords": [
-          "mcool"
+          "mcool",
+          "cool",
+          "cooler"
         ],
         "tools": [
           {
@@ -21264,7 +21292,9 @@
         "name": "ENSEMBLVEP_DOWNLOAD",
         "description": "Ensembl Variant Effect Predictor (VEP). The cache downloading options are controlled through `task.ext.args`.",
         "keywords": [
-          "annotation"
+          "annotation",
+          "cache",
+          "download"
         ],
         "tools": [
           {
@@ -21287,19 +21317,19 @@
           },
           {
             "assembly": {
-              "type": "value",
+              "type": "string",
               "description": "Genome assembly\n"
             }
           },
           {
             "species": {
-              "type": "value",
+              "type": "string",
               "description": "Specie\n"
             }
           },
           {
             "cache_version": {
-              "type": "value",
+              "type": "string",
               "description": "cache version\n"
             }
           }
@@ -26880,14 +26910,32 @@
             }
           },
           {
-            "bam": {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "input": {
               "type": "file",
               "description": "BAM/CRAM/SAM file",
               "pattern": "*.{bam,cram,sam}"
             }
           },
           {
-            "bai": {
+            "input_index": {
               "type": "file",
               "description": "BAM/CRAM/SAM index file",
               "pattern": "*.{bai,crai,sai}"
@@ -27585,6 +27633,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "counts": {
               "type": "file",
               "description": "One or more count TSV files created with gatk/collectreadcounts",
@@ -27615,8 +27669,7 @@
           {
             "ploidy_model": {
               "type": "directory",
-              "description": "Optional - A folder containing the ploidy model.\nWhen a model is supplied to tool will run in CASE mode.\nThe folder can be tar-zipped.\n",
-              "pattern": "*(.tar.gz)?"
+              "description": "Optional - A folder containing the ploidy model.\nWhen a model is supplied to tool will run in CASE mode.\npattern: '*-model/'\n"
             }
           }
         ],
@@ -27638,14 +27691,14 @@
             "calls": {
               "type": "directory",
               "description": "A folder containing the calls from the input files",
-              "pattern": "*.tar.gz"
+              "pattern": "*-calls/"
             }
           },
           {
             "model": {
               "type": "directory",
               "description": "A folder containing the model from the input files.\nThis will only be created in COHORT mode (when no model is supplied to the process).\n",
-              "pattern": "*.tar.gz"
+              "pattern": "*-model/"
             }
           }
         ],
@@ -32026,7 +32079,9 @@
         "name": "genmap_index",
         "description": "create index file for genmap",
         "keywords": [
-          "index"
+          "index",
+          "mappability",
+          "fasta"
         ],
         "tools": [
           {
@@ -32044,14 +32099,26 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
-              "description": "fasta file",
-              "pattern": "*.{fasta,fa}"
+              "description": "fasta file to index",
+              "pattern": "*.{fasta,fa,fna}"
             }
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "versions": {
               "type": "file",
@@ -32061,14 +32128,14 @@
           },
           {
             "index": {
-              "type": "index",
-              "description": "Genmap index file",
-              "pattern": "{index}.*"
+              "type": "directory",
+              "description": "Genmap index directory"
             }
           }
         ],
         "authors": [
-          "@jianhong"
+          "@jianhong",
+          "@nvnieuwk"
         ]
       },
       "pipelines": [
@@ -32152,6 +32219,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "hicar",
+          "version": "1.0.0"
+        },
         {
           "name": "hicar",
           "version": "1.0.0"
@@ -32865,6 +32936,8 @@
         "name": "gfastats",
         "description": "A single fast and exhaustive tool for summary statistics and simultaneous *fa*\n(fasta, fastq, gfa [.gz]) genome assembly file manipulation.\n",
         "keywords": [
+          "gfastats",
+          "fasta",
           "genome assembly",
           "genome summary",
           "genome manipulation",
@@ -32904,7 +32977,7 @@
           },
           {
             "genome_size": {
-              "type": "number",
+              "type": "integer",
               "description": "estimated genome size (bp) for NG* statistics (optional)."
             }
           },
@@ -58264,7 +58337,8 @@
         "description": "Markup VCF file using rho-calls.",
         "keywords": [
           "roh",
-          "rhocall"
+          "rhocall",
+          "runs_of_homozygosity"
         ],
         "tools": [
           {
@@ -58280,6 +58354,12 @@
         "input": [
           {
             "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
             }
@@ -61798,7 +61878,10 @@
         "name": "samtools_markdup",
         "description": "mark duplicate alignments in a coordinate sorted file",
         "keywords": [
-          "markdup"
+          "bam",
+          "duplicates",
+          "markduplicates",
+          "samtools"
         ],
         "tools": [
           {
@@ -71172,7 +71255,10 @@
         "description": "Convert a bedGraph file to bigWig format.",
         "keywords": [
           "bedgraph",
-          "bigwig"
+          "bigwig",
+          "ucsc",
+          "bedgraphtobigwig",
+          "converter"
         ],
         "tools": [
           {
@@ -71270,7 +71356,10 @@
         "description": "Convert file from bed to bigBed format",
         "keywords": [
           "bed",
-          "bigbed"
+          "bigbed",
+          "ucsc",
+          "bedtobigbed",
+          "converter"
         ],
         "tools": [
           {
@@ -71903,7 +71992,8 @@
         "description": "Deduplicate reads based on the mapping co-ordinate and the UMI attached to the read.",
         "keywords": [
           "umitools",
-          "deduplication"
+          "deduplication",
+          "dedup"
         ],
         "tools": [
           {
@@ -71956,6 +72046,13 @@
               "type": "file",
               "description": "BAM file with deduplicated UMIs.",
               "pattern": "*.{bam}"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "File with logging information",
+              "pattern": "*.{log}"
             }
           },
           {
@@ -74527,9 +74624,8 @@
           },
           {
             "query_self": {
-              "type": "val",
-              "description": "If set to true, the input FASTA will also be used as the query FASTA.",
-              "pattern": "{true, false}"
+              "type": "boolean",
+              "description": "If set to true, the input FASTA will also be used as the query FASTA."
             }
           },
           {
@@ -74757,7 +74853,9 @@
         "description": "Performs assembly scaffolding using YaHS",
         "keywords": [
           "scaffolding",
-          "assembly"
+          "assembly",
+          "yahs",
+          "hic"
         ],
         "tools": [
           {
@@ -78606,7 +78704,10 @@
         "description": "Allows one to screen for overlaps between two sets of genomic features.",
         "keywords": [
           "bed",
-          "map"
+          "vcf",
+          "gff",
+          "map",
+          "bedtools"
         ],
         "tools": [
           {
@@ -78728,7 +78829,7 @@
           },
           {
             "chrom_sizes": {
-              "type": "optional file",
+              "type": "file",
               "description": "Chromosome sizes file",
               "pattern": "*{.sizes,.txt}"
             }
@@ -79711,6 +79812,18 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "tsv": {
               "type": "file",
               "description": "One or more count TSV files created with gatk/collectreadcounts",
@@ -79727,15 +79840,15 @@
           {
             "model": {
               "type": "directory",
-              "description": "Optional - Tar gzipped directory containing the model produced by germlinecnvcaller cohort mode",
-              "pattern": "*.tar.gz"
+              "description": "Optional - directory containing the model produced by germlinecnvcaller cohort mode",
+              "pattern": "*-cnv-model/*-model"
             }
           },
           {
             "ploidy": {
               "type": "file",
-              "description": "Tar gzipped directory containing ploidy calls produced by determinegermlinecontigploidy case or cohort mode",
-              "pattern": "*.tar.gz"
+              "description": "directory containing ploidy calls produced by determinegermlinecontigploidy case or cohort mode",
+              "pattern": "*-calls"
             }
           }
         ],
@@ -79757,14 +79870,14 @@
             "calls": {
               "type": "file",
               "description": "Tar gzipped directory containing calls produced by germlinecnvcaller case mode",
-              "pattern": "*.tar"
+              "pattern": "*-cnv-calls/*-calls"
             }
           },
           {
             "model": {
               "type": "directory",
               "description": "Optional - Tar gzipped directory containing the model produced by germlinecnvcaller cohort mode",
-              "pattern": "*.tar.gz"
+              "pattern": "*-cnv-model/*-model"
             }
           }
         ],
@@ -79807,24 +79920,36 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "ploidy": {
               "type": "directory",
-              "description": "Optional - A folder containing the ploidy model.\nWhen a model is supplied to tool will run in CASE mode.\nThe folder can be tar-zipped.\n",
-              "pattern": "*.tar.gz"
+              "description": "Optional - A folder containing the ploidy model.\nWhen a model is supplied to tool will run in CASE mode.\n",
+              "pattern": "*-calls/"
             }
           },
           {
             "calls": {
               "type": "directory",
               "description": "A folder containing the calls from the input files",
-              "pattern": "*.tar.gz"
+              "pattern": "*-cnv-calls/*-calls"
             }
           },
           {
             "model": {
               "type": "directory",
               "description": "A folder containing the model from the input files.\nThis will only be created in COHORT mode (when no model is supplied to the process).\n",
-              "pattern": "*.tar.gz"
+              "pattern": "*-cnv-model/*-model"
             }
           }
         ],
@@ -81389,8 +81514,15 @@
           {
             "metrics": {
               "type": "file",
-              "description": "Output file containing the metrics data from Dedup.",
+              "description": "Output file containing Dedup metrics incl. histogram data.",
               "pattern": "*.metrics"
+            }
+          },
+          {
+            "metrics_multiqc_tsv": {
+              "type": "file",
+              "description": "Output tsv-file containing Dedup metrics excl. histogram data.",
+              "pattern": "*.metrics.multiqc.tsv"
             }
           },
           {
@@ -81550,7 +81682,8 @@
         "description": "Generates a BED file containing genomic locations of lengths of N.",
         "keywords": [
           "cut",
-          "fasta"
+          "fasta",
+          "seqtk"
         ],
         "tools": [
           {
@@ -82519,7 +82652,8 @@
         "description": "A program to generate frequency counts of repetitive units.",
         "keywords": [
           "fasta",
-          "interval"
+          "interval",
+          "windowmasker"
         ],
         "tools": [
           {
@@ -82583,7 +82717,8 @@
         "description": "A program to take a counts file and creates a file of genomic co-ordinates to be masked.",
         "keywords": [
           "fasta",
-          "interval"
+          "interval",
+          "windowmasker"
         ],
         "tools": [
           {
@@ -82896,17 +83031,45 @@
             }
           },
           {
-            "bed": {
+            "abberations_bed": {
               "type": "file",
-              "description": "OPTIONAL - Output in BED format containing the most important information",
-              "pattern": "*.bed"
+              "description": "OPTIONAL - Output abberations in BED format. This gets created with the `--bed` option",
+              "pattern": "*_aberrations.bed"
             }
           },
           {
-            "plot": {
+            "bins_bed": {
               "type": "file",
-              "description": "OPTIONAL - Output in PNG format to easily visualize the results",
-              "pattern": "*.png"
+              "description": "OPTIONAL - Output bins in BED format. This gets created with the `--bed` option",
+              "pattern": "*_bins.bed"
+            }
+          },
+          {
+            "segments_bed": {
+              "type": "file",
+              "description": "OPTIONAL - Output segments in BED format. This gets created with the `--bed` option",
+              "pattern": "*_segments.bed"
+            }
+          },
+          {
+            "chr_statistics": {
+              "type": "file",
+              "description": "OPTIONAL - Statistics per chromosome in TXT format. This gets created with the `--bed` option",
+              "pattern": "*_chr_statistics.txt"
+            }
+          },
+          {
+            "chr_plots": {
+              "type": "list",
+              "description": "OPTIONAL - A list containing the CNV plots of each chromosome. This gets created with the `--plot` option",
+              "pattern": "[!genome_wide]*.png"
+            }
+          },
+          {
+            "genome_plot": {
+              "type": "file",
+              "description": "OPTIONAL - A plot containing the CNV information of the whole genome",
+              "pattern": "genome_wide.png"
             }
           }
         ],
@@ -87806,7 +87969,13 @@
         "authors": [
           "@grst"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "spaceranger_mkgtf",
@@ -87991,6 +88160,862 @@
         ],
         "authors": [
           "@hrydbeck"
+        ]
+      }
+    },
+    {
+      "name": "cdhit_cdhitest",
+      "path": "modules/nf-core/cdhit/cdhitest/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cdhit_cdhitest",
+        "description": "Cluster nucleotide sequences using sequence similarity",
+        "keywords": [
+          "cluster",
+          "nucleotide",
+          "alignment",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "cdhit": {
+              "description": "Clusters and compares protein or nucleotide sequences",
+              "homepage": "https://sites.google.com/view/cd-hit/home",
+              "documentation": "https://github.com/weizhongli/cdhit/wiki",
+              "tool_dev_url": "https://github.com/weizhongli/cdhit",
+              "doi": "10.1093/bioinformatics/btl158",
+              "licence": "['GPL v2']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "sequences": {
+              "type": "file",
+              "description": "fasta or fastq file of sequences to be clustered",
+              "pattern": "*.{fasta,fastq}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "fasta or fastq file of the representative sequences for each cluster",
+              "pattern": "*.{fasta,fastq}"
+            }
+          },
+          {
+            "clusters": {
+              "type": "file",
+              "description": "List of clusters",
+              "pattern": "*.{clstr}"
+            }
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "chromograph",
+      "path": "modules/nf-core/chromograph/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "chromograph",
+        "description": "Chromograph is a python package to create PNG images from genetics data such as BED and WIG files.",
+        "keywords": [
+          "chromosome_visualization",
+          "bed",
+          "wig",
+          "png"
+        ],
+        "tools": [
+          {
+            "chromograph": {
+              "description": "Chromograph is a python package to create PNG images from genetics data such as BED and WIG files.",
+              "homepage": "https://github.com/Clinical-Genomics/chromograph",
+              "documentation": "https://github.com/Clinical-Genomics/chromograph/blob/master/README.md",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta7": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "autozyg": {
+              "type": "file",
+              "description": "Bed file containing the regions of autozygosity"
+            }
+          },
+          {
+            "coverage": {
+              "type": "file",
+              "description": "Wig file containing the coverage information"
+            }
+          },
+          {
+            "exome": {
+              "type": "file",
+              "description": "Bed file containing the coverage for exome."
+            }
+          },
+          {
+            "fracsnp": {
+              "type": "file",
+              "description": "Wig file containing the fraction of homozygous SNPs"
+            }
+          },
+          {
+            "ideogram": {
+              "type": "file",
+              "description": "Bed file containing information necessary for ideogram plots.\nFormat ['chrom', 'start', 'end', 'name', 'gStain']\n"
+            }
+          },
+          {
+            "regions": {
+              "type": "file",
+              "description": "Bed file containing UPD regions"
+            }
+          },
+          {
+            "sites": {
+              "type": "file",
+              "description": "Bed file containing UPD sites"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "plots": {
+              "type": "file",
+              "description": "Directory containing the plots in png format",
+              "pattern": "*.png"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "eklipse",
+      "path": "modules/nf-core/eklipse/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "eklipse",
+        "description": "tool for detection and quantification of large mtDNA rearrangements.",
+        "keywords": [
+          "eklipse",
+          "mitochondria",
+          "mtDNA",
+          "circos",
+          "deletion",
+          "SV"
+        ],
+        "tools": [
+          {
+            "eklipse": {
+              "description": "tool for detection and quantification of large mtDNA rearrangements.",
+              "homepage": "https://github.com/dooguypapua/eKLIPse/tree/master",
+              "documentation": "https://github.com/dooguypapua/eKLIPse/tree/master",
+              "tool_dev_url": "https://github.com/dooguypapua/eKLIPse/tree/master",
+              "doi": "10.1038/s41436-018-0350-8",
+              "licence": [
+                "GNU General Public v3 or later (GPL v3+)"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "MT BAM/SAM file",
+              "pattern": "*.{bam,sam}"
+            }
+          },
+          {
+            "ref_gb": {
+              "type": "file",
+              "description": "mtDNA reference genome in Genbank format, optional if empty NC_012920.1.gb will be used",
+              "pattern": "*.{gb}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "csv file containing deletions",
+              "pattern": "*.{csv}"
+            }
+          },
+          {
+            "circos": {
+              "type": "file",
+              "description": "png file with circos plot of mt",
+              "pattern": "*.{png}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Lucpen"
+        ]
+      }
+    },
+    {
+      "name": "gem2_gem2bedmappability",
+      "path": "modules/nf-core/gem2/gem2bedmappability/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gem2_gem2bedmappability",
+        "description": "Convert a mappability file to bedgraph format",
+        "keywords": [
+          "mappability",
+          "bedgraph",
+          "index",
+          "gem"
+        ],
+        "tools": [
+          {
+            "gem2": {
+              "description": "GEM2 is a high-performance mapping tool. It also provide a unique tool to evaluate mappability.",
+              "homepage": "https://paoloribeca.science/gem",
+              "licence": "['Custom']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "map": {
+              "type": "file",
+              "description": "The mappability file created from the index",
+              "pattern": "*.mappability"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing index information\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "The index of the reference FASTA",
+              "pattern": "*.gem"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bedgraph": {
+              "type": "file",
+              "description": "The resulting bedgraph file",
+              "pattern": "*.bg"
+            }
+          },
+          {
+            "sizes": {
+              "type": "file",
+              "description": "The chromosome sizes",
+              "pattern": "*.sizes"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "gem2_gemindexer",
+      "path": "modules/nf-core/gem2/gemindexer/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gem2_gemindexer",
+        "description": "Create a GEM index from a FASTA file",
+        "keywords": [
+          "fasta",
+          "index",
+          "reference",
+          "mappability"
+        ],
+        "tools": [
+          {
+            "gem2": {
+              "description": "GEM2 is a high-performance mapping tool. It also provide a unique tool to evaluate mappability.",
+              "homepage": "https://paoloribeca.science/gem",
+              "licence": "['Custom']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A reference FASTA file to index",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gem": {
+              "type": "file",
+              "description": "The created index",
+              "pattern": "*.gem"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "The execution log",
+              "pattern": "*.log"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "gem2_gemmappability",
+      "path": "modules/nf-core/gem2/gemmappability/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gem2_gemmappability",
+        "description": "Define the mappability of a reference",
+        "keywords": [
+          "mappability",
+          "gem",
+          "index",
+          "reference"
+        ],
+        "tools": [
+          {
+            "gem2": {
+              "description": "GEM2 is a high-performance mapping tool. It also provide a unique tool to evaluate mappability.",
+              "homepage": "https://paoloribeca.science/gem",
+              "licence": "['Custom']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "The index created with gem-indexer from the reference FASTA",
+              "pattern": "*.gem"
+            }
+          },
+          {
+            "read_length": {
+              "type": "integer",
+              "description": "The read length to define the mappability of"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "map": {
+              "type": "file",
+              "description": "The resulting mappability file",
+              "pattern": "*.mappability"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "genmap_map",
+      "path": "modules/nf-core/genmap/map/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "genmap_map",
+        "description": "create mappability files for a genome",
+        "keywords": [
+          "mappability",
+          "index",
+          "fasta",
+          "bedgraph",
+          "csv",
+          "wig"
+        ],
+        "tools": [
+          {
+            "genmap": {
+              "description": "Ultra-fast computation of genome mappability.",
+              "homepage": "https://github.com/cpockrandt/genmap",
+              "documentation": "https://github.com/cpockrandt/genmap",
+              "tool_dev_url": "https://github.com/cpockrandt/genmap",
+              "doi": "10.1093/bioinformatics/btaa222",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "index directory"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing regions information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "regions": {
+              "type": "file",
+              "description": "optional - a bed file with regions to define the mappability off",
+              "pattern": "*.bed"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "wig": {
+              "type": "file",
+              "description": "genmap wig mappability file",
+              "pattern": "*.wig"
+            }
+          },
+          {
+            "bedgraph": {
+              "type": "file",
+              "description": "genmap bedgraph mappability file",
+              "pattern": "*.bedgraph"
+            }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "genmap text mappability file",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "genmap csv mappability file",
+              "pattern": "*.csv"
+            }
+          }
+        ],
+        "authors": [
+          "@jianhong",
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "vrhyme_extractunbinned",
+      "path": "modules/nf-core/vrhyme/extractunbinned/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vrhyme_extractunbinned",
+        "description": "Extracting sequences that were unbinnned by vRhyme into a FASTA file",
+        "keywords": [
+          "bin",
+          "binning",
+          "link",
+          "vrhyme",
+          "extractunbinned"
+        ],
+        "tools": [
+          {
+            "vrhyme": {
+              "description": "vRhyme functions by utilizing coverage variance comparisons and supervised machine learning classification of sequence features to construct viral metagenome-assembled genomes (vMAGs).",
+              "homepage": "https://github.com/AnantharamanLab/vRhyme",
+              "documentation": "https://github.com/AnantharamanLab/vRhyme",
+              "tool_dev_url": "https://github.com/AnantharamanLab/vRhyme",
+              "doi": "10.1093/nar/gkac341",
+              "licence": "['GPL v3 license', 'GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "FASTA file containing contigs/scaffolds input into vRhyme",
+              "pattern": "*.{fasta,fna,fa}"
+            }
+          },
+          {
+            "membership": {
+              "type": "file",
+              "description": "TSV file containing information regarding which bins input sequences were placed information",
+              "pattern": "*.{tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "unbinnned_sequences": {
+              "type": "file",
+              "description": "FASTA file containing sequences unbinned by vRhyme",
+              "pattern": "*_unbinned_sequences.fasta"
+            }
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "vrhyme_linkbins",
+      "path": "modules/nf-core/vrhyme/linkbins/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vrhyme_linkbins",
+        "description": "Linking bins output by vRhyme to create one sequences per bin",
+        "keywords": [
+          "bin",
+          "binning",
+          "link",
+          "vrhyme",
+          "linkbins"
+        ],
+        "tools": [
+          {
+            "vrhyme": {
+              "description": "vRhyme functions by utilizing coverage variance comparisons and supervised machine learning classification of sequence features to construct viral metagenome-assembled genomes (vMAGs).",
+              "homepage": "https://github.com/AnantharamanLab/vRhyme",
+              "documentation": "https://github.com/AnantharamanLab/vRhyme",
+              "tool_dev_url": "https://github.com/AnantharamanLab/vRhyme",
+              "doi": "10.1093/nar/gkac341",
+              "licence": "['GPL v3 license', 'GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bins": {
+              "type": "directory",
+              "description": "Directory file containing bin FASTA files output by vRhyme (each bin having multiple sequences)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "linked_bins": {
+              "type": "file",
+              "description": "FASTA file containing all bins that have been linked by N's",
+              "pattern": "*_linked_bins.fasta"
+            }
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "vrhyme_vrhyme",
+      "path": "modules/nf-core/vrhyme/vrhyme/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vrhyme_vrhyme",
+        "description": "Binning virus genomes from metagenomes",
+        "keywords": [
+          "binning",
+          "bin",
+          "phage",
+          "virus",
+          "vrhyme"
+        ],
+        "tools": [
+          {
+            "vrhyme": {
+              "description": "vRhyme functions by utilizing coverage variance comparisons and supervised machine learning classification of sequence features to construct viral metagenome-assembled genomes (vMAGs).",
+              "homepage": "https://github.com/AnantharamanLab/vRhyme",
+              "documentation": "https://github.com/AnantharamanLab/vRhyme",
+              "tool_dev_url": "https://github.com/AnantharamanLab/vRhyme",
+              "doi": "10.1093/nar/gkac341",
+              "licence": "['GPL v3', 'GPL v3 license']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Preprocessed FASTQ file containing sample reads",
+              "pattern": "*.{fastq}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Contigs/scaffolds identified as viral",
+              "pattern": "*.{fna,fasta,fa}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bins": {
+              "type": "directory",
+              "description": "Directory containing bin FASTA files",
+              "pattern": "**/vRhyme_best_bins_fasta/"
+            }
+          },
+          {
+            "membership": {
+              "type": "file",
+              "description": "TSV file describing the contig/scaffold membership of each bin",
+              "pattern": "vRhyme_best_bins.*.membership.tsv"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "TSV file summarizing the attributes of each bin",
+              "pattern": "vRhyme_best_bins.*.summary.tsv"
+            }
+          }
+        ],
+        "authors": [
+          "@CarsonJM"
         ]
       }
     }
