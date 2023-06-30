@@ -42,9 +42,6 @@
         if (sortBy.length > 0) {
             SortBy.set(sortBy[0]);
         }
-        if (displayStyle.length > 0) {
-            DisplayStyle.set(displayStyle[0].name);
-        }
     });
 </script>
 

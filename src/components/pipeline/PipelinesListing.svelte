@@ -1,4 +1,5 @@
 <script lang="ts">
+    import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import PipelineCard from '@components/pipeline/PipelineCard.svelte';
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
 
@@ -15,14 +16,7 @@
     }[] = [];
 
     let sortInverse = false;
-    function handleSort(sor) {
-        if (sor === $SortBy) {
-            sortInverse = !sortInverse;
-        } else {
-            sortInverse = false;
-        }
-        SortBy.set(sortInverse ? sor + ';inverse' : sor);
-    }
+
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
@@ -53,20 +47,23 @@
     };
 
     const sortPipelines = (a, b) => {
+        console.log($SortBy);
         sortInverse = $SortBy.endsWith(';inverse');
-        if ($SortBy.startsWith('Alphabetical')) {
+        if ($SortBy.startsWith('Name')) {
             if (sortInverse) {
                 return b.name.localeCompare(a.name);
             } else {
                 return a.name.localeCompare(b.name);
             }
-        } else if ($SortBy === 'Stars') {
+        } else if ($SortBy.startsWith('Stars')) {
             if (sortInverse) {
+                console.log('sortInverse');
                 return a.stargazers_count - b.stargazers_count;
             } else {
+                console.log('sort');
                 return b.stargazers_count - a.stargazers_count;
             }
-        } else if ($SortBy === 'Last release') {
+        } else if ($SortBy.startsWith('Last release')) {
             // handle case where a pipeline has no releases
             if (a.releases.length === 1) {
                 return 1 * (sortInverse ? -1 : 1);
@@ -130,55 +127,15 @@
                 <PipelineCard {pipeline} />
             {/each}
         {/if}
-    {:else if $DisplayStyle === 'table'}
+    {:else}
         <table class="table">
             <thead>
                 <tr>
-                    <th
-                        class="text-nowrap sortable"
-                        scope="col"
-                        data-bs-toggle="tooltip"
-                        data-bs-delay="500"
-                        title="Sort by name"
-                        on:click={() => handleSort('Alphabetical')}
-                        ><i
-                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy.startsWith('Alphabetical')}
-                            class:fa-regular={!$SortBy.startsWith('Alphabetical')}
-                            class:text-muted={!$SortBy.startsWith('Alphabetical')}
-                        /> Name</th
-                    >
+                    <ListingTableHeader name="Name" />
                     <th scope="col">Description</th>
                     <th scope="col">Released</th>
-                    <th
-                        class="text-end text-nowrap sortable"
-                        scope="col"
-                        data-bs-toggle="tooltip"
-                        data-bs-delay="500"
-                        title="Sort by number of stars"
-                        on:click={() => handleSort('Stars')}
-                        ><i
-                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy.startsWith('Stars')}
-                            class:fa-regular={!$SortBy.startsWith('Stars')}
-                            class:text-muted={!$SortBy.startsWith('Stars')}
-                        /> Stars</th
-                    >
-                    <th
-                        class="text-end text-nowrap sortable"
-                        scope="col"
-                        data-bs-toggle="tooltip"
-                        data-bs-delay="500"
-                        title="Sort by date of last release"
-                        on:click={() => handleSort('Last release')}
-                    >
-                        <i
-                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy.startsWith('Last release')}
-                            class:fa-regular={!$SortBy.startsWith('Last release')}
-                            class:text-muted={!$SortBy.startsWith('Last release')}
-                        />Last Release</th
-                    >
+                    <ListingTableHeader name="Stars" textEnd={true} />
+                    <ListingTableHeader name="Last release" title="Sort by date of last release" textEnd={true} />
                 </tr>
             </thead>
             <tbody>

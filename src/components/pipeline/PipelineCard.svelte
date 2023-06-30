@@ -53,7 +53,7 @@
         {#if body}
             <p class="description flex-grow-1 mb-3">{body}</p>
         {/if}
-        <p class="topics">
+        <p class="topics mb-1">
             {#each topics as topic}
                 <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
@@ -77,4 +77,19 @@
 </ListingCard>
 
 <style lang="scss">
+    .badge.text-success {
+        font-weight: 400;
+    }
+    .gh-stats {
+        float: right;
+    }
+    .gh-stats a,
+    .release a {
+        &:hover {
+            text-decoration: underline !important;
+            .fa-regular {
+                font-weight: 900;
+            }
+        }
+    }
 </style>
