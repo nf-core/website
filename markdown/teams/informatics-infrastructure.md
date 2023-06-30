@@ -54,7 +54,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 </br> Priyanka is a Senior Bioinformatician, overseeing the development of Nextflow pipelines for genome assembly, curation and downstream analyses. She also facilitates the workflows community and is passionate about building networks that support peer learning.
 
-### Cibele G Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
+### Cibele Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
 
 [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/sotero-caio-cibele) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/ccaio) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibele-sotero-caio-b379071a6/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/twitter.svg" height=25px>](https://twitter.com/CibeleCaio) &nbsp;
 
