@@ -22,7 +22,7 @@
 <ListingCard>
     <div slot="card-header" class="d-flex justify-content-between align-items-center">
         <a class="text-decoration-none" href={'/' + pipeline.name + '/' + (released ? tag_name : 'dev') + '/'}
-            >{'nf-core/' + name}
+            >{name}
             {#if archived}
                 <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
             {:else if released}
@@ -31,7 +31,7 @@
                 <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" data-bs-toggle="tooltip" />
             {/if}
         </a>
-        <small class="gh-stats text-small">
+        <small class="gh-stats fs-5">
             <a
                 href={'https://github.com/nf-core/' + name + '/stargazers'}
                 target="_blank"
@@ -50,21 +50,22 @@
         </small>
     </div>
     <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
-        <p class="topics mb-2">
+        {#if body}
+            <p class="description flex-grow-1 mb-3">{body}</p>
+        {/if}
+        <p class="topics">
             {#each topics as topic}
-                <span class="badge bg-body-tertiary text-success me-2">{topic}</span>
+                <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
             {/each}
         </p>
-        {#if body}
-            <p class="description flex-grow-1 mb-0">{body}</p>
-        {/if}
 
         {#if released}
-            <p class="release mt-3">
+            <p class="release">
                 <a
+                    role="button"
                     href={'https://github.com/nf-core/' + name + '/releases/tag/' + tag_name}
                     style={{ cursor: 'pointer' }}
-                    class="text-body text-decoration-none"
+                    class="btn btn-outline-secondary"
                 >
                     <i class="fa-regular fa-tag me-1" />
                     {tag_name}
