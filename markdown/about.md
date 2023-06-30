@@ -37,6 +37,8 @@ The current safety team in 2023 are:
 
 Tree of Life is a core funded programme within the Wellcome Sanger Institute and is allocated a slice of the Institute’s core Wellcome grant.
 
+<br clear="all" />
+
 ## History of sanger-tol
 
 Established at the Wellcome Sanger Institute in 2019, the Tree of Life Programme is part of a global push to sequence the genomes of all eukaryotic life on Earth. That is, to produce reference-quality genomes for every animal, plant, fungi and single-celled protist living on our planet. 
