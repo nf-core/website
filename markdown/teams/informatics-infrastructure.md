@@ -12,9 +12,10 @@ The team is organised in three poles.
 
 ## Tech stack {#tech-stack}
 
+<img src="https://www.sanger.ac.uk/wp-content/uploads/Informatics-Infrastructure-Technology-wheel-300.png" alt="Tech stack" height=300px align="right">
 The team uses a wide range of technologies, frameworks and programming languages, including Nextflow, Python, Conda, Jira, LSF, Singularity, and Kubernetes. The technology wheel below shows most of their logos. How many can you recognise?
 
-<img src="https://www.sanger.ac.uk/wp-content/uploads/Informatics-Infrastructure-Technology-wheel-300.png" alt="Tech stack" height=500px>
+<br clear="all" />
 
 ## Projects {#projects}
 
