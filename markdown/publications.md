@@ -1,6 +1,8 @@
 Do you know of an nf-core publication that we're missing?
 Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/markdown/publications.md).
 
+If you are preparing your own publication, make sure to check recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit).
+
 # The nf-core project
 
 Main publication for the main nf-core paper, describing the community and framework:
