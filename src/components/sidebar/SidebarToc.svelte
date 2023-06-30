@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
+    import { currentHeading, showHidden } from '@components/store';
     import { onMount } from 'svelte';
 
     export let headings: {
@@ -7,6 +7,7 @@
         slug: string;
         depth: number;
         fa_icon?: string;
+        hidden?: boolean;
     }[];
 
     const min_heading_depth = Math.min(...headings.map((h) => h.depth));
@@ -34,6 +35,7 @@
                         <li
                             class={'nav-item ' + headingMargin[heading.depth]}
                             class:active={heading.slug === $currentHeading}
+                            class:collapse={heading.hidden && !$showHidden}
                         >
                             <a class="nav-link py-1 ps-3 text-body-secondary" href={'#' + heading.slug}>
                                 {#if heading.fa_icon}
