@@ -35,7 +35,7 @@ jobs:
 
       # Deploy via FTP, only if this is running on a push to master (not a pull request)
       - name: Sync website files
-        if: github.repository == 'nf-core/nf-co.re' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'))
+        if: github.repository == 'sanger-tol/pipelines-website' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'))
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
           server: ${{ secrets.ftp_server }}
