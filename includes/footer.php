@@ -114,16 +114,15 @@ if (isset($subfooter) and $subfooter) {
         <h5>For Authors</h5>
         <ul class="list-unstyled">
           <li><a href="/docs/contributing/guidelines">Guidelines</a></li>
+          <li><a href="/docs/contributing/guidelines/modules">DSL2 modules</a></li>
+          <li><a href="/docs/contributing/guidelines/subworkflows">DSL2 subworkflows</a></li>
           <li><a href="/docs/contributing/adding_pipelines">Adding a new pipeline</a></li>
-          <li><a href="/docs/contributing/modules">DSL2 modules</a></li>
-          <li><a href="/docs/contributing/subworkflows">DSL2 subworkflows</a></li>
           <li><a href="/docs/contributing/release_checklist">Release checklist</a></li>
           <li><a href="/docs/contributing/training_guide">Training guide</a></li>
           <li><a href="/tools-docs">Lint error codes</a></li>
           <li><a href="/docs/contributing/sync">Template synchronisation</a></li>
           <li><a href="/docs/contributing/developer_tutorials">Developer tutorials</a></li>
           <li><a href="/docs/contributing/editor_plugins">Code editor plugins</a></li>
-          <li><a href="/docs/contributing/design_guidelines">Graphic design guidelines</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-lg-2 mb-3 d-print-none">

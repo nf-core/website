@@ -11,7 +11,7 @@ If you create a new module with the goal of contributing the code to _nf-core_, 
 
 ### Module guidelines
 
-The nf-core community has agreed on a minimal set of [guidelines](https://nf-co.re/docs/contributing/modules), intended to make module most suitable for general use, i.e. to be shared across a wide variety of community workflows.
+The nf-core community has agreed on a minimal set of [guidelines](https://nf-co.re/docs/contributing/guidelines/modules), intended to make module most suitable for general use, i.e. to be shared across a wide variety of community workflows.
 
 ### nf-core tools
 
@@ -119,11 +119,11 @@ Here you should first identify:
 - the outputs
 - any value or variable you might need, associated with the sample (for example, the sample ID or other metadata)
 
-Make sure to check the [guidelines](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist) for what you should and should not include.
+Make sure to check the [guidelines](https://nf-co.re/docs/contributing/guidelines/modules#new-module-guidelines-and-pr-review-checklist) for what you should and should not include.
 
 ### Inputs and Outputs
 
-As described in the guidelines, any information that will differ between multiple runs of the same module in a workflow (e.g. when a module is run across many samples as in fgbio) should be passed as an input, as part of a groovy map called [_meta_](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map). This is part of a tuple which includes the read file(s).
+As described in the guidelines, any information that will differ between multiple runs of the same module in a workflow (e.g. when a module is run across many samples as in fgbio) should be passed as an input, as part of a groovy map called [_meta_](https://nf-co.re/docs/contributing/guidelines/modules#what-is-the-meta-map). This is part of a tuple which includes the read file(s).
 
 In our case, FGBIO also has a mandatory argument, which is not sample-specific, i.e. the read structure: this refers to the position and structure of the UMI barcode in the read. Such information will be the same for all samples and characteristics of the kit used to prepare the sequencing library. Since it is not sample specific, we will not include it in the _meta_ map. Since it is a mandatory argument, we have decided to add it to the input list: in this way, it will be visible to others who wish to reuse this module, and it will be described explicitly in the metadata YAML file.
 
@@ -288,7 +288,7 @@ Once the main module code is written, it is often a good point to fill in the `m
 
 Here you will document key words, context information about the module, and most importantly document the input and output requirements.
 
-For guidance see the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules as examples on how to fill this information in.
+For guidance see the [guidelines](https://nf-co.re/docs/contributing/guidelines/modules#documentation) and other modules as examples on how to fill this information in.
 
 ### Lint your code
 

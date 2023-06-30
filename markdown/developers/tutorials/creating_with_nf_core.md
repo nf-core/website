@@ -1049,4 +1049,4 @@ INFO     Created / edited following files:                                      
            ./tests/config/pytest_modules.yml
 ```
 
-You will see that when you create a module in a clone of the modules repository more files are added than if you create a local module in the pipeline as we did in the previous section. See the [DSL2 modules docs](https://nf-co.re/docs/contributing/modules) on the nf-core website for further information.
+You will see that when you create a module in a clone of the modules repository more files are added than if you create a local module in the pipeline as we did in the previous section. See the [DSL2 modules docs](https://nf-co.re/docs/contributing/guidelines/modules) on the nf-core website for further information.

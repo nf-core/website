@@ -219,8 +219,8 @@ We will be a lot of people working in parallel during this hackathon, so to stay
    - Link it to the issue so that the issue closes when merged.
 6. :page_facing_up: Describe your work on the HackMD document for the project and tell the group! :tada:
 7. :memo: While waiting to receive a review - try reviewing someone else's PR!
-   - [Module review checklist](https://nf-co.re/docs/contributing/modules#new-module-guidelines-and-pr-review-checklist)
-   - [Subworkflow review checklist](https://nf-co.re/docs/contributing/subworkflows#new-subworkflow-guidelines-and-pr-review-checklist)
+   - [Module review checklist](https://nf-co.re/docs/contributing/guidelines/modules#new-module-guidelines-and-pr-review-checklist)
+   - [Subworkflow review checklist](https://nf-co.re/docs/contributing/guidelines/subworkflows#new-subworkflow-guidelines-and-pr-review-checklist)
 8. :recycle: Repeat!
 
 > The HackMD document is the easiest to forget, but please add something even if you think what you did was small -

@@ -78,7 +78,7 @@ echo $msg;
 ?>
 
 <h1>Available Modules</h1>
-<p class="mb-3">Modules are the building stones of all DSL2 nf-core blocks. You can find more info <a href="/docs/contributing/modules"></a>, if you would like to write your own module.
+<p class="mb-3">Modules are the building stones of all DSL2 nf-core blocks. You can find more info <a href="/docs/contributing/guidelines/modules"></a>, if you would like to write your own module.
 </p>
 <div class=" btn-toolbar mb-4 modules-toolbar" role="toolbar">
     <div class="module-filters input-group input-group-sm w-25">
