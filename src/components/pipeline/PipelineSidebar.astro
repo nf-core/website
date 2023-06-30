@@ -140,6 +140,16 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             })
         }
     </SidebarStatsRow>
+    <SidebarStatsRow content={[{ title: 'get in touch' }]} lastChild={true}>
+        <div class="d-flex flex-column">
+            <a class="btn btn-sm btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/' + pipeline}
+                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+            >
+            <a class="btn btn-sm btn-outline-secondary" href={'https://github.com/nf-core/' + pipeline + '/issues'}
+                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+            >
+        </div>
+    </SidebarStatsRow>
 </div>
 <style lang="scss">
     @import '@styles/_variables.scss';
