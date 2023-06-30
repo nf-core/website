@@ -4,11 +4,11 @@ The [Tree of Life](https://www.sanger.ac.uk/programme/tree-of-life/) projects wi
 
 The team is organised in three poles.
 
-:open_file_folder: **Data management**: Our data curators and managers maintain the integrity, consistency, and quality, or multiple databases used in production, including Genomes on a Tree (GoaT), Sample Tracking System (STS), Collaborative Open Plant Omics (COPO), and BioSamples.
+📂 **Data management**: Our data curators and managers maintain the integrity, consistency, and quality, or multiple databases used in production, including Genomes on a Tree (GoaT), Sample Tracking System (STS), Collaborative Open Plant Omics (COPO), and BioSamples.
 
-:octocat: **Bioinformatics**: Our bioinformaticians develop the suite of analysis pipelines that will run on every genome produced in Tree of Life, providing a central database of core results available for all.
+💻 **Bioinformatics**: Our bioinformaticians develop the suite of analysis pipelines that will run on every genome produced in Tree of Life, providing a central database of core results available for all.
 
-:nut_and_bolt: **Systems**: We develop and maintain some core systems used in production, including the execution and tracking of all bioinformatics pipelines, and the deployment of third-party web applications for internal use.
+🔩 **Systems**: We develop and maintain some core systems used in production, including the execution and tracking of all bioinformatics pipelines, and the deployment of third-party web applications for internal use.
 
 ## Tech stack {#tech-stack}
 
