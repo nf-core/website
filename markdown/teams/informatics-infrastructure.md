@@ -37,7 +37,11 @@ Genome After Party is a suite of pipeline to standardise the downstream analyses
 - **[sanger-tol/blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes.
 - **[sanger-tol/genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)** creates HiC contact maps and collates (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC mapping statistics.
 
-Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability and biodiversity. If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+).
+Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability and biodiversity. 
+
+A portal is being developed to automate the production of genome note publications. It will execute the Nextflow pipeline and populate an associated database with generated statistics and images. The platform is being designed to create genome note style publications for both internal Tree of Life assemblies as well as external genome assemblies.
+
+If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+).
 
 ## Members {#members}
 
