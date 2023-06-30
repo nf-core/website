@@ -37,7 +37,7 @@ The team uses a wide range of technologies, frameworks and programming languages
 - **[sanger-tol/blobtoolkit](https://pipelines.tol.sanger.ac.uk/blobtoolkit)** is used to identify and analyse non-target DNA for eukaryotic genomes.
 - **[sanger-tol/genomenote](https://pipelines.tol.sanger.ac.uk/genomenote)** creates HiC contact maps and collates (1) assembly information, statistics and chromosome details, (2) PacBio consensus quality and k-mer completeness, and (3) HiC mapping statistics.
 
-Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability and biodiversity. 
+Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability, scalability and biodiversity. 
 
 A portal is being developed to automate the production of genome note publications. It will execute the Nextflow pipeline and populate an associated database with generated statistics and images. The platform is being designed to create genome note style publications for both internal Tree of Life assemblies as well as external genome assemblies.
 
