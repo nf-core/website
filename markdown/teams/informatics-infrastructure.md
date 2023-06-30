@@ -26,6 +26,8 @@ The team uses a wide range of technologies, frameworks and programming languages
 
 ### Genome After Party {#genome-after-party}
 
+🧮 **Tech Stack:** [Nextflow DSL2](https://www.nextflow.io), [Python](https://www.python.org), [React](https://react.dev), [SQLAlchemy](https://www.sqlalchemy.org), and [PostgreSQL](https://www.postgresql.org)
+
 [Genome After Party](https://pipelines.tol.sanger.ac.uk/genome_after_party) is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
 
 - **[sanger-tol/insdcdownload](https://pipelines.tol.sanger.ac.uk/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure.
@@ -39,7 +41,7 @@ The team uses a wide range of technologies, frameworks and programming languages
 
 Learn more about our pipelines on their dedicated pages. These pipelines are created using [Nextflow DSL2](https://www.nextflow.io) and [nf-core](https://nf-co.re) template. They are designed for portability, scalability and biodiversity. 
 
-A portal is being developed to automate the production of genome note publications. It will execute the Nextflow pipeline and populate an associated database with generated statistics and images. The platform is being designed to create genome note style publications for both internal Tree of Life assemblies as well as external genome assemblies.
+A portal is being developed to automate the production of genome note publications. It will execute the Nextflow pipeline and populate an associated database with generated statistics and images. The platform is being designed in collaboration with the Enabling Platforms team to create genome note style publications for both internal Tree of Life assemblies as well as external genome assemblies.
 
 If you have an idea for a new feature – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+).
 
