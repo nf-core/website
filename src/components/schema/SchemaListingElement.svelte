@@ -9,20 +9,25 @@
 </script>
 
 <div
-    class="property row border py-2 mx-md-2 justify-content-between"
+    class="property row border-bottom py-3 mx-md-2 justify-content-between"
     class:collapse={property.hidden}
     class:show={$showHidden}
 >
-    <div class="col-12 col-md-3 col-xl-2 title border-right border-secondary overflow-x-scroll text-nowrap">
-        {#if property.fa_icon}
-            <i class="fa fa-fw {property.fa_icon}" />
-        {/if}
-        <code>--{title}</code>
+    <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap">
+        <a class="text-decoration-none" aria-hidden="true" tabindex="-1" href={'#' + title}
+            ><i class="ms-1 fas fa-link invisible" aria-hidden="true" />
+            <span class=" overflow-x-scroll">
+                {#if property.fa_icon}
+                    <i class="fa fa-fw {property.fa_icon}" />
+                {/if}
+                <code>--{title}</code>
+            </span>
+        </a>
     </div>
-    <div class="col description">
+    <div class="col description text-small">
         <Markdown md={property.description} />
     </div>
-    <div class="col-12 col-md-3 col-xl-2 text-nowrap d-flex flex-column align-items-end justify-content-between">
+    <div class="col-12 col-md-3 text-nowrap d-flex flex-column align-items-end justify-content-between">
         {#if property.hidden}
             <span class="badge text-bg-warning">hidden</span>
         {/if}

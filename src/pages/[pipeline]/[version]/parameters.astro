@@ -57,6 +57,7 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
             text: value.title,
             depth: 1,
             fa_icon: value.fa_icon,
+            hidden: value.properties && Object.values(value.properties).every((prop) => prop.hidden),
         };
     });
 } else if (schema.properties && Object.keys(schema.properties).length > 0) {
