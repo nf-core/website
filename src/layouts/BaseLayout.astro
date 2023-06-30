@@ -49,7 +49,9 @@ const {
                     [...tooltipTriggerList].map((tooltipTriggerEl) => {
                         const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
                         if (!tooltip) {
-                            new bootstrap.Tooltip(tooltipTriggerEl);
+                            new bootstrap.Tooltip(tooltipTriggerEl, {
+                                delay: 300,
+                            });
                         }
                     });
                 }, 1000);
