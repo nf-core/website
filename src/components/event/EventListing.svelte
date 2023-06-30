@@ -81,13 +81,20 @@
         training: 'fa-solid fa-chalkboard-teacher',
     };
 
-    const event_types = [...new Set(events.map((event) => event.data.type))].map((type) => {
-        return {
-            name: type,
-            class: event_type_classes[type],
-            icon: event_type_icons[type],
-        };
-    });
+    const event_types = [...new Set(events.map((event) => event.data.type))]
+        .map((type) => {
+            return {
+                name: type,
+                class: event_type_classes[type],
+                icon: event_type_icons[type],
+            };
+        })
+        .sort((a, b) => {
+            if (a.name < b.name) {
+                return -1;
+            }
+            return 1;
+        });
 </script>
 
 <div>
@@ -100,7 +107,7 @@
                     <EventCard
                         frontmatter={event.data}
                         slug={event.slug.startsWith('/events/') ? event.slug.replace('/events', '') : event.slug}
-                        type_class={event_type_classes[event.data.type]}
+                        type_class={event.data.type}
                         time_category="current"
                     />
                 {/each}
@@ -114,7 +121,7 @@
                         <EventCard
                             frontmatter={event.data}
                             slug={event.slug}
-                            type_class={event_type_classes[event.data.type]}
+                            type_class={event.data.type}
                             time_category="future"
                         />
                     {/each}
@@ -128,7 +135,7 @@
                     <EventCard
                         frontmatter={event.data}
                         slug={event.slug}
-                        type_class={event_type_classes[event.data.type]}
+                        type_class={event.data.type}
                         time_category="past"
                     />
                 {/each}

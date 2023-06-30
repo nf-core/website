@@ -84,7 +84,6 @@
                 return filter;
             })
         );
-        console.log($Filters);
         return pipelines;
     }
     SortBy.subscribe(() => {

@@ -5,7 +5,7 @@ import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
-import HomepageVideos from '@components/homepage/HomepageVideos.astro';
+import HomepageVideosEvents from '@components/homepage/HomepageVideosEvents.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import FuzzySearch from '@components/FuzzySearch.svelte';
 import { Code } from 'astro/components';
@@ -162,7 +162,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                     >
                         All pipelines, modules and subworkflows must be based on our template and be created using
                         <code>nf-core</code>
-                        <a href="/tools">tools</a>. An automated sync keeps pipelines up to date.
+                        <a href="/tools/">tools</a>. An automated sync keeps pipelines up to date.
                     </HomepageCard>
                 </div>
                 <div class="col">
@@ -181,7 +181,7 @@ const pipeline_links = pipelines.map((pipeline) => {
     </div>
 
     <div class="bg-body-secondary py-5">
-        <HomepageVideos />
+        <HomepageVideosEvents />
     </div>
 
     <div class="bg-dark py-5">

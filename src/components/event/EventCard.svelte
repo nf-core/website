@@ -13,7 +13,7 @@
         location_url: [''],
     };
     export let slug = '';
-    export let type_class = '';
+    export let type = '';
     export let time_category = '';
 
     let event_date;
@@ -53,6 +53,15 @@
                 hour12: false,
             });
     }
+    const event_type_classes = {
+        bytesize: 'success',
+        hackathon: 'primary',
+        poster: 'danger',
+        talk: 'success',
+        tutorial: 'info',
+        training: 'warning',
+    };
+    const type_class = event_type_classes[type];
 </script>
 
 <div class={'card mb-3 rounded-0 rounded-end'} style="border-left-color:var(--bs-{type_class});">
