@@ -66,6 +66,7 @@
                             type="button"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
+                            data-bs-delay="500"
                             title={'Double click to only show items from this category'}
                             class={fil.class
                                 ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
@@ -98,7 +99,7 @@
                             class="btn-check"
                             name="sort"
                             id={sor.replace(' ', '-')}
-                            checked={sor === $SortBy}
+                            checked={$SortBy.startsWith(sor)}
                             on:click={() => handleSort(sor)}
                         />
                         <label class="btn btn-outline-success text-nowrap" for={sor.replace(' ', '-')}>{sor}</label>

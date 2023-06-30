@@ -14,8 +14,14 @@
         archived: boolean;
     }[] = [];
 
+    let sortInverse = false;
     function handleSort(sor) {
-        SortBy.set(sor);
+        if (sor === $SortBy) {
+            sortInverse = !sortInverse;
+        } else {
+            sortInverse = false;
+        }
+        SortBy.set(sortInverse ? sor + ';inverse' : sor);
     }
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
@@ -47,19 +53,32 @@
     };
 
     const sortPipelines = (a, b) => {
-        if ($SortBy === 'Alphabetical') {
-            return a.name.localeCompare(b.name);
+        sortInverse = $SortBy.endsWith(';inverse');
+        if ($SortBy.startsWith('Alphabetical')) {
+            if (sortInverse) {
+                return b.name.localeCompare(a.name);
+            } else {
+                return a.name.localeCompare(b.name);
+            }
         } else if ($SortBy === 'Stars') {
-            return b.stargazers_count - a.stargazers_count;
+            if (sortInverse) {
+                return a.stargazers_count - b.stargazers_count;
+            } else {
+                return b.stargazers_count - a.stargazers_count;
+            }
         } else if ($SortBy === 'Last release') {
             // handle case where a pipeline has no releases
             if (a.releases.length === 1) {
-                return 1;
+                return 1 * (sortInverse ? -1 : 1);
             }
             if (b.releases.length === 1) {
-                return -1;
+                return -1 * (sortInverse ? -1 : 1);
             }
-            return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+            if (sortInverse) {
+                return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+            } else {
+                return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+            }
         }
     };
     function searchFilterSortPipelines(pipelines) {
@@ -115,23 +134,51 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="text-nowrap sortable" scope="col" on:click={() => handleSort('Alphabetical')}
+                    <th
+                        class="text-nowrap sortable"
+                        scope="col"
+                        data-bs-toggle="tooltip"
+                        data-bs-delay="500"
+                        title="Sort by name"
+                        on:click={() => handleSort('Alphabetical')}
                         ><i
                             class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy === 'Alphabetical'}
-                            class:fa-regular={$SortBy !== 'Alphabetical'}
+                            class:fa-duotone={$SortBy.startsWith('Alphabetical')}
+                            class:fa-regular={!$SortBy.startsWith('Alphabetical')}
+                            class:text-muted={!$SortBy.startsWith('Alphabetical')}
                         /> Name</th
                     >
                     <th scope="col">Description</th>
                     <th scope="col">Released</th>
-                    <th class="text-end text-nowrap sortable" scope="col" on:click={() => handleSort('Stars')}
+                    <th
+                        class="text-end text-nowrap sortable"
+                        scope="col"
+                        data-bs-toggle="tooltip"
+                        data-bs-delay="500"
+                        title="Sort by number of stars"
+                        on:click={() => handleSort('Stars')}
                         ><i
                             class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy === 'Stars'}
-                            class:fa-regular={$SortBy !== 'Stars'}
+                            class:fa-duotone={$SortBy.startsWith('Stars')}
+                            class:fa-regular={!$SortBy.startsWith('Stars')}
+                            class:text-muted={!$SortBy.startsWith('Stars')}
                         /> Stars</th
                     >
-                    <th class="text-end" scope="col">Last Release</th>
+                    <th
+                        class="text-end text-nowrap sortable"
+                        scope="col"
+                        data-bs-toggle="tooltip"
+                        data-bs-delay="500"
+                        title="Sort by date of last release"
+                        on:click={() => handleSort('Last release')}
+                    >
+                        <i
+                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
+                            class:fa-duotone={$SortBy.startsWith('Last release')}
+                            class:fa-regular={!$SortBy.startsWith('Last release')}
+                            class:text-muted={!$SortBy.startsWith('Last release')}
+                        />Last Release</th
+                    >
                 </tr>
             </thead>
             <tbody>
@@ -184,6 +231,10 @@
         cursor: pointer;
         &:hover {
             background-color: $secondary-bg-subtle;
+        }
+        :global([data-bs-theme='dark']) &:hover {
+            color: $white;
+            background-color: $secondary-bg-subtle-dark;
         }
     }
 </style>
