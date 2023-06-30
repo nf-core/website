@@ -26,7 +26,7 @@ The team uses a wide range of technologies, frameworks and programming languages
 
 ### Genome After Party {#genome-after-party}
 
-Genome After Party is a suite of pipeline to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
+[Genome After Party](https://pipelines.tol.sanger.ac.uk/genome_after_party) is a suite of pipelines to standardise the downstream analyses performed on all genomes produced by the Tree of Life. These include:
 
 - **[sanger-tol/insdcdownload](https://pipelines.tol.sanger.ac.uk/insdcdownload)** downloads assemblies from INSDC into a Tree of Life directory structure.
 - **[sanger-tol/ensemblrepeatdownload](https://pipelines.tol.sanger.ac.uk/ensemblrepeatdownload)** downloads repeat annotations from Ensembl into a Tree of Life directory structure.
