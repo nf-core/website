@@ -55,6 +55,9 @@
     input:focus {
         box-shadow: none;
     }
+    .module-install-cmd {
+        margin-bottom: -1px;
+    }
 
     :global([data-bs-theme='dark']) {
         .border-secondary {
