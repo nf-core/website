@@ -32,12 +32,14 @@ allTabItems = tabItems
             icon: tabItems.some((f) => f.startsWith(file + '/')) ? 'fa-regular fa-books' : '',
         };
     });
+
 allTabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}/`,
     active: url === `/${pipeline}/${version}/`,
     icon: 'fa-solid fa-sign-in',
 });
+
 const latestVersion = versions[0] === 'dev' ? versions[1] : versions[0];
 const schema = await cache.get(`${pipeline}/${version}/nextflow_schema.json`);
 if (schema !== undefined) {
@@ -72,6 +74,7 @@ const sortOrder = ['Introduction', 'Usage', 'Parameters', 'Output', 'Results', '
 allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
 const gh_url = 'https://github.com/nf-core/' + pipeline;
+const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline)?.topics || [];
 ---
 
 <PageLayout
@@ -81,6 +84,7 @@ const gh_url = 'https://github.com/nf-core/' + pipeline;
     navTocHeadings={headings}
     md_github_url={md_github_url}
     subfooter={md_github_url !== ''}
+    topics={topics}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {

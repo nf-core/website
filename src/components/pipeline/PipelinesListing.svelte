@@ -47,7 +47,6 @@
     };
 
     const sortPipelines = (a, b) => {
-        console.log($SortBy);
         sortInverse = $SortBy.endsWith(';inverse');
         if ($SortBy.startsWith('Name')) {
             if (sortInverse) {
@@ -71,10 +70,14 @@
             if (b.releases.length === 1) {
                 return -1 * (sortInverse ? -1 : 1);
             }
+            const lastReleaseA = a.releases[0].tag_name === 'dev' ? a.releases[1] : a.releases[0];
+            console.log(lastReleaseA);
+            const lastReleaseB = b.releases[0].tag_name === 'dev' ? b.releases[1] : b.releases[0];
+
             if (sortInverse) {
-                return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+                return new Date(lastReleaseA.published_at) - new Date(lastReleaseB.published_at);
             } else {
-                return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+                return new Date(lastReleaseB.published_at) - new Date(lastReleaseA.published_at);
             }
         }
     };

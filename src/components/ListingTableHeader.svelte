@@ -44,7 +44,7 @@
         }
         :global([data-bs-theme='dark']) &:hover {
             color: $white;
-            background-color: $secondary-bg-subtle-dark;
+            background-color: $body-tertiary-bg-dark;
         }
     }
 </style>
