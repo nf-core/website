@@ -70,14 +70,11 @@
             if (b.releases.length === 1) {
                 return -1 * (sortInverse ? -1 : 1);
             }
-            const lastReleaseA = a.releases[0].tag_name === 'dev' ? a.releases[1] : a.releases[0];
-            console.log(lastReleaseA);
-            const lastReleaseB = b.releases[0].tag_name === 'dev' ? b.releases[1] : b.releases[0];
 
             if (sortInverse) {
-                return new Date(lastReleaseA.published_at) - new Date(lastReleaseB.published_at);
+                return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
             } else {
-                return new Date(lastReleaseB.published_at) - new Date(lastReleaseA.published_at);
+                return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
             }
         }
     };
@@ -131,7 +128,7 @@
             {/each}
         {/if}
     {:else}
-        <table class="table">
+        <table class="table table-hove table-responsive mx-3">
             <thead>
                 <tr>
                     <ListingTableHeader name="Name" />
@@ -143,9 +140,13 @@
             </thead>
             <tbody>
                 {#each filteredPipelines as pipeline}
-                    <tr>
+                    <tr class="position-relative">
                         <td>
-                            <a href={pipeline.html_url} target="_blank" rel="noreferrer">{pipeline.name}</a>
+                            <a
+                                class="stretched-link"
+                                href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                >{pipeline.name}</a
+                            >
                         </td>
                         <td class="text-small">
                             {pipeline.description}
@@ -167,16 +168,9 @@
                             {pipeline.stargazers_count}
                         </td>
                         <td class="text-end">
-                            <a
-                                class=""
-                                href={'/' +
-                                    pipeline.name +
-                                    '/' +
-                                    (pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : 'dev') +
-                                    '/'}
-                            >
+                            <span>
                                 {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
-                            </a>
+                            </span>
                         </td>
                     </tr>
                 {/each}
