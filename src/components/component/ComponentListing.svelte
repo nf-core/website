@@ -1,8 +1,8 @@
 <script lang="ts">
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import ComponentCard from '@components/component/ComponentCard.svelte';
-    import { SortBy, DisplayStyle, SearchQuery } from '@components/store';
-
+    import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
+    import PaginationNav from '@components/PaginationNav.svelte';
     export let components: {
         name: string;
         path: string;
@@ -16,6 +16,9 @@
             version: string;
         }[];
     }[] = [];
+
+    let pageSize = 10;
+    let lastPage = Math.ceil(components.length / pageSize);
 
     const searchComponents = (component) => {
         if ($SearchQuery === '') {
@@ -64,17 +67,18 @@
     SearchQuery.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
     });
-
     $: filteredComponents = searchFilterSortComponents(components);
+
+    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
 </script>
 
 <div class={`listing d-flex flex-wrap w-100 justify-content-center ${components[0].type}`}>
     {#if $DisplayStyle === 'grid'}
-        {#each filteredComponents as component (component.name)}
+        {#each paginatedItems as component (component.name)}
             <ComponentCard {component} />
         {/each}
     {:else if $DisplayStyle === 'table'}
-        <table class="table">
+        <table class="table table-responsive mx-3 w-75">
             <thead>
                 <tr>
                     <ListingTableHeader name="Name" />
@@ -88,7 +92,7 @@
                 </tr>
             </thead>
             <tbody>
-                {#each filteredComponents as component}
+                {#each paginatedItems as component (component.name)}
                     <tr>
                         <td class="name">
                             <a href={'/' + component.type + 's/' + component.name + '/'}
@@ -115,6 +119,7 @@
             </tbody>
         </table>
     {/if}
+    <PaginationNav {lastPage} />
 </div>
 
 <style>
