@@ -98,6 +98,8 @@ foreach ($gh_modules['tree'] as $f) {
     }
 }
 
+echo "\nModules in nf-core in total: " . count($modules) . "\n\n";
+
 $sql = "CREATE TABLE IF NOT EXISTS  nfcore_modules (
             id           INT             AUTO_INCREMENT PRIMARY KEY,
             github_sha   VARCHAR (400)   NOT NULL,
@@ -190,6 +192,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
 
+echo "\nInformation for modules saved into database.\n\n";
+
 //
 //  nf-core pipelines table
 //
@@ -220,7 +224,7 @@ $sql = "CREATE TABLE IF NOT EXISTS nfcore_pipelines (
             date_added        datetime        DEFAULT current_timestamp
             )";
 if (mysqli_query($conn, $sql)) {
-    echo "`nfcore_pipelines` table created successfully.\n";
+    echo "`nfcore_pipelines` table created successfully.\n\n";
 } else {
     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
 }
@@ -279,6 +283,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             $pipeline_type = 'core_repos';
         } else {
             $pipeline_type = 'pipelines';
+            echo "Data for pipeline $name gathered to store into database.\n";
         }
         $check = "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline['name'] . "'";
         $res = mysqli_query($conn, $check);
@@ -336,6 +341,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
 
+echo "\nInformation for pipelines saved into database.\n\n";
+
 //
 //  pipelines modules link table
 //
@@ -361,7 +368,7 @@ $sql = "CREATE TABLE IF NOT EXISTS  pipelines_modules (
                 FOREIGN KEY (module_id)     REFERENCES nfcore_modules(id)
                 )";
 if (mysqli_query($conn, $sql)) {
-    echo "`pipelines_modules` table created successfully.\n";
+    echo "`pipelines_modules` table created successfully.\n\n";
 } else {
     echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
 }
@@ -374,16 +381,12 @@ foreach ($pipelines as $pipeline) {
     );
     $modules_json = json_decode(base64_decode($modules_json['content']), true);
 
-    /*
-    How our modules.json file being configed, use nf-core or sanger-tol?
-    Not well formated and has no startard format
-    */
-
-    $modules = $modules_json['repos']['nf-core/modules'];
+    $modules = $modules_json['repos']['https://github.com/nf-core/modules.git']['modules']['nf-core'];
  
 
     // catch repos with no modules.json
     if ($modules == null) {
+        echo "No nf-core modules for pipeline " . $pipeline['name'] . "\n";
         continue;
     }
     foreach ($modules as $name => $content) {
@@ -411,11 +414,12 @@ foreach ($pipelines as $pipeline) {
                 // Free result set
                 mysqli_free_result($result);
             } else {
-                echo "No modules with the name $name found for pipeline ". $pipeline['name']."\n";
+                echo "No modules with the name $name found for pipeline ". $pipeline['name'] . "\n";
             }
         }
     }
 }
+echo "\nPipeline and modules relationship saved into database.\n\n";
 
 mysqli_close($conn);
 echo "\nupdate_module_details done " . date('Y-m-d h:i:s') . "\n\n";
