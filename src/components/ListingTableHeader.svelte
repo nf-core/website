@@ -4,6 +4,7 @@
     export let name: string = '';
     export let title: string = 'Sort by ' + name.toLowerCase();
     export let textEnd: boolean = false;
+    export let textCenter: boolean = false;
     let sortInverse = false;
 
     function handleSort(sor) {
@@ -19,6 +20,7 @@
 <th
     class="text-nowrap sortable"
     class:text-end={textEnd}
+    class:text-center={textCenter}
     scope="col"
     data-bs-toggle="tooltip"
     data-bs-delay="500"

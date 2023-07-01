@@ -52,7 +52,7 @@ const md_content = await getGitHubFile('tools', 'README.md', 'master')
         return content;
     });
 
-const max_heading_depth = 2;
+const max_heading_depth = 3;
 
 // filter out headings that are higher than max_heading_depth
 headings = headings.filter((h) => h.depth <= max_heading_depth);
