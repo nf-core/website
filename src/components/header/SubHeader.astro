@@ -59,9 +59,22 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
                 </div>
             )
         }
-        <a href={version ? `${gh_url}/tree/${version}` : gh_url} class="text-body mt-2">
-            <i class="fab fa-github me-2"></i>{gh_url}
-        </a>
+        {
+            version && (
+                <a href={`${gh_url}/tree/${version}`} class="text-body mt-2">
+                    <i class="fab fa-github me-2" />
+                    {gh_url}
+                </a>
+            )
+        }
+        {
+            !version && (
+                <a href={gh_url} class="text-body mt-2">
+                    <i class="fab fa-github me-2" />
+                    {gh_url.replace('tree/master/modules/nf-core', '[...]')}
+                </a>
+            )
+        }
     </div>
 </div>
 

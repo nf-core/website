@@ -11,7 +11,7 @@
     const released = releases.length > 1;
     var latest_release, tag_name, release_date_ago;
     if (released) {
-        latest_release = releases[0];
+        latest_release = releases[0].tag_name === 'dev' ? releases[1] : releases[0];
         tag_name = latest_release.tag_name;
         release_date_ago = formatDistanceToNow(new Date(latest_release.published_at), {
             addSuffix: true,

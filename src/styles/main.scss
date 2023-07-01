@@ -485,6 +485,7 @@ h4:focus .header-link,
 }
 
 .mainpage-heading {
+  .topic,
   .pipeline-topic,
   .module-topic,
   .subworkflow-topic {
@@ -1137,15 +1138,6 @@ Launch Page
 .ratio.ratio-16x9 ~ details[open] {
   height: 50vh;
   overflow-x: scroll;
-}
-
-// nf-cordle
-.tile {
-  color: $gray-100;
-}
-
-.tile[data-state='active'] {
-  color: inherit;
 }
 
 .sidebar-nav {

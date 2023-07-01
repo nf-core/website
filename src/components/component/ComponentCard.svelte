@@ -29,9 +29,9 @@
     <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
         <p class="description flex-grow-1 mb-3">{component.meta.description}</p>
         {#if component.meta.keywords}
-            <p class="topics mb-0">
+            <p class="topics mb-0 ms-n2">
                 {#each component.meta.keywords as keyword}
-                    <span class={`badge me-2 ${component.type}-topic`}>{keyword}</span>
+                    <span class={`badge fw-normal bg-body-tertiary text-success me-2`}>{keyword}</span>
                 {/each}
             </p>
         {/if}
@@ -41,7 +41,7 @@
                 {#if collapsePipelines}
                     {#each component.pipelines.slice(0, 3) as pipeline}
                         <a
-                            class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-2"
+                            class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-2 text-decoration-none"
                             href={'/' + pipeline.name + '/' + pipeline.version + '/'}>{pipeline.name}</a
                         >
                     {/each}
