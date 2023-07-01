@@ -82,5 +82,12 @@ const title = 'nf-core/configs';
 const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
 ---
 
-<ListingLayout title={title} description={description} configs={configs} filter={[]} sortBy={[]} displayStyle={[]} />
+<ListingLayout
+    title={title}
+    description={description}
+    configs={configs}
+    filter={[]}
+    sortBy={['Name', 'Executor']}
+    displayStyle={[]}
+/>
 <style></style>

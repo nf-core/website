@@ -25,11 +25,28 @@ const { moduleslug } = Astro.params;
 const { module } = Astro.props;
 const tool = module.meta.tools[0];
 const toolName = Object.keys(tool)[0];
+
+function truncatURLs(url) {
+    url = url.replace(/^http(s):\/\//, '');
+    url = url.replace(/^www./, '');
+    url = url.replace(/\/Home$/, '');
+    url = url.replace(/\/$/, '');
+    url = url.replace(/.(s)html$/, '');
+    url = url.replace(/\/index$/, '');
+    url = url.replace(/\/src\/master$/, '');
+    url = url.replace('/tree/master/', '[...]');
+    return url;
+}
 ---
 
-<ComponentPageLayout name={module.name} description={module.meta.description} type="modules">
+<ComponentPageLayout
+    name={module.name}
+    description={module.meta.description}
+    type="modules"
+    topics={module.meta.keywords}
+>
     <div class="row">
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-9">
             <div class="mb-5">
                 <h2 id="description" class="ms-n3">
                     <i class="fa-duotone fa-swap-opacity fa-book fa-fw"></i> Description
@@ -62,59 +79,115 @@ const toolName = Object.keys(tool)[0];
                     <ComponentParamTable name={'Output'} icon={'fa-sign-out'} params={module.meta.output} />
                 </div>
             </div>
-            <div class="module-tools">
-                <h2>
-                    <i class="fa-duotone fa-tools fa-fw"></i> Tools
-                    <a href="#tools" class="header-link scroll_to_link"
-                        ><span class="fas fa-link" aria-hidden="true"></span></a
-                    >
-                </h2>
-                <div>
-                    <h3 class="text-success">
-                        {toolName}
-                    </h3>
-                    <p>
-                        {tool[toolName].description}
-                    </p>
-                    <div class="d-flex justify-content-between">
-                        <div class="btn-group" role="group" aria-label="Basic example">
+        </div>
+
+        <div class="col-none col-md-3">
+            <SidebarStats
+                component_type={'module'}
+                contributors={module.meta.authors}
+                included_pipelines={module.pipelines}
+                included_subworkflows={module.subworkflows}
+            />
+        </div>
+        <div class="module-tools col-12">
+            <h2>
+                <i class="fa-duotone fa-tools fa-fw"></i> Tools
+                <a href="#tools" class="header-link scroll_to_link"
+                    ><span class="fas fa-link" aria-hidden="true"></span></a
+                >
+            </h2>
+            <div>
+                <div class="d-flex">
+                    <div class="d-flex flex-column">
+                        <h3 class="text-success d-flex align-items-center">
+                            {toolName}
+                            <div class="text-small ms-2">
+                                {
+                                    tool[toolName].licence &&
+                                        (typeof tool[toolName].licence === 'string' ? (
+                                            <span
+                                                title="Software License"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-delay="300"
+                                                class="badge text-small fw-normal text-bg-secondary"
+                                            >
+                                                {tool[toolName].licence.replace(/^\['|'\]$/g, '')}
+                                            </span>
+                                        ) : (
+                                            tool[toolName].licence?.map((licence) => {
+                                                return (
+                                                    <span
+                                                        title="Software License"
+                                                        data-bs-toggle="tooltip"
+                                                        data-bs-delay="300"
+                                                        class="badge text-small fw-normal text-bg-secondary"
+                                                    >
+                                                        {licence}
+                                                    </span>
+                                                );
+                                            })
+                                        ))
+                                }
+                            </div>
+                        </h3>
+
+                        <p class="pe-3">
+                            {tool[toolName].description}
+                        </p>
+                    </div>
+                    <div class="d-flex flex-column justify-content-between">
+                        <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                            {
+                                tool[toolName].homepage && tool[toolName].homepage !== tool[toolName].documentation && (
+                                    <a
+                                        href={tool[toolName].homepage}
+                                        title="Homepage"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-delay="300"
+                                        class="btn btn-outline-secondary text-nowrap"
+                                    >
+                                        <i class="fa-regular fa-globe fa-fw" />
+                                        {truncatURLs(tool[toolName].homepage)}
+                                    </a>
+                                )
+                            }
                             {
                                 tool[toolName].documentation && (
-                                    <a href={tool[toolName].documentation} class="btn btn-outline-secondary">
-                                        <i class="fa-duotone fa-books fa-fw" /> Documentation
+                                    <a
+                                        href={tool[toolName].documentation}
+                                        title="Documentation"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-delay="300"
+                                        class="btn btn-outline-secondary text-nowrap"
+                                    >
+                                        <i class="fa-duotone fa-book fa-fw" />{' '}
+                                        {truncatURLs(tool[toolName].documentation)}
                                     </a>
                                 )
                             }
+
                             {
-                                tool[toolName].homepage && (
-                                    <a href={tool[toolName].homepage} class="btn btn-outline-secondary">
-                                        <i class="fa-regular fa-globe fa-fw" /> Homepage
-                                    </a>
-                                )
-                            }
-                            {
-                                tool[toolName].tool_dev_url && (
-                                    <a href={tool[toolName].tool_dev_url} class="btn btn-outline-secondary">
-                                        <i class="fa-duotone fa-wrench fa-fw" /> Dev Docs
-                                    </a>
-                                )
-                            }
-                        </div>
-                        <div>
-                            {
-                                tool[toolName].licence &&
-                                    (typeof tool[toolName].licence === 'string' ? (
-                                        <span class="badge text-bg-secondary">{tool[toolName].licence}</span>
-                                    ) : (
-                                        tool[toolName].licence?.map((licence) => {
-                                            return <span class="badge text-bg-secondary">Licence: {licence}</span>;
-                                        })
-                                    ))
+                                tool[toolName].tool_dev_url &&
+                                    tool[toolName].documentation !== tool[toolName].tool_dev_url && (
+                                        <a
+                                            href={tool[toolName].tool_dev_url}
+                                            title="Development Docs"
+                                            class="btn btn-outline-secondary"
+                                        >
+                                            <i class="fa-duotone fa-wrench fa-fw" /> {tool[toolName].tool_dev_url}
+                                        </a>
+                                    )
                             }
                             {
                                 tool[toolName].doi && (
-                                    <a class="badge text-bg-secondary" href={'http://doi.org/' + tool[toolName].doi}>
-                                        doi: {tool[toolName].doi}
+                                    <a
+                                        href={'https://doi.org/' + tool[toolName].doi}
+                                        title="DOI"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-delay="300"
+                                        class="btn btn-outline-secondary"
+                                    >
+                                        <i class="fa-regular fa-newspaper fa-fw" /> {tool[toolName].doi}
                                     </a>
                                 )
                             }
@@ -122,15 +195,6 @@ const toolName = Object.keys(tool)[0];
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-none col-md-2">
-            <SidebarStats
-                component_type={'module'}
-                contributors={module.meta.authors}
-                included_pipelines={module.pipelines}
-                included_subworkflows={module.subworkflows}
-            />
         </div>
     </div>
 </ComponentPageLayout>
