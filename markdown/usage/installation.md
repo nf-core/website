@@ -123,7 +123,8 @@ or `conda update nextflow`, depending on how it was installed.
 
 An analysis pipeline chains the execution of multiple tools together.
 Historically, all tools would have to be manually installed — often a source of great frustration and a key step where reproducibility between analyses is lost.
-nf-core pipelines utilise the built-in support for software packaging that Nextflow offers: all can work with Docker and Singularity, and most pipelines also support Conda.
+nf-core pipelines utilise the built-in support for software packaging that Nextflow offers: all can work with technologies built off Docker and Singularity, and most pipelines also support Conda/Mamba.
+> ``📝``  _Please refer to the [Nextflow documentation](https://nextflow.io/docs/edge/container.html) on how to configure your container system  correctly._
 
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
@@ -133,14 +134,9 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   - Often used as an alternative to Docker on multi-user systems, such as HPC systems
   - Also runs _containers_ and can create these from Docker images
   - Does not need root access or any daemon processes - images are built from files
-- [Podman](https://podman.io/)
-  - Often used as an alternative to Docker on multi-user systems, such as HPC systems
-  - Is a daemonless container engine that can serve as a drop-in replacement for Docker
-- [Charliecloud](https://hpc.github.io/charliecloud/)
-  - Often used as an alternative to Docker on multi-user systems, such as HPC systems
-  - Uses Linux user namespaces to run containers with no privileged operations or daemons
-- [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
-  - An experimental implementation of a container system that can convert from a wide range of other images
+- [Apptainer](https://apptainer.org/)
+  - Open source version of Singularity (split from Singularity in 2021)
+  - NOTE: As of June 2023 this will use docker containers instead of using the pre-built singularity containers. To use the singularity containers you need to select the `singularity` profile with apptainer installed on your system; as apptainer defines `singularity` as an alias to the `apptainer` function this will currently work.
 - [Conda](https://conda.io/)
   - Packaging system that manages environments instead of running analysis in containers
   - Poorer reproducibility than Docker / Singularity
@@ -148,16 +144,14 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
     - The software still runs in your native operating system environment and so core system functions can differ
 - [Mamba](https://mamba.readthedocs.io/)
   - A faster reimplementation of Conda
-  - Packaging system that manages environments instead of running analysis in containers
-  - Poorer reproducibility than Docker / Singularity
-    - There can be changes in low-level package dependencies over time
-    - The software still runs in your native operating system environment and so core system functions can differ
-- [Apptainer](https://apptainer.org/)
-  - Open source version of Singularity (split from Singularity in 2021)
-  - Used as an alternative to Docker on multi-user systems, such as HPC systems
-  - Also runs _containers_ and can create these from Docker images
-  - Does not need root access or any daemon processes - images are built from files
-  - NOTE: As of June 2023 this will use docker containers instead of using the pre-built singularity containers. To use the singularity containers you need to select the `singularity` profile with apptainer installed on your system; as `apptainer` defines `singularity` as an alias to the `apptainer` function this will currently work.
+- [Charliecloud](https://hpc.github.io/charliecloud/)
+  - Often used as an alternative to Docker on multi-user systems, such as HPC systems
+  - Uses Linux user namespaces to run containers with no privileged operations or daemons
+- [Podman](https://podman.io/)
+  - Often used as an alternative to Docker on multi-user systems, such as HPC systems
+  - Is a daemonless container engine that can serve as a drop-in replacement for Docker
+- [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/)
+  - An experimental implementation of a container system that can convert from a wide range of other images
 
 ## Pipeline code
 
