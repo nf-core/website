@@ -75,7 +75,7 @@
                         <div class="w-100 row align-items-center">
                             <div class="col-9 pt-lg-3 pb-lg-3 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
-                                    <a href={'events/' + event.slug} class="text-success text-decoration-none"
+                                    <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
                                         >{event.data.title}</a
                                     >
                                     <span class="ms-1 my-auto">
@@ -89,14 +89,14 @@
                                     </span>
                                 </h5>
                                 <p class="lead">
-                                    <a href={'events/' + event.slug} class="text-body text-decoration-none"
+                                    <a href={'events/' + event.slug + '/'} class="text-body text-decoration-none"
                                         >{event.data.subtitle}</a
                                     >
                                 </p>
                                 {#if event.data.duration}
                                     <p class="">
                                         <a
-                                            href={'events/' + event.slug}
+                                            href={'events/' + event.slug + '/'}
                                             class="text-secondary-emphasis text-decoration-none"
                                             >{event.data.duration}</a
                                         >
@@ -104,7 +104,10 @@
                                 {/if}
                                 {#if event_time_category === 'upcoming'}
                                     <div class="btn-group" role="group" aria-label="Event details">
-                                        <a href={'events/' + event.slug} class="btn btn-outline-success text-nowrap">
+                                        <a
+                                            href={'events/' + event.slug + '/'}
+                                            class="btn btn-outline-success text-nowrap"
+                                        >
                                             Event Details
                                         </a>
                                         <ExportEventButton frontmatter={event.data} />
@@ -124,8 +127,9 @@
                                 {#if event_time_category === 'ongoing'}
                                     <div class="">
                                         <div class="btn-group" role="group" aria-label="Event details">
-                                            <a href={'events/' + event.slug} class="btn btn-outline-success"
-                                                >Event Details</a
+                                            <a
+                                                href={'events/' + event.slug + '/'}
+                                                class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
                                             <VideoButton urls={event.data.location_url} />
                                         </div>
@@ -144,12 +148,12 @@
                 {#each events as event}
                     <div class="text-center">
                         <h4 class="pt-2 pb-0">
-                            <a href={'events/' + event.slug} class="text-success text-decoration-none"
+                            <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
                                 >{event.data.title}</a
                             >
                         </h4>
                         <p class="d-sm-none mb-1">
-                            <a href={'events/' + event.slug} class="text-body text-decoration-none"
+                            <a href={'events/' + event.slug + '/'} class="text-body text-decoration-none"
                                 >{event.data.subtitle}</a
                             ><span class={'badge bg-' + event_type_classes[event.data.type] + ' small ms-3'}
                                 ><i class={event_type_icons[event.data.type] + ' me-1'} aria-hidden="true" />
@@ -157,11 +161,14 @@
                             >
                         </p>
                         <div class="small mb-1 mx-3 d-flex flex-column">
-                            <a href={'events/' + event.slug} class="text-secondary-emphasis text-decoration-none mb-2"
-                                >{event.data.duration}</a
+                            <a
+                                href={'events/' + event.slug + '/'}
+                                class="text-secondary-emphasis text-decoration-none mb-2">{event.data.duration}</a
                             >
                             <div class="btn-group text-nowrap" role="group" aria-label="Event details">
-                                <a href={'events/' + event.slug} class="btn btn-outline-success"> Event Details </a>
+                                <a href={'events/' + event.slug + '/'} class="btn btn-outline-success">
+                                    Event Details
+                                </a>
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}

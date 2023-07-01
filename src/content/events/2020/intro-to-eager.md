@@ -1,7 +1,7 @@
 ---
 title: Introduction to nf-core/eager
 subtitle: Introductory practical workshop to nf-core/eager
-type: tutorial
+type: training
 start_date: '2020-12-11'
 start_time: '14:00 CET'
 end_date: '2020-12-11'

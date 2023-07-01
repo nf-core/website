@@ -35,7 +35,6 @@
 
     function handlePageChange(page) {
         $currentPage = page;
-        console.log(truncatedPages);
         generatePages();
     }
 </script>

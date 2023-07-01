@@ -56,10 +56,8 @@
             }
         } else if ($SortBy.startsWith('Stars')) {
             if (sortInverse) {
-                console.log('sortInverse');
                 return a.stargazers_count - b.stargazers_count;
             } else {
-                console.log('sort');
                 return b.stargazers_count - a.stargazers_count;
             }
         } else if ($SortBy.startsWith('Last release')) {
