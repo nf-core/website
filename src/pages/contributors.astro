@@ -143,9 +143,12 @@ const headings = [
                                 </div>
                                 <div class="card-text">{institution.description}</div>
                             </div>
-                            <div class="card-footer d-flex overflow-x-auto w-100">
+                            <div class="card-footer d-flex overflow-x-auto w-100 text-smaller">
                                 {institution.contact_email && (
-                                    <a href={'mailto:' + institution.contact_email} class="me-3 text-nowrap">
+                                    <a
+                                        href={'mailto:' + institution.contact_email}
+                                        class="me-3 text-nowrap  text-decoration-none"
+                                    >
                                         <i class="fa-solid fa-envelope" />{' '}
                                         {institution.contact ? institution.contact : institution.contact_email}
                                     </a>
@@ -153,14 +156,17 @@ const headings = [
                                 {institution.contact_github && (
                                     <a
                                         href={'https://github.com/' + institution.contact_github}
-                                        class="me-3 text-nowrap"
+                                        class="me-3 text-nowrap text-decoration-none"
                                     >
                                         <i class="fab fa-github" />{' '}
                                         {institution.contact_github.replace('https://github.com/', '')}
                                     </a>
                                 )}
                                 {institution.twitter && (
-                                    <a href={'https://twitter.com/' + institution.twitter} class="me-3 text-nowrap">
+                                    <a
+                                        href={'https://twitter.com/' + institution.twitter}
+                                        class="me-3 text-nowrap text-decoration-none"
+                                    >
                                         <i class="fab fa-twitter" />{' '}
                                         {institution.twitter.replace('https://twitter.com/', '')}
                                     </a>
