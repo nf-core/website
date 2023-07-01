@@ -170,25 +170,12 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     .tab-content.border {
         margin-top: -1px;
     }
-    .nav-link.btn {
-        &.active,
-        &:hover,
-        &:focus {
-            border-top-left-radius: 0 !important;
-            border-top-right-radius: 0 !important;
-            color: $body-color;
-            background-color: $gray-200;
-        }
+    .btn.nav-link:hover {
+        color: $white;
     }
     :global([data-bs-theme='dark']) {
         .border-secondary {
             border-color: $gray-700 !important;
-        }
-        .nav-link.btn {
-            &.active,
-            &:hover,
-            &:focus {
-            }
         }
     }
 </style>

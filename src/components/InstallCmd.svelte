@@ -64,8 +64,14 @@
         }
     }
     :global([data-bs-theme='dark']) {
-        .border-secondary {
-            // border-color: $gray-700 !important;
+        & .btn.copy-txt {
+            background-color: $border-color-dark;
+            color: $body-color-dark;
+            &:hover,
+            &.active {
+                background-color: $secondary;
+                color: $white;
+            }
         }
     }
 </style>

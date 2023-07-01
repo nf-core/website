@@ -29,7 +29,7 @@ export interface Props {
                     {included_pipelines.map((pipeline) => (
                         <a
                             href={'/' + pipeline.name + '/' + pipeline.version + '/'}
-                            class="badge text-bg-warning me-2 text-decoration-none"
+                            class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-2 text-decoration-none"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title={'most recent pipeline version with this module:\n' + pipeline.version}
@@ -54,7 +54,7 @@ export interface Props {
                     {included_subworkflows.map((module) => (
                         <a
                             href={'/subworkflows/' + module.replace('/', '_')}
-                            class="badge text-bg-info me-2 text-decoration-none"
+                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
                         >
                             {module}
                         </a>
@@ -76,7 +76,7 @@ export interface Props {
                     {included_modules.map((module) => (
                         <a
                             href={'/modules/' + module.replace('/', '_') + '/'}
-                            class="badge text-bg-info me-2 text-decoration-none"
+                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
                         >
                             {module}
                         </a>
