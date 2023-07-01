@@ -1,7 +1,7 @@
 ---
 title: 'Getting started with nf-core'
 subtitle: 'Tutorial at the Nextflow Camp 2019'
-type: tutorial
+type: training
 start_date: '2019-09-19'
 start_time: '11:15'
 end_date: '2019-09-19'

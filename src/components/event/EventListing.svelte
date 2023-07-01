@@ -1,9 +1,9 @@
 <script lang="ts">
-    export let events = [];
-
-    import EventCard from '@components/event/EventCard.svelte';
     import FilterBar from '@components/FilterBar.svelte';
+    import EventCard from '@components/event/EventCard.svelte';
     import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store';
+
+    export let events = [];
 
     let filteredEvents = events;
     const filterByType = (event) => {
@@ -67,9 +67,7 @@
     const event_type_classes = {
         bytesize: 'success',
         hackathon: 'primary',
-        poster: 'danger',
-        talk: 'success',
-        tutorial: 'info',
+        talk: 'info',
         training: 'warning',
     };
     const event_type_icons = {
@@ -77,7 +75,6 @@
         hackathon: 'fa-solid fa-laptop-code',
         poster: 'fa-regular fa-image',
         talk: 'fa-solid fa-presentation',
-        tutorial: 'fa-solid fa-graduation-cap',
         training: 'fa-solid fa-chalkboard-teacher',
     };
 
@@ -99,46 +96,86 @@
 
 <div>
     <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} />
-    <div>
-        {#if currentEvents.length > 0}
-            <div class="mb-3 mb-md-5 col">
-                <h2><i class="fa-duotone fa-calendar-exclamation me-3" />Currently ongoing</h2>
-                {#each currentEvents as event (event.id)}
-                    <EventCard
-                        frontmatter={event.data}
-                        slug={event.slug.startsWith('/events/') ? event.slug.replace('/events', '') : event.slug}
-                        type_class={event.data.type}
-                        time_category="current"
-                    />
-                {/each}
-            </div>
-        {/if}
-        <div class="row">
-            <div class="mb-3 mb-md-5 col-12 col-md-6">
-                <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>
-                {#if futureEvents.length > 0}
-                    {#each futureEvents as event (event.id)}
+
+    {#if currentEvents.length > 0}
+        <div class="mb-3 col-12 col-md-6">
+            <h2><i class="fa-duotone fa-calendar-exclamation me-3" />Currently ongoing</h2>
+            {#each currentEvents as event (event.id)}
+                <EventCard
+                    frontmatter={event.data}
+                    slug={event.slug}
+                    type={event.data.type}
+                    time_category="current"
+                    {event_type_classes}
+                />
+            {/each}
+        </div>
+    {/if}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h1>General events</h1>
+            <div class="d-flex flex-column">
+                <div class="mb-3">
+                    <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>
+                    {#if futureEvents.length > 0}
+                        {#each futureEvents.filter((e) => e.data.type !== 'bytesize') as event (event.id)}
+                            <EventCard
+                                frontmatter={event.data}
+                                slug={event.slug}
+                                type={event.data.type}
+                                time_category="future"
+                                {event_type_classes}
+                            />
+                        {/each}
+                    {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
+                        <p>Nothing in the calendar at the moment.</p>
+                    {/if}
+                </div>
+                <div class="mb-3">
+                    <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
+                    {#each pastEvents.filter((e) => e.data.type !== 'bytesize') as event (event.id)}
                         <EventCard
                             frontmatter={event.data}
                             slug={event.slug}
-                            type_class={event.data.type}
-                            time_category="future"
+                            type={event.data.type}
+                            time_category="past"
+                            {event_type_classes}
                         />
                     {/each}
-                {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
-                    <p>No upcoming events at the moment</p>
-                {/if}
+                </div>
             </div>
-            <div class="mb-3 mb-md-5 col-12 col-md-6">
-                <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
-                {#each pastEvents as event (event.id)}
-                    <EventCard
-                        frontmatter={event.data}
-                        slug={event.slug}
-                        type_class={event.data.type}
-                        time_category="past"
-                    />
-                {/each}
+        </div>
+        <div class="col-12 col-md-6">
+            <h1>Bytesize talks</h1>
+            <div class="d-flex flex-column">
+                <div class="mb-3">
+                    <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>
+                    {#if futureEvents.length > 0}
+                        {#each futureEvents.filter((e) => e.data.type === 'bytesize') as event (event.id)}
+                            <EventCard
+                                frontmatter={event.data}
+                                slug={event.slug}
+                                type={event.data.type}
+                                time_category="future"
+                                {event_type_classes}
+                            />
+                        {/each}
+                    {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
+                        <p>No bytesize talks are scheduled at the moment.</p>
+                    {/if}
+                </div>
+                <div class="mb-3">
+                    <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
+                    {#each pastEvents.filter((e) => e.data.type === 'bytesize') as event (event.id)}
+                        <EventCard
+                            frontmatter={event.data}
+                            slug={event.slug}
+                            type={event.data.type}
+                            time_category="past"
+                            {event_type_classes}
+                        />
+                    {/each}
+                </div>
             </div>
         </div>
     </div>
