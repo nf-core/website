@@ -17,7 +17,7 @@
         }[];
     }[] = [];
 
-    let pageSize = 10;
+    let pageSize = $DisplayStyle === 'grid' ? 10 : 25;
     let lastPage = Math.ceil(components.length / pageSize);
 
     const searchComponents = (component) => {
@@ -78,7 +78,7 @@
             <ComponentCard {component} />
         {/each}
     {:else if $DisplayStyle === 'table'}
-        <table class="table table-responsive mx-3 w-75">
+        <table class="table table-responsive mx-3">
             <thead>
                 <tr>
                     <ListingTableHeader name="Name" />

@@ -72,7 +72,7 @@
             <tr>
                 <ListingTableHeader name="Name" />
                 <th class="description" scope="col">Description</th>
-                <ListingTableHeader name="Executor" />
+                <ListingTableHeader name="Executor" textCenter={true} />
             </tr>
         </thead>
         <tbody>
@@ -84,8 +84,10 @@
                     <td class="description text-small">
                         {config.config.config_profile_description}
                     </td>
-                    <td>
-                        {config.config.executor}
+                    <td class="text-center">
+                        <span class="badge border border-secondary-subtle text-body fw-normal">
+                            {config.config.executor}
+                        </span>
                     </td>
                 </tr>
             {/each}
