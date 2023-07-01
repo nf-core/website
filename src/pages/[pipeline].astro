@@ -15,6 +15,6 @@ if (!meta) {
     return Astro.redirect('/404');
 }
 
-const last_release = meta.releases[0].tag_name;
+const last_release = meta.releases[0].tag_name === 'dev' ? meta.releases[1].tag_name : meta.releases[0].tag_name;
 return Astro.redirect(`/${pipeline}/${last_release}/`);
 ---
