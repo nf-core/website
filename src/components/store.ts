@@ -19,6 +19,7 @@ export const SearchQuery = atom('');
 export const showHidden = atom(false);
 export const showHelp = atom(false);
 export const currentHeading = atom('');
+export const currentPage = atom(1);
 export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
   encode(value) {
     return JSON.stringify(value);

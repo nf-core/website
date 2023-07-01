@@ -8,6 +8,8 @@
         config: {};
     }[] = [];
 
+    SortBy.set('Name');
+
     const searchconfigs = (config) => {
         if ($SearchQuery === '') {
             return true;
@@ -29,7 +31,15 @@
         if ($SortBy.startsWith('Name')) {
             return a.name.localeCompare(b.name) * (invertSort ? -1 : 1);
         } else if ($SortBy.startsWith('Executor')) {
-            return a.config.executor.localeCompare(b.config.executor) * (invertSort ? -1 : 1);
+            if (a.config.executor && b.config.executor) {
+                return a.config.executor.localeCompare(b.config.executor) * (invertSort ? -1 : 1);
+            } else if (a.config.executor) {
+                return -1;
+            } else if (b.config.executor) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
     };
     function searchFilterSortConfigs(configs) {
@@ -40,10 +50,20 @@
         filteredConfigs = searchFilterSortConfigs(configs);
     });
 
+    SortBy.subscribe(() => {
+        filteredConfigs = searchFilterSortConfigs(configs);
+    });
+
     $: filteredConfigs = searchFilterSortConfigs(configs);
     configs.map((config) => {
         config.name = config.name.replace('.md', '');
     });
+
+    const executor_icons = {
+        slurm: 'slurm',
+        awsbatch: 'aws',
+        azurebatch: 'azure',
+    };
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
@@ -61,7 +81,7 @@
                     <td class="name">
                         <a href={'/configs/' + config.name + '/'}>{@html config.name.replace('_', '_<wbr>')}</a>
                     </td>
-                    <td class="description w-50">
+                    <td class="description text-small">
                         {config.config.config_profile_description}
                     </td>
                     <td>
@@ -82,5 +102,6 @@
     .description {
         min-width: 20rem;
         word-break: break-word;
+        vertical-align: middle;
     }
 </style>
