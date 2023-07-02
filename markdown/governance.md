@@ -113,7 +113,6 @@ The infrastructure team will have one or more leads who are responsible for over
 The infrastructure team is elected by the core team, is not a fixed size, and will scale as the community grows.
 The infrastructure team will have administrator access to repositories.
 
-
 **Responsibilities**
 
 - Development and maintenance of nf-core tools, website, and mega tests
