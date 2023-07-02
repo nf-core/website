@@ -51,6 +51,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Frontiers in Microbiology_ (2020)](https://www.frontiersin.org/articles/10.3389/fmicb.2020.550420/full)
 > doi: [10.3389/fmicb.2020.550420](https://doi.org/10.3389/fmicb.2020.550420)
 
+### [nf-core/circrna](https://nf-co.re/circrna)
+
+<!-- pub-stats 10.1186/s12859-022-05125-8 -->
+
+> **nf-core/circrna: a portable workflow for the quantification, miRNA target prediction and differential expression analysis of circular RNAs.**
+>
+> Barry Digby, Stephen P. Finn, & Pilib Ó Broin
+>
+> [BMC Bioinformatics 24, 27 (2023)](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-05125-8)
+> doi: [10.1186/s12859-022-05125-8](https://doi.org/10.1186/s12859-022-05125-8)
+
 ### [nf-core/coproid](https://nf-co.re/coproid)
 
 <!-- pub-stats 10.7717/peerj.9001 -->
@@ -84,6 +95,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_PeerJ_, 9:e10947 (2021)](https://peerj.com/articles/10947/);
 > doi: [10.7717/peerj.10947](https://doi.org/10.7717/peerj.10947)
 
+### [nf-core/hgtseq](https://nf-co.re/hgtseq)
+
+<!-- pub-stats 10.3390/ijms232314512 -->
+
+> **hgtseq: A Standard Pipeline to Study Horizontal Gene Transfer**
+>
+> Simone Carpanzano, Mariangela Santorsola, nf-core community and Francesco Lescai
+>
+> [Int. J. Mol. Sci. 2022, 23(23), 14512](https://www.mdpi.com/1422-0067/23/23/14512/htm)
+> doi: [10.3390/ijms232314512](https://doi.org/10.3390/ijms232314512)
+
 ### [nf-core/hicar](https://nf-co.re/hicar)
 
 <!-- pub-stats 10.1016/j.molcel.2022.01.023 -->
@@ -105,6 +127,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_Nat Commun._ 2021 Oct 8;12(1):5906](https://www.nature.com/articles/s41467-021-26214-x);
 > doi: [10.1038/s41467-021-26214-x](https://doi.org/10.1038/s41467-021-26214-x)
+
+### [nf-core/isoseq](https://nf-co.re/isoseq)
+
+<!-- pub-stats 10.1093/bioinformatics/btad150 -->
+
+> **nf-core/isoseq: Simple gene and isoform annotation with PacBio Iso-Seq long-read sequencing.**
+>
+> Sébastien Guizard, Katarzyna Miedzinska, Jacqueline Smith, Jonathan Smith, Richard Kuo, Megan Davey, Alan Archibald, Michael Bryan Watson
+>
+> [_Bioinformatics_ 2023 Mar](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btad150);
+> doi: [10.1093/bioinformatics/btad150](https://doi.org/10.1093/bioinformatics/btad150)
 
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 

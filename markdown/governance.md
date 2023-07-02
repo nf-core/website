@@ -62,16 +62,17 @@ Core team members will appear as organization members on the GitHub organization
 
 <a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/christopher-hakkaart"><i aria-hidden="true"></i>Chris Hakkaart</a>
+<a class="btn btn-light rounded-pill" href="https://github.com/drpatelh"><i aria-hidden="true"></i>Harshil Patel</a>
+<a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
+<a class="btn btn-light rounded-pill" href="https://github.com/FranBonath"><i aria-hidden="true"></i>Franziska Bonath</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/FriederikeHanssen"><i aria-hidden="true"></i>Friederike Hanssen</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/ggabernet"><i aria-hidden="true"></i>Gisela Gabernet</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/drpatelh"><i aria-hidden="true"></i>Harshil Patel</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/jfy133"><i aria-hidden="true"></i>James A. Fellows Yates</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/JoseEspinosa"><i aria-hidden="true"></i>Jose Espinosa-Carrasco</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/mirpedrol"><i aria-hidden="true"></i>Júlia Mir Pedrol</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/mribeirodantas"><i aria-hidden="true"></i>Marcel Ribeiro-Dantas</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/mashehu"><i aria-hidden="true"></i>Matthias Hörtenhuber</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/MaxUlysse"><i aria-hidden="true"></i>Maxime Garcia</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
+<a class="btn btn-light rounded-pill" href="https://github.com/mirpedrol"><i aria-hidden="true"></i>Júlia Mir Pedrol</a>
+<a class="btn btn-light rounded-pill" href="https://github.com/mribeirodantas"><i aria-hidden="true"></i>Marcel Ribeiro-Dantas</a>
 
 **Core team alumni**
 
@@ -129,11 +130,11 @@ The infrastructure team will have administrator access to repositories.
 
 #### Outreach {#outreach}
 
-Outreach is an important part of any community project.  
+Outreach is an important part of any community project.
 The outreach team is responsible for overseeing the organization and running community outreach efforts, including, but not limited to, the nf-core ambassador program, hackathons, and the `#bytesize` seminar series.
 
 The outreach team will have one or more leads who are responsible for overseeing outreach efforts.
-New members will be invited to be a part of the outreach team based on experience and outreach activity (e.g., involvement in the ambassador program). 
+New members will be invited to be a part of the outreach team based on experience and outreach activity (e.g., involvement in the ambassador program).
 The outreach team is not a fixed size and will scale as the community grows.
 The outreach leads will have access to community social media and YouTube accounts (e.g., Twitter and YouTube).
 
@@ -159,6 +160,10 @@ The outreach leads will have access to community social media and YouTube accoun
 <a class="btn btn-light rounded-pill" href="https://github.com/pcantalupo"><i aria-hidden="true"></i>Paul Cantalupo</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/yuukiiwa"><i aria-hidden="true"></i>Yuk Kei</a>
 
+**Alumni**
+
+<a class="btn btn-light rounded-pill" href="https://github.com/Xesus-Abalo"><i aria-hidden="true"></i>Xesús M. Abalo</a>
+
 #### Maintainers {#maintainers}
 
 nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
@@ -183,14 +188,35 @@ nf-core maintainers will have write access to repositories.
 
 **Members**
 
-<a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/Emiller88"><i aria-hidden="true"></i>Edmund Miller</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/FriederikeHanssen"><i aria-hidden="true"></i>Friederike Hanssen</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/ggabernet"><i aria-hidden="true"></i>Gisela Gabernet</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/drpatelh"><i aria-hidden="true"></i>Harshil Patel</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/jfy133"><i aria-hidden="true"></i>James A. Fellows Yates</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/JoseEspinosa"><i aria-hidden="true"></i>Jose Espinosa-Carrasco</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/MaxUlysse"><i aria-hidden="true"></i>Maxime Garcia</a>
+<ul>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/adamrtalbot"><i aria-hidden="true"></i> Adam Talbot</a> (Nonacus)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/asp8200"><i aria-hidden="true"></i> Anders Sune Pedersen</a> (Danish National Genome Center)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/jemten"><i aria-hidden="true"></i> Anders Jemt</a> (Science for Life Laboratory)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/christopher-mohr"><i aria-hidden="true"></i> Christopher Mohr</a> (Boehringer Ingelheim)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/erikrikarddaniel"><i aria-hidden="true"></i> Daniel Lundin</a> (Linnaeus University)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/Emiller88"><i aria-hidden="true"></i> Edmund Miller</a> (University of Texas at Dallas & Element Biosciences)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/FriederikeHanssen"><i aria-hidden="true"></i> Friederike Hanssen</a> (Quantitative Biology Center, QBiC, University of Tübingen)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/mirpedrol"><i aria-hidden="true"></i> Júlia Mir Pedrol</a> (Quantitative Biology Center, QBiC, University of Tübingen)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/ggabernet"><i aria-hidden="true"></i> Gisela Gabernet</a> (Quantitative Biology Center, QBiC, University of Tübingen)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/drpatelh"><i aria-hidden="true"></i> Harshil Patel</a> (Seqera Labs)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/jfy133"><i aria-hidden="true"></i> James A. Fellows Yates</a> (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/jasmezz"><i aria-hidden="true"></i> Jasmin Frangenberg</a> (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/pinin4fjords"><i aria-hidden="true"></i> Jon Manning</a> (Healx Ltd)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/JoseEspinosa"><i aria-hidden="true"></i> Jose Espinosa-Carrasco</a> (Centre for Genomic Regulation)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/louperelo"><i aria-hidden="true"></i> Louisa Perelo</a> (Quantitative Biology Center, QBiC, University of Tübingen)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/matthdsm"><i aria-hidden="true"></i> Matthias De Smet</a> (Center For Medical Genetics Ghent)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/mashehu"><i aria-hidden="true"></i> Matthias Hörtenhuber</a> (Science for Life Laboratory)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/maxulysse"><i aria-hidden="true"></i> Maxime U. Garcia</a> (Seqera Labs)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/Midnighter"><i aria-hidden="true"></i> Moritz E. Beber</a> (Unseen Bio ApS)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/nvnieuwk"><i aria-hidden="true"></i> Nicolas Vannieuwkerke</a> (Center For Medical Genetics Ghent)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/ramprasadn"><i aria-hidden="true"></i> Ramprasad Neethiraj</a> (Science for Life Laboratory)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/robsyme"><i aria-hidden="true"></i> Rob Syme</a> (Seqera Labs)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/sppearce"><i aria-hidden="true"></i> Simon Pearce</a> (Cancer Research UK Manchester Institute)</li>
+  <li><a class="btn btn-light rounded-pill" href="https://github.com/sofstam"><i aria-hidden="true"></i> Sofia Stamouli</a> (Karolinska Institute & Karolinska University Hospital)</li>
+</ul>
+
+We thank all the institutions and companies of the maintainers team for their support of nf-core.
+
 #### Ambassadors {#ambassadors}
 
 nf-core recognizes a vibrant, worldwide group of nf-core experts whose enthusiasm for knowledge-sharing drives the community forward.
@@ -217,4 +243,3 @@ More information about becoming an nf-core ambassador can be found [here](https:
 <a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
-  

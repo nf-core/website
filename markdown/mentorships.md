@@ -2,7 +2,7 @@
 
 As the Nextflow and nf-core communities continue to grow, we aim to prioritise inclusivity for everyone through active outreach to groups with low representation.
 In Spring 2022, Nextflow and nf-core started a joint mentorship program with the aim of improving outreach and training in underrepresented groups and areas.
-Round 2 (Autumn 2022) of the program is now under way!
+Applications for Round 3 are now open!
 
 In this page, we use the following terminology:
 
@@ -55,7 +55,7 @@ There will be a set of milestones and aims for each partnership and a short writ
 
 The funding for this program comes from the [Chan Zuckerberg Initiative](https://chanzuckerberg.com/).
 
-In 2021, nf-core together with Nextflow successfully applied for grants from CZI and we recieved funding for both the [EOSS Cycle 4](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) grant and also the EOSS [Diversity & Inclusion](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) program.
+In 2021, nf-core together with Nextflow successfully applied for grants from CZI and we received funding for both the [EOSS Cycle 4](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core-reproducible-workflows-for-the-scientific-community-cycle-4/) grant and also the EOSS [Diversity & Inclusion](https://chanzuckerberg.com/eoss/proposals/nextflow-and-nf-core/) program.
 
 You can read a [CZI blog post](https://cziscience.medium.com/advancing-diversity-and-inclusion-in-scientific-open-source-eaabe6a5488b) about the motivations and aims of the Diversity & Inclusion program.
 
@@ -84,7 +84,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of August 2022</dd>
 </dl>
 
-## Round 2 (Applications closed)
+## Round 2 (Closed)
 
 ### Key dates
 
@@ -101,7 +101,7 @@ Dates are subject to change:
   <dd class="col-md-9">End of March 2023</dd>
 </dl>
 
-## Round 3
+## Round 3 (Closed)
 
 ### Key dates
 
@@ -111,7 +111,7 @@ Dates are subject to change:
   <dt class="col-md-3 text-md-end">Applications open:</dt>
   <dd class="col-md-9">April 1st 2023</dd>
   <dt class="col-md-3 text-md-end">Applications close:</dt>
-  <dd class="col-md-9">May 1st 2023</dd>
+  <dd class="col-md-9">May 15th 2023</dd>
   <dt class="col-md-3 text-md-end">Mentorships start:</dt>
   <dd class="col-md-9">June 1st 2023</dd>
   <dt class="col-md-3 text-md-end">Mentorships finish:</dt>
@@ -120,11 +120,11 @@ Dates are subject to change:
 
 ## Application process
 
-Applications for Round 2 are now closed. Those who have applied will hear from us soon. Thank you!
+Applications for Round 3 are now closed. Those who have applied will hear from us soon. Thank you!
 
-<!-- _ Applications for Round 2 are now open!
+<!-- Applications for Round 3 are now open!
 
-Please submit an application using the forms below before November 1<sup>st</sup> to be considered for the program.
+Please submit an application using the forms below before May 15<sup>th</sup> to be considered for the program.
 Applications will be judged on both individual merits and also on the appropriate pairing between mentors and mentees.
 
-<p class="text-center"><a href="https://forms.gle/oXgDDwGPUHV6nMYk8" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p>_ -->
+<p class="text-center"><a href="https://seqera.typeform.com/to/TGpEG5Yt" class="btn btn-success btn-lg text-center" target="_blank">Apply here <i class="fas fa-external-link"></i></a></p> -->

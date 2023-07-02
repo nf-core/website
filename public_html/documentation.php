@@ -37,6 +37,8 @@ function dir_tree($dir) {
 }
 
 $sidebar_nav_elements = dir_tree($docs_md_base . 'docs');
+//Remove landing page from navigation
+unset($sidebar_nav_elements['0']);
 krsort($sidebar_nav_elements, SORT_ASC); # sort Usage before Contributing
 # build html for the sidebar nav
 
@@ -86,17 +88,64 @@ function build_sidebar_nav($elements) {
         }
     }
 }
-$sidebar_nav =
-    '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column"><div style="height: calc(100vh - 70px); overflow: auto;">';
+
+$sidebar_nav = '<nav class="sidebar-nav side-sub-subnav sticky-top"><ul class="ps-0 d-flex flex-column">';
 $sidebar_nav .= build_sidebar_nav($sidebar_nav_elements);
-$sidebar_nav .= '</div></ul></nav>';
+$sidebar_nav .= '</ul></nav>';
 
 # ToC
 $toc_nav = '<nav class="toc auto-toc mt-2 flex-column border-start">';
 $toc_nav .= generate_toc($content);
 $toc_nav .=
-    '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+    '<p class="small text-end mt-3 d-none d-lg-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 $toc_nav .= '</nav>';
+
+$md_content_replace[] = ['<!-- usage_toc -->'];
+if (in_array($_GET['path'], ['docs'])) {
+    $inline_toc = '<div class="row"><div class="col-12 col-md-6"><div class="mb-3 h3">Usage</div><ul>';
+    foreach ($sidebar_nav_elements['usage'] as $mdfile => $mdcontent) {
+        if (isset($mdcontent['url'])) {
+            $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
+            $inline_toc .= '<li>' . '<a href="' . $mdcontent['url'] . '">' . $mdcontent['title'] . '</li>';
+        } else {
+            $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
+            $inline_toc .= '<li>' . ucfirst($mdfile) . '</li>';
+            $inline_toc .= '<ul>';
+            foreach ($mdcontent as $dropfile => $dropcontent) {
+                $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
+                $inline_toc .= '<li><a href="' . $dropcontent['url'] . '">' . $dropcontent['title'] . '</li>';
+            }
+            $inline_toc .= '</ul>';
+        }
+    }
+    $inline_toc .= '</ul></div>';
+    $inline_toc .= '<div class="col-12 col-md-6"><div class="mb-3 h3">Contributing</div><ul>';
+    foreach ($sidebar_nav_elements['contributing'] as $mdfile => $mdcontent) {
+        if (isset($mdcontent['url'])) {
+            $mdcontent['url'] = str_replace('docs/', '', $mdcontent['url']);
+            $inline_toc .= '<li>' . '<a href="' . $mdcontent['url'] . '">' . $mdcontent['title'] . '</li>';
+        } else {
+            $mdcontent[0]['url'] = str_replace('docs/', '', $mdcontent[0]['url']);
+            $inline_toc .= '<li>' . ucfirst($mdfile) . '</li>';
+            $inline_toc .= '<ul>';
+            foreach ($mdcontent as $dropfile => $dropcontent) {
+                $dropcontent['url'] = str_replace('docs/', '', $dropcontent['url']);
+                if (is_array($dropcontent[0])) {
+                    $dropcontent[0]['url'] = str_replace('docs/', '', $dropcontent[0]['url']);
+                    $inline_toc .= '<ul>';
+                    $inline_toc .=
+                        '<li>' . '<a href="' . $dropcontent[0]['url'] . '">' . $dropcontent[0]['title'] . '</li>';
+                    $inline_toc .= '</ul>';
+                } else {
+                    $inline_toc .= '<li>' . '<a href="' . $dropcontent['url'] . '">' . $dropcontent['title'] . '</li>';
+                }
+            }
+            $inline_toc .= '</ul>';
+        }
+    }
+    $inline_toc .= '</ul></div></div>';
+    $md_content_replace[] = ['/<!-- inline_toc -->/', $inline_toc];
+}
 
 include '../includes/header.php';
 ?>
@@ -111,11 +160,11 @@ include '../includes/header.php';
 
     # right sidebar
     $main_content .= '<div class="col-12 col-lg-2 order-lg-last ps-2 h-100 sticky-top"><div class="side-sub-subnav">';
-    $main_content .= $toc_nav;
+    $main_content .= substr_count($toc_nav, 'nav-link') > 1 ? $toc_nav : '';
+    // $main_content .= $toc_nav ;
     $main_content .= '</div></div>'; # end of the sidebar col
-    # main content
+    // # main content
     $main_content .= '<div class="col-12 col-lg-8"><div class="rendered-markdown">' . $content . '</div></div>';
-
     $main_content .= '</div>'; # end of the row
     echo $main_content;
     ?>

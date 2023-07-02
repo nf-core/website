@@ -16,9 +16,7 @@ menu:
 >
 > Updated during the March 2022 hackathon.
 
-<!-- markdownlint-disable -->
 <iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-<!-- markdownlint-restore -->
 
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core-tutorial-contributing.pdf)**
 
@@ -241,19 +239,18 @@ You can leave the _nf-core_ branch protection in place so that the `nf-core lint
 #### Linting
 
 The `linting.yml` workflow will run the nf-core linting tests, as well as other linting tests that ensure that general code styling is maintained.
+
 This workflow is already set up and does not need to be edited.
 It will check:
 
-- That all Markdown documentations follow a proper syntax.
-  - Many code editors have similar packages to help with markdown validation. For example, [markdownlint for atom](https://atom.io/packages/linter-markdownlint) and [markdownlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint))
-  - You can run the markdown linting on the command line by [installing markdownlint](https://www.npmjs.com/package/markdownlint) and running the command `markdownlint . -c .github/markdownlint.yml`
-- That all YAML files follow a proper syntax.
+- That markdown / YAML / JSON etc files are properly formatted, using Prettier.
+- That any Python is correctly formatted using Black.
 - That general code structure is maintained (e.g. no trailing whitespaces, final newline is present in all files) with [EditorConfig](https://editorconfig.org/).
 - That the pipeline code follows the nf-core linting rules.
   - You can run this manually with the `nf-core lint` command.
   - Some of the linting tests can be fixed automatically with the `--fix` subcommand, for example any `files_unchanged` type of error: `nf-core lint --fix files_unchanged`.
 
-> Tip: when using a code editor, some code editor settings might help you solve any code linting errors by linting when saving a file and even fixing the errors directly. You can check out [this documentation](https://nf-co.re/docs/contributing/editor_plugins) on code editor plugins.
+See the documentation about [code formatting](/developers/code_formatting.md) for more information on these tools and how to use them.
 
 #### Continuous integration tests
 
@@ -309,7 +306,7 @@ Adding nf-core modules to a pipeline, if the modules already exist in the nf-cor
 nf-core modules install <module name>
 ```
 
-The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as `workflows/<pipeline-name>.nf`) or a sub-workflow, an include statement needs to be added in the corresponding Nextflow file:
+The modules files will be added under the `modules/nf-core` directory. To be able to call the module inside the main pipeline workflow (such as `workflows/<pipeline-name>.nf`) or a subworkflow, an include statement needs to be added in the corresponding Nextflow file:
 
 ```bash
 include { TOOL_SUBTOOL } from '../modules/nf-core/modules/<tool/subtool>/main'

@@ -29,6 +29,12 @@ if (isset($subfooter) and $subfooter) {
         <small class="d-flex mb-3">Supported by<div class="social-icons">
             <a href="/about#czi-eoss">
               <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
+            </a>,
+            <a href="/about#seqera">
+              <img src="/assets/img/seqera-icon.svg" alt="Seqera" class="" style="max-width: 50px">
+            </a>,
+            <a href="/about#microsoft-azure">
+              <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" style="max-width: 50px">
             </a>
             <span class="ms-1">and</span>
             <a href="/about#aws">
@@ -68,16 +74,19 @@ if (isset($subfooter) and $subfooter) {
           </div>
 
           <div class="social-icons mb-3 d-print-none">
-            <a href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip">
+            <a rel="me" href="https://nfcore.slack.com/" target="_blank" title="Slack" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/slack.svg" />
             </a>
-            <a href="https://github.com/nf-core/" target="_blank" class="social-github" title="GitHub" data-bs-toggle="tooltip">
+            <a rel="me" href="https://github.com/nf-core/" target="_blank" class="social-github" title="GitHub" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/github.svg" />
             </a>
-            <a href="https://twitter.com/nf_core" target="_blank" title="Twitter" data-bs-toggle="tooltip">
+            <a rel="me" href="https://twitter.com/nf_core" target="_blank" title="Twitter" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/twitter.svg" />
             </a>
-            <a href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-bs-toggle="tooltip">
+            <a rel="me" href="https://mstdn.science/@nf_core" target="_blank" title="Mastodon" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                <img src="/assets/img/mastodon.svg" />
+            </a>
+            <a rel="me" href="https://www.youtube.com/c/nf-core" target="_blank" title="YouTube" data-bs-toggle="tooltip" data-bs-placement="bottom">
               <img src="/assets/img/youtube.svg" />
             </a>
           </div>
