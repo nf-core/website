@@ -57,6 +57,54 @@
         const timeLeftString = formatDistanceToNow(event_start);
         return timeLeftString;
     };
+
+    events
+        .map((event) => {
+            if (event.data.title.toLowerCase().match('bytesize')) {
+                event.data.type = 'bytesize';
+            }
+            event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
+            event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
+            if (event.data.start_date === event.data.end_date) {
+                event.data.duration =
+                    event.data.start.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    }) +
+                    '-' +
+                    event.data.end.toLocaleString('en-US', {
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    });
+            } else {
+                event.data.duration =
+                    event.data.start.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    }) +
+                    ' - ' +
+                    event.data.end.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    });
+            }
+        })
+        .sort((a, b) => {
+            return new Date(a.data.start) - new Date(b.data.start);
+        });
 </script>
 
 {#if events.length > 0}
