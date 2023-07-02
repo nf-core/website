@@ -77,7 +77,7 @@
         {#each paginatedItems as component (component.name)}
             <ComponentCard {component} />
         {/each}
-    {:else if $DisplayStyle === 'table'}
+    {:else}
         <table class="table table-responsive mx-3">
             <thead>
                 <tr>
