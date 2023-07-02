@@ -48,7 +48,7 @@ const url = Astro.url.pathname;
                                                         'text-body-secondary': !url.endsWith(child.slug),
                                                     },
                                                 ]}
-                                                href={child.slug}
+                                                href={child.slug + '/'}
                                             >
                                                 {child.title}
                                             </a>

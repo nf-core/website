@@ -5,6 +5,7 @@ import yaml from 'js-yaml';
 import path from 'path';
 import ProgressBar from 'progress';
 
+
 // get current path
 const __dirname = path.resolve();
 
@@ -156,7 +157,16 @@ const writePipelinesJson = async () => {
     data['releases'] = [...old_releases, ...new_releases];
     // resolve the promises
     data['releases'] = await Promise.all(data['releases']);
-
+    // sort the releases by date except for dev, which should always be last
+    data['releases'].sort((a, b) => {
+      if (a.tag_name === 'dev') {
+        return 1;
+      } else if (b.tag_name === 'dev') {
+        return -1;
+      } else {
+        return new Date(b.published_at) - new Date(a.published_at);
+      }
+    });
     if (!pipelines.remote_workflows) {
       pipelines.remote_workflows = [];
     }

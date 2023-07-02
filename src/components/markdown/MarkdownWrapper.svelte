@@ -44,7 +44,9 @@
                         'opacity-50'
                     );
                     button.innerHTML = copyButtonLabel;
-                    button.title = 'Copy code';
+                    button.title = 'Copy to clipboard';
+                    // add data-bs-toggle="tooltip" to enable Bootstrap tooltips
+                    button.setAttribute('data-bs-toggle', 'tooltip');
                     block.classList.add('position-relative');
                     block.appendChild(button);
                     button.addEventListener('click', async (e) => {

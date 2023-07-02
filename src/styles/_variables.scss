@@ -32,9 +32,13 @@ $headings-font-weight: 500;
 $headings-color: $green;
 $headings-color-dark: $nf-core-color-dark;
 
-// overwrite standard button styles
+// overwrite standard accordion button styles
 $accordion-button-active-bg: tint-color($nf-core-color, 30%);
 $accordion-button-active-color: shade-color($nf-core-color, 10%);
+
+// overwrite standard pagination style
+$pagination-active-bg:              $nf-core-color;
+$pagination-active-border-color:    $nf-core-color;
 
 
 // standard bootstrap variables

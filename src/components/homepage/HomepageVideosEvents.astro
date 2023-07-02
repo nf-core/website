@@ -1,0 +1,120 @@
+---
+import { YouTube } from '@astro-community/astro-embed-youtube';
+import FuzzySearch from '@components/FuzzySearch.svelte';
+import { getCollection } from 'astro:content';
+import EventCard from '@components/event/EventCard.svelte';
+
+const events = await getCollection('events');
+const bytesizes = events.filter((event) => event.data.title.toLowerCase().match('bytesize'));
+let lastYoutubeUrls = bytesizes
+    .slice()
+    .reverse()
+    .find((Bytesize) => {
+        let urls = Bytesize.data.location_url;
+        if (typeof urls === 'string') {
+            urls = [urls];
+        }
+
+        return urls.find((url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'));
+    });
+
+lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
+    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be')
+);
+
+const latestBytesize = lastYoutubeUrls
+    ?.replace('https://www.youtube.com/watch?v=', '')
+    .replace('https://youtu.be/', '');
+const bytesizeSearch = bytesizes.map((bs) => {
+    return { href: '/events/' + bs.slug + '/', name: bs.data.title };
+});
+const eventPreview = events
+    .filter((event) => event.slug.split('/').length < 3)
+    .slice(-4, -1)
+    .reverse();
+let { eventPreviewCurrent, eventPreviewFuture, eventPreviewPast } = [];
+eventPreviewCurrent = eventPreview.filter((event) => {
+    const today = new Date();
+    return event.data.start < today && event.data.end > today;
+});
+if (eventPreviewCurrent.length < 3) {
+    eventPreviewFuture = eventPreview.filter((event) => {
+        const today = new Date();
+        return event.data.start > today;
+    });
+    if (eventPreviewFuture.length + eventPreviewCurrent.length < 3) {
+        eventPreviewPast = eventPreview
+            .filter((event) => {
+                const today = new Date();
+                return event.data.end < today;
+            })
+            .reverse();
+    }
+}
+---
+
+<div class="container">
+    <div class="row videos-row">
+        <div class="col-lg-4" id="nf-core-video">
+            <h2>Introduction to nf-core</h2>
+            <YouTube id="gUM9acK25tQ" poster={`https://img.youtube.com/vi/gUM9acK25tQ/maxresdefault.jpg`} />
+            <a href="https://www.youtube.com/@nf-core" class="my-3 btn btn-lg btn-danger bg-youtube">
+                <i class="fab fa-youtube me-3"></i> nf-core channel
+            </a>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>Latest bytesize video</h2>
+
+            <YouTube id={latestBytesize} poster={`https://img.youtube.com/vi/${latestBytesize}/hqdefault.jpg`} />
+
+            <div class="mt-3">
+                <h3 class="">nf-core/bytesize</h3>
+                <p class="lead">
+                    Our weekly series of short talks. Around 15 minutes + questions, focussing on topics about using and
+                    developing nf-core pipelines.
+                </p>
+                <h4 class="">More bytesize videos: <FuzzySearch possibleResults={bytesizeSearch} client:load /></h4>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            {eventPreviewCurrent.length > 0 && <h3>Current Events</h3>}
+            {
+                eventPreviewCurrent.map((event) => (
+                    <EventCard
+                        frontmatter={event.data}
+                        slug={event.slug}
+                        type_class={event.data.type}
+                        time_category="current"
+                    />
+                ))
+            }
+            {eventPreviewFuture.length > 0 && <h3>Upcoming Events</h3>}
+            {
+                eventPreviewFuture.map((event) => (
+                    <>
+                        <EventCard
+                            frontmatter={event.data}
+                            slug={event.slug}
+                            type_class={event.data.type}
+                            time_category="future"
+                        />
+                    </>
+                ))
+            }
+            {eventPreviewPast.length > 0 && <h3>Past Events</h3>}
+            {
+                eventPreviewPast.map((event) => (
+                    <EventCard
+                        frontmatter={event.data}
+                        slug={event.slug}
+                        type_class={event.data.type}
+                        time_category="past"
+                    />
+                ))
+            }
+        </div>
+    </div>
+
+    <style lang="scss"></style>
+</div>

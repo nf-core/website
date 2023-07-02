@@ -82,5 +82,18 @@ const title = 'nf-core/configs';
 const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
 ---
 
-<ListingLayout title={title} description={description} configs={configs} filter={[]} sortBy={[]} displayStyle={[]} />
+<ListingLayout
+    title={title}
+    description={description}
+    configs={configs}
+    filter={[]}
+    sortBy={['Name', 'Executor']}
+    displayStyle={[]}
+>
+    <p class="container">
+        The following configs are common Nextflow pipeline configurations and options for particular institutional
+        clusters or compute environments.
+    </p>
+</ListingLayout>
+
 <style></style>

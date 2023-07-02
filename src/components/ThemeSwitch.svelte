@@ -10,7 +10,7 @@
     });
 </script>
 
-<div class="dropdown">
+<div class="dropdown" title="Change theme" data-bs-toggle="tooltip" data-bs-placement="bottom">
     <button
         class="nav-link dropdown-toggle"
         type="button"

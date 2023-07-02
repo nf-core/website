@@ -1,4 +1,5 @@
 <script lang="ts">
+    import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import PipelineCard from '@components/pipeline/PipelineCard.svelte';
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
 
@@ -14,9 +15,8 @@
         archived: boolean;
     }[] = [];
 
-    function handleSort(sor) {
-        SortBy.set(sor);
-    }
+    let sortInverse = false;
+
     const searchPipelines = (pipeline) => {
         if ($SearchQuery === '') {
             return true;
@@ -47,19 +47,33 @@
     };
 
     const sortPipelines = (a, b) => {
-        if ($SortBy === 'Alphabetical') {
-            return a.name.localeCompare(b.name);
-        } else if ($SortBy === 'Stars') {
-            return b.stargazers_count - a.stargazers_count;
-        } else if ($SortBy === 'Last release') {
+        sortInverse = $SortBy.endsWith(';inverse');
+        if ($SortBy.startsWith('Name')) {
+            if (sortInverse) {
+                return b.name.localeCompare(a.name);
+            } else {
+                return a.name.localeCompare(b.name);
+            }
+        } else if ($SortBy.startsWith('Stars')) {
+            if (sortInverse) {
+                return a.stargazers_count - b.stargazers_count;
+            } else {
+                return b.stargazers_count - a.stargazers_count;
+            }
+        } else if ($SortBy.startsWith('Last release')) {
             // handle case where a pipeline has no releases
             if (a.releases.length === 1) {
-                return 1;
+                return 1 * (sortInverse ? -1 : 1);
             }
             if (b.releases.length === 1) {
-                return -1;
+                return -1 * (sortInverse ? -1 : 1);
             }
-            return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+
+            if (sortInverse) {
+                return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+            } else {
+                return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+            }
         }
     };
     function searchFilterSortPipelines(pipelines) {
@@ -84,7 +98,6 @@
                 return filter;
             })
         );
-        console.log($Filters);
         return pipelines;
     }
     SortBy.subscribe(() => {
@@ -112,34 +125,26 @@
                 <PipelineCard {pipeline} />
             {/each}
         {/if}
-    {:else if $DisplayStyle === 'table'}
-        <table class="table">
+    {:else}
+        <table class="table table-hove table-responsive mx-3">
             <thead>
                 <tr>
-                    <th class="text-nowrap sortable" scope="col" on:click={() => handleSort('Alphabetical')}
-                        ><i
-                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy === 'Alphabetical'}
-                            class:fa-regular={$SortBy !== 'Alphabetical'}
-                        /> Name</th
-                    >
+                    <ListingTableHeader name="Name" />
                     <th scope="col">Description</th>
                     <th scope="col">Released</th>
-                    <th class="text-end text-nowrap sortable" scope="col" on:click={() => handleSort('Stars')}
-                        ><i
-                            class="fa-arrow-up-arrow-down me-2 fa-swap-opacity"
-                            class:fa-duotone={$SortBy === 'Stars'}
-                            class:fa-regular={$SortBy !== 'Stars'}
-                        /> Stars</th
-                    >
-                    <th class="text-end" scope="col">Last Release</th>
+                    <ListingTableHeader name="Stars" textEnd={true} />
+                    <ListingTableHeader name="Last release" title="Sort by date of last release" textEnd={true} />
                 </tr>
             </thead>
             <tbody>
                 {#each filteredPipelines as pipeline}
-                    <tr>
+                    <tr class="position-relative">
                         <td>
-                            <a href={pipeline.html_url} target="_blank" rel="noreferrer">{pipeline.name}</a>
+                            <a
+                                class="stretched-link"
+                                href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                >{pipeline.name}</a
+                            >
                         </td>
                         <td class="text-small">
                             {pipeline.description}
@@ -161,16 +166,9 @@
                             {pipeline.stargazers_count}
                         </td>
                         <td class="text-end">
-                            <a
-                                class=""
-                                href={'/' +
-                                    pipeline.name +
-                                    '/' +
-                                    (pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : 'dev') +
-                                    '/'}
-                            >
+                            <span>
                                 {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
-                            </a>
+                            </span>
                         </td>
                     </tr>
                 {/each}
@@ -185,6 +183,10 @@
         cursor: pointer;
         &:hover {
             background-color: $secondary-bg-subtle;
+        }
+        :global([data-bs-theme='dark']) &:hover {
+            color: $white;
+            background-color: $secondary-bg-subtle-dark;
         }
     }
 </style>

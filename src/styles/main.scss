@@ -121,6 +121,9 @@ section:before {
   background-color: rgba($gray-200, 0.75);
 }
 
+.bg-youtube {
+  background-color: #ea3c1e !important;
+}
 .toast {
   background-color: rgba($gray-100, 0.9);
   position: fixed;
@@ -247,6 +250,9 @@ section:before {
   cursor: not-allowed;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
 // code
 code:not(pre code),
 .code:not(pre .code) {
@@ -374,17 +380,20 @@ h4:focus .header-link,
   }
 }
 
-.markdown-content, .card {
+.markdown-content,
+.card {
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  .title {
     scroll-margin-top: 4rem;
 
     :hover .fa-link {
       visibility: visible !important;
+      color: $link-color;
     }
   }
 }
@@ -468,17 +477,22 @@ h4:focus .header-link,
 
 .pipeline .pipeline-topic,
 .module .module-topic,
+.subworkflow .subworkflow-topic,
 .search-page-result .pipeline-topic {
   background-color: $gray-100;
   color: $success;
   font-weight: 400;
 }
 
-.mainpage-heading .pipeline-topic,
-.mainpage-heading .module-topic {
-  background-color: rgba($white, 0.1);
-  color: rgba($white, 0.9);
-  font-weight: 400;
+.mainpage-heading {
+  .topic,
+  .pipeline-topic,
+  .module-topic,
+  .subworkflow-topic {
+    background-color: rgba($white, 0.1);
+    color: rgba($white, 0.9);
+    font-weight: 400;
+  }
 }
 
 .pipelines-container-list .col:first-child .pipeline.card {
@@ -1126,15 +1140,6 @@ Launch Page
   overflow-x: scroll;
 }
 
-// nf-cordle
-.tile {
-  color: $gray-100;
-}
-
-.tile[data-state='active'] {
-  color: inherit;
-}
-
 .sidebar-nav {
   @include media-breakpoint-up(lg) {
     height: 100vh;
@@ -1187,7 +1192,7 @@ Launch Page
     margin-bottom: 0;
   }
 
-  .admonition-body svg {
+  .admonition-body .title svg {
     width: 1.2rem;
     height: 1.2rem;
     fill: currentColor;
