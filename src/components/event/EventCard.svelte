@@ -64,12 +64,12 @@
                 <a class="text-center" href={slug + '/'}>
                     {frontmatter.title}
                 </a>
+                {#if time_category === 'current'}
+                    <div class="float-end d-none d-md-inline">
+                        <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
+                    </div>
+                {/if}
             </h3>
-            {#if time_category === 'current'}
-                <div class="float-end d-none d-md-inline">
-                    <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
-                </div>
-            {/if}
         </div>
         <div class="card-text">
             <p class="mb-0">{frontmatter.subtitle}</p>
@@ -83,7 +83,7 @@
     <div class="card-footer p-0 p-md-2">
         <div class="d-flex align-items-center justify-content-between">
             <p class="d-none d-md-inline-block text-wrap mb-0 align-middle">
-                <i class="fa-regular fa-calendar me-2" />{@html event_date}
+                {@html event_date}
             </p>
             <div class="btn-group float-end" role="group" aria-label="See details or export calendar event">
                 <a href={slug + '/'} class="btn btn-outline-success text-nowrap rounded-top-0 rounded-start-0"
@@ -97,7 +97,7 @@
         {#if time_category === 'current'}
             <VideoButton
                 urls={frontmatter.location_url}
-                btnClass="d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
+                btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
             />
         {/if}
     </div>
@@ -106,7 +106,7 @@
 <style lang="scss">
     @import '@styles/_variables';
     .card .card-title a {
-        color: $success;
+        // color: $success;
     }
     .card.rounded-0:not(.bytesize) {
         border-left: 5px solid;
