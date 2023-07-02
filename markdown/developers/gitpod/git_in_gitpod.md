@@ -1,9 +1,9 @@
 ---
 title: 2 - Git and Gitpod
-subtitle: Making changes to a repository and commiting to git
+subtitle: Making changes to a repository and committing to git
 ---
 
-## Making changes to a repository and commiting to git
+## Making changes to a repository and committing to git
 
 Gitpod environments are a handy place to try out Nextflow and nf-core tools, test new features and make suggested changes to the underlying code.
 Once you have made changes within the Gitpod environment, you can push these to a new branch for review by the nf-core team.

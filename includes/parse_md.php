@@ -162,7 +162,7 @@ function parse_md($markdown) {
         $content .= '<nav class="toc auto-toc mt-2 flex-column border-start">';
         $content .= generate_toc($content);
         $content .=
-            '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+            '<p class="small text-end mt-3 d-none d-lg-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
 
         $content .= '</nav>';
 

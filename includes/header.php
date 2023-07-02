@@ -154,8 +154,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link" href="/tools">Tools</a>
           </li>
           <li class="nav-item p-1">
-            <!-- TODO - write a new docs landing page at /docs -->
-            <a class="nav-link" href="/docs/usage/introduction">Docs</a>
+            <a class="nav-link" href="/docs">Docs</a>
           </li>
           <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
@@ -192,12 +191,13 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
 
   <?php
   if (isset($title) and $title): ?>
-
     <div class="mainpage">
       <div class="mainpage-heading triangle-down">
         <div class="container">
           <?php
           if (isset($md_github_url) and $md_github_url) {
+              $md_github_url = str_replace('/docs/contributing/', '/developers/', $md_github_url);
+              $md_github_url = str_replace('/docs/usage/', '/usage/', $md_github_url);
               echo '<a href="' .
                   $md_github_url .
                   '" class="edit-md-btn btn btn-sm btn-outline-light float-end d-none d-md-inline-block ms-2 mt-4 d-print-none" title="Edit this page on GitHub" data-bs-toggle="tooltip" data-bs-delay=\'{ "show": 500, "hide": 0 }\'><i class="fas fa-pencil-alt"></i> Edit</a>';

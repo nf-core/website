@@ -60,11 +60,10 @@ if (count($pipeline->releases) > 0) {
     $release_url = $pipeline->releases[0]->html_url;
     $release_hash = $pipeline->releases[0]->tag_sha;
 }
-
 # Find release from URL if set
 if (count($path_parts) > 1) {
     foreach ($pipeline->releases as $r) {
-        if ($path_parts[1] == $r->tag_name) {
+        if ($path_parts[1] === $r->tag_name) {
             $release = $r->tag_name;
             $release_url = $releases->html_url;
             $release_hash = $r->tag_sha;
@@ -288,7 +287,7 @@ if ($pipeline->archived) {
 <div class="container-xxl main-content">
 
     <ul class="nav nav-fill nfcore-subnav justify-content-start justify-content-md-around d-print-none">
-    <li class="nav-item dropdown d-block d-md-none">
+    <li class="nav-item dropdown d-block d-lg-none" style="z-index:10000;">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $subpage_names[$pagetab]; ?>
         </button>
@@ -326,41 +325,41 @@ if ($pipeline->archived) {
     </li>
 
 
-    <li class="nav-item d-none d-md-block">
+    <li class="nav-item d-none d-lg-block">
         <a class="nav-link<?php if ($pagetab == '') {
             echo ' active';
         } ?>" href="<?php echo $url_base; ?>"><i class="fas fa-sign-in me-1"></i> <?php echo $subpage_names['']; ?></a>
     </li>
     <?php if (isset($release_hash) && $release_hash): ?>
-        <li class="nav-item d-none d-md-block">
+        <li class="nav-item d-none d-lg-block">
         <a class="nav-link<?php if ($pagetab == 'results') {
             echo ' active';
         } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fab fa-aws fa-lg me-1"></i>
         <?php echo $subpage_names['results']; ?></span></a>
         </li>
     <?php endif; ?>
-    <li class="nav-item d-none d-md-block">
+    <li class="nav-item d-none d-lg-block">
       <a class="nav-link<?php if ($pagetab == 'usage') {
           echo ' active';
       } ?>" href="<?php echo $url_base; ?>/usage"><i class="far fa-book me-1"></i>
       <?php echo $subpage_names['usage']; ?></a>
     </li>
     <?php if (file_exists($gh_pipeline_schema_fn)): ?>
-      <li class="nav-item d-none d-md-block">
+      <li class="nav-item d-none d-lg-block">
         <a class="nav-link<?php if ($pagetab == 'parameters') {
             echo ' active';
         } ?>" href="<?php echo $url_base; ?>/parameters"><i class="far fa-book me-1"></i>
         <?php echo $subpage_names['parameters']; ?></a>
       </li>
     <?php endif; ?>
-    <li class="nav-item d-none d-md-block">
+    <li class="nav-item d-none d-lg-block">
       <a class="nav-link<?php if ($pagetab == 'output') {
           echo ' active';
       } ?>" href="<?php echo $url_base; ?>/output"><i class="far fa-book me-1"></i>
       <?php echo $subpage_names['output']; ?></a>
     </li>
 
-    <li class="nav-item d-none d-md-block">
+    <li class="nav-item d-none d-lg-block">
       <a class="nav-link<?php if ($pagetab == 'releases_stats') {
           echo ' active';
       } ?>" href="/<?php echo $pipeline->name; ?>/releases_stats"><i class="fas fa-chart-line me-1"></i>
@@ -379,7 +378,7 @@ if ($pipeline->archived) {
             }
             $releases['dev'] = '';
             foreach ($releases as $r => $h) {
-                $selected = $r == $release ? 'selected="selected"' : '';
+                $selected = $r === $release ? 'selected="selected"' : '';
                 echo '<option value="/' .
                     $pipeline->name .
                     '/' .
@@ -445,7 +444,7 @@ if ($pipeline->archived) {
       # Add on the action buttons for the parameters docs
       if ($pagetab == 'parameters') {
           $toc .= '
-            <div class="btn-group w-100 mt-2 mb-1 ms-1 d-none d-md-block" role="group">
+            <div class="btn-group w-100 mt-2 mb-1 ms-1 d-none d-lg-block" role="group">
             <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target=".param-docs-help-text" aria-expanded="false">
                 <i class="fas fa-question-circle me-1"></i> Show all help
             </button>
@@ -465,7 +464,7 @@ if ($pipeline->archived) {
       }
       if ($pagetab == 'output') {
           $toc .= '
-            <div class="btn-group w-100 mt-2 mb-1 ms-1 d-none d-md-block" role="group">
+            <div class="btn-group w-100 mt-2 mb-1 ms-1 d-none d-lg-block" role="group">
             <div class="text-center ms-1">
                 <button class="btn btn-sm btn-outline-secondary expand-details w-100">
                 <span class=""><i class="fas fa-arrows-v"></i> Expand all output file details</span>
@@ -480,7 +479,7 @@ if ($pipeline->archived) {
       $toc = preg_replace('/<!-- tock_md_button_placeholder -->/', $toc_md, $toc);
       # Back to top link
       $toc .=
-          '<p class="small text-end mt-3 d-none d-md-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
+          '<p class="small text-end mt-3 d-none d-lg-block"><a href="#" class="text-muted"><i class="fas fa-arrow-to-top"></i> Back to top</a></p>';
       $toc .= '</nav>';
       echo $toc;
   }
