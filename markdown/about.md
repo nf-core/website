@@ -75,7 +75,6 @@ We thank all the institutions and companies of the maintainers team for their su
 - 2022-2023
   - [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
 
-
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
