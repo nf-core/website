@@ -125,7 +125,7 @@ An analysis pipeline chains the execution of multiple tools together.
 Historically, all tools would have to be manually installed — often a source of great frustration and a key step where reproducibility between analyses is lost.
 nf-core pipelines utilise the built-in support for software packaging that Nextflow offers: all can work with technologies built off Docker and Singularity, and most pipelines also support Conda/Mamba.
 
-> ``📝``  _Please refer to the [Nextflow documentation](https://nextflow.io/docs/edge/container.html) on how to configure your container system  correctly._
+> ``📝``  _Please refer to the [Nextflow documentation](https://nextflow.io/docs/edge/container.html) on how to configure your container system ∂correctly._
 
 - [Docker](https://docs.docker.com/install/)
   - Typically used locally, on single-user servers, and the cloud
