@@ -338,7 +338,7 @@ foreach (array_keys($results['pipelines']) as $wfname) {
 
 // Get the current number of organisation members
 // Returns 30 results per page!
-$gh_members_url = 'https://api.github.com/orgs/nf-core/members';
+$gh_members_url = 'https://api.github.com/orgs/sanger-tol/members';
 $results['gh_org_members'][$updated] = 0;
 $first_page = true;
 $next_page = false;
@@ -368,7 +368,7 @@ while ($first_page || $next_page) {
 }
 
 // Fetch all repositories at nf-core
-$gh_repos_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
+$gh_repos_url = 'https://api.github.com/orgs/sanger-tol/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_repos_url, false, $gh_api_opts));
 if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
     var_dump($http_response_header);
@@ -396,7 +396,7 @@ foreach ($gh_repos as $repo) {
         'archived' => $repo->archived,
     ];
     // Annoyingly, two values are only available if we query for just this repo
-    $gh_repo_url = 'https://api.github.com/repos/nf-core/' . $repo->name;
+    $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . $repo->name;
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
         var_dump($http_response_header);
@@ -408,10 +408,11 @@ foreach ($gh_repos as $repo) {
 }
 
 // Fetch new statistics for each repo
-foreach (['pipelines', 'core_repos'] as $repo_type) {
+foreach (['pipelines'] as $repo_type) {
+//foreach (['pipelines', 'core_repos'] as $repo_type) {
     foreach ($results[$repo_type] as $repo_name => $repo_stats) {
         // Views
-        $gh_views_url = 'https://api.github.com/repos/nf-core/' . $repo_name . '/traffic/views';
+        $gh_views_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             // Pipelines are removed from the cache earlier as we know their names
@@ -430,7 +431,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
             $results[$repo_type][$repo_name]['views_uniques'][$view->timestamp] = $view->uniques;
         }
         // Clones
-        $gh_clones_url = 'https://api.github.com/repos/nf-core/' . $repo_name . '/traffic/clones';
+        $gh_clones_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/clones';
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
         if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             var_dump($http_response_header);
@@ -442,7 +443,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
             $results[$repo_type][$repo_name]['clones_uniques'][$clone->timestamp] = $clone->uniques;
         }
         // Contributors
-        $gh_contributors_url = 'https://api.github.com/repos/nf-core/' . $repo_name . '/stats/contributors';
+        $gh_contributors_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/stats/contributors';
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root . $repo_name . '.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
@@ -504,7 +505,8 @@ if (count($contribs_try_again) > 0) {
     }
 }
 
-foreach (['pipelines', 'core_repos'] as $repo_type) {
+foreach (['pipelines'] as $repo_type) {
+//foreach (['pipelines', 'core_repos'] as $repo_type) {
     foreach ($results[$repo_type] as $repo_name => $repo_stats) {
         foreach ($results[$repo_type][$repo_name]['contributors'] as $idx => $contributor) {
             // Count how many total contributors and contributions we have per week
@@ -542,6 +544,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
     }
 }
 
+/** 
 //
 //
 // SLACK USERS
@@ -595,6 +598,7 @@ $twitter_stats = $connection->get('users/show', ['screen_name' => 'nf_core']);
 if (isset($twitter_stats->followers_count)) {
     $results['twitter']['followers_count'][$updated] = $twitter_stats->followers_count;
 }
+*/
 
 //
 //
@@ -608,3 +612,5 @@ $results_json = json_encode($results, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
 
 echo 'update_stats done ' . date('Y-m-d h:i:s') . "\n\n";
+
+
