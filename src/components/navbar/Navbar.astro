@@ -43,7 +43,7 @@ const { navTocHeadings = [], title } = Astro.props;
     class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-md-2"
 >
     <div class="container">
-        <a class="navbar-brand d-md-none" href="/">
+        <a class="navbar-brand d-md-none w-25" href="/">
             <div class="hide-dark">
                 <Fragment set:html={NfCoreLogo} />
             </div>
@@ -76,6 +76,7 @@ const { navTocHeadings = [], title } = Astro.props;
                         Resources
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
+                        <li><span class="dropdown-header">Configs &</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
                         <li><hr class="dropdown-divider" /></li>
@@ -88,8 +89,10 @@ const { navTocHeadings = [], title } = Astro.props;
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
                 <li class="nav-item p-1">
-                    <a class="nav-link" href="/events/">
-                        <EventIndicator client:idle />
+                    <a class="nav-link d-flex align-items-start" href="/events/">
+                        <EventIndicator client:idle>
+                            <Icon name="circle" />
+                        </EventIndicator>
                         Events
                     </a>
                 </li>
@@ -144,14 +147,14 @@ const { navTocHeadings = [], title } = Astro.props;
                     additionalClass="monochrome me-1"
                 /> -->
                 <IconSocial
-                    href="https://www.youtube.com/c/nf-core"
+                    href="https://www.youtube.com/@nf-core"
                     icon="mdi:youtube"
                     title="YouTube"
                     additionalClass="monochrome me-1"
                     color="red"
                 />
                 <IconSocial
-                    href="https://nfcore.slack.com/"
+                    href="https://nf-co.re/join/slack/"
                     title="Slack"
                     icon="logos:slack-icon"
                     additionalClass="monochrome me-1"
@@ -200,6 +203,7 @@ const { navTocHeadings = [], title } = Astro.props;
         }
         @include media-breakpoint-down(md) {
             .navbar-brand {
+                left: 0;
                 margin-left: 0;
                 margin-right: 0;
             }

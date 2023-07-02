@@ -1,7 +1,7 @@
 ---
 title: 'BOSC 2020: nf-core poster / demo'
 subtitle: Live poster / demo showing off some new nf-core features
-type: poster
+type: talk
 start_date: '2020-07-21'
 start_time: '17:30'
 end_date: '2020-07-21'

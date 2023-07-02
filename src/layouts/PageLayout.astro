@@ -16,6 +16,7 @@ let {
     subfooter = false,
     frontmatter,
     navTocHeadings = [],
+    topics = [],
 } = Astro.props;
 
 export interface Props {
@@ -31,6 +32,7 @@ export interface Props {
     navTocHeadings?: object[];
     subfooter?: boolean;
     frontmatter?: any;
+    topics?: string[];
 }
 
 if (frontmatter) {
@@ -63,6 +65,7 @@ if (frontmatter) {
             md_github_url={md_github_url}
             header_btn_url={header_btn_url}
             header_btn_text={header_btn_text}
+            topics={topics}
         >
             <slot name="sub-header" />
         </Header>

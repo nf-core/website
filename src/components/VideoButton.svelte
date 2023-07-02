@@ -21,22 +21,21 @@
 </script>
 
 {#if urls.length === 1}
-    <a class={'btn ' + btnClass} href={urls[0]}>
+    <a class={'btn text-nowrap ' + btnClass} href={urls[0]}>
         <i class={getIcon(urls[0]) + ' me-1'} aria-hidden="true" />
         Join now
     </a>
 {:else}
     <div class="dropdown btn-group" role="group">
         <button
-            class="btn btn-success me-2 dropdown-toggle"
+            class="btn btn-success me-2 dropdown-toggle text-nowrap"
             type="button"
-            id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
             aria-expanded="false"
         >
             Join now
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <ul class="dropdown-menu">
             {#each urls as url (url)}
                 <li>
                     <a class="dropdown-item" href={url}>

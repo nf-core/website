@@ -22,19 +22,4 @@
             width: 100%;
         }
     }
-    .badge.text-success {
-        font-weight: 400;
-    }
-    .gh-stats {
-        float: right;
-    }
-    .gh-stats a,
-    .release a {
-        &:hover {
-            text-decoration: underline !important;
-            .fa-regular {
-                font-weight: 900;
-            }
-        }
-    }
 </style>

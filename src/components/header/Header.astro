@@ -9,7 +9,19 @@ let {
     header_btn_url,
     header_btn_text,
     event_header,
+    topics,
 } = Astro.props;
+
+export interface Props {
+    title: string;
+    subtitle?: string;
+    header_html?: string;
+    md_github_url?: string;
+    header_btn_url?: string;
+    header_btn_text?: string;
+    event_header?: any;
+    topics?: string[];
+}
 title = title.replace('nf-core/', 'nf-core/<wbr>');
 ---
 
@@ -39,7 +51,10 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
                 }
             </div>
         </h1>
-        {subtitle && <p class="lead mb-2 mb-md-3">{subtitle}</p>}
+        {subtitle && <p class="lead mb-0">{subtitle}</p>}
+        <div class="mb-2 mb-md-3">
+            {topics && topics.map((topic) => <span class="badge topic me-2">{topic}</span>)}
+        </div>
         {event_header && <EventHeader frontmatter={event_header} />}
         {header_html && { header_html }}
     </div>

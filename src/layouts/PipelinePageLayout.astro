@@ -32,12 +32,14 @@ allTabItems = tabItems
             icon: tabItems.some((f) => f.startsWith(file + '/')) ? 'fa-regular fa-books' : '',
         };
     });
+
 allTabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}/`,
     active: url === `/${pipeline}/${version}/`,
     icon: 'fa-solid fa-sign-in',
 });
+
 const latestVersion = versions[0];
 const schema = await cache.get(`${pipeline}/${version}/nextflow_schema.json`);
 if (schema !== undefined) {
@@ -68,8 +70,11 @@ if (versions.filter((v) => v !== 'dev').length > 0) {
         icon: 'fa-regular fa-chart-line',
     });
 }
+const sortOrder = ['Introduction', 'Usage', 'Parameters', 'Output', 'Results', 'Releases'];
+allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
 const gh_url = 'https://github.com/nf-core/' + pipeline;
+const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline)?.topics || [];
 ---
 
 <PageLayout
@@ -79,42 +84,52 @@ const gh_url = 'https://github.com/nf-core/' + pipeline;
     navTocHeadings={headings}
     md_github_url={md_github_url}
     subfooter={md_github_url !== ''}
+    topics={topics}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
-                <div class="input-group input-group-sm justify-content-end justify-content-md-center">
-                    <label class="input-group-text" for="version_select">
-                        <i class="fas fa-tags" />
-                    </label>
-                    <div class="dropdown">
-                        <button
-                            class="btn btn-secondary dropdown-toggle rounded-start-0"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            {version}
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end w-100">
-                            {versions &&
-                                versions.map((v) => {
-                                    let url = Astro.url.pathname.replace(`${pipeline}/${version}`, `${pipeline}/${v}`);
-                                    if (url.includes('/results/')) {
-                                        url = `/${pipeline}/${v}/results/`;
-                                    }
-                                    return (
-                                        <li>
-                                            <a class={'dropdown-item ' + (v === version ? 'active' : '')} href={url}>
-                                                {v}
-                                            </a>
-                                        </li>
-                                    );
-                                })}
-                        </ul>
+                {!Astro.url.pathname.endsWith('/releases_stats/') && (
+                    <div class="input-group input-group-sm justify-content-end justify-content-md-center">
+                        <label class="input-group-text" for="version_select">
+                            <i class="fas fa-tags" />
+                        </label>
+                        <div class="dropdown">
+                            <button
+                                class="btn btn-secondary dropdown-toggle rounded-start-0"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                {version}
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end w-100">
+                                {versions &&
+                                    versions.map((v) => {
+                                        let url = Astro.url.pathname.replace(
+                                            `${pipeline}/${version}`,
+                                            `${pipeline}/${v}`
+                                        );
+                                        if (url.includes('/results/')) {
+                                            url = `/${pipeline}/${v}/results/`;
+                                        }
+                                        return (
+                                            <li>
+                                                <a
+                                                    class={'dropdown-item ' + (v === version ? 'active' : '')}
+                                                    href={url}
+                                                >
+                                                    {v}
+                                                </a>
+                                            </li>
+                                        );
+                                    })}
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                )}
             </TabBar>
         )
     }

@@ -5,7 +5,7 @@ const events = defineCollection({
     schema: z.object({
         title: z.string(),
         subtitle: z.string(),
-        type: z.enum(['talk', 'workshop', 'hackathon', 'poster', 'tutorial', 'training']),
+        type: z.enum(['bytesize','talk', 'hackathon',  'training']),
         start_date: z.string(),
         start_time: z.string().transform((str) => str.replace(/\s+(\w+)/, ' ($1)')),
         end_date: z.string(),

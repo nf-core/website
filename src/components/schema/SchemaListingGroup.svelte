@@ -16,16 +16,22 @@
 </script>
 
 <div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
-    <div class="card-header position-sticky bg-body-secondary">
-        <h2 class="card-title text-success scroll-target" id={id.replaceAll('_', '-')}>
-            {#if definition.fa_icon}
-                <i class="fa fa-fw me-2 {definition.fa_icon}" />
-            {/if}
-            {definition.title}
+    <div class="card-header position-sticky bg-body-secondary ps-0">
+        <h2 class="card-title text-success scroll-target my-1" id={id.replaceAll('_', '-')}>
+            <a
+                class="text-decoration-none text-success"
+                aria-hidden="true"
+                tabindex="-1"
+                href={'#' + id.replaceAll('_', '-')}
+                ><i class="ms-1 fas fa-link invisible" aria-hidden="true" />{#if definition.fa_icon}
+                    <i class="fa fa-fw me-2 {definition.fa_icon}" />
+                {/if}
+                {definition.title}
+            </a>
         </h2>
     </div>
-    <div class="card-body">
-        <p>{definition.description ? definition.description : ''}</p>
+    <div class="card-body pb-0">
+        <p class="mb-0">{definition.description ? definition.description : ''}</p>
         {#if definition.properties}
             <div class="properties">
                 {#each Object.entries(definition.properties) as [title, property] (title)}

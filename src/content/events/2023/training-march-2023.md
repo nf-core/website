@@ -4,7 +4,7 @@ subtitle: A set of global online Nextflow and nf-core training events
 type: training
 start_date: '2023-03-13'
 start_time: '05:00 CET'
-end_date: '2023-03-16'
+end_date: '2023-07-16'
 end_time: '21:30 CET'
 location_name: YouTube
 location_url: https://www.youtube.com/nf-core
