@@ -43,7 +43,7 @@ const { navTocHeadings = [], title } = Astro.props;
     class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-md-2"
 >
     <div class="container">
-        <a class="navbar-brand d-md-none" href="/">
+        <a class="navbar-brand d-md-none w-25" href="/">
             <div class="hide-dark">
                 <Fragment set:html={NfCoreLogo} />
             </div>
@@ -203,6 +203,7 @@ const { navTocHeadings = [], title } = Astro.props;
         }
         @include media-breakpoint-down(md) {
             .navbar-brand {
+                left: 0;
                 margin-left: 0;
                 margin-right: 0;
             }
