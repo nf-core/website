@@ -127,6 +127,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     );
     foreach ($pipelines as $idx => $pipeline) {
         // get contributors
+        echo "Get contributors for pipeline ". $pipeline['name'] . "\n";
         $gh_contributors = github_query(
             'https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/stats/contributors',
         );
@@ -163,9 +164,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
 
-if (!mysqli_query($conn, $sql)) {
-    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-}
+
 // create github_traffic_stats table with foreign keys to pipelines
 $sql = "CREATE TABLE IF NOT EXISTS github_traffic_stats (
             id             INT             AUTO_INCREMENT PRIMARY KEY,
