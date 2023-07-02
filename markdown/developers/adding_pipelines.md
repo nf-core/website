@@ -271,6 +271,10 @@ The nf-core website and helper tools will automatically detect the new release a
 
 That's it, you're finished! Congratulations!
 
+### Publications
+
+If you wish to make a publication based on the pipeline, make sure to follow the recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit).
+
 ### Subsequent releases
 
 Once you've made your first release you can continue to work on your fork and make pull-requests
