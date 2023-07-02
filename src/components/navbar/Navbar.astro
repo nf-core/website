@@ -76,7 +76,7 @@ const { navTocHeadings = [], title } = Astro.props;
                         Resources
                     </a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
-                        <li><span class="dropdown-header">Configs & tools</span></li>
+                        <li><span class="dropdown-header">Configs &</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
                         <li><hr class="dropdown-divider" /></li>
@@ -89,8 +89,10 @@ const { navTocHeadings = [], title } = Astro.props;
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
                 <li class="nav-item p-1">
-                    <a class="nav-link" href="/events/">
-                        <EventIndicator client:idle />
+                    <a class="nav-link d-flex align-items-start" href="/events/">
+                        <EventIndicator client:idle>
+                            <Icon name="circle" />
+                        </EventIndicator>
                         Events
                     </a>
                 </li>
