@@ -128,7 +128,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     foreach ($pipelines as $idx => $pipeline) {
         // get contributors
         $gh_contributors = github_query(
-            'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/stats/contributors',
+            'https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/stats/contributors',
         );
         foreach ($gh_contributors as $contributor) {
             $pipeline_id = $pipeline['id'];
@@ -192,8 +192,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     mysqli_stmt_bind_param($stmt, 'iiiiis', $pipeline_id, $views, $views_uniques, $clones, $clones_uniques, $timestamp);
 
     foreach ($pipelines as $idx => $pipeline) {
-        $gh_views = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/views');
-        $gh_clones = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/clones');
+        $gh_views = github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/traffic/views');
+        $gh_clones = github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/traffic/clones');
         foreach ($gh_views['views'] as $gh_view) {
             $timestamp = date('Y-m-d H:i:s', strtotime($gh_view['timestamp']));
             $check =
