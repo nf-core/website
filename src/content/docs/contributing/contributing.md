@@ -57,7 +57,19 @@ One of the troublesome circumstances was the Plural nature of this Galactic Sect
 One of the troublesome circumstances was the Plural nature of this Galactic Sector, where the possible `continually` interfered with the probable.
 :::
 
-## Attributes
+## Publication
+
+```md
+:::publication
+We demand rigidly defined areas of doubt and uncertainty!
+:::
+```
+
+:::publication
+We demand rigidly defined areas of doubt and uncertainty!
+:::
+
+## Custom title
 
 ```md
 :::note{title="Don't Panic"}
