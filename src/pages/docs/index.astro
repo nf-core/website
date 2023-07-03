@@ -72,8 +72,8 @@ contributingDocs
                 processing your data. You will also find information on how to contribute to nf-core pipelines, modules
                 and subworkflows.
             </p>
-            <div class="d-md-flex justify-content-around">
-                <div>
+            <div class="row row-cols-1 row-cols-md-2 justify-content-around">
+                <div class="col">
                     <h2>Usage</h2>
 
                     <ul>
@@ -88,8 +88,19 @@ contributingDocs
                                     if (childDocs.length > 0) {
                                         return (
                                             <li>
-                                                <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                                                <ul>
+                                                <span>
+                                                    <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                                    <button
+                                                        class="btn "
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target={'#' + doc.slug}
+                                                        aria-expanded="false"
+                                                        aria-controls={doc.slug}
+                                                    >
+                                                        <i class="fa-solid fa-chevron-down" />
+                                                    </button>
+                                                </span>
+                                                <ul class="collapse" id={doc.slug}>
                                                     {childDocs.map((childDoc) => {
                                                         return (
                                                             <li>
@@ -114,7 +125,7 @@ contributingDocs
                     </ul>
                 </div>
 
-                <div>
+                <div class="col">
                     <h2>Contributing</h2>
                     <ul>
                         {
@@ -128,8 +139,19 @@ contributingDocs
                                     if (childDocs.length > 0) {
                                         return (
                                             <li>
-                                                <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
-                                                <ul>
+                                                <span>
+                                                    <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
+                                                    <button
+                                                        class="btn "
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target={'#' + doc.slug}
+                                                        aria-expanded="false"
+                                                        aria-controls={doc.slug}
+                                                    >
+                                                        <i class="fa-solid fa-chevron-down" />
+                                                    </button>
+                                                </span>
+                                                <ul class="collapse" id={doc.slug}>
                                                     {childDocs.map((childDoc) => {
                                                         return (
                                                             <li>
@@ -157,3 +179,8 @@ contributingDocs
         </div>
     </div>
 </PageLayout>
+<style>
+    .btn[aria-expanded='true'] {
+        transform: rotate(180deg);
+    }
+</style>
