@@ -52,7 +52,6 @@ The current members of the maintainer's team in 2023 are: <!-- TODO: check if ye
 - [@Emiller88](https://github.com/Emiller88): Edmund Miller (University of Texas at Dallas & Element Biosciences)
 - [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen (Quantitative Biology Center, QBiC, University of Tübingen)
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol (Quantitative Biology Center, QBiC, University of Tübingen)
-- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet (Quantitative Biology Center, QBiC, University of Tübingen)
 - [@drpatelh](https://github.com/drpatelh): Harshil Patel (Seqera Labs)
 - [@jfy133](https://github.com/jfy133): James A. Fellows Yates (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology)
 - [@jasmezz](https://github.com/jasmezz): Jasmin Frangenberg (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute)
