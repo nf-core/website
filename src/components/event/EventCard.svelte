@@ -67,7 +67,7 @@
     <div class="card-body">
         <div class="card-title">
             <h4>
-                <a class="text-center" href={slug + '/'}>
+                <a class="text-center" href={/events/ + slug + '/'}>
                     {frontmatter.title}
                 </a>
                 {#if time_category === 'current'}
@@ -125,8 +125,5 @@
         .btn-group.float-end {
             width: 100%;
         }
-    }
-    .btn-group {
-        flex-direction: column;
     }
 </style>
