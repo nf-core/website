@@ -63,6 +63,7 @@
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
             }
+            console.log(event);
             event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
             event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
             if (event.data.start_date === event.data.end_date) {

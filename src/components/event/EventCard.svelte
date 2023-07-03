@@ -15,8 +15,7 @@
     export let slug: string = '';
     export let type: string = '';
     export let time_category: string = '';
-    export let event_type_classes: {}[] = [];
-
+    export let showDescription: boolean = true;
     let event_date;
     if (frontmatter.start_date === frontmatter.end_date) {
         event_date =
@@ -54,6 +53,13 @@
                 hour12: false,
             });
     }
+    const event_type_classes = {
+        bytesize: 'success',
+        hackathon: 'primary',
+        talk: 'info',
+        training: 'warning',
+    };
+
     const type_class = event_type_classes[type];
 </script>
 
@@ -72,7 +78,9 @@
             </h3>
         </div>
         <div class="card-text">
-            <p class="mb-0">{frontmatter.subtitle}</p>
+            {#if showDescription}
+                <p class="mb-0">{frontmatter.subtitle}</p>
+            {/if}
             <div class="d-flex align-items-center mt-2 flex-wrap justify-content-center justify-content-md-end">
                 <p class="text-nowrap d-md-none text-center text-md-start pe-3">
                     <i class="fa-regular fa-calendar me-2" />{@html event_date}
@@ -82,12 +90,14 @@
     </div>
     <div class="card-footer p-0 p-md-2">
         <div class="d-flex align-items-center justify-content-between">
-            <p class="d-none d-md-inline-block text-wrap mb-0 align-middle">
+            <p class="d-none d-md-inline-block text-wrap mb-0 ms-2 align-middle">
                 {@html event_date}
             </p>
             <div class="btn-group float-end" role="group" aria-label="See details or export calendar event">
-                <a href={slug + '/'} class="btn btn-outline-success text-nowrap rounded-top-0 rounded-start-0"
-                    >See details</a
+                <a
+                    href={slug + '/'}
+                    class="btn btn-outline-success text-nowrap rounded-top-0 rounded-start-0"
+                    class:rounded-0={['current', 'future'].includes(time_category)}>See details</a
                 >
                 {#if time_category === 'future'}
                     <ExportEventButton {frontmatter} add_class={'btn-outline-success ' + ' rounded-top-0'} />
@@ -115,5 +125,8 @@
         .btn-group.float-end {
             width: 100%;
         }
+    }
+    .btn-group {
+        flex-direction: column;
     }
 </style>

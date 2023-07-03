@@ -18,6 +18,7 @@
             return 'fa-solid fa-external-link-alt';
         }
     };
+    console.log(urls);
 </script>
 
 {#if urls.length === 1}
