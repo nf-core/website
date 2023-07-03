@@ -112,7 +112,7 @@
         <div>
             <div class="d-none d-lg-flex">
                 <div class="col-lg-4 overflow-hidden ps-3 position-relative d-flex flex-column justify-content-center">
-                    <h4 class="display-4 p-2 flex-grow-1">{heading_title}</h4>
+                    <h4 class="display-4 p-2 pb-0 mb-0 flex-grow-1">{heading_title}</h4>
                     <i
                         class={`fad ${backgroundIcon} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
                         aria-hidden="true"
@@ -142,7 +142,7 @@
                                     >
                                 </p>
                                 {#if event.data.duration}
-                                    <p class="">
+                                    <p class="mb-1">
                                         <a
                                             href={'events/' + event.slug + '/'}
                                             class="text-secondary-emphasis text-decoration-none"
