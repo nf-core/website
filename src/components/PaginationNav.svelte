@@ -79,7 +79,7 @@
                         class="page-item"
                         on:click={() => handlePageChange(lastPage)}
                         on:keydown={() => handlePageChange(lastPage)}
-                        class:selected={$currentPage === lastPage}
+                        class:active={$currentPage === lastPage}
                     >
                         <a class="page-link" href="#">{lastPage}</a>
                     </li>
@@ -90,7 +90,7 @@
                         class="page-item"
                         on:click={() => handlePageChange(page)}
                         on:keydown={() => handlePageChange(page)}
-                        class:selected={$currentPage === page}
+                        class:active={$currentPage === page}
                     >
                         <a class="page-link" href="#">{page}</a>
                     </li>
