@@ -12,7 +12,7 @@
     @import '@styles/_variables.scss';
     .event-indicator :global(svg[astro-icon]) {
         fill: $danger;
-        width: 1rem;
+        width: 14pt;
         margin-bottom: 0.1rem;
     }
     .event-indicator :global(svg[astro-icon] .fa-secondary) {
