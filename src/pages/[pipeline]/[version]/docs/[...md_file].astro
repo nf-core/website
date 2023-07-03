@@ -61,13 +61,17 @@ if (left_sidebar) {
                 .replace(prefix, '')
                 .replace(/-/g, ' ')
                 .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
-            const slug = baseURL + child.replace(prefix, '');
+            const slug = baseURL + child.replace(prefix, '') + '/';
             return { title, slug };
         });
 
     const sectionName = section.replace(/-/g, ' ').replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
 
-    sections = { section_name: sectionName, children: siblings };
+    sections = {
+        section_name: sectionName,
+        section_slug: `/${pipeline}/${version}/docs/${section}/`,
+        children: siblings,
+    };
 }
 
 const cache_key = `${pipeline}/${version}/docs/${md_file}.md`;
