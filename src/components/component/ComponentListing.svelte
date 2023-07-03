@@ -102,9 +102,9 @@
             </thead>
             <tbody>
                 {#each paginatedItems as component (component.name)}
-                    <tr>
+                    <tr class="position-relative">
                         <td class="name">
-                            <a href={'/' + component.type + 's/' + component.name + '/'}
+                            <a class="stretched-link" href={'/' + component.type + 's/' + component.name + '/'}
                                 >{@html component.name.replace('_', '_<wbr>')}</a
                             >
                         </td>
