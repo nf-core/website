@@ -1,0 +1,113 @@
+---
+import EventListing from '@components/event/EventListing.svelte';
+import PageLayout from '@layouts/PageLayout.astro';
+import SidebarNav from '@components/sidebar/SidebarNav.astro';
+import { CollectionEntry } from 'astro:content';
+
+const { title, subtitle, filters, events } = Astro.props;
+export interface Props {
+    title: string;
+    subtitle: string;
+    filters: string[];
+    events: CollectionEntry<'events'>[];
+}
+
+events
+    .map((event) => {
+        if (event.data.title.toLowerCase().match('bytesize')) {
+            event.data.type = 'bytesize';
+        }
+        event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
+        event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
+        if (event.data.start_date === event.data.end_date) {
+            event.data.duration =
+                event.data.start.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '-' +
+                event.data.end.toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        } else {
+            event.data.duration =
+                event.data.start.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                ' - ' +
+                event.data.end.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        }
+    })
+    .sort((a, b) => {
+        return new Date(a.data.start) - new Date(b.data.start);
+    });
+
+const searchEvents = (search) => {
+    const searchTerms = search.toLowerCase().split(' ');
+    return events.filter((event) => {
+        const eventString = JSON.stringify(event.data).toLowerCase();
+        return searchTerms.every((term) => eventString.includes(term));
+    });
+};
+
+const filterEvents = (type) => {
+    return events.filter((event) => event.data.type === type);
+};
+
+let currentEvents = events.filter((event) => {
+    const today = new Date();
+    return event.data.start < today && event.data.end > today;
+});
+
+const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+
+const sections = years.map((year) => {
+    return {
+        section_name: year,
+        section_slug: '#year-' + year,
+        children: events
+            .filter(
+                (event) =>
+                    filters.some((fil) => fil.name === event.data.type) && event.data.start.getFullYear() === year
+            )
+            .reverse()
+            .map((event, idx) => {
+                return {
+                    title: event.data.title,
+                    slug: '#event-' + event.id.split('/')[1].replace('.md', ''),
+                    order: idx,
+                };
+            }),
+    };
+});
+---
+
+<PageLayout title={title || 'Events'} subtitle={subtitle || 'Details of past and future events around nf-core.'}>
+    <div class="row">
+        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+            <SidebarNav items={sections} minimal={true} />
+        </div>
+
+        <div class="col">
+            <EventListing {events} {currentEvents} {filters} client:load />
+        </div>
+    </div>
+</PageLayout>
