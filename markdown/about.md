@@ -70,11 +70,6 @@ The current members of the maintainer's team in 2023 are: <!-- TODO: check if ye
 
 We thank all the institutions and companies of the maintainers team for their support of nf-core.
 
-## Maintainers alumni {#maintainers-alumni}
-
-- 2022-2023
-  - [@ggabernet](https://github.com/ggabernet): Gisela Gabernet
-
 ## Outreach team {#outreach}
 
 The outreach team is responsible for organising hackathons, the `#bytesize` seminar series and other community outreach efforts.
