@@ -1,70 +1,23 @@
-<script>
+<script lang="ts">
     import { EventIsOngoing } from '@components/store';
     import { formatDistanceToNow } from 'date-fns';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
     export let events = [];
-    export let event_time_category = '';
+    export let event_time_category: string = '';
 
-    export let event_type_classes = {};
-    export let event_type_icons = {};
+    export let event_type_classes: {}[] = [{}];
+    export let event_type_icons: {}[] = [{}];
+
+    let now = new Date().getTime();
 
     let backgroundIcon = '';
-
-    if (event_time_category === 'upcoming') {
-        backgroundIcon = 'fa-alarm-clock';
-        events = events.filter((event) => {
-            let time_window = 70 * 24 * 60 * 60 * 1000; //TODO: change back to 1 day
-            const event_start_unix = event.data.start.getTime();
-            const event_end_unix = event.data.end.getTime();
-
-            // increase time window to a week for events longer than 5 hours
-            if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
-                time_window = 70 * 24 * 60 * 60 * 1000; //TODO: change back to 7 days
-            }
-            if (event.data.start < new Date() && new Date() < event.data.end) {
-                return false;
-            }
-
-            if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
-                return true;
-            }
-        });
-    } else if (event_time_category === 'ongoing') {
-        backgroundIcon = 'fa-broadcast-tower';
-        events = events
-            .filter((event) => {
-                return event.data.start < new Date() && new Date() < event.data.end;
-            })
-            .sort((a, b) => {
-                return a.data.start - b.data.start;
-            });
-
-        if (events.length > 0) {
-            EventIsOngoing.set(true);
-        } else {
-            EventIsOngoing.set(false);
-        }
-    }
-
-    let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + ' event';
-    heading_title = events.length > 1 ? heading_title + 's' : heading_title;
-
-    // countdown function to event start which updates every second, by making `now` and the function reactive
-    let now = new Date().getTime();
-    setInterval(() => (now = new Date().getTime()), 1000);
-    $: countdown = (event_start) => {
-        const timeLeftString = formatDistanceToNow(event_start);
-        return timeLeftString;
-    };
-
+    console.log('events before processing', events);
     events
         .map((event) => {
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
             }
-            event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
-            event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
             if (event.data.start_date === event.data.end_date) {
                 event.data.duration =
                     event.data.start.toLocaleString('en-US', {
@@ -105,6 +58,53 @@
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
+    console.log('events after processing', events);
+    if (event_time_category === 'upcoming') {
+        backgroundIcon = 'fa-alarm-clock';
+        events = events.filter((event) => {
+            let time_window = 1 * 24 * 60 * 60 * 1000; //TODO: change back to 1 day
+            const event_start_unix = event.data.start.getTime();
+            const event_end_unix = event.data.end.getTime();
+
+            // increase time window to a week for events longer than 5 hours
+            if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
+                time_window = 7 * 24 * 60 * 60 * 1000; //TODO: change back to 7 days
+            }
+            if (event.data.start < new Date() && new Date() < event.data.end) {
+                return false;
+            }
+
+            if (event_start_unix < now + time_window && now < event_end_unix) {
+                return true;
+            }
+        });
+    } else if (event_time_category === 'ongoing') {
+        backgroundIcon = 'fa-broadcast-tower';
+        events = events
+            .filter((event) => {
+                return event.data.start < new Date() && new Date() < event.data.end;
+            })
+            .sort((a, b) => {
+                return a.data.start - b.data.start;
+            });
+
+        if (events.length > 0) {
+            EventIsOngoing.set(true);
+        } else {
+            EventIsOngoing.set(false);
+        }
+    }
+
+    let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + ' event';
+    heading_title = events.length > 1 ? heading_title + 's' : heading_title;
+
+    // countdown function to event start which updates every second, by making `now` and the function reactive
+
+    setInterval(() => (now = new Date().getTime()), 1000);
+    $: countdown = (event_start) => {
+        const timeLeftString = formatDistanceToNow(event_start);
+        return timeLeftString;
+    };
 </script>
 
 {#if events.length > 0}
@@ -166,7 +166,7 @@
                             <div class="col-3">
                                 {#if event_time_category === 'upcoming'}
                                     <div class="text-nowrap">
-                                        <h5>Event starts</h5>
+                                        <h5>Event starts in</h5>
                                         <span class="display-6">
                                             {@html countdown(event.data.start)}
                                         </span>
