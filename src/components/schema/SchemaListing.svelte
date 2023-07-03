@@ -1,7 +1,28 @@
 <script>
     import SchemaListingGroup from '@components/schema/SchemaListingGroup.svelte';
+    import { onMount } from 'svelte';
+    import { currentHeading } from '@components/store';
 
     export let schema;
+    onMount(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        currentHeading.set(entry.target.id);
+                    }
+                });
+            },
+            {
+                rootMargin: '0px 0px -92% 0px',
+            }
+        );
+        Object.entries(schema.definitions).forEach((heading) => {
+            const element = document.querySelector('#' + heading[0].replaceAll('_', '-'));
+            console.log(heading);
+            observer.observe(element);
+        });
+    });
 </script>
 
 <div class="schema-listing">
