@@ -178,15 +178,4 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
-    .table .sortable {
-        cursor: pointer;
-        &:hover {
-            background-color: $secondary-bg-subtle;
-        }
-        :global([data-bs-theme='dark']) &:hover {
-            color: $white;
-            background-color: $secondary-bg-subtle-dark;
-        }
-    }
 </style>
