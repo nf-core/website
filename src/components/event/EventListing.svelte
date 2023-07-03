@@ -90,16 +90,8 @@
 
     CurrentFilter.set(event_types);
 
-    $: currentYear = 0;
-
     function hasYearChanged(events, idx) {
-        if (idx === 0) {
-            currentYear = events[idx].data.start.getFullYear();
-            return true;
-        }
-        if (events[idx].data.start.getFullYear() !== events[idx - 1].data.start.getFullYear()) {
-            currentYear = events[idx].data.start.getFullYear();
-            console.log(currentYear);
+        if (idx === 0 || events[idx].data.start.getFullYear() !== events[idx - 1].data.start.getFullYear()) {
             return true;
         }
         return false;
