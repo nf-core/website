@@ -18,12 +18,6 @@
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
             }
-            event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
-            event.data.end = new Date(event.data.end_date + ' ' + event.data.end_time);
-            console.log('event_start', new Date(event.data.start_date));
-            console.log('event_end', new Date(event.data.end_date));
-            console.log('event.data.start', new Date(event.data.start_date + ' ' + event.data.start_time));
-            console.log('event.data.end', new Date(event.data.end_date + ' ' + event.data.end_time));
             if (event.data.start_date === event.data.end_date) {
                 event.data.duration =
                     event.data.start.toLocaleString('en-US', {
