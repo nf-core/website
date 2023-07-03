@@ -150,7 +150,14 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     <SidebarStatsRow content={[{ title: 'contributors' }]}>
         {
             meta.contributors.map((contributor) => {
-                return <GitHubUser name={contributor.name} image={contributor.avatar_url} size={50} />;
+                return (
+                    <GitHubUser
+                        name={contributor.name}
+                        image={contributor.avatar_url}
+                        size={50}
+                        count={contributor.count}
+                    />
+                );
             })
         }
     </SidebarStatsRow>
