@@ -18,8 +18,13 @@
         }[];
     }[] = [];
 
-    let pageSize = $DisplayStyle === 'grid' ? 10 : 25;
-    let lastPage = Math.ceil(components.length / pageSize);
+    let pageSize: number = 12;
+    let lastPage: number = Math.ceil(components.length / pageSize);
+    const updatePageSize = () => {
+        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
+        lastPage = Math.ceil(components.length / pageSize);
+    };
+    updatePageSize();
 
     const searchComponents = (component) => {
         if ($SearchQuery === '') {
@@ -67,6 +72,9 @@
     });
     SearchQuery.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
+    });
+    DisplayStyle.subscribe(() => {
+        updatePageSize();
     });
     $: filteredComponents = searchFilterSortComponents(components);
 
