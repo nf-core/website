@@ -101,13 +101,7 @@
         <div class="mb-3 col-12 col-md-6">
             <h2><i class="fa-duotone fa-calendar-exclamation me-3" />Currently ongoing</h2>
             {#each currentEvents as event (event.id)}
-                <EventCard
-                    frontmatter={event.data}
-                    slug={event.slug}
-                    type={event.data.type}
-                    time_category="current"
-                    {event_type_classes}
-                />
+                <EventCard frontmatter={event.data} slug={event.slug} type={event.data.type} time_category="current" />
             {/each}
         </div>
     {/if}
@@ -124,7 +118,6 @@
                                 slug={event.slug}
                                 type={event.data.type}
                                 time_category="future"
-                                {event_type_classes}
                             />
                         {/each}
                     {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
@@ -139,7 +132,6 @@
                             slug={event.slug}
                             type={event.data.type}
                             time_category="past"
-                            {event_type_classes}
                         />
                     {/each}
                 </div>
@@ -157,7 +149,6 @@
                                 slug={event.slug}
                                 type={event.data.type}
                                 time_category="future"
-                                {event_type_classes}
                             />
                         {/each}
                     {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
@@ -172,7 +163,6 @@
                             slug={event.slug}
                             type={event.data.type}
                             time_category="past"
-                            {event_type_classes}
                         />
                     {/each}
                 </div>
