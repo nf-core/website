@@ -41,7 +41,6 @@ const url = Astro.url.pathname;
                                 {item.children
                                     .sort((child) => child.order || 0)
                                     .map((child) => {
-                                        console.log('child_slug', child.slug);
                                         return (
                                             <li
                                                 class:list={[
