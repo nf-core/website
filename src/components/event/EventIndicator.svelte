@@ -10,12 +10,12 @@
 
 <style lang="scss">
     @import '@styles/_variables.scss';
-    .event-indicator :global([astro-icon]) {
+    .event-indicator :global(svg[astro-icon]) {
         fill: $danger;
         width: 1rem;
         margin-bottom: 0.1rem;
     }
-    .event-indicator :global([astro-icon] .fa-secondary) {
+    .event-indicator :global(svg[astro-icon] .fa-secondary) {
         opacity: 0.4;
     }
 </style>
