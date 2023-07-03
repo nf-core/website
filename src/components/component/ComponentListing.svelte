@@ -1,8 +1,9 @@
 <script lang="ts">
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
+    import PaginationNav from '@components/PaginationNav.svelte';
     import ComponentCard from '@components/component/ComponentCard.svelte';
     import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
-    import PaginationNav from '@components/PaginationNav.svelte';
+
     export let components: {
         name: string;
         path: string;
@@ -119,8 +120,8 @@
             </tbody>
         </table>
     {/if}
-    <PaginationNav {lastPage} />
 </div>
+<PaginationNav {lastPage} />
 
 <style>
     .name {
