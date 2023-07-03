@@ -3,7 +3,7 @@ import EventBannerElement from '@components/event/EventBannerElement.svelte';
 import { getCollection } from 'astro:content';
 
 let events = await getCollection('events');
-
+let now = new Date().getTime();
 events
     .map((event) => {
         event.data.start = new Date(event.data.start_date + ' ' + event.data.start_time);
@@ -26,7 +26,7 @@ const currentEvents = events.filter((event) => {
         time_window = 108 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
     }
 
-    if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
+    if (event_start_unix < now + time_window && now < event_end_unix) {
         return true;
     }
 });
