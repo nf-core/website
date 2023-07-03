@@ -66,7 +66,7 @@
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class="card-title">
-            <h3>
+            <h4>
                 <a class="text-center" href={slug + '/'}>
                     {frontmatter.title}
                 </a>
@@ -75,7 +75,7 @@
                         <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
                     </div>
                 {/if}
-            </h3>
+            </h4>
         </div>
         <div class="card-text">
             {#if showDescription}
