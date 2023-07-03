@@ -77,7 +77,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             <ul class="nav nav-fill small border rounded-bottom-0" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a
-                        class="nav-link btn btn-sm btn-secondary active rounded-end-0"
+                        class="nav-link btn btn-sm btn-outline-secondary active rounded-end-0"
                         id="nf-core-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#nf-core-tab-pane"
@@ -89,7 +89,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                 </li>
                 <li class="nav-item" role="presentation">
                     <a
-                        class="nav-link btn btn-sm btn-secondary rounded-0"
+                        class="nav-link btn btn-sm btn-outline-secondary rounded-0"
                         id="nextflow-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#nextflow-tab-pane"
@@ -101,7 +101,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                 </li>
                 <li class="nav-item" role="presentation">
                     <a
-                        class="nav-link btn btn-sm btn-secondary rounded-start-0"
+                        class="nav-link btn btn-sm btn-outline-secondary rounded-start-0"
                         id="tower-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#tower-tab-pane"
@@ -180,6 +180,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     .btn.nav-link:hover {
         color: $white;
     }
+
     :global([data-bs-theme='dark']) {
         .border-secondary {
             border-color: $gray-700 !important;

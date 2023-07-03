@@ -1,0 +1,39 @@
+---
+import ResultsLayout from '@layouts/ResultsLayout.astro';
+import pipelines_json from '@public/pipelines.json';
+
+export function getStaticPaths() {
+    let paths: {
+        params: {
+            pipeline: string;
+            version: string;
+            results_path: string;
+        };
+    }[] = [];
+    pipelines_json.remote_workflows.forEach((pipeline) => {
+        pipeline.releases
+            .filter((rel) => rel.tag_name !== 'dev')
+            .forEach((release) => {
+                console.log(pipeline);
+                console.log(release);
+                const releaseSHA = release.sha;
+                const version = release.tag_name;
+
+                paths.push({
+                    params: {
+                        pipeline: pipeline.name,
+                        version: version,
+                        results_path: 'results-' + releaseSHA,
+                    },
+                });
+            });
+    });
+    return paths;
+}
+const { pipeline, version, path } = Astro.params;
+if (version === 'dev') {
+    return Astro.redirect(`/${pipeline}/`);
+}
+---
+
+<ResultsLayout {pipeline} {version} {path} />

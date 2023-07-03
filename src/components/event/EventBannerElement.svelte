@@ -12,7 +12,6 @@
     let now = new Date().getTime();
 
     let backgroundIcon = '';
-    console.log('events before processing', events);
     events
         .map((event) => {
             if (event.data.title.toLowerCase().match('bytesize')) {
@@ -58,7 +57,7 @@
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
-    console.log('events after processing', events);
+
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events.filter((event) => {
