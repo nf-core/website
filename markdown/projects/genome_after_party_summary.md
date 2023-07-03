@@ -126,6 +126,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Add support to map PacBio reads before calling variants
 - Add structural variation detection
 - Add variant calling for short read data with FreeBayes
+- Add optional read mapping subworkflow
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
@@ -149,6 +150,7 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Improved generation of the summary Yaml file
 - `Diamond blastx` search of assembly contigs against the UniProt reference proteomes
 - NCBI `blastn` search of assembly contigs with no `Diamond blastx` match against the NCBI nt database
+- Add optional read mapping subworkflow
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
 
@@ -165,5 +167,6 @@ If you have an idea for a new feature or would like this pipeline to run on othe
 - Update samplesheet validation steps
 - Improve genome metadata fetching and processing
 - Combine results and metadata with template Word document
+- Add optional read mapping subworkflow
 
 If you have an idea for a new feature or would like this pipeline to run on other assemblies – [send us your request](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana&labels=pipeline%2Cenhancement&projects=&template=genome_after_party_feature_request.yaml&title=%5BFeature%5D%3A+). You can see all planned features and requests on the [project board](https://github.com/orgs/sanger-tol/projects/3).
