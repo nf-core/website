@@ -3,7 +3,7 @@ import ResultsLayout from '@layouts/ResultsLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
     let paths: {
         params: {
             pipeline: string;
@@ -11,18 +11,50 @@ export function getStaticPaths() {
             results_path: string;
         };
     }[] = [];
-    pipelines_json.remote_workflows.forEach((pipeline) => {
+    pipelines_json.remote_workflows.forEach(async (pipeline) => {
         pipeline.releases
             .filter((rel) => rel.tag_name !== 'dev')
-            .forEach((release) => {
-                const releaseSHA = release.sha;
+            .forEach(async (release) => {
+                const results_path = 'results-' + release.sha;
                 const version = release.tag_name;
 
+                let client = new S3Client({
+                    region: 'eu-west-1',
+                    signer: { sign: async (request) => request },
+                });
+                const bucketName = 'nf-core-awsmegatests';
+                const prefix = `${pipeline}/${results_path}/`;
+                let bucketContents: {
+                    Key: string;
+                    LastModified: Date;
+                    ETag: string;
+                    Size: number;
+                    StorageClass: string;
+                }[] = [];
+                let response;
+                let isTruncated = true;
+                while (isTruncated) {
+                    response = await client.send(
+                        new ListObjectsV2Command({
+                            Bucket: bucketName,
+                            ContinuationToken: response?.NextContinuationToken,
+                            Prefix: prefix,
+                        })
+                    );
+                    if (response.KeyCount === 0) {
+                        break;
+                    }
+                    if (response.Contents) {
+                        bucketContents.push(...response.Contents);
+
+                        isTruncated = response.IsTruncated;
+                    }
+                }
                 paths.push({
                     params: {
                         pipeline: pipeline.name,
                         version: version,
-                        results_path: 'results-' + releaseSHA,
+                        results_path: results_path,
                     },
                 });
             });
@@ -32,32 +64,6 @@ export function getStaticPaths() {
 const { pipeline, version, results_path } = Astro.params;
 if (version === 'dev') {
     return Astro.redirect(`/${pipeline}/`);
-}
-let client = new S3Client({
-    region: 'eu-west-1',
-    signer: { sign: async (request) => request },
-});
-const bucketName = 'nf-core-awsmegatests';
-const prefix = `${pipeline}/${results_path}/`;
-let bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
-let response;
-let isTruncated = true;
-while (isTruncated) {
-    response = await client.send(
-        new ListObjectsV2Command({
-            Bucket: bucketName,
-            ContinuationToken: response?.NextContinuationToken,
-            Prefix: prefix,
-        })
-    );
-    if (response.KeyCount === 0) {
-        break;
-    }
-    if (response.Contents) {
-        bucketContents.push(...response.Contents);
-
-        isTruncated = response.IsTruncated;
-    }
 }
 ---
 
