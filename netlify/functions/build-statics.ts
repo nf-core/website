@@ -1,8 +1,9 @@
 import { Handler } from 'aws-lambda';
 import { buildCache } from 'bin/build-cache';
+import { writeComponentsJson } from 'bin/components.json.js';
 import { writePipelinesJson } from 'bin/pipelines.json.js';
-import { writeComponentsJson } from 'bin/components.json.js
 import { exec } from 'child_process';
+
 
 export const handler: Handler = async () => {
     try {
