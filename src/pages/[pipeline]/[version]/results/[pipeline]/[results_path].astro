@@ -30,10 +30,10 @@ export function getStaticPaths() {
     });
     return paths;
 }
-const { pipeline, version, path } = Astro.params;
+const { pipeline, version, results_path } = Astro.params;
 if (version === 'dev') {
     return Astro.redirect(`/${pipeline}/`);
 }
 ---
 
-<ResultsLayout {pipeline} {version} {path} />
+<ResultsLayout {pipeline} {version} path={results_path} />
