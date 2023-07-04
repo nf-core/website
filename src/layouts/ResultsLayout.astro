@@ -41,6 +41,7 @@ const depth = pathParts.length;
 let response;
 let isTruncated = bucketContents.length === 0;
 if (bucketContents.length === 0) {
+    console.log('fetching bucket contents');
     let client = new S3Client({
         region: 'eu-west-1',
         signer: { sign: async (request) => request },
