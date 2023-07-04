@@ -13,7 +13,10 @@ $theme = 'auto';
 if (isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 'light', 'dark'])) {
     $theme = $_COOKIE['nfcoretheme'];
 }
-
+//check for theme parameter in URL
+if (isset($_GET['theme']) && in_array($_GET['theme'], ['auto', 'light', 'dark'])) {
+    $theme = $_GET['theme'];
+}
 // Convert Markdown to HTML if a filename is given
 if (isset($markdown_fn) and $markdown_fn) {
     require_once 'parse_md.php';
