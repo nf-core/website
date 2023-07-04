@@ -5,6 +5,8 @@ export const prerender = false;
 
 // get the id from the url
 const id = Astro.url.searchParams.get('id');
+const pipeline = Astro.url.searchParams.get('pipeline');
+const version = Astro.url.searchParams.get('version');
 ---
 
 <PageLayout
@@ -16,7 +18,10 @@ const id = Astro.url.searchParams.get('id');
         <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
         <iframe
             class="d-none"
-            src={'https://nf-co.re/launch' + (id ? '?id=' + id : '')}
+            src={'https://nf-co.re/launch' +
+                (id ? '?id=' + id : '') +
+                (pipeline ? '?pipeline=' + pipeline : '') +
+                (version ? '&version=' + version : '')}
             onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
             title="pipeline_heath"
             style="border:none;"
