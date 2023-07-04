@@ -10,7 +10,7 @@ import ProgressBar from 'progress';
 const __dirname = path.resolve();
 
 // write the pipelines.json file
-const writePipelinesJson = async () => {
+export const writePipelinesJson = async () => {
   const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
   const namesJson = readFileSync(path.join(__dirname, '/public/pipeline_names.json'));
   const pipelines = JSON.parse(pipelinesJson);

@@ -10,7 +10,7 @@ import { parse } from 'yaml';
 const __dirname = path.resolve();
 
 // write the components.json file
-const writeComponentsJson = async () => {
+export const writeComponentsJson = async () => {
   const componentsJson = readFileSync(path.join(__dirname, '/public/components.json'));
   const components = JSON.parse(componentsJson);
 

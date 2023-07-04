@@ -1,13 +1,17 @@
 import { Handler } from 'aws-lambda';
+import { buildCache } from 'bin/build-cache';
+import { writePipelinesJson } from 'bin/pipelines.json.js';
+import { writeComponentsJson } from 'bin/components.json.js
 import { exec } from 'child_process';
-
 
 export const handler: Handler = async () => {
     try {
         console.log('Building cache...');
-        await runCommand('node ../../bin/pipelines.json.js');
-        await runCommand('node ../../bin/components.json.js');
-        await runCommand('node bin/build-cache.js');
+        // await runCommand('node ../../bin/pipelines.json.js');
+        // await runCommand('node ../../bin/components.json.js');
+        writePipelinesJson();
+        writeComponentsJson();
+        buildCache();
         // await runCommand('tar -cJf --no-xattrs -f .cache.tar.xz .cache');
 
         return {

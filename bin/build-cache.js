@@ -16,7 +16,7 @@ const __dirname = path.resolve();
 // check for `--force` flag
 const force = process.argv.includes('--force');
 
-const buildCache = async () => {
+export const buildCache = async () => {
   const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
   const pipelines = JSON.parse(pipelinesJson);
   // go through the releases of each pipeline and get the files which are needed for the pipeline pages
