@@ -33,11 +33,14 @@ foreach ($issues_json['stats'] as $key => $arr) {
     $issues_json_latest = max($issues_json_latest, $key);
 }
 
+/*
 // Convenience variables
 $latest_slack_update = max(array_keys(get_object_vars($stats_json->slack->user_counts)));
 $slack_users = $stats_json->slack->user_counts->{$latest_slack_update};
 $twitter_datekeys = array_keys(get_object_vars($stats_json->twitter->followers_count));
 $twitter_users = $stats_json->twitter->followers_count->{max($twitter_datekeys)};
+*/
+
 
 // Get unique contributors - commits and issues
 $gh_contributors = (array) $stats_json->gh_contributors;
@@ -156,7 +159,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type):
         $alink = '<a href="/' . $metrics->name . '/releases_stats">';
     }
     ?></td>
-    <td><?php echo $alink . '<span class="d-none d-lg-inline">nf-core/</span>' . $metrics->name . '</a>'; ?></td>
+    <td><?php echo $alink . '<span class="d-none d-lg-inline">sanger-tol/</span>' . $metrics->name . '</a>'; ?></td>
     <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago(
     $metrics->created_at,
     false,
@@ -198,10 +201,10 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 <ul>
   <li><a href="#community">Community</a>
     <ul>
-      <li><a href="#slack">Slack</a></li>
+      <!-- <li><a href="#slack">Slack</a></li> -->
       <li><a href="#gh_orgmembers">GitHub organisation members</a></li>
       <li><a href="#gh_contribs">GitHub contributors</a></li>
-      <li><a href="#twitter">Twitter followers</a></li>
+      <!-- <li><a href="#twitter">Twitter followers</a></li> -->
     </ul>
   </li>
   <li><a href="#code">Code</a>
@@ -255,6 +258,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 </p>
 
 <div class="card-group text-center stats_keynumbers">
+  <!--
   <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#slack" class="text-body text-decoration-none stretched-link"><?php echo $slack_users->total; ?></a></p>
@@ -262,6 +266,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     </div>
     <div class="bg-icon"><i class="fab fa-slack"></i></div>
   </div>
+  -->
   <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#gh_orgmembers" class="text-body text-decoration-none stretched-link"><?php echo $stats_json
@@ -281,6 +286,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     </div>
     <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
   </div>
+  <!--
   <div class="card bg-body">
     <div class="card-body">
       <p class="card-text display-4"><a href="#twitter" class="text-body text-decoration-none stretched-link"><?php echo $twitter_users; ?></a></p>
@@ -288,9 +294,11 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     </div>
     <div class="bg-icon"><i class="fab fa-twitter"></i></div>
   </div>
+  -->
 </div>
 
 <div class="row">
+  <!--
   <div class="col-lg-6">
     <?php echo _h2('Slack'); ?>
     <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
@@ -318,7 +326,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
       </div>
     </div>
   </div>
-
+  -->
+  
   <div class="col-lg-6">
 
     <h2 class="mt-0" id="gh_orgmembers">GitHub organisation members<a href="#gh_orgmembers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
@@ -359,8 +368,9 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 <div class="card-group text-center stats_keynumbers">
   <div class="card bg-body">
     <div class="card-body">
-      <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines)) +
-          count(get_object_vars($stats_json->core_repos)); ?></p>
+      <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines))
+          //+ count(get_object_vars($stats_json->core_repos)); 
+      ?></p>
       <p class="card-text text-muted">Repositories</p>
     </div>
     <div class="bg-icon"><i class="far fa-folder"></i></div>
@@ -550,7 +560,8 @@ $contributors = [];
 $contribution_counts = [];
 $contribution_counts_bytype = [];
 $top_repos = [];
-foreach (['pipelines', 'core_repos'] as $repo_type) {
+//foreach (['pipelines', 'core_repos'] as $repo_type) {
+foreach (['pipelines'] as $repo_type) {
     foreach ($stats_json->{$repo_type} as $repo_name => $repo) {
         foreach ($repo->contributors as $contributor) {
             $login = $contributor->author->login;
@@ -639,8 +650,9 @@ foreach ($contribution_counts as $login => $count) {
 </div>
 
 <?php // The pipeline and core repo tables are the same
-
-foreach (['pipelines', 'core_repos'] as $repo_type): ?>
+//foreach (['pipelines', 'core_repos'] as $repo_type):
+foreach (['pipelines'] as $repo_type): 
+?>
 
 <h2 class="mt-0" id="<?php echo $repo_type; ?>"><?php echo ucfirst(
     str_replace('_', ' ', $repo_type),
@@ -767,7 +779,7 @@ $(function(){
   };
 
 
-
+/*
   // Slack users chart
   chartData['slack'] = JSON.parse(JSON.stringify(chartjs_base));
   chartData['slack'].data = {
@@ -779,9 +791,12 @@ $(function(){
         borderColor: 'rgba(150,150,150, 1)',
         pointRadius: 0,
         data: [
-          <?php foreach ($stats_json->slack->user_counts as $timestamp => $users) {
+
+          <?php /*
+          foreach ($stats_json->slack->user_counts as $timestamp => $users) {
               echo '{ x: "' . date('Y-m-d H:i:s', $timestamp) . '", y: ' . $users->inactive . ' },' . "\n\t\t\t";
-          } ?>
+          } */
+          ?>
         ]
       },
       {
@@ -790,13 +805,15 @@ $(function(){
         borderColor: 'rgba(89, 37, 101, 1)',
         pointRadius: 0,
         data: [
-          <?php foreach ($stats_json->slack->user_counts as $timestamp => $users) {
+          <?php 
+          /* foreach ($stats_json->slack->user_counts as $timestamp => $users) {
               // Skip zeros (anything before 2010)
               if ($timestamp < 1262304000) {
                   continue;
               }
               echo '{ x: "' . date('Y-m-d H:i:s', $timestamp) . '", y: ' . $users->active . ' },' . "\n\t\t\t";
-          } ?>
+          } */
+          ?>
         ]
       }
     ]
@@ -810,7 +827,7 @@ $(function(){
   };
   var ctx = document.getElementById('slack_users_plot').getContext('2d');
   charts['slack'] = new Chart(ctx, chartData['slack']);
-
+*/
 
   // GitHub org members chart
   chartData['gh_orgmembers'] = JSON.parse(JSON.stringify(chartjs_base));
@@ -915,7 +932,7 @@ $(function(){
   var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
   charts['gh_contribs'] = new Chart(ctx, chartData['gh_contribs']);
 
-
+/*
   // Twitter followers chart
   chartData['twitter'] = JSON.parse(JSON.stringify(chartjs_base));
   chartData['twitter'].data = {
@@ -925,13 +942,13 @@ $(function(){
         borderColor: 'rgba(74, 161, 235, 1)',
         pointRadius: 0,
         data: [
-          <?php foreach ($stats_json->twitter->followers_count as $timestamp => $count) {
+          <?php /* foreach ($stats_json->twitter->followers_count as $timestamp => $count) {
               // Skip zeros (anything before 2010)
               if ($timestamp < 1262304000) {
                   continue;
               }
               echo '{ x: "' . date('Y-m-d H:i:s', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
-          } ?>
+          } */ ?>
         ]
       }
     ]
@@ -939,6 +956,7 @@ $(function(){
   chartData['twitter'].options.title.text = '@nf_core twitter followers users over time';
   var ctx = document.getElementById('twitter_followers_plot').getContext('2d');
   charts['twitter'] = new Chart(ctx, chartData['twitter']);
+*/
 
   // GitHub Pull Requests chart
   <?php
