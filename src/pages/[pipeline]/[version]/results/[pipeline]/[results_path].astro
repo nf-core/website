@@ -18,11 +18,11 @@ export async function getStaticPaths() {
     let bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
 
     async function getKeysWithPrefixes(prefixes) {
+        let client = new S3Client({
+            region: 'eu-west-1',
+            signer: { sign: async (request) => request },
+        });
         const requests = prefixes.map((prefix) => {
-            let client = new S3Client({
-                region: 'eu-west-1',
-                signer: { sign: async (request) => request },
-            });
             const command = new ListObjectsV2Command({
                 Bucket: 'nf-core-awsmegatests',
                 Prefix: prefix,
@@ -46,24 +46,25 @@ export async function getStaticPaths() {
             return [];
         }
     }
-    const prefixes = pipelines_json.remote_workflows.map((pipeline) => {
-        return `${pipeline.name}/results-`;
-    });
-    getKeysWithPrefixes(prefixes)
-        .then((keys) => {
-            bucketContents = keys;
+    const prefixes = pipelines_json.remote_workflows
+        .map((pipeline) => {
+            return pipeline.releases
+                .filter((rel) => rel.tag_name !== 'dev')
+                .map((release) => {
+                    return `${pipeline.name}/results-${release.sha}/`;
+                });
         })
-        .catch((error) => {
-            console.error('Error retrieving keys:', error);
-        });
-    console.log(bucketContents);
-    pipelines_json.remote_workflows.forEach((pipeline) => {
+        .flat();
+    bucketContents = await getKeysWithPrefixes(prefixes);
+    pipelines_json.remote_workflows.forEach(async (pipeline) => {
         pipeline.releases
             .filter((rel) => rel.tag_name !== 'dev')
-            .forEach((release) => {
+            .forEach(async (release) => {
                 const results_path = 'results-' + release.sha;
                 const version = release.tag_name;
-
+                if (pipeline.name === 'funcscan' && release.tag_name === '1.1.2') {
+                    console.log('Path', `${pipeline.name}/${version}/results/${pipeline.name}/${results_path}/`);
+                }
                 paths.push({
                     params: {
                         pipeline: pipeline.name,
@@ -72,7 +73,10 @@ export async function getStaticPaths() {
                     },
                     props: {
                         content: bucketContents.filter((item) => {
-                            return item.Key.startsWith(`${pipeline.name}/${results_path}/`);
+                            return (
+                                item.Key.startsWith(`${pipeline.name}/${results_path}/`) &&
+                                item.Key.slice(0, -1).split('/').length === 3
+                            );
                         }),
                     },
                 });
