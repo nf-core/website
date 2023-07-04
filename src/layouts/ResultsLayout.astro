@@ -5,7 +5,15 @@ import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 import AWSFile from '@components/pipeline/AWSFile.astro';
 import AWSFilePreview from '@components/pipeline/AWSFilePreview.astro';
 
-let { pipeline, version, path } = Astro.props;
+let { pipeline, version, path, bucketContents = [] } = Astro.props;
+
+export interface Props {
+    pipeline: string;
+    version: string;
+    path: string;
+    bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
+}
+
 path = pipeline + '/' + path;
 
 const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
@@ -29,29 +37,31 @@ const pathParts = path.split('/');
 let filename = Astro.url.searchParams.get('file');
 const description = meta?.description;
 const depth = pathParts.length;
-let client = new S3Client({
-    region: 'eu-west-1',
-    signer: { sign: async (request) => request },
-});
 
 let response;
-const bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
-let isTruncated = true;
-while (isTruncated) {
-    response = await client.send(
-        new ListObjectsV2Command({
-            Bucket: bucketName,
-            ContinuationToken: response?.NextContinuationToken,
-            Prefix: prefix,
-        })
-    );
-    if (response.KeyCount === 0) {
-        break;
-    }
-    if (response.Contents) {
-        bucketContents.push(...response.Contents);
+let isTruncated = bucketContents.length === 0;
+if (bucketContents.length === 0) {
+    let client = new S3Client({
+        region: 'eu-west-1',
+        signer: { sign: async (request) => request },
+    });
 
-        isTruncated = response.IsTruncated;
+    while (isTruncated) {
+        response = await client.send(
+            new ListObjectsV2Command({
+                Bucket: bucketName,
+                ContinuationToken: response?.NextContinuationToken,
+                Prefix: prefix,
+            })
+        );
+        if (response.KeyCount === 0) {
+            break;
+        }
+        if (response.Contents) {
+            bucketContents.push(...response.Contents);
+
+            isTruncated = response.IsTruncated;
+        }
     }
 }
 let directories: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
