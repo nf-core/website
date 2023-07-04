@@ -2,7 +2,7 @@
 $title = 'Repository health';
 $subtitle = 'Check GitHub settings for all nf-core repositories';
 $mainpage_container = false;
-include '../includes/header.php';
+include '../includes/slim_header.php';
 
 // Refresh cache?
 function is_refresh_cache($repo = null, $any_repo = false) {
@@ -1084,138 +1084,134 @@ ksort($core_repos);
 ?>
 
 <div class="container-fluid main-content">
-  <h2>Pipelines</h2>
-  <div class="table-responsive">
-    <table class="table table-hover table-sm small">
-      <thead>
-        <tr>
-          <th class="small fw-normal text-nowrap">Pipeline Name</th>
-          <?php
-          $m_names_printed = [];
-          $colspan = '';
-          foreach ($pipeline_test_names as $key => $name) {
-              $description = $pipeline_test_descriptions[$key];
-              $print = true;
-              foreach ($pipeline_merge_table_col_headings as $m_name => $m_keys) {
-                  if (in_array($key, $m_keys)) {
-                      if (!in_array($m_name, $m_names_printed)) {
-                          $colspan = 'colspan="' . count($m_keys) . '"';
-                          $description = $m_name;
-                          $name = $m_name;
-                          $m_names_printed[] = $m_name;
-                      } else {
-                          $print = false;
-                      }
-                  }
-              }
-              if ($print) {
-                  echo '<th ' .
-                      $colspan .
-                      ' class="small fw-normal text-nowrap" title="' .
-                      $description .
-                      '" data-bs-toggle="tooltip" data-bs-placement="top">' .
-                      $name .
-                      '</th>';
-              }
-          }
-          ?>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($pipelines as $pipeline) {
-            echo '<tr>';
-            echo '<td>' . $pipeline->name . '</td>';
-            foreach ($pipeline_test_names as $key => $name) {
-                $pipeline->print_table_cell($key);
-            }
-            echo '</tr>';
-        } ?>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>Core repos</h2>
-  <div class="table-responsive">
-    <table class="table table-hover table-sm small">
-      <thead>
-        <tr>
-          <th class="small text-nowrap">Pipeline Name</th>
-          <?php foreach ($core_repo_test_names as $key => $name) {
-              echo '<th class="small text-nowrap" title="' .
-                  $core_repo_test_descriptions[$key] .
-                  '" data-bs-toggle="tooltip" data-bs-placement="top">' .
-                  $name .
-                  '</th>';
-          } ?>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($core_repos as $repo) {
-            echo '<tr>';
-            echo '<td>' . $repo->name . '</td>';
-            foreach ($core_repo_test_names as $key => $name) {
-                $repo->print_table_cell($key);
-            }
-            echo '</tr>';
-        } ?>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>Actions</h2>
-  <form class="row" action="" method="get">
-    <div class="col-4 my-1">
-      <select class="form-select repos-select" name="repos">
-        <optgroup label="All repositories">
-          <option value="all" selected>All pipelines</option>
-        </optgroup>
-        <optgroup label="Pipelines">
-          <?php foreach ($pipelines as $repo) {
-              echo '<option>' . $repo->name . '</option>';
-          } ?>
-        </optgroup>
-        <optgroup label="Core Repos">
-          <?php foreach ($core_repos as $repo) {
-              echo '<option>' . $repo->name . '</option>';
-          } ?>
-        </optgroup>
-      </select>
+    <h2>Pipelines</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm small">
+            <thead>
+                <tr>
+                    <th class="small fw-normal text-nowrap">Pipeline Name</th>
+                    <?php
+                    $m_names_printed = [];
+                    $colspan = '';
+                    foreach ($pipeline_test_names as $key => $name) {
+                        $description = $pipeline_test_descriptions[$key];
+                        $print = true;
+                        foreach ($pipeline_merge_table_col_headings as $m_name => $m_keys) {
+                            if (in_array($key, $m_keys)) {
+                                if (!in_array($m_name, $m_names_printed)) {
+                                    $colspan = 'colspan="' . count($m_keys) . '"';
+                                    $description = $m_name;
+                                    $name = $m_name;
+                                    $m_names_printed[] = $m_name;
+                                } else {
+                                    $print = false;
+                                }
+                            }
+                        }
+                        if ($print) {
+                            echo '<th ' .
+                                $colspan .
+                                ' class="small fw-normal text-nowrap" title="' .
+                                $description .
+                                '" data-bs-toggle="tooltip" data-bs-placement="top">' .
+                                $name .
+                                '</th>';
+                        }
+                    }
+                    ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($pipelines as $pipeline) {
+                    echo '<tr>';
+                    echo '<td>' . $pipeline->name . '</td>';
+                    foreach ($pipeline_test_names as $key => $name) {
+                        $pipeline->print_table_cell($key);
+                    }
+                    echo '</tr>';
+                } ?>
+            </tbody>
+        </table>
     </div>
-    <button type="submit" name="action" value="refresh" class="btn btn-primary col-2 my-1 ms-2 refresh-btn">Refresh data</button>
-    <button type="submit" name="action" value="fix" class="btn btn-info col-2 my-1 ms-2 fix-btn">Fix data</button>
-  </form>
-  <p><em class="small text-muted">Warning: page will take a minute or two to load. Even when refreshing one repo, some tests will be refreshed for all repos.</em></p>
+
+    <h2>Core repos</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm small">
+            <thead>
+                <tr>
+                    <th class="small text-nowrap">Pipeline Name</th>
+                    <?php foreach ($core_repo_test_names as $key => $name) {
+                        echo '<th class="small text-nowrap" title="' .
+                            $core_repo_test_descriptions[$key] .
+                            '" data-bs-toggle="tooltip" data-bs-placement="top">' .
+                            $name .
+                            '</th>';
+                    } ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($core_repos as $repo) {
+                    echo '<tr>';
+                    echo '<td>' . $repo->name . '</td>';
+                    foreach ($core_repo_test_names as $key => $name) {
+                        $repo->print_table_cell($key);
+                    }
+                    echo '</tr>';
+                } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Actions</h2>
+    <form class="row" action="" method="get">
+        <div class="col-4 my-1">
+            <select class="form-select repos-select" name="repos">
+                <optgroup label="All repositories">
+                    <option value="all" selected>All pipelines</option>
+                </optgroup>
+                <optgroup label="Pipelines">
+                    <?php foreach ($pipelines as $repo) {
+                        echo '<option>' . $repo->name . '</option>';
+                    } ?>
+                </optgroup>
+                <optgroup label="Core Repos">
+                    <?php foreach ($core_repos as $repo) {
+                        echo '<option>' . $repo->name . '</option>';
+                    } ?>
+                </optgroup>
+            </select>
+        </div>
+        <button type="submit" name="action" value="refresh" class="btn btn-primary col-2 my-1 ms-2 refresh-btn">Refresh data</button>
+        <button type="submit" name="action" value="fix" class="btn btn-info col-2 my-1 ms-2 fix-btn">Fix data</button>
+    </form>
+    <p><em class="small text-muted">Warning: page will take a minute or two to load. Even when refreshing one repo, some tests will be refreshed for all repos.</em></p>
 
 </div>
 
 <script type="text/javascript">
-  $(function() {
-    // Disable the buttons to prevent button mashing
-    $('.refresh-btn').click(function() {
-      $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
-    });
-    $('.fix-btn').click(function(e) {
-      if (!confirm('This will attempt to change repository settings! Are you sure?')) {
-        e.preventDefault();
-      } else {
-        if ($('.repos-select').val() == 'all') {
-          if (!confirm('Seriously - ALL nf-core repos. Are you super sure?')) {
-            e.preventDefault();
-          } else {
-            $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
-          }
+    $(function() {
+        // Disable the buttons to prevent button mashing
+        $('.refresh-btn').click(function() {
+            $(this).addClass('disabled').html('Refreshing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+        });
+        $('.fix-btn').click(function(e) {
+            if (!confirm('This will attempt to change repository settings! Are you sure?')) {
+                e.preventDefault();
+            } else {
+                if ($('.repos-select').val() == 'all') {
+                    if (!confirm('Seriously - ALL nf-core repos. Are you super sure?')) {
+                        e.preventDefault();
+                    } else {
+                        $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
+                    }
+                }
+            }
+        });
+
+        // Remove all get data from the URL
+        if (window.location.href.includes('?')) {
+            var url_parts = window.location.href.split('?');
+            window.history.replaceState({}, "nf-core", url_parts[0]);
         }
-      }
     });
-
-    // Remove all get data from the URL
-    if (window.location.href.includes('?')) {
-      var url_parts = window.location.href.split('?');
-      window.history.replaceState({}, "nf-core", url_parts[0]);
-    }
-  });
 </script>
-
-
-
-<?php include '../includes/footer.php';
