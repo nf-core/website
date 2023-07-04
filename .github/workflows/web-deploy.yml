@@ -37,7 +37,7 @@ jobs:
       - name: Sync website files
       # TODO: change this to master once we're ready to deploy the new site on main
         if: github.repository == 'nf-core/nf-co.re' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/old-site'))
-        uses: SamKirkland/FTP-Deploy-Action@4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.ftp_server }}
           username: ${{ secrets.ftp_username}}
