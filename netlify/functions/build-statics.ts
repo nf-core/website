@@ -1,13 +1,14 @@
 import { Handler } from 'aws-lambda';
 import { exec } from 'child_process';
 
+
 export const handler: Handler = async () => {
     try {
         console.log('Building cache...');
-        await runCommand('npm run build-pipeline-json');
-        await runCommand('npm run build-component-json');
+        await runCommand('node ../../bin/pipelines.json.js');
+        await runCommand('node ../../bin/components.json.js');
         await runCommand('node bin/build-cache.js');
-        await runCommand('tar -cJf --no-xattrs -f .cache.tar.xz .cache');
+        // await runCommand('tar -cJf --no-xattrs -f .cache.tar.xz .cache');
 
         return {
             statusCode: 200,

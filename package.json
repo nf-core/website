@@ -9,7 +9,7 @@
         "build-preview": "astro build && astro preview",
         "build-cache": "npm run build-pipeline-json && npm run build-component-json && node bin/build-cache.js && tar -cJf --no-xattrs -f .cache.tar.xz .cache",
         "build-cache-force": "npm run build-pipeline-json && npm run build-component-json && node bin/build-cache.js --force && tar -cJf --no-xattrs -f .cache.tar.xz .cache",
-        "build": "tar -xf .cache.tar.xz && astro build",
+        "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
         "build-pipeline-json": "node bin/pipelines.json.js",
