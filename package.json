@@ -8,7 +8,7 @@
         "compile-sass": "sass --load-path=node_modules/ public_html/assets/scss:public_html/assets/css",
         "prefix-css": "postcss --use autoprefixer -b 'last 5 versions' --replace public_html/assets/css/*nf-core*.css ",
         "compress-css": "sass --load-path=node_modules/ public_html/assets/scss:public_html/assets/css --style compressed",
-        "copy-assets": "cp $(cat public_html/assets/lib/to_copy.txt) public_html/assets/lib",
+        "copy-assets": "cp $(cat oldsite.nf-co.re/assets/lib/to_copy.txt) public_html/assets/lib",
         "build-css": "npm run compile-sass && npm run prefix-css && npm run compress-css",
         "build-prod": "npm run copy-assets && npm run build-css",
         "lint": "prettier --check .",
