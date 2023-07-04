@@ -62,9 +62,6 @@ export async function getStaticPaths() {
             .forEach(async (release) => {
                 const results_path = 'results-' + release.sha;
                 const version = release.tag_name;
-                if (pipeline.name === 'funcscan' && release.tag_name === '1.1.2') {
-                    console.log('Path', `${pipeline.name}/${version}/results/${pipeline.name}/${results_path}/`);
-                }
                 paths.push({
                     params: {
                         pipeline: pipeline.name,

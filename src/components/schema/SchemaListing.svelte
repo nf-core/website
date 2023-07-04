@@ -19,7 +19,6 @@
         );
         Object.entries(schema.definitions).forEach((heading) => {
             const element = document.querySelector('#' + heading[0].replaceAll('_', '-'));
-            console.log(heading);
             observer.observe(element);
         });
     });
