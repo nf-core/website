@@ -154,7 +154,7 @@ if (!isTruncated) {
                     </li>
                     {
                         path &&
-                            pathParts.slice(0, -1).map((item, i) => (
+                            pathParts.slice(1, -1).map((item, i) => (
                                 <li class="breadcrumb-item">
                                     <a href={baseURL + 'results/' + pathParts.slice(0, i + 2).join('/') + '/'}>
                                         {item}
