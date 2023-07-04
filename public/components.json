@@ -23445,6 +23445,10 @@
           "version": "2.2.1"
         },
         {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
@@ -32249,6 +32253,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "hicar",
+          "version": "1.0.0"
+        },
         {
           "name": "hicar",
           "version": "1.0.0"
@@ -48819,6 +48827,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "sarek",
+          "version": "3.2.3"
         }
       ]
     },
@@ -49215,6 +49227,10 @@
         {
           "name": "smrnaseq",
           "version": "2.2.1"
+        },
+        {
+          "name": "spatialtranscriptomics",
+          "version": "dev"
         },
         {
           "name": "ssds",
@@ -76916,9 +76932,7 @@
           }
         ],
         "authors": [
-          "@WackerO",
-          "@mirpedrol",
-          "@louperelo"
+          "@mapo9"
         ]
       }
     },
@@ -76990,9 +77004,7 @@
           }
         ],
         "authors": [
-          "@WackerO",
-          "@mirpedrol",
-          "@louperelo"
+          "@mapo9"
         ]
       }
     },
@@ -89074,6 +89086,141 @@
         ],
         "authors": [
           "@CarsonJM"
+        ]
+      }
+    },
+    {
+      "name": "msisensorpro_msisomatic",
+      "path": "modules/nf-core/msisensorpro/msisomatic/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "msisensorpro_msisomatic",
+        "description": "MSIsensor-pro evaluates Microsatellite Instability (MSI) for cancer patients with next generation sequencing data. It accepts the whole genome sequencing, whole exome sequencing and target region (panel) sequencing data as input",
+        "keywords": [
+          "micro-satellite-scan",
+          "msisensor-pro",
+          "msi",
+          "somatic"
+        ],
+        "tools": [
+          {
+            "msisensorpro": {
+              "description": "Microsatellite Instability (MSI) detection using high-throughput sequencing data.",
+              "homepage": "https://github.com/xjtu-omics/msisensor-pro",
+              "documentation": "https://github.com/xjtu-omics/msisensor-pro/wiki",
+              "tool_dev_url": "https://github.com/xjtu-omics/msisensor-pro",
+              "doi": "10.1016/j.gpb.2020.02.001",
+              "licence": [
+                "Custom Licence"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "normal": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "normal_index": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM index file",
+              "pattern": "*.{bai,crai,sai}"
+            }
+          },
+          {
+            "tumor": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "tumor_index": {
+              "type": "file",
+              "description": "BAM/CRAM/SAM index file",
+              "pattern": "*.{bai,crai,sai}"
+            }
+          },
+          {
+            "intervals": {
+              "type": "file",
+              "description": "bed file containing interval information, optional",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome",
+              "pattern": "*.{fasta}"
+            }
+          },
+          {
+            "msisensor_scan": {
+              "type": "file",
+              "description": "Output from msisensor-pro/scan, conaining list of msi regions",
+              "pattern": "*.list"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "output_report": {
+              "type": "file",
+              "description": "File containing final report with all detected microsatellites, unstable somatic microsatellites, msi score"
+            }
+          },
+          {
+            "output_dis": {
+              "type": "file",
+              "description": "File containing distribution results"
+            }
+          },
+          {
+            "output_germline": {
+              "type": "file",
+              "description": "File containing germline results"
+            }
+          },
+          {
+            "output_somatic": {
+              "type": "file",
+              "description": "File containing somatic results"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "list": {
+              "type": "file",
+              "description": "File containing microsatellite list",
+              "pattern": "*.{list}"
+            }
+          }
+        ],
+        "authors": [
+          "@FriederikeHanssen"
         ]
       }
     }
