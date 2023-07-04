@@ -407,7 +407,7 @@ endif;
     <div class="row videos-row">
       <div class="col-lg-6">
         <div class="ratio ratio-16x9 hidden-xs hidden-sm">
-          <iframe id="dtol-intro-video"  src="https://www.youtube.com/embed/aK1Ek39z4sA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe id="nf-core-video"  src="https://www.youtube.com/embed/aK1Ek39z4sA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="col-lg-6">
