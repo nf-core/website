@@ -59,7 +59,7 @@ function github_query($gh_query_url) {
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
         if (strpos($http_response_header[0], 'HTTP/1.1 202') !== false) {
-            echo "\nWaiting for GitHub API to return results for $gh_query_url";
+            echo "Waiting for GitHub API to return results for $gh_query_url \n";
             sleep(10);
             $first_page = true;
             continue;
@@ -493,7 +493,7 @@ if (count($contribs_try_again) > 0) {
         file_put_contents($contribs_fn_root . $repo_name . '.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
         if (strpos($http_response_header[0], 'HTTP/1.1 202') !== false) {
-            echo "Tried getting contributors after delay for $repo_name, but took too long.";
+            echo "Tried getting contributors after delay for $repo_name, but took too long.\n";
             continue;
         } elseif (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             var_dump($http_response_header);
