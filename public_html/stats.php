@@ -841,8 +841,8 @@ $(function(){
         pointRadius: 0,
         data: [
           <?php foreach ($stats_json->gh_org_members as $timestamp => $count) {
-              // Skip zeros (anything before 2010)
-              if ($timestamp < 1262304000) {
+              // Skip zeros (anything before 2021)
+              if ($timestamp < 1609459200) {
                   continue;
               }
               echo '{ x: "' . date('Y-m-d H:i:s', $timestamp) . '", y: ' . $count . ' },' . "\n\t\t\t";
@@ -866,9 +866,9 @@ $(function(){
   $contribs_issues = [];
   $contribs_both = [];
   foreach ($gh_contributors as $username => $timestamp) {
-      // Make zeros and old timestamps start of 2018
-      if ($timestamp < 1514764800) {
-          $timestamp = 1514764800;
+      // Make zeros and old timestamps start of 2022
+      if ($timestamp < 1640995200) {
+          $timestamp = 1640995200;
       }
       if (in_array($username, $gh_contributor_commits) && in_array($username, $gh_contributor_issues)) {
           $both_cumulative_count += 1;
