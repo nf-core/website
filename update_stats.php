@@ -268,7 +268,7 @@ $updated = time();
 $results_fn = dirname(__FILE__) . '/nfcore_stats.json';
 $contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
 
-echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
+echo "\nRunning update_stats to save into a file (OLD) - " . date('Y-m-d h:i:s') . "\n";
 
 // Initialise the results array with the current time and placeholders
 $results = [
@@ -322,11 +322,15 @@ foreach ($pipelines as $wf) {
     $results['pipelines'][$wf->name]['num_releases'] = count($wf->releases);
 }
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
+
+/** 
+// don't store stats for non-pipeline repos
 foreach ($ignored_repos as $name) {
     if (!isset($results['core_repos'][$name])) {
         $results['core_repos'][$name] = [];
     }
 }
+*/
 
 // Delete cached pipelines stats for pipelines that have been deleted
 foreach (array_keys($results['pipelines']) as $wfname) {
@@ -340,6 +344,7 @@ foreach (array_keys($results['pipelines']) as $wfname) {
 
 // Get the current number of organisation members
 // Returns 30 results per page!
+echo "Get all the github members.\n";
 $gh_members_url = 'https://api.github.com/orgs/sanger-tol/members';
 $results['gh_org_members'][$updated] = 0;
 $first_page = true;
@@ -370,6 +375,7 @@ while ($first_page || $next_page) {
 }
 
 // Fetch all repositories at nf-core
+echo "Get the list of repos from Github\n";
 $gh_repos_url = 'https://api.github.com/orgs/sanger-tol/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_repos_url, false, $gh_api_opts));
 if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
@@ -379,9 +385,12 @@ if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
 foreach ($gh_repos as $repo) {
     if (in_array($repo->name, $ignored_repos)) {
         $repo_type = 'core_repos';
+        // ignore non-pipeline repos for now
+        continue;
     } else {
         $repo_type = 'pipelines';
     }
+    echo " Repo " . $repo->name . "\n";
     $results[$repo_type][$repo->name]['repo_metrics'][$updated] = [
         'id' => $repo->id,
         'name' => $repo->name,
@@ -410,9 +419,11 @@ foreach ($gh_repos as $repo) {
 }
 
 // Fetch new statistics for each repo
+echo "Fetch traffic views and clones for each repo, and the contributors\n";
 foreach (['pipelines'] as $repo_type) {
 //foreach (['pipelines', 'core_repos'] as $repo_type) {
     foreach ($results[$repo_type] as $repo_name => $repo_stats) {
+        echo " " . $repo_name . "\n";
         // Views
         $gh_views_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
@@ -461,15 +472,16 @@ foreach (['pipelines'] as $repo_type) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo contributors! $gh_contributors_url";
             continue;
-        }
-        $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
-        $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
+        }else{
+          $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
+          $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
 
-        // Commits
-        $results[$repo_type][$repo_name]['commits'] = 0;
-        foreach ($gh_contributors as $contributor) {
-            $results[$repo_type][$repo_name]['commits'] += $contributor->total;
-        }
+            // Commits
+            $results[$repo_type][$repo_name]['commits'] = 0;
+            foreach ($gh_contributors as $contributor) {
+                $results[$repo_type][$repo_name]['commits'] += $contributor->total;
+            }
+        }   
 
         // Recalculate totals
         foreach (['views_count', 'views_uniques', 'clones_count', 'clones_uniques'] as $ctype) {
@@ -489,7 +501,9 @@ foreach (['pipelines'] as $repo_type) {
 // Try contribs again now that we've let it fire
 if (count($contribs_try_again) > 0) {
     sleep(10);
+    echo "Retrying to get contributors for each repo.\n";
     foreach ($contribs_try_again as $repo_name => $details) {
+        echo " " . $repo_name ."\n";
         extract($details); // $repo_type, $gh_contributors_raw
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root . $repo_name . '.json', $gh_contributors_raw);
@@ -501,12 +515,14 @@ if (count($contribs_try_again) > 0) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo contributors! $gh_contributors_url";
             continue;
+        }else{
+          $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
+          $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
         }
-        $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
-        $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
     }
 }
 
+echo "Count how many total contributors and contributions we have per week.\n";
 foreach (['pipelines'] as $repo_type) {
 //foreach (['pipelines', 'core_repos'] as $repo_type) {
     foreach ($results[$repo_type] as $repo_name => $repo_stats) {
