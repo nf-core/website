@@ -3,7 +3,7 @@
 
 # [sanger-tol](https://pipelines.tol.sanger.ac.uk)
 
-This repository contains code for the sanger-tol website: **<https://pipelines.tol.sanger.ac.uk>**. It has been forked and adapted from **<http://nf-co.re/>**.
+This repository contains code for the sanger-tol pipelines website: **<https://pipelines.tol.sanger.ac.uk>**. It has been forked and adapted from **<https://nf-co.re/>**.
 
 ## Packages used
 
@@ -34,7 +34,7 @@ To make edits to the website, fork the repository to your own user on GitHub and
 
 ```bash
 git clone git@github.com:[USERNAME]/pipelines-website.git
-cd nf-co.re/
+cd pipelines-website/
 ```
 
 ### Running a local server
@@ -85,12 +85,12 @@ password = 'PEBBLY8exhibit_mead1cilium6despise'
 
 It's easiest to run these first manual update scripts on the command line. If you have PHP available
 then you may be able to do this directly. Alternatively, if you are using Docker as above then you can
-open a shell inside the running container. The container is typically named `web` (you can check this
+open a shell inside the running container. The container is typically named `nf-core-web` (you can check this
 with the `docker ps` command), so you can open an interactive shell using the following command:
 
 ```bash
-docker exec -it web /bin/bash
-cd var/www/
+docker exec -it nf-core-web /bin/bash
+cd /var/www/
 ```
 
 #### Update scripts
@@ -104,10 +104,8 @@ php update_pipeline_details.php
 To update the modules database (from within the docker container) run:
 
 ```bash
-docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
+php update_module_details.php
 ```
-
-Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
 
 Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
 
@@ -116,8 +114,6 @@ php update_issue_stats.php
 php update_stats.php
 php update_fontawesome_icons.php
 ```
-
-Note that your GitHub account needs push rights for the nf-core permission for the `update_stats.php` to work.
 
 This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
 all also ignored in `.gitignore`.
