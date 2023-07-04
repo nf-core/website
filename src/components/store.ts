@@ -2,8 +2,8 @@ import { persistentAtom } from '@nanostores/persistent';
 import { atom } from 'nanostores';
 
 
-export const CurrentFilter:string[] = atom([]);
-export const Filters: string[] = atom([]);
+export const CurrentFilter = atom([]);
+export const Filters = atom([]);
 export const SortBy = atom('');
 // add persistnatome for dipslay style to be either table or grid
 
