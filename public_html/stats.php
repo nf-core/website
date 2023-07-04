@@ -346,7 +346,9 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
         <p class="card-text small text-muted"><a href="#" data-bs-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
+</div>
 
+<div class="col-lg-6">
     <h2 class="mt-0" id="gh_contribs">GitHub contributors<a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p>Anybody can fork nf-core repositories and open a pull-request.
     Here we count how many different people have contributed at least one commit to an nf-core repository, or created or commented on an issue or pull-request.</p>
