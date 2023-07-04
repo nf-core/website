@@ -191,6 +191,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     mysqli_stmt_bind_param($stmt, 'iiiiis', $pipeline_id, $views, $views_uniques, $clones, $clones_uniques, $timestamp);
 
     foreach ($pipelines as $idx => $pipeline) {
+        echo "Get traffic views and clones for pipeline ". $pipeline['name'] . "\n";
         $gh_views = github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/traffic/views');
         $gh_clones = github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/traffic/clones');
         foreach ($gh_views['views'] as $gh_view) {
@@ -203,11 +204,12 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 "'";
             $res = mysqli_query($conn, $check);
             if ($res->num_rows) {
-                echo "\n Entry already exists for pipeline_id " .
+                echo "Entry already exists for pipeline_id " .
                     $pipeline['id'] .
                     ' and timestamp ' .
                     $timestamp .
-                    ' db_timestamp ';
+                    ' db_timestamp ' .
+                    "\n";
                 continue;
             } else {
                 // get gh_clones where timestamp matches
