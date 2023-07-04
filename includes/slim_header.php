@@ -23,7 +23,6 @@ if (isset($markdown_fn) and $markdown_fn) {
     $title = $parsed_out['title'];
     $subtitle = $parsed_out['subtitle'];
 }
-
 ?>
 <!doctype html>
 <html lang="en">
