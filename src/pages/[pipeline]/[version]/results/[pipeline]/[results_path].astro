@@ -10,51 +10,57 @@ export async function getStaticPaths() {
             version: string;
             results_path: string;
         };
+        props: {
+            content: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
+        };
     }[] = [];
-    pipelines_json.remote_workflows.forEach(async (pipeline) => {
+    let client = new S3Client({
+        region: 'eu-west-1',
+        signer: { sign: async (request) => request },
+    });
+    const bucketName = 'nf-core-awsmegatests';
+    const prefix = `/`;
+    let bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
+    let response;
+    let isTruncated = true;
+    while (isTruncated) {
+        response = await client.send(
+            new ListObjectsV2Command({
+                Bucket: bucketName,
+                ContinuationToken: response?.NextContinuationToken,
+                // Prefix: prefix,
+            })
+        );
+        if (response.KeyCount === 0) {
+            break;
+        }
+        if (response.Contents) {
+            // get only the directories and files until "results-.*\/"
+            response.Contents = response.Contents.filter((item) => {
+                return item.Key.split('/').length === 3;
+            });
+            bucketContents.push(...response.Contents);
+
+            isTruncated = response.IsTruncated;
+        }
+    }
+    pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases
             .filter((rel) => rel.tag_name !== 'dev')
-            .forEach(async (release) => {
+            .forEach((release) => {
                 const results_path = 'results-' + release.sha;
                 const version = release.tag_name;
 
-                let client = new S3Client({
-                    region: 'eu-west-1',
-                    signer: { sign: async (request) => request },
-                });
-                const bucketName = 'nf-core-awsmegatests';
-                const prefix = `${pipeline}/${results_path}/`;
-                let bucketContents: {
-                    Key: string;
-                    LastModified: Date;
-                    ETag: string;
-                    Size: number;
-                    StorageClass: string;
-                }[] = [];
-                let response;
-                let isTruncated = true;
-                while (isTruncated) {
-                    response = await client.send(
-                        new ListObjectsV2Command({
-                            Bucket: bucketName,
-                            ContinuationToken: response?.NextContinuationToken,
-                            Prefix: prefix,
-                        })
-                    );
-                    if (response.KeyCount === 0) {
-                        break;
-                    }
-                    if (response.Contents) {
-                        bucketContents.push(...response.Contents);
-
-                        isTruncated = response.IsTruncated;
-                    }
-                }
                 paths.push({
                     params: {
                         pipeline: pipeline.name,
                         version: version,
                         results_path: results_path,
+                    },
+                    props: {
+                        content: bucketContents.filter((item) => {
+                            return item.Key.startsWith(`${pipeline.name}/${version}/${results_path}/`);
+                        }),
                     },
                 });
             });
@@ -62,9 +68,10 @@ export async function getStaticPaths() {
     return paths;
 }
 const { pipeline, version, results_path } = Astro.params;
+const { content } = Astro.props;
 if (version === 'dev') {
     return Astro.redirect(`/${pipeline}/`);
 }
 ---
 
-<ResultsLayout {pipeline} {version} path={results_path} {bucketContents} />
+<ResultsLayout {pipeline} {version} path={results_path} bucketContents={content} />
