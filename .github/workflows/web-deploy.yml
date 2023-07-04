@@ -2,7 +2,7 @@ name: Deploy website
 
 on:
   push:
-    branches: [old-master]
+    branches: [old-master] # TODO: change this to master once we're ready to deploy the new site on main
   pull_request:
     branches: [old-master]
   workflow_dispatch:
