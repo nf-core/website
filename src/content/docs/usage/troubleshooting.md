@@ -437,7 +437,9 @@ To fix this you need to change the default memory requirements for the process t
 
 For example, let's say it's the `markduplicates` process that is running out of memory (as displayed on the Nextflow running display).
 
-- First we need to check to see what default memory value we have. Go to the main code of the pipeline by going to the corresponding pipeline GitHub repository and open the `main.nf` file. Search in your browser for `process markduplicates`.
+- First we need to check to see what default memory value we have. For this you need to go into the pipeline code locally in your local copy (typically: `~/.nextflow/assets/nf-core/<pipeline>/`, or the GitHub repository (`https://github.com/nf-core/<pipeline>`)
+  - If the pipeline has a `modules/` directory, i.e. is a DSL2 pipeline: Go to the file here `modules/nf-core/<tool_name>/main.nf`, and check the `label` line.
+  - If the pipeline doesn't have a `modules/` directory, i.e. is a DSL1 pipelines. Go to the main code of the pipeline by going to the corresponding pipeline GitHub repository and open the `main.nf` file. Search for `process markduplicates`.
 - Once found, check the line called `label` and note down the corresponding label. In this case the label could be `process_low`.
 - Go back to the main github repository, and open `conf/base.config`. Now, search in your browser for `withLabel:'process_low'`.
 - Note what the `memory` field is set to (e.g. `4.GB`) on a line like: `memory = { check_max( 4.GB * task.attempt, 'memory' )})`.
@@ -527,25 +529,15 @@ To fix this, you must clean the entirety of the run's `work/` directory e.g. wit
 
 ## Using a local version of iGenomes
 
-The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.conf` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default.
-
-You can specify a local iGenomes path by either:
-
-- Setting the igenomes_base path in a configuration profile.
-
-```nextflow
-params {
-    igenomes_base = '/<path>/<to>/<data>/igenomes'
-}
-```
+The iGenomes config file uses `params.igenomes_base` to make it possible to use a local copy of iGenomes. However, as custom config files are loaded after `nextflow.config` and the `igenomes.config` has already been imported and parsed, setting `params.igenomes_base` in a custom config file has no effect and the pipeline will use the s3 locations by default. To overcome this you can specify a local iGenomes path by either:
 
 - Specifying an `--igenomes_base` path in your execution command.
 
 ```bash
-nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenoms_base <path>/<to>/<data>/igenomes
+nextflow run nf-core/<pipeline> --input <input> -c <config> -profile <profile> --igenomes_base <path>/<to>/<data>/igenomes
 ```
 
-- Specifying the `igenomes_base` parameter in a `params` file provided with `-params-file` in `yaml` or `json` format.
+- Specifying the `igenomes_base` parameter in a parameters file provided with `-params-file` in `yaml` or `json` format.
 
 ```bash
 nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml

@@ -518,7 +518,39 @@ process {
    tuple val(meta), path('*.tab'), emit: tab,  optional: true
    ```
 
-5. Each output file SHOULD be emitted in it's own channel, along with the `meta` map if provided ( the exception is the versions.yml ).
+5. Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+
+### Documentation
+
+1. Each module MUST have a `meta.yaml` in the same directory as the `main.nf` of the module itself.
+
+2. Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords
+
+   - Keywords MUST NOT just be solely of the (sub)tool name
+
+3. Keywords MUST be all lower case
+
+4. Input and Output sections of the `meta.yaml` SHOULD only have entries of input and output channels
+
+5. Input and output tuples MUST be split into separate entries
+
+   - i.e., `meta` should be a separate entry to the `file` it is associated with
+
+6. Input/output types MUST only be of the following categories: `map`, `file`, `directory`, `string`, `integer`, `float`
+
+7. Input/output entries MUST match a corresponding channel in the module itself
+
+   - There should be a one-to-one relationship between the module and the `meta.yaml`
+
+   - Input/output entries MUST NOT combine multiple output channels
+
+8. Input/output descriptions SHOULD be descriptive of the contents of file
+
+   - i.e., not just 'A TSV file'
+
+9. Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+
+10. Input entries should be marked as Mandatory or Optional
 
 ### Module parameters
 
