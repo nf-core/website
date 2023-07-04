@@ -14,36 +14,49 @@ export async function getStaticPaths() {
             content: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[];
         };
     }[] = [];
-    let client = new S3Client({
-        region: 'eu-west-1',
-        signer: { sign: async (request) => request },
-    });
-    const bucketName = 'nf-core-awsmegatests';
-    const prefix = `/`;
-    let bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
-    let response;
-    let isTruncated = true;
-    while (isTruncated) {
-        response = await client.send(
-            new ListObjectsV2Command({
-                Bucket: bucketName,
-                ContinuationToken: response?.NextContinuationToken,
-                // Prefix: prefix,
-            })
-        );
-        if (response.KeyCount === 0) {
-            break;
-        }
-        if (response.Contents) {
-            // get only the directories and files until "results-.*\/"
-            response.Contents = response.Contents.filter((item) => {
-                return item.Key.split('/').length === 3;
-            });
-            bucketContents.push(...response.Contents);
 
-            isTruncated = response.IsTruncated;
+    let bucketContents: { Key: string; LastModified: Date; ETag: string; Size: number; StorageClass: string }[] = [];
+
+    async function getKeysWithPrefixes(prefixes) {
+        const requests = prefixes.map((prefix) => {
+            let client = new S3Client({
+                region: 'eu-west-1',
+                signer: { sign: async (request) => request },
+            });
+            const command = new ListObjectsV2Command({
+                Bucket: 'nf-core-awsmegatests',
+                Prefix: prefix,
+            });
+            return client.send(command);
+        });
+
+        try {
+            const responses = await Promise.all(requests);
+            const keys = [];
+            responses.forEach((response) => {
+                if (response.Contents) {
+                    for (const object of response.Contents) {
+                        keys.push(object);
+                    }
+                }
+            });
+            return keys;
+        } catch (error) {
+            console.error('Error retrieving keys:', error);
+            return [];
         }
     }
+    const prefixes = pipelines_json.remote_workflows.map((pipeline) => {
+        return `${pipeline.name}/results-`;
+    });
+    getKeysWithPrefixes(prefixes)
+        .then((keys) => {
+            bucketContents = keys;
+        })
+        .catch((error) => {
+            console.error('Error retrieving keys:', error);
+        });
+    console.log(bucketContents);
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases
             .filter((rel) => rel.tag_name !== 'dev')
@@ -59,7 +72,7 @@ export async function getStaticPaths() {
                     },
                     props: {
                         content: bucketContents.filter((item) => {
-                            return item.Key.startsWith(`${pipeline.name}/${version}/${results_path}/`);
+                            return item.Key.startsWith(`${pipeline.name}/${results_path}/`);
                         }),
                     },
                 });
