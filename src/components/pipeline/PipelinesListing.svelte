@@ -2,6 +2,7 @@
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
     import PipelineCard from '@components/pipeline/PipelineCard.svelte';
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+    import { onMount } from 'svelte';
 
     export let pipelines: {
         name: string;
@@ -100,23 +101,26 @@
         );
         return pipelines;
     }
-    SortBy.subscribe(() => {
-        filteredPipelines = searchFilterSortPipelines(pipelines);
-    });
-    CurrentFilter.subscribe(() => {
-        filteredPipelines = searchFilterSortPipelines(pipelines);
-    });
-    SearchQuery.subscribe(() => {
-        filteredPipelines = searchFilterSortPipelines(pipelines);
-    });
 
-    $: filteredPipelines = searchFilterSortPipelines(pipelines);
-    // update counts in CurrentFilter
+    $: filteredPipelines = pipelines;
+
+    onMount(() => {
+        SortBy.subscribe(() => {
+            filteredPipelines = searchFilterSortPipelines(pipelines);
+        });
+        CurrentFilter.subscribe(() => {
+            filteredPipelines = searchFilterSortPipelines(pipelines);
+        });
+        SearchQuery.subscribe(() => {
+            filteredPipelines = searchFilterSortPipelines(pipelines);
+        });
+        filteredPipelines = searchFilterSortPipelines(pipelines);
+    });
 </script>
 
 <div class="listing d-flex flex-wrap w-100 justify-content-center">
     {#if $DisplayStyle === 'grid'}
-        {#if filteredPipelines.length === 0}
+        {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
             <div class="alert alert-warning" role="alert">
                 No pipelines found. Try changing your search query or filters.
             </div>
