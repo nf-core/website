@@ -24,16 +24,6 @@ if (isset($markdown_fn) and $markdown_fn) {
     $subtitle = $parsed_out['subtitle'];
 }
 
-// Page title
-$page_title = 'nf-core';
-if (isset($title) && strlen($title) > 0) {
-    $page_title = preg_replace('/^nf-core\//', '', strip_tags($title)) . ' &raquo; nf-core';
-}
-// Page meta description
-$page_meta = 'A collection of high quality Nextflow pipelines';
-if (isset($subtitle) && strlen($subtitle) > 0) {
-    $page_meta = strip_tags($subtitle);
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,13 +31,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><?php echo $page_title; ?></title>
-    <meta name="description" content="<?php echo $page_meta; ?>">
-    <meta name="author" content="Phil Ewels">
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#1d9655">
-    <link rel="shortcut icon" href="/assets/img/logo/nf-core-logo-square.png" type="image/png" />
-    <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -62,10 +46,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     if (isset($import_moment) && $import_moment): ?>
         <script src="/assets/lib/moment.js"></script>
         <script src="/assets/lib/moment-timezone-with-data-10-year-range.min.js"></script>
-    <?php endif;
-    if (isset($import_leaflet) && $import_leaflet): ?>
-        <link href="/assets/lib/leaflet.css" rel="stylesheet">
-        <script src="/assets/lib/leaflet.js"></script>
     <?php endif;
     if (isset($import_chartjs) && $import_chartjs): ?>
         <script src="/assets/lib/moment.js"></script>
@@ -113,19 +93,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <!-- Custom nf-core CSS and JS -->
     <link href="/assets/css/nf-core-<?php echo $theme; ?>.css?c=<?php echo $git_sha; ?>" rel="stylesheet" id="theme-stylesheet">
     <script src="/assets/js/nf-core.js?c=<?php echo $git_sha; ?>"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-68098153-2');
-
-        <?php if (isset($youtube_embed)): ?>
-            youtube_embed = true;
-        <?php endif; ?>
-    </script>
 </head>
 
 <body tabindex="0">
