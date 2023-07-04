@@ -7,6 +7,7 @@ start_time: '13:00 CEST'
 end_date: '2023-05-30'
 end_time: '13:30 CEST'
 youtube_embed: https://www.youtube.com/watch?v=pBzelkgrPgQ
+embed_at: quantms
 location_url:
   - https://www.youtube.com/watch?v=pBzelkgrPgQ
 ---
