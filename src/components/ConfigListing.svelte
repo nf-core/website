@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { SearchQuery, SortBy } from '@components/store';
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
+    import { SearchQuery, SortBy } from '@components/store';
 
     export let configs: {
         name: string;
@@ -77,9 +77,11 @@
         </thead>
         <tbody>
             {#each filteredConfigs as config}
-                <tr>
+                <tr class="position-relative">
                     <td class="name">
-                        <a href={'/configs/' + config.name + '/'}>{@html config.name.replace('_', '_<wbr>')}</a>
+                        <a class="stretched-link" href={'/configs/' + config.name + '/'}
+                            >{@html config.name.replace('_', '_<wbr>')}</a
+                        >
                     </td>
                     <td class="description text-small">
                         {config.config.config_profile_description}
