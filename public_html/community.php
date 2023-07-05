@@ -4,23 +4,22 @@
 // error_reporting(E_ALL);
 
 $title = 'Community';
-$subtitle = 'Find out who is involved in the nf-core project';
-$md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml';
+$subtitle = 'Find out who is involved in the sanger-tol project';
+$md_github_url = 'https://github.com/sanger-tol/pipelines-website/blob/updating_stats/sanger-tol-partners.yaml';
 $import_leaflet = true;
 include '../includes/header.php';
 ?>
 
 <h1>Introduction</h1>
-<p>nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many dedicated contributors.</p>
+<p>sanger-tol is by design a collaborative effort, and would not exist if it were not for the efforts of many dedicated contributors.</p>
 <ul>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#organisations">Organisations</a></li>
     <li><a href="#initiatives">Projects we are involved with</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
 </ul>
 
 <?php echo _h1('Contributors'); ?>
-<p>The nf-core pipelines and community is driven by many individuals, listed below. This list updates automatically.</p>
+<p>The sanger-tol pipelines and community is driven by many individuals, listed below. This list updates automatically.</p>
 <p>Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a> on the Statistics page.</p>
 <p class="pt-3">
     <?php
@@ -50,9 +49,9 @@ include '../includes/header.php';
     ?>
 </p>
 
-<?php echo _h1('Organisations'); ?>
-<p>Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.</p>
-<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a href="https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml">simple YAML file.</a></blockquote>
+<?php echo _h1('Partners'); ?>
+<p>Tree of Life programme at Wellcome Sanger Institute works with several partners across the globe to deliver its goal to sequence all eukaryotic life on the planet. Some of these organisations are listed below, along with a key person who you can contact for advice.</p>
+<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a href="https://github.com/sanger-tol/pipelines-website/blob/main/sanger-tol-partners.yaml">simple YAML file.</a></blockquote>
 
 <div class="card contributors-map-card">
     <div class="card-body" id="contributors-map"></div>
@@ -66,7 +65,7 @@ include '../includes/header.php';
     use Spyc;
 
     $locations = [];
-    $contributors = spyc_load_file('../nf-core-contributors.yaml');
+    $contributors = spyc_load_file('../sanger-tol-contributors.yaml');
     $contributors_html = '';
     foreach ($contributors['contributors'] as $idx => $c) {
         // Start card div
