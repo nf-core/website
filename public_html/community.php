@@ -229,62 +229,19 @@ include '../includes/header.php';
 </script>
 
 <h1 id="initiatives">Projects we are involved with<a href="#initiatives" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h1>
-<p>A number of large projects are committing to working with the nf-core community for data analysis pipelines. You can see an overview of these below.</p>
+<p>Tree of Life programme at Wellcome Sanger Insitute is part of several biodiversity projects. You can see an overview of these below.</p>
 
-<h3 id="dfg_testimonial">
-    <img width="350px" src="/assets/img/contributors-colour/dfg_logo.svg" class="float-end ps-4" />
-
-    German National Sequencing Initiative
-    <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
-    has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
-    large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden sites are already actively contributing to nf-core, and the other sequencing center
-    in Cologne/Bonn (West German Genome Center) has committed to joining and contributing its expertise.</p>
-<div class="clearfix"></div>
-
-<h3 id="easi_genomics_testimonial">
+<h3 id="dtol_testimonial">
     <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark'
         ? 'white'
-        : 'colour'; ?>/EASI-Genomics.svg" class="float-end ps-4 darkmode-image" />
-    EASI-Genomics
-    <a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+        : 'colour'; ?>/dtol.svg" class="float-end ps-4 darkmode-image" />
+    Darwin Tree of Life
+    <a href="#dtol_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h3>
-<p><a href="https://www.easi-genomics.eu/" target="_blank">EASI-Genomics</a>
-    provides easy and seamless access to cutting-edge DNA sequencing technologies to researchers from academia and industry, within a framework that ensures compliance with ethical and legal requirements, as well as FAIR and secure data management.
-    EASI-Genomics aims to build a community of practice, which leverages advanced sequencing technologies beyond country and sector borders to tackle global challenges in science.
-    It organizes competitive calls to get fully-funded access to state-of-the-art facilities and services, including integrative data analysis.</p>
-<p>EASI-Genomics partners are committed to working within community best-practices for the bioinformatics processing of the data that they produce.
-    To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
-<div class="clearfix"></div>
-
-<h3 id="bovreg_testimonial">
-    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-end ps-4" />
-    BovReg
-    <a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
-    <a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
-    to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.
-</p>
-<p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
-<div class="clearfix"></div>
-<h3 id="dockstore">
-    <img width="350px" src="/assets/img/contributors-colour/dockstore.svg" class="float-end ps-0" />
-    Dockstore
-    <a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.dockstore.org/" target="_blank">Dockstore</a> is a platform used by researchers across the world to share reproducible computational analyses and hosts hundreds of individual tools and workflows created by more than a hundred different contributors.</p>
-<p>By using lightweight containerization technology along with the essential metadata needed for combining tools into scientific analysis "recipes", Dockstore allows users to create, share, publish (using citable DOIs) and reproducibly reuse these recipes across platforms and compute environments.</p>
-<div class="clearfix"></div>
-
-<h3 id="workflowhub">
-    <img width="250px" src="/assets/img/contributors-colour/workflowhub.svg" class="float-end px-4" />
-    Workflow Hub
-    <a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.workflowhub.eu/" target="_blank">Workflow Hub</a> was created as part of the <a href="https://www.eosc-life.eu/" target="_blank">EOSC-Life</a> WP2: <em>Tools Collaboratory and Research Objects</em> to glue in federated workflow and tool descriptions across research infrastructures.</p>
-<p>It is workflow system agnostic, supports a repository of workflows in native and standardised form and the virtual aggregation of established tool, workflow and registries to support discovery over a fragmented ecosystem. The federated registry will support a common API to simplify access for tool developers.</p>
+<p><a href="https://www.darwintreeoflife.org" target="_blank">The Darwin Tree of Life (DToL)</a>
+    project aims to sequence the genomes of 70,000 species of eukaryotic organisms in Britain and Ireland. 
+    It is a collaboration between biodiversity, genomics and analysis partners that is transforming the way we do biology, 
+    conservation and biotechnology.</p>
 <div class="clearfix"></div>
 
 <?php include '../includes/footer.php';
