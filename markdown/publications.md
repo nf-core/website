@@ -9,7 +9,7 @@ Do you know of a ToL informatics publication that we are missing?
 
 > **Why sequence all eukaryotes?**
 >
-> Mark Blaxter, John M Archibald, Anna K Childers, Jonathan A Coddington, Keith A Crandall, *et al.*
+> Mark Blaxter, John M Archibald, Anna K Childers, Jonathan A Coddington, Keith A Crandall, _et al._
 >
 > [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115636118);
 > doi: [10.1073/pnas.2115636118](https://doi.org/10.1073/pnas.2115636118)
@@ -18,7 +18,7 @@ Do you know of a ToL informatics publication that we are missing?
 
 > **The Earth Biogenome Project 2020: Starting the Clock**
 >
-> Harris A. Lewin, Stephen Richards, Erez Lieberman Aiden, Miguel L. Allende, John M. Archibald, *et al.*
+> Harris A. Lewin, Stephen Richards, Erez Lieberman Aiden, Miguel L. Allende, John M. Archibald, _et al._
 >
 > [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115635118);
 > doi: [10.1073/pnas.2115635118](https://doi.org/10.1073/pnas.2115635118)
@@ -27,7 +27,7 @@ Do you know of a ToL informatics publication that we are missing?
 
 > **Standards recommendations for the Earth Biogenome Project**
 >
-> Mara K. N. Lawniczak, Richard Durbin, Paul Flicek, Kerstin Lindblad-Toh, Xiaofeng Wei, *et al.*
+> Mara K. N. Lawniczak, Richard Durbin, Paul Flicek, Kerstin Lindblad-Toh, Xiaofeng Wei, _et al._
 >
 > [Proceedings of the National Academy of Sciences (2022)](https://www.pnas.org/doi/full/10.1073/pnas.2115639118)
 > doi: [10.1073/pnas.2115639118](https://doi.org/10.1073/pnas.2115639118)

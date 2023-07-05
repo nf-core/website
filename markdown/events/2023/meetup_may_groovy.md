@@ -18,7 +18,7 @@ location_url: https://goo.gl/maps/h68RvwRHsNLWqtUc9
    - Test Case Organization: Learn about nf-test's ability to consolidate a suite of tests within a single file, enabling more efficient test management and maintenance.
    - Assertions and Checks: Uncover different types of assertions available for tests and compatibility with third-party libraries for creating specific assertions.
    - Snapshot Support: Understand the benefits of nf-test's snapshot functionality, which allows for easier comparisons of actual and expected outputs.
-  
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/p8wFyMhmCsg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 &nbsp;

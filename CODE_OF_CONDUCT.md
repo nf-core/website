@@ -99,9 +99,9 @@ All community members are **required** to ask members of the group they are work
 
 If someone makes you feel uncomfortable through their behaviours or actions, report it as soon as possible.
 
-You can reach out to members of the Safety Team (Priyanka Surana, Matthieu Muffato, and Edward Symons) via email. 
+You can reach out to members of the Safety Team (Priyanka Surana, Matthieu Muffato, and Edward Symons) via email.
 
-Issues directly concerning members of the Safety Team or the senior leadership in Tree of Life will be dealt with by the safety manager, Edward Symons — possible conflicts of interest will be taken into account. 
+Issues directly concerning members of the Safety Team or the senior leadership in Tree of Life will be dealt with by the safety manager, Edward Symons — possible conflicts of interest will be taken into account.
 
 All reports will be handled with the utmost discretion and confidentiality.
 
