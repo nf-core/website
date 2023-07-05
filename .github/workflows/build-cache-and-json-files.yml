@@ -1,10 +1,7 @@
 name: Build md cache and json files
 
 on:
-  push:
-    branches:
-      - netlfiy-test
-      - astro
+  pull_request:
   workflow_dispatch:
 
 jobs:
