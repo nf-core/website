@@ -1,9 +1,9 @@
-<img src="public_html/assets/img/logo/nf-core-logo.png#gh-light-mode-only" width="400">
-<img src="public_html/assets/img/logo/nf-core-logo-darkbg.png#gh-dark-mode-only" width="400">
+<img src="public_html/assets/img/logo/sanger-tol-logo.svg#gh-light-mode-only" width="400">
+<img src="public_html/assets/img/logo/sanger-tol-logo-darkbg.svg#gh-dark-mode-only" width="400">
 
-# [nf-co.re](https://github.com/nf-core/nf-co.re)
+# [sanger-tol](https://pipelines.tol.sanger.ac.uk)
 
-This repository contains code for the nf-core website: **<http://nf-co.re/>**
+This repository contains code for the sanger-tol pipelines website: **<https://pipelines.tol.sanger.ac.uk>**. It has been forked and adapted from **<https://nf-co.re/>**.
 
 ## Packages used
 
@@ -33,8 +33,8 @@ Here's how the website is built:
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
 ```bash
-git clone git@github.com:[USERNAME]/nf-co.re.git
-cd nf-co.re/
+git clone git@github.com:[USERNAME]/pipelines-website.git
+cd pipelines-website/
 ```
 
 ### Running a local server
@@ -85,12 +85,12 @@ password = 'PEBBLY8exhibit_mead1cilium6despise'
 
 It's easiest to run these first manual update scripts on the command line. If you have PHP available
 then you may be able to do this directly. Alternatively, if you are using Docker as above then you can
-open a shell inside the running container. The container is typically named `web` (you can check this
+open a shell inside the running container. The container is typically named `nf-core-web` (you can check this
 with the `docker ps` command), so you can open an interactive shell using the following command:
 
 ```bash
-docker exec -it web /bin/bash
-cd var/www/
+docker exec -it nf-core-web /bin/bash
+cd /var/www/
 ```
 
 #### Update scripts
@@ -104,10 +104,8 @@ php update_pipeline_details.php
 To update the modules database (from within the docker container) run:
 
 ```bash
-docker exec -it nf-core-web /usr/local/bin/php /var/www/update_module_details.php
+php update_module_details.php
 ```
-
-Note that this is also ignored in the `.gitignore` file and will not be tracked in git history.
 
 Optionally, once you've done that, you can grab the pipeline traffic, issue statistics and font awesome icons:
 
@@ -117,8 +115,6 @@ php update_stats.php
 php update_fontawesome_icons.php
 ```
 
-Note that your GitHub account needs push rights for the nf-core permission for the `update_stats.php` to work.
-
 This creates `nfcore_stats.json`, `nfcore_issue_stats.json` and `public_html/assets/js/fa-icons.json`,
 all also ignored in `.gitignore`.
 
@@ -126,13 +122,8 @@ all also ignored in `.gitignore`.
 
 ### Deployment
 
-The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/nf-core/nf-co.re/blob/master/.github/workflows/web-deploy.yml)).
+The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/sanger-tol/pipelines-website/blob/main/.github/workflows/web-deploy.yml)).
 This script runs PHP composer and npm, then syncs the required files to the web server via FTP.
-
-### Tools API docs
-
-Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
-[These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
 
 ### GitHub web hooks
 
@@ -144,9 +135,9 @@ This pings the `deploy_pipelines.php` script.
 The web server needs the following cronjobs running to scrape statistics and udates:
 
 ```cron
-0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/nfcore/update.log 2>&1
-0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/nfcore/update.log 2>&1
-0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/nfcore/update.log 2>&
+0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/sanger-tol/update.log 2>&1
+0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/sanger-tol/update.log 2>&1
+0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/sanger-tol/update.log 2>&
 ```
 
 Remember to replace `/path/to/deployment/` with your actual deployment directory.
@@ -156,15 +147,17 @@ This is not because the script takes an hour to run, but because the GitHub API 
 
 ## Contribution guidelines
 
-If you are looking forward to contribute to the website or add your institution to the official list of contributors, please have a look at the [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
+If you are looking forward to contribute to the website or add your institution to the official list of contributors, please have a look at the [CONTRIBUTING.md](https://github.com/sanger-tol/pipelines-website/blob/main/.github/CONTRIBUTING.md).
 
 ## Community
 
-If you have any questions or issues please send us a message on [Slack](https://nf-co.re/join/slack).
+If you have any questions or issues, please [let us know](https://github.com/sanger-tol/pipelines-website/issues/new?assignees=priyanka-surana%2Cmuffato&labels=connect&projects=&template=contact_us.yaml&title=%5BContact+Us%5D%3A+).
 
 ## Credits
 
-Phil Ewels ([@ewels](http://github.com/ewels/)) built the website, but there have been many contributors to the content and documentation.
+Priyanka Surana ([@priyanka-surana](http://github.com/priyanka-surana/)) manages the content and Guoying Qi ([@gq1](https://github.com/gq1)) manages the website. Many individuals, especially Matthieu Muffato ([@muffato](http://github.com/muffato)), have made various contributions.
+
+Phil Ewels ([@ewels](http://github.com/ewels/)) built the original nf-core website.
 More recently, [@mashehu](https://github.com/mashehu) has done a great deal of work with the code.
 See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more.
 
