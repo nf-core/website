@@ -1,0 +1,32 @@
+name: Build md cache and json files
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Set up the main website repo
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Don't do a shallow clone
+
+      # Compile npm dependencies
+      - name: Set up node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build md cache and json files
+        run: npm run build-cache
+
+      # Commit and push the changes
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_action
