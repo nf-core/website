@@ -140,18 +140,29 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
       </button>
       <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
         <ul class="navbar-nav">
+            
           <li class="nav-item p-1">
             <a class="nav-link" href="/">Home</a>
           </li>
+
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Teams</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/it">Informatics Infrastructure (IT)</a>
+            </div>
+	      </li>
+            
           <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Projects</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
             </div>
 	      </li>
+            
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
+            
           <li class="nav-item p-1">
             <a class="nav-link" href="/tools/">Tools</a>
           </li>
@@ -173,16 +184,11 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About sanger-tol</a>
+              <a class="dropdown-item" href="/community">Community</a>
+              <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join sanger-tol</a>
-            </div>
-	      </li>
-
-          <li class="nav-item p-1 dropdown">
-            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Teams</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/it">Informatics Infrastructure (IT)</a>
             </div>
 	      </li>
 
