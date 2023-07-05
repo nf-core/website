@@ -33,7 +33,7 @@
         on:click={() => copyToClipboard(cmd)}
     />
     <button
-        class="btn btn-secondary border copy-txt rounded-bottom-0"
+        class="btn btn-secondary border copy-txt"
         class:text-bg-success={copied}
         class:rounded-top-0={flatTop}
         data-bs-target="#module-install-cmd-text"
@@ -62,7 +62,11 @@
             background-color: $secondary;
             color: $white;
         }
+        :global(.sidebar) & {
+            border-bottom-right-radius: 0;
+        }
     }
+
     :global([data-bs-theme='dark']) {
         & .btn.copy-txt {
             background-color: $border-color-dark;

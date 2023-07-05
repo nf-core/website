@@ -12,7 +12,6 @@
     let now = new Date().getTime();
 
     let backgroundIcon = '';
-    console.log('events before processing', events);
     events
         .map((event) => {
             if (event.data.title.toLowerCase().match('bytesize')) {
@@ -58,7 +57,7 @@
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
-    console.log('events after processing', events);
+
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events.filter((event) => {
@@ -112,7 +111,7 @@
         <div>
             <div class="d-none d-lg-flex">
                 <div class="col-lg-4 overflow-hidden ps-3 position-relative d-flex flex-column justify-content-center">
-                    <h4 class="display-4 p-2 flex-grow-1">{heading_title}</h4>
+                    <h4 class="display-4 p-2 pb-0 mb-0 flex-grow-1">{heading_title}</h4>
                     <i
                         class={`fad ${backgroundIcon} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
                         aria-hidden="true"
@@ -121,7 +120,7 @@
                 <div class="flex-grow-1">
                     {#each events as event}
                         <div class="w-100 row align-items-center">
-                            <div class="col-9 pt-lg-3 pb-lg-3 text-lg-start">
+                            <div class="col-8 pt-lg-2 pb-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
                                     <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
                                         >{event.data.title}</a
@@ -136,13 +135,13 @@
                                         >
                                     </span>
                                 </h5>
-                                <p class="lead">
+                                <p class="lead mb-1">
                                     <a href={'events/' + event.slug + '/'} class="text-body text-decoration-none"
                                         >{event.data.subtitle}</a
                                     >
                                 </p>
                                 {#if event.data.duration}
-                                    <p class="">
+                                    <p class="mb-1">
                                         <a
                                             href={'events/' + event.slug + '/'}
                                             class="text-secondary-emphasis text-decoration-none"
@@ -150,8 +149,17 @@
                                         >
                                     </p>
                                 {/if}
+                            </div>
+
+                            <div class="col-4 text-start">
                                 {#if event_time_category === 'upcoming'}
-                                    <div class="btn-group" role="group" aria-label="Event details">
+                                    <div class="text-nowrap ms-5 ps-1">
+                                        <h5>Event starts in</h5>
+                                        <span class="display-6">
+                                            {@html countdown(event.data.start)}
+                                        </span>
+                                    </div>
+                                    <div class="btn-group my-2" role="group" aria-label="Event details">
                                         <a
                                             href={'events/' + event.slug + '/'}
                                             class="btn btn-outline-success text-nowrap"
@@ -159,17 +167,6 @@
                                             Event Details
                                         </a>
                                         <ExportEventButton frontmatter={event.data} />
-                                    </div>
-                                {/if}
-                            </div>
-
-                            <div class="col-3">
-                                {#if event_time_category === 'upcoming'}
-                                    <div class="text-nowrap">
-                                        <h5>Event starts in</h5>
-                                        <span class="display-6">
-                                            {@html countdown(event.data.start)}
-                                        </span>
                                     </div>
                                 {/if}
                                 {#if event_time_category === 'ongoing'}

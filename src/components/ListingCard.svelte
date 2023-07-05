@@ -11,9 +11,6 @@
 
 <style lang="scss">
     @import '@styles/_variables.scss';
-    p {
-        margin-top: 0.5rem;
-    }
     .card {
         width: 34.25rem;
     }

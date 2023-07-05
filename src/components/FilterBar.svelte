@@ -35,7 +35,7 @@
     }
 
     onMount(() => {
-        Filters.set(filter);
+        Filters.set($CurrentFilter);
         if (filter.length > 0) {
             CurrentFilter.set(filter.map((fil) => fil.name));
         }

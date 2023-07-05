@@ -1,0 +1,10 @@
+---
+import octokit from '@components/octokit';
+
+// get latest release from nf-core tools
+const nfcoreTools = await octokit.request('GET /repos/nf-core/tools/releases/latest').then((response) => {
+    return response.data.tag_name;
+});
+---
+
+{nfcoreTools}

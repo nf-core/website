@@ -66,8 +66,8 @@
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class="card-title">
-            <h3>
-                <a class="text-center" href={slug + '/'}>
+            <h4 id={'event-' + slug.split('/')[1]}>
+                <a class="text-center" href={/events/ + slug + '/'}>
                     {frontmatter.title}
                 </a>
                 {#if time_category === 'current'}
@@ -75,7 +75,7 @@
                         <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
                     </div>
                 {/if}
-            </h3>
+            </h4>
         </div>
         <div class="card-text">
             {#if showDescription}
@@ -118,15 +118,12 @@
     .card .card-title a {
         // color: $success;
     }
-    .card.rounded-0:not(.bytesize) {
+    .card.rounded-0 {
         border-left: 5px solid;
     }
     @include media-breakpoint-down(md) {
         .btn-group.float-end {
             width: 100%;
         }
-    }
-    .btn-group {
-        flex-direction: column;
     }
 </style>
