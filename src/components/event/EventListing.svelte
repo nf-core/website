@@ -4,6 +4,8 @@
     import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store';
 
     export let events = [];
+    export let filters: string[] = [];
+    export let currentEvents;
 
     let filteredEvents = events;
     const filterByType = (event) => {
@@ -52,11 +54,6 @@
             return event.data.end < today;
         })
         .reverse();
-    let currentEvents: CollectionEntry<'events'>[] = [];
-    $: currentEvents = filteredEvents.filter((event) => {
-        const today = new Date();
-        return event.data.start < today && event.data.end > today;
-    });
 
     $: if (currentEvents.length > 0) {
         EventIsOngoing.set(true);
@@ -73,11 +70,9 @@
     const event_type_icons = {
         bytesize: 'fa-solid fa-apple-core',
         hackathon: 'fa-solid fa-laptop-code',
-        poster: 'fa-regular fa-image',
         talk: 'fa-solid fa-presentation',
         training: 'fa-solid fa-chalkboard-teacher',
     };
-
     const event_types = [...new Set(events.map((event) => event.data.type))]
         .map((type) => {
             return {
@@ -92,27 +87,40 @@
             }
             return 1;
         });
+
+    CurrentFilter.set(event_types);
+
+    function hasYearChanged(events, idx) {
+        if (idx === 0 || events[idx].data.start.getFullYear() !== events[idx - 1].data.start.getFullYear()) {
+            return true;
+        }
+        return false;
+    }
 </script>
 
 <div>
-    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} />
-
-    {#if currentEvents.length > 0}
-        <div class="mb-3 col-12 col-md-6">
-            <h2><i class="fa-duotone fa-calendar-exclamation me-3" />Currently ongoing</h2>
-            {#each currentEvents as event (event.id)}
-                <EventCard frontmatter={event.data} slug={event.slug} type={event.data.type} time_category="current" />
-            {/each}
-        </div>
-    {/if}
-    <div class="row">
-        <div class="col-12 col-md-6">
+    <FilterBar filter={filters} displayStyle={[]} sortBy={[]} />
+    <div class="events">
+        {#if currentEvents.length > 0}
+            <div class="mb-3 col-12">
+                <h2><i class="fa-duotone fa-calendar-exclamation me-3" />Currently ongoing</h2>
+                {#each currentEvents as event (event.id)}
+                    <EventCard
+                        frontmatter={event.data}
+                        slug={event.slug}
+                        type={event.data.type}
+                        time_category="current"
+                    />
+                {/each}
+            </div>
+        {/if}
+        <div>
             <h1>General events</h1>
             <div class="d-flex flex-column">
                 <div class="mb-3">
                     <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>
-                    {#if futureEvents.length > 0}
-                        {#each futureEvents.filter((e) => e.data.type !== 'bytesize') as event (event.id)}
+                    {#if futureEvents && futureEvents.length > 0}
+                        {#each futureEvents as event (event.id)}
                             <EventCard
                                 frontmatter={event.data}
                                 slug={event.slug}
@@ -120,44 +128,16 @@
                                 time_category="future"
                             />
                         {/each}
-                    {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
+                    {:else if !$SearchQuery && $CurrentFilter.length !== 0}
                         <p>Nothing in the calendar at the moment.</p>
                     {/if}
                 </div>
                 <div class="mb-3">
                     <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
-                    {#each pastEvents.filter((e) => e.data.type !== 'bytesize') as event (event.id)}
-                        <EventCard
-                            frontmatter={event.data}
-                            slug={event.slug}
-                            type={event.data.type}
-                            time_category="past"
-                        />
-                    {/each}
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <h1>Bytesize talks</h1>
-            <div class="d-flex flex-column">
-                <div class="mb-3">
-                    <h2><i class="fa-duotone fa-calendar-day me-3" />Upcoming events</h2>
-                    {#if futureEvents.length > 0}
-                        {#each futureEvents.filter((e) => e.data.type === 'bytesize') as event (event.id)}
-                            <EventCard
-                                frontmatter={event.data}
-                                slug={event.slug}
-                                type={event.data.type}
-                                time_category="future"
-                            />
-                        {/each}
-                    {:else if $SearchQuery === '' && $CurrentFilter.length !== 0}
-                        <p>No bytesize talks are scheduled at the moment.</p>
-                    {/if}
-                </div>
-                <div class="mb-3">
-                    <h2><i class="fa-duotone fa-calendar-check me-3" />Past events</h2>
-                    {#each pastEvents.filter((e) => e.data.type === 'bytesize') as event (event.id)}
+                    {#each pastEvents as event, idx (event.id)}
+                        {#if hasYearChanged(pastEvents, idx)}
+                            <h3 id={'year-' + event.data.start.getFullYear()}>{event.data.start.getFullYear()}</h3>
+                        {/if}
                         <EventCard
                             frontmatter={event.data}
                             slug={event.slug}

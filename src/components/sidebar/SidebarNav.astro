@@ -1,5 +1,5 @@
 ---
-const { items } = Astro.props;
+const { items, minimal } = Astro.props;
 
 export interface Props {
     items: {
@@ -11,6 +11,7 @@ export interface Props {
             order?: number;
         }[];
     };
+    minimal?: boolean;
 }
 
 const url = Astro.url.pathname;
@@ -37,41 +38,79 @@ const url = Astro.url.pathname;
                                 )}
                                 {!item.section_slug && item.section_name}
                             </h6>
-                            <ul class="list-unstyled">
-                                {item.children
-                                    .sort((child) => child.order || 0)
-                                    .map((child) => {
-                                        return (
-                                            <li
-                                                class:list={[
-                                                    'mt-2 w-100',
-                                                    {
-                                                        active:
-                                                            url.endsWith(child.slug) ||
-                                                            (url.split('/').length >= 6 &&
-                                                                url
-                                                                    .split('/')
-                                                                    .slice(0, 4)
-                                                                    .join('/')
-                                                                    .endsWith(child.slug.replace(/\/$/, ''))),
-                                                    },
-                                                ]}
-                                            >
-                                                <a
+                            {minimal && (
+                                <ul class="minimal-list">
+                                    {item.children
+                                        .sort((child) => child.order || 0)
+                                        .map((child) => {
+                                            return (
+                                                <li
                                                     class:list={[
-                                                        'text-decoration-none p-1',
+                                                        'mt-2 w-100',
                                                         {
-                                                            'text-body-secondary': !url.endsWith(child.slug),
+                                                            active:
+                                                                url.endsWith(child.slug) ||
+                                                                (url.split('/').length >= 6 &&
+                                                                    url
+                                                                        .split('/')
+                                                                        .slice(0, 4)
+                                                                        .join('/')
+                                                                        .endsWith(child.slug.replace(/\/$/, ''))),
                                                         },
                                                     ]}
-                                                    href={child.slug}
                                                 >
-                                                    {child.title}
-                                                </a>
-                                            </li>
-                                        );
-                                    })}
-                            </ul>
+                                                    <a
+                                                        class:list={[
+                                                            'text-decoration-none p-1',
+                                                            'text-center',
+                                                            'd-none',
+                                                        ]}
+                                                        href={child.slug}
+                                                    >
+                                                        {child.title}
+                                                    </a>
+                                                </li>
+                                            );
+                                        })}
+                                </ul>
+                            )}
+                            {!minimal && (
+                                <ul class="list-unstyled">
+                                    {item.children
+                                        .sort((child) => child.order || 0)
+                                        .map((child) => {
+                                            return (
+                                                <li
+                                                    class:list={[
+                                                        'mt-2 w-100',
+                                                        {
+                                                            active:
+                                                                url.endsWith(child.slug) ||
+                                                                (url.split('/').length >= 6 &&
+                                                                    url
+                                                                        .split('/')
+                                                                        .slice(0, 4)
+                                                                        .join('/')
+                                                                        .endsWith(child.slug.replace(/\/$/, ''))),
+                                                        },
+                                                    ]}
+                                                >
+                                                    <a
+                                                        class:list={[
+                                                            'text-decoration-none p-1',
+                                                            {
+                                                                'text-body-secondary': !url.endsWith(child.slug),
+                                                            },
+                                                        ]}
+                                                        href={child.slug}
+                                                    >
+                                                        {child.title}
+                                                    </a>
+                                                </li>
+                                            );
+                                        })}
+                                </ul>
+                            )}
                         </div>
                     );
                 })
@@ -90,6 +129,21 @@ const url = Astro.url.pathname;
         background-color: transparentize($success, 0.75);
         a {
             color: $green-800 !important;
+        }
+    }
+    .minimal-list li {
+        transition: transform 0.3s ease;
+        &:hover {
+            color: $success;
+            list-style: none;
+            transform: translateX(-5rem);
+
+            a {
+                display: block !important;
+                color: $success;
+                margin-left: -5rem;
+                transition: all 3s ease-in;
+            }
         }
     }
 

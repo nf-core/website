@@ -1,8 +1,9 @@
 <script lang="ts">
     import ListingTableHeader from '@components/ListingTableHeader.svelte';
+    import PaginationNav from '@components/PaginationNav.svelte';
     import ComponentCard from '@components/component/ComponentCard.svelte';
     import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
-    import PaginationNav from '@components/PaginationNav.svelte';
+
     export let components: {
         name: string;
         path: string;
@@ -17,8 +18,13 @@
         }[];
     }[] = [];
 
-    let pageSize = $DisplayStyle === 'grid' ? 10 : 25;
-    let lastPage = Math.ceil(components.length / pageSize);
+    let pageSize: number = 12;
+    let lastPage: number = Math.ceil(components.length / pageSize);
+    const updatePageSize = () => {
+        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
+        lastPage = Math.ceil(components.length / pageSize);
+    };
+    updatePageSize();
 
     const searchComponents = (component) => {
         if ($SearchQuery === '') {
@@ -67,6 +73,9 @@
     SearchQuery.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
     });
+    DisplayStyle.subscribe(() => {
+        updatePageSize();
+    });
     $: filteredComponents = searchFilterSortComponents(components);
 
     $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
@@ -93,9 +102,9 @@
             </thead>
             <tbody>
                 {#each paginatedItems as component (component.name)}
-                    <tr>
+                    <tr class="position-relative">
                         <td class="name">
-                            <a href={'/' + component.type + 's/' + component.name + '/'}
+                            <a class="stretched-link" href={'/' + component.type + 's/' + component.name + '/'}
                                 >{@html component.name.replace('_', '_<wbr>')}</a
                             >
                         </td>
@@ -119,8 +128,8 @@
             </tbody>
         </table>
     {/if}
-    <PaginationNav {lastPage} />
 </div>
+<PaginationNav {lastPage} />
 
 <style>
     .name {

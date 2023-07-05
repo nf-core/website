@@ -1,7 +1,10 @@
 <script>
     import ListingCard from '@components/ListingCard.svelte';
+
     import { formatDistanceToNow } from 'date-fns';
+
     export let pipeline;
+
     const name = pipeline.name;
     const body = pipeline.description;
     const stars = pipeline.stargazers_count;

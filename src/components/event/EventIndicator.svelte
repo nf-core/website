@@ -3,7 +3,7 @@
 </script>
 
 {#if $EventIsOngoing}
-    <div class="event-indicator me-2 align-center">
+    <div class="event-indicator align-center">
         <slot />
     </div>
 {/if}
