@@ -65,7 +65,7 @@ include '../includes/header.php';
     use Spyc;
 
     $locations = [];
-    $contributors = spyc_load_file('../sanger-tol-contributors.yaml');
+    $contributors = spyc_load_file('../sanger-tol-partners.yaml');
     $contributors_html = '';
     foreach ($contributors['contributors'] as $idx => $c) {
         // Start card div
