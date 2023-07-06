@@ -137,9 +137,12 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
         content={[
             {
                 title: 'last release',
-                value: formatDistance(new Date(meta.releases[0].published_at), new Date(), {
-                    addSuffix: true,
-                }),
+                value:
+                    meta.releases.length > 1
+                        ? formatDistance(new Date(meta.releases[0].published_at), new Date(), {
+                              addSuffix: true,
+                          })
+                        : 'not yet released',
             },
             {
                 title: 'last update',
