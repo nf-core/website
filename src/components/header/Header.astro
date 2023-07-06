@@ -1,16 +1,9 @@
 ---
 import EventHeader from '@components/event/EventHeader.astro';
+import { markdown } from '@astropub/md';
 
-let {
-    title,
-    subtitle = false,
-    header_html,
-    md_github_url,
-    header_btn_url,
-    header_btn_text,
-    event_header,
-    topics,
-} = Astro.props;
+let { title, subtitle, header_html, md_github_url, header_btn_url, header_btn_text, event_header, topics } =
+    Astro.props;
 
 export interface Props {
     title: string;
@@ -23,6 +16,7 @@ export interface Props {
     topics?: string[];
 }
 title = title.replace('nf-core/', 'nf-core/<wbr>');
+subtitle = markdown(subtitle);
 ---
 
 <div class="mainpage-heading pb-1 text-bg-success">
@@ -51,7 +45,8 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
                 }
             </div>
         </h1>
-        {subtitle && <p class="lead mb-0">{subtitle}</p>}
+        {subtitle && <div class="lead mb-0">{subtitle}</div>}
+
         <div class="mb-2 mb-md-3">
             {topics && topics.map((topic) => <span class="badge topic me-2">{topic}</span>)}
         </div>
