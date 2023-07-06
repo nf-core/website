@@ -54,6 +54,7 @@ All nf-core pipelines _should_ follow the following guidelines, if possible / ap
 - [File formats](recommendations/file_formats.md): Use community accepted modern file formats such as `CRAM`.
 - [DOIs](recommendations/dois.md): Pipelines should have digital object identifiers (DOIs).
 - [Cloud compatible](recommendations/cloud_compatible.md): Pipelines should be tested on cloud computing environments.
+- [Publication credit](recommendations/publication_credit.md): Pipeline publications should acknowledge the nf-core community.
 
 ## If the guidelines don't fit
 

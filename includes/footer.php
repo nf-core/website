@@ -30,6 +30,9 @@ if (isset($subfooter) and $subfooter) {
             <a href="/about#czi-eoss">
               <img src="/assets/img/contributors-colour/CZI-alt.svg" alt="CZI" class="" style="max-width: 50px">
             </a>,
+            <a href="/about#seqera">
+              <img src="/assets/img/seqera-icon.svg" alt="Seqera" class="" style="max-width: 50px">
+            </a>,
             <a href="/about#microsoft-azure">
               <img src="/assets/img/contributors-colour/azure.svg" alt="Microsoft Azure" style="max-width: 50px">
             </a>

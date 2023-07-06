@@ -209,10 +209,12 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 
 ### Direct input
 
+> ⚠️ This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
+
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
 1. [The path must be enclosed in quotes (`'` or `"`)](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>). This is even if you are only running one paired end sample.
+2. The path must have at least one `*` wildcard character i.e. following a ['glob' pattern](https://en.wikipedia.org/wiki/Glob_%28programming%29). This is even if you are only running one paired end sample.
    - A description of valid pattern matching can be seen [here](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob) for java and [here](https://www.nextflow.io/docs/latest/channel.html?highlight=glob#frompath) for Nextflow
 3. When using the pipeline with paired end data, the path must use `{1,2}` or `{R1,R2}` notation to specify read pairs.
    - This notation is interpreted by Nextflow to mean anything with the same string other than R1 and R2 in the file name, will be be assumed to be a pair of files.
@@ -301,7 +303,7 @@ docker pull nfcore/<pipeline>:dev
 
 If you work in a `dev` branch, you may also want to consider putting a request for a pull in each run you do with nextflow, by putting this line of code in your nextflow.config file:
 
-```bash
+```nextflow
 docker {
     enabled = true
     runOptions = '--pull=always'
@@ -407,10 +409,10 @@ Sometimes part way through a run, a particular tool or step of the pipeline will
 An example is as follows:
 
 ```text
-Error executing process > 'markduplicates (DA117)'
+Error executing process > 'NFCORE_SAREK:SAREK:MARKDUPLICATES (DA117)'
 
 Caused by:
-  Process `markduplicates (DA117)` terminated with an error exit status (137)
+  Process `NFCORE_SAREK:SAREK:MARKDUPLICATES (DA117)` terminated with an error exit status (137)
 
 Command executed:
 
@@ -444,7 +446,7 @@ While Nextflow tries to make your life easier by automatically retrying jobs tha
 
 To fix this you need to change the default memory requirements for the process that is breaking. We can do this by making a custom profile, which we then provide to the Nextflow run command.
 
-For example, let's say it's the `markduplicates` process that is running out of memory (as displayed on the Nextflow running display).
+For example, let's say it's the `MARKDUPLICATES` process that is running out of memory (as displayed on the Nextflow running display).
 
 - First we need to check to see what default memory value we have. For this you need to go into the pipeline code locally in your local copy (typically: `~/.nextflow/assets/nf-core/<pipeline>/`, or the GitHub repository (`https://github.com/nf-core/<pipeline>`)
 - Go to the file here `modules/nf-core/<tool_name>/main.nf`, and check the `label` line.
@@ -456,16 +458,14 @@ For example, let's say it's the `markduplicates` process that is running out of 
 - Within this file, add the following. Note we have increased the default `4.GB` to `16.GB`.
 
   ```nextflow
-  profiles {
-      big_data {
-        process {
-          withName: markduplicates {
-            memory = 16.GB
-          }
-        }
-      }
+  process {
+    withName: MARKDUPLICATES {
+      memory = 16.GB
+    }
   }
   ```
+
+  > ℹ️ In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, or in the pipeline's `conf/modules.config` file, if a module is used multiple times in a workflow and not all instances need the same resources.
 
   - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
 
@@ -479,14 +479,11 @@ For example, let's say it's the `markduplicates` process that is running out of 
     - `16.GB * task.attempt` multiplies the memory request by the index of the retry. So if the job failed and is being tried a second time, it requests `32.GB`.
     - The `check_max()` function prevents Nextflow requesting excessive resources above what is available on your system. This effectively sets a ceiling on the resources and prevents the pipeline from crashing if it goes too high. Unfortunately because of the order in which pipeline code and Nextflow configs are parsed, this function needs to be defined in your custom config file.
 
-- Once saved, modify the original Nextflow run command:
+- Once saved, modify the original Nextflow run command to supply the custom_resources configuration file:
 
   ```bash
-  nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile big_data,<original>,<profiles> <...>
+  nextflow run nf-core/<pipeline> -c /<path>/<to>/custom_resources.conf -profile <original> <...>
   ```
-
-  - We have added `-c` to specify which file to use for the custom profiles, and then added the `big_data` profile to the original profiles you were using.
-  - :warning: It's important that the `big_data` profile name comes first, to ensure it doesn't get overwritten by any parameters set in the subsequent profiles. Profile names should be comma separated with no spaces.
 
 ## Crashed pipeline with an error but Nextflow is still running
 

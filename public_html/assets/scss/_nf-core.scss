@@ -528,6 +528,9 @@ footer a:active {
   -moz-transition: opacity 0.25s ease-in-out;
   -webkit-transition: opacity 0.25s ease-in-out;
 }
+.parameter-link {
+  opacity: 1;
+}
 h1:hover .header-link,
 h1:active .header-link,
 h1:focus .header-link,
@@ -565,8 +568,12 @@ h4:focus .header-link,
 
 .edit-md-btn {
   opacity: 0.5;
-  transition: opacity 0.15s ease-in-out, color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    opacity 0.15s ease-in-out,
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 .edit-md-btn:hover,
 .edit-md-btn:active,

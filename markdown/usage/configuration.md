@@ -35,10 +35,10 @@ nf-core offers a range of basic profiles for configuration of container engines:
 
 - `docker`
   - A generic configuration profile to be used with [Docker](http://docker.com/)
-  - Pulls software from DockerHub
+  - Pulls software from quay.io
 - `apptainer`
   - A generic configuration profile to be used with [Singularity](https://apptainer.org/)
-  - Pulls software from DockerHub
+  - Pulls software from quay.io
 - `podman`
   - A generic configuration profile to be used with [Podman](https://podman.io/)
 - `shifter`
@@ -195,6 +195,24 @@ Once you've written the [config file](#custom-configuration-files), and you can 
 > [time](https://www.nextflow.io/docs/latest/process.html#time).
 
 If you think that the defaults in the pipeline are way off, please the pipeline developers know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository! Then we can adjust the defaults to the benefit of all pipeline users.
+
+## Docker registries
+
+By default, the pipelines use `quay.io` as the default docker registry for Docker and Podman images. When specifying a docker container, it will pull the image from quay.io unless you specify a full URI. For example, if the process container is:
+
+- `biocontainers/fastqc:0.11.7--4`
+
+By default, the image will be pulled from quay.io, resulting in a full URI of:
+
+- `quay.io/biocontainers/fastqc:0.11.7--4`
+
+If the `docker.registry` is specified, this will be used first. E.g. if the config value `docker.registry = 'public.ecr.aws'` is added the image will be pulled from:
+
+- `public.ecr.aws/biocontainers/fastqc:0.11.7--4`
+
+Alternatively, if you specify a full URI in the container specification, you can ignore the `docker.registry` setting altogether. For example, this image will be pulled exactly as specified:
+
+- `docker.io/biocontainers/fastqc:v0.11.9_cv8`
 
 ## Updating tool versions
 
