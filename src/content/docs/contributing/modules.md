@@ -347,7 +347,7 @@ Once you<span class="x x-first x-last"> are </span>familiar with the module subm
 ### Talks
 
 :::warning
-these may include references to an older syntax, however the general idea remains the same
+These may include references to an older syntax, however the general idea remains the same
 :::
 
 <div class="ratio ratio-16x9">
@@ -372,9 +372,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
-      `<module>.nf`:
 
-      ```nextflow
+
+      ```groovy title="<module>.nf"
       script:
       def args = task.ext.args ?: ''
       def prefix = task.ext.prefix ?: "${meta.id}"
@@ -385,10 +385,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
       """
       ```
 
-      `modules.config`:
-
-      ```nextflow
-      process {
+      ```groovy title="modules.config"
           withName: <module> {
               ext.args = [                                                          // Assign either a string, or closure which returns a string
                   '--quiet',
