@@ -232,7 +232,7 @@ include '../includes/header.php';
 <p>Tree of Life programme at Wellcome Sanger Insitute is part of several biodiversity projects. You can see an overview of these below.</p>
 
 <h3 id="dtol_testimonial">
-    <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark'
+    <img width="200px" src="/assets/img/contributors-<?php echo $theme == 'dark'
         ? 'white'
         : 'colour'; ?>/dtol.png" class="float-end ps-4 darkmode-image" />
     Darwin Tree of Life
