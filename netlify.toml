@@ -1,3 +1,7 @@
 [functions]
-  external_node_modules = ["vscode-oniguruma"]
-  node_bundler = "esbuild"
+external_node_modules = ["vscode-oniguruma"]
+node_bundler = "esbuild"
+[[redirects]]
+from = "/logo/"
+status = 302
+to = "https://oldsite.nf-co.re/logo/"
