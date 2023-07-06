@@ -57,6 +57,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
   <script src="/assets/lib/bootstrap.bundle.min.js"></script>
   <script src="/assets/lib/highlight.min.js"></script>
   <script src="/assets/lib/groovy.min.js"></script>
+  <script src="/assets/lib/mermaid.js"></script>
   <!-- Page-specific CSS and JS -->
   <?php
   if (isset($import_moment) && $import_moment): ?>
@@ -171,6 +172,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
               <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
               <a class="dropdown-item" href="/mentorships">Mentorships</a>
+              <a class="dropdown-item" href="/governance">Governance</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join nf-core</a>
             </div>
