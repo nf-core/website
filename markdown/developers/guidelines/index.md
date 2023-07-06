@@ -12,8 +12,8 @@ The aim of nf-core is to have standardised best-practice pipelines.
 To ensure this standardisation, we maintain a set of guidelines which all nf-core
 pipelines must adhere to.
 
-> If you're thinking of adding a new pipeline to nf-core, please read the documentation
-> about [adding a new pipeline](../adding_pipelines.md).
+> If you're thinking of adding a new pipeline to nf-core or contributing to an existing pipeline, please read the documentation
+> about [adding a new pipeline](../adding_pipelines.md) and [contributing to a pipeline](../contributing_to_pipelines.md).
 
 The following lists an overview of the guidelines. Follow links to dedicated pages for more details about a given topic.
 
