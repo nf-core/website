@@ -250,7 +250,41 @@ It will check:
   - You can run this manually with the `nf-core lint` command.
   - Some of the linting tests can be fixed automatically with the `--fix` subcommand, for example any `files_unchanged` type of error: `nf-core lint --fix files_unchanged`.
 
-See the documentation about [code formatting](/developers/code_formatting.md) for more information on these tools and how to use them.
+> Tip: when using a code editor, some code editor settings might help you solve any code linting errors by linting when saving a file and even fixing the errors directly. You can check out [this documentation](https://nf-co.re/docs/contributing/editor_plugins) on code editor plugins.
+
+#### Black
+
+[Black](https://black.readthedocs.io/en/stable/index.html) is a formatting software that allows the code to be formatted in a quick and efficient way.
+
+It can be installed with the command `pip install black`, which requires Python 3.7+ to run.
+
+To launch Black, just run it with sensible defaults:
+
+```bash
+black {source_file_or_directory}'
+```
+
+Alternatively, you can run the software as a package if running it as a script doesn’t work:
+
+```bash
+python -m black {source_file_or_directory}
+```
+
+#### Prettier
+
+[Prettier](https://prettier.io/docs/en/install.html) is a code formatter with support for several file formats.
+
+Use the following command to check if the files are already formatted:
+
+```bash
+prettier --check .
+```
+
+If you want to overwrite them use this command instead:
+
+```bash
+prettier --write .
+```
 
 #### Prettier
 
