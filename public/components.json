@@ -600,7 +600,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "agat_convertspgff2gtf",
@@ -4011,7 +4017,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "authentict_deam2cont",
@@ -5268,7 +5280,13 @@
         "authors": [
           "@erikrikarddaniel"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bbmap_bbduk",
@@ -5350,6 +5368,10 @@
       },
       "pipelines": [
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.0.1"
         }
@@ -5418,7 +5440,13 @@
         "authors": [
           "@danilodileo"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bbmap_bbsplit",
@@ -5672,7 +5700,13 @@
         "authors": [
           "@daniellundin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bbmap_pileup",
@@ -5912,7 +5946,13 @@
           "@projectoriented",
           "@ramprasadn"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bcftools_call",
@@ -6080,6 +6120,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "radseq",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "1.0.0"
@@ -6882,6 +6926,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -7471,6 +7519,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -7654,6 +7706,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "radseq",
+          "version": "dev"
+        },
         {
           "name": "rnadnavar",
           "version": "dev"
@@ -8171,6 +8227,10 @@
           "version": "3.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         }
@@ -8418,7 +8478,13 @@
         "authors": [
           "@priyanka-surana"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "radseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedtools_genomecov",
@@ -8685,6 +8751,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         }
       ]
     },
@@ -8846,6 +8916,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "radseq",
+          "version": "dev"
+        },
         {
           "name": "ssds",
           "version": "dev"
@@ -9013,6 +9087,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -9093,6 +9171,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -9401,6 +9483,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "ssds",
@@ -11743,6 +11829,10 @@
           "version": "2.0"
         },
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -11761,6 +11851,10 @@
         {
           "name": "hic",
           "version": "2.1.0"
+        },
+        {
+          "name": "marsseq",
+          "version": "1.0.1"
         },
         {
           "name": "taxprofiler",
@@ -11846,6 +11940,10 @@
           "version": "2.0"
         },
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -11864,6 +11962,10 @@
         {
           "name": "hic",
           "version": "2.1.0"
+        },
+        {
+          "name": "marsseq",
+          "version": "1.0.1"
         },
         {
           "name": "taxprofiler",
@@ -11953,6 +12055,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "circrna",
           "version": "dev"
         }
@@ -12014,6 +12120,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
         {
           "name": "circrna",
           "version": "dev"
@@ -12374,7 +12484,13 @@
         "authors": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bwa_index",
@@ -12449,6 +12565,10 @@
           "version": "2.0"
         },
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -12477,6 +12597,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.0.0"
         },
@@ -12490,6 +12614,10 @@
         },
         {
           "name": "ssds",
+          "version": "dev"
+        },
+        {
+          "name": "variantcatalogue",
           "version": "dev"
         }
       ]
@@ -12604,6 +12732,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -12613,6 +12745,10 @@
         },
         {
           "name": "ssds",
+          "version": "dev"
+        },
+        {
+          "name": "variantcatalogue",
           "version": "dev"
         }
       ]
@@ -12708,7 +12844,13 @@
         "authors": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bwa_samse",
@@ -12801,7 +12943,13 @@
         "authors": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bwamem2_index",
@@ -12870,12 +13018,20 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -12982,12 +13138,20 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -13499,6 +13663,14 @@
       },
       "pipelines": [
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.1.1"
         },
@@ -13586,6 +13758,10 @@
       },
       "pipelines": [
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
           "name": "circdna",
           "version": "1.0.4"
         },
@@ -13603,6 +13779,10 @@
         },
         {
           "name": "genomeannotator",
+          "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
           "version": "dev"
         },
         {
@@ -13624,6 +13804,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -13719,7 +13903,13 @@
         "authors": [
           "@timslittle"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "radseq",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cdhit_cdhitest",
@@ -19042,6 +19232,14 @@
           "version": "2.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -19060,6 +19258,10 @@
         {
           "name": "demultiplex",
           "version": "1.3.2"
+        },
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
         },
         {
           "name": "epitopeprediction",
@@ -19118,7 +19320,19 @@
           "version": "2.3.2"
         },
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "mcmicro",
+          "version": "dev"
+        },
+        {
           "name": "metapep",
+          "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
           "version": "dev"
         },
         {
@@ -19128,6 +19342,10 @@
         {
           "name": "mhcquant",
           "version": "2.4.1"
+        },
+        {
+          "name": "molkart",
+          "version": "dev"
         },
         {
           "name": "nanoseq",
@@ -19146,12 +19364,20 @@
           "version": "dev"
         },
         {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
           "name": "proteinfold",
           "version": "1.0.0"
         },
         {
           "name": "quantms",
           "version": "1.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -19168,6 +19394,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -19190,12 +19420,24 @@
           "version": "dev"
         },
         {
+          "name": "spinningjenny",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
         {
           "name": "taxprofiler",
           "version": "1.0.1"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         },
         {
           "name": "viralrecon",
@@ -19312,6 +19554,10 @@
           "version": "3.12.0"
         },
         {
+          "name": "rnasplice",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -19414,7 +19660,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "custom_sratoolsncbisettings",
@@ -19528,7 +19780,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "custom_tabulartogseagct",
@@ -19590,7 +19848,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "cutadapt",
@@ -19677,6 +19941,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "marsseq",
+          "version": "1.0.1"
         }
       ]
     },
@@ -21617,6 +21885,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -21879,7 +22151,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "diamond_blastp",
@@ -24088,6 +24366,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -24445,6 +24727,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -24529,6 +24815,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -25803,6 +26093,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -25908,8 +26202,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
         "fastq_fastqc_umitools_trimgalore",
+        "fastq_fastqc_umitools_fastp",
         "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
@@ -25928,6 +26222,14 @@
         {
           "name": "bacass",
           "version": "2.0.0"
+        },
+        {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
         },
         {
           "name": "chipseq",
@@ -25998,8 +26300,24 @@
           "version": "2.3.2"
         },
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "mcmicro",
+          "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "2.4.0"
+        },
+        {
+          "name": "molkart",
+          "version": "dev"
         },
         {
           "name": "nanoseq",
@@ -26008,6 +26326,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -26024,6 +26346,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -26046,12 +26372,24 @@
           "version": "dev"
         },
         {
+          "name": "spinningjenny",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
         {
           "name": "taxprofiler",
           "version": "1.0.1"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         },
         {
           "name": "viralrecon",
@@ -27590,6 +27928,10 @@
           "version": "2.3.2"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -28609,6 +28951,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -28679,6 +29025,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -28787,6 +29137,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -31324,6 +31678,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -32669,7 +33027,13 @@
         "authors": [
           "@adamrtalbot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_markduplicates",
@@ -32794,6 +33158,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -33080,6 +33448,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -33178,6 +33550,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -33357,6 +33733,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -33709,6 +34089,10 @@
         {
           "name": "raredisease",
           "version": "1.0.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -34070,6 +34454,10 @@
         {
           "name": "raredisease",
           "version": "1.0.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -35029,6 +35417,10 @@
         {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -37446,6 +37838,10 @@
           "version": "3.12.0"
         },
         {
+          "name": "rnasplice",
+          "version": "dev"
+        },
+        {
           "name": "rnavar",
           "version": "1.0.0"
         },
@@ -38633,6 +39029,10 @@
         {
           "name": "raredisease",
           "version": "1.0.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -39505,7 +39905,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "gstama_collapse",
@@ -40398,6 +40804,10 @@
           "version": "3.1"
         },
         {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        },
+        {
           "name": "epitopeprediction",
           "version": "2.2.1"
         },
@@ -40426,6 +40836,10 @@
           "version": "2.3.2"
         },
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
           "name": "nascent",
           "version": "2.1.1"
         },
@@ -40436,6 +40850,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -41281,6 +41699,10 @@
         {
           "name": "raredisease",
           "version": "1.0.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -42734,6 +43156,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -42805,6 +43231,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -42884,6 +43314,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -42959,6 +43393,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -43080,6 +43518,10 @@
         {
           "name": "funcscan",
           "version": "1.1.2"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
         }
       ]
     },
@@ -49031,7 +49473,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "lissero",
@@ -49830,6 +50278,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
@@ -54588,6 +55040,10 @@
           "version": "1.1.4"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.0.1"
         }
@@ -54662,6 +55118,10 @@
         {
           "name": "crisprseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -55566,6 +56026,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -56539,6 +57003,14 @@
           "version": "2.0.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "circdna",
           "version": "1.0.4"
         },
@@ -56607,7 +57079,19 @@
           "version": "2.3.2"
         },
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
+          "name": "mcmicro",
+          "version": "dev"
+        },
+        {
           "name": "metapep",
+          "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
           "version": "dev"
         },
         {
@@ -56617,6 +57101,10 @@
         {
           "name": "mhcquant",
           "version": "2.4.1"
+        },
+        {
+          "name": "molkart",
+          "version": "dev"
         },
         {
           "name": "nanoseq",
@@ -56635,12 +57123,20 @@
           "version": "dev"
         },
         {
+          "name": "phyloplace",
+          "version": "1.0.0"
+        },
+        {
           "name": "proteinfold",
           "version": "1.0.0"
         },
         {
           "name": "quantms",
           "version": "1.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -56653,6 +57149,10 @@
         {
           "name": "rnafusion",
           "version": "2.3.4"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -56675,12 +57175,24 @@
           "version": "dev"
         },
         {
+          "name": "spinningjenny",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
         {
           "name": "taxprofiler",
           "version": "1.0.1"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         }
       ]
     },
@@ -61942,6 +62454,10 @@
         {
           "name": "raredisease",
           "version": "1.0.0"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -62130,6 +62646,10 @@
         {
           "name": "atacseq",
           "version": "2.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
         },
         {
           "name": "chipseq",
@@ -62364,6 +62884,10 @@
         {
           "name": "rnafusion",
           "version": "2.3.4"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         }
       ]
     },
@@ -65630,6 +66154,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.1.1"
         }
@@ -66063,6 +66591,10 @@
         {
           "name": "metapep",
           "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
         }
       ]
     },
@@ -66231,6 +66763,10 @@
         {
           "name": "mag",
           "version": "2.3.2"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
         }
       ]
     },
@@ -68289,7 +68825,13 @@
         "authors": [
           "@grst"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "roary",
@@ -68556,6 +69098,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         }
       ]
     },
@@ -68621,6 +69167,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
         {
           "name": "rnaseq",
           "version": "3.12.0"
@@ -68695,6 +69245,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
         {
           "name": "nascent",
           "version": "2.1.1"
@@ -68801,6 +69355,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
         {
           "name": "rnaseq",
           "version": "3.12.0"
@@ -68919,6 +69477,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -69001,6 +69563,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -69075,6 +69641,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
         {
           "name": "nascent",
           "version": "2.1.1"
@@ -69175,6 +69745,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.1.1"
         },
@@ -69266,6 +69840,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
         {
           "name": "rnaseq",
           "version": "3.12.0"
@@ -69747,6 +70325,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         }
       ]
     },
@@ -69852,6 +70434,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         }
       ]
     },
@@ -70766,6 +71352,10 @@
       },
       "pipelines": [
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
           "name": "hlatyping",
           "version": "2.0.0"
         },
@@ -71171,6 +71761,14 @@
       },
       "pipelines": [
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "circdna",
           "version": "1.0.4"
         },
@@ -71200,6 +71798,10 @@
         },
         {
           "name": "pangenome",
+          "version": "dev"
+        },
+        {
+          "name": "radseq",
           "version": "dev"
         },
         {
@@ -71578,6 +72180,14 @@
           "version": "2.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -71602,6 +72212,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "2.4.0"
         },
@@ -71614,8 +72228,16 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -71782,6 +72404,14 @@
           "version": "2.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -71806,6 +72436,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -71814,8 +72448,16 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -71928,6 +72570,14 @@
           "version": "2.0.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -71956,6 +72606,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "2.4.0"
         },
@@ -71966,6 +72620,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -71982,6 +72640,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -72002,6 +72664,14 @@
         {
           "name": "taxprofiler",
           "version": "1.0.1"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         },
         {
           "name": "viralrecon",
@@ -72189,8 +72859,20 @@
       },
       "pipelines": [
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -72388,6 +73070,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -72410,6 +73096,10 @@
         {
           "name": "hicar",
           "version": "1.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
         },
         {
           "name": "methylseq",
@@ -72436,12 +73126,20 @@
           "version": "3.12.0"
         },
         {
+          "name": "rnasplice",
+          "version": "dev"
+        },
+        {
           "name": "rnavar",
           "version": "1.0.0"
         },
         {
           "name": "smrnaseq",
           "version": "2.2.1"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         },
         {
           "name": "viralrecon",
@@ -72545,6 +73243,14 @@
           "version": "2.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
         },
@@ -72569,6 +73275,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "2.4.0"
         },
@@ -72581,6 +73291,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.0.0"
         },
@@ -72591,6 +73305,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -72747,6 +73465,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "bamtofastq",
+          "version": "2.0.0"
+        },
         {
           "name": "circdna",
           "version": "1.0.4"
@@ -74785,7 +75507,13 @@
         "authors": [
           "@emnilsson"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqtk_rename",
@@ -74997,6 +75725,10 @@
         {
           "name": "crisprseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "radseq",
+          "version": "dev"
         }
       ]
     },
@@ -76465,7 +77197,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "shinyngs_staticdifferential",
@@ -76559,7 +77297,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "shinyngs_staticexploratory",
@@ -76690,7 +77434,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "shinyngs_validatefomcomponents",
@@ -76813,7 +77563,13 @@
         "authors": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "shovill",
@@ -79742,6 +80498,10 @@
       },
       "pipelines": [
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -80485,6 +81245,10 @@
           "version": "dev"
         },
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
           "name": "rnafusion",
           "version": "2.3.4"
         },
@@ -80493,8 +81257,16 @@
           "version": "3.12.0"
         },
         {
+          "name": "rnasplice",
+          "version": "dev"
+        },
+        {
           "name": "rnavar",
           "version": "1.0.0"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         }
       ]
     },
@@ -80565,6 +81337,10 @@
           "version": "dev"
         },
         {
+          "name": "marsseq",
+          "version": "1.0.1"
+        },
+        {
           "name": "rnafusion",
           "version": "2.3.4"
         },
@@ -80573,12 +81349,20 @@
           "version": "3.12.0"
         },
         {
+          "name": "rnasplice",
+          "version": "dev"
+        },
+        {
           "name": "rnavar",
           "version": "1.0.0"
         },
         {
           "name": "scrnaseq",
           "version": "2.3.2"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
         }
       ]
     },
@@ -81214,8 +81998,16 @@
           "version": "2.0"
         },
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "chipseq",
           "version": "2.0.0"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
         },
         {
           "name": "nascent",
@@ -81224,6 +82016,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         }
       ]
     },
@@ -82654,6 +83450,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.0.0"
         },
@@ -82668,6 +83468,10 @@
         {
           "name": "sarek",
           "version": "3.2.3"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -83378,7 +84182,13 @@
         "authors": [
           "@Danilo2771"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "transdecoder_predict",
@@ -83472,7 +84282,13 @@
         "authors": [
           "@Danilo2771"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "metatdenovo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "trimgalore",
@@ -83594,12 +84410,20 @@
           "version": "1.1.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "methylseq",
           "version": "2.4.0"
         },
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "ssds",
@@ -83691,7 +84515,21 @@
         "authors": [
           "@alyssa-ab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
+          "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "viralintegration",
+          "version": "0.1.0"
+        }
+      ]
     },
     {
       "name": "trinity",
@@ -83836,6 +84674,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         }
       ]
     },
@@ -83933,6 +84775,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "ssds",
@@ -84856,6 +85702,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "radseq",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -84935,6 +85785,10 @@
         {
           "name": "atacseq",
           "version": "2.0"
+        },
+        {
+          "name": "callingcards",
+          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -85202,6 +86056,10 @@
           "version": "1.3.2"
         },
         {
+          "name": "differentialabundance",
+          "version": "1.2.0"
+        },
+        {
           "name": "funcscan",
           "version": "1.1.2"
         },
@@ -85232,6 +86090,10 @@
         {
           "name": "rnaseq",
           "version": "3.12.0"
+        },
+        {
+          "name": "rnasplice",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -89976,6 +90838,10 @@
       },
       "pipelines": [
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -90099,6 +90965,10 @@
           "version": "3.1"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.1.1"
         },
@@ -90217,6 +91087,10 @@
           "version": "2.0"
         },
         {
+          "name": "callingcards",
+          "version": "dev"
+        },
+        {
           "name": "circdna",
           "version": "1.0.4"
         },
@@ -90227,6 +91101,10 @@
         {
           "name": "cutandrun",
           "version": "3.1"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "dev"
         },
         {
           "name": "nascent",
@@ -91471,6 +92349,10 @@
         {
           "name": "ampliseq",
           "version": "2.6.1"
+        },
+        {
+          "name": "phyloplace",
+          "version": "1.0.0"
         }
       ]
     },
