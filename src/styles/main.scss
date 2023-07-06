@@ -262,6 +262,10 @@ code:not(pre code),
   color: inherit;
 }
 
+.mainpage-heading code:not(pre code){
+  background-color: rgba($white, 0.1) !important;
+  color: $white !important;
+}
 @include media-breakpoint-down(md) {
   pre,
   code,
