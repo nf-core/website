@@ -52,7 +52,6 @@ The current members of the maintainer's team in 2023 are: <!-- TODO: check if ye
 - [@Emiller88](https://github.com/Emiller88): Edmund Miller (University of Texas at Dallas & Element Biosciences)
 - [@FriederikeHanssen](https://github.com/FriederikeHanssen): Friederike Hanssen (Quantitative Biology Center, QBiC, University of Tübingen)
 - [@mirpedrol](https://github.com/mirpedrol): Júlia Mir Pedrol (Quantitative Biology Center, QBiC, University of Tübingen)
-- [@ggabernet](https://github.com/ggabernet): Gisela Gabernet (Quantitative Biology Center, QBiC, University of Tübingen)
 - [@drpatelh](https://github.com/drpatelh): Harshil Patel (Seqera Labs)
 - [@jfy133](https://github.com/jfy133): James A. Fellows Yates (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology)
 - [@jasmezz](https://github.com/jasmezz): Jasmin Frangenberg (Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute)
@@ -86,9 +85,9 @@ The safety team is responsible for ensuring the community is a safe place and re
 
 The current safety team in 2023 are:
 
-- [@ctuni](https://t.co/mQInuSXc5R) Cris Tuñí
-- [@heuerm](https://github.com/heuermh) Michael Heuer
-- [@snafees](https://github.com/snafees/) Saba Nafees
+- [@ctuni](https://github.com/ctuni): Cris Tuñí ([contact](mailto:c.tuni.dominguez@gmail.com))
+- [@heuermh](https://github.com/heuermh): Michael Heuer ([contact](mailto:mheuer@mammothbiosci.com))
+- [@snafees](https://github.com/snafees/): Saba Nafees ([contact](mailto:saba.nafees314@gmail.com))
 
 ## Financial Support
 
@@ -125,6 +124,24 @@ The CZI grant employs personnel based at the [SciLifeLab National Genomics Infra
 
 <div class="clearfix"></div>
 
+### Seqera Labs {#seqera}
+
+<img src="/assets/img/contributors-colour/seqera.svg" alt="Seqera Labs" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+
+Seqera Labs is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
+
+Seqera is the company behind Nextflow and has supported the nf-core community since its inception.
+
+Specifically, Seqera helps nf-core with:
+
+- Event organisation and costs
+- Website hosting
+- Employment of several core contributors
+- A [Tower Cloud Professional](https://cloud.tower.nf/pricing/) account for launching and managing full-size release tests.
+- Providing and maintaining Nextflow! ✨
+
+<div class="clearfix"></div>
+
 ### SciLifeLab Data Centre
 
 <img src="/assets/img/contributors-colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
@@ -154,6 +171,28 @@ Microsoft Azure also kindly supports nf-core with cloud compute credits to run e
 You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
 
 <div class="clearfix"></div>
+
+## Open Source Support
+
+We also thank the following organisations for supporting nf-core through providing us 'open source plans' of their services:
+
+<div class="row my-5">
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://www.docker.com/" target="_blank">
+      <img src="/assets/img/docker-horizontal.png" alt="Docker w-100">
+    </a>
+  </div>
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://gitpod.io/" target="_blank">
+      <img src="/assets/img/contributors-colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-100">
+    </a>
+  </div>
+  <div class="col-lg-4" style="align-self:center;">
+    <a href="https://hackmd.io/" target="_blank">
+      <img src="/assets/img/contributors-colour/hackmd.svg" alt="HackMD" class="darkmode-image w-100">
+    </a>
+  </div>
+</div>
 
 ## History of nf-core
 
