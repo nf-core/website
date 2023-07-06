@@ -11,7 +11,25 @@ const octokit = new Octokit({
 });
 export default octokit;
 
+export async function getCurrentRateLimitRemaining() {
+  try {
+    // Make a request to any endpoint (e.g., get the authenticated user)
+    const response = await octokit.rest.repos.get({
+      owner: 'nf-core',
+      repo: 'nf-co.re',
+    });
+
+    // Get the 'x-ratelimit-remaining' header from the response headers
+    const rateLimitRemaining = response.headers['x-ratelimit-remaining'];
+
+    console.log(`Rate limit remaining: ${rateLimitRemaining}`);
+  } catch (error) {
+    console.error('Error occurred:', error);
+  }
+}
+
 export const getGitHubFile = async (repo, path, ref) => {
+  // console.log(`Getting ${path} from ${repo} ${ref}`);
   const response = await octokit
     .request('GET /repos/nf-core/{repo}/contents/{path}?ref={ref}', {
       repo: repo,
@@ -24,7 +42,7 @@ export const getGitHubFile = async (repo, path, ref) => {
         console.log(error.request.url);
         return;
       } else {
-        console.log(error);
+        console.log(`something else happened for ${path} in ${repo} ${ref}`, error);
         return;
       }
     })
