@@ -145,7 +145,7 @@ Don't forget to ask for help if you have any doubts!
 
 Now that your test data is hosted on the web, you can set up a `test` config profile in your
 workflow that points to it.
-In fact, the `test` profile should already exist if you've used the template (you can find it in nf-core/my_workflow/conf/test.config).
+A stub `test` profile should already exist in `conf/test.config`, so you just need to edit that file.
 Switch out the example URLs for the ones you added (view the files on GitHub and click 'Raw' to get the URL).
 
 Add any other required parameters so that running the pipeline runs with as few extra
@@ -299,18 +299,18 @@ Sometimes, especially when adding new features to a pipeline, the dependencies c
 - Add _only_ the newly required dependencies to the `environment.yml` in the pipeline code
 - If you only add new processes to an already existing pipeline however, you can simply specify the container in the `nextflow.config` file, like so:
 
-```bash
- process {
+```nextflow
+process {
     withName:foo {
         container = 'image_name_1'
-        }
+    }
     withName:bar {
         container = 'image_name_2'
-        }
-      }
- charliecloud {
-    enabled = true
     }
+}
+charliecloud {
+    enabled = true
+}
 ```
 
 An extensive guide on how to handle containers can be found [here](https://www.nextflow.io/docs/latest/container.html)
@@ -355,15 +355,15 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `modules.json`: This file holds information (e.g. version) about all the modules in the pipeline that have been installed from `nf-core/modules`
 
-- `.nf-core.yml`: Indicates the type of repository (the standard being pipeline)
+- `.nf-core.yml`: Indicates the type of repository (pipeline or modules repo)
 
-- `.gitpod.yml`: Extensions to properly visualise the pipeline on github
+- `.gitpod.yml`: Config file to define online working environment with <https://www.gitpod.io>
 
-- `pyproject.toml`: Config file for Python. Mostly used to configure linting of bin/check_samplesheet.py with Black
+- `pyproject.toml`: Config file for Python. Mostly used to configure linting of `bin/check_samplesheet.py` with Black
 
 ### Directories
 
--`.devcontainer.json`: Specific container to facilitate updating the pipeline
+- `.devcontainer`: Configuration to work with the [GitHub Codespaces](https://github.com/features/codespaces) online editing environments.
 
 - `.github/`: Other GitHub specific files, e.g. for specifying templates and GitHub actions
 
@@ -396,7 +396,7 @@ To assure that nf-core pipelines don't break after some change is made to the co
 
 ## DSL2 and modules
 
-Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. Currently, most nf-core pipelines are written in DSL2, and DSL1 is considered outdated. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
+Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
 
 ### Modules
 
