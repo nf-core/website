@@ -111,7 +111,7 @@
       'Scaron,b1,scaron,bo,Yuml,m6,circ,ms,tilde,802,ensp,803,emsp,809,thinsp,80c,zwnj,80d,zwj,80e,lrm,' +
       '80f,rlm,80j,ndash,80k,mdash,80o,lsquo,80p,rsquo,80q,sbquo,80s,ldquo,80t,rdquo,80u,bdquo,810,dagger,' +
       '811,Dagger,81g,permil,81p,lsaquo,81q,rsaquo,85c,euro',
-    32
+    32,
   );
 
   //Some basic mappings for attributes and default values.
@@ -415,7 +415,7 @@
             matches = regex.exec(value);
             currentElement.setAttribute(
               style.svgAttr,
-              format('rgb({r},{g},{b})', { r: matches[1], g: matches[2], b: matches[3] })
+              format('rgb({r},{g},{b})', { r: matches[1], g: matches[2], b: matches[3] }),
             );
             //should take globalAlpha here
             var opacity = matches[4];
@@ -671,7 +671,7 @@
         cp2y: cp2y,
         x: x,
         y: y,
-      })
+      }),
     );
   };
 
@@ -823,7 +823,7 @@
         width: width,
         height: height,
       },
-      true
+      true,
     );
     parent = this.__closestGroupOrSvg();
     parent.appendChild(rect);
@@ -848,7 +848,7 @@
         width: width,
         height: height,
       },
-      true
+      true,
     );
     parent = this.__closestGroupOrSvg();
     parent.appendChild(rect);
@@ -899,7 +899,7 @@
         height: height,
         fill: '#FFFFFF',
       },
-      true
+      true,
     );
     parent.appendChild(rect);
   };
@@ -919,7 +919,7 @@
         y2: y2 + 'px',
         gradientUnits: 'userSpaceOnUse',
       },
-      false
+      false,
     );
     this.__defs.appendChild(grad);
     return new CanvasGradient(grad, this);
@@ -941,7 +941,7 @@
         fy: y0 + 'px',
         gradientUnits: 'userSpaceOnUse',
       },
-      false
+      false,
     );
     this.__defs.appendChild(grad);
     return new CanvasGradient(grad, this);
@@ -1018,7 +1018,7 @@
           'text-anchor': getTextAnchor(this.textAlign),
           'dominant-baseline': getDominantBaseline(this.textBaseline),
         },
-        true
+        true,
       );
 
     textElement.appendChild(this.__document.createTextNode(text));
@@ -1100,7 +1100,7 @@
         sweepFlag: sweepFlag,
         endX: endX,
         endY: endY,
-      })
+      }),
     );
 
     this.__currentPosition = { x: endX, y: endY };
@@ -1234,7 +1234,7 @@
       svgImage.setAttributeNS(
         'http://www.w3.org/1999/xlink',
         'xlink:href',
-        image.nodeName === 'CANVAS' ? image.toDataURL() : image.getAttribute('src')
+        image.nodeName === 'CANVAS' ? image.toDataURL() : image.getAttribute('src'),
       );
       parent.appendChild(svgImage);
     }
@@ -1257,7 +1257,7 @@
       img.setAttributeNS(
         'http://www.w3.org/1999/xlink',
         'xlink:href',
-        image.nodeName === 'CANVAS' ? image.toDataURL() : image.getAttribute('src')
+        image.nodeName === 'CANVAS' ? image.toDataURL() : image.getAttribute('src'),
       );
       pattern.appendChild(img);
       this.__defs.appendChild(pattern);
