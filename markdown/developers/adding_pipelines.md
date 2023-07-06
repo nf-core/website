@@ -63,7 +63,6 @@ and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/p
 
 Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
 
-
 ### Create the pipeline
 
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
