@@ -86,7 +86,7 @@ $gh_api_opts = stream_context_create([
 ]);
 
 // Load details of the pipelines
-$pipelines_json = json_decode(file_get_contents('public_html/pipelines.json'), true);
+$pipelines_json = json_decode(file_get_contents(dirname(__FILE__) . '/public_html/pipelines.json'), true);
 $pipelines = $pipelines_json['remote_workflows'];
 // Get list of other repos
 $repos = []; //parse_ini_file('ignored_repos.ini')['repos'];
