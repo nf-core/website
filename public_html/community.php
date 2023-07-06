@@ -234,7 +234,7 @@ include '../includes/header.php';
 <h3 id="dtol_testimonial">
     <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark'
         ? 'white'
-        : 'colour'; ?>/dtol.svg" class="float-end ps-4 darkmode-image" />
+        : 'colour'; ?>/dtol.png" class="float-end ps-4 darkmode-image" />
     Darwin Tree of Life
     <a href="#dtol_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h3>
