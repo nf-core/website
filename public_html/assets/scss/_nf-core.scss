@@ -528,6 +528,9 @@ footer a:active {
   -moz-transition: opacity 0.25s ease-in-out;
   -webkit-transition: opacity 0.25s ease-in-out;
 }
+.parameter-link {
+  opacity: 1;
+}
 h1:hover .header-link,
 h1:active .header-link,
 h1:focus .header-link,
@@ -683,7 +686,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 .homepage-intro {
   background-color: $nf-core-color;
 }
-.homepage-intro .container .row div {
+.homepage-intro {
   color: $white;
   text-align: center;
 }

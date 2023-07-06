@@ -3,9 +3,9 @@ title: nf-core Training - March 2023
 subtitle: A set of global online Nextflow and nf-core training events
 type: training
 start_date: '2023-03-13'
-start_time: '05:00 CET'
+start_time: '15:00 CET'
 end_date: '2023-03-16'
-end_time: '21:30 CET'
+end_time: '17:00 CET'
 location_name: YouTube
 import_typeform: true
 ---
@@ -29,15 +29,64 @@ Learning something in a non-native language can be difficult. To help make learn
 - Portuguese
 - Spanish
 
-Please contact us if you are familiar with Nextflow and would like to help record training sessions in these or any other language that isn't listed.
+# Accessing the streams
 
-# Registration
+To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
 
-Registration for the training is now OPEN! 🎉
+You can find playlists of the streams for this event in five languages [here](https://www.youtube.com/@nf-core/playlists?view=50&sort=dd&shelf_id=2).
 
-Please sign up [here](https://seqera.typeform.com/mar2023training) or in the widget below to be kept up to date with all relevant information 👇
+# Schedule
 
-<div data-tf-widget="LbETv0hU" style="width:100%;height:500px;color:#FFFFFF;"></div>
+Training sessions will be available from 3 pm (CET) each day. Each session will be approximately 2 hours.
+
+### Session 1 (March 13)
+
+Session 1 will provide an overview of core Nextflow concepts. You will be taken through example Nextflow pipelines and introduced to concepts that will be expanded in Sessions 2, 3, and 4.
+
+- Welcome (5 min)
+- An introduction to Nextflow (25 min)
+- Getting started with Nextflow (30 min)
+- A proof of concept RNA-Seq pipeline (60 min)
+
+### Session 2 (March 14)
+
+Session 2 will dive into nf-core and explore the tools and documentation available for runnings and developing best-practice Nextflow pipelines.
+
+- An introduction to nf-core (20 min)
+- nf-core for users (30 min)
+- nf-core for developers (30 min)
+- nf-core modules and subworkflows (30 min)
+
+### Session 3 (March 15)
+
+Session 3 will expand on concepts first introduced in Session 1. The Nextflow language and structure will be explained in more detail through example code and exercises.
+
+- Managing dependencies and containers (20 min)
+- Channels, Processes, and Operators (60 min)
+- Groovy introduction (20 min)
+- Modularization (20 min)
+
+### Session 4 (March 16)
+
+Session 4 will show you how to configure and deploy Nextflow pipelines. Strategies for utilizing Nextflows cache and resume will be explored and you will be introduced to Nextflow Tower.
+
+- Configuring pipelines (30 min)
+- Deployment scenarios (20 min)
+- Cache and resume (20 min)
+- Troubleshooting (20 min)
+- Getting started with Nextflow Tower (30 min)
+
+## Asking questions
+
+Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
+
+- [#mar23-training-english](https://nfcore.slack.com/archives/C04RU8PCKNK)
+- [#mar23-training-french](https://nfcore.slack.com/archives/C04S26Q4Z46)
+- [#mar23-training-hindi](https://nfcore.slack.com/archives/C04S8QLNB7C)
+- [#mar23-training-portuguese](https://nfcore.slack.com/archives/C04SYFF7BLG)
+- [#mar23-training-spanish](https://nfcore.slack.com/archives/C04RU921X63)
+
+> Please be aware that due to the size of this event there may be a delay when answering your questions.
 
 # Code of conduct
 
