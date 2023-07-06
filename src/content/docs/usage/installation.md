@@ -9,11 +9,13 @@ weight: 2
 All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
 See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
 
+> **Note**: You don't need to install the `nf-core` command line tools to run nf-core pipelines, you only need Nextflow. They can help with certain things though. Installation instructions for those are further down..
+
 ### Typical installation
 
 Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
 
-```bash
+```console
 # Make sure that Java v8+ is installed:
 java -version
 
@@ -32,32 +34,36 @@ You can also install Nextflow using [Bioconda](https://bioconda.github.io/).
 
 First, set up Bioconda according to the [Bioconda documentation](https://bioconda.github.io/#usage), notably setting up channels:
 
-```console
+```bash
 conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
+> **Warning**
+> This is important - if not done, dependencies (such as Java) will be installed from
+> the wrong channels and things may break in strange ways.
+
 A best practice with conda is to create an environment and install the tools in it.
 Therefore you will prevent version conflicts and keep everything clean.
 To do so use the following command:
 
-```console
-conda create --name env_nf
+```bash
+conda create --name env_nf nextflow
 conda activate env_nf
-```
-
-Then install Nextflow:
-
-```console
-conda install -c bioconda nextflow
 ```
 
 To deactivate the conda environment, run the following command:
 
-```console
+```bash
 conda deactivate
 ```
+
+> If you're already in the conda environment you want to use, you can just install Nextflow directly:
+>
+> ```bash
+> conda install nextflow
+> ```
 
 If you want to develop your own pipelines or collaborate with others using the nf-core guidelines you will need the nf-core packages.
 Please follow the instructions [here](tutorials/nf_core_usage_tutorial.md)
@@ -140,6 +146,18 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   - Poorer reproducibility than Docker / Singularity
     - There can be changes in low-level package dependencies over time
     - The software still runs in your native operating system environment and so core system functions can differ
+- [Mamba](https://mamba.readthedocs.io/)
+  - A faster reimplementation of Conda
+  - Packaging system that manages environments instead of running analysis in containers
+  - Poorer reproducibility than Docker / Singularity
+    - There can be changes in low-level package dependencies over time
+    - The software still runs in your native operating system environment and so core system functions can differ
+- [Apptainer](https://apptainer.org/)
+  - Open source version of Singularity (split from Singularity in 2021)
+  - Used as an alternative to Docker on multi-user systems, such as HPC systems
+  - Also runs _containers_ and can create these from Docker images
+  - Does not need root access or any daemon processes - images are built from files
+  - NOTE: As of June 2023 this will use docker containers instead of using the pre-built singularity containers. To use the singularity containers you need to select the `singularity` profile with apptainer installed on your system; as `apptainer` defines `singularity` as an alias to the `apptainer` function this will currently work.
 
 ## Pipeline code
 
