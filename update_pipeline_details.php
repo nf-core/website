@@ -17,6 +17,7 @@ echo "\n\nUpdating pipeline details - " . date('Y-m-d h:i:s') . "\n";
 
 // Load the twitter PHP library
 require 'vendor/autoload.php';
+
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 // Allow PHP fopen to work with remote links
@@ -42,14 +43,42 @@ function get_gh_api($gh_api_url) {
     ]);
 
     // Get API response
-    $gh_api_raw = file_get_contents($gh_api_url, false, $gh_api_opts);
-    if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
-        die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
-        var_dump($http_response_header);
-        echo "\n$gh_api_raw\n";
-        die("\n-------- END ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
+    $first_page = true;
+    $next_page = false;
+    $counter = 1;
+    $res = [];
+    while ($first_page || $next_page) {
+        // reset loop vars
+        $first_page = false;
+        // Get GitHub API results
+        if ($next_page) {
+            $gh_api_url = $next_page;
+        }
+        $tmp_results = json_decode(file_get_contents($gh_api_url, false, $gh_api_opts));
+        if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
+            die("\n-------- START ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
+            var_dump($http_response_header);
+            echo "\n$tmp_results\n";
+            die("\n-------- END ERROR " . date('Y-m-d h:i:s') . " --------\nCould not fetch $gh_api_url \n");
+        }
+
+        array_push($res, ...$tmp_results);
+        // Look for URL to next page of API results
+        $m_array = preg_grep('/rel="next"/', $http_response_header);
+
+        if (count($m_array) > 0) {
+            $counter++;
+            // check if page parameter is in gh_api_url
+            if (strpos($gh_api_url, 'page=') === false) {
+                $next_page = $gh_api_url . '?page=2';
+            } else {
+                $next_page = preg_replace('/page=\d+/', 'page=' . $counter, $gh_api_url);
+            }
+        } else {
+            $next_page = false;
+        }
     }
-    return json_decode($gh_api_raw);
+    return $res;
 }
 
 // Final filenames to write JSON to
@@ -82,7 +111,7 @@ $results = [
 ];
 
 // Fetch all repositories at nf-core
-$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos?per_page=100');
+$gh_repos = get_gh_api('https://api.github.com/orgs/nf-core/repos');
 
 // Save data from non-ignored repositories
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];

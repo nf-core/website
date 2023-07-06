@@ -118,3 +118,24 @@ nextflow run nf-core/<PIPELINENAME> --genome t7  # ..rest of normal pipeline fla
 ```
 
 Please refer to [Refgenie documentation](http://refgenie.databio.org/en/latest/) for further information.
+
+### How to handle Refgenie assets having different aliases than nf-core
+
+A Refgenie server contains assets with established aliases, which can differ from the ones required by an nf-core pipeline.
+For example, the asset for an ensemble index on the default Refgenie server is called [ensembl_gtf](http://refgenomes.databio.org/v3/assets/splash/2230c535660fb4774114bfa966a62f823fdb6d21acf138d4/ensembl_gtf?tag=default), while the same asset is called [gtf](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/igenomes.config#L33) in nf-core pipelines.
+
+To address this, you can create a file with translations that will be used to generate the genomes configuration file with the appropriate names.
+
+1. When you init Refgenie, you provide a path to a `genomes_config.yml` file with the argument `-c` or setting the environment variable `$REFGENIE`.
+   In the same directory, create a file called `alias_translations.yaml`.
+
+2. `alias_translations.yaml` must contain the equivalences of asset aliases in yaml format.
+   Keys correspond to the name of refgenie server aliases while values correspond to the name of the respective nf-core pipeline aliases.
+   For example:
+
+   ```
+   ensembl_gtf: gtf
+   star_index: star
+   ```
+
+3. Pull your assets as usual. The asset aliases will be translated automatically in your `~/.nextflow/nf-core/refgenie_genomes.config` file.
