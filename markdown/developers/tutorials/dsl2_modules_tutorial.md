@@ -165,12 +165,14 @@ $args \\
 --library ${meta.id}
 ```
 
+### Export the version of the tool
+
 Before wrapping up our code, we need to add a line to output the software version. This must go in the HEREDOC section of the end of the script block.
 
 ```bash
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        fgbio: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' ))
+        fgbio: \$(samtools --version | sed '1!d; s/samtools \$//')
     END_VERSIONS
 ```
 
@@ -190,7 +192,34 @@ In order to avoid that, we can in general print the version as part of an echo s
 echo \$(tool --version 2>&1)
 ```
 
+or pipe the output as follow
+
+```nextlfow
+tool --version |& sed 'pattern'
+```
+
 Notice the escape `\$` of the first `$` sign to distinguish between _bash_ variables and _nextflow_ variables.
+
+      <details markdown="1">
+      <summary>Tips</summary>
+      - `sed '3!d'` Extracts only line 3 of the output printed by `samtools --version`
+      - Determine whether the error printed to stderr or stdout, by trying to filter the line with `sed`
+
+      ```bash
+      samtools --version
+      # Try filtering the specific line
+      samtools --version | sed '1!d'
+      ```
+
+      - If it works, then you're reading from stdout, otherwise you need to capture stderr using `|&` which is shorthand for `2>&1 |`
+      - `sed 's/pattern/replacement/'` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
+      - You can separate sed commands using `;`. Often the pattern : `sed filter line ; replace string` is enough to get the version number
+      - It is not necessary to use `echo`
+      - For non-zero error code: `command --version || true` or  `command --version | sed ... || true`
+      - If the version is at a specific line you can try `sed -nr '/pattern/p'` that will return only the line with the pattern
+      - To extract the version number in the middle you can also use regex pattern with `grep` as follow: `grep -o -E '([0-9]+.){1,2}[0-9]'`
+      - If multiple lines are returned you can select the first one with `tool --version | head -n 1`
+      </details>
 
 Unfortunately, FGBIO manages to cause an error exit even with this solution, and we are therefore forced to use a few `bash` tricks to re-route the version and format it to be _just_ the semantic number.
 
@@ -213,7 +242,7 @@ process FGBIO_FASTQTOBAM {
     conda "bioconda::fgbio=2.0.2"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/fgbio:2.0.2--hdfd78af_0' :
-        'quay.io/biocontainers/fgbio:2.0.2--hdfd78af_0' }"
+        'biocontainers/fgbio:2.0.2--hdfd78af_0' }"
 
     input:
     tuple val(meta), path(reads)
@@ -420,7 +449,7 @@ Hopefully everything runs smoothly, and we are then ready to open a pull request
 
 To save you having to install `pytest-workflow` separately it was added as a dependency for nf-core/tools (`>= 1.13.2`). However, if you find that you don't have a `pytest` command in your nf-core environment, or you're notified there's no `--symlinks` option, you could try and install a later version of nf-core/tools to see if that works instead.
 
-The minimum Nextflow version required to run the tests can be found in [this `nextflow.config` file](https://github.com/nf-core/modules/blob/master/tests/config/nextflow.config#L28) in the nf-core/modules repository.
+The minimum Nextflow version required to run the tests can be found in [this `nextflow.config` file](https://github.com/nf-core/modules/blob/master/tests/config/nextflow.config#L39) in the nf-core/modules repository.
 
 If the version of Nextflow you are using is older than the version specified there you may get an error such as `Nextflow version 20.10.0 does not match workflow required version: >=20.11.0-edge`. The error will be reported in `log.err` in the directory where the outputs from the tests were generated. See the Nextflow [releases](https://github.com/nextflow-io/nextflow/releases) and [installation](https://www.nextflow.io/docs/latest/getstarted.html#installation) pages to install a later version.
 

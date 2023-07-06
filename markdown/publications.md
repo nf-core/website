@@ -1,6 +1,8 @@
 Do you know of an nf-core publication that we're missing?
 Please [make a pull-request](https://github.com/nf-core/nf-co.re/blob/master/markdown/publications.md).
 
+If you are preparing your own publication, make sure to check recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit).
+
 # The nf-core project
 
 Main publication for the main nf-core paper, describing the community and framework:
@@ -128,6 +130,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 > [_Nat Commun._ 2021 Oct 8;12(1):5906](https://www.nature.com/articles/s41467-021-26214-x);
 > doi: [10.1038/s41467-021-26214-x](https://doi.org/10.1038/s41467-021-26214-x)
 
+### [nf-core/isoseq](https://nf-co.re/isoseq)
+
+<!-- pub-stats 10.1093/bioinformatics/btad150 -->
+
+> **nf-core/isoseq: Simple gene and isoform annotation with PacBio Iso-Seq long-read sequencing.**
+>
+> Sébastien Guizard, Katarzyna Miedzinska, Jacqueline Smith, Jonathan Smith, Richard Kuo, Megan Davey, Alan Archibald, Michael Bryan Watson
+>
+> [_Bioinformatics_ 2023 Mar](https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btad150);
+> doi: [10.1093/bioinformatics/btad150](https://doi.org/10.1093/bioinformatics/btad150)
+
 ### [nf-core/lncpipe](https://nf-co.re/lncpipe)
 
 <!-- pub-stats 10.1016/j.jgg.2018.06.005 -->
@@ -149,6 +162,17 @@ Article in _Nature_ describing scientific workflows (including nf-core):
 >
 > [_NAR Genomics and Bioinformatics_, Vol 4, Issue 1 (2022)](https://academic.oup.com/nargab/article/4/1/lqac007/6520104);
 > doi: [10.1093/nargab/lqac007](https://doi.org/10.1093/nargab/lqac007)
+
+### [nf-core/marsseq](https://nf-co.re/marsseq)
+
+<!-- pub-stats 10.1101/2023.06.28.546862 -->
+
+> **nf-core/marsseq: systematic pre-processing pipeline for MARS-seq experiments**
+>
+> Martin Proks, Jose Alejandro Romero Herrera, Jakub Sedzinski, Joshua M Brickman
+>
+> [_bioRxiv_ 2023.06.28.546862](https://www.biorxiv.org/content/10.1101/2023.06.28.546862v1);
+> doi: [10.1101/2023.06.28.546862](https://doi.org/10.1101/2023.06.28.546862)
 
 ### [nf-core/mhcquant](https://nf-co.re/mhcquant)
 
