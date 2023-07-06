@@ -6,8 +6,9 @@ start_date: '2023-05-09'
 start_time: '14:00 CEST'
 end_date: '2023-05-09'
 end_time: '14:30 CEST'
+youtube_embed: https://www.youtube.com/watch?v=K8gvK1drt0w
 location_url:
-  - https://kth-se.zoom.us/j/68390542812
+  - https://www.youtube.com/watch?v=K8gvK1drt0w
 ---
 
 # nf-core/bytesize
