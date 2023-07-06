@@ -13,6 +13,13 @@
             break;
         }
     }
+    //get definition.required and assign required=true to the corresponding defintion.properties
+
+    let required = definition.required;
+    if (!required) required = [];
+    required.forEach((item) => {
+        definition.properties[item].required = true;
+    });
 </script>
 
 <div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
