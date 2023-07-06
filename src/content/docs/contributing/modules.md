@@ -169,8 +169,8 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
    ```
 
    :::note
-      See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
-    :::
+   See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+   :::
 
 9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
@@ -334,6 +334,7 @@ For docker/singularity, setting the environment variable `TMPDIR=~` is an exampl
 :::warning
 if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
 :::
+
 ### Uploading to `nf-core/modules`
 
 [Fork](https://help.github.com/articles/fork-a-repo/) the `nf-core/modules` repository to your own GitHub account. Within the local clone of your fork add the module file to the `modules/` directory. Please try and keep PRs as atomic as possible to aid the reviewing process - ideally, one module addition/update per PR.
@@ -371,8 +372,6 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 3.  All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
 
     - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
-
-
 
       ```groovy title="<module>.nf"
       script:
