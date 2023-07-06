@@ -3,7 +3,7 @@ title: 'Tutorial: Using nf-core configs outside nf-core'
 subtitle: Guidance on how to use nf-core's centralised institutional configs in your own workflows.
 ---
 
-When you've been working with nf-core pipelines for a while, you often will get very used to many of the conviennce functionality offered by the wider nf-core infrastrucutre.
+When you've been working with nf-core pipelines for a while, you often will get very used to many of the convenience functionality offered by the wider nf-core infrastrucutre.
 
 One such thing is the centralised nf-core/configs repository of pre-configured configuration files that allow nf-core pipelines to run optimally on institutional clusters via the `-profile` parameter, e.g. `-profile uppmax`.
 
