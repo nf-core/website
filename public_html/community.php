@@ -4,23 +4,22 @@
 // error_reporting(E_ALL);
 
 $title = 'Community';
-$subtitle = 'Find out who is involved in the nf-core project';
-$md_github_url = 'https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml';
+$subtitle = 'Find out who is involved in the sanger-tol project';
+$md_github_url = 'https://github.com/sanger-tol/pipelines-website/blob/updating_stats/sanger-tol-partners.yaml';
 $import_leaflet = true;
 include '../includes/header.php';
 ?>
 
 <h1>Introduction</h1>
-<p>nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many dedicated contributors.</p>
+<p>sanger-tol is by design a collaborative effort, and would not exist if it were not for the efforts of many dedicated contributors.</p>
 <ul>
     <li><a href="#contributors">Contributors</a></li>
     <li><a href="#organisations">Organisations</a></li>
     <li><a href="#initiatives">Projects we are involved with</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
 </ul>
 
 <?php echo _h1('Contributors'); ?>
-<p>The nf-core pipelines and community is driven by many individuals, listed below. This list updates automatically.</p>
+<p>The sanger-tol pipelines and community is driven by many individuals, listed below. This list updates automatically.</p>
 <p>Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a> on the Statistics page.</p>
 <p class="pt-3">
     <?php
@@ -50,9 +49,9 @@ include '../includes/header.php';
     ?>
 </p>
 
-<?php echo _h1('Organisations'); ?>
-<p>Some of the organisations running nf-core pipelines are listed below, along with a key person who you can contact for advice.</p>
-<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a href="https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml">simple YAML file.</a></blockquote>
+<?php echo _h1('Partners'); ?>
+<p>Tree of Life programme at Wellcome Sanger Institute works with several partners across the globe to deliver its goal to sequence all eukaryotic life on the planet. Some of these organisations are listed below, along with a key person who you can contact for advice.</p>
+<blockquote>Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a href="https://github.com/sanger-tol/pipelines-website/blob/main/sanger-tol-partners.yaml">simple YAML file.</a></blockquote>
 
 <div class="card contributors-map-card">
     <div class="card-body" id="contributors-map"></div>
@@ -66,7 +65,7 @@ include '../includes/header.php';
     use Spyc;
 
     $locations = [];
-    $contributors = spyc_load_file('../nf-core-contributors.yaml');
+    $contributors = spyc_load_file('../sanger-tol-partners.yaml');
     $contributors_html = '';
     foreach ($contributors['contributors'] as $idx => $c) {
         // Start card div
@@ -230,161 +229,19 @@ include '../includes/header.php';
 </script>
 
 <h1 id="initiatives">Projects we are involved with<a href="#initiatives" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h1>
-<p>A number of large projects are committing to working with the nf-core community for data analysis pipelines. You can see an overview of these below.</p>
+<p>Tree of Life programme at Wellcome Sanger Insitute is part of several biodiversity projects. You can see an overview of these below.</p>
 
-<h3 id="dfg_testimonial">
-    <img width="350px" src="/assets/img/contributors-colour/dfg_logo.svg" class="float-end ps-4" />
-
-    German National Sequencing Initiative
-    <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.dfg.de/en/service/press/press_releases/2018/press_release_no_06/index.html" target="_blank">The German Funding Body (DFG)</a>
-    has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely on <em>nf-core</em> pipelines for analyzing
-    large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden sites are already actively contributing to nf-core, and the other sequencing center
-    in Cologne/Bonn (West German Genome Center) has committed to joining and contributing its expertise.</p>
-<div class="clearfix"></div>
-
-<h3 id="easi_genomics_testimonial">
-    <img width="350px" src="/assets/img/contributors-<?php echo $theme == 'dark'
+<h3 id="dtol_testimonial">
+    <img width="200px" src="/assets/img/contributors-<?php echo $theme == 'dark'
         ? 'white'
-        : 'colour'; ?>/EASI-Genomics.svg" class="float-end ps-4 darkmode-image" />
-    EASI-Genomics
-    <a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+        : 'colour'; ?>/dtol.png" class="float-end ps-4 darkmode-image" />
+    Darwin Tree of Life
+    <a href="#dtol_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
 </h3>
-<p><a href="https://www.easi-genomics.eu/" target="_blank">EASI-Genomics</a>
-    provides easy and seamless access to cutting-edge DNA sequencing technologies to researchers from academia and industry, within a framework that ensures compliance with ethical and legal requirements, as well as FAIR and secure data management.
-    EASI-Genomics aims to build a community of practice, which leverages advanced sequencing technologies beyond country and sector borders to tackle global challenges in science.
-    It organizes competitive calls to get fully-funded access to state-of-the-art facilities and services, including integrative data analysis.</p>
-<p>EASI-Genomics partners are committed to working within community best-practices for the bioinformatics processing of the data that they produce.
-    To this end they will use <em>nf-core</em> pipelines to process data and contribute new developments and pipelines within the nf-core framework.</p>
+<p><a href="https://www.darwintreeoflife.org" target="_blank">The Darwin Tree of Life (DToL)</a>
+    project aims to sequence the genomes of 70,000 species of eukaryotic organisms in Britain and Ireland. 
+    It is a collaboration between biodiversity, genomics and analysis partners that is transforming the way we do biology, 
+    conservation and biotechnology.</p>
 <div class="clearfix"></div>
-
-<h3 id="bovreg_testimonial">
-    <img width="350px" src="/assets/img/contributors-colour/bovreg.svg" class="float-end ps-4" />
-    BovReg
-    <a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
-    <a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
-    to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.
-</p>
-<p>BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible data analyses to the community.</p>
-<div class="clearfix"></div>
-<h3 id="dockstore">
-    <img width="350px" src="/assets/img/contributors-colour/dockstore.svg" class="float-end ps-0" />
-    Dockstore
-    <a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.dockstore.org/" target="_blank">Dockstore</a> is a platform used by researchers across the world to share reproducible computational analyses and hosts hundreds of individual tools and workflows created by more than a hundred different contributors.</p>
-<p>By using lightweight containerization technology along with the essential metadata needed for combining tools into scientific analysis "recipes", Dockstore allows users to create, share, publish (using citable DOIs) and reproducibly reuse these recipes across platforms and compute environments.</p>
-<div class="clearfix"></div>
-
-<h3 id="workflowhub">
-    <img width="250px" src="/assets/img/contributors-colour/workflowhub.svg" class="float-end px-4" />
-    Workflow Hub
-    <a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-</h3>
-<p><a href="https://www.workflowhub.eu/" target="_blank">Workflow Hub</a> was created as part of the <a href="https://www.eosc-life.eu/" target="_blank">EOSC-Life</a> WP2: <em>Tools Collaboratory and Research Objects</em> to glue in federated workflow and tool descriptions across research infrastructures.</p>
-<p>It is workflow system agnostic, supports a repository of workflows in native and standardised form and the virtual aggregation of established tool, workflow and registries to support discovery over a fragmented ecosystem. The federated registry will support a common API to simplify access for tool developers.</p>
-<div class="clearfix"></div>
-
-<?php echo _h1('Testimonials'); ?>
-
-<div class="row row-cols-md-3">
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">3) Community support of bioinformatics-specific workflow managers. <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> stands out here. Why develop your own RNA-Seq workflow, when you can use one with over 3k commits on GitHub?</p>&mdash; Ben Siranosian, PhD (@BenSiranosian) <a href="https://twitter.com/BenSiranosian/status/1558631907566313473?ref_src=twsrc%5Etfw">August 14, 2022</a>
-                </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Wow the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> CLI is so pretty</p>&mdash; Cedar Warman 🍅🌵🌈 (@CedarWarman) <a href="https://twitter.com/CedarWarman/status/1532882942405423105?ref_src=twsrc%5Etfw">June 4, 2022</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">receiving pipeline completion report from <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> always trigger my dopamine secretion <a href="https://t.co/SResHLmtXa">pic.twitter.com/SResHLmtXa</a></p>&mdash; ChenHsieh.eth | 謝晨 🫥 (@ChenHsieh0) <a href="https://twitter.com/ChenHsieh0/status/1528415862633467908?ref_src=twsrc%5Etfw">May 22, 2022</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">The <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> pipelines gave us an extra level of confidence when analysing (and re-analysing!) all of the data we ended up generating, and made writing up the study much more straightforward. Such a great initiative and a really helpful community.</p>&mdash; Robert Blassberg (@robertblassberg) <a href="https://twitter.com/robertblassberg/status/1525131662283182082?ref_src=twsrc%5Etfw">May 13, 2022</a>
-                </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Thank you <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> 🙏 <a href="https://twitter.com/SeqeraLabs?ref_src=twsrc%5Etfw">@SeqeraLabs</a> <a href="https://twitter.com/tallphil?ref_src=twsrc%5Etfw">@tallphil</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a> <a href="https://twitter.com/GGabernet?ref_src=twsrc%5Etfw">@GGabernet</a> <a href="https://twitter.com/gau?ref_src=twsrc%5Etfw">@gau</a> Great motivation to develop more genomic data analysis pipelines on Next flow. Danke :) <a href="https://t.co/F7V5FG4FjI">pic.twitter.com/F7V5FG4FjI</a></p>&mdash; Kirtan Dave (@DaveKirtan) <a href="https://twitter.com/DaveKirtan/status/1509490252649746438?ref_src=twsrc%5Etfw">March 31, 2022</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Really impressive to see how people all around the world 🌍 are taking part in the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> hackathon 🔝🚀 <a href="https://t.co/btuiuYk0pu">pic.twitter.com/btuiuYk0pu</a></p>&mdash; Jose Espinosa (@helicobacter1) <a href="https://twitter.com/helicobacter1/status/1504060398781308930?ref_src=twsrc%5Etfw">March 16, 2022</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">.<a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> are making me hate bioinformatics a bit less</p>&mdash; Hadrien Gourlé (@HGourle) <a href="https://twitter.com/HGourle/status/1158973454160465920?ref_src=twsrc%5Etfw">August 7, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Just tested <a href="https://t.co/wERtIS7xPp">https://t.co/wERtIS7xPp</a> with bacterial WGS data. It was very easy to work with. I am very impressed by nf-core! Great community and very important project to promote <a href="https://twitter.com/hashtag/reproducibility?src=hash&amp;ref_src=twsrc%5Etfw">#reproducibility</a> in <a href="https://twitter.com/hashtag/bioinformatics?src=hash&amp;ref_src=twsrc%5Etfw">#bioinformatics</a> analyses. <a href="https://twitter.com/alex_peltzer?ref_src=twsrc%5Etfw">@alex_peltzer</a> <a href="https://twitter.com/aka_hpatel?ref_src=twsrc%5Etfw">@aka_hpatel</a></p>&mdash; Rodrigo O. Polo (@ropolo) <a href="https://twitter.com/ropolo/status/1158860737516675073?ref_src=twsrc%5Etfw">August 6, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Many useful and well-documented bioinformatics pipelines by the <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> team, from RNA-seq, methylation, to this differential ATAC-seq. More in development, <a href="https://t.co/SvAJjIJqHD">https://t.co/SvAJjIJqHD</a> <a href="https://t.co/TCsBWlJyeC">https://t.co/TCsBWlJyeC</a></p>&mdash; Mikhail Dozmorov (@mikhaildozmorov) <a href="https://twitter.com/mikhaildozmorov/status/1116154350026489857?ref_src=twsrc%5Etfw">April 11, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Alex from <a href="https://twitter.com/QBIC_tue?ref_src=twsrc%5Etfw">@QBIC_tue</a> talking about how <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> and <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> enable his genomics pipelines, built on <a href="https://twitter.com/awscloud?ref_src=twsrc%5Etfw">@AWScloud</a> Batch. Really cool. <a href="https://t.co/FDuXdmem1n">pic.twitter.com/FDuXdmem1n</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1100764282617253888?ref_src=twsrc%5Etfw">February 27, 2019</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">My definition of joy: <br>1) Pick a random <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> pipeline <br>2) Launch `nextflow run &lt;name&gt; -profile docker,test`<br>3) Feel proud of that.</p>&mdash; Paolo Di Tommaso (@PaoloDiTommaso) <a href="https://twitter.com/PaoloDiTommaso/status/1073568446238068736?ref_src=twsrc%5Etfw">December 14, 2018</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr">Just managed to get <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a> on <a href="https://twitter.com/nextflowio?ref_src=twsrc%5Etfw">@nextflowio</a> working on my machines. Really cool. Thanks for all your hard work</p>&mdash; Alastair Kerr (@alastair_kerr) <a href="https://twitter.com/alastair_kerr/status/1068491249315926016?ref_src=twsrc%5Etfw">November 30, 2018</a>
-            </blockquote>
-        </div>
-    </div>
-    <div class="col">
-        <div class="">
-            <blockquote class="twitter-tweet">
-                <p lang="en" dir="ltr"><a href="https://twitter.com/tallphil?ref_src=twsrc%5Etfw">@tallphil</a> talking at the <a href="https://twitter.com/nextflow?ref_src=twsrc%5Etfw">@nextflow</a> delelopers’ hackathon about the incredible work he and his team have done to build <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw">@nf_core</a>. <a href="https://t.co/SbWQIh2Q5r">pic.twitter.com/SbWQIh2Q5r</a></p>&mdash; Brendan Bouffler☁️🏳️‍🌈 (@boofla) <a href="https://twitter.com/boofla/status/1065614143061991424?ref_src=twsrc%5Etfw">November 22, 2018</a>
-            </blockquote>
-        </div>
-    </div>
-</div>
-
-
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <?php include '../includes/footer.php';

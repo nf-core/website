@@ -89,7 +89,7 @@ $gh_api_opts = stream_context_create([
 $pipelines_json = json_decode(file_get_contents('public_html/pipelines.json'), true);
 $pipelines = $pipelines_json['remote_workflows'];
 // Get list of other repos
-$repos = parse_ini_file('ignored_repos.ini')['repos'];
+$repos = []; //parse_ini_file('ignored_repos.ini')['repos'];
 foreach ($pipelines as $pipeline) {
     $repos[] = $pipeline['name'];
 }
@@ -127,7 +127,7 @@ foreach ($repos as $repo) {
             'prs' => [],
         ];
     }
-    $gh_issues_url = 'https://api.github.com/repos/nf-core/' . $repo . '/issues?state=all';
+    $gh_issues_url = 'https://api.github.com/repos/sanger-tol/' . $repo . '/issues?state=all';
     $first_page = true;
     $next_page = false;
     while ($first_page || $next_page) {
