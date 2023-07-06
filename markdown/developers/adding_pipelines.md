@@ -37,7 +37,10 @@ pipeline to the one you're planning.
 To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
 as possible. Ideally before you make a start on your pipeline!
 
-> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
+> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows).
+> However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code.
+> All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline.
+> If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
 
 All nf-core discussion happens on the nf-core Slack, which you can join here:
 [https://nf-co.re/join](https://nf-co.re/join)
@@ -47,51 +50,79 @@ These topics are specifically discussed in the `#new-pipelines` channel:
 
 ## Create a pipeline from the template
 
-You'll start by making a new pipeline locally and working with it on your own GitHub account.
-Only when it's ready do we move it to the nf-core GitHub organisation.
+### Request a new pipeline
 
-It's _highly_ recommended to use the nf-core template.
-The guidelines for nf-core pipelines are pretty strict, but if you start your pipeline by using the
-nf-core template (`nf-core create` - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline))
-then your life will be much easier.
+Before you get too carried away, the first task is to request the new pipeline in the nf-core Slack.
+We have a Slack channel dedicated to this: `#new-pipelines`.
+
+There, you will find a _Workflow_ bookmarked to top of the Slack window called _Pipeline proposal_.
+This gives you a form to fill in with key information about the pipeline you want to write.
+
+The proposal will be discussed and checked for uniqueness (not too much overlap with any existing pipelines)
+and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/35/) on GitHub.
+
+Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
+
+### Create the pipeline
+
+You'll start by making a new pipeline locally and working with it on your own GitHub account.
+Once you have a version of the pipeline that runs, ask the core team to _move_ the repo to the nf-core GitHub organisation for final development, review and release.
+
+We generally don't create repositories within the nf-core organisation from the start, in case development takes longer than expected.
+This way we avoid having a lot of "empty" pipelines listed which are basically just the template.
+See [Adding your pipeline to the nf-core organisation](#adding-your-pipeline-to-the-nf-core-organisation) below for details on this process.
+
+All nf-core pipelines [_must_ use the nf-core template](https://nf-co.re/docs/contributing/guidelines/requirements/use_the_template).
+This is done by using the `nf-core create` command - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline) for detailed instructions.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
 
-Even if you already have a working pipeline, it may be easier in the long run to use this this template
-and copy over your code in the relevant places.
+If you already have a working Nextflow pipeline that you're starting from, it's usually easier in the long run to start fresh with the nf-core template and copy over your code in the relevant places.
+Some exceptions can be made - ask the core team on Slack if you're unsure.
+You'll need to set up [manual synchronisation](sync.md), not for the faint hearted!
 
 Once the template for your pipeline is created, make sure to switch branch to the `dev` branch with `git checkout dev`.
 All development should happen on dev (or on other branches that get merged into dev).
 
-If you really don't want to use the template it should possible to work without it.
-Please see the [manual synchronisation](sync.md) documentation.
-
-> Note that workflow names should be all lower-case and contain no punctuation.
+> NB: Pipeline names must be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms.
 
 ### Push to GitHub
 
 Create an empty repository on GitHub for your new pipeline under your personal account.
 Do this by going to the GitHub website and clicking + then _New Repository_.
-Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository. It will be populated after you push the template you created locally with all you need to start working on your pipeline.
 
-Once created, copy the URL and add this as a remote to your local git repository
-and push your code:
+Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository.
+You already have these files generated from the nf-core template.
+
+Once created, copy the git URL and add this as a remote to your local git repository.
+The `nf-core create` command will have initialised a git repository for you,
+so all you need to do is add the remote:
 
 ```bash
 ## Add a remote called 'origin' - this is the default name for a primary remote
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-## Commit any new code changes since you ran the template
-git add .
-git commit -m "Starting to build my pipeline"
-## Push to GitHub
-git push
 ```
+
+The create command also generated the three standard nf-core branches (`master`, `dev` and `TEMPLATE`),
+together with an initial commit which is shared between them.
+This git structure is required for automatic template synchronisation in the future.
+
+You need to push these new branches to the remote GitHub repository:
+
+```bash
+git push --all origin
+```
+
+You should now see the vanilla nf-core template and branches in the github.com web interface.
 
 ### Work on your pipeline
 
 Ok, now you're all set with your own personal nf-core pipeline!
 You can now start writing code for real.
+
+Follow usual git development practices, working on the `dev` branch and committing + pushing code as normal.
+
 Remember to run the `nf-core lint` command (see [docs](https://nf-co.re/tools#linting-a-workflow))
 to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
@@ -114,7 +145,7 @@ Instead, we use the dedicated [nf-core/test-datasets](https://github.com/nf-core
 To set this up, make a fork of that repo to your personal account.
 Clone the repository and check out a new branch for your workflow:
 
-```console
+```bash
 git clone https://github.com/YOUR_USERNAME/test-datasets.git
 cd test-datasets
 git checkout -b MY_WORKFLOW
@@ -129,7 +160,7 @@ before adding any test data!
 
 Once added, push these new files to GitHub:
 
-```console
+```bash
 git add .
 git commit -m "Added test data for MY_WORKFLOW"
 git push --set-upstream origin MY_WORKFLOW
@@ -157,7 +188,7 @@ or `conda`, so your config should not specify a hardware environment.
 
 Have a go at running the pipeline and see if it works:
 
-```console
+```bash
 nextflow run MY_WORKFLOW -profile test,docker --outdir <OUTDIR>
 ```
 
