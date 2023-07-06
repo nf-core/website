@@ -141,7 +141,6 @@ The outreach leads will have access to community social media and YouTube accoun
 
 - Organizing and running the `#bytesize` seminar series
 - Leading the organization of hackathons, training sessions, mentorship program, ambassador program, and other outreach events
-- Organizing and running the ambassador program
 - Creating and sharing community content
 - Regular attendance at outreach team meetings
 
