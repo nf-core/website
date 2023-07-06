@@ -62,7 +62,7 @@ and also sets up the required `git` infrastructure for you to keep your pipeline
 Even if you already have a working pipeline, it may be easier in the long run to use this this template
 and copy over your code in the relevant places.
 
-Once the template for your pipeline is created, make sure to switch branch to the `dev` branch with `git switch dev`.
+Once the template for your pipeline is created, make sure to switch branch to the `dev` branch with `git checkout dev`.
 All development should happen on dev (or on other branches that get merged into dev).
 
 If you really don't want to use the template it should possible to work without it.
