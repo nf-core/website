@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Evan Floden ([@evanfloden](https://github.com/evanfloden/)) will tell us all about the new [Nextflow Tower command line client](https://github.com/seqeralabs/tower-cli).
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/MggFf15vGCw&t=1)
 (host) Hello, everyone. Thank you for joining today's bytesize talk. I'd like to begin by thanking the Chan Zuckerberg Initiative for supporting all nf-core events. Some information about today's bytesize talk. The talk will be recorded and is being recorded at the moment. And the video will be uploaded to nf-core's YouTube playlist and also shared on our Slack platform. After the talk, which is a 15-minute talk, we'll have a session for questions and answers. Feel free to post your question on the chat box or unmute and directly ask the speaker the question that you have. For today's talk, we are honored to have Evan Floden, the CEO and co-founder of Seqera Labs, who will be presenting on Nextflow Tower, which is a centralized command post for launching a Nextflow pipeline. Over to you, Evan.

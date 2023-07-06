@@ -27,7 +27,9 @@ At the start of 2022, nf-core joined the Nextflow community to do a joint survey
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will give an overview over the key results of the survey. If that's not enough excitement for you, Evan Floden ([@evanfloden](https://github.com/evanfloden) will wrap up with a live-draw to select the winners of the survey draw: one Apple Macbook Air M1 up for grabs alongiside ten sustainability-certified Seqera Labs merchandise packs.. 🤩 💚 💻 👕
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/DYdPNPVa4wct=1)
 Thank you everybody for joining today's nf-core bytesize talk. Usually these short talks are about specific topics like how to develop code within the nf-core framework or about specific pipelines things like that. Today's a little bit different because we're going to go over the results of the Nextflow and nf-core community survey.

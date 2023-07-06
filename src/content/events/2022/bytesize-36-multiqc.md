@@ -26,7 +26,9 @@ This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will talk about Mult
 He'll cover customising reports to have consistent branding, additional rich content and more.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=a3_IYSMrKAk&t=1)
 (host) Hello and welcome everybody to another talk of the bytesize talk series that is offered by the nf-core community. We should mention that it is receiving support from the Chan Zuckerberg Initiative. We're thankful for that. Today Phil Ewels is back and he will tell us more about MultiQC and how to customize MultiQC reports for example, for your own pipeline. Thanks for joining us, Phil, today.

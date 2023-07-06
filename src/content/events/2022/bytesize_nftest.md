@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will share with us his impressions about nf-test from a user perspective. nf-test is a simple test framework for Nextflow pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=K9B7JRkMpQ4&t=1)
 (host) Hello everyone, welcome to today's bytesize. I'm Franziska Bonath, and I'm the host for today. With us is Edmund Miller, and he is going to give us his impressions of working with nf-test.

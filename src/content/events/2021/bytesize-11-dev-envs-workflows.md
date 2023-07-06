@@ -51,7 +51,9 @@ You can see the slides on HackMD: <https://hackmd.io/@nf-core/bytesize-11#/> (sh
 </div>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [1:04](https://youtu.be/XB96efweCLI?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=64) So today’s talk is in response to the suggestions for talks for this series that we received from you. Some of you said that you would find it interesting to see how one or more of us who set up things on nf-core organise ourselves, with all the tips and tricks we have to make our day-to-day working easier. I have tried to build this around a talk that Alex Peltzer gave a few sessions ago (see [Bytesize#4](https://nf-co.re/events/2021/bytesize-4-github-contribution-basics)). If you’re completely new to working with GitHub, please check out his talk first because he covers a lot of jargon that working with GitHub entails. I’m going to cover slightly more advanced things during this talk. This is based on my personal set up, and there are ways to discover and figure things out as you go along. But hopefully, some of what I show here will be helpful. I realise that the term workflows is probably a bit misleading in the context of nf-core. Workflows here is meant to be a demonstration of how I work, how I get into a project, start working with a Git repository etc.
 

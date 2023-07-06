@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Franziska Bonath ([@FranBonath](https://github.com/FranBonath)) will talk about her work to generate transcripts of bytesize talks and what these might be used for in the future.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=amwwmFMwOYw&t=1)
 (host) Hi, Maxime here. First of all, I'd like to thank the Chan Zuckerberg Initiative to help us doing these bytesize talks. And today, Franziska Bonath will present us how the transcript of the bytesize talks happen. It's a very meta bytesize talk today. And as usual, please use Slack for your questions. Now, it's up to you, Fran.

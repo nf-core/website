@@ -532,7 +532,9 @@ profiles {
 
 You can see here we have moved the `params` block into each of the _internal profiles_, and updated the `config_profile_description` and `max_*` parameters accordingly.
 
-> :warning: Important: you should **not** define scopes both in the global profile AND in the internal profile. Internal profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base global profile file will be _ignored_ in the internal profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
+:::warning
+Important: you should **not** define scopes both in the global profile AND in the internal profile. Internal profiles do _not_ inherit directives/settings defined in scopes in the base config, so anything defined in the base global profile file will be _ignored_ in the internal profile. See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#config-profiles) for more information.
+:::
 
 ### Writing the documentation file
 
@@ -544,7 +546,9 @@ You can look at some of the other configs to see what this describes, but typica
 
 Once all of your files are prepared, it's time to test your global institutional profile. All nf-core pipelines come with a special parameter called `--custom_config_base`. This allows you to override the pipeline run from loading the nf-core/configs from the nf-core repository, and you can instead get it to look in your fork.
 
-> Note: At this stage don't get disheartened if you hit errors and problems along the way. This often requires a lot of trial and error, as you learn about the particulars of your particular cluster. All are different, and all require TLC to get everything optimal!
+:::note
+At this stage don't get disheartened if you hit errors and problems along the way. This often requires a lot of trial and error, as you learn about the particulars of your particular cluster. All are different, and all require TLC to get everything optimal!
+:::
 
 To test your config, pick your pipeline of choice, and run the given pipeline's integrated mini-test profile but using your config. For example:
 

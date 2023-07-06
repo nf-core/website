@@ -27,7 +27,9 @@ Have you ever wanted to tweak an nf-core module for your own use? No need to cop
 Sounds too good to be true? Join us to hear more at this week's bytesize talk with Phil Ewels ([@ewels](https://github.com/ewels))!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=7pu6Ikhi1eU&t=1)
 Hi everyone, welcome to today's nf-core bytesize talk. My name is Phil Ewels and today I will be talking to you about the `nf-core modules patch` functionality. This is a very simple functionality, so I'm thinking today's bytesize talk will be fairly short. Many people don't know that it exists and I think it could be quite useful, especially for people using nf-core tooling and the nf-core templates for pipelines, either private or custom, which are not going to be part of the main nf-core organization. This is where this tooling really, really shines. If you want to use the nf-core templates for stuff you're doing in-house, this talk is for you. I don't have any slides or anything, it's just going to be a live demo, I'm going to walk through how I use it and try and describe what it's doing in the back end and hopefully that will make sense to you.

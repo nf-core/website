@@ -55,7 +55,9 @@ Most workflow diagrams are made by hand using vector image editors such as the o
 
 See below for some examples of nf-core workflow schematics that can be re-used and modified for your own pipeline.
 
-> ⚠️ Please make sure to check for any attributions to be included within any derivative images, as defined by the corresponding license! We provide suggestions below.
+:::warning
+Please make sure to check for any attributions to be included within any derivative images, as defined by the corresponding license! We provide suggestions below.
+:::
 
 Click the schematic image to see the original.
 

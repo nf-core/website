@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Gisela Gabernet ([@ggabernet](http://github.com/ggabernet/)) will tell us all about the nf-core _AWS megatests_‚ and how to set them up in your nf-core pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [1:27](https://youtu.be/2-ekrRsYS00?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=87) I’ll be presenting how to set up AWS metatests during this session. These are real-size automated nf-core pipeline tests.
 

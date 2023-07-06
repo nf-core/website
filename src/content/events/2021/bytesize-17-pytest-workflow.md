@@ -32,7 +32,9 @@ This will cover:
 - How we test nf-core pipelines
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:52](https://youtu.be/pjhscKyWH74?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=52) Let’s get started with pytest workflows.
 

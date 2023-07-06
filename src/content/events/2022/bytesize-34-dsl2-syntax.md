@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will tell us all about the latest changes to the DSL2 template.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/17NqUsh73BU&t=1)
 (host) Hello everyone, thank you for joining us for yet another bytesize talk on this Tuesday. I would to begin by thanking our funders, the Chan Zuckerberg Initiative for supporting all nf-core events. A few details, the talk will be recorded and is currently being recorded and the video will be shared on our YouTube platform and shared on Slack as well. For today we'll have as usual a 15 minute talk and then it will be followed by a question and answer section where you are free to post your questions on the chat box or unmute yourself and ask your question to the speaker. Today we are glad to have with us Maxime Garcia who is a bioinformatician at the Science for Life Laboratory at the Karoliska Institute in Sweden and he'll be discussing or talking to us about DSL2 which is a syntax extension that implements the definition of module libraries and also a better way of writing more complex data analysis pipelines using Nextflow. Maxime, over to you.

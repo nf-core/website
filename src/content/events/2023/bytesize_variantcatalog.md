@@ -27,7 +27,9 @@ This week, Solenne Correard ([@scorreard](https://github.com/scorreard)) is intr
 The variant catalogue pipeline is a Nextflow workflow designed to generate variant catalogues (also called variant libraries): a list of variants and their frequencies in a population, from whole genome sequences. More information on the pipeline can be found [on Github](https://github.com/wassermanlab/Variant_catalogue_pipeline) or in the [associated preprint](https://www.biorxiv.org/content/10.1101/2022.10.03.508010v2).
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=Em1cHCLQQ_c&t=1)
 Hello, everyone, and welcome to this week's bytesize talk. The speaker today is Solenne Correard from the University of British Columbia in Canada, and she is going to talk about variantcatalog. This is a Nextflow pipeline, but it's not part of nf-core yet. Variantcatalog is used for population analysis from whole-genome sequencing, and specifically to identify variants and their frequencies. Since Solenne is living in Canada, and due to the big time difference, we decided that it's best to record this talk. Therefore, if you have any questions, please ask them in the Slack bytesize channel. As usual, I would like to thank Solenne for her time and the Chan Zuckerberg Initiative for funding the bytesize talk series. But now, without further ado, I hand over to Solenne.

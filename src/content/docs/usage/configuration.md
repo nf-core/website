@@ -49,7 +49,9 @@ nf-core offers a range of basic profiles for configuration of container engines:
   - A generic configuration profile to be used with [Conda](https://conda.io/docs/)
   - Pulls most software from [Bioconda](https://bioconda.github.io/)
 
-> NOTE: Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity.
+:::note
+Please only use Conda as a last resort, i.e., when it's not possible to run the pipeline with Docker or Singularity.
+:::
 
 If `-profile` is not specified, the pipeline will run locally and expect all software to be installed and available on the `PATH`. **This is not recommended**.
 
@@ -76,16 +78,18 @@ Configuration parameters are loaded one after another and overwrite previous val
 Hardcoded pipeline defaults are first, then the user's home directory, then the work directory,
 then every `-c` file in the order supplied, and finally command line `--<parameter>` options.
 
-> ⚠️ For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in these cases
->
-> ```
-> {
->    "<parameter1_name>": 1,
->    "<parameter2_name>": '<string>'
-> }
-> ```
->
-> You can also generate such a JSON via each pipelines 'launch' button on the [nf-co.re website](https://nf-co.re/launch).
+:::warning
+For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in these cases
+
+```groovy
+{
+   "<parameter1_name>": 1,
+   "<parameter2_name>": '<string>'
+}
+```
+
+You can also generate such a JSON via each pipelines 'launch' button on the [nf-co.re website](https://nf-co.re/launch).
+:::
 
 See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html) for more information about configuration syntax and available parameters.
 
@@ -107,11 +111,15 @@ To avoid these failures, all nf-core pipelines [check](https://github.com/nf-cor
 
 These parameters only act as a _cap_, to prevent Nextflow submitting a single job requesting resources more than what is possible on your system.
 
-> **:warning: Increasing these values from the defaults will not _increase_ the resources available to the pipeline tasks! See [Tuning workflow resources](#tuning-workflow-resources) for this.**
+:::warning
+Increasing these values from the defaults will not _increase_ the resources available to the pipeline tasks! See [Tuning workflow resources](#tuning-workflow-resources) for this.
+:::
 
 Most pipelines will attempt to automatically restart jobs that fail due to lack of resources with double-requests, these caps keep those requests from getting out of hand and crashing the entire pipeline run. If a particular job exceeds the process-specific default resources and is retried, only resource requests (cpu, memory, or time) that have not yet reached the value set with `--max_<resource>` will be increased during the retry.
 
-> **:warning: Setting the `--max-<resource>` parameters do not represent the total sum of resource usage of the pipeline at a given time - only a single pipeline job!**
+:::warning
+Setting the `--max-<resource>` parameters do not represent the total sum of resource usage of the pipeline at a given time - only a single pipeline job!
+:::
 
 ## Tuning workflow resources
 
@@ -150,7 +158,9 @@ process {
 - The [`check_max()`](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) function applies the thresholds set in `--max_cpus`, `--max_memory` and `--max_time`.
 - The `* task.attempt` means that these values are doubled if a process is automatically retried after failing with an exit code that corresponds to a lack of resources.
 
-> **:warning: You don't need to copy all of the labels into your own custom config file, only overwrite the things you wish to change**
+:::warning
+You don't need to copy all of the labels into your own custom config file, only overwrite the things you wish to change
+:::
 
 If you want to give more memory to _all_ large tasks across most nf-core pipelines, would would specify in a custom config file:
 
@@ -182,17 +192,21 @@ process {
 }
 ```
 
-> ℹ️ If you get a warning suggesting that the process selector isn't recognised check that the process name has been specified correctly.
+:::info
+If you get a warning suggesting that the process selector isn't recognised check that the process name has been specified correctly.
+:::
 
 See the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors) for more information.
 
 Once you've written the [config file](#custom-configuration-files), and you can give this to your pipeline command with `-c`.
 
-> :warning: Be careful with your syntax - if you set the memory to be `200` then it will get 200 _bytes_ of memory.
-> Memory should be in quotes with a space or without quotes using a dot: `"200 GB"` or `200.GB`.
-> See the Nextflow docs for [memory](https://www.nextflow.io/docs/latest/process.html#memory),
-> [cpus](https://www.nextflow.io/docs/latest/process.html#cpus) (int) and
-> [time](https://www.nextflow.io/docs/latest/process.html#time).
+:::warning
+Be careful with your syntax - if you set the memory to be `200` then it will get 200 _bytes_ of memory. <br/>
+Memory should be in quotes with a space or without quotes using a dot: `"200 GB"` or `200.GB`. <br/>
+See the Nextflow docs for [memory](https://www.nextflow.io/docs/latest/process.html#memory),
+[cpus](https://www.nextflow.io/docs/latest/process.html#cpus) (int) and
+[time](https://www.nextflow.io/docs/latest/process.html#time).
+:::
 
 If you think that the defaults in the pipeline are way off, please the pipeline developers know either on Slack in the channel for the pipeline or via a GitHub issue on the pipeline repository! Then we can adjust the defaults to the benefit of all pipeline users.
 
@@ -259,9 +273,13 @@ In this case, a user can override the default container used by the pipeline by 
      }
      ```
 
-> **:warning: It is important to note that updating containers comes with no warranty by the pipeline developers! If the update tool in the container has a major changes, this may break the pipeline**
+:::warning
+It is important to note that updating containers comes with no warranty by the pipeline developers! If the update tool in the container has a major changes, this may break the pipeline.
+:::
 
-> **:warning: Sometimes tool developers change how tool versions are reported between updates. Updating containers may break version reporting within the pipeline and result in missing values in MultiQC version tables**
+:::warning
+Sometimes tool developers change how tool versions are reported between updates. Updating containers may break version reporting within the pipeline and result in missing values in MultiQC version tables.
+:::
 
 ## Understanding and Modifying Tool Arguments
 
@@ -275,7 +293,9 @@ However if this is not listed, there are two main places that a tool can have a 
 
 Most arguments (both mandatory or optional) are defined in the `conf/modules.conf` file in the pipeline code under the `ext.args` entry. For example, you can see the default arguments used by the `SORTMERNA` step of the nf-core/rnaseq pipeline [here](https://github.com/nf-core/rnaseq/blob/6e1e448f535ccf34d11cc691bb241cfd6e60a647/conf/modules.config#LL299).
 
-> ℹ️ Arguments specified in `ext.args` are then inserted into the module itself via the `$args` variable in the module's bash code
+:::info
+Arguments specified in `ext.args` are then inserted into the module itself via the `$args` variable in the module's bash code
+:::
 
 In some cases _some_ modules have mandatory information for a tool for it to be executed, and these normally equate to 'mandatory' arguments. You can see the argument is used in the pipeline itself looking in the `script` section given module code itself, as in the pipeline's GitHub repository under `modules/<nf-core/local>/<tool>/main.nf`.
 
@@ -285,7 +305,7 @@ If you want to modify which parameters are used by a given tool, you can do this
 
 For example, lets say a pipeline does not yet support the `-n` parameter to a `BOWTIE_BUILD` step. You can add this in a custom config file like so:
 
-```nextflow
+```groovy
 process {
     withName: BOWTIE2_ALIGN {
         ext.args = "-n 0.1"
@@ -295,7 +315,7 @@ process {
 
 In some cases, a pipeline may use a tool multiple times in the workflow. In this case you will want to specify the whole execution 'path' of the module.
 
-```nextflow
+```groovy
 process {
     withName: 'NFCORE_TAXPROFILER:TAXPROFILER:HOST_REMOVAL:BOWTIE2_BUILD' {
         ext.args = "-n 0.1"
@@ -303,9 +323,13 @@ process {
 }
 ```
 
-> **:warning: It is recommended to copy and paste existing parameters in a pipelines `conf/modules.config` file, to ensure the pipeline can function as expected**
+:::warning
+It is recommended to copy and paste existing parameters in a pipelines `conf/modules.config` file, to ensure the pipeline can function as expected
+:::
 
-> **:warning: It is important to note that updating tool parameters or changing `ext.args` comes with no warranty by the pipeline developers!**
+:::warning
+It is important to note that updating tool parameters or changing `ext.args` comes with no warranty by the pipeline developers!
+:::
 
 # Debugging
 

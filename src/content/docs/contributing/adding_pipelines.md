@@ -27,7 +27,9 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
 Please join us on [Slack](https://nf-co.re/join/slack), and ask to be added to the GitHub association through the [#github-invitations](https://nfcore.slack.com/channels/github-invitations) channel. If you feel like it, you can go to the [#say-hello](https://nfcore.slack.com/channels/say-hello) channel and introduce yourself to the rest of the community.
 
-**⚠️ It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding. ⚠️**
+:::warning
+It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.
+:::
 
 The [nf-core guidelines](/docs/contributing/guidelines) state that no two pipelines should overlap too much
 in their purpose and results. There may be an existing pipeline that can be extended to give the
@@ -83,8 +85,10 @@ You'll need to set up [manual synchronisation](sync.md), not for the faint heart
 Once the template for your pipeline is created, make sure to switch branch to the `dev` branch with `git checkout dev`.
 All development should happen on dev (or on other branches that get merged into dev).
 
-> NB: Pipeline names must be all lower-case and contain no punctuation.
-> This is to allow consistent names between platforms.
+:::note
+Pipeline names must be all lower-case and contain no punctuation.</br>
+This is to allow consistent names between platforms.
+:::
 
 ### Push to GitHub
 

@@ -27,7 +27,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Maxime Borry ([@maxibor](https://github.com/maxibor)) will tell us all about the nf-core/coproid pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/gU4jx1pb8Tw&t=1)
 Hi, everyone. As usual, I'd like to begin by thanking you for joining us and the Chan Zuckerberg Initiative for funding all nf-core events. We're joined today by Maxime Borry from the Max Planck Institute for the Science of Human History in Germany, and he will be presenting the nf-core/coproid pipeline. CoproID has been described to help identify the true maker of Illumina-sequenced coprolites or paleo feces by checking the microbiome composition and the endogenous DNA. I'm curious to learn how that's done. I am so excited for your talk today, Maxime. If you have any questions for Maxime, you can either unmute yourself at the end of the talk or use the chat function, and I will relay the questions over to him. Thanks very much for agreeing to present for us today, Maxime. I'd like to hand over to you now. Over to you.

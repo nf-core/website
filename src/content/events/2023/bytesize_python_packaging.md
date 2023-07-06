@@ -40,7 +40,9 @@ Once released in PyPI, releases via [Bioconda](https://bioconda.github.io/) are 
 Once in Bioconda, software will be available for Conda users, but also Docker + Singularity, via the [BioContainers](https://biocontainers.pro/) project.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=hOuS6mXCwhk&t=1)
 Hello, everyone, and welcome to this week's bytesize talk. I'm very happy to have Phil here, who is talking today about converting Python scripts into packages for PyPI, Bioconda, and biocontainers. It's your stage, Phil.

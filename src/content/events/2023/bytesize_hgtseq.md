@@ -27,7 +27,9 @@ This week, Francesco Lescai ([@lescai](https://github.com/lescai)) is presenting
 It uses metagenomic classification of paired-read alignments against a reference genome to identify the presence of non-host microbial sequences within read pairs, and to infer potential integration sites into the host genome.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=nDaRt2L-tRw&list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&index=69&t=1)
 (host) Hello, everyone, and welcome to this week's bytesize talk. I'm very happy to have with me today Francesco Lescai from the University of Pavia at the Department of Biology and Biotechnology. He is very, very busy in nf-core, and among other things, he also worked with Sarek, but today he's going to talk about another pipeline, which is nf-core/hgtseq, and off to you.

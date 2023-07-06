@@ -244,7 +244,9 @@ Before wrapping up our code, we need to add a line to output the software versio
     END_VERSIONS
 ```
 
-> ⚠️ Note the template you generate will include an **example** samtools command! Make sure to replace this!
+:::warning
+Note the template you generate will include an **example** samtools command! Make sure to replace this!
+:::
 
 Usually a software prints their version with a code similar to this
 
@@ -492,7 +494,9 @@ This process will run the test workflow, generate the outputs and update the `te
 
 ### Check pytest YAML
 
-> ⚠️ This should be already updated for you when building the template - you shouldn't have to touch these sections!
+:::warning
+This should be already updated for you when building the template - you shouldn't have to touch these sections!
+:::
 
 Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
 

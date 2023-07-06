@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Jasmin Frangenberg ([@jasmezz](https://github.com/jasmezz)) is going to introduce nf-core/funcscan. nf-core/funcscan is a bioinformatics best-practice analysis pipeline for the screening of functional components of nucleotide sequences such as assembled contigs. This includes mining for antimicrobial peptides, antibiotic resistance genes and biosynthetic gene clusters.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=c1CnE6jPhpg&t=1)
 (host) Hello everyone and welcome to this week's bytesize talk. With us is Jasmin Frangenberg. I'm very happy that you're here. Thank you very much. She's going to talk about yet another new pipeline that is going to be released very soon, which is nf-core/funcscan. Off to you, Jasmin.

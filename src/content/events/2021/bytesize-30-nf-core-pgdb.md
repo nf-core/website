@@ -29,7 +29,9 @@ This week, Yasset Perez-Riverol ([@ypriverol](https://github.com/ypriverol/)) wi
 nf-core/pgdb is a bioinformatics pipeline to generate proteogenomics databases. pgdb allows users to create proteogenomics databases using EMSEMBL as the reference proteome database.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=vbyX3xmTT38&t=1)
 (host) Hi, everyone. As usual, I'd like to begin by thanking you for joining us and the Chan Zuckerberg Initiative for funding. We're excited to be joined today by Yasset Perez-Riverol from the EBI in the UK, and he will be presenting the nf-core/pgdb pipeline, which is focused on helping users create proteogenomics databases using Ensembl as the reference proteome database. Yasset will be telling us more during the talk. If you have any questions for Yasset, either unmute yourself at the end of the talk or use the chat function, and I will relay the questions over to him. Thanks very much for agreeing to present for us today, Yasset. I'd like to hand over to you now so that you can start your talk.

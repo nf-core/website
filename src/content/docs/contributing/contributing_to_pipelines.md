@@ -32,7 +32,9 @@ Each nf-core pipeline has its own Slack channel that can be found by searching t
 
 ## Contribution overview
 
-**⚠️ It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding. ⚠️**
+:::warning
+It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding.
+:::
 
 If you'd like to write some code for an nf-core pipeline, the standard workflow is as follows:
 
@@ -67,7 +69,9 @@ These tests are run both with the latest available version of `Nextflow` and als
 
 ## Patching bugs
 
-:warning: Only in the unlikely and regretful event of a release happening with a bug.
+:::warning
+Only in the unlikely and regretful event of a release happening with a bug.
+:::
 
 - On your own fork, make a new branch `patch` based on `upstream/master`.
 - Fix the bug, and bump version (X.Y.Z+1).

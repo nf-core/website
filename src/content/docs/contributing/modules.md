@@ -7,7 +7,9 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module!
 
-**⚠️ DSL1 has reached it's end-of-life as of 2023. As of Nextflow version 22.04.x and 22.10.x it will not be possible to run DSL1 scripts. ⚠️**
+:::warning
+DSL1 has reached it's end-of-life as of 2023. As of Nextflow version 22.04.x and 22.10.x it will not be possible to run DSL1 scripts.
+:::
 
 ## Terminology
 
@@ -166,7 +168,9 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
     INFO     Writing to 'tests/modules/nf-core/fastqc/test.yml'
    ```
 
-   > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+   :::note
+      See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+    :::
 
 9. Check that the new module you've added follows the [new module guidelines](#new-module-guidelines-and-pr-review-checklist)
 
@@ -323,10 +327,13 @@ Please follow the steps below to run the tests locally:
         - If the module is also used in subworkflows, all subworkflow tests containing the module will also be executed.
      ```
 
-> 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
->
-> :warning: if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
+:::info
+For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
+:::
 
+:::warning
+if you have a module named `build` this can conflict with some pytest internal behaviour. This results in no tests being run (i.e. receiving a message of `collected 0 items`). In this case rename the `tests/<module>/build` directory to `tests/<module>/build_test`, and update the corresponding `test.yml` accordingly. An example can be seen with the [`bowtie2/build` module tests](https://github.com/nf-core/modules/tree/master/tests/modules/nf-core/bowtie2/build_test).
+:::
 ### Uploading to `nf-core/modules`
 
 [Fork](https://help.github.com/articles/fork-a-repo/) the `nf-core/modules` repository to your own GitHub account. Within the local clone of your fork add the module file to the `modules/` directory. Please try and keep PRs as atomic as possible to aid the reviewing process - ideally, one module addition/update per PR.
@@ -339,7 +346,9 @@ Once you<span class="x x-first x-last"> are </span>familiar with the module subm
 
 ### Talks
 
-> ⚠️ these may include references to an older syntax, however the general idea remains the same
+:::warning
+these may include references to an older syntax, however the general idea remains the same
+:::
 
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -735,7 +744,9 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
 mulled-search --destination quay singularity --channel bioconda --search bowtie samtools | grep "mulled"
 ```
 
-> NB: Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
+:::note
+Build information for all tools within a multi-tool container can be obtained in the `/usr/local/conda-meta/history` file within the container.
+:::
 
 4. It is also possible for a new multi-tool container to be built and added to BioContainers by submitting a pull request on their [`multi-package-containers`](https://github.com/BioContainers/multi-package-containers) repository.
 
@@ -1000,7 +1011,9 @@ The following table lists the available keys commonly used in nf-core modules.
 | ext.args3  | Third set of arguments appended to command in module.  |
 | ext.prefix | File name prefix for output files.                     |
 
-**Note:** that the order of the numeric ID of `args` must match the order of the tools as used in the module.
+:::note
+The order of the numeric ID of `args` must match the order of the tools as used in the module.
+:::
 
 To see some more advanced examples of these keys in use see:
 

@@ -28,7 +28,9 @@ This week, Payam Emami ([@PayamEmami](https://github.com/PayamEmami/)) will tell
 nf-core/metaboigniter is bioinformatics pipeline for pre-processing of mass spectrometry-based metabolomics data.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/hPBrlwbsvsk&t=1)
 (host) Okay, so let's go. Hi everyone, Maxime here. So, thanks for joining us today for the nf-core bytesize talk focused on pipelines. This week, it's Payam from the national bioinformatics infrastructure Sweden, who is going to present us metaboigniter. As usual, we are on Zoom and YouTube. If you have any questions, please ask them in the chat. Gisela and I will take care of them at the end. Over to you, Payam.

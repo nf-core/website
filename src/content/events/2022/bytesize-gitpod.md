@@ -27,7 +27,9 @@ This week, Chris Wyatt ([@chriswyatt1](https://github.com/chriswyatt1)) will sho
 Chris will show us how it works, how you can use the environments on offer and how to use the `.gitpod.yml` configuration that now comes as part of the nf-core pipeline template.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=kBoC6QBU-M0t=1)
 Okay, hi everyone welcome to today's bytesize talk. Today we have Chris Wyatt who's going to be telling us about Gitpod and how it can be used for testing, development and training. I'll let Chris introduce himself but I hope you enjoy the talk.
