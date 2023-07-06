@@ -38,7 +38,7 @@ If you'd like to write some code for an nf-core pipeline, the standard workflow 
 
 1. Check that there isn't already an issue about your idea for that pipeline to avoid duplicating work. If there isn't one already, please create one so that others know you're working on this
 2. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the pipeline repository to your GitHub account
-3. Make the necessary changes / additions on the `dev` branch by using [git checkout](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/committing-changes-to-a-pull-request-branch-created-from-a-fork) within your forked repository following [Pipeline conventions](#pipeline-contribution-conventions)
+3. Make the necessary changes / additions on `dev` branch by using [git checkout](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/committing-changes-to-a-pull-request-branch-created-from-a-fork) within your forked repository following [pipeline conventions](#pipeline-contribution-conventions)
 4. Use `nf-core schema build` and add any new parameters to the pipeline JSON schema (requires [nf-core tools](https://github.com/nf-core/tools) >= 1.10).
 5. Submit a Pull Request against the `dev` branch and wait for the code to be reviewed and merged
 
