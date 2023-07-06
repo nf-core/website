@@ -252,6 +252,27 @@ It will check:
 
 See the documentation about [code formatting](/developers/code_formatting.md) for more information on these tools and how to use them.
 
+#### Prettier
+
+Prettier is a tool used to make the code more consistent and readable.
+It's a optionated code formatter that enforces a consistent style by parsing the code and re-printing it in its own rules.
+
+Every code and file of the nf-core community needs to be checked and formatted by Prettier before the upload.
+
+The command to check if the style of all files in your directory and its subdirectories is valid for Prettier is the following:
+
+```bash
+prettier -c .
+```
+
+While the command to automatically format the style of all the files in your directory with Prettier is the following:
+
+```bash
+prettier -w .
+```
+
+See pre-commit informations here: https://nf-co.re/docs/contributing/modules#new-module-workflow
+
 #### Continuous integration tests
 
 The `ci.yml` workflow will run tests for your pipeline with the small test dataset.
@@ -330,6 +351,11 @@ A step-by-step tutorial [adding new modules](https://nf-co.re/docs/contributing/
 
 - Use the pipeline you created in Exercise 2 and add an nf-core module (e.g. trimgalore).
 - Connect the module to the main pipeline workflow (under `workflows/<pipeline-name>.nf`).
+
+#### Subworkflow
+
+Subworkflows are chains of modules that offer a higher-level of functionality within the context of a pipeline. A subworkflow is able to run multiple tools on the same input file.
+Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the 'subworkflow/' directory of nf-core/modules along with the required documentation and tests.
 
 ## Releasing nf-core pipelines
 
