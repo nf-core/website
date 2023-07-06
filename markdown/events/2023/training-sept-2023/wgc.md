@@ -16,7 +16,8 @@ This is a free local event to be held at the [Wellcome Genome Campus, Cambridge]
 
 Please register [here](https://form.typeform.com/to/gFMjNQzt).
 
-If you do not work on campus and would like to attend, reach out to [Priyanka Surana](mailto:ps22@sanger.ac.uk).
+Everyone is welcome, even if you don't work on campus!
+If you don't work on campus and would like to attend, please reach out to [Priyanka Surana](mailto:ps22@sanger.ac.uk).
 
 ## Local Schedule
 
