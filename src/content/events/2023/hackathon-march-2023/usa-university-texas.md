@@ -7,13 +7,17 @@ start_time: '10:00 CEST'
 end_date: '2023-03-29'
 end_time: '18:00 CEST'
 location_name: University of Texas at Dallas
-# address:
-location_url: https://gather.town
-# location_latlng: [xxx, xxx]
+address: 860 N Loop Rd, Richardson, TX 75080
+location_url: https://map.concept3d.com/?id=1772#!m/434445
+location_latlng: [32.991185005884084, -96.75017317150136]
 ---
 
 Local event to be held at the University of Texas at Dallas.
 
 Primary contact: [<i class="fab fa-slack"></i> Edmund Miller](https://nfcore.slack.com/team/UV41DBFAT)
 
-_Details to be confirmed_
+Please speak the security guard in the lobby to get access to the room.
+
+## Acknowledgments
+
+This local event is being kindly supported by the UT Dallas.
