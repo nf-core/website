@@ -40,6 +40,9 @@ The source code is on GitHub, contributors welcome:
 
 # Atom
 
+:::danger
+In case you missed it, Atom has been archived and support for it will be limited/absent in the near future.
+:::
 [Atom](https://atom.io/) is a hackable text editor for the 21st Century, built by GitHub.
 
 The `language-nextflow` Atom package provides syntax highlighting for Nextflow code:
@@ -53,6 +56,8 @@ Other useful packages include:
 - `python-black`: <https://atom.io/packages/python-black>
 - `todo-show`: <https://atom.io/packages/todo-show>
 - `trailing-spaces`: <https://atom.io/packages/trailing-spaces>
+
+
 
 # Emacs
 
