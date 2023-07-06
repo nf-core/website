@@ -137,7 +137,7 @@ The web server needs the following cronjobs running to scrape statistics and uda
 ```cron
 0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/sanger-tol/update.log 2>&1
 0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/sanger-tol/update.log 2>&1
-0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/sanger-tol/update.log 2>&
+0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/sanger-tol/update.log 2>&1
 ```
 
 Remember to replace `/path/to/deployment/` with your actual deployment directory.
