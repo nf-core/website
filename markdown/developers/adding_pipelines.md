@@ -17,7 +17,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 
 1. [Joining the community](#join-the-community)
 2. [Creating a pipeline](#create-a-pipeline-from-the-template)
-3. [Adding test data](#add-some-test-data)
+3. [Running with test data](#running-with-test-data)
 4. [Adding to the nf-core organisation](#adding-your-pipeline-to-the-nf-core-organisation)
 5. [Making your first release](#making-the-first-release)
 6. [Updates and new releases](#subsequent-releases)
@@ -25,9 +25,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 ## Join the community
 
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
-Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
-and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
-[mailing list](https://groups.google.com/forum/#!forum/nf-core).
+Please join us on [Slack](https://nf-co.re/join/slack), and ask to be added to the GitHub association through the [#github-invitations](https://nfcore.slack.com/channels/github-invitations) channel. If you feel like it, you can go to the [#say-hello](https://nfcore.slack.com/channels/say-hello) channel and introduce yourself to the rest of the community.
 
 **⚠️ It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding. ⚠️**
 
@@ -143,14 +141,14 @@ to the [repository GitHub web page](https://github.com/nf-core/test-datasets/) a
 this new branch using the UI there.
 Once created, you can open a pull request and select this as the target branch.
 
-If in doubt, ask for help!
-([Slack](https://nf-co.re/join/slack) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
+Don't forget to ask for help if you have any doubts!
+([Slack](https://nf-co.re/join/slack),alternatively if you already joined Slack you can go directly to the [#help](https://nfcore.slack.com/channels/help) channel)
 
 ### Setting up a test workflow
 
 Now that your test data is hosted on the web, you can set up a `test` config profile in your
 workflow that points to it.
-In fact, the `test` profile should already exist if you've used the template.
+A stub `test` profile should already exist in `conf/test.config`, so you just need to edit that file.
 Switch out the example URLs for the ones you added (view the files on GitHub and click 'Raw' to get the URL).
 
 Add any other required parameters so that running the pipeline runs with as few extra
@@ -306,6 +304,24 @@ Basic rules for such contributions:
 Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the GitHub Actions tests run through when testing your updated code. To achieve that, please follow these steps:
 
 - Add _only_ the newly required dependencies to the `environment.yml` in the pipeline code
+- If you only add new processes to an already existing pipeline however, you can simply specify the container in the `nextflow.config` file, like so:
+
+```nextflow
+process {
+    withName:foo {
+        container = 'image_name_1'
+    }
+    withName:bar {
+        container = 'image_name_2'
+    }
+}
+charliecloud {
+    enabled = true
+}
+```
+
+An extensive guide on how to handle containers can be found [here](https://www.nextflow.io/docs/latest/container.html)
+
 - List this new dependency as something new in the `CHANGELOG`
 - Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 
@@ -317,14 +333,14 @@ This way, a review process will be very fast and we can merge the changes into t
 
 You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core create`.
 
-- `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
+- `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflows/` directory is called for execution.
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
   The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/docs/usage/configuration) for more information.
 
 - `README.md`: Basic information about the pipeline and usage
 
-- `nextflow_json.schema`: The JSON schema file is used for pipeline parameter specification. This is automatically created using the `nf-core schema build` command. It is used for printing command-line help, validating input parameters, building the website docs and for building pipeline launch interfaces (web and cli).
+- `nextflow_schema.json`: The JSON schema file is used for pipeline parameter specification. This is automatically created using the `nf-core schema build` command. It is used for printing command-line help, validating input parameters, building the website docs and for building pipeline launch interfaces (web and cli).
 
 - `CHANGELOG.md`: Information about the changes made to the pipeline for each release.
 
@@ -340,11 +356,21 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `.editorconfig`: Editorconfig file that helps assuring consistent coding style
 
-- `.markdownlint.yml`: Markdown lint configuration file to assure consistent markdown files
+- `.prettierrc.yml`: Prettier lint configuration file to assure consistent markdown files
+
+- `.prettierignore`: Files that should be ignored by prettier
 
 - `modules.json`: This file holds information (e.g. version) about all the modules in the pipeline that have been installed from `nf-core/modules`
 
+- `.nf-core.yml`: Indicates the type of repository (pipeline or modules repo)
+
+- `.gitpod.yml`: Config file to define online working environment with <https://www.gitpod.io>
+
+- `pyproject.toml`: Config file for Python. Mostly used to configure linting of `bin/check_samplesheet.py` with Black
+
 ### Directories
+
+- `.devcontainer`: Configuration to work with the [GitHub Codespaces](https://github.com/features/codespaces) online editing environments.
 
 - `.github/`: Other GitHub specific files, e.g. for specifying templates and GitHub actions
 
@@ -377,26 +403,13 @@ To assure that nf-core pipelines don't break after some change is made to the co
 
 ## DSL2 and modules
 
-Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. Currently, most nf-core pipelines are still entirely written in DSL1, but in the near future all pipelines will be written in DSL2. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
+Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
 
 ### Modules
 
-Each pipeline has a `modules` directory which contains all the module code. A module here depicts a single process which involves - if possible - only a single tool/software. The `modules` directory is furthermore divided into `local`and `nf-core` sub-directories, which themselves each have a `process`/`software` and `subworkflow` directory. Modules contained in the `local` directory are specific to the pipeline, whereas `nf-core` modules are installed from the `nf-core/modules` repository. For instance, most pipelines that involve FastQ files will run the FastQC tool for quality control. The module needed for this can be easily reused from the `nf-core/modules` directory using the `nf-core/tools`package. The `process` directories contain modules which define single processes, which smaller workflows are contained in the `subworkflow` directories.
+Each pipeline has a `modules` directory which contains all the module code. A module here depicts a single process which involves - if possible - only a single tool/software. The `modules` directory is furthermore divided into `local`and `nf-core` sub-directories, where local contains the `samplesheet_check.nf`. Modules contained in the `local` directory are specific to the pipeline, whereas `nf-core` modules are installed from the `nf-core/modules` repository. For instance, most pipelines that involve FastQ files will run the FastQC tool for quality control. The module needed for this can be easily reused from the `nf-core/modules` directory using the `nf-core/tools`package.
 
-All modules load utility functions from a `functions.nf` script that must be contained in the `modules/local/process` directory. It contains simple functions to initialize the module options, get the software version, save files and get a path from a string. For further explanations of modules and how they should be structured in DSL2 pipelines, check out the [nf-core modules repo](https://github.com/nf-core/modules).
-
-### Module parameters
-
-One thing that might not be straightforward is how module parameters are handled in nf-core DSL2 pipelines. Every module and subworkflow, when loaded into the pipeline, has to be passed a groovy map containing module options. For single processes this is typically only a single `options` map, while for subworkflows these can be several maps that are then passed down to the correct processes within the subworkflows. These `options` maps are directly loaded from the `modules.config` file (contained in the pipeline `conf` directory), which is the place where all additional and optional parameters for modules are stored. Modules should be build in a way such that they are flexible with respect to the parameters, so that most command line parameters can be passed to them via the `modules.config`. This way, all command line parameters and other options can be modified within a single script, which makes it easy for users to adjust the pipeline and at the same time makes modules more reusable.
-
-The `modules.config` file should contain a `params.modules` dictionary which lists every module used in the pipeline. For each module, the following fields can be specified:
-
-- `args`: additional arguments appended to command in the module
-- `args2`: Second set of arguments append to command in the module (multi-tool modules)
-- `publish_dir`: Directory to publish the results
-- `publish_by_id`: Publish results in separate folder by meta.id value
-- `publish_files`: Groovy map where key = "file_ext" and value = "directory" to publish results for that file extension. The value of "directory" is appended to the standard "publish_dir" path as defined above. If publish_files == null (unspecified) all files are published. If publish_files == false no files are published.
-- `suffix`: File name suffix for output files
+For more informations and a comprehensive guide on the guidelines of how to implement modules in pipelines please refer to the [DSL 2 Modules](https://nf-co.re/docs/contributing/modules) page
 
 ### Sample meta information
 
