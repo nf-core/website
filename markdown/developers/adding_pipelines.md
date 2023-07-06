@@ -37,7 +37,10 @@ pipeline to the one you're planning.
 To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
 as possible. Ideally before you make a start on your pipeline!
 
-> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
+> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows).
+> However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code.
+> All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline.
+> If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
 
 All nf-core discussion happens on the nf-core Slack, which you can join here:
 [https://nf-co.re/join](https://nf-co.re/join)
@@ -47,15 +50,30 @@ These topics are specifically discussed in the `#new-pipelines` channel:
 
 ## Create a pipeline from the template
 
+### Request a new pipeline
+
+Before you get too carried away, the first task is to request the new pipeline in the nf-core Slack.
+We have a Slack channel dedicated to this: `#new-pipelines`.
+
+There, you will find a _Workflow_ bookmarked to top of the Slack window called _Pipeline proposal_.
+This gives you a form to fill in with key information about the pipeline you want to write.
+
+The proposal will be discussed and checked for uniqueness (not too much overlap with any existing pipelines)
+and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/35/) on GitHub.
+
+Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
+
+
+### Create the pipeline
+
 You'll start by making a new pipeline locally and working with it on your own GitHub account.
-Once you have a version of the pipeline that runs, ask the core team to move the repo to the nf-core GitHub organisation for final development, review and release.
+Once you have a version of the pipeline that runs, ask the core team to _move_ the repo to the nf-core GitHub organisation for final development, review and release.
 
-> We generally don't create repositories within the nf-core organisation from the start,
-> in case development takes longer than expected. This way we avoid having a lot of "empty"
-> pipelines listed which are basically just the template.
-> See [Adding your pipeline to the nf-core organisation](#adding-your-pipeline-to-the-nf-core-organisation) below.
+We generally don't create repositories within the nf-core organisation from the start, in case development takes longer than expected.
+This way we avoid having a lot of "empty" pipelines listed which are basically just the template.
+See [Adding your pipeline to the nf-core organisation](#adding-your-pipeline-to-the-nf-core-organisation) below for details on this process.
 
-All nf-core pipelines [must use the nf-core template](https://nf-co.re/docs/contributing/guidelines/requirements/use_the_template).
+All nf-core pipelines [_must_ use the nf-core template](https://nf-co.re/docs/contributing/guidelines/requirements/use_the_template).
 This is done by using the `nf-core create` command - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline) for detailed instructions.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
