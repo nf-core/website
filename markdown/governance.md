@@ -140,7 +140,7 @@ The outreach leads will have access to community social media and YouTube accoun
 **Responsibilities**
 
 - Organizing and running the `#bytesize` seminar series
-- Leading the organization of hackathons, training sessions, and other outreach events
+- Leading the organization of hackathons, training sessions, mentorship program, ambassador program, and other outreach events
 - Organizing and running the ambassador program
 - Creating and sharing community content
 - Regular attendance at outreach team meetings
@@ -224,7 +224,7 @@ Ambassadors go above and beyond to share knowledge in a variety of ways includin
 Community members with an interest in sharing knowledge and helping their communities can become nf-core ambassadors.
 Ambassadors are expected to regularly engage with the wider community and will be supported by the outreach team and other ambassadors.
 
-More information about becoming an nf-core ambassador can be found [here](https://github.com/).
+More information about becoming a Nextflow and nf-core ambassador will be available soon!
 
 **Responsibilities**
 
@@ -233,12 +233,3 @@ More information about becoming an nf-core ambassador can be found [here](https:
 - Running nf-core events such as user group meetings, hackathons, workshops, and more
 - Speaking about nf-core at meetings and events
 - Acting as a local liaison for new community members
-
-**Members**
-
-<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
-<a class="btn btn-light rounded-pill" href="https://github.com/"><i aria-hidden="true"></i>Member</a>
