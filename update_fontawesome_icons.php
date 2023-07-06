@@ -26,6 +26,6 @@ foreach ($fa_icons as $d => $icon) {
 }
 
 # Write to a JSON file for the website
-$results_fn = 'public_html/assets/js/fa-icons.json';
+$results_fn = dirname(__FILE__) . '/public_html/assets/js/fa-icons.json';
 $results_json = json_encode($icons, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
