@@ -8,7 +8,7 @@ subtitle: Follow this walkthrough to add features to an existing nf-core pipelin
 So, you want to add a new pipeline to nf-core - brilliant!
 Before you start typing, check that you're happy with the following points:
 
-- You're familiar with nf-core and nextflow (see our [introduction docs](/docs/usage/introduction.md)).
+- You're familiar with nf-core and Nextflow (see our [introduction docs](/docs/usage/introduction.md)).
 - You're used to working with `git` and [GitHub](https://github.com)
   (see a [nice tutorial here](https://blog.scottlowe.org/2015/01/27/using-fork-branch-git-workflow/))
 - The workflow you're thinking of meets the [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines).
@@ -24,7 +24,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 
 ## Join the community
 
-At its heart, nf-core is a community - to contribute to a pipeline, you should be part of that community!
+At its heart, nf-core is a community. To contribute to a pipeline, you should be part of that community!
 Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
 and join the nf-core [Slack](https://nf-co.re/join/slack).
 
@@ -47,20 +47,20 @@ If you're new to working with git, you can view the [GitHub pull requests docume
 ## Testing
 
 When you create a pull request with changes, [GitHub Actions](https://github.com/features/actions) will run automatic tests.
-Typically, pull-requests are only fully reviewed when these tests are passing, though of course we can help out before then.
+Typically, pull-requests are only fully reviewed when these tests are passing, though of course, we can help out before then.
 
 There are typically two types of tests that run:
 
 #### Lint tests
 
 `nf-core` has a [set of guidelines](https://nf-co.re/developers/guidelines) which all pipelines must adhere to.
-To enforce these and ensure that all pipelines stay in sync, we have developed a helper tool which runs checks on the pipeline code. This is in the [nf-core/tools repository](https://github.com/nf-core/tools) and once installed can be run locally with the `nf-core lint <pipeline-directory>` command.
+To enforce these and ensure that all pipelines stay in sync, we have developed a helper tool that runs checks on the pipeline code. This is in the [nf-core/tools repository](https://github.com/nf-core/tools) and once installed can be run locally with the `nf-core lint <pipeline-directory>` command.
 
 If any failures or warnings are encountered, please follow the listed URL for more documentation.
 
 #### Pipeline tests
 
-Each `nf-core` pipeline should be set up with a minimal set of test-data.
+Each `nf-core` pipeline should be set up with a minimal set of test data.
 `GitHub Actions` then runs the pipeline on this data to ensure that it exits successfully.
 If there are any failures then the automated tests fail.
 These tests are run both with the latest available version of `Nextflow` and also the minimum required version that is stated in the pipeline code.
@@ -79,7 +79,7 @@ For further information/help, please consult the usage documentation for the par
 
 ## Pipeline contribution conventions
 
-To make the nf-core pipeline code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
+To make the nf-core pipeline code and processing logic more understandable for new contributors and to ensure quality, we semi-standardize the way the code and other contributions are written.
 
 #### Adding a new step
 
@@ -104,7 +104,7 @@ Once there, use `nf-core schema build` to add to `nextflow_schema.json`.
 
 #### Default processes resource requirements
 
-Sensible defaults for process resource requirements (CPUs / memory / time) for a process should be defined in `conf/base.config`. These should generally be specified generic with `withLabel:` selectors so they can be shared across multiple processes/steps of the pipeline. A nf-core standard set of labels that should be followed where possible can be seen in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config), which has the default process as a single core-process, and then different levels of multi-core configurations for increasingly large memory requirements defined with standardised labels.
+Sensible defaults for process resource requirements (CPUs / memory / time) for a process should be defined in `conf/base.config`. These should generally be specified generic with `withLabel:` selectors so they can be shared across multiple processes/steps of the pipeline. An nf-core standard set of labels that should be followed where possible can be seen in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config), which has the default process as a single core-process, and then different levels of multi-core configurations for increasingly large memory requirements defined with standardised labels.
 
 The process resources can be passed on to the tool dynamically within the process with the `${task.cpu}` and `${task.memory}` variables in the `script:` block.
 
@@ -117,8 +117,8 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 #### Nextflow version bumping
 
-If you are using a new feature from core Nextflow, you may bump the minimum required version of nextflow in the pipeline with: `nf-core bump-version --nextflow . [min-nf-version]`
+If you are using a new feature from core Nextflow, you may bump the minimum required version of Nextflow in the pipeline with: `nf-core bump-version --nextflow . [min-nf-version]`
 
 #### Images and figures
 
-For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
+For overview images and other documents, we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
