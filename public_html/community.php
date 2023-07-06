@@ -5,7 +5,7 @@
 
 $title = 'Community';
 $subtitle = 'Find out who is involved in the sanger-tol project';
-$md_github_url = 'https://github.com/sanger-tol/pipelines-website/blob/updating_stats/sanger-tol-partners.yaml';
+$md_github_url = 'https://github.com/sanger-tol/pipelines-website/blob/main/sanger-tol-partners.yaml';
 $import_leaflet = true;
 include '../includes/header.php';
 ?>
