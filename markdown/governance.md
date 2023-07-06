@@ -1,7 +1,7 @@
 ## Governance
 
-nf-core is committed to being an open, inclusive, productive and open-source community.
-Anyone with an interest in the project can join the community and contribute to the project.
+nf-core is committed to being an open, inclusive, productive, and open-source community.
+Anyone interested in the project can join the community and contribute to the project.
 All community members must comply with the Code of Conduct (CoC) at all times.
 
 To help manage the project, nf-core has teams that are made up of community members that oversee core activities.
@@ -20,7 +20,7 @@ This page describes the structure of the nf-core community, including how govern
 
 #### Steering committee {#steering}
 
-Changes that impact the community requires decisions informed by extensive experience with both the nf-core project and the larger ecosystem.
+Changes impacting the community require decisions informed by extensive experience with the nf-core project and the larger ecosystem.
 The steering committee is responsible for overseeing the running of the nf-core project.
 
 The steering committee is made up of representatives from the core team and outside advisors who are familiar with the project.
@@ -176,10 +176,10 @@ nf-core maintainers will have write access to repositories.
 **Responsibilities**
 
 - Respond to `#github-invitations`
-- Review module, subworkflow, pipeline release pull requests
+- Review module, subworkflow, and pipeline release pull requests
 - Manage repository access for community developers
 - Manage test data
-- Enable and promote Flux community values
+- Enable and promote nf-core community values
 
 **Leads**
 
