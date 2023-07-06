@@ -24,7 +24,9 @@ To make the workshops available to everyone they will be streamed on the [nf-cor
 
 Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 3 hours and will include a short break.
 
-The schedule for each session will be availble soon!
+The training will consist of two days of Nextflow and one day of nf-core training. The material covered will be very similar to what has already been shown in [previous community training events](https://www.youtube.com/@nf-core/playlists?view=50&sort=dd&shelf_id=2).
+
+The schedule for each session will be available soon!
 
 ## Asking questions
 
