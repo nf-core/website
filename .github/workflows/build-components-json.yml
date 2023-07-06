@@ -1,0 +1,37 @@
+name: build components.json file
+
+on:
+  push:
+    branches:
+      - netlfiy-test
+      - astro
+  workflow_dispatch:
+
+jobs:
+  build-component-json:
+    runs-on: ubuntu-latest
+    environment: static-file-build
+
+    steps:
+      # Set up the main website repo
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Don't do a shallow clone
+
+      # install npm dependencies
+      - name: Set up node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'npm'
+      - run: npm install
+
+      - name: create component.json
+        run: npm run build-component-json
+        env:
+          GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+      # Commit and push the changes
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions

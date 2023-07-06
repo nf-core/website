@@ -41,10 +41,12 @@ allTabItems.unshift({
 });
 
 const latestVersion = versions[0];
-const schema = await cache.get(`${pipeline}/${version}/nextflow_schema.json`);
-if (schema !== undefined) {
-    // Add the parameters tab if there is a schema to the second position
-    allTabItems.splice(1, 0, {
+const hasSchema = pipelines_json.remote_workflows
+    .find((wf) => wf.name === pipeline)
+    ?.releases.find((r) => r.tag_name === version)?.has_schema;
+if (hasSchema) {
+    // Add the parameters tab if there is a schema
+    allTabItems.push({
         label: 'Parameters',
         href: `/${pipeline}/${version}/parameters/`,
         active: Astro.url.pathname.endsWith('/parameters/'),
