@@ -11,13 +11,11 @@ Overall, the role of the reviewer of pipeline release PRs is to check for adhere
 
 Here we provide a general set of suggestions of what a reviewer should and do not need to look for when doing pipeline releases:
 
-## Do
-
-### nf-core principles
+## Do: nf-core principles
 
 - Does the pipeline meet the general [nf-core guidelines](guidelines)
 
-### Local code and modules
+## Do: Local code and modules
 
 - Do local scripts in `bin/` have author and license embedded?
   - Local script licenses if written for the pipeline should not GPL, but ideally MIT (matching with pipeline code, upon which is assumed if not otherwise specified)
@@ -29,7 +27,7 @@ Here we provide a general set of suggestions of what a reviewer should and do no
   - It would be good to add with more complex operations such as `awk`
 - Should any local modules be in nf-core/modules?
 
-### Documentation
+## Do: Documentation
 
 - Documention is only on the nf-core website (not pointed to other non-nf-core standard places, e.g. not read the docs )
 - Is documentation sufficiently described (`usage.md`, `output.md`, `nextflow_schema.json`)?
@@ -42,7 +40,7 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 - Check that all tools are cited
 - Check that (all) pipeline author(s) listed themselves in the manifest and other contributors are added in the README
 
-### Code
+## Do: Code
 
 - Check no overly non-template components (no read the docs, entirely custom logo etc.)
 - Check for general code readability
@@ -54,6 +52,7 @@ Here we provide a general set of suggestions of what a reviewer should and do no
 
 ## Don't have to do
 
+- Review module code from nf-core/modules
 - Comment on scientific content (unless you are familiar with the topic)
 - Major code optimisation
   - You _can_ suggest small code optimisations

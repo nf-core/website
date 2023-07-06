@@ -1641,7 +1641,7 @@ function validate_param(param) {
   }
 
   // Empty defaults are always ok
-  if (!param.hasOwnProperty('default') || param['default'].length === 0) {
+  if (!param.hasOwnProperty('default') || !param['default'] || (param['default'] && param['default'].length === 0)) {
     return true;
   }
 
