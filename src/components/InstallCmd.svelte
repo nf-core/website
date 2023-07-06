@@ -2,6 +2,7 @@
     export let cmd: string;
     export let icon: boolean = true;
     export let flatTop: boolean = false;
+    export let flatBottom: boolean = false;
 
     let Tooltip: any;
     $: copied = false;
@@ -26,6 +27,7 @@
         class="form-control input code bg-body"
         class:border-start-0={icon}
         class:rounded-top-0={flatTop}
+        class:rounded-bottom-0={flatBottom}
         id="module-install-cmd-text"
         data-autoselect=""
         value={cmd}
