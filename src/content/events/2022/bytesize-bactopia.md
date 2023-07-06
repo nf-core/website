@@ -28,7 +28,9 @@ This week, Robert A. Petit III ([@rpetit3](https://github.com/rpetit3)) will int
 Robert will show us the pipeline and explain how he is using nf-core components (such as [modules](https://nf-co.re/modules)) in this pipeline, despite it being outside the main nf-core organisation.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=egjgcmeJ0wQ&t=1)
 (host) Hello everyone my name is Franziska Bonath, I'm the today's host for the bytesize talk and with me is Robert Petit. He is from the Wyoming public health laboratory and is going to talk about bactopia which is not part of nf-core but it's using nf-core components and nf-core pipelines, so off to you!

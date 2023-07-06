@@ -28,7 +28,9 @@ This week, Regan Hayward ([@reganhayward](https://github.com/reganhayward/)) wil
 nf-core/dualrnaseq is specifically used for the analysis of Dual RNA-seq data, interrogating host-pathogen interactions through simultaneous RNA-seq.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=-J3Cbetk8Pk&t=1)
 (host) Hi, everyone. Thanks for joining us. And as usual, I'd like to begin by thanking our funders, the Chan Zuckerberg Initiative for supporting outreach events by nf-core. Just a minor detail before I start today's session. This talk will be recorded, and it is being recorded at the moment. The video will be uploaded to our YouTube playlist. I will be sharing the link on our website and on Slack. So don't worry, if you've missed it, you can catch up later. I'm delighted to tell you today that we're joined by Regan Hayward, who is based at the Helmholtz Center for RNA-based Infection Research in Germany. He will be presenting the nf-core dualrnaseq pipeline. It's a pipeline that is used to interrogate host pathogen interactions through simultaneous RNA-seq. There will be time for questions at the end of Regan's talk. And you can either use the chat function at any time today or unmute yourselves at the end of the talk and ask them directly. Thanks for joining us today, Regan. I'd like to hand over to you now.

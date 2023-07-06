@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Yuk Kei ([@yuukiiwa](https://github.com/yuukiiwa)) will talk about the newest developments in the nf-core/nanoseq pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=KM1A0_GD2vQ&t=1)
 Hello, everyone. I'm Franziska Bonath. I'm today's host, and with me is Yuk Kei. She is giving an introduction to nf-core nanoseq. Welcome.

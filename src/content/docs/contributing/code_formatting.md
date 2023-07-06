@@ -58,9 +58,10 @@ pre-commit install
 
 After this, every time you run `git commit ...` the pre-commit tests will run and fix your formatting.
 
-> **Note:**
-> If any changes are made, the commit is aborted.
-> To continue, `git add` the new changes and try again.
+:::note
+If any changes are made, the commit is aborted.
+To continue, `git add` the new changes and try again.
+:::
 
 ## Editor plugins
 

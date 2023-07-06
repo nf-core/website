@@ -32,7 +32,9 @@ Slides:
 </div>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/Z_uPj7fAes8&t=1)
 (host) [...] talk which is in preparation for the big DSL2 hackathon next week and today we have Harshil Patel from Seqera Labs presenting about writing your own nf-core DSL2 pipeline. During the talk if you have any questions for Harshil please put them in the chat and I'll read them out. As a reminder this video and all the previous bytesize talks are on the YouTube channel so you can consult them there later as well and all the links are on our homepage, so please take it away Harshil.

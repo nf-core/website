@@ -209,7 +209,9 @@ ERROR ~ Cannot find any reads matching: *{1,2}.fastq.gz
 
 ### Direct input
 
-> ⚠️ This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
+:::warning
+This section mostly refers to DSL1 pipelines! Most DSL2 pipelines now use samplesheet inputs rather than direct read inputs.
+:::
 
 Or when you're using a input method like `--input '/<path>/<to>/*_fq.gz'`, but only pick up one file, or only one file per pair being processed during the run, please note the following:
 
@@ -281,7 +283,9 @@ Sometimes a newly downloaded and set up nf-core pipeline will encounter an issue
 
 The first thing to do is always check the `.nextflow.log` to see if it reports contains specific error. Common cases are described below.
 
-> :warning: Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
+:::warning
+Note that just because Nextflow reports a particular tool failed, this _does not_ necessarily mean it's an issue with the tool itself. It's important to always _fully_ read the error message to identify possible causes.
+:::
 
 ### Tool not found
 
@@ -423,7 +427,9 @@ Command exit status:
   137
 ```
 
-> :warning: Each exit code can mean different things to different tools as well as in different environments. Therefore it is not always easy for developers to predict the exact issue and solution!
+:::warning
+Each exit code can mean different things to different tools as well as in different environments. Therefore it is not always easy for developers to predict the exact issue and solution!
+:::
 
 Common exit codes and and **_potential_** solutions are as follows:
 
@@ -465,7 +471,9 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
   }
   ```
 
-  > ℹ️ In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, or in the pipeline's `conf/modules.config` file, if a module is used multiple times in a workflow and not all instances need the same resources.
+  :::info
+  In some cases you may need to use 'fully resolved' paths of the modules, as displayed in the nextflow console. e.g. `'NFCORE_SAREK:SAREK:MARKDUPLICATES'`, or in the pipeline's `conf/modules.config` file, if a module is used multiple times in a workflow and not all instances need the same resources.
+  :::
 
   - Note that with the above example you will **_not_** have the automatic retry mechanism that resubmits jobs with increased resource requests (given appropriate exit codes). The job will still be resubmitted on failure but with `16.GB` each time.
 
@@ -489,7 +497,9 @@ For example, let's say it's the `MARKDUPLICATES` process that is running out of 
 
 If this happens, you can either wait until all other already running jobs to safely finish, or if Nextflow _still_ does not stop press `ctrl + c` on your keyboard (or equivalent) to stop the Nextflow run.
 
-> :warning: if you do this, and do not plan to fix the run make sure to delete the `work` folder generated that is generated at the same as `results` (or specified with the Nextflow variable `-w`). Otherwise you may end up a lot of large intermediate files being left! You can clean a Nextflow run of all intermediate files with `nextflow clean -f -k` or delete the `work/` directory.
+:::warning
+if you do this, and do not plan to fix the run make sure to delete the `work` folder generated that is generated at the same as `results` (or specified with the Nextflow variable `-w`). Otherwise you may end up a lot of large intermediate files being left! You can clean a Nextflow run of all intermediate files with `nextflow clean -f -k` or delete the `work/` directory.
+:::
 
 ### A step of a pipeline wasn't executed
 

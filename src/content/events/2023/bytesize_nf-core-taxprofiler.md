@@ -27,7 +27,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week Sofia Stamouli ([@sofstam](https://github.com/sofstam)) will talk about nf-core/taxprofiler, a bioinformatics best-practice analysis pipeline for taxonomic profiling of shotgun metagenomic data. It allows for in-parallel profiling with multiple profiling tools against multiple databases, produces standardised output tables.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=p1EQtidJiUY&t=1)
 (host) Hello, everyone, and welcome to the first bytesize talk of 2023, and I'm very, very happy to have Sofia Stamouli present today a new pipeline called nf-core/taxprofiler, which is soon to be released, I've heard. Off to you, Sofia.

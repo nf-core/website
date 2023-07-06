@@ -27,7 +27,9 @@ This week, Alexander Peltzer ([@apeltzer](http://github.com/apeltzer/)) will pre
 This will include how to package a tool in Bioconda, and how that ends up in BioContainers where we can use it in pipelines.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=0ZpcYtKDZrU&t=1)
 (host) So welcome, everybody, to another week in this bytesize talk series. Today, we have Alex Peltzer from the nf-core team and also a clinical bioinformatics lead at Böhringer Ingelheim. He will talk to us about software packaging for nf-core, a matter that we've been all concerned with when writing nf-core pipelines. Thanks a lot, Alex, for joining us today. We look forward to your talk.

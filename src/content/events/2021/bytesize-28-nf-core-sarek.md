@@ -29,7 +29,9 @@ This week, José Fernández Navarro ([@jfnavarro](https://github.com/jfnavarro))
 nfcore/sarek is a workflow designed to detect variants on whole genome or targeted sequencing data. Initially designed for Human, and Mouse, it can work on any species with a reference genome. Sarek can also handle tumour / normal pairs and could include additional relapses.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/6EIGUe5sjNo&t=1)
 (host) Hi, Maxime here. I'm glad today to welcome you again for another bytesize talk. Today it will be about the pipeline Sarek and I think it's a very good opportunity that we have one of our power users who will be presenting this pipeline. In the end, it would be so boring if I were to present that. I would like to thank again the Chan Zuckerberg Initiative to help us do this bytesize talk every week. Right now, let's head over over to you, José to present us Sarek.

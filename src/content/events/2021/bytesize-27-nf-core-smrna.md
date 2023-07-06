@@ -29,7 +29,9 @@ This week, Lorena Pantano ([@lpantano](https://github.com/lpantano/)) will tell 
 nf-core/smrnaseq is a bioinformatics best-practice analysis pipeline used for small RNA sequencing data.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/4YLQ2VwpCJE&t=1)
 (host) Hi, thanks for joining us for another bytesize talk that's focused on pipelines. I'd like to begin by thanking the Chan Zuckerberg initiative for funding nf-core events and our outreach initiatives. I'd also like to extend a special thanks to the volunteers that helped us organize the recent hackathon two weeks ago. Now, we've recently received funding from the Chan Zuckerberg Initiative that is focused on boosting diversity and inclusion. Evan mentioned a few full-time paid positions for developer advocates for this purpose in the announcements channel on Slack. Please reach out to us for more information and keep an eye out for the official advertisement of the positions and spread the word when they're out. Now, without further ado, I'd like to introduce you to our speaker today. We're joined by Lorena Pantano from NextRNA Therapeutics in the US, who will be presenting the nf-core smRNA-Seq, so small RNA-Seq pipeline. If you have any questions for our speaker today, please unmute yourself at the end of the talk or use the chat function and I will read out your questions. Lorena, we appreciate how early in the morning it is for you. Thank you very, very much for making the time to present for us at bytesize. Over to you.

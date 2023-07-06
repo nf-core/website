@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Maxime Garcia ([@maxulysse](https://github.com/maxulysse)) will share with us all there is to know (well, some of it) about the brand-new nf-core subworkflows!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=-vHAXsuYQhE&t=1)
 (host) Hello, everyone. My name is Franziska Bonath. I'm today's host of the bytesize talk, and with me is Maxime, newly member of the Seqera team. He is here today to talk about nf-core subworkflows. Very interesting.

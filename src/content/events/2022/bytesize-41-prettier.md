@@ -28,7 +28,9 @@ Code linting tools are now an essential part of the nf-core development framewor
 Phil will tell us how to use Prettier to make your code, well, Prettier!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=ZO4lSma3OA8&t=1)
 Thank you very much everybody for joining, either joining us live or catching up on YouTube at a later date. Today's bytesize is just a short one. It's going to be about half slides and half live demo. I'm going to talk through some of the tools that we use for code linting, specifically code style linting. I'm not going to talk about the nf-core lint commands in this talk. There are other bytesize talk specifically about that. This is more about the general use tools that we use for linting code style.

@@ -29,7 +29,9 @@ This is the platform that we have used for recent online events, That we will us
 He'll do a full walk through of how to sign up, and, well - walk through the event!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=nRY1_FvL7Pk&t=1)
 (host) Hey, everyone. Thank you for joining us for yet another bytesize talk. I'd like to begin by thanking the Chan Zuckerberg Initiative for funding all nf-core events. Some little reminders, as always, the bytesize will be recorded and uploaded on our YouTube channel as well as shared on Slack. Feel free to find it later on those platforms. And feel free to also ask questions at the end of the bytesize talk using our chat platform on Zoom or unmuting and posing questions. The talk will be roughly around 15 minutes followed by a live demo. Feel free to ask questions after or during the presentation talk. Today, we'll be having James Fellows Yates, who is a bioinformatician at the Max Planck Institute in Leipzig, who will be taking us through Gather Town, which is a video calling space that allows you to hold multiple conversations in parallel. This is in line with the hackathon that we're going to have this week. Over to you, James.

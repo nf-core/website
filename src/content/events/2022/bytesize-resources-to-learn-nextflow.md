@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Sateesh Peri ([@sateeshperi](https://github.com/sateeshperi)) will talk about recources that are available for newcomers to Nextflow - but even more experienced Nextflow users might learn something!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=oO7rAp-QZOkt=1)
 Hello, everyone. My name is Franziska Bonath. I'm today's host of this talk, and with me is Sateesh Peri. And he is going to give a talk about resources to learn Nextflow. In the chat, he put a link for live slides. And from now, I give it over to Sateesh.

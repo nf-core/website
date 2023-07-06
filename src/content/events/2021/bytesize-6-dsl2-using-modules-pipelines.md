@@ -36,7 +36,9 @@ The first talk will describe how to use DSL2 modules when writing an nf-core pip
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it more suitable for reading.**
+:::note
+This text has been edited to make it more suitable for reading.
+:::
 
 #### DSL2 - Using modules in a pipeline
 

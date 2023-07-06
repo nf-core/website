@@ -29,7 +29,9 @@ This week, Daniel Straub ([@d4straub](https://github.com/d4straub/)) will tell u
 nfcore/ampliseq is a bioinformatics analysis pipeline used for amplicon sequencing, supporting denoising of any amplicon and, currently, taxonomic assignment of 16S, ITS and 18S amplicons. Supported is paired-end Illumina or single-end Illumina, PacBio and IonTorrent data. Default is the analysis of 16S rRNA gene amplicons sequenced paired-end with Illumina.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/a0VOEeAvETs&t=1)
 (host) Hi, everyone. I hope you're all ramped up for the nf-core hackathon starting tomorrow, but it's time for bytesize now, and I'd like to begin by thanking the Chan Zuckerberg Initiative for funding nf-core events. I'd also like to thank those of you from the community that have actively been helping shape our outreach events recently and for making our material accessible. We're back this week with a bytesize talk that will be focused on pipelines, and we have Daniel Straub, who is based at QBiC at the University of Tübingen in Germany, talking to us about the nf-core/ampliseq pipeline. If you have any questions for Daniel, please either unmute yourself at the end of the talk or use the chat function, and I will read out your questions. Thanks very much for taking the time to present at bytesize, Daniel. Over to you.

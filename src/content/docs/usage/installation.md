@@ -9,7 +9,9 @@ weight: 2
 All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
 See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
 
-> **Note**: You don't need to install the `nf-core` command line tools to run nf-core pipelines, you only need Nextflow. They can help with certain things though. Installation instructions for those are further down..
+:::note
+You don't need to install the `nf-core` command line tools to run nf-core pipelines, you only need Nextflow. They can help with certain things though. Installation instructions for those are further down..
+:::
 
 ### Typical installation
 
@@ -40,9 +42,10 @@ conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
 
-> **Warning**
-> This is important - if not done, dependencies (such as Java) will be installed from
-> the wrong channels and things may break in strange ways.
+:::warning
+This is important - if not done, dependencies (such as Java) will be installed from
+the wrong channels and things may break in strange ways.
+:::
 
 A best practice with conda is to create an environment and install the tools in it.
 Therefore you will prevent version conflicts and keep everything clean.
@@ -108,7 +111,9 @@ sudo mv nextflow /usr/local/bin/
 nextflow run nf-core/rnaseq -profile test,docker -r 3.0 --outdir <OUTDIR>
 ```
 
-> Note: if you don't have the `sudo` privileges required for the command above, you can move the `nextflow` binary to another directory and export that directory to `$PATH` instead. One way of doing that on Linux would be to add `export PATH=$PATH:/path/to/nextflow/binary/` to your `~/.bashrc` file so that it is available every time you log into your system.
+:::note
+if you don't have the `sudo` privileges required for the command above, you can move the `nextflow` binary to another directory and export that directory to `$PATH` instead. One way of doing that on Linux would be to add `export PATH=$PATH:/path/to/nextflow/binary/` to your `~/.bashrc` file so that it is available every time you log into your system.
+:::
 
 - Manually download and install Nextflow from the available [assets](https://github.com/nextflow-io/nextflow/releases) on Github. See the [Nextflow installation docs](https://www.nextflow.io/docs/latest/getstarted.html#installation).
 

@@ -35,7 +35,9 @@ Questions/Ideas? Connect with nf-core on Slack: <https://nf-co.re/join/>
 
 <details markdown="1"><summary>Video transcription</summary>
 
-<b>Note: This text has been edited to make it more suitable for readers. </b>
+:::note
+This text has been edited to make it more suitable for readers.
+:::
 
 Hello, thank you very much for the introduction.
 

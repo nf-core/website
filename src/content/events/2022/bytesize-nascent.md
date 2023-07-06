@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Edmund Miller ([@Emiller88](https://github.com/Emiller88)) will talk about the newest developments in the nf-core/nascent pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=chayGGPTnfM&t=1)
 (host) Hello, everyone. My name is Franziska Bonath. I'm the host for today. With us is Edmund Miller. He is a PhD student at the University of Texas at Dallas. Edmund is going to talk today about the pipeline from nf-core called nascent. And to you.

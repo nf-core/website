@@ -156,7 +156,9 @@ All of the files required to add the subworkflow to `nf-core/modules` will be cr
             -work-dir /var/folders/lt/b3cs9y610fg_13q14dckwcvm0000gn/T/tmportf0uab
    ```
 
-   > NB: See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+   :::note
+   See docs for [running tests manually](#running-tests-manually) if you would like to run the tests manually.
+   :::
 
 7. Run [`prettier`](https://nf-co.re/docs/contributing/code_formating) on all edited and generated files
    prettier -w .
@@ -278,9 +280,9 @@ Once you<span class="x x-first x-last"> are </span>familiar with the subworkflow
 
 ### Talks
 
-<!-- TODO: nf-core: Update the talks in this section when they appear -->
-
-> ⚠️ these may include references to an older syntax, however the general idea remains the same
+:::warning
+these may include references to an older syntax, however the general idea remains the same
+:::
 
 <div class="ratio ratio-16x9">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/xuNYATGFuw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

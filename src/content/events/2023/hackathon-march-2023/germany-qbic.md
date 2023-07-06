@@ -16,7 +16,9 @@ Local event to be held at QBiC, Tübingen.
 
 Primary contact: [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcore.slack.com/team/UPC8CHDKQ)
 
-> :warning: Sign-up is closed, as maximum capacity at this site has been reached. We have a waiting list. Please get in touch with [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcore.slack.com/team/UPC8CHDKQ), if you want to be added.
+:::warning
+Sign-up is closed, as maximum capacity at this site has been reached. We have a waiting list. Please get in touch with [<i class="fab fa-slack"></i> Friederike Hanssen](https://nfcore.slack.com/team/UPC8CHDKQ), if you want to be added.
+:::
 
 ## Local Schedule
 

@@ -26,7 +26,9 @@ This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show us how to 
 He'll cover common problems, where to start looking for issues and how to ask for help in the most effective way.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://youtu.be/z9n2F4ByIkY&t=1)
 Hi everyone, thank you for joining today's bytesize talk. First of all I'd like to thank the Chan Zuckerberg Initiative for funding all nf-core events and as always the talk will be recorded and shared on our YouTube platform and shared on Slack as well, so if you're not able to catch all of it now you can catch it up later in those spaces. And today we're glad to have Phil who is an bioinformatician at SciLifeLab in Sweden and also the author of MultiQC who will be presenting on troubleshooting failed nf-core pipelines and it's going to be roughly a 15 minute talk and then we'll have more of a Q&A session and discussion at the end so feel free to use the chat box or unmute yourself and pose any question or comment at the end. Over to you Phil.

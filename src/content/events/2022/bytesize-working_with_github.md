@@ -25,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 Join us for this weeks bytesize with Phil Ewels ([@ewels](https://github.com/ewels/)). You will get information about how to use the GitHub CLI and VSCode to make your work more efficient and less annoying!
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=QLxXtCe1vIo&t=1)
 (host) Hello, everyone, welcome to today's bytesize talk. If anyone is interested to ever give a bytesize talk, please contact me on Slack. We are always happy for new speakers. And of today's topic, we're looking at using CLI client for GitHub and VScode when working with Git with Phil.

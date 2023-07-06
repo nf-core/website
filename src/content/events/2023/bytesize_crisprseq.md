@@ -27,7 +27,9 @@ This week Júlia Mir ([@mirpedrol](https://github.com/mirpedrol)) and Marta Sanv
 Nf-core/crisprseq is a bioinformatics best-practice analysis pipeline for the analysis of CRISPR edited next generation sequencing (NGS) data. It allows the evaluation of the quality of gene editing experiments using targeted NGS data.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=x_eFQW0nNvo&t=1)
 Hello everyone to this week's bytesize talk. I'm very happy to welcome today Julia from QBiC in Tübingen and Marta from UPF in Barcelona. They're going to talk about another new pipeline that was released just a week ago called crisprseq. Off to you.

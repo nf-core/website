@@ -27,7 +27,9 @@ This week, Maxime Garcia ([@MaxUlysse](https://github.com/MaxUlysse)) will expla
 Come and join the ensuing discussion, it's going to be lively 😉
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=KnYPzZ0Dd-Y&t=1)
 (host) Welcome, everyone. I'm Franziska Bonath, I'm the host today and here is Maxime and he is going to talk about coding styles with DSL2. And off to you.

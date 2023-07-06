@@ -37,7 +37,9 @@ The talk will be live-streamed on YouTube:
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it more suitable for reading.**
+:::note
+This text has been edited to make it more suitable for reading.
+:::
 
 We're going to cover a bit of GitHub contribution basics today, as well as some basic introduction into git for beginners. This won't cover everything, so it's targeted towards beginners in that sense, but there are most likely parts that we cannot cover today because of the limited time that we have.
 
