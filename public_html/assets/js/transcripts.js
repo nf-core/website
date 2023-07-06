@@ -84,7 +84,7 @@ function highlight(event) {
                 $('details[open]').scrollTop() -
                 1.2 * parseFloat(getComputedStyle(document.documentElement).fontSize), // convert rem into px
             },
-            'slow'
+            'slow',
           );
         }
       }
