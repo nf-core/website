@@ -35,10 +35,7 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 7. Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
    - NB: Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
    - Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
-For example releases in nf-core/rnaseq follow the pattern:
-     - Prefix = Metal
-     - Dictionary = Animals
-     - Suffix = Don't use a suffix
+     For example releases in nf-core/rnaseq follow the pattern: - Prefix = Metal - Dictionary = Animals - Suffix = Don't use a suffix
 8. Celebrate! But not too much - you still have a few things left to do...
 
 ### Automated events
