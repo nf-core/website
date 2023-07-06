@@ -53,17 +53,29 @@ export const getGitHubFile = async (repo, path, ref) => {
       let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
       if (path.endsWith('.md')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
-        // add github url to image links in markdown
+        // add github url to image links in markdown if they are relative
         content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
-          return `![${p1}](https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2})`;
+          if (p2.startsWith('http')) {
+            return match;
+          } else {
+            return `![${p1}](https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2})`;
+          }
         });
         // add github url to html img tags in markdown
         content = content.replaceAll(/<img(.*?)src="(.*?)"/g, (match, p1, p2) => {
-          return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
+          if (p2.startsWith('http')) {
+            return match;
+          } else {
+            return `<img${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
+          }
         });
         // add github url to html img tags in markdown for dark mode images
         content = content.replaceAll(/<source(.*?)srcset="(.*?)"/g, (match, p1, p2) => {
-          return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
+          if (p2.startsWith('http')) {
+            return match;
+          } else {
+            return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
+          }
         });
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
