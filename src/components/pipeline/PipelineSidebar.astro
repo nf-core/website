@@ -45,7 +45,12 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                     aria-labelledby="nf-core-tab"
                     tabindex="0"
                 >
-                    <InstallCmd client:idle icon={false} cmd={`nf-core launch nf-core/${pipeline} -r ${version}`} />
+                    <InstallCmd
+                        flatBottom={true}
+                        client:idle
+                        icon={false}
+                        cmd={`nf-core launch nf-core/${pipeline} -r ${version}`}
+                    />
                 </div>
                 <div
                     class="tab-pane"
@@ -55,6 +60,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                     tabindex="0"
                 >
                     <InstallCmd
+                        flatBottom={true}
                         client:visible
                         icon={false}
                         cmd={`nextflow run nf-core/${pipeline} -r ${version} -profile test --outdir <OUTDIR>`}
@@ -62,6 +68,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                 </div>
                 <div class="tab-pane" id="tower-tab-pane" role="tabpanel" aria-labelledby="tower-tab" tabindex="0">
                     <InstallCmd
+                        flatBottom={true}
                         client:visible
                         icon={false}
                         cmd={`tw launch https://nf-co.re/${pipeline} -r ${version}`}
@@ -77,7 +84,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             <ul class="nav nav-fill small border rounded-bottom-0" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a
-                        class="nav-link btn btn-sm btn-outline-secondary active rounded-end-0"
+                        class="nav-link btn btn-sm btn-outline-secondary active rounded-end-0 rounded-top-0"
                         id="nf-core-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#nf-core-tab-pane"
@@ -101,7 +108,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                 </li>
                 <li class="nav-item" role="presentation">
                     <a
-                        class="nav-link btn btn-sm btn-outline-secondary rounded-start-0"
+                        class="nav-link btn btn-sm btn-outline-secondary rounded-start-0 rounded-top-0"
                         id="tower-tab"
                         data-bs-toggle="tab"
                         data-bs-target="#tower-tab-pane"
@@ -180,13 +187,24 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
     .tab-content.border {
         margin-top: -1px;
     }
-    .btn.nav-link:hover {
-        color: $white;
+    .btn.nav-link {
+        &.active,
+        &:hover {
+            color: $body-color;
+            background-color: $border-color !important;
+        }
     }
 
     :global([data-bs-theme='dark']) {
         .border-secondary {
             border-color: $gray-700 !important;
+        }
+        .btn.nav-link {
+            &.active,
+            &:hover {
+                color: $body-color-dark;
+                background-color: $border-color-dark !important;
+            }
         }
     }
 </style>
