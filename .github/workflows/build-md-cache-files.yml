@@ -1,10 +1,8 @@
 name: build md cache
 
 on:
-  push:
-    branches:
-      - netlfiy-test
-      - astro
+  schedule: # every day at 7am
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 jobs:
