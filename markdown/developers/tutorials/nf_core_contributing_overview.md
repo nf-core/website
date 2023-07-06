@@ -16,9 +16,7 @@ menu:
 >
 > Updated during the March 2022 hackathon.
 
-<!-- markdownlint-disable -->
 <iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-<!-- markdownlint-restore -->
 
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core-tutorial-contributing.pdf)**
 
@@ -241,12 +239,12 @@ You can leave the _nf-core_ branch protection in place so that the `nf-core lint
 #### Linting
 
 The `linting.yml` workflow will run the nf-core linting tests, as well as other linting tests that ensure that general code styling is maintained.
+
 This workflow is already set up and does not need to be edited.
 It will check:
 
-- That all Markdown documentations follow a proper syntax.
-  - Many code editors have similar packages to help with markdown validation. For example, check [Black](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) or [Prettier](https://prettier.io/).
-- That all YAML files follow a proper syntax.
+- That markdown / YAML / JSON etc files are properly formatted, using Prettier.
+- That any Python is correctly formatted using Black.
 - That general code structure is maintained (e.g. no trailing whitespaces, final newline is present in all files) with [EditorConfig](https://editorconfig.org/).
 - That the pipeline code follows the nf-core linting rules.
   - You can run this manually with the `nf-core lint` command.

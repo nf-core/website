@@ -5,13 +5,14 @@ subtitle: A step-by-step guide for releasing a nf-core pipeline
 
 ## Before you release
 
-1. All continuous-integration tests on the `dev` branch should be passing
+1. Check the pipeline follows [nf-core guidelines](/docs/contributing/guidelines/index).
+2. All continuous-integration tests on the `dev` branch should be passing
    - Check the output of `nf-core lint` for warnings and address all that you can
    - Update any software dependencies that are out of date.
      The linting will warn about available updates via automated API calls to (bio-)conda
-2. Check that there are no outstanding issues that need to be addressed, especially bug reports.
-3. Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter.
-4. If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones),
+3. Check that there are no outstanding issues that need to be addressed, especially bug reports.
+4. Finalize the description of the pipeline in the GitHub repository and ensure that you remove any "under development" labels in the description. This wording will be used when a new pipeline gets announced on Twitter.
+5. If there is a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones),
    have a look and see if all issues are closed, or can be resolved
    - It's fine to decide that some things should be postponed until the next release - just move them on to the next milestone
 
@@ -59,3 +60,4 @@ The last step is to bump up the pipeline version number in the development branc
    - Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
    - Ask a core member to copy the DOI information you added to dev via the PR above to the master branch. The core member will uncomment the Zenodo-related `TODO` statement in the `Citation` section of the main `README.md` and add the DOI, as well as as updating the badge for the Zenodo DOI at the top of the main `README.md` e.g. [nf-core/atacseq](https://github.com/nf-core/atacseq/blob/fa1e3f8993cd20e249b9df09d29c5498eff311d2/README.md).
 6. (first release only) Ask a core member to change default branch from `dev` to `master`.
+7. (publication only) If a publication of the pipeline is being prepared, recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit) are followed.

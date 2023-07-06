@@ -375,7 +375,7 @@ endif;
                 to find collaborators and check that your pipeline is suitable for nf-core.</p>
               <i class="fad fa-people-carry fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
+            <a href="/join" class="btn btn-sm btn-outline-success arrow-hover"><span>Join Slack</span></a>
           </div>
         </div>
       </div>
@@ -389,7 +389,7 @@ endif;
               </p>
               <i class="fas fa-magic fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="contributing/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
+            <a href="/docs/contributing/adding_pipelines" class="btn btn-sm btn-outline-success arrow-hover"><span>Read the docs</span></a>
           </div>
         </div>
       </div>
@@ -402,7 +402,7 @@ endif;
                 If a similar pipeline exists we'll ask you to add to that instead of making a new workflow.</p>
               <i class="fad fa-code-merge fa-5x text-secondary ms-3"></i>
             </div>
-            <a href="contributing/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
+            <a href="/docs/contributing/guidelines" class="btn btn-sm btn-outline-success arrow-hover"><span>See the guidelines</span></a>
           </div>
         </div>
       </div>
