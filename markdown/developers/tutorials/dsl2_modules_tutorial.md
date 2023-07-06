@@ -61,37 +61,106 @@ In order to create a new module, it is best to branch the code into a recognisab
 Using [nf-core/tools](https://github.com/nf-core/tools) it is very easy to create a new module. In our example, we change directory into the repository (_modules_) and we type
 
 ```bash
-nf-core modules create fgbio/fastqtobam
+nf-core modules create fgbio/demofastqtobam
 ```
 
 - The first word indicates the tool (i.e. the software or suite)
 - We separate the keys by a forward slash (`/`)
 - The second word indicates the function of the tool we are creating a module for
 
+Nf-core tools will set up an empty module for you based on a template. Follow the instructions on the command-line and a new module will be created in the fgbio folder.
+
+One parameter you have to specify during the creation is the `process resource label` based on the process label in the `base.config` files in workflows. You have to select one of the following labels:
+
+- process_single
+- process_low
+- process_medium
+- process_high
+- process_long
+- process_high_memory
+
+For now can just select the default and continue.
+
+In the next step you have to specify if you need a `meta map` with sample-specific information. Our test module will need a meta map, so select yes for the moment. If you want to know what exactly meta maps are check out the documentation [here](https://nf-co.re/docs/contributing/modules#what-is-the-meta-map).
 Magic will happen now: nf-core tools will create the following entries for the code of the module itself
 
 ```console
-software/fgbio
-└── fastqtobam
-    ├── main.nf
-    └── meta.yml
+modules
+    └── nf-core
+        └── fgbio
+            └── demofastqtobam
+                ├── main.nf
+                └── meta.yml
 ```
 
 And also the following for the testing of the module
 
 ```console
-tests/software/fgbio
-└── fastqtobam
-    ├── main.nf
-    ├── nextflow.config
-    └── test.yml
+tests
+├── modules
+│   └── fgbio
+│       └── demofastqtobam
+│           ├── main.nf
+│           ├── nextflow.config
+│           └── test.yml
+└── config
+    └── pytest_modules.yml
+
 ```
 
 Each of the files is pre-filled according to a defined nf-core template.
 
 You fill find a number of commented sections in the file, to help you modify the code while adhering to the guidelines, as you can appreciate in the following figure.
 
-![module](/assets/markdown_assets/contributing/dsl2_modules_tutorial/dsl2-mod_03_create_module.png)
+```nextflow
+// TODO nf-core: If in doubt look at other nf-core/modules to see how we are doing things! :)
+//               https://github.com/nf-core/modules/tree/master/modules
+//               You can also ask for help via your pull request or on the #modules channel on the nf-core Slack workspace:
+//               https://nf-co.re/join
+// TODO nf-core: A module file SHOULD only define input and output files as command-line parameters.
+//               All other parameters MUST be provided using the "task.ext" directive, see here:
+//               https://www.nextflow.io/docs/latest/process.html#ext
+//               where "task.ext" is a string.
+//               Any parameters that need to be evaluated in the context of a particular sample
+//               e.g. single-end/paired-end data MUST also be defined and evaluated appropriately.
+// TODO nf-core: Software that can be piped together SHOULD be added to separate module files
+//               unless there is a run-time, storage advantage in implementing in this way
+//               e.g. it's ok to have a single module for bwa to output BAM instead of SAM:
+//                 bwa mem | samtools view -B -T ref.fasta
+// TODO nf-core: Optional inputs are not currently supported by Nextflow. However, using an empty
+//               list (`[]`) instead of a file can be used to work around this issue.
+
+process FGBIO_DEMOFASTQTOBAM {
+    tag "$meta.id"
+    label 'process_single'
+
+    // TODO nf-core: List required Conda package(s).
+    //               Software MUST be pinned to channel (i.e. "bioconda"), version (i.e. "1.10").
+    //               For Conda, the build (i.e. "h9402c20_2") must be EXCLUDED to support installation on different operating systems.
+    // TODO nf-core: See section in main README for further information regarding finding and adding container addresses to the section below.
+    conda (params.enable_conda ? "bioconda::fgbio=2.0.2" : null)
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/YOUR-TOOL-HERE':
+        'quay.io/biocontainers/YOUR-TOOL-HERE' }"
+
+    input:
+    // TODO nf-core: Where applicable all sample-specific information e.g. "id", "single_end", "read_group"
+    //               MUST be provided as an input via a Groovy Map called "meta".
+    //               This information may not be required in some instances e.g. indexing reference genome files:
+    //               https://github.com/nf-core/modules/blob/master/modules/bwa/index/main.nf
+    // TODO nf-core: Where applicable please provide/convert compressed files as input/output
+    //               e.g. "*.fastq.gz" and NOT "*.fastq", "*.bam" and NOT "*.sam" etc.
+    tuple val(meta), path(bam)
+
+    output:
+    // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
+    tuple val(meta), path("*.bam"), emit: bam
+    // TODO nf-core: List additional required output channels/values here
+    path "versions.yml"           , emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+```
 
 The above represents the main code of your module, which will need to be changed.
 NF-core tools will attempt at retrieving the correct containers (for Docker and for Singularity) as well as the Conda recipe, and those files will be pre-filled for you.
@@ -105,7 +174,7 @@ FGBIO command line for the function _FastqToBam_ looks like the following:
 ```bash
 fgbio --tmp-dir=tmpFolder \\
     FastqToBam \\
-    -i read1_fastq.gz read2_fastq.gz \\
+    -i read1.fastq.gz read2.fastq.gz \\
     -o "sampleID_umi_converted.bam" \\
     --read-structures "+T 12M11S+T" \\
     --sample "sampleID" \\
@@ -141,7 +210,7 @@ output:
 
 ### Passing optional args
 
-Within nf-core modules any optional non-file parameters should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via an `ext.args` variable that is defined in a `modules.conf` file.
+Within nf-core modules any optional non-file parameters should be passed within a variable called `args`. At a pipeline level, these arguments are pulled into the modules via an `ext.args` variable that is defined in a `modules.conf` file. The `task` in `task.ext.args` and `task.ext.prefix` refers to the name of your module.
 
 ```
     script:
@@ -149,8 +218,7 @@ Within nf-core modules any optional non-file parameters should be passed within 
     def prefix = task.ext.prefix ?: "${meta.id}"
 ```
 
-But we will add this into the script code, so any other user who might want to execute the function with additional arguments will be able to.
-The code of the script will therefore look like this, once we have substituted inputs and outputs as appropriate.
+We now can substitute all our parameters with our predefined inputs, outputs and args. With the `modules.conf` every other user can run the module with the additionel arguments of choice. After the substitutions the code of the script looks as follows:
 
 ```bash
 mkdir tmpFolder
@@ -286,9 +354,26 @@ process FGBIO_FASTQTOBAM {
 
 Once the main module code is written, it is often a good point to fill in the `meta.yml` file sitting alongside the `main.nf` of the module.
 
-Here you will document key words, context information about the module, and most importantly document the input and output requirements.
+Here you will document key words, context information about the module, and most importantly document the input and output requirements. In general, it follows a similar shape as the pipeline schema but is no JSON file. At the top you should add the name of the module, a short description and at least three keywords, which describe the module. Afterwards, describe all used tools, usually only one. The main part of the `meta.yml` should be about the input and output requirements, which follow the same fields as the pipeline schema for a file parameter. For each input and output requirement you have to add a type, a short description about the content and a pattern. The last block contains the authors, who worked on the module, to allow other users to easily reach out to them. If you are the main developer of the module, your GitHub name will be automatically added to the `meta.yml`. The types in the `meta.yml` are limited to map, file, directory, string, integer and float. In this example module, the prebuild `meta.yml` is already filled and the input part looks as follows:
 
-For guidance see the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules as examples on how to fill this information in.
+```nextflow
+## TODO nf-core: Add a description of all of the variables used as input
+input:
+  # Only when we have meta
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  #
+  ## TODO nf-core: Delete / customise this example input
+  - bam:
+      type: file
+      description: BAM/CRAM/SAM file
+      pattern: "*.{bam,cram,sam}"
+```
+
+Maps and files as shown above are the two main input / output requirements. For the other input / output types check out the [guidelines](https://nf-co.re/docs/contributing/modules#documentation) and other modules.
 
 ### Lint your code
 
@@ -297,7 +382,7 @@ Now that you've completed code development, you are ready to check if your code 
 This can also be done easily using _nf-core tools_ just by changing folder into the parent _modules_ directory and typing the command
 
 ```bash
-nf-core modules lint fgbio/fastqtobam
+nf-core modules lint fgbio/demofastqtobam
 ```
 
 You will expect no test failed, as shown in figure below:
@@ -313,19 +398,21 @@ This can also be done automatically, using the [pytest-workflow](https://pytest-
 
 ### Create a test workflow
 
-As described above, _nf-core tools_ has created already the following files
+As described above, _nf-core tools_ has created already the following files ready for you to modify.
 
 ```bash
-tests/modules/fgbio
-└── fastqtobam
-    ├── main.nf
-    ├── nextflow.config
-    └── test.yml
+tests
+├── modules
+│   └── fgbio
+│       └── demofastqtobam
+│           ├── main.nf
+│           ├── nextflow.config
+│           └── test.yml
+└── config
+    └── pytest_modules.yml
 ```
 
-ready for you to modify.
-
-You should first open `tests/modules/fgbio/fastqtobam/main.nf` and create a short test workflow, with available test data.
+You should first open `tests/modules/fgbio/demofastqtobam/main.nf` and create a short test workflow, with available test data.
 
 > :soon: this example is using available test data, chosen for Sarek functionalities. It will be updated according to the new [scheme](https://github.com/nf-core/modules/blob/master/tests/config/test_data.config)
 
@@ -339,7 +426,7 @@ process {
 
     publishDir = { "${params.outdir}/${task.process.tokenize(':')[-1].tokenize('_')[0].toLowerCase()}" }
 
-    withName: "test_fgbio_fastqtobam_paired_umi:FGBIO_FASTQTOBAM" {
+    withName: "test_fgbio_fastqtobam_paired_umi:FGBIO_DEMOFASTQTOBAM" {
         ext.args = "--read-structures +T 12M11S+T"
     }
 }
@@ -362,7 +449,7 @@ Our test workflow will be very simple, and most of the code has been written by 
 nextflow.enable.dsl = 2
 params.read_structure = "+T 12M11S+T"
 
-include { FGBIO_FASTQTOBAM } from '../../../../modules/fgbio/fastqtobam/main.nf'
+include { FGBIO_DEMOFASTQTOBAM } from '../../../../modules/fgbio/demofastqtobam/main.nf'
 
 workflow test_fgbio_fastqtobam {
 
@@ -384,13 +471,13 @@ In order to carry out the test, _pytest-workflow_ will search for information st
 
 ```bash
 modules/tests/config/pytest_software.yml
-modules/tests/software/fgbio/fastqtobam/test.yml
+modules/tests/software/fgbio/demofastqtobam/test.yml
 ```
 
 We can modify these files using _nf-core tools_, moving into the parent modules directory and using a simple command:
 
 ```bash
-nf-core modules create-test-yml -t fgbio/fastqtobam
+nf-core modules create-test-yml -t fgbio/demofastqtobam
 ```
 
 The tool will prompt us to make sure we want to overwrite the existing .yml file, and we can choose _yes_. We can leave defaults for entry points, test name and command.
@@ -410,12 +497,12 @@ This process will run the test workflow, generate the outputs and update the `te
 Before running some local tests, we should make sure the `pytest_software.yml` looks like we expect, i.e. contains the following lines
 
 ```yaml
-fgbio_fastqtobam:
-  - modules/fgbio/fastqtobam/**
-  - tests/modules/fgbio/fastqtobam/**
+fgbio_demofastqtobam:
+  - modules/fgbio/demofastqtobam/**
+  - tests/modules/fgbio/demofastqtobam/**
 ```
 
-These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `modules/fgbio/fastqtobam/**` and the test at `tests/modules/fgbio/fastqtobam/**`.
+These lines will instruct the pre-configure GitHub Action workflow to run a pytest-workflow run also for our module, using the code stored at `modules/fgbio/demofastqtobam/**` and the test at `tests/modules/fgbio/demofastqtobam/**`.
 
 ### Run tests locally
 
@@ -427,7 +514,7 @@ We will run one or more of the following, depending on the software profile avai
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=docker pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+PROFILE=docker pytest --tag fgbio_demobamtofastq --symlink --keep-workflow-wd
 
 ```
 
@@ -435,14 +522,14 @@ or if we use _singularity_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-TMPDIR=~ PROFILE=singularity pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+TMPDIR=~ PROFILE=singularity pytest --tag fgbio_demobamtofastq --symlink --keep-workflow-wd
 ```
 
 or _Conda_
 
 ```bash
 cd /path/to/git/clone/of/nf-core/modules/
-PROFILE=conda pytest --tag fgbio_bamtofastq --symlink --keep-workflow-wd
+PROFILE=conda pytest --tag fgbio_demobamtofastq --symlink --keep-workflow-wd
 ```
 
 Hopefully everything runs smoothly, and we are then ready to open a pull request, and contribute to the nf-core community.
@@ -473,6 +560,6 @@ You can find more information on the GitHub [guide](https://docs.github.com/en/g
 
 Make sure you are submitting the newly created branch, where your new module has been developed, into the master branch of nf-core modules.
 
-A pull request will be created: volunteers will review your code and will use comments and requests for changes on GitHub to interact with you and suggest changes if necessary. This is a collaborative and very interesting part of your development work.
+A pull request will be created: Volunteers will review your code and will use comments and requests for changes on GitHub to interact with you and suggest changes if necessary. This is a collaborative and very interesting part of your development work.
 
 Enjoy!
