@@ -15,7 +15,7 @@ $(function () {
       .calendar()
       .replace(/^\w/, function (chr) {
         return chr.toLowerCase();
-      })
+      }),
   );
   $('.cache_expires_at').show();
 
@@ -120,7 +120,7 @@ function set_validation_styles(form_is_valid) {
   // Reset
   $('#validation_fail_list').html('');
   $('.form-control:has(.form-check-input[type="radio"])').removeClass(
-    'radio-form-control-valid radio-form-control-invalid'
+    'radio-form-control-valid radio-form-control-invalid',
   );
   $('.input-group .input-group-prepend').removeClass('input-group-valid input-group-invalid');
 
@@ -141,7 +141,7 @@ function set_validation_styles(form_is_valid) {
           $(this).attr('id') +
           '" class="scroll_to_link"><code>' +
           $(this).attr('name').replace('params_', '--').replace('nxf_flag_', '') +
-          '</code></a></li>'
+          '</code></a></li>',
       );
     });
   }
