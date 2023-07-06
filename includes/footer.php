@@ -115,6 +115,7 @@ if (isset($subfooter) and $subfooter) {
         <ul class="list-unstyled">
           <li><a href="/docs/contributing/guidelines">Guidelines</a></li>
           <li><a href="/docs/contributing/adding_pipelines">Adding a new pipeline</a></li>
+          <li><a href="/docs/contributing/contributing_to_pipelines.md">Contributing to a pipeline</a></li>
           <li><a href="/docs/contributing/modules">DSL2 modules</a></li>
           <li><a href="/docs/contributing/subworkflows">DSL2 subworkflows</a></li>
           <li><a href="/docs/contributing/release_checklist">Release checklist</a></li>
