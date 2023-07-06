@@ -9,8 +9,8 @@ set_time_limit(240);
 // start the clocks
 $start_time = microtime(true);
 
-$title = 'nf-core in numbers';
-$subtitle = 'Measuring activity across the nf-core community.';
+$title = 'sanger-tol in numbers';
+$subtitle = 'Measuring activity across the sanger-tol community.';
 $import_chartjs = true;
 include '../includes/header.php';
 
@@ -197,7 +197,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 ?>
 
 <h1>Introduction</h1>
-<p>On this page you can see the beating heart of nf-core - the size of our community and the output of our work.</p>
+<p>On this page you can see the beating heart of sanger-tol - the size of our community and the output of our work.</p>
 <ul>
   <li><a href="#community">Community</a>
     <ul>
@@ -231,8 +231,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
       <div class="card-body small">
         <p>Please bear in mind the following points when looking over these numbers:</p>
         <ul>
-          <li>Many pipelines are worked on long before they are forked to nf-core. The age, stars and other metrics of the original parent repository are not shown.</li>
-          <li>Metrics are for the default (<code>master</code>) branch only</li>
+          <li>Pipelines maybe worked on before they are transferred to sanger-tol. The age, stars and other metrics of the original parent repository are not shown.</li>
+          <li>Metrics are for the default (<code>main</code>) branch only</li>
           <li>Commits and contributors are only counted if associated with a GitHub account</li>
           <li><code>nextflow pull</code> and <code>nextflow run</code> uses git to clone a remote repo the first time it runs, so the clones count gives some idea of usage. However:
             <ul>
@@ -242,7 +242,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
               <li>Cloud users will typically spin up a new instance and clone the workflow every time that they run a pipeline.</li>
             </ul>
           </li>
-          <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for nf-core repos started in July 2019. This is when we started counting the totals.</li>
+          <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for sanger-tol repos started in July 2023 This is when we started counting the totals.</li>
           <li>Metrics are fetched once per day (last checked <?php echo date('Y-m-d', $stats_json->updated); ?>).</li>
         </ul>
       </div>
@@ -251,7 +251,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 </section>
 
 <?php echo _h2('Community'); ?>
-<p>The numbers below track our growth over the various channels that the nf-core community operates in.</p>
+<p>The numbers below track our growth over the various channels that the sanger-tol community operates in.</p>
 <p class="text-info small">
   <i class="far fa-hand-point-right"></i>
   Click a number to see how the community has grown over time
@@ -302,8 +302,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
   <div class="col-lg-6">
     <?php echo _h2('Slack'); ?>
     <p>Slack is a real-time messaging tool, with discussion split into channels and groups.
-    We use it to provide help to people running nf-core pipelines, as well as discussing development ideas.
-    You can join the nf-core slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
+    We use it to provide help to people running sanger-tol pipelines, as well as discussing development ideas.
+    You can join the sanger-tol slack by getting an invite <a href="https://nf-co.re/join/slack">here</a>.</p>
     <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="slack_users_plot" height="200"></canvas>
@@ -317,7 +317,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 
     <h2 class="mt-0" id="twitter"></a>Twitter followers<a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></h2>
     <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
-    Follower counts give some indication to the level of interest in the nf-core project.</p>
+    Follower counts give some indication to the level of interest in the sanger-tol project.</p>
     <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="twitter_followers_plot" height="150"></canvas>
@@ -331,18 +331,17 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
   <div class="col-lg-6">
 
     <h2 class="mt-0" id="gh_orgmembers">GitHub organisation members<a href="#gh_orgmembers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-    <p>We use GitHub to manage all of the code written for nf-core.
+    <p>We use GitHub to manage all of the code written for sanger-tol.
     It's a fantastic platform and provides a huge number of tools.
-    We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which anyone can join:
-    drop us a note <a href="https://github.com/nf-core/nf-co.re/issues/3">here</a> or anywhere and we'll send you an invite.
+    We have a GitHub organisation called <a href="https://github.com/sanger-tol/">sanger-tol</a>.
     </p>
-    <p>It's not required to be a member of the nf-core GitHub organisation to contribute.
-    However, members get the nf-core logo listed on their profile page and full write-access to all nf-core repositories.
+    <p>It is not required to be a member of the sanger-tol GitHub organisation to contribute.
+    However, members get the sanger-tol logo listed on their profile page and full write-access to all sanger-tol repositories.
     </p>
     <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="gh_orgmembers_plot" height="150"></canvas>
-        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/nf-core/">nf-core organisation page</a> and are not a member.
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-exclamation-triangle"></i> By default, organisation membership is private. This is why you'll see a lower number if you visit the <a href="https://github.com/sanger-tol/">sanger-tol organisation page</a> and are not a member.
         <p class="card-text small text-muted"><a href="#" data-bs-target="gh_orgmembers" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="gh_orgmembers" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
@@ -350,12 +349,12 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 
 <div class="col-lg-6">
     <h2 class="mt-0" id="gh_contribs">GitHub contributors<a href="#gh_contribs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-    <p>Anybody can fork nf-core repositories and open a pull-request.
-    Here we count how many different people have contributed at least one commit to an nf-core repository, or created or commented on an issue or pull-request.</p>
+    <p>Anybody can fork sanger-tol repositories and open a pull-request.
+    Here we count how many different people have contributed at least one commit to an sanger-tol repository, or created or commented on an issue or pull-request.</p>
     <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="gh_contribs_plot" height="180"></canvas>
-        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Plot truncated to start of 2018 (some pipelines moved to nf-core so have older contributions).</p>
+        <p class="card-text small text-muted mt-3 mb-1"><i class="fas fa-info-circle"></i> Plot truncated to start of 2022 (some pipelines moved to sanger-tol so have older contributions).</p>
         <p class="card-text small text-muted"><a href="#" data-bs-target="gh_contribs" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> Download as SVG</a> &nbsp;/&nbsp; <a href="#" data-bs-target="gh_contribs" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a></p>
       </div>
     </div>
@@ -365,7 +364,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 
 
 <h1 id="code">Code stats<a href="#code" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h1>
-<p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the nf-core community.</p>
+<p>Whilst we always prefer quality over quantity, these numbers reflect the work output from the sanger-tol community.</p>
 
 <div class="card-group text-center stats_keynumbers">
   <div class="card bg-body">
@@ -407,7 +406,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 </div>
 
 <h2 class="mt-0" id="repo_traffic">Repository traffic<a href="#repo_traffic" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-<p>Every time a nextflow user pulls an nf-core pipeline, the repository is cloned. Here we can track how much that happens across all nf-core repositories.
+<p>Every time a nextflow user pulls a sanger-tol pipeline, the repository is cloned. Here we can track how much that happens across all sanger-tol repositories.
 Please note that these numbers come with some caveats <a href="#caveats">[ see more ]</a>.</p>
 <p>Additionally, GitHub tracks how many times people view repository web pages on github.com.</p>
 
@@ -417,7 +416,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
       <a href="#" data-bs-target="repo_clones" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
       &nbsp;/&nbsp; <a href="#" data-bs-target="repo_clones" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
     </span>
-    Git clones: All nf-core repositories
+    Git clones: All sanger-tol repositories
   </div>
   <div class="card-body">
     <canvas id="repo_clones_plot" height="80"></canvas>
@@ -452,7 +451,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
       <a href="#" data-bs-target="repo_views" class="dl_plot_svg text-muted"><i class="fas fa-download"></i> SVG</a>
       &nbsp;/&nbsp; <a href="#" data-bs-target="repo_views" class="reset_chart_zoom text-muted"><i class="fas fa-search-minus"></i> Reset zoom</a>
     </span>
-    Visitors: All nf-core repositories
+    Visitors: All sanger-tol repositories
   </div>
   <div class="card-body">
     <canvas id="repo_views_plot" height="80"></canvas>
@@ -485,7 +484,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
   <div class="col-lg-6">
 
     <h2 class="mt-0" id="github_prs">Pull Requests<a href="#github_prs" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-    <p>When people contribute code to a nf-core repository, we conduct a "Pull request" - other members of the nf-core community review the proposed code and make suggestions, before merging into the main repository.</p>
+    <p>When people contribute code to a sanger-tol repository, we conduct a "Pull request" - other members of the sanger-tol community review the proposed code and make suggestions, before merging into the main repository.</p>
     <div class="card bg-body mt-4">
       <div class="card-body">
         <canvas id="github_prs_plot" height="200"></canvas>
@@ -496,7 +495,7 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
     </div>
 
     <h2 class="mt-0" id="github_pr_response_time">Pull Request response times<a href="#github_pr_response_time" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-    <p>Pull-requests are reviewed by the nf-core community - they can contain discussion on the code and can be merged and closed.
+    <p>Pull-requests are reviewed by the sanger-tol community - they can contain discussion on the code and can be merged and closed.
     We aim to be prompt with reviews and merging. Note that some PRs can be a simple type and so very fast to merge, others can be major pipeline updates.</p>
     <div class="card bg-body mt-4">
       <div class="card-body">
@@ -539,19 +538,16 @@ Please note that these numbers come with some caveats <a href="#caveats">[ see m
 </div>
 
 <h2 class="mt-0" id="contributor_leaderboard">Contributor Leaderboard<a href="#contributor_leaderboard" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-<p>We value each and every contribution to nf-core, no matter how small.
-However, that doesn't mean that we can't get competitive!</p>
+<p>We value each and every contribution to sanger-tol, no matter how small.
+However, that doesn't mean that we can not get competitive!</p>
 <p>Here are the latest stats of who has contributed the greatest number of commits.
-The yellow bars show "core repositories" - repositories that are not pipelines
-(such as the code for this website!).
-A list of these repositories can be found <a href="#core_repos">below</a>.</p>
 <div class="alert alert-light border small">
   <h6 class="alert-heading">Remember</h6>
   <ul>
     <li>There is more to contributing than commits! We're not counting issue comments, reviews or anything else here.</li>
     <li>People merging pull-requests get bonus commit counts from those merge commits.</li>
     <li>Some people commit often, others not so much. So it's not a perfect representation of amount of work - just a bit of fun!</li>
-    <li><code>master</code> branch only, and all of the <a href="#caveats">other caveats</a>..</li>
+    <li><code>main</code> branch only, and all of the <a href="#caveats">other caveats</a>..</li>
   </ul>
 </div>
 
@@ -636,7 +632,7 @@ foreach ($contribution_counts as $login => $count) {
 </table>
 
 <h2 class="mt-0" id="pipeline_numbers">Pipeline numbers<a href="#pipeline_numbers" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
-<p>All nf-core pipelines are only considered stable when they have at least one release. Until then, they are classed as "in development".</p>
+<p>All sanger-tol pipelines are only considered stable when they have at least one release. Until then, they are classed as "in development".</p>
 
 <div class="row">
   <div class="col-lg-6 offset-lg-3">
@@ -726,8 +722,6 @@ foreach (['pipelines'] as $repo_type):
 </div>
 
 <?php endforeach; ?>
-
-<p class="mt-5 small text-muted">See also <a href="/pipeline_health">pipeline repository health</a>.</p>
 
 <script type="text/javascript">
 var theme = "<?php echo $theme; ?>"
@@ -820,7 +814,7 @@ $(function(){
       }
     ]
   };
-  chartData['slack'].options.title.text = 'nf-core Slack users over time';
+  chartData['slack'].options.title.text = 'sanger-tol Slack users over time';
   chartData['slack'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['slack'].options.scales.yAxes = [{stacked: true }];
   chartData['slack'].options.legend = {
@@ -851,7 +845,7 @@ $(function(){
       }
     ]
   };
-  chartData['gh_orgmembers'].options.title.text = 'nf-core GitHub organisation members over time';
+  chartData['gh_orgmembers'].options.title.text = 'sanger-tol GitHub organisation members over time';
   var ctx = document.getElementById('gh_orgmembers_plot').getContext('2d');
   charts['gh_orgmembers'] = new Chart(ctx, chartData['gh_orgmembers']);
 
@@ -930,7 +924,7 @@ $(function(){
     position: 'bottom',
     labels: { lineWidth: 1 }
   };
-  chartData['gh_contribs'].options.title.text = 'nf-core GitHub contributors over time';
+  chartData['gh_contribs'].options.title.text = 'sanger-tol GitHub contributors over time';
   var ctx = document.getElementById('gh_contribs_plot').getContext('2d');
   charts['gh_contribs'] = new Chart(ctx, chartData['gh_contribs']);
 
@@ -1394,7 +1388,7 @@ $(function(){
       }
     ]
   };
-  chartData['pipeline_numbers'].options.title.text = 'nf-core pipeline numbers over time';
+  chartData['pipeline_numbers'].options.title.text = 'sanger-tol pipeline numbers over time';
   chartData['pipeline_numbers'].options.scales.yAxes = [{stacked: true }];
   chartData['pipeline_numbers'].options.elements.line.fill = '-1'; // by default, fill lines to the previous dataset
   chartData['pipeline_numbers'].options.legend = {
@@ -1454,7 +1448,7 @@ $(function(){
       }
     ]
   };
-  chartData['repo_clones'].options.title.text = 'nf-core git clones per day';
+  chartData['repo_clones'].options.title.text = 'sanger-tol git clones per day';
   chartData['repo_clones'].options.elements.line.borderWidth = 2;
   chartData['repo_clones'].options.scales.yAxes = [
     {
@@ -1533,7 +1527,7 @@ $(function(){
       }
     ]
   };
-  chartData['repo_views'].options.title.text = 'nf-core repository web views per day';
+  chartData['repo_views'].options.title.text = 'sanger-tol repository web views per day';
   chartData['repo_views'].options.elements.line.borderWidth = 2;
   chartData['repo_views'].options.scales.yAxes = [
     {
@@ -1609,7 +1603,7 @@ $(function(){
     var blob = new Blob([svg], {
       type: "text/plain;charset=utf-8"
     });
-    saveAs(blob, 'nf-core_'+target+'_plot.svg');
+    saveAs(blob, 'sanger-tol_'+target+'_plot.svg');
 
     // Reset plots to defaults
     Chart.defaults.global.defaultFontSize = 12;
