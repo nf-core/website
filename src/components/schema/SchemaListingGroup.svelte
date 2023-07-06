@@ -18,7 +18,9 @@
     let required = definition.required;
     if (!required) required = [];
     required.forEach((item) => {
-        definition.properties[item].required = true;
+        if (definition.properties[item]) {
+            definition.properties[item].required = true;
+        }
     });
 </script>
 
