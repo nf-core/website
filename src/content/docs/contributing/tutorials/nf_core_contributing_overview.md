@@ -16,9 +16,7 @@ menu:
 >
 > Updated during the March 2022 hackathon.
 
-<!-- markdownlint-disable -->
 <iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-<!-- markdownlint-restore -->
 
 **[Click here to download the slides associated with this tutorial.](/assets/markdown_assets/usage/nf_core_tutorial/nf-core-tutorial-contributing.pdf)**
 
@@ -241,19 +239,73 @@ You can leave the _nf-core_ branch protection in place so that the `nf-core lint
 #### Linting
 
 The `linting.yml` workflow will run the nf-core linting tests, as well as other linting tests that ensure that general code styling is maintained.
+
 This workflow is already set up and does not need to be edited.
 It will check:
 
-- That all Markdown documentations follow a proper syntax.
-  - Many code editors have similar packages to help with markdown validation. For example, [markdownlint for atom](https://atom.io/packages/linter-markdownlint) and [markdownlint for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint))
-  - You can run the markdown linting on the command line by [installing markdownlint](https://www.npmjs.com/package/markdownlint) and running the command `markdownlint . -c .github/markdownlint.yml`
-- That all YAML files follow a proper syntax.
+- That markdown / YAML / JSON etc files are properly formatted, using Prettier.
+- That any Python is correctly formatted using Black.
 - That general code structure is maintained (e.g. no trailing whitespaces, final newline is present in all files) with [EditorConfig](https://editorconfig.org/).
 - That the pipeline code follows the nf-core linting rules.
   - You can run this manually with the `nf-core lint` command.
   - Some of the linting tests can be fixed automatically with the `--fix` subcommand, for example any `files_unchanged` type of error: `nf-core lint --fix files_unchanged`.
 
 > Tip: when using a code editor, some code editor settings might help you solve any code linting errors by linting when saving a file and even fixing the errors directly. You can check out [this documentation](https://nf-co.re/docs/contributing/editor_plugins) on code editor plugins.
+
+#### Black
+
+[Black](https://black.readthedocs.io/en/stable/index.html) is a formatting software that allows the code to be formatted in a quick and efficient way.
+
+It can be installed with the command `pip install black`, which requires Python 3.7+ to run.
+
+To launch Black, just run it with sensible defaults:
+
+```bash
+black {source_file_or_directory}'
+```
+
+Alternatively, you can run the software as a package if running it as a script doesn’t work:
+
+```bash
+python -m black {source_file_or_directory}
+```
+
+#### Prettier
+
+[Prettier](https://prettier.io/docs/en/install.html) is a code formatter with support for several file formats.
+
+Use the following command to check if the files are already formatted:
+
+```bash
+prettier --check .
+```
+
+If you want to overwrite them use this command instead:
+
+```bash
+prettier --write .
+```
+
+#### Prettier
+
+Prettier is a tool used to make the code more consistent and readable.
+It's a optionated code formatter that enforces a consistent style by parsing the code and re-printing it in its own rules.
+
+Every code and file of the nf-core community needs to be checked and formatted by Prettier before the upload.
+
+The command to check if the style of all files in your directory and its subdirectories is valid for Prettier is the following:
+
+```bash
+prettier -c .
+```
+
+While the command to automatically format the style of all the files in your directory with Prettier is the following:
+
+```bash
+prettier -w .
+```
+
+See pre-commit informations here: https://nf-co.re/docs/contributing/modules#new-module-workflow
 
 #### Continuous integration tests
 
@@ -333,6 +385,11 @@ A step-by-step tutorial [adding new modules](https://nf-co.re/docs/contributing/
 
 - Use the pipeline you created in Exercise 2 and add an nf-core module (e.g. trimgalore).
 - Connect the module to the main pipeline workflow (under `workflows/<pipeline-name>.nf`).
+
+#### Subworkflow
+
+Subworkflows are chains of modules that offer a higher-level of functionality within the context of a pipeline. A subworkflow is able to run multiple tools on the same input file.
+Subworkflows should be shipped with the pipeline implementation and if required they should be shared amongst different pipelines directly from there. Shareable nf-core subworkflow files are available in the 'subworkflow/' directory of nf-core/modules along with the required documentation and tests.
 
 ## Releasing nf-core pipelines
 

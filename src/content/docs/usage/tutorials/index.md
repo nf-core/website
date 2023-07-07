@@ -14,4 +14,4 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
 - [Step-by-step guide to writing an nf-core institutional profile](step_by_step_institutional_profile.md)
   - This guide goes through step-by-step on what you need to consider, and how to write a config file, when contributing an nf-core institutional profile for your particular cluster.
 
-Also see the [Nextflow resources](/docs/usage/nextflow/) page for a list of excellent training materials created by other groups.
+Also see the [Nextflow resources](/docs/usage/tutorials/nextflow/) page for a list of excellent training materials created by other groups.

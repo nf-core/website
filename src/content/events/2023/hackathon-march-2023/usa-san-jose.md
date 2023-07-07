@@ -8,7 +8,7 @@ end_date: '2023-03-29'
 end_time: '15:00 PDT'
 location_name: San Jose, California
 # address:
-location_url: https://gather.town
+# location_url:
 # location_latlng: [xxx, xxx]
 ---
 

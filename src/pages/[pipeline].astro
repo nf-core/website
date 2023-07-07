@@ -9,9 +9,10 @@ export const prerender = false;
 const { pipeline } = Astro.params;
 
 const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
-
-const last_release = meta.releases[0].tag_name;
-if (last_release) {
-    return Astro.redirect(`/${pipeline}/${last_release}/`);
+if (meta) {
+    const last_release = meta.releases[0].tag_name;
+    if (last_release) {
+        return Astro.redirect(`/${pipeline}/${last_release}/`);
+    }
 }
 ---

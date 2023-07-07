@@ -33,7 +33,9 @@ nf-core/eager is one of the largest and/or most complex nf-core pipelines. It is
 - Cover some of the challenges and solutions encountered when writing this pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:39](https://youtu.be/fObuLeGhQRo?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=39) So I’m going to talk about nf-core/eager, which is a best practice analysis pipeline for NGS sequence-based ancient DNA data analysis. During the talk today, I will briefly introduce what palaeogenomics is and why we need a special pipeline for it. I’ll also give a very brief overview of nf-core/eager and talk a little bit about some of the development challenges we had for this pipeline during DSL1.
 

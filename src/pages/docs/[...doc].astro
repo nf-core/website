@@ -14,7 +14,7 @@ export async function getStaticPaths() {
         },
     }));
 }
-const title = 'Docs/' + Astro.props.doc.data.title;
+const title = Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
 const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.render();
 

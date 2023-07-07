@@ -37,7 +37,10 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 
 <details markdown="1"><summary>Video transcription</summary>
 
-**Note: This text has been edited to make it suitable for reading**
+:::note
+This text has been edited to make it suitable for reading
+:::
+
 The talk today is going to be less slides and more focused on a live demonstration because it’s probably best to learn this by doing. So please bear with me.
 
 So a quick introduction. What is CI? CI stands for continuous integration, and basically that’s just another way of saying automated tests.

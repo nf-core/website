@@ -37,7 +37,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - Slides: <https://doi.org/10.6084/m9.figshare.14413046.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: This transcript has been modified to make it reader-friendly**
+:::note
+This transcript has been modified to make it reader-friendly
+:::
 
 [0:32](https://youtu.be/N1rRr4J0Lps?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=32) Thank you, I will share my screen.
 

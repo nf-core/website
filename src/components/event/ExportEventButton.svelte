@@ -9,7 +9,7 @@
     let event_location = '';
     if (typeof frontmatter.location_url === 'string') {
         event_location = frontmatter.location_url;
-    } else {
+    } else if (frontmatter.location_url) {
         event_location = frontmatter.location_url.join(', ');
     }
     const calendar_event = {

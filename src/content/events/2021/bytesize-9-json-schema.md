@@ -37,7 +37,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - Slides: <https://doi.org/10.6084/m9.figshare.14453214.v1>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:36](https://youtu.be/PU6vAj_7WRM?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=36) Welcome everybody, today's topic is JSON schema, what it is, why we chose to use it, and how it can be utilised.
 

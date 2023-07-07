@@ -36,7 +36,9 @@ The talk will be presented on Zoom and live-streamed on YouTube:
 - YouTube: <https://youtu.be/cXBYusdjrc0>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: This text has been edited to make it more suitable for readers.**
+:::note
+This text has been edited to make it more suitable for readers.
+:::
 
 OK, so hello everyone, Maxime here.
 I am working for the Swedish Childhood Tumor Biobank which is located at Karolinska Institutet and I am sitting half-time at the National Genomics Infrastructure at SciLifeLab.

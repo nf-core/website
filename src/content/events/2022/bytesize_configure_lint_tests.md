@@ -2,10 +2,11 @@
 title: 'Bytesize: Configuring lint tests'
 subtitle: Phil Ewels, Seqera labs
 type: talk
-start_date: '2022-12-08'
+start_date: '2022-11-08'
 start_time: '13:00 CET'
-end_date: '2022-12-24'
+end_date: '2022-11-08'
 end_time: '13:30 CET'
+youtube_embed: https://www.youtube.com/watch?v=DiXh3Dvpq5E
 location_url:
   - https://doi.org/10.6084/m9.figshare.21533151.v1
   - https://www.youtube.com/watch?v=DiXh3Dvpq5E
@@ -24,7 +25,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Phil Ewels ([@ewels](https://github.com/ewels)) will show how to configure lint tests.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=DiXh3Dvpq5E&t=1)
 Hello, everyone. Welcome to today's bytesize talk. My name is Franziska Bonath. I'm today's host. But before we go into the talk, I would like to highlight an event. As you all know, we had a hackathon not long ago, which was hugely successful. And good news, there will be another one coming up in March 2023. This one will be a completely virtual event, but we are planning to have local communities come together and join forces. So if you want to host one of those, please contact us or add a pull request to the website where you can add your own site.
