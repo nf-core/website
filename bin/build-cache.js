@@ -1,9 +1,8 @@
 #! /usr/bin/env node
-import { getGitHubFile } from '../src/components/octokit.js';
+import { getGitHubFile, getCurrentRateLimitRemaining } from '../src/components/octokit.js';
 import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';
-
 
 const cache = Cache.default({
   basePath: './.cache',
@@ -16,6 +15,7 @@ const __dirname = path.resolve();
 // check for `--force` flag
 const force = process.argv.includes('--force');
 
+console.log(await getCurrentRateLimitRemaining());
 export const buildCache = async () => {
   const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
   const pipelines = JSON.parse(pipelinesJson);
