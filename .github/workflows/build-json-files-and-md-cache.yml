@@ -1,4 +1,4 @@
-name: build components.json file
+name: build json files and md-cache
 
 on:
   schedule: # every day at 7am
@@ -24,10 +24,22 @@ jobs:
           cache: 'npm'
       - run: npm install
 
+      - name: create pipeline.json
+        run: npm run build-pipeline-json
+        env:
+          GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+
       - name: create component.json
         run: npm run build-component-json
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+
+
+      - name: make md cache
+        run: node bin/build-cache.js && tar -czvf .cache.tar.gz .cache
+        env:
+          GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
+
       # Commit and push the changes
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
