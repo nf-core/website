@@ -34,7 +34,9 @@ This will cover:
 The talk will be presented on Zoom and live-streamed on YouTube.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:31](https://youtu.be/1OwkTd-P5pQ?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=31) Thank you for the introduction. I’ll be talking to you about pipeline first release, which will cover how one can release a pipeline that is built using `nf-core/tools`.
 

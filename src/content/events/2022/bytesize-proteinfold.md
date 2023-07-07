@@ -26,7 +26,9 @@ It is our hope that these talks / videos will build an archive of training mater
 This week, Athanasios Baltzis ([@athbaltzis](https://github.com/athbaltzis)) will talk about the newest developments in the nf-core/proteinfold pipeline.
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=441P_GzrI-o&t=1)
 Hi Maxine here. Today I'd like to welcome Athanasios Baltzis from the comparative bioinformatics group at the center for genomics regulation in Barcelona. He's going to talk about proteinfold, which is pipeline I'm really looking forward to know more. It is before the first release, which is from what I hear, coming soon. Before we actually start I'd like to thank thank the Chan Zuckerberg Initiative for helping us out, and the listeners. You will be able to admit yourself at the end of the talk for questions.

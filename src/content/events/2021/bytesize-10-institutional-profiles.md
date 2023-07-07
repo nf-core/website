@@ -43,7 +43,9 @@ You can see the slides on HackMD: <https://hackmd.io/@jfy133/Hyc_WvXU_> (shown b
 </div>
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited to make it reader-friendly**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:54](https://youtu.be/Ym1s6sKGzkw?list=PL3xpfTVZLcNiSvvPWORbO32S1WDJqKp1e&t=54) Thank you very much. As mentioned, the overview of today’s talk is that we will be recapping the benefits of using nf-core institutional profiles, and I will describe the information you should generally gather before writing one.
 

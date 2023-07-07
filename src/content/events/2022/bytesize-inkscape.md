@@ -27,7 +27,9 @@ This week, James Fellows Yates ([@jfy133](https://github.com/jfy133)) will give 
 ![nf-core/eager pipeline diagram in the style of a tube-map](https://raw.githubusercontent.com/nf-core/eager/master/docs/images/usage/eager2_metromap_complex.png)
 
 <details markdown="1"><summary>Video transcription</summary>
-**Note: The content has been edited for reader-friendliness**
+:::note
+The content has been edited to make it reader-friendly
+:::
 
 [0:01](https://www.youtube.com/watch?v=0vKhfedYKGo&t=1)
 (host) Hello everyone, I'm here today with James Fellows Yates and he's going to talk about Inkscape and pipeline diagrams.

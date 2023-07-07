@@ -12,8 +12,8 @@ The aim of nf-core is to have standardised best-practice pipelines.
 To ensure this standardisation, we maintain a set of guidelines which all nf-core
 pipelines must adhere to.
 
-> If you're thinking of adding a new pipeline to nf-core, please read the documentation
-> about [adding a new pipeline](adding_pipelines.md).
+> If you're thinking of adding a new pipeline to nf-core or contributing to an existing pipeline, please read the documentation
+> about [adding a new pipeline](../adding_pipelines.md) and [contributing to a pipeline](../contributing_to_pipelines.md).
 
 The following lists an overview of the guidelines. Follow links to dedicated pages for more details about a given topic.
 
@@ -21,7 +21,7 @@ The following lists an overview of the guidelines. Follow links to dedicated pag
 
 The instructions below are subject to interpretation and specific scenarios.
 If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
-You can join the nf-core Slack [here](/join/).
+You can join the nf-core Slack [here](https://nf-co.re/join).
 
 ## Requirements
 
@@ -54,6 +54,7 @@ All nf-core pipelines _should_ follow the following guidelines, if possible / ap
 - [File formats](recommendations/file_formats.md): Use community accepted modern file formats such as `CRAM`.
 - [DOIs](recommendations/dois.md): Pipelines should have digital object identifiers (DOIs).
 - [Cloud compatible](recommendations/cloud_compatible.md): Pipelines should be tested on cloud computing environments.
+- [Publication credit](recommendations/publication_credit.md): Pipeline publications should acknowledge the nf-core community.
 
 ## If the guidelines don't fit
 

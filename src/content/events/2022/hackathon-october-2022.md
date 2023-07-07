@@ -8,7 +8,6 @@ start_time: '11:00 CEST'
 end_date: '2022-10-12'
 end_time: '13:00 CEST'
 location_name: Barcelona, Spain
-location_url: https://app.gather.town/app/X08wvNfA0ndXyDDE/Nextflow%20summit
 ---
 
 # Welcome

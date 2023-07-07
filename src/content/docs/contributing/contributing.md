@@ -1,6 +1,6 @@
 ---
-title: Contributing to Docs
-subtitle: Guides on how to contribute to the nf-core documentation.
+title: Special content elements
+subtitle: Guides on special content elements on nf-co.re
 ---
 
 # Admonitions
