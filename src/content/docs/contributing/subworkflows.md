@@ -23,11 +23,9 @@ A chain of multiple modules that offer a higher-level of functionality within th
 
 What DSL1 users would consider an end-to-end pipeline. For example, from one or more inputs to a series of outputs. This can either be implemented using a large monolithic script as with DSL1, or by using a combination of DSL2 modules and sub-workflows. nf-core pipelines can have multiple workflows, such as processing different data types for the same ultimate purpose (such as in [nf-core/viralrecon](https://github.com/nf-core/viralrecon/tree/master/workflows))
 
-<!-- ## Writing a new module reference
+<!-- ## Writing a new subworkflow reference
 
-TODO: nf-core: This tutorial doesn't exist yet
-
-See the [dsl2 modules tutorial](tutorials/dsl2_modules_tutorial) for a step by step guide for how to add a module! -->
+See the [dsl2 subworkflows tutorial](tutorials/dsl2_subworkflows_tutorial) for a step by step guide for how to add a module! -->
 
 ### Before you start
 

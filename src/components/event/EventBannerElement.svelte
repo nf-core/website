@@ -61,13 +61,13 @@
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events.filter((event) => {
-            let time_window = 1 * 24 * 60 * 60 * 1000; //TODO: change back to 1 day
+            let time_window = 1 * 24 * 60 * 60 * 1000;
             const event_start_unix = event.data.start.getTime();
             const event_end_unix = event.data.end.getTime();
 
             // increase time window to a week for events longer than 5 hours
             if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
-                time_window = 7 * 24 * 60 * 60 * 1000; //TODO: change back to 7 days
+                time_window = 7 * 24 * 60 * 60 * 1000;
             }
             if (event.data.start < new Date() && new Date() < event.data.end) {
                 return false;

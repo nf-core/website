@@ -319,21 +319,6 @@ code:not(pre code),
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  color: $success !important; // TODO: resolve this with bootstrap variables (not working as of 5.3alpha1)
-}
-
 .main-content h1 {
   border-bottom: 1px solid $nf-core-color;
 }

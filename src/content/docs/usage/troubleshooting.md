@@ -3,35 +3,6 @@ title: Troubleshooting
 subtitle: How to troubleshoot common mistakes and issues
 ---
 
-- [Troubleshooting basics](#troubleshooting-basics)
-  - [Start small](#start-small)
-  - [Categorize the type of error](#categorize-the-type-of-error)
-  - [Read the log and check the work directory](#read-the-log-and-check-the-work-directory)
-  - [Asking for help](#asking-for-help)
-  - [Troubleshooting talk](#troubleshooting-talk)
-- [Configuration](#configuration)
-  - [Manual debugging on clusters using schedulers](#manual-debugging-on-clusters-using-schedulers)
-- [Input files not found](#input-files-not-found)
-  - [Direct input](#direct-input)
-  - [Output for only a single sample although I specified multiple with wildcards](#output-for-only-a-single-sample-although-i-specified-multiple-with-wildcards)
-  - [Sample sheet input](#sample-sheet-input)
-  - [Data organization](#data-organization)
-- [The pipeline crashes almost immediately with an early pipeline step](#the-pipeline-crashes-almost-immediately-with-an-early-pipeline-step)
-  - [Tool not found](#tool-not-found)
-  - [Error related to Docker](#error-related-to-docker)
-  - [Error related to Singularity](#error-related-to-singularity)
-  - [Error related to HPC Schedulers](#error-related-to-hpc-schedulers)
-- [Cannot find input files when using Singularity](#cannot-find-input-files-when-using-singularity)
-- [Warning about sticked on revision](#warning-about-sticked-on-revision)
-- [My pipeline crashes part way through a run at a certain step with a non 0 exit code](#my-pipeline-crashes-part-way-through-a-run-at-a-certain-step-with-a-non-0-exit-code)
-- [I get a exceeded job memory limit error](#i-get-a-exceeded-job-memory-limit-error)
-- [Crashed pipeline with an error but Nextflow is still running](#crashed-pipeline-with-an-error-but-nextflow-is-still-running)
-  - [A step of a pipeline wasn't executed](#a-step-of-a-pipeline-wasnt-executed)
-- [My pipeline update doesn't seem to do anything](#my-pipeline-update-doesnt-seem-to-do-anything)
-- [Unable to acquire lock error](#unable-to-acquire-lock-error)
-- [Using a local version of iGenomes](#using-a-local-version-of-igenomes)
-- [Extra resources and getting help](#extra-resources-and-getting-help)
-
 ## Troubleshooting basics
 
 These are the recommended steps for troubleshooting a pipeline.

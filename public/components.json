@@ -7218,10 +7218,9 @@
             }
           },
           {
-            "txt": {
+            "output": {
               "type": "file",
-              "description": "BCFTools query output file",
-              "pattern": "*.txt"
+              "description": "BCFTools query output file"
             }
           },
           {
@@ -19252,6 +19251,10 @@
           "version": "dev"
         },
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "crisprseq",
           "version": "2.0.0"
         },
@@ -26241,6 +26244,10 @@
         },
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "createpanelrefs",
           "version": "dev"
         },
         {
@@ -55503,6 +55510,73 @@
       }
     },
     {
+      "name": "mmseqs_cluster",
+      "path": "modules/nf-core/mmseqs/cluster/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_cluster",
+        "description": "Cluster sequences using MMSeqs2 cluster.",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "clustering",
+          "searching",
+          "indexing",
+          "mmseqs2"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "input_db": {
+              "type": "directory",
+              "description": "a MMseqs2 database used for clustering"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "cluster": {
+              "type": "file",
+              "description": "a clustered MMseqs2 database used for clustering"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ]
+      }
+    },
+    {
       "name": "mmseqs_createdb",
       "path": "modules/nf-core/mmseqs/createdb/meta.yml",
       "type": "module",
@@ -55633,6 +55707,99 @@
       ]
     },
     {
+      "name": "mmseqs_createtsv",
+      "path": "modules/nf-core/mmseqs/createtsv/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_createtsv",
+        "description": "Create a tsv file from a query and a target database as well as the result database",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "clustering",
+          "searching",
+          "indexing",
+          "mmseqs2",
+          "tsv"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "db_result": {
+              "type": "directory",
+              "description": "an MMseqs2 database with result data"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "db_query": {
+              "type": "directory",
+              "description": "an MMseqs2 database with query data"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "db_target": {
+              "type": "directory",
+              "description": "an MMseqs2 database with target data"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "The resulting tsv file created using the query, target and result MMseqs databases",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ]
+      }
+    },
+    {
       "name": "mmseqs_databases",
       "path": "modules/nf-core/mmseqs/databases/meta.yml",
       "type": "module",
@@ -55682,6 +55849,85 @@
         ],
         "authors": [
           "@prototaxites"
+        ]
+      }
+    },
+    {
+      "name": "mmseqs_search",
+      "path": "modules/nf-core/mmseqs/search/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_search",
+        "description": "Search and calculate a score for similar sequences in a query and a target database.",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "clustering",
+          "searching",
+          "indexing",
+          "mmseqs2"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "query_db": {
+              "type": "directory",
+              "description": "an MMseqs2 database with query data"
+            }
+          },
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "target_db": {
+              "type": "directory",
+              "description": "an MMseqs2 database with target data, e.g. uniref90"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "search_db": {
+              "type": "directory",
+              "description": "an MMseqs2 database with search results"
+            }
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
         ]
       }
     },
@@ -57016,6 +57262,10 @@
         },
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "createpanelrefs",
           "version": "dev"
         },
         {
