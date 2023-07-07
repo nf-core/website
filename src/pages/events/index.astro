@@ -10,7 +10,26 @@ events = events.filter((event) => {
 
 const title = 'Events';
 const subtitle = 'Details of past and future events around nf-core.';
-const filters = ['bytesize', 'talk', 'training', 'hackathon'];
+const event_types = ['bytesize', 'talk', 'training', 'hackathon'];
+const event_type_classes = {
+    bytesize: 'success',
+    hackathon: 'primary',
+    talk: 'info',
+    training: 'warning',
+};
+const event_type_icons = {
+    bytesize: 'fa-solid fa-apple-core',
+    hackathon: 'fa-solid fa-laptop-code',
+    talk: 'fa-solid fa-presentation',
+    training: 'fa-solid fa-chalkboard-teacher',
+};
+const filters = event_types.map((type) => {
+    return {
+        name: type,
+        icon: event_type_icons[type],
+        class: event_type_classes[type],
+    };
+});
 ---
 
 <EventLayout {events} {title} {subtitle} {filters} />
