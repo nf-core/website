@@ -2,7 +2,7 @@
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
-
+ob_start();
 // Please someone rewrite this page..
 set_time_limit(240);
 
@@ -1633,5 +1633,5 @@ $subfooter =
 
 // include '../includes/footer.php';
 
-
+file_put_contents('stats_static.html', ob_get_contents());
 ?>
