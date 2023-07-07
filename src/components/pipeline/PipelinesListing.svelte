@@ -101,8 +101,15 @@
         );
         return pipelines;
     }
-
-    $: filteredPipelines = pipelines;
+    $: filteredPipelines = pipelines.sort((a, b) => {
+        if (a.releases.length === 1) {
+            return 1;
+        }
+        if (b.releases.length === 1) {
+            return -1;
+        }
+        return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+    });
 
     onMount(() => {
         SortBy.subscribe(() => {

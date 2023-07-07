@@ -29,7 +29,10 @@
     </div>
     <div class="col-12 col-md-3 text-nowrap d-flex flex-column align-items-end justify-content-between">
         {#if property.hidden}
-            <span class="badge text-bg-warning">hidden</span>
+            <span class="badge warning border border-warning-subtle fw-normal bg-warning-subtle mb-1">hidden</span>
+        {/if}
+        {#if property.required}
+            <span class="badge text-bg-warning mb-1">required</span>
         {/if}
         <div class="text-body-secondary">
             type: <code>{property.type}</code>
