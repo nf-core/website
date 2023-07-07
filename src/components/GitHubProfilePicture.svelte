@@ -12,6 +12,8 @@
 <a href="https://github.com/{name}" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
     <img
         src={avatar_url}
+        width={size}
+        height={size}
         class="me-1 mb-1"
         class:rounded-circle={circle}
         data-bs-placement="bottom"
