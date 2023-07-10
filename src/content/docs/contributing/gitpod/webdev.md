@@ -19,7 +19,7 @@ Then follow `nf-co.re/markdown/developers` to open individual Markdown files. Cl
 
 ### Previewing the website
 
-When you open Gitpod from the nf-core website (`master`, a branch, or from a pull-request), the environment should be configured to build and serve a preview of the site with your changes.
+When you open Gitpod from the nf-core website (`main`, a branch, or from a pull-request), the environment should be configured to build and serve a preview of the site with your changes.
 
 > This is a great way to preview changes in a pull-request!
 
