@@ -12,7 +12,7 @@ Hi there! Many thanks for taking an interest in improving the nf-core website.
 ## Instructions to add your institution to the list of contributors
 
 1. Fork this repo
-2. Add your institute details and your name to the [nf-core-contributors.yaml](../nf-core-contributors.yaml)
+2. Add your institute details and your name to the [contributors.yaml](../src/config/contributors.yaml)
 
 Here's the desired format
 
@@ -52,7 +52,7 @@ is as follows:
    - If there isn't one already, please create one so that others know you're working on this
 2. Fork the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re) to your GitHub account
 3. Make the necessary changes / additions within your forked repository
-4. Submit a Pull Request against the `master` branch and wait for the code to be reviewed and merged.
+4. Submit a Pull Request against the `main` branch and wait for the code to be reviewed and merged.
 
 If you're not used to this workflow with git, you can start with some [basic docs from GitHub](https://help.github.com/articles/fork-a-repo/) or even their [excellent interactive tutorial](https://try.github.io/).
 
