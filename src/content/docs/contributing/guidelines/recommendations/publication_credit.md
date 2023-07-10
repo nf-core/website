@@ -1,7 +1,7 @@
 ---
 title: Publication Credit
 subtitle: Recommended recognition for nf-core pipeline publications
-weight: 230
+weight: 123
 ---
 
 Pipeline publications should acknowledge the nf-core community (e.g. in an academic journal).
