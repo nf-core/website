@@ -124,14 +124,8 @@ $$$
 You can also display formulas inline by wrapping them in `$` instead of `$$$`, e.g.:
 
 ```md
-The lift $L$ is calculated as follows:
-$$$
-L = \frac{1}{2} \rho v^2 S C_L
-$$$
+The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$
 ```
 gets rendered as:
 
-The lift $L$ is calculated as follows:
-$$$
-L = \frac{1}{2} \rho v^2 S C_L
-$$$
+The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$
