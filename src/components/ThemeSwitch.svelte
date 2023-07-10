@@ -34,6 +34,7 @@
                 title="light"
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
+                role="button"
             >
                 <slot name="light" /> <span class="ms-1">Light</span>
             </div>

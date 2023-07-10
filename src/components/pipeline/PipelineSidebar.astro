@@ -2,7 +2,7 @@
 import InstallCmd from '@components/InstallCmd.svelte';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import { formatDistance } from 'date-fns';
-import GitHubUser from '@components/GitHubProfilePicture.svelte';
+import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 import { getCollection } from 'astro:content';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
@@ -161,7 +161,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
         {
             meta.contributors.map((contributor) => {
                 return (
-                    <GitHubUser
+                    <GitHubProfilePicture
                         name={contributor.name}
                         image={contributor.avatar_url}
                         size={50}
