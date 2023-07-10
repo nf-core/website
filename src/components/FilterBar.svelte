@@ -45,8 +45,8 @@
     });
 </script>
 
-<div class="filter-bar">
-    <div class="d-none d-lg-flex w-100 justify-content-center mb-2">
+<div class="filter-bar mb-2">
+    <div class="d-none d-lg-flex w-100 justify-content-center">
         <input
             type="text"
             class="form-control w-25 me-2"
