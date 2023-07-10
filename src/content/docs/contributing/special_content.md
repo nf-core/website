@@ -112,13 +112,13 @@ We support latex based formulas using [KaTeX](https://katex.org/). To display th
 
 ```md
 $$$
-L = \frac{1}{2} \rho v^2 S C_L
+z_{n+1} = z_n^2 + c
 $$$
 ```
 turns into:
 
 $$$
-L = \frac{1}{2} \rho v^2 S C_L
+z_{n+1} = z_n^2 + c
 $$$
 
 You can also display formulas inline by wrapping them in `$` instead of `$$$`, e.g.:
@@ -128,4 +128,4 @@ The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$
 ```
 gets rendered as:
 
-The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$
+The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$.
