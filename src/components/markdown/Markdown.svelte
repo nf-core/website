@@ -11,6 +11,8 @@
     import urls from 'rehype-urls';
     import rehypeWrap from 'rehype-wrap-all';
     import { h } from 'hastscript';
+    import remarkMath from 'remark-math';
+    import rehypeKatex from 'rehype-katex';
 
     export let md;
 
@@ -28,7 +30,7 @@
     {md}
     plugins={[
         {
-            remarkPlugin: [emoji, remarkGfm, remarkDirective, admonitionsPlugin],
+            remarkPlugin: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, remarkMath],
             rehypePlugin: [
                 rehypeSlug,
                 [
@@ -61,6 +63,7 @@
                         }
                     },
                 ],
+                rehypeKatex,
                 // [ // vite doesn't like to compile rehype-pretty-code
                 //     rehypePrettyCode,
                 //     {

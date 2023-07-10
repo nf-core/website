@@ -1,7 +1,5 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
-import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
-import githubLightTheme from '/public/themes/github-light.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
@@ -15,6 +13,7 @@ import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
 import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
@@ -22,7 +21,7 @@ import rehypeWrap from 'rehype-wrap-all';
 import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
-
+import remarkMath from 'remark-math';
 
 // https://astro.build/config
 export default defineConfig({
@@ -73,7 +72,7 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
@@ -114,10 +113,11 @@ export default defineConfig({
                     keepBackground: true,
                     theme: {
                         dark: 'github-dark-dimmed',
-                        light: githubLightTheme,
+                        light: 'github-light',
                     },
                 },
             ],
+            rehypeKatex,
         ],
     },
 });
