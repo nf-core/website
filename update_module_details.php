@@ -256,6 +256,15 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $last_release_date,
     );
     foreach ($gh_pipelines as $pipeline) {
+
+        if (in_array($pipeline['name'], $ignored_repos)) {
+            $pipeline_type = 'core_repos';
+            continue;
+        } else {
+            $pipeline_type = 'pipelines';
+            echo  "Process pipeline " . $pipeline['name'] . "\n";
+        }
+
         // check where entries need to be updated and update them
 
         $github_id = $pipeline['id'];
@@ -279,17 +288,14 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             'published_at'
         ];
         $last_release_date = is_null($last_release_date) ? null : date('Y-m-d H:i:s', strtotime($last_release_date));
-        if (in_array($pipeline['name'], $ignored_repos)) {
-            $pipeline_type = 'core_repos';
-        } else {
-            $pipeline_type = 'pipelines';
-            echo "Data for pipeline $name gathered to store into database.\n";
-        }
+
         $check = "SELECT * FROM nfcore_pipelines WHERE name = '" . $pipeline['name'] . "'";
         $res = mysqli_query($conn, $check);
         if ($res->num_rows > 0) {
             // test if the entry needs to be updated
+            echo "  Pipeline $name exists in the database, trying to update it now.\n";
             $row = $res->fetch_assoc();
+
             $update = false;
             $update = $update || $row['github_id'] != $github_id;
             $update = $update || $row['html_url'] != $html_url;
@@ -301,39 +307,72 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             $update = $update || $row['watchers_count'] != $watchers_count;
             $update = $update || $row['forks_count'] != $forks_count;
             $update = $update || $row['open_issues_count'] != $open_issues_count;
+            $update = $update || $row['open_pr_count'] != $open_pr_count;
             $update = $update || $row['topics'] != $topics;
             $update = $update || $row['default_branch'] != $default_branch;
             $update = $update || $row['pipeline_type'] != $pipeline_type;
             $update = $update || $row['archived'] != $archived;
             $update = $update || $row['last_release_date'] != $last_release_date;
-            if ($update) {
-                $update = 'UPDATE nfcore_pipelines SET ';
-                $update .= "github_id =  '$github_id',";
-                $update .= "html_url =  '$html_url',";
-                $update .= "description =  '$description',";
-                $update .= "gh_created_at =  '$gh_created_at',";
-                $update .= "gh_updated_at =  '$gh_updated_at',";
-                $update .= "gh_pushed_at =  '$gh_pushed_at',";
-                $update .= "stargazers_count =  '$stargazers_count',";
-                $update .= "watchers_count =  '$watchers_count',";
-                $update .= "forks_count =  '$forks_count',";
-                $update .= "open_issues_count =  '$open_issues_count',";
-                $update .= "topics =  '$topics',";
-                $update .= "default_branch =  '$default_branch',";
-                $update .= "pipeline_type =  '$pipeline_type',";
-                $update .= "archived =  '$archived',";
-                $update .= "last_release_date =  '$last_release_date'";
-                $update .= " WHERE name = '" . $pipeline['name'] . "'";
 
-                if (mysqli_query($conn, $update)) {
-                    echo "Updated $pipeline[name]\n";
+            if ($update) {
+
+                $update = "UPDATE
+                    nfcore_pipelines
+                SET
+                    github_id = ?,
+                    html_url = ?,
+                    description = ?,
+                    gh_created_at = ?,
+                    gh_updated_at = ?,
+                    gh_pushed_at = ?,
+                    stargazers_count = ?,
+                    watchers_count = ?,
+                    forks_count = ?,
+                    open_issues_count = ?,
+                    open_pr_count = ?,
+                    topics = ?,
+                    default_branch = ?,
+                    pipeline_type = ?,
+                    archived = ?,
+                    last_release_date = ?
+                WHERE
+                    name =  '" . $pipeline['name'] . "'";
+
+                if ($update_stmt = mysqli_prepare($conn, $update)) {
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param(
+                        $update_stmt,
+                        'ssssssiiiiisssis',
+                        $github_id,
+                        $html_url,
+                        $description,
+                        $gh_created_at,
+                        $gh_updated_at,
+                        $gh_pushed_at,
+                        $stargazers_count,
+                        $watchers_count,
+                        $forks_count,
+                        $open_issues_count,
+                        $open_pr_count,
+                        $topics,
+                        $default_branch,
+                        $pipeline_type,
+                        $archived,
+                        $last_release_date,
+                    );
                 } else {
-                    mysqli_error($conn);
+                    echo "ERROR: Could not prepare query: $update. " . mysqli_error($conn);
                 }
+                if (!mysqli_stmt_execute($update_stmt)) {
+                    echo "ERROR: Could not execute $update. " . mysqli_error($conn);
+                }
+            }else{
+                echo "  No need to update pipeline $name.\n";
             }
         } else {
+            echo "  Pipeline $name is new for database, inserting it now.\n";
             if (!mysqli_stmt_execute($stmt)) {
-                echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
+                echo "ERROR: Could not execute $sql. " . mysqli_error($conn). "\n";
             }
         }
     }
