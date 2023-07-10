@@ -125,7 +125,7 @@
     });
 </script>
 
-<div class="listing d-flex flex-wrap w-100 justify-content-center align-items-start">
+<div class="listing d-flex flex-wrap w-100 justify-content-center">
     {#if $DisplayStyle === 'grid'}
         {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
             <div class="alert alert-warning" role="alert">
