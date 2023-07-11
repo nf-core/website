@@ -105,7 +105,7 @@
             >
                 <a
                     href={slug + '/'}
-                    class="btn btn-outline-success text-nowrap rounded-top-0 rounded-start-0"
+                    class="btn btn-outline-success text-nowrap rounded-start-0"
                     class:rounded-0={['current', 'future'].includes(time_category)}>See details</a
                 >
                 {#if time_category === 'future'}
@@ -129,6 +129,18 @@
     }
     .card.rounded-0 {
         border-left: 5px solid;
+    }
+    @include media-breakpoint-up(md) {
+        .btn-group.float-end {
+            .btn:first-child {
+                border-top-left-radius: $border-radius !important;
+                border-bottom-left-radius: $border-radius !important;
+            }
+            :global(.btn.dropdown-toggle) {
+                border-top-right-radius: $border-radius !important;
+                border-bottom-right-radius: $border-radius !important;
+            }
+        }
     }
     @include media-breakpoint-down(md) {
         .btn-group.float-end {
