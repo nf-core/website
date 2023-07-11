@@ -41,7 +41,6 @@ The steering committee will meet regularly to discuss the project, funding and p
 <a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
 
-
 #### Core team {#core}
 
 The core team ensures the day-to-day running of the nf-core project and oversees the activities of governance teams.
