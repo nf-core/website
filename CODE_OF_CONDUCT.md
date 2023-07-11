@@ -1,8 +1,7 @@
 ---
 title: Code of Conduct
 description: The nf-core code of conduct
-# TODO: Update this link from `master` to `main` on release
-md_github_url: https://github.com/nf-core/nf-co.re/blob/master/CODE_OF_CONDUCT.md
+md_github_url: https://github.com/nf-core/nf-co.re/blob/main/CODE_OF_CONDUCT.md
 ---
 
 # Code of Conduct at nf-core (v1.4)

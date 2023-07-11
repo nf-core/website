@@ -21,7 +21,7 @@ subtitle = markdown(subtitle);
 
 <div class="mainpage-heading pb-1 text-bg-success">
     <div class="container">
-        <h1 class="display-2 d-flex justify-content-between mb-0 mb-md-1">
+        <h1 class="display-2 d-flex justify-content-between mb-2">
             <span set:html={title} />
             <div>
                 {
@@ -81,6 +81,9 @@ subtitle = markdown(subtitle);
             padding-top: 0.2rem;
             ::after {
                 clip-path: polygon(100% 0%, 100% 95%, 50% 100%, 0 95%, 0% 0%);
+            }
+            & :global(p) {
+                margin-bottom: 0.5rem;
             }
         }
         .mainpage-heading h1 {

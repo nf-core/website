@@ -14,6 +14,7 @@ export interface Props {
     md_github_url?: string;
     subfooter?: boolean;
     navTocHeadings?: object[];
+    sections?: { section_name: string; children: {}[] }[] | never[];
 }
 
 const {
@@ -23,6 +24,7 @@ const {
     md_github_url,
     subfooter = false,
     navTocHeadings = [],
+    sections = [],
 } = Astro.props;
 ---
 
@@ -33,9 +35,8 @@ const {
     </head>
 
     <body tabindex="0">
-        <Navbar navTocHeadings={navTocHeadings} title={title} />
-        <Navbar navTocHeadings={navTocHeadings} title={title} />
-        <div class="content">
+        <Navbar navTocHeadings={navTocHeadings} title={title} sections={sections} />
+        <div class:list={['content', { 'double-navbar': sections.length > 0 }]}>
             <slot />
         </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}
@@ -69,6 +70,9 @@ const {
             @include media-breakpoint-down(md) {
                 .content {
                     padding-top: 3rem; //offset for navbar
+                    &.double-navbar {
+                        padding-top: 5.5rem; //offset for navbar + sectionNavbar from sidebarNav
+                    }
                 }
             }
         </style>

@@ -57,7 +57,7 @@ const {
 ---
 
 <PageLayout title={title} subtitle={description} mainpage_container={mainpage_container}>
-    <div class="container-fluid main-content pt-md-4 p-3">
+    <div class="container-fluid main-content pt-md-2 p-1">
         <slot />
         <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
         {!components && !configs && <PipelinesListing pipelines={pipelines} client:load />}
