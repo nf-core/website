@@ -83,19 +83,7 @@ const sections = years.map((year) => {
     return {
         section_name: year,
         section_slug: '#year-' + year,
-        children: events
-            .filter(
-                (event) =>
-                    filters.some((fil) => fil.name === event.data.type) && event.data.start.getFullYear() === year
-            )
-            .reverse()
-            .map((event, idx) => {
-                return {
-                    title: event.data.title,
-                    slug: '#event-' + event.id.split('/')[1].replace('.md', ''),
-                    order: idx,
-                };
-            }),
+        children: [],
     };
 });
 ---

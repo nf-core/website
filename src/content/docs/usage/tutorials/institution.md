@@ -7,13 +7,13 @@ In case you couldn't find your institution / group of contributors on the [commu
 
 1. Fork the repository [nf-core/nf-core](https://github.com/nf-core/nf-co.re) to your own GitHub account. Look [here](https://guides.github.com/activities/forking/) for advice on how to fork a GitHub project.
 
-2. In your own fork, modify the YAML file `nf-core-contributors.yaml` in the text editor of your choice.
+2. In your own fork, modify the YAML file `contributors.yaml` in the text editor of your choice.
 
 3. Fill in the details about you and your institution directly into the YAML file:
 
    - `full_name:` Full Name of the Institution
    - `short_name:` Short Name of the Institution (e.g. an acronym)
-   - `description:` Short description of the main activities of the Institution (see [`nf-core-contributors.yaml`](https://github.com/nf-core/nf-co.re/blob/master/nf-core-contributors.yaml) for examples)
+   - `description:` Short description of the main activities of the Institution (see [`contributors.yaml`](https://github.com/nf-core/nf-co.re/blob/main/src/config/contributors.yaml) for examples)
    - `address:` Postal Address
    - `url:` Institution URL
    - `affiliation:` Affiliation - could be the subunit or department of your institution where you work (if _Fancy University_ is the Institution, then Affiliation would be the _McFancyDepartment_)
@@ -29,7 +29,7 @@ In case you couldn't find your institution / group of contributors on the [commu
 
    - Upload a _white_ version to the folder `public_html/assets/img/contributors-white/`. It must be a single monochrome shape with no background colour.
    - Upload a _colour_ version to the folder `public_html/assets/img/contributors-colour/`.
-   - See the website repository for examples in [white](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-white) and [colour](https://github.com/nf-core/nf-co.re/tree/master/public_html/assets/img/contributors-colour).
+   - See the website repository for examples in [white](https://github.com/nf-core/nf-co.re/tree/main/public/images/contributors/contributors-white) and [colour](https://github.com/nf-core/nf-co.re/tree/main/public/images/contributors/contributors-colour).
    - Both images should have the **same name** - if you define `image_fn: foobar.svg` in the YAML file, then both files should be named `foobar.svg` in the respective folders.
    - If you have only raster images available, please search for a SVG version. Ask for help in the nf-core Slack if in doubt (please do not add SVG files with embedded raster images - vector only).
      - _Tip_: Wikipedia often uses the SVG format of displayed logos available for the download.
