@@ -39,6 +39,8 @@ The steering committee will meet regularly to discuss the project, funding and p
 <a class="btn btn-light rounded-pill" href="https://github.com/ggabernet"><i aria-hidden="true"></i>Gisela Gabernet</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/drpatelh"><i aria-hidden="true"></i>Harshil Patel</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
+<a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
+
 
 #### Core team {#core}
 
@@ -60,7 +62,6 @@ Core team members will appear as organization members on the GitHub organization
 
 **Members**
 
-<a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/christopher-hakkaart"><i aria-hidden="true"></i>Chris Hakkaart</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/drpatelh"><i aria-hidden="true"></i>Harshil Patel</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/ewels"><i aria-hidden="true"></i>Phil Ewels</a>
@@ -76,6 +77,7 @@ Core team members will appear as organization members on the GitHub organization
 
 **Core team alumni**
 
+<a class="btn btn-light rounded-pill" href="https://github.com/apeltzer"><i aria-hidden="true"></i>Alexander Peltzer</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/alneberg"><i aria-hidden="true"></i>Johannes Alneberg </a>
 <a class="btn btn-light rounded-pill" href="https://github.com/KevinMenden"><i aria-hidden="true"></i>Kevin Menden</a>
 <a class="btn btn-light rounded-pill" href="https://github.com/olgabot"><i aria-hidden="true"></i>Olga Botvinnik</a>
