@@ -21,10 +21,10 @@ let navbarTitle = [];
 if (sections?.length > 0) {
     // construct the breadcrumb for the navbarNav element
     let url = Astro.url.pathname;
-    // find '/docs/' inside the url and remove everyting before it
+    const maxDepth = url.split('/').length - 3;
     const currentSection = sections.find((section) => {
         return section.children.find((child) => {
-            return child.slug.startsWith(url.split('/').slice(0, -2).join('/'));
+            return child.slug.startsWith(url.split('/').slice(0, maxDepth).join('/'));
         });
     });
     const shortenedURL = url.replace(currentSection?.section_slug, '');
@@ -34,7 +34,6 @@ if (sections?.length > 0) {
               return url.startsWith(child.slug);
           }).title
         : '';
-
     navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
 }
 ---
