@@ -1,5 +1,5 @@
 ---
-title: Guidelines Overview
+title: Guidelines
 subtitle: Guidelines and requirements for nf-core pipelines.
 menu:
   main:
