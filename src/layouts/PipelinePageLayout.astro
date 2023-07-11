@@ -2,7 +2,6 @@
 import PageLayout from '@layouts/PageLayout.astro';
 import SubHeader from '@components/header/SubHeader.astro';
 import TabBar from '@components/TabBar.astro';
-import cache from 'bin/cache.js';
 import pipelines_json from '@public/pipelines.json';
 
 export interface Props {
@@ -13,9 +12,19 @@ export interface Props {
     headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
     tabItems?: string[];
     md_github_url?: string;
+    sections?: { section_name: string; children: {}[] }[] | never[];
 }
 
-const { pipeline, subtitle, headings, version, versions = [], tabItems = [], md_github_url = '' } = Astro.props;
+const {
+    pipeline,
+    subtitle,
+    headings,
+    version,
+    versions = [],
+    tabItems = [],
+    md_github_url = '',
+    sections = [],
+} = Astro.props;
 const url = Astro.url.pathname;
 const baseUrl = '/' + pipeline + '/' + version;
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
@@ -87,6 +96,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     md_github_url={md_github_url}
     subfooter={md_github_url !== ''}
     topics={topics}
+    sections={sections}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {

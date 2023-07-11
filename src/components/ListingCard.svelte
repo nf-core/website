@@ -9,7 +9,7 @@
             <slot name="card-header" />
         </h2>
     </div>
-    <div class="card-body py-2">
+    <div class="card-body py-2" class:pt-0={recentRelease}>
         <slot name="card-body" />
     </div>
 </div>

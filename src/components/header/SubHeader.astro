@@ -24,7 +24,7 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
 ---
 
 <div class="subheader bg-body-secondary under-triangle-down">
-    <div class="container text-center d-flex flex-column align-items-center">
+    <div class="container text-center d-flex flex-column align-items-center py-2">
         {
             version !== latestVersion || version === 'dev' ? (
                 <div class="alert alert-warning p-1 p-md-3" role="alert">
@@ -51,7 +51,7 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
             pipeline.length > 0 ? (
                 <a
                     href={`/launch/?pipeline=${pipeline}&release=${version}`}
-                    class={'btn btn-success launch-btn btn-lg' + (version === 'dev' ? '-dev' : '')}
+                    class={'btn btn-success launch-btn btn-md-lg' + (version === 'dev' ? '-dev' : '')}
                 >
                     <i class="fa-duotone fa-rocket me-2" />
                     {'Launch ' + (version === 'dev' ? 'development version' : 'version ' + version)}

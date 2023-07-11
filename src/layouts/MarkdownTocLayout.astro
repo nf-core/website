@@ -48,6 +48,7 @@ const { title, subtitle, md_github_url, event_header, headings, left_sidebar, se
     subfooter={md_github_url && !Astro.url.pathname.startsWith('/docs/') ? true : false}
     mainpage_container={true}
     navTocHeadings={headings}
+    sections={sections}
 >
     <div class="row">
         {
