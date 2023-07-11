@@ -87,11 +87,6 @@ img {
   text-decoration: underline;
 }
 
-.btn-light {
-  background-color: rgba($gray-200, 0.75);
-  color: $gray-800;
-}
-
 .card p:last-child {
   margin-bottom: 0;
 }
@@ -1302,6 +1297,9 @@ div.mermaid {
     border: 1px solid $border-color-dark;
   }
 
+  .markdown-content img[alt="Workflow"]{
+    background-color: $white;
+  }
   .border-success {
     border-color: $nf-core-color-dark;
   }
