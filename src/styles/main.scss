@@ -87,6 +87,11 @@ img {
   text-decoration: underline;
 }
 
+.btn-light {
+  background-color: rgba($gray-200, 0.75);
+  color: $gray-900;
+}
+
 .card p:last-child {
   margin-bottom: 0;
 }
@@ -1244,6 +1249,9 @@ div.mermaid {
 
   .hide-light {
     display: inline-block;
+    &:not(svg){
+      display: block;
+    }
   }
 
   pre[data-theme='dark'] {

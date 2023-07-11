@@ -1,5 +1,5 @@
-<img src="src/assets/logos/nf-core-logo.svg#gh-light-mode-only" width="400">
-<img src="src/assets/logos/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
+<img src="public/images/nf-core-logo.svg#gh-light-mode-only" width="400">
+<img src="public/images/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
 
 # [nf-co.re](https://github.com/nf-core/nf-co.re)
 
