@@ -25,8 +25,7 @@ import remarkMath from 'remark-math';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://astro--nf-core.netlify.app/',
-    // TODO: switch back to 'https://nf-co.re/'
+    site: 'https://nf-co.re/',
     output: 'hybrid',
     experimental: {
         assets: true,
