@@ -100,6 +100,7 @@
             <div
                 class="btn-group float-end"
                 class:w-100={narrow}
+                class:narrow
                 role="group"
                 aria-label="See details or export calendar event"
             >
@@ -130,8 +131,11 @@
     .card.rounded-0 {
         border-left: 5px solid;
     }
+    .narrow .btn:first-child {
+        border-left: 0;
+    }
     @include media-breakpoint-up(md) {
-        .btn-group.float-end {
+        .btn-group.float-end:not(.narrow) {
             .btn:first-child {
                 border-top-left-radius: $border-radius !important;
                 border-bottom-left-radius: $border-radius !important;
