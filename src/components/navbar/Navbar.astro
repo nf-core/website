@@ -7,44 +7,36 @@ import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
 import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
-import { getCollection } from 'astro:content';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import Icon from 'astro-icon';
 
 export interface Props {
     navTocHeadings?: object[];
     title?: string;
+    sections?: { section_name: string; children: {}[] }[] | never[];
 }
-let sections: { section_name: string; children: {}[] } | never[] = [];
-if (Astro.url.pathname.startsWith('/docs/')) {
-    const docs = await getCollection('docs');
-    const subpages = docs.filter((doc) => {
-        return doc.slug.split('/').length === 2;
+const { navTocHeadings = [], title, sections = [] } = Astro.props;
+let navbarTitle = [];
+
+if (sections?.length > 0) {
+    // construct the breadcrumb for the navbarNav element
+    let url = Astro.url.pathname;
+    // find '/docs/' inside the url and remove everyting before it
+    const currentSection = sections.find((section) => {
+        return section.children.find((child) => {
+            return child.slug.startsWith(url.split('/').slice(0, -2).join('/'));
+        });
     });
-    sections = [
-        { section_name: 'Usage', children: [] },
-        { section_name: 'Contributing', children: [] },
-    ];
-    subpages.map((doc) => {
-        if (doc.slug.startsWith('usage/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Usage');
-            sections[index].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-        }
-        if (doc.slug.startsWith('contributing/')) {
-            let index = sections.findIndex((section) => section.section_name === 'Contributing');
-            sections[index].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
-        }
-    });
+    const shortenedURL = url.replace(currentSection?.section_slug, '');
+
+    const currentChild = shortenedURL
+        ? currentSection?.children.find((child) => {
+              return url.startsWith(child.slug);
+          }).title
+        : '';
+
+    navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
 }
-
-const event_type_icons = {
-    bytesize: 'fa-solid fa-apple-core',
-    hackathon: 'fa-solid fa-laptop-code',
-    talk: 'fa-solid fa-presentation',
-    training: 'fa-solid fa-chalkboard-teacher',
-};
-
-const { navTocHeadings = [], title } = Astro.props;
 ---
 
 <nav
@@ -83,7 +75,7 @@ const { navTocHeadings = [], title } = Astro.props;
                     <a class="nav-link dropdown-toggle" href="/about/" role="button" data-bs-toggle="dropdown">
                         Resources
                     </a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
                         <li><span class="dropdown-header">Configs & tools</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
@@ -104,7 +96,7 @@ const { navTocHeadings = [], title } = Astro.props;
                         <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
                             Events
                         </a>
-                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
+                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
                             <li>
                                 <a class="dropdown-item" href="/events/bytesize/"
                                     ><i class="fa-solid fa-apple-core me-2"></i>bytesize</a
@@ -133,7 +125,7 @@ const { navTocHeadings = [], title } = Astro.props;
                 </li>
                 <li class="nav-item p-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
                         <li><span class="dropdown-header">Community</span></li>
                         <!-- <li><a class="dropdown-item" href="/contributors/">Blog</a></li> -->
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
@@ -209,9 +201,9 @@ const { navTocHeadings = [], title } = Astro.props;
     </div>
 </nav>
 {
-    Astro.url.pathname.includes('/docs/') && (
+    sections && sections.length > 0 && (
         <NavbarDocsNav client:visible>
-            <NavbarDocsNavTitle slot="title" title={title} />
+            <NavbarDocsNavTitle slot="title" title={navbarTitle.flat()} />
             <SidebarNav slot="menu" items={sections} />
         </NavbarDocsNav>
     )
@@ -249,8 +241,8 @@ const { navTocHeadings = [], title } = Astro.props;
             border-top-right-radius: 0;
             border-top: 0;
             margin-top: calc($navbar-padding-y/3);
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
+
         .collapse.show {
             max-height: 80vh;
             overflow-y: auto;

@@ -17,6 +17,7 @@ let {
     frontmatter,
     navTocHeadings = [],
     topics = [],
+    sections = [],
 } = Astro.props;
 
 export interface Props {
@@ -33,6 +34,7 @@ export interface Props {
     subfooter?: boolean;
     frontmatter?: any;
     topics?: string[];
+    sections?: { section_name: string; children: {}[] }[] | never[];
 }
 
 if (frontmatter) {
@@ -55,6 +57,7 @@ if (frontmatter) {
     md_github_url={md_github_url}
     subfooter={subfooter}
     navTocHeadings={navTocHeadings}
+    sections={sections}
 >
     <div class="mainpage">
         <Header

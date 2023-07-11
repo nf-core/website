@@ -63,7 +63,7 @@
             </small>
         </div>
     </div>
-    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
+    <div slot="card-body" class="d-flex flex-column justify-content-between h-100 pt-0">
         <div class="recent-release-badge text-center">
             {#if recentRelease}
                 <a
@@ -115,7 +115,7 @@
             }
         }
     }
-    .recent-release-badge:has(.badge) {
-        margin-top: -0.6rem;
+    .recent-release-badge {
+        margin-top: -1px;
     }
 </style>
