@@ -16,6 +16,7 @@
     export let type: string = '';
     export let time_category: string = '';
     export let showDescription: boolean = true;
+    export let narrow: boolean = false;
     let event_date;
     if (frontmatter.start_date === frontmatter.end_date) {
         event_date =
@@ -81,19 +82,27 @@
             {#if showDescription}
                 <p class="mb-0">{frontmatter.subtitle}</p>
             {/if}
-            <div class="d-flex align-items-center mt-2 flex-wrap justify-content-center justify-content-md-end">
-                <p class="text-nowrap d-md-none text-center text-md-start pe-3">
+            <div
+                class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
+                class:justify-content-md-end={!narrow}
+            >
+                <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
                     <i class="fa-regular fa-calendar me-2" />{@html event_date}
                 </p>
             </div>
         </div>
     </div>
-    <div class="card-footer p-0 p-md-2">
+    <div class="card-footer p-0" class:p-md-2={!narrow}>
         <div class="d-flex align-items-center justify-content-between">
-            <p class="d-none d-md-inline-block text-wrap mb-0 ms-2 align-middle">
+            <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
                 {@html event_date}
             </p>
-            <div class="btn-group float-end" role="group" aria-label="See details or export calendar event">
+            <div
+                class="btn-group float-end"
+                class:w-100={narrow}
+                role="group"
+                aria-label="See details or export calendar event"
+            >
                 <a
                     href={slug + '/'}
                     class="btn btn-outline-success text-nowrap rounded-top-0 rounded-start-0"
@@ -124,6 +133,9 @@
     @include media-breakpoint-down(md) {
         .btn-group.float-end {
             width: 100%;
+            .btn:first-child {
+                border-left: 0;
+            }
         }
     }
 </style>
