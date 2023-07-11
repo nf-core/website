@@ -21,19 +21,20 @@ let navbarTitle = [];
 if (sections?.length > 0) {
     // construct the breadcrumb for the navbarNav element
     let url = Astro.url.pathname;
-    const maxDepth = url.split('/').length - 3;
+    const maxDepth = Math.max(3, url.split('/').length - 3);
+
     const currentSection = sections.find((section) => {
         return section.children.find((child) => {
             return child.slug.startsWith(url.split('/').slice(0, maxDepth).join('/'));
         });
     });
     const shortenedURL = url.replace(currentSection?.section_slug, '');
-
     const currentChild = shortenedURL
         ? currentSection?.children.find((child) => {
               return url.startsWith(child.slug);
-          }).title
+          })?.title
         : '';
+
     navbarTitle = currentChild ? [currentSection?.section_name, currentChild] : [currentSection?.section_name];
 }
 ---
