@@ -63,7 +63,7 @@
             </small>
         </div>
     </div>
-    <div slot="card-body" class="d-flex flex-column justify-content-between h-100 pt-0">
+    <div slot="card-body" class="d-flex flex-column justify-content-between h-100">
         <div class="recent-release-badge text-center">
             {#if recentRelease}
                 <a
@@ -74,9 +74,9 @@
             {/if}
         </div>
         {#if body}
-            <div class="description flex-grow-1"><Markdown md={body} /></div>
+            <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
         {/if}
-        <p class="topics mb-2">
+        <p class="topics mb-3">
             {#each topics as topic}
                 <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
             {/each}

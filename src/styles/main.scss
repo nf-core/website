@@ -89,7 +89,7 @@ img {
 
 .btn-light {
   background-color: rgba($gray-200, 0.75);
-  color: $gray-800;
+  color: $gray-900;
 }
 
 .card p:last-child {
@@ -1249,6 +1249,9 @@ div.mermaid {
 
   .hide-light {
     display: inline-block;
+    &:not(svg){
+      display: block;
+    }
   }
 
   pre[data-theme='dark'] {
@@ -1302,6 +1305,9 @@ div.mermaid {
     border: 1px solid $border-color-dark;
   }
 
+  .markdown-content img[alt="Workflow"]{
+    background-color: $white;
+  }
   .border-success {
     border-color: $nf-core-color-dark;
   }
