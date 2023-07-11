@@ -31,7 +31,9 @@
 </a>
 
 <style lang="scss">
+    @import '@styles/_variables.scss';
     img {
         max-height: calc(var(--size) * 1px);
+        background-color: $white;
     }
 </style>

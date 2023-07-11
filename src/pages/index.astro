@@ -1,7 +1,7 @@
 ---
 import Icon from 'astro-icon';
-import NfCoreLogoDarkbg from '@assets/logos/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '@assets/logos/nf-core-logo.svg?raw';
+import NfCoreLogoDarkbg from '/images/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
@@ -36,7 +36,7 @@ const pipeline_links = pipelines.map((pipeline) => {
                 A community effort to collect a curated set of analysis pipelines built using Nextflow.
             </p>
             <div class="homepage-cta-flex mb-5">
-                <a class="homepage-cta" href="/pipelines/">View Pipelines</a>
+                <a class="homepage-cta text-decoration-none" href="/pipelines/">View Pipelines</a>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@ const pipeline_links = pipelines.map((pipeline) => {
 
     <div id="features" class="container homepage-feature-boxes pb-5">
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
-        <div class="row row-cols-1 row-cols-md-3 g-4 align-items-bot">
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 align-items-bot">
             <div class="col">
                 <HomepageCard title="Documentation" icon="books" icon_class="text-success icon-lg">
                     Extensive documentation covering installation, usage and description of output files ensures that
@@ -141,7 +141,7 @@ const pipeline_links = pipelines.map((pipeline) => {
     <div class="bg-body-tertiary pt-4 pb-5">
         <div id="developers" class="container homepage-feature-boxes">
             <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
                 <div class="col">
                     <HomepageCard
                         title="Develop with the community"
