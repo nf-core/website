@@ -1,5 +1,5 @@
 <script lang="ts">
-    let visible = true;
+    let visible = false;
     function toggleVisible() {
         visible = !visible;
     }
