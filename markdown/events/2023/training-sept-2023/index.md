@@ -5,7 +5,7 @@ type: training
 start_date: '2023-09-27'
 start_time: '15:00 CEST'
 end_date: '2023-09-28'
-end_time: '17:00 CEST'
+end_time: '19:00 CEST'
 location_name: YouTube
 import_typeform: true
 ---
@@ -24,11 +24,11 @@ To make the workshops available to everyone they will be streamed on the [nf-cor
 
 # Attending at the Wellcome Genome Campus
 
-An in-person version of advanced training will be held at the Wellcome Genome Campus, Hinxton, UK. The training will take place from 10am to 4pm on both days. More information about this local event can be found [here](wgc.md).
+An in-person version of advanced training will be held at the Wellcome Genome Campus, Hinxton, UK. It is open to anyone - everyone welcome! The training will take place from 10am to 4pm on both days. More information about this local event can be found [here](wgc.md).
 
 # Schedule
 
-Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 2 hours.
+Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 4 hours and will include a 20 min break.
 
 ### Session 1 (September 27)
 
