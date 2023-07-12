@@ -124,10 +124,7 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables';
-    .card .card-title a {
-        // color: $success;
-    }
+    @import '@styles/_variables.scss';
     .card.rounded-0 {
         border-left: 5px solid;
     }

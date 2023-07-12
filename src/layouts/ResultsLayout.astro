@@ -25,7 +25,7 @@ const md_files = meta?.releases.reduce((result, release) => {
     return result;
 }, []);
 
-const releaseSHA = meta?.releases.find((release) => release.tag_name === version)?.sha;
+const releaseSHA = meta?.releases.find((release) => release.tag_name === version)?.tag_sha;
 const bucketName = 'nf-core-awsmegatests';
 const prefix = `${pipeline}/results-${releaseSHA}/`;
 const baseURL = `/${pipeline}/${version}/`;

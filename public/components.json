@@ -11853,7 +11853,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "taxprofiler",
@@ -11964,7 +11964,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "taxprofiler",
@@ -13663,7 +13663,7 @@
       "pipelines": [
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "metatdenovo",
@@ -19328,7 +19328,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "mcmicro",
@@ -19951,7 +19951,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         }
       ]
     },
@@ -26308,7 +26308,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "mcmicro",
@@ -40918,7 +40918,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "nascent",
@@ -44375,6 +44375,80 @@
         ],
         "authors": [
           "@sppearce"
+        ]
+      }
+    },
+    {
+      "name": "icountmini_metagene",
+      "path": "modules/nf-core/icountmini/metagene/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "icountmini_metagene",
+        "description": "Plot a metagene of cross-link events/sites around various transcriptomic landmarks.",
+        "keywords": [
+          "iCLIP",
+          "gtf",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "icount": {
+              "description": "Computational pipeline for analysis of iCLIP data",
+              "homepage": "https://icount.readthedocs.io/en/latest/",
+              "documentation": "https://icount.readthedocs.io/en/latest/",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "BED file of crosslinks"
+            }
+          },
+          {
+            "segmentation": {
+              "type": "file",
+              "description": "A iCount segmentation file",
+              "pattern": "*.{gtf}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "Metagene table",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@marc-jones",
+          "@chris-cheshire",
+          "@charlotteanne"
         ]
       }
     },
@@ -57544,7 +57618,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "mcmicro",
@@ -59085,6 +59159,80 @@
         ],
         "authors": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "ngmerge",
+      "path": "modules/nf-core/ngmerge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ngmerge",
+        "description": "Merging paired-end reads and removing sequencing adapters.",
+        "keywords": [
+          "sort",
+          "reads merging",
+          "merge mate pairs"
+        ],
+        "tools": [
+          {
+            "ngmerge": {
+              "description": "Merging paired-end reads and removing sequencing adapters.",
+              "homepage": "https://github.com/jsh58/NGmerge",
+              "documentation": "https://github.com/jsh58/NGmerge",
+              "tool_dev_url": "https://github.com/jsh58/NGmerge",
+              "doi": "10.1186/s12859-018-2579-2",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "reads1": {
+              "type": "file",
+              "description": "fastq file paired end read 1",
+              "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "reads2": {
+              "type": "file",
+              "description": "fastq file paired end read 2",
+              "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "merged_reads": {
+              "type": "file",
+              "description": "fastq file paired end read 2",
+              "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+            }
+          }
+        ],
+        "authors": [
+          "@charlotteanne",
+          "@jsh58"
         ]
       }
     },
@@ -67355,6 +67503,120 @@
         ],
         "authors": [
           "@WackerO"
+        ]
+      }
+    },
+    {
+      "name": "pureclip",
+      "path": "modules/nf-core/pureclip/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pureclip",
+        "description": "PureCLIP is a tool to detect protein-RNA interaction footprints from single-nucleotide CLIP-seq data, such as iCLIP and eCLIP.",
+        "keywords": [
+          "iCLIP",
+          "eCLIP",
+          "CLIP"
+        ],
+        "tools": [
+          {
+            "pureclip": {
+              "description": "PureCLIP is a tool to detect protein-RNA interaction footprints from single-nucleotide CLIP-seq data, such as iCLIP and eCLIP.",
+              "homepage": "https://github.com/skrakau/PureCLIP",
+              "documentation": "https://pureclip.readthedocs.io/en/latest/GettingStarted/index.html",
+              "tool_dev_url": "https://github.com/skrakau/PureCLIP",
+              "doi": "10.1186/s13059-017-1364-2",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "ipbam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "controlbam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "ipbai": {
+              "type": "file",
+              "description": "BAM index",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "controlbai": {
+              "type": "file",
+              "description": "BAM index",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "input_control": {
+              "type": "boolean",
+              "description": "Whether to run PureCLIP with an input control"
+            }
+          },
+          {
+            "genome_fasta": {
+              "type": "file",
+              "description": "FASTA file of reference genome",
+              "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "crosslinks": {
+              "type": "file",
+              "description": "Bed file of crosslinks",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "peaks": {
+              "type": "file",
+              "description": "Bed file of peaks",
+              "pattern": "*.{bed}"
+            }
+          }
+        ],
+        "authors": [
+          "@charlotteanne",
+          "@marcjones"
         ]
       }
     },
@@ -81834,7 +82096,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "rnafusion",
@@ -81926,7 +82188,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.1"
+          "version": "1.0.2"
         },
         {
           "name": "rnafusion",
@@ -87148,6 +87410,114 @@
       }
     },
     {
+      "name": "varlociraptor_callvariants",
+      "path": "modules/nf-core/varlociraptor/callvariants/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "varlociraptor_callvariants",
+        "description": "Call variants for a given scenario specified with the varlociraptor calling grammar, preprocessed by varlociraptor preprocessing",
+        "keywords": [
+          "observations",
+          "variants",
+          "calling"
+        ],
+        "tools": [
+          {
+            "varlociraptor": {
+              "description": "Flexible, uncertainty-aware variant calling with parameter free filtration via FDR control.",
+              "homepage": "https://varlociraptor.github.io/docs/estimating/",
+              "documentation": "https://varlociraptor.github.io/docs/calling/",
+              "tool_dev_url": "https://github.com/varlociraptor/varlociraptor",
+              "doi": "10.1186/s13059-020-01993-6",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "normal_vcf": {
+              "type": "file",
+              "description": "Sorted VCF/BCF file (list)",
+              "pattern": "*.{bcf,vcf,vcf.gz}"
+            }
+          },
+          {
+            "tumor_vcf": {
+              "type": "file",
+              "description": "Sorted VCF/BCF file (optional)",
+              "pattern": "*.{bcf,bcf.gz,vcf,vcf.gz}"
+            }
+          },
+          {
+            "scenario": {
+              "type": "file",
+              "description": "Yaml file containing scenario information (optional)",
+              "pattern": "*.{yml,yaml}"
+            }
+          },
+          {
+            "scenario_sample": {
+              "type": "string",
+              "description": "(List of) sample name(s) to be processed as named in the scenario yml (optional)",
+              "pattern": "*.{bcf,vcf,vcf.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf_gz": {
+              "type": "file",
+              "description": "Compressed VCF file containing sample observations",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "bcf_gz": {
+              "type": "file",
+              "description": "BCF file containing sample observations",
+              "pattern": "*.bcf.gz"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file containing sample observations",
+              "pattern": "*.vcf"
+            }
+          },
+          {
+            "bcf": {
+              "type": "file",
+              "description": "BCF file containing sample observations",
+              "pattern": "*.bcf"
+            }
+          }
+        ],
+        "authors": [
+          "@FriederikeHanssen"
+        ]
+      }
+    },
+    {
       "name": "varlociraptor_estimatealignmentproperties",
       "path": "modules/nf-core/varlociraptor/estimatealignmentproperties/meta.yml",
       "type": "module",
@@ -87337,6 +87707,20 @@
               "type": "file",
               "description": "Compressed VCF file containing sample observations",
               "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "bcf_gz": {
+              "type": "file",
+              "description": "BCF file containing sample observations",
+              "pattern": "*.bcf.gz"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file containing sample observations",
+              "pattern": "*.vcf"
             }
           },
           {

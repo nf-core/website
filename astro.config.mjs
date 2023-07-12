@@ -1,5 +1,6 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
@@ -31,7 +32,6 @@ export default defineConfig({
         assets: true,
     },
     adapter: netlify(),
-    // trailingSlash: 'always',
     integrations: [
         svelte(),
         sitemap(),
@@ -71,6 +71,11 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
+        shikiConfig: {
+            langs: [],
+            theme: githubDarkDimmed,
+            wrap: false,
+        },
         remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
@@ -98,10 +103,15 @@ export default defineConfig({
             [
                 urls,
                 (url) => {
-                    if (url.href?.endsWith('.md')) {
+                    const regex = /^https:\/\/(raw.)*github/;
+                    if (!regex.test(url.href) && url.href?.endsWith('.md')) {
                         url.href = url.href.replace(/\.md$/, '/');
                         url.pathname = url.pathname.replace(/\.md$/, '/');
                         url.path = url.path.replace(/\.md$/, '/');
+                    } else if (!regex.test(url.href) && url.href?.endsWith('.mdx')) {
+                        url.href = url.href.replace(/\.mdx$/, '/');
+                        url.pathname = url.pathname.replace(/\.mdx$/, '/');
+                        url.path = url.path.replace(/\.mdx$/, '/');
                     }
                 },
             ],
