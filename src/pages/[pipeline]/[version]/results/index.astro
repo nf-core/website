@@ -5,7 +5,7 @@ export const prerender = false;
 const { pipeline, version } = Astro.params;
 const releaseSHA = pipelines_json.remote_workflows
     .find((wf) => wf.name === pipeline)
-    ?.releases.find((r) => r.tag_name === version)?.sha;
+    ?.releases.find((r) => r.tag_name === version)?.tag_sha;
 if (releaseSHA) {
     const prefix = `${pipeline}/results-${releaseSHA}/`;
     const baseURL = `/${pipeline}/${version}/`;
