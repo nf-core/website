@@ -51,6 +51,8 @@
                             title="click to show all pipelines"
                             on:click={() => (collapsePipelines = !collapsePipelines)}
                             on:keydown={() => (collapsePipelines = !collapsePipelines)}
+                            tabindex="0"
+                            role="button"
                             data-bs-toggle="tooltip"
                             data-bs-delay="500">+{component.pipelines.length - 3} more pipelines</span
                         >

@@ -51,7 +51,7 @@ export async function getStaticPaths() {
             return pipeline.releases
                 .filter((rel) => rel.tag_name !== 'dev')
                 .map((release) => {
-                    return `${pipeline.name}/results-${release.sha}/`;
+                    return `${pipeline.name}/results-${release.tag_sha}/`;
                 });
         })
         .flat();
@@ -60,7 +60,7 @@ export async function getStaticPaths() {
         pipeline.releases
             .filter((rel) => rel.tag_name !== 'dev')
             .forEach(async (release) => {
-                const results_path = 'results-' + release.sha;
+                const results_path = 'results-' + release.tag_sha;
                 const version = release.tag_name;
                 paths.push({
                     params: {

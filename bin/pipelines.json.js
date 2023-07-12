@@ -114,7 +114,6 @@ export const writePipelinesJson = async () => {
         const existing_releases = old_releases.map((release) => release.tag_name);
         new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
       }
-
       // get sha for each release (needed for aws viewer)
       await Promise.all(
         new_releases.map(async (release) => {
@@ -123,7 +122,7 @@ export const writePipelinesJson = async () => {
             repo: name,
             ref: release.tag_name,
           });
-          release.sha = commit.sha;
+          release.tag_sha = commit.sha;
           // check if schema file exists
           release.has_schema = await getGitHubFile(name, 'nextflow_schema.json', release.tag_name).then((response) => {
             return response ? true : false;
@@ -143,7 +142,7 @@ export const writePipelinesJson = async () => {
           {
             tag_name: 'dev',
             published_at: dev_branch[0].commit.author.date,
-            sha: dev_branch[0].sha,
+            tag_sha: dev_branch[0].sha,
             has_schema: await getGitHubFile(name, 'nextflow_schema.json', 'dev').then((response) => {
               return response ? true : false;
             }),
@@ -154,7 +153,7 @@ export const writePipelinesJson = async () => {
       }
       new_releases = await Promise.all(
         new_releases.map(async (release) => {
-          const { tag_name, published_at, sha, has_schema } = release;
+          const { tag_name, published_at, tag_sha, has_schema } = release;
           const doc_files = await getDocFiles(name, release.tag_name);
 
           let components = await octokit
@@ -209,7 +208,7 @@ export const writePipelinesJson = async () => {
               return component.replace('/', '_');
             });
           }
-          return { tag_name, published_at, sha, has_schema, doc_files, components };
+          return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
         })
       );
 
