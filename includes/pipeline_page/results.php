@@ -73,8 +73,8 @@ ob_start();
         }
     }
     var s3exp_config = {
-        Region: 'eu-west-1',
-        Bucket: 'nf-core-awsmegatests',
+        Region: 'us-east-1',
+        Bucket: 'sanger-tol-tests',
         Prefix: prefix,
         Suffix: suffix,
         Delimiter: '/'
