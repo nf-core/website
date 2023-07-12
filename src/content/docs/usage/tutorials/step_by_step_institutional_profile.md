@@ -70,7 +70,7 @@ You should note down if there are any special options that your cluster's schedu
 
 nf-core _highly_ recommends the use of container engines or software environment for running truly reproducible pipelines (rather than locally installed tools). This means the actual tools with compatible versions used within the pipeline are contained in a singular 'image' file.
 
-You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/docs/usage/installation) page.
+You should find out what container engines/environments your cluster offers. For nf-core pipelines to work, you need one of any listed on the [installation](https://nf-co.re/docs/usage/installation/) page.
 
 If you need to somehow 'load' any of the software prior use (e.g. `module load <software>` on some clusters), you should also note that down.
 
