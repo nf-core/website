@@ -65,7 +65,7 @@ if (hasSchema) {
 if (version !== 'dev') {
     const releaseSHA = pipelines_json.remote_workflows
         .find((wf) => wf.name === pipeline)
-        ?.releases.find((r) => r.tag_name === version)?.sha;
+        ?.releases.find((r) => r.tag_name === version)?.tag_sha;
     allTabItems.splice(1, 0, {
         label: 'Results',
         href: `/${pipeline}/${version}/results/${pipeline}/results-${releaseSHA}/`,
