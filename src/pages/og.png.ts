@@ -14,8 +14,9 @@ initSatori(YOGA);
 export const get: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
-    const html_string = `<div class="container"
-    style="height: 100%;
+    const html_string = `
+    <div class="container"
+        style="height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -26,42 +27,36 @@ export const get: APIRoute = async ({ params, request }) => {
         color: #F8F9FA;
         background-color: #212529;
         border-top: 5pt solid #1a9655;
+        ">
+        <div style="display:flex; align-items: center; flex-grow:5;">
+            <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/main/public/images/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
+        </div>
 
-   "
-   >
-   <div style="display:flex; align-items: center; flex-grow:5;">
-  <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/master/public_html/assets/img/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
+        <div style="display:flex; flex-direction:column; width:100%; height:30%;">
+            <svg fill="#fff" xmlns="http://www.w3.org/2000/svg"  width="100%" height="25%"><path d="M 0 300 L 400 300 L 200 00 z"
+                    fill="#1a9655" /></svg>
 
-</div>
+        <div style="display:flex;
+        width: 100%;
+        align-items:center;
+        justify-content:center;
+        flex-grow: 8;
+        width: 100%;
+        height: 25%;
+        background-color:#1a9655;">
+            <h1>${args.title}</h1>
+        </div>
+        <span style="font-size: 32px;text-align:center; align-self:center; position:absolute; margin-top:-7.5rem;">
+            Community built pipelines using Nextflow.
+        </span>
+    </div>
+    <style>
+    h1 {
+        font-size: 64px;
+        font-weight: 500;
+    }
+    </style>`;
 
-<div style="display:flex; flex-direction:column; width:100%; height:30%;">
-<svg fill="#fff" xmlns="http://www.w3.org/2000/svg"  width="100%" height="25%"><path d="M 0 300 L 400 300 L 200 00 z"
-        fill="#1a9655" /></svg>
-
-  <div style="display:flex;
-  width: 100%;
-  align-items:center;
-  justify-content:center;
-  flex-grow: 8;
-  width: 100%;
-  height: 25%;
-  background-color:#1a9655;">
-
-  <h1>${args.title}</h1>
-  </div>
-
-<span style="font-size: 32px;text-align:center; align-self:center; position:absolute; margin-top:-7.5rem;">
-Community built pipelines using Nextflow.
-</span>
-  </div>
-
-<style>
-
-  h1 {
-    font-size: 64px;
-    font-weight: 500;
-  }
-</style>`;
     const imageOptions = { site: request.url, width: 1200, height: 630, debug: false };
     const jsx = html(html_string);
     const buffer = await generateImage(jsx, imageOptions);
