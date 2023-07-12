@@ -298,7 +298,7 @@ if ($pipeline->archived) {
         <?php echo $subpage_names['']; ?></a>
         <a class="dropdown-item<?php if ($pagetab == 'results') {
             echo ' active';
-        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="f-regular fa-folder-tree fa-lg me-1"></i>
+        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="f-regular fa-folder-tree me-1"></i>
             <?php echo $subpage_names['results']; ?>
         </a>
         <a class="dropdown-item<?php if ($pagetab == 'usage') {
@@ -334,7 +334,7 @@ if ($pipeline->archived) {
         <li class="nav-item d-none d-lg-block">
         <a class="nav-link<?php if ($pagetab == 'results') {
             echo ' active';
-        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fa-regular fa-folder-tree fa-lg me-1"></i>
+        } ?>" href="/<?php echo $pipeline->name; ?>/results"><i class="fa-regular fa-folder-tree me-1"></i>
         <?php echo $subpage_names['results']; ?></span></a>
         </li>
     <?php endif; ?>
