@@ -13,7 +13,8 @@ $(function () {
   AWS.config.region = s3exp_config.Region;
   $('#file-preview').hide();
   // Initialize S3 SDK and the moment library (for time formatting utilities)
-  var s3 = new AWS.S3();
+  var ep = new AWS.Endpoint('cog.sanger.ac.uk');
+  var s3 = new AWS.S3({ endpoint: ep });
   moment().format();
 
   function bytesToSize(bytes) {
@@ -46,9 +47,9 @@ $(function () {
       .join('/');
 
     if (AWS.config.region === 'us-east-1') {
-      return document.location.protocol + '//' + bucket + '.s3.amazonaws.com/' + enckey;
+      return document.location.protocol + '//' + bucket + '.cog.sanger.ac.uk/' + enckey;
     } else {
-      return document.location.protocol + '//' + bucket + '.s3-' + AWS.config.region + '.amazonaws.com/' + enckey;
+      return document.location.protocol + '//' + bucket + '.cog.sanger.ac.uk/' + enckey;
     }
   }
 
@@ -61,9 +62,9 @@ $(function () {
       .join('/');
 
     if (AWS.config.region === 'us-east-1') {
-      return document.location.protocol + '//s3.amazonaws.com/' + bucket + '/' + enckey;
+      return document.location.protocol + '//.cog.sanger.ac.uk/' + bucket + '/' + enckey;
     } else {
-      return document.location.protocol + '//s3-' + AWS.config.region + '.amazonaws.com/' + bucket + '/' + enckey;
+      return document.location.protocol + '.cog.sanger.ac.uk/' + bucket + '/' + enckey;
     }
   }
 
@@ -127,15 +128,17 @@ $(function () {
                             </div>`;
     var header =
       '<div class="card-header d-flex justify-content-between align-items-center">' + filename + btn_group + '</div>';
-    if (file_size > 10000000) {
-      data =
-        '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
-      $('#file-preview').show();
-      $('#file-preview').html(header + '<div class="card-body">' + data + '</div>');
-      var el_offset = $('#file-preview').offset().top - 140;
-      $([document.documentElement, document.body]).animate({ scrollTop: el_offset }, 500);
-      return;
-    }
+
+    //if (file_size > 10000000) {
+    data =
+      //   '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
+      '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> Please choose a way to download or view the file.</div>';
+    $('#file-preview').show();
+    $('#file-preview').html(header + '<div class="card-body">' + data + '</div>');
+    var el_offset = $('#file-preview').offset().top - 140;
+    $([document.documentElement, document.body]).animate({ scrollTop: el_offset }, 500);
+    return;
+    //}
 
     fetch(url)
       .then(function (response) {
