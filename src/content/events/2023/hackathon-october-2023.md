@@ -5,7 +5,7 @@ type: hackathon
 start_announcement: '2023-09-01 12:00 CEST'
 start_date: '2023-10-16'
 start_time: '10:00 CEST'
-end_date: '2022-10-18'
+end_date: '2023-10-18'
 end_time: '13:00 CEST'
 location_name: Barcelona, Spain
 ---
@@ -35,7 +35,8 @@ Attendance online is free, attending in person costs €79 (€100 incl. VAT).
 
 # Schedule
 
-The hackathon will run from **Monday 16th October** to **Wednesday 18th October**. More information about the hackathon and associated social events will be added here as it becomes available.
+The hackathon will run from **Monday 16th October** to **Wednesday 18th October**.
+More information about the hackathon and associated social events will be added here as it becomes available.
 
 # Venue: Hotel SB Glow
 
