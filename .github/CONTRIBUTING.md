@@ -5,7 +5,7 @@ menu:
   main:
     weight: 10
 ---
-# nf-core/nf-co.re - Contributing Guidelines
+# nf-core/website - Contributing Guidelines
 
 Hi there! Many thanks for taking an interest in improving the nf-core website.
 
@@ -43,14 +43,14 @@ Please note that`nf-co.re` website makes use of the `light/dark` mode so it's re
 
 ## Contribution workflow
 
-If you'd like to write some code for nf-core/nf-co.re, the standard workflow
+If you'd like to write some code for nf-core/website, the standard workflow
 is as follows:
 
 1. Check that there isn't already an issue about your idea in the
-   [nf-core/nf-co.re issues](https://github.com/nf-core/nf-co.re/issues) to avoid
+   [nf-core/website issues](https://github.com/nf-core/website/issues) to avoid
    duplicating work.
    - If there isn't one already, please create one so that others know you're working on this
-2. Fork the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re) to your GitHub account
+2. Fork the [nf-core/website repository](https://github.com/nf-core/website) to your GitHub account
 3. Make the necessary changes / additions within your forked repository
 4. Submit a Pull Request against the `main` branch and wait for the code to be reviewed and merged.
 
@@ -64,4 +64,4 @@ For now, the only test is for Markdown syntax, using the `markdownlint` package.
 
 ## Getting help
 
-For further information/help, please consult the [nf-core/nf-co.re documentation](https://github.com/nf-core/nf-co.re#documentation) and don't hesitate to get in touch on the nf-core `tools` channel on [Slack](https://nf-co.re/join/slack/).
+For further information/help, please consult the [nf-core/website documentation](https://github.com/nf-core/website#documentation) and don't hesitate to get in touch on the nf-core `tools` channel on [Slack](https://nf-co.re/join/slack/).
