@@ -1,24 +1,24 @@
 ---
-title: Hackathon - October 2022 (Barcelona)
+title: Hackathon - October 2023 (Barcelona)
 subtitle: A hybrid hackathon held in Barcelona and online
 type: hackathon
-start_announcement: '2023-08-02 12:00 CEST'
-start_date: '2023-10-10'
-start_time: '11:00 CEST'
-end_date: '2022-10-12'
+start_announcement: '2023-09-01 12:00 CEST'
+start_date: '2023-10-16'
+start_time: '10:00 CEST'
+end_date: '2022-10-18'
 end_time: '13:00 CEST'
 location_name: Barcelona, Spain
 ---
 
 # Welcome
 
-Join us in-person or online for the October 2024 nf-core hackathon!
+Join us in-person or online for the October 2023 nf-core hackathon!
 
 This hackathon will be held in advance of the _**Nextflow Summit 2023**_ in Barcelona, Spain 🇪🇸. You can find out more information about the summit at <https://summit.nextflow.io>.
 
 In addition to the in-person event, we will endeavour to run a hybrid option online in [gather.town](https://gather.town/).
 
-This hackathon is not meant to be a training event but aimed at people that already have a basic understanding of nextflow and/or nf-core.
+This hackathon is not meant to be a training event but aimed at people that already have a basic understanding of Nextflow and/or nf-core.
 If you're interested in learning Nextflow and nf-core, there will be free online workshops spanning all global timezones in September.
 For more information and the training registration link, see the [Community Foundational Nextflow Training](https://nf-co.re/events/2023/training-basic-2023) and [Community Advanced Nextflow Training](https://nf-co.re/events/2023/training-sept-2023) pages.
 
