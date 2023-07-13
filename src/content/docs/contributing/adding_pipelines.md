@@ -302,7 +302,9 @@ However, there are exceptional situations where a release may be made before ful
 compliance is achieved. In such cases, at least two members of the core or maintainers
 team should agree that it's the right thing to do.  These releases should be marked with a
 '-rc' suffix on the version numbers and labeled as a 'pre-release' during the GitHub
-release process.
+release process. There is an expectation that standards will be applied subsequently to
+generate a 'normal' release. This should be done in a reasonable timeframe, and before any
+future major or minor releases.
 
 ### Making the release
 
