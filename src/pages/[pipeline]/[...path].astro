@@ -8,9 +8,15 @@ const { pipeline, path } = Astro.params;
 const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 if (meta) {
     const latestRelease = meta.releases[0].tag_name;
-    if (latestRelease && (path?.startsWith('docs/usage') || path?.startsWith('docs/output'))) {
+    if (latestRelease && (path?.startsWith('usage') || path?.startsWith('output'))) {
+        console.log('redirecting ', path, ' to latest release', latestRelease);
+        return Astro.redirect(`/${pipeline}/${latestRelease}/docs/${path}`);
+    } else if (latestRelease && (path?.startsWith('docs/usage') || path?.startsWith('docs/output'))) {
         console.log('redirecting ', path, ' to latest release', latestRelease);
         return Astro.redirect(`/${pipeline}/${latestRelease}/${path}`);
+    } else if (path === undefined || path === '') {
+        console.log('redirecting pipeline name to latest release', latestRelease);
+        return Astro.redirect(`/${pipeline}/${latestRelease}`);
     }
 }
 ---
