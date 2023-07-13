@@ -1,27 +1,16 @@
 ---
 import pipelines_json from '@public/pipelines.json';
 
-export function getStaticPaths() {
-    var staticPaths: { params: { pipeline: string; path: string }; props: { latestRelease: string } }[] = [];
-    const subPaths = ['docs/usage', 'docs/output', 'parameters'];
-    pipelines_json.remote_workflows.forEach((pipeline) => {
-        subPaths.forEach((subpath) => {
-            staticPaths.push({
-                params: {
-                    pipeline: pipeline.name,
-                    path: subpath,
-                },
-                props: {
-                    latestRelease: pipeline.releases[0].tag_name,
-                },
-            });
-        });
-    });
-    return staticPaths;
-}
+export const prerender = false;
 
 const { pipeline, path } = Astro.params;
-const { latestRelease } = Astro.props;
-console.log('redirecting to latest release', latestRelease);
-return Astro.redirect(`/${pipeline}/${latestRelease}/${path}`);
+
+const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
+if (meta) {
+    const latestRelease = meta.releases[0].tag_name;
+    if (latestRelease && (path?.startsWith('docs/usage') || path?.startsWith('docs/output'))) {
+        console.log('redirecting ', path, ' to latest release', latestRelease);
+        return Astro.redirect(`/${pipeline}/${latestRelease}/${path}`);
+    }
+}
 ---
