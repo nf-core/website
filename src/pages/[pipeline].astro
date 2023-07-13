@@ -1,0 +1,14 @@
+---
+import pipelines_json from '@public/pipelines.json';
+export const prerender = false;
+const { pipeline } = Astro.params;
+const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
+if (meta) {
+    const last_release = meta.releases[0].tag_name;
+    if (last_release) {
+        return Astro.redirect(`/${pipeline}/${last_release}/`);
+    }
+} else {
+    return Astro.redirect('404');
+}
+---
