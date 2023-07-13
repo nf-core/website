@@ -133,7 +133,12 @@ if (!tooBig && hasPreview) {
     </div>
 </div>
 <style lang="scss">
+    @import '@styles/_variables.scss';
+
     .file-icon {
         vertical-align: middle;
+    }
+    .card-body:has(img) {
+        background-color: $white;
     }
 </style>
