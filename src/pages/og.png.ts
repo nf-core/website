@@ -29,7 +29,7 @@ export const get: APIRoute = async ({ params, request }) => {
         border-top: 5pt solid #1a9655;
         ">
         <div style="display:flex; align-items: center; flex-grow:5;">
-            <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/main/public/images/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
+            <img src="https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
         </div>
 
         <div style="display:flex; flex-direction:column; width:100%; height:30%;">

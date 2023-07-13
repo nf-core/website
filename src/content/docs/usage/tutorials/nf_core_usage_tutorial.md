@@ -308,6 +308,6 @@ We hope that this _nf-core_ tutorial has been helpful!
 Remember that there is more in-depth documentation on many of these topics available on the [nf-core website](https://nf-co.re).
 If in doubt, please ask for help on Slack.
 
-If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/nf-co.re repository](https://github.com/nf-core/nf-co.re).
+If you have any suggestions for how to improve this tutorial, or spot any mistakes, please create an issue or pull request on the [nf-core/website repository](https://github.com/nf-core/website).
 
 > [Phil Ewels](https://github.com/ewels/), [Maxime Garcia](https://github.com/MaxUlysse), [Gisela Gabernet](https://github.com/ggabernet), [Friederike Hanssen](https://github.com/FriederikeHanssen) for _nf-core_, March 2022
