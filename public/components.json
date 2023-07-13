@@ -26209,8 +26209,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_trimgalore",
         "fastq_fastqc_umitools_fastp",
+        "fastq_fastqc_umitools_trimgalore",
         "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
@@ -78610,6 +78610,223 @@
         ],
         "authors": [
           "@BioInf2305"
+        ]
+      }
+    },
+    {
+      "name": "simpleaf_index",
+      "path": "modules/nf-core/simpleaf/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "simpleaf_index",
+        "description": "Indexing of transcriptome for gene expression quantification using SimpleAF",
+        "keywords": [
+          "indexing",
+          "transcriptome",
+          "gene expression",
+          "SimpleAF"
+        ],
+        "tools": [
+          {
+            "simpleaf": {
+              "description": "SimpleAF is a tool for quantification of gene expression from RNA-seq data\n",
+              "homepage": "https://github.com/COMBINE-lab/simpleaf",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information on genome_fasta\n"
+            }
+          },
+          {
+            "genome_fasta": {
+              "type": "file",
+              "description": "FASTA file containing the genome sequence\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing information on genome_gtf\n"
+            }
+          },
+          {
+            "genome_gtf": {
+              "type": "file",
+              "description": "GTF file containing transcript annotations. Optional if transcript FASTA file is provided.\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing information on transcript_fasta\n"
+            }
+          },
+          {
+            "transcript_fasta": {
+              "type": "file",
+              "description": "FASTA file containing the transcript sequences. Optional if transcript GTF file is provided.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information on genome_fasta or transcript_fasta (whichever was used)\n"
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "Folder containing the Salmon index files\n",
+              "pattern": "salmon/index"
+            }
+          },
+          {
+            "transcript_tsv": {
+              "type": "file",
+              "description": "Transcript-to-gene mapping file in 3-column TSV format\n",
+              "pattern": "salmon/ref/*_t2g_3col.tsv"
+            }
+          },
+          {
+            "salmon": {
+              "type": "directory",
+              "description": "Folder containing the Salmon files\n",
+              "pattern": "salmon"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@fmalmeida",
+          "@maxulysse",
+          "@Khajidu",
+          "@apeltzer",
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "simpleaf_quant",
+      "path": "modules/nf-core/simpleaf/quant/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "simpleaf_quant",
+        "description": "simpleaf is a program to simplify and customize the running and configuration of single-cell processing with alevin-fry.",
+        "keywords": [
+          "quantification",
+          "gene expression",
+          "SimpleAF"
+        ],
+        "tools": [
+          {
+            "simpleaf": {
+              "description": "SimpleAF is a tool for quantification of gene expression from RNA-seq data\n",
+              "homepage": "https://github.com/COMBINE-lab/simpleaf",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files for paired-end data.\nReads should be grouped by pairs.\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing index information\n"
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "Folder containing the index files"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing txp2gene information\n"
+            }
+          },
+          {
+            "txp2gene": {
+              "type": "file",
+              "description": "File mapping transcripts to genes.\n"
+            }
+          },
+          {
+            "chemistry": {
+              "type": "string",
+              "description": "Chemistry used for library preparation.  It can be a string describing\nthe specific chemistry or the geometry of the barcode, UMI, and\nmappable read.  For example, \"10xv2\" and \"10xv3\" will apply the\nappropriate settings for 10x Chromium v2 and v3 protocols,\nrespectively.  Alternatively, you can provide a general geometry string\nif your chemistry is not pre-registered.  For example, instead of\n\"10xv2\", you could use \"1{b[16]u[10]x:}2{r:}\", or instead of \"10xv3\",\nyou could use \"1{b[16]u[12]x:}2{r:}\".\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing whitelist information\n"
+            }
+          },
+          {
+            "whitelist": {
+              "type": "file",
+              "description": "Whitelist file containing valid cell barcodes. Optional.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "alevin_results": {
+              "type": "directory",
+              "description": "Folder containing the Alevin results for a specific sample\n",
+              "pattern": "*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@fmalmeida",
+          "@maxulysse",
+          "@Khajidu",
+          "@apeltzer",
+          "@pinin4fjords"
         ]
       }
     },
