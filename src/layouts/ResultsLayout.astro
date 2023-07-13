@@ -29,16 +29,11 @@ const releaseSHA = meta?.releases.find((release) => release.tag_name === version
 const bucketName = 'nf-core-awsmegatests';
 const prefix = `${pipeline}/results-${releaseSHA}/`;
 const baseURL = `/${pipeline}/${version}/`;
-if (!Astro.url.pathname.includes(baseURL + 'results/' + prefix)) {
-    return Astro.redirect(baseURL);
-} else {
-}
 const pathParts = path.split('/');
 let filename = Astro.url.searchParams.get('file');
 const description = meta?.description;
 const depth = pathParts.length;
-
-let response;
+let aws_response;
 let isTruncated = bucketContents.length === 0;
 if (bucketContents.length === 0) {
     console.log('fetching bucket contents');
@@ -48,20 +43,20 @@ if (bucketContents.length === 0) {
     });
 
     while (isTruncated) {
-        response = await client.send(
+        aws_response = await client.send(
             new ListObjectsV2Command({
                 Bucket: bucketName,
-                ContinuationToken: response?.NextContinuationToken,
+                ContinuationToken: aws_response?.NextContinuationToken,
                 Prefix: prefix,
             })
         );
-        if (response.KeyCount === 0) {
+        if (aws_response.KeyCount === 0) {
             break;
         }
-        if (response.Contents) {
-            bucketContents.push(...response.Contents);
+        if (aws_response.Contents) {
+            bucketContents.push(...aws_response.Contents);
 
-            isTruncated = response.IsTruncated;
+            isTruncated = aws_response.IsTruncated;
         }
     }
 }
