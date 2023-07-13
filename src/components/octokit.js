@@ -86,7 +86,7 @@ export const getGitHubFile = async (repo, path, ref) => {
           }
         });
         // remove github warning and everything before from docs
-        content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
+        content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
         content = content.replace(/(.*?)(files\._)/s, '');
         // cleanup heading

@@ -23,7 +23,7 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels/)) will show you how to take a Python script and turn it into a stand-alone command-line tool, ready for distribution via the [Python Package Index](https://pypi.org/) (PyPI).
 
-> You can download a `.zip` file of the "before" and "after" code examples Phil demoed [here](https://github.com/nf-core/nf-co.re/raw/master/public_html/assets/markdown_assets/events/2023/bytesize-python-packaging/python-packaging.zip).
+> You can download a `.zip` file of the "before" and "after" code examples Phil demoed [here](https://github.com/nf-core/website/raw/master/public_html/assets/markdown_assets/events/2023/bytesize-python-packaging/python-packaging.zip).
 
 This is a good thing to do for a few reasons:
 

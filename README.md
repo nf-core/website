@@ -1,7 +1,7 @@
 <img src="public/images/nf-core-logo.svg#gh-light-mode-only" width="400">
 <img src="public/images/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
 
-# [nf-co.re](https://github.com/nf-core/nf-co.re)
+# [nf-co.re](https://github.com/nf-core/website)
 
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
@@ -24,8 +24,8 @@ Here's how the website is built:
 To make edits to the website, fork the repository to your own user on GitHub and then clone to your local system.
 
 ```bash
-gh repo fork nf-core/nf-co.re
-cd nf-co.re/
+gh repo fork nf-core/website nf-core_website
+cd nf-core_website/
 ```
 
 ### Installing dependencies
@@ -71,37 +71,11 @@ npm run build-component-json
 npm run build-cache-force
 ```
 
-<!-- ## Production Server Setup
-
-### Deployment
-
-The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/nf-core/nf-co.re/blob/master/.github/workflows/web-deploy.yml)).
-This script runs PHP composer and npm, then syncs the required files to the web server via FTP. -->
 
 ### Tools API docs
 
 Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
 [These actions](https://github.com/nf-core/tools/blob/master/.github/workflows/tools-api-docs-release.yml) sync the built HTML files via FTP.
-
-<!-- ### GitHub web hooks
-
-There is a GitHub web hook at the nf-core organisation level which triggers the pipeline update script whenever a repo is created, or has a release etc.
-This pings the `deploy_pipelines.php` script. -->
-
-<!-- ### Stats cronjob
-
-The web server needs the following cronjobs running to scrape statistics and udates:
-
-```cron
-0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/nfcore/update.log 2>&1
-0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/nfcore/update.log 2>&1
-0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/nfcore/update.log 2>&
-```
-
-Remember to replace `/path/to/deployment/` with your actual deployment directory.
-
-The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
-This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour. -->
 
 ## Contribution guidelines
 
@@ -116,6 +90,6 @@ If you have any questions or issues please send us a message on [Slack](https://
 Phil Ewels ([@ewels](http://github.com/ewels/)) built the initial website, but there have been many contributors to the content and documentation.
 Matthias Hörtenhuber ([@mashehu](https://github.com/mashehu)) worked on the concept and code for the new website rewrite.
 
-See the [repo contributors](https://github.com/nf-core/nf-co.re/graphs/contributors) for more details.
+See the [repo contributors](https://github.com/nf-core/website/graphs/contributors) for more details.
 
 Kudos to the excellent [npm website](https://www.npmjs.com), which provided inspiration for the design of the pipeline pages.
