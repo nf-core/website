@@ -118,7 +118,7 @@ export interface Props {
             >
             <a
                 class="btn btn-sm btn-outline-secondary"
-                href={'https://github.com/nf-core/' + component_type + '/issues'}
+                href={'https://github.com/nf-core/' + (component_type === 'subworkflows' ? 'modules' : '') + '/issues'}
                 ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
             >
         </div>
