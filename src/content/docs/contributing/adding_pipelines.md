@@ -295,6 +295,15 @@ new major features to an existing pipeline or making an entirely new pipeline re
 can also ping people from the nf-core core or maintainers team to review your pipeline
 code by `@`ing them.
 
+#### Releasing pipelines not compliant with nf-core standards
+
+In most cases, nf-core reviewers expect new pipeline releases to meet community standards.
+However, there are exceptional situations where a release may be made before full
+compliance is achieved. In such cases, at least two members of the core or maintainers
+team should agree that it's the right thing to do.  These releases should be marked with a
+'-rc' suffix on the version numbers and labeled as a 'pre-release' during the GitHub
+release process.
+
 ### Making the release
 
 Once any requested changes have been made and the associated PR approved, you can go ahead
