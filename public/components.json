@@ -26209,8 +26209,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
         "fastq_fastqc_umitools_trimgalore",
+        "fastq_fastqc_umitools_fastp",
         "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
@@ -59194,16 +59194,9 @@
             }
           },
           {
-            "reads1": {
+            "reads": {
               "type": "file",
-              "description": "fastq file paired end read 1",
-              "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
-            }
-          },
-          {
-            "reads2": {
-              "type": "file",
-              "description": "fastq file paired end read 2",
+              "description": "List of input FastQ files of size 2; i.e., paired-end data.\n",
               "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
             }
           }
@@ -59225,7 +59218,21 @@
           {
             "merged_reads": {
               "type": "file",
-              "description": "fastq file paired end read 2",
+              "description": "fastq file merged reads",
+              "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "unstitched_read1": {
+              "type": "file",
+              "description": "fastq file unstitched read 1",
+              "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "unstitched_read2": {
+              "type": "file",
+              "description": "fastq file unstitched read 2",
               "pattern": "*.{fa,fasta,fastq,fq,fa.gz,fasta.gz,fastq.gz,fq.gz}"
             }
           }
@@ -87253,8 +87260,10 @@
         "description": "The Java port of the VarDict variant caller",
         "keywords": [
           "variant calling",
-          "VarDict",
-          "AstraZeneca"
+          "vcf",
+          "bam",
+          "snv",
+          "sv"
         ],
         "tools": [
           {
@@ -87276,16 +87285,16 @@
             }
           },
           {
-            "bam": {
+            "bams": {
               "type": "file",
-              "description": "BAM/SAM file",
-              "pattern": "*.{bam,sam}"
+              "description": "One or two BAM files. Supply two BAM files to run Vardict in paired mode.",
+              "pattern": "*.bam"
             }
           },
           {
-            "bai": {
+            "bais": {
               "type": "file",
-              "description": "Index of the BAM file",
+              "description": "Index/indices of the BAM file(s)",
               "pattern": "*.bai"
             }
           },
@@ -87297,10 +87306,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "FASTA of the reference genome",
               "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing fasta information\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
