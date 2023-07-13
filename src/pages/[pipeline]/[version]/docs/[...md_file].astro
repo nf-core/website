@@ -11,7 +11,10 @@ import { getGitHubFile } from '@components/octokit';
 import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
 
 export function getStaticPaths() {
-    let paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    let paths: {
+        params: { pipeline: string; version: string; md_file: string };
+        props: { versions: string[]; md_files: string[]; description: string };
+    }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
             const md_files = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
