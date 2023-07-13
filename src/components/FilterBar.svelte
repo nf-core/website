@@ -123,6 +123,8 @@
                                     class:active={sor === $SortBy}
                                     on:click={() => handleSort(sor)}
                                     on:keydown={() => handleSort(sor)}
+                                    role="button"
+                                    tabindex="0"
                                 >
                                     {sor}
                                 </div>
