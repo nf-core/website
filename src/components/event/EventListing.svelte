@@ -43,17 +43,29 @@
         filteredEvents = events.filter(filterByType).filter(searchEvents);
     });
 
-    $: futureEvents = filteredEvents.filter((event) => {
-        const today = new Date();
-        return event.data.start > today;
-    });
+    $: futureEvents = filteredEvents
+        .filter((event) => {
+            const today = new Date();
+            return event.data.start > today;
+        })
+        .sort((a, b) => {
+            if (a.data.start < b.data.start) {
+                return -1;
+            }
+            return 1;
+        });
 
     $: pastEvents = filteredEvents
         .filter((event) => {
             const today = new Date();
             return event.data.end < today;
         })
-        .reverse();
+        .sort((a, b) => {
+            if (a.data.end < b.data.end) {
+                return 1;
+            }
+            return -1;
+        });
 
     $: if (currentEvents.length > 0) {
         EventIsOngoing.set(true);

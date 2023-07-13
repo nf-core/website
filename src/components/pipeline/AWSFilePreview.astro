@@ -12,8 +12,23 @@ const { file } = Astro.props;
 let content = '';
 const extension = file.name.split('.').pop();
 const fileIcon = icons.getClass(file.name);
-const hasPreview = ['json', 'yaml', 'yml', 'csv', 'tsv', 'log', 'txt', 'html', 'pdf'].includes(extension);
-const tooBig = extension !== 'html' && file.size > 1000000;
+const hasPreview = [
+    'json',
+    'yaml',
+    'yml',
+    'csv',
+    'tsv',
+    'log',
+    'txt',
+    'html',
+    'pdf',
+    'png',
+    'jpg',
+    'jpeg',
+    'gif',
+    'svg',
+].includes(extension);
+const tooBig = extension !== 'html' && file.size > 10000000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
@@ -118,7 +133,12 @@ if (!tooBig && hasPreview) {
     </div>
 </div>
 <style lang="scss">
+    @import '@styles/_variables.scss';
+
     .file-icon {
         vertical-align: middle;
+    }
+    .card-body:has(img) {
+        background-color: $white;
     }
 </style>

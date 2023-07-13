@@ -35,6 +35,7 @@
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
                 role="button"
+                tabindex="0"
             >
                 <slot name="light" /> <span class="ms-1">Light</span>
             </div>
@@ -46,6 +47,8 @@
                 title="dark"
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
+                role="button"
+                tabindex="0"
             >
                 <slot name="dark" /> <span class="ms-1">Dark</span>
             </div>
@@ -57,6 +60,8 @@
                 title="auto"
                 on:click={(e) => switchTheme(e)}
                 on:keydown={(e) => switchTheme(e)}
+                role="button"
+                tabindex="0"
             >
                 <i class="fa-solid fa-adjust" /> <span class="ms-1">System</span>
             </div>

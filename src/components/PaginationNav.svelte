@@ -4,8 +4,8 @@
 
     export let lastPage: number = 1;
 
-    let pages = [];
-    let truncatedPages = [];
+    let pages: number[] = [];
+    let truncatedPages: number[] = [];
 
     const maxPages = 7;
     let truncated = false;
@@ -42,69 +42,72 @@
 <div class="d-flex justify-content-center mt-2">
     <nav aria-label="Page navigation">
         <ul class="pagination">
-            <li
-                class="page-item"
-                on:click={() => handlePageChange($currentPage - 1)}
-                on:keydown={() => handlePageChange($currentPage - 1)}
-                class:disabled={$currentPage === 1}
-                aria-disabled={$currentPage === 1}
-            >
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            <li class="page-item" class:disabled={$currentPage === 1}>
+                <span
+                    on:click={() => handlePageChange($currentPage - 1)}
+                    on:keydown={() => handlePageChange($currentPage - 1)}
+                    role="button"
+                    class="page-link"
+                    tabindex="0">Previous</span
+                >
             </li>
 
             {#if truncated}
                 {#if truncatedPages[0] > 1}
                     <li class="page-item">
-                        <a class="page-link" href="#">1</a>
+                        <span class="page-link">1</span>
                     </li>
                     <li class="page-item disabled">
-                        <a class="page-link" href="#">...</a>
+                        <span class="page-link">...</span>
                     </li>
                 {/if}
                 {#each truncatedPages as page}
-                    <li
-                        class="page-item"
-                        on:click={() => handlePageChange(page)}
-                        on:keydown={() => handlePageChange(page)}
-                        class:active={$currentPage === page}
-                    >
-                        <a class="page-link" href="#">{page}</a>
+                    <li class="page-item" class:active={$currentPage === page}>
+                        <span
+                            on:click={() => handlePageChange(page)}
+                            on:keydown={() => handlePageChange(page)}
+                            role="button"
+                            class="page-link"
+                            tabindex="0">{page}</span
+                        >
                     </li>
                 {/each}
                 {#if truncatedPages[truncatedPages.length - 1] < lastPage - 1}
                     <li class="page-item disabled">
-                        <a class="page-link" href="#">...</a>
+                        <span class="page-link">...</span>
                     </li>
-                    <li
-                        class="page-item"
-                        on:click={() => handlePageChange(lastPage)}
-                        on:keydown={() => handlePageChange(lastPage)}
-                        class:active={$currentPage === lastPage}
-                    >
-                        <a class="page-link" href="#">{lastPage}</a>
+                    <li class="page-item" class:active={$currentPage === lastPage}>
+                        <span
+                            on:click={() => handlePageChange(lastPage)}
+                            on:keydown={() => handlePageChange(lastPage)}
+                            role="button"
+                            tabindex="0"
+                            class="page-link">{lastPage}</span
+                        >
                     </li>
                 {/if}
             {:else}
                 {#each pages as page}
-                    <li
-                        class="page-item"
-                        on:click={() => handlePageChange(page)}
-                        on:keydown={() => handlePageChange(page)}
-                        class:active={$currentPage === page}
-                    >
-                        <a class="page-link" href="#">{page}</a>
+                    <li class="page-item" class:active={$currentPage === page}>
+                        <span
+                            on:click={() => handlePageChange(page)}
+                            on:keydown={() => handlePageChange(page)}
+                            role="button"
+                            tabindex="0"
+                            class="page-link">{page}</span
+                        >
                     </li>
                 {/each}
             {/if}
 
-            <li
-                class="page-item"
-                on:click={() => handlePageChange($currentPage + 1)}
-                on:keydown={() => handlePageChange($currentPage + 1)}
-                class:disabled={$currentPage === lastPage}
-                aria-disabled={$currentPage === lastPage}
-            >
-                <a class="page-link" href="#">Next</a>
+            <li class="page-item" class:disabled={$currentPage === lastPage}>
+                <span
+                    on:click={() => handlePageChange($currentPage + 1)}
+                    on:keydown={() => handlePageChange($currentPage + 1)}
+                    class="page-link"
+                    role="button"
+                    tabindex="0">Next</span
+                >
             </li>
         </ul>
     </nav>

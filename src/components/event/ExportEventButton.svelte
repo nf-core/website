@@ -1,5 +1,4 @@
 <script>
-    import ca from 'date-fns/locale/ca';
     import { ICalendar, GoogleCalendar, OutlookCalendar } from 'datebook/dist/datebook.min.mjs';
     import { saveAs } from 'file-saver';
 
