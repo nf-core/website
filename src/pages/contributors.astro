@@ -3,7 +3,7 @@ import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import contributors_yml from '../config/contributors.yaml';
 import Leaflet from '@components/Leaflet.svelte';
-import GitHubUser from '@components/GitHubProfilePicture.svelte';
+import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
 import Admonition from '@components/Admonition.astro';
 import Heading from '@components/Heading.astro';
 
@@ -92,11 +92,12 @@ const headings = [
                             rel="noopener noreferrer"
                             class="text-decoration-none"
                         >
-                            <GitHubUser
+                            <GitHubProfilePicture
                                 name={contributor.name}
                                 image={contributor.avatar_url}
                                 size={50}
                                 circle={true}
+                                imgClasses="mb-2"
                             />
                         </a>
                     ))
