@@ -14,7 +14,7 @@ $(function () {
   $('#file-preview').hide();
   // Initialize S3 SDK and the moment library (for time formatting utilities)
   var ep = new AWS.Endpoint('cog.sanger.ac.uk');
-  var s3 = new AWS.S3({endpoint: ep});
+  var s3 = new AWS.S3({ endpoint: ep });
   moment().format();
 
   function bytesToSize(bytes) {
@@ -128,16 +128,16 @@ $(function () {
                             </div>`;
     var header =
       '<div class="card-header d-flex justify-content-between align-items-center">' + filename + btn_group + '</div>';
-      
+
     //if (file_size > 10000000) {
-     data =
-     //   '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
-          '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> Please choose a way to download or view the file.</div>';
-      $('#file-preview').show();
-      $('#file-preview').html(header + '<div class="card-body">' + data + '</div>');
-      var el_offset = $('#file-preview').offset().top - 140;
-      $([document.documentElement, document.body]).animate({ scrollTop: el_offset }, 500);
-      return;
+    data =
+      //   '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> The file is too big to be previewed.</div>';
+      '<div class="alert alert-warning text-center mb-0" role="alert"><i class="fad fa-exclamation-triangle"></i> Please choose a way to download or view the file.</div>';
+    $('#file-preview').show();
+    $('#file-preview').html(header + '<div class="card-body">' + data + '</div>');
+    var el_offset = $('#file-preview').offset().top - 140;
+    $([document.documentElement, document.body]).animate({ scrollTop: el_offset }, 500);
+    return;
     //}
 
     fetch(url)
