@@ -22,6 +22,6 @@ export function getStaticPaths() {
 
 const { pipeline, path } = Astro.params;
 const { latestRelease } = Astro.props;
-
+console.log('redirecting to latest release', latestRelease);
 return Astro.redirect(`/${pipeline}/${latestRelease}/${path}`);
 ---
