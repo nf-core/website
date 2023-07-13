@@ -77,12 +77,12 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
           }
         });
-        // add github url infront of relative links to markdown files other than starting with usage, output, results or release_stats
-        content = content.replaceAll(/\[(.*?)\]\((?!usage|output|results|release_stats)(.*?)\)/g, (match, p1, p2) => {
+        // prefix links to CONTRIBUTING.md and CITATIONS.md with github url
+        content = content.replaceAll(/(\[.*?\]\()(CONTRIBUTING.md|CITATIONS.md)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
-            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+            return `${p1}(https://github.com/nf-core/${repo}/blob/${ref}/${p2}`;
           }
         });
         // remove github warning and everything before from docs
