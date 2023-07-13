@@ -22,7 +22,7 @@
         });
         // Check if release is less than 1 day old
         recentRelease =
-            new Date(latestRelease.published_at).getTime() > add(new Date().getTime(), { days: -6 }).getTime();
+            new Date(latestRelease.published_at).getTime() > add(new Date().getTime(), { days: -1 }).getTime();
     }
 </script>
 
