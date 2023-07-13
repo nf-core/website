@@ -21,7 +21,14 @@
         if (!$currentHeading) {
             currentHeading.set(headings[0]?.slug);
         }
+        // scroll to currently active item on change
     });
+    $: if ($currentHeading) {
+        const active = document.querySelector(`.nav-item.active`);
+        if (active) {
+            active.scrollIntoView({ block: 'nearest' });
+        }
+    }
 </script>
 
 {#if headings.length > 1}
@@ -69,14 +76,16 @@
         list-style: none;
         padding-left: 0;
     }
-    .nav {
+    .nav ul {
         overflow-y: auto;
-        max-height: calc(100vh - 4rem);
+        max-height: calc(100vh - 8rem);
     }
 
     li {
         border-inline-start: 2pt solid $border-color;
         transition: background-color 0.3s ease-out, border-left 0.3s ease-out;
+        scroll-margin-top: 6rem;
+        scroll-margin-bottom: 6rem;
     }
 
     li.active {
