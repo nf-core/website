@@ -78,11 +78,11 @@ export const getGitHubFile = async (repo, path, ref) => {
           }
         });
         // prefix links to CONTRIBUTING.md and CITATIONS.md with github url
-        content = content.replaceAll(/(\[.*?\]\()(CONTRIBUTING.md|CITATIONS.md)/g, (match, p1, p2) => {
+        content = content.replaceAll(/\[(.*?)\]\((\.github\/CONTRIBUTING\.md|CITATIONS\.md)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
-            return `${p1}(https://github.com/nf-core/${repo}/blob/${ref}/${p2}`;
+            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
           }
         });
         // remove github warning and everything before from docs

@@ -29,7 +29,6 @@
     const googleCalendar = new GoogleCalendar(calendar_event).render();
     const outlookCalendar = new OutlookCalendar(calendar_event).render();
     let ical = new ICalendar(calendar_event).render();
-    console.log(ical);
     const blob = new Blob([ical], { type: 'text/calendar;charset=utf-8' });
     function downloadIcal() {
         saveAs(blob, frontmatter.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.ics');
