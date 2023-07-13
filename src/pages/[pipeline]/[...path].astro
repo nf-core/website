@@ -3,7 +3,7 @@ import pipelines_json from '@public/pipelines.json';
 
 export function getStaticPaths() {
     var staticPaths: { params: { pipeline: string; path: string }; props: { latestRelease: string } }[] = [];
-    const subPaths = ['docs/usage', 'docs/output', 'results', 'parameters'];
+    const subPaths = ['docs/usage', 'docs/output', 'parameters'];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         subPaths.forEach((subpath) => {
             staticPaths.push({
