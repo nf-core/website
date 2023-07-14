@@ -13,7 +13,7 @@
 
 <a
     href="https://github.com/{name}"
-    class={'text-decoration-none me-1 pb-5 ' + wrapperClasses}
+    class={'text-decoration-none me-1  ' + wrapperClasses}
     target="_blank"
     rel="noopener noreferrer"
 >

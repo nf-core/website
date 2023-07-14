@@ -65,7 +65,7 @@ if (!tooBig && hasPreview) {
             </div>
         </div>
     </div>
-    <div class:list={['card-body  pb-0', { 'd-none': !hasPreview || tooBig }]}>
+    <div class:list={['card-body  p-0', { 'd-none': !hasPreview || tooBig }]}>
         {
             ['bam', 'bai', 'gz', 'zip'].includes(extension) && (
                 <Admonition title="warning">
@@ -91,7 +91,9 @@ if (!tooBig && hasPreview) {
         }
         {
             ['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extension) && (
-                <img src={hrefPrefix + file.path} class="img-fluid" />
+                <div class="img-wrapper w-100">
+                    <img src={hrefPrefix + file.path} class="img-fluid" />
+                </div>
             )
         }
         {
@@ -115,7 +117,7 @@ if (!tooBig && hasPreview) {
                 <object data={hrefPrefix + file.path} type="application/pdf" width="100%" height="1000px">
                     <p>
                         You don't have a PDF plugin, but you can
-                        <a href="mypdf.pdf">download the PDF file. </a>
+                        <a href="hrefPrefix + file.path">download the PDF file. </a>
                     </p>
                 </object>
             )
@@ -138,7 +140,16 @@ if (!tooBig && hasPreview) {
     .file-icon {
         vertical-align: middle;
     }
-    .card-body:has(img) {
-        background-color: $white;
+    .card-body {
+        & > div,
+        & > pre {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        & .img-wrapper {
+            background-color: $white;
+        }
     }
 </style>
