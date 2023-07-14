@@ -87,9 +87,13 @@
                         {config.config.config_profile_description}
                     </td>
                     <td class="text-center">
-                        <span class="badge border border-secondary-subtle text-body fw-normal">
-                            {config.config.executor}
-                        </span>
+                        {#if config.config.executor}
+                            {#each config.config.executor.split(',') as executor}
+                                <span class="badge border border-secondary-subtle text-body fw-normal ms-2">
+                                    {executor}
+                                </span>
+                            {/each}
+                        {/if}
                     </td>
                 </tr>
             {/each}
