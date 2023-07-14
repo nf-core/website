@@ -15,7 +15,7 @@ export interface Props {
 }
 ---
 
-<div class="sidebar">
+<div class="sidebar overflow-y-auto">
     {
         included_pipelines && (
             <SidebarStatsRow
@@ -126,6 +126,10 @@ export interface Props {
     </SidebarStatsRow>
 </div>
 <style lang="scss">
+    .sidebar {
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+    }
     a.badge:hover {
         text-decoration: underline !important;
     }
