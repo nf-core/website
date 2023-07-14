@@ -2,7 +2,7 @@
 title: Hackathon - October 2023 (Barcelona)
 subtitle: A hybrid hackathon held in Barcelona and online
 type: hackathon
-start_announcement: '2023-07-13 12:00 CEST'
+start_announcement: '2023-07-13 12:00 (CEST)'
 start_date: '2023-10-16'
 start_time: '10:00 CEST'
 end_date: '2023-10-18'

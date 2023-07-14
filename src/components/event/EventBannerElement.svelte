@@ -81,7 +81,10 @@
         backgroundIcon = 'fa-broadcast-tower';
         events = events
             .filter((event) => {
-                return event.data.start < new Date() && new Date() < event.data.end;
+                const event_start_unix = event.data.start_announcement
+                    ? new Date(event.data.start_announcement).getTime()
+                    : event.data.start.getTime();
+                return event_start_unix < new Date() && new Date() < event.data.end;
             })
             .sort((a, b) => {
                 return a.data.start - b.data.start;
@@ -176,7 +179,9 @@
                                                 href={'events/' + event.slug + '/'}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            <VideoButton urls={event.data.location_url} />
+                                            {#if event.data.location_url}
+                                                <VideoButton urls={event.data.location_url} />
+                                            {/if}
                                         </div>
                                     </div>
                                 {/if}
@@ -217,7 +222,7 @@
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === 'ongoing'}
+                                {#if event_time_category === 'ongoing' && event.data.location_url}
                                     <VideoButton urls={event.data.location_url} />
                                 {/if}
                             </div>
