@@ -18,18 +18,24 @@ events = events.filter((event) => {
 });
 const currentEvents = events.filter((event) => {
     let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build
-    const event_start_unix = event.data.start.getTime();
+    const event_start_unix = event.data.start_announcement
+        ? new Date(event.data.start_announcement).getTime()
+        : event.data.start.getTime();
     const event_end_unix = event.data.end.getTime();
 
     // increase time window to a week for events longer than 5 hours
     if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
         time_window = 108 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
     }
+    console.log(event.data.start_announcement);
+    console.log(new Date(event.data.start_announcement));
+    console.log(time_window);
 
     if (event_start_unix < now + time_window && now < event_end_unix) {
         return true;
     }
 });
+console.log(currentEvents);
 
 const event_type_classes = {
     bytesize: 'success',
