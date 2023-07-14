@@ -28,7 +28,7 @@ You can register to attend the hackathon in-person or online using the links on 
 You can register for the nf-core hackathon or the Nextflow Summit, or both. You're welcome to attend in-person or online.
 Attendance online is free, attending in person costs €79 (€100 incl. VAT).
 
-*Registration closes September 9, or when sold out.*
+**Registration closes September 9, or when sold out.**
 
 <a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/"><i class="fa-solid fa-id-card me-2"></i> Register now</a>
 
@@ -39,6 +39,6 @@ More information about the hackathon and associated social events will be added 
 
 # Venue: Boston Park Plaza
 
-The in-person hackathon will be taking place in at the Boston Park Plaza.
+The in-person hackathon will be taking place in at the Boston Park Plaza. More information about this venue can be found the the Nextflow Summit website.
 
 [👉🏻 Google Maps 🗺️](https://goo.gl/maps/BxuzkS9kZrrASGCn7)
