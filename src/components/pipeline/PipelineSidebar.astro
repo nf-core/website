@@ -185,6 +185,10 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
 </div>
 <style lang="scss">
     @import '@styles/_variables.scss';
+    .sidebar {
+        max-height: calc(100vh - 5rem);
+        overflow-y: auto;
+    }
     .tab-content.border {
         margin-top: -1px;
     }
