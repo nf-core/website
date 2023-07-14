@@ -2,11 +2,11 @@
 title: Hackathon - November 2023 (Boston)
 subtitle: An in-person hackathon held in Boston
 type: hackathon
-start_announcement: '2023-10-21 12:00 CEST'
+start_announcement: '2023-10-21T12:00 (EST)'
 start_date: '2023-11-28'
-start_time: '10:00 CEST'
+start_time: '10:00 EST'
 end_date: '2023-11-29'
-end_time: '13:00 CEST'
+end_time: '13:00 EST'
 location_name: Boston, America
 location_latlng: [42.35138, -71.06995]
 ---

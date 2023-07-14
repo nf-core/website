@@ -10,7 +10,6 @@
     export let event_type_icons: {}[] = [{}];
 
     let now = new Date().getTime();
-
     let backgroundIcon = '';
     events
         .map((event) => {
@@ -57,12 +56,14 @@
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
-
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events.filter((event) => {
             let time_window = 1 * 24 * 60 * 60 * 1000;
-            const event_start_unix = event.data.start.getTime();
+            const event_start_unix =
+                event.data.start_announcement !== undefined
+                    ? new Date(event.data.start_announcement).getTime()
+                    : event.data.start.getTime();
             const event_end_unix = event.data.end.getTime();
 
             // increase time window to a week for events longer than 5 hours
@@ -70,6 +71,7 @@
                 time_window = 7 * 24 * 60 * 60 * 1000;
             }
             if (event.data.start < new Date() && new Date() < event.data.end) {
+                // this is not an upcoming, but an ongoing event
                 return false;
             }
 
@@ -81,10 +83,7 @@
         backgroundIcon = 'fa-broadcast-tower';
         events = events
             .filter((event) => {
-                const event_start_unix = event.data.start_announcement
-                    ? new Date(event.data.start_announcement).getTime()
-                    : event.data.start.getTime();
-                return event_start_unix < new Date() && new Date() < event.data.end;
+                return event.data.start < new Date() && new Date() < event.data.end;
             })
             .sort((a, b) => {
                 return a.data.start - b.data.start;
