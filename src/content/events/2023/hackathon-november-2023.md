@@ -30,6 +30,8 @@ Attendance online is free, attending in person costs €79 (€100 incl. VAT).
 
 **Registration closes September 9, or when sold out.**
 
+Be sure to register early to avoid disappointment!
+
 <a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/"><i class="fa-solid fa-id-card me-2"></i> Register now</a>
 
 # Schedule
