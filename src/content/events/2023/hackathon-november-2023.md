@@ -13,7 +13,7 @@ location_latlng: [42.35138, -71.06995]
 
 # Welcome
 
-Join us in-person for the November 2023 nf-core hackathon!
+Join us in person for the November 2023 nf-core hackathon!
 
 This hackathon will be held in advance of the _**Nextflow Summit 2023**_ in Boston, America 🇺🇸. You can find out more information about the summit at <https://summit.nextflow.io>.
 
