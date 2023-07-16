@@ -16,17 +16,20 @@
     RewriteRule ^/?bilibili/?$ https://space.bilibili.com/1280248035?spm_id_from=333.788.b_765f7570696e666f.1 [R=301,L]
 
     # Redirect http to https
-    RewriteCond %{HTTP_HOST} ^nf-co\.re [NC]
-    RewriteCond %{SERVER_PORT} 80
-    RewriteRule ^(.*)$ https://nf-co.re/$1 [R,L]
+    # Commented out to avoid Netlify proxy issues
+    # RewriteCond %{HTTP_HOST} ^nf-co\.re [NC]
+    # RewriteCond %{SERVER_PORT} 80
+    # RewriteRule ^(.*)$ https://nf-co.re/$1 [R,L]
 
     # Remove www. from URL
-    RewriteCond %{HTTP_HOST} ^www.nf-co.re$ [NC]
-    RewriteRule ^(.*)$ https://nf-co.re/$1 [R=301,L]
+    # Commented out to avoid Netlify proxy issues
+    # RewriteCond %{HTTP_HOST} ^www.nf-co.re$ [NC]
+    # RewriteRule ^(.*)$ https://nf-co.re/$1 [R=301,L]
 
     # Remove trailing slashes
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule (.*)/$ /$1 [L,R=301]
+    # Commented out to avoid Netlify proxy issues
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule (.*)/$ /$1 [L,R=301]
 
     # Return join names to join.php
     RewriteCond %{REQUEST_URI} ^/join/(.*)$
@@ -45,8 +48,9 @@
     RewriteRule ^(.*)$ /logo.php?t=$1 [L,NC,QSA]
 
     # Remove double-slashes
-    RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
-    RewriteRule (.*) %1/%2 [R=301,L]
+    # Commented out to avoid Netlify proxy issues
+    # RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
+    # RewriteRule (.*) %1/%2 [R=301,L]
 
     # Run PHP without filename extension
     RewriteCond %{REQUEST_FILENAME} !-d
