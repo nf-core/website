@@ -15,6 +15,8 @@ if (meta) {
             return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${path}`);
         }
         return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/${version}`);
+    } else if (version?.startsWith('result')) {
+        return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/results/`);
     }
     const release = meta.releases.find((r) => r.tag_name === version);
     if (release) {
