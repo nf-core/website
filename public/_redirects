@@ -1,10 +1,11 @@
 # Temporary oldsite redirections
 /logo/*  https://oldsite.nf-co.re/logo/:splat 200
-/tools/docs/* https://oldsite.nf-co.re/tools/docs//:splat 200
-/tools/docs/2.9/* https://oldsite.nf-co.re/tools/docs/latest/:splat 200
+/tools/docs/* https://oldsite.nf-co.re/tools/docs/:splat 200
 /pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
 /launch/* https://oldsite.nf-co.re/launch/:splat 200
 
 # New site July 2023 - URL changes
 /community /contributors
-
+/usage/* /docs/usage/:splat
+/developers/* /docs/contributing/:splat
+/contributing/* /docs/contributing/:splat

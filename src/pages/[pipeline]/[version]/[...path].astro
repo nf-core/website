@@ -29,8 +29,6 @@ if (meta) {
             return Astro.redirect(`/${pipeline}/${version}/`);
         }
     }
-} else if (pipeline?.startsWith('usage') || pipeline?.startsWith('contributing')) {
-    return Astro.redirect(`/docs/${pipeline}/${version}/${path !== undefined ? path : ''}`);
 } else {
     console.log('redirecting ', pipeline, ' to 404');
     return Astro.redirect('/404');
