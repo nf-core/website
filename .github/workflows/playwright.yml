@@ -1,10 +1,8 @@
 name: Playwright Tests
-on:
-  deployment_status:
-    types: [created]
+on: [pull_request]
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -15,6 +13,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Waiting for 200 from the Netlify Preview
+      uses: jakepartusch/wait-for-netlify-action@v1.4
+      id: waitFor200
+      with:
+        site_name: "nf-core"
+        max_timeout: 600 # 10 Minutes
     - name: Run Playwright tests
       run: npx playwright test
       env:
@@ -24,4 +28,4 @@ jobs:
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 10
+        retention-days: 1
