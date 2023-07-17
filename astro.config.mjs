@@ -24,14 +24,23 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
+
+const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
+    .then((res) => res.json())
+    .then((json) => json.tag_name);
+const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     experimental: {
         assets: true,
+        redirects: true,
     },
     adapter: netlify(),
+    redirects: {
+        [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
+    },
     integrations: [
         svelte(),
         sitemap(),
