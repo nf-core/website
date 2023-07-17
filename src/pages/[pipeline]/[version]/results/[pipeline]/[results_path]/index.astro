@@ -22,30 +22,34 @@ export async function getStaticPaths() {
             region: 'eu-west-1',
             signer: { sign: async (request) => request },
         });
-        const requests = prefixes.map((prefix) => {
-            const command = new ListObjectsV2Command({
-                Bucket: 'nf-core-awsmegatests',
-                Prefix: prefix,
-            });
-            return client.send(command);
-        });
+        const keys = [];
 
-        try {
-            const responses = await Promise.all(requests);
-            const keys = [];
-            responses.forEach((response) => {
-                if (response.Contents) {
-                    for (const object of response.Contents) {
-                        keys.push(object);
+        for (const prefix of prefixes) {
+            let continuationToken = undefined;
+            do {
+                const command = new ListObjectsV2Command({
+                    Bucket: 'nf-core-awsmegatests',
+                    Prefix: prefix,
+                    ContinuationToken: continuationToken,
+                });
+                try {
+                    const response = await client.send(command);
+                    if (response.Contents) {
+                        for (const object of response.Contents) {
+                            keys.push(object);
+                        }
                     }
+                    continuationToken = response.NextContinuationToken;
+                } catch (error) {
+                    console.error('Error retrieving keys:', error);
+                    return [];
                 }
-            });
-            return keys;
-        } catch (error) {
-            console.error('Error retrieving keys:', error);
-            return [];
+            } while (continuationToken);
         }
+
+        return keys;
     }
+
     const prefixes = pipelines_json.remote_workflows
         .map((pipeline) => {
             return pipeline.releases
