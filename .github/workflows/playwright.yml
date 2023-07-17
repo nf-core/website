@@ -18,7 +18,7 @@ jobs:
       id: waitFor200
       with:
         site_name: "nf-core"
-        max_timeout: 600 # 10 Minutes
+        max_timeout: 1000 # 10 Minutes
     - name: Run Playwright tests
       run: npx playwright test
       env:
