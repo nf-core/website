@@ -6,6 +6,6 @@
 
 # New site July 2023 - URL changes
 /community /contributors
-/usage /docs/usage
-/developers /docs/contributing
-/contributing /docs/contributing
+/usage/* /docs/usage/:splat
+/developers/* /docs/contributing/:splat
+/contributing/* /docs/contributing/:splat
