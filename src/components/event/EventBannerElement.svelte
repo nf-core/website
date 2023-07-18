@@ -10,7 +10,6 @@
     export let event_type_icons: {}[] = [{}];
 
     let now = new Date().getTime();
-
     let backgroundIcon = '';
     events
         .map((event) => {
@@ -57,12 +56,14 @@
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
-
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events.filter((event) => {
             let time_window = 1 * 24 * 60 * 60 * 1000;
-            const event_start_unix = event.data.start.getTime();
+            const event_start_unix =
+                event.data.start_announcement !== undefined
+                    ? new Date(event.data.start_announcement).getTime()
+                    : event.data.start.getTime();
             const event_end_unix = event.data.end.getTime();
 
             // increase time window to a week for events longer than 5 hours
@@ -70,6 +71,7 @@
                 time_window = 7 * 24 * 60 * 60 * 1000;
             }
             if (event.data.start < new Date() && new Date() < event.data.end) {
+                // this is not an upcoming, but an ongoing event
                 return false;
             }
 
@@ -176,7 +178,9 @@
                                                 href={'events/' + event.slug + '/'}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            <VideoButton urls={event.data.location_url} />
+                                            {#if event.data.location_url}
+                                                <VideoButton urls={event.data.location_url} />
+                                            {/if}
                                         </div>
                                     </div>
                                 {/if}
@@ -217,7 +221,7 @@
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === 'ongoing'}
+                                {#if event_time_category === 'ongoing' && event.data.location_url}
                                     <VideoButton urls={event.data.location_url} />
                                 {/if}
                             </div>
