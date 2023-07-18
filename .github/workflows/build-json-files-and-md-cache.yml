@@ -36,12 +36,54 @@ jobs:
 
 
       - name: make md cache
-        run: node bin/build-cache.js && tar -czvf .cache.tar.gz .cache
+        run: node bin/build-cache.js && tar -cvJf -f .cache.tar.xz .cache
         env:
           GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
 
-      # Commit and push the changes
+      # check lines if too many lines of code have been changed in /public/pipelines.json and /pulic/components.json
+      # also check if .cache.tar.xz is smaller than before
+      - name: check lines
+        run: |
+          diff_output=$(git diff --shortstat public/pipelines.json public/components.json)
+          lines_added=$(echo $diff_output | awk '{print $4}')
+          lines_removed=$(echo $diff_output | awk '{print $6}')
+          changes= $((lines_added - lines_removed < -100)) || $((lines_added - lines_removed > 100))
+
+          if [[changes == false]]; then
+            file_size_before=$(echo $diff_output | awk '{print $4}')
+            file_size_after=$(echo $diff_output | awk '{print $6}')
+            changes= $((file_size_before - file_size_after < -100))
+          fi
+
+          echo "changes=$changes" >> "$GITHUB_OUTPUT"
+
+
+
+      - name: check if file size of .cache.tar.xz is smaller than before
+        run: |
+          diff_output=$(git diff --stat .cache.tar.xy)
+          file_size_before=$(echo $diff_output | awk '{print $4}')
+          file_size_after=$(du -b .cache.tar.xz | awk '{print $1}')
+
+
+      # Commit and push the changes if there are not too many lines changed
       - name: Commit and push changes
+        if: ${{ !steps.check_lines.outputs.changes }}
         uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
+
+      # Create a PR if there are too many lines changed
+      - name: Create PR with changes
+        if: ${{ steps.check_lines.outputs.changes }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.CREATE_PR_TOKEN }}
+          commit-message: "chore: update pipeline.json and component.json"
+          title: "chore: update pipeline.json and component.json"
+          body: "This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files."
+          branch: "chore/update-pipeline-json-and-component-json"
+          delete-branch: true
+          draft: false
+
+
