@@ -58,7 +58,7 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/cibinsb) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibinsb/) &nbsp;
 
-Cibin, a Senior Software Developer, is tasked with designing and implementing the production systems for TOL-IT. Currently, Cibin is focused on building an automated platform to execute high-throughput genomic pipelines. The ultimate goal of this project is to develop a system capable of efficiently processing large amounts of genomic data.
+</br> Cibin, a Senior Software Developer, is tasked with designing and implementing the production systems for TOL-IT. Currently, Cibin is focused on building an automated platform to execute high-throughput genomic pipelines. The ultimate goal of this project is to develop a system capable of efficiently processing large amounts of genomic data.
 
 ### Cibele Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
 
