@@ -41,30 +41,33 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
 
       # check lines if too many lines of code have been changed in /public/pipelines.json and /pulic/components.json
-      # also check if .cache.tar.xz is smaller than before
+      # also check if .cache.tar.xz is smaller than before (shouldn't happen)
       - name: check lines
         run: |
           diff_output=$(git diff --shortstat public/pipelines.json public/components.json)
           lines_added=$(echo $diff_output | awk '{print $4}')
           lines_removed=$(echo $diff_output | awk '{print $6}')
-          changes= $((lines_added - lines_removed < -100)) || $((lines_added - lines_removed > 100))
+          changes=$((lines_added - lines_removed))
 
-          if [[changes == false]]; then
+          if (($changes < -100)) || (($changes > 100)); then
             file_size_before=$(echo $diff_output | awk '{print $4}')
             file_size_after=$(echo $diff_output | awk '{print $6}')
-            changes= $((file_size_before - file_size_after < -100))
+            changes=true
+          fi
+
+          if not $changes; then
+            diff_output=$(git diff --stat .cache.tar.xz)
+            file_size_before=$(echo $diff_output | awk '{print $4}')
+            file_size_after=$(echo $diff_output | awk '{print $6}')
+            changes_tmp=$((file_size_before - file_size_after))
+            if ((changes_tmp > 0)); then
+              changes=true
+            else
+              changes=false
+            fi
           fi
 
           echo "changes=$changes" >> "$GITHUB_OUTPUT"
-
-
-
-      - name: check if file size of .cache.tar.xz is smaller than before
-        run: |
-          diff_output=$(git diff --stat .cache.tar.xy)
-          file_size_before=$(echo $diff_output | awk '{print $4}')
-          file_size_after=$(du -b .cache.tar.xz | awk '{print $1}')
-
 
       # Commit and push the changes if there are not too many lines changed
       - name: Commit and push changes
