@@ -19,6 +19,7 @@ const events = defineCollection({
         end: z.date().optional(),
         duration: z.string().optional(),
         embed_at: z.string().optional(),
+        import_typeform: z.boolean().optional(),
     }),
 });
 const docs = defineCollection({
