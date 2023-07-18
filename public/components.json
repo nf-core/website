@@ -26213,8 +26213,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
         "fastq_fastqc_umitools_trimgalore",
+        "fastq_fastqc_umitools_fastp",
         "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
