@@ -69,17 +69,15 @@ if (bucketContents.length === 0 && commonPrefixes.length === 0) {
 let directories: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
 let files: { name: string | undefined; path: string; depth: number; size: number; lastModified: Date }[] = [];
 if (!isTruncated) {
-    directories = commonPrefixes
-        .map((item) => {
-            return {
-                name: item.Prefix.replace(path + '/', ''),
-                path: item.Prefix,
-                depth: item.Prefix.replace(prefix, '').split('/').length,
-                size: 0,
-                lastModified: new Date(),
-            };
-        })
-        .sort((a, b) => a.depth - b.depth);
+    directories = commonPrefixes.map((item) => {
+        return {
+            name: item.Prefix.replace(path + '/', ''),
+            path: item.Prefix,
+            depth: item.Prefix.replace(prefix, '').split('/').length,
+            size: 0,
+            lastModified: new Date(),
+        };
+    });
 
     files = bucketContents
         .filter((item) => item.Key !== path + '/')
@@ -91,10 +89,7 @@ if (!isTruncated) {
                 size: item.Size,
                 lastModified: item.LastModified,
             };
-        })
-        .sort((a, b) => a.depth - b.depth)
-        .filter((item) => item.depth === depth)
-        .filter((item) => item.path.includes(path));
+        });
 }
 ---
 
@@ -165,20 +160,17 @@ if (!isTruncated) {
                             </a>
                         )}
                         {directories &&
-                            directories
-                                .filter((item) => item.depth === depth)
-                                .filter((item) => item.path.includes(path))
-                                .map((item) => (
-                                    <a
-                                        href={baseURL + 'results/' + path + '/' + item.name}
-                                        class="list-group-item list-group-item-action"
-                                    >
-                                        <span class="">
-                                            <i class="fa-regular fa-folder me-2" />
-                                            {item.name}
-                                        </span>
-                                    </a>
-                                ))}
+                            directories.map((item) => (
+                                <a
+                                    href={baseURL + 'results/' + path + '/' + item.name}
+                                    class="list-group-item list-group-item-action"
+                                >
+                                    <span class="">
+                                        <i class="fa-regular fa-folder me-2" />
+                                        {item.name}
+                                    </span>
+                                </a>
+                            ))}
                         {files && files.map((item) => <AWSFile item={item} />)}
                     </div>
                     {filename && <AWSFilePreview file={files.find((file) => file.name === filename)} />}
