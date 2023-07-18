@@ -97,7 +97,7 @@ Some components that may be useful are shown below:
 
 The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
 For even more convenience you can use the following asset library [NF-Core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml). It contains all of the components from the cheatsheet above.
-To add it to your diagram use "File / Open library from / URL..." and paste:
+To import it to draw.io use "File / Open library from / URL..." and paste:
 
 ```plaintext
 https://github.com/LouisLeNezet/phaseimpute/raw/dev/docs/NfCore_library.xml
