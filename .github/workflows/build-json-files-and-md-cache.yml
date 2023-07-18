@@ -74,7 +74,9 @@ jobs:
         if: ${{ !steps.check_lines.outputs.changes }}
         uses: EndBug/add-and-commit@v9
         with:
-          default_author: github_actions
+          default_author: user_info
+          author_name: nf-core-bot
+          author_email: nf-core-bot@users.noreply.github.com
 
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
