@@ -55,7 +55,7 @@ jobs:
             changes=true
           fi
 
-          if not $changes; then
+          if [ ! $changes ]; then
             diff_output=$(git diff --stat .cache.tar.xz)
             file_size_before=$(echo $diff_output | awk '{print $4}')
             file_size_after=$(echo $diff_output | awk '{print $6}')
