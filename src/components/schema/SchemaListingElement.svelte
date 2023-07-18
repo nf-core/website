@@ -9,7 +9,7 @@
 </script>
 
 <div
-    class="property row border-bottom py-3 mx-md-2 justify-content-between"
+    class="property row border-bottom py-3 mx-md-1 justify-content-between"
     class:collapse={property.hidden}
     class:show={$showHidden}
 >
@@ -65,5 +65,8 @@
     .rounded-3 {
         border-top-right-radius: 0 !important;
         margin-top: -1pt; // avoid doubled borders
+    }
+    .property {
+        margin-bottom: -1pt;
     }
 </style>
