@@ -11853,7 +11853,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "taxprofiler",
@@ -11964,7 +11964,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "taxprofiler",
@@ -13663,7 +13663,7 @@
       "pipelines": [
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "metatdenovo",
@@ -19328,7 +19328,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "mcmicro",
@@ -19368,6 +19368,10 @@
         },
         {
           "name": "pangenome",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
           "version": "dev"
         },
         {
@@ -19951,7 +19955,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         }
       ]
     },
@@ -26209,8 +26213,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
         "fastq_fastqc_umitools_trimgalore",
+        "fastq_fastqc_umitools_fastp",
         "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
@@ -26308,7 +26312,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "mcmicro",
@@ -26333,6 +26337,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         },
         {
           "name": "radseq",
@@ -40918,7 +40926,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "nascent",
@@ -42233,6 +42241,82 @@
         ],
         "authors": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "hicexplorer_hicpca",
+      "path": "modules/nf-core/hicexplorer/hicpca/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hicexplorer_hicpca",
+        "description": "Computes PCA eigenvectors for a Hi-C matrix.",
+        "keywords": [
+          "eigenvectors",
+          "PCA",
+          "hicPCA"
+        ],
+        "tools": [
+          {
+            "hicexplorer": {
+              "description": "Set of programs to process, analyze and visualize Hi-C and capture Hi-C data",
+              "homepage": "https://hicexplorer.readthedocs.io",
+              "documentation": "https://hicexplorer.readthedocs.io",
+              "tool_dev_url": "https://github.com/deeptools/HiCExplorer",
+              "doi": "10.1038/s41467-017-02525-w",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', bin:50000 ]\n"
+            }
+          },
+          {
+            "matrix": {
+              "type": "file",
+              "description": "HiCExplorer matrix in h5 format"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', bin:50000 ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "results": {
+              "type": "file",
+              "description": "Outputs of hicPCA"
+            }
+          },
+          {
+            "pca1": {
+              "type": "file",
+              "description": "PCA1 file"
+            }
+          },
+          {
+            "pca2": {
+              "type": "file",
+              "description": "PCA2 file"
+            }
+          }
+        ],
+        "authors": [
+          "@jianhong"
         ]
       }
     },
@@ -57618,7 +57702,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "mcmicro",
@@ -57658,6 +57742,10 @@
         },
         {
           "name": "pangenome",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
           "version": "dev"
         },
         {
@@ -76255,6 +76343,71 @@
       }
     },
     {
+      "name": "seqkit_sliding",
+      "path": "modules/nf-core/seqkit/sliding/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_sliding",
+        "description": "Use seqkit to generate sliding windows of input fasta",
+        "keywords": [
+          "seqkit",
+          "sliding",
+          "windows"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "Cross-platform and ultrafast toolkit for FASTA/Q file manipulation, written by Wei Shen.",
+              "homepage": "https://bioinf.shenwei.me/seqkit/usage/",
+              "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit/",
+              "doi": "10.1371/journal.pone.016396"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "fasta/q file",
+              "pattern": "*.{fasta,fastq,fa,fq,fas,fna,faa}*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "windows": {
+              "type": "file",
+              "description": "fasta/q window file",
+              "pattern": "*.{fasta,fastq,fa,fq,fas,fna,faa}*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
       "name": "seqkit_split2",
       "path": "modules/nf-core/seqkit/split2/meta.yml",
       "type": "module",
@@ -82556,7 +82709,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "rnafusion",
@@ -82648,7 +82801,7 @@
         },
         {
           "name": "marsseq",
-          "version": "1.0.2"
+          "version": "1.0.3"
         },
         {
           "name": "rnafusion",

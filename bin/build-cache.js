@@ -5,6 +5,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
 
+
 const cache = Cache.default({
   basePath: './.cache',
   ns: 'nf-core',
@@ -46,7 +47,7 @@ export const buildCache = async () => {
             cache.set(cache_key, content);
             // console.log(`Cached ${cache_key}`);
           } else {
-            console.log(`Already cached ${cache_key}`);
+            // console.log(`Already cached ${cache_key}`);
           }
         })
       );
