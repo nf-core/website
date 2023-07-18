@@ -36,7 +36,7 @@ jobs:
 
 
       - name: make md cache
-        run: node bin/build-cache.js && tar -cvJf -f .cache.tar.xz .cache
+        run: node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache
         env:
           GITHUB_TOKEN: ${{ secrets.CREATE_CACHE_MD_TOKEN }}
 
