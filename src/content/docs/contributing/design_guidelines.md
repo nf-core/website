@@ -95,7 +95,7 @@ Some components that may be useful are shown below:
 
 ### Use draw.io
 
-The website / app [draw.io](https://app.diagrams.net/) help you create, render and export different diagram figures including metro-map.
+The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
 For even more convenience you can use the following library [NF-Core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml).
 To add it to your diagram use "File / Open library from / URL..." and paste:
 
