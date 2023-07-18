@@ -54,6 +54,12 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 </br> Priyanka is a Senior Bioinformatician, overseeing the development of Nextflow pipelines for genome assembly, curation and downstream analyses. She also facilitates the workflows community and is passionate about building networks that support peer learning.
 
+### Cibin Sadasivan Baby, Senior Software Developer {#cibin-sadasivan-baby}
+
+[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/cibinsb) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibinsb/) &nbsp;
+
+Cibin, a Senior Software Developer, is tasked with designing and implementing the production systems for TOL-IT. Currently, Cibin is focused on building an automated platform to execute high-throughput genomic pipelines. The ultimate goal of this project is to develop a system capable of efficiently processing large amounts of genomic data.
+
 ### Cibele Sotero-Caio, Genomic Data Curator {#cibele-sotero-caio}
 
 [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/sotero-caio-cibele) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/ccaio) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/cibele-sotero-caio-b379071a6/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/twitter.svg" height=25px>](https://twitter.com/CibeleCaio) &nbsp;
