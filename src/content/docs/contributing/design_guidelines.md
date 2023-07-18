@@ -99,6 +99,6 @@ The web app [draw.io](https://app.diagrams.net/) helps you create, render and ex
 For even more convenience you can use the following library [NF-Core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml).
 To add it to your diagram use "File / Open library from / URL..." and paste:
 
-```
+```plaintext
 https://github.com/LouisLeNezet/phaseimpute/raw/dev/docs/NfCore_library.xml
 ```
