@@ -29,5 +29,8 @@ if (meta) {
             return Astro.redirect(`/${pipeline}/${version}/`);
         }
     }
+} else {
+    console.log('redirecting ', pipeline, ' to 404');
+    return Astro.redirect('/404');
 }
 ---

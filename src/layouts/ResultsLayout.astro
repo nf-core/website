@@ -20,7 +20,7 @@ const meta = pipelines_json.remote_workflows.find((p) => p.name === pipeline);
 const versions = meta?.releases.map((release) => release.tag_name);
 const md_files = meta?.releases.reduce((result, release) => {
     if (release.tag_name === version) {
-        result = release.doc_files.map((file) => file.replace('docs/', '').replace('.md', ''));
+        result = release.doc_files.map((file) => file.replace('docs/', '').replace('.mdx', '').replace('.md', ''));
     }
     return result;
 }, []);
