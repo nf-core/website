@@ -1,12 +1,11 @@
 ---
-import { Markdown } from '@astropub/md';
+
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
-import cache from 'bin/cache.js';
-import { getGitHubFile } from '@components/octokit';
+import { getEntry } from 'astro:content';
 
 import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
 
@@ -40,11 +39,6 @@ export function getStaticPaths() {
 }
 const { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
-let headings: {
-    depth: number;
-    text: string;
-    slug: string;
-}[] = [];
 
 const section = md_file.split('/')[0];
 // check if there are multiple files in the section
@@ -81,57 +75,10 @@ if (left_sidebar) {
     ];
 }
 
-const cache_key = `${pipeline}/${version}/docs/${md_file}.md`;
+const cache_key = `${pipeline}/${version?.replaceAll('.','')}/docs/${md_file?.toLowerCase()}`;
 
-const md_content = await cache
-    .get(cache_key)
-    .catch((error) => {
-        console.log(error);
-        return;
-    })
-    .then(async (response) => {
-        let content = response;
-        if (content === undefined) {
-            console.log(`Cache miss for ${cache_key}`);
-            content = await getGitHubFile(pipeline, `/docs/${md_file}.md`, version);
-        }
-        // make relative links to other markdown files absolute to current Astro.url.pathname
-        content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
-            const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(
-                '/'
-            );
-            return `[${p1}](/${link})`;
-        });
-        const text_content = content.replace(/```(.*?)```/gs, '');
-        // get headings and their depth for table of contents
-        headings = text_content.match(/^(#{1,6})\s(.*)$/gm);
-        if (headings === null) {
-            headings = [];
-            return content;
-        }
-        headings = headings.map((heading) => {
-            const depth = heading.match(/^(#{1,6})/)[0].length;
-            let text = heading.match(/^(#{1,6})\s(.*)$/)[2];
-            // check if exactly two backticks are used to wrap text
-            if (text.match(/`(.+?)`/g)) {
-                text = text.replace(/`(.+?)`/g, '<code>$1</code>');
-                const slug = text
-                    .replace(/<code>(.*?)<\/code>/g, '$1')
-                    .toLowerCase()
-                    .replace(/ /g, '-')
-                    .replace(/[^\w-]+/g, '');
-                return { depth, text, slug };
-            } else {
-                const slug = text
-                    .toLowerCase()
-                    .replace(/ /g, '-')
-                    .replace(/[^\w-]+/g, '');
-                return { depth, text, slug };
-            }
-        });
-        return content;
-    });
-
+const entry = await getEntry('pipelines',cache_key);
+let { Content, headings } = await entry.render();
 const max_heading_depth = 2;
 
 // filter out headings that are higher than max_heading_depth
@@ -158,7 +105,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
         }
         <div class:list={['col-12 pt-3', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
-                <Markdown of={md_content} />
+                <Content />
             </MarkdownWrapper>
         </div>
         <div class:list={['col-12 toc', { 'col-md-3': !left_sidebar, 'col-md-2': left_sidebar }]}>
