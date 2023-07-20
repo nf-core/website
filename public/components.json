@@ -19448,7 +19448,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         },
         {
           "name": "viralrecon",
@@ -26213,9 +26213,9 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_trimgalore",
         "fastq_fastqc_umitools_fastp",
-        "fastq_trim_fastp_fastqc"
+        "fastq_trim_fastp_fastqc",
+        "fastq_fastqc_umitools_trimgalore"
       ],
       "pipelines": [
         {
@@ -26404,7 +26404,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         },
         {
           "name": "viralrecon",
@@ -45195,6 +45195,95 @@
       }
     },
     {
+      "name": "instrain_compare",
+      "path": "modules/nf-core/instrain/compare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "instrain_compare",
+        "description": "Strain-level comparisons across multiple inStrain profiles",
+        "keywords": [
+          "instrain",
+          "compare",
+          "align",
+          "diversity",
+          "coverage"
+        ],
+        "tools": [
+          {
+            "instrain": {
+              "description": "Calculation of strain-level metrics",
+              "homepage": "https://github.com/MrOlm/instrain",
+              "documentation": "https://instrain.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/MrOlm/instrain",
+              "doi": "10.1038/s41587-020-00797-0",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "profiles": {
+              "type": "directory",
+              "description": "InStrain profile folders",
+              "pattern": "*.IS/"
+            }
+          },
+          {
+            "bams": {
+              "type": "file",
+              "description": "Path to .bam files that were profiled",
+              "pattern": "*.{bam,sam}"
+            }
+          },
+          {
+            "stb_file": {
+              "type": "file",
+              "description": "Path to .stb (scaffold to bin) file that was profiled",
+              "pattern": "*.stb"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "compare": {
+              "type": "directory",
+              "description": "inStrain compare folders",
+              "pattern": "*.IS_compare/"
+            }
+          }
+        ],
+        "authors": [
+          "@margotl9",
+          "@CarsonJM"
+        ]
+      }
+    },
+    {
       "name": "instrain_profile",
       "path": "modules/nf-core/instrain/profile/meta.yml",
       "type": "module",
@@ -48701,7 +48790,7 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Output format (PNG or GIF)."
             }
           }
@@ -48920,7 +49009,7 @@
           },
           {
             "format": {
-              "type": "value",
+              "type": "string",
               "description": "Output format (one of axt, blast, blasttab, chain, gff, html, psl, sam, or tab)"
             }
           }
@@ -57818,7 +57907,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         }
       ]
     },
@@ -73852,7 +73941,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         },
         {
           "name": "viralrecon",
@@ -74320,7 +74409,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         },
         {
           "name": "viralrecon",
@@ -82729,7 +82818,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         }
       ]
     },
@@ -82825,7 +82914,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         }
       ]
     },
@@ -85990,7 +86079,7 @@
         },
         {
           "name": "viralintegration",
-          "version": "0.1.0"
+          "version": "0.1.1"
         }
       ]
     },

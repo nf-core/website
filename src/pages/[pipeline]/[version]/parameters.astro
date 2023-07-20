@@ -1,7 +1,7 @@
 ---
 import SchemaListing from '@components/schema/SchemaListing.svelte';
 import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
-import {promises, access, existsSync}  from 'fs';
+import { promises, access, existsSync } from 'fs';
 import F_OK from 'fs';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
@@ -38,7 +38,7 @@ let headings: {
 
 let { versions, md_files, description } = Astro.props;
 
-let schema =  { definitions: [], properties: [] };
+let schema = { definitions: [], properties: [] };
 
 const cache_key = `.cache/${pipeline}/${version}/nextflow_schema.json`;
 //check if the schema is cached
