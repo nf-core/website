@@ -48,6 +48,12 @@ If you have an idea for a new feature – [send us your request](https://github.
 
 </br> Matthieu leads the Informatics Infrastructure team, which guides the implementation and delivery of the genome assembly pipelines, and provides support for large-scale genome analyses for the Tree of Life faculty teams. He joined the Wellcome Sanger Institute in February 2021, to form the Informatics Infrastructure team for the Tree of Life programme. He has recruited 7 team members, with skills covering data curation & management, software development & operations, and bioinformatics.
 
+### Guoying Qi, DevOps Software Developer {#guoying-qi}
+
+[<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/gq1) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/guoying-qi/) &nbsp;
+
+</br> Guoying, a DevOps software engineer, has the responsibility of developing and deploying software and web applications for the Tree of Life project across various platforms such as computing farms, Kubernetes, OpenStack, and public clouds.
+
 ### Priyanka Surana, Senior Bioinformatician {#priyanka-surana}
 
 [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/logo/sanger-tol-logo-tree.png" height=25px>](https://www.sanger.ac.uk/person/surana-priyanka/) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/github.svg" height=25px>](https://github.com/priyanka-surana) &nbsp; [<img align="left" src="https://raw.githubusercontent.com/sanger-tol/pipelines-website/main/public_html/assets/img/linkedin.png" height=25px>](https://www.linkedin.com/in/priyanka-surana/) &nbsp;
