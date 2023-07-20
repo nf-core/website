@@ -13,7 +13,7 @@ Please note that all community members are expected to adhere to our [code of co
 The [Informatics Infrastructure team](/it) provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions. Current members are listed below:
 
 - [Matthieu Muffato](/it#matthieu-muffato)
-- Guoying Qi
+- [Guoying Qi](/it#guoying-qi)
 - [Priyanka Surana](/it#priyanka-surana)
 - [Cibin Sadasivan Baby](/it#cibin-sadasivan-baby)
 - [Cibele Sotero-Caio](/it#cibele-sotero-caio)
