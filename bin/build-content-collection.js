@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 // move markdown files from cache to src/content
-
 import { promises, readdirSync, statSync, existsSync, mkdirSync } from 'fs';
-
 import path from 'path';
+
+(async () => {
 export async function buildContentCollection(){
 // go through all files in .cache, move them to src/content
 
@@ -19,10 +19,6 @@ export async function buildContentCollection(){
           }
           return files;
         }
-
-        // check if file is markdown
-
-        // return isDirectory ? [...files, ...getAllMDFiles(name)] : [...files, /\.mdx?$/.test(name)? name: ];
     }, []);
 
   const files = getAllMDFiles('.cache');
@@ -38,19 +34,19 @@ export async function buildContentCollection(){
       const pathParts = f.split('/');
       const pipeline = pathParts[1];
       const version = pathParts[2];
-      // make relative links to other markdown files absolute to current Astro.url.pathname
-        content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
-            const link = path.join(pipeline, version, p2);
-            return `[${p1}](/${link})`;
-        });
-
+      // make relative links to png and svg files absolute in markdown to current Astro.url.pathname
+      content = content.replaceAll(
+        /(\]\()(docs\/images\/.*?\.png|svg)/gmu,
+        `$1${`https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/$2`}`
+      );
       const newPath = f.replace('.cache', 'src/content/pipelines');
       const parent = newPath.split('/').slice(0, -1).join('/');
       await promises.mkdir(parent, { recursive: true });
       await promises.writeFile(newPath, content);
     }),
   );
-
+return true;
 };
 
-buildContentCollection();
+await buildContentCollection();
+})();

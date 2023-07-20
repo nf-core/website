@@ -34,7 +34,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
-
       - name: make md cache
         run: node bin/build-cache.js && tar -cvJf .cache.tar.xz .cache
         env:
@@ -76,7 +75,7 @@ jobs:
         with:
           default_author: user_info
           author_name: nf-core-bot
-          author_email: nf-core-bot@users.noreply.github.com
+          author_email: core@nf-co.re
 
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
@@ -84,11 +83,9 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.CREATE_PR_TOKEN }}
-          commit-message: "chore: update pipeline.json and component.json"
-          title: "chore: update pipeline.json and component.json"
-          body: "This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files."
-          branch: "chore/update-pipeline-json-and-component-json"
+          commit-message: 'chore: update pipeline.json and component.json'
+          title: 'chore: update pipeline.json and component.json'
+          body: 'This PR was automatically created by a GitHub Action because there were too many lines changed in the pipeline.json and component.json files.'
+          branch: 'chore/update-pipeline-json-and-component-json'
           delete-branch: true
           draft: false
-
-
