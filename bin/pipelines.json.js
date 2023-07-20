@@ -5,7 +5,6 @@ import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
 
-
 // get current path
 const __dirname = path.resolve();
 
@@ -46,7 +45,7 @@ export const writePipelinesJson = async () => {
   await fs.writeFile(
     join(__dirname, '/public/pipeline_names.json'),
     JSON.stringify({ pipeline: names }, null, 4),
-    'utf8'
+    'utf8',
   );
 
   // get ignored_topics from ignored_reops.yml
@@ -67,7 +66,7 @@ export const writePipelinesJson = async () => {
           // filter out entries with _url in the key name
           response.data = Object.keys(response.data)
             .filter(
-              (key) => !key.includes('_url') && !['owner', 'permissions', 'license', 'organization'].includes(key)
+              (key) => !key.includes('_url') && !['owner', 'permissions', 'license', 'organization'].includes(key),
             )
             .reduce((obj, key) => {
               obj[key] = response.data[key];
@@ -127,7 +126,7 @@ export const writePipelinesJson = async () => {
           release.has_schema = await getGitHubFile(name, 'nextflow_schema.json', release.tag_name).then((response) => {
             return response ? true : false;
           });
-        })
+        }),
       );
 
       // get last push to dev branch
@@ -187,16 +186,16 @@ export const writePipelinesJson = async () => {
                   ) {
                     return {
                       modules: Object.keys(
-                        modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']
+                        modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core'],
                       ),
                       subworkflows: Object.keys(
-                        modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core']
+                        modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core'],
                       ),
                     };
                   } else {
                     return {
                       modules: Object.keys(
-                        modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core']
+                        modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core'],
                       ),
                     };
                   }
@@ -209,7 +208,7 @@ export const writePipelinesJson = async () => {
             });
           }
           return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
-        })
+        }),
       );
 
       // Assign new_releases to data.releases
@@ -238,7 +237,7 @@ export const writePipelinesJson = async () => {
         pipelines.remote_workflows.push(data);
       }
       bar.tick();
-    })
+    }),
   );
 
   // sort the pipelines by name
