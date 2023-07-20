@@ -1,5 +1,4 @@
 ---
-
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
@@ -75,9 +74,9 @@ if (left_sidebar) {
     ];
 }
 
-const cache_key = `${pipeline}/${version?.replaceAll('.','')}/docs/${md_file?.toLowerCase()}`;
+const cache_key = `${pipeline}/${version?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
-const entry = await getEntry('pipelines',cache_key);
+const entry = await getEntry('pipelines', cache_key);
 let { Content, headings } = await entry.render();
 const max_heading_depth = 2;
 
