@@ -3,6 +3,9 @@ repos:
     rev: 'v3.0.0'
     hooks:
       - id: prettier
-        additional_dependencies: [prettier@3.0.0, prettier-plugin-svelte@^3.0.0, prettier-plugin-astro@^0.11.0]
+        additional_dependencies:
+          - prettier@3.0.0
+          - prettier-plugin-svelte@^3.0.0
+          - prettier-plugin-astro@^0.11.0
         args: [--plugin=prettier-plugin-svelte, --plugin=prettier-plugin-astro]
         files: \.(astro|svelte)$
