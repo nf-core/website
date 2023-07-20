@@ -8,7 +8,7 @@ start_time: '10:00 CEST'
 end_date: '2023-10-18'
 end_time: '13:00 CEST'
 location_name: Barcelona, Spain
-location_latlng: [41.4021444,2.191099]
+location_latlng: [41.4021444, 2.191099]
 ---
 
 # Welcome

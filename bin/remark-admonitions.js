@@ -2,7 +2,6 @@
 import { h } from 'hastscript';
 import { visit } from 'unist-util-visit';
 
-
 const acceptableAdmonitionTypes = {
   note: {
     title: 'Note',
@@ -77,7 +76,7 @@ export default function admonitionsPlugin() {
         titleData.hProperties = h(
           'span',
           { class: `admonition-title ` },
-          node.attributes.title ? node.attributes.title : boxInfo.title
+          node.attributes.title ? node.attributes.title : boxInfo.title,
         ).properties;
 
         // Creating the icon's column.
