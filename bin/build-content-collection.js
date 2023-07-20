@@ -3,31 +3,31 @@
 import { promises, readdirSync, statSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 
-(async () => {
-export async function buildContentCollection(){
-// go through all files in .cache, move them to src/content
 
-  const getAllMDFiles = dir =>
+(async () => {
+async function buildContentCollection() {
+  // go through all files in .cache, move them to src/content
+
+  const getAllMDFiles = (dir) =>
     readdirSync(dir).reduce((files, file) => {
-        const name = path.join(dir, file);
-        const isDirectory = statSync(name).isDirectory();
-        if (isDirectory){
-            return [...files, ...getAllMDFiles(name)];
-        } else {
-          if (/\.mdx?$/.test(name)){
-            return [...files, name];
-          }
-          return files;
+      const name = path.join(dir, file);
+      const isDirectory = statSync(name).isDirectory();
+      if (isDirectory) {
+        return [...files, ...getAllMDFiles(name)];
+      } else {
+        if (/\.mdx?$/.test(name)) {
+          return [...files, name];
         }
+        return files;
+      }
     }, []);
 
   const files = getAllMDFiles('.cache');
-  if (!existsSync('src/content/pipelines')){
-      mkdirSync('src/content/pipelines', { recursive: true });
-    }
+  if (!existsSync('src/content/pipelines')) {
+    mkdirSync('src/content/pipelines', { recursive: true });
+  }
   Promise.all(
     // create src/content/pipelines folder if it doesn't exist
-
 
     files.map(async (f) => {
       let content = await promises.readFile(f, 'utf8');
@@ -43,9 +43,9 @@ export async function buildContentCollection(){
       const parent = newPath.split('/').slice(0, -1).join('/');
       await promises.mkdir(parent, { recursive: true });
       await promises.writeFile(newPath, content);
-    }),
+    })
   );
-return true;
+  return true;
 };
 
 await buildContentCollection();
