@@ -71,7 +71,6 @@ npm run build-component-json
 npm run build-cache-force
 ```
 
-
 ### Tools API docs
 
 Tools docs are built using GitHub Actions on the nf-core/tools repo using Sphinx.
