@@ -83,7 +83,9 @@
 
     li {
         border-inline-start: 2pt solid $border-color;
-        transition: background-color 0.3s ease-out, border-left 0.3s ease-out;
+        transition:
+            background-color 0.3s ease-out,
+            border-left 0.3s ease-out;
         scroll-margin-top: 6rem;
         scroll-margin-bottom: 6rem;
     }

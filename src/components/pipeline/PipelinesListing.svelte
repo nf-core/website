@@ -97,7 +97,7 @@
                     return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
                 }
                 return filter;
-            })
+            }),
         );
         return pipelines;
     }

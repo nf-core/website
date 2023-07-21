@@ -83,7 +83,7 @@ const configs = await Promise.all(
             content: Buffer.from(content.data.content, 'base64').toString(),
             config: parseConfig(Buffer.from(config.data.content, 'base64').toString()),
         };
-    })
+    }),
 );
 const title = 'nf-core/configs';
 const description = 'Browse the ' + configs.length + ' configs that are currently available as part of nf-core.';
