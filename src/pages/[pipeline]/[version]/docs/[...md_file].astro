@@ -54,7 +54,7 @@ let sections = {};
 
 // add trailing slash to url if missing
 let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
-url = url.replace(/\.html$/, '/');
+url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
 if (left_sidebar) {
