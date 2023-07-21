@@ -98,7 +98,7 @@ if (!tooBig && hasPreview) {
         }
         {
             ['json', 'yaml', 'yml'].includes(extension) && (
-            // <Code lang={extension} code={content} />
+                // <Code lang={extension} code={content} />
                 <pre>
                     <code class={'language-' + (extension === 'json' ? 'json' : 'yaml')}>{content}</code>
                 </pre>
@@ -106,7 +106,7 @@ if (!tooBig && hasPreview) {
         }
         {
             ['log', 'txt', 'csv', 'tsv'].includes(extension) && (
-            // <Code lang="console" code={content} />
+                // <Code lang="console" code={content} />
                 <pre>
                     <code class="language-console">{content}</code>
                 </pre>
