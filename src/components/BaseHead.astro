@@ -1,12 +1,13 @@
 ---
-import { setTheme } from '../utils/theme';
+import { ViewTransitions } from 'astro:transitions';
 export interface Props {
     title: string;
     description: string;
     image?: string;
+    viewTransitions: boolean;
 }
 
-const { title, description, image = '/social_img.png' } = Astro.props;
+const { title, description, image = '/social_img.png', viewTransitions = false } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -37,6 +38,8 @@ const { title, description, image = '/social_img.png' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+{viewTransitions && <ViewTransitions fallback="swap" />}
 
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
