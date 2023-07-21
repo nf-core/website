@@ -3457,7 +3457,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -3518,7 +3518,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -11829,7 +11829,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -11940,7 +11940,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -12565,7 +12565,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -12712,7 +12712,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -15415,7 +15415,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -15493,7 +15493,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -19264,7 +19264,7 @@
         },
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -19574,7 +19574,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -21227,7 +21227,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -21514,7 +21514,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -21609,7 +21609,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -21780,7 +21780,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -26266,7 +26266,7 @@
         },
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bacass",
@@ -35704,10 +35704,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Reference file used to generate BAM file",
               "pattern": ".{fasta,fa,fna}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35718,10 +35730,22 @@
             }
           },
           {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "dict": {
               "type": "file",
               "description": "GATK dict file for reference",
               "pattern": ".dict"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing file meta-information for known_vcf.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35799,17 +35823,23 @@
             }
           },
           {
-            "input": {
+            "bam": {
               "type": "file",
               "description": "Sorted and indexed BAM/CRAM/SAM file",
               "pattern": "*.bam"
             }
           },
           {
-            "index": {
+            "bai": {
               "type": "file",
               "description": "BAM index file",
               "pattern": "*.bai"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35820,6 +35850,12 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Index of reference file used to generate BAM file",
@@ -35827,10 +35863,22 @@
             }
           },
           {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "dict": {
               "type": "file",
               "description": "GATK dict file for reference",
               "pattern": ".dict"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing file meta-information for known_vcf.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35898,17 +35946,23 @@
             }
           },
           {
-            "input": {
+            "bam": {
               "type": "file",
               "description": "Sorted and indexed BAM/CRAM/SAM file",
               "pattern": "*.bam"
             }
           },
           {
-            "index": {
+            "bai": {
               "type": "file",
               "description": "BAM index file",
               "pattern": "*.bai"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35919,10 +35973,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Index of reference file used to generate BAM file",
               "pattern": ".fai"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35933,10 +35999,22 @@
             }
           },
           {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "intervals": {
               "type": "file",
               "description": "Bed file with the genomic regions included in the library (optional)",
               "pattern": "*.intervals"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing file meta-information for the contamination file.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -35947,10 +36025,22 @@
             }
           },
           {
+            "meta7": {
+              "type": "map",
+              "description": "Groovy Map containing file meta-information for the dbsnps file.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "dbsnps": {
               "type": "file",
               "description": "VCF file containing known sites (optional)",
               "pattern": "*"
+            }
+          },
+          {
+            "meta8": {
+              "type": "map",
+              "description": "Groovy Map containing file meta-information for the VCF comparison file.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -37982,7 +38072,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -40956,7 +41046,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -43920,7 +44010,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -47494,7 +47584,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -50584,7 +50674,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -63515,7 +63605,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -64357,7 +64447,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -64466,7 +64556,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -67110,7 +67200,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -73438,7 +73528,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -73662,7 +73752,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -73907,7 +73997,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bacass",
@@ -74407,7 +74497,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bacass",
@@ -74584,7 +74674,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "bamtofastq",
@@ -83629,7 +83719,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -86025,7 +86115,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -86392,7 +86482,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -87418,7 +87508,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -87679,7 +87769,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "chipseq",
@@ -92150,7 +92240,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "circdna",
@@ -92802,7 +92892,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "circrna",
@@ -92936,7 +93026,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "callingcards",
@@ -94315,7 +94405,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "viralrecon",
@@ -94418,7 +94508,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -94622,7 +94712,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -95613,7 +95703,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.0"
+          "version": "2.1.0"
         },
         {
           "name": "rnaseq",
