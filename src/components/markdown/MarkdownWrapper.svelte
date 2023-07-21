@@ -17,7 +17,7 @@
             },
             {
                 rootMargin: '0px 0px -92% 0px',
-            }
+            },
         );
         headings.forEach((heading) => {
             const element = document.querySelector('#' + heading.slug);
@@ -41,7 +41,7 @@
                         'position-absolute',
                         'top-0',
                         'end-0',
-                        'opacity-50'
+                        'opacity-50',
                     );
                     button.innerHTML = copyButtonLabel;
                     button.title = 'Copy to clipboard';
