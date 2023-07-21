@@ -97,6 +97,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     subfooter={md_github_url !== ''}
     topics={topics}
     sections={sections}
+    viewTransitions={true}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {
@@ -122,7 +123,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                     versions.map((v) => {
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
-                                            `${pipeline}/${v}`
+                                            `${pipeline}/${v}`,
                                         );
                                         if (url.includes('/results/')) {
                                             url = `/${pipeline}/${v}/results/`;
@@ -146,7 +147,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         )
     }
 
-    <div>
+    <div transition:animate="morph">
         <slot />
     </div>
     <script>

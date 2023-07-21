@@ -34,7 +34,7 @@ export default defineConfig({
     output: 'hybrid',
     experimental: {
         assets: true,
-        redirects: true,
+        viewTransitions: true,
     },
     adapter: netlify(),
     redirects: {
