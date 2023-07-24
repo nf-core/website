@@ -87,7 +87,7 @@ const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) :
                                                             'w-100 py-1 ps-3 position-relative',
                                                             {
                                                                 active:
-                                                                    url.endsWith(child.slug) ||
+                                                                    url.endsWith(child.slug.replace(/\/$/, '')) ||
                                                                     (url.split('/').length >= 6 &&
                                                                         url
                                                                             .split('/')
