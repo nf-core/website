@@ -45,7 +45,7 @@ allTabItems = tabItems
 allTabItems.unshift({
     label: 'Introduction',
     href: `/${pipeline}/${version}/`,
-    active: url === `/${pipeline}/${version}/`,
+    active: url === `/${pipeline}/${version}/` || url === `/${pipeline}/${version}`,
     icon: 'fa-solid fa-sign-in',
 });
 
@@ -58,7 +58,7 @@ if (hasSchema) {
     allTabItems.push({
         label: 'Parameters',
         href: `/${pipeline}/${version}/parameters/`,
-        active: Astro.url.pathname.endsWith('/parameters/'),
+        active: url.includes('/parameters'),
         icon: 'fa-regular fa-list',
     });
 }
@@ -77,7 +77,7 @@ if (versions.filter((v) => v !== 'dev').length > 0) {
     allTabItems.push({
         label: 'Releases',
         href: `/${pipeline}/releases_stats/`,
-        active: url === `/${pipeline}/releases_stats/`,
+        active: url.includes(`/${pipeline}/releases_stats`),
         icon: 'fa-regular fa-chart-line',
     });
 }
@@ -103,7 +103,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
                 {!Astro.url.pathname.endsWith('/releases_stats/') && (
-                    <div class="input-group input-group-sm justify-content-end justify-content-md-center">
+                    <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
                         <label class="input-group-text" for="version_select">
                             <i class="fas fa-tags" />
                         </label>
@@ -122,7 +122,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                     versions.map((v) => {
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
-                                            `${pipeline}/${v}`
+                                            `${pipeline}/${v}`,
                                         );
                                         if (url.includes('/results/')) {
                                             url = `/${pipeline}/${v}/results/`;

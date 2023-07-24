@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 
-
 if (!import.meta.env) {
   dotenv.config();
 }

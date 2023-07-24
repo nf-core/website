@@ -95,6 +95,7 @@ C -->|One| D[Result 1]
 C -->|Two| E[Result 2]
 ```
 ````
+
 turns into:
 
 ```mermaid
@@ -108,24 +109,26 @@ C -->|Two| E[Result 2]
 
 # LaTeX formulas
 
-We support latex based formulas using [KaTeX](https://katex.org/). To display them correctly on an nf-co.re page, you need to wrap them in a block surrounded by `$$$`, e.g.:
+We support latex based formulas using [KaTeX](https://katex.org/). To display them correctly on an nf-co.re page, you need to wrap them in a block surrounded by `$$`, e.g.:
 
 ```md
-$$$
+$$
 z_{n+1} = z_n^2 + c
-$$$
+$$
 ```
+
 turns into:
 
-$$$
+$$
 z_{n+1} = z_n^2 + c
-$$$
+$$
 
-You can also display formulas inline by wrapping them in `$` instead of `$$$`, e.g.:
+You can also display formulas inline by wrapping them in `$` instead of `$$`, e.g.:
 
 ```md
 The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$
 ```
+
 gets rendered as:
 
 The lift $L$ is calculated as follows: $L = \frac{1}{2} \rho v^2 S C_L$.
