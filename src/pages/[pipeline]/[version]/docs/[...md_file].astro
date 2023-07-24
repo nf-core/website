@@ -53,7 +53,8 @@ let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).len
 let sections = {};
 
 // add trailing slash to url if missing
-const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
 if (left_sidebar) {
