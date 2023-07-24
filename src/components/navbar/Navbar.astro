@@ -72,9 +72,7 @@ if (sections?.length > 0) {
                     <a class="nav-link" href="/pipelines/">Pipelines</a>
                 </li>
                 <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" href="/about/" role="button" data-bs-toggle="dropdown">
-                        Resources
-                    </a>
+                    <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
                         <li><span class="dropdown-header">Configs & tools</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
@@ -142,6 +140,7 @@ if (sections?.length > 0) {
                     </ul>
                 </li>
             </ul>
+            <div class="align-self-center" id="docsearch"></div>
             <div class="ms-auto d-none d-md-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
@@ -208,6 +207,18 @@ if (sections?.length > 0) {
         </NavbarDocsNav>
     )
 }
+<script>
+    import docsearch from '@docsearch/js';
+
+    import '@docsearch/css';
+
+    docsearch({
+        container: '#docsearch',
+        appId: '01BY3A8NRJ',
+        indexName: 'nf-co',
+        apiKey: '54947609d7a209d4beb8585b026cfe61',
+    });
+</script>
 
 <style lang="scss">
     @import '@styles/_variables.scss';
