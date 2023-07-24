@@ -2,6 +2,35 @@
     import { onMount } from 'svelte';
 
     let theme = 'dark';
+
+    function setTheme(theme) {
+        //NOTE: same as in BaseHead.astro
+        const root = document.documentElement;
+        if (theme === 'auto') {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                root.setAttribute('data-bs-theme', 'dark');
+            } else {
+                root.setAttribute('data-bs-theme', 'light');
+            }
+        } else {
+            root.setAttribute('data-bs-theme', theme);
+        }
+    }
+    function switchTheme(e) {
+        const target = e.target;
+        let theme = '';
+        // check if we clicked on svg or if target doesn't have a title attribute
+        if (target.tagName !== 'div' || !target.title) {
+            // get the parent div
+            theme = target.closest('div.theme-option').title;
+        } else {
+            theme = e.target.title;
+        }
+        localStorage.setItem('theme', theme);
+        setTheme(theme);
+        window.dispatchEvent(new Event('theme-changed'));
+    }
+
     onMount(() => {
         theme = document.documentElement.getAttribute('data-bs-theme') || 'auto';
         window.addEventListener('theme-changed', (e) => {
@@ -70,10 +99,6 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
-    :global([data-bs-theme='light']) dropdown-item.active :global(.icon svg) {
-        fill: $white;
-    }
     .theme-option {
         cursor: pointer;
     }

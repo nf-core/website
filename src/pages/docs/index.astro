@@ -80,7 +80,7 @@ contributingDocs
                                 .map((doc) => {
                                     // check if this is a parent of a nested doc
                                     const childDocs = usageDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/')
+                                        childDoc.slug.startsWith(doc.slug + '/'),
                                     );
                                     if (childDocs.length > 0) {
                                         return (
@@ -88,7 +88,7 @@ contributingDocs
                                                 <span>
                                                     <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
                                                     <button
-                                                        class="btn "
+                                                        class="btn px-0"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target={'#' + doc.slug}
                                                         aria-expanded="false"
@@ -131,7 +131,7 @@ contributingDocs
                                 .map((doc) => {
                                     // check if this is a parent of a nested doc
                                     const childDocs = contributingDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/')
+                                        childDoc.slug.startsWith(doc.slug + '/'),
                                     );
                                     if (childDocs.length > 0) {
                                         return (
@@ -139,7 +139,7 @@ contributingDocs
                                                 <span>
                                                     <a href={'/docs/' + doc.slug + '/'}>{doc.data.title}</a>
                                                     <button
-                                                        class="btn "
+                                                        class="btn px-0"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target={'#' + doc.slug}
                                                         aria-expanded="false"

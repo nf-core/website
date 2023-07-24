@@ -15,7 +15,7 @@ let contributors = contributors_flat.map((contributor) => {
 
 // remove duplicates
 contributors = contributors.filter(
-    (contributor, index, self) => index === self.findIndex((t) => t.name === contributor.name)
+    (contributor, index, self) => index === self.findIndex((t) => t.name === contributor.name),
 );
 const contributors_map: {
     location: [number, number];
@@ -73,8 +73,8 @@ const headings = [
         automatically.
     </p>
     <p>
-        Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a> on
-        the Statistics page.
+        Want to see who's working on what? See the <a href="/stats#contributor_leaderboard">contributor leaderboard</a>
+        on the Statistics page.
     </p>
     <p class="pt-3">
         {

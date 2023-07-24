@@ -19,7 +19,7 @@ let lastYoutubeUrls = bytesizes
     });
 
 lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
-    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be')
+    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
 );
 
 const latestBytesize = lastYoutubeUrls
