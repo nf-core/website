@@ -27,4 +27,5 @@ test('random pipeline page', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'View Pipelines' }).click();
     await page.locator('.card').locator('a').first().click();
+    await expect(page.locator('.markdown-content')).toContainText('Citations');
 });
