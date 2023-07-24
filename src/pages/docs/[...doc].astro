@@ -70,12 +70,12 @@ contributingDocs.sort(sortDocs);
 usageDocs
     .filter((doc) => doc.slug.split('/').length === 2)
     .map((doc) => {
-        sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+        sections[0].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
     });
 contributingDocs
     .filter((doc) => doc.slug.split('/').length === 2)
     .map((doc) => {
-        sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug + '/' });
+        sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
     });
 // find the index of the current page and use that to get the previous and next page
 const url = Astro.url.pathname.replace(/\/$/, '');
