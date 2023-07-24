@@ -18,7 +18,7 @@ export function getStaticPaths() {
     pipelines_json.remote_workflows.forEach((pipeline) => {
         pipeline.releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', '')
+                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
             md_files.forEach((md_file) => {
                 paths.push({
@@ -98,7 +98,7 @@ const md_content = await cache
         // make relative links to other markdown files absolute to current Astro.url.pathname
         content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
             const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(
-                '/'
+                '/',
             );
             return `[${p1}](/${link})`;
         });
