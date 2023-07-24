@@ -5,6 +5,7 @@ import Header from '@components/header/Header.astro';
 
 let {
     title = SITE_TITLE,
+    meta_title = title,
     subtitle = SITE_DESCRIPTION,
     image,
     header_html,
@@ -23,6 +24,7 @@ let {
 
 export interface Props {
     title?: string;
+    meta_title?: string;
     subtitle?: string;
     image?: string;
     header_html?: string;
@@ -56,7 +58,7 @@ if (frontmatter) {
 ---
 
 <BaseLayout
-    title={title}
+    title={meta_title}
     subtitle={subtitle}
     image={image}
     md_github_url={md_github_url}
