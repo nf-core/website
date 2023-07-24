@@ -1,8 +1,6 @@
 name: Playwright Tests
 on:
   pull_request:
-  push:
-  workflow_dispatch:
 
 # Cancel if a newer run is started
 concurrency:
@@ -10,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  run test:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
