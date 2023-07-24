@@ -87,7 +87,7 @@ export async function getStaticPaths() {
                 raw_config: Buffer.from(config.data.content, 'base64').toString(),
                 path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
             };
-        })
+        }),
     );
     return await configs.map((config) => {
         return [
