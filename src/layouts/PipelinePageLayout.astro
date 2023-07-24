@@ -5,7 +5,8 @@ import TabBar from '@components/TabBar.astro';
 import pipelines_json from '@public/pipelines.json';
 
 export interface Props {
-    pipeline?: string;
+    pipeline: string;
+    meta_title: string;
     subtitle?: string | null;
     version?: string;
     versions?: string[];
@@ -17,6 +18,7 @@ export interface Props {
 
 const {
     pipeline,
+    meta_title = pipeline,
     subtitle,
     headings,
     version,
@@ -90,6 +92,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
 
 <PageLayout
     title={'nf-core/' + pipeline}
+    meta_title={meta_title}
     subtitle={subtitle}
     mainpage_container={true}
     navTocHeadings={headings}
@@ -118,7 +121,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 {version}
                             </button>
 
-                            <ul class="dropdown-menu dropdown-menu-end w-100">
+                            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
                                         let url = Astro.url.pathname.replace(

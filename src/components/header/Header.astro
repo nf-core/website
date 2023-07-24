@@ -22,7 +22,7 @@ subtitle = markdown(subtitle);
 <div class="mainpage-heading pb-1 text-bg-success">
     <div class="container">
         <h1 class="display-2 d-flex justify-content-between mb-2">
-            <span set:html={title} />
+            <span class="title" set:html={title} />
             <div>
                 {
                     md_github_url && (
@@ -45,7 +45,7 @@ subtitle = markdown(subtitle);
                 }
             </div>
         </h1>
-        {subtitle && <div class="lead mb-0">{subtitle}</div>}
+        {subtitle && <div class="lead mb-0 subtitle">{subtitle}</div>}
 
         <div class="mb-2 mb-md-3">
             {topics && topics.map((topic) => <span class="badge topic me-2">{topic}</span>)}
