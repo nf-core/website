@@ -46,11 +46,7 @@ $(function () {
       })
       .join('/');
 
-    if (AWS.config.region === 'us-east-1') {
-      return 'https://' + bucket + '.cog.sanger.ac.uk/' + enckey;
-    } else {
-      return 'https://' + bucket + '.cog.sanger.ac.uk/' + enckey;
-    }
+    return 'https://' + bucket + '.cog.sanger.ac.uk/' + enckey;
   }
 
   function object2hrefpath(bucket, key) {
@@ -61,11 +57,7 @@ $(function () {
       })
       .join('/');
 
-    if (AWS.config.region === 'us-east-1') {
-      return 'https://cog.sanger.ac.uk/' + bucket + '/' + enckey;
-    } else {
-      return 'https://cog.sanger.ac.uk/' + bucket + '/' + enckey;
-    }
+    return 'https://cog.sanger.ac.uk/' + bucket + '/' + enckey;
   }
 
   function sanitize_html(string) {
