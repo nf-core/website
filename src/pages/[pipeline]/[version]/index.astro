@@ -5,19 +5,26 @@ import pipelines_json from '@public/pipelines.json';
 import cache from 'bin/cache.js';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    var paths: {
+        params: { pipeline: string; version: string; md_file: string };
+        props: { versions: string[]; md_files: string[]; meta: {} };
+    }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        console.log(extended_releases);
+        extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
                 file.replace('docs/', '').replace('.mdx', '').replace('.md', '')
             );
+
             paths.push({
                 params: {
                     pipeline: pipeline.name,
                     version: release.tag_name,
                 },
                 props: {
-                    versions: pipeline.releases.map((release) => release.tag_name),
+                    versions: releases.map((release) => release.tag_name),
                     md_files: md_files,
                     meta: pipeline,
                 },
@@ -26,7 +33,7 @@ export function getStaticPaths() {
     });
     return paths;
 }
-const { pipeline, version } = Astro.params;
+let { pipeline, version } = Astro.params;
 let headings: {
     depth: number;
     text: string;
@@ -34,6 +41,10 @@ let headings: {
 }[] = [];
 
 let { versions, md_files, meta } = Astro.props;
+if (version === 'latest') {
+    return Astro.redirect(`/${pipeline}/${versions[0]}`);
+}
+
 const description = meta.description;
 
 const cache_key = `${pipeline}/${version}/README.md`;
