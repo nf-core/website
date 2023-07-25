@@ -102,7 +102,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     sections={sections}
     docSearchTags={[
         { name: 'version', content: version },
-        { name: 'type', content: 'pipeline' },
+        { name: 'page_type', content: 'pipeline' },
     ]}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
