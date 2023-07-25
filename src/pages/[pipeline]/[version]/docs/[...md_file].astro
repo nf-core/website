@@ -146,6 +146,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ' ' + section}
     subtitle={description}
     headings={headings}
     version={version}
