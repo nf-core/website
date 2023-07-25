@@ -122,7 +122,7 @@
                 <div class="flex-grow-1">
                     {#each events as event}
                         <div class="w-100 row align-items-center">
-                            <div class="col-8 pt-lg-2 pb-lg-2 text-lg-start">
+                            <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
                                     <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
                                         >{event.data.title}</a
@@ -153,7 +153,7 @@
                                 {/if}
                             </div>
 
-                            <div class="col-4 text-start">
+                            <div class="col-4 py-lg-2 text-start">
                                 {#if event_time_category === 'upcoming'}
                                     <div class="text-nowrap ms-5 ps-1">
                                         <h5>Event starts in</h5>

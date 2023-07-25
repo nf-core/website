@@ -107,7 +107,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
                 {!Astro.url.pathname.endsWith('/releases_stats/') && (
-                    <div class="input-group input-group-sm justify-content-end justify-content-md-center">
+                    <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
                         <label class="input-group-text" for="version_select">
                             <i class="fas fa-tags" />
                         </label>
@@ -126,7 +126,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                     versions.map((v) => {
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
-                                            `${pipeline}/${v}`
+                                            `${pipeline}/${v}`,
                                         );
                                         if (url.includes('/results/')) {
                                             url = `/${pipeline}/${v}/results/`;

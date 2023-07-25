@@ -13,7 +13,7 @@ export function getStaticPaths() {
         const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
         extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', '')
+                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
             paths.push({
                 params: {

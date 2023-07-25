@@ -23,7 +23,6 @@ It is our hope that these talks / videos will build an archive of training mater
 
 This week Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol)) and Nicolas Vannieuwkerke ([@nvnieuwk](https://github.com/nvnieuwk)) are presenting nf-validation, the soon to be released plugin to validate the input parameters and sample sheets for Nextflow pipelines.
 
-
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited for reader-friendliness**
 

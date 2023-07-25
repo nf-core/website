@@ -92,3 +92,13 @@ Some components that may be useful are shown below:
 |                                                                                              Object                                                                                              | Description                                        | Link                                                                                                                                                                                                                                                         | Source                                                                                                                                     |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | <img title="Metromap style pipeline workflow components" src="/images/graphic_design_assets/workflow_schematics_components/generic/metromap_style_pipeline_workflow_components.svg" width="200"> | Components for a metro-map style pipeline workflow | [SVG](/images/graphic_design_assets/workflow_schematics_components/generic/metromap_style_pipeline_workflow_components.svg) <br> [PDF](/images/graphic_design_assets/workflow_schematics_components/generic/metromap_style_pipeline_workflow_components.pdf) | James A. Fellows Yates & nf-core; under a [CC0](https://creativecommons.org/publicdomain/zero/1.0/?ref=chooser-v1) license (public domain) |
+
+### Use draw.io
+
+The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
+For even more convenience you can use the following asset library [NF-Core xml item library](https://github.com/LouisLeNezet/phaseimpute/blob/dev/docs/NfCore_library.xml). It contains all of the components from the cheatsheet above.
+To import it to draw.io use "File / Open library from / URL..." and paste:
+
+```plaintext
+https://github.com/LouisLeNezet/phaseimpute/raw/dev/docs/NfCore_library.xml
+```

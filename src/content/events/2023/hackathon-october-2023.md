@@ -2,13 +2,13 @@
 title: Hackathon - October 2023 (Barcelona)
 subtitle: A hybrid hackathon held in Barcelona and online
 type: hackathon
-start_announcement: '2023-07-13 12:00 (CEST)'
+start_announcement: '2023-07-13T12:00+02:00'
 start_date: '2023-10-16'
 start_time: '10:00 CEST'
 end_date: '2023-10-18'
 end_time: '13:00 CEST'
 location_name: Barcelona, Spain
-location_latlng: [41.4021444,2.191099]
+location_latlng: [41.4021444, 2.191099]
 ---
 
 # Welcome
