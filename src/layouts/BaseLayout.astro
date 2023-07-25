@@ -15,6 +15,10 @@ export interface Props {
     subfooter?: boolean;
     navTocHeadings?: object[];
     sections?: { section_name: string; children: {}[] }[] | never[];
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
 }
 
 const {
@@ -25,13 +29,14 @@ const {
     subfooter = false,
     navTocHeadings = [],
     sections = [],
+    docSearchTags = [],
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <BaseHead title={title} description={subtitle} image={image} />
+        <BaseHead title={title} description={subtitle} image={image} docSearchTags={docSearchTags} />
     </head>
 
     <body tabindex="0">
