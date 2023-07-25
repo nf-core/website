@@ -5,6 +5,7 @@ menu:
   main:
     weight: 10
 ---
+
 # nf-core/website - Contributing Guidelines
 
 Hi there! Many thanks for taking an interest in improving the nf-core website.

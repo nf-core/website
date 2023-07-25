@@ -262,7 +262,7 @@ code:not(pre code),
   color: inherit;
 }
 
-.mainpage-heading code:not(pre code){
+.mainpage-heading code:not(pre code) {
   background-color: rgba($white, 0.1) !important;
   color: $white !important;
 }
@@ -1248,7 +1248,7 @@ div.mermaid {
 
   .hide-light {
     display: inline-block;
-    &:not(svg){
+    &:not(svg) {
       display: block;
     }
   }
@@ -1304,7 +1304,7 @@ div.mermaid {
     border: 1px solid $border-color-dark;
   }
 
-  .markdown-content img[alt="Workflow"]{
+  .markdown-content img[alt='Workflow'] {
     background-color: $white;
   }
   .border-success {
