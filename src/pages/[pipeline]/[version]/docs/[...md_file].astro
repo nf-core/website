@@ -16,7 +16,9 @@ export function getStaticPaths() {
         props: { versions: string[]; md_files: string[]; description: string };
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
                 file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
@@ -28,7 +30,7 @@ export function getStaticPaths() {
                         md_file: md_file,
                     },
                     props: {
-                        versions: pipeline.releases.map((release) => release.tag_name),
+                        versions: releases.map((release) => release.tag_name),
                         md_files: md_files,
                         description: pipeline.description,
                     },
@@ -40,6 +42,9 @@ export function getStaticPaths() {
 }
 const { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
+if (version === 'latest') {
+    return Astro.redirect(`/${pipeline}/${versions[0]}/docs/${md_file}`);
+}
 let headings: {
     depth: number;
     text: string;
@@ -157,7 +162,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
                 </div>
             )
         }
-        <div class:list={['col-12 pt-3', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
                 <Markdown of={md_content} />
             </MarkdownWrapper>
