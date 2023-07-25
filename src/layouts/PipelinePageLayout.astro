@@ -101,7 +101,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     topics={topics}
     sections={sections}
     docSearchTags={[
-        { name: 'version', content: version },
+        { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
         { name: 'page_type', content: 'pipeline' },
     ]}
 >
