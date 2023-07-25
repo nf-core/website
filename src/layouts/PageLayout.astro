@@ -82,11 +82,13 @@ if (frontmatter) {
         </Header>
         {
             mainpage_container || mainpage_container == null ? (
-                <div class="container main-content pt-md-4">
+                <div class="container main-content pt-md-4 DocSearch-content">
                     <slot />
                 </div>
             ) : (
-                <slot />
+                <div class="DocSearch-content">
+                    <slot />
+                </div>
             )
         }
     </div>

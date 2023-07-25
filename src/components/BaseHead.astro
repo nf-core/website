@@ -44,8 +44,8 @@ const { title, description, image = '/social_img.png', docSearchTags = [] } = As
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
 
-<!-- Algolia DocSearch -->
-{docSearchTags && docSearchTags.map((tag) => <meta name={'docsearch:' + tag.name} content={tag.content} />)}
+<!-- DocSearch -->
+{docSearchTags.map(({ name, content }) => <meta name={name} content={content} />)}
 
 <!-- Theme -->
 <script is:inline>

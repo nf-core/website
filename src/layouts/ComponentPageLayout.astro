@@ -13,7 +13,13 @@ const { name, description, type, topics } = Astro.props;
 const gh_url = 'https://github.com/nf-core/modules/tree/master/modules/nf-core/' + name.replace('_', '/');
 ---
 
-<PageLayout title={type + '/' + name} subtitle={description} mainpage_container={true} topics={topics}>
+<PageLayout
+    title={type + '/' + name}
+    subtitle={description}
+    mainpage_container={true}
+    topics={topics}
+    docSearchTags={[{ name: 'type', content: type }]}
+>
     <SubHeader gh_url={gh_url} component_type={type} slot="sub-header" component={name} />
     <div>
         <slot />
