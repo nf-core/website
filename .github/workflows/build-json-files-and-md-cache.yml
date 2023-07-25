@@ -9,6 +9,7 @@ jobs:
   build-component-json:
     runs-on: ubuntu-latest
     environment: static-file-build
+    if: (github.event_name == 'schedule' && github.repository == 'nf-core/website') || (github.event_name != 'schedule')
 
     steps:
       # Set up the main website repo
