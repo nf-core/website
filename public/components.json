@@ -26121,8 +26121,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
-        "fastq_trim_fastp_fastqc"
+        "fastq_trim_fastp_fastqc",
+        "fastq_fastqc_umitools_fastp"
       ],
       "pipelines": [
         {
@@ -26251,9 +26251,9 @@
         ]
       },
       "subworkflows": [
-        "fastq_fastqc_umitools_trimgalore",
+        "fastq_trim_fastp_fastqc",
         "fastq_fastqc_umitools_fastp",
-        "fastq_trim_fastp_fastqc"
+        "fastq_fastqc_umitools_trimgalore"
       ],
       "pipelines": [
         {
@@ -80518,7 +80518,11 @@
         "name": "SNPEFF_DOWNLOAD",
         "description": "Genetic variant annotation and functional effect prediction toolbox",
         "keywords": [
-          "annotation"
+          "annotation",
+          "effect prediction",
+          "snpeff",
+          "variant",
+          "vcf"
         ],
         "tools": [
           {
@@ -80547,7 +80551,7 @@
           },
           {
             "db": {
-              "type": "value",
+              "type": "string",
               "description": "which db to annotate with\n"
             }
           }
@@ -80587,8 +80591,10 @@
         "description": "Genetic variant annotation and functional effect prediction toolbox",
         "keywords": [
           "annotation",
+          "effect prediction",
+          "snpeff",
           "variant",
-          "effect prediction"
+          "vcf"
         ],
         "tools": [
           {
