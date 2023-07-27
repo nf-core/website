@@ -80,7 +80,7 @@ contributingDocs
                                 .map((doc) => {
                                     // check if this is a parent of a nested doc
                                     const childDocs = usageDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/')
+                                        childDoc.slug.startsWith(doc.slug + '/'),
                                     );
                                     if (childDocs.length > 0) {
                                         return (
@@ -131,7 +131,7 @@ contributingDocs
                                 .map((doc) => {
                                     // check if this is a parent of a nested doc
                                     const childDocs = contributingDocs.filter((childDoc) =>
-                                        childDoc.slug.startsWith(doc.slug + '/')
+                                        childDoc.slug.startsWith(doc.slug + '/'),
                                     );
                                     if (childDocs.length > 0) {
                                         return (

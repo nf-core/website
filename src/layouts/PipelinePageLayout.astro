@@ -5,7 +5,8 @@ import TabBar from '@components/TabBar.astro';
 import pipelines_json from '@public/pipelines.json';
 
 export interface Props {
-    pipeline?: string;
+    pipeline: string;
+    meta_title: string;
     subtitle?: string | null;
     version?: string;
     versions?: string[];
@@ -17,6 +18,7 @@ export interface Props {
 
 const {
     pipeline,
+    meta_title = pipeline,
     subtitle,
     headings,
     version,
@@ -90,6 +92,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
 
 <PageLayout
     title={'nf-core/' + pipeline}
+    meta_title={meta_title}
     subtitle={subtitle}
     mainpage_container={true}
     navTocHeadings={headings}
@@ -98,13 +101,17 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     topics={topics}
     sections={sections}
     viewTransitions={true}
+    docSearchTags={[
+        { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
+        { name: 'page_type', content: 'pipeline' },
+    ]}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
                 {!Astro.url.pathname.endsWith('/releases_stats/') && (
-                    <div class="input-group input-group-sm justify-content-end justify-content-md-center">
+                    <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
                         <label class="input-group-text" for="version_select">
                             <i class="fas fa-tags" />
                         </label>
@@ -118,7 +125,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 {version}
                             </button>
 
-                            <ul class="dropdown-menu dropdown-menu-end w-100">
+                            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
                                         let url = Astro.url.pathname.replace(
