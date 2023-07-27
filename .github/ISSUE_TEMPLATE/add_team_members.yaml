@@ -1,14 +1,14 @@
 name: Add team member
 description: Add your details to the team page on the website
-title: "[Team member]: "
-labels: ["team", "enhancement"]
+title: '[Team member]: '
+labels: ['team', 'enhancement']
 assignees:
   - priyanka-surana
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to add your details to the ToL website!  
+        Thanks for taking the time to add your details to the ToL website!
   - type: input
     id: name
     attributes:
@@ -25,8 +25,13 @@ body:
         - Platforms (ToLP)
         - Assembly (ToLA)
         - Curation (GRIT)
+        - Other
     validations:
       required: true
+  - type: input
+    id: teamname
+    attributes:
+      label: Team name (if "Other" selected)
   - type: input
     id: role
     attributes:
@@ -38,32 +43,17 @@ body:
     id: description
     attributes:
       label: Role description
-      description: Describe what you do and the projects/products you work on
+      description: Describe what you do and the projects/products/pipelines you work on
       placeholder: |
         Priyanka is a bioinformatician working on pipeline development and execution ...
     validations:
       required: true
-  - type: checkboxes
-    id: pipelines
-    attributes:
-      label: Which pipelines have you contributed towards?
-      options:
-        - label: blobtoolkit
-        - label: ensemblgenedownload
-        - label: ensemblrepeatdownload
-        - label: genomeassembly
-        - label: genomenote
-        - label: insdcdownload
-        - label: readmapping
-        - label: sequencecomposition
-        - label: treeval
-        - label: variantcalling
   - type: input
     id: github
     attributes:
       label: GitHub
       placeholder: |
-        @priyanka-surana
+        https://github.com/priyanka-surana
     validations:
       required: true
   - type: input

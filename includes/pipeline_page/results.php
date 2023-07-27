@@ -15,7 +15,7 @@ ob_start();
                     <div class="d-flex align-items-center title-bar flex-wrap flex-md-nowrap">
                         <!-- App title -->
                         <div class="title order-0 order-md-0">
-                            <i class="fab fa-aws fa-lg me-md-3"></i>
+                            <i class="fa-regular fa-folder-tree me-md-3"></i>
                         </div>
                         <!-- Bucket breadcrumbs -->
                         <ul id="breadcrumb" class="breadcrumb order-1 order-md-0 mb-0">
@@ -73,8 +73,8 @@ ob_start();
         }
     }
     var s3exp_config = {
-        Region: 'eu-west-1',
-        Bucket: 'nf-core-awsmegatests',
+        Region: 'us-east-1',
+        Bucket: 'sanger-tol-tests',
         Prefix: prefix,
         Suffix: suffix,
         Delimiter: '/'

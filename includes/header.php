@@ -140,21 +140,42 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
       </button>
       <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
         <ul class="navbar-nav">
+            
           <li class="nav-item p-1">
             <a class="nav-link" href="/">Home</a>
           </li>
+
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Teams</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/it">Informatics Infrastructure (IT)</a>
+            </div>
+	      </li>
+            
+          <li class="nav-item p-1 dropdown">
+            <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">Projects</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/genome_after_party">Genome After Party</a>
+            </div>
+	      </li>
+            
           <li class="nav-item p-1">
             <a class="nav-link" href="/pipelines">Pipelines</a>
           </li>
+
           <li class="nav-item p-1">
-            <a class="nav-link" href="/tools">Tools</a>
+            <a class="nav-link" href="/modules">Modules</a>
+          </li>
+            
+          <li class="nav-item p-1">
+            <a class="nav-link" href="/tools/">Tools</a>
           </li>
 <!--
-	  <li class="nav-item p-1">
+	      <li class="nav-item p-1">
             <a class="nav-link" href="/docs">Docs</a>
           </li>
 -->
-	  <li class="nav-item p-1">
+	      <li class="nav-item p-1">
             <a class="nav-link" href="/events"><?php if ($curr_event and $curr_event['ongoing']) {
                 echo '  <span class="fa-stack small text-danger">
                             <i class="fad fa-circle fa-stack-1x"></i>
@@ -162,21 +183,21 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
                         </span>';
             } ?>Events</a>
           </li>
-<!--
-	  <li class="nav-item p-1 dropdown">
+
+	      <li class="nav-item p-1 dropdown">
             <a class="nav-link dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">About</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/about">About sanger-tol</a>
               <a class="dropdown-item" href="/community">Community</a>
+              <a class="dropdown-item" href="/stats">Statistics</a>
               <a class="dropdown-item" href="/publications">Publications</a>
-              <a class="dropdown-item" href="/internships">Internships</a>
               <a class="dropdown-item" href="/code_of_conduct">Code of conduct</a>
               <a class="dropdown-item" href="/join">Join sanger-tol</a>
             </div>
-	  </li>
--->
+	      </li>
+
         </ul>
-<!--
+
 	<hr class="d-md-none">
         <a class="d-md-none btn d-block btn-success mb-3" href="/join">
           Join sanger-tol
@@ -184,7 +205,7 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
         <a class="d-none d-lg-block btn btn-success" style="position:absolute; right: 1rem;" href="/join">
           Join sanger-tol
 	</a>
--->
+
       </div>
     </div>
   </nav>

@@ -36,7 +36,7 @@ $(function () {
     let $this = $(this);
     $this.addClass('position-relative');
     var $copy_btn = $(
-      '<button class="btn btn-outline-secondary copy-button position-absolute top-0 end-0" data-bs-toggle="tooltip"  data-bs-placement="left" data-bs-original-title="Copy to clipboard" ><i class="fas fa-clipboard fa-swap-opacity"></i></button>'
+      '<button class="btn btn-outline-secondary copy-button position-absolute top-0 end-0" data-bs-toggle="tooltip"  data-bs-placement="left" data-bs-original-title="Copy to clipboard" ><i class="fas fa-clipboard fa-swap-opacity"></i></button>',
     );
     $this.append($copy_btn);
     var btn_tooltip = new bootstrap.Tooltip($copy_btn, { container: 'body' });
@@ -152,13 +152,13 @@ $(function () {
   }
   // page load
   if ($('.pipelines-toolbar .pipeline-filters input').val()) {
-    var ftext = $('.pipelines-toolbar .pipeline-filters input').val();
+    var ftext = $('.pipelines-toolbar .pipeline-filters input').val().trim();
     filter_pipelines_text(ftext);
     $('.pipelines-toolbar .pipeline-filters input').addClass('active');
   }
   // onchange
   $('.pipelines-toolbar .pipeline-filters input').keyup(function () {
-    var ftext = $('.pipelines-toolbar .pipeline-filters input').val();
+    var ftext = $('.pipelines-toolbar .pipeline-filters input').val().trim();
     filter_pipelines_text(ftext);
     if ($('.pipelines-toolbar .pipeline-filters input').val()) {
       $('.pipelines-toolbar .pipeline-filters input').addClass('active');
@@ -359,13 +359,13 @@ $(function () {
   }
   // page load
   if ($('.modules-toolbar .module-filters input').val()) {
-    var ftext = $('.modules-toolbar .module-filters input').val();
+    var ftext = $('.modules-toolbar .module-filters input').val().trim();
     filter_modules_text(ftext);
     $('.modules-toolbar .module-filters input').addClass('active');
   }
   // onchange
   $('.modules-toolbar .module-filters input').on('keyup', function () {
-    var ftext = $('.modules-toolbar .module-filters input').val();
+    var ftext = $('.modules-toolbar .module-filters input').val().trim();
     filter_modules_text(ftext);
   });
   // on facet click
@@ -493,6 +493,6 @@ function scroll_to(target_el, offset) {
     {
       scrollTop: el_offset,
     },
-    500
+    500,
   );
 }

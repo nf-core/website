@@ -59,7 +59,7 @@ function github_query($gh_query_url) {
         // a background job is also fired to start compiling these statistics.
         // Give the job a few moments to complete, and then submit the request again
         if (strpos($http_response_header[0], 'HTTP/1.1 202') !== false) {
-            echo "\nWaiting for GitHub API to return results for $gh_query_url";
+            echo "Waiting for GitHub API to return results for $gh_query_url \n";
             sleep(10);
             $first_page = true;
             continue;
@@ -127,8 +127,9 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     );
     foreach ($pipelines as $idx => $pipeline) {
         // get contributors
+        echo "Get contributors for pipeline ". $pipeline['name'] . "\n";
         $gh_contributors = github_query(
-            'https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/stats/contributors',
+            'https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/stats/contributors',
         );
         foreach ($gh_contributors as $contributor) {
             $pipeline_id = $pipeline['id'];
@@ -163,9 +164,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     echo "ERROR: Could not prepare query: $sql. " . mysqli_error($conn);
 }
 
-if (!mysqli_query($conn, $sql)) {
-    echo "ERROR: Could not execute $sql. " . mysqli_error($conn);
-}
+
 // create github_traffic_stats table with foreign keys to pipelines
 $sql = "CREATE TABLE IF NOT EXISTS github_traffic_stats (
             id             INT             AUTO_INCREMENT PRIMARY KEY,
@@ -192,8 +191,9 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
     mysqli_stmt_bind_param($stmt, 'iiiiis', $pipeline_id, $views, $views_uniques, $clones, $clones_uniques, $timestamp);
 
     foreach ($pipelines as $idx => $pipeline) {
-        $gh_views = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/views');
-        $gh_clones = github_query('https://api.github.com/repos/nf-core/' . $pipeline['name'] . '/traffic/clones');
+        echo "Get traffic views and clones for pipeline ". $pipeline['name'] . "\n";
+        $gh_views = github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/traffic/views');
+        $gh_clones = github_query('https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/traffic/clones');
         foreach ($gh_views['views'] as $gh_view) {
             $timestamp = date('Y-m-d H:i:s', strtotime($gh_view['timestamp']));
             $check =
@@ -204,11 +204,12 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 "'";
             $res = mysqli_query($conn, $check);
             if ($res->num_rows) {
-                echo "\n Entry already exists for pipeline_id " .
+                echo "Entry already exists for pipeline_id " .
                     $pipeline['id'] .
                     ' and timestamp ' .
                     $timestamp .
-                    ' db_timestamp ';
+                    ' db_timestamp ' .
+                    "\n";
                 continue;
             } else {
                 // get gh_clones where timestamp matches
@@ -267,7 +268,7 @@ $updated = time();
 $results_fn = dirname(__FILE__) . '/nfcore_stats.json';
 $contribs_fn_root = dirname(__FILE__) . '/contributor_stats/';
 
-echo "\nRunning update_stats - " . date('Y-m-d h:i:s') . "\n";
+echo "\nRunning update_stats to save into a file (OLD) - " . date('Y-m-d h:i:s') . "\n";
 
 // Initialise the results array with the current time and placeholders
 $results = [
@@ -321,11 +322,15 @@ foreach ($pipelines as $wf) {
     $results['pipelines'][$wf->name]['num_releases'] = count($wf->releases);
 }
 $ignored_repos = parse_ini_file('ignored_repos.ini')['repos'];
+
+/** 
+// don't store stats for non-pipeline repos
 foreach ($ignored_repos as $name) {
     if (!isset($results['core_repos'][$name])) {
         $results['core_repos'][$name] = [];
     }
 }
+*/
 
 // Delete cached pipelines stats for pipelines that have been deleted
 foreach (array_keys($results['pipelines']) as $wfname) {
@@ -339,7 +344,8 @@ foreach (array_keys($results['pipelines']) as $wfname) {
 
 // Get the current number of organisation members
 // Returns 30 results per page!
-$gh_members_url = 'https://api.github.com/orgs/nf-core/members';
+echo "Get all the github members.\n";
+$gh_members_url = 'https://api.github.com/orgs/sanger-tol/members';
 $results['gh_org_members'][$updated] = 0;
 $first_page = true;
 $next_page = false;
@@ -369,7 +375,8 @@ while ($first_page || $next_page) {
 }
 
 // Fetch all repositories at nf-core
-$gh_repos_url = 'https://api.github.com/orgs/nf-core/repos?per_page=100';
+echo "Get the list of repos from Github\n";
+$gh_repos_url = 'https://api.github.com/orgs/sanger-tol/repos?per_page=100';
 $gh_repos = json_decode(file_get_contents($gh_repos_url, false, $gh_api_opts));
 if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
     var_dump($http_response_header);
@@ -378,9 +385,12 @@ if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
 foreach ($gh_repos as $repo) {
     if (in_array($repo->name, $ignored_repos)) {
         $repo_type = 'core_repos';
+        // ignore non-pipeline repos for now
+        continue;
     } else {
         $repo_type = 'pipelines';
     }
+    echo " Repo " . $repo->name . "\n";
     $results[$repo_type][$repo->name]['repo_metrics'][$updated] = [
         'id' => $repo->id,
         'name' => $repo->name,
@@ -397,7 +407,7 @@ foreach ($gh_repos as $repo) {
         'archived' => $repo->archived,
     ];
     // Annoyingly, two values are only available if we query for just this repo
-    $gh_repo_url = 'https://api.github.com/repos/nf-core/' . $repo->name;
+    $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . $repo->name;
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
         var_dump($http_response_header);
@@ -409,10 +419,13 @@ foreach ($gh_repos as $repo) {
 }
 
 // Fetch new statistics for each repo
-foreach (['pipelines', 'core_repos'] as $repo_type) {
+echo "Fetch traffic views and clones for each repo, and the contributors\n";
+foreach (['pipelines'] as $repo_type) {
+//foreach (['pipelines', 'core_repos'] as $repo_type) {
     foreach ($results[$repo_type] as $repo_name => $repo_stats) {
+        echo " " . $repo_name . "\n";
         // Views
-        $gh_views_url = 'https://api.github.com/repos/nf-core/' . $repo_name . '/traffic/views';
+        $gh_views_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/views';
         $gh_views = json_decode(file_get_contents($gh_views_url, false, $gh_api_opts));
         if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             // Pipelines are removed from the cache earlier as we know their names
@@ -431,7 +444,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
             $results[$repo_type][$repo_name]['views_uniques'][$view->timestamp] = $view->uniques;
         }
         // Clones
-        $gh_clones_url = 'https://api.github.com/repos/nf-core/' . $repo_name . '/traffic/clones';
+        $gh_clones_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/traffic/clones';
         $gh_clones = json_decode(file_get_contents($gh_clones_url, false, $gh_api_opts));
         if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             var_dump($http_response_header);
@@ -443,7 +456,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
             $results[$repo_type][$repo_name]['clones_uniques'][$clone->timestamp] = $clone->uniques;
         }
         // Contributors
-        $gh_contributors_url = 'https://api.github.com/repos/nf-core/' . $repo_name . '/stats/contributors';
+        $gh_contributors_url = 'https://api.github.com/repos/sanger-tol/' . $repo_name . '/stats/contributors';
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root . $repo_name . '.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
@@ -459,15 +472,16 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo contributors! $gh_contributors_url";
             continue;
-        }
-        $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
-        $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
+        }else{
+          $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
+          $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
 
-        // Commits
-        $results[$repo_type][$repo_name]['commits'] = 0;
-        foreach ($gh_contributors as $contributor) {
-            $results[$repo_type][$repo_name]['commits'] += $contributor->total;
-        }
+            // Commits
+            $results[$repo_type][$repo_name]['commits'] = 0;
+            foreach ($gh_contributors as $contributor) {
+                $results[$repo_type][$repo_name]['commits'] += $contributor->total;
+            }
+        }   
 
         // Recalculate totals
         foreach (['views_count', 'views_uniques', 'clones_count', 'clones_uniques'] as $ctype) {
@@ -487,25 +501,30 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
 // Try contribs again now that we've let it fire
 if (count($contribs_try_again) > 0) {
     sleep(10);
+    echo "Retrying to get contributors for each repo.\n";
     foreach ($contribs_try_again as $repo_name => $details) {
+        echo " " . $repo_name ."\n";
         extract($details); // $repo_type, $gh_contributors_raw
         $gh_contributors_raw = file_get_contents($gh_contributors_url, false, $gh_api_opts);
         file_put_contents($contribs_fn_root . $repo_name . '.json', $gh_contributors_raw);
         $gh_contributors = json_decode($gh_contributors_raw);
         if (strpos($http_response_header[0], 'HTTP/1.1 202') !== false) {
-            echo "Tried getting contributors after delay for $repo_name, but took too long.";
+            echo "Tried getting contributors after delay for $repo_name, but took too long.\n";
             continue;
         } elseif (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             var_dump($http_response_header);
             echo "Could not fetch nf-core repo contributors! $gh_contributors_url";
             continue;
+        }else{
+          $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
+          $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
         }
-        $results[$repo_type][$repo_name]['contributors'] = $gh_contributors;
-        $results[$repo_type][$repo_name]['num_contributors'] = count($gh_contributors);
     }
 }
 
-foreach (['pipelines', 'core_repos'] as $repo_type) {
+echo "Count how many total contributors and contributions we have per week.\n";
+foreach (['pipelines'] as $repo_type) {
+//foreach (['pipelines', 'core_repos'] as $repo_type) {
     foreach ($results[$repo_type] as $repo_name => $repo_stats) {
         foreach ($results[$repo_type][$repo_name]['contributors'] as $idx => $contributor) {
             // Count how many total contributors and contributions we have per week
@@ -543,6 +562,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) {
     }
 }
 
+/** 
 //
 //
 // SLACK USERS
@@ -596,6 +616,7 @@ $twitter_stats = $connection->get('users/show', ['screen_name' => 'nf_core']);
 if (isset($twitter_stats->followers_count)) {
     $results['twitter']['followers_count'][$updated] = $twitter_stats->followers_count;
 }
+*/
 
 //
 //
@@ -609,3 +630,5 @@ $results_json = json_encode($results, JSON_PRETTY_PRINT) . "\n";
 file_put_contents($results_fn, $results_json);
 
 echo 'update_stats done ' . date('Y-m-d h:i:s') . "\n\n";
+
+

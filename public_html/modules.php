@@ -105,18 +105,20 @@ echo $msg;
                 <?php endforeach; ?>
             </ul>
         </div>
+        <!--
         <div class="pipeline_list">
             <ul class="list-unstyled">
-                <?php foreach ($pipelines as $pipeline): ?>
+                <?php /** foreach ($pipelines as $pipeline): */ ?>
                     <li class="facet-item">
                         <span class="facet-name"><?php echo trim($idx); ?></span>
                         <span class="facet-value badge rounded-pill bg-secondary float-end">
                             <?php echo $keyword; ?>
                         </span>
                     </li>
-                <?php endforeach; ?>
+                <?php /** endforeach; */ ?>
             </ul>
         </div>
+        -->
     </div>
     <div class="col-12 col-lg-9">
         <p class="no-modules text-muted mt-5" style="display: none;">No modules found..</p>
@@ -149,18 +151,22 @@ echo $msg;
 
                                 <?php
                                 $input_text = '<p class="d-flex flex-wrap">';
-                                foreach ($module['input'] as $input) {
-                                    foreach ($input as $name => $input_value) {
-                                        $description = $input_value['description'];
-                                        $description = str_replace('[', '<code class="px-0">[', $description);
-                                        $description = str_replace(']', ']</code>', $description);
-                                        $input_text .=
-                                            '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' .
-                                            $input_value['description'] .
-                                            '">' .
-                                            $name .
-                                            '</code>';
+                                if(is_array($module['input'])){
+                                    foreach ($module['input'] as $input) {
+                                        foreach ($input as $name => $input_value) {
+                                            $description = $input_value['description'];
+                                            $description = str_replace('[', '<code class="px-0">[', $description);
+                                            $description = str_replace(']', ']</code>', $description);
+                                            $input_text .=
+                                                '<code class="me-1 mt-1 py-0" data-bs-toggle="tooltip" title="' .
+                                                $input_value['description'] .
+                                                '">' .
+                                                $name .
+                                                '</code>';
+                                        }
                                     }
+                                }else{
+                                    $input_text .= "NO input";
                                 }
                                 $input_text .= '</p>';
                                 echo $input_text;

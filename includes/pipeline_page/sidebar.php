@@ -151,7 +151,7 @@ $embed_video = array_values($embed_video)[0];
     <div class="row border-bottom">
         <div class="col-6">
             <h6>last release</h6>
-            <p><a href="/<?php echo $pipeline->name; ?>/releases"><?php echo $last_release_time; ?></a></p>
+            <p><a href="<?php echo $pipeline->html_url; ?>/releases"><?php echo $last_release_time; ?></a></p>
         </div>
         <div class="col-6">
             <h6>last updated</h6>

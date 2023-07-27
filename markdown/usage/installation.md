@@ -11,6 +11,8 @@ menu:
 All nf-core pipelines use Nextflow, so this must be installed on the system where you launch your analysis.
 See [nextflow.io](https://www.nextflow.io/docs/latest/getstarted.html#installation) for the latest installation instructions. Once installed, see [_Nextflow configuration_](configuration.md) to set up Nextflow to run on your system.
 
+> **Note**: You don't need to install the `nf-core` command line tools to run nf-core pipelines, you only need Nextflow. They can help with certain things though. Installation instructions for those are further down..
+
 ### Typical installation
 
 Nextflow runs on most POSIX systems (Linux, macOS, etc) and can typically be installed by running these commands:
@@ -146,6 +148,18 @@ nf-core pipelines utilise the built-in support for software packaging that Nextf
   - Poorer reproducibility than Docker / Singularity
     - There can be changes in low-level package dependencies over time
     - The software still runs in your native operating system environment and so core system functions can differ
+- [Mamba](https://mamba.readthedocs.io/)
+  - A faster reimplementation of Conda
+  - Packaging system that manages environments instead of running analysis in containers
+  - Poorer reproducibility than Docker / Singularity
+    - There can be changes in low-level package dependencies over time
+    - The software still runs in your native operating system environment and so core system functions can differ
+- [Apptainer](https://apptainer.org/)
+  - Open source version of Singularity (split from Singularity in 2021)
+  - Used as an alternative to Docker on multi-user systems, such as HPC systems
+  - Also runs _containers_ and can create these from Docker images
+  - Does not need root access or any daemon processes - images are built from files
+  - NOTE: As of June 2023 this will use docker containers instead of using the pre-built singularity containers. To use the singularity containers you need to select the `singularity` profile with apptainer installed on your system; as `apptainer` defines `singularity` as an alias to the `apptainer` function this will currently work.
 
 ## Pipeline code
 

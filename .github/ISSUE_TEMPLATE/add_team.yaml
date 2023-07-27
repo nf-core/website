@@ -1,7 +1,7 @@
 name: Add team
 description: Add details to include your team details to the website
-title: "[Team]: "
-labels: ["team", "enhancement"]
+title: '[Team]: '
+labels: ['team', 'enhancement']
 assignees:
   - priyanka-surana
 body:
@@ -18,8 +18,13 @@ body:
         - Curation (GRIT)
         - Informatics Infrastructure (ToL–IT)
         - Platforms (ToLP)
+        - Other
     validations:
       required: true
+  - type: input
+    id: name
+    attributes:
+      label: Team Name (if "Other" selected)
   - type: textarea
     id: summary
     attributes:
@@ -53,26 +58,16 @@ body:
     id: members
     attributes:
       label: Current Members
-      description: Add the names and GitHub usernames for current members
+      description: Add full names for current members
       placeholder: |
-        Priyanka Surana (@priyanka-surana)
-        Matthieu Muffato (@muffato)
+        Priyanka Surana
+        Matthieu Muffato
         ...
-  - type: checkboxes
-    id: pipelines
+  - type: textarea
+    id: publications
     attributes:
-      label: Which pipelines has the team contributed towards?
-      options:
-        - label: blobtoolkit
-        - label: ensemblgenedownload
-        - label: ensemblrepeatdownload
-        - label: genomeassembly
-        - label: genomenote
-        - label: insdcdownload
-        - label: readmapping
-        - label: sequencecomposition
-        - label: treeval
-        - label: variantcalling
+      label: Publications
+      description: List publications associated with your team projects. Please do not add genome notes here.
   - type: input
     id: slack
     attributes:

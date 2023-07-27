@@ -1,7 +1,7 @@
 {
-    "name": "nf-co.re",
+    "name": "pipelines.tol.sanger.ac.uk",
     "version": "1.0.0",
-    "description": "<img src=\"public_html/assets/img/logo/nf-core-logo.png\" width=\"400\">",
+    "description": "<img src=\"public_html/assets/img/logo/samger-tol-logo.png\" width=\"400\">",
     "main": "index.js",
     "scripts": {
         "watch-sass": "sass --load-path=node_modules/ --watch public_html/assets/scss:public_html/assets/css",
@@ -16,18 +16,18 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nf-core/nf-co.re.git"
+        "url": "git+https://github.com/sanger-tol/pipelines-website.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/nf-core/nf-co.re/issues"
+        "url": "https://github.com/sanger-tol/pipelines-website/issues"
     },
-    "homepage": "https://github.com/nf-core/nf-co.re#readme",
+    "homepage": "https://github.com/sanger-tol/pipelines-website#readme",
     "dependencies": {
         "@highlightjs/cdn-assets": "^11.6.0",
         "autoprefixer": "^10.0.2",
-        "aws-sdk": "^2.994.0",
+        "aws-sdk": "^2.1423.0",
         "chart.js": "^2.9.4",
         "chartjs-plugin-zoom": "^0.7.7",
         "datatables.net": "^1.11.3",
@@ -37,6 +37,7 @@
         "jquery": "^3.6.0",
         "jquery-ui-dist": "^1.12.1",
         "leaflet": "^1.9.4",
+        "mermaid": "^9.2.0",
         "moment": "^2.29.4",
         "moment-timezone": "^0.5.35",
         "postcss-cli": "^8.2.0",
