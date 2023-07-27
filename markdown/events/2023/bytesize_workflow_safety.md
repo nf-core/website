@@ -6,8 +6,9 @@ start_date: '2023-05-23'
 start_time: '13:00 CET'
 end_date: '2023-05-23'
 end_time: '13:30 CET'
+youtube_embed: https://www.youtube.com/watch?v=A357C-ux6Dw
 location_url:
-  - https://seqera-io.zoom.us/j/89853414209?pwd=V2NoK1lvN0FGMDRhNW4rbXlhWVRvQT09
+  - https://www.youtube.com/watch?v=A357C-ux6Dw
 ---
 
 # nf-core/bytesize

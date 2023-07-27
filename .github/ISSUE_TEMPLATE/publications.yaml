@@ -1,0 +1,50 @@
+name: Add publications
+description: Add publication to the sanger-tol website
+title: '[Publication]: DOI'
+assignees:
+  - priyanka-surana
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to add this publication to the ToL website!
+  - type: input
+    id: context
+    attributes:
+      label: Which project/team is this publication associated with?
+      placeholder: |
+        GoaT
+    validations:
+      required: true
+  - type: textarea
+    id: citation
+    attributes:
+      label: Citation
+      description: Add citation for the publication.
+      placeholder: |
+        Challis R, Kumar S, Sotero-Caio C, Brown M, Blaxter M. Genomes on a Tree (GoaT): A versatile, scalable search engine for genomic and sequencing project metadata across the eukaryotic tree of life. Wellcome Open Res. 2023 Jan 17;8:24.
+    validations:
+      required: true
+  - type: input
+    id: doi
+    attributes:
+      label: DOI
+      description: Add DOI for the publication.
+      placeholder: |
+        10.12688/wellcomeopenres.18658.1
+    validations:
+      required: true
+  - type: textarea
+    id: information
+    attributes:
+      label: Any additional information
+      description: Feel free to add any information that provides context for the reviewers
+      placeholder: ...
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](http://pipelines.tol.sanger.ac.uk/code_of_conduct)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
