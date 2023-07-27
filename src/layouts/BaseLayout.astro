@@ -16,6 +16,10 @@ export interface Props {
     navTocHeadings?: object[];
     sections?: { section_name: string; children: {}[] }[] | never[];
     viewTransitions?: boolean;
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
 }
 
 const {
@@ -27,13 +31,20 @@ const {
     navTocHeadings = [],
     sections = [],
     viewTransitions = false,
+    docSearchTags = [],
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <BaseHead title={title} description={subtitle} image={image} viewTransitions={viewTransitions} />
+        <BaseHead
+            title={title}
+            description={subtitle}
+            image={image}
+            viewTransitions={viewTransitions}
+            docSearchTags={docSearchTags}
+        />
     </head>
 
     <body tabindex="0">

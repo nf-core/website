@@ -16,9 +16,11 @@ export function getStaticPaths() {
         props: { versions: string[]; md_files: string[]; description: string };
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', '')
+                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
             md_files.forEach((md_file) => {
                 paths.push({
@@ -28,7 +30,7 @@ export function getStaticPaths() {
                         md_file: md_file,
                     },
                     props: {
-                        versions: pipeline.releases.map((release) => release.tag_name),
+                        versions: releases.map((release) => release.tag_name),
                         md_files: md_files,
                         description: pipeline.description,
                     },
@@ -40,6 +42,9 @@ export function getStaticPaths() {
 }
 const { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
+if (version === 'latest') {
+    return Astro.redirect(`/${pipeline}/${versions[0]}/docs/${md_file}`);
+}
 let headings: {
     depth: number;
     text: string;
@@ -53,7 +58,8 @@ let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).len
 let sections = {};
 
 // add trailing slash to url if missing
-const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
 if (left_sidebar) {
@@ -98,7 +104,7 @@ const md_content = await cache
         // make relative links to other markdown files absolute to current Astro.url.pathname
         content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
             const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(
-                '/'
+                '/',
             );
             return `[${p1}](/${link})`;
         });
@@ -140,6 +146,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ' ' + section}
     subtitle={description}
     headings={headings}
     version={version}
@@ -156,7 +163,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
                 </div>
             )
         }
-        <div class:list={['col-12 pt-3', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
                 <Markdown of={md_content} />
             </MarkdownWrapper>

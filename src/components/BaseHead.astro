@@ -5,9 +5,13 @@ export interface Props {
     description: string;
     image?: string;
     viewTransitions: boolean;
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
 }
 
-const { title, description, image = '/social_img.png', viewTransitions = false } = Astro.props;
+const { title, description, image = '/social_img.png', docSearchTags = [] } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -43,6 +47,9 @@ const { title, description, image = '/social_img.png', viewTransitions = false }
 
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
+
+<!-- DocSearch -->
+{docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}
 
 <!-- Theme -->
 <script is:inline>
