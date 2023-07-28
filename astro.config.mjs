@@ -1,5 +1,6 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
@@ -27,6 +28,11 @@ import remarkMath from 'remark-math';
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
     .then((json) => json.tag_name);
+let latestPipelineReleases = {};
+
+pipelines_json.remote_workflows.map(
+    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`)
+);
 const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 // https://astro.build/config
 export default defineConfig({
@@ -34,11 +40,11 @@ export default defineConfig({
     output: 'hybrid',
     experimental: {
         assets: true,
-        redirects: true,
     },
     adapter: netlify(),
     redirects: {
         [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
+        ...latestPipelineReleases,
     },
     integrations: [
         svelte(),
