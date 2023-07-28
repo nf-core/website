@@ -11,7 +11,7 @@ export interface Props {
     }[];
 }
 
-const { title, description, image = '/social_img.png', docSearchTags = [] } = Astro.props;
+const { title, description, image = '/social_img.png', docSearchTags = [], viewTransitions = false } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -79,8 +79,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [] } = As
 
         setTheme(theme);
 
-        document.addEventListener('astro:load', () => {
-            console.log('astro:load');
+        document.addEventListener('astro:beforeload', () => {
             setTheme(theme);
         });
     }
@@ -88,7 +87,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [] } = As
 <script>
     import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-    document.addEventListener('astro:load', () => {
+    document.addEventListener('astro:beforeload', () => {
         console.log('getting tooltips');
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map((tooltipTriggerEl) => {

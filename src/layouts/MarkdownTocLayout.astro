@@ -13,6 +13,7 @@ export interface Props {
     event_header?: object[];
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    viewTransitions?: boolean;
     docSearchTags?: {
         name: string;
         content: string;
@@ -27,6 +28,7 @@ const {
     headings,
     left_sidebar,
     sections = [],
+    viewTransitions = false,
     docSearchTags = [],
 } = Astro.props;
 ---
@@ -63,6 +65,7 @@ const {
     navTocHeadings={headings}
     sections={sections}
     docSearchTags={docSearchTags}
+    viewTransitions={viewTransitions}
 >
     <div class="row">
         {
@@ -73,7 +76,7 @@ const {
             )
         }
         <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
-            <div class="markdown-content">
+            <div class="markdown-content" transition:animate="morph">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>

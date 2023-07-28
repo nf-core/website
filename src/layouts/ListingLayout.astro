@@ -41,6 +41,7 @@ export interface Props {
         config: {};
     }[];
     mainpage_container?: boolean;
+    viewTransitions?: boolean;
 }
 
 const {
@@ -53,11 +54,17 @@ const {
     components,
     configs,
     mainpage_container = false,
+    viewTransitions = false,
 } = Astro.props;
 ---
 
-<PageLayout title={title} subtitle={description} mainpage_container={mainpage_container}>
-    <div class="container-fluid main-content pt-md-2 p-1">
+<PageLayout
+    title={title}
+    subtitle={description}
+    mainpage_container={mainpage_container}
+    viewTransitions={viewTransitions}
+>
+    <div class="container-fluid main-content pt-md-2 p-1" transition:animate="morph">
         <slot />
         <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
         {!components && !configs && <PipelinesListing pipelines={pipelines} client:load />}

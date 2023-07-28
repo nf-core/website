@@ -19,7 +19,8 @@
     }
     onMount(() => {
         // set the first heading as active on initial load
-        if (!$currentHeading) {
+
+        if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
             currentHeading.set(headings[0]?.slug);
         }
         currentHeading.subscribe((slug) => {
@@ -35,7 +36,7 @@
 </script>
 
 {#if headings.length > 1}
-    <div class="nav flex-column sticky-top-under align-items-end">
+    <div class="nav flex-column sticky-top-under">
         <div class="d-none d-md-inline">
             <strong class="h6 my-2 text-body">On this page</strong>
             <!-- <hr class="my-1" /> -->
