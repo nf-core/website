@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 
+test.describe.configure({ mode: 'parallel' });
 // @ts-check
 
 test('meta is correct', async ({ page }) => {
