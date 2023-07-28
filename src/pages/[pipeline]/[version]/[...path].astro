@@ -10,11 +10,15 @@ if (meta) {
     // check if version starts with usage, output, or docs
     // if so, redirect to the versioned docs
     if (version?.startsWith('usage') || version?.startsWith('output') || version?.startsWith('docs')) {
-        console.log('redirecting ', version, ' to ', meta.default_version);
+        console.log('redirecting ', version, ' to ', meta.releases[0].tag_name);
         if (version === 'docs') {
             return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${path}`);
         }
         return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/${version}`);
+    }
+    if (version?.startsWith('results')) {
+        console.log('redirecting ', version, ' to ', meta.releases[0].tag_name, '/results');
+        return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/results/`);
     }
     const release = meta.releases.find((r) => r.tag_name === version);
     if (release) {

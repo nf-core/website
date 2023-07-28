@@ -13,9 +13,22 @@ export interface Props {
     event_header?: object[];
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
 }
 
-const { title, subtitle, md_github_url, event_header, headings, left_sidebar, sections = [] } = Astro.props;
+const {
+    title,
+    subtitle,
+    md_github_url,
+    event_header,
+    headings,
+    left_sidebar,
+    sections = [],
+    docSearchTags = [],
+} = Astro.props;
 ---
 
 <script>
@@ -49,6 +62,7 @@ const { title, subtitle, md_github_url, event_header, headings, left_sidebar, se
     mainpage_container={true}
     navTocHeadings={headings}
     sections={sections}
+    docSearchTags={docSearchTags}
 >
     <div class="row">
         {

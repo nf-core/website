@@ -87,7 +87,7 @@ export async function getStaticPaths() {
                 raw_config: Buffer.from(config.data.content, 'base64').toString(),
                 path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
             };
-        })
+        }),
     );
     return await configs.map((config) => {
         return [
@@ -124,6 +124,7 @@ const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configsl
     mainpage_container={true}
     md_github_url={gh_url}
     subfooter={true}
+    docSearchTags={[{ name: 'page_type', content: 'config' }]}
 >
     <div class="row">
         <div class="col-12 col-md-9">
