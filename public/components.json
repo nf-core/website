@@ -14586,13 +14586,13 @@
           },
           {
             "save_unaligned": {
-              "type": "value",
+              "type": "boolean",
               "description": "If true unmapped fastq files are saved"
             }
           },
           {
             "save_aligned": {
-              "type": "value",
+              "type": "boolean",
               "description": "If true mapped fastq files are saved"
             }
           }
@@ -14616,6 +14616,13 @@
               "type": "file",
               "description": "File containing classification results\n",
               "pattern": "*.{results.txt}"
+            }
+          },
+          {
+            "sam": {
+              "type": "file",
+              "description": "Optional output file containing read alignments (SAM format )or a table of per-read hit information (TAB)s\n",
+              "pattern": "*.{sam,tab}"
             }
           },
           {
@@ -26252,8 +26259,8 @@
       },
       "subworkflows": [
         "fastq_fastqc_umitools_fastp",
-        "fastq_fastqc_umitools_trimgalore",
-        "fastq_trim_fastp_fastqc"
+        "fastq_trim_fastp_fastqc",
+        "fastq_fastqc_umitools_trimgalore"
       ],
       "pipelines": [
         {
@@ -87089,7 +87096,11 @@
         "description": "uLTRA aligner - A wrapper around minimap2 to improve small exon detection",
         "keywords": [
           "uLTRA",
-          "minimap2"
+          "index",
+          "minimap2",
+          "long_read",
+          "isoseq",
+          "ont"
         ],
         "tools": [
           {
