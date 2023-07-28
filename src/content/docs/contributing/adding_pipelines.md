@@ -306,6 +306,16 @@ The nf-core website and helper tools will automatically detect the new release a
 
 That's it, you're finished! Congratulations!
 
+### Developing nf-core pipelines privately
+
+Generally we would like everyone to develop nf-core pipelines in the open, but we understand that this is not always possible. If you are developing a pipeline privately, you can still release it through nf-core, but you will need to be aware of a few things.
+
+Pipelines developed in private won't be given any special treatment and will be reviewed in the same way as other new pipelines. As such, we recommend that you follow the same steps as above, but with a private repository. Once the pipeline is ready for release, you can make it public and follow the steps above. If you can not make it public until after release, you can request community members to review the pipeline in the nf-core Slack channel `#request-review` before making it public.
+
+Additionally, private pipelines will not be given preference over another pipeline that has been developed in the open. If you are developing a pipeline privately, please be aware that another pipeline may be released before yours. In this case, we may not be able to accept your pipeline into nf-core and you may need to release it independently or merge it with the pipeline that has already been released.
+
+If you are considering developing a pipeline in private that you hope to release it through nf-core, please contact the nf-core core-team on Slack so we can discuss a pre-release strategy.
+
 ### Publications
 
 If you wish to make a publication based on the pipeline, make sure to follow the recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit).
