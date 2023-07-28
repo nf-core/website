@@ -15,7 +15,7 @@
             },
             {
                 rootMargin: '0px 0px -92% 0px',
-            }
+            },
         );
         Object.entries(schema.definitions).forEach((heading) => {
             const element = document.querySelector('#' + heading[0].replaceAll('_', '-'));

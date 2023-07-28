@@ -9,12 +9,14 @@ jobs:
   build-component-json:
     runs-on: ubuntu-latest
     environment: static-file-build
+    if: (github.event_name == 'schedule' && github.repository == 'nf-core/website') || (github.event_name != 'schedule')
 
     steps:
       # Set up the main website repo
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Don't do a shallow clone
+          token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
 
       # install npm dependencies
       - name: Set up node.js
@@ -71,11 +73,13 @@ jobs:
       # Commit and push the changes if there are not too many lines changed
       - name: Commit and push changes
         if: ${{ !steps.check_lines.outputs.changes }}
-        uses: EndBug/add-and-commit@v9
-        with:
-          default_author: user_info
-          author_name: nf-core-bot
-          author_email: core@nf-co.re
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git config push.default upstream
+          git status
+          git diff --quiet || (git commit -am "[automated] Update json files and markdown cache" && git push)
+
 
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
