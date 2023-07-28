@@ -47,7 +47,7 @@ subtitle = markdown(subtitle);
         </h1>
         {subtitle && <div class="lead mb-0 subtitle">{subtitle}</div>}
 
-        <div class="mb-2 mb-md-3">
+        <div class="mb-2 mb-md-3 topics">
             {topics && topics.map((topic) => <span class="badge topic me-2">{topic}</span>)}
         </div>
         {event_header && <EventHeader frontmatter={event_header} />}
