@@ -43,7 +43,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-{viewTransitions && <ViewTransitions fallback="swap" />}
+{viewTransitions && <ViewTransitions fallback="none" />}
 
 <!-- FontAwesome -->
 <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
