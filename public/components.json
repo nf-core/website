@@ -19407,7 +19407,7 @@
         },
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "phageannotator",
@@ -26128,8 +26128,8 @@
         ]
       },
       "subworkflows": [
-        "fastq_trim_fastp_fastqc",
-        "fastq_fastqc_umitools_fastp"
+        "fastq_fastqc_umitools_fastp",
+        "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
         {
@@ -26258,9 +26258,9 @@
         ]
       },
       "subworkflows": [
-        "fastq_trim_fastp_fastqc",
+        "fastq_fastqc_umitools_trimgalore",
         "fastq_fastqc_umitools_fastp",
-        "fastq_fastqc_umitools_trimgalore"
+        "fastq_trim_fastp_fastqc"
       ],
       "pipelines": [
         {
@@ -37767,7 +37767,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -47932,24 +47932,16 @@
             }
           },
           {
+            "db": {
+              "type": "directory",
+              "description": "Database directory containing taxdump files and taxid file"
+            }
+          },
+          {
             "search_results": {
               "type": "file",
               "description": "Gzipped file output from kmcp search module",
               "pattern": "*.gz"
-            }
-          },
-          {
-            "taxdump": {
-              "type": "directory",
-              "description": "Directory of NCBI taxonomy dump files - names.dmp, nodes.dmp",
-              "pattern": "*"
-            }
-          },
-          {
-            "taxid": {
-              "type": "file",
-              "description": "Tabular two-column file(s) mapping reference IDs to TaxIds.",
-              "pattern": "*.{csv,tsv}"
             }
           },
           {
@@ -47991,7 +47983,7 @@
       "path": "modules/nf-core/kmcp/search/meta.yml",
       "type": "module",
       "meta": {
-        "name": "kmcp_compute",
+        "name": "kmcp_search",
         "description": "Search sequences against database",
         "keywords": [
           "metagenomics",
@@ -58009,7 +58001,7 @@
         },
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "phageannotator",
@@ -59952,7 +59944,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60032,7 +60024,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60112,7 +60104,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60185,7 +60177,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60258,7 +60250,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60338,7 +60330,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60411,7 +60403,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60484,7 +60476,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -60557,7 +60549,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -73163,7 +73155,7 @@
         },
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "radseq",
@@ -77643,7 +77635,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -79808,7 +79800,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -84995,7 +84987,7 @@
         },
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "viralrecon",
@@ -90932,7 +90924,7 @@
       "pipelines": [
         {
           "name": "pangenome",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
