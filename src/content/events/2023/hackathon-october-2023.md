@@ -52,75 +52,52 @@ The hackathon will run from Monday 16th October to **Wednesday 18th October.
         </thead>
     <tbody>
       <tr>
-        <td>10:00</td>
+        <td data-timestamp="1697443200" data-timeformat="HH:mm z">10:00</td>
         <td>Arrivals &amp; Registration</td>
         <td rowspan="4">Hack!</td>
         <td rowspan="3">Hack!</td>
       </tr>
       <tr>
-        <td>11:00</td>
+        <td data-timestamp="1697446800" data-timeformat="HH:mm z">11:00</td>
         <td>Welcome</td>
       </tr>
       <tr>
-        <td>11:30</td>
+        <td data-timestamp="1697448600" data-timeformat="HH:mm z">11:30</td>
         <td rowspan="2">Hack!</td>
       </tr>
       <tr>
-        <td>12:30</td>
+        <td data-timestamp="1697452200" data-timeformat="HH:mm z">12:30</td>
         <td>Final wrap up</td>
       </tr>
       <tr>
-        <td>13:00</td>
-        <td rowspan="2">Lunch</td>
-        <td rowspan="2">Lunch</td>
-        <td rowspan="2">Lunch</td>
+        <td data-timestamp="1697454000" data-timeformat="HH:mm z">13:00</td>
+        <td rowspan="1">Lunch</td>
+        <td rowspan="1">Lunch</td>
+        <td rowspan="1">Lunch</td>
       </tr>
       <tr>
-        <td>13:30</td>
+        <td data-timestamp="1697457600" data-timeformat="HH:mm z">14:00</td>
+        <td rowspan="1">Hack!</td>
+        <td rowspan="1">Hack!</td>
+        <td rowspan="5"></td>
       </tr>
       <tr>
-        <td>14:00</td>
-        <td rowspan="8">Hack!</td>
-        <td rowspan="8">Hack!</td>
-        <td rowspan="12"></td>
-      </tr>
-      <tr>
-        <td>14:30</td>
-      </tr>
-      <tr>
-        <td>15:00</td>
-      </tr>
-      <tr>
-        <td>15:30</td>
-      </tr>
-      <tr>
-        <td>16:00</td>
-      </tr>
-      <tr>
-        <td>16:30</td>
-      </tr>
-      <tr>
-        <td>17:00</td>
-      </tr>
-      <tr>
-        <td>17:30</td>
-      </tr>
-      <tr>
-        <td>18:00</td>
+        <td data-timestamp="1697472000" data-timeformat="HH:mm z">18:00</td>
         <td>Day Summary</td>
         <td>Day Summary</td>
       </tr>
       <tr>
-        <td>18:30</td>
+        <td data-timestamp="1697473800" data-timeformat="HH:mm z">18:30</td>
         <td rowspan="3"></td>
         <td></td>
       </tr>
       <tr>
-        <td>19:00</td>
+        <td data-timestamp="1697477400" data-timeformat="HH:mm z">19:00</td>
         <td rowspan="2">Hackathon Social</td>
       </tr>
       <tr>
-        <td>00:00</td>
+      1697493600
+        <td data-timestamp="1697493600" data-timeformat="HH:mm z">00:00</td>
       </tr>
     </tbody>
     </table>
