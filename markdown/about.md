@@ -13,9 +13,9 @@ Please note that all community members are expected to adhere to our [code of co
 The [Informatics Infrastructure team](/it) provides support for the production of reference genome assemblies and large-scale genome analyses in the Tree of Life programme, and helps with the management and use of informatics resources and digital solutions. Current members are listed below:
 
 - [Matthieu Muffato](/it#matthieu-muffato)
-- Guoying Qi
+- [Guoying Qi](/it#guoying-qi)
 - [Priyanka Surana](/it#priyanka-surana)
-- Cibin Sadasivan Baby
+- [Cibin Sadasivan Baby](/it#cibin-sadasivan-baby)
 - [Cibele Sotero-Caio](/it#cibele-sotero-caio)
 - [Paul Davis](/it#paul-davis)
 - [Beth Yates](/it#beth-yates)
@@ -35,7 +35,7 @@ The current safety team in 2023 are:
 <img src="/assets/img/contributors-colour/wellcome.png" alt="Wellcome" height=75px class="float-end darkmode-image me-5 mb-5 ms-3">
 <img src="/assets/img/contributors-colour/sanger.svg" alt="Sanger" height=75px class="float-end darkmode-image me-5 mb-5 ms-3">
 
-Tree of Life is a core funded programme within the Wellcome Sanger Institute and is allocated a slice of the Institute’s core Wellcome grant.
+Tree of Life is a core funded programme within the Wellcome Sanger Institute and is allocated a slice of the Institute’s core Wellcome grant ref. 220540/Z/20/A.
 
 <br clear="all" />
 

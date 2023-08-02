@@ -19,3 +19,5 @@ This page includes step-by-step guides, walkthroughs, and general long-form intr
   <div class="ratio ratio-16x9">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/0xjc7PkF1Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
+- [Tutorial: Using nf-core/configs outside nf-core](tutorials/nf_core_configs_outside_nf_core.md)
+  - Guidance on how to use nf-core's centralised institutional configs in your own custom workflows.

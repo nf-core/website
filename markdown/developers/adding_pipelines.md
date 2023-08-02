@@ -17,7 +17,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 
 1. [Joining the community](#join-the-community)
 2. [Creating a pipeline](#create-a-pipeline-from-the-template)
-3. [Adding test data](#add-some-test-data)
+3. [Running with test data](#running-with-test-data)
 4. [Adding to the nf-core organisation](#adding-your-pipeline-to-the-nf-core-organisation)
 5. [Making your first release](#making-the-first-release)
 6. [Updates and new releases](#subsequent-releases)
@@ -25,9 +25,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 ## Join the community
 
 At its heart, nf-core is a community - to add a pipeline you need to be part of that community!
-Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
-and introduce yourself on [Slack](https://nf-co.re/join/slack) or the
-[mailing list](https://groups.google.com/forum/#!forum/nf-core).
+Please join us on [Slack](https://nf-co.re/join/slack), and ask to be added to the GitHub association through the [#github-invitations](https://nfcore.slack.com/channels/github-invitations) channel. If you feel like it, you can go to the [#say-hello](https://nfcore.slack.com/channels/say-hello) channel and introduce yourself to the rest of the community.
 
 **⚠️ It's good to introduce your idea early on so that it can be discussed, before you spend lots of time coding. ⚠️**
 
@@ -39,7 +37,10 @@ pipeline to the one you're planning.
 To avoid problems at a later date, please come and discuss your plans with the nf-core community as early
 as possible. Ideally before you make a start on your pipeline!
 
-> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows). However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code. All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline. If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
+> Not all pipelines are suitable for inclusion in the main nf-core community (eg. bespoke or proprietary workflows).
+> However, we hope that you may still wish to use the nf-core template and/or use components of nf-core code.
+> All nf-core code is under a MIT license and where possible we have endeavoured to make the tools work with any Nextflow pipeline.
+> If this is the case for you, please see the [unofficial pipelines tutorial](/docs/contributing/tutorials/unofficial_pipelines.md) for more details.
 
 All nf-core discussion happens on the nf-core Slack, which you can join here:
 [https://nf-co.re/join](https://nf-co.re/join)
@@ -49,48 +50,79 @@ These topics are specifically discussed in the `#new-pipelines` channel:
 
 ## Create a pipeline from the template
 
-You'll start by making a new pipeline locally and working with it on your own GitHub account.
-Only when it's ready do we move it to the nf-core GitHub organisation.
+### Request a new pipeline
 
-It's _highly_ recommended to use the nf-core template.
-The guidelines for nf-core pipelines are pretty strict, but if you start your pipeline by using the
-nf-core template (`nf-core create` - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline))
-then your life will be much easier.
+Before you get too carried away, the first task is to request the new pipeline in the nf-core Slack.
+We have a Slack channel dedicated to this: `#new-pipelines`.
+
+There, you will find a _Workflow_ bookmarked to top of the Slack window called _Pipeline proposal_.
+This gives you a form to fill in with key information about the pipeline you want to write.
+
+The proposal will be discussed and checked for uniqueness (not too much overlap with any existing pipelines)
+and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/35/) on GitHub.
+
+Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
+
+### Create the pipeline
+
+You'll start by making a new pipeline locally and working with it on your own GitHub account.
+Once you have a version of the pipeline that runs, ask the core team to _move_ the repo to the nf-core GitHub organisation for final development, review and release.
+
+We generally don't create repositories within the nf-core organisation from the start, in case development takes longer than expected.
+This way we avoid having a lot of "empty" pipelines listed which are basically just the template.
+See [Adding your pipeline to the nf-core organisation](#adding-your-pipeline-to-the-nf-core-organisation) below for details on this process.
+
+All nf-core pipelines [_must_ use the nf-core template](https://nf-co.re/docs/contributing/guidelines/requirements/use_the_template).
+This is done by using the `nf-core create` command - see [the docs](https://nf-co.re/tools#creating-a-new-pipeline) for detailed instructions.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
 
-Even if you already have a working pipeline, it may be easier in the long run to use this this template
-and copy over your code in the relevant places.
+If you already have a working Nextflow pipeline that you're starting from, it's usually easier in the long run to start fresh with the nf-core template and copy over your code in the relevant places.
+Some exceptions can be made - ask the core team on Slack if you're unsure.
+You'll need to set up [manual synchronisation](sync.md), not for the faint hearted!
 
-If you really don't want to use the template it should possible to work without it.
-Please see the [manual synchronisation](sync.md) documentation.
+Once the template for your pipeline is created, make sure to switch branch to the `dev` branch with `git checkout dev`.
+All development should happen on dev (or on other branches that get merged into dev).
 
-> Note that workflow names should be all lower-case and contain no punctuation.
+> NB: Pipeline names must be all lower-case and contain no punctuation.
 > This is to allow consistent names between platforms.
 
 ### Push to GitHub
 
 Create an empty repository on GitHub for your new pipeline under your personal account.
 Do this by going to the GitHub website and clicking + then _New Repository_.
-Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository. It will be populated after you push the template you created locally with all you need to start working on your pipeline.
 
-Once created, copy the URL and add this as a remote to your local git repository
-and push your code:
+Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you just want an empty repository.
+You already have these files generated from the nf-core template.
+
+Once created, copy the git URL and add this as a remote to your local git repository.
+The `nf-core create` command will have initialised a git repository for you,
+so all you need to do is add the remote:
 
 ```bash
 ## Add a remote called 'origin' - this is the default name for a primary remote
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-## Commit any new code changes since you ran the template
-git add .
-git commit -m "Starting to build my pipeline"
-## Push to GitHub
-git push
 ```
+
+The create command also generated the three standard nf-core branches (`master`, `dev` and `TEMPLATE`),
+together with an initial commit which is shared between them.
+This git structure is required for automatic template synchronisation in the future.
+
+You need to push these new branches to the remote GitHub repository:
+
+```bash
+git push --all origin
+```
+
+You should now see the vanilla nf-core template and branches in the github.com web interface.
 
 ### Work on your pipeline
 
 Ok, now you're all set with your own personal nf-core pipeline!
 You can now start writing code for real.
+
+Follow usual git development practices, working on the `dev` branch and committing + pushing code as normal.
+
 Remember to run the `nf-core lint` command (see [docs](https://nf-co.re/tools#linting-a-workflow))
 to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
@@ -113,7 +145,7 @@ Instead, we use the dedicated [nf-core/test-datasets](https://github.com/nf-core
 To set this up, make a fork of that repo to your personal account.
 Clone the repository and check out a new branch for your workflow:
 
-```console
+```bash
 git clone https://github.com/YOUR_USERNAME/test-datasets.git
 cd test-datasets
 git checkout -b MY_WORKFLOW
@@ -128,7 +160,7 @@ before adding any test data!
 
 Once added, push these new files to GitHub:
 
-```console
+```bash
 git add .
 git commit -m "Added test data for MY_WORKFLOW"
 git push --set-upstream origin MY_WORKFLOW
@@ -140,14 +172,14 @@ to the [repository GitHub web page](https://github.com/nf-core/test-datasets/) a
 this new branch using the UI there.
 Once created, you can open a pull request and select this as the target branch.
 
-If in doubt, ask for help!
-([Slack](https://nf-co.re/join/slack) or [mailing list](https://groups.google.com/forum/#!forum/nf-core))
+Don't forget to ask for help if you have any doubts!
+([Slack](https://nf-co.re/join/slack),alternatively if you already joined Slack you can go directly to the [#help](https://nfcore.slack.com/channels/help) channel)
 
 ### Setting up a test workflow
 
 Now that your test data is hosted on the web, you can set up a `test` config profile in your
 workflow that points to it.
-In fact, the `test` profile should already exist if you've used the template.
+A stub `test` profile should already exist in `conf/test.config`, so you just need to edit that file.
 Switch out the example URLs for the ones you added (view the files on GitHub and click 'Raw' to get the URL).
 
 Add any other required parameters so that running the pipeline runs with as few extra
@@ -156,7 +188,7 @@ or `conda`, so your config should not specify a hardware environment.
 
 Have a go at running the pipeline and see if it works:
 
-```console
+```bash
 nextflow run MY_WORKFLOW -profile test,docker --outdir <OUTDIR>
 ```
 
@@ -271,6 +303,10 @@ The nf-core website and helper tools will automatically detect the new release a
 
 That's it, you're finished! Congratulations!
 
+### Publications
+
+If you wish to make a publication based on the pipeline, make sure to follow the recommended [nf-core guidelines](/docs/contributing/guidelines/recommendations/publication_credit).
+
 ### Subsequent releases
 
 Once you've made your first release you can continue to work on your fork and make pull-requests
@@ -299,6 +335,24 @@ Basic rules for such contributions:
 Sometimes, especially when adding new features to a pipeline, the dependencies change as well. In such cases, you might want to have an updated Docker Container available before submitting a pull request, in order to have the GitHub Actions tests run through when testing your updated code. To achieve that, please follow these steps:
 
 - Add _only_ the newly required dependencies to the `environment.yml` in the pipeline code
+- If you only add new processes to an already existing pipeline however, you can simply specify the container in the `nextflow.config` file, like so:
+
+```nextflow
+process {
+    withName:foo {
+        container = 'image_name_1'
+    }
+    withName:bar {
+        container = 'image_name_2'
+    }
+}
+charliecloud {
+    enabled = true
+}
+```
+
+An extensive guide on how to handle containers can be found [here](https://www.nextflow.io/docs/latest/container.html)
+
 - List this new dependency as something new in the `CHANGELOG`
 - Create a Pull Request including only these two changes against the `dev` branch of the pipeline you're working on
 
@@ -310,14 +364,14 @@ This way, a review process will be very fast and we can merge the changes into t
 
 You will find the following files in each nf-core pipeline. They are automatically generated, when running `nf-core create`.
 
-- `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflow/` directory is called for execution.
+- `main.nf`: This is the main nextflow file which will get executed if the pipeline is run. Typically, parameters are initialized and validated in this script before a workflow from the `workflows/` directory is called for execution.
 
 * `nextflow.config`: The main nextflow configuration file. It contains the default pipeline parameters, nextflow configuration options and information like pipeline and minimum nextflow version, among others.
   The `nextflow.config` also defines different configuration profiles that can be used to run the pipeline. See the [Configuration docs](/docs/usage/configuration) for more information.
 
 - `README.md`: Basic information about the pipeline and usage
 
-- `nextflow_json.schema`: The JSON schema file is used for pipeline parameter specification. This is automatically created using the `nf-core schema build` command. It is used for printing command-line help, validating input parameters, building the website docs and for building pipeline launch interfaces (web and cli).
+- `nextflow_schema.json`: The JSON schema file is used for pipeline parameter specification. This is automatically created using the `nf-core schema build` command. It is used for printing command-line help, validating input parameters, building the website docs and for building pipeline launch interfaces (web and cli).
 
 - `CHANGELOG.md`: Information about the changes made to the pipeline for each release.
 
@@ -333,11 +387,21 @@ You will find the following files in each nf-core pipeline. They are automatical
 
 - `.editorconfig`: Editorconfig file that helps assuring consistent coding style
 
-- `.markdownlint.yml`: Markdown lint configuration file to assure consistent markdown files
+- `.prettierrc.yml`: Prettier lint configuration file to assure consistent markdown files
+
+- `.prettierignore`: Files that should be ignored by prettier
 
 - `modules.json`: This file holds information (e.g. version) about all the modules in the pipeline that have been installed from `nf-core/modules`
 
+- `.nf-core.yml`: Indicates the type of repository (pipeline or modules repo)
+
+- `.gitpod.yml`: Config file to define online working environment with <https://www.gitpod.io>
+
+- `pyproject.toml`: Config file for Python. Mostly used to configure linting of `bin/check_samplesheet.py` with Black
+
 ### Directories
+
+- `.devcontainer`: Configuration to work with the [GitHub Codespaces](https://github.com/features/codespaces) online editing environments.
 
 - `.github/`: Other GitHub specific files, e.g. for specifying templates and GitHub actions
 
@@ -370,26 +434,13 @@ To assure that nf-core pipelines don't break after some change is made to the co
 
 ## DSL2 and modules
 
-Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. Currently, most nf-core pipelines are still entirely written in DSL1, but in the near future all pipelines will be written in DSL2. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
+Nextflow DSL2 allows for a more modularized design of pipelines and the reuse of components. The nf-core team has developed a set of design patterns on how to best implement DSL2 pipelines, which should be used by all nf-core pipelines in order to assure standardization and the reuse of components. The following is meant to help understand certain design choices and how a nf-core DSL2 pipeline should be build.
 
 ### Modules
 
-Each pipeline has a `modules` directory which contains all the module code. A module here depicts a single process which involves - if possible - only a single tool/software. The `modules` directory is furthermore divided into `local`and `nf-core` sub-directories, which themselves each have a `process`/`software` and `subworkflow` directory. Modules contained in the `local` directory are specific to the pipeline, whereas `nf-core` modules are installed from the `nf-core/modules` repository. For instance, most pipelines that involve FastQ files will run the FastQC tool for quality control. The module needed for this can be easily reused from the `nf-core/modules` directory using the `nf-core/tools`package. The `process` directories contain modules which define single processes, which smaller workflows are contained in the `subworkflow` directories.
+Each pipeline has a `modules` directory which contains all the module code. A module here depicts a single process which involves - if possible - only a single tool/software. The `modules` directory is furthermore divided into `local`and `nf-core` sub-directories, where local contains the `samplesheet_check.nf`. Modules contained in the `local` directory are specific to the pipeline, whereas `nf-core` modules are installed from the `nf-core/modules` repository. For instance, most pipelines that involve FastQ files will run the FastQC tool for quality control. The module needed for this can be easily reused from the `nf-core/modules` directory using the `nf-core/tools`package.
 
-All modules load utility functions from a `functions.nf` script that must be contained in the `modules/local/process` directory. It contains simple functions to initialize the module options, get the software version, save files and get a path from a string. For further explanations of modules and how they should be structured in DSL2 pipelines, check out the [nf-core modules repo](https://github.com/nf-core/modules).
-
-### Module parameters
-
-One thing that might not be straightforward is how module parameters are handled in nf-core DSL2 pipelines. Every module and subworkflow, when loaded into the pipeline, has to be passed a groovy map containing module options. For single processes this is typically only a single `options` map, while for subworkflows these can be several maps that are then passed down to the correct processes within the subworkflows. These `options` maps are directly loaded from the `modules.config` file (contained in the pipeline `conf` directory), which is the place where all additional and optional parameters for modules are stored. Modules should be build in a way such that they are flexible with respect to the parameters, so that most command line parameters can be passed to them via the `modules.config`. This way, all command line parameters and other options can be modified within a single script, which makes it easy for users to adjust the pipeline and at the same time makes modules more reusable.
-
-The `modules.config` file should contain a `params.modules` dictionary which lists every module used in the pipeline. For each module, the following fields can be specified:
-
-- `args`: additional arguments appended to command in the module
-- `args2`: Second set of arguments append to command in the module (multi-tool modules)
-- `publish_dir`: Directory to publish the results
-- `publish_by_id`: Publish results in separate folder by meta.id value
-- `publish_files`: Groovy map where key = "file_ext" and value = "directory" to publish results for that file extension. The value of "directory" is appended to the standard "publish_dir" path as defined above. If publish_files == null (unspecified) all files are published. If publish_files == false no files are published.
-- `suffix`: File name suffix for output files
+For more informations and a comprehensive guide on the guidelines of how to implement modules in pipelines please refer to the [DSL 2 Modules](https://nf-co.re/docs/contributing/modules) page
 
 ### Sample meta information
 
