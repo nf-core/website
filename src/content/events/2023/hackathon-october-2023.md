@@ -38,11 +38,103 @@ The 2022 Barcelona hackathon did sell out. So be sure to register early to avoid
 
 # Schedule
 
-The hackathon will run from **Monday 16th October** to **Wednesday 18th October**.
-More information about the hackathon and associated social events will be added here as it becomes available.
+The hackathon will run from Monday 16th October to **Wednesday 18th October.
 
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Mon. 16 Oct., 2023</th>
+                <th>Tue. 17 Oct., 2023</th>
+                <th>Wed. 18 Oct., 2023</th>
+            </tr>
+        </thead>
+    <tbody>
+      <tr>
+        <td>10:00</td>
+        <td>Arrivals &amp; Registration</td>
+        <td rowspan="4">Hack!</td>
+        <td rowspan="3">Hack!</td>
+      </tr>
+      <tr>
+        <td>11:00</td>
+        <td>Welcome</td>
+      </tr>
+      <tr>
+        <td>11:30</td>
+        <td rowspan="2">Hack!</td>
+      </tr>
+      <tr>
+        <td>12:30</td>
+        <td>Final wrap up</td>
+      </tr>
+      <tr>
+        <td>13:00</td>
+        <td rowspan="2">Lunch</td>
+        <td rowspan="2">Lunch</td>
+        <td rowspan="2">Lunch</td>
+      </tr>
+      <tr>
+        <td>13:30</td>
+      </tr>
+      <tr>
+        <td>14:00</td>
+        <td rowspan="8">Hack!</td>
+        <td rowspan="8">Hack!</td>
+        <td rowspan="12"></td>
+      </tr>
+      <tr>
+        <td>14:30</td>
+      </tr>
+      <tr>
+        <td>15:00</td>
+      </tr>
+      <tr>
+        <td>15:30</td>
+      </tr>
+      <tr>
+        <td>16:00</td>
+      </tr>
+      <tr>
+        <td>16:30</td>
+      </tr>
+      <tr>
+        <td>17:00</td>
+      </tr>
+      <tr>
+        <td>17:30</td>
+      </tr>
+      <tr>
+        <td>18:00</td>
+        <td>Day Summary</td>
+        <td>Day Summary</td>
+      </tr>
+      <tr>
+        <td>18:30</td>
+        <td rowspan="3"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>19:00</td>
+        <td rowspan="2">Hackathon Social</td>
+      </tr>
+      <tr>
+        <td>00:00</td>
+      </tr>
+    </tbody>
+    </table>
+</div>
+
+# Groups
+
+To keep work and discussion during the hackathon manageable, we will organise everyone into groups. You are free to change groups as you wish during the hackathon.
+
+We will coordinate our work and the issues we are working on using a single GitHub project board (we’ll post a link to here closer to the time). There will be a separate tab for each group where will have collated a list of relevant issues.
 # Venue: Hotel SB Glow
 
-The in-person hackathon will be taking place at Hotel SB Glow. More information about this venue can be found the the Nextflow Summit website.
+The in-person hackathon will be taking place at Hotel SB Glow.
+
+More information about this venue can be found the the [Nextflow Summit website](https://summit.nextflow.io/).
 
 [👉🏻 Google Maps 🗺️](https://goo.gl/maps/6uKCKkbciLAR5qgSA)
