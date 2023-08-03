@@ -130,12 +130,12 @@ class RepoHealth {
     public $branch_main_exists;
     public $branch_dev_exists;
     public $branch_template_exists;
-    public $branch_master_strict_updates;
-    public $branch_master_required_ci;
-    public $branch_master_stale_reviews;
-    public $branch_master_code_owner_reviews;
-    public $branch_master_required_num_reviews;
-    public $branch_master_enforce_admins;
+    public $branch_main_strict_updates;
+    public $branch_main_required_ci;
+    public $branch_main_stale_reviews;
+    public $branch_main_code_owner_reviews;
+    public $branch_main_required_num_reviews;
+    public $branch_main_enforce_admins;
     public $branch_dev_strict_updates;
     public $branch_dev_required_ci;
     public $branch_dev_stale_reviews;
@@ -888,12 +888,12 @@ $base_test_names = [
     'branch_main_exists' => 'main: exists',
     'branch_dev_exists' => 'dev: exists',
     'branch_template_exists' => 'TEMPLATE: exists',
-    'branch_master_strict_updates' => 'master: strict updates',
-    'branch_master_required_ci' => 'master: required CI',
-    'branch_master_stale_reviews' => 'master: stale reviews',
-    'branch_master_code_owner_reviews' => 'master: code owner reviews',
-    'branch_master_required_num_reviews' => 'master: 2 reviews',
-    'branch_master_enforce_admins' => 'master: enforce admins',
+    'branch_main_strict_updates' => 'main: strict updates',
+    'branch_main_required_ci' => 'main: required CI',
+    'branch_main_stale_reviews' => 'main: stale reviews',
+    'branch_main_code_owner_reviews' => 'main: code owner reviews',
+    'branch_main_required_num_reviews' => 'main: 2 reviews',
+    'branch_main_enforce_admins' => 'main: enforce admins',
     'branch_dev_strict_updates' => 'dev: strict updates',
     'branch_dev_required_ci' => 'dev: required CI',
     'branch_dev_stale_reviews' => 'dev: stale reviews',
@@ -917,12 +917,12 @@ $base_test_descriptions = [
     'branch_main_exists' => 'main branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
     'branch_template_exists' => 'TEMPLATE branch: branch must exist',
-    'branch_master_strict_updates' => 'master branch: do not require branch to be up to date before merging',
-    'branch_master_required_ci' => 'master branch: minimum set of CI tests must pass',
-    'branch_master_stale_reviews' => 'master branch: reviews not marked stale after new commits',
-    'branch_master_code_owner_reviews' => 'master branch: code owner reviews not required',
-    'branch_master_required_num_reviews' => 'master branch: 2 reviews required',
-    'branch_master_enforce_admins' => 'master branch: do not enforce rules for admins',
+    'branch_main_strict_updates' => 'main branch: do not require branch to be up to date before merging',
+    'branch_main_required_ci' => 'main branch: minimum set of CI tests must pass',
+    'branch_main_stale_reviews' => 'main branch: reviews not marked stale after new commits',
+    'branch_main_code_owner_reviews' => 'main branch: code owner reviews not required',
+    'branch_main_required_num_reviews' => 'main branch: 2 reviews required',
+    'branch_main_enforce_admins' => 'main branch: do not enforce rules for admins',
     'branch_dev_strict_updates' => 'dev branch: do not require branch to be up to date before merging',
     'branch_dev_required_ci' => 'dev branch: minimum set of CI tests must pass',
     'branch_dev_stale_reviews' => 'dev branch: reviews not marked stale after new commits',
@@ -946,12 +946,12 @@ $base_test_urls = [
     'branch_main_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_dev_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_template_exists' => 'https://github.com/sanger-tol/{repo}/branches',
-    'branch_master_strict_updates' => 'https://github.com/sanger-tol/{repo}/settings/branches',
-    'branch_master_required_ci' => 'https://github.com/sanger-tol/{repo}/settings/branches',
-    'branch_master_stale_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
-    'branch_master_code_owner_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
-    'branch_master_required_num_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
-    'branch_master_enforce_admins' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_strict_updates' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_required_ci' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_stale_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_code_owner_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_required_num_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_enforce_admins' => 'https://github.com/sanger-tol/{repo}/settings/branches',
     'branch_dev_strict_updates' => 'https://github.com/sanger-tol/{repo}/settings/branches',
     'branch_dev_required_ci' => 'https://github.com/sanger-tol/{repo}/settings/branches',
     'branch_dev_stale_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
@@ -963,13 +963,13 @@ $base_test_urls = [
 $base_merge_table_col_headings = [
     'Team access' => ['team_all', 'team_core'],
     'Branches exist' => ['branch_main_exists', 'branch_dev_exists', 'branch_template_exists'],
-    'Branch protection: master' => [
-        'branch_master_strict_updates',
-        'branch_master_required_ci',
-        'branch_master_stale_reviews',
-        'branch_master_code_owner_reviews',
-        'branch_master_required_num_reviews',
-        'branch_master_enforce_admins',
+    'Branch protection: main' => [
+        'branch_main_strict_updates',
+        'branch_main_required_ci',
+        'branch_main_stale_reviews',
+        'branch_main_code_owner_reviews',
+        'branch_main_required_num_reviews',
+        'branch_main_enforce_admins',
     ],
     'Branch protection: dev' => [
         'branch_dev_strict_updates',
@@ -1016,12 +1016,12 @@ $core_repo_merge_table_col_headings = $base_merge_table_col_headings;
 $core_repo_ignore_tests = [
     'branch_dev_exists',
     'branch_template_exists',
-    'branch_master_strict_updates',
-    'branch_master_required_ci',
-    'branch_master_stale_reviews',
-    'branch_master_code_owner_reviews',
-    'branch_master_required_num_reviews',
-    'branch_master_enforce_admins',
+    'branch_main_strict_updates',
+    'branch_main_required_ci',
+    'branch_main_stale_reviews',
+    'branch_main_code_owner_reviews',
+    'branch_main_required_num_reviews',
+    'branch_main_enforce_admins',
     'branch_dev_strict_updates',
     'branch_dev_required_ci',
     'branch_dev_stale_reviews',
