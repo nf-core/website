@@ -273,8 +273,8 @@ class RepoHealth {
         }
     }
     public function test_teams() {
-        $this->team_all = isset($this->gh_teams['all']) ? $this->gh_teams['all']->push : false;
-        $this->team_core = isset($this->gh_teams['core']) ? $this->gh_teams['core']->admin : false;
+        $this->team_all = isset($this->gh_teams['tola']) ? $this->gh_teams['tola']->push : false;
+        $this->team_core = isset($this->gh_teams['nextflow-admin']) ? $this->gh_teams['nextflow-admin']->admin : false;
     }
     public function test_branch_exists() {
         // Check that branches exist
@@ -848,6 +848,7 @@ function get_gh_team_repos($team) {
 }
 $gh_team_ids = [];
 get_gh_team_repos('nextflow-admin');
+get_gh_team_repos('tola');
 
 // Loop through pipelines
 foreach ($pipelines_json as $wf) {
@@ -911,8 +912,8 @@ $base_test_descriptions = [
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
     'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
-    'team_all' => 'Write access for nf-core/all',
-    'team_core' => 'Admin access for nf-core/core',
+    'team_all' => 'Write access for sanger-tol/tola',
+    'team_core' => 'Admin access for sanger-tol/nextflow-admin',
     'branch_master_exists' => 'master branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
     'branch_template_exists' => 'TEMPLATE branch: branch must exist',
@@ -960,7 +961,7 @@ $base_test_urls = [
     'branch_template_restrict_push' => 'https://github.com/sanger-tol/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
-    'Team access' => ['team_all', 'team_core'],
+    'Team access' => ['team_admin', 'team_core'],
     'Branches exist' => ['branch_master_exists', 'branch_dev_exists', 'branch_template_exists'],
     'Branch protection: master' => [
         'branch_master_strict_updates',
