@@ -177,11 +177,11 @@ class RepoHealth {
     }
 
     public function get_release_data() {
-        // Currently only used to get last release for tools, as have otheres from pipelines.json
+        // Currently only used to get last release for tools, as have others from pipelines.json
         if (file_exists($this->gh_release_cache) && !$this->refresh) {
             $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
         } else {
-            $gh_release_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/releases/latest';
+            $gh_release_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/releases/latest';
             $this->gh_release = json_decode(file_get_contents($gh_release_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_release_cache, $this->gh_release);
         }
@@ -1052,6 +1052,11 @@ foreach ($core_repos as $idx => $core_repo) {
 // Tools: Get release info
 //$core_repos['tools']->get_release_data();
 //$tools_last_release = $core_repos['tools']->gh_release->published_at;
+// nf-core tools is not in our sanger-tol organization
+$nf_core_tool_repo = new CoreRepoHealth('tools');
+$nf_core_tool_repo->get_release_data();
+$tools_last_release = $nf_core_tool_repo->gh_release->published_at;
+
 foreach ($pipelines as $idx => $pipeline) {
     $pipeline->test_names = $pipeline_test_names;
     $pipeline->test_descriptions = $pipeline_test_descriptions;
