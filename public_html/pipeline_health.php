@@ -127,7 +127,7 @@ class RepoHealth {
     public $team_core;
 
     // Branch test vars
-    public $branch_master_exists;
+    public $branch_main_exists;
     public $branch_dev_exists;
     public $branch_template_exists;
     public $branch_master_strict_updates;
@@ -279,7 +279,7 @@ class RepoHealth {
     public function test_branch_exists() {
         // Check that branches exist
         if (isset($this->gh_branches)) {
-            $this->branch_master_exists = false;
+            $this->branch_main_exists = false;
             $this->branch_dev_exists = false;
             $this->branch_template_exists = false;
             foreach ($this->gh_branches as $branch) {
@@ -885,7 +885,7 @@ $base_test_names = [
     'repo_url' => 'Repo URL',
     'team_all' => 'Team all',
     'team_core' => 'Team core',
-    'branch_master_exists' => 'master: exists',
+    'branch_main_exists' => 'main: exists',
     'branch_dev_exists' => 'dev: exists',
     'branch_template_exists' => 'TEMPLATE: exists',
     'branch_master_strict_updates' => 'master: strict updates',
@@ -914,7 +914,7 @@ $base_test_descriptions = [
     'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
     'team_all' => 'Write access for sanger-tol/tola',
     'team_core' => 'Admin access for sanger-tol/nextflow-admin',
-    'branch_master_exists' => 'master branch: branch must exist',
+    'branch_main_exists' => 'main branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
     'branch_template_exists' => 'TEMPLATE branch: branch must exist',
     'branch_master_strict_updates' => 'master branch: do not require branch to be up to date before merging',
@@ -943,7 +943,7 @@ $base_test_urls = [
     'repo_url' => 'https://github.com/sanger-tol/{repo}',
     'team_all' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
     'team_core' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
-    'branch_master_exists' => 'https://github.com/sanger-tol/{repo}/branches',
+    'branch_main_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_dev_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_template_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_master_strict_updates' => 'https://github.com/sanger-tol/{repo}/settings/branches',
@@ -962,7 +962,7 @@ $base_test_urls = [
 ];
 $base_merge_table_col_headings = [
     'Team access' => ['team_all', 'team_core'],
-    'Branches exist' => ['branch_master_exists', 'branch_dev_exists', 'branch_template_exists'],
+    'Branches exist' => ['branch_main_exists', 'branch_dev_exists', 'branch_template_exists'],
     'Branch protection: master' => [
         'branch_master_strict_updates',
         'branch_master_required_ci',
