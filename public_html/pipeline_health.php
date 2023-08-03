@@ -961,7 +961,7 @@ $base_test_urls = [
     'branch_template_restrict_push' => 'https://github.com/sanger-tol/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
-    'Team access' => ['team_admin', 'team_core'],
+    'Team access' => ['team_all', 'team_core'],
     'Branches exist' => ['branch_master_exists', 'branch_dev_exists', 'branch_template_exists'],
     'Branch protection: master' => [
         'branch_master_strict_updates',
