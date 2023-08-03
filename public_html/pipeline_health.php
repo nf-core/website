@@ -109,7 +109,7 @@ class RepoHealth {
     public $gh_release;
     public $gh_teams = [];
     public $gh_branches;
-    public $gh_branch_master;
+    public $gh_branch_main;
     public $gh_branch_dev;
     public $gh_branch_TEMPLATE;
 
@@ -197,7 +197,7 @@ class RepoHealth {
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
 
-        // Details of branch protection for master and dev
+        // Details of branch protection for main and dev
         foreach (['main', 'dev', 'TEMPLATE'] as $branch) {
             $gh_branch_cache = $this->cache_base . '/branch_' . $this->name . '_' . $branch . '.json';
             if (file_exists($gh_branch_cache) && !$this->refresh) {
@@ -294,9 +294,9 @@ class RepoHealth {
         }
     }
     public function test_branch_protection() {
-        // Test branch protection for master and dev
+        // Test branch protection for main and dev
         foreach ($this->branches_protection as $branch) {
-            $prs_required = $branch == 'master' ? 2 : 1;
+            $prs_required = $branch == 'main' ? 2 : 1;
             if (!$this->{'branch_' . $branch . '_exists'}) {
                 $this->{'branch_' . $branch . '_strict_updates'} = -1;
                 $this->{'branch_' . $branch . '_required_ci'} = -1;
@@ -449,7 +449,7 @@ class RepoHealth {
     }
 
     public function fix_branch_protection() {
-        // Fix branch protection for master and dev
+        // Fix branch protection for main and dev
         foreach ($this->branches_protection as $branch) {
             // Convenience vars for test results
             $test_results = [
@@ -491,7 +491,7 @@ class RepoHealth {
                     'required_pull_request_reviews' => [
                         'dismiss_stale_reviews' => false,
                         'require_code_owner_reviews' => false,
-                        'required_approving_review_count' => $branch == 'master' ? 2 : 1,
+                        'required_approving_review_count' => $branch == 'main' ? 2 : 1,
                     ],
                     'restrictions' => null,
                 ];
@@ -654,7 +654,7 @@ class PipelineHealth extends RepoHealth {
     public $has_release;
     public $last_release;
     public $release_after_tools;
-    public $master_is_release;
+    public $main_is_release;
 
     // Extra pipeline-specific tests
     public function run_tests() {
@@ -723,18 +723,18 @@ class PipelineHealth extends RepoHealth {
         // No releases - set to -1 and return
         if (!$this->has_release) {
             $this->release_after_tools = -1;
-            $this->master_is_release = -1;
+            $this->main_is_release = -1;
             return;
         }
         // Check if release is after last tools release
         if ($this->last_release && $tools_last_release) {
             $this->release_after_tools = strtotime($this->last_release->published_at) > strtotime($tools_last_release);
         }
-        // Check if master commit hash is same as release hash
+        // Check if main commit hash is same as release hash
         if ($this->last_release) {
             foreach ($this->gh_branches as $branch) {
                 if ($branch->name == 'main') {
-                    $this->master_is_release = $this->last_release->tag_sha == $branch->commit->sha;
+                    $this->main_is_release = $this->last_release->tag_sha == $branch->commit->sha;
                 }
             }
         }
@@ -908,7 +908,7 @@ $base_test_descriptions = [
     'repo_merge_commits' => 'Allow merge commits',
     'repo_merge_rebase' => 'Allow rebase merging',
     'repo_merge_squash' => 'Do not allow squash merges',
-    'repo_default_branch' => 'default branch master (released) or dev (no releases)',
+    'repo_default_branch' => 'default branch main (released) or dev (no releases)',
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
     'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
@@ -985,7 +985,7 @@ $pipeline_test_names =
     [
         'has_release' => 'Released',
         'release_after_tools' => 'Released after tools',
-        'master_is_release' => 'Main = release',
+        'main_is_release' => 'Main = release',
         'has_json_schema' => 'JSON Schema',
         'has_dsl2_modules_dir' => 'DSL2',
     ] + $base_test_names;
@@ -993,7 +993,7 @@ $pipeline_test_descriptions =
     [
         'has_release' => 'Has at least one release',
         'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
-        'master_is_release' => 'Main branch is same commit as the last release',
+        'main_is_release' => 'Main branch is same commit as the last release',
         'has_json_schema' => 'Has a nextflow_schema.json file (in last release, dev if no release)',
         'has_dsl2_modules_dir' =>
             'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
@@ -1003,7 +1003,7 @@ $pipeline_test_urls =
     [
         'has_release' => 'https://github.com/sanger-tol/{repo}/releases',
         'release_after_tools' => 'https://github.com/sanger-tol/{repo}/releases/{latest-tag}',
-        'master_is_release' => 'https://github.com/sanger-tol/{repo}/compare/{latest-tag}...main',
+        'main_is_release' => 'https://github.com/sanger-tol/{repo}/compare/{latest-tag}...main',
         'has_json_schema' => 'https://github.com/sanger-tol/{repo}',
         'has_dsl2_modules_dir' => 'https://github.com/sanger-tol/{repo}',
     ] + $base_test_urls;
