@@ -1,6 +1,6 @@
 <?php
 $title = 'Repository health';
-$subtitle = 'Check GitHub settings for all sanger-tol NextFlow pipelines repositories';
+$subtitle = 'Check GitHub settings for all sanger-tol Nextflow pipelines repositories';
 $mainpage_container = false;
 include '../includes/header.php';
 
@@ -99,7 +99,7 @@ class RepoHealth {
     public $branch_template_protection = false;
     public $branch_default = 'main';
     public $required_topics = ['nf-core'];
-    public $web_url = 'https://nf-co.re';
+    public $web_url = 'https://pipelines.tol.sanger.ac.uk';
     public $test_names;
     public $test_descriptions;
     public $test_urls;
@@ -639,7 +639,7 @@ class PipelineHealth extends RepoHealth {
     // URL should point to pipeline page
     public function __construct($name) {
         parent::__construct($name);
-        $this->web_url = 'https://nf-co.re/' . $this->name;
+        $this->web_url = 'https://pipelines.tol.sanger.ac.uk/' . $this->name;
     }
     // We need more branches in pipelines
     public $branch_exist_tests = ['template', 'dev', 'main']; // lower case
@@ -910,7 +910,7 @@ $base_test_descriptions = [
     'repo_default_branch' => 'default branch master (released) or dev (no releases)',
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
-    'repo_url' => 'URL should be set to https://nf-co.re',
+    'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
     'team_all' => 'Write access for nf-core/all',
     'team_core' => 'Admin access for nf-core/core',
     'branch_master_exists' => 'master branch: branch must exist',
@@ -997,7 +997,7 @@ $pipeline_test_descriptions =
         'has_dsl2_modules_dir' =>
             'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
     ] + $base_test_descriptions;
-$pipeline_test_descriptions['repo_url'] = 'URL should be set to https://nf-co.re/[PIPELINE-NAME]';
+$pipeline_test_descriptions['repo_url'] = 'URL should be set to https://pipelines.tol.sanger.ac.uk/[PIPELINE-NAME]';
 $pipeline_test_urls =
     [
         'has_release' => 'https://github.com/sanger-tol/{repo}/releases',
