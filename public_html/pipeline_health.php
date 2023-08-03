@@ -273,7 +273,7 @@ class RepoHealth {
         }
     }
     public function test_teams() {
-        $this->team_all = isset($this->gh_teams['tola']) ? $this->gh_teams['tola']->push : false;
+        $this->team_all = isset($this->gh_teams['nextflow-all']) ? $this->gh_teams['nextflow-all']->push : false;
         $this->team_core = isset($this->gh_teams['nextflow-admin']) ? $this->gh_teams['nextflow-admin']->admin : false;
     }
     public function test_branch_exists() {
@@ -848,7 +848,7 @@ function get_gh_team_repos($team) {
 }
 $gh_team_ids = [];
 get_gh_team_repos('nextflow-admin');
-get_gh_team_repos('tola');
+get_gh_team_repos('nextflow-all');
 
 // Loop through pipelines
 foreach ($pipelines_json as $wf) {
@@ -912,7 +912,7 @@ $base_test_descriptions = [
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
     'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
-    'team_all' => 'Write access for sanger-tol/tola',
+    'team_all' => 'Write access for sanger-tol/nextflow-all',
     'team_core' => 'Admin access for sanger-tol/nextflow-admin',
     'branch_main_exists' => 'main branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
