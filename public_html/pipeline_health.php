@@ -257,7 +257,7 @@ class RepoHealth {
             $this->repo_merge_rebase = $this->gh_repo->allow_rebase_merge;
         }
         if (isset($this->gh_repo->allow_squash_merge)) {
-            $this->repo_merge_squash = !$this->gh_repo->allow_squash_merge;
+            $this->repo_merge_squash = $this->gh_repo->allow_squash_merge;
         }
         if (isset($this->gh_repo->default_branch)) {
             $this->repo_default_branch = $this->gh_repo->default_branch == $this->branch_default;
