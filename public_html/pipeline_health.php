@@ -98,7 +98,7 @@ class RepoHealth {
     public $branches_protection = ['main'];
     public $branch_template_protection = false;
     public $branch_default = 'main';
-    public $required_topics = ['nf-core'];
+    public $required_topics = ['nextflow'];
     public $web_url = 'https://pipelines.tol.sanger.ac.uk';
     public $test_names;
     public $test_descriptions;
@@ -646,7 +646,7 @@ class PipelineHealth extends RepoHealth {
     public $branches_protection = ['dev', 'main'];
     public $branch_template_protection = true;
     // Keywords should also include nextflow, workflow and pipeline
-    public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
+    public $required_topics = ['nextflow', 'pipeline'];
     // JSON Schema / DSL2 modules directory
     public $has_json_schema;
     public $has_dsl2_modules_dir;
