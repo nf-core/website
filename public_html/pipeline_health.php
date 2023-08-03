@@ -733,7 +733,7 @@ class PipelineHealth extends RepoHealth {
         // Check if master commit hash is same as release hash
         if ($this->last_release) {
             foreach ($this->gh_branches as $branch) {
-                if ($branch->name == 'master') {
+                if ($branch->name == 'main') {
                     $this->master_is_release = $this->last_release->tag_sha == $branch->commit->sha;
                 }
             }
@@ -984,7 +984,7 @@ $pipeline_test_names =
     [
         'has_release' => 'Released',
         'release_after_tools' => 'Released after tools',
-        'master_is_release' => 'Master = release',
+        'master_is_release' => 'Main = release',
         'has_json_schema' => 'JSON Schema',
         'has_dsl2_modules_dir' => 'DSL2',
     ] + $base_test_names;
@@ -992,7 +992,7 @@ $pipeline_test_descriptions =
     [
         'has_release' => 'Has at least one release',
         'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
-        'master_is_release' => 'Master branch is same commit as the last release',
+        'master_is_release' => 'Main branch is same commit as the last release',
         'has_json_schema' => 'Has a nextflow_schema.json file (in last release, dev if no release)',
         'has_dsl2_modules_dir' =>
             'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
@@ -1002,7 +1002,7 @@ $pipeline_test_urls =
     [
         'has_release' => 'https://github.com/sanger-tol/{repo}/releases',
         'release_after_tools' => 'https://github.com/sanger-tol/{repo}/releases/{latest-tag}',
-        'master_is_release' => 'https://github.com/sanger-tol/{repo}/compare/{latest-tag}...master',
+        'master_is_release' => 'https://github.com/sanger-tol/{repo}/compare/{latest-tag}...main',
         'has_json_schema' => 'https://github.com/sanger-tol/{repo}',
         'has_dsl2_modules_dir' => 'https://github.com/sanger-tol/{repo}',
     ] + $base_test_urls;
