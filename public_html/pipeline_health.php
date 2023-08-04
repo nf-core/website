@@ -123,8 +123,8 @@ class RepoHealth {
     public $repo_keywords;
     public $repo_description;
     public $repo_url;
-    public $team_all;
-    public $team_core;
+    public $team_nextflow_all;
+    public $team_nextflow_admin;
 
     // Branch test vars
     public $branch_main_exists;
@@ -273,8 +273,8 @@ class RepoHealth {
         }
     }
     public function test_teams() {
-        $this->team_all = isset($this->gh_teams['nextflow-all']) ? $this->gh_teams['nextflow-all']->push : false;
-        $this->team_core = isset($this->gh_teams['nextflow-admin']) ? $this->gh_teams['nextflow-admin']->admin : false;
+        $this->team_nextflow_all = isset($this->gh_teams['nextflow_all']) ? $this->gh_teams['nextflow_all']->push : false;
+        $this->team_nextflow_admin = isset($this->gh_teams['nextflow_admin']) ? $this->gh_teams['nextflow_admin']->admin : false;
     }
     public function test_branch_exists() {
         // Check that branches exist
@@ -427,18 +427,18 @@ class RepoHealth {
     }
 
     private function fix_teams() {
-        $this->fix_team('all');
-        $this->fix_team('core');
+        $this->fix_team('nextflow_all');
+        $this->fix_team('nextflow_admin');
     }
     private function fix_team($team) {
         global $gh_team_ids;
         global $updated_teams;
         if (!$this->{'team_' . $team}) {
             $payload = [];
-            if ($team == 'core') {
+            if ($team == 'nextflow_admin') {
                 $payload = ['permission' => 'admin'];
             }
-            if ($team == 'all') {
+            if ($team == 'nextflow_all') {
                 $payload = ['permission' => 'push'];
             }
             $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/sanger-tol/' . $this->name;
@@ -847,8 +847,8 @@ function get_gh_team_repos($team) {
     }
 }
 $gh_team_ids = [];
-get_gh_team_repos('nextflow-admin');
-get_gh_team_repos('nextflow-all');
+get_gh_team_repos('nextflow_admin');
+get_gh_team_repos('nextflow_all');
 
 // Loop through pipelines
 foreach ($pipelines_json as $wf) {
@@ -883,8 +883,8 @@ $base_test_names = [
     'repo_keywords' => 'Keywords',
     'repo_description' => 'Description',
     'repo_url' => 'Repo URL',
-    'team_all' => 'Team all',
-    'team_core' => 'Team core',
+    'team_nextflow_all' => 'Team all',
+    'team_nextflow_admin' => 'Team admin',
     'branch_main_exists' => 'main: exists',
     'branch_dev_exists' => 'dev: exists',
     'branch_template_exists' => 'TEMPLATE: exists',
@@ -912,8 +912,8 @@ $base_test_descriptions = [
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
     'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
-    'team_all' => 'Write access for sanger-tol/nextflow-all',
-    'team_core' => 'Admin access for sanger-tol/nextflow-admin',
+    'team_nextflow_all' => 'Write access for sanger-tol/nextflow-all',
+    'team_nextflow_admin' => 'Admin access for sanger-tol/nextflow-admin',
     'branch_main_exists' => 'main branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
     'branch_template_exists' => 'TEMPLATE branch: branch must exist',
@@ -941,8 +941,8 @@ $base_test_urls = [
     'repo_keywords' => 'https://github.com/sanger-tol/{repo}',
     'repo_description' => 'https://github.com/sanger-tol/{repo}',
     'repo_url' => 'https://github.com/sanger-tol/{repo}',
-    'team_all' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
-    'team_core' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
+    'team_nextflow_all' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
+    'team_nextflow_admin' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
     'branch_main_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_dev_exists' => 'https://github.com/sanger-tol/{repo}/branches',
     'branch_template_exists' => 'https://github.com/sanger-tol/{repo}/branches',
@@ -961,7 +961,7 @@ $base_test_urls = [
     'branch_template_restrict_push' => 'https://github.com/sanger-tol/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
-    'Team access' => ['team_all', 'team_core'],
+    'Team access' => ['team_nextflow_all', 'team_nextflow_admin'],
     'Branches exist' => ['branch_main_exists', 'branch_dev_exists', 'branch_template_exists'],
     'Branch protection: main' => [
         'branch_main_strict_updates',
