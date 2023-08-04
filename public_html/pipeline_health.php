@@ -245,7 +245,7 @@ class RepoHealth {
     }
     public function test_repo() {
         if (isset($this->gh_repo->has_wiki)) {
-            $this->repo_wikis = $this->gh_repo->has_wiki;
+            $this->repo_wikis = !$this->gh_repo->has_wiki;
         }
         if (isset($this->gh_repo->has_issues)) {
             $this->repo_issues = $this->gh_repo->has_issues;
