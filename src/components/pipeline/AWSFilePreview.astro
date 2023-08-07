@@ -28,9 +28,14 @@ const hasPreview = [
     'gif',
     'svg',
 ].includes(extension);
-const tooBig = extension !== 'html' && file.size > 10000000;
+let tooBig = extension !== 'html' && file.size > 10000000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
+}
+if (extension === 'html') {
+    // 6291556 is size limit for AWS Lambda’s Response Payload
+    const content_json = JSON.stringify(content);
+    tooBig = new TextEncoder().encode(content_json).length  > 6291556;
 }
 ---
 
