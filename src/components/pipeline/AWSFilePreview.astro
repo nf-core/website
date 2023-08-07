@@ -32,10 +32,10 @@ let tooBig = extension !== 'html' && file.size > 10000000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
-if (extension === 'html') {
-    // 6291556 is size limit for AWS Lambda’s Response Payload
+if (extension === 'html' && file.size > 5500000) {
+    // 6291556 is size limit for AWS Lambda’s Response Payload, for anything bigger than 5.5MB, we should be careful.
     const content_json = JSON.stringify(content);
-    tooBig = new TextEncoder().encode(content_json).length  > 6291556;
+    tooBig = new TextEncoder().encode(content_json).length > 6291556;
 }
 ---
 
@@ -135,7 +135,7 @@ if (extension === 'html') {
     </div>
     <div class:list={['p-3 ', { 'd-none': !tooBig || !hasPreview }]}>
         <Admonition title="info">
-            <p>The file is too big to preview.</p>
+            <p>The file is too big to preview, please download it to inspect its contents.</p>
         </Admonition>
     </div>
 </div>
