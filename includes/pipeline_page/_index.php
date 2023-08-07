@@ -200,7 +200,7 @@ elseif ($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name . '
     $suggestion_404_urls = [
         $protocol . $_SERVER['HTTP_HOST'] . '/' . $pipeline->name,
         'https://github.com/sanger-tol/' . $pipeline->name . '/blob/' . $release . '/' . $url_string,
-        'https://github.com/snger-tol/' . $pipeline->name . '/blob/' . $release . '/' . $url_string . '.md',
+        'https://github.com/sanger-tol/' . $pipeline->name . '/blob/' . $release . '/' . $url_string . '.md',
     ];
     include '404.php';
     die();
