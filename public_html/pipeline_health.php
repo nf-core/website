@@ -96,7 +96,7 @@ class RepoHealth {
     ];
     public $branch_exist_tests = ['main'];
     public $branches_protection = ['main'];
-    public $branch_template_protection = false;
+    // public $branch_template_protection = false;
     public $branch_default = 'main';
     public $required_topics = ['nextflow'];
     public $web_url = 'https://pipelines.tol.sanger.ac.uk';
@@ -142,7 +142,7 @@ class RepoHealth {
     public $branch_dev_code_owner_reviews;
     public $branch_dev_required_num_reviews;
     public $branch_dev_enforce_admins;
-    public $branch_template_restrict_push;
+    // public $branch_template_restrict_push;
 
     public function get_data() {
         $this->get_repo_data();
@@ -361,6 +361,7 @@ class RepoHealth {
             }
         }
         // Tests specifically for the TEMPLATE branch
+        /*
         if (!$this->branch_template_exists) {
             $this->branch_template_restrict_push = -1;
             $this->test_descriptions['branch_template_restrict_push'] = 'TEMPLATE branch does not exist';
@@ -375,6 +376,7 @@ class RepoHealth {
                 }
             }
         }
+        */
     }
 
     private function fix_repo() {
@@ -507,6 +509,7 @@ class RepoHealth {
         }
 
         // Fix TEMPLATE branch protection
+        /*
         if ($this->branch_template_protection) {
             // Only run if the test failed
             if ($this->branch_template_restrict_push === false) {
@@ -530,6 +533,7 @@ class RepoHealth {
                 }
             }
         }
+        */
     }
 
     public function _send_gh_api_data($url, $content, $method = 'POST') {
@@ -644,7 +648,7 @@ class PipelineHealth extends RepoHealth {
     // We need more branches in pipelines
     public $branch_exist_tests = ['template', 'dev', 'main']; // lower case
     public $branches_protection = ['dev', 'main'];
-    public $branch_template_protection = true;
+    // public $branch_template_protection = true;
     // Keywords should also include nextflow, workflow and pipeline
     public $required_topics = ['nextflow', 'pipeline'];
     // JSON Schema / DSL2 modules directory
@@ -900,7 +904,7 @@ $base_test_names = [
     'branch_dev_code_owner_reviews' => 'dev: code owner reviews',
     'branch_dev_required_num_reviews' => 'dev: 1 review',
     'branch_dev_enforce_admins' => 'dev: enforce admins',
-    'branch_template_restrict_push' => 'T push',
+    // 'branch_template_restrict_push' => 'T push',
 ];
 $base_test_descriptions = [
     'repo_wikis' => 'Disable wikis',
@@ -929,7 +933,7 @@ $base_test_descriptions = [
     'branch_dev_code_owner_reviews' => 'dev branch: code owner reviews not required',
     'branch_dev_required_num_reviews' => 'dev branch: 1 review required',
     'branch_dev_enforce_admins' => 'dev branch: do not enforce rules for admins',
-    'branch_template_restrict_push' => 'Restrict push to TEMPLATE to @nf-core-bot',
+    // 'branch_template_restrict_push' => 'Restrict push to TEMPLATE to @nf-core-bot',
 ];
 $base_test_urls = [
     'repo_wikis' => 'https://github.com/sanger-tol/{repo}/settings',
@@ -958,7 +962,7 @@ $base_test_urls = [
     'branch_dev_code_owner_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
     'branch_dev_required_num_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
     'branch_dev_enforce_admins' => 'https://github.com/sanger-tol/{repo}/settings/branches',
-    'branch_template_restrict_push' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    // 'branch_template_restrict_push' => 'https://github.com/sanger-tol/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
     'Team access' => ['team_nextflow_all', 'team_nextflow_admin'],
@@ -1028,7 +1032,7 @@ $core_repo_ignore_tests = [
     'branch_dev_code_owner_reviews',
     'branch_dev_required_num_reviews',
     'branch_dev_enforce_admins',
-    'branch_template_restrict_push',
+    // 'branch_template_restrict_push',
 ];
 foreach ($core_repo_ignore_tests as $key) {
     unset($core_repo_test_names[$key]);
