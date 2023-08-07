@@ -90,13 +90,6 @@ if (isset($subtitle) && strlen($subtitle) > 0) {
     <script src="/assets/lib/dataTables.bootstrap5.min.js"></script>
     <script src="/assets/js/aws-s3-explorer.js?c=<?php echo $git_sha; ?>"></script>
   <?php endif;
-  if (isset($import_schema_builder) && $import_schema_builder): ?>
-    <link href="/assets/lib/jquery-ui.min.css" rel="stylesheet">
-    <script src="/assets/lib/jquery-ui.min.js"></script>
-    <script src="/assets/lib/moment.js"></script>
-    <script src="/assets/lib/showdown.min.js"></script>
-    <script src="/assets/js/nf-core-schema-builder.js?c=<?php echo $git_sha; ?>"></script>
-  <?php endif;
   if (isset($import_typeform) && $import_typeform): ?>
     <script src="https://embed.typeform.com/next/embed.js"></script>
 
