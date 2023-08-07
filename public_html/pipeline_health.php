@@ -257,7 +257,7 @@ class RepoHealth {
             $this->repo_merge_rebase = $this->gh_repo->allow_rebase_merge;
         }
         if (isset($this->gh_repo->allow_squash_merge)) {
-            $this->repo_merge_squash = !$this->gh_repo->allow_squash_merge;
+            $this->repo_merge_squash = $this->gh_repo->allow_squash_merge;
         }
         if (isset($this->gh_repo->default_branch)) {
             $this->repo_default_branch = $this->gh_repo->default_branch == $this->branch_default;
@@ -393,7 +393,7 @@ class RepoHealth {
             $payload['allow_rebase_merge'] = true;
         }
         if (!$this->repo_merge_squash) {
-            $payload['allow_squash_merge'] = false;
+            $payload['allow_squash_merge'] = true;
         }
         if (!$this->repo_default_branch) {
             $payload['default_branch'] = $this->branch_default;
@@ -907,7 +907,7 @@ $base_test_descriptions = [
     'repo_issues' => 'Enable issues',
     'repo_merge_commits' => 'Allow merge commits',
     'repo_merge_rebase' => 'Allow rebase merging',
-    'repo_merge_squash' => 'Do not allow squash merges',
+    'repo_merge_squash' => 'Allow squash merges',
     'repo_default_branch' => 'default branch main (released) or dev (no releases)',
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
