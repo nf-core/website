@@ -38,7 +38,7 @@ The 2022 Barcelona hackathon did sell out. So be sure to register early to avoid
 
 # Schedule
 
-The hackathon will run from Monday 16th October to **Wednesday 18th October.
+The hackathon will run from **Monday 16th October** to **Wednesday 18th October**. The preliminarily schedule is outlined below.
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -96,7 +96,6 @@ The hackathon will run from Monday 16th October to **Wednesday 18th October.
         <td rowspan="2">Hackathon Social</td>
       </tr>
       <tr>
-      1697493600
         <td data-timestamp="1697493600" data-timeformat="HH:mm z">00:00</td>
       </tr>
     </tbody>
