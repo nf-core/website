@@ -8,7 +8,7 @@ if (isset($suggestion_404_urls)) {
             unset($suggestion_404_urls[$idx]);
         } else {
             // Redirect to GitHub if is a suggestion URL and exists
-            if (substr($url, 0, 27) == 'https://github.com/nf-core/') {
+            if (substr($url, 0, 30) == 'https://github.com/sanger-tol/') {
                 header("Location: $url");
                 exit();
             }
@@ -29,7 +29,7 @@ include '../includes/header.php';
 ?>
 <h1>Sorry, that page could not be found.</h1>
 <p>It looks like <?php echo $request_url; ?> doesn't exist. </p>
-<p>Please let us know by <a href="https://github.com/nf-core/nf-co.re" target="_blank">creating an issue on GitHub</a>.</p>
+<p>Please let us know by <a href="https://github.com/sanger-tol/pipelines-website" target="_blank">creating an issue on GitHub</a>.</p>
 
 <?php
 if (isset($suggestion_404_urls) && count($suggestion_404_urls) > 0) {
