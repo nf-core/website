@@ -77,11 +77,13 @@
         </thead>
         <tbody>
             {#each filteredConfigs as config}
-                <tr class="position-relative">
-                    <td class="name">
-                        <a class="stretched-link" href={'/configs/' + config.name + '/'}
-                            >{@html config.name.replace('_', '_<wbr>')}</a
-                        >
+                <tr>
+                    <td class="name p-0">
+                        <div class="position-relative p-3">
+                            <a class="stretched-link" href={'/configs/' + config.name + '/'}
+                                >{@html config.name.replace('_', '_<wbr>')}</a
+                            >
+                        </div>
                     </td>
                     <td class="description text-small">
                         {config.config.config_profile_description}
