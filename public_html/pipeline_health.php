@@ -493,7 +493,7 @@ class RepoHealth {
                     'required_pull_request_reviews' => [
                         'dismiss_stale_reviews' => false,
                         'require_code_owner_reviews' => false,
-                        'required_approving_review_count' => $branch == 'main' ? 2 : 1,
+                        'required_approving_review_count' => $branch == 'main' ? 1 : 1,
                     ],
                     'restrictions' => null,
                 ];
