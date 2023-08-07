@@ -1,6 +1,6 @@
 <?php
 $title = 'Repository health';
-$subtitle = 'Check GitHub settings for all nf-core repositories';
+$subtitle = 'Check GitHub settings for all sanger-tol Nextflow pipelines repositories';
 $mainpage_container = false;
 include '../includes/header.php';
 
@@ -82,6 +82,7 @@ class RepoHealth {
         'EditorConfig',
         'nf-core',
         'Run pipeline with test data',
+        'PythonBlack',
         // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
         // If we really want to do this, might have to query the repo contents..??
     ];
@@ -94,12 +95,12 @@ class RepoHealth {
         'Markdown',
         'Run workflow tests',
     ];
-    public $branch_exist_tests = ['master'];
-    public $branches_protection = ['master'];
-    public $branch_template_protection = false;
-    public $branch_default = 'master';
-    public $required_topics = ['nf-core'];
-    public $web_url = 'https://nf-co.re';
+    public $branch_exist_tests = ['main'];
+    public $branches_protection = ['main'];
+    // public $branch_template_protection = false;
+    public $branch_default = 'main';
+    public $required_topics = ['nextflow'];
+    public $web_url = 'https://pipelines.tol.sanger.ac.uk';
     public $test_names;
     public $test_descriptions;
     public $test_urls;
@@ -109,7 +110,7 @@ class RepoHealth {
     public $gh_release;
     public $gh_teams = [];
     public $gh_branches;
-    public $gh_branch_master;
+    public $gh_branch_main;
     public $gh_branch_dev;
     public $gh_branch_TEMPLATE;
 
@@ -123,26 +124,26 @@ class RepoHealth {
     public $repo_keywords;
     public $repo_description;
     public $repo_url;
-    public $team_all;
-    public $team_core;
+    public $team_nextflow_all;
+    public $team_nextflow_admin;
 
     // Branch test vars
-    public $branch_master_exists;
+    public $branch_main_exists;
     public $branch_dev_exists;
     public $branch_template_exists;
-    public $branch_master_strict_updates;
-    public $branch_master_required_ci;
-    public $branch_master_stale_reviews;
-    public $branch_master_code_owner_reviews;
-    public $branch_master_required_num_reviews;
-    public $branch_master_enforce_admins;
+    public $branch_main_strict_updates;
+    public $branch_main_required_ci;
+    public $branch_main_stale_reviews;
+    public $branch_main_code_owner_reviews;
+    public $branch_main_required_num_reviews;
+    public $branch_main_enforce_admins;
     public $branch_dev_strict_updates;
     public $branch_dev_required_ci;
     public $branch_dev_stale_reviews;
     public $branch_dev_code_owner_reviews;
     public $branch_dev_required_num_reviews;
     public $branch_dev_enforce_admins;
-    public $branch_template_restrict_push;
+    // public $branch_template_restrict_push;
 
     public function get_data() {
         $this->get_repo_data();
@@ -169,7 +170,7 @@ class RepoHealth {
             if (file_exists($this->gh_repo_cache) && !$this->refresh) {
                 $this->gh_repo = json_decode(file_get_contents($this->gh_repo_cache));
             } else {
-                $gh_repo_url = 'https://api.github.com/repos/nf-core/' . $this->name;
+                $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . $this->name;
                 $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
                 $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
             }
@@ -177,7 +178,7 @@ class RepoHealth {
     }
 
     public function get_release_data() {
-        // Currently only used to get last release for tools, as have otheres from pipelines.json
+        // Currently only used to get last release for tools, as have others from pipelines.json
         if (file_exists($this->gh_release_cache) && !$this->refresh) {
             $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
         } else {
@@ -192,13 +193,13 @@ class RepoHealth {
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
-            $gh_branch_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/branches';
+            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches';
             $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
 
-        // Details of branch protection for master and dev
-        foreach (['master', 'dev', 'TEMPLATE'] as $branch) {
+        // Details of branch protection for main and dev
+        foreach (['main', 'dev', 'TEMPLATE'] as $branch) {
             $gh_branch_cache = $this->cache_base . '/branch_' . $this->name . '_' . $branch . '.json';
             if (file_exists($gh_branch_cache) && !$this->refresh) {
                 $gh_branch = json_decode(file_get_contents($gh_branch_cache));
@@ -208,7 +209,7 @@ class RepoHealth {
                 }
             } else {
                 $gh_branch_url =
-                    'https://api.github.com/repos/nf-core/' . $this->name . '/branches/' . $branch . '/protection';
+                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/' . $branch . '/protection';
                 $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
                 if (strpos($http_response_header[0], 'HTTP/1.1 200') !== false && is_object($gh_branch)) {
                     $this->{'gh_branch_' . $branch} = $gh_branch;
@@ -257,7 +258,7 @@ class RepoHealth {
             $this->repo_merge_rebase = $this->gh_repo->allow_rebase_merge;
         }
         if (isset($this->gh_repo->allow_squash_merge)) {
-            $this->repo_merge_squash = !$this->gh_repo->allow_squash_merge;
+            $this->repo_merge_squash = $this->gh_repo->allow_squash_merge;
         }
         if (isset($this->gh_repo->default_branch)) {
             $this->repo_default_branch = $this->gh_repo->default_branch == $this->branch_default;
@@ -273,13 +274,13 @@ class RepoHealth {
         }
     }
     public function test_teams() {
-        $this->team_all = isset($this->gh_teams['all']) ? $this->gh_teams['all']->push : false;
-        $this->team_core = isset($this->gh_teams['core']) ? $this->gh_teams['core']->admin : false;
+        $this->team_nextflow_all = isset($this->gh_teams['nextflow_all']) ? $this->gh_teams['nextflow_all']->push : false;
+        $this->team_nextflow_admin = isset($this->gh_teams['nextflow_admin']) ? $this->gh_teams['nextflow_admin']->admin : false;
     }
     public function test_branch_exists() {
         // Check that branches exist
         if (isset($this->gh_branches)) {
-            $this->branch_master_exists = false;
+            $this->branch_main_exists = false;
             $this->branch_dev_exists = false;
             $this->branch_template_exists = false;
             foreach ($this->gh_branches as $branch) {
@@ -294,9 +295,9 @@ class RepoHealth {
         }
     }
     public function test_branch_protection() {
-        // Test branch protection for master and dev
+        // Test branch protection for main and dev
         foreach ($this->branches_protection as $branch) {
-            $prs_required = $branch == 'master' ? 2 : 1;
+            $prs_required = $branch == 'main' ? 1 : 1;
             if (!$this->{'branch_' . $branch . '_exists'}) {
                 $this->{'branch_' . $branch . '_strict_updates'} = -1;
                 $this->{'branch_' . $branch . '_required_ci'} = -1;
@@ -361,6 +362,7 @@ class RepoHealth {
             }
         }
         // Tests specifically for the TEMPLATE branch
+        /*
         if (!$this->branch_template_exists) {
             $this->branch_template_restrict_push = -1;
             $this->test_descriptions['branch_template_restrict_push'] = 'TEMPLATE branch does not exist';
@@ -375,6 +377,7 @@ class RepoHealth {
                 }
             }
         }
+        */
     }
 
     private function fix_repo() {
@@ -393,7 +396,7 @@ class RepoHealth {
             $payload['allow_rebase_merge'] = true;
         }
         if (!$this->repo_merge_squash) {
-            $payload['allow_squash_merge'] = false;
+            $payload['allow_squash_merge'] = true;
         }
         if (!$this->repo_default_branch) {
             $payload['default_branch'] = $this->branch_default;
@@ -402,7 +405,7 @@ class RepoHealth {
             $payload['homepage'] = $this->web_url;
         }
         if (count($payload) > 0) {
-            $gh_edit_repo_url = 'https://api.github.com/repos/nf-core/' . $this->name;
+            $gh_edit_repo_url = 'https://api.github.com/repos/sanger-tol/' . $this->name;
             $updated_data = $this->_send_gh_api_data($gh_edit_repo_url, $payload, 'PATCH');
             if ($updated_data) {
                 $this->gh_repo = $updated_data;
@@ -417,7 +420,7 @@ class RepoHealth {
             $topics = [
                 'names' => array_values(array_unique(array_merge($this->gh_repo->topics, $this->required_topics))),
             ];
-            $gh_edit_topics_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/topics';
+            $gh_edit_topics_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/topics';
             $updated_data = $this->_send_gh_api_data($gh_edit_topics_url, $topics, 'PUT');
             if ($updated_data) {
                 $this->gh_repo->topics = $updated_data->names;
@@ -427,21 +430,21 @@ class RepoHealth {
     }
 
     private function fix_teams() {
-        $this->fix_team('all');
-        $this->fix_team('core');
+        $this->fix_team('nextflow_all');
+        $this->fix_team('nextflow_admin');
     }
     private function fix_team($team) {
         global $gh_team_ids;
         global $updated_teams;
         if (!$this->{'team_' . $team}) {
             $payload = [];
-            if ($team == 'core') {
+            if ($team == 'nextflow_admin') {
                 $payload = ['permission' => 'admin'];
             }
-            if ($team == 'all') {
+            if ($team == 'nextflow_all') {
                 $payload = ['permission' => 'push'];
             }
-            $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/nf-core/' . $this->name;
+            $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/sanger-tol/' . $this->name;
             if ($this->_send_gh_api_data($gh_edit_team_url, $payload, 'PUT')) {
                 $updated_teams[$team] = true;
             }
@@ -449,7 +452,7 @@ class RepoHealth {
     }
 
     public function fix_branch_protection() {
-        // Fix branch protection for master and dev
+        // Fix branch protection for main and dev
         foreach ($this->branches_protection as $branch) {
             // Convenience vars for test results
             $test_results = [
@@ -491,12 +494,12 @@ class RepoHealth {
                     'required_pull_request_reviews' => [
                         'dismiss_stale_reviews' => false,
                         'require_code_owner_reviews' => false,
-                        'required_approving_review_count' => $branch == 'master' ? 2 : 1,
+                        'required_approving_review_count' => $branch == 'main' ? 1 : 1,
                     ],
                     'restrictions' => null,
                 ];
                 $gh_edit_branch_protection_url =
-                    'https://api.github.com/repos/nf-core/' . $this->name . '/branches/' . $branch . '/protection';
+                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/' . $branch . '/protection';
                 $updated_data = $this->_send_gh_api_data($gh_edit_branch_protection_url, $payload, 'PUT');
                 if ($updated_data) {
                     $this->{'gh_branch_' . $branch} = $updated_data;
@@ -507,6 +510,7 @@ class RepoHealth {
         }
 
         // Fix TEMPLATE branch protection
+        /*
         if ($this->branch_template_protection) {
             // Only run if the test failed
             if ($this->branch_template_restrict_push === false) {
@@ -521,7 +525,7 @@ class RepoHealth {
                 ];
                 // Push to GitHub API
                 $gh_template_branch_protection_url =
-                    'https://api.github.com/repos/nf-core/' . $this->name . '/branches/TEMPLATE/protection';
+                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/TEMPLATE/protection';
                 $updated_data = $this->_send_gh_api_data($gh_template_branch_protection_url, $payload, 'PUT');
                 if ($updated_data) {
                     $this->gh_branch_TEMPLATE = $updated_data;
@@ -530,6 +534,7 @@ class RepoHealth {
                 }
             }
         }
+        */
     }
 
     public function _send_gh_api_data($url, $content, $method = 'POST') {
@@ -639,14 +644,14 @@ class PipelineHealth extends RepoHealth {
     // URL should point to pipeline page
     public function __construct($name) {
         parent::__construct($name);
-        $this->web_url = 'https://nf-co.re/' . $this->name;
+        $this->web_url = 'https://pipelines.tol.sanger.ac.uk/' . $this->name;
     }
     // We need more branches in pipelines
-    public $branch_exist_tests = ['template', 'dev', 'master']; // lower case
-    public $branches_protection = ['dev', 'master'];
-    public $branch_template_protection = true;
+    public $branch_exist_tests = ['template', 'dev', 'main']; // lower case
+    public $branches_protection = ['dev', 'main'];
+    // public $branch_template_protection = true;
     // Keywords should also include nextflow, workflow and pipeline
-    public $required_topics = ['nf-core', 'nextflow', 'workflow', 'pipeline'];
+    public $required_topics = ['nextflow', 'pipeline'];
     // JSON Schema / DSL2 modules directory
     public $has_json_schema;
     public $has_dsl2_modules_dir;
@@ -654,7 +659,7 @@ class PipelineHealth extends RepoHealth {
     public $has_release;
     public $last_release;
     public $release_after_tools;
-    public $master_is_release;
+    public $main_is_release;
 
     // Extra pipeline-specific tests
     public function run_tests() {
@@ -672,10 +677,10 @@ class PipelineHealth extends RepoHealth {
         // No releases - always check the dev branch (no caching)
         if (!$this->has_release) {
             $this->has_json_schema = $this->check_url(
-                'https://raw.githubusercontent.com/nf-core/' . $this->name . '/dev/nextflow_schema.json',
+                'https://raw.githubusercontent.com/sanger-tol/' . $this->name . '/dev/nextflow_schema.json',
             );
             $this->has_dsl2_modules_dir = $this->check_url(
-                'https://github.com/nf-core/' . $this->name . '/tree/dev/modules',
+                'https://github.com/sanger-tol/' . $this->name . '/tree/dev/modules',
             );
         }
 
@@ -691,14 +696,14 @@ class PipelineHealth extends RepoHealth {
             } else {
                 // Check if the files exist
                 $this->has_json_schema = $this->check_url(
-                    'https://raw.githubusercontent.com/nf-core/' .
+                    'https://raw.githubusercontent.com/sanger-tol/' .
                         $this->name .
                         '/' .
                         $this->last_release->tag_name .
                         '/nextflow_schema.json',
                 );
                 $this->has_dsl2_modules_dir = $this->check_url(
-                    'https://github.com/nf-core/' . $this->name . '/tree/' . $this->last_release->tag_name . '/modules',
+                    'https://github.com/sanger-tol/' . $this->name . '/tree/' . $this->last_release->tag_name . '/modules',
                 );
                 // Save the cache
                 $files_404_cache = [
@@ -712,7 +717,7 @@ class PipelineHealth extends RepoHealth {
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
-            $gh_branch_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/branches';
+            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches';
             $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
@@ -723,18 +728,18 @@ class PipelineHealth extends RepoHealth {
         // No releases - set to -1 and return
         if (!$this->has_release) {
             $this->release_after_tools = -1;
-            $this->master_is_release = -1;
+            $this->main_is_release = -1;
             return;
         }
         // Check if release is after last tools release
         if ($this->last_release && $tools_last_release) {
             $this->release_after_tools = strtotime($this->last_release->published_at) > strtotime($tools_last_release);
         }
-        // Check if master commit hash is same as release hash
+        // Check if main commit hash is same as release hash
         if ($this->last_release) {
             foreach ($this->gh_branches as $branch) {
-                if ($branch->name == 'master') {
-                    $this->master_is_release = $this->last_release->tag_sha == $branch->commit->sha;
+                if ($branch->name == 'main') {
+                    $this->main_is_release = $this->last_release->tag_sha == $branch->commit->sha;
                 }
             }
         }
@@ -768,7 +773,7 @@ function get_gh_team_repos($team) {
     if (file_exists($gh_teams_cache) && !is_refresh_cache(null, true)) {
         $gh_team = json_decode(file_get_contents($gh_teams_cache));
     } else {
-        $gh_team_url = 'https://api.github.com/orgs/nf-core/teams/' . $team;
+        $gh_team_url = 'https://api.github.com/orgs/sanger-tol/teams/' . $team;
         $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
 
         // Save for next time
@@ -847,8 +852,8 @@ function get_gh_team_repos($team) {
     }
 }
 $gh_team_ids = [];
-get_gh_team_repos('all');
-get_gh_team_repos('core');
+get_gh_team_repos('nextflow_admin');
+get_gh_team_repos('nextflow_all');
 
 // Loop through pipelines
 foreach ($pipelines_json as $wf) {
@@ -883,93 +888,93 @@ $base_test_names = [
     'repo_keywords' => 'Keywords',
     'repo_description' => 'Description',
     'repo_url' => 'Repo URL',
-    'team_all' => 'Team all',
-    'team_core' => 'Team core',
-    'branch_master_exists' => 'master: exists',
+    'team_nextflow_all' => 'Team all',
+    'team_nextflow_admin' => 'Team admin',
+    'branch_main_exists' => 'main: exists',
     'branch_dev_exists' => 'dev: exists',
     'branch_template_exists' => 'TEMPLATE: exists',
-    'branch_master_strict_updates' => 'master: strict updates',
-    'branch_master_required_ci' => 'master: required CI',
-    'branch_master_stale_reviews' => 'master: stale reviews',
-    'branch_master_code_owner_reviews' => 'master: code owner reviews',
-    'branch_master_required_num_reviews' => 'master: 2 reviews',
-    'branch_master_enforce_admins' => 'master: enforce admins',
+    'branch_main_strict_updates' => 'main: strict updates',
+    'branch_main_required_ci' => 'main: required CI',
+    'branch_main_stale_reviews' => 'main: stale reviews',
+    'branch_main_code_owner_reviews' => 'main: code owner reviews',
+    'branch_main_required_num_reviews' => 'main: 1 reviews',
+    'branch_main_enforce_admins' => 'main: enforce admins',
     'branch_dev_strict_updates' => 'dev: strict updates',
     'branch_dev_required_ci' => 'dev: required CI',
     'branch_dev_stale_reviews' => 'dev: stale reviews',
     'branch_dev_code_owner_reviews' => 'dev: code owner reviews',
     'branch_dev_required_num_reviews' => 'dev: 1 review',
     'branch_dev_enforce_admins' => 'dev: enforce admins',
-    'branch_template_restrict_push' => 'T push',
+    // 'branch_template_restrict_push' => 'T push',
 ];
 $base_test_descriptions = [
     'repo_wikis' => 'Disable wikis',
     'repo_issues' => 'Enable issues',
     'repo_merge_commits' => 'Allow merge commits',
     'repo_merge_rebase' => 'Allow rebase merging',
-    'repo_merge_squash' => 'Do not allow squash merges',
-    'repo_default_branch' => 'default branch master (released) or dev (no releases)',
+    'repo_merge_squash' => 'Allow squash merges',
+    'repo_default_branch' => 'default branch main (released) or dev (no releases)',
     'repo_keywords' => 'Minimum keywords set',
     'repo_description' => 'Description must be set',
-    'repo_url' => 'URL should be set to https://nf-co.re',
-    'team_all' => 'Write access for nf-core/all',
-    'team_core' => 'Admin access for nf-core/core',
-    'branch_master_exists' => 'master branch: branch must exist',
+    'repo_url' => 'URL should be set to https://pipelines.tol.sanger.ac.uk',
+    'team_nextflow_all' => 'Write access for sanger-tol/nextflow-all',
+    'team_nextflow_admin' => 'Admin access for sanger-tol/nextflow-admin',
+    'branch_main_exists' => 'main branch: branch must exist',
     'branch_dev_exists' => 'dev branch: branch must exist',
     'branch_template_exists' => 'TEMPLATE branch: branch must exist',
-    'branch_master_strict_updates' => 'master branch: do not require branch to be up to date before merging',
-    'branch_master_required_ci' => 'master branch: minimum set of CI tests must pass',
-    'branch_master_stale_reviews' => 'master branch: reviews not marked stale after new commits',
-    'branch_master_code_owner_reviews' => 'master branch: code owner reviews not required',
-    'branch_master_required_num_reviews' => 'master branch: 2 reviews required',
-    'branch_master_enforce_admins' => 'master branch: do not enforce rules for admins',
+    'branch_main_strict_updates' => 'main branch: do not require branch to be up to date before merging',
+    'branch_main_required_ci' => 'main branch: minimum set of CI tests must pass',
+    'branch_main_stale_reviews' => 'main branch: reviews not marked stale after new commits',
+    'branch_main_code_owner_reviews' => 'main branch: code owner reviews not required',
+    'branch_main_required_num_reviews' => 'main branch: 1 reviews required',
+    'branch_main_enforce_admins' => 'main branch: do not enforce rules for admins',
     'branch_dev_strict_updates' => 'dev branch: do not require branch to be up to date before merging',
     'branch_dev_required_ci' => 'dev branch: minimum set of CI tests must pass',
     'branch_dev_stale_reviews' => 'dev branch: reviews not marked stale after new commits',
     'branch_dev_code_owner_reviews' => 'dev branch: code owner reviews not required',
     'branch_dev_required_num_reviews' => 'dev branch: 1 review required',
     'branch_dev_enforce_admins' => 'dev branch: do not enforce rules for admins',
-    'branch_template_restrict_push' => 'Restrict push to TEMPLATE to @nf-core-bot',
+    // 'branch_template_restrict_push' => 'Restrict push to TEMPLATE to @nf-core-bot',
 ];
 $base_test_urls = [
-    'repo_wikis' => 'https://github.com/nf-core/{repo}/settings',
-    'repo_issues' => 'https://github.com/nf-core/{repo}/settings',
-    'repo_merge_commits' => 'https://github.com/nf-core/{repo}/settings',
-    'repo_merge_rebase' => 'https://github.com/nf-core/{repo}/settings',
-    'repo_merge_squash' => 'https://github.com/nf-core/{repo}/settings',
-    'repo_default_branch' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'repo_keywords' => 'https://github.com/nf-core/{repo}',
-    'repo_description' => 'https://github.com/nf-core/{repo}',
-    'repo_url' => 'https://github.com/nf-core/{repo}',
-    'team_all' => 'https://github.com/nf-core/{repo}/settings/collaboration',
-    'team_core' => 'https://github.com/nf-core/{repo}/settings/collaboration',
-    'branch_master_exists' => 'https://github.com/nf-core/{repo}/branches',
-    'branch_dev_exists' => 'https://github.com/nf-core/{repo}/branches',
-    'branch_template_exists' => 'https://github.com/nf-core/{repo}/branches',
-    'branch_master_strict_updates' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_master_required_ci' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_master_stale_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_master_code_owner_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_master_required_num_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_master_enforce_admins' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_dev_strict_updates' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_dev_required_ci' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_dev_stale_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_dev_code_owner_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_dev_required_num_reviews' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_dev_enforce_admins' => 'https://github.com/nf-core/{repo}/settings/branches',
-    'branch_template_restrict_push' => 'https://github.com/nf-core/{repo}/settings/branches',
+    'repo_wikis' => 'https://github.com/sanger-tol/{repo}/settings',
+    'repo_issues' => 'https://github.com/sanger-tol/{repo}/settings',
+    'repo_merge_commits' => 'https://github.com/sanger-tol/{repo}/settings',
+    'repo_merge_rebase' => 'https://github.com/sanger-tol/{repo}/settings',
+    'repo_merge_squash' => 'https://github.com/sanger-tol/{repo}/settings',
+    'repo_default_branch' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'repo_keywords' => 'https://github.com/sanger-tol/{repo}',
+    'repo_description' => 'https://github.com/sanger-tol/{repo}',
+    'repo_url' => 'https://github.com/sanger-tol/{repo}',
+    'team_nextflow_all' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
+    'team_nextflow_admin' => 'https://github.com/sanger-tol/{repo}/settings/collaboration',
+    'branch_main_exists' => 'https://github.com/sanger-tol/{repo}/branches',
+    'branch_dev_exists' => 'https://github.com/sanger-tol/{repo}/branches',
+    'branch_template_exists' => 'https://github.com/sanger-tol/{repo}/branches',
+    'branch_main_strict_updates' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_required_ci' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_stale_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_code_owner_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_required_num_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_main_enforce_admins' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_dev_strict_updates' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_dev_required_ci' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_dev_stale_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_dev_code_owner_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_dev_required_num_reviews' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    'branch_dev_enforce_admins' => 'https://github.com/sanger-tol/{repo}/settings/branches',
+    // 'branch_template_restrict_push' => 'https://github.com/sanger-tol/{repo}/settings/branches',
 ];
 $base_merge_table_col_headings = [
-    'Team access' => ['team_all', 'team_core'],
-    'Branches exist' => ['branch_master_exists', 'branch_dev_exists', 'branch_template_exists'],
-    'Branch protection: master' => [
-        'branch_master_strict_updates',
-        'branch_master_required_ci',
-        'branch_master_stale_reviews',
-        'branch_master_code_owner_reviews',
-        'branch_master_required_num_reviews',
-        'branch_master_enforce_admins',
+    'Team access' => ['team_nextflow_all', 'team_nextflow_admin'],
+    'Branches exist' => ['branch_main_exists', 'branch_dev_exists', 'branch_template_exists'],
+    'Branch protection: main' => [
+        'branch_main_strict_updates',
+        'branch_main_required_ci',
+        'branch_main_stale_reviews',
+        'branch_main_code_owner_reviews',
+        'branch_main_required_num_reviews',
+        'branch_main_enforce_admins',
     ],
     'Branch protection: dev' => [
         'branch_dev_strict_updates',
@@ -985,7 +990,7 @@ $pipeline_test_names =
     [
         'has_release' => 'Released',
         'release_after_tools' => 'Released after tools',
-        'master_is_release' => 'Master = release',
+        'main_is_release' => 'Main = release',
         'has_json_schema' => 'JSON Schema',
         'has_dsl2_modules_dir' => 'DSL2',
     ] + $base_test_names;
@@ -993,19 +998,19 @@ $pipeline_test_descriptions =
     [
         'has_release' => 'Has at least one release',
         'release_after_tools' => 'Last release is after latest tools release (so up to date with template)',
-        'master_is_release' => 'Master branch is same commit as the last release',
+        'main_is_release' => 'Main branch is same commit as the last release',
         'has_json_schema' => 'Has a nextflow_schema.json file (in last release, dev if no release)',
         'has_dsl2_modules_dir' =>
             'Has a modules directory, suggesting that it\'s a DSL2 pipeline (in last release, dev if no release)',
     ] + $base_test_descriptions;
-$pipeline_test_descriptions['repo_url'] = 'URL should be set to https://nf-co.re/[PIPELINE-NAME]';
+$pipeline_test_descriptions['repo_url'] = 'URL should be set to https://pipelines.tol.sanger.ac.uk/[PIPELINE-NAME]';
 $pipeline_test_urls =
     [
-        'has_release' => 'https://github.com/nf-core/{repo}/releases',
-        'release_after_tools' => 'https://github.com/nf-core/{repo}/releases/{latest-tag}',
-        'master_is_release' => 'https://github.com/nf-core/{repo}/compare/{latest-tag}...master',
-        'has_json_schema' => 'https://github.com/nf-core/{repo}',
-        'has_dsl2_modules_dir' => 'https://github.com/nf-core/{repo}',
+        'has_release' => 'https://github.com/sanger-tol/{repo}/releases',
+        'release_after_tools' => 'https://github.com/sanger-tol/{repo}/releases/{latest-tag}',
+        'main_is_release' => 'https://github.com/sanger-tol/{repo}/compare/{latest-tag}...main',
+        'has_json_schema' => 'https://github.com/sanger-tol/{repo}',
+        'has_dsl2_modules_dir' => 'https://github.com/sanger-tol/{repo}',
     ] + $base_test_urls;
 $pipeline_merge_table_col_headings = $base_merge_table_col_headings;
 
@@ -1016,19 +1021,19 @@ $core_repo_merge_table_col_headings = $base_merge_table_col_headings;
 $core_repo_ignore_tests = [
     'branch_dev_exists',
     'branch_template_exists',
-    'branch_master_strict_updates',
-    'branch_master_required_ci',
-    'branch_master_stale_reviews',
-    'branch_master_code_owner_reviews',
-    'branch_master_required_num_reviews',
-    'branch_master_enforce_admins',
+    'branch_main_strict_updates',
+    'branch_main_required_ci',
+    'branch_main_stale_reviews',
+    'branch_main_code_owner_reviews',
+    'branch_main_required_num_reviews',
+    'branch_main_enforce_admins',
     'branch_dev_strict_updates',
     'branch_dev_required_ci',
     'branch_dev_stale_reviews',
     'branch_dev_code_owner_reviews',
     'branch_dev_required_num_reviews',
     'branch_dev_enforce_admins',
-    'branch_template_restrict_push',
+    // 'branch_template_restrict_push',
 ];
 foreach ($core_repo_ignore_tests as $key) {
     unset($core_repo_test_names[$key]);
@@ -1051,8 +1056,13 @@ foreach ($core_repos as $idx => $core_repo) {
     $core_repo->fix_tests();
 }
 // Tools: Get release info
-$core_repos['tools']->get_release_data();
-$tools_last_release = $core_repos['tools']->gh_release->published_at;
+//$core_repos['tools']->get_release_data();
+//$tools_last_release = $core_repos['tools']->gh_release->published_at;
+// nf-core tools is not in our sanger-tol organization
+$nf_core_tool_repo = new CoreRepoHealth('tools');
+$nf_core_tool_repo->get_release_data();
+$tools_last_release = $nf_core_tool_repo->gh_release->published_at;
+
 foreach ($pipelines as $idx => $pipeline) {
     $pipeline->test_names = $pipeline_test_names;
     $pipeline->test_descriptions = $pipeline_test_descriptions;
@@ -1199,7 +1209,7 @@ ksort($core_repos);
         e.preventDefault();
       } else {
         if ($('.repos-select').val() == 'all') {
-          if (!confirm('Seriously - ALL nf-core repos. Are you super sure?')) {
+          if (!confirm('Seriously - ALL sanger-tol repos. Are you super sure?')) {
             e.preventDefault();
           } else {
             $(this).addClass('disabled').html('Fixing &nbsp; <i class="fas fa-spinner fa-pulse"></i>');
@@ -1211,7 +1221,7 @@ ksort($core_repos);
     // Remove all get data from the URL
     if (window.location.href.includes('?')) {
       var url_parts = window.location.href.split('?');
-      window.history.replaceState({}, "nf-core", url_parts[0]);
+      window.history.replaceState({}, "sanger-tol", url_parts[0]);
     }
   });
 </script>
