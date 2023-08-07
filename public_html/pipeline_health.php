@@ -296,7 +296,7 @@ class RepoHealth {
     public function test_branch_protection() {
         // Test branch protection for main and dev
         foreach ($this->branches_protection as $branch) {
-            $prs_required = $branch == 'main' ? 2 : 1;
+            $prs_required = $branch == 'main' ? 1 : 1;
             if (!$this->{'branch_' . $branch . '_exists'}) {
                 $this->{'branch_' . $branch . '_strict_updates'} = -1;
                 $this->{'branch_' . $branch . '_required_ci'} = -1;
@@ -896,7 +896,7 @@ $base_test_names = [
     'branch_main_required_ci' => 'main: required CI',
     'branch_main_stale_reviews' => 'main: stale reviews',
     'branch_main_code_owner_reviews' => 'main: code owner reviews',
-    'branch_main_required_num_reviews' => 'main: 2 reviews',
+    'branch_main_required_num_reviews' => 'main: 1 reviews',
     'branch_main_enforce_admins' => 'main: enforce admins',
     'branch_dev_strict_updates' => 'dev: strict updates',
     'branch_dev_required_ci' => 'dev: required CI',
@@ -925,7 +925,7 @@ $base_test_descriptions = [
     'branch_main_required_ci' => 'main branch: minimum set of CI tests must pass',
     'branch_main_stale_reviews' => 'main branch: reviews not marked stale after new commits',
     'branch_main_code_owner_reviews' => 'main branch: code owner reviews not required',
-    'branch_main_required_num_reviews' => 'main branch: 2 reviews required',
+    'branch_main_required_num_reviews' => 'main branch: 1 reviews required',
     'branch_main_enforce_admins' => 'main branch: do not enforce rules for admins',
     'branch_dev_strict_updates' => 'dev branch: do not require branch to be up to date before merging',
     'branch_dev_required_ci' => 'dev branch: minimum set of CI tests must pass',
