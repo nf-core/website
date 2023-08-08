@@ -4,7 +4,7 @@ subtitle: Suggestions for reviewing pipeline PRs
 ---
 
 The aim is to have standardised best-practice pipelines. To ensure this standardisation, we maintain a set of guidelines which all sanger-tol
-pipelines must adhere to. 
+pipelines must adhere to.
 
 Pipeline developers are recommeneded to create **modular and small pull requests (PRs)** to get the most out of the review process.
 
@@ -97,10 +97,9 @@ If a pipeline is found to be violating the standards and guidelines, you should 
 All members of the sanger-tol community must adhere to the [sanger-tol code of conduct](https://pipelines.tol.sanger.ac.uk/code_of_conduct).
 The guidelines and actions within the code of conduct take precedence over the development guidelines described in this page.
 
+---
 
-----------
-----------
-
+---
 
 ### Identity and branding
 
@@ -138,7 +137,7 @@ All sanger-tol pipelines should be lower case and without punctuation. This is t
 
 All sanger-tol pipelines must be built using the nf-core template with a custom prefix `sanger-tol`.
 
-Workflows should be started using the `nf-core create` command which makes a new git repository and the initial commits and branches. This is to ensure that the  sync process can work. See the [sync docs](https://nf-co.re/docs/contributing/sync) for details.
+Workflows should be started using the `nf-core create` command which makes a new git repository and the initial commits and branches. This is to ensure that the sync process can work. See the [sync docs](https://nf-co.re/docs/contributing/sync) for details.
 
 Where possible, workflow authors should do their best to follow nf-core conventions for filenames and code locations.
 
@@ -289,7 +288,6 @@ This can be automated through linkage with the GitHub repository.
 
 Pipelines should have explicit support for running in cloud environments. The pipelines created with [nf-core template](https://nf-co.re/tools/#creating-a-new-pipeline) comes with all required code to support this setup.
 
-
 ### Publication credit
 
 **sanger-tol**
@@ -298,7 +296,7 @@ Pipeline publications should acknowledge all developers, reviewers and anyone wh
 
 **nf-core**
 
-**At a minimum**, the nf-core community should be thanked in the acknowledgment section. 
+**At a minimum**, the nf-core community should be thanked in the acknowledgment section.
 
 > We would like to thank the nf-core community for developing the nf-core infrastructure and resources for Nextflow pipelines. A full list of nf-core community members is available at https://nf-co.re/community.
 
