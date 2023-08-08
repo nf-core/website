@@ -101,3 +101,7 @@ We will coordinate our work and the issues we are working on using a single GitH
 The in-person hackathon will be taking place in at the Boston Park Plaza. More information about this venue can be found the the Nextflow Summit website.
 
 [👉🏻 Google Maps 🗺️](https://goo.gl/maps/BxuzkS9kZrrASGCn7)
+
+# Code of conduct
+
+Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](https://nf-co.re/code_of_conduct).
