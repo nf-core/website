@@ -137,7 +137,7 @@ echo $msg;
 
 <p class="mt-5 small text-muted">
   Page last synced with GitHub <?php echo time_ago($pipelines_json->updated); ?>.
-  <a href="/pipelines?update">Click here</a> to trigger an update.</a>.
+  <a href="/pipelines?update">Click here</a> to trigger an update</a>.
   See also <a href="/pipeline_health">pipeline repository health</a>.
 </p>
 
