@@ -5,9 +5,9 @@ subtitle: Guides on special content elements on nf-co.re
 
 # Introduction
 
-All of the documentation written for nf-core is written in [Markdown](https://www.markdownguide.org/). Markdown is a simple markup language that allows you to write text in a way that is easy to read and write, but can be converted to HTML for display on the web.
+We write all of the nf-core documentation, including pipelines, in [Markdown](https://www.markdownguide.org/). Markdown is a simple markup language that allows you to write text in a way that is easy to read and write, but can be converted to HTML for display on the web.
 
-In general, we follow the github flavoured markdown specification, but there are a few extra features that we support on nf-co.re.
+In general, we follow the [GitHub Flavored Markdown specification](https://github.github.com/gfm/), but there are a few extra features that we support on nf-co.re.
 
 # Admonitions
 
@@ -113,6 +113,26 @@ Curiously enough, the only thing that went through the mind of the bowl of petun
 Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.
 :::
 
+
+# Code blocks with file names
+
+You can add a file name to a code block by adding a `title` attribute to the code block, e.g.:
+
+````md
+```groovy title="nextflow.config"
+params {
+  input = null
+}
+```
+````
+
+```groovy title="nextflow.config"
+params {
+  input = null
+}
+```
+
+The icon next to the title is based on the file extension.
 
 # Mermaid diagrams
 
