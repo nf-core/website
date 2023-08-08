@@ -23,7 +23,7 @@ All sanger-tol pipelines _must_ follow the following guidelines:
 - [Software license](#software-license): Pipelines must be open source, released with the MIT license.
 - [Bundled documentation](#bundled-documentation): Pipeline documentation must be hosted on the nf-core website.
 - [Docker support](#docker-support): Software must be bundled using Docker and versioned.
-- [Continuous integration testing](#continuous-integration-testingfi): Pipelines must run CI tests.
+- [Continuous integration testing](#continuous-integration-testing): Pipelines must run CI tests.
 - [Semantic versioning](#semantic-versioning): Pipelines must use stable release tags.
 - [Standardised parameters](#standardised-parameters): Strive to have standardised usage.
 - [Single command](#single-command): Pipelines should run in a single command.
