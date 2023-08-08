@@ -1,10 +1,9 @@
 ---
 title: Pipeline Review Guidelines
-subtitle: Suggestions for reviewing pipeline PRs
+subtitle: Suggestions for reviewing pipeline pull requests
 ---
 
-The aim is to have standardised best-practice pipelines. To ensure this standardisation, we maintain a set of guidelines which all sanger-tol
-pipelines must adhere to. 
+The aim is to have standardised best-practice pipelines. To ensure this standardisation, we maintain a set of guidelines which all sanger-tol pipelines must adhere to. These are adopted from [nf-core guidelines](https://nf-co.re/docs/contributing/guidelines) and [review checklist](https://nf-co.re/docs/contributing/pipeline_release_review_guidelines).
 
 Pipeline developers are recommeneded to create **modular and small pull requests (PRs)** to get the most out of the review process.
 
