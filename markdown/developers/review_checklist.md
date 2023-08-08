@@ -18,30 +18,30 @@ All sanger-tol pipelines _must_ follow the following guidelines:
 
 - [Identity and branding](#identity-and-branding): Primary development must on the sanger-tol organisation.
 - [Workflow size](#workflow-size): Not too big, not too small.
-- [Workflow name](#workflow_name): Names should be lower case and without punctuation.
-- [Use the template](#use_the_template): All sanger-tol pipelines must be built using the nf-core template and sanger-tol branding.
-- [Software license](#mit_license): Pipelines must be open source, released with the MIT license.
+- [Workflow name](#workflow-name): Names should be lower case and without punctuation.
+- [Use the template](#use-the-template): All sanger-tol pipelines must be built using the nf-core template and sanger-tol branding.
+- [Software license](#mit-license): Pipelines must be open source, released with the MIT license.
 - [Bundled documentation](#docs): Pipeline documentation must be hosted on the nf-core website.
 - [Docker support](#docker): Software must be bundled using Docker and versioned.
-- [Continuous integration testing](#ci_testing): Pipelines must run CI tests.
-- [Semantic versioning](#semantic_versioning): Pipelines must use stable release tags.
+- [Continuous integration testing](#ci-testing): Pipelines must run CI tests.
+- [Semantic versioning](#semantic-versioning): Pipelines must use stable release tags.
 - [Standardised parameters](#parameters): Strive to have standardised usage.
-- [Single command](#single_command): Pipelines should run in a single command.
+- [Single command](#single-command): Pipelines should run in a single command.
 - [Keywords](#keywords): Excellent documentation and GitHub repository keywords.
 - [Pass lint tests](#linting): The pipeline must not have any failures in the `nf-core lint` tests.
 - [Credits and Acknowledgements](#acknowledgements): Pipelines must properly acknowledge prior work.
-- [Minimum inputs](#minimum_inputs): Pipelines should be able to run with as little input as possible.
-- [Use sanger-tol git branches](#git_branches): Use `main`, `dev` and `TEMPLATE`.
+- [Minimum inputs](#minimum-inputs): Pipelines should be able to run with as little input as possible.
+- [Use sanger-tol git branches](#git-branches): Use `main`, `dev` and `TEMPLATE`.
 
 ## Do: nf-core recommendations {#recommendations}
 
 All sanger-tol pipelines _should_ follow the following guidelines, if possible / appropriate:
 
 - [Use Bioconda](#bioconda): Package software using bioconda and biocontainers.
-- [File formats](#file_formats): Use community accepted modern file formats such as `CRAM`.
+- [File formats](#file-formats): Use community accepted modern file formats such as `CRAM`.
 - [DOIs](#dois): Pipelines should have digital object identifiers (DOIs).
-- [Cloud compatible](#cloud_compatible): Pipelines should be tested on cloud computing environments.
-- [Publication credit](#publication_credit): Pipeline publications should acknowledge the sanger-tol community and contributing members.
+- [Cloud compatible](#cloud-compatible): Pipelines should be tested on cloud computing environments.
+- [Publication credit](#publication-credit): Pipeline publications should acknowledge the sanger-tol community and contributing members.
 
 ## Do: Local code and modules {#local}
 
