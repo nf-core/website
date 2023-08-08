@@ -98,9 +98,11 @@ All members of the sanger-tol community must adhere to the [sanger-tol code of c
 The guidelines and actions within the code of conduct take precedence over the development guidelines described in this page.
 
 
-----------
-----------
+---
+---
 
+
+## Guidelines
 
 ### Identity and branding
 
