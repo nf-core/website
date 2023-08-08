@@ -149,13 +149,15 @@
             </thead>
             <tbody>
                 {#each filteredPipelines as pipeline}
-                    <tr class="position-relative">
-                        <td>
-                            <a
-                                class="stretched-link"
-                                href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
-                                >{pipeline.name}</a
-                            >
+                    <tr>
+                        <td class=" name p-0">
+                            <div class="position-relative p-3">
+                                <a
+                                    class="stretched-link"
+                                    href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                    >{pipeline.name}</a
+                                >
+                            </div>
                         </td>
                         <td class="text-small">
                             {pipeline.description}
