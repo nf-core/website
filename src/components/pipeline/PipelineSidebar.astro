@@ -153,7 +153,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             },
             {
                 title: 'last update',
-                value: formatDistance(new Date(meta.updated_at), new Date(), { addSuffix: true }),
+                value: formatDistance(new Date(meta.releases[0].published_at), new Date(), { addSuffix: true }),
             },
         ]}
     />

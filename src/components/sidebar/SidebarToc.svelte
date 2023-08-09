@@ -35,7 +35,7 @@
 </script>
 
 {#if headings.length > 1}
-    <div class="nav flex-column sticky-top-under align-items-end">
+    <div class="nav flex-column sticky-top-under align-items-end pt-1">
         <div class="d-none d-md-inline">
             <strong class="h6 my-2 text-body">On this page</strong>
             <!-- <hr class="my-1" /> -->
