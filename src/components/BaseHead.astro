@@ -45,9 +45,6 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 
 {viewTransitions && <ViewTransitions fallback="none" />}
 
-<!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
-
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}
 

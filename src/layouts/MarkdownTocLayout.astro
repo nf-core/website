@@ -14,6 +14,7 @@ export interface Props {
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
     viewTransitions?: boolean;
+    meta_title?: string;
     docSearchTags?: {
         name: string;
         content: string;
@@ -29,6 +30,7 @@ const {
     left_sidebar,
     sections = [],
     viewTransitions = false,
+    meta_title = '',
     docSearchTags = [],
 } = Astro.props;
 ---
@@ -57,6 +59,7 @@ const {
 </script>
 <PageLayout
     title={title}
+    meta_title={meta_title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
@@ -70,7 +73,7 @@ const {
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
                     <SidebarNav items={sections} />
                 </div>
             )
@@ -116,10 +119,6 @@ const {
     </script>
 </PageLayout>
 <style lang="scss">
-    .sidebar-left {
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-    }
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
