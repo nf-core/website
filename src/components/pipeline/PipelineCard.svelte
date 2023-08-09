@@ -14,6 +14,9 @@
     const archived = pipeline.archived;
     const released = releases.length > 1;
     let latestRelease, tagName, releaseDateAgo, recentRelease;
+    const lastChangesAge = formatDistanceToNow(new Date(releases[0].published_at), {
+        addSuffix: true,
+    });
     if (released) {
         latestRelease = releases[0];
         tagName = latestRelease.tag_name;
@@ -94,6 +97,10 @@
                     {tagName}
                 </a>
                 <span class="text-body-secondary text-small"> released {releaseDateAgo}</span>
+            </p>
+        {:else}
+            <p class="release">
+                <span class="text-body-secondary text-small"> last changes {lastChangesAge}</span>
             </p>
         {/if}
     </div>
