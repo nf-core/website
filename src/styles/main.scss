@@ -383,7 +383,7 @@ h4:focus .header-link,
 
     :hover .invisible {
       visibility: visible !important;
-      &::before {
+      &:not(.fa-link)::before {
         content: "\f0c1";
         color: $gray-600;
       }

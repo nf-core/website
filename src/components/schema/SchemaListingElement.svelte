@@ -9,12 +9,12 @@
 </script>
 
 <div
-    class="property row border-bottom py-3 mx-md-1 justify-content-between"
+    class="property row border-bottom py-3 mx-md-1 justify-content-between align-items-center"
     class:collapse={property.hidden}
     class:show={$showHidden}
 >
-    <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 overflow-x-scroll">
-        <a class="text-decoration-none" aria-hidden="true" tabindex="-1" href={'#' + title}
+    <div id={title} class="col-12 col-md-3 title border-right border-secondary text-nowrap p-0 pe-2">
+        <a class="text-decoration-none d-block overflow-x-scroll" aria-hidden="true" tabindex="-1" href={'#' + title}
             ><i class="ms-1 fas invisible" aria-hidden="true" />
             <span class="">
                 {#if property.fa_icon}
