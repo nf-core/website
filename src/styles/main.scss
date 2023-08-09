@@ -381,8 +381,12 @@ h4:focus .header-link,
   .title {
     scroll-margin-top: 4rem;
 
-    :hover .fa-link {
+    :hover .invisible {
       visibility: visible !important;
+      &::before {
+        content: "\f0c1";
+        color: $gray-600;
+      }
     }
   }
 }
