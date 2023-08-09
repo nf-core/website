@@ -67,7 +67,7 @@ const {
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
                     <SidebarNav items={sections} />
                 </div>
             )
@@ -113,10 +113,6 @@ const {
     </script>
 </PageLayout>
 <style lang="scss">
-    .sidebar-left {
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-    }
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
