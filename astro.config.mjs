@@ -25,6 +25,7 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
+
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
     .then((json) => json.tag_name);
@@ -70,6 +71,7 @@ export default defineConfig({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
                 fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
+                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro) fallback',
             }),
         ],
         ssr: {
@@ -99,7 +101,7 @@ export default defineConfig({
                 rehypeAutolinkHeadings,
                 {
                     behavior: 'append',
-                    content: h('i.ms-1.fas.invisible'),
+                    content: h('i.ms-1.fas.fa-link.invisible'),
                 },
             ],
             [

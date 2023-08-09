@@ -10,6 +10,7 @@ const Heading = 'h' + level;
 ---
 
 <Heading level={level} id={id}>
-    <slot /><a aria-hidden="true" tabindex="-1" href={'#' + id}></a><i class="ms-1 fas invisible" aria-hidden="true"
-    ></i>
+    <slot /><a aria-hidden="true" tabindex="-1" href={'#' + id}></a><i
+        class="ms-1 fas fa-link invisible"
+        aria-hidden="true"></i>
 </Heading>
