@@ -24,6 +24,7 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import purgecss from 'astro-purgecss';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -31,7 +32,7 @@ const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/too
 let latestPipelineReleases = {};
 
 pipelines_json.remote_workflows.map(
-    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`)
+    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
 );
 const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 // https://astro.build/config
@@ -58,6 +59,7 @@ export default defineConfig({
             },
         }),
         mdx(),
+        purgecss(),
     ],
     build: {
         inlineStylesheets: 'auto',
