@@ -81,7 +81,7 @@ class RepoHealth {
         'Prettier',
         'EditorConfig',
         'nf-core',
-        'Run pipeline with test data',
+        'Run pipeline with test data (latest-everything)',
         'PythonBlack',
         // NOTE - doesn't seem to be any way to get the "available" contexts through GitHub API
         // If we really want to do this, might have to query the repo contents..??
