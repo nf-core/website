@@ -42,7 +42,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [] } = As
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
+<!-- <script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script> -->
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}

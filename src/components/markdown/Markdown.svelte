@@ -37,7 +37,7 @@
                     rehypeAutolinkHeadings,
                     {
                         behavior: 'append',
-                        content: h('i.ms-1.fas.fa-link.invisible'),
+                        content: h('i.ms-1.fas.invisible'),
                     },
                 ],
                 [
