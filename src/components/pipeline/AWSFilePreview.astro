@@ -28,7 +28,7 @@ const hasPreview = [
     'gif',
     'svg',
 ].includes(extension);
-const tooBig = extension !== 'html' && file.size > 10000000;
+let tooBig = file.size > 5500000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
@@ -130,7 +130,7 @@ if (!tooBig && hasPreview) {
     </div>
     <div class:list={['p-3 ', { 'd-none': !tooBig || !hasPreview }]}>
         <Admonition title="info">
-            <p>The file is too big to preview.</p>
+            <p>The file is too big to preview, please download it to inspect its contents.</p>
         </Admonition>
     </div>
 </div>
