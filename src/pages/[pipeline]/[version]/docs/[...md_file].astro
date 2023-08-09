@@ -146,7 +146,9 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline + ' ' + section}
+    meta_title={pipeline +
+        ': ' +
+        section.replace(/-/g, ' ').replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
     subtitle={description}
     headings={headings}
     version={version}
@@ -158,7 +160,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-3">
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
                     <SidebarNav items={sections} />
                 </div>
             )

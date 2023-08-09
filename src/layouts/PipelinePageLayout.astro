@@ -14,6 +14,7 @@ export interface Props {
     tabItems?: string[];
     md_github_url?: string;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    docSearchTags?: { name: string; content: string | string[] }[];
 }
 
 const {
@@ -26,6 +27,7 @@ const {
     tabItems = [],
     md_github_url = '',
     sections = [],
+    docSearchTags = [],
 } = Astro.props;
 const url = Astro.url.pathname;
 const baseUrl = '/' + pipeline + '/' + version;
@@ -102,6 +104,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     sections={sections}
     viewTransitions={true}
     docSearchTags={[
+        ...docSearchTags,
         { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
         { name: 'page_type', content: 'pipeline' },
     ]}
