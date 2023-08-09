@@ -106,7 +106,7 @@ The hackathon will run from **Monday 16th October** to **Wednesday 18th October*
 
 To keep work and discussion during the hackathon manageable, we will organise everyone into groups. You are free to change groups as you wish during the hackathon.
 
-We will coordinate our work and the issues we are working on using a single GitHub project board (we’ll post a link to here closer to the time). There will be a separate tab for each group where will have collated a list of relevant issues.
+We will coordinate our work and the issues we are working on using a single GitHub project board (we’ll post a link here closer to the time). There will be a separate tab for each group where will have collated a list of relevant issues.
 # Venue: Hotel SB Glow
 
 The in-person hackathon will be taking place at Hotel SB Glow.
