@@ -47,7 +47,7 @@ export interface Props {
 const {
     title,
     description,
-    filter,
+    filter = [],
     displayStyle,
     sortBy,
     pipelines,
@@ -67,11 +67,9 @@ const {
     <div class="container-fluid main-content pt-md-2 p-1">
         <slot />
         <FilterBar displayStyle={displayStyle} filter={filter} sortBy={sortBy} client:load />
-        <div transition:animate="slide">
-            {!components && !configs && <PipelinesListing pipelines={pipelines} client:load />}
-            {components && <ComponentListing components={components} client:load />}
-            {configs && <ConfigListing configs={configs} client:load />}
-        </div>
+        {!components && !configs && <PipelinesListing pipelines={pipelines} client:load />}
+        {components && <ComponentListing components={components} client:load />}
+        {configs && <ConfigListing configs={configs} client:load />}
     </div>
 </PageLayout>
 

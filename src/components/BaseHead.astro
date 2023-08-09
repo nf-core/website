@@ -85,11 +85,9 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
     import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
     document.addEventListener('astro:beforeload', () => {
-        console.log('getting tooltips');
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map((tooltipTriggerEl) => {
             const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
-            console.log(tooltip);
             if (!tooltip) {
                 new bootstrap.Tooltip(tooltipTriggerEl);
             }
