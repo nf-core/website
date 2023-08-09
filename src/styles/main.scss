@@ -1131,7 +1131,7 @@ Launch Page
 
 .sidebar-nav {
   @include media-breakpoint-up(lg) {
-    height: 100vh;
+    height: 90vh;
     overflow: auto;
   }
 
@@ -1174,6 +1174,11 @@ Launch Page
   &:last-child {
     border-bottom: none;
   }
+}
+
+.sidebar-left {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 .admonition {

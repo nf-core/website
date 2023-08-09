@@ -3457,7 +3457,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         }
       ]
     },
@@ -3518,7 +3518,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         }
       ]
     },
@@ -7933,9 +7933,6 @@
           "@matthdsm"
         ]
       },
-      "subworkflows": [
-        "bcl_demultiplex"
-      ],
       "pipelines": [
         {
           "name": "demultiplex",
@@ -8048,9 +8045,6 @@
           "@matthdsm"
         ]
       },
-      "subworkflows": [
-        "bcl_demultiplex"
-      ],
       "pipelines": [
         {
           "name": "demultiplex",
@@ -11829,7 +11823,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -11940,7 +11934,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -12565,7 +12559,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -12712,7 +12706,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -15422,7 +15416,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -15500,7 +15494,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -19271,7 +19265,7 @@
         },
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bamtofastq",
@@ -19581,7 +19575,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -21234,7 +21228,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -21521,7 +21515,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -21616,7 +21610,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -21787,7 +21781,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -25295,6 +25289,72 @@
       ]
     },
     {
+      "name": "famsa_guidetree",
+      "path": "modules/nf-core/famsa/guidetree/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "famsa_guidetree",
+        "description": "Renders a guidetree in famsa",
+        "keywords": [
+          "guide tree",
+          "msa",
+          "newick"
+        ],
+        "tools": [
+          {
+            "famsa": {
+              "description": "Algorithm for large-scale multiple sequence alignments",
+              "homepage": "https://github.com/refresh-bio/FAMSA",
+              "documentation": "https://github.com/refresh-bio/FAMSA",
+              "tool_dev_url": "https://github.com/refresh-bio/FAMSA",
+              "doi": "10.1038/srep33964",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Guide tree file in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "faqcs",
       "path": "modules/nf-core/faqcs/meta.yml",
       "type": "module",
@@ -26127,10 +26187,6 @@
           "@kevinmenden"
         ]
       },
-      "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
-        "fastq_trim_fastp_fastqc"
-      ],
       "pipelines": [
         {
           "name": "airrflow",
@@ -26257,11 +26313,6 @@
           "@FelixKrueger"
         ]
       },
-      "subworkflows": [
-        "fastq_fastqc_umitools_fastp",
-        "fastq_trim_fastp_fastqc",
-        "fastq_fastqc_umitools_trimgalore"
-      ],
       "pipelines": [
         {
           "name": "airrflow",
@@ -26273,7 +26324,7 @@
         },
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bacass",
@@ -27979,9 +28030,6 @@
           "@maxulysse"
         ]
       },
-      "subworkflows": [
-        "bam_variant_calling_sort_freebayes_bcftools"
-      ],
       "pipelines": [
         {
           "name": "mag",
@@ -28371,6 +28419,94 @@
         ],
         "authors": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "galah",
+      "path": "modules/nf-core/galah/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "galah",
+        "description": "Cluster genome FASTA files by average nucleotide identity",
+        "keywords": [
+          "genomics",
+          "cluster",
+          "genome",
+          "metagenomics"
+        ],
+        "tools": [
+          {
+            "galah": {
+              "description": "Galah aims to be a more scalable metagenome assembled genome (MAG) dereplication method.",
+              "homepage": "https://github.com/wwood/galah",
+              "documentation": "https://github.com/wwood/galah",
+              "tool_dev_url": "https://github.com/wwood/galah",
+              "doi": "10.1111/NODOI",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bins": {
+              "type": "file",
+              "description": "A list of fasta-formatted genomes for dereplication",
+              "pattern": "*.{fa,fna,fa.gz, etc}"
+            }
+          },
+          {
+            "qc_table": {
+              "type": "file",
+              "description": "(optional) Either a (CheckM)[https://nf-co.re/modules/checkm_lineagewf] summary TSV containing\ninformation on the completeness and contamination of the input genomes (13 columns),\nor a 3-column csv with the header `genome,completeness,contamination`.\nIn both cases the first column should contain the names of the input genome files,\nminus the last file extension\n(i.e. if the genome is gzipped, the genome name should retain the .fasta extension).\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "qc_format": {
+              "type": "string",
+              "description": "Defines the type if input table in `qc_table`, if specified.",
+              "pattern": "checkm|genome_info"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "TSV file in the format `representative_genome` \\t `member_genome`",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "dereplicated_bins": {
+              "type": "file",
+              "description": "The representative genomes following dereplication by galah.",
+              "pattern": "*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@prototaxites"
         ]
       }
     },
@@ -38079,7 +38215,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -41053,7 +41189,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -44024,7 +44160,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -47598,7 +47734,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -50680,7 +50816,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -50769,9 +50905,6 @@
           "@MillironX"
         ]
       },
-      "subworkflows": [
-        "fasta_newick_epang_gappa"
-      ],
       "pipelines": [
         {
           "name": "ampliseq",
@@ -52426,6 +52559,10 @@
         {
           "name": "genomeassembler",
           "version": "dev"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         }
       ]
     },
@@ -52503,6 +52640,10 @@
       "pipelines": [
         {
           "name": "genomeassembler",
+          "version": "dev"
+        },
+        {
+          "name": "phageannotator",
           "version": "dev"
         }
       ]
@@ -56480,6 +56621,85 @@
         ],
         "authors": [
           "@prototaxites"
+        ]
+      }
+    },
+    {
+      "name": "mmseqs_easysearch",
+      "path": "modules/nf-core/mmseqs/easysearch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_easysearch",
+        "description": "Searches for the sequences of a fasta file in a databse using MMseqs2",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "searching",
+          "mmseqs2"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing input fasta file information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing database information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "db_target": {
+              "type": "directory",
+              "description": "an MMseqs2 database with target data, e.g. uniref90"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing input fasta file information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "tsv": {
+              "type": "file",
+              "description": "tsv file with the results of the search",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
         ]
       }
     },
@@ -63611,7 +63831,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -64453,7 +64673,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -64562,7 +64782,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -67206,7 +67426,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -72187,9 +72407,6 @@
           "@lescai"
         ]
       },
-      "subworkflows": [
-        "fastq_create_umi_consensus_fgbio"
-      ],
       "pipelines": [
         {
           "name": "rnadnavar",
@@ -73534,7 +73751,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bamtofastq",
@@ -73758,7 +73975,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bamtofastq",
@@ -74003,7 +74220,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bacass",
@@ -74503,7 +74720,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bacass",
@@ -74680,7 +74897,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "bamtofastq",
@@ -76387,6 +76604,75 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "seqkit_fx2tab",
+      "path": "modules/nf-core/seqkit/fx2tab/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_fx2tab",
+        "description": "Convert FASTA/Q to tabular format, and provide various information, like sequence length, GC content/GC skew.",
+        "keywords": [
+          "fasta",
+          "fastq",
+          "text",
+          "tabular",
+          "convert"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "Cross-platform and ultrafast toolkit for FASTA/Q file manipulation, written by Wei Shen.\n",
+              "homepage": "https://github.com/shenwei356/seqkit",
+              "documentation": "https://bioinf.shenwei.me/seqkit/",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Sequence file in fasta/q format",
+              "pattern": "*.{fasta,fastq,fa,fq,fas,fna,faa}[.gz,.zst]"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "text": {
+              "type": "file",
+              "description": "Text file in tabular format",
+              "pattern": "*.txt[.gz,.zstd,.zst]"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@heuermh"
         ]
       }
     },
@@ -79896,6 +80182,89 @@
         "authors": [
           "@scorreard",
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "snakemake",
+      "path": "modules/nf-core/snakemake/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "snakemake",
+        "description": "The Snakemake workflow management system is a tool to create reproducible and scalable data analyses. This module runs a simple Snakemake pipeline based on input snakefile. Expect many limitations.\"",
+        "keywords": [
+          "snakemake",
+          "workflow",
+          "workflow_mode"
+        ],
+        "tools": [
+          {
+            "snakemake": {
+              "description": "A popular workflow management system aiming at full in-silico reproducibility.",
+              "homepage": "https://snakemake.readthedocs.io/en/stable/",
+              "documentation": "https://snakemake.readthedocs.io/en/stable/",
+              "tool_dev_url": "https://github.com/snakemake/snakemake",
+              "doi": "10.1093/bioinformatics/bty350",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Any input file required by Snakemake",
+              "pattern": "*"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Meta information for Snakefile\ne.g. [ id: 'snakefile' ]\n"
+            }
+          },
+          {
+            "snakefile": {
+              "type": "file",
+              "description": "Snakefile to use with Snakemake. This is required for proper execution of Snakemake.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "outputs": {
+              "type": "file",
+              "description": "Any file generated by Snakemake, excluding the inputs, hidden files and Snakemake log directory (.snakemake). This is set to optional because Snakemake can be used to run arbitrary commands, and we cannot know what files will be generated.\n"
+            }
+          },
+          {
+            "snakemake_dir": {
+              "type": "directory",
+              "description": "Snakemake log directory (.snakemake). Can be used to capture logs of Snakemake execution.\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
         ]
       }
     },
@@ -83731,7 +84100,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -86121,13 +86490,10 @@
           "@FelixKrueger"
         ]
       },
-      "subworkflows": [
-        "fastq_fastqc_umitools_trimgalore"
-      ],
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -86494,7 +86860,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -87524,7 +87890,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -87785,7 +88151,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "chipseq",
@@ -91924,7 +92290,7 @@
           "genomicsdb_workspace",
           "panel_of_normals"
         ],
-        "modules": [
+        "components": [
           "gatk4/mutect2",
           "gatk4/genomicsdbimport",
           "gatk4/createsomaticpanelofnormals"
@@ -92029,12 +92395,13 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "umitools/dedup",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_stats_samtools"
         ],
         "input": [
           {
@@ -92115,7 +92482,7 @@
           "contamination",
           "docounts"
         ],
-        "modules": [
+        "components": [
           "angsd/docounts",
           "angsd/contamination"
         ],
@@ -92187,12 +92554,13 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "picard/markduplicates",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_stats_samtools"
         ],
         "input": [
           {
@@ -92256,7 +92624,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "circdna",
@@ -92285,7 +92653,7 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "samtools/collate",
           "samtools/fixmate",
           "samtools/sort",
@@ -92353,7 +92721,7 @@
           "bam",
           "snp"
         ],
-        "modules": [
+        "components": [
           "bcftools/mpileup",
           "ngscheckmate/ncm"
         ],
@@ -92440,7 +92808,7 @@
       "path": "subworkflows/nf-core/bam_qc_picard/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "bam_qc",
+        "name": "bam_qc_picard",
         "description": "Produces comprehensive statistics from BAM file",
         "keywords": [
           "statistics",
@@ -92451,7 +92819,7 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "picard/collectmultiplemetrics",
           "picard/collectwgsmetrics",
           "picard/collecthsmetrics"
@@ -92584,8 +92952,16 @@
           "readduplication",
           "tin"
         ],
-        "modules": [
-          "rseqc"
+        "components": [
+          "rseqc",
+          "rseqc/tin",
+          "rseqc/readduplication",
+          "rseqc/readdistribution",
+          "rseqc/junctionsaturation",
+          "rseqc/junctionannotation",
+          "rseqc/innerdistance",
+          "rseqc/inferexperiment",
+          "rseqc/bamstat"
         ],
         "input": [
           {
@@ -92814,12 +93190,13 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "samtools/sort",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_stats_samtools"
         ],
         "input": [
           {
@@ -92908,7 +93285,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "circrna",
@@ -92954,7 +93331,7 @@
           "cram",
           "index"
         ],
-        "modules": [
+        "components": [
           "samtools/view",
           "samtools/index"
         ],
@@ -92996,7 +93373,7 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "samtools/stats",
           "samtools/idxstats",
           "samtools/flagstat"
@@ -93042,7 +93419,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "callingcards",
@@ -93100,7 +93477,7 @@
           "tumor_only",
           "filtered_vcf"
         ],
-        "modules": [
+        "components": [
           "gatk4/mutect2",
           "gatk4/learnreadorientationmodel",
           "gatk4/getpileupsummaries",
@@ -93231,7 +93608,7 @@
       "path": "subworkflows/nf-core/bam_tumor_only_somatic_variant_calling_gatk/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "gatk_tumor_only_somatic_variant_calling",
+        "name": "bam_tumor_only_somatic_variant_calling_gatk",
         "description": "Perform variant calling on a single tumor sample using mutect2 tumor only mode.\nRun the input bam file through getpileupsummarries and then calculatecontaminationto get the contamination and segmentation tables.\nFilter the mutect2 output vcf using filtermutectcalls and the contamination & segmentation tables for additional filtering.\n",
         "keywords": [
           "gatk4",
@@ -93243,7 +93620,7 @@
           "tumor_only",
           "filtered_vcf"
         ],
-        "modules": [
+        "components": [
           "gatk4/mutect2",
           "gatk4/getpileupsummaries",
           "gatk4/calculatecontamination",
@@ -93419,7 +93796,7 @@
           "cram",
           "vcf"
         ],
-        "modules": [
+        "components": [
           "freebayes",
           "bcftools/sort",
           "bcftools/index"
@@ -93563,7 +93940,7 @@
           "variants",
           "cram"
         ],
-        "modules": [
+        "components": [
           "freyja/variants",
           "freyja/demix",
           "freyja/update",
@@ -93683,7 +94060,7 @@
           "demultiplex",
           "fastq"
         ],
-        "modules": [
+        "components": [
           "bcl2fastq",
           "bclconvert"
         ],
@@ -93779,7 +94156,7 @@
           "scatter",
           "bedtools"
         ],
-        "modules": [
+        "components": [
           "bedtools/split"
         ],
         "input": [
@@ -93819,7 +94196,7 @@
           "clip",
           "conversion"
         ],
-        "modules": [
+        "components": [
           "ucsc/bedclip",
           "ucsc/bedgraphtobigwig"
         ],
@@ -93891,7 +94268,7 @@
           "metagenomics",
           "contigs"
         ],
-        "modules": [
+        "components": [
           "concoct/cutupfasta",
           "concoct/concoctcoveragetable",
           "concoct/concoct",
@@ -93993,7 +94370,7 @@
           "assemblies",
           "fasta"
         ],
-        "modules": [
+        "components": [
           "fcs/fcsadaptor",
           "fcs/fcsgx"
         ],
@@ -94097,7 +94474,7 @@
           "dragmap",
           "snapaligner"
         ],
-        "modules": [
+        "components": [
           "bowtie2/build",
           "bwa/index",
           "bwamem2/index",
@@ -94184,7 +94561,7 @@
           "fasta",
           "newick"
         ],
-        "modules": [
+        "components": [
           "hmmer/hmmbuild",
           "hmmer/hmmalign",
           "hmmer/eslalimask",
@@ -94335,13 +94712,14 @@
           "genome",
           "reference"
         ],
-        "modules": [
+        "components": [
           "bowtie2/align",
           "samtools/sort",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_sort_stats_samtools"
         ],
         "input": [
           {
@@ -94421,7 +94799,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "viralrecon",
@@ -94442,13 +94820,15 @@
           "genome",
           "reference"
         ],
-        "modules": [
+        "components": [
+          "bwa/mem",
           "bwa/align",
           "samtools/sort",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_sort_stats_samtools"
         ],
         "input": [
           {
@@ -94524,7 +94904,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         }
       ]
     },
@@ -94533,7 +94913,7 @@
       "path": "subworkflows/nf-core/fastq_align_bwaaln/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "fastq_align_bwaaln_samtools",
+        "name": "fastq_align_bwaaln",
         "description": "Align FASTQ files against reference genome with the bwa aln short-read aligner producing a sorted and indexed BAM files",
         "keywords": [
           "bwa",
@@ -94543,7 +94923,7 @@
           "align",
           "map"
         ],
-        "modules": [
+        "components": [
           "bwa/aln",
           "bwa/sampe",
           "bwa/samse",
@@ -94605,13 +94985,14 @@
           "atac-seq",
           "hic"
         ],
-        "modules": [
+        "components": [
           "chromap/chromap",
           "samtools/sort",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_sort_stats_samtools"
         ],
         "input": [
           {
@@ -94728,7 +95109,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         }
       ]
     },
@@ -94748,7 +95129,7 @@
           "dragmap",
           "snapaligner"
         ],
-        "modules": [
+        "components": [
           "bowtie2/align",
           "bwa/mem",
           "bwamem2/mem",
@@ -94859,11 +95240,12 @@
           "sam",
           "cram"
         ],
-        "modules": [
+        "components": [
           "hisat2/align",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_sort_stats_samtools"
         ],
         "input": [
           {
@@ -95002,13 +95384,14 @@
           "genome",
           "reference"
         ],
-        "modules": [
+        "components": [
           "star/align",
           "samtools/sort",
           "samtools/index",
           "samtools/stats",
           "samtools/idxstats",
-          "samtools/flagstat"
+          "samtools/flagstat",
+          "bam_sort_stats_samtools"
         ],
         "input": [
           {
@@ -95148,8 +95531,8 @@
           "fastq",
           "contamination"
         ],
-        "modules": [
-          "kraken/kraken2",
+        "components": [
+          "kraken2/kraken2",
           "seqtk/sample"
         ],
         "input": [
@@ -95204,7 +95587,7 @@
       "path": "subworkflows/nf-core/fastq_create_umi_consensus_fgbio/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "fgbio_create_umi_consensus",
+        "name": "fastq_create_umi_consensus_fgbio",
         "description": "This workflow uses the suite FGBIO to identify and remove UMI tags from FASTQ reads\nconvert them to unmapped BAM file, map them to the reference genome,\nand finally use the mapped information to group UMIs and generate consensus reads in each group\n",
         "keywords": [
           "fgbio",
@@ -95213,14 +95596,23 @@
           "samtools",
           "bwa"
         ],
-        "modules": [
+        "components": [
           "bwa/index",
           "bwa/mem",
+          "bwamem2/mem",
+          "bwamem2/index",
           "fgbio/fastqtobam",
           "fgbio/groupreadsbyumi",
           "fgbio/callmolecularconsensusreads",
+          "fgbio/callduplexconsensusreads",
+          "fgbio/filterconsensusreads",
           "samblaster",
-          "samtools/bam2fq"
+          "samtools/bam2fq",
+          "samtools/view",
+          "samtools/sort",
+          "samtools/index",
+          "samtools/fastq",
+          "fgbio/zipperbams"
         ],
         "input": [
           {
@@ -95313,7 +95705,7 @@
           "prefetch",
           "fasterq-dump"
         ],
-        "modules": [
+        "components": [
           "custom/sratoolsncbisettings",
           "sratools/prefetch",
           "sratools/fasterqdump"
@@ -95388,7 +95780,7 @@
           "trimming",
           "fastp"
         ],
-        "modules": [
+        "components": [
           "fastqc",
           "umitools/extract",
           "fastp"
@@ -95585,7 +95977,7 @@
           "trimming",
           "trimgalore"
         ],
-        "modules": [
+        "components": [
           "fastqc",
           "umitools/extract",
           "trimgalore"
@@ -95719,7 +96111,7 @@
       "pipelines": [
         {
           "name": "atacseq",
-          "version": "2.1.1"
+          "version": "2.1.2"
         },
         {
           "name": "rnaseq",
@@ -95743,9 +96135,10 @@
           "subsample",
           "strandedness"
         ],
-        "modules": [
+        "components": [
           "fq/subsample",
-          "salmon/quant"
+          "salmon/quant",
+          "salmon/index"
         ],
         "input": [
           {
@@ -95858,7 +96251,7 @@
           "trimming",
           "fastq"
         ],
-        "modules": [
+        "components": [
           "fastqc",
           "fastp"
         ],
@@ -95985,7 +96378,7 @@
       "path": "subworkflows/nf-core/multiple_impute_glimpse2/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "multiple_imputation_glimpse2",
+        "name": "multiple_impute_glimpse2",
         "description": "Impute VCF/BCF files, but also CRAM and BAM files with Glimpse2",
         "keywords": [
           "glimpse",
@@ -95994,11 +96387,11 @@
           "ligate",
           "split_reference"
         ],
-        "modules": [
+        "components": [
           "glimpse2/chunk",
-          "glimpse/2phase",
+          "glimpse2/phase",
           "glimpse2/ligate",
-          "glimpse2/split_reference",
+          "glimpse2/splitreference",
           "bcftools/index"
         ],
         "input": [
@@ -96071,7 +96464,7 @@
           "annotation",
           "ensemblvep"
         ],
-        "modules": [
+        "components": [
           "ensemblvep/vep",
           "tabix/tabix"
         ],
@@ -96172,12 +96565,13 @@
           "ensemblvep",
           "snpeff"
         ],
-        "modules": [
+        "components": [
           "ensemblvep/vep",
           "snpeff/snpeff",
           "tabix/tabix",
           "bcftools/pluginscatter",
-          "bcftools/concat"
+          "bcftools/concat",
+          "bcftools/sort"
         ],
         "input": [
           {
@@ -96282,8 +96676,9 @@
           "annotation",
           "snpeff"
         ],
-        "modules": [
+        "components": [
           "snpeff",
+          "snpeff/snpeff",
           "tabix/bgziptabix"
         ],
         "input": [
@@ -96346,7 +96741,7 @@
           "ped",
           "relatedness"
         ],
-        "modules": [
+        "components": [
           "tabix/tabix",
           "somalier/extract",
           "somalier/relate"
@@ -96434,7 +96829,7 @@
           "sort",
           "bcftools"
         ],
-        "modules": [
+        "components": [
           "bcftools/sort",
           "bcftools/concat",
           "tabix/tabix"
@@ -96510,7 +96905,7 @@
       "path": "subworkflows/nf-core/vcf_impute_glimpse/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "vcf_imputation_glimpse",
+        "name": "vcf_impute_glimpse",
         "description": "Impute VCF/BCF files with Glimpse",
         "keywords": [
           "glimpse",
@@ -96518,7 +96913,7 @@
           "phase",
           "ligate"
         ],
-        "modules": [
+        "components": [
           "glimpse/chunk",
           "glimpse/phase",
           "glimpse/ligate",
@@ -96590,7 +96985,7 @@
           "index",
           "vcf"
         ],
-        "modules": [
+        "components": [
           "bedtools/makewindows",
           "shapeit5/phasecommon",
           "shapeit5/ligate",
