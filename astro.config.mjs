@@ -24,7 +24,6 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-import purgecss from 'astro-purgecss';
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -59,7 +58,6 @@ export default defineConfig({
             },
         }),
         mdx(),
-        purgecss(),
     ],
     build: {
         inlineStylesheets: 'auto',
