@@ -1,5 +1,5 @@
 <script lang="ts">
-    import * as L from 'leaflet';
+    import { tileLayer, marker, map, Icon } from 'leaflet';
     import 'leaflet/dist/leaflet.css';
 
     export let locations: {
@@ -9,10 +9,10 @@
         image: string;
     }[] = [];
 
-    let map;
+    let m;
     function createMap(container) {
-        let m = L.map(container, { minZoom: 2 }).setView([15.505, 10.09], 2);
-        let greenIcon = new L.Icon({
+        m = map(container, { minZoom: 2 }).setView([15.505, 10.09], 2);
+        let greenIcon = new Icon({
             iconUrl: '/images/marker-icon-2x-green.png',
             shadowUrl: '/images/marker-shadow.png',
             iconSize: [25, 41],
@@ -20,22 +20,22 @@
             popupAnchor: [1, -34],
             shadowSize: [41, 41],
         });
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(m);
-        locations.map(function (marker) {
-            if (marker != null) {
-                L.marker(marker.location, {
+        locations.map(function (locationMarker) {
+            if (locationMarker != null) {
+                marker(locationMarker.location, {
                     icon: greenIcon,
                 })
                     .addTo(m)
                     .bindPopup(
                         '<h6><a href="#' +
-                            marker.name.replaceAll('/[^a-z]+/', '-') +
+                            locationMarker.name.replaceAll('/[^a-z]+/', '-') +
                             '">' +
-                            marker.name +
+                            locationMarker.name +
                             '</a></h6>' +
-                            `<img src="/images/contributors/colour/${marker.image}" title="${marker.name}" class="contributor_map_logo"></img>`
+                            `<img src="/images/contributors/colour/${locationMarker.image}" title="${locationMarker.name}" class="contributor_map_logo"></img>`,
                     );
             }
         });
@@ -44,16 +44,16 @@
     }
 
     function mapAction(container) {
-        map = createMap(container);
+        m = createMap(container);
         return {
             destroy: () => {
-                map.remove();
+                m.remove();
             },
         };
     }
     function resizeMap() {
-        if (map) {
-            map.invalidateSize();
+        if (m) {
+            m.invalidateSize();
         }
     }
 </script>

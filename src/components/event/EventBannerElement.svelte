@@ -10,7 +10,6 @@
     export let event_type_icons: {}[] = [{}];
 
     let now = new Date().getTime();
-
     let backgroundIcon = '';
     events
         .map((event) => {
@@ -57,12 +56,14 @@
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
-
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
         events = events.filter((event) => {
             let time_window = 1 * 24 * 60 * 60 * 1000;
-            const event_start_unix = event.data.start.getTime();
+            const event_start_unix =
+                event.data.start_announcement !== undefined
+                    ? new Date(event.data.start_announcement).getTime()
+                    : event.data.start.getTime();
             const event_end_unix = event.data.end.getTime();
 
             // increase time window to a week for events longer than 5 hours
@@ -70,6 +71,7 @@
                 time_window = 7 * 24 * 60 * 60 * 1000;
             }
             if (event.data.start < new Date() && new Date() < event.data.end) {
+                // this is not an upcoming, but an ongoing event
                 return false;
             }
 
@@ -120,7 +122,7 @@
                 <div class="flex-grow-1">
                     {#each events as event}
                         <div class="w-100 row align-items-center">
-                            <div class="col-8 pt-lg-2 pb-lg-2 text-lg-start">
+                            <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
                                     <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
                                         >{event.data.title}</a
@@ -151,7 +153,7 @@
                                 {/if}
                             </div>
 
-                            <div class="col-4 text-start">
+                            <div class="col-4 py-lg-2 text-start">
                                 {#if event_time_category === 'upcoming'}
                                     <div class="text-nowrap ms-5 ps-1">
                                         <h5>Event starts in</h5>
@@ -176,7 +178,9 @@
                                                 href={'events/' + event.slug + '/'}
                                                 class="btn btn-outline-success text-nowrap">Event Details</a
                                             >
-                                            <VideoButton urls={event.data.location_url} />
+                                            {#if event.data.location_url}
+                                                <VideoButton urls={event.data.location_url} />
+                                            {/if}
                                         </div>
                                     </div>
                                 {/if}
@@ -217,7 +221,7 @@
                                 {#if event_time_category === 'upcoming'}
                                     <ExportEventButton frontmatter={event.data} />
                                 {/if}
-                                {#if event_time_category === 'ongoing'}
+                                {#if event_time_category === 'ongoing' && event.data.location_url}
                                     <VideoButton urls={event.data.location_url} />
                                 {/if}
                             </div>

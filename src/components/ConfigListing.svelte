@@ -77,19 +77,25 @@
         </thead>
         <tbody>
             {#each filteredConfigs as config}
-                <tr class="position-relative">
-                    <td class="name">
-                        <a class="stretched-link" href={'/configs/' + config.name + '/'}
-                            >{@html config.name.replace('_', '_<wbr>')}</a
-                        >
+                <tr>
+                    <td class="name p-0">
+                        <div class="position-relative p-3">
+                            <a class="stretched-link" href={'/configs/' + config.name + '/'}
+                                >{@html config.name.replace('_', '_<wbr>')}</a
+                            >
+                        </div>
                     </td>
                     <td class="description text-small">
                         {config.config.config_profile_description}
                     </td>
                     <td class="text-center">
-                        <span class="badge border border-secondary-subtle text-body fw-normal">
-                            {config.config.executor}
-                        </span>
+                        {#if config.config.executor}
+                            {#each config.config.executor.split(',') as executor}
+                                <span class="badge border border-secondary-subtle text-body fw-normal ms-2">
+                                    {executor}
+                                </span>
+                            {/each}
+                        {/if}
                     </td>
                 </tr>
             {/each}

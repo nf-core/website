@@ -105,7 +105,7 @@
                 aria-label="See details or export calendar event"
             >
                 <a
-                    href={slug + '/'}
+                    href={'/events/' + slug + '/'}
                     class="btn btn-outline-success text-nowrap rounded-start-0"
                     class:rounded-0={['current', 'future'].includes(time_category)}>See details</a
                 >

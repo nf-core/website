@@ -1,5 +1,6 @@
 <script lang="ts">
     import { currentHeading, showHidden } from '@components/store';
+    import { sub } from 'date-fns';
     import { onMount } from 'svelte';
 
     export let headings: {
@@ -21,11 +22,20 @@
         if (!$currentHeading) {
             currentHeading.set(headings[0]?.slug);
         }
+        currentHeading.subscribe((slug) => {
+            // wait 1 second for sidebar selection animation to finish
+            setTimeout(() => {
+                const active = document.querySelector('.toc .nav-item.active');
+                if (active) {
+                    active.scrollIntoView({ block: 'nearest' });
+                }
+            }, 1000);
+        });
     });
 </script>
 
 {#if headings.length > 1}
-    <div class="nav flex-column sticky-top-under align-items-end">
+    <div class="nav flex-column sticky-top-under align-items-end pt-1">
         <div class="d-none d-md-inline">
             <strong class="h6 my-2 text-body">On this page</strong>
             <!-- <hr class="my-1" /> -->
@@ -69,14 +79,19 @@
         list-style: none;
         padding-left: 0;
     }
-    .nav {
+    .nav ul {
         overflow-y: auto;
-        max-height: calc(100vh - 4rem);
+        max-height: calc(100vh - 8rem);
     }
 
     li {
         border-inline-start: 2pt solid $border-color;
         transition: background-color 0.3s ease-out, border-left 0.3s ease-out;
+        scroll-margin-top: 6rem;
+        scroll-margin-bottom: 6rem;
+        &:hover {
+            background-color: transparentize($success, 0.85);
+        }
     }
 
     li.active {
@@ -90,6 +105,11 @@
     :global([data-bs-theme='dark']) {
         li {
             border-inline-start: 2pt solid $border-color-dark;
+            & a:hover {
+                background-color: transparentize($success-dark, 0.6);
+
+                color: $gray-200 !important;
+            }
         }
         li.active {
             border-left: 2pt solid $success-dark;
