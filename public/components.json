@@ -19388,6 +19388,10 @@
           "version": "dev"
         },
         {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -26427,6 +26431,10 @@
           "version": "dev"
         },
         {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -31169,6 +31177,74 @@
       }
     },
     {
+      "name": "gatk4_createreadcountpanelofnormals",
+      "path": "modules/nf-core/gatk4/createreadcountpanelofnormals/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_createreadcountpanelofnormals",
+        "description": "Creates a panel of normals (PoN) for read-count denoising given the read counts for samples in the panel.",
+        "keywords": [
+          "gatk4",
+          "createreadcountpanelofnormals",
+          "panelofnormals"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "counts": {
+              "type": "file",
+              "description": "Read counts in hdf5 or tsv format.",
+              "pattern": "*.{hdf5,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "pon": {
+              "type": "file",
+              "description": "Panel-of-normals file.",
+              "pattern": "*.{hdf5}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "gatk4_createsequencedictionary",
       "path": "modules/nf-core/gatk4/createsequencedictionary/meta.yml",
       "type": "module",
@@ -31353,6 +31429,94 @@
         ],
         "authors": [
           "@GCJMackenzie"
+        ]
+      }
+    },
+    {
+      "name": "gatk4_denoisereadcounts",
+      "path": "modules/nf-core/gatk4/denoisereadcounts/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_denoisereadcounts",
+        "description": "Denoises read counts to produce denoised copy ratios",
+        "keywords": [
+          "gatk4",
+          "denoisereadcounts",
+          "copyratios"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "counts": {
+              "type": "file",
+              "description": "Read counts in hdf5 or tsv format.",
+              "pattern": "*.{hdf5,tsv}"
+            }
+          },
+          {
+            "pon": {
+              "type": "file",
+              "description": "Panel of normals file hdf5 or tsv format.",
+              "pattern": "*.{hdf5}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "standardized": {
+              "type": "file",
+              "description": "Standardized copy ratios file.",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "denoised": {
+              "type": "file",
+              "description": "Denoised copy ratios file",
+              "pattern": "*.{tsv}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -53886,10 +54050,12 @@
       "type": "module",
       "meta": {
         "name": "merquryfk_katgc",
-        "description": "A reimplemenation of Kat GC to work with FastK databases",
+        "description": "A reimplemenation of KatGC to work with FastK databases",
         "keywords": [
-          "k-mer",
-          "GC content"
+          "k-mer frequency",
+          "GC content",
+          "3D heat map",
+          "contour map"
         ],
         "tools": [
           {
@@ -53999,7 +54165,9 @@
         "name": "merquryfk_merquryfk",
         "description": "FastK based version of Merqury",
         "keywords": [
-          "sort"
+          "Merqury",
+          "reference-free",
+          "assembly evaluation"
         ],
         "tools": [
           {
@@ -58205,6 +58373,10 @@
         },
         {
           "name": "molkart",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
           "version": "dev"
         },
         {
