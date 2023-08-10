@@ -46,13 +46,13 @@ export const buildCache = async () => {
             cache.set(cache_key, content);
             // console.log(`Cached ${cache_key}`);
           } else {
-            console.log(`Already cached ${cache_key}`);
+            // console.log(`Already cached ${cache_key}`);
           }
-        })
+        }),
       );
     }
 
-  bar.tick();
+    bar.tick();
   }
   return true;
 };

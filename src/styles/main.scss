@@ -262,7 +262,7 @@ code:not(pre code),
   color: inherit;
 }
 
-.mainpage-heading code:not(pre code){
+.mainpage-heading code:not(pre code) {
   background-color: rgba($white, 0.1) !important;
   color: $white !important;
 }
@@ -381,9 +381,12 @@ h4:focus .header-link,
   .title {
     scroll-margin-top: 4rem;
 
-    :hover .fa-link {
+    :hover .invisible {
       visibility: visible !important;
-      color: $link-color;
+      &:not(.fa-link)::before {
+        content: "\f0c1";
+        color: $gray-600;
+      }
     }
   }
 }
@@ -1132,7 +1135,7 @@ Launch Page
 
 .sidebar-nav {
   @include media-breakpoint-up(lg) {
-    height: 100vh;
+    height: 90vh;
     overflow: auto;
   }
 
@@ -1175,6 +1178,11 @@ Launch Page
   &:last-child {
     border-bottom: none;
   }
+}
+
+.sidebar-left {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 .admonition {
@@ -1249,7 +1257,7 @@ div.mermaid {
 
   .hide-light {
     display: inline-block;
-    &:not(svg){
+    &:not(svg) {
       display: block;
     }
   }
@@ -1305,7 +1313,7 @@ div.mermaid {
     border: 1px solid $border-color-dark;
   }
 
-  .markdown-content img[alt="Workflow"]{
+  .markdown-content img[alt='Workflow'] {
     background-color: $white;
   }
   .border-success {

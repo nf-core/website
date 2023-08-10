@@ -3,9 +3,13 @@ export interface Props {
     title: string;
     description: string;
     image?: string;
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
 }
 
-const { title, description, image = '/social_img.png' } = Astro.props;
+const { title, description, image = '/social_img.png', docSearchTags = [] } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -16,6 +20,7 @@ const { title, description, image = '/social_img.png' } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="alternate" type="application/rss+xml" title="nf-core: Events" href="/events/rss" />
 <meta name="generator" content={Astro.generator} />
+<link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -36,12 +41,11 @@ const { title, description, image = '/social_img.png' } = Astro.props;
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
+<!-- DocSearch -->
+{docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}
 
 <!-- Theme -->
 <script is:inline>
-    const root = document.documentElement;
     const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
             return localStorage.getItem('theme');
@@ -51,22 +55,9 @@ const { title, description, image = '/social_img.png' } = Astro.props;
         }
         return 'light';
     })();
-
-    const switchTheme = (e) => {
-        const target = e.target;
-        let theme = '';
-        // check if we clicked on svg or if target doesn't have a title attribute
-        if (target.tagName !== 'div' || !target.title) {
-            // get the parent div
-            theme = target.closest('div.theme-option').title;
-        } else {
-            theme = e.target.title;
-        }
-        localStorage.setItem('theme', theme);
-        setTheme(theme);
-        window.dispatchEvent(new Event('theme-changed'));
-    };
-    const setTheme = function (theme) {
+    function setTheme(theme) {
+        //NOTE: same as in ThemeSwitch.svelte
+        const root = document.documentElement;
         if (theme === 'auto') {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 root.setAttribute('data-bs-theme', 'dark');
@@ -76,7 +67,8 @@ const { title, description, image = '/social_img.png' } = Astro.props;
         } else {
             root.setAttribute('data-bs-theme', theme);
         }
-    };
+    }
+
     setTheme(theme);
 </script>
 <!-- Google Analytics -->

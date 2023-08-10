@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 
-
 if (!import.meta.env) {
   dotenv.config();
 }
@@ -77,8 +76,8 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
           }
         });
-        // add github url infront of relative links to markdown files other than starting with usage, output, results or release_stats
-        content = content.replaceAll(/\[(.*?)\]\((?!usage|output|results|release_stats)(.*?)\)/g, (match, p1, p2) => {
+        // prefix links to CONTRIBUTING.md and CITATIONS.md with github url
+        content = content.replaceAll(/\[(.*?)\]\((\.github\/CONTRIBUTING\.md|CITATIONS\.md)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {
@@ -86,7 +85,7 @@ export const getGitHubFile = async (repo, path, ref) => {
           }
         });
         // remove github warning and everything before from docs
-        content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
+        content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
         content = content.replace(/(.*?)(files\._)/s, '');
         // cleanup heading

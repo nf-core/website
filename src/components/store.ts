@@ -1,7 +1,6 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { atom } from 'nanostores';
 
-
 export const CurrentFilter = atom([]);
 export const Filters = atom([]);
 export const SortBy = atom('');
@@ -21,10 +20,10 @@ export const showHelp = atom(false);
 export const currentHeading = atom('');
 export const currentPage = atom(1);
 export const EventIsOngoing = persistentAtom('EventIsOngoing', false, {
-  encode(value) {
-    return JSON.stringify(value);
-  },
-  decode(value) {
-    return JSON.parse(value);
-  },
+    encode(value) {
+        return JSON.stringify(value);
+    },
+    decode(value) {
+        return JSON.parse(value);
+    },
 });

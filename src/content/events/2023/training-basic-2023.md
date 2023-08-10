@@ -5,7 +5,7 @@ type: training
 start_date: '2023-09-6'
 start_time: '15:00 CEST'
 end_date: '2023-09-8'
-end_time: '19:00 CEST'
+end_time: '18:00 CEST'
 location_name: YouTube
 import_typeform: true
 ---

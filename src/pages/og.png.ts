@@ -7,7 +7,6 @@ import sharp from 'sharp';
 // @ts-ignore: no types
 import initYoga from 'yoga-wasm-web/asm';
 
-
 const YOGA = initYoga();
 initSatori(YOGA);
 
@@ -29,7 +28,7 @@ export const get: APIRoute = async ({ params, request }) => {
         border-top: 5pt solid #1a9655;
         ">
         <div style="display:flex; align-items: center; flex-grow:5;">
-            <img src="https://raw.githubusercontent.com/nf-core/nf-co.re/main/public/images/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
+            <img src="https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png" width="709" height="165"/>
         </div>
 
         <div style="display:flex; flex-direction:column; width:100%; height:30%;">
@@ -79,7 +78,7 @@ type ImageOptions = {
 
 async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
     const mavenpro = await fetch(
-        'https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff'
+        'https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff',
     ).then((res) => res.arrayBuffer());
     const svg = await satori(jsx, {
         debug: debug,

@@ -63,6 +63,13 @@
             }
         } else if ($SortBy.startsWith('Last release')) {
             // handle case where a pipeline has no releases
+            if (a.releases.length === 1 && b.releases.length === 1) {
+                if (sortInverse) {
+                    return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+                } else {
+                    return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+                }
+            }
             if (a.releases.length === 1) {
                 return 1 * (sortInverse ? -1 : 1);
             }
@@ -97,19 +104,11 @@
                     return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
                 }
                 return filter;
-            })
+            }),
         );
         return pipelines;
     }
-    $: filteredPipelines = pipelines.sort((a, b) => {
-        if (a.releases.length === 1) {
-            return 1;
-        }
-        if (b.releases.length === 1) {
-            return -1;
-        }
-        return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
-    });
+    $: filteredPipelines = pipelines.sort(sortPipelines);
 
     onMount(() => {
         SortBy.subscribe(() => {
@@ -149,13 +148,15 @@
             </thead>
             <tbody>
                 {#each filteredPipelines as pipeline}
-                    <tr class="position-relative">
-                        <td>
-                            <a
-                                class="stretched-link"
-                                href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
-                                >{pipeline.name}</a
-                            >
+                    <tr>
+                        <td class=" name p-0">
+                            <div class="position-relative p-3">
+                                <a
+                                    class="stretched-link"
+                                    href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                    >{pipeline.name}</a
+                                >
+                            </div>
                         </td>
                         <td class="text-small">
                             {pipeline.description}

@@ -13,7 +13,13 @@
     };
 </script>
 
-<span class="copy-url" on:click={() => copyToClipboard(text)} on:keypress={() => copyToClipboard(text)}>
+<span
+    class="copy-url"
+    on:click={() => copyToClipboard(text)}
+    on:keypress={() => copyToClipboard(text)}
+    role="button"
+    tabindex="0"
+>
     <slot />
     {#if copied}
         <i class="fa-regular px-1 fa-clipboard-check" />

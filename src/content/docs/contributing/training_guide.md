@@ -38,7 +38,7 @@ A checklist of what you need to begin.
 
 - Be familiar with Markdown. If you're new to markdown, have a go a this [Markdown tutorial](https://www.markdowntutorial.com/).
 - Ask on the nf-core Slack [`#training` channel](https://nfcore.slack.com/channels/training) about the guide you'd like to contribute.
-- Make an issue on [nf-core website issues](https://github.com/nf-core/nf-co.re/issues) describing what you want to do, and assign yourself.
+- Make an issue on [nf-core website issues](https://github.com/nf-core/website/issues) describing what you want to do, and assign yourself.
 
 ## How to
 
@@ -50,9 +50,9 @@ There is no bytesize talk about how to create training materials at present, but
 
 #### Use this as a template.
 
-Use this file `https://github.com/nf-core/nf-co.re/markdown/docs/contributing/training_guide.md` as a template to guide you.
+Use this file `https://github.com/nf-core/website/markdown/docs/contributing/training_guide.md` as a template to guide you.
 
-1. Make a fork of the [nf-core website repository](https://github.com/nf-core/nf-co.re/).
+1. Make a fork of the [nf-core website repository](https://github.com/nf-core/website/).
 2. Make a new branch from the `master` branch in your fork and check it out. Name it after the guide you intend to submit. For example: `git checkout -b gitpod_training_guide`
 3. Make a copy of the `markdown/docs/contributing/training_guide.md` with an appropriate name to use as your skeleton.
 

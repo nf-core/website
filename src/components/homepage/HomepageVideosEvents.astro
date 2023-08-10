@@ -19,7 +19,7 @@ let lastYoutubeUrls = bytesizes
     });
 
 lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
-    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be')
+    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
 );
 
 const latestBytesize = lastYoutubeUrls
@@ -75,6 +75,7 @@ eventPreviewPast = eventPreview
                         time_category="current"
                         showDescription={false}
                         narrow={true}
+                        client:idle
                     />
                 ))
             }
@@ -89,6 +90,7 @@ eventPreviewPast = eventPreview
                             time_category="future"
                             showDescription={false}
                             narrow={true}
+                            client:idle
                         />
                     </>
                 ))
@@ -103,6 +105,7 @@ eventPreviewPast = eventPreview
                         time_category="past"
                         showDescription={false}
                         narrow={true}
+                        client:idle
                     />
                 ))
             }
