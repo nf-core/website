@@ -1858,7 +1858,7 @@ function clean_empty_param_keys(param) {
   if (param.hasOwnProperty('description') && param['description'] === '') {
     delete param['description'];
   }
-  if (param.hasOwnProperty('default') && (param['default'] === '' || param['default'] === false || param['default'] === null)) {
+  if (param.hasOwnProperty('default') && (param['default'] === '' || param['default'] === false || param['default'] === 'false' || param['default'] === null || param['default'] === 'null')) {
     delete param['default'];
   }
   if (param.hasOwnProperty('help_text') && param['help_text'] === '') {
