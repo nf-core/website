@@ -25293,6 +25293,85 @@
       ]
     },
     {
+      "name": "famsa_align",
+      "path": "modules/nf-core/famsa/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "famsa_align",
+        "description": "Aligns sequences using FAMSA",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "famsa": {
+              "description": "Algorithm for large-scale multiple sequence alignments",
+              "homepage": "https://github.com/refresh-bio/FAMSA",
+              "documentation": "https://github.com/refresh-bio/FAMSA",
+              "tool_dev_url": "https://github.com/refresh-bio/FAMSA",
+              "doi": "10.1038/srep33964",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tree information\ne.g. `[ id:'test_tree']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Input guide tree in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file.",
+              "pattern": "*.{aln}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "famsa_guidetree",
       "path": "modules/nf-core/famsa/guidetree/meta.yml",
       "type": "module",
@@ -76072,10 +76151,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
               "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
             }
           },
           {
@@ -76237,10 +76328,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome fasta file",
               "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -76282,6 +76385,137 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_datametrics",
+      "path": "modules/nf-core/sentieon/datametrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_datametrics",
+        "description": "Collects multiple quality metrics from a bam file",
+        "keywords": [
+          "metrics",
+          "bam",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of th sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bai,crai,sai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mq_metrics": {
+              "type": "file",
+              "description": "File containing the information about mean base quality score for each sequencing cycle",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "qd_metrics": {
+              "type": "file",
+              "description": "File containing the information about number of bases with a specific base quality score",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "gc_summary": {
+              "type": "file",
+              "description": "File containing the information about GC bias in the reference and the sample",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "gc_metrics": {
+              "type": "file",
+              "description": "File containing the information about GC bias in the reference and the sample",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "aln_metrics": {
+              "type": "file",
+              "description": "File containing the statistics about the alignment of the reads",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "is_metrics": {
+              "type": "file",
+              "description": "File containing the information about statistical distribution of insert sizes",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -76331,10 +76565,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome fasta file",
               "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -76657,6 +76903,116 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_readwriter",
+      "path": "modules/nf-core/sentieon/readwriter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_readwriter",
+        "description": "Merges BAM files, and/or convert them into cram files. Also, outputs the result of applying the Base Quality Score Recalibration to a file.",
+        "keywords": [
+          "merge",
+          "convert",
+          "readwriter",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file.",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BAI/CRAI file.",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "The index of the FASTA reference.",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "BAM/CRAM file",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BAM/CRAM index file",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "output_index": {
+              "type": "file",
+              "description": "BAM/CRAM alignment and the corresponding index file"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -77258,6 +77614,75 @@
         ],
         "authors": [
           "@Midnighter"
+        ]
+      }
+    },
+    {
+      "name": "seqkit_tab2fx",
+      "path": "modules/nf-core/seqkit/tab2fx/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_tab2fx",
+        "description": "Convert tabular format (first two/three columns) to FASTA/Q format.",
+        "keywords": [
+          "fasta",
+          "fastq",
+          "text",
+          "tabular",
+          "convert"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "Cross-platform and ultrafast toolkit for FASTA/Q file manipulation, written by Wei Shen.\n",
+              "homepage": "https://github.com/shenwei356/seqkit",
+              "documentation": "https://bioinf.shenwei.me/seqkit/",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "text": {
+              "type": "file",
+              "description": "Text file in tabular format",
+              "pattern": "*.txt[.gz,.zst]"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Sequence file in fasta/q format",
+              "pattern": "*.{fa,fq}[.gz,.zst]"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@heuermh"
         ]
       }
     },
