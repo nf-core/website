@@ -39,7 +39,7 @@ if (isset($subfooter) and $subfooter) {
           </div>
         </small>
         <small class="d-block mb-3">
-          See the source code for this website on GitHub: <a href="https://github.com/sanger-tol/pipelines-website" target="_blank">https://github.com/sanger-tol/pipelines_website</a> (modified from <a href="https://github.com/nf-core/nf-co.re" target="_blank">https://github.com/nf-core/nf-co.re</a>)
+          See the source code for this website on GitHub: <a href="https://github.com/sanger-tol/pipelines-website" target="_blank">https://github.com/sanger-tol/pipelines-website</a> (modified from <a href="https://github.com/nf-core/website" target="_blank">https://github.com/nf-core/website</a>)
         </small>
         <div class="d-md-flex d-print-none">
           <div class="btn-toolbar mb-3 me-4" role="toolbar">
