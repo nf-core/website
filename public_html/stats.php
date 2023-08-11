@@ -307,7 +307,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
             </div>
         </div>
 
-        <h2 class="mt-0" id="twitter">Twitter followers<a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></h2>
+        <h2 class="mt-0" id="twitter">Twitter followers<a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
         <p>We use our <a href="https://twitter.com/nf_core">@nf_core</a> twitter account to send automated tweets about new pipeline releases and other updates relevant to the community.
             Follower counts give some indication to the level of interest in the nf-core project.</p>
         <div class="card bg-body mt-4">
