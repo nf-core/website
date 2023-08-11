@@ -61,7 +61,7 @@ $stats_total_allrepos = [
 ];
 
 // Run everything twice - keep pipelines and core repos seperate
-foreach (['pipelines', 'core_repos'] as $repo_type) :
+foreach (['pipelines', 'core_repos'] as $repo_type):
     $stats = $stats_json->{$repo_type};
     $stats_total[$repo_type] = [
         'releases' => 0,
@@ -85,7 +85,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) :
     ];
 
     $trows[$repo_type] = [];
-    foreach ($stats as $repo_name => $repo) :
+    foreach ($stats as $repo_name => $repo):
 
         // Exit quietly if something has gone wrong
         if (!isset($repo->repo_metrics)) {
@@ -135,33 +135,36 @@ foreach (['pipelines', 'core_repos'] as $repo_type) :
             $total_commits += $contributor->total;
         }
         ob_start();
-?>
+        ?>
         <tr>
             <td><?php
-                if ($metrics->archived) {
-                    echo '<small class="status-icon text-warning ms-2 fas fa-archive" data-bs-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
-                } elseif ($repo_type == 'pipelines') {
-                    // Edge case where a new pipeline is added but stats hasn't rerun yet
-                    if (!isset($repo->num_releases)) {
-                        $repo->num_releases = 0;
-                    }
-                    if ($repo->num_releases) {
-                        echo '<small class="status-icon text-success ms-2 fas fa-check" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
-                    } else {
-                        echo '<small class="status-icon text-danger ms-2 fas fa-wrench" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
-                    }
+            if ($metrics->archived) {
+                echo '<small class="status-icon text-warning ms-2 fas fa-archive" data-bs-toggle="tooltip" aria-hidden="true" title="This repo has been archived and is no longer being maintained."></small>';
+            } elseif ($repo_type == 'pipelines') {
+                // Edge case where a new pipeline is added but stats hasn't rerun yet
+                if (!isset($repo->num_releases)) {
+                    $repo->num_releases = 0;
                 }
-                $alink = '<a href="' . $metrics->html_url . '" target="_blank">';
-                if ($repo_type == 'pipelines') {
-                    $alink = '<a href="/' . $metrics->name . '/releases_stats">';
+                if ($repo->num_releases) {
+                    echo '<small class="status-icon text-success ms-2 fas fa-check" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is released, tested and good to go."></small>';
+                } else {
+                    echo '<small class="status-icon text-danger ms-2 fas fa-wrench" data-bs-toggle="tooltip" aria-hidden="true" title="This pipeline is under active development. Once released on GitHub, it will be production-ready."></small>';
                 }
-                ?></td>
-            <td><?php echo $alink . '<span class="d-none d-lg-inline">nf-core/</span>' . $metrics->name . '</a>'; ?></td>
+            }
+            $alink = '<a href="' . $metrics->html_url . '" target="_blank">';
+            if ($repo_type == 'pipelines') {
+                $alink = '<a href="/' . $metrics->name . '/releases_stats">';
+            }
+            ?></td>
+            <td><?php echo $alink .
+                '<span class="d-none d-lg-inline">nf-core/</span>' .
+                $metrics->name .
+                '</a>'; ?></td>
             <td data-text="<?php echo strtotime($metrics->created_at); ?>"><?php echo time_ago(
-                                                                                $metrics->created_at,
-                                                                                false,
-                                                                            ); ?></td>
-            <?php if ($repo_type == 'pipelines') : ?><td class=""><?php echo $repo->num_releases; ?></td><?php endif; ?>
+    $metrics->created_at,
+    false,
+); ?></td>
+            <?php if ($repo_type == 'pipelines'): ?><td class=""><?php echo $repo->num_releases; ?></td><?php endif; ?>
             <td class=""><?php echo $repo->num_contributors; ?></td>
             <td class=""><?php echo $total_commits; ?></td>
             <td class=""><?php echo $metrics->stargazers_count; ?></td>
@@ -173,8 +176,8 @@ foreach (['pipelines', 'core_repos'] as $repo_type) :
             <td class=""><?php echo $repo->views_uniques_total; ?></td>
         </tr>
 <?php
-        $trows[$repo_type][] = ob_get_contents();
-        ob_end_clean();
+$trows[$repo_type][] = ob_get_contents();
+ob_end_clean();
 
     endforeach;
 endforeach;
@@ -240,7 +243,10 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
                         </ul>
                     </li>
                     <li>Clone counts and repositoriy views are only available for two weeks - longer term data collection for nf-core repos started in July 2019. This is when we started counting the totals.</li>
-                    <li>Metrics are fetched once per day (last checked <?php echo date('Y-m-d', $stats_json->updated); ?>).</li>
+                    <li>Metrics are fetched once per day (last checked <?php echo date(
+                        'Y-m-d',
+                        $stats_json->updated,
+                    ); ?>).</li>
                 </ul>
             </div>
         </div>
@@ -265,18 +271,18 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     <div class="card bg-body">
         <div class="card-body">
             <p class="card-text display-4"><a href="#gh_orgmembers" class="text-body text-decoration-none stretched-link"><?php echo $stats_json
-                                                                                                                                ->gh_org_members->{$stats_json->updated}; ?></a></p>
+                ->gh_org_members->{$stats_json->updated}; ?></a></p>
             <p class="card-text text-muted">GitHub organisation members</p>
         </div>
         <div class="bg-icon"><i class="fab fa-github"></i></div>
     </div>
     <div class="card bg-body">
         <div class="card-body" data-bs-toggle="tooltip" title="<?php echo count(
-                                                                    $gh_contributor_commits,
-                                                                ); ?> have committed code, <?php echo count($gh_contributor_issues); ?> have written issues">
+            $gh_contributor_commits,
+        ); ?> have committed code, <?php echo count($gh_contributor_issues); ?> have written issues">
             <p class="card-text display-4"><a href="#gh_contribs" class="text-body text-decoration-none stretched-link"><?php echo count(
-                                                                                                                            $gh_contributors,
-                                                                                                                        ); ?></a></p>
+                $gh_contributors,
+            ); ?></a></p>
             <p class="card-text text-muted">GitHub contributors</p>
         </div>
         <div class="bg-icon"><i class="fas fa-code-branch"></i></div>
@@ -360,7 +366,7 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     <div class="card bg-body">
         <div class="card-body">
             <p class="card-text display-4"><?php echo count(get_object_vars($stats_json->pipelines)) +
-                                                count(get_object_vars($stats_json->core_repos)); ?></p>
+                count(get_object_vars($stats_json->core_repos)); ?></p>
             <p class="card-text text-muted">Repositories</p>
         </div>
         <div class="bg-icon"><i class="far fa-folder"></i></div>
@@ -368,8 +374,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     <div class="card bg-body">
         <div class="card-body">
             <p class="card-text display-4"><a href="#github_prs" class="text-body text-decoration-none stretched-link"><?php echo round_nicely(
-                                                                                                                            $issues_json['stats'][$issues_json_latest]['prs']['count'],
-                                                                                                                        ); ?></a></p>
+                $issues_json['stats'][$issues_json_latest]['prs']['count'],
+            ); ?></a></p>
             <p class="card-text text-muted">Pull Requests</p>
         </div>
         <div class="bg-icon"><i class="fas fa-code-branch fa-flip-vertical"></i></div>
@@ -377,8 +383,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     <div class="card bg-body">
         <div class="card-body">
             <p class="card-text display-4"><?php echo round_nicely(
-                                                $stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits'],
-                                            ); ?></p>
+                $stats_total['pipelines']['total_commits'] + $stats_total['core_repos']['total_commits'],
+            ); ?></p>
             <p class="card-text text-muted">Commits</p>
         </div>
         <div class="bg-icon"><i class="far fa-file-code"></i></div>
@@ -386,8 +392,8 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
     <div class="card bg-body">
         <div class="card-body">
             <p class="card-text display-4"><a href="#github_issues" class="text-body text-decoration-none stretched-link"><?php echo round_nicely(
-                                                                                                                                $issues_json['stats'][$issues_json_latest]['issues']['count'],
-                                                                                                                            ); ?></a></p>
+                $issues_json['stats'][$issues_json_latest]['issues']['count'],
+            ); ?></a></p>
             <p class="card-text text-muted">Issues</p>
         </div>
         <div class="bg-icon"><i class="fas fa-exclamation-circle"></i></div>
@@ -414,21 +420,28 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
         <div class="row">
             <div class="col-6 border-end border-secondary">
                 <span class="text-body lead"><?php echo round_nicely(
-                                                    $stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total'],
-                                                ); ?></span>
+                    $stats_total['pipelines']['clones_count_total'] + $stats_total['core_repos']['clones_count_total'],
+                ); ?></span>
                 <br>Clones since <?php echo date(
-                                        'F Y',
-                                        min($stats_total['pipelines']['clones_count_since'], $stats_total['core_repos']['clones_count_since']),
-                                    ); ?>
+                    'F Y',
+                    min(
+                        $stats_total['pipelines']['clones_count_since'],
+                        $stats_total['core_repos']['clones_count_since'],
+                    ),
+                ); ?>
             </div>
             <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person cloning two different repositories.">
                 <span class="text-body lead"><?php echo round_nicely(
-                                                    $stats_total['pipelines']['clones_uniques_total'] + $stats_total['core_repos']['clones_uniques_total'],
-                                                ); ?></span>
+                    $stats_total['pipelines']['clones_uniques_total'] +
+                        $stats_total['core_repos']['clones_uniques_total'],
+                ); ?></span>
                 <br>Unique cloners since <?php echo date(
-                                                'F Y',
-                                                min($stats_total['pipelines']['clones_uniques_since'], $stats_total['core_repos']['clones_uniques_since']),
-                                            ); ?>
+                    'F Y',
+                    min(
+                        $stats_total['pipelines']['clones_uniques_since'],
+                        $stats_total['core_repos']['clones_uniques_since'],
+                    ),
+                ); ?>
             </div>
         </div>
     </div>
@@ -449,21 +462,28 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
         <div class="row align-items-center">
             <div class="col-6 border-end border-secondary">
                 <span class="text-body lead"><?php echo round_nicely(
-                                                    $stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total'],
-                                                ); ?></span>
+                    $stats_total['pipelines']['views_count_total'] + $stats_total['core_repos']['views_count_total'],
+                ); ?></span>
                 <br>Views since <?php echo date(
-                                    'F Y',
-                                    min($stats_total['pipelines']['views_count_since'], $stats_total['core_repos']['views_count_since']),
-                                ); ?>
+                    'F Y',
+                    min(
+                        $stats_total['pipelines']['views_count_since'],
+                        $stats_total['core_repos']['views_count_since'],
+                    ),
+                ); ?>
             </div>
             <div class="col-6" data-bs-toggle="tooltip" title="Note: Unique per repository. Will double-count the same person viewing two different repositories.">
                 <span class="text-body lead"><?php echo round_nicely(
-                                                    $stats_total['pipelines']['views_uniques_total'] + $stats_total['core_repos']['views_uniques_total'],
-                                                ); ?></span>
+                    $stats_total['pipelines']['views_uniques_total'] +
+                        $stats_total['core_repos']['views_uniques_total'],
+                ); ?></span>
                 <br>Unique visitors since <?php echo date(
-                                                'F Y',
-                                                min($stats_total['pipelines']['views_uniques_since'], $stats_total['core_repos']['views_uniques_since']),
-                                            ); ?>
+                    'F Y',
+                    min(
+                        $stats_total['pipelines']['views_uniques_since'],
+                        $stats_total['core_repos']['views_uniques_since'],
+                    ),
+                ); ?>
             </div>
         </div>
     </div>
@@ -640,11 +660,11 @@ foreach (array_keys($stats_total['pipelines']) as $akey) {
 
 <?php // The pipeline and core repo tables are the same
 
-foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
+foreach (['pipelines', 'core_repos'] as $repo_type): ?>
 
     <h2 class="mt-0" id="<?php echo $repo_type; ?>"><?php echo ucfirst(
-                                                        str_replace('_', ' ', $repo_type),
-                                                    ); ?><a href="#<?php echo $repo_type; ?>" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
+    str_replace('_', ' ', $repo_type),
+); ?><a href="#<?php echo $repo_type; ?>" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a></h2>
     <p class="text-info small">
         <i class="far fa-hand-point-right"></i>
         Click a row to see detailed statistics for that repository.
@@ -658,7 +678,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     <th>&nbsp;</th>
                     <th>Name</th>
                     <th>Age</th>
-                    <?php if ($repo_type == 'pipelines') : ?><th class="">Releases</th><?php endif; ?>
+                    <?php if ($repo_type == 'pipelines'): ?><th class="">Releases</th><?php endif; ?>
                     <th class="">Committers</th>
                     <th class="">Commits</th>
                     <th class="">Stargazers</th>
@@ -676,8 +696,12 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     <th>&nbsp;</th>
                     <th>Total:</th>
                     <th class="font-weight-light"><?php echo count($pipelines); ?> pipelines</th>
-                    <?php if ($repo_type == 'pipelines') : ?><th class="font-weight-light "><?php echo $stats_total[$repo_type]['releases']; ?></th><?php endif; ?>
-                    <th class="font-weight-light "><?php echo count($stats_total[$repo_type]['unique_committers']); ?> unique</th>
+                    <?php if ($repo_type == 'pipelines'): ?><th class="font-weight-light "><?php echo $stats_total[
+    $repo_type
+]['releases']; ?></th><?php endif; ?>
+                    <th class="font-weight-light "><?php echo count(
+                        $stats_total[$repo_type]['unique_committers'],
+                    ); ?> unique</th>
                     <th class="font-weight-light "><?php echo $stats_total[$repo_type]['total_commits']; ?></th>
                     <th class="font-weight-light "><?php echo $stats_total[$repo_type]['stargazers']; ?></th>
                     <th class="font-weight-light "><?php echo $stats_total[$repo_type]['watchers']; ?></th>
@@ -694,7 +718,7 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     <th>&nbsp;</th>
                     <th>Name</th>
                     <th>Age</th>
-                    <?php if ($repo_type == 'pipelines') : ?><th class="">Releases</th><?php endif; ?>
+                    <?php if ($repo_type == 'pipelines'): ?><th class="">Releases</th><?php endif; ?>
                     <th class="">Committers</th>
                     <th class="">Commits</th>
                     <th class="">Stargazers</th>
@@ -781,7 +805,12 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     pointRadius: 0,
                     data: [
                         <?php foreach ($stats_json->slack->user_counts as $timestamp => $users) {
-                            echo '{ x: "' . date('Y-m-d H:i:s', $timestamp) . '", y: ' . $users->inactive . ' },' . "\n\t\t\t";
+                            echo '{ x: "' .
+                                date('Y-m-d H:i:s', $timestamp) .
+                                '", y: ' .
+                                $users->inactive .
+                                ' },' .
+                                "\n\t\t\t";
                         } ?>
                     ]
                 },
@@ -796,7 +825,12 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                             if ($timestamp < 1262304000) {
                                 continue;
                             }
-                            echo '{ x: "' . date('Y-m-d H:i:s', $timestamp) . '", y: ' . $users->active . ' },' . "\n\t\t\t";
+                            echo '{ x: "' .
+                                date('Y-m-d H:i:s', $timestamp) .
+                                '", y: ' .
+                                $users->active .
+                                ' },' .
+                                "\n\t\t\t";
                         } ?>
                     ]
                 }
@@ -1188,7 +1222,9 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     pointRadius: 0,
                     data: [
                         <?php foreach ($bins as $key => $label) {
-                            echo ($gh_issue_close_hist[$key] / count($issues_json['stats']['issues']['close_times'])) * 100 . ', ';
+                            echo ($gh_issue_close_hist[$key] / count($issues_json['stats']['issues']['close_times'])) *
+                                100 .
+                                ', ';
                         } ?>
                     ]
                 },
@@ -1199,7 +1235,9 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     pointRadius: 0,
                     data: [
                         <?php foreach ($bins as $key => $label) {
-                            echo ($gh_issue_response_hist[$key] / count($issues_json['stats']['issues']['response_times'])) * 100 .
+                            echo ($gh_issue_response_hist[$key] /
+                                count($issues_json['stats']['issues']['response_times'])) *
+                                100 .
                                 ', ';
                         } ?>
                     ]
@@ -1262,7 +1300,8 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     pointRadius: 0,
                     data: [
                         <?php foreach ($bins as $key => $label) {
-                            echo ($gh_pr_close_hist[$key] / count($issues_json['stats']['prs']['close_times'])) * 100 . ', ';
+                            echo ($gh_pr_close_hist[$key] / count($issues_json['stats']['prs']['close_times'])) * 100 .
+                                ', ';
                         } ?>
                     ]
                 },
@@ -1273,7 +1312,9 @@ foreach (['pipelines', 'core_repos'] as $repo_type) : ?>
                     pointRadius: 0,
                     data: [
                         <?php foreach ($bins as $key => $label) {
-                            echo ($gh_pr_response_hist[$key] / count($issues_json['stats']['prs']['response_times'])) * 100 . ', ';
+                            echo ($gh_pr_response_hist[$key] / count($issues_json['stats']['prs']['response_times'])) *
+                                100 .
+                                ', ';
                         } ?>
                     ]
                 }
@@ -1656,4 +1697,6 @@ $subfooter =
 // include '../includes/footer.php';
 
 file_put_contents('stats_static.html', ob_get_contents());
+
+
 ?>

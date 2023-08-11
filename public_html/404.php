@@ -30,8 +30,3 @@ include '../includes/slim_header.php';
 <h1>Sorry, that page could not be found.</h1>
 <p>It looks like <?php echo $request_url; ?> doesn't exist.</p>
 <p>Please be aware that this is the place of the old nf-co.re website code. For the current pages, go to <a href="https://nf-co.re/">nf-co.re</a>.</p>
-
-
-<?php
-
-?>
