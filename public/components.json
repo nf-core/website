@@ -150,7 +150,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1192,7 +1192,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1294,7 +1294,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1373,7 +1373,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1579,7 +1579,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1638,7 +1638,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -2224,7 +2224,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -2317,7 +2317,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -4431,7 +4431,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -4488,7 +4488,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -7678,6 +7678,18 @@
               "type": "file",
               "description": "Optional, file of sample names to be included or excluded.\ne.g. 'file.tsv'\n"
             }
+          },
+          {
+            "exons": {
+              "type": "file",
+              "description": "Tab-delimited file with exons for indel frameshifts (chr,beg,end; 1-based, inclusive, optionally bgzip compressed).\ne.g. 'exons.tsv.gz'\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Faidx indexed reference sequence file to determine INDEL context.\ne.g. 'reference.fa'\n"
+            }
           }
         ],
         "output": [
@@ -7705,7 +7717,8 @@
         "authors": [
           "@joseespinosa",
           "@drpatelh",
-          "@SusiJo"
+          "@SusiJo",
+          "@TCLamnidis"
         ]
       },
       "pipelines": [
@@ -9777,7 +9790,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -19323,7 +19336,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -20657,7 +20670,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -20771,7 +20784,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -20829,7 +20842,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -20977,7 +20990,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -25741,7 +25754,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -26459,7 +26472,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -36661,7 +36674,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41464,7 +41477,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -41687,7 +41700,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41789,7 +41802,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41891,7 +41904,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41993,7 +42006,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -42095,7 +42108,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -42177,7 +42190,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -44244,7 +44257,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "metatdenovo",
@@ -50974,7 +50987,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -58420,7 +58433,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -68055,7 +68068,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "mag",
@@ -68231,7 +68244,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "mag",
@@ -69672,7 +69685,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -70484,7 +70497,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -76697,6 +76710,155 @@
       }
     },
     {
+      "name": "sentieon_dnascope",
+      "path": "modules/nf-core/sentieon/dnascope/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_dnascope",
+        "description": "DNAscope algorithm performs an improved version of Haplotype variant calling.",
+        "keywords": [
+          "dnascope",
+          "sentieon",
+          "variant_calling"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file.",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAI file",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "dbsnp": {
+              "type": "file",
+              "description": "Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "dbsnp_tbi": {
+              "type": "file",
+              "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "call_interval": {
+              "type": "file",
+              "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
+              "pattern": "*.{bed,interval_list}"
+            }
+          },
+          {
+            "ml_model": {
+              "type": "file",
+              "description": "machine learning model file",
+              "pattern": "*.model"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of the VCF file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "sentieon_gvcftyper",
       "path": "modules/nf-core/sentieon/gvcftyper/meta.yml",
       "type": "module",
@@ -80850,7 +81012,7 @@
             }
           },
           {
-            "bam": {
+            "inputs": {
               "type": "file",
               "description": "Any input file required by Snakemake",
               "pattern": "*"
@@ -85981,7 +86143,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "nanoseq",
@@ -88804,7 +88966,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "hgtseq",
@@ -88938,7 +89100,9 @@
         "description": "Unzip ZIP archive files",
         "keywords": [
           "unzip",
-          "decompression"
+          "decompression",
+          "zip",
+          "archiving"
         ],
         "tools": [
           {
@@ -89014,7 +89178,9 @@
         "description": "Unzip ZIP archive files",
         "keywords": [
           "unzip",
-          "decompression"
+          "decompression",
+          "zip",
+          "archiving"
         ],
         "tools": [
           {
