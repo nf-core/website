@@ -232,7 +232,7 @@ $(function () {
     if (data.params.Prefix) {
       parts.push.apply(
         parts,
-        data.params.Prefix.endsWith('/') ? data.params.Prefix.slice(0, -1).split('/') : data.params.Prefix.split('/'),
+        data.params.Prefix.endsWith('/') ? data.params.Prefix.slice(0, -1).split('/') : data.params.Prefix.split('/')
       );
     }
 
