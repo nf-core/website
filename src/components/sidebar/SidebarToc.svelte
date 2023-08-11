@@ -25,7 +25,8 @@
         }
         currentHeading.subscribe((slug) => {
             // wait 1 second for sidebar selection animation to finish
-            const active = document.querySelector('href="#' + $currentHeading + '"');
+
+            const active = document.querySelector('.toc nav-item.active');
             if (active) {
                 active.scrollIntoView({ block: 'nearest' });
             }

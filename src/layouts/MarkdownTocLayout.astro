@@ -113,9 +113,11 @@ const {
             }
         }
         const graphs = document.getElementsByClassName('mermaid');
-        if (document.getElementsByClassName('mermaid').length > 0) {
-            renderDiagrams(graphs);
-        }
+        setTimeout(() => {
+            if (document.getElementsByClassName('mermaid').length > 0) {
+                renderDiagrams(graphs);
+            }
+        }, 300);
     </script>
 </PageLayout>
 <style lang="scss">
