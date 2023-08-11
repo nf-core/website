@@ -36,7 +36,7 @@ $(function () {
     let $this = $(this);
     $this.addClass('position-relative');
     var $copy_btn = $(
-      '<button class="btn btn-outline-secondary copy-button position-absolute top-0 end-0" data-bs-toggle="tooltip"  data-bs-placement="left" data-bs-original-title="Copy to clipboard" ><i class="fas fa-clipboard fa-swap-opacity"></i></button>',
+      '<button class="btn btn-outline-secondary copy-button position-absolute top-0 end-0" data-bs-toggle="tooltip"  data-bs-placement="left" data-bs-original-title="Copy to clipboard" ><i class="fas fa-clipboard fa-swap-opacity"></i></button>'
     );
     $this.append($copy_btn);
     var btn_tooltip = new bootstrap.Tooltip($copy_btn, { container: 'body' });
@@ -493,6 +493,6 @@ function scroll_to(target_el, offset) {
     {
       scrollTop: el_offset,
     },
-    500,
+    500
   );
 }
