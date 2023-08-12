@@ -16011,6 +16011,151 @@
       }
     },
     {
+      "name": "clustalo_align",
+      "path": "modules/nf-core/clustalo/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clustalo_align",
+        "description": "Align sequences using Clustal Omega",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "clustalo": {
+              "description": "Latest version of Clustal: a multiple sequence alignment program for DNA or proteins",
+              "homepage": "http://www.clustal.org/omega/",
+              "documentation": "http://www.clustal.org/omega/",
+              "tool_dev_url": "http://www.clustal.org/omega/",
+              "doi": "10.1038/msb.2011.75",
+              "licence": "['GPL v2']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tree information\ne.g. `[ id:'test_tree']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Input guide tree in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file.",
+              "pattern": "*.{aln}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
+      "name": "clustalo_guidetree",
+      "path": "modules/nf-core/clustalo/guidetree/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clustalo_guidetree",
+        "description": "Renders a guidetree in clustalo",
+        "keywords": [
+          "guide tree",
+          "msa",
+          "newick"
+        ],
+        "tools": [
+          {
+            "clustalo": {
+              "description": "Latest version of Clustal: a multiple sequence alignment program for DNA or proteins",
+              "homepage": "http://www.clustal.org/omega/",
+              "documentation": "http://www.clustal.org/omega/",
+              "tool_dev_url": "http://www.clustal.org/omega/",
+              "doi": "10.1038/msb.2011.75",
+              "licence": "['GPL v2']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Guide tree file in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "cmseq_polymut",
       "path": "modules/nf-core/cmseq/polymut/meta.yml",
       "type": "module",
@@ -76499,7 +76644,7 @@
             }
           },
           {
-            "bai": {
+            "fai": {
               "type": "file",
               "description": "Index of the genome fasta file",
               "pattern": "*.fai"
@@ -76710,6 +76855,123 @@
       }
     },
     {
+      "name": "sentieon_dnamodelapply",
+      "path": "modules/nf-core/sentieon/dnamodelapply/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_dnamodelapply",
+        "description": "modifies the input VCF file by adding the MLrejected FILTER to the variants",
+        "keywords": [
+          "dnamodelapply",
+          "vcf",
+          "filter",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "INPUT VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "idx": {
+              "type": "file",
+              "description": "Index of the input VCF file",
+              "pattern": "*.{tbi}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "ml_model": {
+              "type": "file",
+              "description": "machine learning model file",
+              "pattern": "*.model"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "INPUT VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of the input VCF file",
+              "pattern": "*.{tbi}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "sentieon_dnascope",
       "path": "modules/nf-core/sentieon/dnascope/meta.yml",
       "type": "module",
@@ -76763,6 +77025,12 @@
           },
           {
             "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta7": {
               "type": "map",
               "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
             }
