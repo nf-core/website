@@ -257,7 +257,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         $header_html .= '</div></div>';
     }
 
-    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $_GET['event'] . '.md';
+    $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/' . $_GET['event'] . '.md';
 
     // header.php runs parse_md() again to produce main page content
     $import_moment = true;
