@@ -25,7 +25,7 @@ foreach ($contributors['contributors'] as $idx => $c) {
 shuffle($contributors_img_list);
 
 //Check if there is an event
-$md_github_url = 'https://github.com/sanger-tol/nf-co.re/tree/main/markdown/events';
+$md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
 $header_btn_url = 'https://nf-co.re/events/rss';
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
