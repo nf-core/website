@@ -1,8 +1,10 @@
 <?php
 
+/*
 require '../vendor/autoload.php'; // for spyc
 
 // Get a random subset of contributor institute logos
+
 $contributors = spyc_load_file('../nf-core-contributors.yaml');
 $contributors_img_list = [];
 foreach ($contributors['contributors'] as $idx => $c) {
@@ -23,6 +25,7 @@ foreach ($contributors['contributors'] as $idx => $c) {
 }
 // Shuffle and truncate the list
 shuffle($contributors_img_list);
+*/
 
 //Check if there is an event
 // these 2 variables not being used any more, but update them to sanger-tol now
@@ -488,20 +491,20 @@ pip install nf-core
       number of contributing users.</p>
     <p><a class="btn btn-success d-inline d-md-none" href="/community#organisations">See a complete list &raquo;</a></p>
     <div class="homepage_contrib_logos">
-      <?php foreach (array_slice($contributors_img_list, 0, 8) as $img) {
+      <?php /* foreach (array_slice($contributors_img_list, 0, 8) as $img) {
           echo $img;
-      } ?>
+      } */ ?>
     </div>
   </div>
 </div>
--->
+
 
 <script type="text/javascript">
 // List of remaining contributor logos which have not yet been shown
 var contributors_imgs = <?php echo json_encode(array_slice($contributors_img_list, 8)); ?>;
 
 <?php // Javascript for moment time zone support
-
+/*
 if ($event['start_time']) {
     echo '
     $("[data-timestamp]").each(function(){
@@ -510,8 +513,9 @@ if ($event['start_time']) {
       $(this).text(local_time.format("HH:mm z, LL"));
     });
     ';
-} ?>
+} */ ?>
 </script>
+-->
 
 <?php
 $md_github_url = false;
