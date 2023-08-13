@@ -25,8 +25,9 @@ foreach ($contributors['contributors'] as $idx => $c) {
 shuffle($contributors_img_list);
 
 //Check if there is an event
+// these 2 variables not being used any more, but update them to sanger-tol now
 $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
-$header_btn_url = 'https://nf-co.re/events/rss';
+$header_btn_url = 'https://pipelines.tol.sanger.ac.uk/events/rss';
 
 # To get parse_md_front_matter() and sanitise_date_meta() functions
 require_once '../includes/functions.php';
