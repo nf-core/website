@@ -69,7 +69,7 @@ if (isset($_POST['post_content']) && $_POST['post_content'] == $post_content_typ
 
     // Not API, it came from the page form - redirect to the web url
     else {
-        header('Location: ' . $self_url . '?id=' . $cache_id);
+        header('Location: '.strtok($_SERVER['REQUEST_URI'], '?') .'?id=' . $cache_id);
         exit();
     }
 }

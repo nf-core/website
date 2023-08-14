@@ -173,7 +173,7 @@ if (isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true') {
     $cache_json = json_encode($cache, JSON_PRETTY_PRINT) . "\n";
     file_put_contents($cache_fn, $cache_json);
     // Redirect to web URL
-    header('Location: ' . $self_url . '?id=' . $cache_id);
+    header('Location: '.strtok($_SERVER['REQUEST_URI'], '?') .'?id=' . $cache_id);
     exit();
 }
 
@@ -247,7 +247,7 @@ function save_launcher_form() {
     $cache_json = json_encode($cache, JSON_PRETTY_PRINT) . "\n";
     file_put_contents($cache_fn, $cache_json);
     // Redirect to web URL
-    header('Location: ' . $self_url . '?id=' . $cache_id);
+    header('Location: '.strtok($_SERVER['REQUEST_URI'], '?') .'?id=' . $cache_id);
     exit();
 }
 
