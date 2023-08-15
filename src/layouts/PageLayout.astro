@@ -5,6 +5,7 @@ import Header from '@components/header/Header.astro';
 
 let {
     title = SITE_TITLE,
+    meta_title = title,
     subtitle = SITE_DESCRIPTION,
     image,
     header_html,
@@ -18,10 +19,12 @@ let {
     navTocHeadings = [],
     topics = [],
     sections = [],
+    docSearchTags = [],
 } = Astro.props;
 
 export interface Props {
     title?: string;
+    meta_title?: string;
     subtitle?: string;
     image?: string;
     header_html?: string;
@@ -35,6 +38,10 @@ export interface Props {
     frontmatter?: any;
     topics?: string[];
     sections?: { section_name: string; children: {}[] }[] | never[];
+    docSearchTags?: {
+        name: string;
+        content: string | string[];
+    }[];
 }
 
 if (frontmatter) {
@@ -51,13 +58,14 @@ if (frontmatter) {
 ---
 
 <BaseLayout
-    title={title}
+    title={meta_title}
     subtitle={subtitle}
     image={image}
     md_github_url={md_github_url}
     subfooter={subfooter}
     navTocHeadings={navTocHeadings}
     sections={sections}
+    docSearchTags={docSearchTags}
 >
     <div class="mainpage">
         <Header
@@ -74,11 +82,13 @@ if (frontmatter) {
         </Header>
         {
             mainpage_container || mainpage_container == null ? (
-                <div class="container main-content pt-md-4">
+                <div class="container main-content pt-md-4 DocSearch-content">
                     <slot />
                 </div>
             ) : (
-                <slot />
+                <div class="DocSearch-content">
+                    <slot />
+                </div>
             )
         }
     </div>

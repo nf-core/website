@@ -10,7 +10,7 @@ const start = frontmatter.start?.toLocaleString('en-US', {
     minute: 'numeric',
     hour12: false,
 });
-const end = frontmatter.start?.toLocaleString('en-US', {
+const end = frontmatter.end?.toLocaleString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -28,8 +28,8 @@ if (frontmatter.end === undefined) {
 ---
 
 <div class="">
-    <div class="row row-cols-1 row-col-2">
-        <div class="">
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col">
             <dl>
                 <dt>Event start:</dt>
                 <dd>{start}</dd>
@@ -37,7 +37,7 @@ if (frontmatter.end === undefined) {
                 <dd>{end}</dd>
             </dl>
         </div>
-        <div class="">
+        <div class="col">
             <dl>
                 {
                     frontmatter.location_url && (

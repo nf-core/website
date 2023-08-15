@@ -1,5 +1,14 @@
-/logo/*  https://oldsite.nf-co.re/logo/:splat
-/tools/docs/* https://oldsite.nf-co.re/tools/docs//:splat
+# Slack invite URL
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-zj2p3l6d-oLK8OcMGXYuPra0ye1ptdg
+
+# Temporary oldsite redirections
+/logo/*  https://oldsite.nf-co.re/logo/:splat 200
+/tools/docs/* https://oldsite.nf-co.re/tools/docs/:splat 200
+/pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat 200
+/launch/* https://oldsite.nf-co.re/launch/:splat 200
+
+# New site July 2023 - URL changes
 /community /contributors
-/pipeline_schema_builder/* https://oldsite.nf-co.re/pipeline_schema_builder/:splat
-/launch/* https://oldsite.nf-co.re/launch/:splat
+/usage/* /docs/usage/:splat
+/developers/* /docs/contributing/:splat
+/contributing/* /docs/contributing/:splat
