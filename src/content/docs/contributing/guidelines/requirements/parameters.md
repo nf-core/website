@@ -13,4 +13,4 @@ In addition to the names of parameters, they should ideally work in a similar wa
 For example, `--input` typically takes a `.csv` sample sheet file (but not always, where not appropriate).
 
 > We're planning to build a tool that lists every parameter used by every pipeline, so that you can check for existing parameters with similar names
-> You can track the progress of this feature request here: [nf-core/nf-co.re#1251](https://github.com/nf-core/nf-co.re/issues/1251)
+> You can track the progress of this feature request here: [nf-core/website#1251](https://github.com/nf-core/website/issues/1251)

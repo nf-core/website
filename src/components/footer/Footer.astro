@@ -1,6 +1,6 @@
 ---
-import NfCoreLogoDarkbg from '/images/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/nf-core-logo.svg?raw';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 ---
 
@@ -10,7 +10,7 @@ import IconSocial from '@components/IconSocial.astro';
             <div class="text-center text-lg-start col-12 col-lg d-flex flex-column justify-content-between">
                 <div class="">
                     <a href="/" class="text-decoration-none">
-                        <div class="hide-dark">
+                        <div class="hide-dark align-middle">
                             <Fragment set:html={NfCoreLogo} />
                         </div>
                         <div class="hide-light">
@@ -46,9 +46,7 @@ import IconSocial from '@components/IconSocial.astro';
             <div class="col-12 col-lg text-center text-lg-end">
                 <div class="small">
                     See the source code for this website on GitHub:<br />
-                    <a href="https://github.com/nf-core/nf-co.re" target="_blank">
-                        https://github.com/nf-core/nf-co.re
-                    </a>
+                    <a href="https://github.com/nf-core/website" target="_blank"> https://github.com/nf-core/website</a>
                 </div>
             </div>
         </div>
@@ -56,10 +54,24 @@ import IconSocial from '@components/IconSocial.astro';
 
     <style lang="scss">
         @import '@styles/_variables.scss';
-        .hide-light,
         .hide-dark {
             height: 3rem;
             width: 7.5rem;
+        }
+        .hide-light {
+            height: 0rem;
+            width: 0rem;
+        }
+
+        :global([data-bs-theme='dark']) {
+            .hide-dark {
+                height: 0;
+                width: 0;
+            }
+            .hide-light {
+                height: 3rem;
+                width: 7.5rem;
+            }
         }
 
         footer {
