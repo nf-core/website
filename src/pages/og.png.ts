@@ -10,6 +10,7 @@ import initYoga from 'yoga-wasm-web/asm';
 const YOGA = initYoga();
 initSatori(YOGA);
 
+console.log('rendering og image');
 export const get: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
