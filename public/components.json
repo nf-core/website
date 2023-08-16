@@ -3269,6 +3269,74 @@
       ]
     },
     {
+      "name": "ashlar",
+      "path": "modules/nf-core/ashlar/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ashlar",
+        "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+        "keywords": [
+          "image_processing",
+          "alignment",
+          "registration"
+        ],
+        "tools": [
+          {
+            "ashlar": {
+              "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+              "homepage": "https://labsyspharm.github.io/ashlar/",
+              "documentation": "https://labsyspharm.github.io/ashlar/",
+              "doi": "10.1093/bioinformatics/btac544",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "images": {
+              "type": "file",
+              "description": "Overlapping tile image data in formats from most commercial microscopes",
+              "pattern": "*.{ome.tiff,ome.tif,rcpnl,btf,nd2,tiff,tif,czi}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "tif": {
+              "type": "file",
+              "description": "A pyramidal, tiled OME-TIFF file created from input images.",
+              "pattern": "*.ome.tif"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@RobJY",
+          "@jmuhlich"
+        ]
+      }
+    },
+    {
       "name": "assemblyscan",
       "path": "modules/nf-core/assemblyscan/meta.yml",
       "type": "module",
@@ -37687,7 +37755,13 @@
         "authors": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "genomad_endtoend",
@@ -37853,7 +37927,13 @@
         "authors": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "genomescope2",
@@ -77598,6 +77678,115 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_wgsmetrics",
+      "path": "modules/nf-core/sentieon/wgsmetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_wgsmetrics",
+        "description": "Collects whole genome quality metrics from a bam file",
+        "keywords": [
+          "metrics",
+          "bam",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of th sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bai,crai,sai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "interval_list": {
+              "type": "file",
+              "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
+              "pattern": "*.{bed,interval_list}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "wgs_metrics": {
+              "type": "file",
+              "description": "File containing the information about mean base quality score for each sequencing cycle",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
