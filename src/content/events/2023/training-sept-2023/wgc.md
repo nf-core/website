@@ -4,7 +4,7 @@ subtitle: Local Community Advanced Nextflow Training at the Wellcome Genome Camp
 type: training
 start_date: '2023-09-27'
 start_time: '9:30 BST'
-end_date: '2023-09-28'
+end_date: '2023-09-27'
 end_time: '17:00 BST'
 location_name: Garden Room, Main Building, EMBL-EBI, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
@@ -23,9 +23,9 @@ If you don't work on campus and would like to attend, please reach out to [Priya
 
 # Local Schedule
 
-This full day event will run from **9.30 am - 5.00 pm BST**.
+This full-day event will run from **9.30 am - 5.00 pm BST**.
 
-The schedule for the in-person Wellcome Genome Campus event will differ to the schedule shown for the online event.
+The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event.
 The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
 
 The training material will be presented virtually by Seqera Labs bioinformatics engineer [Rob Syme](https://github.com/robsyme).
