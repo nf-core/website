@@ -10,7 +10,7 @@ export interface Props {
 ---
 
 <h2 id={name.toLowerCase()} class="text-success ms-n3">
-    <i class="fad fa-sign-in fa-fw"></i>
+    <i class={`fad ${icon} fa-fw`}></i>
     {name}
     <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link"
         ><span class="fas fa-link" aria-hidden="true"></span>
