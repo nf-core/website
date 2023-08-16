@@ -284,7 +284,8 @@ function return_json($response) {
 
 function get_self_url($strip_query = true) {
     // Build URL for this page
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    if (((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')) 
+     || $_SERVER['HTTP_HOST'] === 'pipelines.tol.sanger.ac.uk'){
         $self_url = 'https://';
     } else {
         $self_url = 'http://';

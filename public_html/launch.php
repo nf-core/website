@@ -137,9 +137,9 @@ function launch_pipeline_web($pipeline, $release) {
     $_POST['cli_launch'] = false;
     $_POST['nxf_flags'] = '{}';
     $_POST['input_params'] = '{}';
-    $_POST['pipeline'] = 'nf-core/' . $pipeline;
+    $_POST['pipeline'] = 'sanger-tol/' . $pipeline;
     $_POST['revision'] = $release;
-    $_POST['nextflow_cmd'] = "nextflow run nf-core/$pipeline -r $release";
+    $_POST['nextflow_cmd'] = "nextflow run sanger-tol/$pipeline -r $release";
     $_POST['schema'] = json_encode($gh_launch_schema);
     return [];
 }
@@ -173,7 +173,7 @@ if (isset($_GET['return_to_editor']) && $_GET['return_to_editor'] == 'true') {
     $cache_json = json_encode($cache, JSON_PRETTY_PRINT) . "\n";
     file_put_contents($cache_fn, $cache_json);
     // Redirect to web URL
-    header('Location: ' . $self_url . '?id=' . $cache_id);
+    header('Location: '.strtok($_SERVER['REQUEST_URI'], '?') .'?id=' . $cache_id);
     exit();
 }
 
@@ -247,7 +247,7 @@ function save_launcher_form() {
     $cache_json = json_encode($cache, JSON_PRETTY_PRINT) . "\n";
     file_put_contents($cache_fn, $cache_json);
     // Redirect to web URL
-    header('Location: ' . $self_url . '?id=' . $cache_id);
+    header('Location: '.strtok($_SERVER['REQUEST_URI'], '?') .'?id=' . $cache_id);
     exit();
 }
 
@@ -522,7 +522,7 @@ if (!$cache) { ?>
         </div>
 
         <p>For more options, such as launching a custom pipeline or using a GitHub branch, please use this tool locally - see below.</p>
-        <p>Read more about the different nf-core pipelines on the <a href="/pipelines">Pipelines</a> page.</p>
+        <p>Read more about the different sanger-tol pipelines on the <a href="/pipelines">Pipelines</a> page.</p>
 
         <h2>Launch a pipeline locally</h2>
 
@@ -658,10 +658,10 @@ elseif ($cache['status'] == 'launch_params_complete') {
             <p>The easiest way to launch this workflow is by using the <code>nf-core/tools</code> helper package.</p>
             <p>Once installed (<a href="https://nf-co.re/tools#installation" target="_blank">see documentation</a>),
                 simply run the following command and follow the prompts:</p>
-            <pre><code>nf-core launch --id <?php echo $cache_id; ?></code></pre>
+            <pre><code>nf-core launch --id <?php echo $cache_id; ?> --url <?php echo $self_url; ?></code></pre>
 
             <h3>Launch using Nextflow Tower</h3>
-            <?php if (substr($cache['pipeline'], 0, 8) == 'nf-core/') { ?>
+            <?php if (substr($cache['pipeline'], 0, 11) == 'sanger-tol/') { ?>
                 <p>Clicking the button below will take you to the Nextflow Tower launch page with all parameters set, ready for launch
                     (requires a Nextflow Tower account).</p>
                 <form method="get" action="https://tower.nf/launch" target="_blank" class="mb-3">

@@ -16,7 +16,7 @@ if (substr($md_fn, -3) !== '.md') {
 if (strtolower($path_parts[0]) == 'docs') {
     if (file_exists($docs_md_base . $md_fn)) {
         $markdown_fn = $docs_md_base . $md_fn;
-        $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn;
+        $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/' . $md_fn;
         $section = trim($path_parts[1]);
         include 'documentation.php';
         exit();
@@ -25,7 +25,7 @@ if (strtolower($path_parts[0]) == 'docs') {
     if (file_exists($docs_md_base . substr($md_fn, 0, -3) . '/index.md')) {
         $markdown_fn = $docs_md_base . substr($md_fn, 0, -3) . '/index.md';
         $md_github_url =
-            'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . substr($md_fn, 0, -3) . '/index.md';
+            'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/' . substr($md_fn, 0, -3) . '/index.md';
         $href_url_prepend = substr(basename($md_fn), 0, -3) . '/';
         $section = trim($path_parts[1]);
         include 'documentation.php';
@@ -35,7 +35,7 @@ if (strtolower($path_parts[0]) == 'docs') {
     if (file_exists($docs_md_base . substr($md_fn, 0, -3) . '/README.md')) {
         $markdown_fn = $docs_md_base . substr($md_fn, 0, -3) . '/README.md';
         $md_github_url =
-            'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . substr($md_fn, 0, -3) . '/README.md';
+            'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/' . substr($md_fn, 0, -3) . '/README.md';
         $href_url_prepend = substr(basename($md_fn), 0, -3) . '/';
         $section = trim($path_parts[1]);
         include 'documentation.php';
@@ -45,7 +45,7 @@ if (strtolower($path_parts[0]) == 'docs') {
 
 if (file_exists($docs_md_base . $md_fn)) {
     $markdown_fn = $docs_md_base . $md_fn;
-    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $md_fn;
+    $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/' . $md_fn;
     include '../includes/header.php';
     include '../includes/footer.php';
     exit();

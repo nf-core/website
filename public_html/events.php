@@ -257,7 +257,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         $header_html .= '</div></div>';
     }
 
-    $md_github_url = 'https://github.com/nf-core/nf-co.re/tree/master/markdown/' . $_GET['event'] . '.md';
+    $md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/' . $_GET['event'] . '.md';
 
     // header.php runs parse_md() again to produce main page content
     $import_moment = true;
@@ -346,9 +346,9 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
 
 $title = 'Events';
 $subtitle = 'Details of past and future nf-core meetups.';
-$md_github_url = 'https://github.com/sanger-tol/nf-co.re/tree/main/markdown/events';
-$header_btn_url = 'https://nf-co.re/events/rss';
-$header_btn_text = '<i class="fas fa-rss me-1"></i> RSS';
+$md_github_url = 'https://github.com/sanger-tol/pipelines-website/tree/main/markdown/events';
+// $header_btn_url = 'https://pipelines.tol.sanger.ac.uk/events/rss';
+// $header_btn_text = '<i class="fas fa-rss me-1"></i> RSS';
 
 // Load event front-matter
 $events = [];
