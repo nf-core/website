@@ -8735,6 +8735,79 @@
       ]
     },
     {
+      "name": "bedtools_groupby",
+      "path": "modules/nf-core/bedtools/groupby/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedtools_groupby",
+        "description": "Groups features in a BED file by given column(s) and computes summary statistics for each group to another column.",
+        "keywords": [
+          "bed",
+          "groupby",
+          "bedtools"
+        ],
+        "tools": [
+          {
+            "bedtools": {
+              "description": "A set of tools for genomic analysis tasks, specifically enabling genome arithmetic (merge, count, complement) on various file types.\n",
+              "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/groupby.html",
+              "homepage": "https://bedtools.readthedocs.io/en/latest/",
+              "doi": "10.1093/bioinformatics/btq033",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Input BED file",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "summary_column": {
+              "type": "integer",
+              "description": "Column to be summarized (1-based)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Grouped by bed file with combined features",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@mashehu"
+        ]
+      }
+    },
+    {
       "name": "bedtools_intersect",
       "path": "modules/nf-core/bedtools/intersect/meta.yml",
       "type": "module",
@@ -24522,6 +24595,79 @@
           "version": "3.2.3"
         }
       ]
+    },
+    {
+      "name": "ensemblvep_filtervep",
+      "path": "modules/nf-core/ensemblvep/filtervep/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ensemblvep_filtervep",
+        "description": "Filter variants based on Ensembl Variant Effect Predictor (VEP) annotations.",
+        "keywords": [
+          "annotation",
+          "vcf",
+          "tab",
+          "filter"
+        ],
+        "tools": [
+          {
+            "ensemblvep": {
+              "description": "VEP determines the effect of your variants (SNPs, insertions, deletions, CNVs\nor structural variants) on genes, transcripts, and protein sequence, as well as regulatory regions.\n",
+              "homepage": "https://www.ensembl.org/info/docs/tools/vep/index.html",
+              "documentation": "https://www.ensembl.org/info/docs/tools/vep/script/index.html",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "VCF/TAB file annotated with vep",
+              "pattern": "*.{vcf,tab,tsv,txt}"
+            }
+          },
+          {
+            "feature_file": {
+              "type": "file",
+              "description": "File containing features on separate lines. To be used with --filter option."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "VCF/TAB file",
+              "pattern": "*.{vcf,tab,txt,tsv}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
     },
     {
       "name": "ensemblvep_vep",
@@ -51345,6 +51491,7 @@
         "name": "mafft",
         "description": "Multiple sequence alignment using MAFFT",
         "keywords": [
+          "fasta",
           "msa",
           "multiple sequence alignment"
         ],
@@ -56851,7 +56998,7 @@
             }
           },
           {
-            "cluster": {
+            "db_cluster": {
               "type": "file",
               "description": "a clustered MMseqs2 database used for clustering"
             }
@@ -56919,7 +57066,7 @@
             }
           },
           {
-            "bam": {
+            "db": {
               "type": "directory",
               "description": "The created MMseqs2 database"
             }
@@ -57292,7 +57439,7 @@
             }
           },
           {
-            "search_db": {
+            "db_search": {
               "type": "directory",
               "description": "an MMseqs2 database with search results"
             }
@@ -57347,9 +57494,9 @@
             }
           },
           {
-            "db_indexed": {
+            "db_exprofile": {
               "type": "directory",
-              "description": "Directory containing the DB and the generated indexes\n",
+              "description": "Directory containing the expandable profile DB\n",
               "pattern": "*"
             }
           }
@@ -62334,7 +62481,7 @@
       "type": "module",
       "meta": {
         "name": "parabricks_fq2bam",
-        "description": "NVIDIA Clara Parabricks GPU-accelerated alignment, sorting, BQSR calculation, and duplicate marking.",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated alignment, sorting, BQSR calculation, and duplicate marking. Note this nf-core module requires files to be copied into the working directory and not symlinked.",
         "keywords": [
           "align",
           "sort",
@@ -62457,7 +62604,8 @@
           }
         ],
         "authors": [
-          "@bsiranosian"
+          "@bsiranosian",
+          "@adamrtalbot"
         ]
       }
     },
