@@ -18,14 +18,6 @@
         }[];
     }[] = [];
 
-    let pageSize: number = 12;
-    let lastPage: number = Math.ceil(components.length / pageSize);
-    const updatePageSize = () => {
-        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
-        lastPage = Math.ceil(components.length / pageSize);
-    };
-    updatePageSize();
-
     const searchComponents = (component) => {
         if ($SearchQuery === '') {
             return true;
@@ -67,18 +59,31 @@
     function searchFilterSortComponents(components) {
         return components.sort(sortComponents).filter(searchComponents);
     }
+
+    $: filteredComponents = searchFilterSortComponents(components) || [];
+
+    let pageSize: number = 12;
+    let lastPage = Math.ceil(components.length / pageSize);
+    const updatePageSize = () => {
+        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
+        let currentComponents = filteredComponents || components;
+        lastPage = Math.ceil(currentComponents.length / pageSize);
+        console.log('lastPage', currentComponents.length, lastPage);
+    };
+    updatePageSize();
+
+    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
+
     SortBy.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
     });
     SearchQuery.subscribe(() => {
         filteredComponents = searchFilterSortComponents(components);
+        updatePageSize();
     });
     DisplayStyle.subscribe(() => {
         updatePageSize();
     });
-    $: filteredComponents = searchFilterSortComponents(components);
-
-    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
 </script>
 
 <div class={`listing d-flex flex-wrap w-100 justify-content-center ${components[0].type}`}>
@@ -131,7 +136,9 @@
         </table>
     {/if}
 </div>
-<PaginationNav {lastPage} />
+{#if lastPage > 0}
+    <PaginationNav {lastPage} />
+{/if}
 
 <style>
     .name {
