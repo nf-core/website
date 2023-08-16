@@ -23,7 +23,7 @@ If you don't work on campus and would like to attend, please reach out to [Priya
 
 # Local Schedule
 
-This full day event will run from 9.45 am - 5.00 pm BST.
+This full day event will run from **9.30 am - 5.00 pm BST**.
 
 The schedule for the in-person Wellcome Genome Campus event will differ to the schedule shown for the online event.
 The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
@@ -40,31 +40,35 @@ The training material will be presented virtually by Seqera Labs bioinformatics 
             </thead>
             <tbody>
             <tr>
-                <td data-timestamp="1695804300" data-timeformat="HH:mm z">09:45</td>
-                <td background-color:navy; rowspan="1">Welcome and Introductions</td>
+                <td >9:30 AM</td>
+                <td background-color:navy; rowspan="1">Session 1</td>
             </tr>
-                <td data-timestamp="1695805200" data-timeformat="HH:mm z">10:00</td>
-                <td rowspan="1">Part 1</td>
+                <td>11:00 AM</td>
+                <td rowspan="1">Break</td>
             </tr>
             <tr>
-                <td data-timestamp="1695812400" data-timeformat="HH:mm z">12:00</td>
+                <td>11:15 AM</td>
+                <td rowspan="1">Session 2</td>
+            </tr>
+            <tr>
+                <td>12:45 PM</td>
                 <td rowspan="1">Lunch</td>
             </tr>
             <tr>
-                <td data-timestamp="1695816000" data-timeformat="HH:mm z">13:00</td>
-                <td rowspan="1">Part 2</td>
+                <td >1:30 PM</td>
+                <td rowspan="1">Session 3</td>
             </tr>
             <tr>
-                <td data-timestamp="1695822300" data-timeformat="HH:mm z">14:45</td>
-                <td rowspan="1">Short break</td>
+                <td >3:00 PM</td>
+                <td rowspan="1">Break</td>
             </tr>
             <tr>
-                <td data-timestamp="1695823200" data-timeformat="HH:mm z">15:00</td>
-                <td rowspan="1">Part 4</td>
+                <td >3:15 PM</td>
+                <td rowspan="1">Session 4</td>
             </tr>
             <tr>
-                <td data-timestamp="1695825000" data-timeformat="HH:mm z">16:30</td>
-                <td>Q&A</td>
+                <td >4:45 PM</td>
+                <td>Open discussion</td>
             </tr>
         </tbody>
     </table>
