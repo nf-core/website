@@ -68,7 +68,6 @@
         pageSize = $DisplayStyle === 'grid' ? 12 : 25;
         let currentComponents = filteredComponents || components;
         lastPage = Math.ceil(currentComponents.length / pageSize);
-        console.log('lastPage', currentComponents.length, lastPage);
     };
     updatePageSize();
 
