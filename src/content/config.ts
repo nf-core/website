@@ -1,5 +1,22 @@
 import { z, defineCollection } from 'astro:content';
 
+const about = defineCollection({
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        md_github_url: z.string().url().optional(),
+    }),
+});
+
+const docs = defineCollection({
+    schema: z.object({
+        title: z.string(),
+        subtitle: z.string().optional(),
+        weight: z.number().optional(),
+        parent: z.string().optional(),
+    }),
+});
+
 const events = defineCollection({
     schema: z.object({
         title: z.string(),
@@ -21,27 +38,17 @@ const events = defineCollection({
         import_typeform: z.boolean().optional(),
     }),
 });
-const docs = defineCollection({
-    schema: z.object({
-        title: z.string(),
-        subtitle: z.string().optional(),
-        weight: z.number().optional(),
-        parent: z.string().optional(),
-    }),
-});
-const about = defineCollection({
-    schema: z.object({
+
+const tools = defineCollection({schema: z.object({
         title: z.string(),
         description: z.string(),
-        md_github_url: z.string().url().optional(),
-    }),
-});
-
-const pipelines = defineCollection({});
+        weight: z.number().optional(),
+        section: z.string(),
+    }),});
 
 export const collections = {
-    events: events,
-    docs: docs,
     about: about,
-    pipelines: pipelines,
+    docs: docs,
+    events: events,
+    tools: tools,
 };

@@ -1,0 +1,71 @@
+---
+import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const tools_files = await getCollection('tools');
+    console.log(tools_files.map((tools) => tools.slug));
+    return tools_files.map((tools) => ({
+        params: {
+            tools: tools.slug,
+        },
+        props: {
+            tools: tools,
+        },
+    }));
+}
+const title = Astro.props.tools.data.title;
+const subtitle = Astro.props.tools.data.description;
+const { headings, Content } = await Astro.props.tools.render();
+
+let prev_page: CollectionEntry<'docs'> | null = null;
+let next_page: CollectionEntry<'docs'> | null = null;
+
+let tools = await getCollection('tools');
+// sort tools by section and weight
+tools = tools.sort((a, b) => {
+    if (a.data.section === b.data.section) {
+        return a.data.weight - b.data.weight;
+    }
+    return a.data.section - b.data.section;
+});
+
+let sections: {
+    section_name: string;
+    children: {
+        title: string;
+        slug: string;
+        order?: number;
+    }[];
+}[] = [
+    { section_name: 'General', children: [] },
+    { section_name: 'Pipelines', children: [] },
+    { section_name: 'Modules', children: [] },
+    { section_name: 'Subworkflows', children: [] },
+];
+
+// loop over tools and create sections
+tools.forEach((tool) => {
+    // add tool to section with same section_name
+    let section = sections.find((section) => section.section_name.toLowerCase() === tool.data.section.toLowerCase());
+    section.children.push({
+        title: tool.data.title,
+        slug: '/tools/' + tool.slug + '/',
+        order: tool.data.weight,
+    });
+});
+
+console.log(sections[0]);
+const md_github_url = 'https://github.com/nf-core/tools/blob/main/docs/' + Astro.props.tools.id;
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    left_sidebar={true}
+    sections={sections}
+>
+    <Content />
+</MarkdownTocLayout>

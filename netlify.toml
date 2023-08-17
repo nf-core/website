@@ -1,3 +1,10 @@
+[build]
+  publish = "dist/"
+  command = "git clone -b split-readme --single-branch --depth 1 https://github.com/nf-core/tools.git ../tools && npm run build"
+
+[build.environment]
+    NODE_VERSION = "20"
+
 [functions]
 external_node_modules = ["vscode-oniguruma","shiki"]
 node_bundler = "esbuild"
