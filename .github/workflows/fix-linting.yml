@@ -8,21 +8,21 @@ jobs:
     # Only run if comment is on a PR with the main repo, and if it contains the magic keywords
     if: >
       contains(github.event.comment.html_url, '/pull/') &&
-      contains(github.event.comment.body, '@pipelines-website-bot fix linting') &&
+      contains(github.event.comment.body, '@sanger-tol-bot fix linting') &&
       github.repository == 'sanger-tol/pipelines-website'
     runs-on: ubuntu-latest
     steps:
       # Use the @nf-core-bot token to check out so we can push later
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.pipelines_website_token }}
+          token: ${{ secrets.sangertol_bot_access_token }}
 
       # Action runs on the issue comment, so we don't get the PR by default
       # Use the gh cli to check out the PR
       - name: Checkout Pull Request
         run: gh pr checkout ${{ github.event.issue.number }}
         env:
-          GITHUB_TOKEN: ${{ secrets.pipelines_website_token }}
+          GITHUB_TOKEN: ${{ secrets.sangertol_bot_access_token }}
 
       - uses: actions/setup-node@v2
 
@@ -47,7 +47,7 @@ jobs:
         if: steps.prettier_status.outputs.result == 'fail'
         run: |
           git config user.email "tolsoft@sanger.ac.uk"
-          git config user.name "pipelines-website-bot"
+          git config user.name "sanger-tol-bot"
           git config push.default upstream
           git add .
           git status
