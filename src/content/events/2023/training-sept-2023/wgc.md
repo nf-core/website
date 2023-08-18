@@ -28,7 +28,7 @@ This full-day event will run from **9.30 am - 5.00 pm BST**.
 The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event.
 The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
 
-The training material will be presented virtually by Seqera Labs bioinformatics engineer [Rob Syme](https://github.com/robsyme).
+The training material will be presented virtually by Seqera Labs bioinformatics engineer [Rob Syme](https://github.com/robsyme). Tentative schedule for the day is listed below.
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
