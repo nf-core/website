@@ -4,6 +4,7 @@ import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import octokit from '@components/octokit';
 import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
 import PageLayout from '@layouts/PageLayout.astro';
+import { Icon } from 'astro-icon';
 
 export async function getStaticPaths() {
     //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
@@ -139,6 +140,11 @@ const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configsl
                 </MarkdownWrapper>
             </div>
             <h1>Config file</h1>
+            <p class="my-3">
+                <a href={'https://github.com/nf-core/configs/tree/master/' + path} target="_blank">
+                    <i class="fab fa-github me-2"></i>See config file on GitHub
+                </a>
+            </p>
             <div class="config-code">
                 {
                     async () => {
