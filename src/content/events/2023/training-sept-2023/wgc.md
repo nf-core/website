@@ -41,14 +41,20 @@ The training material will be presented virtually by Seqera Labs bioinformatics 
             <tbody>
             <tr>
                 <td >9:30 AM</td>
-                <td background-color:navy; rowspan="1">Session 1</td>
+                <td background-color:navy; rowspan="1">
+                  Operator tour
+                  </br> Metadata propagation
+                </td>
             </tr>
                 <td>11:00 AM</td>
                 <td rowspan="1">Break</td>
             </tr>
             <tr>
                 <td>11:15 AM</td>
-                <td rowspan="1">Session 2</td>
+                <td rowspan="1">
+                  Grouping and splitting
+                  </br> Groovy imports
+                </td>
             </tr>
             <tr>
                 <td>12:45 PM</td>
@@ -56,7 +62,10 @@ The training material will be presented virtually by Seqera Labs bioinformatics 
             </tr>
             <tr>
                 <td >1:30 PM</td>
-                <td rowspan="1">Session 3</td>
+                <td rowspan="1">
+                  Workflow structure
+                  </br> Workflow Configuration
+                </td>
             </tr>
             <tr>
                 <td >3:00 PM</td>
@@ -64,7 +73,10 @@ The training material will be presented virtually by Seqera Labs bioinformatics 
             </tr>
             <tr>
                 <td >3:15 PM</td>
-                <td rowspan="1">Session 4</td>
+                <td rowspan="1">
+                  Troubleshooting
+                  </br> Training summary
+                </td>
             </tr>
             <tr>
                 <td >4:45 PM</td>
