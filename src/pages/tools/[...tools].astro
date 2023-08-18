@@ -4,7 +4,6 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
     const tools_files = await getCollection('tools');
-    console.log(tools_files.map((tools) => tools.slug));
     return tools_files.map((tools) => ({
         params: {
             tools: tools.slug,
@@ -15,6 +14,7 @@ export async function getStaticPaths() {
     }));
 }
 const title = Astro.props.tools.data.title;
+console.log(Astro.props.tools.data);
 const subtitle = Astro.props.tools.data.description;
 const { headings, Content } = await Astro.props.tools.render();
 
