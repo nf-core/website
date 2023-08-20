@@ -28,7 +28,7 @@ This full-day event will run from **9.30 am - 5.00 pm BST**.
 The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event.
 The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
 
-The training material will be presented virtually by Seqera Labs bioinformatics engineer [Rob Syme](https://github.com/robsyme).
+The training material will be presented virtually by Seqera Labs bioinformatics engineer [Rob Syme](https://github.com/robsyme). Tentative schedule for the day is listed below.
 
 <div class="table-responsive">
     <table class="table table-hover table-sm table-bordered">
@@ -41,30 +41,42 @@ The training material will be presented virtually by Seqera Labs bioinformatics 
             <tbody>
             <tr>
                 <td >9:30 AM</td>
-                <td background-color:navy; rowspan="1">Session 1</td>
+                <td>
+                  Operator tour
+                  </br> Metadata propagation
+                </td>
             </tr>
                 <td>11:00 AM</td>
-                <td rowspan="1">Break</td>
+                <td>Break</td>
             </tr>
             <tr>
                 <td>11:15 AM</td>
-                <td rowspan="1">Session 2</td>
+                <td>
+                  Grouping and splitting
+                  </br> Groovy imports
+                </td>
             </tr>
             <tr>
                 <td>12:45 PM</td>
-                <td rowspan="1">Lunch</td>
+                <td>Lunch</td>
             </tr>
             <tr>
                 <td >1:30 PM</td>
-                <td rowspan="1">Session 3</td>
+                <td>
+                  Workflow structure
+                  </br> Workflow Configuration
+                </td>
             </tr>
             <tr>
                 <td >3:00 PM</td>
-                <td rowspan="1">Break</td>
+                <td>Break</td>
             </tr>
             <tr>
                 <td >3:15 PM</td>
-                <td rowspan="1">Session 4</td>
+                <td>
+                  Troubleshooting
+                  </br> Training summary
+                </td>
             </tr>
             <tr>
                 <td >4:45 PM</td>
