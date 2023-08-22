@@ -18,6 +18,7 @@ export interface Props {
         name: string;
         content: string;
     }[];
+    maxHeadingDepth?: number;
 }
 
 const {
@@ -30,6 +31,7 @@ const {
     sections = [],
     meta_title = '',
     docSearchTags = [],
+    maxHeadingDepth = 4,
 } = Astro.props;
 ---
 
@@ -84,7 +86,7 @@ const {
             </div>
         </div>
         <div class="col-12 col-md-2 toc">
-            <SidebarToc headings={headings} client:idle />
+            <SidebarToc headings={headings} maxHeadingDepth={maxHeadingDepth} client:idle />
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
