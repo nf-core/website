@@ -140,26 +140,23 @@ The icon next to the title is based on the file extension.
 
 ````md
 ```mermaid
-flowchart LR
+//https://xkcd.com/1195/
+graph TD
+    start{ Start } --> trap{ Hey, wait, this flowchart is a trap! }
+    trap -- yes --> trap
 
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
 ```
 ````
 
 turns into:
 
 ```mermaid
-flowchart LR
+%% https://xkcd.com/1195/
+graph TD
+    start{ Start } --> trap{ Hey, wait, this flowchart is a trap! }
+    trap -- yes --> trap
 
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
 ```
-
 # LaTeX formulas
 
 We support latex based formulas using [KaTeX](https://katex.org/). To display them correctly on an nf-co.re page, you need to wrap them in a block surrounded by `$$`, e.g.:

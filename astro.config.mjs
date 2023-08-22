@@ -1,5 +1,4 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
-import { mermaid } from './bin/remark-mermaid.ts';
 import pipelines_json from '/public/pipelines.json';
 import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
@@ -16,6 +15,7 @@ import { h } from 'hastscript';
 import addClasses from 'rehype-add-classes';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeKatex from 'rehype-katex';
+import rehypeMermaid from 'rehype-mermaidjs';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import urls from 'rehype-urls';
@@ -24,7 +24,6 @@ import remarkDirective from 'remark-directive';
 import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-
 
 const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
     .then((res) => res.json())
@@ -93,7 +92,7 @@ export default defineConfig({
             theme: githubDarkDimmed,
             wrap: false,
         },
-        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
             rehypeSlug,
@@ -104,17 +103,19 @@ export default defineConfig({
                     content: h('i.ms-1.fas.fa-link.invisible'),
                 },
             ],
-            [
-                addClasses,
-                {
-                    table: 'table table-hover table-sm small',
-                },
-            ],
+
             [
                 rehypeWrap,
                 {
                     selector: 'table',
                     wrapper: 'div.table-responsive',
+                },
+            ],
+            [
+                rehypeWrap,
+                {
+                    selector: 'pre:has(code[class="language-mermaid"])',
+                    wrapper: 'div.mermaid',
                 },
             ],
             [
@@ -132,10 +133,11 @@ export default defineConfig({
                     }
                 },
             ],
+            rehypeMermaid,
             [
                 rehypePrettyCode,
                 {
-                    langPrefix: 'language-',
+                    langPrefix: 'test-',
                     keepBackground: true,
                     theme: {
                         dark: 'github-dark-dimmed',
@@ -144,6 +146,12 @@ export default defineConfig({
                 },
             ],
             rehypeKatex,
+            [
+                addClasses,
+                {
+                    table: 'table table-hover table-sm small',
+                },
+            ],
         ],
     },
 });

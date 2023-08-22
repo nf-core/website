@@ -392,7 +392,7 @@ h4:focus .header-link,
     :hover .invisible {
       visibility: visible !important;
       &:not(.fa-link)::before {
-        content: "\f0c1";
+        content: '\f0c1';
         color: $gray-600;
       }
     }
@@ -1235,17 +1235,22 @@ div[data-rehype-pretty-code-title][data-theme='light'] {
   background-color: $card-cap-bg;
 }
 
-div.mermaid {
-  text-align: center;
-  padding: 1rem 0 2rem;
-}
-
 .bg-success-light {
   background-color: tint-color($success-dark, 15%);
   a {
     color: $link-color;
   }
 }
+
+div.mermaid {
+  text-align: center;
+  padding: 1rem 0 2rem;
+  .label foreignObject {
+    overflow: visible;
+    line-height: 1.2;
+  }
+}
+
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
@@ -1341,5 +1346,31 @@ div.mermaid {
   .list-group-item {
     background-color: $gray-800;
     color: $body-color-dark;
+  }
+  div.mermaid {
+    .node rect,
+    .node circle,
+    .node ellipse,
+    .node polygon,
+    .node path {
+      fill: #1f2020 !important;
+      stroke: #81b1db !important;
+    }
+    .label text,
+    span,
+    p {
+      fill: #ccc !important;
+      color: #ccc !important;
+    }
+    .edgeLabel {
+      background-color: hsl(0, 0%, 34.4117647059%) !important;
+    }
+    .flowchart-link {
+      stroke: lightgrey !important;
+    }
+    .marker {
+      fill: lightgrey !important;
+      stroke: lightgrey !important;
+    }
   }
 }
