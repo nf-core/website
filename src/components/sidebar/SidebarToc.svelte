@@ -19,18 +19,20 @@
     // filter out headings that are higher than max_heading_depth
     headings = headings.filter((h) => h.depth <= maxHeadingDepth);
 
-    const min_heading_depth = Math.min(...headings.map((h) => h.depth));
     // make margin classes from min to max heading depth
     let headingMargin = {};
-    for (let i = min_heading_depth; i <= 4; i++) {
-        headingMargin[i] = 'ps-' + (i - min_heading_depth) * 2;
+    for (let i = minHeadingDepth; i <= 4; i++) {
+        headingMargin[i] = 'ps-' + (i - minHeadingDepth) * 2;
     }
+    let activeHeading = {};
     onMount(() => {
         // set the first heading as active on initial load
-        if (!$currentHeading) {
-            currentHeading.set(headings[0]?.slug);
-        }
+        activeHeading = $currentHeading || headings[0].slug;
         currentHeading.subscribe((slug) => {
+            //check if any heading has the same slug as the currentHeading
+            const heading = headings.find((h) => h.slug === slug);
+            console.log('currentHeading', slug, heading);
+            activeHeading = heading?.slug || activeHeading;
             // wait 1 second for sidebar selection animation to finish
             setTimeout(() => {
                 const active = document.querySelector('.toc .nav-item.active');
@@ -52,7 +54,7 @@
                     {#each headings as heading (heading)}
                         <li
                             class={'nav-item ' + headingMargin[heading.depth]}
-                            class:active={heading.slug === $currentHeading}
+                            class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
                             <a class="nav-link py-1 ps-3 text-body-secondary" href={'#' + heading.slug}>
