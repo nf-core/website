@@ -19,7 +19,7 @@
     circle={true}
     size={50}
 >
-    <div class={'ms-2 d-inline-block text-start d-flex flex-column align-items-left px-2 ' + extra_classes}>
+    <div class={'ms-2 d-inline-block text-start d-flex flex-column px-2 ' + extra_classes}>
         <slot />
         {@html affiliation_str}
     </div>
