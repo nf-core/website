@@ -34,6 +34,7 @@ const about = defineCollection({
         title: z.string(),
         description: z.string(),
         md_github_url: z.string().url().optional(),
+        minHeadingDepth: z.number().optional(),
         maxHeadingDepth: z.number().optional(),
     }),
 });

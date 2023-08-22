@@ -10,7 +10,11 @@
         hidden?: boolean;
     }[];
 
+    export let minHeadingDepth: number = 1;
     export let maxHeadingDepth: number = 4;
+
+    // filter out headings that are lower than min_heading_depth
+    headings = headings.filter((h) => h.depth >= minHeadingDepth);
 
     // filter out headings that are higher than max_heading_depth
     headings = headings.filter((h) => h.depth <= maxHeadingDepth);
