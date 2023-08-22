@@ -13,13 +13,13 @@
 </script>
 
 <GitHubProfilePicture
-    wrapperClasses="btn btn-light rounded-pill mb-2 p-0 pe-2 d-flex align-items-center"
+    wrapperClasses="btn btn-light rounded-pill mb-2 p-0 pe-2 d-inline-flex align-items-center"
     image={'https://github.com/' + username + '.png'}
     name={username}
     circle={true}
     size={50}
 >
-    <div class={'ms-2 d-inline-block text-start d-flex flex-column align-items-center px-2 ' + extra_classes}>
+    <div class={'ms-2 d-inline-block text-start d-flex flex-column align-items-left px-2 ' + extra_classes}>
         <slot />
         {@html affiliation_str}
     </div>
