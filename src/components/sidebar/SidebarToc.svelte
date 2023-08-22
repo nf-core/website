@@ -19,6 +19,8 @@
     // filter out headings that are higher than max_heading_depth
     headings = headings.filter((h) => h.depth <= maxHeadingDepth);
 
+    minHeadingDepth = Math.min(...headings.map((h) => h.depth));
+
     // make margin classes from min to max heading depth
     let headingMargin = {};
     for (let i = minHeadingDepth; i <= 4; i++) {
@@ -31,7 +33,6 @@
         currentHeading.subscribe((slug) => {
             //check if any heading has the same slug as the currentHeading
             const heading = headings.find((h) => h.slug === slug);
-            console.log('currentHeading', slug, heading);
             activeHeading = heading?.slug || activeHeading;
             // wait 1 second for sidebar selection animation to finish
             setTimeout(() => {
