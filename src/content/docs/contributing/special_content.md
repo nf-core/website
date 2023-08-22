@@ -50,6 +50,7 @@ The ships hung in the sky in much the same way that bricks don't.
 :::tip
 The ships hung in the sky in much the same way that bricks don't.
 :::
+
 ## Warnings
 
 ```md
@@ -77,6 +78,7 @@ One of the troublesome circumstances was the Plural nature of this Galactic Sect
 ## Custom title
 
 You can replace the default title with a custom one by adding a title attribute to the admonition, e.g.:
+
 ```md
 :::note{title="Don't Panic"}
 Arthur Dent was grappling with his consciousness the way one grapples with a lost bar of soap in the bath. He lay, panting heavily in the wet air, and tried feeling bits of himself to see where he might be hurt. Wherever he touched himself, he encountered a pain. After a short while he worked out that this was because it was his hand that was hurting. Arthur nodded intelligently. Today was one of those bad days.
@@ -90,6 +92,7 @@ Arthur Dent was grappling with his consciousness the way one grapples with a los
 ## Custom icon
 
 You can replace the default icon with a custom one by adding a [fontawesome icon class name](https://fontawesome.com/icons/) with a leading period to the admonition, e.g.:
+
 ```md
 :::note{.fa-whale}
 Another thing that got forgotten was the fact that against all probability a sperm whale had suddenly been called into existence several miles above the surface of an alien planet.
@@ -103,6 +106,7 @@ Another thing that got forgotten was the fact that against all probability a spe
 ## Custom icon and title
 
 When changing both title and icon, the order is important. You need to first specify the icon and then the title, e.g.:
+
 ```md
 :::warning{.fa-flower-daffodil title="I wonder if it will be friends with me?"}
 Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.
@@ -112,7 +116,6 @@ Curiously enough, the only thing that went through the mind of the bowl of petun
 :::warning{.fa-flower-daffodil title="I wonder if it will be friends with me?"}
 Curiously enough, the only thing that went through the mind of the bowl of petunias as it fell was Oh no, not again.
 :::
-
 
 # Code blocks with file names
 
@@ -140,24 +143,22 @@ The icon next to the title is based on the file extension.
 
 ````md
 ```mermaid
-flowchart LR
+%% https://xkcd.com/1195/
+graph TD
+    start[Start] --> trap{Hey, wait, <br/> this flowchart <br/> is a trap!}
+    trap -- yes --> trap
 
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
 ```
 ````
 
 turns into:
 
 ```mermaid
-flowchart LR
+%% https://xkcd.com/1195/
+graph TD
+    start[Start] --> trap{Hey, wait, <br/> this flowchart <br/> is a trap!}
+    trap -- yes --> trap
 
-A[Hard] -->|Text| B(Round)
-B --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
 ```
 
 # LaTeX formulas
