@@ -22,7 +22,7 @@ export function getStaticPaths() {
         );
         const releases = pipeline.releases.filter((release) => release.tag_name !== 'dev');
         if (releases.length === 0) {
-            return;
+            return [];
         }
         paths.push({
             params: {

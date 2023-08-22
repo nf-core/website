@@ -10,9 +10,7 @@
         // get details element
 
         const details = document.querySelector('details');
-        if (details === null) {
-            return;
-        } else {
+        if (details) {
             noTranscript = false;
         }
         // add video placeholder before details
