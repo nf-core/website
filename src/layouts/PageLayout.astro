@@ -20,6 +20,7 @@ let {
     topics = [],
     sections = [],
     docSearchTags = [],
+    mermaid = false,
 } = Astro.props;
 
 export interface Props {
@@ -42,6 +43,7 @@ export interface Props {
         name: string;
         content: string | string[];
     }[];
+    mermaid?: boolean;
 }
 
 if (frontmatter) {
@@ -93,6 +95,37 @@ if (frontmatter) {
         }
     </div>
     <slot name="pre-footer" />
+    { mermaid && (
+    <script>
+        // taken from https://github.com/JuanM04/portfolio/blob/983b0ed0eabdac37bf8b7912d3e8128a443192b9/src/pages/docs/%5B...documentSlug%5D.astro#L74-L103
+        async function renderDiagrams(graphs) {
+            const { default: mermaid } = await import('mermaid');
+            mermaid.initialize({
+                startOnLoad: false,
+                fontFamily: 'var(--sans-font)',
+                // @ts-ignore This works, but TS expects a enum for some reason
+                theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
+            });
+
+            for (const graph of graphs) {
+                const content = graph.getAttribute('data-content');
+                if (!content) continue;
+                let svg = document.createElement('svg');
+                const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
+                graph.appendChild(svg);
+                mermaid.render(id, content).then((result) => {
+                    graph.innerHTML = result.svg;
+                });
+            }
+        }
+        setTimeout(() => {
+            const graphs = document.getElementsByClassName('mermaid');
+            if (document.getElementsByClassName('mermaid').length > 0) {
+                renderDiagrams(graphs);
+            }
+        }, 300);
+    </script>
+    )}
 </BaseLayout>
 
 <style lang="scss">
