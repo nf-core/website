@@ -16,13 +16,18 @@ if (!activeItem) {
 }
 ---
 
-<div class="">
-    <ul class="d-none d-md-flex nav nav-tabs nav-fill">
+<div class="tab-bar">
+    <ul class="d-none d-lg-flex nav nav-tabs nav-fill">
         {
             items.map((item) => {
                 return (
                     <li class="nav-item">
-                        <a class={'nav-link ' + (item.active ? 'active' : '')} href={item.href} rel="prefetch">
+                        <a
+                            class={'nav-link ' + (item.active ? 'active' : '')}
+                            href={item.href}
+                            rel="prefetch"
+                            title={item.label.toLowerCase().replaceAll(' ', '_')}
+                        >
                             <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
                         </a>
                     </li>
@@ -35,7 +40,7 @@ if (!activeItem) {
         </li>
     </ul>
     <!-- Show as dropdown on mobile -->
-    <div class="d-flex d-md-none justify-content-between">
+    <div class="d-flex d-lg-none justify-content-between">
         <!-- No idea why justify-content is not working here -->
         <div class="dropdown me-5">
             <button

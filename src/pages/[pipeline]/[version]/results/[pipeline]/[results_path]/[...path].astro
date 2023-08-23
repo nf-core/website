@@ -1,0 +1,20 @@
+---
+import ResultsLayout from '@layouts/ResultsLayout.astro';
+
+export const prerender = false;
+
+let { pipeline, version, results_path, path } = Astro.params;
+console.log(
+    'rendering results for pipline ' +
+        pipeline +
+        ' version ' +
+        version +
+        ' results_path ' +
+        results_path +
+        ' path ' +
+        path,
+);
+path = `${results_path}/${path}`;
+---
+
+<ResultsLayout {pipeline} {version} {path} />

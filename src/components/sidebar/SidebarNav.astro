@@ -14,7 +14,8 @@ export interface Props {
     minimal?: boolean;
 }
 
-const url = Astro.url.pathname;
+let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+url = url.replace(/\.html$/, '');
 ---
 
 <div class="nav">
@@ -24,11 +25,11 @@ const url = Astro.url.pathname;
                 items.map((item) => {
                     return (
                         <div class="mb-3">
-                            <h6 class="ps-2 text-body">
+                            <h6 class="mb-0">
                                 {item.section_slug && (
                                     <a
                                         class:list={[
-                                            'text-decoration-none',
+                                            'text-decoration-none p-2 w-100 d-inline-block text-body section-header',
                                             { active: item.section_slug && url.endsWith(item.section_slug) },
                                         ]}
                                         href={item.section_slug}
@@ -46,7 +47,7 @@ const url = Astro.url.pathname;
                                             return (
                                                 <li
                                                     class:list={[
-                                                        'mt-2 w-100 ps-3',
+                                                        'mt-2 w-100 ps-4',
                                                         {
                                                             active:
                                                                 url.endsWith(child.slug) ||
@@ -87,7 +88,7 @@ const url = Astro.url.pathname;
                                                             'w-100 py-1 ps-3 position-relative',
                                                             {
                                                                 active:
-                                                                    url.endsWith(child.slug) ||
+                                                                    url.endsWith(child.slug.replace(/\/$/, '')) ||
                                                                     (url.split('/').length >= 6 &&
                                                                         url
                                                                             .split('/')
@@ -124,12 +125,18 @@ const url = Astro.url.pathname;
 
 <style lang="scss">
     @import 'src/styles/_variables.scss';
-
+    h6 a,
+    li {
+        &:hover {
+            background-color: transparentize($success, 0.85);
+        }
+    }
     li {
         font-size: 0.9rem;
     }
 
-    li.active {
+    li.active,
+    h6 .active {
         background-color: transparentize($success, 0.75);
         a {
             color: $green-800 !important;
@@ -157,7 +164,21 @@ const url = Astro.url.pathname;
     }
 
     :global([data-bs-theme='dark']) {
-        li.active {
+        .section-header,
+        li {
+            &:hover {
+                background-color: transparentize($success-dark, 0.6);
+                a {
+                    color: $gray-200 !important;
+                }
+            }
+        }
+        .section-header.active,
+        .section-header:hover {
+            color: $gray-200 !important;
+        }
+        li.active,
+        .section-header.active {
             background-color: transparentize($success-dark, 0.35);
             & a {
                 color: $gray-200 !important;

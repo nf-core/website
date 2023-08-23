@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 
-
 if (!import.meta.env) {
   dotenv.config();
 }
@@ -51,7 +50,7 @@ export const getGitHubFile = async (repo, path, ref) => {
         return;
       }
       let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
-      if (path.endsWith('.md')) {
+      if (path.endsWith('.md') || path.endsWith('.mdx')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
         // add github url to image links in markdown if they are relative
         content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
@@ -77,14 +76,24 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `<source${p1}src="https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${parent_directory}/${p2}"`;
           }
         });
+        // prefix links to CONTRIBUTING.md and CITATIONS.md with github url
+        content = content.replaceAll(/\[(.*?)\]\((\.github\/CONTRIBUTING\.md|CITATIONS\.md)\)/g, (match, p1, p2) => {
+          if (p2.startsWith('http')) {
+            return match;
+          } else {
+            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+          }
+        });
         // remove github warning and everything before from docs
-        content = content.replace(/(.*?)(## :warning:)(.*?)(f)/s, '');
+        content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
         content = content.replace(/(.*?)(files\._)/s, '');
         // cleanup heading
         content = content.replace('# nf-core/' + repo + ': ', '# ');
         // remove everything before introduction
         content = content.replace(/.*?## Introduction/gs, '## Introduction');
+        // replace nextflow with groovy code blocks TODO: remove this when we have a nextflow syntax highlighter works in shiki
+        content = content.replace(/```nextflow/g, '```groovy');
       }
       return content;
     });

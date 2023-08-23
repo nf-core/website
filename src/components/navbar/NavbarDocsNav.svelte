@@ -21,6 +21,8 @@
             class="position-fixed bg-dark bg-opacity-50 w-100 min-vh-100"
             on:click={toggleVisible}
             on:keypress={toggleVisible}
+            role="button"
+            tabindex="0"
         />
         <nav class="side-nav position-relative bg-body py-3 px-0 text-gray-400 overflow-y-auto">
             <button type="button" class="btn-close float-end me-2" on:click={toggleVisible} aria-label="Close" />

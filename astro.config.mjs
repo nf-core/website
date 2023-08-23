@@ -1,5 +1,7 @@
 import admonitionsPlugin from './bin/remark-admonitions.js';
 import { mermaid } from './bin/remark-mermaid.ts';
+import pipelines_json from '/public/pipelines.json';
+import githubDarkDimmed from '/public/themes/github-dark-dimmed.json';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify/functions';
 import partytown from '@astrojs/partytown';
@@ -23,15 +25,29 @@ import emoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
+
+const latestToolsRelease = await fetch('https://api.github.com/repos/nf-core/tools/releases/latest')
+    .then((res) => res.json())
+    .then((json) => json.tag_name);
+let latestPipelineReleases = {};
+
+pipelines_json.remote_workflows.map(
+    (pipeline) => (latestPipelineReleases[pipeline.name] = `/${pipeline.name}/${pipeline.releases[0].tag_name}/`),
+);
+const latestTollsURL = `/tools/docs/'+${latestToolsRelease}`;
 // https://astro.build/config
 export default defineConfig({
     site: 'https://nf-co.re/',
     output: 'hybrid',
     experimental: {
         assets: true,
+        viewTransitions: true,
     },
     adapter: netlify(),
-    // trailingSlash: 'always',
+    redirects: {
+        [latestTollsURL]: 'https://oldsite.nf-co.re/tools/docs/latest/',
+        ...latestPipelineReleases,
+    },
     integrations: [
         svelte(),
         sitemap(),
@@ -47,6 +63,7 @@ export default defineConfig({
     ],
     build: {
         inlineStylesheets: 'auto',
+        format: 'file',
     },
     vite: {
         plugins: [
@@ -55,6 +72,7 @@ export default defineConfig({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
                 fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
+                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro) fallback',
             }),
         ],
         ssr: {
@@ -71,6 +89,11 @@ export default defineConfig({
     },
     markdown: {
         syntaxHighlight: false,
+        shikiConfig: {
+            langs: [],
+            theme: githubDarkDimmed,
+            wrap: false,
+        },
         remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
         // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
         rehypePlugins: [
@@ -98,10 +121,15 @@ export default defineConfig({
             [
                 urls,
                 (url) => {
-                    if (url.href?.endsWith('.md')) {
+                    const regex = /^https:\/\/(raw.)*github/;
+                    if (!regex.test(url.href) && url.href?.endsWith('.md')) {
                         url.href = url.href.replace(/\.md$/, '/');
                         url.pathname = url.pathname.replace(/\.md$/, '/');
                         url.path = url.path.replace(/\.md$/, '/');
+                    } else if (!regex.test(url.href) && url.href?.endsWith('.mdx')) {
+                        url.href = url.href.replace(/\.mdx$/, '/');
+                        url.pathname = url.pathname.replace(/\.mdx$/, '/');
+                        url.path = url.path.replace(/\.mdx$/, '/');
                     }
                 },
             ],

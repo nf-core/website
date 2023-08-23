@@ -105,7 +105,7 @@
                 aria-label="See details or export calendar event"
             >
                 <a
-                    href={slug + '/'}
+                    href={'/events/' + slug + '/'}
                     class="btn btn-outline-success text-nowrap rounded-start-0"
                     class:rounded-0={['current', 'future'].includes(time_category)}>See details</a
                 >
@@ -124,10 +124,7 @@
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables';
-    .card .card-title a {
-        // color: $success;
-    }
+    @import '@styles/_variables.scss';
     .card.rounded-0 {
         border-left: 5px solid;
     }

@@ -24,7 +24,7 @@ if (typeof frontmatter.location_url == 'string') {
 }
 const { headings, Content, remarkPluginFrontmatter } = await event.render();
 
-const md_github_url = 'https://github.com/nf-core/nf-co.re/blob/main/src/content/events/' + event.id;
+const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/events/' + event.id;
 
 let video = event.data.location_url;
 if (typeof video === 'string') {
@@ -34,12 +34,15 @@ video = video?.filter((v) => v.includes('youtube.com') || v.includes('youtu.be')
 const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '');
 ---
 
+{frontmatter.import_typeform && <script async src="https://embed.typeform.com/next/embed.js" />}
 <MarkdownTocLayout
     title={title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={frontmatter}
     headings={headings}
+    docSearchTags={[{ name: 'page_type', content: 'event' }]}
+    viewTransitions={true}
 >
     <Content />
     {

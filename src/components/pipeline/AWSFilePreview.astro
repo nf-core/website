@@ -12,8 +12,23 @@ const { file } = Astro.props;
 let content = '';
 const extension = file.name.split('.').pop();
 const fileIcon = icons.getClass(file.name);
-const hasPreview = ['json', 'yaml', 'yml', 'csv', 'tsv', 'log', 'txt', 'html', 'pdf'].includes(extension);
-const tooBig = extension !== 'html' && file.size > 1000000;
+const hasPreview = [
+    'json',
+    'yaml',
+    'yml',
+    'csv',
+    'tsv',
+    'log',
+    'txt',
+    'html',
+    'pdf',
+    'png',
+    'jpg',
+    'jpeg',
+    'gif',
+    'svg',
+].includes(extension);
+let tooBig = file.size > 5500000;
 if (!tooBig && hasPreview) {
     content = await fetch(hrefPrefix + file.path).then((r) => r.text());
 }
@@ -31,7 +46,7 @@ if (!tooBig && hasPreview) {
 <div id="file-preview" class="card mt-3">
     <div class="card-header d-flex align-items-center">
         <span class="fs-bold d-flex">
-            {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
+            {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-solid fa-file me-2" />}
             {file.name}
         </span>
         <div class="ms-auto">
@@ -50,7 +65,7 @@ if (!tooBig && hasPreview) {
             </div>
         </div>
     </div>
-    <div class:list={['card-body  pb-0', { 'd-none': !hasPreview || tooBig }]}>
+    <div class:list={['card-body  p-0', { 'd-none': !hasPreview || tooBig }]}>
         {
             ['bam', 'bai', 'gz', 'zip'].includes(extension) && (
                 <Admonition title="warning">
@@ -76,7 +91,9 @@ if (!tooBig && hasPreview) {
         }
         {
             ['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extension) && (
-                <img src={hrefPrefix + file.path} class="img-fluid" />
+                <div class="img-wrapper w-100">
+                    <img src={hrefPrefix + file.path} class="img-fluid" />
+                </div>
             )
         }
         {
@@ -100,7 +117,7 @@ if (!tooBig && hasPreview) {
                 <object data={hrefPrefix + file.path} type="application/pdf" width="100%" height="1000px">
                     <p>
                         You don't have a PDF plugin, but you can
-                        <a href="mypdf.pdf">download the PDF file. </a>
+                        <a href="hrefPrefix + file.path">download the PDF file. </a>
                     </p>
                 </object>
             )
@@ -113,12 +130,26 @@ if (!tooBig && hasPreview) {
     </div>
     <div class:list={['p-3 ', { 'd-none': !tooBig || !hasPreview }]}>
         <Admonition title="info">
-            <p>The file is too big to preview.</p>
+            <p>The file is too big to preview, please download it to inspect its contents.</p>
         </Admonition>
     </div>
 </div>
 <style lang="scss">
+    @import '@styles/_variables.scss';
+
     .file-icon {
         vertical-align: middle;
+    }
+    .card-body {
+        & > div,
+        & > pre {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        & .img-wrapper {
+            background-color: $white;
+        }
     }
 </style>

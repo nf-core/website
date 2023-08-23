@@ -25,7 +25,7 @@ The main steps involved in adding a new nf-core pipeline covered below are:
 ## Join the community
 
 At its heart, nf-core is a community. To contribute to a pipeline, you should be part of that community!
-Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/nf-co.re/issues/3))
+Please request to join the [nf-core GitHub organisation](https://github.com/nf-core/website/issues/3))
 and join the nf-core [Slack](https://nf-co.re/join/slack).
 
 Each nf-core pipeline has its own Slack channel that can be found by searching the channel list.

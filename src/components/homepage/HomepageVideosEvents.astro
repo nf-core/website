@@ -19,7 +19,7 @@ let lastYoutubeUrls = bytesizes
     });
 
 lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
-    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be')
+    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
 );
 
 const latestBytesize = lastYoutubeUrls
@@ -75,22 +75,22 @@ eventPreviewPast = eventPreview
                         time_category="current"
                         showDescription={false}
                         narrow={true}
+                        client:idle
                     />
                 ))
             }
             {eventPreviewFuture.length > 0 && <h4>Upcoming Events</h4>}
             {
                 eventPreviewFuture.map((event) => (
-                    <>
-                        <EventCard
-                            frontmatter={event.data}
-                            slug={event.slug}
-                            type={event.data.type}
-                            time_category="future"
-                            showDescription={false}
-                            narrow={true}
-                        />
-                    </>
+                    <EventCard
+                        frontmatter={event.data}
+                        slug={event.slug}
+                        type={event.data.type}
+                        time_category="future"
+                        showDescription={false}
+                        narrow={true}
+                        client:idle
+                    />
                 ))
             }
             {eventPreviewPast.length > 0 && <h4>Past Events</h4>}
@@ -103,6 +103,7 @@ eventPreviewPast = eventPreview
                         time_category="past"
                         showDescription={false}
                         narrow={true}
+                        client:idle
                     />
                 ))
             }
