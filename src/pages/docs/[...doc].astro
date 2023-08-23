@@ -88,12 +88,22 @@ if (current_page_index === -1) {
 } else {
     prev_page = currentDocs[current_page_index - 1];
     prev_page =
-        prev_page && prev_page.slug?.split('/').slice(-2)[0]  === url.split('/').slice(-2)[0].replace(/\.html$/, '')
+        prev_page &&
+        prev_page.slug?.split('/').slice(-2)[0] ===
+            url
+                .split('/')
+                .slice(-2)[0]
+                .replace(/\.html$/, '')
             ? prev_page
             : null;
     next_page = currentDocs[current_page_index + 1];
     next_page =
-        next_page && next_page.slug?.split('/').slice(-2)[0]  === url.split('/').slice(-2)[0].replace(/\.html$/, '')
+        next_page &&
+        next_page.slug?.split('/').slice(-2)[0] ===
+            url
+                .split('/')
+                .slice(-2)[0]
+                .replace(/\.html$/, '')
             ? next_page
             : null;
 }
