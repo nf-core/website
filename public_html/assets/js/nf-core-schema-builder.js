@@ -67,13 +67,14 @@ $(function () {
     // Needs selector class instead of root class.
     $('body').on('show.bs.popover', '.param_fa_icon', function () {
       // Only show one popover at a time
-      $('.fa_icon_picker').hide('');
+      $('.fa_icon_picker').hide();
       // Reset the selected icon button classes
-      $('.fa_icon_picker .popover-body .btn').removeClass('btn-success').addClass('btn-light');
+      $('.fa_icon_picker .popover-body .btn.btn-success').removeClass('btn-success').addClass('btn-light');
     });
 
     // Focus the search bar when triggered
     $('body').on('shown.bs.popover', '.param_fa_icon', function () {
+      $('.fa_icon_picker .popover-body .btn.btn-success').removeClass('btn-success').addClass('btn-light');
       var row = $(this).closest('.schema_row');
       var id = row.data('id');
       var param = find_param_in_schema(id);
@@ -130,7 +131,9 @@ $(function () {
       $('.schema_row[data-id="' + id + '"] .param_fa_icon i')
         .removeClass()
         .addClass(class_name + ' fa-fw');
-      $('.fa_icon_picker').hide('');
+      // get current popover
+      let popover = bootstrap.Popover.getInstance($('.fa_icon_picker:visible')[0]);
+      popover.hide();
       prev_focus.focus();
     });
 
@@ -140,11 +143,14 @@ $(function () {
       // Is a click outside the icon popover and button
       if (!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length) {
         // Do we have an icon picker open?
-        if ($('.fa_icon_picker:visible').length) {
-          $('.fa_icon_picker').hide('');
-          if (prev_focus) {
-            prev_focus.focus();
-          }
+        // get current popover
+        let popover = bootstrap.Popover.getInstance($('.fa_icon_picker:visible')[0]);
+        if (popover) {
+          popover.hide();
+        }
+
+        if (prev_focus) {
+          prev_focus.focus();
         }
       }
     });
@@ -259,6 +265,9 @@ $(function () {
   // Toggle between panels
   $('.schema-panel-btn').on('click', function () {
     var target = $($(this).data('target'));
+    if (!target.length) {
+      target = $($(this).data('bsTarget'));
+    }
     if (target.is(':hidden')) {
       $('.schema-panel:visible').fadeOut('fast', function () {
         target.fadeIn('fast');
@@ -273,24 +282,26 @@ $(function () {
     if ($(this).data('target') == '#schema-finished') {
       $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr('disabled', true);
       $('#schema-send-status').text('Saving schema..');
-
-      post_data = {
-        post_content: 'json_schema',
-        version: 'web_builder',
-        status: 'web_builder_edited',
-        api: 'true',
-        cache_id: $('#schema_cache_id').text(),
-        schema: JSON.stringify(schema),
-      };
-      $.post('/pipeline_schema_builder', post_data).done(function (returned_data) {
-        console.log('Sent schema to API. Response:', returned_data);
-        if (returned_data.status == 'recieved') {
-          // DO NOT FIX THIS TYPO. nf-core/tools will break.
-          $('#schema-send-status').text("Ok, that's it - done!");
-        } else {
-          $('#schema-send-status').text('Oops, something went wrong!');
-        }
-      });
+      // wait a bit to allow any previous events to finish
+      setTimeout(function () {
+        post_data = {
+          post_content: 'json_schema',
+          version: 'web_builder',
+          status: 'web_builder_edited',
+          api: 'true',
+          cache_id: $('#schema_cache_id').text(),
+          schema: JSON.stringify(schema),
+        };
+        $.post('pipeline_schema_builder', post_data).done(function (returned_data) {
+          console.log('Sent schema to API. Response:', returned_data);
+          if (returned_data.status == 'recieved') {
+            // DO NOT FIX THIS TYPO. nf-core/tools will break.
+            $('#schema-send-status').text("Ok, that's it - done!");
+          } else {
+            $('#schema-send-status').text('Oops, something went wrong!');
+          }
+        });
+      }, 300);
     } else {
       $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr(
         'disabled',
@@ -558,7 +569,7 @@ $(function () {
     // Escape - hide icon picker
     if (e.which == 27) {
       if ($('.popover:visible').length) {
-        $('.fa_icon_picker').hide('');
+        $('.fa_icon_picker').hide();
         prev_focus.focus();
       }
     }
