@@ -264,7 +264,9 @@ Please follow the steps below to run the tests locally:
 
    - See [docs on running pytest-workflow](https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow) for more info.
 
-> 🛈 For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
+:::note
+For docker/singularity, setting the environment variable `TMPDIR=~` is an example of a location the containers can mount (you can change this as you prefer). If you get test failures such as with Nextflow errors that end in `work doesn't exist in container`, check your container can mount your `TMPDIR`.
+:::
 
 ### Uploading to `nf-core/modules`
 

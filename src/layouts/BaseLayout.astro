@@ -7,6 +7,13 @@ import SubFooter from '@components/footer/SubFooter.astro';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/maven-pro';
 
+import '@styles/fontawesome/css/fontawesome.css';
+import '@styles/fontawesome/css/solid.css';
+import '@styles/fontawesome/css/brands.css';
+import '@styles/fontawesome/css/regular.css';
+import '@styles/fontawesome/css/duotone.css';
+import '@styles/fontawesome/css/v5-font-face.css';
+
 export interface Props {
     title?: string;
     subtitle?: string;
@@ -15,6 +22,11 @@ export interface Props {
     subfooter?: boolean;
     navTocHeadings?: object[];
     sections?: { section_name: string; children: {}[] }[] | never[];
+    viewTransitions?: boolean;
+    docSearchTags?: {
+        name: string;
+        content: string;
+    }[];
 }
 
 const {
@@ -25,13 +37,21 @@ const {
     subfooter = false,
     navTocHeadings = [],
     sections = [],
+    viewTransitions = false,
+    docSearchTags = [],
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <BaseHead title={title} description={subtitle} image={image} />
+        <BaseHead
+            title={title}
+            description={subtitle}
+            image={image}
+            viewTransitions={viewTransitions}
+            docSearchTags={docSearchTags}
+        />
     </head>
 
     <body tabindex="0">
@@ -41,21 +61,6 @@ const {
         </div>
         {subfooter && <SubFooter md_github_url={md_github_url} />}
         <Footer />
-        <script>
-            import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
-            window.onload = function () {
-                setTimeout(() => {
-                    // need timeout to wait for svelte elements to render
-                    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-                    [...tooltipTriggerList].map((tooltipTriggerEl) => {
-                        const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
-                        if (!tooltip) {
-                            new bootstrap.Tooltip(tooltipTriggerEl);
-                        }
-                    });
-                }, 1000);
-            };
-        </script>
         <style lang="scss" is:global>
             @import '@styles/main.scss';
         </style>

@@ -3,6 +3,7 @@ import { getGitHubFile, getCurrentRateLimitRemaining } from '../src/components/o
 import Cache from 'file-system-cache';
 import { readFileSync } from 'fs';
 import path from 'path';
+import ProgressBar from 'progress';
 
 const cache = Cache.default({
   basePath: './.cache',
@@ -19,6 +20,9 @@ console.log(await getCurrentRateLimitRemaining());
 export const buildCache = async () => {
   const pipelinesJson = readFileSync(path.join(__dirname, '/public/pipelines.json'));
   const pipelines = JSON.parse(pipelinesJson);
+
+  let bar = new ProgressBar('  caching markdown [:bar] :percent :etas', { total: pipelines.remote_workflows.length });
+
   // go through the releases of each pipeline and get the files which are needed for the pipeline pages
   for (const pipeline of pipelines.remote_workflows) {
     // console.log(`Caching ${pipeline.name}`);
@@ -42,11 +46,13 @@ export const buildCache = async () => {
             cache.set(cache_key, content);
             // console.log(`Cached ${cache_key}`);
           } else {
-            console.log(`Already cached ${cache_key}`);
+            // console.log(`Already cached ${cache_key}`);
           }
-        })
+        }),
       );
     }
+
+    bar.tick();
   }
   return true;
 };

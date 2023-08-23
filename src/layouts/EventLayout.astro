@@ -88,9 +88,13 @@ const sections = years.map((year) => {
 });
 ---
 
-<PageLayout title={title || 'Events'} subtitle={subtitle || 'Details of past and future events around nf-core.'}>
+<PageLayout
+    title={title || 'Events'}
+    subtitle={subtitle || 'Details of past and future events around nf-core.'}
+    viewTransitions={true}
+>
     <div class="row">
-        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
             <SidebarNav items={sections} minimal={true} />
         </div>
 

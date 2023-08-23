@@ -10,7 +10,7 @@ It has built-in support for HPC execution schedulers such as [Slurm](https://slu
 
 Nextflow also supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/), as well as the [Conda](https://docs.conda.io/en/latest/) package management system to deploy the pipelines.
 
-In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/docs/usage/installation) page) and configure Nextflow so that it knows how best to run your analysis jobs.
+In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/docs/usage/installation/) page) and configure Nextflow so that it knows how best to run your analysis jobs.
 
 # Different config locations
 

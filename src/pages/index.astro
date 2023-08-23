@@ -1,7 +1,7 @@
 ---
 import Icon from 'astro-icon';
-import NfCoreLogoDarkbg from '/images/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/nf-core-logo.svg?raw';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
@@ -40,7 +40,7 @@ const pipeline_links = pipelines.map((pipeline) => {
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center mb-4">
+    <div class="d-flex justify-content-center mb-5">
         <FuzzySearch possibleResults={pipeline_links} placeholder="Search Pipelines" client:idle />
     </div>
 
@@ -97,7 +97,7 @@ const pipeline_links = pipelines.map((pipeline) => {
 
     <div id="features" class="container homepage-feature-boxes pb-5">
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
-        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 align-items-bot">
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
             <div class="col">
                 <HomepageCard title="Documentation" icon="books" icon_class="text-success icon-lg">
                     Extensive documentation covering installation, usage and description of output files ensures that
