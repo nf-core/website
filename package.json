@@ -18,7 +18,7 @@
         "build-component-json": "node bin/components.json.js"
     },
     "dependencies": {
-        "@astro-community/astro-embed-youtube": "^0.4.0",
+        "@astro-community/astro-embed-youtube": "^0.4.1",
         "@astrojs/mdx": "^0.19.7",
         "@astrojs/netlify": "^2.6.0",
         "@astrojs/partytown": "^1.2.3",
@@ -84,11 +84,11 @@
     },
     "devDependencies": {
         "@rollup/plugin-yaml": "^4.1.1",
-        "@trivago/prettier-plugin-sort-imports": "^4.2.0",
         "@types/leaflet": "^1.9.3",
         "fontaine": "^0.4.0",
         "prettier": "^2.8.8",
         "prettier-plugin-astro": "^0.10.0",
-        "prettier-plugin-svelte": "^2.10.1"
+        "prettier-plugin-svelte": "^2.10.1",
+        "sass": "^1.66.1"
     }
 }

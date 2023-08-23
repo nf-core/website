@@ -102,6 +102,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     subfooter={md_github_url !== ''}
     topics={topics}
     sections={sections}
+    viewTransitions={true}
     docSearchTags={[
         ...docSearchTags,
         { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
@@ -156,7 +157,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         )
     }
 
-    <div>
+    <div transition:animate="slide">
         <slot />
     </div>
 </PageLayout>
