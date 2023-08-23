@@ -14,7 +14,8 @@ export interface Props {
     minimal?: boolean;
 }
 
-const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+url = url.replace(/\.html$/, '');
 ---
 
 <div class="nav">
