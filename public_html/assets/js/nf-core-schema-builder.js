@@ -270,7 +270,6 @@ $(function () {
     if (!target.length) {
       target = $($(this).data('bsTarget'));
     }
-    console.log(target);
     if (target.is(':hidden')) {
       $('.schema-panel:visible').fadeOut('fast', function () {
         target.fadeIn('fast');
@@ -285,24 +284,26 @@ $(function () {
     if ($(this).data('target') == '#schema-finished') {
       $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr('disabled', true);
       $('#schema-send-status').text('Saving schema..');
-
-      post_data = {
-        post_content: 'json_schema',
-        version: 'web_builder',
-        status: 'web_builder_edited',
-        api: 'true',
-        cache_id: $('#schema_cache_id').text(),
-        schema: JSON.stringify(schema),
-      };
-      $.post('pipeline_schema_builder', post_data).done(function (returned_data) {
-        console.log('Sent schema to API. Response:', returned_data);
-        if (returned_data.status == 'recieved') {
-          // DO NOT FIX THIS TYPO. nf-core/tools will break.
-          $('#schema-send-status').text("Ok, that's it - done!");
-        } else {
-          $('#schema-send-status').text('Oops, something went wrong!');
-        }
-      });
+      // wait a bit to allow any previous events to finish
+      setTimeout(function () {
+        post_data = {
+          post_content: 'json_schema',
+          version: 'web_builder',
+          status: 'web_builder_edited',
+          api: 'true',
+          cache_id: $('#schema_cache_id').text(),
+          schema: JSON.stringify(schema),
+        };
+        $.post('pipeline_schema_builder', post_data).done(function (returned_data) {
+          console.log('Sent schema to API. Response:', returned_data);
+          if (returned_data.status == 'recieved') {
+            // DO NOT FIX THIS TYPO. nf-core/tools will break.
+            $('#schema-send-status').text("Ok, that's it - done!");
+          } else {
+            $('#schema-send-status').text('Oops, something went wrong!');
+          }
+        });
+      }, 300);
     } else {
       $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr(
         'disabled',
@@ -1870,7 +1871,14 @@ function clean_empty_param_keys(param) {
   if (param.hasOwnProperty('description') && param['description'] === '') {
     delete param['description'];
   }
-  if (param.hasOwnProperty('default') && (param['default'] === '' || param['default'] === false || param['default'] === 'false' || param['default'] === null || param['default'] === 'null')) {
+  if (
+    param.hasOwnProperty('default') &&
+    (param['default'] === '' ||
+      param['default'] === false ||
+      param['default'] === 'false' ||
+      param['default'] === null ||
+      param['default'] === 'null')
+  ) {
     delete param['default'];
   }
   if (param.hasOwnProperty('help_text') && param['help_text'] === '') {
