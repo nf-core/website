@@ -90,8 +90,6 @@ $(function () {
       setTimeout(function () {
         $('.fa_icon_picker_input').focus();
       }, 10);
-
-      console.log($('.fa_icon_picker .popover-body .btn.btn-success'));
     });
 
     // Filter icons
