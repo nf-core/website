@@ -21,7 +21,7 @@ $(function () {
       .calendar()
       .replace(/^\w/, function (chr) {
         return chr.toLowerCase();
-      }),
+      })
   );
   $('.cache_expires_at').show();
 
@@ -67,13 +67,14 @@ $(function () {
     // Needs selector class instead of root class.
     $('body').on('show.bs.popover', '.param_fa_icon', function () {
       // Only show one popover at a time
-      $('.fa_icon_picker').hide('');
+      $('.fa_icon_picker').hide();
       // Reset the selected icon button classes
-      $('.fa_icon_picker .popover-body .btn').removeClass('btn-success').addClass('btn-light');
+      $('.fa_icon_picker .popover-body .btn.btn-success').removeClass('btn-success').addClass('btn-light');
     });
 
     // Focus the search bar when triggered
     $('body').on('shown.bs.popover', '.param_fa_icon', function () {
+      $('.fa_icon_picker .popover-body .btn.btn-success').removeClass('btn-success').addClass('btn-light');
       var row = $(this).closest('.schema_row');
       var id = row.data('id');
       var param = find_param_in_schema(id);
@@ -89,6 +90,8 @@ $(function () {
       setTimeout(function () {
         $('.fa_icon_picker_input').focus();
       }, 10);
+
+      console.log($('.fa_icon_picker .popover-body .btn.btn-success'));
     });
 
     // Filter icons
@@ -105,7 +108,7 @@ $(function () {
               search_term +
               "'], .popover-body div button[data-classname*='" +
               search_term +
-              "']",
+              "']"
           )
           .show();
       }
@@ -130,7 +133,9 @@ $(function () {
       $('.schema_row[data-id="' + id + '"] .param_fa_icon i')
         .removeClass()
         .addClass(class_name + ' fa-fw');
-      $('.fa_icon_picker').hide('');
+      // get current popover
+      let popover = bootstrap.Popover.getInstance($('.fa_icon_picker:visible')[0]);
+      popover.hide();
       prev_focus.focus();
     });
 
@@ -140,11 +145,14 @@ $(function () {
       // Is a click outside the icon popover and button
       if (!target.closest('.fa_icon_picker').length && !target.closest('.param_fa_icon').length) {
         // Do we have an icon picker open?
-        if ($('.fa_icon_picker:visible').length) {
-          $('.fa_icon_picker').hide('');
-          if (prev_focus) {
-            prev_focus.focus();
-          }
+        // get current popover
+        let popover = bootstrap.Popover.getInstance($('.fa_icon_picker:visible')[0]);
+        if (popover) {
+          popover.hide();
+        }
+
+        if (prev_focus) {
+          prev_focus.focus();
         }
       }
     });
@@ -259,6 +267,10 @@ $(function () {
   // Toggle between panels
   $('.schema-panel-btn').on('click', function () {
     var target = $($(this).data('target'));
+    if (!target.length) {
+      target = $($(this).data('bsTarget'));
+    }
+    console.log(target);
     if (target.is(':hidden')) {
       $('.schema-panel:visible').fadeOut('fast', function () {
         target.fadeIn('fast');
@@ -294,14 +306,14 @@ $(function () {
     } else {
       $('.add-param-btn, .add-group-btn, .collapse-groups-btn, .expand-groups-btn, .to-top-btn').attr(
         'disabled',
-        false,
+        false
       );
     }
 
     // Warn about the console finishing
     if ($(this).hasClass('back-to-editor-btn')) {
       alert(
-        'nf-core schema build will have now exited. Any further change will have to be manually copied to your schema file. Note that you can run nf-core schema build as often as you like for updates.',
+        'nf-core schema build will have now exited. Any further change will have to be manually copied to your schema file. Note that you can run nf-core schema build as often as you like for updates.'
       );
     }
   });
@@ -558,7 +570,7 @@ $(function () {
     // Escape - hide icon picker
     if (e.which == 27) {
       if ($('.popover:visible').length) {
-        $('.fa_icon_picker').hide('');
+        $('.fa_icon_picker').removeClass('show');
         prev_focus.focus();
       }
     }
@@ -776,7 +788,7 @@ $(function () {
       var help_text_html = md_converter.makeHtml($('#help_text_input').val());
       $('.helptext-html-preview .helptext-preview-helptext').html(help_text_html);
       $('.helptext-html-preview .helptext-preview-helptext table').addClass(
-        'table table-bordered table-striped table-sm small',
+        'table table-bordered table-striped table-sm small'
       );
       $('.helptext-html-preview .helptext-preview-helptext table').wrap('<div class="table-responsive"></div>');
     }
@@ -937,7 +949,7 @@ $(function () {
         var number_val = parseFloat(el);
         if (isNaN(number_val)) {
           $('.modal-body').append(
-            '<div class="alert alert-danger">Error: Enumerated values have to be numeric for parameter types "integer" and "number".</div>',
+            '<div class="alert alert-danger">Error: Enumerated values have to be numeric for parameter types "integer" and "number".</div>'
           );
           e.preventDefault();
           e.stopPropagation();
@@ -1324,10 +1336,10 @@ function generate_param_row(id, param) {
     var re = new RegExp('^fa[a-z -]+$');
     if (!re.test(param['fa_icon'])) {
       console.error(
-        "FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('" + param['fa_icon'] + "') - removing from schema.",
+        "FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('" + param['fa_icon'] + "') - removing from schema."
       );
       alert(
-        "FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('" + param['fa_icon'] + "') - removing from schema.",
+        "FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('" + param['fa_icon'] + "') - removing from schema."
       );
       delete param['fa_icon'];
       update_param_in_schema(id, param);
@@ -1438,7 +1450,7 @@ function generate_group_row(id, param, child_params) {
     var re = new RegExp('^fa[a-z -]+$');
     if (!re.test(param['fa_icon'])) {
       console.error(
-        "FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('" + param['fa_icon'] + "') - removing from schema.",
+        "FontAwesome icon did not match the regex: /^fa[a-z -]+$/ ('" + param['fa_icon'] + "') - removing from schema."
       );
       delete param['fa_icon'];
       update_param_in_schema(id, param);
@@ -1622,7 +1634,7 @@ function validate_param(param) {
           'Error: Default value "' +
             param['default'] +
             '" must be greater than or equal to minimum value: ' +
-            param['minimum'],
+            param['minimum']
         );
         return false;
       }
@@ -1633,7 +1645,7 @@ function validate_param(param) {
           'Error: Default value "' +
             param['default'] +
             '" must be less than or equal to maximum value: ' +
-            param['maximum'],
+            param['maximum']
         );
         return false;
       }
@@ -1670,7 +1682,7 @@ function validate_param(param) {
         'Error: Default value "' +
           param['default'] +
           '" must be one of the Enumerated values: ' +
-          param['enum'].join(', '),
+          param['enum'].join(', ')
       );
       return false;
     }
@@ -1681,7 +1693,7 @@ function validate_param(param) {
     var re = new RegExp(param['pattern']);
     if (!re.test(param['default'])) {
       alert(
-        'Error: Default value "' + param['default'] + '" must match the parameter pattern regex: ' + param['pattern'],
+        'Error: Default value "' + param['default'] + '" must match the parameter pattern regex: ' + param['pattern']
       );
       return false;
     }
