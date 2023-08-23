@@ -150,7 +150,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1192,7 +1192,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1294,7 +1294,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1373,7 +1373,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1579,7 +1579,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -1638,7 +1638,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -2224,7 +2224,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -2317,7 +2317,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -3267,6 +3267,74 @@
           "version": "3.2.3"
         }
       ]
+    },
+    {
+      "name": "ashlar",
+      "path": "modules/nf-core/ashlar/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ashlar",
+        "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+        "keywords": [
+          "image_processing",
+          "alignment",
+          "registration"
+        ],
+        "tools": [
+          {
+            "ashlar": {
+              "description": "Alignment by Simultaneous Harmonization of Layer/Adjacency Registration",
+              "homepage": "https://labsyspharm.github.io/ashlar/",
+              "documentation": "https://labsyspharm.github.io/ashlar/",
+              "doi": "10.1093/bioinformatics/btac544",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "images": {
+              "type": "file",
+              "description": "Overlapping tile image data in formats from most commercial microscopes",
+              "pattern": "*.{ome.tiff,ome.tif,rcpnl,btf,nd2,tiff,tif,czi}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "tif": {
+              "type": "file",
+              "description": "A pyramidal, tiled OME-TIFF file created from input images.",
+              "pattern": "*.ome.tif"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@RobJY",
+          "@jmuhlich"
+        ]
+      }
     },
     {
       "name": "assemblyscan",
@@ -4431,7 +4499,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -4488,7 +4556,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -7678,6 +7746,18 @@
               "type": "file",
               "description": "Optional, file of sample names to be included or excluded.\ne.g. 'file.tsv'\n"
             }
+          },
+          {
+            "exons": {
+              "type": "file",
+              "description": "Tab-delimited file with exons for indel frameshifts (chr,beg,end; 1-based, inclusive, optionally bgzip compressed).\ne.g. 'exons.tsv.gz'\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Faidx indexed reference sequence file to determine INDEL context.\ne.g. 'reference.fa'\n"
+            }
           }
         ],
         "output": [
@@ -7705,7 +7785,8 @@
         "authors": [
           "@joseespinosa",
           "@drpatelh",
-          "@SusiJo"
+          "@SusiJo",
+          "@TCLamnidis"
         ]
       },
       "pipelines": [
@@ -8652,6 +8733,79 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "bedtools_groupby",
+      "path": "modules/nf-core/bedtools/groupby/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bedtools_groupby",
+        "description": "Groups features in a BED file by given column(s) and computes summary statistics for each group to another column.",
+        "keywords": [
+          "bed",
+          "groupby",
+          "bedtools"
+        ],
+        "tools": [
+          {
+            "bedtools": {
+              "description": "A set of tools for genomic analysis tasks, specifically enabling genome arithmetic (merge, count, complement) on various file types.\n",
+              "documentation": "https://bedtools.readthedocs.io/en/latest/content/tools/groupby.html",
+              "homepage": "https://bedtools.readthedocs.io/en/latest/",
+              "doi": "10.1093/bioinformatics/btq033",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Input BED file",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "summary_column": {
+              "type": "integer",
+              "description": "Column to be summarized (1-based)"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bed": {
+              "type": "file",
+              "description": "Grouped by bed file with combined features",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@mashehu"
+        ]
+      }
     },
     {
       "name": "bedtools_intersect",
@@ -9777,7 +9931,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -14058,7 +14212,13 @@
         "authors": [
           "@josenimo"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cellranger_count",
@@ -15988,6 +16148,151 @@
         ],
         "authors": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "clustalo_align",
+      "path": "modules/nf-core/clustalo/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clustalo_align",
+        "description": "Align sequences using Clustal Omega",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "clustalo": {
+              "description": "Latest version of Clustal: a multiple sequence alignment program for DNA or proteins",
+              "homepage": "http://www.clustal.org/omega/",
+              "documentation": "http://www.clustal.org/omega/",
+              "tool_dev_url": "http://www.clustal.org/omega/",
+              "doi": "10.1038/msb.2011.75",
+              "licence": "['GPL v2']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tree information\ne.g. `[ id:'test_tree']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Input guide tree in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file.",
+              "pattern": "*.{aln}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
+      "name": "clustalo_guidetree",
+      "path": "modules/nf-core/clustalo/guidetree/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clustalo_guidetree",
+        "description": "Renders a guidetree in clustalo",
+        "keywords": [
+          "guide tree",
+          "msa",
+          "newick"
+        ],
+        "tools": [
+          {
+            "clustalo": {
+              "description": "Latest version of Clustal: a multiple sequence alignment program for DNA or proteins",
+              "homepage": "http://www.clustal.org/omega/",
+              "documentation": "http://www.clustal.org/omega/",
+              "tool_dev_url": "http://www.clustal.org/omega/",
+              "doi": "10.1038/msb.2011.75",
+              "licence": "['GPL v2']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Guide tree file in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
         ]
       }
     },
@@ -19317,7 +19622,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -19385,6 +19690,10 @@
         },
         {
           "name": "molkart",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
           "version": "dev"
         },
         {
@@ -20647,7 +20956,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -20761,7 +21070,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -20819,7 +21128,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -20967,7 +21276,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -21036,7 +21345,13 @@
           "@migueLib",
           "@chiarasch"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "deeptools_bamcoverage",
@@ -24282,6 +24597,79 @@
       ]
     },
     {
+      "name": "ensemblvep_filtervep",
+      "path": "modules/nf-core/ensemblvep/filtervep/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ensemblvep_filtervep",
+        "description": "Filter variants based on Ensembl Variant Effect Predictor (VEP) annotations.",
+        "keywords": [
+          "annotation",
+          "vcf",
+          "tab",
+          "filter"
+        ],
+        "tools": [
+          {
+            "ensemblvep": {
+              "description": "VEP determines the effect of your variants (SNPs, insertions, deletions, CNVs\nor structural variants) on genes, transcripts, and protein sequence, as well as regulatory regions.\n",
+              "homepage": "https://www.ensembl.org/info/docs/tools/vep/index.html",
+              "documentation": "https://www.ensembl.org/info/docs/tools/vep/script/index.html",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "VCF/TAB file annotated with vep",
+              "pattern": "*.{vcf,tab,tsv,txt}"
+            }
+          },
+          {
+            "feature_file": {
+              "type": "file",
+              "description": "File containing features on separate lines. To be used with --filter option."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "VCF/TAB file",
+              "pattern": "*.{vcf,tab,txt,tsv}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "ensemblvep_vep",
       "path": "modules/nf-core/ensemblvep/vep/meta.yml",
       "type": "module",
@@ -25289,6 +25677,85 @@
       ]
     },
     {
+      "name": "famsa_align",
+      "path": "modules/nf-core/famsa/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "famsa_align",
+        "description": "Aligns sequences using FAMSA",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "famsa": {
+              "description": "Algorithm for large-scale multiple sequence alignments",
+              "homepage": "https://github.com/refresh-bio/FAMSA",
+              "documentation": "https://github.com/refresh-bio/FAMSA",
+              "tool_dev_url": "https://github.com/refresh-bio/FAMSA",
+              "doi": "10.1038/srep33964",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing tree information\ne.g. `[ id:'test_tree']`\n"
+            }
+          },
+          {
+            "tree": {
+              "type": "file",
+              "description": "Input guide tree in Newick format",
+              "pattern": "*.{dnd}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file.",
+              "pattern": "*.{aln}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "famsa_guidetree",
       "path": "modules/nf-core/famsa/guidetree/meta.yml",
       "type": "module",
@@ -25646,7 +26113,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -26364,7 +26831,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -26424,6 +26891,10 @@
         },
         {
           "name": "molkart",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
           "version": "dev"
         },
         {
@@ -31169,6 +31640,74 @@
       }
     },
     {
+      "name": "gatk4_createreadcountpanelofnormals",
+      "path": "modules/nf-core/gatk4/createreadcountpanelofnormals/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_createreadcountpanelofnormals",
+        "description": "Creates a panel of normals (PoN) for read-count denoising given the read counts for samples in the panel.",
+        "keywords": [
+          "gatk4",
+          "createreadcountpanelofnormals",
+          "panelofnormals"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "counts": {
+              "type": "file",
+              "description": "Read counts in hdf5 or tsv format.",
+              "pattern": "*.{hdf5,tsv}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "pon": {
+              "type": "file",
+              "description": "Panel-of-normals file.",
+              "pattern": "*.{hdf5}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "gatk4_createsequencedictionary",
       "path": "modules/nf-core/gatk4/createsequencedictionary/meta.yml",
       "type": "module",
@@ -31353,6 +31892,94 @@
         ],
         "authors": [
           "@GCJMackenzie"
+        ]
+      }
+    },
+    {
+      "name": "gatk4_denoisereadcounts",
+      "path": "modules/nf-core/gatk4/denoisereadcounts/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_denoisereadcounts",
+        "description": "Denoises read counts to produce denoised copy ratios",
+        "keywords": [
+          "gatk4",
+          "denoisereadcounts",
+          "copyratios"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "licence": [
+                "Apache-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "counts": {
+              "type": "file",
+              "description": "Read counts in hdf5 or tsv format.",
+              "pattern": "*.{hdf5,tsv}"
+            }
+          },
+          {
+            "pon": {
+              "type": "file",
+              "description": "Panel of normals file hdf5 or tsv format.",
+              "pattern": "*.{hdf5}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "standardized": {
+              "type": "file",
+              "description": "Standardized copy ratios file.",
+              "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "denoised": {
+              "type": "file",
+              "description": "Denoised copy ratios file",
+              "pattern": "*.{tsv}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -36406,7 +37033,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -37274,7 +37901,13 @@
         "authors": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "genomad_endtoend",
@@ -37440,7 +38073,13 @@
         "authors": [
           "@CarsonJM"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "genomescope2",
@@ -41209,7 +41848,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -41432,7 +42071,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41534,7 +42173,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41636,7 +42275,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41738,7 +42377,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41840,7 +42479,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -41922,7 +42561,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -43989,7 +44628,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "metatdenovo",
@@ -45430,7 +46069,13 @@
         "authors": [
           "@FloWuenne"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ilastik_pixelclassification",
@@ -45506,7 +46151,13 @@
         "authors": [
           "@FloWuenne"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "instrain_compare",
@@ -50707,7 +51358,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -50840,6 +51491,7 @@
         "name": "mafft",
         "description": "Multiple sequence alignment using MAFFT",
         "keywords": [
+          "fasta",
           "msa",
           "multiple sequence alignment"
         ],
@@ -53027,7 +53679,13 @@
         "authors": [
           "@FloWuenne"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mcroni",
@@ -53886,10 +54544,12 @@
       "type": "module",
       "meta": {
         "name": "merquryfk_katgc",
-        "description": "A reimplemenation of Kat GC to work with FastK databases",
+        "description": "A reimplemenation of KatGC to work with FastK databases",
         "keywords": [
-          "k-mer",
-          "GC content"
+          "k-mer frequency",
+          "GC content",
+          "3D heat map",
+          "contour map"
         ],
         "tools": [
           {
@@ -53999,7 +54659,9 @@
         "name": "merquryfk_merquryfk",
         "description": "FastK based version of Merqury",
         "keywords": [
-          "sort"
+          "Merqury",
+          "reference-free",
+          "assembly evaluation"
         ],
         "tools": [
           {
@@ -55535,7 +56197,13 @@
           "@ViriatoII",
           "@flowuenne"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "molkart",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "minia",
@@ -56330,7 +56998,7 @@
             }
           },
           {
-            "cluster": {
+            "db_cluster": {
               "type": "file",
               "description": "a clustered MMseqs2 database used for clustering"
             }
@@ -56398,7 +57066,7 @@
             }
           },
           {
-            "bam": {
+            "db": {
               "type": "directory",
               "description": "The created MMseqs2 database"
             }
@@ -56771,7 +57439,7 @@
             }
           },
           {
-            "search_db": {
+            "db_search": {
               "type": "directory",
               "description": "an MMseqs2 database with search results"
             }
@@ -56826,9 +57494,9 @@
             }
           },
           {
-            "db_indexed": {
+            "db_exprofile": {
               "type": "directory",
-              "description": "Directory containing the DB and the generated indexes\n",
+              "description": "Directory containing the expandable profile DB\n",
               "pattern": "*"
             }
           }
@@ -58137,7 +58805,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "genomeannotator",
@@ -58205,6 +58873,10 @@
         },
         {
           "name": "molkart",
+          "version": "dev"
+        },
+        {
+          "name": "multiplesequencealign",
           "version": "dev"
         },
         {
@@ -61809,7 +62481,7 @@
       "type": "module",
       "meta": {
         "name": "parabricks_fq2bam",
-        "description": "NVIDIA Clara Parabricks GPU-accelerated alignment, sorting, BQSR calculation, and duplicate marking.",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated alignment, sorting, BQSR calculation, and duplicate marking. Note this nf-core module requires files to be copied into the working directory and not symlinked.",
         "keywords": [
           "align",
           "sort",
@@ -61932,7 +62604,8 @@
           }
         ],
         "authors": [
-          "@bsiranosian"
+          "@bsiranosian",
+          "@adamrtalbot"
         ]
       }
     },
@@ -67768,7 +68441,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "mag",
@@ -67944,7 +68617,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "mag",
@@ -69385,7 +70058,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -69638,7 +70311,9 @@
         "keywords": [
           "quast",
           "assembly",
-          "quality"
+          "quality",
+          "contig",
+          "scaffold"
         ],
         "tools": [
           {
@@ -69666,21 +70341,9 @@
             }
           },
           {
-            "use_fasta": {
-              "type": "boolean",
-              "description": "Whether to use the provided fasta reference genome file"
-            }
-          },
-          {
             "gff": {
               "type": "file",
               "description": "The genome GFF file. Has to contain at least a non-empty string dummy value."
-            }
-          },
-          {
-            "use_gff": {
-              "type": "boolean",
-              "description": "Whether to use the provided gff reference annotation file"
             }
           }
         ],
@@ -69696,7 +70359,28 @@
             "report": {
               "type": "file",
               "description": "tab-separated version of the summary, suitable for spreadsheets and mqc",
-              "pattern": "report.tsv"
+              "pattern": "${prefix}.tsv"
+            }
+          },
+          {
+            "misassemblies": {
+              "type": "file",
+              "description": "Report containing misassemblies, only when a reference fasta is provided\n",
+              "pattern": "${prefix}_misassemblies.tsv"
+            }
+          },
+          {
+            "transcriptome": {
+              "type": "file",
+              "description": "Report containing all the alignments of transcriptome to the assembly, only when a reference fasta is provided\n",
+              "pattern": "${prefix}_transcriptome.tsv"
+            }
+          },
+          {
+            "unaligned": {
+              "type": "file",
+              "description": "Report containing unaligned contigs, only when a reference fasta is provided\n",
+              "pattern": "${prefix}_unaligned.tsv"
             }
           },
           {
@@ -70197,7 +70881,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         }
       ]
     },
@@ -75900,10 +76584,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "The reference fasta file",
               "pattern": "*.fasta"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
             }
           },
           {
@@ -76065,10 +76761,22 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome fasta file",
               "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -76110,6 +76818,137 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_datametrics",
+      "path": "modules/nf-core/sentieon/datametrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_datametrics",
+        "description": "Collects multiple quality metrics from a bam file",
+        "keywords": [
+          "metrics",
+          "bam",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of th sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bai,crai,sai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "mq_metrics": {
+              "type": "file",
+              "description": "File containing the information about mean base quality score for each sequencing cycle",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "qd_metrics": {
+              "type": "file",
+              "description": "File containing the information about number of bases with a specific base quality score",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "gc_summary": {
+              "type": "file",
+              "description": "File containing the information about GC bias in the reference and the sample",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "gc_metrics": {
+              "type": "file",
+              "description": "File containing the information about GC bias in the reference and the sample",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "aln_metrics": {
+              "type": "file",
+              "description": "File containing the statistics about the alignment of the reads",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "is_metrics": {
+              "type": "file",
+              "description": "File containing the information about statistical distribution of insert sizes",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -76159,10 +76998,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome fasta file",
               "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
             }
           },
           {
@@ -76239,6 +77090,278 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_dnamodelapply",
+      "path": "modules/nf-core/sentieon/dnamodelapply/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_dnamodelapply",
+        "description": "modifies the input VCF file by adding the MLrejected FILTER to the variants",
+        "keywords": [
+          "dnamodelapply",
+          "vcf",
+          "filter",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "INPUT VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "idx": {
+              "type": "file",
+              "description": "Index of the input VCF file",
+              "pattern": "*.{tbi}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "ml_model": {
+              "type": "file",
+              "description": "machine learning model file",
+              "pattern": "*.model"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "INPUT VCF file",
+              "pattern": "*.{vcf,vcf.gz}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of the input VCF file",
+              "pattern": "*.{tbi}"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_dnascope",
+      "path": "modules/nf-core/sentieon/dnascope/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_dnascope",
+        "description": "DNAscope algorithm performs an improved version of Haplotype variant calling.",
+        "keywords": [
+          "dnascope",
+          "sentieon",
+          "variant_calling"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta7": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file.",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAI file",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "dbsnp": {
+              "type": "file",
+              "description": "Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "dbsnp_tbi": {
+              "type": "file",
+              "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "call_interval": {
+              "type": "file",
+              "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
+              "pattern": "*.{bed,interval_list}"
+            }
+          },
+          {
+            "ml_model": {
+              "type": "file",
+              "description": "machine learning model file",
+              "pattern": "*.model"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of the VCF file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -76489,6 +77612,292 @@
       }
     },
     {
+      "name": "sentieon_readwriter",
+      "path": "modules/nf-core/sentieon/readwriter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_readwriter",
+        "description": "Merges BAM files, and/or convert them into cram files. Also, outputs the result of applying the Base Quality Score Recalibration to a file.",
+        "keywords": [
+          "merge",
+          "convert",
+          "readwriter",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "input": {
+              "type": "file",
+              "description": "BAM/CRAM file.",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BAI/CRAI file.",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "The index of the FASTA reference.",
+              "pattern": "*.fai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "output": {
+              "type": "file",
+              "description": "BAM/CRAM file",
+              "pattern": "*.{bam,cram}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "BAM/CRAM index file",
+              "pattern": "*.{bai,crai}"
+            }
+          },
+          {
+            "output_index": {
+              "type": "file",
+              "description": "BAM/CRAM alignment and the corresponding index file"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_tnscope",
+      "path": "modules/nf-core/sentieon/tnscope/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_tnscope",
+        "description": "TNscope algorithm performs somatic variant calling on the tumor-normal matched pair or the tumor only data, using a Haplotyper algorithm.",
+        "keywords": [
+          "tnscope",
+          "sentieon",
+          "variant_calling"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "meta7": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file.",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "BAI file",
+              "pattern": "*.bai"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "cosmic": {
+              "type": "file",
+              "description": "Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "cosmic_tbi": {
+              "type": "file",
+              "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "pon": {
+              "type": "file",
+              "description": "Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "pon_tbi": {
+              "type": "file",
+              "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "dbsnp": {
+              "type": "file",
+              "description": "Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "dbsnp_tbi": {
+              "type": "file",
+              "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "interval": {
+              "type": "file",
+              "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
+              "pattern": "*.{bed,interval_list}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "VCF file",
+              "pattern": "*.{vcf.gz}"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Index of the VCF file",
+              "pattern": "*.vcf.gz.tbi"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
+        ]
+      }
+    },
+    {
       "name": "sentieon_varcal",
       "path": "modules/nf-core/sentieon/varcal/meta.yml",
       "type": "module",
@@ -76604,6 +78013,115 @@
         ],
         "authors": [
           "@asp8200"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_wgsmetrics",
+      "path": "modules/nf-core/sentieon/wgsmetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_wgsmetrics",
+        "description": "Collects whole genome quality metrics from a bam file",
+        "keywords": [
+          "metrics",
+          "bam",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bam,cram,sam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index of th sorted BAM/CRAM/SAM file",
+              "pattern": "*.{bai,crai,sai}"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Genome fasta file",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Index of the genome fasta file",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "interval_list": {
+              "type": "file",
+              "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
+              "pattern": "*.{bed,interval_list}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "wgs_metrics": {
+              "type": "file",
+              "description": "File containing the information about mean base quality score for each sequencing cycle",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@ramprasadn"
         ]
       }
     },
@@ -77086,6 +78604,75 @@
         ],
         "authors": [
           "@Midnighter"
+        ]
+      }
+    },
+    {
+      "name": "seqkit_tab2fx",
+      "path": "modules/nf-core/seqkit/tab2fx/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_tab2fx",
+        "description": "Convert tabular format (first two/three columns) to FASTA/Q format.",
+        "keywords": [
+          "fasta",
+          "fastq",
+          "text",
+          "tabular",
+          "convert"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "Cross-platform and ultrafast toolkit for FASTA/Q file manipulation, written by Wei Shen.\n",
+              "homepage": "https://github.com/shenwei356/seqkit",
+              "documentation": "https://bioinf.shenwei.me/seqkit/",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "text": {
+              "type": "file",
+              "description": "Text file in tabular format",
+              "pattern": "*.txt[.gz,.zst]"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fastx": {
+              "type": "file",
+              "description": "Sequence file in fasta/q format",
+              "pattern": "*.{fa,fq}[.gz,.zst]"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@heuermh"
         ]
       }
     },
@@ -80217,7 +81804,7 @@
             }
           },
           {
-            "bam": {
+            "inputs": {
               "type": "file",
               "description": "Any input file required by Snakemake",
               "pattern": "*"
@@ -85348,7 +86935,7 @@
       "pipelines": [
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "nanoseq",
@@ -88171,7 +89758,7 @@
         },
         {
           "name": "funcscan",
-          "version": "1.1.2"
+          "version": "1.1.3"
         },
         {
           "name": "hgtseq",
@@ -88305,7 +89892,9 @@
         "description": "Unzip ZIP archive files",
         "keywords": [
           "unzip",
-          "decompression"
+          "decompression",
+          "zip",
+          "archiving"
         ],
         "tools": [
           {
@@ -88381,7 +89970,9 @@
         "description": "Unzip ZIP archive files",
         "keywords": [
           "unzip",
-          "decompression"
+          "decompression",
+          "zip",
+          "archiving"
         ],
         "tools": [
           {

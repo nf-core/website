@@ -2,11 +2,39 @@
     import { currentHeading } from '@components/store';
     import * as icons from 'file-icons-js';
     import 'file-icons-js/css/style.css';
+    import mermaid from 'mermaid';
     import { onMount } from 'svelte';
 
     export let headings: { text: string; slug: string; depth: number; fa_icon?: string }[] = [];
     // find current heading in viewport with IntersectionObserver
     onMount(() => {
+        async function renderDiagrams(graphs) {
+            mermaid.initialize({
+                startOnLoad: false,
+                fontFamily: 'var(--sans-font)',
+                // @ts-ignore This works, but TS expects a enum for some reason
+                theme: document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'neutral',
+            });
+
+            for (const graph of graphs) {
+                const content = graph.getAttribute('data-content');
+                if (!content) continue;
+                let svg = document.createElement('svg');
+                const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
+                graph.appendChild(svg);
+                mermaid.render(id, content).then((result) => {
+                    graph.innerHTML = result.svg;
+                });
+            }
+        }
+        const graphs = document.getElementsByClassName('mermaid');
+        if (document.getElementsByClassName('mermaid').length > 0) {
+            renderDiagrams(graphs);
+            window.addEventListener('theme-changed', (e) => {
+                renderDiagrams(graphs);
+            });
+        }
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
