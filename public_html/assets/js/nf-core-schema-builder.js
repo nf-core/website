@@ -569,7 +569,7 @@ $(function () {
     // Escape - hide icon picker
     if (e.which == 27) {
       if ($('.popover:visible').length) {
-        $('.fa_icon_picker').removeClass('show');
+        $('.fa_icon_picker').hide();
         prev_focus.focus();
       }
     }
