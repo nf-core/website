@@ -2,7 +2,6 @@
 import { h } from 'hastscript';
 import { visit } from 'unist-util-visit';
 
-
 const acceptableAdmonitionTypes = {
   note: {
     title: 'Note',
