@@ -1843,7 +1843,7 @@ function autosave_schema(schema) {
     cache_id: $('#schema_cache_id').text(),
     schema: JSON.stringify(schema),
   };
-  $.post('pipeline_schema_builder', post_data).done(function (returned_data) {
+  $.post('/pipeline_schema_builder', post_data).done(function (returned_data) {
     console.log('Sent schema to API. Response:', returned_data);
   });
 }
