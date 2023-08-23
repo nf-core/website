@@ -78,33 +78,17 @@ contributingDocs
         sections[1].children.push({ title: doc.data.title, slug: '/docs/' + doc.slug });
     });
 // find the index of the current page and use that to get the previous and next page
-const url = Astro.url.pathname.replace(/\/$/, '');
+const url = Astro.url.pathname.replace(/\/$/, '').replace(/\.html$/, '');
 const currentDocs = url.startsWith('/docs/usage/') ? usageDocs : contributingDocs;
-const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url.replace(/\.html$/, ''));
+const current_page_index = currentDocs.findIndex((page) => '/docs/' + page.slug === url);
 
 if (current_page_index === -1) {
     console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
 } else {
     prev_page = currentDocs[current_page_index - 1];
-    prev_page =
-        prev_page &&
-        prev_page.slug?.split('/').slice(-2)[0] ===
-            url
-                .split('/')
-                .slice(-2)[0]
-                .replace(/\.html$/, '')
-            ? prev_page
-            : null;
+    prev_page = prev_page && prev_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? prev_page : null;
     next_page = currentDocs[current_page_index + 1];
-    next_page =
-        next_page &&
-        next_page.slug?.split('/').slice(-2)[0] ===
-            url
-                .split('/')
-                .slice(-2)[0]
-                .replace(/\.html$/, '')
-            ? next_page
-            : null;
+    next_page = next_page && next_page.slug?.split('/').slice(-2)[0] === url.split('/').slice(-2)[0] ? next_page : null;
 }
 const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/docs/' + Astro.props.doc.id;
 ---
