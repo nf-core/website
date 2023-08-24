@@ -35,13 +35,13 @@
     };
 
     const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 1 && !pipeline.archived) {
+        if ($CurrentFilter.find(f=>f.name==="Released") && pipeline.releases.length > 1 && !pipeline.archived) {
             return true;
         }
-        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 1 && !pipeline.archived) {
+        if ($CurrentFilter.find(f=>f.name==='Under development') && pipeline.releases.length === 1 && !pipeline.archived) {
             return true;
         }
-        if ($CurrentFilter.includes('Archived') && pipeline.archived === true) {
+        if ($CurrentFilter.find(f=>f.name==='Archived') && pipeline.archived === true) {
             return true;
         }
         return false;
@@ -120,7 +120,6 @@
         SearchQuery.subscribe(() => {
             filteredPipelines = searchFilterSortPipelines(pipelines);
         });
-        filteredPipelines = searchFilterSortPipelines(pipelines);
     });
 </script>
 

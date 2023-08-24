@@ -4,11 +4,11 @@ import PageLayout from '@layouts/PageLayout.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
 import { CollectionEntry } from 'astro:content';
 
-const { title, subtitle, filters, events } = Astro.props;
+const { title, subtitle, events, currentFilters } = Astro.props;
 export interface Props {
     title: string;
     subtitle: string;
-    filters: string[];
+    currentFilters: { name: string }[];
     events: CollectionEntry<'events'>[];
 }
 
@@ -99,7 +99,7 @@ const sections = years.map((year) => {
         </div>
 
         <div class="col">
-            <EventListing {events} {currentEvents} {filters} client:load />
+            <EventListing {events} {currentEvents} {currentFilters} client:load />
         </div>
     </div>
 </PageLayout>
