@@ -28,33 +28,33 @@ You can join the nf-core Slack [here](https://nf-co.re/join).
 All nf-core pipelines _must_ follow the following guidelines:
 
 - Nextflow: Workflows must be built using Nextflow.
-- [Identity and branding](./requirements/identity_branding): Primary development must on the nf-core organisation.
-- [Workflow specificity](./requirements/workflow_specificity): There should only be a single pipeline per data / analysis type.
-- [Workflow size](./requirements/workflow_size): Not too big, not too small.
-- [Workflow name](./requirements/workflow_name): Names should be lower case and without punctuation.
-- [Use the template](./requirements/use_the_template): All nf-core pipelines must be built using the nf-core template.
-- [Software license](./requirements/mit_license): Pipelines must open source, released with the MIT license.
-- [Bundled documentation](./requirements/docs): Pipeline documentation must be hosted on the nf-core website.
-- [Docker support](./requirements/docker): Software must be bundled using Docker and versioned.
-- [Continuous integration testing](./requirements/ci_testing): Pipelines must run CI tests.
-- [Semantic versioning](./requirements/semantic_versioning): Pipelines must use stable release tags.
-- [Standardised parameters](./requirements/parameters): Strive to have standardised usage.
-- [Single command](./requirements/single_command): Pipelines should run in a single command.
-- [Keywords](./requirements/keywords): Excellent documentation and GitHub repository keywords.
-- [Pass lint tests](./requirements/linting): The pipeline must not have any failures in the `nf-core lint` tests.
-- [Credits and Acknowledgements](./requirements/acknowledgements): Pipelines must properly acknowledge prior work.
-- [Minimum inputs](./requirements/minimum_inputs): Pipelines should be able to run with as little input as possible.
-- [Use nf-core git branches](./requirements/git_branches): Use `master`, `dev` and `TEMPLATE`.
+- [Identity and branding](guidelines/requirements/identity_branding): Primary development must on the nf-core organisation.
+- [Workflow specificity](guidelines/requirements/workflow_specificity): There should only be a single pipeline per data / analysis type.
+- [Workflow size](guidelines/requirements/workflow_size): Not too big, not too small.
+- [Workflow name](guidelines/requirements/workflow_name): Names should be lower case and without punctuation.
+- [Use the template](guidelines/requirements/use_the_template): All nf-core pipelines must be built using the nf-core template.
+- [Software license](guidelines/requirements/mit_license): Pipelines must open source, released with the MIT license.
+- [Bundled documentation](guidelines/requirements/docs): Pipeline documentation must be hosted on the nf-core website.
+- [Docker support](guidelines/requirements/docker): Software must be bundled using Docker and versioned.
+- [Continuous integration testing](guidelines/requirements/ci_testing): Pipelines must run CI tests.
+- [Semantic versioning](guidelines/requirements/semantic_versioning): Pipelines must use stable release tags.
+- [Standardised parameters](guidelines/requirements/parameters): Strive to have standardised usage.
+- [Single command](guidelines/requirements/single_command): Pipelines should run in a single command.
+- [Keywords](guidelines/requirements/keywords): Excellent documentation and GitHub repository keywords.
+- [Pass lint tests](guidelines/requirements/linting): The pipeline must not have any failures in the `nf-core lint` tests.
+- [Credits and Acknowledgements](guidelines/requirements/acknowledgements): Pipelines must properly acknowledge prior work.
+- [Minimum inputs](guidelines/requirements/minimum_inputs): Pipelines should be able to run with as little input as possible.
+- [Use nf-core git branches](guidelines/requirements/git_branches): Use `master`, `dev` and `TEMPLATE`.
 
 ## Recommendations
 
 All nf-core pipelines _should_ follow the following guidelines, if possible / appropriate:
 
-- [Use Bioconda](./recommendations/bioconda): Package software using bioconda and biocontainers.
-- [File formats](./recommendations/file_formats): Use community accepted modern file formats such as `CRAM`.
-- [DOIs](./recommendations/dois): Pipelines should have digital object identifiers (DOIs).
-- [Cloud compatible](./recommendations/cloud_compatible): Pipelines should be tested on cloud computing environments.
-- [Publication credit](./recommendations/publication_credit): Pipeline publications should acknowledge the nf-core community.
+- [Use Bioconda](guidelines/recommendations/bioconda): Package software using bioconda and biocontainers.
+- [File formats](guidelines/recommendations/file_formats): Use community accepted modern file formats such as `CRAM`.
+- [DOIs](guidelines/recommendations/dois): Pipelines should have digital object identifiers (DOIs).
+- [Cloud compatible](guidelines/recommendations/cloud_compatible): Pipelines should be tested on cloud computing environments.
+- [Publication credit](guidelines/recommendations/publication_credit): Pipeline publications should acknowledge the nf-core community.
 
 ## If the guidelines don't fit
 
