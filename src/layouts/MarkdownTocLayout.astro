@@ -13,10 +13,13 @@ export interface Props {
     event_header?: object[];
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    viewTransitions?: boolean;
+    meta_title?: string;
     docSearchTags?: {
         name: string;
         content: string;
     }[];
+    maxHeadingDepth?: number;
 }
 
 const {
@@ -27,7 +30,10 @@ const {
     headings,
     left_sidebar,
     sections = [],
+    viewTransitions = false,
+    meta_title = '',
     docSearchTags = [],
+    maxHeadingDepth = 4,
 } = Astro.props;
 ---
 
@@ -55,6 +61,7 @@ const {
 </script>
 <PageLayout
     title={title}
+    meta_title={meta_title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
@@ -63,60 +70,31 @@ const {
     navTocHeadings={headings}
     sections={sections}
     docSearchTags={docSearchTags}
+    viewTransitions={viewTransitions}
+    mermaid={true}
 >
     <div class="row">
         {
             left_sidebar && (
-                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left">
+                <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
                     <SidebarNav items={sections} />
                 </div>
             )
         }
         <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
-            <div class="markdown-content">
+            <div class="markdown-content" transition:animate="morph">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>
             </div>
         </div>
         <div class="col-12 col-md-2 toc">
-            <SidebarToc headings={headings} client:idle />
+            <SidebarToc headings={headings} maxHeadingDepth={maxHeadingDepth} client:idle />
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
-    <script>
-        // taken from https://github.com/JuanM04/portfolio/blob/983b0ed0eabdac37bf8b7912d3e8128a443192b9/src/pages/docs/%5B...documentSlug%5D.astro#L74-L103
-        async function renderDiagrams(graphs) {
-            const { default: mermaid } = await import('mermaid');
-            mermaid.initialize({
-                startOnLoad: false,
-                fontFamily: 'var(--sans-font)',
-                // @ts-ignore This works, but TS expects a enum for some reason
-                theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
-            });
-
-            for (const graph of graphs) {
-                const content = graph.getAttribute('data-content');
-                if (!content) continue;
-                let svg = document.createElement('svg');
-                const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
-                graph.appendChild(svg);
-                mermaid.render(id, content).then((result) => {
-                    graph.innerHTML = result.svg;
-                });
-            }
-        }
-        const graphs = document.getElementsByClassName('mermaid');
-        if (document.getElementsByClassName('mermaid').length > 0) {
-            renderDiagrams(graphs);
-        }
-    </script>
 </PageLayout>
 <style lang="scss">
-    .sidebar-left {
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-    }
     .markdown-content :global(img[loading='lazy']) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;

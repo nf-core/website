@@ -82,17 +82,15 @@ eventPreviewPast = eventPreview
             {eventPreviewFuture.length > 0 && <h4>Upcoming Events</h4>}
             {
                 eventPreviewFuture.map((event) => (
-                    <>
-                        <EventCard
-                            frontmatter={event.data}
-                            slug={event.slug}
-                            type={event.data.type}
-                            time_category="future"
-                            showDescription={false}
-                            narrow={true}
-                            client:idle
-                        />
-                    </>
+                    <EventCard
+                        frontmatter={event.data}
+                        slug={event.slug}
+                        type={event.data.type}
+                        time_category="future"
+                        showDescription={false}
+                        narrow={true}
+                        client:idle
+                    />
                 ))
             }
             {eventPreviewPast.length > 0 && <h4>Past Events</h4>}

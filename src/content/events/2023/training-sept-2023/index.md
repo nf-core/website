@@ -24,7 +24,11 @@ To make the workshops available to everyone they will be streamed on the [nf-cor
 
 # Attending at the Wellcome Genome Campus
 
-An in-person version of advanced training will be held at the Wellcome Genome Campus, Hinxton, UK. It is open to anyone - everyone welcome! The training will take place from 10am to 4pm on both days. More information about this local event can be found [here](wgc.md).
+An in-person version of advanced training will be held on 27th September at the Wellcome Genome Campus, Hinxton, UK. It is open to anyone - everyone welcome! 
+
+The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event. The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two. 
+
+More information about this local event can be found [here](/events/2023/training-sept-2023/wgc).
 
 # Schedule
 

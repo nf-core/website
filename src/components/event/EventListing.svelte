@@ -85,20 +85,13 @@
         talk: 'fa-solid fa-presentation',
         training: 'fa-solid fa-chalkboard-teacher',
     };
-    const event_types = [...new Set(events.map((event) => event.data.type))]
-        .map((type) => {
-            return {
-                name: type,
-                class: event_type_classes[type],
-                icon: event_type_icons[type],
-            };
-        })
-        .sort((a, b) => {
-            if (a.name < b.name) {
-                return -1;
-            }
-            return 1;
-        });
+    const event_types = Object.keys(event_type_classes).map((type) => {
+        return {
+            name: type,
+            class: event_type_classes[type],
+            icon: event_type_icons[type],
+        };
+    });
 
     CurrentFilter.set(event_types);
 

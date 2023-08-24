@@ -1,6 +1,5 @@
 <script lang="ts">
     import { currentHeading, showHidden } from '@components/store';
-    import { sub } from 'date-fns';
     import { onMount } from 'svelte';
 
     export let headings: {
@@ -11,6 +10,11 @@
         hidden?: boolean;
     }[];
 
+    export let maxHeadingDepth: number = 4;
+
+    // filter out headings that are higher than max_heading_depth
+    headings = headings.filter((h) => h.depth <= maxHeadingDepth);
+
     const min_heading_depth = Math.min(...headings.map((h) => h.depth));
     // make margin classes from min to max heading depth
     let headingMargin = {};
@@ -19,23 +23,23 @@
     }
     onMount(() => {
         // set the first heading as active on initial load
-        if (!$currentHeading) {
+
+        if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
             currentHeading.set(headings[0]?.slug);
         }
         currentHeading.subscribe((slug) => {
             // wait 1 second for sidebar selection animation to finish
-            setTimeout(() => {
-                const active = document.querySelector('.toc .nav-item.active');
-                if (active) {
-                    active.scrollIntoView({ block: 'nearest' });
-                }
-            }, 1000);
+
+            const active = document.querySelector('.toc nav-item.active');
+            if (active) {
+                active.scrollIntoView({ block: 'nearest' });
+            }
         });
     });
 </script>
 
 {#if headings.length > 1}
-    <div class="nav flex-column sticky-top-under align-items-end">
+    <div class="nav flex-column sticky-top-under align-items-end pt-1">
         <div class="d-none d-md-inline">
             <strong class="h6 my-2 text-body">On this page</strong>
             <!-- <hr class="my-1" /> -->
