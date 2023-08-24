@@ -54,9 +54,9 @@ if (file_exists($logo_cache_fn) && !isset($_GET['f'])) {
 
 // Load the base image
 if ($theme == 'dark') {
-    $template_fn = '/assets/img/logo/nf-core-repo-logo-base-darkbg.png';
+    $template_fn = 'assets/img/logo/nf-core-repo-logo-base-darkbg.png';
 } else {
-    $template_fn = '/assets/img/logo/nf-core-repo-logo-base-lightbg.png';
+    $template_fn = 'assets/img/logo/nf-core-repo-logo-base-lightbg.png';
 }
 [$width, $height] = getimagesize($template_fn);
 $image = imagecreatefrompng($template_fn);

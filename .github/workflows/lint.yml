@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v2
 
       - name: Install Prettier
-        run: npm install -g prettier@2.8.8 @prettier/plugin-php
+        run: npm install -g prettier@2.8.8 @prettier/plugin-php@0.19.7
 
       - name: Run Prettier --check
         run: prettier --check ${GITHUB_WORKSPACE}
