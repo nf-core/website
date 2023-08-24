@@ -29,7 +29,7 @@ $(function () {
   // FontAwesome icon picker
   //
   // Get the list of font-awesome icons
-  $.getJSON('assets/js/fa-icons.json', function (fa_icons) {
+  $.getJSON('/assets/js/fa-icons.json', function (fa_icons) {
     // Make the popover
     var popover_template = `
             <div class="popover fa_icon_picker" role="tooltip">
@@ -860,7 +860,7 @@ $(function () {
     $('.settings_minmax_group').hide();
 
     // Nicer placeholders
-    $('#settings_schema').attr('placeholder', 'assets/' + id + '_schema.json');
+    $('#settings_schema').attr('placeholder', '/assets/' + id + '_schema.json');
 
     // Show appropriate fields based on param type
     if (['boolean', 'object'].indexOf(param['type']) != -1) {
