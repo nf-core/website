@@ -133,7 +133,9 @@ $(function () {
         .addClass(class_name + ' fa-fw');
       // get current popover
       let popover = bootstrap.Popover.getInstance($('.fa_icon_picker:visible')[0]);
-      popover.hide();
+      if (popover) {
+        popover.hide();
+      }
       prev_focus.focus();
     });
 
@@ -567,7 +569,11 @@ $(function () {
     // Escape - hide icon picker
     if (e.which == 27) {
       if ($('.popover:visible').length) {
-        $('.fa_icon_picker').hide();
+        // get current popover
+        let popover = bootstrap.Popover.getInstance($('.fa_icon_picker:visible')[0]);
+        if (popover) {
+          popover.hide();
+        }
         prev_focus.focus();
       }
     }
