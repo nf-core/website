@@ -47765,6 +47765,8 @@
         "name": "kallisto_index",
         "description": "Create kallisto index",
         "keywords": [
+          "kallisto",
+          "kallisto/index",
           "index"
         ],
         "tools": [
@@ -47782,6 +47784,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "genome fasta file",
@@ -47791,17 +47799,23 @@
         ],
         "output": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "Kallisto genome index",
+              "pattern": "*.idx"
+            }
+          },
+          {
             "versions": {
               "type": "file",
               "description": "File containing software versions",
               "pattern": "versions.yml"
-            }
-          },
-          {
-            "idx": {
-              "type": "index",
-              "description": "Kallisto genome index",
-              "pattern": "*.idx"
             }
           }
         ],
@@ -62174,7 +62188,9 @@
         "name": "pairtools_sort",
         "description": "Sort a .pairs/.pairsam file",
         "keywords": [
-          "sort"
+          "sort",
+          "pairs",
+          "pairsam"
         ],
         "tools": [
           {
@@ -62226,7 +62242,8 @@
           }
         ],
         "authors": [
-          "@jianhong"
+          "@jianhong",
+          "@nservant"
         ]
       },
       "pipelines": [
@@ -62235,6 +62252,72 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "pairtools_stats",
+      "path": "modules/nf-core/pairtools/stats/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pairtools_stats",
+        "description": "Calculate pairs statistics",
+        "keywords": [
+          "stats",
+          "pairs",
+          "pairsam"
+        ],
+        "tools": [
+          {
+            "pairtools": {
+              "description": "CLI tools to process mapped Hi-C data",
+              "homepage": "http://pairtools.readthedocs.io/",
+              "documentation": "http://pairtools.readthedocs.io/",
+              "tool_dev_url": "https://github.com/mirnylab/pairtools",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "pairs": {
+              "type": "file",
+              "description": "pairs file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "stat": {
+              "type": "file",
+              "description": "stats of the pairs",
+              "pattern": "*.{pairs.stat}"
+            }
+          }
+        ],
+        "authors": [
+          "@nservant"
+        ]
+      }
     },
     {
       "name": "panaroo_run",
