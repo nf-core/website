@@ -12,7 +12,7 @@ test('meta is correct', async ({ page }) => {
 
 test('pipeline redirect works for /$pipeliname', async ({ page }) => {
     await page.goto('/rnaseq');
-    await expect.soft(page).toHaveTitle('nf-core/rnaseq');
+    await expect.soft(page).toHaveTitle('rnaseq: Introduction');
     // check if markdown is rendered correctly
     await expect.soft(page.locator('.markdown-content')).toContainText('nf-core/rnaseq is a bioinformatics pipeline');
     // check if results redirect works
