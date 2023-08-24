@@ -19,4 +19,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: The new nf-core website
 
-Not too long ago the nf-core website was completely overhauled moving away from Php and towards a more future and traffic proof Astro backbone. Matthias ([@mashehu](https://github.com/mashehu/)) was the main developer for this huge project and will give us some insights into the new website features.
+Not too long ago the nf-core website was completely overhauled moving away from PHP and towards a more future and traffic proof Astro backbone. Matthias ([@mashehu](https://github.com/mashehu/)) was the main developer for this huge project and will give us some insights into the new website features.
