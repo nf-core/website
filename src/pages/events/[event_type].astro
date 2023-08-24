@@ -24,9 +24,8 @@ export async function getStaticPaths() {
 const { events } = Astro.props;
 const { event_type } = Astro.params;
 
-
 const title = event_type.charAt(0).toUpperCase() + event_type.slice(1) + 's';
 const subtitle = 'Details of past and future ' + event_type + 's around nf-core.';
 ---
 
-<EventLayout {events} {title} {subtitle} currentFilters={[{name:event_type}]}/>
+<EventLayout {events} {title} {subtitle} currentFilters={[{ name: event_type }]} />
