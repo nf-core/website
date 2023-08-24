@@ -25,6 +25,7 @@ test('pipeline redirect works for /$pipeliname', async ({ page }) => {
 });
 
 test('random pipeline page', async ({ page }) => {
+    // check if CTA button works and random (=the pipeline with the newest release) pipeline page is loaded
     await page.goto('/');
     await page.getByRole('link', { name: 'View Pipelines' }).click();
     await page.locator('.card').locator('a').first().click();
