@@ -54,7 +54,7 @@
             on:keyup={handleSearch}
             placeholder="Search"
         />
-        {#if $Filters.length > 0}
+        {#if $Filters.length > 0 && $Filters[0].name}
             <div class="ms-3 d-flex align-items-center">
                 Show:
                 <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">

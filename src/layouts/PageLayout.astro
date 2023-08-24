@@ -19,6 +19,7 @@ let {
     navTocHeadings = [],
     topics = [],
     sections = [],
+    viewTransitions = false,
     docSearchTags = [],
 } = Astro.props;
 
@@ -38,9 +39,10 @@ export interface Props {
     frontmatter?: any;
     topics?: string[];
     sections?: { section_name: string; children: {}[] }[] | never[];
+    viewTransitions?: boolean;
     docSearchTags?: {
         name: string;
-        content: string;
+        content: string | string[];
     }[];
 }
 
@@ -65,6 +67,7 @@ if (frontmatter) {
     subfooter={subfooter}
     navTocHeadings={navTocHeadings}
     sections={sections}
+    viewTransitions={viewTransitions}
     docSearchTags={docSearchTags}
 >
     <div class="mainpage">

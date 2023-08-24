@@ -36,11 +36,73 @@ Be sure to register early to avoid disappointment!
 
 # Schedule
 
-The hackathon will run from **Tuesday 28th November** to **Wednesday 29th November**.
-More information about the hackathon and associated social events will be added here as it becomes available.
+The hackathon will run from **Tuesday 28th November** to **Wednesday 29th November**. The preliminarily schedule is outlined below.
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Tue. 28 Nov., 2023</th>
+                <th>Wed. 29 Nov., 2023</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>09:00</td>
+            <td>Registration + Breakfast</td>
+            <td>Breakfast</td>
+          </tr>
+          <tr>
+            <td>10:00</td>
+            <td>Welcome</td>
+            <td rowspan="2">Hackathon</td>
+          </tr>
+          <tr>
+            <td>10:30</td>
+            <td>Hackathon</td>
+          </tr>
+          <tr>
+            <td>13:00</td>
+            <td>Lunch</td>
+            <td>Lunch</td>
+          </tr>
+          <tr>
+            <td>14:00</td>
+            <td>Hackathon</td>
+            <td rowspan="5"></td>
+          </tr>
+          <tr>
+            <td>17:00</td>
+            <td>Day Summary</td>
+          </tr>
+          <tr>
+            <td>17:30</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>18:30</td>
+            <td rowspan="2">Hackathon Social</td>
+          </tr>
+          <tr>
+            <td>23:30</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
+# Groups
+
+To keep work and discussion during the hackathon manageable, we will organise everyone into groups. You are free to change groups as you wish during the hackathon.
+
+We will coordinate our work and the issues we are working on using a single GitHub project board (we’ll post a link here closer to the time). There will be a separate tab for each group where will have collated a list of relevant issues.
 
 # Venue: Boston Park Plaza
 
 The in-person hackathon will be taking place in at the Boston Park Plaza. More information about this venue can be found the the Nextflow Summit website.
 
 [👉🏻 Google Maps 🗺️](https://goo.gl/maps/BxuzkS9kZrrASGCn7)
+
+# Code of conduct
+
+Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](https://nf-co.re/code_of_conduct).

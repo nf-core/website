@@ -38,11 +38,84 @@ The 2022 Barcelona hackathon did sell out. So be sure to register early to avoid
 
 # Schedule
 
-The hackathon will run from **Monday 16th October** to **Wednesday 18th October**.
-More information about the hackathon and associated social events will be added here as it becomes available.
+The hackathon will run from **Monday 16th October** to **Wednesday 18th October**. The preliminarily schedule is outlined below.
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Mon. 16 Oct., 2023</th>
+                <th>Tue. 17 Oct., 2023</th>
+                <th>Wed. 18 Oct., 2023</th>
+            </tr>
+        </thead>
+    <tbody>
+      <tr>
+        <td data-timestamp="1697443200" data-timeformat="HH:mm z">10:00</td>
+        <td>Arrivals &amp; Registration</td>
+        <td rowspan="4">Hack!</td>
+        <td rowspan="3">Hack!</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697446800" data-timeformat="HH:mm z">11:00</td>
+        <td>Welcome</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697448600" data-timeformat="HH:mm z">11:30</td>
+        <td rowspan="2">Hack!</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697452200" data-timeformat="HH:mm z">12:30</td>
+        <td>Final wrap up</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697454000" data-timeformat="HH:mm z">13:00</td>
+        <td rowspan="1">Lunch</td>
+        <td rowspan="1">Lunch</td>
+        <td rowspan="1">Lunch</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697457600" data-timeformat="HH:mm z">14:00</td>
+        <td rowspan="1">Hack!</td>
+        <td rowspan="1">Hack!</td>
+        <td rowspan="5"></td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697472000" data-timeformat="HH:mm z">18:00</td>
+        <td>Day Summary</td>
+        <td>Day Summary</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697473800" data-timeformat="HH:mm z">18:30</td>
+        <td rowspan="3"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697477400" data-timeformat="HH:mm z">19:00</td>
+        <td rowspan="2">Hackathon Social</td>
+      </tr>
+      <tr>
+        <td data-timestamp="1697493600" data-timeformat="HH:mm z">00:00</td>
+      </tr>
+    </tbody>
+    </table>
+</div>
+
+# Groups
+
+To keep work and discussion during the hackathon manageable, we will organise everyone into groups. You are free to change groups as you wish during the hackathon.
+
+We will coordinate our work and the issues we are working on using a single GitHub project board (we’ll post a link here closer to the time). There will be a separate tab for each group where will have collated a list of relevant issues.
 
 # Venue: Hotel SB Glow
 
-The in-person hackathon will be taking place at Hotel SB Glow. More information about this venue can be found the the Nextflow Summit website.
+The in-person hackathon will be taking place at Hotel SB Glow.
+
+More information about this venue can be found the the [Nextflow Summit website](https://summit.nextflow.io/).
 
 [👉🏻 Google Maps 🗺️](https://goo.gl/maps/6uKCKkbciLAR5qgSA)
+
+# Code of conduct
+
+Please note that by attending the hackathon you are agreeing to abide by our [Code of Conduct](https://nf-co.re/code_of_conduct).

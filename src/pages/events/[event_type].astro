@@ -7,13 +7,13 @@ export async function getStaticPaths() {
     events = events.filter((event) => {
         return event.slug.split('/').length === 2;
     });
-    return events.map((event) => {
-        if (event.data.title.toLowerCase().match('bytesize')) {
-            event.data.type = 'bytesize';
-        }
+    // reduce events to unique event types
+    const event_types = [...new Set(events.map((event) => event.data.type)), 'bytesize'];
+
+    return event_types.map((event_type) => {
         return {
             params: {
-                event_type: event.data.type,
+                event_type: event_type,
             },
             props: {
                 events: events,
