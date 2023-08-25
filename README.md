@@ -128,7 +128,7 @@ all also ignored in `.gitignore`.
 # clone the repo if not done yet
 git clone https://github.com/sanger-tol/pipelines-website.git
 
-# pull the latest from Git and the main branch being used..
+# pull the latest from Git and the main branch being used.
 cd pipelines-website
 git status
 git pull
@@ -142,7 +142,7 @@ docker compose -f docker-compose-prod.yml up >> docker-compose.log 2>&1 &
 The web server needs the following cronjobs running to scrape statistics and updates:
 
 ```cron
-00 */2 * * * git -C /home/ubuntu/pipelines-website pull; docker run --rm --user $UID:$GROUPS -v  /home/ubuntu/pipelines-website:/var/www/ -w /var/www node:16-alpine3.12 sh -c 'npm install & npm run build-prod'  >> /home/ubuntu/pipelines-website/logs/git-pull.log 2>&1
+00 */2 * * * ( git -C /home/ubuntu/pipelines-website pull && docker run --rm --user 1000:1000 -v  /home/ubuntu/pipelines-website:/var/www/ -w /var/www node:16-alpine3.12 sh -c 'npm install & npm run build-prod' ) >> /home/ubuntu/pipelines-website/logs/git-pull.log 2>&1
 00 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_pipeline_details.php >> /home/ubuntu/pipelines-website/logs/update_pipelines.log 2>&1
 15 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_module_details.php >> /home/ubuntu/pipelines-website/logs/update_modules.log 2>&1
 30 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_stats.php >> /home/ubuntu/pipelines-website/logs/update_stats.log 2>&1
