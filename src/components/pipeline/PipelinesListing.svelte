@@ -16,6 +16,8 @@
         archived: boolean;
     }[] = [];
 
+    export let filters: { name: string }[] = [{ name: '' }];
+
     let sortInverse = false;
 
     const searchPipelines = (pipeline) => {
@@ -112,9 +114,11 @@
         );
         return pipelines;
     }
-    $: filteredPipelines = pipelines.sort(sortPipelines);
+    $: filteredPipelines = searchFilterSortPipelines(pipelines);
 
     onMount(() => {
+        console.log(filters);
+        CurrentFilter.set(filters);
         SortBy.subscribe(() => {
             filteredPipelines = searchFilterSortPipelines(pipelines);
         });
