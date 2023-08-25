@@ -14,17 +14,17 @@
     function handleFilter(fil) {
         // remove focus from button
         event.target.blur();
-        if ($CurrentFilter.includes(fil)) {
-            CurrentFilter.set($CurrentFilter.filter((f) => f !== fil));
+        if ($CurrentFilter.find((f) => f.name === fil)) {
+            CurrentFilter.set($CurrentFilter.filter((f) => f.name !== fil));
         } else {
-            CurrentFilter.set([...$CurrentFilter, fil]);
+            CurrentFilter.set([...$CurrentFilter, { name: fil }]);
         }
     }
     function handleExlusiveFilter(fil) {
         // remove focus from button
         event.target.blur();
 
-        CurrentFilter.set([fil]);
+        CurrentFilter.set([{ name: fil }]);
     }
     function handleSort(sor) {
         SortBy.set(sor);
@@ -33,11 +33,12 @@
     function handleDisplayStyle(style) {
         DisplayStyle.set(style);
     }
-
     onMount(() => {
-        Filters.set($CurrentFilter);
+        if (filter.length > 0 && !$CurrentFilter.length) {
+            CurrentFilter.set(filter);
+        }
         if (filter.length > 0) {
-            CurrentFilter.set(filter.map((fil) => fil.name));
+            Filters.set(filter);
         }
         if (sortBy.length > 0) {
             SortBy.set(sortBy[0]);
@@ -68,7 +69,7 @@
                             class={fil.class
                                 ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
                                 : 'btn text-nowrap w-100 btn-outline-success'}
-                            class:active={$CurrentFilter.includes(fil.name)}
+                            class:active={$CurrentFilter.find((f) => f.name === fil.name)}
                             on:click={() => handleFilter(fil.name)}
                             on:dblclick={() => handleExlusiveFilter(fil.name)}
                             on:mouseout={() => event.target.blur()}
@@ -178,7 +179,7 @@
                                 class={fil.class
                                     ? 'btn text-nowrap flex-fill btn-outline-' + fil.class
                                     : 'btn text-nowrap w-100 btn-outline-success'}
-                                class:active={$CurrentFilter.includes(fil.name)}
+                                class:active={$CurrentFilter.find((f) => f.name === fil.name)}
                                 on:click={() => handleFilter(fil.name)}
                                 on:dblclick={() => handleExlusiveFilter(fil.name)}
                                 on:mouseout={() => event.target.blur()}
