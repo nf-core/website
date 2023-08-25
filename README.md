@@ -122,25 +122,34 @@ all also ignored in `.gitignore`.
 
 ### Deployment
 
-The website is deployed via GitHub Actions ([`.github/workflows/web-deploy.yml`](https://github.com/sanger-tol/pipelines-website/blob/main/.github/workflows/web-deploy.yml)).
-This script runs PHP composer and npm, then syncs the required files to the web server via FTP.
+```bash
+# login to the production VM
 
-### GitHub web hooks
+# clone the repo if not done yet
+git clone https://github.com/sanger-tol/pipelines-website.git
 
-There is a GitHub web hook at the nf-core organisation level which triggers the pipeline update script whenever a repo is created, or has a release etc.
-This pings the `deploy_pipelines.php` script.
+# pull the latest from Git and the main branch being used..
+cd pipelines-website
+git status
+git pull
+
+# start the docker containers
+docker compose -f docker-compose-prod.yml up >> docker-compose.log 2>&1 &
+```
 
 ### Stats cronjob
 
-The web server needs the following cronjobs running to scrape statistics and udates:
+The web server needs the following cronjobs running to scrape statistics and updates:
 
 ```cron
-0 0 * * * /usr/local/bin/php /path/to/deployment/update_stats.php >> /home/sanger-tol/update.log 2>&1
-0 2 * * * /usr/local/bin/php /path/to/deployment/update_issue_stats.php >> /home/sanger-tol/update.log 2>&1
-0 0 * * 0 /usr/local/bin/php /path/to/deployment/update_fontawesome_icons.php >> /home/sanger-tol/update.log 2>&1
+00 */2 * * * git -C /home/ubuntu/pipelines-website pull; docker run --rm --user $UID:$GROUPS -v  /home/ubuntu/pipelines-website:/var/www/ -w /var/www node:16-alpine3.12 sh -c 'npm install & npm run build-prod'  >> /home/ubuntu/pipelines-website/logs/git-pull.log 2>&1
+00 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_pipeline_details.php >> /home/ubuntu/pipelines-website/logs/update_pipelines.log 2>&1
+15 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_module_details.php >> /home/ubuntu/pipelines-website/logs/update_modules.log 2>&1
+30 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_stats.php >> /home/ubuntu/pipelines-website/logs/update_stats.log 2>&1
+45 05 * * * docker exec nf-core-web /usr/local/bin/php /var/www/update_issue_stats.php >> /home/ubuntu/pipelines-website/logs/update_issue_stats.log 2>&1
 ```
 
-Remember to replace `/path/to/deployment/` with your actual deployment directory.
+Remember to replace the path with your actual deployment directory if any different.
 
 The `update_issue_stats.php` script can use a lot of GitHub API calls, so should run at least one hour after the `update_stats.php` script last finished.
 This is not because the script takes an hour to run, but because the GitHub API rate-limiting counts the number of calls within an hour.

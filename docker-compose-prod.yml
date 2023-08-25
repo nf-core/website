@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: typist0tulip7console-PIMENTO4cosmic
+      MYSQL_DATABASE: nfcore
+      MYSQL_USER: nfcore_admin
+      MYSQL_PASSWORD: PEBBLY8exhibit_mead1cilium6despise
+    volumes:
+      - ./.mysql-data/db:/var/lib/mysql
+  web:
+    container_name: nf-core-web
+    image: webdevops/php-apache:7.4
+    restart: always
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/public_html
+    volumes:
+      - .:/var/www/
+    ports:
+      - '8000:80'
+    depends_on:
+      - composer
+      - db
+      - npm
+  composer:
+    image: composer:2.1
+    command: ['composer', 'install']
+    volumes:
+      - .:/var/www/
+    working_dir: /var/www/
+  npm:
+    image: node:16-alpine3.12
+    container_name: npm
+    volumes:
+      - .:/var/www/
+    command: sh -c "npm install --quiet &&
+      npm run build-prod"
+    working_dir: /var/www/
