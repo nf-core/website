@@ -2,14 +2,15 @@
     import FilterBar from '@components/FilterBar.svelte';
     import EventCard from '@components/event/EventCard.svelte';
     import { CurrentFilter, SearchQuery, EventIsOngoing } from '@components/store';
+    import { onMount } from 'svelte';
 
     export let events = [];
-    export let filters: string[] = [];
+    export let currentFilters: { name: string }[];
     export let currentEvents;
 
     let filteredEvents = events;
     const filterByType = (event) => {
-        if ($CurrentFilter.includes(event.data.type)) {
+        if ($CurrentFilter.find((f) => f.name === event.data.type)) {
             return true;
         }
         return false;
@@ -34,14 +35,6 @@
     };
 
     $: filteredEvents = events;
-
-    CurrentFilter.subscribe(() => {
-        filteredEvents = events.filter(filterByType).filter(searchEvents);
-    });
-
-    SearchQuery.subscribe(() => {
-        filteredEvents = events.filter(filterByType).filter(searchEvents);
-    });
 
     $: futureEvents = filteredEvents
         .filter((event) => {
@@ -93,18 +86,27 @@
         };
     });
 
-    CurrentFilter.set(event_types);
-
     function hasYearChanged(events, idx) {
         if (idx === 0 || events[idx].data.start.getFullYear() !== events[idx - 1].data.start.getFullYear()) {
             return true;
         }
         return false;
     }
+
+    onMount(() => {
+        CurrentFilter.set(currentFilters);
+        CurrentFilter.subscribe(() => {
+            filteredEvents = events.filter(filterByType).filter(searchEvents);
+        });
+
+        SearchQuery.subscribe(() => {
+            filteredEvents = events.filter(filterByType).filter(searchEvents);
+        });
+    });
 </script>
 
 <div>
-    <FilterBar filter={filters} displayStyle={[]} sortBy={[]} />
+    <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} />
     <div class="events">
         {#if currentEvents.length > 0}
             <div class="mb-3 col-12">

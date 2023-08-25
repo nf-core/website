@@ -1,5 +1,6 @@
 <script lang="ts">
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
+    import { onMount } from 'svelte';
 
     export let filter: { name: string; class?: string }[] = [];
     export let sortBy: string[] = [];
@@ -32,15 +33,17 @@
     function handleDisplayStyle(style) {
         DisplayStyle.set(style);
     }
-    if (filter.length > 0 && !$CurrentFilter.length) {
-        CurrentFilter.set(filter);
-    }
-    if (filter.length > 0) {
-        Filters.set(filter);
-    }
-    if (sortBy.length > 0) {
-        SortBy.set(sortBy[0]);
-    }
+    onMount(() => {
+        if (filter.length > 0 && !$CurrentFilter.length) {
+            CurrentFilter.set(filter);
+        }
+        if (filter.length > 0) {
+            Filters.set(filter);
+        }
+        if (sortBy.length > 0) {
+            SortBy.set(sortBy[0]);
+        }
+    });
 </script>
 
 <div class="filter-bar mb-2">
