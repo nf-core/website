@@ -134,7 +134,7 @@ git status
 git pull
 
 # start the docker containers
-docker compose -f docker-compose-prod.yml up >> docker-compose.log 2>&1 &
+docker compose -f docker-compose-prod.yml up >> logs/docker-compose.log 2>&1 &
 ```
 
 ### Stats cronjob
