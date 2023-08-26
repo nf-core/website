@@ -2611,7 +2611,9 @@
         "description": "Arriba is a command-line tool for the detection of gene fusions from RNA-Seq data.",
         "keywords": [
           "fusion",
-          "arriba"
+          "arriba",
+          "detection",
+          "RNA-Seq"
         ],
         "tools": [
           {
@@ -2642,10 +2644,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Assembly FASTA file",
               "pattern": "*.{fasta}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -2656,10 +2670,22 @@
             }
           },
           {
+            "meta4": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "blacklist": {
               "type": "file",
               "description": "Blacklist file",
               "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "meta5": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -2670,6 +2696,12 @@
             }
           },
           {
+            "meta6": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "structural_variants": {
               "type": "file",
               "description": "Structural variants file",
@@ -2677,10 +2709,22 @@
             }
           },
           {
+            "meta7": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "tags": {
               "type": "file",
               "description": "Tags file",
               "pattern": "*.{tsv}"
+            }
+          },
+          {
+            "meta8": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -70265,7 +70309,7 @@
           },
           {
             "results": {
-              "type": "dir",
+              "type": "directory",
               "description": "Qualimap results dir",
               "pattern": "*/*"
             }
@@ -70381,6 +70425,96 @@
         {
           "name": "methylseq",
           "version": "2.4.0"
+        }
+      ]
+    },
+    {
+      "name": "qualimap_rnaseq",
+      "path": "modules/nf-core/qualimap/rnaseq/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "qualimap_rnaseq",
+        "description": "Evaluate alignment data",
+        "keywords": [
+          "quality control",
+          "qc",
+          "rnaseq"
+        ],
+        "tools": [
+          {
+            "qualimap": {
+              "description": "Qualimap 2 is a platform-independent application written in\nJava and R that provides both a Graphical User Interface and\na command-line interface to facilitate the quality control of\nalignment sequencing data and its derivatives like feature counts.\n",
+              "homepage": "http://qualimap.bioinfo.cipf.es/",
+              "documentation": "http://qualimap.conesalab.org/doc_html/index.html",
+              "doi": "10.1093/bioinformatics/bts503",
+              "licence": [
+                "GPL-2.0-only"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF file of the reference genome",
+              "pattern": "*.{gtf}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "results": {
+              "type": "directory",
+              "description": "Qualimap results dir",
+              "pattern": "*/*"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@FriederikeHanssen"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "2.3.4"
+        },
+        {
+          "name": "rnaseq",
+          "version": "3.12.0"
         }
       ]
     },
@@ -84908,10 +85042,47 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "index": {
               "type": "directory",
               "description": "STAR genome index",
               "pattern": "star"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Annotation GTF file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "star_ignore_sjdbgtf": {
+              "type": "boolean",
+              "description": "Ignore annotation GTF file"
+            }
+          },
+          {
+            "seq_platform": {
+              "type": "string",
+              "description": "Sequencing platform"
+            }
+          },
+          {
+            "seq_center": {
+              "type": "string",
+              "description": "Sequencing center"
             }
           }
         ],
@@ -85073,9 +85244,21 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Fasta file of the reference genome"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -85086,6 +85269,12 @@
           }
         ],
         "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
           {
             "index": {
               "type": "directory",
@@ -85140,6 +85329,121 @@
           "version": "0.1.1"
         }
       ]
+    },
+    {
+      "name": "star_starsolo",
+      "path": "modules/nf-core/star/starsolo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "starsolo",
+        "description": "Create a counts matrix for single-cell data using STARSolo, handling cell barcodes and UMI information.",
+        "keywords": [
+          "align",
+          "count",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "starsolo": {
+              "description": "Mapping, demultiplexing and quantification for single cell RNA-seq.",
+              "homepage": "https://github.com/alexdobin/STAR/",
+              "documentation": "https://github.com/alexdobin/STAR/blob/master/docs/STARsolo.md",
+              "doi": "10.1101/2021.05.05.442755",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+            }
+          },
+          {
+            "solotype": {
+              "type": "string",
+              "description": "Type of single-cell library.\nIt can be CB_UMI_Simple for most common ones such as 10xv2 and 10xv3,\nCB_UMI_Complex for method such as inDrop and SmartSeq for SMART-Seq.\n"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing the STAR index information."
+            }
+          },
+          {
+            "index": {
+              "type": "directory",
+              "description": "STAR genome index",
+              "pattern": "star"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information.\nHere, you should add all the specific barcode/umi\ninformation for each sample.\ne.g. `[ id:'test_starsolo', umi_len:'12', cb_start:1 ]`\n"
+            }
+          },
+          {
+            "log_final": {
+              "type": "file",
+              "description": "STAR final log file",
+              "pattern": "*Log.final.out"
+            }
+          },
+          {
+            "log_out": {
+              "type": "file",
+              "description": "STAR lot out file",
+              "pattern": "*Log.out"
+            }
+          },
+          {
+            "log_progress": {
+              "type": "file",
+              "description": "STAR log progress file",
+              "pattern": "*Log.progress.out"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "STARSolo metrics summary CSV file.",
+              "pattern": "*/Gene/Summary.csv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@kevinmenden",
+          "@ggabernet",
+          "@grst",
+          "@fmalmeida",
+          "@rhreynolds",
+          "@apeltzer",
+          "@vivian-chen16",
+          "@maxulysse",
+          "@joaodemeirelles"
+        ]
+      }
     },
     {
       "name": "stitch",
