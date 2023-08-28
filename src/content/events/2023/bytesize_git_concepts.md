@@ -3,9 +3,9 @@ title: 'Bytesize: git concepts'
 subtitle: Edmund Miller, The University of Texas at Dallas
 type: talk
 start_date: '2023-12-12'
-start_time: '13:00 CET'
+start_time: '14:30 CET'
 end_date: '2023-12-12'
-end_time: '13:30 CET'
+end_time: '15:00 CET'
 location_url: https://kth-se.zoom.us/j/68390542812
 ---
 
