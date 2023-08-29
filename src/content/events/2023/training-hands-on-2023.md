@@ -22,7 +22,7 @@ To make the workshops available to everyone they will be streamed on the [nf-cor
 
 # Schedule
 
-This training sessions will be available from 3 pm (CEST) on September 20. This session will be approximately 3 hours.
+This training session will be available from 3 p.m. (CEST) on September 20th. This session will be approximately 2 hours.
 
 ## Asking questions
 
