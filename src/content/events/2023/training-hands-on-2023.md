@@ -12,7 +12,7 @@ import_typeform: true
 
 # Welcome
 
-Join us from September 6-8 2023 for the Hands-on Nextflow & nf-core Training event!
+Join us from September 20 2023 for the Hands-on Nextflow & nf-core Training event!
 
 The Hands-on Nextflow training is entirely virtual and free and will demonstrate how to build a pipeline with Nextflow. While the training will offer something for all skill levels it will be especially useful for those who have already completed the foundational Nextflow training.
 
