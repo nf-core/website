@@ -79,7 +79,7 @@ Hardcoded pipeline defaults are first, then the user's home directory, then the 
 then every `-c` file in the order supplied, and finally command line `--<parameter>` options.
 
 :::warning
-For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in these cases
+For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block in `custom.config` files **WILL NOT** override defaults in `nextflow.config`! Please use `-params-file` in `yaml` or `json` format in these cases:
 
 ```json title="nf-params.json"
 {
