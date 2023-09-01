@@ -18,7 +18,7 @@ The Hands-on Nextflow training is entirely virtual and free and will demonstrate
 
 # Accessing the streams
 
-To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
+To make the workshops available to everyone they will be streamed on the [Hands-on Nextflow training playlist on the nf-core YouTube channel](https://www.youtube.com/playlist?list=PL3xpfTVZLcNiCJRgKnBFYtmnXj1U31szQ).
 
 # Schedule
 

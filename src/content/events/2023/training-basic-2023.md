@@ -18,21 +18,42 @@ The Community Nextflow and nf-core Training is entirely virtual and free and wil
 
 # Accessing the streams
 
-To make the workshops available to everyone they will be streamed on the [nf-core YouTube channel](https://www.youtube.com/c/nf-core).
+To make the workshops available to everyone they will be streamed on the [Foundational training playlist on the nf-core YouTube channel](https://www.youtube.com/playlist?list=PL3xpfTVZLcNiLFLiDqk_H5b3TBwvgO_-W).
 
 # Schedule
 
-Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 3 hours and will include a short break.
+Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 2.5 - 3 hours and will include a short break.
 
 The training will consist of two days of Nextflow and one day of nf-core training. The material covered will be very similar to what has already been shown in [previous community training events](https://www.youtube.com/@nf-core/playlists?view=50&sort=dd&shelf_id=2).
 
-The schedule for each session will be available soon!
+**Session 1**
+
+  - An introduction to Nextflow (30 min)
+  - Setting up your training environment (10 min)
+  - Getting started with Nextflow (30 min)
+  - Configuration (30 min)
+  - Managing dependencies (50 min)
+  - Deployment scenarios (20 min)
+
+**Session 2**
+
+  - Channels (30 min)
+  - Processes (30 min)
+  - Operators (20 min)
+  - Cache and resume (30 min)
+  - Proof of concept RNAseq pipeline (60 min)
+
+**Session 3**
+
+  - An introduction to nf-core (30 min)
+  - nf-core for users (60 min)
+  - nf-core for developers (60 min)
 
 ## Asking questions
 
 Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-The Slack channels for this event will become available closer to the event.
+We have created the **#sept23-training-foundational** Slack channel for this event. You can find it by searching the channel list in the top left-hand corner of your Slack window. Community volunteers will monitor these channels and will help answer your questions.
 
 > Please be aware that due to the size of this event there may be a delay when answering your questions.
 
