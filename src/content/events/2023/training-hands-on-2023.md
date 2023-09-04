@@ -1,6 +1,6 @@
 ---
 title: Hands-on Nextflow Training - September 2023
-subtitle: A global online foundational Nextflow training event
+subtitle: A fast way to get up and running with Nextflow - hands on and light on theory. One 2 hour session.
 type: training
 start_date: '2023-09-20'
 start_time: '15:00 CEST'
