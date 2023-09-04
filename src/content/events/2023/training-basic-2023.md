@@ -1,6 +1,6 @@
 ---
 title: Community Foundational Nextflow Training - September 2023
-subtitle: A global online foundational Nextflow training event
+subtitle: The primary Nextflow / nf-core training for beginners, with 3 x 2.5 hour sessions.
 type: training
 start_date: '2023-09-6'
 start_time: '15:00 CEST'
