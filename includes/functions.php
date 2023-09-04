@@ -295,9 +295,10 @@ function get_self_url($strip_query = true) {
         $url = $_SERVER['REQUEST_URI'];
     }
     // Strip oldsite from URL, should be handled by netlify redirects
-    $url = str_replace('oldsite.nf-co.re', 'nf-co.re', $url);
+    $host = $_SERVER['HTTP_HOST'];
+    $host = str_replace('oldsite.nf-co.re', 'nf-co.re', $host);
 
-    return $self_url . $_SERVER['HTTP_HOST'] . $url;
+    return $self_url . $host . $url;
 }
 
 function generate_toc($html_string) {
