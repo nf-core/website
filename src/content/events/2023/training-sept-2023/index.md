@@ -1,6 +1,6 @@
 ---
 title: Community Advanced Nextflow Training - September 2023
-subtitle: A global online advanced Nextflow training event
+subtitle: Join us for the first ever Advanced community training! Become a Nextflow expert!
 type: training
 start_date: '2023-09-27'
 start_time: '15:00 CEST'
