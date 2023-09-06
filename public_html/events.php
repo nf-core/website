@@ -21,6 +21,14 @@ $event_type_icons = [
     'tutorial' => 'fas fa-graduation-cap',
     'training' => 'fas fa-chalkboard-teacher',
 ];
+$event_meta_keys = [
+    'type',
+    'tile',
+    'subtile',
+    'url',
+    'description',
+    'youtube_embed',
+];
 
 function create_event_download_button($event, $button_style) {
     $start = DateTime::createFromFormat('U', $event['start_ts']);
@@ -386,6 +394,12 @@ foreach ($events as $idx => $event) {
     if (!$event) {
         unset($events[$idx]);
         continue;
+    }
+    
+    foreach ($event_meta_keys as $meta_key) {
+        if ($event[$meta_key]) {
+            $event[$meta_key] = htmlspecialchars($event[$meta_key], ENT_QUOTES, 'UTF-8');
+        }
     }
 
     # Update arrays
