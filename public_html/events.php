@@ -397,9 +397,7 @@ foreach ($events as $idx => $event) {
     }
     
     foreach ($event_meta_keys as $meta_key) {
-        if ($event[$meta_key]) {
-            $event[$meta_key] = htmlspecialchars($event[$meta_key], ENT_QUOTES, 'UTF-8');
-        }
+        $event[$meta_key] = htmlspecialchars($event[$meta_key], ENT_QUOTES, 'UTF-8');
     }
 
     # Update arrays
