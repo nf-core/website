@@ -76,6 +76,8 @@ function print_events($events, $is_past_event) {
         if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
             $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
         }
+        $date_string = htmlspecialchars($date_string, ENT_QUOTES, 'UTF-8');
+
         # if event title starts with bytesize change event type
         if (strpos($event['title'], 'Bytesize') === 0) {
             $event['type'] = 'bytesize';
@@ -116,7 +118,7 @@ function print_events($events, $is_past_event) {
         }
 
         if (!$is_past_event): ?>
-          <h6 class="small text-muted"><?php echo htmlspecialchars($date_string, ENT_QUOTES, 'UTF-8'); ?></h6>
+          <h6 class="small text-muted"><?php echo $date_string; ?></h6>
 
           <?php if (array_key_exists('description', $event)) {
               echo '<p>' . nl2br(htmlspecialchars($event['description'], ENT_QUOTES, 'UTF-8')) . '</p>';
@@ -130,7 +132,7 @@ function print_events($events, $is_past_event) {
         <?php else: ?>
           <h6 class="small text-muted mb-0">
             <?php echo $date_string; ?> -
-            <a class="text-success" href="<?php echo $event['url']; ?>">
+            <a class="text-success" href="<?php echo htmlspecialchars($event['url'], ENT_QUOTES, 'UTF-8'); ?>">
               See details
             </a>
           </h6>
@@ -273,6 +275,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         $youtube_embed = true;
         foreach ($event['youtube_embed'] as $embed) {
             $video_id = get_youtube_id($embed);
+            $video_id = htmlspecialchars($video_id, ENT_QUOTES, 'UTF-8');
             if ($video_id) {
                 echo '<script>var video_id="' . $video_id . '"</script>';
             }
