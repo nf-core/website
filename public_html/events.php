@@ -92,36 +92,37 @@ function print_events($events, $is_past_event) {
         ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible <?php echo $event[
-     'type'
- ]; ?>">
+    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php 
+    echo $colour_class; 
+    ?> overflow-visible <?php 
+    echo htmlspecialchars($event['type'], ENT_QUOTES, 'UTF-8'); ?>">
       <div class="card-body <?php if ($is_past_event) {
           echo 'py-2';
       } ?>">
         <h5 class="my-0 py-0">
-          <a class="text-success text-decoration-none" href="<?php echo $event['url']; ?>"><?php echo $event[
-    'title'
-]; ?></a>
+          <a class="text-success text-decoration-none" href="<?php
+          echo htmlspecialchars($event['url'], ENT_QUOTES, 'UTF-8'); 
+          ?>"><?php
+          echo htmlspecialchars($event['title'], ENT_QUOTES, 'UTF-8'); ?></a>
           <small><span class="badge bg-<?php echo $colour_class .
               ' ' .
-              $text_colour_class; ?> float-end small"><i class="<?php echo $icon_class; ?> me-1"></i><?php echo ucfirst(
-     $event['type'],
- ); ?></span></small>
+              $text_colour_class; ?> float-end small"><i class="<?php echo $icon_class; ?> me-1"></i><?php
+              echo htmlspecialchars(ucfirst($event['type']), ENT_QUOTES, 'UTF-8'); ?></span></small>
         </h5>
         <?php
         if (array_key_exists('subtitle', $event)) {
             $tm = $is_past_event ? 'text-muted' : '';
-            echo '<p class="mb-0 ' . $tm . '">' . $event['subtitle'] . '</p>';
+            echo '<p class="mb-0 ' . $tm . '">' . htmlspecialchars($event['subtitle'], ENT_QUOTES, 'UTF-8') . '</p>';
         }
 
         if (!$is_past_event): ?>
-          <h6 class="small text-muted"><?php echo $date_string; ?></h6>
+          <h6 class="small text-muted"><?php echo htmlspecialchars($date_string, ENT_QUOTES, 'UTF-8'); ?></h6>
 
           <?php if (array_key_exists('description', $event)) {
-              echo '<p>' . nl2br($event['description']) . '</p>';
+              echo '<p>' . nl2br(htmlspecialchars($event['description'], ENT_QUOTES, 'UTF-8')) . '</p>';
           } ?>
           <div class="btn-group" role="group">
-            <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
+            <a href="<?php echo htmlspecialchars($event['url'], ENT_QUOTES, 'UTF-8'); ?>" class="btn btn-outline-success">
               See details
             </a>
             <?php echo create_event_download_button($event, 'btn-outline-success'); ?>
