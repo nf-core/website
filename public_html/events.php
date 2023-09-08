@@ -23,13 +23,18 @@ $event_type_icons = [
 ];
 
 function create_event_download_button($event, $button_style) {
-    $start = DateTime::createFromFormat('U', $event['start_ts']);
+    $start_ts = htmlspecialchars($event['start_ts'], ENT_QUOTES, 'UTF-8');
+    $end_ts = htmlspecialchars($event['end_ts'], ENT_QUOTES, 'UTF-8');
+    $start = DateTime::createFromFormat('U', $start_ts);
     $start->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-    $end = DateTime::createFromFormat('U', $event['end_ts']);
+    $end = DateTime::createFromFormat('U', $end_ts);
     $end->setTimezone(new DateTimeZone('Europe/Amsterdam'));
     $address = $event['address'] ? $event['address'] : '';
     $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
     $address = is_array($address) ? $address[0] : $address; # if multiple location urls are given, take the first one
+    $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
+    $title = htmlspecialchars($event['tile'], ENT_QUOTES, 'UTF-8');
+    $subtitle = htmlspecialchars($event['subtile'], ENT_QUOTES, 'UTF-8');
     $link = Link::create($event['title'], $start, $end)
         ->description($event['subtitle'] ? $event['subtitle'] : '')
         ->address($address);
