@@ -35,8 +35,8 @@ function create_event_download_button($event, $button_style) {
     $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
     $title = htmlspecialchars($event['tile'], ENT_QUOTES, 'UTF-8');
     $subtitle = htmlspecialchars($event['subtile'], ENT_QUOTES, 'UTF-8');
-    $link = Link::create($event['title'], $start, $end)
-        ->description($event['subtitle'] ? $event['subtitle'] : '')
+    $link = Link::create($title, $start, $end)
+        ->description($subtitle ? $subtitle : '')
         ->address($address);
 
     $event_download_button =
