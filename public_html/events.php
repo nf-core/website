@@ -29,10 +29,11 @@ function create_event_download_button($event, $button_style) {
     $start->setTimezone(new DateTimeZone('Europe/Amsterdam'));
     $end = DateTime::createFromFormat('U', $end_ts);
     $end->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-    $address = $event['address'] ? $event['address'] : '';
-    $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
+    $address = htmlspecialchars($event['address'], ENT_QUOTES, 'UTF-8');
+    $address = $address ? $address : '';
+    $location_url = htmlspecialchars($event['location_url'], ENT_QUOTES, 'UTF-8');
+    $address = $location_url ? $location_url : $address; # prefer url over address
     $address = is_array($address) ? $address[0] : $address; # if multiple location urls are given, take the first one
-    $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
     $title = htmlspecialchars($event['title'], ENT_QUOTES, 'UTF-8');
     $subtitle = htmlspecialchars($event['subtitle'], ENT_QUOTES, 'UTF-8');
     $link = Link::create($title, $start, $end)
