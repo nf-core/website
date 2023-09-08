@@ -85,8 +85,7 @@ function print_events($events, $is_past_event) {
         }
 
         if (($current_year != date('Y', $event['start_ts'])) & $is_past_event) {
-            $current_year = date('Y', $event['start_ts']);
-            $current_year = htmlspecialchars($current_year,  ENT_QUOTES, 'UTF-8');
+            $current_year = date('Y', $start_ts);
             echo _h3($current_year);
         }
         $colour_class = $event_type_classes[strtolower($event['type'])];
