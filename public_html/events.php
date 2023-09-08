@@ -63,20 +63,20 @@ function print_events($events, $is_past_event) {
     foreach ($events as $idx => $event):
 
         # Nice date strings
-        $event['start_ts'] = htmlspecialchars($event['start_ts'], ENT_QUOTES, 'UTF-8');
-        $event['end_ts'] = htmlspecialchars($event['end_ts'], ENT_QUOTES, 'UTF-8');
+        $start_ts = htmlspecialchars($event['start_ts'], ENT_QUOTES, 'UTF-8');
+        $end_ts = htmlspecialchars($event['end_ts'], ENT_QUOTES, 'UTF-8');
         $date_string =
-            date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) .
+            date('j<\s\u\p>S</\s\u\p> M Y', $start_ts) .
             ' - ' .
-            date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+            date('j<\s\u\p>S</\s\u\p> M Y', $end_ts);
         if (date('mY', $event['start_ts']) == date('mY', $event['end_ts'])) {
             $date_string =
-                date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']) .
+                date('j<\s\u\p>S</\s\u\p> ', $start_ts) .
                 ' - ' .
-                date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+                date('j<\s\u\p>S</\s\u\p> M Y', $end_ts);
         }
         if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
-            $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+            $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $end_ts);
         }
 
         # if event title starts with bytesize change event type
