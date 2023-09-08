@@ -33,8 +33,8 @@ function create_event_download_button($event, $button_style) {
     $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
     $address = is_array($address) ? $address[0] : $address; # if multiple location urls are given, take the first one
     $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
-    $title = htmlspecialchars($event['tile'], ENT_QUOTES, 'UTF-8');
-    $subtitle = htmlspecialchars($event['subtile'], ENT_QUOTES, 'UTF-8');
+    $title = htmlspecialchars($event['title'], ENT_QUOTES, 'UTF-8');
+    $subtitle = htmlspecialchars($event['subtitle'], ENT_QUOTES, 'UTF-8');
     $link = Link::create($title, $start, $end)
         ->description($subtitle ? $subtitle : '')
         ->address($address);
