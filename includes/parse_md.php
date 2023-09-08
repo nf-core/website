@@ -31,7 +31,10 @@ function parse_md($markdown) {
             die();
         }
     } else {
-        $md_full = $markdown;
+        // should die if not a valid md file or url
+        header('HTTP/1.1 404 Not Found');
+        include '404.php';
+        die();
     }
 
     // Get the meta
