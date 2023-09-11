@@ -23,7 +23,7 @@ $subtitle = 'Page not found';
 $request_url = 'that page';
 if ($_SERVER['REQUEST_URI'] != '/404') {
     $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
-    $request_url = '<code>' . $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '</code>';
+    $request_url = '<code>' . $protocol . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') . '</code>';
 }
 include '../includes/header.php';
 ?>
