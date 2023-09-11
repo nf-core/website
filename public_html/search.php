@@ -1,11 +1,12 @@
 <?php
 
 $title = 'Search nf-core';
-$subtitle = 'Searching for the term <code>' . $_GET['q'] . '</code>';
+$search_term = $_GET['q'];
+$search_term = htmlspecialchars($search_term, ENT_QUOTES, 'UTF-8');
+$subtitle = 'Searching for the term <code>' . $search_term . '</code>';
 $mainpage_container = false;
 include '../includes/header.php';
 
-$search_term = $_GET['q'];
 ?>
 <div class="mainpage-subheader-heading chevron-down">
   <div class="container  my-3">
