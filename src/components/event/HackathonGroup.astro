@@ -3,22 +3,28 @@ import { Icon } from 'astro-icon';
 
 import Profile from '@components/GitHubProfilePictureExtended.svelte'
 
-const { title, leaders, slack, intro_video } = Astro.props;
+const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
 
 export interface Props {
     title: string;
+    color?: string;
+    proj_url?: URL;
     leaders: Object;
     slack?: string;
     intro_video?: string;
 }
+const border_col = color ? {'border-left-color': color, 'border-left-width': '5px'} : {};
 ---
 
-<div class="card mb-5">
+<div class="card mb-5" style={border_col}>
     <div class="card-body">
         <div class="row">
             <div class={intro_video ? "col-md-6" : "col"}>
 
-                <h3>{title}</h3>
+                <h3>
+                    {title}
+                    {proj_url && <a href={proj_url} target="_blank" class="btn btn-small btn-outline-secondary ms-3">Project Board <Icon name="octicon:table-16" width={'12pt'} class="ms-1" style={{'margin-top': '-3px'}} /></a>}
+                </h3>
                 <slot />
 
                 {slack && <a href={`https://nfcore.slack.com/channels/${slack}`}><Icon name="mdi:slack" /> <code>{slack}</code></a> }

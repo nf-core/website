@@ -70,42 +70,107 @@ There is a separate tab for each group that will have a list of relevant issues 
 
 ## Meta groups
 
-<HackathonGroup title="Beginners">
+These groups are here to support anyone who may need help getting started at the hackathon.
+They are not intended for focussed task-specific work.
+
+<HackathonGroup title="Beginners" leaders={{
+    'mribeirodantas': 'Marcel Ribeiro-Dantas',
+    'abhi18av': 'Abhinav Sharma',
+    'FranBonath': 'Franziska Bonath'
+}}>
     For this hackathon, we will  have no designated beginners group but will instead
-    have a "beginners table" on the first day.
+    have a "beginners table" **on the first day**.
+    You're welcome to join to get help on how to contribute to open-source,
+    and to meet other community contribution beginners.
 
     Please note that attendees are expected to know the basics of building with Nextflow.
 </HackathonGroup>
 
-<HackathonGroup title="Online">
-    Group leads reach out to specific sub-groups for contacts.
+<HackathonGroup title="Online" leaders={{
+    'yuukiiwa': 'Yuk Kei',
+    'louperelo': 'Louisa Perelo'
+}}>
+    If you're feeling lost in Gather.town, or just want to hang out with other online attendees,
+    look out for Yuk Kei and Louisa. They'll be able to steer you in the right direction and
+    get you started with one of the project groups.
 </HackathonGroup>
 
 ## Project groups
 
-<HackathonGroup title="Infrastructure" leaders={{'mashehu':'Matthias Hörtenhuber', 'mirpedrol':'Júlia Mir Pedrol'}}>
-    The nf-core website and central tooling are always being improved.
-    If you enjoy working with python or want to do some web development
-    (mainly CSS and javascript - we are using astrojs+svelte), join the infrastructure group!
-</HackathonGroup>
-
-<HackathonGroup title="Pipelines">
+<HackathonGroup title="Pipelines" color="#bf4b8a" proj_url="https://github.com/orgs/nf-core/projects/47/views/4" leaders={{
+    'drpatelh': 'Harshil Patel',
+    'adamrtalbot': 'Adam Talbot',
+    'MaxUlysse': 'Maxime Garcia',
+    'Emiller88': 'Edmund Miller',
+    'sateeshperi': 'Sateesh Peri',
+}}>
     The pipelines group will focus on any pipeline-related work.
     This could be a DSL2 conversion of a pipeline, a new or improved feature for a pipeline,
     or an entirely new pipeline
     (please let us register a new pipeline already before the hackathon,
     following [our guidelines](https://nf-co.re/docs/contributing/adding_pipelines#before-you-start)).
     These are typically led by the main pipeline developers if they also attend the hackathon.
+
+    Suggested projects / teams:
+
+    - Implementing nf-test within pipelines
+    - Adding new functionality to existing pipelines
+    - Updating pipelines to use the latest nf-core template, via template syncs
+    - Teams formed around work on specific pipelines
+    - Azure megatests roll-out in pipelines
+
 </HackathonGroup>
 
-
-<HackathonGroup title="Modules & Subworkflows">
+<HackathonGroup title="Modules & Subworkflows" color="#1f6feb" proj_url="https://github.com/orgs/nf-core/projects/47/views/5" leaders={{
+    'JoseEspinosa': 'Jose Espinosa-Carrasco',
+    'ggabernet': 'Gisela Gabernet'
+}}>
     The modules group welcomes anyone who wants to work on current or new modules + subworkflows
     at [nf-core/modules](https://github.com/nf-core/modules).
+
+    Suggested projects / teams:
+
+    - Implementing nf-test for modules
+    - Creating new modules, see issue list
+    - Stubs for all modules
+
 </HackathonGroup>
 
-<HackathonGroup title="Nextflow backbone">
-    New for 2023!
+<HackathonGroup title="Infrastructure" color="#9e6a03" proj_url="https://github.com/orgs/nf-core/projects/47/views/3" leaders={{
+    'mashehu': 'Matthias Hörtenhuber',
+    'mirpedrol': 'Júlia Mir Pedrol',
+    'nvnieuwk': 'Nicolas Vannieuwkerke'
+}}>
+    The nf-core website and central tooling are always being improved.
+    If you'd like to make a difference to nf-core without writing any Nextflow code,
+    this is the group for you!
+
+    Suggested projects / teams:
+
+    - Subworkflows nf-core/tools infrastructure
+    - Template customisation with feature flags
+    - Stripped down/customisable nf-core pipeline template
+    - Samplesheets infrastructure
+    - New lint tests (especially for modules, eg. stubs)
+    - Google megatests
+    - nf-validation plugin
+
+</HackathonGroup>
+
+<HackathonGroup title="Nextflow backbone" color="#238636" proj_url="https://github.com/orgs/nf-core/projects/47/views/2" leaders={{
+    'bentsherman': 'Ben Sherman',
+    'jordeu': 'Jordi Deu-Pons'
+}}>
+    New for autumn 2023! Branch out of pure nf-core and get involved in core Nextflow.
+
+    Suggested projects / teams:
+
+    - nf-prov plugin (RO-Crate / BioCompute object support)
+    - nf-quilt plugin
+    - Other Nextflow plugins
+    - Nextflow documentation
+    - New core features for Nextflow (see GitHub issues)
+
 </HackathonGroup>
 
 # Social activities
