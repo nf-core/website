@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte'
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
 
 const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
 
@@ -13,37 +13,62 @@ export interface Props {
     slack?: string;
     intro_video?: string;
 }
-const border_col = color ? {'border-left-color': color, 'border-left-width': '5px'} : {};
+const border_col = color ? { 'border-left-color': color, 'border-left-width': '5px' } : {};
 ---
 
 <div class="card mb-5" style={border_col}>
     <div class="card-body">
         <div class="row">
-            <div class={intro_video ? "col-md-6" : "col"}>
-
+            <div class={intro_video ? 'col-md-6' : 'col'}>
                 <h3>
                     {title}
-                    {proj_url && <a href={proj_url} target="_blank" class="btn btn-small btn-outline-secondary ms-3">Project Board <Icon name="octicon:table-16" width={'12pt'} class="ms-1" style={{'margin-top': '-3px'}} /></a>}
+                    {
+                        proj_url && (
+                            <a href={proj_url} target="_blank" class="btn btn-small btn-outline-secondary ms-3">
+                                Project Board{' '}
+                                <Icon
+                                    name="octicon:table-16"
+                                    width={'12pt'}
+                                    class="ms-1"
+                                    style={{ 'margin-top': '-3px' }}
+                                />
+                            </a>
+                        )
+                    }
                 </h3>
                 <slot />
 
-                {slack && <a href={`https://nfcore.slack.com/channels/${slack}`}><Icon name="mdi:slack" /> <code>{slack}</code></a> }
+                {
+                    slack && (
+                        <a href={`https://nfcore.slack.com/channels/${slack}`}>
+                            <Icon name="mdi:slack" /> <code>{slack}</code>
+                        </a>
+                    )
+                }
 
-                {leaders && <h4>Group Leaders</h4> }
-                {leaders && Object.entries(leaders).map(([github,name])=>{
-                    return <Profile username={github}>{name}</Profile>
-                })}
-
+                {leaders && <h4>Group Leaders</h4>}
+                {
+                    leaders &&
+                        Object.entries(leaders).map(([github, name]) => {
+                            return <Profile username={github}>{name}</Profile>;
+                        })
+                }
             </div>
 
-            {intro_video && (
-            <div class="col-md-6">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/9555Oi-yS5c" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-            </div>
-            )}
-
+            {
+                intro_video && (
+                    <div class="col-md-6">
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                src="https://www.youtube.com/embed/9555Oi-yS5c"
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            />
+                        </div>
+                    </div>
+                )
+            }
         </div>
     </div>
 </div>
