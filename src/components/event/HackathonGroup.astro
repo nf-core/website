@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon';
+
+import Profile from '@components/GitHubProfilePictureExtended.svelte'
+
+const { title, leaders, slack, intro_video } = Astro.props;
+
+export interface Props {
+    title: string;
+    leaders: Array<string>;
+    slack?: string;
+    intro_video?: string;
+}
+---
+
+<div class="card mb-5">
+    <div class="card-body">
+        <div class="row">
+            <div class={intro_video ? "col-md-6" : "col"}>
+
+                <h3>{{ title }}</h3>
+                <slot />
+
+                {slack && <a href={`https://nfcore.slack.com/channels/${slack}`}><Icon name="mdi:slack" /> <code>{{ slack }}</code></a> }
+
+                <h4>Group Leaders</h4>
+                <ul>
+                {leaders &&
+                    leaders.map((leader, i) => {
+                    return <li><Profile username={leader} /></li>
+                    })
+                }
+                </ul>
+
+            </div>
+
+            {intro_video && (
+            <div class="col-md-6">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/9555Oi-yS5c" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            )}
+
+        </div>
+    </div>
+</div>
