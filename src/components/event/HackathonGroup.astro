@@ -7,7 +7,7 @@ const { title, leaders, slack, intro_video } = Astro.props;
 
 export interface Props {
     title: string;
-    leaders: Array<string>;
+    leaders: Object;
     slack?: string;
     intro_video?: string;
 }
@@ -18,19 +18,15 @@ export interface Props {
         <div class="row">
             <div class={intro_video ? "col-md-6" : "col"}>
 
-                <h3>{{ title }}</h3>
+                <h3>{title}</h3>
                 <slot />
 
-                {slack && <a href={`https://nfcore.slack.com/channels/${slack}`}><Icon name="mdi:slack" /> <code>{{ slack }}</code></a> }
+                {slack && <a href={`https://nfcore.slack.com/channels/${slack}`}><Icon name="mdi:slack" /> <code>{slack}</code></a> }
 
-                <h4>Group Leaders</h4>
-                <ul>
-                {leaders &&
-                    leaders.map((leader, i) => {
-                    return <li><Profile username={leader} /></li>
-                    })
-                }
-                </ul>
+                {leaders && <h4>Group Leaders</h4> }
+                {leaders && Object.entries(leaders).map(([github,name])=>{
+                    return <Profile username={github}>{name}</Profile>
+                })}
 
             </div>
 
