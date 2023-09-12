@@ -23,7 +23,6 @@ It is our hope that these talks / videos will build an archive of training mater
 
 Mariana Guiladi ([@mariguilardi](https://github.com/mariguilardi)) and Alyssa Briggs ([@alyssa-ab](https://github.com/alyssa-ab)) were part of the nf-core mentoring program that concluded end of March 2023. In this weeks bytesize talk they will share their experiences as mentee and mentor, respectively, during the course of the program.
 
-
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited for reader-friendliness**
 
@@ -95,4 +94,3 @@ Round three of the mentorship is open. Applications are still open until May 15t
 (host) In that case, I would very much want to thank you both for being here today and presenting the work also that you've done. I want to thank you also specifically for contributing to nf-core. It's lovely to have you in the community. Of course, I want to thank the audience for listening in and the Chan Zuckerberg Initiative for funding the talks and as it happens, also this mentorship program. Thank you very much. Have a great day.
 
 </details>
-

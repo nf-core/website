@@ -19,4 +19,4 @@ It is our hope that these talks / videos will build an archive of training mater
 
 ## Bytesize: Using Wave Containers
 
-Wave is a container provisioning service integrated with Nextflow. With Wave, you can build, upload, and manage the container images required by your data analysis workflows automatically and on-demand during pipeline execution. Marcel ([@mribeirodantas]([https://github.com/ewels](https://github.com/mribeirodantas))) is going to show us how wave containers can be used in the context of a Nextflow pipeline.
+Wave is a container provisioning service integrated with Nextflow. With Wave, you can build, upload, and manage the container images required by your data analysis workflows automatically and on-demand during pipeline execution. Marcel ([@mribeirodantas](<[https://github.com/ewels](https://github.com/mribeirodantas)>)) is going to show us how wave containers can be used in the context of a Nextflow pipeline.
