@@ -379,12 +379,12 @@ if ($pipeline->archived) {
             $releases['dev'] = '';
             foreach ($releases as $r => $h) {
                 $selected = $r === $release ? 'selected="selected"' : '';
+                $option_value = $pipeline->name . '/' . $r;
+                if ( !empty($pagetab) ){
+                    $option_value = $option_value .  '/' . $pagetab;
+                }
                 echo '<option value="/' .
-                    $pipeline->name .
-                    '/' .
-                    $r .
-                    '/' .
-                    $pagetab .
+                    $option_value .
                     '" ' .
                     $selected .
                     '>' .
