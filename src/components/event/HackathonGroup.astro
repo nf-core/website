@@ -25,11 +25,17 @@ const slack_clean = slack ? slack.replace('#', '') : '';
                     {title}
                     {
                         proj_url && (
-                            <a href={proj_url} target="_blank" class="btn btn-small btn-outline-secondary ms-3">
-                                Project Board{' '}
+                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
                                 <Icon
                                     name="octicon:table-16"
-                                    width={'12pt'}
+                                    width="12pt"
+                                    class="me-1"
+                                    style={{ 'margin-top': '-3px' }}
+                                />
+                                Project Board
+                                <Icon
+                                    name="octicon:link-external-16"
+                                    width="12pt"
                                     class="ms-1"
                                     style={{ 'margin-top': '-3px' }}
                                 />
@@ -37,15 +43,19 @@ const slack_clean = slack ? slack.replace('#', '') : '';
                         )
                     }
                 </h3>
-                <slot />
-
                 {
                     slack && (
-                        <a href={`https://nfcore.slack.com/channels/${slack_clean}`}>
-                            <Icon name="mdi:slack" /> <code>#{slack_clean}</code>
+                        <a
+                            href={`https://nfcore.slack.com/channels/${slack_clean}`}
+                            class="badge rounded-pill text-bg-success text-decoration-none mb-3"
+                        >
+                            <Icon name="mdi:slack" width="12pt" /> Slack:
+                            <code class="text-bg-success">#{slack_clean}</code>
                         </a>
                     )
                 }
+
+                <slot />
 
                 {leaders && <h4>Group Leaders</h4>}
                 {
