@@ -11,7 +11,7 @@ location_name: Barcelona, Spain
 location_latlng: [41.4021444, 2.191099]
 ---
 
-import HackathonGroup from '@components/event/HackathonGroup.astro'
+import HackathonGroup from '@components/event/HackathonGroup.astro';
 
 # Welcome
 
@@ -44,7 +44,9 @@ Attendance online is free, attending in person costs €79 (€100 incl. VAT).
 
 The 2022 Barcelona hackathon did sell out. So be sure to register early to avoid disappointment!
 
-<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/"><i class="fa-solid fa-id-card me-2"></i> Register now</a>
+<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/register/">
+    <i class="fa-solid fa-id-card me-2"></i> Register now
+</a>
 
 ## Schedule
 
@@ -82,16 +84,19 @@ They are not intended for focussed task-specific work.
     and to meet other community contribution beginners.
 
     Please note that attendees are expected to know the basics of building with Nextflow.
+
 </HackathonGroup>
 
-<HackathonGroup title="Online" leaders={{
-    'yuukiiwa': 'Yuk Kei',
-    'louperelo': 'Louisa Perelo',
-    'abhi18av': 'Abhinav Sharma'
-}}>
-    If you're feeling lost in Gather.town, or just want to hang out with other online attendees,
-    look out for Yuk Kei and Louisa. They'll be able to steer you in the right direction and
-    get you started with one of the project groups.
+<HackathonGroup
+    title="Online"
+    leaders={{
+        yuukiiwa: 'Yuk Kei',
+        louperelo: 'Louisa Perelo',
+        abhi18av: 'Abhinav Sharma',
+    }}
+>
+    If you're feeling lost in Gather.town, or just want to hang out with other online attendees, look out for Yuk Kei
+    and Louisa. They'll be able to steer you in the right direction and get you started with one of the project groups.
 </HackathonGroup>
 
 ## Project groups
@@ -183,18 +188,18 @@ We're still working out the details for these events - please check back soon fo
 
 ### In person:
 
-- Evening social events in Barcelona, as part of the Nextflow Summit program.
+-   Evening social events in Barcelona, as part of the Nextflow Summit program.
 
 ### Hybrid (in-person and online)
 
-- nf-core quiz! Test your nf-core knowledge!
-- Scavenger Hunt
-  - Take photos of you completing as many challenges as you can and share them on the channel!
-- Hackathon bingo
-  - Grab your [bingo card](https://nfcore-bingo.web.app/?game=nf-core-hackathon) and join in the fun.
-- Hidden socks in Gather
-  - Take screenshots of as many as you can find!
-  - See the sock hunt information board in Gather for more information.
+-   nf-core quiz! Test your nf-core knowledge!
+-   Scavenger Hunt
+    -   Take photos of you completing as many challenges as you can and share them on the channel!
+-   Hackathon bingo
+    -   Grab your [bingo card](https://nfcore-bingo.web.app/?game=nf-core-hackathon) and join in the fun.
+-   Hidden socks in Gather
+    -   Take screenshots of as many as you can find!
+    -   See the sock hunt information board in Gather for more information.
 
 :::tip
 All social activities are of course optional, but we hope to see as many people joining in as possible!
@@ -208,16 +213,16 @@ We should all feel responsible for making nf-core events safe and fun for everyo
 
 In addition, please respect the following at all times during the hackathon:
 
-- Do not take photos / screenshots of groups you are working within without asking for consent of all individuals in the group.
-  Remember, not everyone wants their photographs shared on social media.
+-   Do not take photos / screenshots of groups you are working within without asking for consent of all individuals in the group.
+    Remember, not everyone wants their photographs shared on social media.
 
 ## Reporting CoC Violations during the hackathon
 
 In case of an immediate perceived threat at the hackathon, please reach out to any of the following nf-core safety officers on Slack:
 
-- <Profile username='ctuni'>Cris Tuñí</Profile>
-- <Profile username='heuermh'>Michael Heuer</Profile>
-- <Profile username='snafees'>Saba Nafees</Profile>
+-   <Profile username="ctuni">Cris Tuñí</Profile>
+-   <Profile username="heuermh">Michael Heuer</Profile>
+-   <Profile username="snafees">Saba Nafees</Profile>
 
 You can also report any CoC violations directly to [safety@nf-co.re](mailto:safety@nf-co.re).
 Our safety officers will contact you to follow up on your report.

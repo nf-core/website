@@ -28,26 +28,26 @@ The training will consist of two days of Nextflow and one day of nf-core trainin
 
 **Session 1**
 
-  - An introduction to Nextflow
-  - Setting up your training environment
-  - Getting started with Nextflow
-  - Configuration
-  - Managing dependencies
-  - Deployment scenarios
+- An introduction to Nextflow
+- Setting up your training environment
+- Getting started with Nextflow
+- Configuration
+- Managing dependencies
+- Deployment scenarios
 
 **Session 2**
 
-  - Channels
-  - Processes
-  - Operators
-  - Cache and resume
-  - Proof of concept RNAseq pipeline
+- Channels
+- Processes
+- Operators
+- Cache and resume
+- Proof of concept RNAseq pipeline
 
 **Session 3**
 
-  - An introduction to nf-core
-  - nf-core for users
-  - nf-core for developers
+- An introduction to nf-core
+- nf-core for users
+- nf-core for developers
 
 ## Asking questions
 
