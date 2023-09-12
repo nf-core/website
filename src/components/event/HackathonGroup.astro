@@ -14,6 +14,7 @@ export interface Props {
     intro_video?: string;
 }
 const border_col = color ? { 'border-left-color': color, 'border-left-width': '5px' } : {};
+const slack_clean = slack ? slack.replace('#', '') : '';
 ---
 
 <div class="card mb-5" style={border_col}>
@@ -40,8 +41,8 @@ const border_col = color ? { 'border-left-color': color, 'border-left-width': '5
 
                 {
                     slack && (
-                        <a href={`https://nfcore.slack.com/channels/${slack}`}>
-                            <Icon name="mdi:slack" /> <code>{slack}</code>
+                        <a href={`https://nfcore.slack.com/channels/${slack_clean}`}>
+                            <Icon name="mdi:slack" /> <code>#{slack_clean}</code>
                         </a>
                     )
                 }
