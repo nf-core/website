@@ -83,8 +83,8 @@ For Nextflow DSL2 nf-core pipelines - parameters defined in the parameter block 
 
 ```json title="nf-params.json"
 {
-   "<parameter1_name>": 1,
-   "<parameter2_name>": '<string>'
+  "<parameter1_name>": 1,
+  "<parameter2_name>": "<string>"
 }
 ```
 

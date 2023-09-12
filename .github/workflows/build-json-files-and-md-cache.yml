@@ -94,7 +94,6 @@ jobs:
           git status
           git diff --quiet || (git commit -am "[automated] Update json files and markdown cache" && git push)
 
-
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
         if: ${{ steps.check_lines.outputs.changes }}
