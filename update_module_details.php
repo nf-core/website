@@ -416,7 +416,7 @@ $sql = 'INSERT INTO pipelines_modules (pipeline_id,module_id) VALUES (?,?)';
 
 foreach ($pipelines as $pipeline) {
     $modules_json = github_query(
-        'https://api.github.com/repos/sanger-tol/' . $pipeline['name'] . '/contents/modules.json',
+        'https://api.github.com/repos/sanger-tol/' . basename($pipeline['name']) . '/contents/modules.json',
     );
     $modules_json = json_decode(base64_decode($modules_json['content']), true);
 
