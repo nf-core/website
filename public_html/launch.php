@@ -195,7 +195,7 @@ function save_launcher_form() {
     if (!isset($_POST['cache_id'])) {
         return ['No cache ID supplied'];
     }
-    $id_check = validate_cache_id($_POST['cache_id']);
+    $id_check = validate_cache_id(htmlspecialchars($_POST['cache_id'],  ENT_QUOTES, 'UTF-8'));
     if (!isset($id_check['status'])) {
         return ['Problem loading cache: <pre><code>' . $id_check . '</code></pre>'];
     }
