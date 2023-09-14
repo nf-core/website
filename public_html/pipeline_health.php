@@ -221,7 +221,7 @@ class RepoHealth {
                     if (strpos($http_response_header[0], 'HTTP/1.1 404') === false) {
                         // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
                         echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>' .
-                            $this->name .
+                            htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8').
                             '</code> - <code>' .
                             $branch .
                             '</code><pre>' .
@@ -599,7 +599,7 @@ class RepoHealth {
         }
         if (is_null($this->$test_name)) {
             echo '<td class="table-secondary text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8').
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
@@ -609,7 +609,7 @@ class RepoHealth {
       </td>';
         } elseif ($this->$test_name === -1) {
             echo '<td class="table-success text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
@@ -619,7 +619,7 @@ class RepoHealth {
       </td>';
         } elseif ($this->$test_name) {
             echo '<td class="table-success text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
@@ -629,7 +629,7 @@ class RepoHealth {
       </td>';
         } else {
             echo '<td class="table-danger text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8').
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
@@ -1126,7 +1126,7 @@ ksort($core_repos);
                       ' class="small fw-normal text-nowrap" title="' .
                       $description .
                       '" data-bs-toggle="tooltip" data-bs-placement="top">' .
-                      $name .
+                      htmlspecialchars($name, ENT_QUOTES, 'UTF-8') .
                       '</th>';
               }
           }
@@ -1136,7 +1136,7 @@ ksort($core_repos);
       <tbody>
         <?php foreach ($pipelines as $pipeline) {
             echo '<tr>';
-            echo '<td>' . $pipeline->name . '</td>';
+            echo '<td>' . htmlspecialchars($pipeline->name, ENT_QUOTES, 'UTF-8') . '</td>';
             foreach ($pipeline_test_names as $key => $name) {
                 $pipeline->print_table_cell($key);
             }
@@ -1156,7 +1156,7 @@ ksort($core_repos);
               echo '<th class="small text-nowrap" title="' .
                   $core_repo_test_descriptions[$key] .
                   '" data-bs-toggle="tooltip" data-bs-placement="top">' .
-                  $name .
+                  htmlspecialchars($name, ENT_QUOTES, 'UTF-8') .
                   '</th>';
           } ?>
         </tr>
