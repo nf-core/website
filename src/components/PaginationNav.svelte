@@ -10,9 +10,11 @@
     const maxPages = 7;
     let truncated = false;
 
-    onMount(() => {
-        generatePages();
-    });
+    $: {
+        if (lastPage > 0) {
+            generatePages();
+        }
+    }
 
     function generatePages() {
         pages = [];

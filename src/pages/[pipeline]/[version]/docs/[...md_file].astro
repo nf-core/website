@@ -101,6 +101,12 @@ const md_content = await cache
             console.log(`Cache miss for ${cache_key}`);
             content = await getGitHubFile(pipeline, `/docs/${md_file}.md`, version);
         }
+        // make relative links to assets point towards github instead of local
+        content = content.replaceAll(
+            /(\]\()(\.\.\/assets\/)/g,
+            `$1https://raw.githubusercontent.com/nf-core/${pipeline}/${version}/assets/`,
+        );
+
         // make relative links to other markdown files absolute to current Astro.url.pathname
         content = content.replaceAll(/\[([^\]]+)\]\((?!http)(?!#)(.*?)\)/g, (match, p1, p2) => {
             const link = [...new Set([...url.split('/').filter((i) => i), ...p2.split('/').filter((i) => i)])].join(

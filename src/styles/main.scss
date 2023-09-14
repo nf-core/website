@@ -369,6 +369,14 @@ h4:focus .header-link,
   }
 }
 
+.markdown-content h5 {
+  color: var(--bs-body-color);
+  font-family: $font-family-sans-serif;
+  margin-top: 1rem;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base * 1.1;
+}
+
 .markdown-content,
 .events,
 .card {
