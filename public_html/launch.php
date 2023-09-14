@@ -56,16 +56,17 @@ $nxf_flag_schema = [
     ],
 ];
 $release = isset($_GET['release']) ? $_GET['release'] : false;
-$release = htmlspecialchars($release,  ENT_QUOTES, 'UTF-8');
+$release = htmlspecialchars($release, ENT_QUOTES, 'UTF-8');
 
 if (isset($_GET['pipeline'])) {
-    $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
+    $pipeline_input = htmlspecialchars($_GET['pipeline'], ENT_QUOTES, 'UTF-8');
+    $error_msgs = launch_pipeline_web($pipeline_input, $release);
 }
 function launch_pipeline_web($pipeline, $release) {
     // Check that we recognise the pipeline name
     global $pipelines;
     global $nxf_flag_schema;
-    if (!array_key_exists($_GET['pipeline'], $pipelines)) {
+    if (!array_key_exists($pipeline, $pipelines)) {
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
     // Set release to latest if not given
