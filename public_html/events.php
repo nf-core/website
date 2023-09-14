@@ -166,6 +166,12 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         $href_url_prepend = basename($markdown_fn) . '/';
         $markdown_fn = $markdown_fn . '/index.md';
     }
+    elseif (!is_file($markdown_fn)) {
+        unset($markdown_fn);
+        header('HTTP/1.1 404 Not Found');
+        include '404.php';
+        die();
+    }
 
     require_once '../includes/parse_md.php';
 
