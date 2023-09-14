@@ -56,7 +56,7 @@ $nxf_flag_schema = [
     ],
 ];
 $release = isset($_GET['release']) ? $_GET['release'] : false;
-htmlspecialchars($release,  ENT_QUOTES, 'UTF-8');
+$release = htmlspecialchars($release,  ENT_QUOTES, 'UTF-8');
 
 if (isset($_GET['pipeline'])) {
     $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
