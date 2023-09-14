@@ -42,6 +42,7 @@ if (isset($_POST['post_content']) && $_POST['post_content'] == $post_content_typ
     if (isset($_POST['cache_id'])) {
         validate_cache_id_api($_POST['cache_id']);
         $cache_id = $_POST['cache_id'];
+        $cache_id = basename($cache_id);
     } else {
         // Build a string for the filename with the timestamp and random string
         $cache_id = time() . '_' . substr(md5(rand()), 0, 12);
@@ -77,6 +78,7 @@ if (isset($_POST['post_content']) && $_POST['post_content'] == $post_content_typ
 // GET request - polling for the results of a Schema builder
 elseif (isset($_GET['id']) && !isset($_POST['post_content'])) {
     $cache_id = $_GET['id'];
+    $cache_id = basename($cache_id);
     validate_cache_id_api($cache_id);
     $cache_fn = $cache_dir . '/' . $cache_id . '.json';
 
