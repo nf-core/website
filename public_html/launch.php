@@ -56,7 +56,6 @@ $nxf_flag_schema = [
     ],
 ];
 $release = isset($_GET['release']) ? $_GET['release'] : false;
-$release = basename($release);
 
 if (isset($_GET['pipeline'])) {
     $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
@@ -82,8 +81,10 @@ function launch_pipeline_web($pipeline, $release) {
         ];
     }
     // Make cache file names
-    $gh_pipeline_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$release}.json";
-    $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
+    $gh_pipeline_schema_fn = basename("{$release}.json");
+    $gh_pipeline_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$gh_pipeline_schema_fn}";
+    $gh_pipeline_no_schema_fn = basename("{$release}.NO_SCHEMA");
+    $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$gh_pipeline_no_schema_fn}";
     // Build directories if needed
     if (!is_dir(dirname($gh_pipeline_schema_fn))) {
         mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
