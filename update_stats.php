@@ -390,7 +390,7 @@ foreach ($gh_repos as $repo) {
     } else {
         $repo_type = 'pipelines';
     }
-    echo " Repo " . $repo->name . "\n";
+    echo " Repo " . htmlspecialchars($repo->name, ENT_QUOTES, 'UTF-8') . "\n";
     $results[$repo_type][$repo->name]['repo_metrics'][$updated] = [
         'id' => $repo->id,
         'name' => $repo->name,
@@ -407,7 +407,7 @@ foreach ($gh_repos as $repo) {
         'archived' => $repo->archived,
     ];
     // Annoyingly, two values are only available if we query for just this repo
-    $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . $repo->name;
+    $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . basename($repo->name);
     $gh_repo = json_decode(file_get_contents($gh_repo_url, false, $gh_api_opts));
     if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
         var_dump($http_response_header);
