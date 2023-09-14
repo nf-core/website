@@ -775,7 +775,7 @@ function get_gh_team_repos($team) {
     if (file_exists($gh_teams_cache) && !is_refresh_cache(null, true)) {
         $gh_team = json_decode(file_get_contents($gh_teams_cache));
     } else {
-        $gh_team_url = 'https://api.github.com/orgs/sanger-tol/teams/' . $team;
+        $gh_team_url = 'https://api.github.com/orgs/sanger-tol/teams/' . basename($team);
         $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
 
         // Save for next time
