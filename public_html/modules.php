@@ -83,7 +83,7 @@ echo $msg;
 <div class=" btn-toolbar mb-4 modules-toolbar" role="toolbar">
     <div class="module-filters input-group input-group-sm w-25">
         <input type="search" class="form-control" placeholder="Search modules" value="<?php echo isset($_GET['q'])
-            ? $_GET['q']
+            ? htmlspecialchars($_GET['q'],  ENT_QUOTES, 'UTF-8')
             : ''; ?>">
     </div>
 </div>
