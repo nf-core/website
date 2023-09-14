@@ -25,6 +25,7 @@ if (isset($_GET['theme'])) {
 
 $filename = 'nfcore-' . preg_replace('/[^a-z]/', '', $textstring) . '_logo_' . $theme . '.png';
 $filename = str_replace('_.', '.', $filename);
+$filename = basename($filename);
 
 if (strlen($textstring) == 0) {
     header('HTTP/1.1 404 Not Found');
