@@ -17,7 +17,7 @@ export interface Props {
     docSearchTags?: { name: string; content: string | string[] }[];
 }
 
-const {
+let {
     pipeline,
     meta_title = pipeline,
     subtitle,
@@ -125,12 +125,15 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {version}
+                                {version === 'latest' ? versions[0] : version}
                             </button>
 
                             <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
+                                        if (version === 'latest') {
+                                            version = versions[0];
+                                        }
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
                                             `${pipeline}/${v}`,
