@@ -434,7 +434,7 @@ foreach ($pipelines as $pipeline) {
         mysqli_stmt_bind_param($stmt, 'ii', $pipeline_id, $module_id);
 
         $name = str_replace('/', '_', $name);
-        $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8')
+        $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
         // pepare a select statment for nfcore_modules based on name
         $get_module = "SELECT * FROM nfcore_modules WHERE name = '$name'";
 
@@ -454,7 +454,7 @@ foreach ($pipelines as $pipeline) {
                 // Free result set
                 mysqli_free_result($result);
             } else {
-                echo "No modules with the name $name found for pipeline ". $pipeline['name'] . "\n";
+                echo "No modules with the name $name found for pipeline ". htmlspecialchars($pipeline['name'], ENT_QUOTES, 'UTF-8'). "\n";
             }
         }
     }
