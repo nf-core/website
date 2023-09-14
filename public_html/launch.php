@@ -204,7 +204,7 @@ function save_launcher_form() {
         return ['Problem loading cache: ' . $id_check['message']];
     }
     // Load cache
-    $cache_id = $_POST['cache_id'];
+    $cache_id = htmlspecialchars($_POST['cache_id'],  ENT_QUOTES, 'UTF-8');
     $cache_id = basename($cache_id);
     $cache_fn = $cache_dir . '/' . $cache_id . '.json';
     if (!file_exists($cache_fn)) {
@@ -240,11 +240,12 @@ function save_launcher_form() {
 
     // Loop through POST vars and set params
     foreach ($_POST as $k => $v) {
+        $filtered_v = htmlspecialchars($v,  ENT_QUOTES, 'UTF-8');
         if (substr($k, 0, 7) == 'params_') {
-            $cache['input_params'][substr($k, 7)] = $v;
+            $cache['input_params'][substr($k, 7)] = $filtered_v;
         }
         if (substr($k, 0, 9) == 'nxf_flag_') {
-            $cache['nxf_flags'][substr($k, 9)] = $v;
+            $cache['nxf_flags'][substr($k, 9)] = $filtered_v;
         }
     }
     // Write to JSON file
