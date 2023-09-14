@@ -55,7 +55,8 @@ $nxf_flag_schema = [
         ],
     ],
 ];
-$release = isset($_GET['release']) ? basename($_GET['release']) : false;
+$release = isset($_GET['release']) ? $_GET['release'] : false;
+$release = basename($release);
 
 if (isset($_GET['pipeline'])) {
     $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
