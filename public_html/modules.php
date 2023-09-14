@@ -54,7 +54,7 @@ $total_pages = ceil(count($modules) / $num_elements);
 if (!isset($_GET['page'])) {
     $current_page = 1;
 } else {
-    $current_page = $_GET['page'];
+    $current_page = htmlspecialchars($_GET['page'],  ENT_QUOTES, 'UTF-8');
 }
 $current_element = ($current_page - 1) * $num_elements;
 $current_modules = array_slice($modules, $current_element, $num_elements);
