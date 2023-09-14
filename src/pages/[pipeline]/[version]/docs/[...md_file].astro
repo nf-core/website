@@ -42,9 +42,6 @@ export function getStaticPaths() {
 }
 let { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
-if (version === 'latest') {
-    version = versions[0];
-}
 let headings: {
     depth: number;
     text: string;
@@ -87,7 +84,9 @@ if (left_sidebar) {
     ];
 }
 
-const cache_key = `${pipeline}/${version}/docs/${md_file}.md`;
+const version_tag_name = version === 'latest' ? versions[0] : version;
+
+const cache_key = `${pipeline}/${version_tag_name}/docs/${md_file}.md`;
 
 const md_content = await cache
     .get(cache_key)
