@@ -18,12 +18,14 @@ if (isset($suggestion_404_urls)) {
 
 header('HTTP/1.1 404 Not Found');
 
+require_once '../includes/functions.php';
+
 $title = 'Error 404';
 $subtitle = 'Page not found';
 $request_url = 'that page';
 if ($_SERVER['REQUEST_URI'] != '/404') {
-    $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
-    $request_url = '<code>' . $protocol . $_SERVER['HTTP_HOST'] . htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') . '</code>';
+    $request_url = get_self_url();
+    $request_url = '<code>' . htmlspecialchars($request_url, ENT_QUOTES, 'UTF-8') . '</code>';
 }
 include '../includes/header.php';
 ?>
