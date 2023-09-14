@@ -221,9 +221,9 @@ class RepoHealth {
                     if (strpos($http_response_header[0], 'HTTP/1.1 404') === false) {
                         // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
                         echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>' .
-                            htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8').
+                            htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                             '</code> - <code>' .
-                            $branch .
+                            htmlspecialchars($branch, ENT_QUOTES, 'UTF-8') .
                             '</code><pre>' .
                             print_r($http_response_header, true) .
                             '</pre><pre>' .
@@ -604,7 +604,7 @@ class RepoHealth {
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8') .
                 '" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
       </td>';
         } elseif ($this->$test_name === -1) {
@@ -614,7 +614,7 @@ class RepoHealth {
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8')  .
                 '" class="d-block text-secondary text-decoration-none" target="_blank">&mdash;</a>
       </td>';
         } elseif ($this->$test_name) {
@@ -624,7 +624,7 @@ class RepoHealth {
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8')  .
                 '" class="d-block" target="_blank"><i class="fas fa-check text-success"></i></a>
       </td>';
         } else {
@@ -634,7 +634,7 @@ class RepoHealth {
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8')  .
                 '" class="d-block" target="_blank"><i class="fas fa-times text-danger"></i></a>
       </td>';
         }
