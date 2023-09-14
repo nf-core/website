@@ -220,6 +220,7 @@ class RepoHealth {
                     // Write an empty cache file
                     if (strpos($http_response_header[0], 'HTTP/1.1 404') === false) {
                         // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
+                        $gh_branch = htmlspecialchars($gh_branch, ENT_QUOTES, 'UTF-8');
                         echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>' .
                             htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                             '</code> - <code>' .
