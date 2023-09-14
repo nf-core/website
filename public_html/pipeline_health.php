@@ -172,7 +172,7 @@ class RepoHealth {
             if (file_exists($this->gh_repo_cache) && !$this->refresh) {
                 $this->gh_repo = json_decode(file_get_contents($this->gh_repo_cache));
             } else {
-                $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . $this->name;
+                $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name);
                 $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
                 $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
             }
@@ -184,7 +184,7 @@ class RepoHealth {
         if (file_exists($this->gh_release_cache) && !$this->refresh) {
             $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
         } else {
-            $gh_release_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/releases/latest';
+            $gh_release_url = 'https://api.github.com/repos/nf-core/' . basename($this->name) . '/releases/latest';
             $this->gh_release = json_decode(file_get_contents($gh_release_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_release_cache, $this->gh_release);
         }
@@ -195,14 +195,14 @@ class RepoHealth {
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
-            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches';
+            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches';
             $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
 
         // Details of branch protection for main and dev
         foreach (['main', 'dev', 'TEMPLATE'] as $branch) {
-            $gh_branch_cache = $this->cache_base . '/branch_' . $this->name . '_' . $branch . '.json';
+            $gh_branch_cache = $this->cache_base . '/branch_' . basename($this->name) . '_' . $branch . '.json';
             if (file_exists($gh_branch_cache) && !$this->refresh) {
                 $gh_branch = json_decode(file_get_contents($gh_branch_cache));
                 if (is_object($gh_branch)) {
@@ -211,7 +211,7 @@ class RepoHealth {
                 }
             } else {
                 $gh_branch_url =
-                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/' . $branch . '/protection';
+                    'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches/' . $branch . '/protection';
                 $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
                 if (strpos($http_response_header[0], 'HTTP/1.1 200') !== false && is_object($gh_branch)) {
                     $this->{'gh_branch_' . $branch} = $gh_branch;
@@ -689,7 +689,7 @@ class PipelineHealth extends RepoHealth {
         // Check last release, with caching
         else {
             $check_404_cache =
-                $this->cache_base . '/files_404_' . $this->name . '_' . $this->last_release->tag_name . '.json';
+                $this->cache_base . '/files_404_' . basename($this->name) . '_' . $this->last_release->tag_name . '.json';
             // Load cache
             if (file_exists($check_404_cache) && !$this->refresh) {
                 $files_404_cache = json_decode(file_get_contents($check_404_cache));
@@ -719,7 +719,7 @@ class PipelineHealth extends RepoHealth {
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
-            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches';
+            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches';
             $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
