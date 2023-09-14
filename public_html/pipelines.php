@@ -32,7 +32,7 @@ echo $msg;
 <div class="btn-toolbar mb-4 pipelines-toolbar" role="toolbar">
   <div class="pipeline-filters input-group input-group-sm me-2 mt-2">
     <input type="search" class="form-control" placeholder="Search keywords" value="<?php echo isset($_GET['q'])
-        ? $_GET['q']
+        ? htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8')
         : ''; ?>">
   </div>
   <div class="btn-group btn-group-sm mt-2 d-none d-lg-block" role="group">
