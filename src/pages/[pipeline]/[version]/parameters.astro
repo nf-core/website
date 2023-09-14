@@ -39,10 +39,6 @@ let headings: {
 
 let { versions, md_files, description } = Astro.props;
 
-if (version === 'latest') {
-    version = versions[0];
-}
-
 const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
 let schema = await cache
     .get(cache_key)
