@@ -407,7 +407,7 @@ class RepoHealth {
             $payload['homepage'] = $this->web_url;
         }
         if (count($payload) > 0) {
-            $gh_edit_repo_url = 'https://api.github.com/repos/sanger-tol/' . $this->name;
+            $gh_edit_repo_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name);
             $updated_data = $this->_send_gh_api_data($gh_edit_repo_url, $payload, 'PATCH');
             if ($updated_data) {
                 $this->gh_repo = $updated_data;
@@ -422,7 +422,7 @@ class RepoHealth {
             $topics = [
                 'names' => array_values(array_unique(array_merge($this->gh_repo->topics, $this->required_topics))),
             ];
-            $gh_edit_topics_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/topics';
+            $gh_edit_topics_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/topics';
             $updated_data = $this->_send_gh_api_data($gh_edit_topics_url, $topics, 'PUT');
             if ($updated_data) {
                 $this->gh_repo->topics = $updated_data->names;
@@ -446,7 +446,7 @@ class RepoHealth {
             if ($team == 'nextflow_all') {
                 $payload = ['permission' => 'push'];
             }
-            $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/sanger-tol/' . $this->name;
+            $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/sanger-tol/' . basename($this->name);
             if ($this->_send_gh_api_data($gh_edit_team_url, $payload, 'PUT')) {
                 $updated_teams[$team] = true;
             }
@@ -501,11 +501,11 @@ class RepoHealth {
                     'restrictions' => null,
                 ];
                 $gh_edit_branch_protection_url =
-                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/' . $branch . '/protection';
+                    'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches/' . $branch . '/protection';
                 $updated_data = $this->_send_gh_api_data($gh_edit_branch_protection_url, $payload, 'PUT');
                 if ($updated_data) {
                     $this->{'gh_branch_' . $branch} = $updated_data;
-                    $gh_branch_cache = $this->cache_base . '/branch_' . $this->name . '_' . $branch . '.json';
+                    $gh_branch_cache = $this->cache_base . '/branch_' . basename($this->name) . '_' . $branch . '.json';
                     $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_' . $branch});
                 }
             }
