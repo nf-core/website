@@ -4,7 +4,7 @@ import pipelines_json from '@public/pipelines.json';
 export const prerender = false;
 
 const { pipeline, version, path } = Astro.params;
-console.log('redirecting base on [pipeline, version, ...path]', [pipeline, version, path]);
+console.log('redirecting based on [pipeline, version, ...path]', [pipeline, version, path]);
 const meta = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 if (meta) {
     // check if version starts with usage, output, or docs
@@ -14,7 +14,7 @@ if (meta) {
         if (version === 'docs') {
             return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${path}`);
         }
-        return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/${version}`);
+        return Astro.redirect(`/${pipeline}/${meta.releases[0].tag_name}/docs/${version}`);
     }
     if (version?.startsWith('results')) {
         console.log('redirecting ', version, ' to ', meta.releases[0].tag_name, '/results');
@@ -25,7 +25,7 @@ if (meta) {
         if (path?.startsWith('usage') || path?.startsWith('output')) {
             console.log('redirecting ', path, ' to ', version);
             return Astro.redirect(`/${pipeline}/${version}/docs/${path}`);
-        } else if (path?.startsWith('docs')) {
+        } else if (path?.startsWith('docs/usage') || path?.startsWith('docs/output')) {
             console.log('redirecting ', path, ' to ', version);
             return Astro.redirect(`/${pipeline}/${version}/${path}`);
         } else if (path === undefined || path === '') {
@@ -33,6 +33,8 @@ if (meta) {
             return Astro.redirect(`/${pipeline}/${version}/`);
         }
     }
+    console.log(`redirecting /${pipeline}/${version}/${path} to 404`);
+    return Astro.redirect('/404');
 } else {
     console.log('redirecting ', pipeline, ' to 404');
     return Astro.redirect('/404');

@@ -2,7 +2,6 @@
 import { h } from 'hastscript';
 import { visit } from 'unist-util-visit';
 
-
 const acceptableAdmonitionTypes = {
   note: {
     title: 'Note',
@@ -63,7 +62,7 @@ export default function admonitionsPlugin() {
           const svgData = svg.data || (svg.data = {});
           svgData.hName = 'i';
           svgData.hProperties = h('i', {
-            class: 'fa ' + node.attributes.class + ' me-2',
+            class: 'fa-solid ' + node.attributes.class + ' me-2',
           }).properties;
         } else {
           svg = h('svg');
