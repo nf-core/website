@@ -12,6 +12,8 @@ if (strlen($git_sha) != 7) {
 $theme = 'auto';
 if (isset($_COOKIE['nfcoretheme']) && in_array($_COOKIE['nfcoretheme'], ['auto', 'light', 'dark'])) {
     $theme = $_COOKIE['nfcoretheme'];
+    $theme = htmlspecialchars($theme, ENT_QUOTES, 'UTF-8');
+
 }
 
 // Convert Markdown to HTML if a filename is given
