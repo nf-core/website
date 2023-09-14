@@ -71,7 +71,7 @@ class RepoHealth {
 
         // Cache filenames
         $this->cache_base = dirname(dirname(__FILE__)) . '/api_cache/pipeline_health';
-        $checked_name = basename(this->name);
+        $checked_name = basename($this->name);
         $this->gh_repo_cache = $this->cache_base . '/repo_' . $checked_name  . '.json';
         $this->gh_release_cache = $this->cache_base . '/release_' . $checked_name  . '.json';
         $this->gh_all_branches_cache = $this->cache_base . '/branches_' . $checked_name  . '.json';
