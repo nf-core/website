@@ -40,10 +40,10 @@ export function getStaticPaths() {
     });
     return paths;
 }
-const { pipeline, version, md_file } = Astro.params;
+let { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
 if (version === 'latest') {
-    return Astro.redirect(`/${pipeline}/${versions[0]}/docs/${md_file}`);
+    version = versions[0];
 }
 let headings: {
     depth: number;

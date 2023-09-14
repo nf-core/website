@@ -43,7 +43,7 @@ let headings: {
 
 let { versions, md_files, meta } = Astro.props;
 if (version === 'latest') {
-    return Astro.redirect(`/${pipeline}/${versions[0]}`);
+    version = versions[0];
 }
 
 const description = meta.description;
