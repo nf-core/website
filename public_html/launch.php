@@ -55,7 +55,8 @@ $nxf_flag_schema = [
         ],
     ],
 ];
-$release = isset($_GET['release']) ? $_GET['release'] : false;
+$release = isset($_GET['release']) ? basename($_GET['release']) : false;
+
 if (isset($_GET['pipeline'])) {
     $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
 }
@@ -199,6 +200,7 @@ function save_launcher_form() {
     }
     // Load cache
     $cache_id = $_POST['cache_id'];
+    $cache_id = basename($cache_id);
     $cache_fn = $cache_dir . '/' . $cache_id . '.json';
     if (!file_exists($cache_fn)) {
         return ['Cache file not found: <code>' . $cache_fn . '</code>'];
