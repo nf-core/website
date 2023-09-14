@@ -3308,7 +3308,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -4544,6 +4544,10 @@
         {
           "name": "funcscan",
           "version": "1.1.3"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
         }
       ]
     },
@@ -6246,7 +6250,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -6876,6 +6880,12 @@
             }
           },
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information about the genome fasta, e.g. [ id: 'sarscov2' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "FASTA reference file",
@@ -6940,7 +6950,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "viralrecon",
@@ -7643,7 +7653,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "viralrecon",
@@ -7844,7 +7854,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "viralrecon",
@@ -12827,6 +12837,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -12840,7 +12854,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "ssds",
@@ -12962,6 +12976,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -12971,7 +12989,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "ssds",
@@ -13273,7 +13291,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -13393,7 +13411,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -13924,7 +13942,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -14051,7 +14069,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "smrnaseq",
@@ -16307,7 +16325,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "clustalo_guidetree",
@@ -16373,7 +16397,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cmseq_polymut",
@@ -16625,7 +16655,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -16798,7 +16828,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -17101,7 +17131,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -18131,7 +18161,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -18360,7 +18390,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -18436,7 +18466,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -18512,7 +18542,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -18615,7 +18645,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -19883,6 +19913,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -19928,7 +19962,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "scrnaseq",
@@ -22408,12 +22442,8 @@
           "version": "1.1.1"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -23090,7 +23120,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -23171,7 +23201,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -24761,8 +24791,12 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -24972,8 +25006,12 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -25923,7 +25961,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "famsa_guidetree",
@@ -25989,7 +26033,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "faqcs",
@@ -26842,6 +26892,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -26859,7 +26913,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "smrnaseq",
@@ -27080,6 +27134,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -27113,7 +27171,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "scrnaseq",
@@ -27636,12 +27694,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -27714,12 +27768,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -27871,12 +27921,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -28690,7 +28736,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -30143,7 +30189,13 @@
         "authors": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_applybqsr",
@@ -30270,7 +30322,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -30396,7 +30448,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -30523,7 +30575,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -30753,7 +30805,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -30880,7 +30932,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -30962,6 +31014,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnafusion",
@@ -31057,7 +31113,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -31303,12 +31359,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -31442,6 +31494,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "1.1.1"
@@ -32003,7 +32059,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -32308,6 +32364,10 @@
       },
       "pipelines": [
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
         }
@@ -32410,7 +32470,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -32574,7 +32634,13 @@
           "@ryanjameskennedy",
           "@ViktorHy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_filtermutectcalls",
@@ -32741,7 +32807,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -32871,7 +32937,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -32949,7 +33015,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33026,7 +33092,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33159,7 +33225,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33299,7 +33365,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33358,7 +33424,7 @@
           },
           {
             "ploidy": {
-              "type": "file",
+              "type": "directory",
               "description": "Directory containing ploidy calls produced by determinegermlinecontigploidy case or cohort mode",
               "pattern": "*-calls"
             }
@@ -33379,17 +33445,24 @@
             }
           },
           {
-            "calls": {
-              "type": "file",
+            "cohortcalls": {
+              "type": "directory",
               "description": "Tar gzipped directory containing calls produced by germlinecnvcaller case mode",
-              "pattern": "*-cnv-calls/*-calls"
+              "pattern": "*-cnv-model/*-calls"
             }
           },
           {
-            "model": {
+            "cohortmodel": {
               "type": "directory",
               "description": "Optional - Tar gzipped directory containing the model produced by germlinecnvcaller cohort mode",
               "pattern": "*-cnv-model/*-model"
+            }
+          },
+          {
+            "casecalls": {
+              "type": "directory",
+              "description": "Tar gzipped directory containing calls produced by germlinecnvcaller case mode",
+              "pattern": "*-cnv-calls/*-calls"
             }
           }
         ],
@@ -33399,6 +33472,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "1.1.1"
@@ -33540,7 +33617,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33680,16 +33757,12 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "rnavar",
           "version": "1.0.0"
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33760,6 +33833,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
         {
           "name": "rnavar",
           "version": "1.0.0"
@@ -33840,7 +33917,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -33912,8 +33989,16 @@
       },
       "pipelines": [
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -33989,7 +34074,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -34227,7 +34312,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -34340,7 +34425,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -34517,7 +34602,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -34619,7 +34704,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -34802,7 +34887,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -35033,6 +35118,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "1.1.1"
@@ -36163,6 +36252,10 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnavar",
           "version": "1.0.0"
         }
@@ -36499,8 +36592,16 @@
       },
       "pipelines": [
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -36646,7 +36747,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -39098,6 +39199,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         },
@@ -40768,7 +40873,13 @@
         "authors": [
           "@zachary-foster"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "graphtyper_vcfconcatenate",
@@ -40842,7 +40953,13 @@
         "authors": [
           "@zachary-foster"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gridss_gridss",
@@ -41571,6 +41688,13 @@
               "description": "The local copy of the taxonomic database used by GTDB-tk (unzipped copy)",
               "pattern": "*"
             }
+          },
+          {
+            "mash_db": {
+              "type": "file",
+              "description": "The local copy of the Mash sketch database used by GTDB-tk if `ani_screen` mode is used (optional)",
+              "pattern": "*.msh"
+            }
           }
         ],
         "output": [
@@ -42123,6 +42247,10 @@
         {
           "name": "proteinfold",
           "version": "1.0.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -43772,6 +43900,10 @@
           "version": "dev"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -43877,6 +44009,10 @@
           "version": "dev"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -43953,6 +44089,10 @@
       "pipelines": [
         {
           "name": "circrna",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
           "version": "dev"
         },
         {
@@ -46862,7 +47002,13 @@
           "@avantonder",
           "@aunderwo"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "islandpath",
@@ -47998,6 +48144,72 @@
           "version": "1.0.1"
         }
       ]
+    },
+    {
+      "name": "kalign_align",
+      "path": "modules/nf-core/kalign/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "kalign_align",
+        "description": "Aligns sequences using kalign",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "kalign": {
+              "description": "Kalign is a fast and accurate multiple sequence alignment algorithm.",
+              "homepage": "https://msa.sbc.su.se/cgi-bin/msa.cgi",
+              "documentation": "https://github.com/TimoLassmann/kalign",
+              "tool_dev_url": "https://github.com/TimoLassmann/kalign",
+              "doi": "10.1093/bioinformatics/btz795",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file.",
+              "pattern": "*.{aln}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
     },
     {
       "name": "kallisto_index",
@@ -51835,6 +52047,14 @@
           "version": "2.6.1"
         },
         {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "phyloplace",
           "version": "1.0.0"
         }
@@ -52588,12 +52808,8 @@
           "version": "1.1.1"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -52773,7 +52989,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -52920,12 +53136,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -58251,7 +58463,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -58964,7 +59176,13 @@
         "authors": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "msisensorpro_scan",
@@ -59036,7 +59254,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -59357,6 +59575,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -59398,7 +59620,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "scrnaseq",
@@ -61077,6 +61299,12 @@
         ],
         "input": [
           {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+            }
+          },
+          {
             "files": {
               "type": "file",
               "description": "VCF or BAM files for each sample, in a merged channel (possibly gzipped). BAM files require an index too.",
@@ -61084,10 +61312,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing SNP information\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
             "snp_bed": {
               "type": "file",
               "description": "BED file containing the SNPs to analyse",
               "pattern": "*.{bed}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference fasta index information\ne.g. [ id:'test' ]\n"
             }
           },
           {
@@ -64483,7 +64723,8 @@
         "keywords": [
           "add",
           "replace",
-          "read-group"
+          "read-group",
+          "picard"
         ],
         "tools": [
           {
@@ -64551,6 +64792,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "1.1.1"
@@ -64649,7 +64894,10 @@
         "description": "Cleans the provided BAM, soft-clipping beyond-end-of-reference alignments and setting MAPQ to 0 for unmapped reads",
         "keywords": [
           "clean",
-          "bam"
+          "bam",
+          "picard",
+          "sam",
+          "clipping"
         ],
         "tools": [
           {
@@ -64843,6 +65091,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "variantcatalogue",
@@ -65047,6 +65299,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "ssds",
@@ -65271,6 +65527,10 @@
           "version": "1.1.1"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnafusion",
           "version": "2.3.4"
         },
@@ -65347,7 +65607,17 @@
           "@mjcipriano",
           "@hseabolt"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "picard_crosscheckfingerprints",
@@ -65507,7 +65777,9 @@
         "description": "Filters SAM/BAM files to include/exclude either aligned/unaligned reads or based on a read list",
         "keywords": [
           "bam",
-          "filter"
+          "filter",
+          "picard",
+          "sam"
         ],
         "tools": [
           {
@@ -65538,7 +65810,7 @@
           },
           {
             "filter": {
-              "type": "value",
+              "type": "string",
               "description": "Picard filter type",
               "pattern": "includeAligned|excludeAligned|includeReadList|excludeReadList"
             }
@@ -65575,7 +65847,13 @@
         "authors": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "picard_fixmateinformation",
@@ -65585,7 +65863,10 @@
         "name": "picard_fixmateinformation",
         "description": "Verify mate-pair information between mates and fix if needed",
         "keywords": [
-          "mate-pair"
+          "mate-pair",
+          "picard",
+          "bam",
+          "sam"
         ],
         "tools": [
           {
@@ -65895,8 +66176,16 @@
           "version": "2.4.0"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnafusion",
@@ -66164,7 +66453,8 @@
         "keywords": [
           "sort",
           "bam",
-          "sam"
+          "sam",
+          "picard"
         ],
         "tools": [
           {
@@ -66194,7 +66484,7 @@
           },
           {
             "sort_order": {
-              "type": "value",
+              "type": "string",
               "description": "Picard sort order type",
               "pattern": "unsorted|queryname|coordinate|duplicate|unknown"
             }
@@ -66227,6 +66517,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
         {
           "name": "ssds",
           "version": "dev"
@@ -66780,7 +67074,13 @@
         "authors": [
           "@rpetit3"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "plasmidfinder",
@@ -71030,6 +71330,10 @@
           "version": "dev"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "viralrecon",
           "version": "2.6.0"
         }
@@ -73722,7 +74026,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -73904,7 +74208,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "taxprofiler",
@@ -74247,7 +74551,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -74340,7 +74644,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -74669,6 +74973,10 @@
           "version": "1.0.4"
         },
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "crisprseq",
           "version": "2.0.0"
         },
@@ -74697,6 +75005,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -74718,7 +75030,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -75128,6 +75440,10 @@
           "version": "dev"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         },
@@ -75345,6 +75661,10 @@
         },
         {
           "name": "radseq",
+          "version": "dev"
+        },
+        {
+          "name": "rnadnavar",
           "version": "dev"
         },
         {
@@ -75569,6 +75889,10 @@
           "version": "dev"
         },
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "crisprseq",
           "version": "2.0.0"
         },
@@ -75601,6 +75925,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -75630,7 +75958,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "smrnaseq",
@@ -75867,7 +76195,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -75960,7 +76288,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -76095,6 +76423,10 @@
         {
           "name": "raredisease",
           "version": "1.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnafusion",
@@ -76295,7 +76627,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "smrnaseq",
@@ -76486,7 +76818,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "ssds",
@@ -77284,7 +77616,13 @@
         "authors": [
           "@assp8200"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "sentieon_bwaindex",
@@ -77461,7 +77799,13 @@
         "authors": [
           "@asp8200"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "sentieon_datametrics",
@@ -77733,7 +78077,13 @@
         "authors": [
           "@asp8200"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "sentieon_dnamodelapply",
@@ -78149,7 +78499,13 @@
         "authors": [
           "@asp8200"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "sentieon_haplotyper",
@@ -78284,7 +78640,13 @@
         "authors": [
           "@asp8200"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "sentieon_readwriter",
@@ -78689,7 +79051,13 @@
         "authors": [
           "@asp8200"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.3.0"
+        }
+      ]
     },
     {
       "name": "sentieon_wgsmetrics",
@@ -83215,7 +83583,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -83315,7 +83683,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -84128,7 +84496,13 @@
         "authors": [
           "@taylorreiter"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "sourmash_gather",
@@ -84402,7 +84776,13 @@
         "authors": [
           "@Midnighter"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "sourmash_taxannotate",
@@ -84866,6 +85246,10 @@
       "pipelines": [
         {
           "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
+          "name": "pathogensurveillance",
           "version": "dev"
         },
         {
@@ -85653,6 +86037,10 @@
           "version": "1.0.3"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnafusion",
           "version": "2.3.4"
         },
@@ -85761,6 +86149,10 @@
         {
           "name": "marsseq",
           "version": "1.0.3"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnafusion",
@@ -86274,12 +86666,8 @@
       },
       "pipelines": [
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -86443,7 +86831,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -87267,7 +87655,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -88079,7 +88467,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -88164,6 +88552,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         },
@@ -88181,7 +88573,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "variantcatalogue",
@@ -88796,12 +89188,8 @@
           "version": "1.1.1"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -90880,6 +91268,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        },
+        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -90913,7 +91305,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         },
         {
           "name": "spatialtranscriptomics",
@@ -91072,7 +91464,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -92118,7 +92510,13 @@
         "authors": [
           "@zachary-foster"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vcflib_vcfuniq",
@@ -92709,7 +93107,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -95337,6 +95735,10 @@
           "version": "1.0.4"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         },
@@ -95433,7 +95835,7 @@
         ],
         "input": [
           {
-            "meta": {
+            "meta1": {
               "type": "map",
               "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
             }
@@ -95446,10 +95848,22 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing bed file information\ne.g. [ id:'sarscov2' ]\n"
+            }
+          },
+          {
             "snp_bed": {
               "type": "file",
               "description": "BED file containing the SNPs to analyse. NGSCheckMate provides some default ones for hg19/hg38.",
               "pattern": "*.{bed}"
+            }
+          },
+          {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference genome meta information\ne.g. [ id:'sarscov2' ]\n"
             }
           },
           {
@@ -95637,7 +96051,13 @@
         "authors": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bam_rseqc",
@@ -96010,6 +96430,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         },
@@ -96154,6 +96578,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnaseq",
@@ -96315,7 +96743,13 @@
         "authors": [
           "@GCJMackenzie"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bam_tumor_only_somatic_variant_calling_gatk",
@@ -97552,7 +97986,7 @@
           },
           {
             "ch_index": {
-              "description": "BWA genome index files\nStructure: [ val(meta2), path(index) ]\n"
+              "description": "BWA genome index files\nStructure: [ val(meta), path(index) ]\n"
             }
           },
           {
@@ -97565,7 +97999,7 @@
           {
             "ch_fasta": {
               "type": "file",
-              "description": "Optional reference fasta file. This only needs to be given if val_sort_bam = true\nStructure: [ path(fasta) ]\n"
+              "description": "Optional reference fasta file. This only needs to be given if val_sort_bam = true.\nStructure: [ val(meta), path(fasta) ]\n"
             }
           }
         ],
@@ -97619,6 +98053,10 @@
         {
           "name": "atacseq",
           "version": "2.1.2"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -98080,6 +98518,10 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.12.0"
         }
@@ -98231,7 +98673,13 @@
         "authors": [
           "@JoseEspinosa"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fastq_contam_seqtk_kraken",
@@ -99261,8 +99709,12 @@
       },
       "pipelines": [
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
@@ -99437,7 +99889,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.2.3"
+          "version": "3.3.0"
         }
       ]
     },
