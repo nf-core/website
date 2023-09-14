@@ -66,7 +66,7 @@ class RepoHealth {
     public $refresh = false;
     public $cache_base;
     public function __construct($name) {
-        $this->name = $name;
+        $this->name = basename($name);
         $this->refresh = is_refresh_cache($this->name);
 
         // Cache filenames
