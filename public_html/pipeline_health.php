@@ -446,7 +446,7 @@ class RepoHealth {
             if ($team == 'nextflow_all') {
                 $payload = ['permission' => 'push'];
             }
-            $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/sanger-tol/' . basename($this->name);
+            $gh_edit_team_url = 'https://api.github.com/teams/' . basename($gh_team_ids[$team]) . '/repos/sanger-tol/' . basename($this->name);
             if ($this->_send_gh_api_data($gh_edit_team_url, $payload, 'PUT')) {
                 $updated_teams[$team] = true;
             }
@@ -791,7 +791,7 @@ function get_gh_team_repos($team) {
     if (file_exists($gh_team_repos_cache) && !is_refresh_cache(null, true)) {
         $gh_team_repos = json_decode(file_get_contents($gh_team_repos_cache));
     } else {
-        $gh_team_repos_url = 'https://api.github.com/teams/' . $gh_team->id . '/repos';
+        $gh_team_repos_url = 'https://api.github.com/teams/' . basename($gh_team->id) . '/repos';
         $first_page = true;
         $next_page = false;
         $gh_team_repos = [];
