@@ -66,14 +66,15 @@ class RepoHealth {
     public $refresh = false;
     public $cache_base;
     public function __construct($name) {
-        $this->name = basename($name);
+        $this->name = $name;
         $this->refresh = is_refresh_cache($this->name);
 
         // Cache filenames
         $this->cache_base = dirname(dirname(__FILE__)) . '/api_cache/pipeline_health';
-        $this->gh_repo_cache = $this->cache_base . '/repo_' . $this->name . '.json';
-        $this->gh_release_cache = $this->cache_base . '/release_' . $this->name . '.json';
-        $this->gh_all_branches_cache = $this->cache_base . '/branches_' . $this->name . '.json';
+        $checked_name = basename(this->name);
+        $this->gh_repo_cache = $this->cache_base . '/repo_' . $checked_name  . '.json';
+        $this->gh_release_cache = $this->cache_base . '/release_' . $checked_name  . '.json';
+        $this->gh_all_branches_cache = $this->cache_base . '/branches_' . $checked_name  . '.json';
     }
 
     // Names of required CI checks. These are added to whatever already exists.
