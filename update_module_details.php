@@ -148,7 +148,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         $github_sha = $module['sha'];
         $github_path = $module['github_path'];
         $api_url = $module['api_url'];
-        $name = $module['name'];
+        $name = htmlspecialchars($module['name'], ENT_QUOTES, 'UTF-8');;
         $description = $module['description'];
         $keywords = $module['keywords'];
         $tools = json_encode($module['tools']);
@@ -262,14 +262,14 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             continue;
         } else {
             $pipeline_type = 'pipelines';
-            echo  "Process pipeline " . $pipeline['name'] . "\n";
+            echo  "Process pipeline " . htmlspecialchars($pipeline['name'], ENT_QUOTES, 'UTF-8') . "\n";
         }
 
         // check where entries need to be updated and update them
 
         $github_id = $pipeline['id'];
         $html_url = $pipeline['html_url'];
-        $name = $pipeline['name'];
+        $name = htmlspecialchars($pipeline['name'], ENT_QUOTES, 'UTF-8');
         $description = $pipeline['description'];
         $gh_created_at = date('Y-m-d H:i:s', strtotime($pipeline['created_at']));
         $gh_updated_at = date('Y-m-d H:i:s', strtotime($pipeline['updated_at']));
@@ -336,7 +336,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                     archived = ?,
                     last_release_date = ?
                 WHERE
-                    name =  '" . $pipeline['name'] . "'";
+                    name =  '" . htmlspecialchars($pipeline['name'], ENT_QUOTES, 'UTF-8') . "'";
 
                 if ($update_stmt = mysqli_prepare($conn, $update)) {
                     // Bind variables to the prepared statement as parameters
@@ -425,7 +425,7 @@ foreach ($pipelines as $pipeline) {
 
     // catch repos with no modules.json
     if ($modules == null) {
-        echo "No nf-core modules for pipeline " . $pipeline['name'] . "\n";
+        echo "No nf-core modules for pipeline " . htmlspecialchars($pipeline['name'], ENT_QUOTES, 'UTF-8') . "\n";
         continue;
     }
     foreach ($modules as $name => $content) {
@@ -434,6 +434,7 @@ foreach ($pipelines as $pipeline) {
         mysqli_stmt_bind_param($stmt, 'ii', $pipeline_id, $module_id);
 
         $name = str_replace('/', '_', $name);
+        $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8')
         // pepare a select statment for nfcore_modules based on name
         $get_module = "SELECT * FROM nfcore_modules WHERE name = '$name'";
 
