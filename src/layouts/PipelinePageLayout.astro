@@ -5,7 +5,8 @@ import TabBar from '@components/TabBar.astro';
 import pipelines_json from '@public/pipelines.json';
 
 export interface Props {
-    pipeline?: string;
+    pipeline: string;
+    meta_title: string;
     subtitle?: string | null;
     version?: string;
     versions?: string[];
@@ -13,10 +14,12 @@ export interface Props {
     tabItems?: string[];
     md_github_url?: string;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    docSearchTags?: { name: string; content: string | string[] }[];
 }
 
-const {
+let {
     pipeline,
+    meta_title = pipeline,
     subtitle,
     headings,
     version,
@@ -24,6 +27,7 @@ const {
     tabItems = [],
     md_github_url = '',
     sections = [],
+    docSearchTags = [],
 } = Astro.props;
 const url = Astro.url.pathname;
 const baseUrl = '/' + pipeline + '/' + version;
@@ -90,6 +94,7 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
 
 <PageLayout
     title={'nf-core/' + pipeline}
+    meta_title={meta_title}
     subtitle={subtitle}
     mainpage_container={true}
     navTocHeadings={headings}
@@ -97,14 +102,19 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
     subfooter={md_github_url !== ''}
     topics={topics}
     sections={sections}
-    docSearchTags={[{ name: 'version', content: version }]}
+    viewTransitions={true}
+    docSearchTags={[
+        ...docSearchTags,
+        { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
+        { name: 'page_type', content: 'pipeline' },
+    ]}
 >
     <SubHeader pipeline={pipeline} version={version} latestVersion={latestVersion} gh_url={gh_url} slot="sub-header" />
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
                 {!Astro.url.pathname.endsWith('/releases_stats/') && (
-                    <div class="input-group input-group-sm justify-content-end justify-content-md-center">
+                    <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
                         <label class="input-group-text" for="version_select">
                             <i class="fas fa-tags" />
                         </label>
@@ -115,15 +125,18 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {version}
+                                {version === 'latest' ? versions[0] : version}
                             </button>
 
-                            <ul class="dropdown-menu dropdown-menu-end w-100">
+                            <ul class="dropdown-menu dropdown-menu-end w-100 pipeline-versions">
                                 {versions &&
                                     versions.map((v) => {
+                                        if (version === 'latest') {
+                                            version = versions[0];
+                                        }
                                         let url = Astro.url.pathname.replace(
                                             `${pipeline}/${version}`,
-                                            `${pipeline}/${v}`
+                                            `${pipeline}/${v}`,
                                         );
                                         if (url.includes('/results/')) {
                                             url = `/${pipeline}/${v}/results/`;
@@ -147,35 +160,8 @@ const topics = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline
         )
     }
 
-    <div>
+    <div transition:animate="slide">
         <slot />
     </div>
-    <script>
-        // taken from https://github.com/JuanM04/portfolio/blob/983b0ed0eabdac37bf8b7912d3e8128a443192b9/src/pages/docs/%5B...documentSlug%5D.astro#L74-L103
-        async function renderDiagrams(graphs) {
-            const { default: mermaid } = await import('mermaid');
-            mermaid.initialize({
-                startOnLoad: false,
-                fontFamily: 'var(--sans-font)',
-                // @ts-ignore This works, but TS expects a enum for some reason
-                theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
-            });
-
-            for (const graph of graphs) {
-                const content = graph.getAttribute('data-content');
-                if (!content) continue;
-                let svg = document.createElement('svg');
-                const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
-                graph.appendChild(svg);
-                mermaid.render(id, content).then((result) => {
-                    graph.innerHTML = result.svg;
-                });
-            }
-        }
-        const graphs = document.getElementsByClassName('mermaid');
-        if (document.getElementsByClassName('mermaid').length > 0) {
-            renderDiagrams(graphs);
-        }
-    </script>
 </PageLayout>
 <style lang="scss"></style>

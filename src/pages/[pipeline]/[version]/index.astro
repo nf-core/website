@@ -1,23 +1,31 @@
 ---
-import { markdown } from '@astropub/md';
+import { Markdown } from '@astropub/md';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import cache from 'bin/cache.js';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
+import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
+
 export function getStaticPaths() {
-    var paths: { params: { pipeline: string; version: string; md_file: string }; props: { versions; md_files } }[] = [];
+    var paths: {
+        params: { pipeline: string; version: string; md_file: string };
+        props: { versions: string[]; md_files: string[]; meta: {} };
+    }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', '')
+                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
+
             paths.push({
                 params: {
                     pipeline: pipeline.name,
                     version: release.tag_name,
                 },
                 props: {
-                    versions: pipeline.releases.map((release) => release.tag_name),
+                    versions: releases.map((release) => release.tag_name),
                     md_files: md_files,
                     meta: pipeline,
                 },
@@ -26,7 +34,7 @@ export function getStaticPaths() {
     });
     return paths;
 }
-const { pipeline, version } = Astro.params;
+let { pipeline, version } = Astro.params;
 let headings: {
     depth: number;
     text: string;
@@ -34,9 +42,10 @@ let headings: {
 }[] = [];
 
 let { versions, md_files, meta } = Astro.props;
-const description = meta.description;
 
-const cache_key = `${pipeline}/${version}/README.md`;
+const description = meta.description;
+const version_tag_name = version === 'latest' ? versions[0] : version;
+const cache_key = `${pipeline}/${version_tag_name}/README.md`;
 const md_content = await cache
     .get(cache_key)
     .then((response) => {
@@ -53,23 +62,22 @@ const md_github_url = 'https://github.com/nf-core/' + pipeline + '/blob/' + vers
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ': Introduction'}
     subtitle={description}
     headings={headings}
     version={version}
     versions={versions}
     tabItems={md_files}
     md_github_url={md_github_url}
+    docSearchTags={[{ name: 'page_rank', content: '10' }]}
 >
     <div class="row">
-        <div class="col-12 col-md-8 col-xl-9 pt-3 markdown-content">
-            {
-                async () => {
-                    const html = await markdown(md_content); // Markdown component of md package is broken at the moment, using this workaround
-                    return html;
-                }
-            }
+        <div class="col-12 col-md-8 col-xxl-9 pt-3 markdown-content">
+            <MarkdownWrapper client:load headings={headings}>
+                <Markdown of={md_content} />
+            </MarkdownWrapper>
         </div>
-        <div class="col-12 col-md-4 col-xl-3 toc">
+        <div class="col-12 col-md-4 col-xxl-3 toc">
             <PipelineSidebar pipeline={pipeline} version={version} meta={meta} />
         </div>
     </div>

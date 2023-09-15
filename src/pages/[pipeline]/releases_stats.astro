@@ -18,7 +18,7 @@ export function getStaticPaths() {
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const md_files = pipeline.releases[0].doc_files.map((file) =>
-            file.replace('docs/', '').replace('.mdx', '').replace('.md', '')
+            file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
         );
         const releases = pipeline.releases.filter((release) => release.tag_name !== 'dev');
         if (releases.length === 0) {

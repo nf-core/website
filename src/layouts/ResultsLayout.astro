@@ -50,7 +50,7 @@ if (bucketContents.length === 0 && commonPrefixes.length === 0) {
                 ContinuationToken: awsResponse?.NextContinuationToken,
                 Prefix: path + '/',
                 Delimiter: '/',
-            })
+            }),
         );
 
         if (awsResponse.KeyCount === 0) {
@@ -95,6 +95,7 @@ if (!isTruncated) {
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ': Results'}
     subtitle={description}
     version={version}
     versions={versions}

@@ -1,6 +1,5 @@
 import { z, defineCollection } from 'astro:content';
 
-
 const events = defineCollection({
     schema: z.object({
         title: z.string(),
@@ -35,11 +34,16 @@ const about = defineCollection({
         title: z.string(),
         description: z.string(),
         md_github_url: z.string().url().optional(),
+        minHeadingDepth: z.number().optional(),
+        maxHeadingDepth: z.number().optional(),
     }),
 });
+
+const pipelines = defineCollection({});
 
 export const collections = {
     events: events,
     docs: docs,
     about: about,
+    pipelines: pipelines,
 };

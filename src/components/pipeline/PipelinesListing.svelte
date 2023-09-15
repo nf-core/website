@@ -16,6 +16,8 @@
         archived: boolean;
     }[] = [];
 
+    export let filters: { name: string }[] = [{ name: '' }];
+
     let sortInverse = false;
 
     const searchPipelines = (pipeline) => {
@@ -35,13 +37,17 @@
     };
 
     const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.includes('Released') && pipeline.releases.length > 1 && !pipeline.archived) {
+        if ($CurrentFilter.find((f) => f.name === 'Released') && pipeline.releases.length > 1 && !pipeline.archived) {
             return true;
         }
-        if ($CurrentFilter.includes('Under development') && pipeline.releases.length === 1 && !pipeline.archived) {
+        if (
+            $CurrentFilter.find((f) => f.name === 'Under development') &&
+            pipeline.releases.length === 1 &&
+            !pipeline.archived
+        ) {
             return true;
         }
-        if ($CurrentFilter.includes('Archived') && pipeline.archived === true) {
+        if ($CurrentFilter.find((f) => f.name === 'Archived') && pipeline.archived === true) {
             return true;
         }
         return false;
@@ -63,6 +69,13 @@
             }
         } else if ($SortBy.startsWith('Last release')) {
             // handle case where a pipeline has no releases
+            if (a.releases.length === 1 && b.releases.length === 1) {
+                if (sortInverse) {
+                    return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+                } else {
+                    return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+                }
+            }
             if (a.releases.length === 1) {
                 return 1 * (sortInverse ? -1 : 1);
             }
@@ -97,21 +110,15 @@
                     return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
                 }
                 return filter;
-            })
+            }),
         );
         return pipelines;
     }
-    $: filteredPipelines = pipelines.sort((a, b) => {
-        if (a.releases.length === 1) {
-            return 1;
-        }
-        if (b.releases.length === 1) {
-            return -1;
-        }
-        return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
-    });
+    $: filteredPipelines = searchFilterSortPipelines(pipelines);
 
     onMount(() => {
+        console.log(filters);
+        CurrentFilter.set(filters);
         SortBy.subscribe(() => {
             filteredPipelines = searchFilterSortPipelines(pipelines);
         });
@@ -121,7 +128,6 @@
         SearchQuery.subscribe(() => {
             filteredPipelines = searchFilterSortPipelines(pipelines);
         });
-        filteredPipelines = searchFilterSortPipelines(pipelines);
     });
 </script>
 
@@ -149,13 +155,15 @@
             </thead>
             <tbody>
                 {#each filteredPipelines as pipeline}
-                    <tr class="position-relative">
-                        <td>
-                            <a
-                                class="stretched-link"
-                                href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
-                                >{pipeline.name}</a
-                            >
+                    <tr>
+                        <td class=" name p-0">
+                            <div class="position-relative p-3">
+                                <a
+                                    class="stretched-link"
+                                    href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                    >{pipeline.name}</a
+                                >
+                            </div>
                         </td>
                         <td class="text-small">
                             {pipeline.description}
