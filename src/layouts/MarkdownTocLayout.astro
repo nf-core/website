@@ -13,6 +13,7 @@ export interface Props {
     event_header?: object[];
     left_sidebar?: boolean;
     sections?: { section_name: string; children: {}[] }[] | never[];
+    viewTransitions?: boolean;
     meta_title?: string;
     docSearchTags?: {
         name: string;
@@ -30,6 +31,7 @@ const {
     headings,
     left_sidebar,
     sections = [],
+    viewTransitions = false,
     meta_title = '',
     docSearchTags = [],
     minHeadingDepth = 1,
@@ -70,6 +72,8 @@ const {
     navTocHeadings={headings}
     sections={sections}
     docSearchTags={docSearchTags}
+    viewTransitions={viewTransitions}
+    mermaid={true}
 >
     <div class="row">
         {
@@ -80,7 +84,7 @@ const {
             )
         }
         <div class:list={['col-12', { 'col-md-10': !left_sidebar, 'col-md-8': left_sidebar }]}>
-            <div class="markdown-content">
+            <div class="markdown-content" transition:animate="morph">
                 <MarkdownWrapper headings={headings} client:idle>
                     <slot />
                 </MarkdownWrapper>
@@ -96,33 +100,6 @@ const {
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
-    <script>
-        // taken from https://github.com/JuanM04/portfolio/blob/983b0ed0eabdac37bf8b7912d3e8128a443192b9/src/pages/docs/%5B...documentSlug%5D.astro#L74-L103
-        async function renderDiagrams(graphs) {
-            const { default: mermaid } = await import('mermaid');
-            mermaid.initialize({
-                startOnLoad: false,
-                fontFamily: 'var(--sans-font)',
-                // @ts-ignore This works, but TS expects a enum for some reason
-                theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
-            });
-
-            for (const graph of graphs) {
-                const content = graph.getAttribute('data-content');
-                if (!content) continue;
-                let svg = document.createElement('svg');
-                const id = (svg.id = 'mermaid-' + Math.round(Math.random() * 100000));
-                graph.appendChild(svg);
-                mermaid.render(id, content).then((result) => {
-                    graph.innerHTML = result.svg;
-                });
-            }
-        }
-        const graphs = document.getElementsByClassName('mermaid');
-        if (document.getElementsByClassName('mermaid').length > 0) {
-            renderDiagrams(graphs);
-        }
-    </script>
 </PageLayout>
 <style lang="scss">
     .markdown-content :global(img[loading='lazy']) {

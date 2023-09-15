@@ -29,18 +29,19 @@
     let activeHeading = {};
     onMount(() => {
         // set the first heading as active on initial load
-        activeHeading = $currentHeading || headings[0].slug;
+        if (!$currentHeading || !headings.find((h) => h.slug === $currentHeading)) {
+            currentHeading.set(headings[0]?.slug);
+        }
         currentHeading.subscribe((slug) => {
             //check if any heading has the same slug as the currentHeading
             const heading = headings.find((h) => h.slug === slug);
-            activeHeading = heading?.slug || activeHeading;
+            activeHeading = heading?.slug || $currentHeading;
             // wait 1 second for sidebar selection animation to finish
-            setTimeout(() => {
-                const active = document.querySelector('.toc .nav-item.active');
-                if (active) {
-                    active.scrollIntoView({ block: 'nearest' });
-                }
-            }, 1000);
+
+            const active = document.querySelector('.toc nav-item.active');
+            if (active) {
+                active.scrollIntoView({ block: 'nearest' });
+            }
         });
     });
 </script>

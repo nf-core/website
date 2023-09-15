@@ -30,7 +30,7 @@ export function getStaticPaths() {
     });
     return paths;
 }
-const { pipeline, version } = Astro.params;
+let { pipeline, version } = Astro.params;
 let headings: {
     depth: number;
     text: string;
@@ -38,10 +38,6 @@ let headings: {
 }[] = [];
 
 let { versions, md_files, description } = Astro.props;
-
-if (version === 'latest') {
-    return Astro.redirect(`/${pipeline}/${versions[0]}/parameters`);
-}
 
 const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
 let schema = await cache

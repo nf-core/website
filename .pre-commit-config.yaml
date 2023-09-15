@@ -8,4 +8,4 @@ repos:
           - prettier-plugin-svelte@^2.7.1
           - prettier-plugin-astro@^0.10.0
         args: [--plugin=prettier-plugin-svelte, --plugin=prettier-plugin-astro]
-        files: \.(astro|svelte)$
+        files: \.(astro|svelte|mdx|md|yml|yaml)$
