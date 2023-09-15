@@ -4,9 +4,10 @@ subtitle: Marcel Ribeiro-Dantas, Seqera Labs
 type: talk
 start_date: '2023-09-05'
 start_time: '13:00 CEST'
+youtube_embed: https://www.youtube.com/watch?v=F8BShfyieZs&ab_channel=nf-core
 end_date: '2023-09-05'
 end_time: '13:30 CEST'
-location_url: https://kth-se.zoom.us/j/68390542812
+location_url: https://www.youtube.com/watch?v=F8BShfyieZs&ab_channel=nf-core
 ---
 
 # nf-core/bytesize
