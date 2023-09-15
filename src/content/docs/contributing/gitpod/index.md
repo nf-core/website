@@ -51,8 +51,8 @@ Then you should see something similar to the following:
 
 See the following guides for Gitpod use in different scenarios:
 
-- [Using git within Gitpod](git_in_gitpod.md)
-- [Configuration of a Gitpod environment](config.md)
-- [How to develop Markdown for the nf-core website](webdev.md)
-- [How to develop nf core pipelines with Gitpod](nf_core_repo.md)
-- [Other Gitpod tutorials](other_tutorials.md)
+- [Using git within Gitpod](gitpod/git_in_gitpod.md)
+- [Configuration of a Gitpod environment](gitpod/config.md)
+- [How to develop Markdown for the nf-core website](gitpod/webdev.md)
+- [How to develop nf core pipelines with Gitpod](gitpod/nf_core_repo.md)
+- [Other Gitpod tutorials](gitpod/other_tutorials.md)

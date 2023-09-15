@@ -34,11 +34,11 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
                         ) : (
                             <span>
                                 These pages are for an old version of the pipeline (<code>{version}</code>). The latest
-                                stable release is (
+                                stable release is{' '}
                                 <a href={latest_link}>
                                     <code>{latestVersion}</code>
                                 </a>
-                                ).
+                                .
                             </span>
                         )}
                     </span>
@@ -74,7 +74,7 @@ const shaking = version === 'dev' ? '3deg' : '1deg';
             !version && (
                 <a href={gh_url} class="text-body mt-2">
                     <i class="fab fa-github me-2" />
-                    {gh_url.replace('tree/master/modules/nf-core', '[...]')}
+                    {gh_url.replace('tree/master', '[...]')}
                 </a>
             )
         }

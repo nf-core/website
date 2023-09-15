@@ -37,7 +37,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
 <div class="sidebar mt-3 sticky-top-under">
     <SidebarStatsRow content={[{ title: 'run with', icon: 'fa-regular fa-terminal' }]}>
         <div class="border rounded-3 mb-1">
-            <div class="tab-content">
+            <div class="tab-content flex-column">
                 <div
                     class="tab-pane show active"
                     id="nf-core-tab-pane"
@@ -81,7 +81,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
                     >
                 </div>
             </div>
-            <ul class="nav nav-fill small border rounded-bottom-0" role="tablist">
+            <ul class="nav flex-column flex-lg-row nav-fill small border rounded-bottom-0" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a
                         class="nav-link btn btn-sm btn-outline-secondary active rounded-end-0 rounded-top-0"
@@ -153,7 +153,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             },
             {
                 title: 'last update',
-                value: formatDistance(new Date(meta.updated_at), new Date(), { addSuffix: true }),
+                value: formatDistance(new Date(meta.releases[0].published_at), new Date(), { addSuffix: true }),
             },
         ]}
     />

@@ -1,15 +1,17 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 export interface Props {
     title: string;
     description: string;
     image?: string;
+    viewTransitions: boolean;
     docSearchTags?: {
         name: string;
         content: string;
     }[];
 }
 
-const { title, description, image = '/social_img.png', docSearchTags = [] } = Astro.props;
+const { title, description, image = '/social_img.png', docSearchTags = [], viewTransitions = false } = Astro.props;
 ---
 
 <!-- Global Metadata -->
@@ -41,51 +43,56 @@ const { title, description, image = '/social_img.png', docSearchTags = [] } = As
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<!-- FontAwesome -->
-<script src="https://kit.fontawesome.com/38356a05cc.js" crossorigin="anonymous"></script>
+{viewTransitions && <ViewTransitions fallback="swap" />}
 
-<!-- Algolia DocSearch -->
-{docSearchTags && docSearchTags.map((tag) => <meta name={'docsearch:' + tag.name} content={tag.content} />)}
+<!-- DocSearch -->
+{docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}
 
 <!-- Theme -->
 <script is:inline>
-    const root = document.documentElement;
-    const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
-    })();
-
-    const switchTheme = (e) => {
-        const target = e.target;
-        let theme = '';
-        // check if we clicked on svg or if target doesn't have a title attribute
-        if (target.tagName !== 'div' || !target.title) {
-            // get the parent div
-            theme = target.closest('div.theme-option').title;
-        } else {
-            theme = e.target.title;
-        }
-        localStorage.setItem('theme', theme);
-        setTheme(theme);
-        window.dispatchEvent(new Event('theme-changed'));
-    };
-    const setTheme = function (theme) {
-        if (theme === 'auto') {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                root.setAttribute('data-bs-theme', 'dark');
-            } else {
-                root.setAttribute('data-bs-theme', 'light');
+    if (!window.theme) {
+        const theme = (() => {
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                return localStorage.getItem('theme');
             }
-        } else {
-            root.setAttribute('data-bs-theme', theme);
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        })();
+        function setTheme(theme) {
+            //NOTE: same as in ThemeSwitch.svelte
+            const root = document.documentElement;
+            if (theme === 'auto') {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    root.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    root.setAttribute('data-bs-theme', 'light');
+                }
+            } else {
+                root.setAttribute('data-bs-theme', theme);
+            }
         }
-    };
-    setTheme(theme);
+
+        setTheme(theme);
+
+        document.addEventListener('astro:beforeload', () => {
+            setTheme(theme);
+        });
+    }
+</script>
+<script>
+    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+    document.addEventListener('astro:beforeload', () => {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].map((tooltipTriggerEl) => {
+            const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+            if (!tooltip) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            }
+        });
+    });
 </script>
 <!-- Google Analytics -->
 <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-1J32LEB1KZ"></script>

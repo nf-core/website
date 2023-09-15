@@ -7,13 +7,13 @@ export async function getStaticPaths() {
     events = events.filter((event) => {
         return event.slug.split('/').length === 2;
     });
-    return events.map((event) => {
-        if (event.data.title.toLowerCase().match('bytesize')) {
-            event.data.type = 'bytesize';
-        }
+    // reduce events to unique event types
+    const event_types = [...new Set(events.map((event) => event.data.type)), 'bytesize'];
+
+    return event_types.map((event_type) => {
         return {
             params: {
-                event_type: event.data.type,
+                event_type: event_type,
             },
             props: {
                 events: events,
@@ -24,22 +24,8 @@ export async function getStaticPaths() {
 const { events } = Astro.props;
 const { event_type } = Astro.params;
 
-const event_type_classes = {
-    bytesize: 'success',
-    hackathon: 'primary',
-    talk: 'info',
-    training: 'warning',
-};
-const event_type_icons = {
-    bytesize: 'fa-solid fa-apple-core',
-    hackathon: 'fa-solid fa-laptop-code',
-    talk: 'fa-solid fa-presentation',
-    training: 'fa-solid fa-chalkboard-teacher',
-};
-
 const title = event_type.charAt(0).toUpperCase() + event_type.slice(1) + 's';
 const subtitle = 'Details of past and future ' + event_type + 's around nf-core.';
-const filters = [{ name: event_type, icon: event_type_icons[event_type], class: event_type_classes[event_type] }];
 ---
 
-<EventLayout {events} {title} {subtitle} {filters} />
+<EventLayout {events} {title} {subtitle} currentFilters={[{ name: event_type }]} />

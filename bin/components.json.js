@@ -6,7 +6,6 @@ import path, { join } from 'path';
 import ProgressBar from 'progress';
 import { parse } from 'yaml';
 
-
 // get current path
 const __dirname = path.resolve();
 
@@ -66,14 +65,14 @@ export const writeComponentsJson = async () => {
         components.modules.push(module);
       }
       bar.tick();
-    })
+    }),
   );
 
   // Fetch subworkflows concurrently
   const subworkflows = tree
     .filter(
       (file) =>
-        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq')
+        file.path.includes('meta.yml') && file.path.includes('subworkflows/') && !file.path.includes('homer/groseq'),
     )
     .map((file) => ({
       name: file.path.replace('subworkflows/nf-core/', '').replace('/meta.yml', ''),
@@ -120,7 +119,7 @@ export const writeComponentsJson = async () => {
       }
 
       bar.tick();
-    })
+    }),
   );
 
   // Update pipelines that use modules and subworkflows
@@ -139,7 +138,7 @@ export const writeComponentsJson = async () => {
               components.modules[index].pipelines = [entry];
             }
           }
-        })
+        }),
       );
     }
 
@@ -155,7 +154,7 @@ export const writeComponentsJson = async () => {
               components.subworkflows[index].pipelines = [entry];
             }
           }
-        })
+        }),
       );
     }
   }
