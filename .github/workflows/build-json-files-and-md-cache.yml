@@ -12,6 +12,9 @@ jobs:
     if: (github.event_name == 'schedule' && github.repository == 'nf-core/website') || (github.event_name != 'schedule')
 
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       # Set up the main website repo
       - uses: actions/checkout@v3
         with:
@@ -23,9 +26,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-      - run: npm install
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS add date to regularly invalidate cache
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}-${{ steps.date.outputs.date }}
 
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: Install dependencies
+        run: npm ci
       - name: create pipeline.json
         run: npm run build-pipeline-json
         env:
@@ -79,7 +92,6 @@ jobs:
           git config push.default upstream
           git status
           git diff --quiet || (git commit -am "[automated] Update json files and markdown cache" && git push)
-
 
       # Create a PR if there are too many lines changed
       - name: Create PR with changes
