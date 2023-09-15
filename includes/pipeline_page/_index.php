@@ -41,9 +41,10 @@ $header_html .= '</p>';
 
 // Highlight any search terms if we have them
 if (isset($_GET['q']) && strlen($_GET['q'])) {
-    $title = preg_replace('/(' . preg_quote($_GET['q'], '/') . ')/i', "<mark>$1</mark>", $title);
-    $subtitle = preg_replace('/(' . preg_quote($_GET['q'], '/')  . ')/i', "<mark>$1</mark>", $subtitle);
-    $header_html = preg_replace('/(' . preg_quote($_GET['q'], '/')  . ')/i', "<mark>$1</mark>", $header_html);
+    $quoted_search_term = preg_quote($_GET['q'], '/');
+    $title = preg_replace('/(' . $quoted_search_term . ')/i', "<mark>$1</mark>", $title);
+    $subtitle = preg_replace('/(' . $quoted_search_term  . ')/i', "<mark>$1</mark>", $subtitle);
+    $header_html = preg_replace('/(' . $quoted_search_term . ')/i', "<mark>$1</mark>", $header_html);
 }
 
 ########
