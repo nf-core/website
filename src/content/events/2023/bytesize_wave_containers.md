@@ -2,8 +2,8 @@
 title: 'Bytesize: Using Wave Containers'
 subtitle: Marcel Ribeiro-Dantas, Seqera Labs
 type: talk
-start_date: '2023-09-19'
-start_time: '13:00 CEST'
+start_date: '2023-09-15'
+start_time: '19:00 CEST'
 end_date: '2023-09-19'
 end_time: '13:30 CEST'
 location_url: https://kth-se.zoom.us/j/68390542812
