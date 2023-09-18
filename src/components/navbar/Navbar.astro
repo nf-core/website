@@ -253,11 +253,21 @@ if (sections?.length > 0) {
         margin-right: 0.2rem;
         padding: 0;
     }
-    :global(.DocSearch-Hits:last-of-type) {
-        margin-bottom: 0;
+    :global(.DocSearch-Hits) {
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        &::before {
+            height: 0;
+        }
     }
-    :global(.DocSearch-Hit a) {
-        box-shadow: none;
+    :global(.DocSearch-Hit) {
+        & :global(a) {
+            box-shadow: none;
+        }
+        & :global(mark) {
+            padding: 0;
+        }
     }
     :global(.DocSearch-Hit-icon:has(svg[height='20'])) {
         line-height: 20px;
