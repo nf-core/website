@@ -52,6 +52,8 @@ if (sections?.length > 0) {
             </div>
         </a>
         {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
+
+        <div class="align-self-center d-md-none" id="docsearch-mobile"></div>
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -140,7 +142,7 @@ if (sections?.length > 0) {
                     </ul>
                 </li>
             </ul>
-            <div class="align-self-center" id="docsearch"></div>
+            <div class="align-self-center d-none d-md-block" id="docsearch-desktop"></div>
             <div class="ms-auto d-none d-md-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
@@ -213,11 +215,20 @@ if (sections?.length > 0) {
     import '@docsearch/css';
 
     docsearch({
-        container: '#docsearch',
+        container: '#docsearch-mobile',
         appId: '01BY3A8NRJ',
         indexName: 'nf-co',
         debug: true,
         apiKey: 'c726615ab69f88b4e26bc891c97c1808',
+        placeholder: 'Search',
+    });
+    docsearch({
+        container: '#docsearch-desktop',
+        appId: '01BY3A8NRJ',
+        indexName: 'nf-co',
+        debug: true,
+        apiKey: 'c726615ab69f88b4e26bc891c97c1808',
+        placeholder: 'Search',
     });
 </script>
 
@@ -337,6 +348,16 @@ if (sections?.length > 0) {
     }
     :global([data-bs-theme='dark'] .DocSearch-Modal) {
         background: $body-secondary-bg-dark;
+    }
+    :global(.DocSearch-Container) {
+        @include media-breakpoint-down(md) {
+            padding-top: 3rem;
+        }
+    }
+    :global(.double-navbar ~ .DocSearch-Container) {
+        @include media-breakpoint-down(md) {
+            padding-top: 5rem;
+        }
     }
     :global([data-bs-theme='dark'] .DocSearch-Button-Key, [data-bs-theme='dark'] .DocSearch-Commands-Key) {
         background: $black;
