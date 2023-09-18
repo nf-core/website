@@ -14048,6 +14048,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pixelator",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -19923,6 +19927,10 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "pixelator",
+          "version": "dev"
         },
         {
           "name": "proteinfold",
@@ -48250,7 +48258,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kallisto_index",
