@@ -25,6 +25,7 @@ if (isset($_GET['theme'])) {
 
 $filename = 'nfcore-' . preg_replace('/[^a-z]/', '', $textstring) . '_logo_' . $theme . '.png';
 $filename = str_replace('_.', '.', $filename);
+$filename = basename($filename);
 
 if (strlen($textstring) == 0) {
     header('HTTP/1.1 404 Not Found');
@@ -38,6 +39,7 @@ if ($new_width && is_numeric($new_width)) {
     $cache_filename =
         'nfcore-' . preg_replace('/[^a-z]/', '', $textstring) . '_logo_w' . $new_width . '_' . $theme . '.png';
     $cache_filename = str_replace('_.', '.', $cache_filename);
+    $cache_filename = basename($cache_filename);
 }
 $logo_cache_fn = dirname(dirname(__FILE__)) . "/api_cache/logos/{$cache_filename}";
 # Build directories if needed

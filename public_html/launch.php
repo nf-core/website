@@ -56,14 +56,17 @@ $nxf_flag_schema = [
     ],
 ];
 $release = isset($_GET['release']) ? $_GET['release'] : false;
+$release = htmlspecialchars($release, ENT_QUOTES, 'UTF-8');
+
 if (isset($_GET['pipeline'])) {
-    $error_msgs = launch_pipeline_web($_GET['pipeline'], $release);
+    $pipeline_input = htmlspecialchars($_GET['pipeline'], ENT_QUOTES, 'UTF-8');
+    $error_msgs = launch_pipeline_web($pipeline_input, $release);
 }
 function launch_pipeline_web($pipeline, $release) {
     // Check that we recognise the pipeline name
     global $pipelines;
     global $nxf_flag_schema;
-    if (!array_key_exists($_GET['pipeline'], $pipelines)) {
+    if (!array_key_exists($pipeline, $pipelines)) {
         return ["Error - Pipeline name <code>$pipeline</code> not recognised"];
     }
     // Set release to latest if not given
@@ -80,8 +83,10 @@ function launch_pipeline_web($pipeline, $release) {
         ];
     }
     // Make cache file names
-    $gh_pipeline_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$release}.json";
-    $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$release}.NO_SCHEMA";
+    $gh_pipeline_schema_fn = basename("{$release}.json");
+    $gh_pipeline_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$gh_pipeline_schema_fn}";
+    $gh_pipeline_no_schema_fn = basename("{$release}.NO_SCHEMA");
+    $gh_pipeline_no_schema_fn = dirname(dirname(__FILE__)) . "/api_cache/json_schema/{$pipeline}/{$gh_pipeline_no_schema_fn}";
     // Build directories if needed
     if (!is_dir(dirname($gh_pipeline_schema_fn))) {
         mkdir(dirname($gh_pipeline_schema_fn), 0777, true);
@@ -97,7 +102,8 @@ function launch_pipeline_web($pipeline, $release) {
         $gh_launch_schema_json = file_get_contents($gh_pipeline_schema_fn);
     } else {
         $api_opts = stream_context_create(['http' => ['method' => 'GET', 'header' => ['User-Agent: PHP']]]);
-        $gh_launch_schema_url = "https://api.github.com/repos/sanger-tol/{$pipeline}/contents/nextflow_schema.json?ref={$release}";
+        $gh_launch_schema_url = basename($release);
+        $gh_launch_schema_url = "https://api.github.com/repos/sanger-tol/{$pipeline}/contents/nextflow_schema.json?ref={$gh_launch_schema_url}";
         $gh_launch_schema_json = file_get_contents($gh_launch_schema_url, false, $api_opts);
         if (strpos($http_response_header[0], 'HTTP/1.1 200') === false) {
             # Remember for next time
@@ -190,7 +196,7 @@ function save_launcher_form() {
     if (!isset($_POST['cache_id'])) {
         return ['No cache ID supplied'];
     }
-    $id_check = validate_cache_id($_POST['cache_id']);
+    $id_check = validate_cache_id(htmlspecialchars($_POST['cache_id'],  ENT_QUOTES, 'UTF-8'));
     if (!isset($id_check['status'])) {
         return ['Problem loading cache: <pre><code>' . $id_check . '</code></pre>'];
     }
@@ -198,7 +204,8 @@ function save_launcher_form() {
         return ['Problem loading cache: ' . $id_check['message']];
     }
     // Load cache
-    $cache_id = $_POST['cache_id'];
+    $cache_id = htmlspecialchars($_POST['cache_id'],  ENT_QUOTES, 'UTF-8');
+    $cache_id = basename($cache_id);
     $cache_fn = $cache_dir . '/' . $cache_id . '.json';
     if (!file_exists($cache_fn)) {
         return ['Cache file not found: <code>' . $cache_fn . '</code>'];
@@ -233,11 +240,12 @@ function save_launcher_form() {
 
     // Loop through POST vars and set params
     foreach ($_POST as $k => $v) {
+        $filtered_v = htmlspecialchars($v,  ENT_QUOTES, 'UTF-8');
         if (substr($k, 0, 7) == 'params_') {
-            $cache['input_params'][substr($k, 7)] = $v;
+            $cache['input_params'][substr($k, 7)] = $filtered_v;
         }
         if (substr($k, 0, 9) == 'nxf_flag_') {
-            $cache['nxf_flags'][substr($k, 9)] = $v;
+            $cache['nxf_flags'][substr($k, 9)] = $filtered_v;
         }
     }
     // Write to JSON file

@@ -54,7 +54,7 @@ $total_pages = ceil(count($modules) / $num_elements);
 if (!isset($_GET['page'])) {
     $current_page = 1;
 } else {
-    $current_page = $_GET['page'];
+    $current_page = htmlspecialchars($_GET['page'],  ENT_QUOTES, 'UTF-8');
 }
 $current_element = ($current_page - 1) * $num_elements;
 $current_modules = array_slice($modules, $current_element, $num_elements);
@@ -78,12 +78,12 @@ echo $msg;
 ?>
 
 <h1>Available Modules</h1>
-<p class="mb-3">Modules are the building stones of all DSL2 nf-core blocks. You can find more info <a href="/docs/contributing/modules"></a>, if you would like to write your own module.
+<p class="mb-3">Modules are the building stones of all DSL2 nf-core blocks. You can find more info from nf-core website, if you would like to write your own module.
 </p>
 <div class=" btn-toolbar mb-4 modules-toolbar" role="toolbar">
     <div class="module-filters input-group input-group-sm w-25">
         <input type="search" class="form-control" placeholder="Search modules" value="<?php echo isset($_GET['q'])
-            ? $_GET['q']
+            ? htmlspecialchars($_GET['q'],  ENT_QUOTES, 'UTF-8')
             : ''; ?>">
     </div>
 </div>

@@ -247,7 +247,7 @@ foreach ($repos as $repo) {
                     $fetch_json = false;
                 } elseif ($debug) {
                     echo "New comments for nf-core/$repo issue #$id: now " .
-                        $issue['num_comments'] .
+                        htmlspecialchars($issue['num_comments'], ENT_QUOTES, 'UTF-8') .
                         ', previously had ' .
                         count($gh_comments) .
                         "\n";

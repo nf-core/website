@@ -23,15 +23,21 @@ $event_type_icons = [
 ];
 
 function create_event_download_button($event, $button_style) {
-    $start = DateTime::createFromFormat('U', $event['start_ts']);
+    $start_ts = htmlspecialchars($event['start_ts'], ENT_QUOTES, 'UTF-8');
+    $end_ts = htmlspecialchars($event['end_ts'], ENT_QUOTES, 'UTF-8');
+    $start = DateTime::createFromFormat('U', $start_ts);
     $start->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-    $end = DateTime::createFromFormat('U', $event['end_ts']);
+    $end = DateTime::createFromFormat('U', $end_ts);
     $end->setTimezone(new DateTimeZone('Europe/Amsterdam'));
-    $address = $event['address'] ? $event['address'] : '';
-    $address = $event['location_url'] ? $event['location_url'] : $address; # prefer url over address
+    $address = htmlspecialchars($event['address'], ENT_QUOTES, 'UTF-8');
+    $address = $address ? $address : '';
+    $location_url = htmlspecialchars($event['location_url'], ENT_QUOTES, 'UTF-8');
+    $address = $location_url ? $location_url : $address; # prefer url over address
     $address = is_array($address) ? $address[0] : $address; # if multiple location urls are given, take the first one
-    $link = Link::create($event['title'], $start, $end)
-        ->description($event['subtitle'] ? $event['subtitle'] : '')
+    $title = htmlspecialchars($event['title'], ENT_QUOTES, 'UTF-8');
+    $subtitle = htmlspecialchars($event['subtitle'], ENT_QUOTES, 'UTF-8');
+    $link = Link::create($title, $start, $end)
+        ->description($subtitle ? $subtitle : '')
         ->address($address);
 
     $event_download_button =
@@ -63,26 +69,29 @@ function print_events($events, $is_past_event) {
     foreach ($events as $idx => $event):
 
         # Nice date strings
+        $start_ts = htmlspecialchars($event['start_ts'], ENT_QUOTES, 'UTF-8');
+        $end_ts = htmlspecialchars($event['end_ts'], ENT_QUOTES, 'UTF-8');
         $date_string =
-            date('j<\s\u\p>S</\s\u\p> M Y', $event['start_ts']) .
+            date('j<\s\u\p>S</\s\u\p> M Y', $start_ts) .
             ' - ' .
-            date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+            date('j<\s\u\p>S</\s\u\p> M Y', $end_ts);
         if (date('mY', $event['start_ts']) == date('mY', $event['end_ts'])) {
             $date_string =
-                date('j<\s\u\p>S</\s\u\p> ', $event['start_ts']) .
+                date('j<\s\u\p>S</\s\u\p> ', $start_ts) .
                 ' - ' .
-                date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+                date('j<\s\u\p>S</\s\u\p> M Y', $end_ts);
         }
         if (date('dmY', $event['start_ts']) == date('dmY', $event['end_ts'])) {
-            $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $event['end_ts']);
+            $date_string = date('j<\s\u\p>S</\s\u\p> M Y', $end_ts);
         }
+
         # if event title starts with bytesize change event type
         if (strpos($event['title'], 'Bytesize') === 0) {
             $event['type'] = 'bytesize';
         }
 
         if (($current_year != date('Y', $event['start_ts'])) & $is_past_event) {
-            $current_year = date('Y', $event['start_ts']);
+            $current_year = date('Y', $start_ts);
             echo _h3($current_year);
         }
         $colour_class = $event_type_classes[strtolower($event['type'])];
@@ -91,36 +100,37 @@ function print_events($events, $is_past_event) {
         ?>
 
     <!-- Event Card -->
-    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php echo $colour_class; ?> overflow-visible <?php echo $event[
-     'type'
- ]; ?>">
+    <div class="card my-4 border-3 border-top-0 border-end-0 border-bottom-0 rounded-0 border-<?php 
+    echo $colour_class; 
+    ?> overflow-visible <?php 
+    echo htmlspecialchars($event['type'], ENT_QUOTES, 'UTF-8'); ?>">
       <div class="card-body <?php if ($is_past_event) {
           echo 'py-2';
       } ?>">
         <h5 class="my-0 py-0">
-          <a class="text-success text-decoration-none" href="<?php echo $event['url']; ?>"><?php echo $event[
-    'title'
-]; ?></a>
+          <a class="text-success text-decoration-none" href="<?php
+          echo htmlspecialchars($event['url'], ENT_QUOTES, 'UTF-8'); 
+          ?>"><?php
+          echo htmlspecialchars($event['title'], ENT_QUOTES, 'UTF-8'); ?></a>
           <small><span class="badge bg-<?php echo $colour_class .
               ' ' .
-              $text_colour_class; ?> float-end small"><i class="<?php echo $icon_class; ?> me-1"></i><?php echo ucfirst(
-     $event['type'],
- ); ?></span></small>
+              $text_colour_class; ?> float-end small"><i class="<?php echo $icon_class; ?> me-1"></i><?php
+              echo htmlspecialchars(ucfirst($event['type']), ENT_QUOTES, 'UTF-8'); ?></span></small>
         </h5>
         <?php
         if (array_key_exists('subtitle', $event)) {
             $tm = $is_past_event ? 'text-muted' : '';
-            echo '<p class="mb-0 ' . $tm . '">' . $event['subtitle'] . '</p>';
+            echo '<p class="mb-0 ' . $tm . '">' . htmlspecialchars($event['subtitle'], ENT_QUOTES, 'UTF-8') . '</p>';
         }
 
         if (!$is_past_event): ?>
           <h6 class="small text-muted"><?php echo $date_string; ?></h6>
 
           <?php if (array_key_exists('description', $event)) {
-              echo '<p>' . nl2br($event['description']) . '</p>';
+              echo '<p>' . nl2br(htmlspecialchars($event['description'], ENT_QUOTES, 'UTF-8')) . '</p>';
           } ?>
           <div class="btn-group" role="group">
-            <a href="<?php echo $event['url']; ?>" class="btn btn-outline-success">
+            <a href="<?php echo htmlspecialchars($event['url'], ENT_QUOTES, 'UTF-8'); ?>" class="btn btn-outline-success">
               See details
             </a>
             <?php echo create_event_download_button($event, 'btn-outline-success'); ?>
@@ -128,7 +138,7 @@ function print_events($events, $is_past_event) {
         <?php else: ?>
           <h6 class="small text-muted mb-0">
             <?php echo $date_string; ?> -
-            <a class="text-success" href="<?php echo $event['url']; ?>">
+            <a class="text-success" href="<?php echo htmlspecialchars($event['url'], ENT_QUOTES, 'UTF-8'); ?>">
               See details
             </a>
           </h6>
@@ -155,6 +165,12 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         // Nested event index page
         $href_url_prepend = basename($markdown_fn) . '/';
         $markdown_fn = $markdown_fn . '/index.md';
+    }
+    elseif (!is_file($markdown_fn)) {
+        unset($markdown_fn);
+        header('HTTP/1.1 404 Not Found');
+        include '404.php';
+        die();
     }
 
     require_once '../includes/parse_md.php';
@@ -271,6 +287,7 @@ if (isset($_GET['event']) && substr($_GET['event'], 0, 7) == 'events/') {
         $youtube_embed = true;
         foreach ($event['youtube_embed'] as $embed) {
             $video_id = get_youtube_id($embed);
+            $video_id = htmlspecialchars($video_id, ENT_QUOTES, 'UTF-8');
             if ($video_id) {
                 echo '<script>var video_id="' . $video_id . '"</script>';
             }
@@ -386,7 +403,6 @@ foreach ($events as $idx => $event) {
         unset($events[$idx]);
         continue;
     }
-
     # Update arrays
     if ($event['start_ts'] > time()) {
         $future_events[$idx] = $event;

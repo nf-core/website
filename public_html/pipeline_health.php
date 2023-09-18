@@ -71,9 +71,10 @@ class RepoHealth {
 
         // Cache filenames
         $this->cache_base = dirname(dirname(__FILE__)) . '/api_cache/pipeline_health';
-        $this->gh_repo_cache = $this->cache_base . '/repo_' . $this->name . '.json';
-        $this->gh_release_cache = $this->cache_base . '/release_' . $this->name . '.json';
-        $this->gh_all_branches_cache = $this->cache_base . '/branches_' . $this->name . '.json';
+        $checked_name = basename($this->name);
+        $this->gh_repo_cache = $this->cache_base . '/repo_' . $checked_name  . '.json';
+        $this->gh_release_cache = $this->cache_base . '/release_' . $checked_name  . '.json';
+        $this->gh_all_branches_cache = $this->cache_base . '/branches_' . $checked_name  . '.json';
     }
 
     // Names of required CI checks. These are added to whatever already exists.
@@ -171,7 +172,7 @@ class RepoHealth {
             if (file_exists($this->gh_repo_cache) && !$this->refresh) {
                 $this->gh_repo = json_decode(file_get_contents($this->gh_repo_cache));
             } else {
-                $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . $this->name;
+                $gh_repo_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name);
                 $this->gh_repo = json_decode(file_get_contents($gh_repo_url, false, GH_API_OPTS));
                 $this->_save_cache_data($this->gh_repo_cache, $this->gh_repo);
             }
@@ -183,7 +184,7 @@ class RepoHealth {
         if (file_exists($this->gh_release_cache) && !$this->refresh) {
             $this->gh_release = json_decode(file_get_contents($this->gh_release_cache));
         } else {
-            $gh_release_url = 'https://api.github.com/repos/nf-core/' . $this->name . '/releases/latest';
+            $gh_release_url = 'https://api.github.com/repos/nf-core/' . basename($this->name) . '/releases/latest';
             $this->gh_release = json_decode(file_get_contents($gh_release_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_release_cache, $this->gh_release);
         }
@@ -194,14 +195,14 @@ class RepoHealth {
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
-            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches';
+            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches';
             $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
 
         // Details of branch protection for main and dev
         foreach (['main', 'dev', 'TEMPLATE'] as $branch) {
-            $gh_branch_cache = $this->cache_base . '/branch_' . $this->name . '_' . $branch . '.json';
+            $gh_branch_cache = $this->cache_base . '/branch_' . basename($this->name) . '_' . $branch . '.json';
             if (file_exists($gh_branch_cache) && !$this->refresh) {
                 $gh_branch = json_decode(file_get_contents($gh_branch_cache));
                 if (is_object($gh_branch)) {
@@ -210,7 +211,7 @@ class RepoHealth {
                 }
             } else {
                 $gh_branch_url =
-                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/' . $branch . '/protection';
+                    'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches/' . $branch . '/protection';
                 $gh_branch = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
                 if (strpos($http_response_header[0], 'HTTP/1.1 200') !== false && is_object($gh_branch)) {
                     $this->{'gh_branch_' . $branch} = $gh_branch;
@@ -219,10 +220,11 @@ class RepoHealth {
                     // Write an empty cache file
                     if (strpos($http_response_header[0], 'HTTP/1.1 404') === false) {
                         // A 404 is fine, that just means that there is no branch protection. Warn if anything else.
+                        $gh_branch = htmlspecialchars($gh_branch, ENT_QUOTES, 'UTF-8');
                         echo '<div class="alert alert-danger">Could not fetch branch protection data for <code>' .
-                            $this->name .
+                            htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                             '</code> - <code>' .
-                            $branch .
+                            htmlspecialchars($branch, ENT_QUOTES, 'UTF-8') .
                             '</code><pre>' .
                             print_r($http_response_header, true) .
                             '</pre><pre>' .
@@ -406,7 +408,7 @@ class RepoHealth {
             $payload['homepage'] = $this->web_url;
         }
         if (count($payload) > 0) {
-            $gh_edit_repo_url = 'https://api.github.com/repos/sanger-tol/' . $this->name;
+            $gh_edit_repo_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name);
             $updated_data = $this->_send_gh_api_data($gh_edit_repo_url, $payload, 'PATCH');
             if ($updated_data) {
                 $this->gh_repo = $updated_data;
@@ -421,7 +423,7 @@ class RepoHealth {
             $topics = [
                 'names' => array_values(array_unique(array_merge($this->gh_repo->topics, $this->required_topics))),
             ];
-            $gh_edit_topics_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/topics';
+            $gh_edit_topics_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/topics';
             $updated_data = $this->_send_gh_api_data($gh_edit_topics_url, $topics, 'PUT');
             if ($updated_data) {
                 $this->gh_repo->topics = $updated_data->names;
@@ -445,7 +447,7 @@ class RepoHealth {
             if ($team == 'nextflow_all') {
                 $payload = ['permission' => 'push'];
             }
-            $gh_edit_team_url = 'https://api.github.com/teams/' . $gh_team_ids[$team] . '/repos/sanger-tol/' . $this->name;
+            $gh_edit_team_url = 'https://api.github.com/teams/' . basename($gh_team_ids[$team]) . '/repos/sanger-tol/' . basename($this->name);
             if ($this->_send_gh_api_data($gh_edit_team_url, $payload, 'PUT')) {
                 $updated_teams[$team] = true;
             }
@@ -500,11 +502,11 @@ class RepoHealth {
                     'restrictions' => null,
                 ];
                 $gh_edit_branch_protection_url =
-                    'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches/' . $branch . '/protection';
+                    'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches/' . $branch . '/protection';
                 $updated_data = $this->_send_gh_api_data($gh_edit_branch_protection_url, $payload, 'PUT');
                 if ($updated_data) {
                     $this->{'gh_branch_' . $branch} = $updated_data;
-                    $gh_branch_cache = $this->cache_base . '/branch_' . $this->name . '_' . $branch . '.json';
+                    $gh_branch_cache = $this->cache_base . '/branch_' . basename($this->name) . '_' . $branch . '.json';
                     $this->_save_cache_data($gh_branch_cache, $this->{'gh_branch_' . $branch});
                 }
             }
@@ -598,42 +600,42 @@ class RepoHealth {
         }
         if (is_null($this->$test_name)) {
             echo '<td class="table-secondary text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8').
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8') .
                 '" class="d-block" target="_blank"><i class="fas fa-question text-secondary"></i></a>
       </td>';
         } elseif ($this->$test_name === -1) {
             echo '<td class="table-success text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8')  .
                 '" class="d-block text-secondary text-decoration-none" target="_blank">&mdash;</a>
       </td>';
         } elseif ($this->$test_name) {
             echo '<td class="table-success text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8') .
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8')  .
                 '" class="d-block" target="_blank"><i class="fas fa-check text-success"></i></a>
       </td>';
         } else {
             echo '<td class="table-danger text-center" title="' .
-                $this->name .
+                htmlspecialchars($this->name, ENT_QUOTES, 'UTF-8').
                 ': ' .
                 $this->test_descriptions[$test_name] .
                 '" data-bs-toggle="tooltip" data-html="true">
         <a href="' .
-                $test_url .
+                htmlspecialchars($test_url, ENT_QUOTES, 'UTF-8')  .
                 '" class="d-block" target="_blank"><i class="fas fa-times text-danger"></i></a>
       </td>';
         }
@@ -688,7 +690,7 @@ class PipelineHealth extends RepoHealth {
         // Check last release, with caching
         else {
             $check_404_cache =
-                $this->cache_base . '/files_404_' . $this->name . '_' . $this->last_release->tag_name . '.json';
+                $this->cache_base . '/files_404_' . basename($this->name) . '_' . $this->last_release->tag_name . '.json';
             // Load cache
             if (file_exists($check_404_cache) && !$this->refresh) {
                 $files_404_cache = json_decode(file_get_contents($check_404_cache));
@@ -718,7 +720,7 @@ class PipelineHealth extends RepoHealth {
         if (file_exists($this->gh_all_branches_cache) && !$this->refresh) {
             $this->gh_branches = json_decode(file_get_contents($this->gh_all_branches_cache));
         } else {
-            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . $this->name . '/branches';
+            $gh_branch_url = 'https://api.github.com/repos/sanger-tol/' . basename($this->name) . '/branches';
             $this->gh_branches = json_decode(@file_get_contents($gh_branch_url, false, GH_API_OPTS));
             $this->_save_cache_data($this->gh_all_branches_cache, $this->gh_branches);
         }
@@ -774,7 +776,7 @@ function get_gh_team_repos($team) {
     if (file_exists($gh_teams_cache) && !is_refresh_cache(null, true)) {
         $gh_team = json_decode(file_get_contents($gh_teams_cache));
     } else {
-        $gh_team_url = 'https://api.github.com/orgs/sanger-tol/teams/' . $team;
+        $gh_team_url = 'https://api.github.com/orgs/sanger-tol/teams/' . basename($team);
         $gh_team = json_decode(file_get_contents($gh_team_url, false, GH_API_OPTS));
 
         // Save for next time
@@ -790,7 +792,7 @@ function get_gh_team_repos($team) {
     if (file_exists($gh_team_repos_cache) && !is_refresh_cache(null, true)) {
         $gh_team_repos = json_decode(file_get_contents($gh_team_repos_cache));
     } else {
-        $gh_team_repos_url = 'https://api.github.com/teams/' . $gh_team->id . '/repos';
+        $gh_team_repos_url = 'https://api.github.com/teams/' . basename($gh_team->id) . '/repos';
         $first_page = true;
         $next_page = false;
         $gh_team_repos = [];
@@ -1125,7 +1127,7 @@ ksort($core_repos);
                       ' class="small fw-normal text-nowrap" title="' .
                       $description .
                       '" data-bs-toggle="tooltip" data-bs-placement="top">' .
-                      $name .
+                      htmlspecialchars($name, ENT_QUOTES, 'UTF-8') .
                       '</th>';
               }
           }
@@ -1135,7 +1137,7 @@ ksort($core_repos);
       <tbody>
         <?php foreach ($pipelines as $pipeline) {
             echo '<tr>';
-            echo '<td>' . $pipeline->name . '</td>';
+            echo '<td>' . htmlspecialchars($pipeline->name, ENT_QUOTES, 'UTF-8') . '</td>';
             foreach ($pipeline_test_names as $key => $name) {
                 $pipeline->print_table_cell($key);
             }
@@ -1155,7 +1157,7 @@ ksort($core_repos);
               echo '<th class="small text-nowrap" title="' .
                   $core_repo_test_descriptions[$key] .
                   '" data-bs-toggle="tooltip" data-bs-placement="top">' .
-                  $name .
+                  htmlspecialchars($name, ENT_QUOTES, 'UTF-8') .
                   '</th>';
           } ?>
         </tr>

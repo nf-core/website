@@ -76,8 +76,9 @@ function parse_md($markdown) {
 
     // Highlight any search terms if we have them (except if they are inside html tags)
     if (isset($_GET['q']) && strlen($_GET['q'])) {
+        $quoted_search_term = preg_quote($_GET['q'], '/');
         $content = preg_replace(
-            '/<.*?' . $_GET['q'] . '.*?>(*SKIP)(*FAIL)|' . $_GET['q'] . '/i',
+            '/<.*?' . $quoted_search_term . '.*?>(*SKIP)(*FAIL)|' . $quoted_search_term . '/i',
             "<mark>$0</mark>",
             $content,
         );

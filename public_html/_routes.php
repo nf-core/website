@@ -61,10 +61,6 @@ if (strtolower($path_parts[0]) == 'modules') {
 
     foreach ($modules as $idx => $module) {
         if (strtolower($module['name']) == strtolower($module_name)) {
-            # If capitalization is wrong, redirect because I'm fussy
-            if ($module['name'] != $module_name) {
-                header('Location: /' . str_replace($path_parts[1], $module['name'], $_GET['path']));
-            }
             # Include the script that renders the pipeline page, then exit
             include '../includes/module_page/_index.php';
             exit();
@@ -77,11 +73,6 @@ $pipelines_json = json_decode(file_get_contents('pipelines.json'));
 
 foreach ($pipelines_json->remote_workflows as $pipeline) {
     if (strtolower($pipeline->name) == strtolower($path_parts[0])) {
-        # If capilitilsation is wrong, redirect because I'm fussy
-        if ($pipeline->name != $path_parts[0]) {
-            header('Location: /' . str_replace($path_parts[0], $pipeline->name, $_GET['path']));
-        }
-
         # Include the script that renders the pipeline page, then exit
         include '../includes/pipeline_page/_index.php';
         exit();
