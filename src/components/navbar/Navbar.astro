@@ -92,8 +92,8 @@ if (sections?.length > 0) {
                     </EventIndicator>
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
-                            Events
-                        </a>
+                            Events</a
+                        >
                         <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
                             <li>
                                 <a class="dropdown-item" href="/events/bytesize/"
@@ -216,12 +216,52 @@ if (sections?.length > 0) {
         container: '#docsearch',
         appId: '01BY3A8NRJ',
         indexName: 'nf-co',
+        debug: true,
         apiKey: 'c726615ab69f88b4e26bc891c97c1808',
     });
 </script>
 
 <style lang="scss">
     @import '@styles/_variables.scss';
+
+    :global(:root) {
+        --docsearch-text-color: #{$input-color};
+        --docsearch-searchbox-background: #{$input-bg};
+        --docsearch-searchbox-shadow: none;
+        --docsearch-searchbox-focus-background: #{$input-bg};
+        --docsearch-primary-color: #{$nf-core-color};
+        --docsearch-container-background: #{rgba($black, 0.5)};
+        --docsearch-modal-background: #($secondary-bg);
+        --docsearch-modal-shadow: 'none';
+        --docsearch-footer-shadow: none;
+    }
+    :global(button.DocSearch-Button .DocSearch-Button-Keys) {
+        background: none;
+        border-radius: $border-radius-sm;
+
+        //   padding: 0.2rem;
+        margin-top: 0.15rem;
+
+        min-width: 3rem;
+        justify-content: space-around;
+        align-items: center;
+    }
+    :global(.DocSearch-Button-Key, .DocSearch-Commands-Key) {
+        align-items: center;
+        background: $white;
+        box-shadow: 0 0 0 1px $secondary;
+        margin-right: 0.2rem;
+        padding: 0;
+    }
+    :global(.DocSearch-Hits:last-of-type) {
+        margin-bottom: 0;
+    }
+    :global(.DocSearch-Hit a) {
+        box-shadow: none;
+    }
+    :global(.DocSearch-Hit-icon:has(svg[height='20'])) {
+        line-height: 20px;
+    }
 
     .navbar.fixed-top {
         .navbar-brand {
@@ -270,5 +310,26 @@ if (sections?.length > 0) {
         :global(.active) & {
             fill: $white;
         }
+    }
+    :global([data-bs-theme='dark']:root) {
+        --docsearch-text-color: #{$input-color};
+        --docsearch-searchbox-background: #{$input-bg};
+        --docsearch-searchbox-shadow: none;
+        --docsearch-searchbox-focus-background: #{$input-bg};
+        --docsearch-primary-color: #{$nf-core-color-dark};
+        --docsearch-container-background: #{rgba($black, 0.5)};
+        --docsearch-modal-background: #($secondary-bg-subtle-dark);
+        --docsearch-modal-shadow: 'none';
+
+        --docsearch-hit-color: #{$body-color-dark};
+        --docsearch-hit-background: #{$body-bg-dark};
+        --docsearch-footer-background: #{$body-secondary-bg-dark};
+    }
+    :global([data-bs-theme='dark'] .DocSearch-Modal) {
+        background: $body-secondary-bg-dark;
+    }
+    :global([data-bs-theme='dark'] .DocSearch-Button-Key, [data-bs-theme='dark'] .DocSearch-Commands-Key) {
+        background: $black;
+        box-shadow: 0 0 0 1px $secondary-border-subtle-dark;
     }
 </style>
