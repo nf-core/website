@@ -14048,6 +14048,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "pixelator",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -19923,6 +19927,10 @@
         {
           "name": "phyloplace",
           "version": "1.0.0"
+        },
+        {
+          "name": "pixelator",
+          "version": "dev"
         },
         {
           "name": "proteinfold",
@@ -30039,11 +30047,11 @@
         "name": "gatk4_annotateintervals",
         "description": "Annotates intervals with GC content, mappability, and segmental-duplication content",
         "keywords": [
-          "gatk",
           "annotateintervals",
-          "intervals",
+          "annotation",
           "bed",
-          "annotation"
+          "gatk4",
+          "intervals"
         ],
         "tools": [
           {
@@ -30205,9 +30213,11 @@
         "name": "gatk4_applybqsr",
         "description": "Apply base quality score recalibration (BQSR) to a bam file",
         "keywords": [
-          "bqsr",
           "bam",
-          "base quality score recalibration"
+          "base quality score recalibration",
+          "bqsr",
+          "cram",
+          "gatk4"
         ],
         "tools": [
           {
@@ -30334,9 +30344,12 @@
         "name": "gatk4_applybqsr_spark",
         "description": "Apply base quality score recalibration (BQSR) to a bam file",
         "keywords": [
-          "bqsr",
           "bam",
-          "gatk"
+          "base quality score recalibration",
+          "bqsr",
+          "cram",
+          "gatk4",
+          "spark"
         ],
         "tools": [
           {
@@ -30461,8 +30474,9 @@
         "description": "Apply a score cutoff to filter variants based on a recalibration table.\nAplyVQSR performs the second pass in a two-stage process called Variant Quality Score Recalibration (VQSR).\nSpecifically, it applies filtering to the input variants based on the recalibration table produced\nin the first step by VariantRecalibrator and a target sensitivity value.\n",
         "keywords": [
           "gatk4",
-          "applyvqsr",
-          "VQSR"
+          "variant quality score recalibration",
+          "vcf",
+          "vqsr"
         ],
         "tools": [
           {
@@ -30587,9 +30601,10 @@
         "name": "gatk4_asereadcounter",
         "description": "Calculates the allele-specific read counts for alle-specific expression analysis of RNAseq data",
         "keywords": [
+          "allele-specific",
           "asereadcounter",
           "gatk4",
-          "allele-specific"
+          "vcf"
         ],
         "tools": [
           {
@@ -30688,6 +30703,10 @@
         "name": "gatk4_baserecalibrator",
         "description": "Generate recalibration table for Base Quality Score Recalibration (BQSR)",
         "keywords": [
+          "base quality score recalibration",
+          "table",
+          "bqsr",
+          "gatk4",
           "sort"
         ],
         "tools": [
@@ -30817,9 +30836,12 @@
         "name": "gatk4_baserecalibrator_spark",
         "description": "Generate recalibration table for Base Quality Score Recalibration (BQSR)",
         "keywords": [
-          "sort",
+          "base quality score recalibration",
+          "table",
           "bqsr",
-          "gatk"
+          "gatk4",
+          "sort",
+          "spark"
         ],
         "tools": [
           {
@@ -30945,8 +30967,9 @@
         "description": "Creates an interval list from a bed file and a reference dict",
         "keywords": [
           "bed",
-          "interval list",
-          "bedtointervallist"
+          "bedtointervallist",
+          "gatk4",
+          "interval list"
         ],
         "tools": [
           {
@@ -31237,7 +31260,7 @@
         "name": "gatk4_cnnscorevariants",
         "description": "Apply a Convolutional Neural Net to filter annotated variants",
         "keywords": [
-          "gatk4_cnnscorevariants",
+          "cnnscorevariants",
           "gatk4",
           "variants"
         ],
@@ -31372,10 +31395,9 @@
         "name": "gatk4_collectreadcounts",
         "description": "Collects read counts at specified intervals. The count for each interval is calculated by counting the number of read starts that lie in the interval.",
         "keywords": [
+          "collectreadcounts",
           "bam",
           "cram",
-          "CollectReadCounts",
-          "gatk",
           "gatk4"
         ],
         "tools": [
@@ -31659,7 +31681,7 @@
           "gatk4",
           "vcf",
           "combinegvcfs",
-          "Short_Variant_Discovery"
+          "short variant discovery"
         ],
         "tools": [
           {
@@ -31750,9 +31772,9 @@
         "name": "gatk4_composestrtablefile",
         "description": "This tool looks for low-complexity STR sequences along the reference that are later used to estimate the Dragstr model during single sample auto calibration CalibrateDragstrModel.",
         "keywords": [
-          "gatk4",
           "composestrtablefile",
-          "dragstr"
+          "dragstr",
+          "gatk4"
         ],
         "tools": [
           {
@@ -31819,9 +31841,9 @@
         "name": "gatk4_condensedepthevidence",
         "description": "Merges adjacent DepthEvidence records",
         "keywords": [
-          "gatk4",
           "condensedepthevidence",
-          "evidence"
+          "evidence",
+          "gatk4"
         ],
         "tools": [
           {
@@ -31919,8 +31941,8 @@
         "name": "gatk4_createreadcountpanelofnormals",
         "description": "Creates a panel of normals (PoN) for read-count denoising given the read counts for samples in the panel.",
         "keywords": [
-          "gatk4",
           "createreadcountpanelofnormals",
+          "gatk4",
           "panelofnormals"
         ],
         "tools": [
@@ -31987,9 +32009,10 @@
         "name": "gatk4_createsequencedictionary",
         "description": "Creates a sequence dictionary for a reference sequence",
         "keywords": [
+          "createsequencedictionary",
           "dictionary",
           "fasta",
-          "createsequencedictionary"
+          "gatk4"
         ],
         "tools": [
           {
@@ -32071,8 +32094,8 @@
         "name": "gatk4_createsomaticpanelofnormals",
         "description": "Create a panel of normals contraining germline and artifactual sites for use with mutect2.",
         "keywords": [
-          "gatk4",
           "createsomaticpanelofnormals",
+          "gatk4",
           "panelofnormals"
         ],
         "tools": [
@@ -32175,9 +32198,9 @@
         "name": "gatk4_denoisereadcounts",
         "description": "Denoises read counts to produce denoised copy ratios",
         "keywords": [
-          "gatk4",
+          "copyratios",
           "denoisereadcounts",
-          "copyratios"
+          "gatk4"
         ],
         "tools": [
           {
@@ -32263,10 +32286,10 @@
         "name": "gatk4_determinegermlinecontigploidy",
         "description": "Determines the baseline contig ploidy for germline samples given counts data",
         "keywords": [
-          "gatk4",
-          "determinegermlinecontigploidy",
+          "copy number",
           "counts",
-          "copy number"
+          "determinegermlinecontigploidy",
+          "gatk4"
         ],
         "tools": [
           {
@@ -32381,9 +32404,9 @@
         "name": "gatk4_estimatelibrarycomplexity",
         "description": "Estimates the numbers of unique molecules in a sequencing library.",
         "keywords": [
+          "duplication metrics",
+          "estimatelibrarycomplexity",
           "gatk4",
-          "gatk4_estimatelibrarycomplexity",
-          "duplication_metrics",
           "reporting"
         ],
         "tools": [
@@ -32483,8 +32506,9 @@
         "description": "Converts FastQ file to SAM/BAM format",
         "keywords": [
           "bam",
+          "convert",
           "fastq",
-          "convert"
+          "gatk4"
         ],
         "tools": [
           {
@@ -32550,9 +32574,9 @@
         "name": "gatk4_filterintervals",
         "description": "Filters intervals based on annotations and/or count statistics.",
         "keywords": [
+          "filterintervals",
           "gatk4",
-          "interval_list",
-          "filterintervals"
+          "interval_list"
         ],
         "tools": [
           {
@@ -32651,9 +32675,10 @@
         "description": "Filters the raw output of mutect2, can optionally use outputs of calculatecontamination and learnreadorientationmodel to improve filtering.\n",
         "keywords": [
           "filtermutectcalls",
-          "mutect2",
+          "filter",
           "gatk4",
-          "filtervcf"
+          "mutect2",
+          "vcf"
         ],
         "tools": [
           {
@@ -32823,9 +32848,9 @@
         "name": "gatk4_filtervarianttranches",
         "description": "Apply tranche filtering",
         "keywords": [
-          "gatk4",
           "filtervarianttranches",
-          "tranche_filtering"
+          "gatk4",
+          "tranche filtering"
         ],
         "tools": [
           {
@@ -32949,9 +32974,10 @@
         "name": "gatk4_gatherbqsrreports",
         "description": "Gathers scattered BQSR recalibration reports into a single file",
         "keywords": [
-          "gatk4",
-          "gatk4_gatherbqsrreports",
-          "base_recalibration"
+          "base quality score recalibration",
+          "bqsr",
+          "gatherbqsrreports",
+          "gatk4"
         ],
         "tools": [
           {
@@ -33027,6 +33053,8 @@
         "name": "gatk4_gatherpileupsummaries",
         "description": "write your description here",
         "keywords": [
+          "gatk4",
+          "mpileup",
           "sort"
         ],
         "tools": [
@@ -33052,7 +33080,7 @@
           },
           {
             "pileup": {
-              "type": "(list of) file(s)",
+              "type": "file",
               "description": "Pileup files from gatk4/getpileupsummaries",
               "pattern": "*.pileups.table"
             }
@@ -33105,10 +33133,10 @@
         "description": "merge GVCFs from multiple samples. For use in joint genotyping or somatic panel of normal creation.",
         "keywords": [
           "gatk4",
-          "genomicsdbimport",
           "genomicsdb",
-          "panelofnormalscreation",
-          "jointgenotyping"
+          "genomicsdbimport",
+          "jointgenotyping",
+          "panelofnormalscreation"
         ],
         "tools": [
           {
@@ -33143,7 +33171,7 @@
           },
           {
             "wspace": {
-              "type": "path",
+              "type": "file",
               "description": "path to an existing genomicsdb to be used in update db mode or get intervals mode. This WILL NOT specify name of a new genomicsdb in create db mode.",
               "pattern": "/path/to/existing/gendb"
             }
@@ -33237,9 +33265,10 @@
         "name": "gatk4_genotypegvcfs",
         "description": "Perform joint genotyping on one or more samples pre-called with HaplotypeCaller.\n",
         "keywords": [
-          "joint genotyping",
+          "gatk4",
           "genotype",
-          "gvcf"
+          "gvcf",
+          "joint genotyping"
         ],
         "tools": [
           {
@@ -33378,8 +33407,8 @@
         "description": "Calls copy-number variants in germline samples given their counts and the output of DetermineGermlineContigPloidy.",
         "keywords": [
           "gatk",
-          "gatk4_germlinecnvcaller",
-          "germline contig ploidy"
+          "germline contig ploidy",
+          "germlinecnvcaller"
         ],
         "tools": [
           {
@@ -33491,9 +33520,9 @@
         "description": "Summarizes counts of reads that support reference, alternate and other alleles for given sites. Results can be used with CalculateContamination. Requires a common germline variant sites file, such as from gnomAD.\n",
         "keywords": [
           "gatk4",
+          "germlinevariantsites",
           "getpileupsumaries",
-          "readcountssummary",
-          "germlinevariantsites"
+          "readcountssummary"
         ],
         "tools": [
           {
@@ -33630,8 +33659,8 @@
         "description": "Call germline SNPs and indels via local re-assembly of haplotypes",
         "keywords": [
           "gatk4",
-          "haplotypecaller",
-          "haplotype"
+          "haplotype",
+          "haplotypecaller"
         ],
         "tools": [
           {
@@ -33774,8 +33803,10 @@
         "name": "gatk4_indexfeaturefile",
         "description": "Creates an index for a feature file, e.g. VCF or BED file.",
         "keywords": [
+          "feature",
+          "gatk4",
           "index",
-          "feature"
+          "indexfeaturefile"
         ],
         "tools": [
           {
@@ -33851,9 +33882,10 @@
         "name": "gatk4_intervallisttobed",
         "description": "Converts an Picard IntervalList file to a BED file.",
         "keywords": [
-          "interval",
           "bed",
-          "conversion"
+          "conversion",
+          "gatk4",
+          "interval"
         ],
         "tools": [
           {
@@ -33929,9 +33961,10 @@
         "name": "gatk4_intervallisttools",
         "description": "Splits the interval list file into unique, equally-sized interval files and place it under a directory",
         "keywords": [
-          "sort",
           "bed",
-          "interval list"
+          "gatk4",
+          "interval_list",
+          "sort"
         ],
         "tools": [
           {
@@ -34016,8 +34049,8 @@
         "keywords": [
           "gatk4",
           "learnreadorientationmodel",
-          "readorientationartifacts",
-          "mutect2"
+          "mutect2",
+          "readorientationartifacts"
         ],
         "tools": [
           {
@@ -34086,8 +34119,10 @@
         "name": "gatk4_leftalignandtrimvariants",
         "description": "Left align and trim variants using GATK4 LeftAlignAndTrimVariants.",
         "keywords": [
-          "normalize",
+          "gatk4",
+          "leftalignandtrimvariants",
           "norm",
+          "normalize",
           "vcf"
         ],
         "tools": [
@@ -34198,8 +34233,9 @@
         "name": "gatk4_markduplicates",
         "description": "This tool locates and tags duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA.",
         "keywords": [
-          "markduplicates",
           "bam",
+          "gatk4",
+          "markduplicates",
           "sort"
         ],
         "tools": [
@@ -34328,9 +34364,11 @@
         "name": "gatk4_markduplicates_spark",
         "description": "This tool locates and tags duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA.",
         "keywords": [
-          "markduplicates",
           "bam",
-          "sort"
+          "gatk4",
+          "markduplicates",
+          "sort",
+          "spark"
         ],
         "tools": [
           {
@@ -34439,6 +34477,7 @@
         "keywords": [
           "alignment",
           "bam",
+          "gatk4",
           "merge",
           "mergebamalignment"
         ],
@@ -34537,8 +34576,10 @@
         "name": "gatk4_mergemutectstats",
         "description": "Merges mutect2 stats generated on different intervals/regions",
         "keywords": [
-          "mutectstats",
-          "merge"
+          "gatk4",
+          "merge",
+          "mutect2",
+          "mutectstats"
         ],
         "tools": [
           {
@@ -34563,7 +34604,7 @@
           },
           {
             "stats": {
-              "type": "(list of) file(s)",
+              "type": "file",
               "description": "Stats file",
               "pattern": "*.{stats}"
             }
@@ -34618,8 +34659,9 @@
         "name": "gatk4_mergevcfs",
         "description": "Merges several vcf files",
         "keywords": [
-          "vcf",
-          "merge"
+          "gatk4",
+          "merge",
+          "vcf"
         ],
         "tools": [
           {
@@ -34721,8 +34763,10 @@
         "description": "Call somatic SNVs and indels via local assembly of haplotypes.",
         "keywords": [
           "gatk4",
-          "mutect2",
           "haplotype",
+          "indels",
+          "mutect2",
+          "snvs",
           "somatic"
         ],
         "tools": [
@@ -34903,9 +34947,9 @@
         "name": "gatk4_postprocessgermlinecnvcalls",
         "description": "Postprocesses the output of GermlineCNVCaller and generates VCFs and denoised copy ratios",
         "keywords": [
+          "copy number",
           "gatk4",
-          "postprocessgermlinecnvcalls",
-          "copy number"
+          "postprocessgermlinecnvcalls"
         ],
         "tools": [
           {
@@ -35004,10 +35048,10 @@
         "name": "gatk4_preprocessintervals",
         "description": "Prepares bins for coverage collection.",
         "keywords": [
+          "bed",
           "gatk4",
-          "preprocessintervals",
           "interval",
-          "bed"
+          "preprocessintervals"
         ],
         "tools": [
           {
@@ -35136,11 +35180,11 @@
         "name": "gatk4_printreads",
         "description": "Print reads in the SAM/BAM/CRAM file",
         "keywords": [
-          "gatk4",
           "bam",
           "cram",
-          "sam",
-          "printreads"
+          "gatk4",
+          "printreads",
+          "sam"
         ],
         "tools": [
           {
@@ -35275,9 +35319,9 @@
         "name": "gatk4_printsvevidence",
         "description": "WARNING - this tool is still experimental and shouldn't be used in a production setting. Gathers paired-end and split read evidence files for use in the GATK-SV pipeline. Output files are a file containing the location of and orientation of read pairs marked as discordant, and a file containing the clipping location of all soft clipped reads and the orientation of the clipping.",
         "keywords": [
-          "structural_variants",
           "gatk4",
-          "printsvevidence"
+          "printsvevidence",
+          "structural variants"
         ],
         "tools": [
           {
@@ -35385,8 +35429,8 @@
         "description": "Condenses homRef blocks in a single-sample GVCF",
         "keywords": [
           "gatk4",
-          "reblockgvcf",
-          "gvcf"
+          "gvcf",
+          "reblockgvcf"
         ],
         "tools": [
           {
@@ -35504,8 +35548,9 @@
         "name": "gatk4_revertsam",
         "description": "Reverts SAM or BAM files to a previous state.",
         "keywords": [
-          "sam",
-          "revert"
+          "gatk4",
+          "revert",
+          "sam"
         ],
         "tools": [
           {
@@ -35571,7 +35616,8 @@
         "description": "Converts BAM/SAM file to FastQ format",
         "keywords": [
           "bed",
-          "interval list"
+          "gatk4",
+          "interval_list"
         ],
         "tools": [
           {
@@ -35640,7 +35686,6 @@
         "name": "gatk4_selectvariants",
         "description": "Select a subset of variants from a VCF file",
         "keywords": [
-          "gatk",
           "gatk4",
           "selectvariants",
           "vcf"
@@ -35737,9 +35782,10 @@
         "name": "gatk4_shiftfasta",
         "description": "Create a fasta with the bases shifted by offset",
         "keywords": [
+          "gatk4",
           "mitochondria",
-          "shiftfasta",
           "shiftchain",
+          "shiftfasta",
           "shiftintervals"
         ],
         "tools": [
@@ -35866,9 +35912,9 @@
         "name": "gatk4_sitedepthtobaf",
         "description": "EXPERIMENTAL TOOL! Convert SiteDepth to BafEvidence",
         "keywords": [
+          "baf",
           "gatk4",
-          "site depth",
-          "BAF"
+          "site depth"
         ],
         "tools": [
           {
@@ -35983,10 +36029,10 @@
         "name": "gatk4_splitcram",
         "description": "Splits CRAM files efficiently by taking advantage of their container based structure",
         "keywords": [
+          "cram",
           "gatk4",
-          "splitcram",
           "split",
-          "cram"
+          "splitcram"
         ],
         "tools": [
           {
@@ -36051,8 +36097,9 @@
         "name": "gatk4_splitintervals",
         "description": "Split intervals into sub-interval files.",
         "keywords": [
-          "interval",
           "bed",
+          "gatk4",
+          "interval",
           "splitintervals"
         ],
         "tools": [
@@ -36165,8 +36212,9 @@
         "name": "gatk4_splitncigarreads",
         "description": "Splits reads that contain Ns in their cigar string",
         "keywords": [
-          "vcf",
-          "merge"
+          "gatk4",
+          "merge",
+          "vcf"
         ],
         "tools": [
           {
@@ -36269,11 +36317,11 @@
         "name": "gatk4_svannotate",
         "description": "Adds predicted functional consequence, gene overlap, and noncoding element overlap annotations to SV VCF from GATK-SV pipeline. Input files are an SV VCF, a GTF file containing primary or canonical transcripts, and a BED file containing noncoding elements. Output file is an annotated SV VCF.",
         "keywords": [
-          "gatk4",
-          "svannotate",
-          "vcf",
           "annotate",
-          "structural variants"
+          "gatk4",
+          "structural variants",
+          "svannotate",
+          "vcf"
         ],
         "tools": [
           {
@@ -36375,9 +36423,9 @@
         "description": "Clusters structural variants based on coordinates, event type, and supporting algorithms",
         "keywords": [
           "gatk4",
+          "structural variants",
           "svcluster",
-          "vcf",
-          "structural_variants"
+          "vcf"
         ],
         "tools": [
           {
@@ -36484,9 +36532,10 @@
         "name": "gatk4_variantfiltration",
         "description": "Filter variants",
         "keywords": [
-          "vcf",
           "filter",
-          "variantfiltration"
+          "gatk4",
+          "variantfiltration",
+          "vcf"
         ],
         "tools": [
           {
@@ -36621,9 +36670,9 @@
         "name": "gatk4_variantrecalibrator",
         "description": "Build a recalibration model to score variant quality for filtering purposes.\nIt is highly recommended to follow GATK best practices when using this module,\nthe gaussian mixture model requires a large number of samples to be used for the\ntool to produce optimal results. For example, 30 samples for exome data. For more details see\nhttps://gatk.broadinstitute.org/hc/en-us/articles/4402736812443-Which-training-sets-arguments-should-I-use-for-running-VQSR-\n",
         "keywords": [
-          "VariantRecalibrator",
           "gatk4",
-          "recalibration_model"
+          "recalibration model",
+          "variantrecalibrator"
         ],
         "tools": [
           {
@@ -48209,7 +48258,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kallisto_index",

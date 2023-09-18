@@ -51,11 +51,13 @@ const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', 
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline + ': Releases'}
     subtitle={description}
     headings={[]}
     version={version}
     versions={releases.map((release) => release.tag_name)}
     tabItems={md_files}
+    docSearchTags={[{ name: 'page_rank', content: '-50' }]}
 >
     <div class="row">
         <div class="col-12 col-md-9 pt-3">
