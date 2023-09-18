@@ -59,11 +59,7 @@ We have created the **#sept23-training-foundational** Slack channel for this eve
 
 # Registration
 
-Registration for the training is now OPEN! 🎉
-
-Please sign up [here](https://form.typeform.com/to/FsaLza9Y) or in the widget below to be kept up to date with all relevant information 👇
-
-<div data-tf-widget="FsaLza9Y" style="width:100%;height:500px;color:#FFFFFF;"></div>
+Registration for the training is now closed.
 
 # Code of conduct
 
