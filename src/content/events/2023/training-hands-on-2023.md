@@ -28,7 +28,7 @@ This training session will be available from 3 p.m. (CEST) on September 20th. Th
 
 Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-The Slack channels for this event will become available closer to the event and will be announced here.
+We have created the [#sept23-hands-on-training](https://nfcore.slack.com/archives/C05SNT2T8F4) Slack channel for this event. You can find it by searching the channel list in the top left-hand corner of your Slack window. Community volunteers will monitor these channels and will help answer your questions.
 
 # Registration
 
