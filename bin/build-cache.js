@@ -36,8 +36,7 @@ export const buildCache = async () => {
         release.doc_files.push('nextflow_schema.json'); // add the nextflow_schema.json to the cache
       }
       const version = release.tag_name;
-
-      release.doc_files.map(async (f) => {
+      for (const f of release.doc_files) {
         const cache_key = `${name}/${version}/${f}`;
         // console.log(`Checking ${cache_key}`);
         const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
@@ -49,7 +48,7 @@ export const buildCache = async () => {
         } else {
           // console.log(`Already cached ${cache_key}`);
         }
-      });
+      }
     }
 
     bar.tick();
