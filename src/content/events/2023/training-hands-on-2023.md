@@ -7,6 +7,7 @@ start_time: '15:00 CEST'
 end_date: '2023-09-20'
 end_time: '18:00 CEST'
 location_name: YouTube
+location_url: https://www.youtube.com/playlist?list=PL3xpfTVZLcNiCJRgKnBFYtmnXj1U31szQ
 import_typeform: true
 ---
 

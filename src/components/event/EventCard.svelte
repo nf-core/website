@@ -71,7 +71,7 @@
                 <a class="text-center" href={/events/ + slug + '/'}>
                     {frontmatter.title}
                 </a>
-                {#if time_category === 'current'}
+                {#if time_category === 'current' && frontmatter.location_url}
                     <div class="float-end d-none d-md-inline">
                         <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
                     </div>
@@ -114,7 +114,7 @@
                 {/if}
             </div>
         </div>
-        {#if time_category === 'current'}
+        {#if time_category === 'current' && frontmatter.location_url}
             <VideoButton
                 urls={frontmatter.location_url}
                 btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
