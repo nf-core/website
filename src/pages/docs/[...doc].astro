@@ -102,7 +102,10 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/
     left_sidebar={true}
     sections={sections}
     viewTransitions={true}
-    docSearchTags={[{ name: 'page_type', content: 'docs' }]}
+    docSearchTags={[
+        { name: 'page_type', content: 'Docs' },
+        { name: 'page_rank', content: '8' },
+    ]}
 >
     <Content />
     <FooterPrevNext slot="pre-footer" md_github_url={md_github_url} prev_page={prev_page} next_page={next_page} />
