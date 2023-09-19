@@ -153,9 +153,9 @@
                                 {/if}
                             </div>
 
-                            <div class="col-4 py-lg-2 text-start">
+                            <div class="col-4 py-lg-2 text-start d-flex flex-column align-items-start">
                                 {#if event_time_category === 'upcoming'}
-                                    <div class="text-nowrap ms-5 ps-1">
+                                    <div class="text-nowrap ps-1">
                                         <h5>Event starts in</h5>
                                         <span class="display-6">
                                             {@html countdown(event.data.start)}
