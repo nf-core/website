@@ -40,10 +40,10 @@ if (sections?.length > 0) {
 ---
 
 <nav
-    class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-md-2"
+    class="navbar fixed-top navbar-expand-xl bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-xl-2"
 >
     <div class="container">
-        <a class="navbar-brand d-md-none w-25" href="/">
+        <a class="navbar-brand d-xl-none" href="/">
             <div class="hide-dark">
                 <Fragment set:html={NfCoreLogo} />
             </div>
@@ -53,7 +53,7 @@ if (sections?.length > 0) {
         </a>
         {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
 
-        <div class="align-self-center d-md-none" id="docsearch-mobile"></div>
+        <div class="align-self-center d-xl-none" id="docsearch-mobile"></div>
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -65,7 +65,7 @@ if (sections?.length > 0) {
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-md-center align-items-md-stretch" id="navbarCollapse">
+        <div class="collapse navbar-collapse justify-content-xl-center align-items-xl-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item p-1">
                     <a class="nav-link" href="/">Home</a>
@@ -75,7 +75,7 @@ if (sections?.length > 0) {
                 </li>
                 <li class="nav-item p-1 dropdown">
                     <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Configs & tools</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
@@ -96,7 +96,7 @@ if (sections?.length > 0) {
                         <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
                             Events</a
                         >
-                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
+                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                             <li>
                                 <a class="dropdown-item" href="/events/bytesize/"
                                     ><i class="fa-solid fa-apple-core me-2"></i>bytesize</a
@@ -125,7 +125,7 @@ if (sections?.length > 0) {
                 </li>
                 <li class="nav-item p-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Community</span></li>
                         <!-- <li><a class="dropdown-item" href="/contributors/">Blog</a></li> -->
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
@@ -142,18 +142,16 @@ if (sections?.length > 0) {
                     </ul>
                 </li>
             </ul>
-            <div class="align-self-center d-none d-md-block" id="docsearch-desktop"></div>
-            <div class="ms-auto d-none d-md-block align-self-center px-2 py-1">
+            <div class="align-self-center d-none d-xl-block ms-auto" id="docsearch-desktop"></div>
+            <div class="d-none d-xl-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
                     <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
                 </ThemeSwitch>
             </div>
-            <div class="vr d-none d-xl-inline mx-3"></div>
-            <hr class="d-md-none" />
-            <div
-                class="social-icons d-print-none d-flex align-items-center d-md-none d-xl-block align-self-center mb-3 mb-md-0"
-            >
+            <div class="vr d-none d-lg-inline mx-1 mx-xxl-3"></div>
+            <hr class="d-xl-none" />
+            <div class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0">
                 <IconSocial
                     href="https://github.com/nf-core/"
                     title="GitHub"
@@ -188,16 +186,16 @@ if (sections?.length > 0) {
                     icon="logos:slack-icon"
                     additionalClass="monochrome me-1"
                 />
-                <div class="d-md-none ms-auto px-2 py-1">
+                <div class="d-xl-none ms-auto px-2 py-1">
                     <ThemeSwitch client:load>
                         <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
                         <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
                     </ThemeSwitch>
                 </div>
             </div>
-            <div class="d-none d-lg-block vr mx-3"></div>
-            <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
+            <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
+            <a class="d-xl-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
+            <a class="d-none d-xl-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
 </nav>
@@ -248,6 +246,10 @@ if (sections?.length > 0) {
     :global(.DocSearch-Modal) {
         background: $body-secondary-bg;
     }
+    :global(button.DocSearch-Button) {
+        border-radius: $border-radius;
+        margin-left: 0;
+    }
     :global(button.DocSearch-Button .DocSearch-Button-Keys) {
         background: none;
         border-radius: $border-radius-sm;
@@ -295,7 +297,7 @@ if (sections?.length > 0) {
             }
         }
         // add wider margins on larger screens
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(lg) {
             padding: 0.2rem 1rem;
             .navbar-nav > li > a {
                 margin-left: 1rem;
@@ -303,7 +305,7 @@ if (sections?.length > 0) {
                 transition: ease-in-out color 0.1s;
             }
         }
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             .navbar-brand {
                 left: 0;
                 margin-left: 0;
@@ -352,12 +354,12 @@ if (sections?.length > 0) {
         background: $body-secondary-bg-dark;
     }
     :global(.DocSearch-Container) {
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             padding-top: 3rem;
         }
     }
     :global(.double-navbar ~ .DocSearch-Container) {
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             padding-top: 5rem;
         }
     }
