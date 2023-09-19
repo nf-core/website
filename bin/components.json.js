@@ -6,6 +6,7 @@ import path, { join } from 'path';
 import ProgressBar from 'progress';
 import { parse } from 'yaml';
 
+
 // get current path
 const __dirname = path.resolve();
 
@@ -45,28 +46,30 @@ export const writeComponentsJson = async () => {
 
   let bar = new ProgressBar('  fetching module meta.ymls [:bar] :percent :etas', { total: modules.length });
 
-  // Fetch content for modules concurrently
-  await Promise.all(
-    modules.map(async (module) => {
-      const content = await octokit
-        .request('GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: 'nf-core',
-          repo: 'modules',
-          path: module.path,
-        })
-        .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
+  // Fetch content for modules serially
+  // This is because we need to update the pipelines that use the modules
+  // and we don't want to hit the rate limit
+  //
 
-      module['meta'] = content;
+  modules.map(async (module) => {
+    const content = await octokit
+      .request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'nf-core',
+        repo: 'modules',
+        path: module.path,
+      })
+      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
 
-      const index = components.modules.findIndex((m) => m.name === module.name);
-      if (index > -1) {
-        components.modules[index] = module;
-      } else {
-        components.modules.push(module);
-      }
-      bar.tick();
-    }),
-  );
+    module['meta'] = content;
+
+    const index = components.modules.findIndex((m) => m.name === module.name);
+    if (index > -1) {
+      components.modules[index] = module;
+    } else {
+      components.modules.push(module);
+    }
+    bar.tick();
+  });
 
   // Fetch subworkflows concurrently
   const subworkflows = tree
@@ -82,8 +85,7 @@ export const writeComponentsJson = async () => {
 
   bar = new ProgressBar('  fetching subworkflow meta.ymls [:bar] :percent :etas', { total: subworkflows.length });
 
-  await Promise.all(
-    subworkflows.map(async (subworkflow) => {
+  subworkflows.map(async (subworkflow) => {
       const content = await octokit
         .request('GET /repos/{owner}/{repo}/contents/{path}', {
           owner: 'nf-core',
@@ -119,8 +121,7 @@ export const writeComponentsJson = async () => {
       }
 
       bar.tick();
-    }),
-  );
+    })
 
   // Update pipelines that use modules and subworkflows
   for (const pipeline of pipelines.remote_workflows) {
