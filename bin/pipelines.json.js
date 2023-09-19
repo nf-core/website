@@ -112,18 +112,18 @@ export const writePipelinesJson = async () => {
       new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
     }
     // get sha for each release (needed for aws viewer)
-    new_releases.map(async (release) => {
+    for (const release of new_releases) {
       const { data: commit } = await octokit.rest.repos.getCommit({
         owner: 'nf-core',
         repo: name,
         ref: release.tag_name,
       });
       release.tag_sha = commit.sha;
-      // check if schema file exists
+      // check if schema file exists for release
       release.has_schema = await getGitHubFile(name, 'nextflow_schema.json', release.tag_name).then((response) => {
         return response ? true : false;
       });
-    });
+    }
 
     // get last push to dev branch
     const { data: dev_branch } = await octokit.rest.repos.listCommits({

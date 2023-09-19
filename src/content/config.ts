@@ -6,7 +6,8 @@ const events = defineCollection({
         subtitle: z.string(),
         type: z.enum(['bytesize', 'talk', 'hackathon', 'training']),
         start_date: z.string(),
-        start_time: z.string().transform((str) => str.replace(/\s+(\w+)/, ' ($1)')),
+        // replace CEST with +02:00 and CET with +01:00
+        start_time: z.string().transform((str) => str.replace(' CEST', '+02:00').replace(' CET', '+01:00')),
         end_date: z.string(),
         end_time: z.string().transform((str) => str.replace(/\s+(\w+)/, ' ($1)')),
         start_announcement: z.string().optional(),
