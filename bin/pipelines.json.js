@@ -55,7 +55,7 @@ export const writePipelinesJson = async () => {
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
-  names.map(async (name) => {
+  for (const name of names) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -233,7 +233,7 @@ export const writePipelinesJson = async () => {
       pipelines.remote_workflows.push(data);
     }
     bar.tick();
-  });
+  }
 
   // sort the pipelines by name
   pipelines.remote_workflows.sort((a, b) => {
