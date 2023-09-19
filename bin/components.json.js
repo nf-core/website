@@ -46,12 +46,8 @@ export const writeComponentsJson = async () => {
 
   let bar = new ProgressBar('  fetching module meta.ymls [:bar] :percent :etas', { total: modules.length });
 
-  // Fetch content for modules serially
-  // This is because we need to update the pipelines that use the modules
-  // and we don't want to hit the rate limit
-  //
-
-  modules.map(async (module) => {
+  // Fetch content for modules concurrently
+  for (const module of modules) {
     const content = await octokit
       .request('GET /repos/{owner}/{repo}/contents/{path}', {
         owner: 'nf-core',
@@ -69,7 +65,7 @@ export const writeComponentsJson = async () => {
       components.modules.push(module);
     }
     bar.tick();
-  });
+  }
 
   // Fetch subworkflows concurrently
   const subworkflows = tree
@@ -85,44 +81,43 @@ export const writeComponentsJson = async () => {
 
   bar = new ProgressBar('  fetching subworkflow meta.ymls [:bar] :percent :etas', { total: subworkflows.length });
 
-  subworkflows.map(async (subworkflow) => {
-      const content = await octokit
-        .request('GET /repos/{owner}/{repo}/contents/{path}', {
-          owner: 'nf-core',
-          repo: 'modules',
-          path: subworkflow.path,
-        })
-        .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
+  for (const subworkflow of subworkflows) {
+    const content = await octokit
+      .request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'nf-core',
+        repo: 'modules',
+        path: subworkflow.path,
+      })
+      .then((response) => parse(Buffer.from(response.data.content, 'base64').toString()));
 
-      subworkflow['meta'] = content;
+    subworkflow['meta'] = content;
 
-      if (!components.subworkflows) {
-        components.subworkflows = [];
-      }
-      const index = components.subworkflows.findIndex((m) => m.name === subworkflow.name);
-      if (index > -1) {
-        components.subworkflows[index] = subworkflow;
-      } else {
-        components.subworkflows.push(subworkflow);
-      }
+    if (!components.subworkflows) {
+      components.subworkflows = [];
+    }
+    const index = components.subworkflows.findIndex((m) => m.name === subworkflow.name);
+    if (index > -1) {
+      components.subworkflows[index] = subworkflow;
+    } else {
+      components.subworkflows.push(subworkflow);
+    }
 
-      if (content.modules) {
-        for (const module of content.modules) {
-          const index = components.modules.findIndex((m) => m.name === module);
-          if (index > -1) {
-            const entry = subworkflow.name;
-            if (components.modules[index].subworkflows) {
-              components.modules[index].subworkflows.push(entry);
-            } else {
-              components.modules[index].subworkflows = [entry];
-            }
+    if (content.modules) {
+      for (const module of content.modules) {
+        const index = components.modules.findIndex((m) => m.name === module);
+        if (index > -1) {
+          const entry = subworkflow.name;
+          if (components.modules[index].subworkflows) {
+            components.modules[index].subworkflows.push(entry);
+          } else {
+            components.modules[index].subworkflows = [entry];
           }
         }
       }
+    }
 
-      bar.tick();
-    })
-
+    bar.tick();
+  }
   // Update pipelines that use modules and subworkflows
   for (const pipeline of pipelines.remote_workflows) {
     const release = pipeline.releases[0];
