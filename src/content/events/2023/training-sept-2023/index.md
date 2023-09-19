@@ -30,6 +30,8 @@ The schedule for the in-person Wellcome Genome Campus event will differ from the
 
 More information about this local event can be found [here](/events/2023/training-sept-2023/wgc).
 
+Registration for this in-person version of advanced training is now closed. Registration for the online version of the training is still open.
+
 # Schedule
 
 Training sessions will be available from 3 pm (CEST) each day. Each session will be approximately 4 hours and will include a 20 min break.

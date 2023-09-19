@@ -19,6 +19,7 @@ export interface Props {
         name: string;
         content: string;
     }[];
+    minHeadingDepth?: number;
     maxHeadingDepth?: number;
 }
 
@@ -33,6 +34,7 @@ const {
     viewTransitions = false,
     meta_title = '',
     docSearchTags = [],
+    minHeadingDepth = 1,
     maxHeadingDepth = 4,
 } = Astro.props;
 ---
@@ -89,7 +91,12 @@ const {
             </div>
         </div>
         <div class="col-12 col-md-2 toc">
-            <SidebarToc headings={headings} maxHeadingDepth={maxHeadingDepth} client:idle />
+            <SidebarToc
+                headings={headings}
+                minHeadingDepth={minHeadingDepth}
+                maxHeadingDepth={maxHeadingDepth}
+                client:idle
+            />
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
