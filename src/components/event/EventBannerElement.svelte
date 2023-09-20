@@ -3,7 +3,6 @@
     import { formatDistanceToNow, set } from 'date-fns';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
-    import { onMount } from 'svelte';
     export let events = [];
     export let event_time_category: string = '';
 
@@ -15,6 +14,43 @@
         .map((event) => {
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
+            }
+            if (event.data.start_date === event.data.end_date) {
+                console.log(event.data.start);
+                event.data.duration =
+                    event.data.start.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    }) +
+                    '-' +
+                    event.data.end.toLocaleString('en-US', {
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    });
+            } else {
+                event.data.duration =
+                    event.data.start.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    }) +
+                    ' - ' +
+                    event.data.end.toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: false,
+                    });
             }
         })
         .sort((a, b) => {
@@ -63,49 +99,7 @@
             EventIsOngoing.set(false);
         }
     }
-    onMount(() => {
-        events.map((event) => {
-            $: event_duration(event);
-        });
-    });
-    $: event_duration = (event) => {
-        if (event.data.start_date === event.data.end_date) {
-            event.data.duration =
-                event.data.start.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                '-' +
-                event.data.end.toLocaleString('en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        } else {
-            event.data.duration =
-                event.data.start.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                ' - ' +
-                event.data.end.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        }
-    };
+
     let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + ' event';
     heading_title = events.length > 1 ? heading_title + 's' : heading_title;
 </script>
