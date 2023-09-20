@@ -20,9 +20,10 @@
     export let narrow: boolean = false;
 
     const event_duration = (event) => {
+        let duration;
         if (event.start_date === event.end_date) {
-            event_date =
-                event.start.toLocaleString('en-US', {
+            duration =
+                new Date(event.start).toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -31,14 +32,14 @@
                     hour12: false,
                 }) +
                 '-' +
-                event.end.toLocaleString('en-US', {
+                new Date(event.end).toLocaleString('en-US', {
                     hour: 'numeric',
                     minute: 'numeric',
                     hour12: false,
                 });
         } else {
-            event_date =
-                event.start.toLocaleString('en-US', {
+            duration =
+                new Date(event.start).toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -47,7 +48,7 @@
                     hour12: false,
                 }) +
                 '<wbr> - <wbr>' +
-                event.end.toLocaleString('en-US', {
+                new Date(event.end).toLocaleString('en-US', {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -56,7 +57,7 @@
                     hour12: false,
                 });
         }
-        return event_date;
+        return duration;
     };
     const event_type_classes = {
         bytesize: 'success',
