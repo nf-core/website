@@ -3,9 +3,9 @@ title: 'Bytesize 6: All about modules'
 subtitle: Friederike Hanssen / Kevin Menden - QBiC Tübingen, Germany
 type: talk
 start_date: '2021-03-09'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2021-03-09'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed:
   - https://www.youtube.com/embed/tWvou0xj9wA
   - https://www.youtube.com/embed/Wc4A2tQ6WWY

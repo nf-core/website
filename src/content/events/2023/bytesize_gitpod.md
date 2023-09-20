@@ -3,10 +3,10 @@ title: 'Bytesize: Setting up a gitpod environment'
 subtitle: Marcel Ribeiro-Dantas, Seqera Labs
 type: talk
 start_date: '2023-09-05'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 youtube_embed: https://www.youtube.com/watch?v=F8BShfyieZs&ab_channel=nf-core
 end_date: '2023-09-05'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 location_url: https://www.youtube.com/watch?v=F8BShfyieZs&ab_channel=nf-core
 ---
 

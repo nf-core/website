@@ -4,9 +4,9 @@ subtitle: An in-person hackathon held in Boston
 type: hackathon
 start_announcement: '2023-10-21T12:00-05:00'
 start_date: '2023-11-28'
-start_time: '10:00 EST'
+start_time: '10:00-04:00'
 end_date: '2023-11-29'
-end_time: '13:00 EST'
+end_time: '13:00-04:00'
 location_name: Boston, America
 location_latlng: [42.35138, -71.06995]
 ---
