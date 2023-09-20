@@ -142,7 +142,7 @@ if (sections?.length > 0) {
                     </ul>
                 </li>
             </ul>
-            <div class="align-self-center d-none d-xl-block ms-auto" id="docsearch-desktop"></div>
+            <div class="align-self-center d-none d-xl-block ms-auto pe-3" id="docsearch-desktop"></div>
             <div class="d-none d-xl-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
@@ -349,6 +349,9 @@ if (sections?.length > 0) {
         --docsearch-hit-color: #{$body-color-dark};
         --docsearch-hit-background: #{$body-bg-dark};
         --docsearch-footer-background: #{$body-secondary-bg-dark};
+    }
+    :global(.DocSearch-Hit-source) {
+        font-size: 1rem;
     }
     :global([data-bs-theme='dark'] .DocSearch-Modal, [data-bs-theme='dark'] .DocSearch-Hit-source) {
         background: $body-secondary-bg-dark;
