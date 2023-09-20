@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Barcelona)
 subtitle: Local node of the nf-core hackathon at the CRG, Barcelona
 type: hackathon
 start_date: '2023-03-27'
-start_time: '10:00 CEST'
+start_time: '10:00+02:00'
 end_date: '2023-03-29'
-end_time: '18:00 CEST'
+end_time: '18:00+02:00'
 location_name: Centre for Genomic Regulation, Barcelona
 address: Carrer del Dr. Aiguader, 88, 08003 Barcelona, Spain
 location_url: https://www.crg.eu/

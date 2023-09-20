@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/viralintegration'
 subtitle: Alyssa Briggs, The University of Texas at Dallas
 type: talk
 start_date: '2023-10-24'
-start_time: '14:30 CEST'
+start_time: '14:30+02:00'
 end_date: '2023-10-24'
-end_time: '15:30 CEST'
+end_time: '15:30+02:00'
 location_url: https://kth-se.zoom.us/j/68390542812
 ---
 

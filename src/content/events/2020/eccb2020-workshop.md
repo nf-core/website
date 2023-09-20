@@ -3,9 +3,9 @@ title: 'ECCB 2020 ELIXIR Workshop on FAIR Computational Workflows'
 subtitle: 'Scalable, reproducible bioinformatics workflows using Nextflow & nf-core'
 type: talk
 start_date: '2020-09-02'
-start_time: '15:35'
+start_time: '15:35+01:00'
 end_date: '2020-09-02'
-end_time: '15:50'
+end_time: '15:50+01:00'
 location_url: http://slides.com/apeltzer/eccb2020-nf-nf-core
 location_name: Online
 ---

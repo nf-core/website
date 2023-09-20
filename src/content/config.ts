@@ -6,9 +6,14 @@ const events = defineCollection({
         subtitle: z.string(),
         type: z.enum(['bytesize', 'talk', 'hackathon', 'training']),
         start_date: z.string(),
-        start_time: z.string().transform((str) => str.replace(/\s+(\w+)/, ' ($1)')),
+        // check that it contains a time offset
+        start_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
+            message: 'start_time must be in the format HH:MM+|-HH:MM',
+        }),
         end_date: z.string(),
-        end_time: z.string().transform((str) => str.replace(/\s+(\w+)/, ' ($1)')),
+        end_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
+            message: 'end_time must be in the format HH:MM+|-HH:MM',
+        }),
         start_announcement: z.string().optional(),
         location_name: z.string().optional(),
         location_url: z.string().url().or(z.string().startsWith('#')).or(z.array(z.string().url())).optional(),
@@ -38,7 +43,6 @@ const about = defineCollection({
         maxHeadingDepth: z.number().optional(),
     }),
 });
-
 
 export const collections = {
     events: events,
