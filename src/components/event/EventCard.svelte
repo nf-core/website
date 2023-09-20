@@ -18,7 +18,7 @@
     export let time_category: string = '';
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
-    let event_date;
+
     const event_duration = (event) => {
         if (event.start_date === event.end_date) {
             event_date =
@@ -56,6 +56,7 @@
                     hour12: false,
                 });
         }
+        return event_date;
     };
     const event_type_classes = {
         bytesize: 'success',
@@ -64,11 +65,11 @@
         training: 'warning',
     };
 
-    event_duration(frontmatter);
+    let event_date = event_duration(frontmatter);
 
     const type_class = event_type_classes[type];
     onMount(() => {
-        event_duration(frontmatter);
+        event_date = event_duration(frontmatter);
     });
 </script>
 
