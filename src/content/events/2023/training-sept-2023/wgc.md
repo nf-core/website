@@ -22,7 +22,7 @@ If you have any questions about this event please reach out to [Priyanka Surana]
 
 # Local Schedule
 
-This full-day event will run from **9.30 am - 5.00 pm+01:00**.
+This full-day event will run from **9.30 am - 5.00 pm BST**.
 
 The schedule for the in-person Wellcome Genome Campus event will differ from the schedule shown for the online event.
 The same content will be covered at both events, however, the content will be condensed into one day rather than spread across two.
