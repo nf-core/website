@@ -10,13 +10,13 @@ const events = defineCollection({
         }),
         // check that it contains a time offset
         start_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
-            message: 'start_time must be in the format HH:MM+|-HH:MM',
+            message: 'start_time must be in the format HH:MM+|-HH:MM with the +/- offset to UTC at the end',
         }),
         end_date: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
             message: 'end_date must be in the format YYYY-MM-DD',
         }),
         end_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
-            message: 'end_time must be in the format HH:MM+|-HH:MM',
+            message: 'end_time must be in the format HH:MM+|-HH:MM with the +/- offset to UTC at the end',
         }),
         start_announcement: z.string().optional(),
         location_name: z.string().optional(),
