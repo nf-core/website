@@ -1,6 +1,7 @@
 <script lang="ts">
     import VideoButton from '@components/VideoButton.svelte';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
+    import { onMount } from 'svelte';
 
     export let frontmatter = {
         title: '',
@@ -18,42 +19,44 @@
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
     let event_date;
-    if (frontmatter.start_date === frontmatter.end_date) {
-        event_date =
-            frontmatter.start.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            }) +
-            '-' +
-            frontmatter.end.toLocaleString('en-US', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            });
-    } else {
-        event_date =
-            frontmatter.start.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            }) +
-            '<wbr> - <wbr>' +
-            frontmatter.end.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            });
-    }
+    const event_duration = (event) => {
+        if (event.start_date === event.end_date) {
+            event_date =
+                event.start.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '-' +
+                event.end.toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        } else {
+            event_date =
+                event.start.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '<wbr> - <wbr>' +
+                event.end.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        }
+    };
     const event_type_classes = {
         bytesize: 'success',
         hackathon: 'primary',
@@ -61,7 +64,12 @@
         training: 'warning',
     };
 
+    event_duration(frontmatter);
+
     const type_class = event_type_classes[type];
+    onMount(() => {
+        event_duration(frontmatter);
+    });
 </script>
 
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
