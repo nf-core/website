@@ -15,6 +15,7 @@
     const event_duration = (event) => {
         event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
         event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
+        event.data.eventCountDown = formatDistanceToNow(event.data.start);
         if (event.data.start_date === event.data.end_date) {
             event.data.duration =
                 new Date(event.data.start).toLocaleString('en-US', {
@@ -167,7 +168,7 @@
                                     <div class="text-nowrap ps-1">
                                         <h5>Event starts in</h5>
                                         <span class="display-6">
-                                            {@html formatDistanceToNow(event.data.start)}
+                                            {@html event.data.eventCountDown}
                                         </span>
                                     </div>
                                     <div class="btn-group my-2" role="group" aria-label="Event details">
