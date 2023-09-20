@@ -15,6 +15,8 @@
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
             }
+            event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
+            event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
             if (event.data.start_date === event.data.end_date) {
                 console.log(event.data.start);
                 console.log(new Date(event.data.start));
@@ -53,6 +55,7 @@
                         hour12: false,
                     });
             }
+            return event;
         })
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
