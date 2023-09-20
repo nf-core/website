@@ -146,8 +146,7 @@
                                     <p class="mb-1">
                                         <a
                                             href={'events/' + event.slug + '/'}
-                                            class="text-secondary-emphasis text-decoration-none"
-                                            >{event.data.duration}</a
+                                            class="text-secondary-emphasis text-decoration-none">{event.data.start}</a
                                         >
                                     </p>
                                 {/if}
@@ -212,7 +211,7 @@
                         <div class="small mb-1 mx-3 d-flex flex-column">
                             <a
                                 href={'events/' + event.slug + '/'}
-                                class="text-secondary-emphasis text-decoration-none mb-2">{event.data.duration}</a
+                                class="text-secondary-emphasis text-decoration-none mb-2">{event.data.start}</a
                             >
                             <div class="btn-group text-nowrap" role="group" aria-label="Event details">
                                 <a href={'events/' + event.slug + '/'} class="btn btn-outline-success">
