@@ -17,8 +17,9 @@
             }
             if (event.data.start_date === event.data.end_date) {
                 console.log(event.data.start);
+                console.log(new Date(event.data.start));
                 event.data.duration =
-                    event.data.start.toLocaleString('en-US', {
+                    new Date(event.data.start).toLocaleString('en-US', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
@@ -27,14 +28,14 @@
                         hour12: false,
                     }) +
                     '-' +
-                    event.data.end.toLocaleString('en-US', {
+                    new Date(event.data.end).toLocaleString('en-US', {
                         hour: 'numeric',
                         minute: 'numeric',
                         hour12: false,
                     });
             } else {
                 event.data.duration =
-                    event.data.start.toLocaleString('en-US', {
+                    new Date(event.data.start).toLocaleString('en-US', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
@@ -43,7 +44,7 @@
                         hour12: false,
                     }) +
                     ' - ' +
-                    event.data.end.toLocaleString('en-US', {
+                    new Date(event.data.end).toLocaleString('en-US', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
@@ -90,7 +91,7 @@
                 return event.data.start < new Date() && new Date() < event.data.end;
             })
             .sort((a, b) => {
-                return b.data.start - a.data.start;
+                return new Date(b.data.start) - new Date(a.data.start);
             });
 
         if (events.length > 0) {
