@@ -3,6 +3,7 @@
     import { formatDistanceToNow, set } from 'date-fns';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
+    import { onMount } from 'svelte';
     export let events = [];
     export let event_time_category: string = '';
 
@@ -10,51 +11,54 @@
     export let event_type_icons: {}[] = [{}];
 
     let backgroundIcon = '';
+
+    const event_duration = (event) => {
+        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
+        event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
+        if (event.data.start_date === event.data.end_date) {
+            event.data.duration =
+                new Date(event.data.start).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '-' +
+                new Date(event.data.end).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        } else {
+            event.data.duration =
+                new Date(event.data.start).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                ' - ' +
+                new Date(event.data.end).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        }
+    };
+
     events
         .map((event) => {
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
             }
-            event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
-            event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
-            if (event.data.start_date === event.data.end_date) {
-                console.log(event.data.start);
-                console.log(new Date(event.data.start));
-                event.data.duration =
-                    new Date(event.data.start).toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    }) +
-                    '-' +
-                    new Date(event.data.end).toLocaleString('en-US', {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    });
-            } else {
-                event.data.duration =
-                    new Date(event.data.start).toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    }) +
-                    ' - ' +
-                    new Date(event.data.end).toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    });
-            }
+            event_duration(event);
             return event;
         })
         .sort((a, b) => {
@@ -106,6 +110,12 @@
 
     let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + ' event';
     heading_title = events.length > 1 ? heading_title + 's' : heading_title;
+    onMount(() => {
+        events.map((event) => {
+            event_duration(event);
+            return event;
+        });
+    });
 </script>
 
 {#if events.length > 0}
