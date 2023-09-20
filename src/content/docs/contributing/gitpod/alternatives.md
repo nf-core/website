@@ -15,17 +15,18 @@ GitHub Codespaces is a browser-based development platform that functions very si
 Being integrated into GitHub, Codespaces can automatically be used for every nf-core repository.
 
 To create a Codespace, you first click on the `Code` button at the top of any GitHub repository.
+
 <p align="center">
   <img src="../../../../../public/images/contributing/gitpod/codespaces-button.png" alt="codespaces dropdown" width="800"/>
 </p>
 
 This will bring up a dropdown menu, you will then select the `Codespaces` tab and press the `+` sign. This will create a Codespace on the current branch of this repository.
+
 <p align="center">
   <img src="../../../../../public/images/contributing/gitpod/codespaces-dropdown.png" alt="codespaces dropdown" width="400"/>
 </p>
 
 After the Codespace is created, you should see something that looks very similar to a Gitpod environment (please see nf-core's [Gitpod](gitpod/index.md) page for more information). **An important difference between Gitpod and Codespaces is that `singularity`, and not `docker` profiles will need to be used to run any nextflow commands.** Otherwise, the created codespace can be used almost exactly as you would use a Gitpod environment.
-
 
 ## Dev Containers on Visual Studio Code (VS Code)
 
@@ -34,7 +35,7 @@ As an alternative to Gitpod and Codespaces, which are browser-based, development
 The following steps provide a walkthrough for setting up
 VS Code Dev Containers on a local computer.
 
-1. **Install Docker Desktop**: Docker desktop can be downloaded for Windows, Mac, and Linux on the [Docker](https://www.docker.com/products/docker-desktop/) website. *You will have to create an account to use Docker desktop.*
+1. **Install Docker Desktop**: Docker desktop can be downloaded for Windows, Mac, and Linux on the [Docker](https://www.docker.com/products/docker-desktop/) website. _You will have to create an account to use Docker desktop._
 
 2. **Install VS Code**: VS Code can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website.
 
@@ -59,7 +60,6 @@ VS Code Dev Containers on a local computer.
 
 After going through these steps, a new instance of VS Code will be created for your Dev Container! The layout will be similar to Gitpod and Codespaces, so please see nf-core's [Gitpod](gitpod/index.md) page for more information about the user interface.
 
-
 ## Troubleshooting
 
 1. **Using docker profile in Codespace/VS Code Dev Containers**
@@ -76,8 +76,3 @@ After going through these steps, a new instance of VS Code will be created for y
 
 **Solution:** Add the following line to the `.devcontainer/devcontainer.json` file:
 `"runArgs": ["--privileged"],`
-
-
-
-
-
