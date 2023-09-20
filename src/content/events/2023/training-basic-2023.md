@@ -2,9 +2,9 @@
 title: Community Foundational Nextflow Training - September 2023
 subtitle: The primary Nextflow / nf-core training for beginners, with 3 x 2.5 hour sessions.
 type: training
-start_date: '2023-09-6'
+start_date: '2023-09-06'
 start_time: '15:00+02:00'
-end_date: '2023-09-8'
+end_date: '2023-09-08'
 end_time: '18:00+02:00'
 location_name: YouTube
 import_typeform: true
