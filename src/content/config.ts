@@ -5,12 +5,16 @@ const events = defineCollection({
         title: z.string(),
         subtitle: z.string(),
         type: z.enum(['bytesize', 'talk', 'hackathon', 'training']),
-        start_date: z.string(),
+        start_date: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
+            message: 'start_date must be in the format YYYY-MM-DD',
+        }),
         // check that it contains a time offset
         start_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
             message: 'start_time must be in the format HH:MM+|-HH:MM',
         }),
-        end_date: z.string(),
+        end_date: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
+            message: 'end_date must be in the format YYYY-MM-DD',
+        }),
         end_time: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
             message: 'end_time must be in the format HH:MM+|-HH:MM',
         }),
