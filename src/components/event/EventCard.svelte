@@ -20,7 +20,7 @@
     export let narrow: boolean = false;
 
     const event_duration = (event: { start: Date; end: Date; start_date: Date; end_date: Date }) => {
-        let duration;
+        let duration: string;
         if (event.start_date === event.end_date) {
             duration =
                 new Date(event.start).toLocaleString('en-US', {
@@ -66,14 +66,7 @@
         training: 'warning',
     };
 
-    $: event_date = new Date(frontmatter.start).toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: false,
-    });
+    let event_date: string = '';
 
     const type_class = event_type_classes[type];
     onMount(() => {
