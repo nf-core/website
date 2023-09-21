@@ -367,6 +367,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 1.  All mandatory and optional input files MUST be included in `input` channel definitions.
 
+2. All channel definitions that carry reference inputs, like fasta, intervals, and sequence dictionary SHOULD contain a meta map [for example, see here](https://github.com/nf-core/modules/blob/master/modules/nf-core/gatk4/collectreadcounts/main.nf). We do this because there are pipelines that support multiple genomes, and they use meta information to distinguish between different genomes.
+
 2.  Non-file mandatory arguments or arguments needed to modify the command to make the module run with no error, SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
 3.  All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
@@ -814,6 +816,7 @@ A PR review is the process of examining a new modules' submission or the changes
 #### In `modules/nf-core/modulename/main.nf`:
 
 - Check that all optional parameters are in the `$args` section.
+- Check that the channel definitions for reference files, like fasta, intervals, and sequence dictionary, carry a meta map.
 - Check that the software version extraction command is optimized, if required.
 - Check if the bioconda version of the tool is the latest version.
 - Ensure that temporary unzipped files are removed to avoid mitigating benefits and worsening problems.
