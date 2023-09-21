@@ -57,6 +57,7 @@
                     hour12: false,
                 });
         }
+        console.log('called', duration);
         return duration;
     };
     const event_type_classes = {
