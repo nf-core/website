@@ -557,7 +557,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
-10.  The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
+10. The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
 ```groovy
 process {
