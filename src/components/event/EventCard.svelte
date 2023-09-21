@@ -66,7 +66,14 @@
         training: 'warning',
     };
 
-    $: event_date = event_duration(frontmatter);
+    $: event_date = new Date(frontmatter.start).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+    });
 
     const type_class = event_type_classes[type];
     onMount(() => {
