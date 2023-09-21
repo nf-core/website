@@ -369,9 +369,9 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 2. All channel definitions that carry reference inputs, like fasta, intervals, and sequence dictionary SHOULD contain a meta map [for example, see here](https://github.com/nf-core/modules/blob/master/modules/nf-core/gatk4/collectreadcounts/main.nf). We do this because there are pipelines that support multiple genomes, and they use meta information to distinguish between different genomes.
 
-2.  Non-file mandatory arguments or arguments needed to modify the command to make the module run with no error, SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
+3.  Non-file mandatory arguments or arguments needed to modify the command to make the module run with no error, SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
-3.  All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
+4.  All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
 
     - The value of `task.ext.args` is supplied from the `modules.config` file by assigning a string value to `ext.args`.
 
@@ -413,7 +413,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
       </details>
 
-4.  Software that can be piped together SHOULD be added to separate module files
+5.  Software that can be piped together SHOULD be added to separate module files
     unless there is a run-time, storage advantage in implementing in this way. For example,
     using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
@@ -421,7 +421,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     bwa mem $args | samtools view $args2 -B -T ref.fasta
     ```
 
-5.  Each tool in a multi-tool module MUST have an `$args` e.g.,
+6.  Each tool in a multi-tool module MUST have an `$args` e.g.,
 
     ```bash
     bwa mem $args | samtools view $args2 -B -T ref.fasta | samtools sort $args3
@@ -440,7 +440,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`. E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
 
-6.  Modules MUST NOT use 'custom' hardcoded `meta` fields. The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`. Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
+7.  Modules MUST NOT use 'custom' hardcoded `meta` fields. The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`. Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
     <details markdown="1">
       <summary>Rationale</summary>
@@ -470,7 +470,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
       </details>
 
-7.  Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
+8.  Where applicable, the usage and generation of compressed files SHOULD be enforced as input and output, respectively:
 
     - `*.fastq.gz` and NOT `*.fastq`
     - `*.bam` and NOT `*.sam`
@@ -497,7 +497,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
     Only if a tool reads the input multiple times, it is required to uncompress the
     file before running the tool.
 
-8.  Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
+9.  Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
     ```bash
     cat <<-END_VERSIONS > versions.yml
@@ -557,7 +557,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
     If the HEREDOC cannot be used because the script is not bash, the versions.yml must be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
-9.  The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
+10.  The process definition MUST NOT change the `when` statement. `when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
 ```groovy
 process {
