@@ -1,12 +1,12 @@
 ---
-title: Alternatives
-subtitle: Gitpod alternatives
+title: Alternatives to Gitpod
+subtitle: Alternative container-based environments
 weight: 7
 ---
 
-## Gitpod alternatives
+# Introduction
 
-Some alternatives to using Gitpod that offer similar convenience/transportability are [GitHub Codespaces](https://github.com/features/codespaces) and [Visual Studio Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
+Other options offering comparable convenience and portability to Gitpod are [GitHub Codespaces](https://github.com/features/codespaces) and [Visual Studio Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
 
 ## GitHub Codespaces
 
@@ -26,7 +26,11 @@ This will bring up a dropdown menu, you will then select the `Codespaces` tab an
   <img src="/images/contributing/gitpod/codespaces-dropdown.png" alt="codespaces dropdown" width="400"/>
 </p>
 
-After the Codespace is created, you should see something that looks very similar to a Gitpod environment (please see nf-core's [Gitpod](gitpod/index.md) page for more information). **An important difference between Gitpod and Codespaces is that `singularity`, and not `docker` profiles will need to be used to run any nextflow commands.** Otherwise, the created codespace can be used almost exactly as you would use a Gitpod environment.
+After the Codespace is created, you should see something that looks very similar to a Gitpod environment (please see nf-core's [Gitpod](gitpod/index.md) page for more information).
+
+:::note
+An important difference between Gitpod and Codespaces is that `-profile singularity`, and not `-profile docker` will need to be used to run any nextflow commands. Otherwise, the created codespace can be used almost exactly as you would use a Gitpod environment.
+:::
 
 ## Dev Containers on Visual Studio Code (VS Code)
 
@@ -39,7 +43,7 @@ VS Code Dev Containers on a local computer.
 
 2. **Install VS Code**: VS Code can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website.
 
-3. **Install VS Code Remote Development Extension**: The remote development pack allows VS Code to be used for code edition in development containers. This extension can be downloaded from the [VS Code] website, or by typing `remote development` into the extension tab's
+3. **Install VS Code Remote Development Extension**: The remote development pack allows VS Code to be used for code edition in development containers. This extension can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website, or by typing `remote development` into the extension tab's
    <img src="/images/contributing/gitpod/extension.png" alt="codespaces dropdown" width="25"/> search bar search bar
 
 4. **Clone a Repository in Container Volume**: Once everything is installed, open both Docker Desktop and VS Code prior going through the steps to create a local Dev Container:
@@ -55,26 +59,38 @@ VS Code Dev Containers on a local computer.
 - Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
 - Select `Clone Repository in Container Volume` from the dropdown menu
 - Select `GitHub` as the remote source, and type the repository name you want to clone (i.e. `nf-core/phageannotator`)
-- Select which branch the container should be based in
+- Select which branch the container should be based on
 - Click `+ Create a new colume`
 - Enter the desired volume name (or press `Enter` to use default name)
 - Enter the target folder name (or press `Enter` to use the default name)
 
-After going through these steps, a new instance of VS Code will be created for your Dev Container! The layout will be similar to Gitpod and Codespaces, so please see nf-core's [Gitpod](gitpod/index.md) page for more information about the user interface.
+After going through these steps, a new instance of VS Code will be created for your Dev Container! The layout will be similar to Gitpod and Codespaces, so please see nf-core's [Gitpod](/docs/contributing/gitpod) page for more information about the user interface.
 
 ## Troubleshooting
 
-1. **Using docker profile in Codespace/VS Code Dev Containers**
+### Using docker profile in Codespace/VS Code Dev Containers
 
-**Error message:** `docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.`
+**Error message:**
+
+```console
+docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
+```
 
 **Solution:** Ensure that `-profile singularity` is used. The `docker` profile will not work in Codespaces or VS Code Dev Containers.
 
 <br>
 
-2. **Non-privileged status when using singularity profile**
+### Non-privileged status when using singularity profile
 
-**Error message:** `FATAL: container creation failed: mount hook function failure: mount /proc/self/fd/3->/var/lib/apptainer/mnt/session/rootfs error: while mounting image /proc/self/fd/3: squashfuse_ll exited with status 1: fuse: device not found, try 'modprobe fuse' first`
+**Error message:**
+
+```console
+FATAL: container creation failed: mount hook function failure: mount /proc/self/fd/3->/var/lib/apptainer/mnt/session/rootfs
+error: while mounting image /proc/self/fd/3: squashfuse_ll exited with status 1: fuse: device not found, try 'modprobe fuse' first
+```
 
 **Solution:** Add the following line to the `.devcontainer/devcontainer.json` file:
-`"runArgs": ["--privileged"],`
+
+```json title="devcontainer.json"
+"runArgs": ["--privileged"],
+```
