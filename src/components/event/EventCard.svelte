@@ -19,7 +19,7 @@
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
-    const event_duration = (event) => {
+    const event_duration = (event: { start: Date; end: Date; start_date: Date; end_date: Date }) => {
         let duration;
         if (event.start_date === event.end_date) {
             duration =
@@ -57,7 +57,6 @@
                     hour12: false,
                 });
         }
-        console.log('called', duration);
         return duration;
     };
     const event_type_classes = {
@@ -67,7 +66,7 @@
         training: 'warning',
     };
 
-    let event_date;
+    $: event_date = event_duration(frontmatter);
 
     const type_class = event_type_classes[type];
     onMount(() => {
