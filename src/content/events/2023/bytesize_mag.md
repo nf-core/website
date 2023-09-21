@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/mag'
 subtitle: Sabrina Krakau - University Tübingen, QBiC
 type: talk
 start_date: '2023-02-28'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2023-02-28'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=IiorfDHeoLo
 embed_at: 'mag'
 location_url:

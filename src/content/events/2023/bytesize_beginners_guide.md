@@ -3,9 +3,9 @@ title: 'Bytesize: A beginners guide to nf-core'
 subtitle: Franziska Bonath, National Genomics Infrastructure, Stockholm
 type: talk
 start_date: '2023-09-12'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2023-09-12'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 location_url: https://kth-se.zoom.us/j/68390542812
 ---
 

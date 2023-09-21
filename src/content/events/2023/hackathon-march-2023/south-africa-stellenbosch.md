@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Tygerberg, South Africa)
 subtitle: Local node of the nf-core hackathon at Stellenbosch University, Tygerberg campus.
 type: hackathon
 start_date: '2023-03-27'
-start_time: '10:00 SAST'
+start_time: '10:00+02:00'
 end_date: '2023-03-29'
-end_time: '16:00 SAST'
+end_time: '16:00+02:00'
 location_name: Tygerberg campus, Stellenbosch University
 location_url:
   - https://www.sun.ac.za/english/faculty/healthsciences/

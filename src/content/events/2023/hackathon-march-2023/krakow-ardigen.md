@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Krakow)
 subtitle: Local node of the nf-core hackathon at Ardigen, Kraków.
 type: hackathon
 start_date: '2023-03-27'
-start_time: '09:00 CEST'
+start_time: '09:00+02:00'
 end_date: '2023-03-29'
-end_time: '17:00 CEST'
+end_time: '17:00+02:00'
 location_name: Ardigen
 address: Podole, 76, 30-394, Kraków, Poland
 location_url: https://ardigen.com/

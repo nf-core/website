@@ -60,6 +60,11 @@
             return -1;
         });
 
+    currentEvents = filteredEvents.filter((event) => {
+        const today = new Date();
+        return event.data.start < today && event.data.end > today;
+    });
+
     $: if (currentEvents.length > 0) {
         EventIsOngoing.set(true);
     } else {

@@ -3,9 +3,9 @@ title: Community Advanced Nextflow Training - September 2023
 subtitle: Local Community Advanced Nextflow Training at the Wellcome Genome Campus, Cambridge.
 type: training
 start_date: '2023-09-27'
-start_time: '9:30 BST'
+start_time: '09:30+01:00'
 end_date: '2023-09-27'
-end_time: '17:00 BST'
+end_time: '17:00+01:00'
 location_name: Garden Room, Main Building, EMBL-EBI, Wellcome Genome Campus
 address: Wellcome Genome Campus, Hinxton CB10 1SA
 location_url: https://www.wellcomegenomecampus.org

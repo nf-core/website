@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/proteinfold'
 subtitle: Athanasios Baltzis - Centre for Genomic Regulation, Barcelona
 type: talk
 start_date: '2022-09-20'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-09-20'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 embed_at: 'proteinfold'
 youtube_embed: https://www.youtube.com/watch?v=441P_GzrI-o
 location_url:

@@ -3,9 +3,9 @@ title: 'Bytesize: nf-test'
 subtitle: Edmund Miller, University of Texas at Dallas
 type: talk
 start_date: '2022-12-06'
-start_time: '14:00 CET'
+start_time: '14:00+01:00'
 end_date: '2022-12-06'
-end_time: '14:30 CET'
+end_time: '14:30+01:00'
 youtube_embed: https://www.youtube.com/watch?v=K9B7JRkMpQ4
 location_url:
   - https://doi.org/10.6084/m9.figshare.21695195.v1
