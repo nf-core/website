@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (APIS Assay Technologies Ltd)
 subtitle: Local node of the nf-core Hackathon at Startit Centar, by APIS Assay Technologies Ltd, Belgrade.
 type: hackathon
 start_date: '2023-03-27'
-start_time: '09:00 CET'
+start_time: '09:00+01:00'
 end_date: '2023-03-29'
-end_time: '17:00 CET'
+end_time: '17:00+01:00'
 location_name: Startit Centar, Beograd
 address: Savska 5, Belgrade 11000, Serbia
 location_url: https://startit.rs/beograd/
@@ -63,13 +63,13 @@ Please use the [main registration form](https://nf-co.re/events/2023/hackathon-m
                 <td>Final wrap-up<br>Location: Lecture Theatre</td>
             </tr>
             <tr>
-                <td data-timestamp="1679925600" data-timeformat="HH:mm z">16:00 CET</td>
+                <td data-timestamp="1679925600" data-timeformat="HH:mm z">16:00+01:00</td>
                 <td>Hack!</td>
                 <td>Hack!</td>
                 <td>End of hack day!</td>
             </tr>
 	        <tr>
-                <td data-timestamp="1679929200" data-timeformat="HH:mm z">17:00 CET</td>
+                <td data-timestamp="1679929200" data-timeformat="HH:mm z">17:00+01:00</td>
                 <td>End of hack day!</td>
                 <td>End of hack day!</td>
                 <td>//</td>

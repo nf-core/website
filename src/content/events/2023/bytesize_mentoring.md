@@ -3,9 +3,9 @@ title: 'Bytesize: Experiences in the nf-core Mentoring Program'
 subtitle: Mariana Guilardi (Federal University of Sao Paulo, UNIFESP) and Alyssa Briggs (The University of Texas at Dallas)
 type: talk
 start_date: '2023-05-09'
-start_time: '14:00 CEST'
+start_time: '14:00+02:00'
 end_date: '2023-05-09'
-end_time: '14:30 CEST'
+end_time: '14:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=K8gvK1drt0w
 location_url:
   - https://www.youtube.com/watch?v=K8gvK1drt0w
