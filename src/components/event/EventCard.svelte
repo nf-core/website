@@ -67,7 +67,7 @@
         training: 'warning',
     };
 
-    $: event_date = event_duration(frontmatter);
+    let event_date;
 
     const type_class = event_type_classes[type];
     onMount(() => {
