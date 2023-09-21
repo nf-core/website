@@ -367,7 +367,7 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 1.  All mandatory and optional input files MUST be included in `input` channel definitions.
 
-2. All channel definitions that carry reference inputs, like fasta, intervals, and sequence dictionary SHOULD contain a meta map [for example, see here](https://github.com/nf-core/modules/blob/master/modules/nf-core/gatk4/collectreadcounts/main.nf). We do this because there are pipelines that support multiple genomes, and they use meta information to distinguish between different genomes.
+2.  All channel definitions that carry reference inputs, like fasta, intervals, and sequence dictionary SHOULD contain a meta map (for example, [see here](https://github.com/nf-core/modules/blob/master/modules/nf-core/gatk4/collectreadcounts/main.nf)). We do this because there are pipelines that support multiple genomes, and they use meta information to distinguish between different genomes.
 
 3.  Non-file mandatory arguments or arguments needed to modify the command to make the module run with no error, SHOULD be provided as value channels (for example `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)) - see 'Input/output options' below.
 
