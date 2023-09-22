@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/airrflow'
 subtitle: Gisela Gabernet, QBiC, University of Tübingen
 type: talk
 start_date: '2022-10-25'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2022-10-25'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=CrJgxVRVlqY
 location_url:
   - https://doi.org/10.6084/m9.figshare.21407004.v1

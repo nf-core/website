@@ -3,9 +3,9 @@ title: Hackathon @ The Crick
 subtitle: An nf-core hackathon held at The Francis Crick Institute, London
 type: hackathon
 start_date: '2020-03-04'
-start_time: '09:00'
+start_time: '09:00+01:00'
 end_date: '2020-03-06'
-end_time: '17:00'
+end_time: '17:00+01:00'
 address: 1 Midland Rd, London NW1 1ST
 location_name: The Francis Crick Institute
 location_url: https://www.crick.ac.uk/

@@ -3,9 +3,9 @@ title: 'Bytesize: nf-core/quantms'
 subtitle: Julianus Pfeuffer (Zuse Institute Berlin) and Yasset Perez Riverol (EMBL-EBI)
 type: talk
 start_date: '2023-05-30'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2023-05-30'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=pBzelkgrPgQ
 embed_at: quantms
 location_url:
