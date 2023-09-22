@@ -1344,4 +1344,12 @@ div.mermaid {
     background-color: $gray-800;
     color: $body-color-dark;
   }
+  .pipeline .pipeline-topic,
+  .module .module-topic,
+  .subworkflow .subworkflow-topic,
+  .search-page-result .pipeline-topic {
+    background-color: $gray-600;
+    color: $white;
+    font-weight: 400;
+  }
 }
