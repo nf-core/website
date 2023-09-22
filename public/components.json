@@ -12404,6 +12404,13 @@
               "description": "TSV output report of the re-estimated abundances",
               "pattern": "*.{tsv}"
             }
+          },
+          {
+            "txt": {
+              "type": "file",
+              "description": "TXT file of bracken corrected results of Kraken2 report output",
+              "pattern": "*.txt"
+            }
           }
         ],
         "authors": [
@@ -13927,6 +13934,10 @@
         {
           "name": "nascent",
           "version": "2.1.1"
+        },
+        {
+          "name": "phageannotator",
+          "version": "dev"
         },
         {
           "name": "raredisease",
@@ -50877,6 +50888,72 @@
       }
     },
     {
+      "name": "learnmsa_align",
+      "path": "modules/nf-core/learnmsa/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "learnmsa_align",
+        "description": "Align sequences using learnMSA",
+        "keywords": [
+          "alignment",
+          "MSA",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "learnmsa": {
+              "description": "learnMSA: Learning and Aligning large Protein Families",
+              "homepage": "https://github.com/Gaius-Augustus/learnMSA",
+              "documentation": "https://github.com/Gaius-Augustus/learnMSA",
+              "tool_dev_url": "https://github.com/Gaius-Augustus/learnMSA",
+              "doi": "10.1093/gigascience/giac104",
+              "licence": "['MIT']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input sequences in FASTA format",
+              "pattern": "*.{fa,fasta}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+            }
+          },
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Alignment file.",
+              "pattern": "*.{aln}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@luisas"
+        ]
+      }
+    },
+    {
       "name": "leehom",
       "path": "modules/nf-core/leehom/meta.yml",
       "type": "module",
@@ -80499,6 +80576,10 @@
           "version": "2.0.0"
         },
         {
+          "name": "metatdenovo",
+          "version": "dev"
+        },
+        {
           "name": "radseq",
           "version": "dev"
         }
@@ -99979,6 +100060,49 @@
         ],
         "authors": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "initialise",
+      "path": "subworkflows/nf-core/initialise/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "initialise",
+        "description": "Validate input parameters and print help messages",
+        "keywords": [
+          "admin",
+          "check",
+          "help",
+          "version"
+        ],
+        "modules": null,
+        "input": [
+          {
+            "version": null,
+            "type": "boolean",
+            "description": "Structure: val(version)\nBoolean to show the pipeline version and exit.\n"
+          },
+          {
+            "help": null,
+            "type": "boolean",
+            "description": "Structure: val(help)\nBoolean to show the pipeline help message and exit.\n"
+          },
+          {
+            "validate_params": null,
+            "type": "boolean",
+            "description": "Structure: val(validate_params)\nWhether to validate the parameters prior to starting the pipeline.\n"
+          }
+        ],
+        "output": [
+          {
+            "summary_params": null,
+            "type": "value",
+            "description": "Structure: val(summary_params)\nA map of the parameters used in the pipeline.\n"
+          }
+        ],
+        "authors": [
+          "@adamrtalbot"
         ]
       }
     },
