@@ -13,7 +13,7 @@ The [code of conduct](/code_of_conduct/) applies to everyone active in the commu
 Two points are particularly worth highlighting, which are not allowed:
 
 - Sending unsolicited direct-messages or emails to community members on Slack / other platforms
-- Posting in nf-core spaces specifically to criticise or detract from Nextflow and nf-core, and to promote alternatives
+- Posting in nf-core spaces specifically to criticise or detract from Nextflow and nf-core solely for the purposes of promoting alternatives.
 
 Contravening these, or any of the behaviours listed in the code of conduct, will likely result in an immediate ban.
 
@@ -21,13 +21,13 @@ Contravening these, or any of the behaviours listed in the code of conduct, will
 
 Please refrain from posting about your products and services in Slack, with some exceptions:
 
-- The `#shameless-promo` channel
-  - This channel is designed specifically for promotion of personal and commercial projects relevant to the nf-core community
+- The [`#shameless-promo`](https://nfcore.slack.com/channels/shameless-promo) channel
+  - This channel is designed specifically for promotion of personal and commercial projects relevant to the nf-core community.
   - "Relevant" means that a significant chunk of the people reading the message may find it useful for their daily work.
-  - See above code of conduct points. Posting that tool X is better than Nextflow / nf-core and advertising an alterative is not ok.
+  - See above code of conduct points. Posting that tool XYZ is better than Nextflow / nf-core and advertising it as an alternative is not ok.
 - In reply to active discussions
   - If your tool or product is relevant to an ongoing discussion, it's ok to mention it.
-  - For example: _"The things you're trying to achieve can be done with tool XXX, let me know if you would like more details."_
+  - For example: _"The things you're trying to achieve can be done with tool XYZ, let me know if you would like more details."_
   - Please use common sense: don't swamp the thread and push too hard.
 
 Posts that the nf-core core team / safety team deem to violate these principles will be deleted, and the authors may be banned.
@@ -45,7 +45,7 @@ For example, sending DMs to community members such as the following is _not_ ok:
 > to match the profile that we're looking for. Please let us know if you'd
 > like us to sign you up!
 
-Please use public channels such as `#shameless-promo` instead of doing this.
+Please use public channels such as [`#shameless-promo`](https://nfcore.slack.com/channels/shameless-promo) instead of doing this.
 
 The only time that it's acceptable to reach out to a community member via DM is if you have been discussing something with that person in a public channel and they have shown explicit interest. You may then follow up with them via a DM.
 
@@ -53,4 +53,4 @@ Please try to keep as much discussion in public channels as possible.
 
 ## Job adverts
 
-Feel free to post any job adverts into the `#jobs` Slack channel.
+Feel free to post any job adverts into the [`#jobs`](https://nfcore.slack.com/channels/jobs) Slack channel.
