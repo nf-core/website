@@ -66,6 +66,14 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
           }
         });
+        // prefix links to files in the assets directory with github url
+        content = content.replaceAll(/\[(.*?)\]\((assets\/.*?)\)/g, (match, p1, p2) => {
+          if (p2.startsWith('http')) {
+            return match;
+          } else {
+            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+          }
+        });
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
