@@ -95,7 +95,7 @@ The following behaviours from any participants within the nf-core community (inc
 
 Other more subtle behaviours are also against our code of conduct, and may result in an immediate ban:
 
-- Sending unsolicited direct-messages or emails to community members on Slack / other platforms
+- Sending unsolicited direct-messages or emails solely for marketing purposes to community members.
 - Posting in nf-core spaces specifically to criticise or detract from Nextflow and nf-core solely for the purposes of promoting alternatives.
 
 ### Online Trolling

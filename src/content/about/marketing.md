@@ -12,7 +12,7 @@ Firstly - welcome! We are an open and inclusive community and encourage everyone
 The [code of conduct](/code_of_conduct/) applies to everyone active in the community.
 Two points are particularly worth highlighting, which are not allowed:
 
-- Sending unsolicited direct-messages or emails to community members on Slack / other platforms
+- Sending unsolicited direct-messages or emails solely for marketing purposes to community members.
 - Posting in nf-core spaces specifically to criticise or detract from Nextflow and nf-core solely for the purposes of promoting alternatives.
 
 Contravening these, or any of the behaviours listed in the code of conduct, will likely result in an immediate ban.
