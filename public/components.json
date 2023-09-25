@@ -37671,6 +37671,77 @@
       }
     },
     {
+      "name": "gem3_gem3indexer",
+      "path": "modules/nf-core/gem3/gem3indexer/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gem3_gem3indexer",
+        "description": "Create a GEM index from a FASTA file",
+        "keywords": [
+          "fasta",
+          "index",
+          "reference",
+          "mappability"
+        ],
+        "tools": [
+          {
+            "gem3": {
+              "description": "The GEM indexer (v3).",
+              "homepage": "https://github.com/miqalvarez/gem3/tree/gem3-indexer",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing information about the fasta file\ne.g. [ id:'test' ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "A reference FASTA file to index",
+              "pattern": "*.{fasta,fa,fna}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "gem": {
+              "type": "file",
+              "description": "The created index",
+              "pattern": "*.gem"
+            }
+          },
+          {
+            "info": {
+              "type": "file",
+              "description": "The execution log",
+              "pattern": "*.info"
+            }
+          }
+        ],
+        "authors": [
+          "@miqalvarez"
+        ]
+      }
+    },
+    {
       "name": "genescopefk",
       "path": "modules/nf-core/genescopefk/meta.yml",
       "type": "module",
@@ -100076,29 +100147,33 @@
           "help",
           "version"
         ],
-        "modules": null,
+        "components": [],
         "input": [
           {
-            "version": null,
-            "type": "boolean",
-            "description": "Structure: val(version)\nBoolean to show the pipeline version and exit.\n"
+            "version": {
+              "type": "boolean",
+              "description": "Structure: val(version)\nBoolean to show the pipeline version and exit.\n"
+            }
           },
           {
-            "help": null,
-            "type": "boolean",
-            "description": "Structure: val(help)\nBoolean to show the pipeline help message and exit.\n"
+            "help": {
+              "type": "boolean",
+              "description": "Structure: val(help)\nBoolean to show the pipeline help message and exit.\n"
+            }
           },
           {
-            "validate_params": null,
-            "type": "boolean",
-            "description": "Structure: val(validate_params)\nWhether to validate the parameters prior to starting the pipeline.\n"
+            "validate_params": {
+              "type": "boolean",
+              "description": "Structure: val(validate_params)\nWhether to validate the parameters prior to starting the pipeline.\n"
+            }
           }
         ],
         "output": [
           {
-            "summary_params": null,
-            "type": "value",
-            "description": "Structure: val(summary_params)\nA map of the parameters used in the pipeline.\n"
+            "summary_params": {
+              "type": "value",
+              "description": "Structure: val(summary_params)\nA map of the parameters used in the pipeline.\n"
+            }
           }
         ],
         "authors": [
