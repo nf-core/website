@@ -36,7 +36,8 @@ If in doubt, please reach out to one of the [core team](/governance#core-team) t
 
 ## Slack direct messages
 
-Unsolicited direct messages (DMs) are explicitly forbidden in our community.
+Unsolicited direct messages (DMs) for marketing purposes are explicitly forbidden in our community.
+Indeed, unsolicited DMs for any reason are strongly discouraged.
 
 For example, sending DMs to community members such as the following is _not_ ok:
 
