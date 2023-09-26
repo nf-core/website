@@ -18,8 +18,10 @@ These will be recorded and made available on [YouTube](https://www.youtube.com/@
 It is our hope that these talks / videos will help us learn from the greater Nextflow community. If you want to present, please reach out to [Priyanka Surana](mailto:ps22@sanger.ac.uk).
 
 ## Matthieu Muffato, Tree of Life, Wellcome Sanger Institute
+
 **Adopting Nextflow in Sanger Tree of Life**
-<br>Tree of Life is the latest scientific programme of the Wellcome Sanger Institute, aiming at producing reference genome assemblies for tens of thousands of species. We decided early on that Nextflow would be the workflow manager of choice - what an adventure it has been ! In this presentation, I will tell you about our journey, starting from training users, setting up development environments, right up to advertising our complete pipelines and reaching out to users outside of the department, with some insights into deploying and automating the pipelines.
+
+Tree of Life is the latest scientific programme of the Wellcome Sanger Institute, aiming at producing reference genome assemblies for tens of thousands of species. We decided early on that Nextflow would be the workflow manager of choice - what an adventure it has been ! In this presentation, I will tell you about our journey, starting from training users, setting up development environments, right up to advertising our complete pipelines and reaching out to users outside of the department, with some insights into deploying and automating the pipelines.
 
 ## Luke Paul Buttigieg and Ricardo Humberto Ramirez Gonzalez, Genomics England
 
