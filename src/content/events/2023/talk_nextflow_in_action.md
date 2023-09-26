@@ -2,9 +2,9 @@
 title: 'Nextflow in Action'
 subtitle: Tree of Life, Wellcome Sanger Institute and Genomics England
 type: talk
-start_date: '2023-09-26'
+start_date: '2023-10-12'
 start_time: '14:00+01:00'
-end_date: '2023-09-26'
+end_date: '2023-10-12'
 end_time: '15:00+01:00'
 location_url: https://sanger.zoom.us/j/96537565366?pwd=UWpYVVdsbTZFREZkbndaZGNkNGJrdz09
 ---
