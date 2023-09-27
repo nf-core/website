@@ -56,7 +56,7 @@
         margin-right: 0.2rem;
         padding: 0;
     }
-    :global(.DocSearch-Hits) {
+    :global(.DocSearch .DocSearch-Hits) {
         &:last-of-type {
             margin-bottom: 0;
         }
@@ -88,6 +88,7 @@
         --docsearch-hit-background: #{$body-bg-dark};
         --docsearch-hit-shadow: 'none';
         --docsearch-footer-background: #{$body-secondary-bg-dark};
+        --docsearch-footer-shadow: none;
     }
     :global(.DocSearch-Hit-source) {
         font-size: 1rem;
