@@ -339,7 +339,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "taxprofiler",
@@ -2466,7 +2466,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfold",
@@ -5577,6 +5577,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "2.4.0"
+        },
+        {
           "name": "metatdenovo",
           "version": "dev"
         }
@@ -6356,7 +6360,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "viralrecon",
@@ -6638,7 +6642,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -7973,7 +7977,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "raredisease",
@@ -14065,6 +14069,10 @@
           "version": "dev"
         },
         {
+          "name": "mag",
+          "version": "2.4.0"
+        },
+        {
           "name": "metatdenovo",
           "version": "dev"
         },
@@ -15124,7 +15132,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -15234,7 +15242,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -17773,7 +17781,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -17864,7 +17872,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -17953,7 +17961,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -18038,7 +18046,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -18115,9 +18123,83 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
+    },
+    {
+      "name": "conifer",
+      "path": "modules/nf-core/conifer/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "conifer",
+        "description": "Calculate confidence scores from Kraken2 output",
+        "keywords": [
+          "classify",
+          "metagenomics",
+          "kraken2",
+          "confidence"
+        ],
+        "tools": [
+          {
+            "conifer": {
+              "description": "Calculate confidence scores from Kraken2 output",
+              "homepage": "https://github.com/Ivarz/Conifer",
+              "documentation": "https://github.com/Ivarz/Conifer",
+              "tool_dev_url": "https://github.com/Ivarz/Conifer",
+              "licence": [
+                "BSD / BSD-2-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "kraken_result": {
+              "type": "file",
+              "description": "Raw Kraken2 standard output file\n"
+            }
+          },
+          {
+            "kraken_taxon_db": {
+              "type": "file",
+              "description": "Kraken2 taxo.k2d database file"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "score": {
+              "type": "file",
+              "description": "Conifer report file containing confidence scores of Kraken2 classified reads.\n",
+              "pattern": "*.score"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@icaromsc",
+          "@rpetit3"
+        ]
+      }
     },
     {
       "name": "controlfreec_assesssignificance",
@@ -19899,7 +19981,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "marsseq",
@@ -20888,7 +20970,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -20974,7 +21056,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -26930,7 +27012,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "nascent",
@@ -27140,7 +27222,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "marsseq",
@@ -28765,7 +28847,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "radseq",
@@ -38405,6 +38487,10 @@
       },
       "pipelines": [
         {
+          "name": "mag",
+          "version": "2.4.0"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         }
@@ -38576,6 +38662,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mag",
+          "version": "2.4.0"
+        },
         {
           "name": "phageannotator",
           "version": "dev"
@@ -41950,7 +42040,13 @@
           "@skrakau",
           "@abhi18av"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "gubbins",
@@ -42122,7 +42218,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -42208,7 +42304,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -42298,7 +42394,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -42405,7 +42501,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "marsseq",
@@ -54245,7 +54341,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -55989,7 +56085,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -56102,7 +56198,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -56197,7 +56293,13 @@
         "authors": [
           "@prototaxites"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "metaphlan3_mergemetaphlantables",
@@ -58222,7 +58324,13 @@
         "authors": [
           "@prototaxites"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "mmseqs_easysearch",
@@ -59783,7 +59891,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "marsseq",
@@ -69798,7 +69906,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "metapep",
@@ -69974,7 +70082,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "metatdenovo",
@@ -71235,7 +71343,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -71317,7 +71425,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
@@ -75501,7 +75609,7 @@
         },
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         },
         {
           "name": "methylseq",
@@ -76810,6 +76918,74 @@
           "version": "3.3.1"
         }
       ]
+    },
+    {
+      "name": "samtools_reheader",
+      "path": "modules/nf-core/samtools/reheader/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_reheader",
+        "description": "Replace the header in the bam file with the header generated by the command.\nThis command is much faster than replacing the header with a BAM→SAM→BAM conversion.\n",
+        "keywords": [
+          "reheader",
+          "cram",
+          "bam",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM/CRAM file to be reheaded",
+              "pattern": "*.{bam,cram}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Reheaded BAM/CRAM file",
+              "pattern": "*.{bam,cram}"
+            }
+          }
+        ],
+        "authors": [
+          "@louislenezet"
+        ]
+      }
     },
     {
       "name": "samtools_sort",
@@ -80459,6 +80635,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mag",
+          "version": "2.4.0"
+        },
         {
           "name": "metatdenovo",
           "version": "dev"
@@ -89528,7 +89708,13 @@
         "authors": [
           "@prototaxites"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "2.4.0"
+        }
+      ]
     },
     {
       "name": "tiddit_cov",
@@ -98038,7 +98224,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "2.3.2"
+          "version": "2.4.0"
         }
       ]
     },
