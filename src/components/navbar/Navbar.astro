@@ -9,6 +9,7 @@ import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import Icon from 'astro-icon';
+import Search from '@components/navbar/Search.svelte';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -51,9 +52,10 @@ if (sections?.length > 0) {
                 <Fragment set:html={NfCoreLogoDarkbg} />
             </div>
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
-
-        <div class="align-self-center d-xl-none" id="docsearch-mobile"></div>
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:only="svelte" />}
+        <div class="align-self-center d-xl-none">
+            <Search id="docsearch-mobile" client:visible />
+        </div>
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -142,7 +144,9 @@ if (sections?.length > 0) {
                     </ul>
                 </li>
             </ul>
-            <div class="align-self-center d-none d-xl-block ms-auto pe-3" id="docsearch-desktop"></div>
+            <div class="align-self-center d-none d-xl-block ms-auto pe-3">
+                <Search id="docsearch-desktop" client:only="svelte" />
+            </div>
             <div class="d-none d-xl-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
@@ -207,86 +211,9 @@ if (sections?.length > 0) {
         </NavbarDocsNav>
     )
 }
-<script>
-    import docsearch from '@docsearch/js';
-
-    import '@docsearch/css';
-
-    docsearch({
-        container: '#docsearch-mobile',
-        appId: '01BY3A8NRJ',
-        indexName: 'nf-co',
-        debug: true,
-        apiKey: 'c726615ab69f88b4e26bc891c97c1808',
-        placeholder: 'Search',
-    });
-    docsearch({
-        container: '#docsearch-desktop',
-        appId: '01BY3A8NRJ',
-        indexName: 'nf-co',
-        debug: true,
-        apiKey: 'c726615ab69f88b4e26bc891c97c1808',
-        placeholder: 'Search',
-    });
-</script>
 
 <style lang="scss">
     @import '@styles/_variables.scss';
-
-    :global(:root) {
-        --docsearch-text-color: #{$input-color};
-        --docsearch-searchbox-background: #{$input-bg};
-        --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: #{$input-bg};
-        --docsearch-primary-color: #{$nf-core-color};
-        --docsearch-container-background: #{rgba($black, 0.5)};
-        --docsearch-modal-shadow: 'none';
-        --docsearch-footer-shadow: none;
-    }
-    :global(.DocSearch-Modal) {
-        background: $body-secondary-bg;
-    }
-    :global(button.DocSearch-Button) {
-        border-radius: $border-radius;
-        margin-left: 0;
-    }
-    :global(button.DocSearch-Button .DocSearch-Button-Keys) {
-        background: none;
-        border-radius: $border-radius-sm;
-
-        //   padding: 0.2rem;
-        margin-top: 0.15rem;
-
-        min-width: 3rem;
-        justify-content: space-around;
-        align-items: center;
-    }
-    :global(.DocSearch-Button-Key, .DocSearch-Commands-Key) {
-        align-items: center;
-        background: $white;
-        box-shadow: 0 0 0 1px $secondary;
-        margin-right: 0.2rem;
-        padding: 0;
-    }
-    :global(.DocSearch-Hits) {
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-        &::before {
-            height: 0;
-        }
-    }
-    :global(.DocSearch-Hit) {
-        & :global(a) {
-            box-shadow: none;
-        }
-        & :global(mark) {
-            padding: 0;
-        }
-    }
-    :global(.DocSearch-Hit-icon:has(svg[height='20'])) {
-        line-height: 20px;
-    }
 
     .navbar.fixed-top {
         .navbar-brand {
@@ -335,39 +262,5 @@ if (sections?.length > 0) {
         :global(.active) & {
             fill: $white;
         }
-    }
-    :global([data-bs-theme='dark']:root) {
-        --docsearch-text-color: #{$input-color};
-        --docsearch-searchbox-background: #{$input-bg};
-        --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: #{$input-bg};
-        --docsearch-primary-color: #{$nf-core-color-dark};
-        --docsearch-container-background: #{rgba($black, 0.5)};
-
-        --docsearch-modal-shadow: 'none';
-
-        --docsearch-hit-color: #{$body-color-dark};
-        --docsearch-hit-background: #{$body-bg-dark};
-        --docsearch-footer-background: #{$body-secondary-bg-dark};
-    }
-    :global(.DocSearch-Hit-source) {
-        font-size: 1rem;
-    }
-    :global([data-bs-theme='dark'] .DocSearch-Modal, [data-bs-theme='dark'] .DocSearch-Hit-source) {
-        background: $body-secondary-bg-dark;
-    }
-    :global(.DocSearch-Container) {
-        @include media-breakpoint-down(lg) {
-            padding-top: 3rem;
-        }
-    }
-    :global(.double-navbar ~ .DocSearch-Container) {
-        @include media-breakpoint-down(lg) {
-            padding-top: 5rem;
-        }
-    }
-    :global([data-bs-theme='dark'] .DocSearch-Button-Key, [data-bs-theme='dark'] .DocSearch-Commands-Key) {
-        background: $black;
-        box-shadow: 0 0 0 1px $secondary-border-subtle-dark;
     }
 </style>
