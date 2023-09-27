@@ -23,7 +23,7 @@
         </p>
 
         <div class="homepage_contrib_logos">
-            <Marquee pauseOnHover={true} speed={5}>
+            <Marquee pauseOnHover={true} speed={50}>
                 {#each contributors as contributor (contributor)}
                     <a href="/contributors/#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}">
                         <img
