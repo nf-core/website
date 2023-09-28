@@ -67,6 +67,12 @@ Participation in the nf-core community is contingent on following these guidelin
 - Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, gather.town, Jitsi, YouTube live etc.
 - Representing nf-core on social media. This includes both official and personal accounts.
 
+:::tip
+We have a page specifically for [guidelines regarding marketing activities](/marketing).
+If you're involved in any commercial activity within our community then you must
+also abide by those rules.
+:::
+
 ## nf-core cares 😊
 
 nf-core's CoC and expectations of respectful behaviours for all participants (including organisers and the nf-core team) include, but are not limited to, the following (listed in alphabetical order):
