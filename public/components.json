@@ -11792,7 +11792,7 @@
             "txt": {
               "type": "file",
               "description": "File containing blastn hits",
-              "pattern": "*.{blastn.txt}"
+              "pattern": "*.txt"
             }
           },
           {
@@ -11805,7 +11805,8 @@
         ],
         "authors": [
           "@joseespinosa",
-          "@drpatelh"
+          "@drpatelh",
+          "@vagkaratzas"
         ]
       },
       "pipelines": [
@@ -11814,6 +11815,79 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "blast_blastp",
+      "path": "modules/nf-core/blast/blastp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blast_blastp",
+        "description": "BLASTP (Basic Local Alignment Search Tool- Protein) compares an amino acid (protein) query sequence against a protein database",
+        "keywords": [
+          "fasta",
+          "blast",
+          "blastp",
+          "protein"
+        ],
+        "tools": [
+          {
+            "blast": {
+              "description": "BLAST+ is a new suite of BLAST tools that utilizes the NCBI C++ Toolkit.",
+              "homepage": "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
+              "documentation": "https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=Blastdocs",
+              "doi": "10.1016/S0022-2836(05)80360-2",
+              "licence": "['US-Government-Work']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Input fasta file containing queries sequences",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "db": {
+              "type": "directory",
+              "description": "Directory containing blast database",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "csv": {
+              "type": "file",
+              "description": "File containing blastp hits",
+              "pattern": "*.csv"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "blast_makeblastdb",
@@ -11867,7 +11941,8 @@
         ],
         "authors": [
           "@joseespinosa",
-          "@drpatelh"
+          "@drpatelh",
+          "@vagkaratzas"
         ]
       },
       "pipelines": [
@@ -11930,7 +12005,7 @@
             "txt": {
               "type": "file",
               "description": "File containing blastn hits",
-              "pattern": "*.{tblastn.txt}"
+              "pattern": "*.txt"
             }
           },
           {
@@ -11943,7 +12018,8 @@
         ],
         "authors": [
           "@yumisims",
-          "@gq2"
+          "@gq2",
+          "@vagkaratzas"
         ]
       }
     },
@@ -20252,7 +20328,9 @@
         "description": "filter a matrix based on a minimum value and numbers of samples that must pass.",
         "keywords": [
           "matrix",
-          "filter"
+          "filter",
+          "abundance",
+          "na"
         ],
         "tools": [
           {
@@ -20289,29 +20367,42 @@
           },
           {
             "minimum_abundance": {
-              "type": "numeric",
+              "type": "float",
               "description": "Minimum abundance value, supplied via task.ext.args as --minimum_abundance\n",
               "default": 1
             }
           },
           {
             "minimum_samples": {
-              "type": "numeric",
+              "type": "integer",
               "description": "Minimum observations that must pass the threshold to retain\nthe row/ feature (e.g. gene). Supplied via task.ext.args as\n--minimum_samples\n",
               "default": 1
             }
           },
           {
             "minimum_proportion": {
-              "type": "numeric",
+              "type": "float",
               "description": "A minimum proportion of observations that must pass the threshold.\nSupplied via task.ext.args as --minimum_proportion. Overrides\nminimum_samples\n",
               "default": 0
             }
           },
           {
             "grouping_variable": {
-              "type": "optional string",
+              "type": "string",
               "description": "Optionally supply a variable from the sample sheet that can be used to\ndefine groups and derive a minimum group size upon which to base\nminimum observation numbers. The rationale being to allow retention of\nfeatures that might be present in only one group. Supplied via\ntask.ext.args as --grouping_variable\n"
+            }
+          },
+          {
+            "minimum_proportion_not_na": {
+              "type": "float",
+              "description": "A minimum proportion of observations that must have a numeric value (not be NA).\nSupplied via task.ext.args as --minimum_proportion_not_na\n",
+              "default": 0.5
+            }
+          },
+          {
+            "minimum_samples_not_na": {
+              "type": "integer",
+              "description": "Minimum observations that must have a numeric value (not be NA) to retain\nthe row/ feature (e.g. gene). Supplied via task.ext.args as\n--minimum_samples_not_na. Overrides minimum_proportion_not_na\n"
             }
           }
         ],
@@ -20334,6 +20425,13 @@
               "type": "file",
               "description": "Filtered version of input matrix",
               "pattern": "*.filtered.tsv"
+            }
+          },
+          {
+            "tests": {
+              "type": "file",
+              "description": "Boolean matrix with pass/ fail status for each test on each feature",
+              "pattern": "*.tests.tsv"
             }
           }
         ],
@@ -53089,6 +53187,13 @@
               "description": "Genome reference FASTA index file",
               "pattern": "*.{fa.fai,fasta.fai}"
             }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Manta configuration file",
+              "pattern": "*.{ini,conf,config}"
+            }
           }
         ],
         "output": [
@@ -53150,7 +53255,8 @@
         ],
         "authors": [
           "@maxulysse",
-          "@ramprasadn"
+          "@ramprasadn",
+          "@nvnieuwk"
         ]
       },
       "pipelines": [
@@ -53244,6 +53350,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome reference FASTA file",
@@ -53251,10 +53363,23 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Genome reference FASTA index file",
               "pattern": "*.{fa.fai,fasta.fai}"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Manta configuration file",
+              "pattern": "*.{ini,conf,config}"
             }
           }
         ],
@@ -53330,7 +53455,8 @@
           }
         ],
         "authors": [
-          "@FriederikeHanssen"
+          "@FriederikeHanssen",
+          "@nvnieuwk"
         ]
       },
       "pipelines": [
@@ -53410,6 +53536,12 @@
             }
           },
           {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
             "fasta": {
               "type": "file",
               "description": "Genome reference FASTA file",
@@ -53417,10 +53549,23 @@
             }
           },
           {
+            "meta3": {
+              "type": "map",
+              "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+            }
+          },
+          {
             "fai": {
               "type": "file",
               "description": "Genome reference FASTA index file",
               "pattern": "*.{fa.fai,fasta.fai}"
+            }
+          },
+          {
+            "config": {
+              "type": "file",
+              "description": "Manta configuration file",
+              "pattern": "*.{ini,conf,config}"
             }
           }
         ],
@@ -53482,7 +53627,8 @@
           }
         ],
         "authors": [
-          "@maxulysse"
+          "@maxulysse",
+          "@nvnieuwk"
         ]
       },
       "pipelines": [
@@ -82126,7 +82272,9 @@
         "description": "Program to compute switch error rate and genotyping error rate given simulated or trio data.",
         "keywords": [
           "error",
-          "phasing"
+          "phasing",
+          "genotype",
+          "switch"
         ],
         "tools": [
           {
@@ -98951,6 +99099,108 @@
       ]
     },
     {
+      "name": "fastq_align_bamcmp_bwa",
+      "path": "subworkflows/nf-core/fastq_align_bamcmp_bwa/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_align_bamcmp_bwa",
+        "description": "Align reads to two different reference genomes using bwa, then use bamcmp to keep only reads that align better to the first genome, then sort with samtools",
+        "keywords": [
+          "bam",
+          "cram",
+          "bamcmp",
+          "contamination",
+          "align"
+        ],
+        "components": [
+          "bamcmp",
+          "bwa/mem",
+          "bwa/align",
+          "samtools/sort",
+          "samtools/index",
+          "samtools/stats",
+          "samtools/idxstats",
+          "samtools/flagstat",
+          "bam_sort_stats_samtools"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\nStructure: [ val(meta), [ path(reads) ] ]\n"
+            }
+          },
+          {
+            "ch_primary_index": {
+              "description": "BWA genome index files for the primary species.\nStructure: [ val(meta2), path(primary_index) ]\n"
+            }
+          },
+          {
+            "ch_contaminant_index": {
+              "description": "BWA genome index files for the contamination species.\nStructure: [ val(meta3), path(contaminant_index) ]\n"
+            }
+          },
+          {
+            "val_sort_bam": {
+              "type": "boolean",
+              "description": "If true sort resulting primary bam files.",
+              "pattern": "true|false"
+            }
+          },
+          {
+            "ch_primary_fasta": {
+              "type": "file",
+              "description": "Optional reference fasta file for the primary genome. This only needs to be given if val_sort_bam = true\nStructure: [ path(fasta) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "bam": {
+              "description": "BAM file, sorted by samtools if requested\nStructure: [ val(meta), path(bam) ]\n"
+            }
+          },
+          {
+            "contaminant_bam": {
+              "description": "BAM file of the reads that map better to the contamination genome. Sorted by queryname.\nStructure: [ val(meta), path(bam) ]\n"
+            }
+          },
+          {
+            "bai": {
+              "description": "BAI index of the ordered BAM file\nStructure: [ val(meta), path(bai) ]\n"
+            }
+          },
+          {
+            "csi": {
+              "description": "CSI index of the ordered BAM file\nStructure: [ val(meta), path(csi) ]\n"
+            }
+          },
+          {
+            "stats": {
+              "description": "File containing samtools stats output\nStructure: [ val(meta), path(stats) ]\n"
+            }
+          },
+          {
+            "flagstat": {
+              "description": "File containing samtools flagstat output\nStructure: [ val(meta), path(flagstat) ]\n"
+            }
+          },
+          {
+            "idxstats": {
+              "description": "File containing samtools idxstats output\nStructure: [ val(meta), path(idxstats) ]\n"
+            }
+          },
+          {
+            "versions": {
+              "description": "Files containing software versions\nStructure: [ path(versions.yml) ]\n"
+            }
+          }
+        ],
+        "authors": [
+          "@sppearce"
+        ]
+      }
+    },
+    {
       "name": "fastq_align_bowtie2",
       "path": "subworkflows/nf-core/fastq_align_bowtie2/meta.yml",
       "type": "subworkflow",
@@ -101331,21 +101581,9 @@
         ],
         "input": [
           {
-            "ch_vcf": {
+            "ch_input": {
               "type": "file",
-              "description": "Target dataset in VCF/BCF format defined at all variable positions.\nIndex file of the input VCF/BCF file containing genotype likelihoods.\nFile with sample names and ploidy information.\nTarget region, usually a full chromosome (e.g. chr20:1000000-2000000 or chr20).\nThe file could possibly be without GT field (for efficiency reasons a file containing only the positions is recommended).\nStructure: [ meta, vcf, csi, txt, region ]\n"
-            }
-          },
-          {
-            "ch_ref": {
-              "type": "file",
-              "description": "Reference panel of haplotypes in VCF/BCF format.\nIndex file of the Reference panel file.\nStructure: [ meta, vcf, csi ]\n"
-            }
-          },
-          {
-            "ch_map": {
-              "type": "file",
-              "description": "File containing the genetic map.\nStructure: [gmap]\n"
+              "description": "Target dataset in VCF/BCF format defined at all variable positions.\nIndex file of the input VCF/BCF file containing genotype likelihoods.\nFile with sample names and ploidy information.\nTarget region, usually a full chromosome (e.g. chr20:1000000-2000000 or chr20).\nReference panel of haplotypes in VCF/BCF format.\nIndex file of the Reference panel file.\nFile containing the genetic map.\nThe file could possibly be without GT field (for efficiency reasons a file containing only the positions is recommended).\nStructure: [ meta, vcf, csi, txt, region, ref_vcf, ref_csi, gmap ]\n"
             }
           }
         ],
