@@ -194,7 +194,7 @@ elseif (endswith($_GET['path'], '/releases_stats')) {
 }
 # Some other URL pattern that we don't recognise - 404
 elseif ($_GET['path'] != $pipeline->name && $_GET['path'] != $pipeline->name . '/' . $release) {
-    $protocol = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https://' : 'http://';
+    $protocol = get_url_protocol();
     $url_string = trim(str_replace($pipeline->name, '', $_GET['path']), '/');
     $url_string = trim(str_replace($release, '', $url_string), '/');
     header('HTTP/1.1 404 Not Found');
@@ -287,7 +287,7 @@ if ($pipeline->archived) {
 
 <div class="container-xxl main-content">
 
-    <ul class="nav nav-fill nfcore-subnav justify-content-start justify-content-md-around d-print-none">
+  <ul class="nav nav-fill nfcore-subnav justify-content-start justify-content-md-around d-print-none">
     <li class="nav-item dropdown d-block d-lg-none" style="z-index:10000;">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $subpage_names[$pagetab]; ?>
