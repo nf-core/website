@@ -39,15 +39,20 @@ if (file_exists($local_md_fn)) {
 }
 
 # Configs to make relative URLs work
-$href_url_prepend = '/' . $pipeline->name . '/' . $release . '/' . dirname($filename) . '/';
+$href_url_prepend =  '/' . $release . '/' . dirname($filename) . '/';
 $href_url_prepend = preg_replace('/\/\/+/', '/', $href_url_prepend);
-$src_url_prepend = 'https://raw.githubusercontent.com/nf-core' . $href_url_prepend;
+$href_url_prepend = 'https://github.com/' . $pipeline->full_name . '/blob/' . $href_url_prepend;
+
+$src_url_prepend = '/' . $pipeline->name . '/' . $release . '/' . dirname($filename) . '/';
+$src_url_prepend= preg_replace('/\/\/+/', '/', $src_url_prepend);
+$src_url_prepend = 'https://raw.githubusercontent.com/sanger-tol' . $src_url_prepend;
+
 $href_url_suffix_cleanup = '\.md';
 
 # Markdown cleanup
-$md_content_replace[] = ['/# nf-core\/' . $pipeline->name . ': /', '# '];
+$md_content_replace[] = ['/# sanger-tol\/' . $pipeline->name . ': /', '# '];
 $md_content_replace[] = [
-    '/# !\[nf-core\/' . $pipeline->name . '\]\(images\/nf-core-' . $pipeline->name . '_logo.png\)/',
+    '/# !\[sanger-tol\/' . $pipeline->name . '\]\(images\/sanger-tol-' . $pipeline->name . '_logo.png\)/',
     '',
 ];
 $md_content_replace[] = ['/(## :warning:)(.*?)( files\._)/s', ''];
