@@ -15373,7 +15373,13 @@
         "authors": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "checkv_endtoend",
@@ -15486,7 +15492,13 @@
         "authors": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phageannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "checkv_updatedatabase",
@@ -42610,6 +42622,10 @@
           "version": "2.1.1"
         },
         {
+          "name": "phageannotator",
+          "version": "dev"
+        },
+        {
           "name": "proteinfold",
           "version": "1.0.0"
         },
@@ -51238,7 +51254,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "leehom",
@@ -90156,7 +90178,13 @@
         "authors": [
           "@luisas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "multiplesequencealign",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "tiara_tiara",
@@ -90443,6 +90471,120 @@
           "version": "3.3.1"
         }
       ]
+    },
+    {
+      "name": "topas_gencons",
+      "path": "modules/nf-core/topas/gencons/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "topas_gencons",
+        "description": "Create fasta consensus with TOPAS toolkit with options to penalize substitutions for typical DNA damage present in ancient DNA",
+        "keywords": [
+          "consensus",
+          "fasta",
+          "ancient DNA"
+        ],
+        "tools": [
+          {
+            "topas": {
+              "description": "This toolkit allows the efficient manipulation of sequence data in various ways. It is organized into modules: The FASTA processing modules, the FASTQ processing modules, the GFF processing modules and the VCF processing modules.",
+              "homepage": "https://github.com/subwaystation/TOPAS",
+              "documentation": "https://github.com/subwaystation/TOPAS/wiki/Overview-Modules",
+              "tool_dev_url": "https://github.com/subwaystation/TOPAS",
+              "doi": "10.1038/s41598-017-17723-1",
+              "licence": "['CC-BY']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Gzipped compressed vcf file generated with GATK UnifiedGenotyper containing the called snps",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "vcf_indels": {
+              "type": "file",
+              "description": "Optional gzipped compressed vcf file generated with GATK UnifiedGenotyper containing the called indels",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "reference": {
+              "type": "file",
+              "description": "Fasta file of reference genome",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "fai": {
+              "type": "file",
+              "description": "Optional index for the fasta file of reference genome",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "vcf_output": {
+              "type": "boolean",
+              "description": "Boolean value to indicate if a compressed vcf file with the consensus calls included as SNPs should be produced"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Gzipped consensus fasta file with bases under threshold replaced with Ns",
+              "pattern": "*.fasta.gz"
+            }
+          },
+          {
+            "vcf": {
+              "type": "file",
+              "description": "Gzipped vcf file with updated calls for the SNPs used in the consensus generation and for bases under threshold replaced with Ns",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "ccf": {
+              "type": "file",
+              "description": "Statistics file containing information about the consensus calls in the fasta file",
+              "pattern": "*.ccf"
+            }
+          },
+          {
+            "log": {
+              "type": "file",
+              "description": "Log file",
+              "pattern": "*.log"
+            }
+          }
+        ],
+        "authors": [
+          "@aidaanva"
+        ]
+      }
     },
     {
       "name": "transdecoder_longorf",
