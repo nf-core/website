@@ -4,11 +4,12 @@ import NavbarToc from '@components/navbar/NavbarToc.svelte';
 import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
 import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import NfCoreLogoDarkbg from '/images/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/nf-core-logo.svg?raw';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import IconSocial from '@components/IconSocial.astro';
 import ThemeSwitch from '@components/ThemeSwitch.svelte';
 import Icon from 'astro-icon';
+import Search from '@components/navbar/Search.svelte';
 
 export interface Props {
     navTocHeadings?: object[];
@@ -40,10 +41,10 @@ if (sections?.length > 0) {
 ---
 
 <nav
-    class="navbar fixed-top navbar-expand-md bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-md-2"
+    class="navbar fixed-top navbar-expand-xl bg-body-secondary text-body-secondary shadow-sm d-print-none py-0 py-xl-2"
 >
     <div class="container">
-        <a class="navbar-brand d-md-none w-25" href="/">
+        <a class="navbar-brand d-xl-none" href="/">
             <div class="hide-dark">
                 <Fragment set:html={NfCoreLogo} />
             </div>
@@ -51,7 +52,10 @@ if (sections?.length > 0) {
                 <Fragment set:html={NfCoreLogoDarkbg} />
             </div>
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:only="svelte" />}
+        <div class="align-self-center d-xl-none">
+            <Search id="docsearch-mobile" client:visible />
+        </div>
         <button
             class="navbar-toggler border-0"
             type="button"
@@ -63,7 +67,7 @@ if (sections?.length > 0) {
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-md-center align-items-md-stretch" id="navbarCollapse">
+        <div class="collapse navbar-collapse justify-content-xl-center align-items-xl-stretch" id="navbarCollapse">
             <ul class="navbar-nav">
                 <li class="nav-item p-1">
                     <a class="nav-link" href="/">Home</a>
@@ -72,10 +76,8 @@ if (sections?.length > 0) {
                     <a class="nav-link" href="/pipelines/">Pipelines</a>
                 </li>
                 <li class="nav-item p-1 dropdown">
-                    <a class="nav-link dropdown-toggle" href="/about/" role="button" data-bs-toggle="dropdown">
-                        Resources
-                    </a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
+                    <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> Resources</span>
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Configs & tools</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared Configs</a></li>
                         <li><a class="dropdown-item" href="/tools/">Tools</a></li>
@@ -94,9 +96,9 @@ if (sections?.length > 0) {
                     </EventIndicator>
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" href="/events/" role="button" data-bs-toggle="dropdown">
-                            Events
-                        </a>
-                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
+                            Events</a
+                        >
+                        <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                             <li>
                                 <a class="dropdown-item" href="/events/bytesize/"
                                     ><i class="fa-solid fa-apple-core me-2"></i>bytesize</a
@@ -125,12 +127,13 @@ if (sections?.length > 0) {
                 </li>
                 <li class="nav-item p-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"> About</a>
-                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-md-sm">
+                    <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">Community</span></li>
                         <!-- <li><a class="dropdown-item" href="/contributors/">Blog</a></li> -->
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
                         <li><a class="dropdown-item" href="/governance/">Governance</a></li>
                         <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
+                        <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
                         <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Initiatives</span></li>
@@ -142,17 +145,18 @@ if (sections?.length > 0) {
                     </ul>
                 </li>
             </ul>
-            <div class="ms-auto d-none d-md-block align-self-center px-2 py-1">
+            <div class="align-self-center d-none d-xl-block ms-auto pe-3">
+                <Search id="docsearch-desktop" client:only="svelte" />
+            </div>
+            <div class="d-none d-xl-block align-self-center px-2 py-1">
                 <ThemeSwitch client:load>
                     <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
                     <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
                 </ThemeSwitch>
             </div>
-            <div class="vr d-none d-xl-inline mx-3"></div>
-            <hr class="d-md-none" />
-            <div
-                class="social-icons d-print-none d-flex align-items-center d-md-none d-xl-block align-self-center mb-3 mb-md-0"
-            >
+            <div class="vr d-none d-lg-inline mx-1 mx-xxl-3"></div>
+            <hr class="d-xl-none" />
+            <div class="social-icons d-print-none d-flex align-items-center d-xl-block align-self-center mb-3 mb-xl-0">
                 <IconSocial
                     href="https://github.com/nf-core/"
                     title="GitHub"
@@ -187,16 +191,16 @@ if (sections?.length > 0) {
                     icon="logos:slack-icon"
                     additionalClass="monochrome me-1"
                 />
-                <div class="d-md-none ms-auto px-2 py-1">
+                <div class="d-xl-none ms-auto px-2 py-1">
                     <ThemeSwitch client:load>
                         <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
                         <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
                     </ThemeSwitch>
                 </div>
             </div>
-            <div class="d-none d-lg-block vr mx-3"></div>
-            <a class="d-md-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
-            <a class="d-none d-lg-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
+            <div class="d-none d-xl-block vr mx-1 mx-xxl-3"></div>
+            <a class="d-xl-none btn d-block btn-success mb-3" href="/join/"> Join nf-core</a>
+            <a class="d-none d-xl-block btn btn-success align-self-center" href="/join/"> Join nf-core</a>
         </div>
     </div>
 </nav>
@@ -221,7 +225,7 @@ if (sections?.length > 0) {
             }
         }
         // add wider margins on larger screens
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(xl) {
             padding: 0.2rem 1rem;
             .navbar-nav > li > a {
                 margin-left: 1rem;
@@ -229,7 +233,7 @@ if (sections?.length > 0) {
                 transition: ease-in-out color 0.1s;
             }
         }
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(xl) {
             .navbar-brand {
                 left: 0;
                 margin-left: 0;

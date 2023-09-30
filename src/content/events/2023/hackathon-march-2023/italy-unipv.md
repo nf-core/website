@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Pavia)
 subtitle: Local node of the nf-core hackathon at DBB, Pavia.
 type: hackathon
 start_date: '2023-03-27'
-start_time: '10:00 CEST'
+start_time: '10:00+02:00'
 end_date: '2023-03-29'
-end_time: '18:00 CEST'
+end_time: '18:00+02:00'
 location_name: DBB
 address: Via Ferrata 9, 27100 Pavia, Italy
 location_url: https://dbb.dip.unipv.it/en

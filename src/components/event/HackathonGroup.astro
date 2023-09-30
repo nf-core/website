@@ -1,0 +1,85 @@
+---
+import { Icon } from 'astro-icon';
+
+import Profile from '@components/GitHubProfilePictureExtended.svelte';
+
+const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
+
+export interface Props {
+    title: string;
+    color?: string;
+    proj_url?: URL;
+    leaders: Object;
+    slack?: string;
+    intro_video?: string;
+}
+const border_col = color ? { 'border-left-color': color, 'border-left-width': '5px' } : {};
+const slack_clean = slack ? slack.replace('#', '') : '';
+---
+
+<div class="card mb-5" style={border_col}>
+    <div class="card-body">
+        <div class="row">
+            <div class={intro_video ? 'col-md-6' : 'col'}>
+                <h3>
+                    {title}
+                    {
+                        proj_url && (
+                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                <Icon
+                                    name="octicon:table-16"
+                                    width="12pt"
+                                    class="me-1"
+                                    style={{ 'margin-top': '-3px' }}
+                                />
+                                Project Board
+                                <Icon
+                                    name="octicon:link-external-16"
+                                    width="12pt"
+                                    class="ms-1"
+                                    style={{ 'margin-top': '-3px' }}
+                                />
+                            </a>
+                        )
+                    }
+                </h3>
+                {
+                    slack && (
+                        <a
+                            href={`https://nfcore.slack.com/channels/${slack_clean}`}
+                            class="badge rounded-pill text-bg-success text-decoration-none mb-3"
+                        >
+                            <Icon name="mdi:slack" width="12pt" /> Slack:
+                            <code class="text-bg-success">#{slack_clean}</code>
+                        </a>
+                    )
+                }
+
+                <slot />
+
+                {leaders && <h4>Group Leaders</h4>}
+                {
+                    leaders &&
+                        Object.entries(leaders).map(([github, name]) => {
+                            return <Profile username={github}>{name}</Profile>;
+                        })
+                }
+            </div>
+
+            {
+                intro_video && (
+                    <div class="col-md-6">
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                src={`https://www.youtube.com/embed/${intro_video}`}
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            />
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</div>

@@ -10,10 +10,20 @@ export interface Props {
 }
 
 const { name, description, type, topics } = Astro.props;
-const gh_url = 'https://github.com/nf-core/modules/tree/master/modules/nf-core/' + name.replace('_', '/');
+const suffix = type === 'modules' ? name.replace('_', '/') : name;
+const gh_url = 'https://github.com/nf-core/modules/tree/master/' + type + '/nf-core/' + suffix;
 ---
 
-<PageLayout title={type + '/' + name} subtitle={description} mainpage_container={true} topics={topics}>
+<PageLayout
+    title={type + '/' + name}
+    subtitle={description}
+    mainpage_container={true}
+    topics={topics}
+    docSearchTags={[
+        { name: 'page_type', content: type.charAt(0).toUpperCase() + type.slice(1) },
+        { name: 'page_rank', content: type === 'modules' ? '7' : '6' },
+    ]}
+>
     <SubHeader gh_url={gh_url} component_type={type} slot="sub-header" component={name} />
     <div>
         <slot />

@@ -88,7 +88,7 @@ img {
 }
 
 .btn-light {
-  background-color: rgba($gray-200, 0.75);
+  background-color: $gray-200;
   color: $gray-900;
 }
 
@@ -262,7 +262,7 @@ code:not(pre code),
   color: inherit;
 }
 
-.mainpage-heading code:not(pre code){
+.mainpage-heading code:not(pre code) {
   background-color: rgba($white, 0.1) !important;
   color: $white !important;
 }
@@ -369,6 +369,14 @@ h4:focus .header-link,
   }
 }
 
+.markdown-content h5 {
+  color: var(--bs-body-color);
+  font-family: $font-family-sans-serif;
+  margin-top: 1rem;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base * 1.1;
+}
+
 .markdown-content,
 .events,
 .card {
@@ -381,8 +389,12 @@ h4:focus .header-link,
   .title {
     scroll-margin-top: 4rem;
 
-    :hover .fa-link {
+    :hover .invisible {
       visibility: visible !important;
+      &:not(.fa-link)::before {
+        content: "\f0c1";
+        color: $gray-600;
+      }
     }
   }
 }
@@ -1131,7 +1143,7 @@ Launch Page
 
 .sidebar-nav {
   @include media-breakpoint-up(lg) {
-    height: 100vh;
+    height: 90vh;
     overflow: auto;
   }
 
@@ -1174,6 +1186,11 @@ Launch Page
   &:last-child {
     border-bottom: none;
   }
+}
+
+.sidebar-left {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 .admonition {
@@ -1229,6 +1246,8 @@ div.mermaid {
     color: $link-color;
   }
 }
+
+
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
@@ -1248,7 +1267,7 @@ div.mermaid {
 
   .hide-light {
     display: inline-block;
-    &:not(svg){
+    &:not(svg) {
       display: block;
     }
   }
@@ -1304,7 +1323,7 @@ div.mermaid {
     border: 1px solid $border-color-dark;
   }
 
-  .markdown-content img[alt="Workflow"]{
+  .markdown-content img[alt='Workflow'] {
     background-color: $white;
   }
   .border-success {

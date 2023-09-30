@@ -63,7 +63,7 @@ nextflow run \
     <OTHER_PARAMETERS>
 ```
 
-Any downstream reference assets will be published in the results folder. For example, if you ran the nf-core/rnaseq pipeline in the step above with default options then the STAR index will be created and stored in the `<RESULTS_DIR>/genome/index/star` folder. Once you have moved the reference files to a central location so they are persistently available you can remove the `--save_reference` parameter and now explicitly override the relevant parameters via the CLI or a `-params-file` in 'yaml' or `json` format. This will save having to re-create the genome indices and other assets over and over again which will be cost and time expensive.
+Any downstream reference assets will be published in the results folder. For example, if you ran the nf-core/rnaseq pipeline in the step above with default options then the STAR index will be created and stored in the `<RESULTS_DIR>/genome/index/star` folder. Once you have moved the reference files to a central location so they are persistently available you can remove the `--save_reference` parameter and now explicitly override the relevant parameters via the CLI or a `-params-file` in `yaml` or `json` format. This will save having to re-create the genome indices and other assets over and over again which will be cost and time expensive.
 
 ```bash
 nextflow run \

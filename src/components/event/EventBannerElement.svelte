@@ -1,84 +1,97 @@
 <script lang="ts">
     import { EventIsOngoing } from '@components/store';
-    import { formatDistanceToNow } from 'date-fns';
+    import { formatDistanceToNow, set } from 'date-fns';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
     import VideoButton from '@components/VideoButton.svelte';
+    import { onMount } from 'svelte';
     export let events = [];
     export let event_time_category: string = '';
 
     export let event_type_classes: {}[] = [{}];
     export let event_type_icons: {}[] = [{}];
 
-    let now = new Date().getTime();
     let backgroundIcon = '';
+
+    const event_duration = (event) => {
+        event.data.start = new Date(event.data.start_date + 'T' + event.data.start_time);
+        event.data.end = new Date(event.data.end_date + 'T' + event.data.end_time);
+        event.data.eventCountDown = formatDistanceToNow(event.data.start);
+        if (event.data.start_date === event.data.end_date) {
+            event.data.duration =
+                new Date(event.data.start).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '-' +
+                new Date(event.data.end).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        } else {
+            event.data.duration =
+                new Date(event.data.start).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                ' - ' +
+                new Date(event.data.end).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        }
+    };
+
     events
         .map((event) => {
             if (event.data.title.toLowerCase().match('bytesize')) {
                 event.data.type = 'bytesize';
             }
-            if (event.data.start_date === event.data.end_date) {
-                event.data.duration =
-                    event.data.start.toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    }) +
-                    '-' +
-                    event.data.end.toLocaleString('en-US', {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    });
-            } else {
-                event.data.duration =
-                    event.data.start.toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    }) +
-                    ' - ' +
-                    event.data.end.toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: false,
-                    });
-            }
+            event_duration(event);
+            return event;
         })
         .sort((a, b) => {
             return new Date(a.data.start) - new Date(b.data.start);
         });
     if (event_time_category === 'upcoming') {
         backgroundIcon = 'fa-alarm-clock';
-        events = events.filter((event) => {
-            let time_window = 1 * 24 * 60 * 60 * 1000;
-            const event_start_unix =
-                event.data.start_announcement !== undefined
-                    ? new Date(event.data.start_announcement).getTime()
-                    : event.data.start.getTime();
-            const event_end_unix = event.data.end.getTime();
+        events = events
+            .filter((event) => {
+                let time_window = 1 * 24 * 60 * 60 * 1000;
+                const event_start_unix =
+                    event.data.start_announcement !== undefined
+                        ? new Date(event.data.start_announcement).getTime()
+                        : event.data.start.getTime();
+                const event_end_unix = event.data.end.getTime();
 
-            // increase time window to a week for events longer than 5 hours
-            if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
-                time_window = 7 * 24 * 60 * 60 * 1000;
-            }
-            if (event.data.start < new Date() && new Date() < event.data.end) {
-                // this is not an upcoming, but an ongoing event
-                return false;
-            }
+                // increase time window to a week for events longer than 5 hours
+                if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
+                    time_window = 7 * 24 * 60 * 60 * 1000;
+                }
+                if (event.data.start < new Date() && new Date() < event.data.end) {
+                    // this is not an upcoming, but an ongoing event
+                    return false;
+                }
 
-            if (event_start_unix < now + time_window && now < event_end_unix) {
-                return true;
-            }
-        });
+                if (event_start_unix < new Date().getTime() + time_window && new Date().getTime() < event_end_unix) {
+                    return true;
+                }
+            })
+            .sort((a, b) => {
+                return a.data.start - b.data.start;
+            });
     } else if (event_time_category === 'ongoing') {
         backgroundIcon = 'fa-broadcast-tower';
         events = events
@@ -86,7 +99,7 @@
                 return event.data.start < new Date() && new Date() < event.data.end;
             })
             .sort((a, b) => {
-                return a.data.start - b.data.start;
+                return new Date(b.data.start) - new Date(a.data.start);
             });
 
         if (events.length > 0) {
@@ -98,14 +111,12 @@
 
     let heading_title = event_time_category.charAt(0).toUpperCase() + event_time_category.slice(1) + ' event';
     heading_title = events.length > 1 ? heading_title + 's' : heading_title;
-
-    // countdown function to event start which updates every second, by making `now` and the function reactive
-
-    setInterval(() => (now = new Date().getTime()), 1000);
-    $: countdown = (event_start) => {
-        const timeLeftString = formatDistanceToNow(event_start);
-        return timeLeftString;
-    };
+    onMount(() => {
+        events.map((event) => {
+            event_duration(event);
+            return event;
+        });
+    });
 </script>
 
 {#if events.length > 0}
@@ -122,7 +133,7 @@
                 <div class="flex-grow-1">
                     {#each events as event}
                         <div class="w-100 row align-items-center">
-                            <div class="col-8 pt-lg-2 pb-lg-2 text-lg-start">
+                            <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
                                     <a href={'events/' + event.slug + '/'} class="text-success text-decoration-none"
                                         >{event.data.title}</a
@@ -153,12 +164,12 @@
                                 {/if}
                             </div>
 
-                            <div class="col-4 text-start">
+                            <div class="col-4 py-lg-2 text-start d-flex flex-column align-items-start">
                                 {#if event_time_category === 'upcoming'}
-                                    <div class="text-nowrap ms-5 ps-1">
+                                    <div class="text-nowrap ps-1">
                                         <h5>Event starts in</h5>
                                         <span class="display-6">
-                                            {@html countdown(event.data.start)}
+                                            {@html event.data.eventCountDown}
                                         </span>
                                     </div>
                                     <div class="btn-group my-2" role="group" aria-label="Event details">
