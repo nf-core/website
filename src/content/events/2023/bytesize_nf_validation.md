@@ -3,9 +3,9 @@ title: 'Bytesize: nf-validation'
 subtitle: Júlia Mir Pedrol, QBIC and Nicolas Vannieuwkerke, Center for Medical Genetics Ghent
 type: talk
 start_date: '2023-06-06'
-start_time: '13:00 CEST'
+start_time: '13:00+02:00'
 end_date: '2023-06-06'
-end_time: '13:30 CEST'
+end_time: '13:30+02:00'
 youtube_embed: https://www.youtube.com/watch?v=rr9FTlQayIE
 location_url:
   - https://www.youtube.com/watch?v=rr9FTlQayIE
@@ -22,7 +22,6 @@ It is our hope that these talks / videos will build an archive of training mater
 ## Bytesize: nf-validation
 
 This week Júlia Mir Pedrol ([@mirpedrol](https://github.com/mirpedrol)) and Nicolas Vannieuwkerke ([@nvnieuwk](https://github.com/nvnieuwk)) are presenting nf-validation, the soon to be released plugin to validate the input parameters and sample sheets for Nextflow pipelines.
-
 
 <details markdown="1"><summary>Video transcription</summary>
 **Note: The content has been edited for reader-friendliness**

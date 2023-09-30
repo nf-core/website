@@ -1,6 +1,7 @@
 <script lang="ts">
     import VideoButton from '@components/VideoButton.svelte';
     import ExportEventButton from '@components/event/ExportEventButton.svelte';
+    import { onMount } from 'svelte';
 
     export let frontmatter = {
         title: '',
@@ -17,43 +18,47 @@
     export let time_category: string = '';
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
-    let event_date;
-    if (frontmatter.start_date === frontmatter.end_date) {
-        event_date =
-            frontmatter.start.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            }) +
-            '-' +
-            frontmatter.end.toLocaleString('en-US', {
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            });
-    } else {
-        event_date =
-            frontmatter.start.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            }) +
-            '<wbr> - <wbr>' +
-            frontmatter.end.toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                hour12: false,
-            });
-    }
+
+    const event_duration = (event: { start: Date; end: Date; start_date: Date; end_date: Date }) => {
+        let duration: string;
+        if (event.start_date === event.end_date) {
+            duration =
+                new Date(event.start).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '-' +
+                new Date(event.end).toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        } else {
+            duration =
+                new Date(event.start).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                }) +
+                '<wbr> - <wbr>' +
+                new Date(event.end).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: false,
+                });
+        }
+        return duration;
+    };
     const event_type_classes = {
         bytesize: 'success',
         hackathon: 'primary',
@@ -61,7 +66,12 @@
         training: 'warning',
     };
 
+    let event_date: string = '';
+
     const type_class = event_type_classes[type];
+    onMount(() => {
+        event_date = event_duration(frontmatter);
+    });
 </script>
 
 <div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
@@ -71,7 +81,7 @@
                 <a class="text-center" href={/events/ + slug + '/'}>
                     {frontmatter.title}
                 </a>
-                {#if time_category === 'current'}
+                {#if time_category === 'current' && frontmatter.location_url}
                     <div class="float-end d-none d-md-inline">
                         <VideoButton urls={frontmatter.location_url} btnClass="btn-danger" />
                     </div>
@@ -114,7 +124,7 @@
                 {/if}
             </div>
         </div>
-        {#if time_category === 'current'}
+        {#if time_category === 'current' && frontmatter.location_url}
             <VideoButton
                 urls={frontmatter.location_url}
                 btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"

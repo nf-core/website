@@ -19,7 +19,7 @@ let lastYoutubeUrls = bytesizes
     });
 
 lastYoutubeUrls = lastYoutubeUrls?.data.location_url.find(
-    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be')
+    (url) => url.startsWith('https://www.youtube.com') || url.startsWith('https://youtu.be'),
 );
 
 const latestBytesize = lastYoutubeUrls
@@ -32,26 +32,31 @@ const eventPreview = events
     .filter((event) => event.slug.split('/').length < 3)
     .sort((a, b) => {
         return new Date(b.data.start) - new Date(a.data.start);
+    });
+
+let { eventPreviewCurrent, eventPreviewFuture, eventPreviewPast } = [];
+eventPreviewCurrent = eventPreview
+    .filter((event) => {
+        const today = new Date();
+        return event.data.start < today && event.data.end > today;
     })
     .slice(0, 3);
 
-let { eventPreviewCurrent, eventPreviewFuture, eventPreviewPast } = [];
-eventPreviewCurrent = eventPreview.filter((event) => {
-    const today = new Date();
-    return event.data.start < today && event.data.end > today;
-});
-
-eventPreviewFuture = eventPreview.filter((event) => {
-    const today = new Date();
-    return event.data.start > today;
-});
+eventPreviewFuture = eventPreview
+    .reverse()
+    .filter((event) => {
+        const today = new Date();
+        return event.data.start > today;
+    })
+    .slice(0, 3);
 
 eventPreviewPast = eventPreview
     .filter((event) => {
         const today = new Date();
         return event.data.end < today;
     })
-    .reverse();
+    .reverse()
+    .slice(0, 3);
 ---
 
 <div class="container">
@@ -81,8 +86,9 @@ eventPreviewPast = eventPreview
             }
             {eventPreviewFuture.length > 0 && <h4>Upcoming Events</h4>}
             {
-                eventPreviewFuture.map((event) => (
-                    <>
+                eventPreviewFuture
+                    .slice(0, Math.max(0, 3 - eventPreviewCurrent.length))
+                    .map((event) => (
                         <EventCard
                             frontmatter={event.data}
                             slug={event.slug}
@@ -92,22 +98,27 @@ eventPreviewPast = eventPreview
                             narrow={true}
                             client:idle
                         />
-                    </>
-                ))
+                    ))
             }
-            {eventPreviewPast.length > 0 && <h4>Past Events</h4>}
             {
-                eventPreviewPast.map((event) => (
-                    <EventCard
-                        frontmatter={event.data}
-                        slug={event.slug}
-                        type={event.data.type}
-                        time_category="past"
-                        showDescription={false}
-                        narrow={true}
-                        client:idle
-                    />
-                ))
+                eventPreviewPast.length > 0 && eventPreviewCurrent.length + eventPreviewFuture.length < 3 && (
+                    <h4>Past Events</h4>
+                )
+            }
+            {
+                eventPreviewPast
+                    .slice(0, Math.max(0, 3 - (eventPreviewCurrent.length + eventPreviewFuture.length)))
+                    .map((event) => (
+                        <EventCard
+                            frontmatter={event.data}
+                            slug={event.slug}
+                            type={event.data.type}
+                            time_category="past"
+                            showDescription={false}
+                            narrow={true}
+                            client:idle
+                        />
+                    ))
             }
         </div>
         <div class="col-lg-4">

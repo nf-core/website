@@ -3,9 +3,9 @@ title: Hackathon - March 2023 (Rennes)
 subtitle: Local node of the nf-core hackathon at the Institute Genetics & Development of Rennes.
 type: hackathon
 start_date: '2023-03-27'
-start_time: '10:00 CEST'
+start_time: '10:00+02:00'
 end_date: '2023-03-29'
-end_time: '17:00 CEST'
+end_time: '17:00+02:00'
 location_name: Institute Genetics & Development of Rennes
 address: 2 avenue du Professeur Léon Bernard, CS 34317 / 35043 Rennes Cedex, France
 location_url: https://igdr.univ-rennes1.fr/

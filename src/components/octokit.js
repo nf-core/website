@@ -1,7 +1,6 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
 
-
 if (!import.meta.env) {
   dotenv.config();
 }
@@ -29,28 +28,10 @@ export async function getCurrentRateLimitRemaining() {
 }
 
 export const getGitHubFile = async (repo, path, ref) => {
-  // console.log(`Getting ${path} from ${repo} ${ref}`);
-  const response = await octokit
-    .request('GET /repos/nf-core/{repo}/contents/{path}?ref={ref}', {
-      repo: repo,
-      path: path,
-      ref: ref,
-    })
-    .catch((error) => {
-      if (error.status === 404) {
-        console.log(`File ${path} not found in ${repo} ${ref}`);
-        console.log(error.request.url);
-        return;
-      } else {
-        console.log(`something else happened for ${path} in ${repo} ${ref}`, error);
-        return;
-      }
-    })
-    .then((response) => {
-      if (response == null) {
-        return;
-      }
-      let content = Buffer.from(response.data.content, 'base64').toString('utf-8');
+  try {
+    const response = await fetch(`https://raw.githubusercontent.com/nf-core/${repo}/${ref}/${path}`);
+    if (response.ok) {
+      let content = await response.text();
       if (path.endsWith('.md') || path.endsWith('.mdx')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
         // add github url to image links in markdown if they are relative
@@ -85,6 +66,14 @@ export const getGitHubFile = async (repo, path, ref) => {
             return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
           }
         });
+        // prefix links to files in the assets directory with github url
+        content = content.replaceAll(/\[(.*?)\]\((assets\/.*?)\)/g, (match, p1, p2) => {
+          if (p2.startsWith('http')) {
+            return match;
+          } else {
+            return `[${p1}](https://github.com/nf-core/${repo}/blob/${ref}/${p2})`;
+          }
+        });
         // remove github warning and everything before from docs
         content = content.replace(/(.*?)(## :warning:)(.*?)usage\)/s, '');
         // remove blockquote ending in "files._" from the start of the document
@@ -97,8 +86,20 @@ export const getGitHubFile = async (repo, path, ref) => {
         content = content.replace(/```nextflow/g, '```groovy');
       }
       return content;
-    });
-  return response;
+    } else {
+      // console.log(`File ${path} not found in ${repo} ${ref}`);
+      console.log(response.url);
+      return null;
+    }
+  } catch (error) {
+    if (error.status === 404) {
+      console.log(`File ${path} not found in ${repo} ${ref}`);
+      console.log(error.request.url);
+    } else {
+      console.log(error);
+    }
+    return null;
+  }
 };
 export const getDocFiles = async (pipeline, version) => {
   const getFilesInDir = async (directory) => {

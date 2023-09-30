@@ -1,5 +1,5 @@
-<img src="public/images/nf-core-logo.svg#gh-light-mode-only" width="400">
-<img src="public/images/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
+<img src="public/images/logo/nf-core-logo.svg#gh-light-mode-only" width="400">
+<img src="public/images/logo/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
 
 # [nf-co.re](https://github.com/nf-core/website)
 
@@ -70,7 +70,6 @@ npm run build-pipeline-json
 npm run build-component-json
 npm run build-cache-force
 ```
-
 
 ### Tools API docs
 

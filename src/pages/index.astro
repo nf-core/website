@@ -1,23 +1,13 @@
 ---
 import Icon from 'astro-icon';
-import NfCoreLogoDarkbg from '/images/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/nf-core-logo.svg?raw';
+import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
+import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
 import ContributorCarousel from '@components/ContributorCarousel.svelte';
 import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
 import HomepageVideosEvents from '@components/homepage/HomepageVideosEvents.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import FuzzySearch from '@components/FuzzySearch.svelte';
 import { Code } from 'astro/components';
-
-import pipelines_json from '@public/pipelines.json';
-const pipelines = pipelines_json.remote_workflows;
-const pipeline_links = pipelines.map((pipeline) => {
-    return {
-        name: pipeline.name,
-        href: pipeline.name + '/' + pipeline.releases[0].tag_name + '/',
-    };
-});
 ---
 
 <BaseLayout>
@@ -39,9 +29,6 @@ const pipeline_links = pipelines.map((pipeline) => {
                 <a class="homepage-cta text-decoration-none" href="/pipelines/">View Pipelines</a>
             </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-center mb-4">
-        <FuzzySearch possibleResults={pipeline_links} placeholder="Search Pipelines" client:idle />
     </div>
 
     <div class="triangle-up text-bg-success"></div>
@@ -97,7 +84,7 @@ const pipeline_links = pipelines.map((pipeline) => {
 
     <div id="features" class="container homepage-feature-boxes pb-5">
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
-        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 align-items-bot">
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
             <div class="col">
                 <HomepageCard title="Documentation" icon="books" icon_class="text-success icon-lg">
                     Extensive documentation covering installation, usage and description of output files ensures that

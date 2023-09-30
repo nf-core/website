@@ -3,9 +3,9 @@ title: 'Bytesize 34: Updates on the new DSL2 syntax'
 subtitle: Maxime Garcia - SciLifeLab / Karolinska Institutet, Sweden
 type: talk
 start_date: '2022-02-22'
-start_time: '13:00 CET'
+start_time: '13:00+01:00'
 end_date: '2022-02-22'
-end_time: '13:30 CET'
+end_time: '13:30+01:00'
 youtube_embed: https://youtu.be/17NqUsh73BU
 location_url:
   - https://youtu.be/17NqUsh73BU
