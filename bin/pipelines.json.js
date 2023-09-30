@@ -4,7 +4,7 @@ import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
-import cache from 'bin/cache.js';
+import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
