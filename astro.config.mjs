@@ -72,7 +72,7 @@ export default defineConfig({
                 // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
                 fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
                 resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro) fallback',
+                skipFontFaceGeneration: (fallbackName) => fallbackName === 'Font Awesome 6 Pro fallback',
             }),
         ],
         ssr: {
