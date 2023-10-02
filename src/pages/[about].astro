@@ -20,7 +20,7 @@ const { headings, Content } = await Astro.props.about.render();
 if (!md_github_url) {
     md_github_url = 'https://github.com/nf-core/website/blob/main/src/content/about/' + Astro.props.about.id;
 }
-const minHeadingDepth = Astro.props.about.data.minHeadingDepth || 4;
+const minHeadingDepth = Astro.props.about.data.minHeadingDepth || 1;
 const maxHeadingDepth = Astro.props.about.data.maxHeadingDepth || 4;
 ---
 
