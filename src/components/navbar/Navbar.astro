@@ -52,8 +52,8 @@ if (sections?.length > 0) {
                 <Fragment set:html={NfCoreLogoDarkbg} />
             </div>
         </a>
-        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:only="svelte" />}
-        <div class="align-self-center d-xl-none  me-5">
+        {navTocHeadings.length > 0 && <NavbarToc headings={navTocHeadings} client:visible />}
+        <div class:list={['align-self-center d-xl-none', { 'me-5': navTocHeadings.length === 0 }]}>
             <Search id="docsearch-mobile" client:visible />
         </div>
         <button
