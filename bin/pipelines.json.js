@@ -5,7 +5,6 @@ import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
 
-
 // get current path
 const __dirname = path.resolve();
 
@@ -29,23 +28,35 @@ export const writePipelinesJson = async () => {
   const ignored_repos = yaml.load(ignoredTopicsYaml).ignore_repos;
 
   // get all repos for the nf-core org
-  let names = await octokit
+  let names = [];
+  let active_names = [];
+
+  await octokit
     .paginate(octokit.rest.repos.listForOrg, {
       org: 'nf-core',
       type: 'public',
       per_page: 100,
     })
     .then((response) => {
-      // filter out repos that are in the ignored_repos list
-      return response
-        .filter((repo) => !ignored_repos.includes(repo.name))
-        .map((repo) => repo.name)
-        .sort();
+      names.push(
+        response
+          .filter((repo) => !ignored_repos.includes(repo.name))
+          .map((repo) => repo.name)
+          .sort(),
+      );
+      active_names.push(
+        response
+          .filter((repo) => !ignored_repos.includes(repo.name) && !repo.archived)
+          .map((repo) => repo.name)
+          .sort(),
+      );
     });
+  names = names.flat();
+  active_names = active_names.flat();
   // write pipeline_names.json
   await fs.writeFile(
     join(__dirname, '/public/pipeline_names.json'),
-    JSON.stringify({ pipeline: names }, null, 4),
+    JSON.stringify({ pipeline: active_names }, null),
     'utf8',
   );
 
@@ -55,7 +66,7 @@ export const writePipelinesJson = async () => {
   let bar = new ProgressBar('  fetching pipelines [:bar] :percent :etas', { total: names.length });
 
   // go through names and add or update pipelines in pipelines.json
-  for (const name of names) {
+  for (const name of names.flat()) {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({

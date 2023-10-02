@@ -7,17 +7,7 @@ import EventBanner from '@components/event/EventBanner.astro';
 import HomepageCard from '@components/homepage/HomepageCard.astro';
 import HomepageVideosEvents from '@components/homepage/HomepageVideosEvents.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import FuzzySearch from '@components/FuzzySearch.svelte';
 import { Code } from 'astro/components';
-
-import pipelines_json from '@public/pipelines.json';
-const pipelines = pipelines_json.remote_workflows;
-const pipeline_links = pipelines.map((pipeline) => {
-    return {
-        name: pipeline.name,
-        href: pipeline.name + '/' + pipeline.releases[0].tag_name + '/',
-    };
-});
 ---
 
 <BaseLayout>
