@@ -8,7 +8,6 @@ import partytown from '@astrojs/partytown';
 import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
-import markdownIntegration from '@astropub/md';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig } from 'astro/config';
 import { FontaineTransform } from 'fontaine';
@@ -46,7 +45,6 @@ export default defineConfig({
     integrations: [
         svelte(),
         sitemap(),
-        markdownIntegration(),
         prefetch(),
         partytown({
             // Adds dataLayer.push as a forwarding-event.

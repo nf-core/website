@@ -1,12 +1,12 @@
 ---
-import { markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import ComponentParamTable from '@components/component/ComponentParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 
 export function getStaticPaths() {
-    return components_json.modules.map((module) => {
+    return components_json.modules.flatMap((module) => {
         return [
             {
                 params: {
@@ -53,12 +53,7 @@ function truncatURLs(url) {
                     >
                 </h2>
                 <div class="">
-                    {
-                        async () => {
-                            const html = await markdown(module.meta.description);
-                            return html;
-                        }
-                    }
+                    <Markdown md={module.meta.description} />
                 </div>
             </div>
             <div class="module-params">
