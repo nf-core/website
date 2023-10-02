@@ -3,12 +3,56 @@ import { getGitHubFile, getCurrentRateLimitRemaining } from '../src/components/o
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import ProgressBar from 'progress';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
+import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
 
 // check for `--force` flag
 const force = process.argv.includes('--force');
+
+async function getKeysWithPrefixes(prefixes) {
+  let client = new S3Client({
+    region: 'eu-west-1',
+    signer: { sign: async (request) => request },
+  });
+  const keys = [];
+  const commonPrefixes = [];
+
+  for (const prefix of prefixes) {
+    let continuationToken = undefined;
+    do {
+      const command = new ListObjectsV2Command({
+        Bucket: 'nf-core-awsmegatests',
+        Prefix: prefix,
+        ContinuationToken: continuationToken,
+        Delimiter: '/',
+      });
+      try {
+        const response = await client.send(command);
+        if (response.Contents) {
+          for (const object of response.Contents) {
+            keys.push(object);
+          }
+        }
+        if (response.CommonPrefixes) {
+          for (const object of response.CommonPrefixes) {
+            commonPrefixes.push(object);
+          }
+        }
+
+        continuationToken = response.NextContinuationToken;
+      } catch (error) {
+        console.error('Error retrieving keys:', error);
+        return [];
+      }
+    } while (continuationToken);
+  }
+
+  return { keys: keys, commonPrefixes: commonPrefixes };
+}
+
 (async () => {
   console.log(await getCurrentRateLimitRemaining());
   const buildCache = async () => {
@@ -48,6 +92,22 @@ const force = process.argv.includes('--force');
       }
 
       bar.tick();
+    }
+    // cache aws results
+    const cache_key = `aws.json`;
+    const is_cached = existsSync(path.join(__dirname, '.cache', cache_key));
+    if (!is_cached || force) {
+      const prefixes = pipelines.remote_workflows.flatMap((pipeline) => {
+        return pipeline.releases
+          .filter((rel) => rel.tag_name !== 'dev')
+          .map((release) => {
+            return `${pipeline.name}/results-${release.tag_sha}/`;
+          });
+      });
+
+      const awsResponse = await getKeysWithPrefixes(prefixes);
+      console.log(`Caching ${cache_key}`);
+      cache.set(cache_key, { commonPrefixes: awsResponse.commonPrefixes, bucketContents: awsResponse.keys });
     }
 
     console.log('Done');
