@@ -12024,6 +12024,84 @@
       }
     },
     {
+      "name": "blat",
+      "path": "modules/nf-core/blat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blat",
+        "description": "Queries a sequence subject",
+        "keywords": [
+          "blat",
+          "sequence",
+          "search"
+        ],
+        "tools": [
+          {
+            "blat": {
+              "description": "BLAT is a bioinformatics software tool which performs rapid mRNA/DNA and cross-species protein alignments.",
+              "homepage": "https://kentinformatics.com/",
+              "documentation": "https://kentinformatics.com/documentation",
+              "doi": "10.1101/gr.229202",
+              "licence": "['Free for academic, nonprofit and personal use']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "query": {
+              "type": "file",
+              "description": "Sequence file",
+              "pattern": "*.{fasta,fasta.gz,fa,fa.gz,nib,2bit}"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing subject information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "subject": {
+              "type": "file",
+              "description": "Sequence file",
+              "pattern": "*.{fa,nib,2bit}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "psl": {
+              "type": "file",
+              "description": "Search results",
+              "pattern": "*.{psl}"
+            }
+          }
+        ],
+        "authors": [
+          "@d-jch"
+        ]
+      }
+    },
+    {
       "name": "bowtie2_align",
       "path": "modules/nf-core/bowtie2/align/meta.yml",
       "type": "module",
@@ -14506,7 +14584,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -14630,7 +14708,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -14702,7 +14780,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -20177,7 +20255,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         },
         {
           "name": "smrnaseq",
@@ -27408,7 +27486,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         },
         {
           "name": "smrnaseq",
@@ -39587,7 +39665,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -42647,7 +42725,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         },
         {
           "name": "taxprofiler",
@@ -48888,7 +48966,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -48996,7 +49074,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -60159,7 +60237,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         },
         {
           "name": "smrnaseq",
@@ -87334,7 +87412,7 @@
         },
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         },
         {
           "name": "viralintegration",
@@ -92560,7 +92638,7 @@
       "pipelines": [
         {
           "name": "scrnaseq",
-          "version": "2.4.0"
+          "version": "2.4.1"
         }
       ]
     },
@@ -96771,6 +96849,96 @@
     }
   ],
   "subworkflows": [
+    {
+      "name": "bam_cnv_wisecondorx",
+      "path": "subworkflows/nf-core/bam_cnv_wisecondorx/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_cnv_wisecondorx",
+        "description": "A subworkflow for calling CNVs using WisecondorX",
+        "keywords": [
+          "cnv",
+          "bam",
+          "bed",
+          "cram",
+          "plots",
+          "genomics"
+        ],
+        "components": [
+          "wisecondorx/convert",
+          "wisecondorx/predict"
+        ],
+        "input": [
+          {
+            "ch_bam": {
+              "description": "An input channel containing BAM/CRAM files and their indices\nStructure: [ val(meta), path(bam), path(bai) ]\n"
+            }
+          },
+          {
+            "ch_fasta": {
+              "description": "A channel containing the reference FASTA file\nStructure: [ val(meta2), path(fasta) ]\n"
+            }
+          },
+          {
+            "ch_fai": {
+              "description": "A channel containing the index of the reference FASTA file\nStructure: [ val(meta3), path(fai) ]\n"
+            }
+          },
+          {
+            "ch_ref": {
+              "description": "A channel containing WisecondorX reference created with `WisecondorX newref`\nStructure: [ val(meta4), path(reference) ]\n"
+            }
+          },
+          {
+            "ch_blacklist": {
+              "description": "An optional channel containing a BED file with regions to mask from the analyis\nStructure: [ val(meta5), path(blacklist) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "aberrations_bed": {
+              "description": "A channel containing the BED files with CNV aberrations\nStructure: [ val(meta), path(bed) ]\n"
+            }
+          },
+          {
+            "bins_bed": {
+              "description": "A channel containing the BED files with the used bins\nStructure: [ val(meta), path(bed) ]\n"
+            }
+          },
+          {
+            "segments_bed": {
+              "description": "A channel containing the segment BED files\nStructure: [ val(meta), path(bed) ]\n"
+            }
+          },
+          {
+            "chr_statistics": {
+              "description": "A channel containing TXT files with chromosome statistics\nStructure: [ val(meta), path(txt) ]\n"
+            }
+          },
+          {
+            "chr_plots": {
+              "description": "A channel containing lists of chromosome plots\nStructure: [ val(meta), [ path(png), path(png), ... ] ]\n"
+            }
+          },
+          {
+            "genome_plot": {
+              "description": "A channel containing the plots of the whole genomes\nStructure: [ val(meta), path(png) ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ]
+      }
+    },
     {
       "name": "bam_create_som_pon_gatk",
       "path": "subworkflows/nf-core/bam_create_som_pon_gatk/meta.yml",
