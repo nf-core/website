@@ -3,7 +3,7 @@ import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import { formatDistance } from 'date-fns';
 import octokit from '@components/octokit';
-import { markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
 export function getStaticPaths() {
     var paths: {
@@ -116,12 +116,11 @@ const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', 
                                                     View on GitHub
                                                 </a>
                                             </div>
-                                            {gh_releases.data[i] && gh_releases.data[i].body
-                                                ? async () => {
-                                                      const html = await markdown(gh_releases.data[i].body);
-                                                      return html;
-                                                  }
-                                                : ''}
+                                            {gh_releases.data[i] && gh_releases.data[i].body ? (
+                                                <Markdown md={gh_releases.data[i].body} />
+                                            ) : (
+                                                ''
+                                            )}
                                         </div>
                                     </div>
                                 </div>
