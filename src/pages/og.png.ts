@@ -1,6 +1,4 @@
 // @ts-ignore: no types
-import HeroBackgroundSrc from '/images/background.png';
-// @ts-ignore: no types
 import { html } from 'satori-html';
 import satori, { init as initSatori } from 'satori/wasm';
 import sharp from 'sharp';

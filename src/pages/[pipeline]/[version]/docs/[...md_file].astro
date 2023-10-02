@@ -1,5 +1,4 @@
 ---
-import { Markdown } from '@astropub/md';
 import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
 import SidebarToc from '@components/sidebar/SidebarToc.svelte';
 import SidebarNav from '@components/sidebar/SidebarNav.astro';
@@ -7,6 +6,7 @@ import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import cache from 'bin/cache.js';
 import { getGitHubFile } from '@components/octokit';
+import Markdown from '@components/markdown/Markdown.svelte';
 
 import ExpandDetailsButton from '@components/sidebar/ExpandDetailsButton.svelte';
 
@@ -173,7 +173,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
         }
         <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
-                <Markdown of={md_content} />
+                <Markdown md={md_content} />
             </MarkdownWrapper>
         </div>
         <div class:list={['col-12 toc', { 'col-md-3': !left_sidebar, 'col-md-2': left_sidebar }]}>
