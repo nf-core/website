@@ -45,7 +45,7 @@ Ok, you're ready! To run the website locally, just start astro dev mode:
 npm run dev
 ```
 
-You should then be able to access the website in your browser at [http://localhost:3000/](http://localhost:3000/).
+You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/).
 
 ### File structure
 
