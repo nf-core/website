@@ -70,17 +70,6 @@
                     },
                 ],
                 rehypeKatex,
-                [
-                    rehypePrettyCode,
-                    {
-                        langPrefix: 'language-',
-                        keepBackground: true,
-                        theme: {
-                            dark: 'github-dark-dimmed',
-                            light: 'github-light',
-                        },
-                    },
-                ],
                 // [ // vite doesn't like to compile rehype-pretty-code
                 //     rehypePrettyCode,
                 //     {
