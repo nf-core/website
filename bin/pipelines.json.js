@@ -218,7 +218,7 @@ export const writePipelinesJson = async () => {
 
         // cache release body except for dev
         if (release.tag_name !== 'dev') {
-          const cache_key = `${name}/${tag_name}/body`;
+          const cache_key = `${name}/${release.tag_name}/body`;
           const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
           if (!is_cached) {
             cache.set(cache_key, release.body);
