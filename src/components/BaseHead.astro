@@ -43,7 +43,7 @@ const { title, description, image = '/social_img.png', docSearchTags = [], viewT
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-{viewTransitions && <ViewTransitions fallback="swap" />}
+{viewTransitions && <ViewTransitions fallback="none" />}
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={'docsearch:' + name} content={content} />)}

@@ -22,6 +22,8 @@ Please note that this is not an introductory workshop and experience writing Nex
 
 To make the workshops available to everyone they will be streamed on the [Advanced Nextflow training playlist on the nf-core YouTube channel](https://www.youtube.com/playlist?list=PL3xpfTVZLcNhPoEl8cT15MdIBfX9kFJCj).
 
+A link to each stream will also be posted in the [`#sept23-advanced-training`](https://nfcore.slack.com/archives/C05U1A096EQ) Slack channel.
+
 # Attending at the Wellcome Genome Campus
 
 An in-person version of advanced training will be held on 27th September at the Wellcome Genome Campus, Hinxton, UK. It is open to anyone - everyone welcome!
@@ -56,11 +58,9 @@ Session 2 will cover the following topics:
 
 ## Asking questions
 
-Questions can be asked in the Slack channels created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
+Questions can be asked in the nf-core [`#sept23-advanced-training`](https://nfcore.slack.com/archives/C05U1A096EQ) created for this event. Community volunteers will monitor these channels and will answer your questions as quickly as they can. You can join the nf-core Slack [here](https://nf-co.re/join/slack).
 
-The Slack channels for this event will become available closer to the event.
-
-> Please be aware that due to the size of this event there may be a delay when answering your questions.
+> Please be aware that due to the size of this event, there may be a delay when answering your questions.
 
 # Registration
 
