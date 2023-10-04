@@ -35,7 +35,7 @@ export const getGitHubFile = async (repo, path, ref) => {
       if (path.endsWith('.md') || path.endsWith('.mdx')) {
         const parent_directory = path.split('/').slice(0, -1).join('/');
         // add github url to image links in markdown if they are relative
-        content = content.replaceAll(/!\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+        content = content.replaceAll(/!\[([^\]\[]*\[?[^\]\[]*\]?[^\]\[]*)\]\((.*?)\)/g, (match, p1, p2) => {
           if (p2.startsWith('http')) {
             return match;
           } else {

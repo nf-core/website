@@ -1,7 +1,8 @@
 ---
 import SchemaListing from '@components/schema/SchemaListing.svelte';
 import SchemaListingToc from '@components/schema/SchemaListingToc.svelte';
-import cache from 'bin/cache.js';
+import { promises, access, existsSync } from 'fs';
+import F_OK from 'fs';
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 
@@ -9,9 +10,7 @@ export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files: string[] } }[] =
         [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        const releases = pipeline.releases;
-        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
-        extended_releases.forEach((release) => {
+        pipeline.releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
                 file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
@@ -21,7 +20,7 @@ export function getStaticPaths() {
                     version: release.tag_name,
                 },
                 props: {
-                    versions: releases.map((release) => release.tag_name),
+                    versions: pipeline.releases.map((release) => release.tag_name),
                     md_files: md_files,
                     description: pipeline.description,
                 },
@@ -30,7 +29,7 @@ export function getStaticPaths() {
     });
     return paths;
 }
-let { pipeline, version } = Astro.params;
+const { pipeline, version } = Astro.params;
 let headings: {
     depth: number;
     text: string;
@@ -39,21 +38,15 @@ let headings: {
 
 let { versions, md_files, description } = Astro.props;
 
-const cache_key = `${pipeline}/${version}/nextflow_schema.json`;
-let schema = await cache
-    .get(cache_key)
-    .then((response) => {
-        if (response !== undefined) {
-            return JSON.parse(response);
-        } else {
-            return { definitions: [], properties: [] };
-        }
-    })
-    .catch((error) => {
-        console.log(error);
-        return { definitions: [], properties: [] };
-    });
+let schema = { definitions: [], properties: [] };
 
+const cache_key = `.cache/${pipeline}/${version}/nextflow_schema.json`;
+//check if the schema is cached
+
+if (existsSync(cache_key)) {
+    schema = await promises.readFile(cache_key);
+    schema = JSON.parse(Buffer.from(schema, 'base64').toString('utf-8'));
+}
 if (schema.definitions && Object.keys(schema.definitions).length > 0) {
     headings = Object.entries(schema.definitions).map(([key, value]) => {
         return {
@@ -71,7 +64,6 @@ if (schema.definitions && Object.keys(schema.definitions).length > 0) {
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline + ': Parameters'}
     subtitle={description}
     headings={headings}
     version={version}
