@@ -1,7 +1,7 @@
 ---
 import * as icons from 'file-icons-js';
 import 'file-icons-js/css/style.css';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 import prettyBytes from 'pretty-bytes';
 
 const { item } = Astro.props;
@@ -15,7 +15,7 @@ const fileIcon = icons.getClass(item.name);
             {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-regular fa-file me-2" />}
             <span>{item.name}</span>
         </span>
-        <span class="col">{formatDistanceToNow(item.lastModified)}</span>
+        <span class="col">{formatDistanceToNow(parseISO(item.lastModified))}</span>
         <span class="col-1 text-end">{prettyBytes(item.size)}</span>
     </div>
 </a>

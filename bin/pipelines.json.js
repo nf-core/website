@@ -4,6 +4,7 @@ import { promises as fs, writeFileSync, existsSync } from 'fs';
 import yaml from 'js-yaml';
 import path, { join } from 'path';
 import ProgressBar from 'progress';
+import cache from './cache.js';
 
 // get current path
 const __dirname = path.resolve();
@@ -213,6 +214,15 @@ export const writePipelinesJson = async () => {
           components.modules = components.modules.map((component) => {
             return component.replace('/', '_');
           });
+        }
+
+        // cache release body except for dev
+        if (release.tag_name !== 'dev') {
+          const cache_key = `${name}/${release.tag_name}/body`;
+          const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
+          if (!is_cached) {
+            cache.set(cache_key, release.body);
+          }
         }
         return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
       }),

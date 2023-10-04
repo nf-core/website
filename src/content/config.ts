@@ -48,8 +48,11 @@ const about = defineCollection({
     }),
 });
 
+const pipelines = defineCollection({});
+
 export const collections = {
     events: events,
     docs: docs,
     about: about,
+    pipelines: pipelines,
 };
