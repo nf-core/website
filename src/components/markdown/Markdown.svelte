@@ -13,6 +13,7 @@
     import { h } from 'hastscript';
     import remarkMath from 'remark-math';
     import rehypeKatex from 'rehype-katex';
+    import rehypePrettyCode from 'rehype-pretty-code';
 
     export let md;
 
@@ -69,6 +70,17 @@
                     },
                 ],
                 rehypeKatex,
+                [
+                    rehypePrettyCode,
+                    {
+                        langPrefix: 'language-',
+                        keepBackground: true,
+                        theme: {
+                            dark: 'github-dark-dimmed',
+                            light: 'github-light',
+                        },
+                    },
+                ],
                 // [ // vite doesn't like to compile rehype-pretty-code
                 //     rehypePrettyCode,
                 //     {
