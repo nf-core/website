@@ -1,12 +1,12 @@
 ---
-import { markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import ComponentParamTable from '@components/component/ComponentParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 
 export function getStaticPaths() {
-    return components_json.modules.map((module) => {
+    return components_json.modules.flatMap((module) => {
         return [
             {
                 params: {
@@ -25,14 +25,16 @@ const { module } = Astro.props;
 const tools = module.meta.tools;
 
 function truncatURLs(url) {
-    url = url.replace(/^http(s):\/\//, '');
-    url = url.replace(/^www./, '');
-    url = url.replace(/\/Home$/, '');
-    url = url.replace(/\/$/, '');
-    url = url.replace(/.(s)html$/, '');
-    url = url.replace(/\/index$/, '');
-    url = url.replace(/\/src\/master$/, '');
-    url = url.replace('/tree/master/', '[...]');
+    url = url
+        .replace(/^http(s):\/\//, '')
+        .replace(/^www./, '')
+        .replace(/\/Home$/, '')
+        .replace(/\/$/, '')
+        .replace(/.html$/, '')
+        .replace(/.shtml$/, '')
+        .replace(/\/index$/, '')
+        .replace(/\/src\/master$/, '')
+        .replace('/tree/master/', '[...]');
     return url;
 }
 ---
@@ -53,12 +55,7 @@ function truncatURLs(url) {
                     >
                 </h2>
                 <div class="">
-                    {
-                        async () => {
-                            const html = await markdown(module.meta.description);
-                            return html;
-                        }
-                    }
+                    <Markdown md={module.meta.description} />
                 </div>
             </div>
             <div class="module-params">
@@ -141,7 +138,7 @@ function truncatURLs(url) {
                                                 </div>
                                             )}
                                         </div>
-                                        <div class="d-flex flex-column justify-content-center">
+                                        <div class="d-flex flex-column justify-content-center tool-resources">
                                             <div class="btn-group-vertical" role="group" aria-label="Basic example">
                                                 {tool[toolName].homepage &&
                                                     tool[toolName].homepage !== tool[toolName].documentation && (
@@ -150,7 +147,7 @@ function truncatURLs(url) {
                                                             title="Homepage"
                                                             data-bs-toggle="tooltip"
                                                             data-bs-delay="300"
-                                                            class="btn btn-outline-secondary text-nowrap"
+                                                            class="btn btn-outline-secondary"
                                                         >
                                                             <i class="fa-regular fa-globe fa-fw" />
                                                             {truncatURLs(tool[toolName].homepage)}
@@ -162,7 +159,7 @@ function truncatURLs(url) {
                                                         title="Documentation"
                                                         data-bs-toggle="tooltip"
                                                         data-bs-delay="300"
-                                                        class="btn btn-outline-secondary text-nowrap"
+                                                        class="btn btn-outline-secondary"
                                                     >
                                                         <i class="fa-duotone fa-book fa-fw" />{' '}
                                                         {truncatURLs(tool[toolName].documentation)}
@@ -203,3 +200,8 @@ function truncatURLs(url) {
         </div>
     </div>
 </ComponentPageLayout>
+<style>
+    .tool-resources {
+        max-width: 35%;
+    }
+</style>

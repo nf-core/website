@@ -1,11 +1,11 @@
 ---
-import { markdown } from '@astropub/md';
+import Markdown from '@components/markdown/Markdown.svelte';
 import ComponentParamTable from '@components/component/ComponentParamTable.astro';
 import SidebarStats from '@components/sidebar/SidebarStats.astro';
 import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
 import components_json from '@public/components.json';
 export function getStaticPaths() {
-    return components_json.subworkflows.map((subworkflow) => {
+    return components_json.subworkflows.flatMap((subworkflow) => {
         return [
             {
                 params: {
@@ -38,12 +38,7 @@ const { subworkflow } = Astro.props;
                     >
                 </h2>
                 <div class="">
-                    {
-                        async () => {
-                            const html = await markdown(subworkflow.meta.description);
-                            return html;
-                        }
-                    }
+                    <Markdown md={subworkflow.meta.description} />
                 </div>
             </div>
             <div class="subworkflow-params">

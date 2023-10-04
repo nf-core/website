@@ -2,8 +2,8 @@
 import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
 import pipelines_json from '@public/pipelines.json';
 import { formatDistance } from 'date-fns';
-import octokit from '@components/octokit';
-import { markdown } from '@astropub/md';
+import cache from 'bin/cache.js';
+import Markdown from '@components/markdown/Markdown.svelte';
 import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
 export function getStaticPaths() {
     var paths: {
@@ -44,28 +44,36 @@ const { pipeline } = Astro.params;
 let { releases, md_files, meta } = Astro.props;
 const version = releases[0].tag_name;
 const description = meta.description;
-const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', {
-    repo: pipeline,
-});
+// get all body content for this pipeline from the cache
+
+let gh_releases = [];
+for (const release of releases) {
+    const cache_key = `${pipeline}/${release.tag_name}/body`;
+    const gh_release = await cache.get(cache_key).catch((err) => {
+        console.error(err);
+    });
+    if (gh_release) {
+        gh_releases.push(gh_release);
+    } else {
+        console.log(`No cache for ${cache_key}`);
+    }
+}
 ---
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline + ': Releases'}
     subtitle={description}
     headings={[]}
     version={version}
     versions={releases.map((release) => release.tag_name)}
     tabItems={md_files}
-    docSearchTags={[{ name: 'page_rank', content: '-50' }]}
 >
     <div class="row">
         <div class="col-12 col-md-9 pt-3">
             <h1>Version history</h1>
             <div class="accordion" id="releases">
                 {
-                    gh_releases &&
-                        releases &&
+                    releases &&
                         releases.map((release, i) => {
                             return (
                                 <div class="accordion-item">
@@ -116,12 +124,7 @@ const gh_releases = await octokit.request('GET /repos/nf-core/{repo}/releases', 
                                                     View on GitHub
                                                 </a>
                                             </div>
-                                            {gh_releases.data[i] && gh_releases.data[i].body
-                                                ? async () => {
-                                                      const html = await markdown(gh_releases.data[i].body);
-                                                      return html;
-                                                  }
-                                                : ''}
+                                            {gh_releases[i] ? <Markdown md={gh_releases[i]} /> : ''}
                                         </div>
                                     </div>
                                 </div>
