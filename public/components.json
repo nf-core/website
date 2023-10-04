@@ -46058,6 +46058,103 @@
       }
     },
     {
+      "name": "hypo",
+      "path": "modules/nf-core/hypo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hypo",
+        "description": "Assembly polisher using short (and long) reads",
+        "keywords": [
+          "assembly",
+          "polishing",
+          "nanopore",
+          "illumina"
+        ],
+        "tools": [
+          {
+            "hypo": {
+              "description": "Super Fast and Accurate Polisher for Long Read Genome Assemblies.",
+              "homepage": "https://github.com/kensung-lab/hypo",
+              "documentation": "https://github.com/kensung-lab/hypo/blob/master/README.md",
+              "tool_dev_url": "https://github.com/kensung-lab/hypo",
+              "doi": "10.1101/2019.12.19.882506",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Short reads file(s). In fastq or fasta, compressed or uncompressed"
+            }
+          },
+          {
+            "meta2": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "sr_bam": {
+              "type": "file",
+              "description": "Aligned short-read BAM/SAM file. Must have CIGAR information.",
+              "pattern": "*.{bam,sam}"
+            }
+          },
+          {
+            "draft": {
+              "type": "file",
+              "description": "Input (fasta) file containing draft contig assembly"
+            }
+          },
+          {
+            "genome_size": {
+              "type": "string",
+              "description": "Estimated size of the genome. Number or nts or use suffixes k/m/g, e.g. 5m, 3.2g"
+            }
+          },
+          {
+            "reads_coverage": {
+              "type": "integer",
+              "description": "Appprimate depth of coverage of short reads."
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Polished assembly fasta file",
+              "pattern": "*.fasta"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@remiolsen"
+        ]
+      }
+    },
+    {
       "name": "ichorcna_createpon",
       "path": "modules/nf-core/ichorcna/createpon/meta.yml",
       "type": "module",
@@ -58654,6 +58751,73 @@
         ],
         "authors": [
           "@luisas"
+        ]
+      }
+    },
+    {
+      "name": "mmseqs_linclust",
+      "path": "modules/nf-core/mmseqs/linclust/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_linclust",
+        "description": "Cluster sequences in linear time using MMSeqs2 linclust.",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "clustering",
+          "searching",
+          "indexing",
+          "mmseqs2"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": "['GPL v3']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "input_db": {
+              "type": "directory",
+              "description": "a MMseqs2 database used for clustering"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+            }
+          },
+          {
+            "db_cluster": {
+              "type": "directory",
+              "description": "a clustered MMseqs2 database"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
         ]
       }
     },
@@ -86576,6 +86740,79 @@
         ],
         "authors": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "spring_compress",
+      "path": "modules/nf-core/spring/compress/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "spring_compress",
+        "description": "Fast, efficient, lossless compression of FASTQ files.",
+        "keywords": [
+          "FASTQ",
+          "compression",
+          "lossless"
+        ],
+        "tools": [
+          {
+            "spring": {
+              "description": "SPRING is a compression tool for Fastq files (containing up to 4.29 Billion reads)",
+              "homepage": "https://github.com/shubhamchandak94/Spring",
+              "documentation": "https://github.com/shubhamchandak94/Spring/blob/master/README.md",
+              "tool_dev_url": "https://github.com/shubhamchandak94/Spring",
+              "doi": "10.1093/bioinformatics/bty1015",
+              "licence": "['Free for non-commercial use']"
+            }
+          }
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "fastq1": {
+              "type": "file",
+              "description": "FASTQ file to compress.",
+              "pattern": "*.{fq.gz,fastq.gz}"
+            }
+          },
+          {
+            "fastq2": {
+              "type": "file",
+              "description": "Parired FASTQ file fon non single-end experiments.",
+              "pattern": "*.{fq.gz,fastq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "spring": {
+              "type": "file",
+              "description": "One sequence file in spring compressed format.",
+              "pattern": "*.{spring}"
+            }
+          }
+        ],
+        "authors": [
+          "@xec-cm"
         ]
       }
     },
