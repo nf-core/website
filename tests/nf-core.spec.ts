@@ -17,7 +17,6 @@ test('pipeline redirect works for /$pipeliname', async ({ page }) => {
     await expect.soft(page.locator('.markdown-content')).toContainText('nf-core/rnaseq is a bioinformatics pipeline');
     // check if results redirect works
     await page.goto('/rnaseq/results/');
-
     await expect.soft(page.getByRole('link', { name: 'Results' })).toHaveClass('nav-link active');
     // check if SSR works correctly for results
     await page.locator('.list-group-item').nth(1).click();
