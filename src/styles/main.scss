@@ -87,11 +87,6 @@ img {
   text-decoration: underline;
 }
 
-.btn-light {
-  background-color: $gray-200;
-  color: $gray-900;
-}
-
 .card p:last-child {
   margin-bottom: 0;
 }
@@ -392,7 +387,7 @@ h4:focus .header-link,
     :hover .invisible {
       visibility: visible !important;
       &:not(.fa-link)::before {
-        content: "\f0c1";
+        content: '\f0c1';
         color: $gray-600;
       }
     }
@@ -1247,7 +1242,6 @@ div.mermaid {
   }
 }
 
-
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
@@ -1311,6 +1305,17 @@ div.mermaid {
     .code:not(pre .code) {
       background-color: $body-tertiary-bg-dark;
       color: $body-secondary-color-dark !important;
+    }
+  }
+
+  .btn-light {
+    background-color: $black;
+    border-color: tint-color($black, 25%);
+    color: $white;
+    &:hover {
+      background-color: tint-color($black, 25%);
+      border-color: tint-color($black, 25%);
+      color: $white;
     }
   }
 
