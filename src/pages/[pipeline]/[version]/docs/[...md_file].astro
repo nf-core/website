@@ -14,7 +14,9 @@ export function getStaticPaths() {
         props: { versions: string[]; md_files: string[]; description: string };
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
-        pipeline.releases.forEach((release) => {
+        const releases = pipeline.releases;
+        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        extended_releases.forEach((release) => {
             const md_files = release.doc_files.map((file) =>
                 file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
             );
@@ -26,7 +28,7 @@ export function getStaticPaths() {
                         md_file: md_file,
                     },
                     props: {
-                        versions: pipeline.releases.map((release) => release.tag_name),
+                        versions: releases.map((release) => release.tag_name),
                         md_files: md_files,
                         description: pipeline.description,
                     },
@@ -36,7 +38,7 @@ export function getStaticPaths() {
     });
     return paths;
 }
-const { pipeline, version, md_file } = Astro.params;
+let { pipeline, version, md_file } = Astro.params;
 const { versions, md_files, description } = Astro.props;
 
 const section = md_file.split('/')[0];
@@ -46,7 +48,8 @@ let left_sidebar = md_files.filter((file) => file.split('/')[0] === section).len
 let sections = {};
 
 // add trailing slash to url if missing
-const url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+url = url.replace(/\.html\/$/, '/');
 const baseURL = url.split('/').slice(0, -2).join('/') + '/';
 
 if (left_sidebar) {
@@ -73,8 +76,8 @@ if (left_sidebar) {
         },
     ];
 }
-
-const cache_key = `${pipeline}/${version?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
+const version_tag_name = version === 'latest' ? versions[0] : version;
+const cache_key = `${pipeline}/${version_tag_name?.replaceAll('.', '')}/docs/${md_file?.toLowerCase()}`;
 
 const entry = await getEntry('pipelines', cache_key);
 let { Content, headings } = await entry.render();
@@ -96,6 +99,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
     tabItems={md_files}
     md_github_url={`https://github.com/nf-core/${pipeline}/blob/${version}/docs/${md_file}.md`}
     sections={sections}
+    docSearchTags={[{ name: 'page_rank', content: '5' }]}
 >
     <div class="row">
         {
@@ -105,7 +109,7 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
                 </div>
             )
         }
-        <div class:list={['col-12 pt-3', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
+        <div class:list={['col-12 pt-3 markdown-content', { 'col-md-9': !left_sidebar, 'col-md-8': left_sidebar }]}>
             <MarkdownWrapper client:load headings={headings}>
                 <Content />
             </MarkdownWrapper>
