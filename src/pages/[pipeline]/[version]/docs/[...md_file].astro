@@ -86,6 +86,9 @@ headings = headings.filter((h) => h.depth <= max_heading_depth);
 
 <PipelinePageLayout
     pipeline={pipeline}
+    meta_title={pipeline +
+        ': ' +
+        section.replace(/-/g, ' ').replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
     subtitle={description}
     headings={headings}
     version={version}
