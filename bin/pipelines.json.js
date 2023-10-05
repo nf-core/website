@@ -219,15 +219,13 @@ export const writePipelinesJson = async () => {
         // cache release body except for dev
         if (release.tag_name !== 'dev') {
           const cache_key = `${name}/${release.tag_name}/body`;
-          const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
+          // const is_cached = cache.getSync(cache_key, false) && cache.getSync(cache_key, false).length > 0;
+          const is_cached = false;
           if (!is_cached) {
             // wrap github urls in markdown links if they are to the same repo and not already inside a link
             release.body = release.body.replaceAll(
               /(?<!\]\()https:\/\/github\.com\/nf-core\/([^\/]+)\/([^\/]+)\/([^\/\n]*)(?![\)\]])/g,
               (match, p1, p2, p3) => {
-                console.log('p1', p1);
-                console.log('p2', p2);
-                console.log('p3', p3);
                 console.log('match', match);
                 if (p1 === name && ['pull', 'issues', 'compare'].includes(p2)) {
                   const prefix = p2 !== 'compare' ? '#' : '';
@@ -237,7 +235,10 @@ export const writePipelinesJson = async () => {
                 return match;
               },
             );
-
+            // replace usernames with links to github profiles
+            release.body = release.body.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
+              return `[${match}](https://github.com/${p1})`;
+            });
             cache.set(cache_key, release.body);
           }
         }
