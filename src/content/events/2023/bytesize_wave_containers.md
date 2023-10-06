@@ -6,7 +6,8 @@ start_date: '2023-09-19'
 start_time: '13:00+02:00'
 end_date: '2023-09-19'
 end_time: '13:30+02:00'
-location_url: https://kth-se.zoom.us/j/68390542812
+youtube_embed:
+location_url: youtube: https://www.youtube.com/watch?v=u2ybsPe1O8o&ab_channel=nf-core
 ---
 
 # nf-core/bytesize
