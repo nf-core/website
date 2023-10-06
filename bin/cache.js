@@ -1,4 +1,5 @@
 import Cache from 'file-system-cache';
+import { existsSync, mkdirSync } from 'fs';
 
 let cache;
 
